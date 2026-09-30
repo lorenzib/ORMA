@@ -666,7 +666,19 @@
   // Open chairlifts: asked only for a small dog, because the scorer treats a
   // dog over 8 kg as unsafe on an open chair whatever the owner says (it has
   // to be held on a lap). Same values as the full wizard and the account.
-  var CHAIRLIFT_OPTS = [{ label: 'Not for us, or never tried', v: 'never' }, { label: 'Yes, held on my lap with harness and leash', v: 'ok' }];
+  // Copy comes from i18n.js (loaded before this script); the English literal
+  // stays as the fallback so the wizard renders even without the dictionary.
+  function t(key, fallback, vars) {
+    var s = (typeof window.t === 'function') ? window.t(key, vars) : key;
+    if (s === key) { s = fallback; if (vars) for (var k in vars) s = s.split('{' + k + '}').join(vars[k]); }
+    return s;
+  }
+  function chairliftOpts() {
+    return [
+      { label: t('hp.wizard.chairlift.never', 'Not for us, or never tried'), v: 'never' },
+      { label: t('hp.wizard.chairlift.ok', 'Yes, held on my lap with harness and leash'), v: 'ok' },
+    ];
+  }
   function asksChairlift(w) { return w.size === 'small'; }
   var releaseWizardFocus = null;
 
@@ -720,9 +732,9 @@
     } else {
       body = '<div class="hp-wiz-q">Do they struggle in the heat?</div>' + optBtns(HEAT_OPTS, w.heat, 'heat', true) +
         (asksChairlift(w)
-          ? '<div class="hp-wiz-q">Do they ride an open chairlift calmly on your lap?</div>' +
-            '<p class="hp-wiz-device-note">Some routes depend on an open chairlift. Unless you say otherwise, ORMA keeps those routes out of ' + esc((w.name || '').trim() || 'your dog') + '’s matches.</p>' +
-            optBtns(CHAIRLIFT_OPTS, w.chairlift, 'chairlift', true)
+          ? '<div class="hp-wiz-q">' + esc(t('hp.wizard.chairlift.question', 'Do they ride an open chairlift calmly on your lap?')) + '</div>' +
+            '<p class="hp-wiz-device-note">' + t('hp.wizard.chairlift.note', 'Some routes depend on an open chairlift. Unless you say otherwise, ORMA keeps those routes out of {name}’s matches.', { name: esc((w.name || '').trim() || t('hp.wizard.yourDog', 'your dog')) }) + '</p>' +
+            optBtns(chairliftOpts(), w.chairlift, 'chairlift', true)
           : '') +
         '<div class="hp-wiz-summary"><div class="hp-wiz-summary-h">Profile summary</div>' +
         summaryRow('Name', (w.name || '').trim() || 'Your dog') +
@@ -730,7 +742,7 @@
         summaryRow('Energy', cap(w.energy) + ' energy') +
         summaryRow('Terrain', { soft: 'Soft ground only', gravel: 'Some gravel OK', any: 'Any terrain' }[w.terrainTol]) +
         summaryRow('Heat', w.heat ? 'Heat-sensitive' : 'Handles heat fine') +
-        (asksChairlift(w) ? summaryRow('Chairlifts', { ok: 'Rides calmly on a lap', never: 'Not for us' }[w.chairlift] || 'Not answered') : '') +
+        (asksChairlift(w) ? summaryRow(t('hp.wizard.chairlift.summary', 'Chairlifts'), { ok: t('hp.wizard.chairlift.ridesOk', 'Rides calmly on a lap'), never: t('hp.wizard.chairlift.notForUs', 'Not for us') }[w.chairlift] || t('hp.wizard.chairlift.unanswered', 'Not answered')) : '') +
         '</div>';
     }
     el.wizBody.innerHTML = body;

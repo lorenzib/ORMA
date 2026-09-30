@@ -140,6 +140,6 @@ describe('guest homepage editorial structure', () => {
     const css = read('homepage-editorial.css');
     expect(css).toContain('.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}');
     expect(read('index.html')).toContain('homepage-editorial.css?v=20260917-1');
-    expect(read('index.html')).toContain('homepage-search.js?v=20260917-2');
+    expect(read('index.html')).toContain('homepage-search.js?v=20260930-1');
   });
 });
