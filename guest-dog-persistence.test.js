@@ -46,6 +46,18 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     expect(controller).toContain("optBtns(heatOpts(), w.heat, 'heat', true)");
   });
 
+  test('the guest bar and mission block carry Italian copy', () => {
+    const dictionary = read('i18n.js');
+    for(const key of ['hp.guest.kicker','hp.guest.medium.title','hp.guest.medium.sub','hp.guest.addDog','hp.guest.custom.title','hp.guest.custom.cta','hp.guest.preview.title','browse.guest.title','browse.guest.sub','hp.mission.kick','hp.mission.title','hp.mission.copy','hp.mission.quote','hp.mission.cite']){
+      expect((dictionary.match(new RegExp(`'${key.replace(/\./g,'\\.')}':`, 'g')) || []).length).toBe(2);
+    }
+    expect(dictionary).toContain("'hp.mission.title': 'Il percorso deve adattarsi al cane, mai il contrario.'");
+    expect(controller).toContain("t('hp.guest.custom.title', 'Scores are personalised for {name}.', custom)");
+    expect(controller).toContain("t('hp.mission.title', 'The route must adapt to the dog, never the other way around.')");
+    expect(read('index.html')).toContain('<span class="hp-guestbar-kicker" data-i18n="hp.guest.kicker">Guest mode</span>');
+    expect(read('browse-trails.html')).toContain('<b data-i18n="browse.guest.title">Guest mode · Scores use a medium-dog profile.</b>');
+  });
+
   test('a declared small dog sees chairlift-assisted routes on the guest homepage', () => {
     expect(controller).toContain('adapters.chairliftSafe(activeProfile())');
     expect(controller).toContain('filters.matches(t, fstate, options)');
@@ -74,7 +86,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
 
   test('the homepage ships the new controller and guest-context versions', () => {
     const html = read('index.html');
-    expect(html).toContain('homepage-search.js?v=20260930-2');
+    expect(html).toContain('homepage-search.js?v=20260930-3');
     expect(html).toContain('guest-context.js?v=20260917-2');
     expect(read('browse-trails.html')).toContain('guest-context.js?v=20260917-2');
   });
