@@ -1,0 +1,141 @@
+#!/usr/bin/env node
+'use strict';
+
+// Read-only. Prints what each waiting gate is actually asking, so the judgement
+// can be made from the evidence rather than from twenty-three desk cards.
+
+const {FirestoreBackofficeStore}=require('../services/firestore-backoffice-store');
+const {buildGateEvidence}=require('../workflows/gate-evidence');
+
+const HEADINGS={
+  'dossier-approval':'DOSSIER APPROVAL — approving one of these verifies a trail',
+  'geometry-approval':'GEOMETRY APPROVAL — does the drawn line match the official route',
+  'agent-failure':'AGENT FAILURE — no decision here clears these; the job has to run',
+};
+
+function line(text){console.log(`[evidence] ${text}`);}
+
+function printGeometry(geometry){
+  if(!geometry)return;
+  const bits=[];
+  if(geometry.distanceKm!=null){
+    const official=geometry.officialDistanceKm!=null?` vs ${geometry.officialDistanceKm} km official`:'';
+    const delta=geometry.distanceDeltaPercent!=null?` (${geometry.distanceDeltaPercent>0?'+':''}${geometry.distanceDeltaPercent}%)`:'';
+    bits.push(`${geometry.distanceKm} km${official}${delta}`);
+  }
+  if(geometry.pointCount!=null)bits.push(`${geometry.pointCount} points`);
+  if(geometry.isClosed!=null)bits.push(geometry.isClosed?'closes':`open by ${geometry.closureDistanceM} m`);
+  if(geometry.maxSegmentM!=null)bits.push(`longest gap ${geometry.maxSegmentM} m`);
+  if(geometry.components!=null)bits.push(`${geometry.components} component(s)`);
+  if(bits.length)line(`      line: ${bits.join(' · ')}`);
+  if(geometry.externalId)line(`      source: ${geometry.externalId}`);
+  const conformance=geometry.routeConformance;
+  if(conformance){
+    line(`      follows its route numbers: ${conformance.status}`
+      +(conformance.offRouteKm!=null?` — off for ${conformance.offRouteKm} of ${conformance.distanceKm} km`:'')
+      +(conformance.maxOffsetM!=null?`, up to ${conformance.maxOffsetM} m`:''));
+  }else{
+    line('      follows its route numbers: not measured (dossier predates the check)');
+  }
+}
+
+// Unwaivable blockers are always named in full: they are rare, and each one
+// decides whether a gate can be approved at all. Everything else is counted by
+// shape, because forty-one blockers on one dossier is not forty-one problems --
+// printing them all is how a report becomes something nobody reads.
+//
+// 'needs a job' rather than 'waivable' on an agent failure: that gate cannot be
+// approved at all, and the waivable label would read as an invitation.
+function printBlockers(item,full){
+  const blockers=item.blockers;
+  if(!blockers.length)return;
+  if(item.gateType==='agent-failure'){
+    line(`      needs a job · ${blockers[0].reason.slice(0,100)}`);
+    if(blockers.length>1)line(`      and ${blockers.length-1} more, all waiting on the same run`);
+    return;
+  }
+  for(const blocker of blockers.filter(entry=>!entry.waivable)){
+    line(`      UNWAIVABLE ${blocker.reason.slice(0,110)}`);
+  }
+  const waivable=blockers.filter(entry=>entry.waivable).length;
+  if(waivable)line(`      ${waivable} blocker(s) a written reason can answer:`);
+  for(const bucket of item.blockerSummary){
+    // A geometry gate's blockers are bare codes -- not-closed-loop,
+    // official-distance-conflict -- short, few, and the whole content of the
+    // question. Counting those says nothing; the agents' prose is what needed
+    // summarising.
+    if(bucket.agent==='(unattributed)'){
+      for(const reason of bucket.reasons)line(`        ${reason.slice(0,100)}`);
+      continue;
+    }
+    const parts=[];
+    if(bucket.verdict)parts.push(`says ${bucket.verdict}`);
+    if(bucket.openQuestions)parts.push(`${bucket.openQuestions} open question(s)`);
+    if(bucket.claimStatuses.length)parts.push(bucket.claimStatuses.join(', '));
+    line(`        ${String(bucket.total).padStart(3)}  ${bucket.agent}${parts.length?` — ${parts.join('; ')}`:''}`);
+  }
+  if(full){
+    line('      every blocker, in full:');
+    for(const blocker of blockers)line(`        ${blocker.reason}`);
+  }
+}
+
+function printClaims(claims){
+  if(!claims.length)return;
+  const unsupported=claims.filter(claim=>claim.finding!=='supported-proposal');
+  line(`      claims: ${claims.length} proposed, ${claims.length-unsupported.length} supported`);
+  for(const claim of unsupported.slice(0,6)){
+    line(`        ${claim.agentId}/${claim.id}: ${claim.finding}`
+      +(claim.blockers.length?` — ${String(claim.blockers[0]).slice(0,80)}`:''));
+  }
+}
+
+/** One trail's blockers in full, for the sitting where they are actually weighed. */
+function focusFrom(argv){
+  const only=argv.find(arg=>arg.startsWith('--trail='));
+  return {full:argv.includes('--full')||!!only,only:only?only.split('=')[1]:null};
+}
+
+async function main(options={}){
+  const store=options.store||new FirestoreBackofficeStore();
+  const focus=options.focus||focusFrom(process.argv.slice(2));
+  const [orchestration,reviewQueue]=await Promise.all([
+    store.getArtifact('trail-orchestration'),
+    store.getArtifact('dossier-review-queue'),
+  ]);
+  const report=buildGateEvidence({orchestration,reviewQueue,nowMs:options.nowMs});
+
+  line(`${report.total} gate(s) awaiting you · ${report.readyToApprove} clean by every automated check`
+    +` · ${report.notClearableHere} that no decision here can clear.`);
+
+  const shown=focus.only?report.items.filter(entry=>entry.candidateId===focus.only):report.items;
+  if(focus.only&&!shown.length)line(`No gate is waiting for ${focus.only}.`);
+  const full=focus.full;
+
+  let heading=null;
+  for(const item of shown){
+    if(item.gateType!==heading){
+      heading=item.gateType;
+      console.log('');
+      line(HEADINGS[heading]||heading.toUpperCase());
+    }
+    const age=item.waitingDays==null?'':` · waiting ${item.waitingDays}d`;
+    line(`  ${item.approvalAllowed?'CLEAN ':'      '}${item.trailName} (${item.candidateId})${age}`);
+    if(item.geometry)printGeometry(item.geometry);
+    if(item.claims.length)printClaims(item.claims);
+    printBlockers(item,full);
+    if(item.approvalAllowed)line('      nothing is blocking this one.');
+    else if(!item.blockers.length)line('      blocked, but the queue records no reason.');
+  }
+
+  console.log('');
+  if(!full)line('Run with --trail=<id> to read one trail\'s blockers in full before accepting them.');
+  line('A waivable blocker is accepted with a written reason of at least ten characters.');
+  line('An unwaivable one is route guidance: the directions printed for a walker, which no reason replaces.');
+  line('Nothing was changed.');
+  return report;
+}
+
+if(require.main===module)main().catch(error=>{console.error(`[evidence] ${error.stack||error.message}`);process.exitCode=1;});
+
+module.exports={main};
