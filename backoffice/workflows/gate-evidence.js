@@ -59,6 +59,41 @@ function claimEvidence(outputs){
   return claims;
 }
 
+// Forty-one blockers on one dossier is not forty-one problems. They arrive in
+// four recognisable shapes, and only two of them are things a moderator weighs:
+//
+//   regulatoryRanger: recommendation is block          the agent's own verdict
+//   terrainPoi: open question — Can a field visit...   research nobody could close
+//   terrainPoi/livestock: unresolved                   a claim's standing
+//   terrainPoi/livestock: No parcel-level record...    why it is unresolved
+//
+// Counting them by shape says what the sitting is: mostly open questions means
+// the evidence is thin, several conflicted claims means the sources disagree,
+// and those want different judgements.
+function classifyBlocker(reason){
+  const text=String(reason);
+  const agent=(text.match(/^([A-Za-z]+)[:/]/)||[])[1]||'(unattributed)';
+  if(/^[A-Za-z]+: recommendation is /.test(text))return {agent,kind:'verdict'};
+  if(/open question —/.test(text))return {agent,kind:'open-question'};
+  const claim=text.match(/^[A-Za-z]+\/([\w-]+): (conflicted|unresolved|counter-evidence|needs-resolution)\s*$/);
+  if(claim)return {agent,kind:'claim-status',claim:claim[1],finding:claim[2]};
+  return {agent,kind:'detail'};
+}
+
+function summariseBlockers(blockers){
+  const byAgent=new Map();
+  for(const entry of blockers){
+    const shape=classifyBlocker(entry.reason);
+    if(!byAgent.has(shape.agent))byAgent.set(shape.agent,{agent:shape.agent,total:0,openQuestions:0,claimStatuses:[],verdict:null});
+    const bucket=byAgent.get(shape.agent);
+    bucket.total+=1;
+    if(shape.kind==='open-question')bucket.openQuestions+=1;
+    if(shape.kind==='claim-status')bucket.claimStatuses.push(`${shape.claim} ${shape.finding}`);
+    if(shape.kind==='verdict')bucket.verdict=entry.reason.split('recommendation is ')[1]||null;
+  }
+  return [...byAgent.values()].sort((a,b)=>b.total-a.total);
+}
+
 function describeItem(item,trail,nowMs){
   const reasons=(item.blockingReasons||[]).map(reason=>({
     reason:String(reason),
@@ -80,6 +115,7 @@ function describeItem(item,trail,nowMs){
     baselineBlockers:item.sourceTrail?.baselineBlockers||[],
     geometry:item.gateType==='geometry-approval'?geometryEvidence(item.specialistOutputs):null,
     claims:item.gateType==='dossier-approval'?claimEvidence(item.specialistOutputs):[],
+    blockerSummary:summariseBlockers(reasons),
   };
 }
 
@@ -102,4 +138,4 @@ function buildGateEvidence({orchestration,reviewQueue,nowMs=Date.now()}){
   };
 }
 
-module.exports={buildGateEvidence,describeItem,geometryEvidence,claimEvidence,GATE_ORDER};
+module.exports={buildGateEvidence,describeItem,geometryEvidence,claimEvidence,classifyBlocker,summariseBlockers,GATE_ORDER};

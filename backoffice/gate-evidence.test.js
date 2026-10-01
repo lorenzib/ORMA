@@ -4,7 +4,7 @@
 // are waiting; this says which three cost a click, which two would verify a
 // trail, and which ten no decision can clear at all.
 
-const {buildGateEvidence,geometryEvidence,claimEvidence}=require('./workflows/gate-evidence');
+const {buildGateEvidence,geometryEvidence,claimEvidence,classifyBlocker,summariseBlockers}=require('./workflows/gate-evidence');
 
 const NOW=Date.parse('2026-09-30T00:00:00Z');
 const item=(overrides={})=>({
@@ -112,5 +112,60 @@ describe('the evidence the gate is actually asking about',()=>{
     const report=build([item({gateType:'dossier-approval'}),item({candidateId:'g',gateType:'geometry-approval'})]);
     expect(report.items[0].geometry).toBeNull();
     expect(report.items[1].claims).toEqual([]);
+  });
+});
+
+// Forty-one blockers on one dossier is not forty-one problems. Listing them all
+// produced a report nobody would read, which is the same as no report.
+describe('blockers are counted by shape, not listed',()=>{
+  test('each of the four shapes is recognised',()=>{
+    expect(classifyBlocker('terrainPoi: recommendation is block'))
+      .toEqual({agent:'terrainPoi',kind:'verdict'});
+    expect(classifyBlocker('terrainPoi: open question — Can a field visit confirm grazing?'))
+      .toEqual({agent:'terrainPoi',kind:'open-question'});
+    expect(classifyBlocker('terrainPoi/livestock: unresolved'))
+      .toEqual({agent:'terrainPoi',kind:'claim-status',claim:'livestock',finding:'unresolved'});
+    expect(classifyBlocker('terrainPoi/livestock: No parcel-level record verifies it.'))
+      .toEqual({agent:'terrainPoi',kind:'detail'});
+  });
+
+  test('a blocker naming no agent is still counted, not dropped',()=>{
+    expect(classifyBlocker('not-closed-loop').agent).toBe('(unattributed)');
+  });
+
+  // The shape of the sitting: mostly open questions means the evidence is thin,
+  // several conflicted claims means the sources disagree, and those want
+  // different judgements from a moderator.
+  test('the summary says what kind of sitting it is',()=>{
+    const [terrain]=summariseBlockers([
+      {reason:'terrainPoi: recommendation is block',waivable:true},
+      {reason:'terrainPoi: open question — one?',waivable:true},
+      {reason:'terrainPoi: open question — two?',waivable:true},
+      {reason:'terrainPoi/livestock: unresolved',waivable:true},
+      {reason:'terrainPoi/livestock: five strategies exhausted',waivable:true},
+    ]);
+    expect(terrain).toEqual(expect.objectContaining({
+      agent:'terrainPoi',total:5,openQuestions:2,verdict:'block',claimStatuses:['livestock unresolved']}));
+  });
+
+  test('the noisiest agent is reported first',()=>{
+    const summary=summariseBlockers([
+      {reason:'evidenceLibrarian/provenance: conflicted',waivable:true},
+      {reason:'terrainPoi: open question — a?',waivable:true},
+      {reason:'terrainPoi: open question — b?',waivable:true},
+    ]);
+    expect(summary.map(bucket=>bucket.agent)).toEqual(['terrainPoi','evidenceLibrarian']);
+  });
+
+  test('a gate with nothing against it summarises to nothing',()=>{
+    expect(summariseBlockers([])).toEqual([]);
+  });
+
+  test('every item carries its own summary',()=>{
+    const report=buildGateEvidence({orchestration:{trails:[]},nowMs:NOW,reviewQueue:{items:[item({
+      gateType:'dossier-approval',
+      blockingReasons:['terrainPoi: recommendation is block','terrainPoi/shade: conflicted'],
+    })]}});
+    expect(report.items[0].blockerSummary[0]).toEqual(expect.objectContaining({agent:'terrainPoi',total:2}));
   });
 });

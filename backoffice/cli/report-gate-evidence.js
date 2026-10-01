@@ -39,6 +39,39 @@ function printGeometry(geometry){
   }
 }
 
+// Unwaivable blockers are always named in full: they are rare, and each one
+// decides whether a gate can be approved at all. Everything else is counted by
+// shape, because forty-one blockers on one dossier is not forty-one problems --
+// printing them all is how a report becomes something nobody reads.
+//
+// 'needs a job' rather than 'waivable' on an agent failure: that gate cannot be
+// approved at all, and the waivable label would read as an invitation.
+function printBlockers(item,full){
+  const blockers=item.blockers;
+  if(!blockers.length)return;
+  if(item.gateType==='agent-failure'){
+    line(`      needs a job · ${blockers[0].reason.slice(0,100)}`);
+    if(blockers.length>1)line(`      and ${blockers.length-1} more, all waiting on the same run`);
+    return;
+  }
+  for(const blocker of blockers.filter(entry=>!entry.waivable)){
+    line(`      UNWAIVABLE ${blocker.reason.slice(0,110)}`);
+  }
+  const waivable=blockers.filter(entry=>entry.waivable).length;
+  if(waivable)line(`      ${waivable} blocker(s) a written reason can answer:`);
+  for(const bucket of item.blockerSummary){
+    const parts=[];
+    if(bucket.verdict)parts.push(`says ${bucket.verdict}`);
+    if(bucket.openQuestions)parts.push(`${bucket.openQuestions} open question(s)`);
+    if(bucket.claimStatuses.length)parts.push(bucket.claimStatuses.join(', '));
+    line(`        ${String(bucket.total).padStart(3)}  ${bucket.agent}${parts.length?` — ${parts.join('; ')}`:''}`);
+  }
+  if(full){
+    line('      every blocker, in full:');
+    for(const blocker of blockers)line(`        ${blocker.reason}`);
+  }
+}
+
 function printClaims(claims){
   if(!claims.length)return;
   const unsupported=claims.filter(claim=>claim.finding!=='supported-proposal');
@@ -49,8 +82,15 @@ function printClaims(claims){
   }
 }
 
+/** One trail's blockers in full, for the sitting where they are actually weighed. */
+function focusFrom(argv){
+  const only=argv.find(arg=>arg.startsWith('--trail='));
+  return {full:argv.includes('--full')||!!only,only:only?only.split('=')[1]:null};
+}
+
 async function main(options={}){
   const store=options.store||new FirestoreBackofficeStore();
+  const focus=options.focus||focusFrom(process.argv.slice(2));
   const [orchestration,reviewQueue]=await Promise.all([
     store.getArtifact('trail-orchestration'),
     store.getArtifact('dossier-review-queue'),
@@ -60,8 +100,12 @@ async function main(options={}){
   line(`${report.total} gate(s) awaiting you · ${report.readyToApprove} clean by every automated check`
     +` · ${report.notClearableHere} that no decision here can clear.`);
 
+  const shown=focus.only?report.items.filter(entry=>entry.candidateId===focus.only):report.items;
+  if(focus.only&&!shown.length)line(`No gate is waiting for ${focus.only}.`);
+  const full=focus.full;
+
   let heading=null;
-  for(const item of report.items){
+  for(const item of shown){
     if(item.gateType!==heading){
       heading=item.gateType;
       console.log('');
@@ -71,19 +115,13 @@ async function main(options={}){
     line(`  ${item.approvalAllowed?'CLEAN ':'      '}${item.trailName} (${item.candidateId})${age}`);
     if(item.geometry)printGeometry(item.geometry);
     if(item.claims.length)printClaims(item.claims);
-    for(const blocker of item.blockers){
-      // Waivable is a statement about accepting a blocker at a gate that can be
-      // approved. An agent failure is not such a gate, and labelling its
-      // blocker waivable would read as an invitation to wave it through.
-      const label=item.gateType==='agent-failure'?'needs a job'
-        :blocker.waivable?'waivable  ':'UNWAIVABLE';
-      line(`      ${label} ${blocker.reason.slice(0,110)}`);
-    }
+    printBlockers(item,full);
     if(item.approvalAllowed)line('      nothing is blocking this one.');
     else if(!item.blockers.length)line('      blocked, but the queue records no reason.');
   }
 
   console.log('');
+  if(!full)line('Run with --trail=<id> to read one trail\'s blockers in full before accepting them.');
   line('A waivable blocker is accepted with a written reason of at least ten characters.');
   line('An unwaivable one is route guidance: the directions printed for a walker, which no reason replaces.');
   line('Nothing was changed.');
