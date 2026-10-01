@@ -60,6 +60,14 @@ function printBlockers(item,full){
   const waivable=blockers.filter(entry=>entry.waivable).length;
   if(waivable)line(`      ${waivable} blocker(s) a written reason can answer:`);
   for(const bucket of item.blockerSummary){
+    // A geometry gate's blockers are bare codes -- not-closed-loop,
+    // official-distance-conflict -- short, few, and the whole content of the
+    // question. Counting those says nothing; the agents' prose is what needed
+    // summarising.
+    if(bucket.agent==='(unattributed)'){
+      for(const reason of bucket.reasons)line(`        ${reason.slice(0,100)}`);
+      continue;
+    }
     const parts=[];
     if(bucket.verdict)parts.push(`says ${bucket.verdict}`);
     if(bucket.openQuestions)parts.push(`${bucket.openQuestions} open question(s)`);

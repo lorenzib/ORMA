@@ -84,8 +84,9 @@ function summariseBlockers(blockers){
   const byAgent=new Map();
   for(const entry of blockers){
     const shape=classifyBlocker(entry.reason);
-    if(!byAgent.has(shape.agent))byAgent.set(shape.agent,{agent:shape.agent,total:0,openQuestions:0,claimStatuses:[],verdict:null});
+    if(!byAgent.has(shape.agent))byAgent.set(shape.agent,{agent:shape.agent,total:0,openQuestions:0,claimStatuses:[],verdict:null,reasons:[]});
     const bucket=byAgent.get(shape.agent);
+    bucket.reasons.push(entry.reason);
     bucket.total+=1;
     if(shape.kind==='open-question')bucket.openQuestions+=1;
     if(shape.kind==='claim-status')bucket.claimStatuses.push(`${shape.claim} ${shape.finding}`);

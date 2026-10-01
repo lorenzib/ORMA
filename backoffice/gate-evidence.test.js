@@ -169,3 +169,22 @@ describe('blockers are counted by shape, not listed',()=>{
     expect(report.items[0].blockerSummary[0]).toEqual(expect.objectContaining({agent:'terrainPoi',total:2}));
   });
 });
+
+// A geometry gate's blockers are bare codes, not agent prose: short, few, and
+// the whole content of the question. Counting those says nothing, so the
+// summary keeps them to be named rather than tallied.
+describe('bare codes keep their text',()=>{
+  test('an unattributed bucket carries the reasons themselves',()=>{
+    const [bucket]=summariseBlockers([
+      {reason:'not-closed-loop',waivable:true},
+      {reason:'official-distance-conflict',waivable:true},
+    ]);
+    expect(bucket.agent).toBe('(unattributed)');
+    expect(bucket.reasons).toEqual(['not-closed-loop','official-distance-conflict']);
+  });
+
+  test('an agent bucket carries them too, for the full view',()=>{
+    const [bucket]=summariseBlockers([{reason:'terrainPoi/livestock: unresolved',waivable:true}]);
+    expect(bucket.reasons).toEqual(['terrainPoi/livestock: unresolved']);
+  });
+});
