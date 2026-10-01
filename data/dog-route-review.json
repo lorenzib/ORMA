@@ -740,20 +740,6 @@
     ]
   },
   {
-    "id": 2345120,
-    "name": "Wanderweg",
-    "reasons": [
-      "not a loop (loops-only mode)"
-    ]
-  },
-  {
-    "id": 2345121,
-    "name": "Wanderweg",
-    "reasons": [
-      "not a loop (loops-only mode)"
-    ]
-  },
-  {
     "id": 2379944,
     "name": "Via ferrata \"Nico Gusella\"",
     "reasons": [
@@ -1702,6 +1688,14 @@
     "id": 5603332,
     "name": "Almenweg",
     "reasons": [
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
+    "id": 5607450,
+    "name": "Wanderweg 9",
+    "reasons": [
+      "contains T3+/ferrata/ladder/dog=no way",
       "not a loop (loops-only mode)"
     ]
   },
@@ -4567,13 +4561,6 @@
     ]
   },
   {
-    "id": 11846880,
-    "name": "1 - Kardaun => Nigerpass => Kölner Hütte",
-    "reasons": [
-      "not a loop (loops-only mode)"
-    ]
-  },
-  {
     "id": 11847011,
     "name": "5 - Laives => Deutschnofen => Welschnofen => Tiers",
     "reasons": [
@@ -7021,6 +7008,7 @@
     "id": 17051110,
     "name": "TransLagorai - Tappa 6 variante Malacarne",
     "reasons": [
+      "contains T3+/ferrata/ladder/dog=no way",
       "not a loop (loops-only mode)"
     ]
   },
@@ -7493,13 +7481,6 @@
   {
     "id": 19258839,
     "name": "Bletterbachrunde",
-    "reasons": [
-      "not a loop (loops-only mode)"
-    ]
-  },
-  {
-    "id": 19263305,
-    "name": "Passo Cùgola",
     "reasons": [
       "not a loop (loops-only mode)"
     ]
@@ -8117,6 +8098,20 @@
   {
     "id": 21242578,
     "name": "Il Sentiero dei Suoni",
+    "reasons": [
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
+    "id": 21309579,
+    "name": "12A",
+    "reasons": [
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
+    "id": 21427401,
+    "name": "Wanderweg 28B",
     "reasons": [
       "not a loop (loops-only mode)"
     ]
