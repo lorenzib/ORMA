@@ -16,6 +16,31 @@
  * BEFORE trail.js.
  */
 
+/**
+ * Where along the walk a position on the drawn line is.
+ *
+ * For most shapes the line is the walk, and position is the fraction along it
+ * times the stated distance. A there-and-back is drawn once and walked twice:
+ * the line is one leg, so the fraction scales by half the distance on the way
+ * out and mirrors into the second half on the way back. Scaling by the full
+ * distance put the walker at the finish the moment they reached the
+ * turnaround -- 5.5 km at Rifugio Nuvolau, with the whole descent to come.
+ *
+ * Pure, so the arithmetic can be checked without a GPS or a map.
+ */
+function hikeRoutePositionKm(input){
+  const totalMeters = Number(input && input.totalMeters) || 1;
+  const statedKm = Number(input && input.statedKm) || 0;
+  const routeProgressM = Number(input && input.routeProgressM) || 0;
+  const outAndBack = !!(input && input.outAndBack);
+  const furthestRouteM = Number(input && input.furthestRouteM) || 0;
+  const returnMarginM = Number(input && input.returnMarginM) || 150;
+  const legKm = outAndBack ? statedKm / 2 : statedKm;
+  const alongLegKm = (routeProgressM / totalMeters) * legKm;
+  const returning = outAndBack && (furthestRouteM - routeProgressM) > returnMarginM;
+  return returning ? Math.max(0, statedKm - alongLegKm) : alongLegKm;
+}
+
 function initHikeMode(map, trail, options){
   if (!('geolocation' in navigator)) return; // no GPS, don't show the button
   if (!Array.isArray(trail.path) || trail.path.length < 2) return;
@@ -41,10 +66,24 @@ function initHikeMode(map, trail, options){
   // Route-position consumers such as the elevation profile use the trail's
   // stated length. Distance walked is accumulated separately from GPS fixes.
   const statedKm = trail.distance || totalMeters / 1000;
-  const isLoop = metersBetween(
-    trail.path[0][0], trail.path[0][1],
-    trail.path[trail.path.length - 1][0], trail.path[trail.path.length - 1][1]
-  ) <= 75;
+  // A there-and-back is drawn once and walked twice, so the line is one leg of
+  // the stated distance. Scaling position by the full distance put the walker
+  // at the finish the moment they reached the turnaround -- 5.5 km at Rifugio
+  // Nuvolau, with the whole descent still to come.
+  const outAndBack = trail.routeShape === 'out-and-back';
+  // Declared shape wins over guessing from the ends. A there-and-back whose
+  // line is later completed closes on itself, and closure alone would then
+  // read it as a loop and switch off the next-water and next-hut readouts.
+  const isLoop = trail.routeShape
+    ? trail.routeShape === 'loop'
+    : metersBetween(
+      trail.path[0][0], trail.path[0][1],
+      trail.path[trail.path.length - 1][0], trail.path[trail.path.length - 1][1]
+    ) <= 75;
+  // How far out the walk has reached, so the return leg can be told from the
+  // outbound one. Both are the same line in the same direction of travel.
+  let furthestRouteM = 0;
+  const RETURN_MARGIN_M = 150;
 
   // ---- UI elements ---------------------------------------------------------
   const startBtn = document.createElement('button');
@@ -492,7 +531,11 @@ function initHikeMode(map, trail, options){
       ? cum[rejoin.segmentIndex] +
         (cum[rejoin.segmentIndex + 1] - cum[rejoin.segmentIndex]) * rejoin.segmentFraction
       : cum[snap.idx];
-    const currentRouteKm = (routeProgressM / totalMeters) * statedKm;
+    if(routeProgressM > furthestRouteM) furthestRouteM = routeProgressM;
+    const currentRouteKm = hikeRoutePositionKm({
+      routeProgressM, totalMeters, statedKm, outAndBack, furthestRouteM,
+      returnMarginM:RETURN_MARGIN_M,
+    });
     if(assessment.usableForProgress){
       if(window.DoloPawsHikeDistance){
         distanceTracker = window.DoloPawsHikeDistance.update(
@@ -746,6 +789,10 @@ function initHikeMode(map, trail, options){
     latestRouteDistanceM = null;
     manualRejoinActive = false;
     lastIdx = progress ? progress.pathIndex : 0;
+    // A walk resumed on the way back has already been to the far end. Without
+    // this the readout would call the return leg outbound until the walker got
+    // 150 m past wherever the app happened to restart.
+    furthestRouteM = progress && cum[lastIdx] !== undefined ? cum[lastIdx] : 0;
     lastValidFixAt = progress ? progress.recordedAt : null;
     offRouteStreak = 0;
     offRouteSince = null;
