@@ -38,19 +38,46 @@
     return value>=STRONG_AT?'strong-option':value>=POSSIBLE_AT?'possible-with-cautions':'not-recommended';
   }
 
+  // The dictionary lookup, when a page has one. i18n.js exposes `t` globally;
+  // tests and the build have none, and then the English in VERDICTS stands.
+  function dictionary(translate){
+    if(typeof translate==='function')return translate;
+    const g=typeof globalThis!=='undefined'?globalThis:null;
+    return g&&typeof g.t==='function'?g.t:null;
+  }
+
+  /**
+   * The words for a category, translated where a dictionary is loaded. The
+   * trail page already said "Ottima scelta" through recommendation.category.*
+   * while browse, compare and the homepage still said "Strong option" from the
+   * English in VERDICTS: one vocabulary, two languages at once. Resolving the
+   * label here, at the one place every surface reads it, keeps them together.
+   */
+  function categoryLabel(category,translate){
+    const verdict=VERDICTS[category];
+    if(!verdict)return '';
+    const t=dictionary(translate);
+    if(t){
+      const key=`recommendation.category.${category}`;
+      const value=t(key);
+      if(value&&value!==key)return value;
+    }
+    return verdict.label;
+  }
+
   /**
    * The verdict for a recommendation, or for a bare score where that is all a
    * caller has. The engine's category always wins: it already accounts for a
    * prohibition and for evidence too thin to reassure on.
    */
-  function verdictFor(input){
+  function verdictFor(input,translate){
     const recommendation=input&&typeof input==='object'?input:null;
     const score=recommendation
       ? (Number.isFinite(recommendation.score)?recommendation.score:null)
       : (Number.isFinite(Number(input))?Number(input):null);
     const declared=recommendation&&VERDICTS[recommendation.category]?recommendation.category:null;
     const verdict=VERDICTS[declared||categoryForScore(score)];
-    return {...verdict,score:Number.isFinite(score)?score:null};
+    return {...verdict,label:categoryLabel(verdict.category,translate),score:Number.isFinite(score)?score:null};
   }
 
   // How completely a trail is known, said calmly. Confidence describes the data
@@ -106,5 +133,5 @@
   }
 
   return {VERDICTS,STRONG_AT,POSSIBLE_AT,CONFIDENCE_LEVELS,CONFIDENCE_LABELS,
-    categoryForScore,verdictFor,confidenceLabel,evidenceLine};
+    categoryForScore,categoryLabel,verdictFor,confidenceLabel,evidenceLine};
 });
