@@ -213,6 +213,7 @@ jobs:
         shell: bash
         env:
           ORMA_GATE_ALLOWED: ${{ steps.website_gate.outputs.publication_allowed }}
+          ORMA_GATE_PENDING: ${{ steps.website_gate.outputs.publication_pending }}
           ORMA_GATE_MESSAGE: ${{ steps.website_gate.outputs.message }}
           ORMA_GATE_RUN_URL: ${{ steps.website_gate.outputs.validation_run_url }}
           ORMA_WORKER_WORK_OUTCOME: ${{ steps.process_queues.outputs.work_outcome }}
@@ -271,7 +272,10 @@ jobs:
           elif [ "${{ steps.confirm_deployed_publication.outcome }}" = "failure" ]; then
             outcome="failure"
             stage="publication-deployment-receipt"
-          elif [ "$ORMA_GATE_ALLOWED" != "true" ]; then
+          elif [ "$ORMA_GATE_ALLOWED" != "true" ] && [ "$ORMA_GATE_PENDING" != "true" ]; then
+            # A gate still waiting on a validation run is not a blocked one.
+            # Publication is withheld either way, but only this branch means
+            # something needs a person.
             outcome="blocked"
             stage="website-publication-gate"
             message="$ORMA_GATE_MESSAGE"
