@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-02T13:26:09.744Z",
+  "generatedAt": "2026-10-02T16:26:26.063Z",
   "hazards": [
     {
       "id": "meteoalarm-france:thunderstorm:haute-savoie",
@@ -12,12 +12,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/9954b116-a525-4618-a00e-50246cdfb5b0",
-      "identifier": "2.49.0.0.250.0.FR.20261002060019.143023",
-      "effectiveAt": "2026-10-02T04:00:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/3736016e-0ca0-4a98-a6e4-75a111da00fc",
+      "identifier": "2.49.0.0.250.0.FR.20261002160134.467023",
+      "effectiveAt": "2026-10-02T14:00:00+00:00",
       "expiresAt": "2026-10-02T22:00:00+00:00",
       "firstPublishedAt": "2026-10-02T04:28:52.651Z",
-      "lastSeenAt": "2026-10-02T13:26:09.744Z",
+      "lastSeenAt": "2026-10-02T16:26:26.063Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -67,12 +67,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/9954b116-a525-4618-a00e-50246cdfb5b0",
-      "identifier": "2.49.0.0.250.0.FR.20261002060019.143023",
-      "effectiveAt": "2026-10-02T04:00:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/3736016e-0ca0-4a98-a6e4-75a111da00fc",
+      "identifier": "2.49.0.0.250.0.FR.20261002160134.467023",
+      "effectiveAt": "2026-10-02T14:00:00+00:00",
       "expiresAt": "2026-10-02T22:00:00+00:00",
       "firstPublishedAt": "2026-10-02T04:28:52.651Z",
-      "lastSeenAt": "2026-10-02T13:26:09.744Z",
+      "lastSeenAt": "2026-10-02T16:26:26.063Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
