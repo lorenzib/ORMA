@@ -39,6 +39,12 @@ function geometryEvidence(outputs){
     issues:assessment.issues||[],
     components:Array.isArray(result.components)?result.components.length:null,
     externalId:result.source?.externalId||null,
+    // Which version of the relation the line was built from. A line is only as
+    // current as its source, and the cartographer already records this -- so
+    // saying it costs nothing, where finding it out later costs an API call per
+    // trail at the moment somebody is trying to decide.
+    relationVersion:result.source?.relationVersion??result.relation?.version??null,
+    relationTimestamp:result.source?.relationTimestamp||result.relation?.timestamp||null,
     // Added by #456. Absent on every dossier captured before it existed, and
     // absent is not the same as clean.
     routeConformance:result.routeConformance||null,

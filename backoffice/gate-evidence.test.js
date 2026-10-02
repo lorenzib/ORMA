@@ -188,3 +188,37 @@ describe('bare codes keep their text',()=>{
     expect(bucket.reasons).toEqual(['terrainPoi/livestock: unresolved']);
   });
 });
+
+// A line is only as current as the relation it was reconstructed from. The
+// three gates waiting clean were built from relations last edited in 2022 and
+// 2023, long before the dossiers, which is the thing worth knowing before
+// approving them -- and it was costing an API call per trail to find out.
+describe('which version of the route the line was built from',()=>{
+  const cartographer=result=>[{agentId:'cartographer',result}];
+
+  test('comes from the source the cartographer recorded',()=>{
+    const geometry=geometryEvidence(cartographer({assessment:{},comparison:{},
+      source:{externalId:'relation/14375158',relationVersion:9,relationTimestamp:'2023-10-17T08:00:00Z'}}));
+    expect(geometry).toEqual(expect.objectContaining({
+      externalId:'relation/14375158',relationVersion:9,relationTimestamp:'2023-10-17T08:00:00Z'}));
+  });
+
+  test('falls back to the relation itself when the source did not carry it',()=>{
+    const geometry=geometryEvidence(cartographer({assessment:{},comparison:{},
+      source:{externalId:'relation/1'},relation:{version:4,timestamp:'2022-07-24T00:00:00Z'}}));
+    expect(geometry.relationVersion).toBe(4);
+    expect(geometry.relationTimestamp).toBe('2022-07-24T00:00:00Z');
+  });
+
+  // Version 0 is not a missing version, and ?? rather than || is what keeps it.
+  test('a zero version survives, rather than reading as absent',()=>{
+    expect(geometryEvidence(cartographer({assessment:{},comparison:{},
+      source:{relationVersion:0}})).relationVersion).toBe(0);
+  });
+
+  test('and nothing is guessed when nothing recorded it',()=>{
+    const geometry=geometryEvidence(cartographer({assessment:{},comparison:{}}));
+    expect(geometry.relationVersion).toBeNull();
+    expect(geometry.relationTimestamp).toBeNull();
+  });
+});
