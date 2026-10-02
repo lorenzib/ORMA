@@ -364,3 +364,15 @@ details.vd-explain[open]>summary{margin-bottom:10px;}
 @media (max-width:640px){.vd-accept-row{grid-template-columns:auto 1fr;}}
 .vd-lane-note.is-retired{color:#8A5A16;font-weight:600;}
 .vd-evidence-withheld{margin:10px 0 0;font-size:13px;line-height:1.5;color:var(--ink-soft);max-width:62ch;}
+
+/* Stage-0 route choice (restored into this one desk from the old dossier desk). */
+.vd-route-mode{align-self:flex-start;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--sage-dim,#E4EADF);color:var(--ink-soft);white-space:nowrap;}
+.vd-route-proposals{display:flex;flex-direction:column;gap:10px;margin:12px 0 0;}
+.vd-route-proposal{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;padding:12px 14px;border:1.5px solid var(--paper-line);border-radius:12px;cursor:pointer;}
+.vd-route-proposal:has(input:checked){border-color:var(--ink);background:var(--card);}
+.vd-route-proposal input{margin-top:3px;}
+.vd-route-proposal-text strong{display:block;font-size:14px;}
+.vd-route-proposal-text p{margin:4px 0 0;font-size:13px;line-height:1.5;color:var(--ink-soft);}
+.vd-route-rec{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;color:#2C5C34;}
+.vd-route textarea{width:100%;box-sizing:border-box;margin-top:12px;min-height:60px;padding:10px 12px;border:1.5px solid var(--paper-line);border-radius:12px;font:14px 'Inter',sans-serif;}
+.vd-route-safety{display:block;margin-top:10px;font-size:12px;color:var(--ink-soft);}

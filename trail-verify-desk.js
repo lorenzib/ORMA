@@ -15,6 +15,7 @@
    */
   const URLS={
     dossier:'backoffice-data/dossier-review-queue.json',
+    routeReview:'backoffice-data/route-review.json',
     orchestration:'backoffice-data/trail-orchestration.json',
     editorial:'backoffice-data/verified-trail-editorial-execution.json',
     staging:'backoffice-data/publication-staging.json',
@@ -43,6 +44,9 @@
   const refreshBtn=document.getElementById('verifyRefresh');
 
   let dossier={items:[]},orchestration={trails:[],summary:{}},editorial={outputs:[]},staging={items:[]},publication={requests:[]};
+  // Stage-0 route choice: the earliest human gate, its own review artifact,
+  // separate from the dossier queue. Carried here when the desks merged.
+  let routeReview={items:[]};
   let catalogue={items:[]},registry={verified:[]};
   let pipeline=null,worker=null;
   let coverageError='';
@@ -478,6 +482,7 @@
     if(LOCAL_MODE)return {ok:true,reviewId:'local'};
     const api=await remote();
     if(kind==='dossier')return api.submitDossierReview(payload);
+    if(kind==='route')return api.submitRouteReview(payload);
     if(kind==='publication')return api.submitPublicationReview(payload);
     return api.submitTrailReview({gate:'content-review',decisions:[payload]});
   }
@@ -892,6 +897,7 @@
 
   function card(decision){
     const article=el('article',`vd-card${decision.ready?'':' is-blocked'}`);
+    article.id=`review-${decision.key}`;
     const head=el('div','vd-card-head');
     const heading=el('div');
     heading.append(el('p','vd-gate',decision.gate.label),el('h2','',decision.trailName));
@@ -1102,30 +1108,123 @@
     });
   }
 
+  // ---- Stage 0: route choice ----------------------------------------------
+  // The earliest human gate: which official route variant(s) become ORMA
+  // trails. Its own review artifact, restored here when the dossier desk merged
+  // into this one. Recording a choice queues it for automation; nothing
+  // published changes.
+  function routeNeedsHuman(item){return /human|direct-confirmation/i.test(item&&item.reviewState||'');}
+  const routeReceipts={};
+
+  async function submitRouteChoice(item,action,proposalIds,note,article,status){
+    if(action==='approve'&&!proposalIds.length){status.textContent='Select at least one route variant to keep.';return;}
+    const realAction=action==='approve'?(proposalIds.length>1?'approve-route-variants':'approve-route'):action;
+    article.querySelectorAll('button').forEach(button=>{button.disabled=true;});
+    status.classList.remove('is-error');status.textContent='Recording route choice…';
+    try{
+      const result=await send('route',{candidateId:item.candidateId,action:realAction,proposalIds,note:String(note||'').trim()});
+      if(result&&result.ok===false)throw new Error(result.error||'submit failed');
+      routeReceipts[item.candidateId]={at:Date.now()};
+      status.textContent='Route choice saved. The next automation run collects it; nothing on the public site changed.';
+      window.setTimeout(load,1200);
+    }catch(error){
+      status.classList.add('is-error');status.textContent=`Could not record route choice: ${error.message}`;
+      article.querySelectorAll('button').forEach(button=>{button.disabled=false;});
+    }
+  }
+
+  function routeCard(item){
+    const article=el('article','vd-card vd-route is-ready');
+    article.id=`route-${item.candidateId}`;
+    const head=el('div','vd-card-head');
+    const heading=el('div');
+    heading.append(el('p','vd-gate','Stage 0 · Route choice'),el('h2','',item.title||item.candidateId));
+    head.append(heading,el('span','vd-route-mode',item.selectionMode==='one-or-more'?'Keep one or more variants':'Choose one route'));
+    article.append(head);
+    if(item.routeIdentity)article.append(el('p','vd-question',item.routeIdentity));
+    if(Array.isArray(item.findings)&&item.findings.length){
+      const list=el('ul','vd-checklist');
+      item.findings.forEach(finding=>list.append(el('li','',typeof finding==='string'?finding:JSON.stringify(finding))));
+      article.append(el('h3','vd-checklist-title','What the sources found'),list);
+    }
+    if(routeReceipts[item.candidateId]){
+      article.append(el('p','vd-status',`Route choice saved ${new Date(routeReceipts[item.candidateId].at).toLocaleTimeString()}. The next automation run picks it up.`));
+      return article;
+    }
+    const multiple=item.selectionMode==='one-or-more';
+    const proposals=el('div','vd-route-proposals');
+    (item.proposals||[]).forEach(proposal=>{
+      const label=el('label','vd-route-proposal');
+      const input=document.createElement('input');
+      input.type=multiple?'checkbox':'radio';input.name=`route-${item.candidateId}`;input.value=proposal.id;input.dataset.proposalId=proposal.id;
+      if(proposal.recommended)input.checked=true;
+      const text=el('div','vd-route-proposal-text');
+      text.append(el('strong','',proposal.label||proposal.id));
+      if(proposal.summary)text.append(el('p','',proposal.summary));
+      if(proposal.recommended)text.append(el('small','vd-route-rec','Recommended'));
+      label.append(input,text);
+      proposals.append(label);
+    });
+    article.append(proposals);
+    const note=document.createElement('textarea');
+    note.placeholder='Optional: note why you kept, rejected or sent this route back for research…';
+    article.append(note);
+    const status=el('p','vd-status','');
+    const actions=el('div','vd-actions');
+    const chosen=()=>Array.from(proposals.querySelectorAll('input[data-proposal-id]:checked')).map(input=>input.value);
+    [['approve',multiple?'Keep selected route(s)':'Keep this route','is-approve'],
+      ['request-route-research','Send for more research',''],
+      ['reject-route-source','Reject source','is-reject']].forEach(([action,label,cls])=>{
+      const button=el('button',cls,label);button.type='button';
+      button.addEventListener('click',()=>submitRouteChoice(item,action,chosen(),note.value,article,status));
+      actions.append(button);
+    });
+    article.append(actions,status);
+    article.append(el('small','vd-route-safety','Recording a route choice queues it for ORMA automation and never changes the public website.'));
+    return article;
+  }
+
+  function routeChoiceCards(){
+    return (routeReview.items||[]).filter(routeNeedsHuman).map(routeCard);
+  }
+
   function render(){
     // Trails that are clean by every automated check come first: they are one
     // click each, and burying them under the ones needing thought is what makes
     // a short queue feel long.
+    // Route choice is stage 0, the earliest gate, so it leads the queue.
+    const routeCards=routeChoiceCards();
     const decisions=[...fromDossier(),...fromContent(),...fromPublish()]
       .sort((a,b)=>Number(b.ready===true)-Number(a.ready===true));
-    countNode.textContent=decisions.length?plural(decisions.length,'trail'):'Nothing waiting';
+    const total=routeCards.length+decisions.length;
+    countNode.textContent=total?plural(total,'trail'):'Nothing waiting';
     queueNode.replaceChildren();
-    if(!decisions.length){
+    if(!total){
       queueNode.append(el('p','vd-empty','Nothing needs you right now.'));
     }else{
+      routeCards.forEach(cardNode=>queueNode.append(cardNode));
       decisions.forEach(decision=>queueNode.append(card(decision)));
     }
     renderMachine();
     renderBlocked();
     renderCoverage();
     renderPullRequests();
+    // Deep links from Backoffice Home (#route-<id> / #review-<id>) land on the
+    // right card. Once only, so the minute refresh does not keep yanking the
+    // page back.
+    if(!hashScrolled&&location.hash){
+      const target=document.getElementById(location.hash.slice(1));
+      if(target){target.scrollIntoView({block:'start'});hashScrolled=true;}
+    }
   }
+  let hashScrolled=false;
 
   async function load(){
     refreshBtn.disabled=true;
     try{
-      [dossier,orchestration,editorial,staging,publication,catalogue,registry,pipeline,worker]=await Promise.all([
+      [dossier,routeReview,orchestration,editorial,staging,publication,catalogue,registry,pipeline,worker]=await Promise.all([
         artifact('dossier-review-queue',URLS.dossier,{items:[]}),
+        artifact('route-review',URLS.routeReview,{items:[]}),
         artifact('trail-orchestration',URLS.orchestration,{trails:[],summary:{}}),
         artifact('verified-trail-editorial-execution',URLS.editorial,{outputs:[]}),
         artifact('publication-staging',URLS.staging,{items:[]}),
