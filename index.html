@@ -79,48 +79,48 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <div class="hp-searchcard">
         <div class="hp-search-row">
           <svg class="hp-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-          <input id="hpSearch" type="text" placeholder="Search a valley, lake or trail, e.g. Braies, Carezza" aria-label="Search trails" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="hpSuggest" autocomplete="off">
+          <input id="hpSearch" type="text" placeholder="Search a valley, lake or trail, e.g. Braies, Carezza" data-i18n-ph="hp.search.ph" aria-label="Search trails" data-i18n-aria-label="hp.search.aria" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="hpSuggest" autocomplete="off">
           <div class="hp-menuwrap">
-            <button type="button" id="hpDogPill" class="hp-dogpill" aria-haspopup="true" aria-expanded="false"><span class="hp-dog-emoji">🐾</span><span id="hpDogLabel">Medium dog</span> ▾</button>
+            <button type="button" id="hpDogPill" class="hp-dogpill" aria-haspopup="true" aria-expanded="false"><span class="hp-dog-emoji">🐾</span><span id="hpDogLabel" data-i18n="hp.preset.medium.name">Medium dog</span> ▾</button>
             <div class="hp-menu hp-menu-right" id="hpDogMenu" hidden>
-              <div class="hp-menu-head">Preview as</div>
+              <div class="hp-menu-head" data-i18n="hp.search.previewAs">Preview as</div>
               <div id="hpDogOptions"></div>
             </div>
           </div>
         </div>
         <div class="hp-filter-row">
           <div class="hp-menuwrap hp-filt-wrap">
-            <button type="button" class="hp-filt discovery-filter-trigger" id="hpFiltersBtn" aria-haspopup="true" aria-expanded="false"><span class="hp-filt-lab"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filter trails<span id="hpFiltersBadge"></span></span><span class="hp-filt-caret">▾</span></button>
+            <button type="button" class="hp-filt discovery-filter-trigger" id="hpFiltersBtn" aria-haspopup="true" aria-expanded="false"><span class="hp-filt-lab"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg><span data-i18n="hp.filters.button">Filter trails</span><span id="hpFiltersBadge"></span></span><span class="hp-filt-caret">▾</span></button>
             <div class="hp-menu hp-fpanel discovery-filter-panel" id="hpFiltersPanel" hidden>
               <div class="hp-fpanel-head">
-                <span class="hp-fpanel-title">Filter trails</span>
-                <button type="button" id="hpFiltersReset">Reset all</button>
+                <span class="hp-fpanel-title" data-i18n="hp.filters.title">Filter trails</span>
+                <button type="button" id="hpFiltersReset" data-i18n="hp.filters.resetAll">Reset all</button>
               </div>
-              <div class="hp-fsec first">Duration</div>
+              <div class="hp-fsec first" data-i18n="hp.filters.duration">Duration</div>
               <div class="hp-seg" id="hpDurationSeg"></div>
-              <div class="hp-fsec">Distance</div>
+              <div class="hp-fsec" data-i18n="hp.filters.distance">Distance</div>
               <div class="hp-seg" id="hpDistSeg"></div>
-              <div class="hp-fsec">Trail rating</div>
+              <div class="hp-fsec" data-i18n="hp.filters.rating">Trail rating</div>
               <div class="hp-seg" id="hpDiffSeg"></div>
-              <div class="hp-fsec">Terrain underfoot</div>
+              <div class="hp-fsec" data-i18n="hp.filters.terrain">Terrain underfoot</div>
               <div class="hp-seg" id="hpTerrainSeg"></div>
-              <div class="hp-fsec" id="hpMatchLabel">Minimum match</div>
+              <div class="hp-fsec" id="hpMatchLabel" data-i18n="hp.filters.minMatch">Minimum match</div>
               <div class="hp-seg" id="hpMatchSeg"></div>
               <div class="hp-frow">
-                <div class="hp-frow-lab">Water on route</div>
-                <button type="button" class="hp-switch" id="hpWaterToggle" role="switch" aria-checked="false" aria-label="Water on route"><span class="hp-knob"></span></button>
+                <div class="hp-frow-lab" data-i18n="hp.filters.water">Water on route</div>
+                <button type="button" class="hp-switch" id="hpWaterToggle" role="switch" aria-checked="false" aria-label="Water on route" data-i18n-aria-label="hp.filters.water"><span class="hp-knob"></span></button>
               </div>
-              <button type="button" class="hp-fapply" id="hpFiltersApply">Show trails</button>
+              <button type="button" class="hp-fapply" id="hpFiltersApply" data-i18n="hp.filters.show">Show trails</button>
             </div>
           </div>
-          <button type="button" class="hp-search-btn" id="hpSearchBtn">Search →</button>
+          <button type="button" class="hp-search-btn" id="hpSearchBtn" data-i18n="hp.search.go">Search →</button>
         </div>
-        <div class="hp-suggest" id="hpSuggest" role="listbox" aria-label="Trail suggestions" hidden></div>
+        <div class="hp-suggest" id="hpSuggest" role="listbox" aria-label="Trail suggestions" data-i18n-aria-label="hp.search.suggestionsAria" hidden></div>
         <span id="hpSearchStatus" class="sr-only" role="status" aria-live="polite"></span>
       </div>
 
       <div class="hp-popular">
-        <span class="hp-popular-label">Popular:</span>
+        <span class="hp-popular-label" data-i18n="hp.popular.label">Popular:</span>
         <span id="hpPopular"></span>
       </div>
     </div>
@@ -511,7 +511,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
 <script src="mobile-nav.js?v=20260917-1"></script>
 <script src="accessibility-runtime.js?v=20260815-4" defer></script>
-<script src="i18n.js?v=20260930-3"></script>
+<script src="i18n.js?v=20261002-1"></script>
 <script type="module" src="firebase-init.js?v=20260917-1"></script>
 <script src="icon-system.js?v=20260901-1" defer></script>
 <script src="trail-card-visual.js?v=20260902-1" defer></script>
@@ -548,7 +548,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="script.js?v=20260917-5" defer></script>
 <script src="dog-wizard.js?v=20260917-1" defer></script>
 <script src="collections-data.js?v=20260909-1" defer></script>
-<script src="trail-weather-window.js?v=20260906-1"></script><script src="homepage-conditions.js?v=20260908-2"></script><script src="homepage-search.js?v=20260930-3" defer></script>
+<script src="trail-weather-window.js?v=20260906-1"></script><script src="homepage-conditions.js?v=20260908-2"></script><script src="homepage-search.js?v=20261002-1" defer></script>
 <script src="homepage-mobile.js?v=20260909-1" defer></script>
 </body>
 </html>
