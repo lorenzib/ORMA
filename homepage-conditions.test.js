@@ -86,7 +86,13 @@ describe('area conditions are corrected for each trail altitude', () => {
   });
 
   test('loads the selected future day and uses its morning forecast', async () => {
-    const targetDate = '2026-10-02';
+    // Relative to now, not a date typed in when this was written. load() only
+    // takes the future-day branch when the date differs from today, so a
+    // hardcoded date silently became "today" on 2 October 2026 and the test
+    // started asserting the future-day behaviour against the current-day one.
+    const future = new Date();
+    future.setDate(future.getDate() + 3);
+    const targetDate = `${future.getFullYear()}-${String(future.getMonth() + 1).padStart(2, '0')}-${String(future.getDate()).padStart(2, '0')}`;
     const times = []; const temps = [];
     for(let hour = 0; hour < 24; hour += 1){
       times.push(`${targetDate}T${String(hour).padStart(2, '0')}:00`);
