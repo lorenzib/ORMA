@@ -24,8 +24,12 @@ describe('website publication validation circuit breaker',()=>{
     expect(gate.message).toMatch(/Queue and agent work may continue; approvals stay saved/);
   });
 
-  test('uses the named Validate ORMA workflow for the current commit',()=>{
-    expect(apiUrl({GITHUB_REPOSITORY:'lorenzib/ORMA',GITHUB_SHA:'abc'})).toBe('https://api.github.com/repos/lorenzib/ORMA/actions/workflows/validate.yml/runs?head_sha=abc&status=completed&per_page=10');
+  test('uses the named Validate ORMA workflow for the current commit, finished or not',()=>{
+    // The status=completed filter was removed on purpose: with it, a validation
+    // run still in progress never came back, so a worker pass landing inside the
+    // ~90s validation window could not tell "running" from "never ran" and
+    // reported the wait as a blocked gate. See publication-gate-pending.test.js.
+    expect(apiUrl({GITHUB_REPOSITORY:'lorenzib/ORMA',GITHUB_SHA:'abc'})).toBe('https://api.github.com/repos/lorenzib/ORMA/actions/workflows/validate.yml/runs?head_sha=abc&per_page=10');
   });
 
   test('CLI fails closed and emits GitHub outputs when the lookup is unavailable',async()=>{
