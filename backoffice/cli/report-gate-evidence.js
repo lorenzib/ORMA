@@ -28,7 +28,11 @@ function printGeometry(geometry){
   if(geometry.maxSegmentM!=null)bits.push(`longest gap ${geometry.maxSegmentM} m`);
   if(geometry.components!=null)bits.push(`${geometry.components} component(s)`);
   if(bits.length)line(`      line: ${bits.join(' · ')}`);
-  if(geometry.externalId)line(`      source: ${geometry.externalId}`);
+  if(geometry.externalId){
+    const version=geometry.relationVersion!=null?` v${geometry.relationVersion}`:'';
+    const edited=geometry.relationTimestamp?`, last edited ${String(geometry.relationTimestamp).slice(0,10)}`:'';
+    line(`      source: ${geometry.externalId}${version}${edited}`);
+  }
   const conformance=geometry.routeConformance;
   if(conformance){
     line(`      follows its route numbers: ${conformance.status}`
