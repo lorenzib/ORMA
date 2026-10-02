@@ -22,7 +22,7 @@ describe('guest homepage editorial structure', () => {
     expect(hero).toBeGreaterThan(guestCard);
     expect(html).toContain('Scores use a medium-dog profile.');
     expect(html).toContain('Create a free account only when you choose to save.');
-    expect(controller).toContain("el.guestCtaLabel.textContent = 'Browse ' + state.custom.meta.name + '’s matches'");
+    expect(controller).toContain("el.guestCtaLabel.textContent = t('hp.guest.custom.cta', 'Browse {name}’s matches', custom)");
   });
 
   test('places the profile explanation after the default score and keeps one homepage prompt', () => {
@@ -48,7 +48,7 @@ describe('guest homepage editorial structure', () => {
   test('shows the value of a dog profile before asking the guest to register', () => {
     const controller = read('homepage-search.js');
 
-    expect(controller).toContain("dogName + '’s profile is ready'");
+    expect(controller).toContain("t('hp.wizard.done.title', '{name}’s profile is ready', { name: dogName })");
     expect(controller).toContain("matches.slice(0, 3)");
     expect(controller).toContain('Save profile and see all matches');
     expect(controller).toContain('See all matches without saving');
@@ -60,7 +60,7 @@ describe('guest homepage editorial structure', () => {
 
     expect(browse).toContain('hp-guestbar--compact');
     expect(browse).toContain('Guest mode · Scores use a medium-dog profile.');
-    expect(browse).toContain('href="/?wizard=1">Add your dog</a>');
+    expect(browse).toContain('href="/?wizard=1" data-i18n="hp.guest.addDog">Add your dog</a>');
     expect(browse).not.toContain('hp-guestbar--homepage');
   });
 
@@ -140,6 +140,6 @@ describe('guest homepage editorial structure', () => {
     const css = read('homepage-editorial.css');
     expect(css).toContain('.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}');
     expect(read('index.html')).toContain('homepage-editorial.css?v=20260917-1');
-    expect(read('index.html')).toContain('homepage-search.js?v=20260917-2');
+    expect(read('index.html')).toContain('homepage-search.js?v=20260930-3');
   });
 });

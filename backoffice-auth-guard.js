@@ -24,7 +24,12 @@
     try{
       const moderator=await root.DoloPawsModeration?.getModeratorStatus();
       if(moderator?.ok){reveal();root.dispatchEvent(new CustomEvent('orma-backoffice-authenticated'));return;}
-      sendToLogin(root.DoloPawsAuth?.currentUser?'forbidden':'signed-out');
+      // 'check-failed' means the claim could not be read, not that it said no.
+      // This branch existed before and could never run: the check swallowed its
+      // own errors and returned a bare no, so a rate-limited moderator was told
+      // she was forbidden and sent round the loop again.
+      if(moderator?.reason)sendToLogin(moderator.reason);
+      else sendToLogin(root.DoloPawsAuth?.currentUser?'forbidden':'signed-out');
     }catch(error){sendToLogin('check-failed');}
   }
 

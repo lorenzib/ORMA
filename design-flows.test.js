@@ -5,7 +5,6 @@ const source = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
 
 describe('full design handoff routes', () => {
   test.each([
-    ['search.html', 'Search a valley, lake or trail'],
     ['notifications.html', 'Mark all as read'],
     ['reviews.html', 'Write a review'],
     ['photo-upload.html', 'Choose from library'],

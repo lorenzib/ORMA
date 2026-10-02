@@ -34,7 +34,6 @@ describe('UX-01 canonical discovery integration', () => {
     const collections = source('collections.html');
     const detail = source('collection.html');
     const homepage = source('homepage-search.js');
-    const search = source('search-page.js');
 
     expect(collections).toContain('class="collections-grid"');
     expect(collections).toContain('collections-page.js');
@@ -46,7 +45,6 @@ describe('UX-01 canonical discovery integration', () => {
     expect(homepage).toContain('catalogue.trailsFor(collection, trails)');
     expect(homepage).toContain("'collections.html?collection=' + encodeURIComponent(collection.id)");
     expect(homepage).toContain('hp-featured-collection-cta');
-    expect(search).toContain('href="collections.html?collection=');
     expect(collections).not.toContain('clGrid');
     expect(collections).not.toContain('scoreTrail');
   });

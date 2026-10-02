@@ -9,6 +9,15 @@
   const ALLOWED_DESTINATIONS=HOSTED?new Set(['backoffice-review.html','community-moderation-desk.html']):ALL_DESTINATIONS;
   const params=new URLSearchParams(root.location.search);
   const requested=params.get('next');
+  // Why the guard sent her here. It has always been in the query string and
+  // nothing ever read it, so being unable to check access and being refused it
+  // looked identical -- and only one of the two is worth signing in again for.
+  const REASONS={
+    'check-failed':'Your access could not be checked just now. Wait a moment and try again — this is not a problem with your account.',
+    forbidden:'This account does not have ORMA backoffice access. Use the authorized moderator account.',
+    'not-moderator':'This account does not have ORMA backoffice access. Use the authorized moderator account.',
+  };
+  const arrivalReason=REASONS[params.get('reason')]||null;
   const destination=ALLOWED_DESTINATIONS.has(requested)?requested:'backoffice-review.html';
   const form=root.document.getElementById('backofficeLoginForm');
   const email=root.document.getElementById('backofficeEmail');
@@ -31,14 +40,22 @@
   async function moderatorStatus(){
     const status=await root.DoloPawsModeration.getModeratorStatus();
     if(status.ok){root.location.replace(destination);return true;}
-    return false;
+    return status;
   }
 
   async function resolveIdentity(){
-    if(await moderatorStatus())return;
+    const status=await moderatorStatus();
+    if(status===true)return;
     root.document.documentElement.classList.remove('bo-auth-pending');
+    // A check that could not be completed is a reason to try again, not a
+    // reason to offer a different account.
+    if(status&&status.reason==='check-failed'){
+      show(REASONS['check-failed'],'warning');
+      return;
+    }
+    if(arrivalReason&&!root.DoloPawsAuth.currentUser){show(arrivalReason);return;}
     if(root.DoloPawsAuth.currentUser){
-      show('This account does not have ORMA backoffice access. Use the authorized moderator account.');
+      show(arrivalReason||REASONS.forbidden);
       switchAccount.hidden=false;
     }
   }

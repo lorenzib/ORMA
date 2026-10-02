@@ -8,9 +8,15 @@
     return point && Number.isFinite(Number(point.lat)) && Number.isFinite(Number(point.lng));
   }
 
+  // A route needs two chosen points and a path between them. How many points
+  // a given shape needs to finish (three for a loop, two for point-to-point
+  // and out-and-back) is the planner's rule, not the store's: keeping a
+  // loop-era minimum here silently refused every two-point open route.
+  const MIN_POINTS = 2;
+
   function normalize(record){
     if(!record || typeof record !== 'object' || !record.id ||
-       !Array.isArray(record.points) || record.points.length < 3 ||
+       !Array.isArray(record.points) || record.points.length < MIN_POINTS ||
        !Array.isArray(record.path) || record.path.length < 2) return null;
     const points = record.points.map(point => ({ lat:Number(point.lat), lng:Number(point.lng) }));
     const path = record.path.map(point => Array.isArray(point)

@@ -398,17 +398,19 @@
 
   function renderGuestBar() {
     if (state.dog === 'custom' && state.custom) {
-      el.guestTitle.textContent = 'Scores are personalised for ' + state.custom.meta.name + '.';
-      el.guestSub.textContent = 'Browse all trails to see ' + state.custom.meta.name + '’s complete ranking.';
-      el.guestCtaLabel.textContent = 'Browse ' + state.custom.meta.name + '’s matches';
+      var custom = { name: state.custom.meta.name };
+      el.guestTitle.textContent = t('hp.guest.custom.title', 'Scores are personalised for {name}.', custom);
+      el.guestSub.textContent = t('hp.guest.custom.sub', 'Browse all trails to see {name}’s complete ranking.', custom);
+      el.guestCtaLabel.textContent = t('hp.guest.custom.cta', 'Browse {name}’s matches', custom);
     } else if (state.dog === 'medium') {
-      el.guestTitle.textContent = 'Scores use a medium-dog profile.';
-      el.guestSub.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
-      el.guestCtaLabel.textContent = 'Add your dog';
+      el.guestTitle.textContent = t('hp.guest.medium.title', 'Scores use a medium-dog profile.');
+      el.guestSub.textContent = t('hp.guest.medium.sub', 'Add your dog for personalised matches. Create a free account only when you choose to save.');
+      el.guestCtaLabel.textContent = t('hp.guest.addDog', 'Add your dog');
     } else {
-      el.guestTitle.textContent = 'Previewing scores for ' + dogMeta().name + '.';
-      el.guestSub.textContent = 'Add your own dog to tune every score to them.';
-      el.guestCtaLabel.textContent = 'Add your dog';
+      var preset = { name: dogMeta().name };
+      el.guestTitle.textContent = t('hp.guest.preview.title', 'Previewing scores for {name}.', preset);
+      el.guestSub.textContent = t('hp.guest.preview.sub', 'Add your own dog to tune every score to them.');
+      el.guestCtaLabel.textContent = t('hp.guest.addDog', 'Add your dog');
     }
   }
 
@@ -583,10 +585,10 @@
       }).join('');
       el.content.innerHTML =
         '<section class="hp-mission" aria-labelledby="hpMissionTitle">' +
-          '<div class="hp-mission-copy"><div class="hp-mission-kick">Our mission</div>' +
-          '<h2 id="hpMissionTitle">The route must adapt to the dog, never the other way around.</h2>' +
-          '<p>Every dog moves differently. ORMA helps you choose trails with their needs, pace and limits in mind.</p></div>' +
-          '<blockquote class="hp-mission-quote"><p>“A walk is never just a walk when shared with a dog. It is an act of partnership, curiosity, and joy.”</p><cite>– ORMA Team</cite></blockquote>' +
+          '<div class="hp-mission-copy"><div class="hp-mission-kick">' + esc(t('hp.mission.kick', 'Our mission')) + '</div>' +
+          '<h2 id="hpMissionTitle">' + esc(t('hp.mission.title', 'The route must adapt to the dog, never the other way around.')) + '</h2>' +
+          '<p>' + esc(t('hp.mission.copy', 'Every dog moves differently. ORMA helps you choose trails with their needs, pace and limits in mind.')) + '</p></div>' +
+          '<blockquote class="hp-mission-quote"><p>' + esc(t('hp.mission.quote', '“A walk is never just a walk when shared with a dog. It is an act of partnership, curiosity, and joy.”')) + '</p><cite>' + esc(t('hp.mission.cite', '– ORMA Team')) + '</cite></blockquote>' +
         '</section>' +
         '<section class="hp-how" aria-labelledby="hpHowTitle">' +
           '<div class="hp-section-head"><div><div class="hp-kick">How ORMA works</div>' +
@@ -659,14 +661,43 @@
   }
 
   // ---- mini-wizard ----
-  var SIZE_OPTS = [{ label: 'Small', v: 'small' }, { label: 'Medium', v: 'medium' }, { label: 'Large', v: 'large' }];
-  var ENERGY_OPTS = [{ label: 'Low', v: 'low' }, { label: 'Medium', v: 'medium' }, { label: 'High', v: 'high' }];
-  var TERRAINTOL_OPTS = [{ label: 'Soft ground only', v: 'soft' }, { label: 'Some gravel is fine', v: 'gravel' }, { label: 'Anything, including rock', v: 'any' }];
-  var HEAT_OPTS = [{ label: 'Yes, gets hot easily', v: true }, { label: 'No, handles heat fine', v: false }];
+  // Option labels are looked up at render time so a language switch (which
+  // reloads the page) and the English fallback both take the same path.
+  function sizeOpts() {
+    return [{ label: t('hp.wizard.size.small', 'Small'), v: 'small' }, { label: t('hp.wizard.size.medium', 'Medium'), v: 'medium' }, { label: t('hp.wizard.size.large', 'Large'), v: 'large' }];
+  }
+  function energyOpts() {
+    return [{ label: t('hp.wizard.energy.low', 'Low'), v: 'low' }, { label: t('hp.wizard.energy.medium', 'Medium'), v: 'medium' }, { label: t('hp.wizard.energy.high', 'High'), v: 'high' }];
+  }
+  function terrainOpts() {
+    return [{ label: t('hp.wizard.terrain.soft', 'Soft ground only'), v: 'soft' }, { label: t('hp.wizard.terrain.gravel', 'Some gravel is fine'), v: 'gravel' }, { label: t('hp.wizard.terrain.any', 'Anything, including rock'), v: 'any' }];
+  }
+  function heatOpts() {
+    return [{ label: t('hp.wizard.heat.yes', 'Yes, gets hot easily'), v: true }, { label: t('hp.wizard.heat.no', 'No, handles heat fine'), v: false }];
+  }
+  var SIZE_FALLBACK = { small: 'Small', medium: 'Medium', large: 'Large' };
+  var ENERGY_SUMMARY_FALLBACK = { low: 'Low energy', medium: 'Medium energy', high: 'High energy' };
+  var TERRAIN_SUMMARY_FALLBACK = { soft: 'Soft ground only', gravel: 'Some gravel OK', any: 'Any terrain' };
+  function sizeLabel(size) { return t('hp.wizard.size.' + size, SIZE_FALLBACK[size] || cap(size)); }
+  function energySummary(energy) { return t('hp.wizard.summary.energy.' + energy, ENERGY_SUMMARY_FALLBACK[energy] || cap(energy) + ' energy'); }
+  function terrainSummary(tol) { return t('hp.wizard.summary.terrain.' + tol, TERRAIN_SUMMARY_FALLBACK[tol] || ''); }
+  function yourDog() { return t('hp.wizard.yourDogCap', 'Your dog'); }
   // Open chairlifts: asked only for a small dog, because the scorer treats a
   // dog over 8 kg as unsafe on an open chair whatever the owner says (it has
   // to be held on a lap). Same values as the full wizard and the account.
-  var CHAIRLIFT_OPTS = [{ label: 'Not for us, or never tried', v: 'never' }, { label: 'Yes, held on my lap with harness and leash', v: 'ok' }];
+  // Copy comes from i18n.js (loaded before this script); the English literal
+  // stays as the fallback so the wizard renders even without the dictionary.
+  function t(key, fallback, vars) {
+    var s = (typeof window.t === 'function') ? window.t(key, vars) : key;
+    if (s === key) { s = fallback; if (vars) for (var k in vars) s = s.split('{' + k + '}').join(vars[k]); }
+    return s;
+  }
+  function chairliftOpts() {
+    return [
+      { label: t('hp.wizard.chairlift.never', 'Not for us, or never tried'), v: 'never' },
+      { label: t('hp.wizard.chairlift.ok', 'Yes, held on my lap with harness and leash'), v: 'ok' },
+    ];
+  }
   function asksChairlift(w) { return w.size === 'small'; }
   var releaseWizardFocus = null;
 
@@ -682,13 +713,13 @@
     if (state.wizStep === 3) {
       var matches = trails.map(function (t) { return { t: t, score: scoreOf(t) }; })
         .sort(function (a, b) { return b.score - a.score; });
-      var dogName = state.custom ? state.custom.meta.name : ((w.name || '').trim() || 'Your dog');
-      el.wizStepLabel.textContent = 'Your matches';
-      el.wizTitle.textContent = dogName + '’s profile is ready';
+      var dogName = state.custom ? state.custom.meta.name : ((w.name || '').trim() || yourDog());
+      el.wizStepLabel.textContent = t('hp.wizard.done.step', 'Your matches');
+      el.wizTitle.textContent = t('hp.wizard.done.title', '{name}’s profile is ready', { name: dogName });
       el.wizBars.forEach(function (b) { if (b) b.className = 'on'; });
       if (el.wizFoot) el.wizFoot.hidden = true;
       el.wizBody.innerHTML = '<div class="hp-wiz-payoff">' +
-        '<p class="hp-wiz-payoff-lead">We ranked ' + matches.length + ' trails using ' + esc(dogName) + '’s size, energy and sensitivities. Here are the strongest matches.</p>' +
+        '<p class="hp-wiz-payoff-lead">' + t('hp.wizard.done.lead', 'We ranked {count} trails using {name}’s size, energy and sensitivities. Here are the strongest matches.', { count: matches.length, name: esc(dogName) }) + '</p>' +
         '<div class="hp-wiz-matches">' + matches.slice(0, 3).map(function (entry) {
           var t = entry.t, ti = tier(entry.score);
           return '<a class="hp-wiz-match" href="' + esc(trailHref(t)) + '">' +
@@ -696,48 +727,48 @@
             '<strong style="color:' + ti.color + '">' + entry.score + '%</strong></a>';
         }).join('') + '</div>' +
         '<div class="hp-wiz-payoff-actions">' +
-          '<button type="button" id="hpSaveAndBrowseBtn" class="hp-search-btn">Save profile and see all matches</button>' +
-          '<button type="button" id="hpBrowseWithoutSavingBtn" class="hp-wiz-secondary">See all matches without saving</button>' +
+          '<button type="button" id="hpSaveAndBrowseBtn" class="hp-search-btn">' + esc(t('hp.wizard.done.save', 'Save profile and see all matches')) + '</button>' +
+          '<button type="button" id="hpBrowseWithoutSavingBtn" class="hp-wiz-secondary">' + esc(t('hp.wizard.done.browse', 'See all matches without saving')) + '</button>' +
         '</div>' +
-        '<p class="hp-wiz-device-note">Without an account, this profile stays only on this device.</p>' +
+        '<p class="hp-wiz-device-note">' + esc(t('hp.wizard.done.note', 'Without an account, this profile stays only on this device.')) + '</p>' +
       '</div>';
       return;
     }
-    el.wizTitle.textContent = 'Tell us about your dog';
+    el.wizTitle.textContent = t('hp.wizard.title', 'Tell us about your dog');
     if (el.wizFoot) el.wizFoot.hidden = false;
-    el.wizStepLabel.textContent = 'Step ' + (state.wizStep + 1) + ' of 3';
+    el.wizStepLabel.textContent = t('hp.wizard.step', 'Step {n} of 3', { n: state.wizStep + 1 });
     el.wizBars.forEach(function (b, i) { if (b) b.className = i <= state.wizStep ? 'on' : ''; });
-    el.wizBack.textContent = state.wizStep === 0 ? 'Cancel' : '← Back';
-    el.wizNext.textContent = state.wizStep === 2 ? 'See my trails →' : 'Next →';
+    el.wizBack.textContent = state.wizStep === 0 ? t('hp.wizard.cancel', 'Cancel') : t('hp.wizard.back', '← Back');
+    el.wizNext.textContent = state.wizStep === 2 ? t('hp.wizard.seeTrails', 'See my trails →') : t('hp.wizard.next', 'Next →');
     var body = '';
     if (state.wizStep === 0) {
-      body = '<label class="hp-wiz-q" for="hpWizName">Your dog’s name</label>' +
-        '<input class="hp-wiz-input" id="hpWizName" type="text" placeholder="e.g. Rufus" value="' + esc(w.name) + '">' +
-        '<div class="hp-wiz-q">How big are they?</div>' + optBtns(SIZE_OPTS, w.size, 'size', false);
+      body = '<label class="hp-wiz-q" for="hpWizName">' + esc(t('hp.wizard.name', 'Your dog’s name')) + '</label>' +
+        '<input class="hp-wiz-input" id="hpWizName" type="text" placeholder="' + esc(t('hp.wizard.namePh', 'e.g. Rufus')) + '" value="' + esc(w.name) + '">' +
+        '<div class="hp-wiz-q">' + esc(t('hp.wizard.size', 'How big are they?')) + '</div>' + optBtns(sizeOpts(), w.size, 'size', false);
     } else if (state.wizStep === 1) {
-      body = '<div class="hp-wiz-q">Energy level</div>' + optBtns(ENERGY_OPTS, w.energy, 'energy', false) +
-        '<div class="hp-wiz-q">What can their paws handle?</div>' + optBtns(TERRAINTOL_OPTS, w.terrainTol, 'terrainTol', true);
+      body = '<div class="hp-wiz-q">' + esc(t('hp.wizard.energy', 'Energy level')) + '</div>' + optBtns(energyOpts(), w.energy, 'energy', false) +
+        '<div class="hp-wiz-q">' + esc(t('hp.wizard.terrain', 'What can their paws handle?')) + '</div>' + optBtns(terrainOpts(), w.terrainTol, 'terrainTol', true);
     } else {
-      body = '<div class="hp-wiz-q">Do they struggle in the heat?</div>' + optBtns(HEAT_OPTS, w.heat, 'heat', true) +
+      body = '<div class="hp-wiz-q">' + esc(t('hp.wizard.heat', 'Do they struggle in the heat?')) + '</div>' + optBtns(heatOpts(), w.heat, 'heat', true) +
         (asksChairlift(w)
-          ? '<div class="hp-wiz-q">Do they ride an open chairlift calmly on your lap?</div>' +
-            '<p class="hp-wiz-device-note">Some routes depend on an open chairlift. Unless you say otherwise, ORMA keeps those routes out of ' + esc((w.name || '').trim() || 'your dog') + '’s matches.</p>' +
-            optBtns(CHAIRLIFT_OPTS, w.chairlift, 'chairlift', true)
+          ? '<div class="hp-wiz-q">' + esc(t('hp.wizard.chairlift.question', 'Do they ride an open chairlift calmly on your lap?')) + '</div>' +
+            '<p class="hp-wiz-device-note">' + t('hp.wizard.chairlift.note', 'Some routes depend on an open chairlift. Unless you say otherwise, ORMA keeps those routes out of {name}’s matches.', { name: esc((w.name || '').trim() || t('hp.wizard.yourDog', 'your dog')) }) + '</p>' +
+            optBtns(chairliftOpts(), w.chairlift, 'chairlift', true)
           : '') +
-        '<div class="hp-wiz-summary"><div class="hp-wiz-summary-h">Profile summary</div>' +
-        summaryRow('Name', (w.name || '').trim() || 'Your dog') +
-        summaryRow('Size', cap(w.size)) +
-        summaryRow('Energy', cap(w.energy) + ' energy') +
-        summaryRow('Terrain', { soft: 'Soft ground only', gravel: 'Some gravel OK', any: 'Any terrain' }[w.terrainTol]) +
-        summaryRow('Heat', w.heat ? 'Heat-sensitive' : 'Handles heat fine') +
-        (asksChairlift(w) ? summaryRow('Chairlifts', { ok: 'Rides calmly on a lap', never: 'Not for us' }[w.chairlift] || 'Not answered') : '') +
+        '<div class="hp-wiz-summary"><div class="hp-wiz-summary-h">' + esc(t('hp.wizard.summary', 'Profile summary')) + '</div>' +
+        summaryRow(t('hp.wizard.summary.name', 'Name'), (w.name || '').trim() || yourDog()) +
+        summaryRow(t('hp.wizard.summary.size', 'Size'), sizeLabel(w.size)) +
+        summaryRow(t('hp.wizard.summary.energy', 'Energy'), energySummary(w.energy)) +
+        summaryRow(t('hp.wizard.summary.terrain', 'Terrain'), terrainSummary(w.terrainTol)) +
+        summaryRow(t('hp.wizard.summary.heat', 'Heat'), w.heat ? t('hp.wizard.summary.heat.yes', 'Heat-sensitive') : t('hp.wizard.summary.heat.no', 'Handles heat fine')) +
+        (asksChairlift(w) ? summaryRow(t('hp.wizard.chairlift.summary', 'Chairlifts'), { ok: t('hp.wizard.chairlift.ridesOk', 'Rides calmly on a lap'), never: t('hp.wizard.chairlift.notForUs', 'Not for us') }[w.chairlift] || t('hp.wizard.chairlift.unanswered', 'Not answered')) : '') +
         '</div>';
     }
     el.wizBody.innerHTML = body;
     var nameInput = document.getElementById('hpWizName');
     if (nameInput) nameInput.addEventListener('input', function (e) { state.wiz.name = e.target.value; });
   }
-  function summaryRow(k, v) { return '<div class="hp-wiz-summary-row"><span>' + k + '</span><b>' + esc(v) + '</b></div>'; }
+  function summaryRow(k, v) { return '<div class="hp-wiz-summary-row"><span>' + esc(k) + '</span><b>' + esc(v) + '</b></div>'; }
 
   function focusWizardStep() {
     requestAnimationFrame(function(){
@@ -773,7 +804,7 @@
   function customMeta(name, size, energy, heat) {
     return {
       key: 'custom', name: name, emoji: '⭐',
-      sub: cap(size) + ' · ' + energy + ' energy' + (heat ? ' · heat-sensitive' : ''),
+      sub: sizeLabel(size) + ' · ' + energySummary(energy).toLowerCase() + (heat ? ' · ' + t('hp.wizard.chip.heat', 'heat-sensitive') : ''),
       badge: name.charAt(0).toUpperCase(), chipBg: 'var(--ink)', chipColor: '#fff',
     };
   }
@@ -802,7 +833,7 @@
     var behaviour = {};
     if (asksChairlift(w) && (w.chairlift === 'ok' || w.chairlift === 'never')) behaviour.chairlift = w.chairlift;
     return {
-      name: (w.name || '').trim() || 'Your dog',
+      name: (w.name || '').trim() || yourDog(),
       breed: '',
       fitness: ENERGY_FITNESS[w.energy] || 'moderate',
       dob: null, ageBand: null,

@@ -29,7 +29,7 @@ const ENTRY_PAGES = [
   'collection.html', 'collections.html', 'compare.html', 'contact.html',
   'downloads.html', 'how-scoring-works.html', 'journal.html',
   'my-trails.html', 'notifications.html', 'onboarding.html', 'photo-upload.html',
-  'privacy.html', 'reviews.html', 'safety-guide.html', 'saved.html', 'search.html',
+  'privacy.html', 'reviews.html', 'safety-guide.html', 'saved.html',
   'settings.html', 'terms.html', 'trail-report.html', 'trail.html', 'walk.html',
 ];
 
