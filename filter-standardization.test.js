@@ -94,7 +94,7 @@ describe('shared trail-filter experience', () => {
   });
 
   test('shows a live result count on every apply action', () => {
-    expect(read('homepage-search.js')).toContain("el.filtersApply.textContent = 'Show ' + n");
+    expect(read('homepage-search.js')).toContain("el.filtersApply.textContent = tr('hp.filters.showCount', 'Show {count}', { count: countText(n) })");
     expect(read('browse-trails.html')).toContain('filtersApply.textContent = `Show ${pool.length}');
     expect(read('script.js')).toContain('applyBtn.textContent = `Show ${displayList.length}');
   });
@@ -132,8 +132,8 @@ describe('shared trail-filter experience', () => {
     expect(homepage).toContain('id="hpDurationSeg"');
     expect(search).toContain("duration: 'day'");
     expect(search).toContain("DURATION_SEG");
-    expect(search).toContain("{ label: 'Day hikes', v: 'day' }");
-    expect(search).toContain("{ label: 'Multi-day', v: 'multi' }");
+    expect(search).toContain("{ label: t('hp.filters.dayHikes', 'Day hikes'), v: 'day' }");
+    expect(search).toContain("{ label: t('hp.filters.multiDay', 'Multi-day'), v: 'multi' }");
     // Reset returns to the day-hike default, and it counts as an active filter
     // only when switched to multi-day.
     expect(search).toContain("state.duration = 'day'");

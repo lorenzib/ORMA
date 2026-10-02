@@ -58,6 +58,25 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     expect(read('browse-trails.html')).toContain('<b data-i18n="browse.guest.title">Guest mode · Scores use a medium-dog profile.</b>');
   });
 
+  test('the search card, filter panel and suggestions carry Italian copy', () => {
+    const dictionary = read('i18n.js');
+    for(const key of ['hp.search.ph','hp.search.go','hp.search.previewAs','hp.popular.label','hp.preset.medium.name','hp.filters.button','hp.filters.title','hp.filters.minMatchFor','hp.filters.showCount','hp.filters.dayHikes','hp.filters.rocky','hp.count.one','hp.count.many','hp.sug.topFor','hp.sug.seeAll','hp.results.matching','hp.results.rankedFor','hp.results.empty']){
+      expect((dictionary.match(new RegExp(`'${key.replace(/\./g,'\\.')}':`, 'g')) || []).length).toBe(2);
+    }
+    expect(dictionary).toContain("'hp.preset.medium.name': 'Cane di taglia media'");
+    expect(dictionary).toContain("'hp.sug.topFor': 'Migliori abbinamenti per {name}'");
+    const html = read('index.html');
+    expect(html).toContain('data-i18n-ph="hp.search.ph"');
+    expect(html).toContain('<span id="hpDogLabel" data-i18n="hp.preset.medium.name">Medium dog</span>');
+    expect(html).toContain('<span data-i18n="hp.filters.button">Filter trails</span>');
+    expect(html).toContain('id="hpSearchBtn" data-i18n="hp.search.go">Search →</button>');
+    expect(html).toContain('<span class="hp-popular-label" data-i18n="hp.popular.label">Popular:</span>');
+    // The trail-shadowed renderers use the `tr` alias, never a bare `t(` that would resolve to the trail.
+    expect(controller).toContain('var tr = t;');
+    expect(controller).toContain("tr('hp.sug.topFor', 'Top matches for {name}', { name: esc(m.name) })");
+    expect(controller).toContain("'low-risk': { label: tr('hp.difficulty.lowRisk', 'Low-risk'), dot: '#2C5C34' }");
+  });
+
   test('a declared small dog sees chairlift-assisted routes on the guest homepage', () => {
     expect(controller).toContain('adapters.chairliftSafe(activeProfile())');
     expect(controller).toContain('filters.matches(t, fstate, options)');
@@ -86,7 +105,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
 
   test('the homepage ships the new controller and guest-context versions', () => {
     const html = read('index.html');
-    expect(html).toContain('homepage-search.js?v=20260930-3');
+    expect(html).toContain('homepage-search.js?v=20261002-1');
     expect(html).toContain('guest-context.js?v=20260917-2');
     expect(read('browse-trails.html')).toContain('guest-context.js?v=20260917-2');
   });
