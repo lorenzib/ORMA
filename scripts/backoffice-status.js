@@ -46,7 +46,7 @@ function catalogueCounts() {
     const match = fs.readFileSync(path.join(ROOT, file), 'utf8').match(/const imported = (\[[\s\S]*?\]);/);
     if (match) trails = trails.concat(JSON.parse(match[1]));
   }
-  const tiers = { 'under-review': 0, 'route-audited': 0, 'dolopaws-walked': 0 };
+  const tiers = { 'under-review': 0, 'route-reviewed': 0, 'route-audited': 0, 'dolopaws-walked': 0 };
   for (const trail of trails) {
     const tier = trust.tierOf(trail);
     tiers[tier] = (tiers[tier] || 0) + 1;
@@ -122,7 +122,7 @@ function printStatus(s) {
   console.log(`\nORMA backoffice status  ·  ${src}\n${'─'.repeat(64)}`);
 
   console.log('\nTRAILS TO VERIFY');
-  console.log(`  ${c.total} total  ·  ${c.tiers['route-audited']} route-audited  ·  ${backlog} under review  ·  ${c.tiers['dolopaws-walked']} walked`);
+  console.log(`  ${c.total} total  ·  ${c.tiers['route-audited']} route-audited  ·  ${c.tiers['route-reviewed']} reviewed  ·  ${backlog} under review  ·  ${c.tiers['dolopaws-walked']} walked`);
   console.log(`  Verification backlog: ${backlog} trails`);
 
   console.log('\nGATED BY YOU');
