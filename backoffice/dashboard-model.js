@@ -257,13 +257,13 @@
           ?'Automated sources are exhausted; this route needs your direct confirmation before it can advance.'
           :'A reconstructed route is ready for your review.',
       next:'After your choice, the selected route enters the evidence and geometry gates.',
-      href:'trail-dossier-desk.html',actionLabel:'Review route',
+      href:`trail-verify-desk.html#route-${item.candidateId}`,actionLabel:'Review route',
     });
     for(const item of dossierItems)decisions.push({
       id:`evidence-${item.candidateId}`,kind:'evidence',stage:'1 · Evidence',title:names.get(item.candidateId)||item.trailName||item.candidateId,
       description:item.approvalAllowed===false?'Evidence findings prevent approval. Request a targeted revision or reject the candidate.':'The evidence packet is ready for your verification decision.',
       next:'After your decision: approved evidence advances automatically; a revision goes straight to the selected specialist and returns to this desk.',
-      href:`trail-dossier-desk.html#review-${item.reviewId}`,actionLabel:'Review evidence',
+      href:`trail-verify-desk.html#review-${item.reviewId}`,actionLabel:'Review evidence',
     });
     for(const item of contentItems){
       const missing=(item.missingApprovals||[]).map(value=>value==='editorial-approval'?'copy':value==='asset-and-licensing-approval'?'image/licence':value.replace(/-/g,' '));

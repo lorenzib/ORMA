@@ -29,7 +29,7 @@ describe('CEO dashboard workflow model',()=>{
 
   test('each evidence decision names its trail and explains the automatic handoff',()=>{
     const model=buildDashboardModel({orchestration:{trails:[{candidateId:'trail-a',trailName:'Trail A',blockers:['not-closed-loop']}]},dossiers:{items:[{reviewId:'gate-a',candidateId:'trail-a',trailName:'Trail A',state:'awaiting-human',approvalAllowed:false}]},publication:{items:[]},jobs:[],history:[]});
-    expect(model.decisions[0]).toEqual(expect.objectContaining({kind:'evidence',title:'Trail A',href:'trail-dossier-desk.html#review-gate-a'}));
+    expect(model.decisions[0]).toEqual(expect.objectContaining({kind:'evidence',title:'Trail A',href:'trail-verify-desk.html#review-gate-a'}));
     expect(model.decisions[0].next).toContain('returns to this desk');
     expect(model.blockerCount).toBe(1);
   });
@@ -48,7 +48,7 @@ describe('CEO dashboard workflow model',()=>{
     // Two human-gated states surface; the automated "enrichment-pending" one does not.
     expect(routeDecisions.map(item=>item.id)).toEqual(['route-tre-cime','route-monte-pelmo']);
     // Route choices lead the queue (stage 0) ahead of the evidence gate.
-    expect(model.decisions[0]).toEqual(expect.objectContaining({kind:'route',stage:'0 · Route choice',title:'Choose the intended Tre Cime loop',href:'trail-dossier-desk.html'}));
+    expect(model.decisions[0]).toEqual(expect.objectContaining({kind:'route',stage:'0 · Route choice',title:'Choose the intended Tre Cime loop',href:'trail-verify-desk.html#route-tre-cime'}));
     // A candidate id falls back to the orchestration name when the item has no title.
     expect(routeDecisions[1]).toEqual(expect.objectContaining({title:'monte-pelmo',actionLabel:'Review route'}));
     expect(model.summary.needsYou).toBe(2);
