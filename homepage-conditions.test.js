@@ -86,7 +86,12 @@ describe('area conditions are corrected for each trail altitude', () => {
   });
 
   test('loads the selected future day and uses its morning forecast', async () => {
-    const targetDate = '2026-10-02';
+    // Dated relative to the run, never written down. This was '2026-10-02',
+    // which passed until 2 October 2026 arrived and the day it named stopped
+    // being a future one: load() correctly declines to send start_date for
+    // today, so the assertions below began failing on a clock tick rather than
+    // a code change, on main, blocking every unrelated pull request.
+    const targetDate = new Date(Date.now() + 3 * 86400000).toISOString().slice(0, 10);
     const times = []; const temps = [];
     for(let hour = 0; hour < 24; hour += 1){
       times.push(`${targetDate}T${String(hour).padStart(2, '0')}:00`);
