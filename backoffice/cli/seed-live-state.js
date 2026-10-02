@@ -23,6 +23,19 @@ const ROUTES = Object.freeze({
   'osm-way-25736154':'lago-braies-circuit.geojson',
 });
 
+/** Every proposal a route-choice question offers, single or multi-variant. */
+function routeProposals(routeReview){
+  const proposals=[];
+  for(const item of routeReview.items||[]){
+    for(const proposal of [...(item.proposals||[]),item.proposal]){
+      if(!proposal||!proposal.id||!proposal.geometryRef)continue;
+      if(proposals.some(seen=>seen.id===proposal.id))continue;
+      proposals.push(proposal);
+    }
+  }
+  return proposals;
+}
+
 function trailOnlyReviewQueue(queue){
   const submissions=(queue.submissions||[]).map(submission=>({
     ...submission,
@@ -66,6 +79,16 @@ async function main(){
     await store.setArtifactIfAbsent(`route-proposal-${candidateId}`,route,{seededFrom:name});
     console.log(`[orma-seed] route-proposal-${candidateId}`);
   }
+  // Every line a route choice can keep, keyed by the proposal the editor picks
+  // rather than by the candidate. Applying a choice promotes one of these into
+  // `route-proposal-<candidateId>`; without them the decision is recorded with
+  // its geometry unresolved, which is the honest outcome but not the useful one.
+  const routeQuestions=JSON.parse(await fs.readFile(path.join(root,'backoffice-data','route-review.json'),'utf8'));
+  for(const proposal of routeProposals(routeQuestions)){
+    const geometry=JSON.parse(await fs.readFile(path.join(root,proposal.geometryRef),'utf8'));
+    await store.setArtifactIfAbsent(`route-proposal-geometry-${proposal.id}`,geometry,{seededFrom:proposal.geometryRef});
+    console.log(`[orma-seed] route-proposal-geometry-${proposal.id}`);
+  }
   const orchestration=JSON.parse(await fs.readFile(path.join(root,'backoffice-data','trail-orchestration.json'),'utf8'));
   for(const trail of orchestration.trails||[]){
     if(!trail.latestOutputRef)continue;
@@ -77,4 +100,4 @@ async function main(){
 
 if(require.main === module) main().catch(error => { console.error(`[orma-seed] ${error.stack || error.message}`); process.exitCode = 1; });
 
-module.exports = { FILES, ROUTES, trailOnlyReviewQueue, main };
+module.exports = { FILES, ROUTES, routeProposals, trailOnlyReviewQueue, main };

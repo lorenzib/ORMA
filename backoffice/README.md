@@ -90,6 +90,17 @@ the Cartographer supplies a source-matched full-resolution proposal. Exported
 audit JSON contains both the original parking decisions and a nested
 `routeReview` record. Neither channel mutates public trail data.
 
+On the live desk the same gate is answered against Firestore: `submitRouteReview`
+writes one queued `backofficeRouteReviews` document, and the next worker pass
+runs `backoffice/workflows/apply-route-review.js`, which closes the question in
+`route-review`, appends a receipt to `route-review-ledger` and promotes the
+chosen line to `route-proposal-<candidateId>` — the artifact the rest of the
+pipeline already reads. The promotion happens only when the stored geometry
+names the chosen proposal, so a mismatched file is refused rather than published
+under the wrong trail. Keeping more than one variant records the extras as
+`pendingVariantIntake`: a second variant becomes a second ORMA trail only once it
+has its own candidate. Nothing in this path mutates public trail data.
+
 Official GPX tracks are converted into draft GeoJSON proposals with
 `npm run backoffice:build-route-proposals`. The converter preserves every track
 point, records computed distance and closure, and marks every output as
