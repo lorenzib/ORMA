@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-02T22:23:09.270Z",
+  "generatedAt": "2026-10-03T01:35:28.844Z",
   "hazards": [
     {
       "id": "meteoalarm-france:thunderstorm:haute-savoie",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-10-02T14:00:00+00:00",
       "expiresAt": "2026-10-02T22:00:00+00:00",
       "firstPublishedAt": "2026-10-02T04:28:52.651Z",
-      "lastSeenAt": "2026-10-02T22:23:09.270Z",
+      "lastSeenAt": "2026-10-03T01:35:28.844Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -72,7 +72,7 @@
       "effectiveAt": "2026-10-02T14:00:00+00:00",
       "expiresAt": "2026-10-02T22:00:00+00:00",
       "firstPublishedAt": "2026-10-02T04:28:52.651Z",
-      "lastSeenAt": "2026-10-02T22:23:09.270Z",
+      "lastSeenAt": "2026-10-03T01:35:28.844Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
