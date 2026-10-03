@@ -4216,10 +4216,28 @@ function breedInsights(name){
   'use strict';
 
   const VERSION = '1.0.0';
+  // Seven here, but only six of them can ever be reviewed through
+  // `verified.categories`. VERIFICATION.md names those six -- water, heat,
+  // exposure, livestock, surfaceHazards, access -- as the safety checks a
+  // source review covers, and puts `route` with photo, routeNumbers, mapPoints
+  // and elevation in `graduation`, which is a different record answering a
+  // different question.
+  //
+  // So canonicalReviewState(trail, 'route') reads a list that by contract never
+  // contains 'route', and a verified trail reports its route evidence as
+  // unknown. That reads like a bug and is not one: it is this module modelling
+  // route as a review category when the standard treats it as a graduation
+  // check. Nothing ships that distinction today -- assessTrail and the
+  // freshness contract below have no caller outside evidence-contract.test.js;
+  // the product uses tierOf, tierLabel and dateText. Wiring the per-category
+  // contract to a reader-facing surface means settling that difference first.
   const CATEGORIES = Object.freeze([
     'route', 'water', 'heat', 'exposure', 'livestock',
     'surfaceHazards', 'access',
   ]);
+  // The six a source review can establish, as VERIFICATION.md defines them.
+  const REVIEWABLE_CATEGORIES = Object.freeze(
+    CATEGORIES.filter(category => category !== 'route'));
   const TIERS = Object.freeze([
     'imported', 'mapped', 'route-audited', 'field-verified',
   ]);
@@ -4437,6 +4455,7 @@ function breedInsights(name){
     categoryEvidence,
     communityObservation,
     assessTrail,
+    REVIEWABLE_CATEGORIES,
   });
 });
 ;
