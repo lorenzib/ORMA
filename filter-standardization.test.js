@@ -95,7 +95,7 @@ describe('shared trail-filter experience', () => {
 
   test('shows a live result count on every apply action', () => {
     expect(read('homepage-search.js')).toContain("el.filtersApply.textContent = tr('hp.filters.showCount', 'Show {count}', { count: countText(n) })");
-    expect(read('browse-trails.html')).toContain('filtersApply.textContent = `Show ${pool.length}');
+    expect(read('browse-trails.html')).toContain("filtersApply.textContent = bt('browse.filters.showCount', 'Show {count}', { count: poolCount })");
     expect(read('script.js')).toContain('applyBtn.textContent = `Show ${displayList.length}');
   });
 
