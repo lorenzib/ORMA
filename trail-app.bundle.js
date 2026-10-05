@@ -5951,13 +5951,25 @@ function effectiveOverrides(profile, adjustOverride){
     return tier;
   }
 
+  // The dictionary lookup when a page has one (i18n.js exposes `t` globally);
+  // tests and the build have none, and then the English here stands.
+  function translated(key, fallback) {
+    const g = typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : null);
+    const t = g && typeof g.t === 'function' ? g.t : null;
+    if (t) {
+      const value = t(key);
+      if (value && value !== key) return value;
+    }
+    return fallback;
+  }
+
   // Short tier badge text, the headline label a visitor sees on a card or
   // trail page. The fuller `provenanceLabel` (below) adds progress/date detail.
   function tierLabel(trail) {
     const tier = tierOf(trail);
-    if (tier === 'dolopaws-walked' || tier === 'route-audited') return 'Verified by ORMA';
-    if (tier === 'route-reviewed') return 'Reviewed by ORMA';
-    return 'Imported trail';
+    if (tier === 'dolopaws-walked' || tier === 'route-audited') return translated('tier.routeAudited', 'Verified by ORMA');
+    if (tier === 'route-reviewed') return translated('tier.reviewed', 'Reviewed by ORMA');
+    return translated('tier.imported', 'Imported trail');
   }
 
   // Badge visual style per tier. Only an earned verification gets the green
