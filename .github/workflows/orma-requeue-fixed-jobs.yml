@@ -1,0 +1,81 @@
+name: ORMA requeue fixed jobs
+
+# Running blocked jobs again once their cause has been fixed. A job blocked
+# because the work was wrong stays blocked, which is right -- retrying a fault
+# reproduces it. But when the fault was ours, those jobs are the only ones that
+# can prove the fix, and nothing else releases them: the outage requeue takes
+# only provider failures, and retiring marks a job completed rather than running
+# it, and refuses the verification lanes anyway.
+#
+# Run by hand, and by hand on purpose: the tool refuses to decide which error
+# has been fixed, so a person names it. There is deliberately no "release
+# everything blocked" -- jobs whose cause is still live would spend the model
+# budget to re-learn it.
+#
+# The state lives in Firestore, so this cannot run from a checkout: the
+# credential stays in Actions instead of on anyone's machine.
+on:
+  workflow_dispatch:
+    inputs:
+      error_pattern:
+        description: 'Error to release (blank lists every blocked error and changes nothing)'
+        required: false
+        default: ''
+      apply:
+        description: 'Actually release them. Leave unchecked for a dry run.'
+        type: boolean
+        required: false
+        default: false
+      reason:
+        description: 'Recorded on every job it releases'
+        required: false
+        default: 'the cause was fixed'
+      limit:
+        description: 'Most jobs to release in one pass'
+        required: false
+        default: '10'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orma-requeue-fixed-jobs
+  cancel-in-progress: false
+
+jobs:
+  requeue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check worker credentials
+        run: test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+      - run: npm ci
+      - name: Requeue fixed jobs
+        env:
+          ERROR_PATTERN: ${{ inputs.error_pattern }}
+          REASON: ${{ inputs.reason }}
+          LIMIT: ${{ inputs.limit }}
+          APPLY: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          # No error named: list what is blocked and stop. This is the first
+          # thing to run, and it writes nothing.
+          if [ -z "$ERROR_PATTERN" ]; then
+            npm run backoffice:requeue-fixed
+            exit 0
+          fi
+          args=(--error-pattern "$ERROR_PATTERN" --reason "$REASON" --limit "$LIMIT")
+          if [ "$APPLY" = "true" ]; then
+            args+=(--apply)
+          else
+            echo "[requeue] Dry run. Tick 'apply' to release them."
+          fi
+          npm run backoffice:requeue-fixed -- "${args[@]}"
