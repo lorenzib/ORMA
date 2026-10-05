@@ -96,3 +96,67 @@ describe('the contract and the agents agree', () => {
     expect(PROMPTS.regulatoryRanger).toContain('Never use "varies" for a rule you simply could not find');
   });
 });
+
+// The rule lived only in the validator. An agent on a first pass got no
+// resolution prompt at all, read "only after you have tried to pin it down",
+// concluded it had tried, and answered "varies" -- then was refused by an
+// attempt number nobody had given it. The retry re-sent the identical prompt,
+// so it answered identically until the budget was gone. Seven
+// seasonal-restrictions jobs blocked that way, each one burning five model
+// calls to be told the same thing in a language it never heard.
+describe('the agent is told which attempt it is on', () => {
+  const {runTrailSpecialist}=require('./workflows/run-trail-specialist.js');
+  const trail={id:'osm-1',name:'Test trail',path:[[11.9,46.6],[11.91,46.61]]};
+  const clean={claims:[],openQuestions:[],recommendation:'advance',summary:'nothing to report'};
+
+  async function developerPrompt(resolutionAttempt){
+    let captured='';
+    const runAgent=async({messages})=>{captured=messages[0].content;return {responseId:'r',model:'m',data:clean};};
+    await runTrailSpecialist({job:{agentId:'terrainPoi',candidateId:'osm-1',action:'verify'},trail,context:[]},{runAgent});
+    if(resolutionAttempt===0)return captured;
+    const withAttempt=async({messages})=>{captured=messages[0].content;return {responseId:'r',model:'m',data:clean};};
+    await runTrailSpecialist({job:{agentId:'terrainPoi',candidateId:'osm-1',action:'verify',
+      resolutionAttempt,resolutionStrategy:'s',resolutionStrategyLabel:'Label',resolutionInstruction:'Try harder.',claimIds:[]},
+      trail,context:[]},{runAgent:withAttempt});
+    return captured;
+  }
+
+  test('a first pass is told plainly not to answer "varies", and what to do instead', async () => {
+    const prompt=await developerPrompt(0);
+    expect(prompt).toContain('Do not return finding "varies" on this pass');
+    expect(prompt).toContain(`resolution attempt ${MIN_VARIES_RESOLUTION_ATTEMPT}`);
+    // Without an alternative the agent just picks "varies" again.
+    expect(prompt).toContain('return finding "unresolved"');
+  });
+
+  test('an attempt that may use it is told so, with the conditions attached', async () => {
+    const prompt=await developerPrompt(MIN_VARIES_RESOLUTION_ATTEMPT);
+    expect(prompt).toContain('you may conclude finding "varies"');
+    expect(prompt).toContain('variesWith');
+    expect(prompt).not.toContain('Do not return finding "varies" on this pass');
+  });
+
+  test('the attempt below the threshold is still refused', async () => {
+    const prompt=await developerPrompt(MIN_VARIES_RESOLUTION_ATTEMPT-1);
+    expect(prompt).toContain('Do not return finding "varies" on this pass');
+  });
+
+  test('the instruction names the same claims the validator allows', async () => {
+    // Built from VARIABLE_CLAIM_IDS rather than written out, so widening the
+    // rule cannot leave the agent being told the old one.
+    const prompt=await developerPrompt(0);
+    for(const id of VARIABLE_CLAIM_IDS) expect(prompt).toContain(id);
+  });
+
+  test('what the agent is told and what the validator enforces agree', async () => {
+    // The pairing that was broken: permitted by the prompt, refused by the code.
+    const permitted=await developerPrompt(MIN_VARIES_RESOLUTION_ATTEMPT);
+    expect(permitted).toContain('you may conclude finding "varies"');
+    expect(()=>validateVariesClaims({claims:[varies()]},job(MIN_VARIES_RESOLUTION_ATTEMPT))).not.toThrow();
+
+    const refused=await developerPrompt(0);
+    expect(refused).toContain('Do not return finding "varies"');
+    expect(()=>validateVariesClaims({claims:[varies()]},job(0)))
+      .toThrow(/cannot be answered "varies" before resolution attempt/);
+  });
+});
