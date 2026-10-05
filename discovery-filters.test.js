@@ -158,3 +158,26 @@ describe('chairlift-assisted routes', () => {
     expect(filters.active({ lifts:'include' })).toEqual([{ key:'lifts', label:'Chairlift-assisted routes included' }]);
   });
 });
+
+describe('chip and recovery words follow the dictionary when one is loaded', () => {
+  const italian = key => ({
+    'filters.chip.search':'Ricerca “{q}”',
+    'filters.chip.under5':'Meno di 5 km',
+    'filters.chip.lifts':'Percorsi con seggiovia inclusi',
+    'filters.recover.widen':'Allarga la distanza a {km} km',
+  })[key] || key;
+  const withDictionary = fn => {
+    globalThis.t = (key, vars) => { let s = italian(key); if(vars) for(const k of Object.keys(vars)) s = s.split('{' + k + '}').join(vars[k]); return s; };
+    try { return fn(); } finally { delete globalThis.t; }
+  };
+
+  test('active chips use the translated words and keep their keys', () => {
+    const chips = withDictionary(() => filters.active({ search:'Braies', distance:'u5', lifts:'include', water:true }));
+    expect(chips.map(c => c.key)).toEqual(['search', 'distance', 'water', 'lifts']);
+    expect(chips.map(c => c.label)).toEqual(['Ricerca “Braies”', 'Meno di 5 km', 'Water point listed', 'Percorsi con seggiovia inclusi']);
+  });
+
+  test('without a dictionary the English stands, placeholders filled', () => {
+    expect(filters.active({ search:'Braies', distance:'3' }).map(c => c.label)).toEqual(['Search “Braies”', 'Up to 3 km']);
+  });
+});
