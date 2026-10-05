@@ -27,7 +27,15 @@ function memberWays(payload, relationId){
     if(coordinates.length < 2){ missingWayIds.push(member.ref); return null; }
     return { id: way.id, role: member.role || '', coordinates, tags: way.tags || {} };
   }).filter(Boolean);
-  return { relation, ways, missingWayIds };
+  // A relation may list the same way twice -- Albannette petite boucle lists
+  // nine of its twenty-six that way. Stitching an entry per listing walks those
+  // ways twice, and the line measures a kilometre longer than the ground it
+  // covers: 5.02 km against a route that is 3.99 km of mapped way. Distance is
+  // what the official-distance check compares, so the duplicate reads as a
+  // route closer to its official figure than it is.
+  const seen = new Set();
+  const unique = ways.filter(way => (seen.has(way.id) ? false : (seen.add(way.id), true)));
+  return { relation, ways: unique, missingWayIds, duplicateWayCount: ways.length - unique.length };
 }
 
 function attach(component, way, toleranceM){
