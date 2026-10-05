@@ -26,6 +26,10 @@ describe('live worker exit code',()=>{
     // nowhere, which is exactly what a red run is for.
     expect(blockedLanes({routeReviews:[{status:'blocked'}]})).toEqual(['routeReviews']);
     expect(blockedLanes({routeReviews:[{status:'superseded'}]})).toEqual([]);
+    // A trail waiting for a free fleet slot is not a failure; an admission that
+    // could not be written is.
+    expect(blockedLanes({routeAdmissions:[{status:'held',reason:'verification-capacity-reached'}]})).toEqual([]);
+    expect(blockedLanes({routeAdmissions:[{status:'blocked',error:'contract'}]})).toEqual(['routeAdmissions']);
     expect(blockedLanes({publications:[{status:'processed'}]})).toEqual([]);
     expect(blockedLanes({communityHazards:{vetted:[{status:'vetting-failed'}]}})).toEqual(['communityHazards']);
     expect(blockedLanes({communityHazards:{vetted:[{status:'published'}]}})).toEqual([]);
@@ -33,6 +37,6 @@ describe('live worker exit code',()=>{
 
   test('the worker still exports the lanes the exit check names',()=>{
     expect(typeof worker.runLiveBackofficeWorker).toBe('function');
-    expect(REVIEW_LANES).toEqual(['reviews','routeReviews','dossierReviews','publications']);
+    expect(REVIEW_LANES).toEqual(['reviews','routeReviews','routeAdmissions','dossierReviews','publications']);
   });
 });

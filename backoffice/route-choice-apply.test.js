@@ -13,6 +13,7 @@ const {routeProposals}=require('./cli/seed-live-state');
 const AT='2026-10-02T13:38:18.000Z';
 const QUESTIONS=JSON.parse(fs.readFileSync('backoffice-data/route-review.json','utf8'));
 const TRE_CIME='osm-relation-1484751';
+const TRE_CIME_TRAIL='tre-cime';
 const CLASSIC='tre-cime-classic-101-105';
 const PATERNO='tre-cime-monte-paterno-101-104-105';
 
@@ -34,10 +35,11 @@ describe('a kept route becomes the candidate line', () => {
     expect(item.reviewState).toBe('route-choice-approved');
     expect(item.selectedProposalId).toBe(CLASSIC);
     expect(item.decision).toEqual(expect.objectContaining({action:'approve-route',reviewedBy:'moderator-uid',reviewedAt:AT}));
-    // Promoted under the candidate id, which is where the rest of the pipeline
-    // already looks for a trail's line.
-    expect(result.promotions).toEqual([expect.objectContaining({candidateId:TRE_CIME,proposalId:CLASSIC,
+    // Promoted under the catalogue trail the question names, which is the id
+    // publication reads a route from — not the OSM object it was asked about.
+    expect(result.promotions).toEqual([expect.objectContaining({candidateId:TRE_CIME_TRAIL,proposalId:CLASSIC,
       coordinateCount:2077})]);
+    expect(result.ledger.decisions[0].promotedAs).toBe(TRE_CIME_TRAIL);
     expect(result.promotions[0].feature.properties.proposalId).toBe(CLASSIC);
     expect(result.outcome.promoted).toEqual([CLASSIC]);
   });
@@ -71,6 +73,15 @@ describe('a kept route becomes the candidate line', () => {
     expect(itemOf(result.routeReview,TRE_CIME).reviewState).toBe('route-choice-approved');
     expect(result.outcome.unresolvedGeometry).toEqual([CLASSIC]);
     expect(result.ledger.decisions[0].geometry).toBe('unresolved');
+  });
+
+  test('a question naming no catalogue trail keeps the line under its own id',()=>{
+    // Nothing is written under a name that means another trail; the line is
+    // still stored, so the choice is not lost.
+    const artifact=questions();
+    delete itemOf(artifact,TRE_CIME).trailId;
+    const result=applyRouteReview(artifact,null,decision(),{at:AT,geometries:new Map([[CLASSIC,feature(CLASSIC)]])});
+    expect(result.promotions[0].candidateId).toBe(TRE_CIME);
   });
 
   test('a line that says it is another proposal is refused, not published under this trail',()=>{
@@ -166,7 +177,7 @@ describe('the worker applies what the desk recorded', () => {
     const outcomes=await ingestRouteReviews(target);
     expect(outcomes).toEqual([expect.objectContaining({reviewId:'route-review-1',status:'processed',promoted:[CLASSIC]})]);
     expect(itemOf(artifacts['route-review'],TRE_CIME).reviewState).toBe('route-choice-approved');
-    expect(artifacts[`route-proposal-${TRE_CIME}`].properties.proposalId).toBe(CLASSIC);
+    expect(artifacts[`route-proposal-${TRE_CIME_TRAIL}`].properties.proposalId).toBe(CLASSIC);
     expect(artifacts['route-review-ledger'].decisions).toHaveLength(1);
     expect(target.marks).toEqual([expect.objectContaining({id:'route-review-1',status:'processed'})]);
   });
@@ -192,7 +203,7 @@ describe('the worker applies what the desk recorded', () => {
     const outcomes=await ingestRouteReviews(target);
     expect(outcomes).toEqual([expect.objectContaining({status:'blocked',error:expect.stringContaining('not on this review')})]);
     expect(itemOf(artifacts['route-review'],TRE_CIME).reviewState).toBe('ready-for-human-route-choice');
-    expect(artifacts[`route-proposal-${TRE_CIME}`]).toBeUndefined();
+    expect(artifacts[`route-proposal-${TRE_CIME_TRAIL}`]).toBeUndefined();
     expect(target.marks).toEqual([expect.objectContaining({status:'blocked'})]);
   });
 

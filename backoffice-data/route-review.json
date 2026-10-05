@@ -7,6 +7,7 @@
   "items": [
     {
       "candidateId": "osm-relation-1484751",
+      "trailId": "tre-cime",
       "priority": 1,
       "reviewState": "ready-for-human-route-choice",
       "agent": "Cartographer",
@@ -105,6 +106,7 @@
     },
     {
       "candidateId": "osm-relation-6678431",
+      "trailId": "cinque-torri-assisted",
       "priority": 2,
       "reviewState": "parking-and-assisted-route-approved-enrichment-pending",
       "agent": "Cartographer",
@@ -205,6 +207,7 @@
     },
     {
       "candidateId": "osm-way-25736154",
+      "trailId": "lago-braies",
       "priority": 3,
       "reviewState": "ready-for-human-review",
       "agent": "Cartographer",

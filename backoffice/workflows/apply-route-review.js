@@ -12,7 +12,7 @@
  * this trail's line. It does not clear parking, dog rules, water, exposure or
  * any other gate, and it publishes nothing — the chosen geometry is promoted
  * inside the protected store, where the rest of the pipeline already looks for
- * it (`route-proposal-<candidateId>`).
+ * it (`route-proposal-<trailId>`).
  */
 
 const { createHash }=require('crypto');
@@ -118,7 +118,11 @@ function applyRouteReview(routeReview,ledger,review,options={}){
     const found=geometries.get(primary.id)||null;
     const stamped=found&&found.properties&&found.properties.proposalId;
     const feature=!found||(stamped&&stamped!==primary.id)?null:found;
-    promotions.push({candidateId:item.candidateId,proposalId:primary.id,feature,
+    // Promoted under the catalogue trail the question is about, which is the id
+    // publication reads. A question that names no catalogue trail keeps its own
+    // candidate id, so the line is still stored and nothing is written under a
+    // name that means something else.
+    promotions.push({candidateId:item.trailId||item.candidateId,proposalId:primary.id,feature,
       ...(found&&!feature?{geometry:'rejected-proposal-mismatch',foundProposalId:stamped}:geometryReceipt(feature))});
     next={...next,reviewState:'route-choice-approved',selectedProposalIds:ordered.map(proposal=>proposal.id),
       selectedProposalId:primary.id,
@@ -154,7 +158,7 @@ function applyRouteReview(routeReview,ledger,review,options={}){
   // proposal, the variants still owed a candidate, and either the promoted
   // line's fingerprint or the reason there is none.
   const kept=promotions.length
-    ?(({candidateId,proposalId,feature,...facts})=>({scope:APPROVAL_SCOPE,proposalId,
+    ?(({candidateId,proposalId,feature,...facts})=>({scope:APPROVAL_SCOPE,proposalId,promotedAs:candidateId,
       keptVariantIds:next.selectedProposalIds.slice(1),...facts}))(promotions[0])
     :{};
   const entry={contractVersion:VERSION,gate:GATE,reviewId:review.id||null,candidateId:item.candidateId,
