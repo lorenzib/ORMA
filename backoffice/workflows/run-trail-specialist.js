@@ -93,7 +93,18 @@ function validateVariesClaims(result,job){
       throw new Error(`Claim ${claim.id} does not vary by the day and cannot be answered "varies"`);
     }
     if(attempt<MIN_VARIES_RESOLUTION_ATTEMPT){
-      throw new Error(`Claim ${claim.id} cannot be answered "varies" before resolution attempt ${MIN_VARIES_RESOLUTION_ATTEMPT}; it has had ${attempt}`);
+      // "varies" has to be earned by having looked, but throwing here was the
+      // wrong enforcement: a thrown specialist run is retried at the SAME
+      // resolutionAttempt, so the counter never climbed to 2, the check could
+      // never pass, and the trail blocked forever (observed: regulatoryRanger
+      // seasonal-restrictions jobs stuck "blocked after the full retry budget").
+      // Downgrade to unresolved instead, which IS a resolvable finding, so the
+      // resolution loop re-queues the claim with an incremented attempt. Once it
+      // has genuinely been through MIN_VARIES_RESOLUTION_ATTEMPT attempts, the
+      // agent's "varies" reaches the accepting branch below.
+      claim.finding='unresolved';
+      claim.reopenedFromVaries=true;
+      continue;
     }
     if(!String(claim.variesWith||'').trim()){
       throw new Error(`Claim ${claim.id} is "varies" but does not say what it varies with`);

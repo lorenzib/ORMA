@@ -37,10 +37,18 @@ describe('a question that has no fixed answer', () => {
 });
 
 describe('it has to be a conclusion, not an excuse', () => {
-  test('it cannot be given on the first pass', () => {
-    expect(()=>validateVariesClaims({claims:[varies()]},job(0)))
-      .toThrow(/cannot be answered "varies" before resolution attempt 2/);
-    expect(()=>validateVariesClaims({claims:[varies()]},job(1))).toThrow(/before resolution attempt 2/);
+  test('it cannot be accepted on the first pass — it is reopened, not blocked', () => {
+    // Throwing here only retried the same execution at the same attempt, so the
+    // counter never reached 2 and the trail blocked forever. Instead the
+    // premature "varies" is downgraded to unresolved so the resolution loop
+    // re-queues it with an incremented attempt.
+    const early0=varies();
+    validateVariesClaims({claims:[early0]},job(0));
+    expect(early0.finding).toBe('unresolved');
+    expect(early0.reopenedFromVaries).toBe(true);
+    const early1=varies();
+    validateVariesClaims({claims:[early1]},job(1));
+    expect(early1.finding).toBe('unresolved');
     expect(MIN_VARIES_RESOLUTION_ATTEMPT).toBe(2);
   });
 
@@ -156,7 +164,12 @@ describe('the agent is told which attempt it is on', () => {
 
     const refused=await developerPrompt(0);
     expect(refused).toContain('Do not return finding "varies"');
-    expect(()=>validateVariesClaims({claims:[varies()]},job(0)))
-      .toThrow(/cannot be answered "varies" before resolution attempt/);
+    // The prompt tells the agent not to conclude "varies" yet; if it does
+    // anyway, the validator no longer throws (which stranded the trail) — it
+    // reopens the claim as unresolved so the resolution loop gives it the
+    // attempts the conclusion is supposed to be earned over.
+    const early=varies();
+    validateVariesClaims({claims:[early]},job(0));
+    expect(early.finding).toBe('unresolved');
   });
 });
