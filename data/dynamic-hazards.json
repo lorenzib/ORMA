@@ -1,7 +1,31 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-05T19:24:26.814Z",
+  "generatedAt": "2026-10-05T22:23:15.462Z",
   "hazards": [
+    {
+      "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Yellow Thunderstorm Warning",
+      "area": "Friuli Venezia Giulia",
+      "title": "thunderstorm warning for Friuli Venezia Giulia",
+      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-italy",
+      "sourceLabel": "MeteoAlarm Italy",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/cf29f4e5-4a26-4367-b078-0b83517397fa",
+      "identifier": "2.49.0.0.380.3.IT.261005115746.023",
+      "effectiveAt": "2026-10-07T18:00:00+00:00",
+      "expiresAt": "2026-10-07T21:59:00+00:00",
+      "firstPublishedAt": "2026-10-05T22:23:15.462Z",
+      "lastSeenAt": "2026-10-05T22:23:15.462Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "piancavallo"
+      ],
+      "trailNames": [
+        "Piancavallo Malghe Loop"
+      ]
+    },
     {
       "id": "meteoalarm-italy:thunderstorm:trentino-alto-adige",
       "state": "active",
@@ -12,12 +36,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-italy",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/9b501430-d27b-4324-b4c4-dc8dbc62c9e1",
-      "identifier": "2.49.0.0.380.3.IT.261005115746.019",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/9ee06551-d63b-41f3-ade9-7b22050df0e9",
+      "identifier": "2.49.0.0.380.3.IT.261005115746.021",
       "effectiveAt": "2026-10-06T00:00:00+00:00",
-      "expiresAt": "2026-10-06T23:59:00+00:00",
+      "expiresAt": "2026-10-07T21:59:00+00:00",
       "firstPublishedAt": "2026-10-05T10:29:05.859Z",
-      "lastSeenAt": "2026-10-05T19:24:26.814Z",
+      "lastSeenAt": "2026-10-05T22:23:15.462Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -206,12 +230,59 @@
         "Nössingbühel",
         "Giro di Bedolpian",
         "Dorfrundweg - Giro del Paese",
-        "Panoramaweg",
         "Rundweg Beimsteinkogel",
         "Mittlerer Rundweg am Karer See",
         "Langer Rundweg am Karer See"
       ],
       "sourceStatus": "available"
+    },
+    {
+      "id": "meteoalarm-italy:thunderstorm:veneto",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Yellow Thunderstorm Warning",
+      "area": "Veneto",
+      "title": "thunderstorm warning for Veneto",
+      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-italy",
+      "sourceLabel": "MeteoAlarm Italy",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/631a5260-4439-4c9e-b7bc-828acca4151c",
+      "identifier": "2.49.0.0.380.3.IT.261005115746.025",
+      "effectiveAt": "2026-10-07T18:00:00+00:00",
+      "expiresAt": "2026-10-07T21:59:00+00:00",
+      "firstPublishedAt": "2026-10-05T22:23:15.462Z",
+      "lastSeenAt": "2026-10-05T22:23:15.462Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "nuvolau",
+        "lago-sorapis",
+        "osm-7388748",
+        "osm-7546708",
+        "osm-7547653",
+        "osm-7547983",
+        "osm-7548201",
+        "osm-7548344",
+        "osm-7548489",
+        "osm-7549783",
+        "osm-11855879",
+        "osm-11891581",
+        "osm-13528390"
+      ],
+      "trailNames": [
+        "Passo Giau to Rifugio Nuvolau",
+        "Lago di Sorapis Trail",
+        "Anello dei Colli",
+        "Anello di Soracrode",
+        "Anello dei Forti",
+        "Anello di Valzalina",
+        "Anello di Ciampeviei",
+        "Anello del Sole",
+        "Anello dei Faggi",
+        "Anello del Troi de le Ciaure",
+        "Roda de Cherz",
+        "Sentiero Alpago Natura",
+        "Sentiero del Sabadalt"
+      ]
     }
   ]
 }
