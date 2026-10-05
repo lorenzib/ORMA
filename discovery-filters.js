@@ -194,34 +194,47 @@
     return (Array.isArray(trails) ? trails : []).filter(trail => matches(trail, state, options));
   }
 
+  // The chip words, translated where a page has loaded i18n.js (which exposes
+  // `t` globally); tests and the build have no dictionary and read the English.
+  function tr(key, fallback, vars){
+    const g = typeof globalThis !== 'undefined' ? globalThis : null;
+    const t = g && typeof g.t === 'function' ? g.t : null;
+    let s = t ? t(key, vars) : key;
+    if(!s || s === key){
+      s = fallback;
+      if(vars) for(const k of Object.keys(vars)) s = s.split('{' + k + '}').join(vars[k]);
+    }
+    return s;
+  }
+
   function labelFor(key, state){
     const labels = {
-      search: `Search “${state.search}”`,
-      country: state.country === 'italy' ? 'Italy' : 'France',
-      region: state.region === 'dolomites' ? 'Dolomites region' : 'Savoy region',
+      search: tr('filters.chip.search', 'Search “{q}”', { q: state.search }),
+      country: state.country === 'italy' ? tr('filters.chip.italy', 'Italy') : tr('filters.chip.france', 'France'),
+      region: state.region === 'dolomites' ? tr('filters.chip.dolomites', 'Dolomites region') : tr('filters.chip.savoy', 'Savoy region'),
       valley: state.valley,
-      risk: `${state.risk} rating`,
-      distance: state.distance === 'u5' ? 'Under 5 km'
-        : state.distance === '5to10' ? '5–10 km'
-        : state.distance === '10p' ? '10 km+'
-        : `Up to ${state.distance} km`,
-      difficulty: `${state.difficulty} route`,
+      risk: tr('filters.chip.risk', '{risk} rating', { risk: state.risk }),
+      distance: state.distance === 'u5' ? tr('filters.chip.under5', 'Under 5 km')
+        : state.distance === '5to10' ? tr('filters.chip.5to10', '5–10 km')
+        : state.distance === '10p' ? tr('filters.chip.10plus', '10 km+')
+        : tr('filters.chip.upTo', 'Up to {km} km', { km: state.distance }),
+      difficulty: tr('filters.chip.difficulty', '{difficulty} route', { difficulty: state.difficulty }),
       terrain: {
-        soft:'Gentle surfaces only',
-        mixed:'Up to mixed terrain',
-        rocky:'Rocky terrain is okay',
+        soft: tr('filters.chip.terrainSoft', 'Gentle surfaces only'),
+        mixed: tr('filters.chip.terrainMixed', 'Up to mixed terrain'),
+        rocky: tr('filters.chip.terrainRocky', 'Rocky terrain is okay'),
       }[state.terrain],
-      water: 'Water point listed',
-      heat: state.heat === 'low-reviewed' ? 'Lower heat exposure'
-        : state.heat === 'shade-40' ? 'Over 40% shade'
-        : state.heat === 'shade-60' ? 'Over 60% shade'
-        : 'Shade listed',
-      exposure: 'No reported exposure',
-      access: state.access === 'allowed-reviewed' ? 'Dogs permitted' : 'Dogs allowed, leash is okay',
-      duration: 'Multi-day routes',
-      collection: `${state.collection} collection`,
-      minMatch: `${state.minMatch}%+ dog match`,
-      lifts: 'Chairlift-assisted routes included',
+      water: tr('filters.chip.water', 'Water point listed'),
+      heat: state.heat === 'low-reviewed' ? tr('filters.chip.heatLow', 'Lower heat exposure')
+        : state.heat === 'shade-40' ? tr('filters.chip.shade40', 'Over 40% shade')
+        : state.heat === 'shade-60' ? tr('filters.chip.shade60', 'Over 60% shade')
+        : tr('filters.chip.shade', 'Shade listed'),
+      exposure: tr('filters.chip.exposure', 'No reported exposure'),
+      access: state.access === 'allowed-reviewed' ? tr('filters.chip.accessPermitted', 'Dogs permitted') : tr('filters.chip.accessLeash', 'Dogs allowed, leash is okay'),
+      duration: tr('filters.chip.multiDay', 'Multi-day routes'),
+      collection: tr('filters.chip.collection', '{collection} collection', { collection: state.collection }),
+      minMatch: tr('filters.chip.minMatch', '{pct}%+ dog match', { pct: state.minMatch }),
+      lifts: tr('filters.chip.lifts', 'Chairlift-assisted routes included'),
     };
     return labels[key] || key;
   }
@@ -252,20 +265,20 @@
     if(nextDistance){
       candidates.push({
         key:'distance',
-        label:`Widen distance to ${nextDistance} km`,
+        label: tr('filters.recover.widen', 'Widen distance to {km} km', { km: nextDistance }),
         state:{ ...state, distance:String(nextDistance), page:1 },
       });
     }
     if(state && state.terrain === 'soft'){
       candidates.push({
         key:'terrain',
-        label:'Allow mixed terrain',
+        label: tr('filters.recover.allowMixed', 'Allow mixed terrain'),
         state:{ ...state, terrain:'mixed', page:1 },
       });
     }else if(state && state.terrain === 'mixed'){
       candidates.push({
         key:'terrain',
-        label:'Allow known rocky terrain',
+        label: tr('filters.recover.allowRocky', 'Allow known rocky terrain'),
         state:{ ...state, terrain:'rocky', page:1 },
       });
     }

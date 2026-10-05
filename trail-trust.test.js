@@ -273,3 +273,26 @@ describe('trail data trust states', () => {
     expect(trust.isMultiDay(null)).toBe(false);
   });
 });
+
+describe('the badge words follow the dictionary when one is loaded', () => {
+  function loadTrustWith(t){
+    const context = { window: {}, console };
+    context.window.window = context.window;
+    if(t) context.window.t = t;
+    vm.createContext(context);
+    vm.runInContext(fs.readFileSync(path.join(__dirname, 'trail-trust.js'), 'utf8'), context);
+    return context.window.DoloPawsTrailTrust;
+  }
+  const reviewed = { tier: 'route-reviewed', path: [[46, 11], [46.01, 11.01]] };
+
+  test('tier labels translate through the page lookup', () => {
+    const trust = loadTrustWith(key => ({ 'tier.reviewed':'Revisionato da ORMA', 'tier.imported':'Percorso importato' })[key] || key);
+    expect(trust.provenanceLabel(reviewed)).toBe('Revisionato da ORMA');
+    expect(trust.provenanceLabel({})).toBe('Percorso importato');
+  });
+
+  test('without a lookup, or with one that does not know the key, the English stands', () => {
+    expect(loadTrustWith(null).provenanceLabel(reviewed)).toBe('Reviewed by ORMA');
+    expect(loadTrustWith(key => key).provenanceLabel(reviewed)).toBe('Reviewed by ORMA');
+  });
+});
