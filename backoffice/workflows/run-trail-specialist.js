@@ -216,9 +216,22 @@ async function runTrailSpecialist({job,trail,context},options={}){
   const prompt=PROMPTS[job.agentId]; if(!prompt)throw new Error(`No live specialist handler for ${job.agentId}`);
   const runAgent=options.runAgent||createStructuredResponse;
   const clientOptions={...(options.clientOptions||{}),model:options.clientOptions?.model||modelForAgent(job.agentId,options.env)};
+  // The validator rejects "varies" before resolution attempt 2, and nothing ever
+  // told the agent which attempt it was on: a first pass carries no resolution
+  // prompt at all, so an agent reading "only after you have tried to pin it
+  // down" concludes it has tried, answers "varies", and is refused by a number
+  // it was never given. The retry then re-sends the identical prompt, so it
+  // answers the same way until the budget is gone -- seven seasonal-restrictions
+  // jobs blocked that way before anything said so out loud.
+  //
+  // Both branches are built from the constants the validator reads, so the rule
+  // and the instruction cannot drift apart.
+  const variesPrompt=Number(job.resolutionAttempt||0)>=MIN_VARIES_RESOLUTION_ATTEMPT
+    ? `\n\nOn this attempt you may conclude finding "varies" for ${VARIABLE_CLAIM_IDS.join(' or ')} if the evidence establishes that the answer genuinely depends on when someone walks. It still needs variesWith naming what it depends on, and a source establishing the variability itself.`
+    : `\n\nDo not return finding "varies" on this pass, for any claim. It is reserved for automated resolution attempt ${MIN_VARIES_RESOLUTION_ATTEMPT} and later, so that it is always a conclusion drawn from repeated looking rather than a first impression. Where you cannot establish ${VARIABLE_CLAIM_IDS.join(' or ')} on this pass, return finding "unresolved" and say in blockers what you would need; a later attempt will be allowed to conclude that it varies.`;
   const resolutionPrompt=job.resolutionAttempt?`\n\nThis is automated evidence-resolution attempt ${job.resolutionAttempt} of ${job.maximumResolutionAttempts||5} for claim(s) ${(job.claimIds||[]).join(', ')}. Use this materially different strategy: ${job.resolutionStrategyLabel} (${job.resolutionStrategy}). ${job.resolutionInstruction} Return a complete updated specialist result: preserve unrelated prior claims, include every targeted claim, and list only questions that remain open after this attempt. Never claim success merely because a source was not found.`:'';
   const response=await runAgent({schemaName:`orma_${job.agentId}_trail_findings`,schema:SPECIALIST_SCHEMA,webSearch:true,
-    messages:[{role:'developer',content:prompt+resolutionPrompt},
+    messages:[{role:'developer',content:prompt+resolutionPrompt+variesPrompt},
       {role:'user',content:JSON.stringify({job,trail,ormaRecord:routeGuidanceLeads(trail),context})}]},clientOptions);
   validateSpecialistResult(response.data,job.agentId);
   validateVariesClaims(response.data,job);

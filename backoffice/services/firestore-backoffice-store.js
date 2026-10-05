@@ -217,6 +217,31 @@ class FirestoreBackofficeStore {
     return releasable.map(doc => doc.id);
   }
 
+  // The sibling of requeueOutageBlockedJobs for a fault that was ours. The
+  // caller names the error it has fixed; see workflows/requeue-fixed-jobs.js
+  // for why there is no "release everything blocked".
+  async requeueBlockedJobsMatching(jobIds = [], fields = {}){
+    const ids = (Array.isArray(jobIds) ? jobIds : []).map(String).filter(Boolean);
+    if(!ids.length) return [];
+    const batch = this.db.batch();
+    for(const id of ids){
+      batch.update(this.db.collection(COLLECTIONS.jobs).doc(id), {
+        status: 'queued',
+        systemFailures: 0,
+        requeuedAt: Timestamp.fromDate(new Date()),
+        requeueReason: String(fields.requeueReason || 'the cause was fixed').slice(0, 300),
+        notBefore: FieldValue.delete(),
+        workerId: FieldValue.delete(),
+        startedAt: FieldValue.delete(),
+        leaseExpiresAt: FieldValue.delete(),
+        updatedAt: FieldValue.serverTimestamp(),
+      });
+    }
+    await batch.commit();
+    this.invalidate('jobs:');
+    return ids;
+  }
+
   async claimJob(id, workerId, options = {}){
     const now = options.now || new Date();
     const leaseMs = options.leaseMs || 15 * 60 * 1000;
