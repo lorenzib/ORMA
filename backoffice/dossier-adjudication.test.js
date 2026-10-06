@@ -1,5 +1,6 @@
 const {applyDossierReview}=require('./workflows/apply-dossier-review.js');
-const {unacceptedBlockers,waivableBlocker,MIN_ACCEPTANCE_REASON}=require('./workflows/compile-verified-dossier.js');
+const {unacceptedBlockers,waivableBlocker,MIN_ACCEPTANCE_REASON,
+  routeGuidanceBlockingReasons}=require('./workflows/compile-verified-dossier.js');
 const {operationalFactsFromClaims}=require('./workflows/compile-operational-facts.js');
 
 // osm-16363583 has three claims at source-exhausted after seven, five and five
@@ -7,7 +8,10 @@ const {operationalFactsFromClaims}=require('./workflows/compile-operational-fact
 // moderator can accept them, or that trail can never be verified.
 const EXHAUSTED='terrainPoi/livestock: five automated resolution strategies exhausted';
 const OPEN_QUESTION='logistics: open question — is the salle-des-fetes parking usable during the renovation?';
-const ROUTE_GUIDANCE='logistics/route-number-sequence: supported authoritative route guidance is required';
+// Taken from the producer, never retyped. The hand-typed copy that stood here
+// named route-number-sequence -- a claim #472 made non-blocking -- and the
+// sentence #472 stopped emitting, so it tested a string nothing produces.
+const [ROUTE_GUIDANCE]=routeGuidanceBlockingReasons([]);
 const REASON='Walked it in August; the pasture is fenced and the fence is signed.';
 
 describe('which blockers a reason can address', () => {

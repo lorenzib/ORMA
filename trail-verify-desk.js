@@ -844,7 +844,19 @@
   // ---- rendering ----
 
   const MIN_ACCEPT_REASON=10;
-  const ROUTE_GUIDANCE_BLOCKER=/supported authoritative route guidance is required$/;
+
+  // Mirrors UNWAIVABLE_BLOCKER_IDS in backoffice/workflows/compile-verified-dossier.js.
+  // The desk is a browser script and cannot require it, so desk-accept-blockers.test.js
+  // compares the two lists: change the contract without changing this and that test fails.
+  //
+  // Recognised by the id a blocker is filed under, never by its wording. This
+  // was a regex over the sentence both producers ended with until #472 reworded
+  // one of them, and for nineteen days the desk offered a tick-box for the one
+  // blocker a reason cannot address. Ticking it got the moderator nowhere: the
+  // approval was queued, the worker's compile threw, and the item simply never
+  // moved.
+  const UNWAIVABLE_BLOCKER_IDS=['logistics/recommended-start','geometry/off-declared-route'];
+  const unwaivableBlocker=reason=>UNWAIVABLE_BLOCKER_IDS.includes(String(reason).split(':')[0].trim());
 
   // Ticking a blocker off. Five agents researching a trail always leave loose
   // ends, and a gate that opens only when none remain never opens. Accepting one
@@ -855,8 +867,8 @@
   // matches on. The grouped explanation above stays as it is: it is for reading,
   // this is for deciding.
   function acceptanceList(decision,onChange){
-    const waivable=decision.blockers.filter(reason=>!ROUTE_GUIDANCE_BLOCKER.test(String(reason)));
-    const supplied=decision.blockers.filter(reason=>ROUTE_GUIDANCE_BLOCKER.test(String(reason)));
+    const waivable=decision.blockers.filter(reason=>!unwaivableBlocker(reason));
+    const supplied=decision.blockers.filter(reason=>unwaivableBlocker(reason));
     const box=el('div','vd-accept');
     const accepted=new Map();
 

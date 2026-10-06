@@ -12,7 +12,10 @@ function agentFromBlockers(){
   return new Function(`${source.slice(start,end)}\nreturn agentFromBlockers;`)();
 }
 
-const ROUTE_GUIDANCE=id=>`logistics/${id}: supported authoritative route guidance is required`;
+// The wording comes from the producer; only the claim id varies per case.
+const {routeGuidanceBlockingReasons}=require('./backoffice/workflows/compile-verified-dossier.js');
+const ROUTE_GUIDANCE_SHAPE=routeGuidanceBlockingReasons([])[0];
+const ROUTE_GUIDANCE=id=>ROUTE_GUIDANCE_SHAPE.replace(/^logistics\/[^:]+/,`logistics/${id}`);
 
 describe('a revision goes to the agent its blockers name', () => {
   let pick;
