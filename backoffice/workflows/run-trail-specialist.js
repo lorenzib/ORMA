@@ -3,6 +3,7 @@
 const {createStructuredResponse}=require('../services/openai-responses-client');
 const {runCartographer}=require('./run-cartographer');
 const {candidateFromProductionTrail,referenceFromProductionTrail}=require('./run-catalogue-batch');
+const {loadRouteComposites}=require('../services/route-composites');
 const {mergeClaimResolutionResult}=require('./claim-resolution');
 const {CLAIM_ENTITY_TYPE,POLICY_BY_RULE}=require('./compile-operational-facts');
 const {locateOnRoute}=require('../../hazard-location');
@@ -221,7 +222,11 @@ function routeGuidanceLeads(trail){
 
 async function runTrailSpecialist({job,trail,context},options={}){
   if(job.agentId==='cartographer'){
-    const result=await runCartographer(candidateFromProductionTrail(trail),referenceFromProductionTrail(trail),options);
+    // Six curated trails have no relation of their own and an approved
+    // composite instead. Without this the candidate builder throws
+    // route-source-identity-unresolved on every one of them.
+    const composites=options.routeComposites||loadRouteComposites(options.root);
+    const result=await runCartographer(candidateFromProductionTrail(trail,composites),referenceFromProductionTrail(trail),options);
     return {responseId:null,model:'deterministic-osm-cartographer',result};
   }
   const prompt=PROMPTS[job.agentId]; if(!prompt)throw new Error(`No live specialist handler for ${job.agentId}`);
