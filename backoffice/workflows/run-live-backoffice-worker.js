@@ -135,6 +135,20 @@ const PROCESSABLE_JOB_TYPES = Object.freeze([
   'verified-trail-editorial-first-pass', 'verified-trail-editorial-revision',
 ]);
 
+// How many jobs a pass may try to claim for each slot it wants to fill. A claim
+// can still lose a race with another worker, so one attempt per slot would
+// under-fill the batch; an unbounded walk would turn a long unclaimable queue
+// into a long run of refused claims.
+const ATTEMPTS_PER_SLOT=3;
+
+/** The job's own schedule, read the way claimJob reads it. */
+function claimNotBefore(job,now){
+  const value=job&&job.notBefore;
+  if(!value)return false;
+  const at=typeof value.toDate==='function'?value.toDate():new Date(value.seconds?value.seconds*1000:value);
+  return at.getTime()>(now?new Date(now).getTime():Date.now());
+}
+
 async function processTrailSpecialistJobs(store,options={}){
   const workerId=options.workerId||`orma-worker-${randomUUID()}`;
   let queued=(await store.listJobs(['queued'])).filter(job=>['trail-verification-specialist','trail-claim-resolution'].includes(job.jobType));const outcomes=[];
@@ -143,7 +157,16 @@ async function processTrailSpecialistJobs(store,options={}){
   const production=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
   const trails=[...production,...(intake?.candidates||[])];
   const trailById=new Map(trails.map(trail=>[trail.id,trail]));
-  for(const pending of queued.slice(0,options.specialistLimit||5)){
+  // Fill the batch rather than taking the oldest N and giving up on them. A
+  // queued job is not necessarily a claimable one — claimJob refuses anything
+  // whose notBefore is still ahead — so taking a fixed slice let a handful of
+  // scheduled jobs at the front hold back every job behind them, on every pass,
+  // while the run reported only that it had attempted nothing. Attempts are
+  // still bounded, so a queue full of unclaimable work cannot spin.
+  const limit=options.specialistLimit||5;
+  const claimable=queued.filter(job=>!claimNotBefore(job,options.now));
+  for(const pending of claimable.slice(0,limit*ATTEMPTS_PER_SLOT)){
+    if(outcomes.length>=limit)break;
     const job=await store.claimJob(pending.id,workerId);if(!job)continue;
     try{
       const trail=trailById.get(job.candidateId);if(!trail)throw new Error(`Production trail not found: ${job.candidateId}`);
@@ -510,4 +533,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,claimNotBefore, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
