@@ -118,6 +118,34 @@ function summarisePipeline(jobs, options = {}) {
   const count = status => all.filter(job => job.status === status).length;
   const stopped = all.filter(job => job.status === 'blocked');
 
+  // A queued job is not necessarily a job the worker can take. claimJob
+  // refuses one whose notBefore has not passed, so a retry waiting out its
+  // backoff sits in 'queued' and cannot be claimed. Reporting those together
+  // is how a run comes back "idle" beside a summary promising 103 queued: both
+  // numbers were right, and neither said the queue was waiting on a clock.
+  //
+  // The backoff is 1, 6 and 24 minutes for a fault, and 30 minutes for a
+  // provider outage -- so an outage that lasts days leaves every job in the
+  // queue holding a timer set while nothing could succeed.
+  const asDate = value => {
+    if(!value) return null;
+    const date = typeof value.toDate === 'function' ? value.toDate() : new Date(value);
+    return Number.isNaN(date.getTime()) ? null : date;
+  };
+  const now = new Date(at);
+  const waiting = job => {
+    if(job.status !== 'queued') return false;
+    const notBefore = asDate(job.notBefore);
+    return !!notBefore && notBefore > now;
+  };
+  const dueCount = jobs => jobs.filter(job => job.status === 'queued' && !waiting(job)).length;
+  const waitingCount = jobs => jobs.filter(waiting).length;
+  const nextDueAt = jobs => {
+    const times = jobs.filter(waiting).map(job => asDate(job.notBefore)).filter(Boolean)
+      .sort((a, b) => a - b);
+    return times.length ? times[0].toISOString() : null;
+  };
+
   // The lanes the worker still runs. The caller passes its own list rather
   // than this module importing it, because the worker imports this module and
   // the cycle would be worse than the argument. Absent, no lane is claimed to
@@ -156,6 +184,10 @@ function summarisePipeline(jobs, options = {}) {
         // are only counting themselves among the live failures.
         laneRetired: !laneRuns(jobType),
         queued: laneJobs.filter(job => job.status === 'queued').length,
+        // Of those, the ones a worker could actually claim right now.
+        queuedDue: dueCount(laneJobs),
+        queuedWaitingBackoff: waitingCount(laneJobs),
+        nextDueAt: nextDueAt(laneJobs),
         running: laneJobs.filter(job => job.status === 'running').length,
         readyForReview: laneJobs.filter(job => job.status === 'ready-for-review').length,
         stopped: laneStopped.length,
@@ -174,6 +206,12 @@ function summarisePipeline(jobs, options = {}) {
     generatedAt: at,
     working: {
       queued: count('queued'),
+      // Split, because "queued" alone cannot tell an idle worker from a busy
+      // one: a queue of retries waiting out their backoff looks identical to a
+      // queue of work nobody picked up.
+      queuedDue: dueCount(all),
+      queuedWaitingBackoff: waitingCount(all),
+      nextDueAt: nextDueAt(all),
       running: count('running'),
       readyForReview: count('ready-for-review'),
     },
