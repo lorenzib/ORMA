@@ -104,6 +104,25 @@
     if(health.runUrl){action.href=health.runUrl;action.hidden=false;}else action.hidden=true;
   }
 
+  function renderBlockingIssues(model){
+    const list=document.getElementById('blockingIssuesList');
+    if(!list)return;
+    list.replaceChildren();
+    for(const item of model.blockingIssues||[]){
+      const row=element('article','bo-blocking-row');
+      const copy=element('div','bo-blocking-copy');
+      copy.append(element('h3','',item.title));
+      const reasons=element('ul','bo-blocking-reasons');
+      (item.reasons||[]).forEach(reason=>reasons.append(element('li','',reason)));
+      copy.append(reasons);
+      const owner=element('span',`bo-blocking-owner is-${String(item.owner||'agents').toLowerCase()}`,item.owner||'Agents');
+      const action=item.href?element('a','bo-blocking-action',`${item.nextAction} ↗`):element('span','bo-blocking-action is-waiting',item.nextAction);
+      if(item.href){action.href=item.href;if(item.external){action.target='_blank';action.rel='noopener';}}
+      row.append(copy,owner,action);list.append(row);
+    }
+    if(!list.children.length)list.append(element('p','bo-decision-empty','No trail currently has a blocking issue.'));
+  }
+
   function render(model,community){
     set('needsReviewCount',model.summary.needsYou+community.items.length);
     set('agentWorkCount',model.summary.agentWork);
@@ -122,8 +141,22 @@
       :'Protected heartbeat';
     renderHealth('workerHealth',model.workerHealth,workerMeta);
     renderHealth('campaignHealth',model.campaignHealth,model.campaignHealth.meta);
+    renderBlockingIssues(model);
     renderDecisions(model,community);
     renderActivity(model);
+  }
+
+  function bindBlockingIssues(){
+    const toggle=document.getElementById('blockingIssuesToggle');
+    const panel=document.getElementById('blockingIssuesPanel');
+    const label=document.getElementById('blockingIssuesToggleLabel');
+    if(!toggle||!panel)return;
+    toggle.addEventListener('click',()=>{
+      const opening=panel.hidden;
+      panel.hidden=!opening;
+      toggle.setAttribute('aria-expanded',String(opening));
+      if(label)label.textContent=opening?'Hide breakdown':'View breakdown';
+    });
   }
 
 
@@ -298,6 +331,7 @@
     const node=document.getElementById('dashboardUpdated');
     if(node&&node.textContent.startsWith('Live ·'))node.textContent=node.textContent.replace(/refresh in \d+s/,`refresh in ${seconds}s`);
   },1000);
+  bindBlockingIssues();
   bindCoverageControls();
   load();
 })();
