@@ -10,7 +10,12 @@ name: ORMA verification state report
 # here keeps the credential in Actions instead of on anyone's machine, and the
 # reporter never writes to Firestore or the website.
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      trail:
+        description: 'Optional: one candidateId to read in full (e.g. osm-16363583) -- dumps every blocker and claim verbatim instead of the summary'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -40,4 +45,12 @@ jobs:
       - name: Report the verification funnel
         run: npm run backoffice:verification-funnel
       - name: Report what each waiting gate is asking
-        run: npm run backoffice:gate-evidence
+        env:
+          TRAIL: ${{ inputs.trail }}
+        run: |
+          set -euo pipefail
+          if [ -n "$TRAIL" ]; then
+            npm run backoffice:gate-evidence -- --trail="$TRAIL" --full
+          else
+            npm run backoffice:gate-evidence
+          fi
