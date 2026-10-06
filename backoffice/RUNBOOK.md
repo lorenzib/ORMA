@@ -47,6 +47,21 @@ the saved worker and campaign health receipts and links the exact workflow run.
 If a page looks unchanged, use **Refresh now** on Backoffice Home. Do not click
 the original action repeatedly: the visible receipt is the source of truth.
 
+## Gates you never see
+
+Some trails arrive at a gate asking for research rather than a decision: a start
+point no source has been read for, a route sequence nobody has gone looking for.
+Those are not yours to answer, so the worker sends them to the agent whose
+findings they are, before it applies the decisions in the same pass. They appear
+in the run output under `gateDispatches` and in the decision history as
+`orma-gate-dispatch-v1`, and the trail comes back to the desk once the agent has
+answered.
+
+It only ever requests a revision. Nothing is approved, waived or rejected
+without you. A gate is left standing — and stays visible to you — when its
+blockers do not name exactly one agent, when the automated-resolution limit is
+reached, or when a decision of yours is already waiting to be applied.
+
 ## Failure recovery
 
 ### Worker or model failure
@@ -102,6 +117,10 @@ Required repository variables:
 - `ORMA_NEW_TRAIL_AUTOMATION_ENABLED=true`, kept inert by
   `ORMA_NEW_TRAIL_INTAKE_RESUMED`, which stays unset while the trail-photo and
   ORMA Verified backfills run.
+
+Gate dispatch is on by default and needs no variable. Set
+`ORMA_GATE_DISPATCH_ENABLED=false` to stop it, or `ORMA_GATE_DISPATCH_LIMIT` to
+change how many gates one pass may hand over (default 3).
 
 Trail-photo coverage no longer has an activation variable. It runs inside every
 worker pass and stops queueing on its own once every published trail has a

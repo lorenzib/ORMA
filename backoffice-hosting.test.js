@@ -41,6 +41,9 @@ describe('separate Firebase backoffice Hosting package',()=>{
     // A count and a filter are what separate this table from a status list.
     expect(html).toContain('id="coverageWaiting"');
     expect(html).toContain('data-coverage-filter="waiting"');
+    expect(html).toContain('id="blockingIssuesToggle"');
+    expect(html).toContain('Trails with blocking issues');
+    expect(html).toContain('id="blockingIssuesList"');
     expect(html).toMatch(/backoffice-review\.css\?v=[\w-]+/);
     expect(html).toContain('id="workerHealth"');
     expect(html).toContain('id="campaignHealth"');
@@ -55,6 +58,14 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).not.toContain('One linear trail workflow');
     expect(html).not.toContain('View all six ORMA teams');
     expect(html).not.toMatch(/href="(?:content|social)-desk\.html"/);
+  });
+
+  test('blocked-trail headline opens an owner and next-action breakdown',()=>{
+    const dashboard=fs.readFileSync(path.join(output,'backoffice-hosted-dashboard.js'),'utf8');
+    expect(dashboard).toContain('renderBlockingIssues(model)');
+    expect(dashboard).toContain("toggle.setAttribute('aria-expanded',String(opening))");
+    expect(dashboard).toContain('item.nextAction');
+    expect(dashboard).toContain('item.owner');
   });
 
   test('dashboard primary navigation contains only active MVP desks',()=>{

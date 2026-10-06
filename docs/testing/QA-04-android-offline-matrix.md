@@ -22,7 +22,7 @@ owner data.
 | Older/lower-powered supported phone | Current supported Chrome browser tab | One-route smoke test, then both if a defect appears |
 
 - Carezza package: `2026.09.05-beta.21`
-- Alpe di Siusi package: `2026.09.05-beta.8`
+- Alpe di Siusi package: `2026.10.06-beta.9`
 
 Record manufacturer, model, Android version, Chrome version, free storage, and
 display mode. Do not record passwords, a precise home location, or continuous

@@ -174,6 +174,16 @@
     const latest=new Map();for(const review of reviews||[]){const id=review[key];if(!id)continue;const current=latest.get(id);if(!current||dateMs(review.processedAt||review.submittedAt)>=dateMs(current.processedAt||current.submittedAt))latest.set(id,review);}return latest;
   }
 
+  function blockerLabel(value){
+    const first=String(value||'').split('\n')[0].trim();
+    if(!first)return '';
+    const key=first.includes(':')?first.split(':')[0].trim():first;
+    const leaf=key.includes('/')?key.split('/').pop():key;
+    if(!/^[A-Za-z0-9/_-]+$/.test(leaf))return first.length>180?`${first.slice(0,177)}…`:first;
+    const words=leaf.replace(/([a-z0-9])([A-Z])/g,'$1 $2').replace(/[-_]/g,' ').trim().toLowerCase();
+    return words.charAt(0).toUpperCase()+words.slice(1);
+  }
+
   function buildDashboardModel(input={}){
     const orchestration=input.orchestration||{};const dossiers=input.dossiers||{};const execution=input.execution||{};
     const routeReview=input.routeReview||{items:[]};const routeReviews=input.routeReviews||[];
@@ -303,15 +313,50 @@
       next:'After you merge: the normal website deployment publishes the approved trail change.',href:request.pullRequestUrl,actionLabel:'Review GitHub PR',external:true,
     });
 
-    const blockedCandidates=new Set();
-    for(const item of dossierItems)if(item.approvalAllowed===false)blockedCandidates.add(item.candidateId||item.reviewId);
-    for(const job of jobs)if(job.status==='blocked')blockedCandidates.add(job.candidateId||job.id);
-    for(const request of automationFailures)blockedCandidates.add(request.candidateId||request.id);
-    for(const trail of orchestration.trails||[])if((trail.blockers||[]).length||/blocked|source-exhausted/.test(`${trail.state||''} ${trail.stage||''}`))blockedCandidates.add(trail.candidateId||trail.trailId);
-    if(newTrailStatus.status==='failed')blockedCandidates.add('new-trail-scouting');
-    if(hazardStatus.status==='failed'||Number(hazardStatus.summary?.sourceFailures||0)>0)blockedCandidates.add('groundskeeper');
-    if(strategyStatus.status==='failed')blockedCandidates.add('strategy-cycle');
-    if(String(strategyStatus.summary?.productStatus||'').startsWith('blocked:'))blockedCandidates.add('analyst-refresh');
+    // The headline count used to be a Set with no inspection surface. That made
+    // "24 blocked" impossible to reconcile: the same trail can occur in a
+    // dossier, an exhausted job and orchestration, while only the aggregate was
+    // shown. Keep the same de-duplication, but retain the explanation and the
+    // handoff which can clear each trail.
+    const blockedById=new Map();
+    const ownerWeight={Agents:1,System:2,You:3};
+    function addBlockingIssue(id,issue){
+      if(!id)return;
+      const current=blockedById.get(id)||{id,title:names.get(id)||issue.title||id,reasons:[],owner:'Agents',nextAction:'Await agent resolution',href:'',external:false};
+      const reasons=new Set(current.reasons);
+      for(const value of issue.reasons||[]){const label=blockerLabel(value);if(label)reasons.add(label);}
+      current.reasons=[...reasons];
+      if((ownerWeight[issue.owner]||0)>(ownerWeight[current.owner]||0)){
+        current.owner=issue.owner;current.nextAction=issue.nextAction;current.href=issue.href||'';current.external=Boolean(issue.external);
+      }
+      if(!current.reasons.length)current.reasons.push('A blocking issue was recorded without a usable explanation');
+      blockedById.set(id,current);
+    }
+    for(const item of dossierItems){
+      if(item.approvalAllowed!==false)continue;
+      const id=item.candidateId||item.reviewId;
+      addBlockingIssue(id,{title:item.trailName,reasons:item.blockingReasons||item.blockers||['Evidence findings prevent approval'],owner:'You',nextAction:'Review evidence',href:`trail-verify-desk.html#review-${item.reviewId}`});
+    }
+    for(const job of jobs){
+      if(job.status!=='blocked')continue;
+      const id=job.candidateId||job.id;
+      addBlockingIssue(id,{reasons:[job.lastError||job.error||`${job.agentId||job.jobType||'Agent'} exhausted its retry budget`],owner:'System',nextAction:'Inspect stopped work',href:'trail-verify-desk.html#verifyStuck'});
+    }
+    for(const request of automationFailures){
+      const id=request.candidateId||request.id;
+      addBlockingIssue(id,{title:request.targetTrailId,reasons:[request.failureMessage||request.error||'Website publication failed'],owner:'System',nextAction:request.workflowRunUrl?'Inspect failed run':'Inspect release failure',href:request.workflowRunUrl||'trail-verify-desk.html',external:Boolean(request.workflowRunUrl)});
+    }
+    for(const trail of orchestration.trails||[]){
+      if(!(trail.blockers||[]).length&&!/blocked|source-exhausted/.test(`${trail.state||''} ${trail.stage||''}`))continue;
+      const id=trail.candidateId||trail.trailId;
+      const progress=describeVerificationStage(trail.stage,trail.state,trail.blockers);
+      const stopped=trail.state==='blocked'||/source-exhausted/.test(`${trail.state||''} ${trail.stage||''}`);
+      addBlockingIssue(id,{title:trail.trailName||trail.name,reasons:(trail.blockers||[]).length?trail.blockers:[stopped?'Automated research attempts exhausted':'Verification is blocked'],owner:progress.waitingOnYou?'You':'Agents',nextAction:stopped?'Inspect stopped trail':progress.waitingOnYou?'Review trail':'Await agent resolution',href:stopped?'trail-verify-desk.html#verifyBlocked':progress.waitingOnYou?'trail-verify-desk.html':''});
+    }
+    const blockingIssues=[...blockedById.values()].sort((a,b)=>{
+      const ownerOrder={You:0,System:1,Agents:2};
+      return (ownerOrder[a.owner]??3)-(ownerOrder[b.owner]??3)||a.title.localeCompare(b.title);
+    });
 
     const activityById=new Map();
     for(const item of history){
@@ -328,14 +373,14 @@
     }
     const activity=[...activityById.values()].sort((a,b)=>b.at-a.at).slice(0,8).map(item=>({...item,message:activityMessage(item)}));
     return {
-      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,newTrailItems,hazardItems,editorialItems,newsletterItem,analystIdeaItems,analystMockupItems,publicationInFlight,handoffsInFlight:handoffsInFlight+routeHandoffs+newTrailHandoffs+hazardHandoffs+editorialHandoffs+newsletterHandoffs+analystHandoffs,automationFailures,workerHealth,campaignHealth,
-      blockerCount:blockedCandidates.size,trackedTrails:orchestration.summary?.trails||(orchestration.trails||[]).length,
+      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,newTrailItems,hazardItems,editorialItems,newsletterItem,analystIdeaItems,analystMockupItems,publicationInFlight,handoffsInFlight:handoffsInFlight+routeHandoffs+newTrailHandoffs+hazardHandoffs+editorialHandoffs+newsletterHandoffs+analystHandoffs,automationFailures,workerHealth,campaignHealth,blockingIssues,
+      blockerCount:blockingIssues.length,trackedTrails:orchestration.summary?.trails||(orchestration.trails||[]).length,
       newTrailProgress:{candidates:(newTrailScouting.candidates||[]).length,waiting:newTrailItems.length,inFlight:newTrailHandoffs,status:newTrailStatus.status||'not-run'},
       groundskeeperProgress:{active:(hazards.hazards||[]).filter(item=>item.state==='active').length,waiting:hazardItems.length,sourceFailures:Number(hazardStatus.summary?.sourceFailures||0),status:hazardStatus.status||'not-run'},
       editorialProgress:{active:editorialParked?0:editorialPackets.length,waiting:editorialItems.length,inFlight:editorialHandoffs,published:(editorialReceipts.receipts||[]).filter(item=>item.status==='published').length,pausedSafetyLibrary:true,status:strategyStatus.summary?.editorialStatus||'parked for MVP'},
       newsletterProgress:{ready:newsletterItem?1:0,inFlight:newsletterHandoffs,approved:(approvedNewsletters.issues||[]).length,status:strategyStatus.summary?.newsletterStatus||'not-run'},
       analystProgress:{ideas:analystParked?0:(productIdeas.ideas||[]).length,waiting:analystIdeaItems.length,mockups:analystMockupItems.length,inFlight:analystHandoffs,developerHandoffs:analystParked?0:allJobs.filter(job=>job.jobType==='product-development-handoff'&&job.status==='ready-for-review').length,status:strategyStatus.summary?.productStatus||'parked for MVP'},
-      summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockedCandidates.size,prsReady:prItems.length},
+      summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockingIssues.length,prsReady:prItems.length},
       pipeline:[
         {number:1,title:'Evidence',owner:dossierItems.length?'You':queuedDossierReviews.length?'System':activeTrailJobs.length?'Agents':'System',status:dossierItems.length?`${plural(dossierItems.length,'decision')} waiting`:queuedDossierReviews.length?`${plural(queuedDossierReviews.length,'decision')} being handed off`:activeTrailJobs.length?`${plural(activeTrailJobs.length,'job')} in progress`:'No decision waiting'},
         {number:2,title:'Agent resolution',owner:'Agents',status:activeTrailJobs.length?`${plural(activeTrailJobs.length,'job')} running or queued`:'No agent work queued'},

@@ -15,6 +15,12 @@
  * jobs at the head of the queue starve every job behind them. This measures
  * exactly that: of the jobs a lane could run, how many can be claimed now, and
  * for the rest, what is holding them and until when.
+ *
+ * The head has to be the worker's head, not the queue's. The worker filters by
+ * job type before it takes its batch, so a job in a lane it does not run is not
+ * in front of anything. Reading that wrong reports a dead lane as the cause of
+ * a stall it has nothing to do with — which is exactly what this tool did on
+ * its first run.
  */
 
 const CLAIMABLE='claimable-now';
@@ -65,7 +71,11 @@ function summariseJobQueue(jobs=[],options={}){
   });
   const byReason=new Map();
   for(const job of described)byReason.set(job.status,(byReason.get(job.status)||0)+1);
-  const head=described.slice(0,headCount);
+  // What the worker would actually pick up: it filters to the lanes it runs
+  // before taking its batch, so a retired lane sits beside the queue rather
+  // than in front of it.
+  const inReach=described.filter(job=>job.status!==RETIRED_LANE);
+  const head=inReach.slice(0,headCount);
   const waiting=described.filter(job=>job.status===WAITING&&job.inMinutes!=null);
   return {
     generatedAt:new Date(nowMs).toISOString(),
@@ -75,7 +85,10 @@ function summariseJobQueue(jobs=[],options={}){
     // The head is what the worker actually tries. If none of it can be claimed,
     // the pass does nothing however long the queue behind it is.
     head:{count:head.length,claimable:head.filter(job=>job.status===CLAIMABLE).length,jobs:head},
-    starved:head.length>0&&head.every(job=>job.status!==CLAIMABLE)&&described.some(job=>job.status===CLAIMABLE),
+    // Queued, and in no lane this worker runs. Not in anyone's way, and not
+    // work either — it will sit there until someone retires it.
+    outsideEveryLane:described.filter(job=>job.status===RETIRED_LANE).length,
+    starved:head.length>0&&head.every(job=>job.status!==CLAIMABLE)&&inReach.some(job=>job.status===CLAIMABLE),
     soonestClaimable:waiting.length?Math.min(...waiting.map(job=>job.inMinutes)):null,
     latestSchedule:waiting.length?Math.max(...waiting.map(job=>job.inMinutes)):null,
   };

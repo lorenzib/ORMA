@@ -1,14 +1,29 @@
 {
   "schemaVersion": 1,
   "trailId": "alpe-siusi",
-  "distanceKm": 7.5,
+  "distanceKm": 5.5,
   "ascentM": 150,
   "source": "ORMA route profile",
   "points": [
-    { "km": 0, "elev": 1850 },
-    { "km": 2, "elev": 1800 },
-    { "km": 4, "elev": 1900 },
-    { "km": 6, "elev": 1950 },
-    { "km": 7.5, "elev": 1850 }
+    {
+      "km": 0,
+      "elev": 1850
+    },
+    {
+      "km": 1.5,
+      "elev": 1800
+    },
+    {
+      "km": 2.9,
+      "elev": 1900
+    },
+    {
+      "km": 4.4,
+      "elev": 1950
+    },
+    {
+      "km": 5.5,
+      "elev": 1850
+    }
   ]
 }

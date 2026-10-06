@@ -6,6 +6,8 @@ const { buildVerifiedTrailRevisionJobs } = require('./queue-verified-trail-revis
 const { buildPublicationStaging } = require('./build-publication-staging');
 const { runVerifiedTrailRevision } = require('./run-verified-trail-revision');
 const { applyDossierReview } = require('./apply-dossier-review');
+const { planGateDispatches } = require('./dispatch-unanswered-gates');
+const { rehydrateReviewQueue } = require('./rehydrate-review-detail');
 const { applyRouteReview,promotableFeature,unpromotedChoices } = require('./apply-route-review');
 const { admitChosenRoutes } = require('./admit-chosen-routes');
 const { runTrailSpecialist } = require('./run-trail-specialist');
@@ -135,6 +137,20 @@ const PROCESSABLE_JOB_TYPES = Object.freeze([
   'verified-trail-editorial-first-pass', 'verified-trail-editorial-revision',
 ]);
 
+// How many jobs a pass may try to claim for each slot it wants to fill. A claim
+// can still lose a race with another worker, so one attempt per slot would
+// under-fill the batch; an unbounded walk would turn a long unclaimable queue
+// into a long run of refused claims.
+const ATTEMPTS_PER_SLOT=3;
+
+/** The job's own schedule, read the way claimJob reads it. */
+function claimNotBefore(job,now){
+  const value=job&&job.notBefore;
+  if(!value)return false;
+  const at=typeof value.toDate==='function'?value.toDate():new Date(value.seconds?value.seconds*1000:value);
+  return at.getTime()>(now?new Date(now).getTime():Date.now());
+}
+
 async function processTrailSpecialistJobs(store,options={}){
   const workerId=options.workerId||`orma-worker-${randomUUID()}`;
   let queued=(await store.listJobs(['queued'])).filter(job=>['trail-verification-specialist','trail-claim-resolution'].includes(job.jobType));const outcomes=[];
@@ -143,7 +159,16 @@ async function processTrailSpecialistJobs(store,options={}){
   const production=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
   const trails=[...production,...(intake?.candidates||[])];
   const trailById=new Map(trails.map(trail=>[trail.id,trail]));
-  for(const pending of queued.slice(0,options.specialistLimit||5)){
+  // Fill the batch rather than taking the oldest N and giving up on them. A
+  // queued job is not necessarily a claimable one — claimJob refuses anything
+  // whose notBefore is still ahead — so taking a fixed slice let a handful of
+  // scheduled jobs at the front hold back every job behind them, on every pass,
+  // while the run reported only that it had attempted nothing. Attempts are
+  // still bounded, so a queue full of unclaimable work cannot spin.
+  const limit=options.specialistLimit||5;
+  const claimable=queued.filter(job=>!claimNotBefore(job,options.now));
+  for(const pending of claimable.slice(0,limit*ATTEMPTS_PER_SLOT)){
+    if(outcomes.length>=limit)break;
     const job=await store.claimJob(pending.id,workerId);if(!job)continue;
     try{
       const trail=trailById.get(job.candidateId);if(!trail)throw new Error(`Production trail not found: ${job.candidateId}`);
@@ -325,6 +350,40 @@ async function admitRouteChoices(store,options={}){
   }
 }
 
+/**
+ * Send a standing gate to the agent that can clear it.
+ *
+ * Submits exactly the queued decision the desk submits, through the same store
+ * method, so ingestDossierReviews below applies it identically -- this is a
+ * transport, not a second state machine. It only ever requests a revision:
+ * approval and rejection stay human decisions.
+ */
+async function dispatchUnansweredGates(store,options={}){
+  if(options.gateDispatchEnabled===false)return [];
+  if(typeof store.submitDossierReview!=='function'||typeof store.listDossierReviews!=='function')return [];
+  const [orchestration,reviewQueue]=await Promise.all([
+    store.getArtifact('trail-orchestration'),store.getArtifact('dossier-review-queue'),
+  ]);
+  if(!orchestration||!reviewQueue)return [];
+  const queued=await store.listDossierReviews('queued');
+  const plan=planGateDispatches(orchestration,reviewQueue,{limit:options.gateDispatchLimit,
+    queuedReviewIds:queued.map(review=>review.reviewId)});
+  const outcomes=[];
+  for(const dispatch of plan.dispatches){
+    try{
+      const written=await store.submitDossierReview({reviewId:dispatch.reviewId,candidateId:dispatch.candidateId,
+        action:'request-revision',targetAgent:dispatch.targetAgent,note:dispatch.note,
+        submittedBy:'orma-gate-dispatch-v1'});
+      outcomes.push({reviewId:dispatch.reviewId,candidateId:dispatch.candidateId,targetAgent:dispatch.targetAgent,
+        status:'dispatched',decisionId:written?.reviewId||null});
+    }catch(error){
+      outcomes.push({reviewId:dispatch.reviewId,candidateId:dispatch.candidateId,targetAgent:dispatch.targetAgent,
+        status:'blocked',error:String(error.message||error).slice(0,2000)});
+    }
+  }
+  return outcomes;
+}
+
 async function ingestDossierReviews(store){
   const reviews=await store.listDossierReviews('queued'); const outcomes=[];
   for(const review of reviews){
@@ -333,7 +392,14 @@ async function ingestDossierReviews(store){
         store.getArtifact('trail-orchestration'),store.getArtifact('dossier-review-queue'),
       ]);
       if(!orchestration||!reviewQueue)throw new Error('Trail orchestration artifacts are not seeded');
-      const result=applyDossierReview(orchestration,reviewQueue,review,{at:iso(review.submittedAt)});
+      // An approval reads the claims' sources, and compaction removes them from
+      // a waiting item, leaving a pointer. Follow it first, for this one item,
+      // or the gate refuses evidence that exists. Nothing persists: an approved
+      // item becomes decided and has its outputs dropped on the way out.
+      const decided=review.action==='approve'
+        ? await rehydrateReviewQueue(store,reviewQueue,review.reviewId)
+        : reviewQueue;
+      const result=applyDossierReview(orchestration,decided,review,{at:iso(review.submittedAt)});
       for(const job of result.jobs)await store.putJob(job);
       const writes=[];
       if(result.verifiedDossier){
@@ -476,6 +542,9 @@ async function runLiveBackofficeWorker(store, options = {}){
     : [];
   const routeReviews=await ingestRouteReviews(store);
   const routeAdmissions=await admitRouteChoices(store,{...options,productionTrails});
+  // Before the apply step, so a gate dispatched here becomes a queued agent
+  // job in this same pass rather than waiting three hours for the next one.
+  const gateDispatches=await dispatchUnansweredGates(store,options);
   const dossierReviews=await ingestDossierReviews(store);
   const advancementBefore=await advanceTrailOrchestration(store,options);
   const reviews = await ingestTrailReviews(store, options);
@@ -488,7 +557,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   // afford to list jobs itself -- it polls once a minute against a free-tier
   // quota -- so the one place already holding every job writes the summary down.
   const pipeline = await recordPipelineHealth(store, options);
-  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
 /**
@@ -510,4 +579,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,claimNotBefore, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

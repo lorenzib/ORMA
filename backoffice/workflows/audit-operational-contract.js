@@ -11,11 +11,12 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
     read(root,'backoffice/OPERATING_STANDARD.md'),read(root,'backoffice/HOSTING.md'),read(root,'backoffice/dashboard-model.js'),read(root,'package.json'),
+    read(root,'backoffice/workflows/dispatch-unanswered-gates.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -35,6 +36,16 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   add('retired-lanes-are-gone',standard.includes('lanes are\nretired')&&!standard.includes('### 4. Newsletter')&&!standard.includes('### 6. Analyst')&&packageManifest.includes('backoffice:worker:live')&&!packageManifest.includes('backoffice:strategy-cycle')&&!packageManifest.includes('backoffice:product-discovery'),'The Newsletter, Social, Analyst, Design and website-copy lanes are removed from the standard and the entry points, not merely gated');
   add('worker-cadence',workflows['orma-backoffice-worker.yml']?.includes("cron: '20 */3 * * *'")&&workflows['orma-backoffice-worker.yml']?.includes('ORMA_WORKER_AUTOMATION_ENABLED')&&standard.includes('every three hours'),'The queue worker has a three-hour target and an activation variable, keeping Firestore within its daily quota');
   add('automatic-hazard-lifecycle',hazards.includes("if(successful.has(old.sourceKey) && expired) return;")&&!hazards.includes("state: 'resolution-review'")&&hazards.includes("old.origin === 'community'")&&worker.includes('processCommunityHazardReports')&&vetting.includes("webSearch:true")&&vetting.includes('reported-unverified')&&standard.includes('There is no human removal gate'),'Hazards are added and removed without a human gate, and customer reports are published only after the Hazard Analyst finds or fails to find independent corroboration');
+  const {RESOLUTION_ATTEMPT_LIMIT}=require('./dispatch-unanswered-gates');
+  add('agent-answerable-gates-are-dispatched',
+    worker.includes('dispatchUnansweredGates')
+    &&worker.indexOf('await dispatchUnansweredGates(store')<worker.indexOf('await ingestDossierReviews(store)')
+    &&worker.includes("action:'request-revision'")
+    &&!gateDispatch.includes("'approve'")&&!gateDispatch.includes("'reject'")
+    &&RESOLUTION_ATTEMPT_LIMIT===MAX_AUTOMATED_ATTEMPTS
+    &&workflows['orma-backoffice-worker.yml']?.includes('ORMA_GATE_DISPATCH_ENABLED')
+    &&standard.includes('sent to that agent rather than left on the desk'),
+    'A gate standing only on findings one agent can supply is dispatched to that agent before the same pass applies decisions, requesting a revision only — never an approval or a rejection — and never past the automated-resolution limit');
   add('hazard-snapshot-publication',workflows['orma-hazard-watch.yml']?.includes('orma-bot/hazard-snapshot')&&workflows['orma-hazard-watch.yml']?.includes('gh pr merge')&&workflows['orma-hazard-watch.yml']?.includes('--auto')&&workflows['orma-hazard-watch.yml']?.includes('/actions/runs/${run}/approve')&&workflows['orma-hazard-watch.yml']?.includes('gh workflow run deploy-pages.yml --ref main')&&workflows['orma-hazard-watch.yml']?.includes('gh pr update-branch')&&standard.includes('automatic pull request whenever the warning set changes'),'The public warning snapshot reaches the website through a pull request whenever the warning set changes: the run approves the PR\'s own quality-gate run (a bot never graduates from the first-time-contributor policy), merges once it passes, and dispatches the website deploy, which nothing done with the workflow token starts by itself');
   add('hazard-cadence',workflows['orma-hazard-watch.yml']?.includes("cron: '7 */3 * * *'")&&workflows['orma-hazard-watch.yml']?.includes('timezone: Europe/Rome'),'Groundskeeper targets minute 7 of every third hour in Europe/Rome, clear of the queue worker and within the Firestore daily quota');
   add('daily-orma-verified-intake',workflows['orma-trail-campaign.yml']?.includes("cron: '30 9 * * *'")&&workflows['orma-trail-campaign.yml']?.includes('timezone: Europe/Rome')&&workflows['orma-trail-campaign.yml']?.includes('ORMA_CAMPAIGN_AUTOMATION_ENABLED'),'ORMA Verified candidate intake targets 09:30 Europe/Rome every day, after the Firestore quota reset window');
