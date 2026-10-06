@@ -5,7 +5,7 @@ const fs = require('fs/promises');
 const path = require('path');
 const { option } = require('./discover');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
-const { fetchRoutesNearPath, fetchAerialwaysNearPath } = require('../services/osm-relation-client');
+const { fetchRoutesNearPath, aerialwaysFromPayload } = require('../services/osm-relation-client');
 const { discoverRouteComposite, ridesALift } = require('../workflows/discover-route-composite');
 const { identityContradiction, hasFullGraduation, relationExternalId } = require('../workflows/plan-catalogue-campaign');
 
@@ -50,9 +50,9 @@ async function main(args = process.argv.slice(2)){
       continue;
     }
     try{
-      const { payload } = await fetchRoutesNearPath(trail.path);
-      // Only for an itinerary that rides one, so no other trail pays for the query.
-      const aerialways = ridesALift(trail) ? await fetchAerialwaysNearPath(trail.path) : [];
+      // One request: a second is a second chance for Overpass to answer nothing.
+      const { payload } = await fetchRoutesNearPath(trail.path, { includeAerialways: ridesALift(trail) });
+      const aerialways = aerialwaysFromPayload(payload);
       const found = discoverRouteComposite(trail, payload, { aerialways });
       if(!found || !found.relations.length){
         console.log(`[composites] ${trail.id} · no route relation follows this walk`);

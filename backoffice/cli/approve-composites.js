@@ -5,7 +5,7 @@ const fs = require('fs/promises');
 const path = require('path');
 const { option } = require('./discover');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
-const { fetchRoutesNearPath, fetchAerialwaysNearPath } = require('../services/osm-relation-client');
+const { fetchRoutesNearPath, aerialwaysFromPayload } = require('../services/osm-relation-client');
 const { discoverRouteComposite, ruleOnComposite, rejectComposite, ridesALift } = require('../workflows/discover-route-composite');
 const { ON_ROUTE_PERCENT } = require('../workflows/plan-catalogue-campaign');
 
@@ -67,9 +67,9 @@ async function main(args = process.argv.slice(2)){
       continue;
     }
     try{
-      const { payload } = await fetchRoutesNearPath(trail.path);
-      // Only for an itinerary that rides one, so no other trail pays for the query.
-      const aerialways = ridesALift(trail) ? await fetchAerialwaysNearPath(trail.path) : [];
+      // One request: a second is a second chance for Overpass to answer nothing.
+      const { payload } = await fetchRoutesNearPath(trail.path, { includeAerialways: ridesALift(trail) });
+      const aerialways = aerialwaysFromPayload(payload);
       measured = discoverRouteComposite(trail, payload, { aerialways });
     }catch(error){
       console.log(`[composites] ${trailId} · held, could not measure: ${error.message}`);

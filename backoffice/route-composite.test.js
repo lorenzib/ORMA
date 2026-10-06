@@ -3,8 +3,8 @@
 const { discoverRouteComposite, relationsFromPayload } = require('./workflows/discover-route-composite');
 const { UNATTENDED_APPROVER } = require('./cli/approve-composites');
 const { campaignItem, planCatalogueCampaign } = require('./workflows/plan-catalogue-campaign');
-const { buildRoutesNearPathQuery, samplePath, buildAerialwaysNearPathQuery,
-  fetchRelation, fetchAerialwaysNearPath } = require('./services/osm-relation-client');
+const { buildRoutesNearPathQuery, samplePath, aerialwaysFromPayload,
+  fetchRelation } = require('./services/osm-relation-client');
 
 // Many ORMA walks are not one OSM relation. Seceda goes up path 1 and back
 // path 1A; the Sassolungo loop runs over three. A check that can only read one
@@ -332,24 +332,44 @@ describe('fetching one relation',()=>{
   });
 });
 
+// Overpass is the reason this work runs in Actions rather than on a laptop:
+// the mirrors throttle and time out. Asking for lifts separately made a second
+// round trip, and a dispatched discover run then failed on each of the two
+// queries in turn on consecutive attempts, having fetched the other one fine.
 describe('looking for the lifts a path runs along',()=>{
-  test('the query asks for aerialways with their geometry',()=>{
-    const query=buildAerialwaysNearPathQuery([[46.5,12.0],[46.6,12.1]],80);
+  const path=[[46.5,12.0],[46.6,12.1]];
+
+  test('the corridor query carries no lift clause unless one is wanted',()=>{
+    expect(buildRoutesNearPathQuery(path,60)).not.toContain('aerialway');
+  });
+
+  test('and asks for them in the same request when it is',()=>{
+    const query=buildRoutesNearPathQuery(path,60,{includeAerialways:true});
     expect(query).toContain('["aerialway"]');
     expect(query).toContain('around:80');
     expect(query).toContain('out tags geom;');
+    // Still one query: the routes are in it too.
+    expect(query).toContain('["type"="route"]');
+    expect(query.match(/\[out:json/g)).toHaveLength(1);
   });
 
-  test('and ways come back as polylines, single-node ways dropped',async()=>{
-    const fetchImpl=async()=>({ok:true,json:async()=>({elements:[
+  test('lifts are read back out of that payload as polylines',()=>{
+    const lifts=aerialwaysFromPayload({elements:[
+      {type:'relation',id:424,tags:{ref:'424'}},
+      {type:'way',id:11,geometry:[{lat:46.5,lon:12.0},{lat:46.51,lon:12.01}]},
       {type:'way',id:900787867,tags:{aerialway:'chair_lift',name:'5 Torri'},
         geometry:[{lat:46.5185,lon:12.0385},{lat:46.5082,lon:12.0465}]},
       {type:'way',id:2,tags:{aerialway:'goods'},geometry:[{lat:46.5,lon:12.0}]},
       {type:'node',id:3},
-    ]})});
-    const lifts=await fetchAerialwaysNearPath([[46.5,12.0],[46.6,12.1]],{fetchImpl});
+    ]});
     expect(lifts).toHaveLength(1);
     expect(lifts[0]).toMatchObject({id:900787867,tags:{aerialway:'chair_lift',name:'5 Torri'}});
     expect(lifts[0].points).toEqual([[46.5185,12.0385],[46.5082,12.0465]]);
+  });
+
+  test('and a payload with no lift in it yields none, not a throw',()=>{
+    expect(aerialwaysFromPayload({elements:[{type:'relation',id:1}]})).toEqual([]);
+    expect(aerialwaysFromPayload({})).toEqual([]);
+    expect(aerialwaysFromPayload(null)).toEqual([]);
   });
 });
