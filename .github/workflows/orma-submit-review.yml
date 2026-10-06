@@ -1,0 +1,87 @@
+name: ORMA submit review
+
+# Record a moderator decision from here instead of the browser desk. It writes
+# the same queued review doc the desk writes; the worker's apply step then
+# processes it identically. The gate is still a human gate -- this is only the
+# transport, and it refuses to approve a dossier gate that still has un-waived
+# blockers (a clean gate, or every blocker waived with a reason).
+#
+# The state lives in Firestore, so this runs in Actions where the credential is,
+# not from anyone's checkout. Dry run by default; tick 'apply' to write.
+on:
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: 'dossier (evidence/geometry gate) or route (route choice)'
+        type: choice
+        options: [dossier, route]
+        default: dossier
+      candidate:
+        description: 'Trail candidateId (e.g. osm-7388748) or route candidateId'
+        required: true
+      action:
+        description: 'dossier: approve | request-revision | reject · route: approve-route | approve-route-variants | request-route-research | reject-route-source'
+        required: false
+        default: 'approve'
+      proposals:
+        description: 'route only: comma-separated proposal ids to keep'
+        required: false
+        default: ''
+      accept_blocker:
+        description: 'dossier approve only: a blocker to waive as "blocker:reason" (one per run)'
+        required: false
+        default: ''
+      note:
+        description: 'Recorded with the decision (required for request-revision)'
+        required: false
+        default: ''
+      apply:
+        description: 'Actually submit it. Leave unchecked for a dry run.'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orma-submit-review
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check worker credentials
+        run: test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+      - run: npm ci
+      - name: Submit review
+        env:
+          KIND: ${{ inputs.kind }}
+          CANDIDATE: ${{ inputs.candidate }}
+          ACTION: ${{ inputs.action }}
+          PROPOSALS: ${{ inputs.proposals }}
+          ACCEPT_BLOCKER: ${{ inputs.accept_blocker }}
+          NOTE: ${{ inputs.note }}
+          APPLY: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          args=(--kind "$KIND" --candidate "$CANDIDATE" --action "$ACTION" --by "moderator-via-actions")
+          [ -n "$PROPOSALS" ] && args+=(--proposals "$PROPOSALS")
+          [ -n "$ACCEPT_BLOCKER" ] && args+=(--accept-blocker "$ACCEPT_BLOCKER")
+          [ -n "$NOTE" ] && args+=(--note "$NOTE")
+          if [ "$APPLY" = "true" ]; then
+            args+=(--apply)
+          else
+            echo "[submit-review] Dry run. Tick 'apply' to submit."
+          fi
+          npm run backoffice:submit-review -- "${args[@]}"

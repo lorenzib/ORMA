@@ -356,6 +356,43 @@ class FirestoreBackofficeStore {
     return this.markReviewCollection(COLLECTIONS.routeReviews,id,status,fields);
   }
 
+  // Submit a moderator decision from a credentialed context (CLI/workflow),
+  // writing exactly the queued doc the desk's ORMABackoffice.submitDossierReview
+  // writes, so the worker's apply step reads it identically. The gate decision
+  // itself stays a human one; this is only the transport.
+  async submitDossierReview(input={}){
+    const doc={
+      contractVersion:'1.0.0',type:'trail-dossier-review',status:'queued',
+      reviewId:String(input.reviewId||''),candidateId:String(input.candidateId||''),
+      action:String(input.action||''),targetAgent:String(input.targetAgent||''),
+      note:String(input.note||'').trim().slice(0,1500),
+      acceptedBlockers:(Array.isArray(input.acceptedBlockers)?input.acceptedBlockers:[])
+        .slice(0,50)
+        .map(entry=>({blocker:String(entry&&entry.blocker||'').slice(0,300),
+          reason:String(entry&&entry.reason||'').trim().slice(0,300)}))
+        .filter(entry=>entry.blocker&&entry.reason),
+      submittedAt:FieldValue.serverTimestamp(),
+      submittedBy:String(input.submittedBy||'backoffice-cli'),publicMutationAllowed:false,
+    };
+    const ref=await this.db.collection(COLLECTIONS.dossierReviews).add(doc);
+    this.invalidate(`${COLLECTIONS.dossierReviews}:`);
+    return {ok:true,reviewId:ref.id,status:'queued'};
+  }
+
+  async submitRouteReview(input={}){
+    const doc={
+      contractVersion:'1.0.0',type:'route-choice-review',status:'queued',
+      candidateId:String(input.candidateId||''),action:String(input.action||''),
+      proposalIds:Array.isArray(input.proposalIds)?input.proposalIds.map(id=>String(id)).slice(0,6):[],
+      note:String(input.note||'').trim().slice(0,1500),
+      submittedAt:FieldValue.serverTimestamp(),
+      submittedBy:String(input.submittedBy||'backoffice-cli'),publicMutationAllowed:false,
+    };
+    const ref=await this.db.collection(COLLECTIONS.routeReviews).add(doc);
+    this.invalidate(`${COLLECTIONS.routeReviews}:`);
+    return {ok:true,reviewId:ref.id,status:'queued'};
+  }
+
   async listNewTrailReviews(status='queued'){
     return this.listReviewCollection(COLLECTIONS.newTrailReviews,status);
   }
