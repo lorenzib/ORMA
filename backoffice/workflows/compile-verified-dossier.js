@@ -118,7 +118,12 @@ function compositeRelations(result){
 function routeIdentityValue(result,trail,composed){
   const name=result?.relation?.tags?.name||trail?.trailName;
   if(composed.length){
-    const numbered=composed.map(relation=>relation.ref||relation.externalRelationId).filter(Boolean);
+    // Its number if it has one, else its name. The id is the last resort: it
+    // identifies the relation, not the route, and "along relation/12043472" is
+    // no more use to a walker than the composite label this avoids. Lago di
+    // Braies is covered end to end by one relation tagged `Seeweg` and no ref,
+    // which is exactly what the signs by the lake say.
+    const numbered=composed.map(relation=>relation.ref||relation.name||relation.externalRelationId).filter(Boolean);
     const along=numbered.length?`along ${numbered.join(', ')}`:`along ${composed.length} mapped route(s)`;
     return `${name} · ${composed.length} approved route(s) ${along}`;
   }
