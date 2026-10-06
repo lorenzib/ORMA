@@ -7,6 +7,7 @@ on:
       - backoffice-*.js
       - trail-verify-desk.html
       - trail-verify-desk.js
+      - backoffice/revision-target.js
       - backoffice/dashboard-model.js
       - backoffice/content-receipt-model.js
       - styles.css
@@ -38,6 +39,7 @@ on:
       - backoffice-*.js
       - trail-verify-desk.html
       - trail-verify-desk.js
+      - backoffice/revision-target.js
       - backoffice/dashboard-model.js
       - backoffice/content-receipt-model.js
       - styles.css

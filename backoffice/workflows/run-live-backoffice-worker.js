@@ -6,6 +6,7 @@ const { buildVerifiedTrailRevisionJobs } = require('./queue-verified-trail-revis
 const { buildPublicationStaging } = require('./build-publication-staging');
 const { runVerifiedTrailRevision } = require('./run-verified-trail-revision');
 const { applyDossierReview } = require('./apply-dossier-review');
+const { planGateDispatches } = require('./dispatch-unanswered-gates');
 const { rehydrateReviewQueue } = require('./rehydrate-review-detail');
 const { applyRouteReview,promotableFeature,unpromotedChoices } = require('./apply-route-review');
 const { admitChosenRoutes } = require('./admit-chosen-routes');
@@ -326,6 +327,40 @@ async function admitRouteChoices(store,options={}){
   }
 }
 
+/**
+ * Send a standing gate to the agent that can clear it.
+ *
+ * Submits exactly the queued decision the desk submits, through the same store
+ * method, so ingestDossierReviews below applies it identically -- this is a
+ * transport, not a second state machine. It only ever requests a revision:
+ * approval and rejection stay human decisions.
+ */
+async function dispatchUnansweredGates(store,options={}){
+  if(options.gateDispatchEnabled===false)return [];
+  if(typeof store.submitDossierReview!=='function'||typeof store.listDossierReviews!=='function')return [];
+  const [orchestration,reviewQueue]=await Promise.all([
+    store.getArtifact('trail-orchestration'),store.getArtifact('dossier-review-queue'),
+  ]);
+  if(!orchestration||!reviewQueue)return [];
+  const queued=await store.listDossierReviews('queued');
+  const plan=planGateDispatches(orchestration,reviewQueue,{limit:options.gateDispatchLimit,
+    queuedReviewIds:queued.map(review=>review.reviewId)});
+  const outcomes=[];
+  for(const dispatch of plan.dispatches){
+    try{
+      const written=await store.submitDossierReview({reviewId:dispatch.reviewId,candidateId:dispatch.candidateId,
+        action:'request-revision',targetAgent:dispatch.targetAgent,note:dispatch.note,
+        submittedBy:'orma-gate-dispatch-v1'});
+      outcomes.push({reviewId:dispatch.reviewId,candidateId:dispatch.candidateId,targetAgent:dispatch.targetAgent,
+        status:'dispatched',decisionId:written?.reviewId||null});
+    }catch(error){
+      outcomes.push({reviewId:dispatch.reviewId,candidateId:dispatch.candidateId,targetAgent:dispatch.targetAgent,
+        status:'blocked',error:String(error.message||error).slice(0,2000)});
+    }
+  }
+  return outcomes;
+}
+
 async function ingestDossierReviews(store){
   const reviews=await store.listDossierReviews('queued'); const outcomes=[];
   for(const review of reviews){
@@ -484,6 +519,9 @@ async function runLiveBackofficeWorker(store, options = {}){
     : [];
   const routeReviews=await ingestRouteReviews(store);
   const routeAdmissions=await admitRouteChoices(store,{...options,productionTrails});
+  // Before the apply step, so a gate dispatched here becomes a queued agent
+  // job in this same pass rather than waiting three hours for the next one.
+  const gateDispatches=await dispatchUnansweredGates(store,options);
   const dossierReviews=await ingestDossierReviews(store);
   const advancementBefore=await advanceTrailOrchestration(store,options);
   const reviews = await ingestTrailReviews(store, options);
@@ -496,7 +534,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   // afford to list jobs itself -- it polls once a minute against a free-tier
   // quota -- so the one place already holding every job writes the summary down.
   const pipeline = await recordPipelineHealth(store, options);
-  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
 /**
@@ -518,4 +556,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

@@ -48,6 +48,18 @@ answered. There is no human removal gate. Source failure or outage never removes
 the last known warning, because an unreachable source is not evidence of safety.
 Weather warnings are never presented as proof that a specific trail is closed.
 
+A verification gate that is standing only on findings an agent can supply is
+sent to that agent rather than left on the desk. This is principle 1 applied to
+a gate that was already open: nothing re-ran an agent on a trail parked at a
+human gate, so research nobody had done waited for a moderator who could not do
+it either. The dispatch requests a revision and nothing else — approving,
+waiving and rejecting remain moderator decisions, and it changes no public
+state, so principle 5 is untouched. It fires only when the blockers name exactly
+one agent, never past the automated-resolution limit, never over a decision
+already waiting to be applied, and at most a few gates per queue pass because
+each dispatch costs a model call. Setting the repository variable
+`ORMA_GATE_DISPATCH_ENABLED` to `false` stops it without a code change.
+
 Customer hazard reports are a separate, equally automatic lane. A signed-in
 contributor reports a hazard on one trail; the Hazard Analyst searches for
 independent corroboration in official notices, park and comune bulletins, alpine

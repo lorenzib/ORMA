@@ -16,7 +16,7 @@ function positiveInteger(value,fallback){
 // Named so a retired lane cannot leave a dangling read here: the worker's result
 // shape changed underneath this check once already, and an undefined lane threw
 // before the exit code could be set.
-const REVIEW_LANES = Object.freeze(['reviews', 'routeReviews', 'routeAdmissions', 'dossierReviews', 'publications']);
+const REVIEW_LANES = Object.freeze(['reviews', 'routeReviews', 'routeAdmissions', 'gateDispatches', 'dossierReviews', 'publications']);
 
 function blockedLanes(result = {}){
   return REVIEW_LANES.filter(lane => (result[lane] || []).some(item => item.status === 'blocked'))
@@ -57,6 +57,11 @@ async function main(){
     workflowRunUrl,campaignTrigger:'worker-catch-up',campaignEnabled:process.env.ORMA_CAMPAIGN_AUTOMATION_ENABLED==='true',
     campaignLimit:positiveInteger(process.env.ORMA_CAMPAIGN_LIMIT,10),campaignCapacity:positiveInteger(process.env.ORMA_CAMPAIGN_CAPACITY,15),
     campaignQueueCapacity:positiveInteger(process.env.ORMA_CAMPAIGN_QUEUE_CAPACITY,40),
+    // A gate standing on findings only an agent can supply is dispatched to
+    // that agent without waiting for a moderator who cannot supply them.
+    // Bounded because each dispatch costs a model call on a metered account.
+    gateDispatchEnabled:process.env.ORMA_GATE_DISPATCH_ENABLED!=='false',
+    gateDispatchLimit:positiveInteger(process.env.ORMA_GATE_DISPATCH_LIMIT,3),
     limit:5,specialistLimit,specialistCandidateId });
   const work = summariseWorkAttempted(result);
   console.log(JSON.stringify({ ...result, work: { ...work, outcome:workOutcome(work), message:workMessage(work,result.pipeline) } }, null, 2));
