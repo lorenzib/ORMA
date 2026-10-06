@@ -52,6 +52,33 @@ function geometryReceipt(feature){
     geometrySha256:createHash('sha256').update(JSON.stringify(geometry)).digest('hex')};
 }
 
+/**
+ * May this stored line be written as the trail's route? Only if it says it is
+ * the proposal that was chosen. The geometry is read by proposal id, so a
+ * mismatch means the wrong file is behind that id — which would otherwise
+ * publish another route's shape under this trail's name.
+ */
+function promotableFeature(feature,proposalId){
+  if(!feature)return {feature:null,geometry:'unresolved'};
+  const stamped=feature.properties&&feature.properties.proposalId;
+  if(stamped&&stamped!==proposalId)return {feature:null,geometry:'rejected-proposal-mismatch',foundProposalId:stamped};
+  return {feature};
+}
+
+/**
+ * The lines a recorded choice is still owed. A choice applied before its
+ * proposal geometry was seeded promoted nothing, and applying happens once — so
+ * without this the trail enters verification pointing at a route artifact that
+ * was never written, and every specialist researches without the line the
+ * editor chose.
+ */
+function unpromotedChoices(routeReview){
+  return ((routeReview&&routeReview.items)||[])
+    .filter(item=>item.reviewState==='route-choice-approved'&&item.selectedProposalId)
+    .map(item=>({candidateId:item.candidateId,proposalId:item.selectedProposalId,
+      promoteAs:item.trailId||item.candidateId}));
+}
+
 function researchAction(item,note){
   const current=item.nextAgentAction||{};
   const completed=Number(current.completedAttempts||0);
@@ -111,19 +138,13 @@ function applyRouteReview(routeReview,ledger,review,options={}){
     // what stops a kept variant being quietly dropped.
     const ordered=proposals.filter(proposal=>chosen.includes(proposal));
     const [primary,...variants]=ordered;
-    // A line is promoted only when it says it is the line that was chosen. The
-    // geometry is read by proposal id, so a mismatch means the wrong file is
-    // behind that id — which would otherwise publish another route's shape
-    // under this trail's name.
-    const found=geometries.get(primary.id)||null;
-    const stamped=found&&found.properties&&found.properties.proposalId;
-    const feature=!found||(stamped&&stamped!==primary.id)?null:found;
     // Promoted under the catalogue trail the question is about, which is the id
     // publication reads. A question that names no catalogue trail keeps its own
     // candidate id, so the line is still stored and nothing is written under a
     // name that means something else.
+    const {feature,...refusal}=promotableFeature(geometries.get(primary.id)||null,primary.id);
     promotions.push({candidateId:item.trailId||item.candidateId,proposalId:primary.id,feature,
-      ...(found&&!feature?{geometry:'rejected-proposal-mismatch',foundProposalId:stamped}:geometryReceipt(feature))});
+      ...(feature?geometryReceipt(feature):refusal)});
     next={...next,reviewState:'route-choice-approved',selectedProposalIds:ordered.map(proposal=>proposal.id),
       selectedProposalId:primary.id,
       pendingVariantIntake:variants.map(proposal=>({proposalId:proposal.id,label:proposal.label||proposal.id,
@@ -180,4 +201,4 @@ function applyRouteReview(routeReview,ledger,review,options={}){
       unresolvedGeometry:promotions.filter(promotion=>!promotion.feature).map(promotion=>promotion.proposalId)}};
 }
 
-module.exports={VERSION,GATE,APPLICABLE_ACTIONS,APPROVAL_SCOPE,applyRouteReview};
+module.exports={VERSION,GATE,APPLICABLE_ACTIONS,APPROVAL_SCOPE,promotableFeature,unpromotedChoices,applyRouteReview};

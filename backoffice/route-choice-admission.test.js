@@ -2,7 +2,8 @@
 
 const fs=require('fs');
 const {admitChosenRoutes}=require('./workflows/admit-chosen-routes');
-const {admitRouteChoices}=require('./workflows/run-live-backoffice-worker');
+const {admitRouteChoices,promoteOwedLines}=require('./workflows/run-live-backoffice-worker');
+const {routeProposals}=require('./cli/seed-live-state');
 const {withTrailIds}=require('./cli/seed-live-state');
 const {validateTrailOrchestration}=require('./contracts/trail-orchestration-v1');
 
@@ -161,5 +162,74 @@ describe('the stored question learns which trail it is about', () => {
     const {artifact,added}=withTrailIds(stored,QUESTIONS);
     expect(added).toEqual([]);
     expect(artifact).toBe(stored);
+  });
+});
+
+describe('the line a recorded choice is still owed', () => {
+  // Both production choices were applied before their geometry was seeded, so
+  // nothing was promoted — and applying happens once. Without this repair the
+  // trail enters verification pointing at a route artifact nobody ever wrote.
+  const CLASSIC='tre-cime-classic-101-105';
+  const feature=proposalId=>JSON.parse(fs.readFileSync(
+    routeProposals(QUESTIONS).find(candidate=>candidate.id===proposalId).geometryRef,'utf8'));
+
+  function store(artifacts){
+    const writes=[];
+    return {writes,artifacts,getArtifact:async id=>artifacts[id]??null,
+      setArtifact:async(id,value,meta)=>{artifacts[id]=value;writes.push({id,meta});}};
+  }
+
+  test('is written on a later pass, under the catalogue trail',async()=>{
+    const artifacts={[`route-proposal-geometry-${CLASSIC}`]:feature(CLASSIC)};
+    const target=store(artifacts);
+    const promoted=await promoteOwedLines(target,chosen(),AT);
+    expect(promoted).toEqual([expect.objectContaining({candidateId:TRE_CIME,trailId:TRAIL,
+      status:'promoted',proposalId:CLASSIC})]);
+    expect(artifacts[`route-proposal-${TRAIL}`].properties.proposalId).toBe(CLASSIC);
+    expect(target.writes[0].meta).toEqual(expect.objectContaining({proposalId:CLASSIC,promotedAt:AT}));
+  });
+
+  test('is not rewritten once it is there',async()=>{
+    const artifacts={[`route-proposal-${TRAIL}`]:feature(CLASSIC),
+      [`route-proposal-geometry-${CLASSIC}`]:feature(CLASSIC)};
+    const target=store(artifacts);
+    expect(await promoteOwedLines(target,chosen(),AT)).toEqual([]);
+    expect(target.writes).toEqual([]);
+  });
+
+  test('a line that is not seeded yet is waited for, quietly',async()=>{
+    const target=store({});
+    expect(await promoteOwedLines(target,chosen(),AT)).toEqual([]);
+    expect(target.writes).toEqual([]);
+  });
+
+  test('a line that disagrees with its own proposal id is refused, and said out loud',async()=>{
+    const artifacts={[`route-proposal-geometry-${CLASSIC}`]:feature('tre-cime-monte-paterno-101-104-105')};
+    const target=store(artifacts);
+    expect(await promoteOwedLines(target,chosen(),AT)).toEqual([expect.objectContaining({
+      status:'promotion-refused',geometry:'rejected-proposal-mismatch',
+      foundProposalId:'tre-cime-monte-paterno-101-104-105'})]);
+    expect(artifacts[`route-proposal-${TRAIL}`]).toBeUndefined();
+  });
+
+  test('a question still waiting on a person is owed nothing',async()=>{
+    const target=store({});
+    expect(await promoteOwedLines(target,{items:QUESTIONS.items},AT)).toEqual([]);
+  });
+
+  test('the worker promotes even when the fleet is too full to admit',async()=>{
+    // The two are independent: the line belongs to the decision, the slot to
+    // the budget.
+    const full=fleet(Array.from({length:15},(_,index)=>working(`busy-${index}`)));
+    const artifacts={'route-review':chosen(),'trail-orchestration':full,
+      [`route-proposal-geometry-${CLASSIC}`]:feature(CLASSIC)};
+    const target={artifacts,getArtifact:async id=>artifacts[id]??null,
+      setArtifact:async(id,value)=>{artifacts[id]=value;},putJobIfAbsent:async()=>true};
+    const outcomes=await admitRouteChoices(target,{at:AT,productionTrails:[{id:TRAIL,name:'Tre Cime'}]});
+    expect(outcomes).toEqual([
+      expect.objectContaining({status:'promoted',trailId:TRAIL}),
+      expect.objectContaining({status:'held',reason:'verification-capacity-reached'}),
+    ]);
+    expect(artifacts[`route-proposal-${TRAIL}`].properties.proposalId).toBe(CLASSIC);
   });
 });
