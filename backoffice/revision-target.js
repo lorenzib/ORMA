@@ -17,10 +17,13 @@
 // agent directly. One rule, one place: the desk and the automation cannot
 // disagree about who is being asked.
 (function(root,factory){
-  const api=factory();
+  const kinds=typeof module==='object'&&module.exports
+    ? require('./blocker-kinds')
+    : root.ORMABlockerKinds;
+  const api=factory(kinds);
   if(typeof module==='object'&&module.exports)module.exports=api;
   else root.ORMARevisionTarget=api;
-})(typeof globalThis!=='undefined'?globalThis:this,function(){
+})(typeof globalThis!=='undefined'?globalThis:this,function(kinds){
   'use strict';
 
   // An explicit mismatch between the official route and the mapped geometry has
@@ -129,10 +132,20 @@
   // Ties go to the agent appearing first in the blocker list, which is stable
   // for a given dossier. Still null when nothing names an agent: an
   // unattributed blocker is a decision, not a dispatch.
+  //
+  // Heaviest load is counted in blockers a re-run could actually answer, not in
+  // blockers of any kind. The difference is not cosmetic: an agent's open
+  // questions are its own unfinished research and they inflate its raw count,
+  // so the agent that asked the most questions was asked again ahead of one
+  // sitting on a contradiction nobody had settled. Same principle as the
+  // geometry precedence above -- ask about the thing that can move. Where no
+  // agent holds anything answerable the raw counts stand, so a gate that is
+  // all contested findings still names somebody rather than silently holding.
   function dominantAgentFromBlockers(reasons){
     const single=agentFromBlockers(reasons);
     if(single)return single;
-    const counts=blockerCountsByAgent(reasons);
+    const answerable=kinds.answerableCountsByAgent(reasons);
+    const counts=answerable.size?answerable:blockerCountsByAgent(reasons);
     if(!counts.size)return null;
     let best=null,bestCount=0;
     for(const [agent,count] of counts){
