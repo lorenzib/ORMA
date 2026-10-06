@@ -61,10 +61,17 @@ async function main(args = process.argv.slice(2)){
           state:'proposed', proposedAt:new Date().toISOString(), trailName:trail.name,
           coveragePercent:found.coveragePercent, radiusMetres:found.radiusMetres,
           candidateRelationCount:found.candidateRelationCount, relations:found.relations,
+          // What the figure above was measured on. A coverage percent with a
+          // quietly shrunk denominator is a number a reader cannot check.
+          ...(found.riddenSegment
+            ? { riddenSegment:found.riddenSegment, walkedPointCount:found.walkedPointCount }
+            : {}),
         };
         proposed += 1;
         const refs = found.relations.map(entry => entry.ref || entry.externalRelationId).join(' + ');
-        console.log(`[composites] ${trail.id} · ${found.coveragePercent}% via ${found.relations.length} path(s): ${refs}`);
+        const ride = found.riddenSegment
+          ? `, ${found.riddenSegment.metres} m ridden on the ${found.riddenSegment.name || found.riddenSegment.aerialway}` : '';
+        console.log(`[composites] ${trail.id} · ${found.coveragePercent}% via ${found.relations.length} path(s): ${refs}${ride}`);
       }
     }catch(error){
       console.log(`[composites] ${trail.id} · lookup failed: ${error.message}`);
