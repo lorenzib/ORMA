@@ -269,7 +269,7 @@ describe('a route source at the scale of the walk', () => {
 
 // Who an approval says took it.
 //
-// The approve workflow carried `default: 'Benedetta Lorenzi (ORMA owner)'` on
+// The approve workflow carried the owner's own name as the `default:` on
 // its approved_by input, so every dispatched run signed the owner's name on a
 // gate she had not stood at. Two composites were approved that way inside a PR
 // about registering npm scripts. The rule itself is real -- a fresh coverage

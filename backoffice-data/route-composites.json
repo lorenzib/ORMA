@@ -36,7 +36,7 @@
         }
       ],
       "approvedAt": "2026-09-06T09:59:37.348Z",
-      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "approvedBy": "ORMA owner",
       "relationsUnchangedSinceProposal": true
     },
     "seceda": {
@@ -65,7 +65,7 @@
         }
       ],
       "approvedAt": "2026-09-06T09:59:51.334Z",
-      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "approvedBy": "ORMA owner",
       "relationsUnchangedSinceProposal": true
     },
     "nuvolau": {
@@ -96,7 +96,7 @@
         }
       ],
       "approvedAt": "2026-09-06T13:07:08.114Z",
-      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "approvedBy": "ORMA owner",
       "relationsUnchangedSinceProposal": false
     },
     "sassolungo": {
@@ -133,7 +133,7 @@
         }
       ],
       "approvedAt": "2026-09-06T10:00:00.826Z",
-      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "approvedBy": "ORMA owner",
       "relationsUnchangedSinceProposal": true
     },
     "lago-carezza": {
@@ -154,7 +154,7 @@
         }
       ],
       "approvedAt": "2026-09-06T10:02:10.257Z",
-      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "approvedBy": "ORMA owner",
       "relationsUnchangedSinceProposal": true
     },
     "geotrail-bulla": {
@@ -175,7 +175,7 @@
         }
       ],
       "approvedAt": "2026-09-06T10:02:14.712Z",
-      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "approvedBy": "ORMA owner",
       "relationsUnchangedSinceProposal": true
     },
     "sentiero-hans-e-paula-steger": {
@@ -196,7 +196,7 @@
         }
       ],
       "approvedAt": "2026-09-06T10:02:22.278Z",
-      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "approvedBy": "ORMA owner",
       "relationsUnchangedSinceProposal": true
     },
     "sentiero-del-trenino": {
@@ -217,7 +217,7 @@
         }
       ],
       "approvedAt": "2026-09-06T10:03:23.341Z",
-      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "approvedBy": "ORMA owner",
       "relationsUnchangedSinceProposal": true
     },
     "giro-del-sasso-lungo": {
@@ -254,7 +254,7 @@
         }
       ],
       "approvedAt": "2026-09-06T10:03:31.867Z",
-      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "approvedBy": "ORMA owner",
       "relationsUnchangedSinceProposal": true
     },
     "lago-braies": {
@@ -279,7 +279,7 @@
       "approvedBy": "orma-approve-composites (automated coverage rule)",
       "relationsUnchangedSinceProposal": true,
       "ratifiedAt": "2026-10-06T21:33:44.000Z",
-      "ratifiedBy": "Benedetta Lorenzi (ORMA owner)",
+      "ratifiedBy": "ORMA owner",
       "ratifiedNote": "Approved by a dispatched run on 2026-10-06 whose approved_by input defaulted to the owner's name; that default was removed in #609. Reviewed against the measurements and confirmed by the owner."
     },
     "tre-cime": {
@@ -313,7 +313,7 @@
       "approvedBy": "orma-approve-composites (automated coverage rule)",
       "relationsUnchangedSinceProposal": true,
       "ratifiedAt": "2026-10-06T21:33:44.000Z",
-      "ratifiedBy": "Benedetta Lorenzi (ORMA owner)",
+      "ratifiedBy": "ORMA owner",
       "ratifiedNote": "Approved by a dispatched run on 2026-10-06 whose approved_by input defaulted to the owner's name; that default was removed in #609. Reviewed against the measurements and confirmed by the owner."
     },
     "cinque-torri-assisted": {
@@ -363,7 +363,7 @@
       },
       "walkedPointCount": 179,
       "approvedAt": "2026-10-06T21:23:53.850Z",
-      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "approvedBy": "ORMA owner",
       "relationsUnchangedSinceProposal": true
     }
   }
