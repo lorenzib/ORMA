@@ -252,6 +252,11 @@ function ruleOnComposite(composite, measured, options = {}){
   const after = (measured.relations || []).map(entry => entry.externalRelationId).sort().join(',');
   return { outcome:'approved', composite:{ ...composite, state:'approved', approvedAt:at, approvedBy:by,
     coveragePercent:measured.coveragePercent, relations:measured.relations,
+    // Carried from the fresh measurement with the figure it belongs to. An
+    // approval that kept the proposal's ride and the new percent would describe
+    // neither.
+    riddenSegment:measured.riddenSegment || null,
+    walkedPointCount:measured.walkedPointCount || null,
     relationsUnchangedSinceProposal:before === after } };
 }
 

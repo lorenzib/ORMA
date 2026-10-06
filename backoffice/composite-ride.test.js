@@ -115,3 +115,31 @@ describe('the cap on what a ride may excuse',()=>{
     expect(ridden).toBeNull();
   });
 });
+
+// The figure and what it was measured on travel together, or the figure is one
+// a reader cannot check. The first dispatched run wrote "coveragePercent": 94
+// into the ledger with nothing saying 25 of 204 points were a chairlift.
+describe('the ride survives into the ledger',()=>{
+  const {ruleOnComposite}=require('./workflows/discover-route-composite');
+  const RIDE={fromIndex:0,toIndex:24,pointCount:25,metres:1438,cableMetres:1297,
+    aerialway:'chair_lift',name:'5 Torri'};
+  const relations=[{externalRelationId:'relation/3197410',ref:'424'}];
+  const proposal=()=>({state:'proposed',trailName:'Cinque Torri',relations,
+    coveragePercent:94,riddenSegment:RIDE,walkedPointCount:179});
+
+  test('an approval records the ride the fresh measurement found',()=>{
+    const measured={coveragePercent:95,relations,riddenSegment:{...RIDE,metres:1440},walkedPointCount:178};
+    const {composite}=ruleOnComposite(proposal(),measured,{approvedBy:'someone',at:'2026-10-06T21:00:00.000Z'});
+    expect(composite.coveragePercent).toBe(95);
+    expect(composite.riddenSegment.metres).toBe(1440);
+    expect(composite.walkedPointCount).toBe(178);
+  });
+
+  // Otherwise the stored pair describes neither measurement.
+  test('never the proposal\'s ride beside the new percent',()=>{
+    const measured={coveragePercent:91,relations,walkedPointCount:null};
+    const {composite}=ruleOnComposite(proposal(),measured,{approvedBy:'someone'});
+    expect(composite.coveragePercent).toBe(91);
+    expect(composite.riddenSegment).toBeNull();
+  });
+});
