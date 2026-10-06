@@ -54,10 +54,13 @@ a gate that was already open: nothing re-ran an agent on a trail parked at a
 human gate, so research nobody had done waited for a moderator who could not do
 it either. The dispatch requests a revision and nothing else — approving,
 waiving and rejecting remain moderator decisions, and it changes no public
-state, so principle 5 is untouched. It fires only when the blockers name exactly
-one agent, never past the automated-resolution limit, never over a decision
-already waiting to be applied, and at most a few gates per queue pass because
-each dispatch costs a model call. Setting the repository variable
+state, so principle 5 is untouched. It asks one agent at a time, the
+one carrying the most outstanding findings, and tells it which other agents hold
+the rest; a gate blocked on several agents is therefore cleared over successive
+passes rather than in one. It fires only when the blockers name an agent at all
+-- an unattributed blocker is a decision, not a dispatch -- never past the
+automated-resolution limit, never over a decision already waiting to be applied,
+and at most a few gates per queue pass because each dispatch costs a model call. Setting the repository variable
 `ORMA_GATE_DISPATCH_ENABLED` to `false` stops it without a code change.
 
 Customer hazard reports are a separate, equally automatic lane. A signed-in

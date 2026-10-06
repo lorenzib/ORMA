@@ -70,5 +70,57 @@
     return named.size===1?[...named][0]:null;
   }
 
-  return {hasRouteGeometryConflict,agentFromBlockers};
+  /** How many blockers each named agent is carrying. Unattributed reasons name
+   * nobody and are counted for nobody. */
+  function blockerCountsByAgent(reasons){
+    const counts=new Map();
+    for(const reason of reasons||[]){
+      const match=/^([A-Za-z][A-Za-z0-9]*)\s*[/:]/.exec(String(reason).trim());
+      if(!match)continue;
+      counts.set(match[1],(counts.get(match[1])||0)+1);
+    }
+    return counts;
+  }
+
+  // The agent to ask when the blockers name several.
+  //
+  // agentFromBlockers answers "do these blockers belong to exactly one agent",
+  // and the automation held the gate whenever they did not. Measured against
+  // the live queue on 6 October that was every gate: all seven dossiers carried
+  // blockers from four or five agents at once -- terrainPoi, evidenceLibrarian,
+  // regulatoryRanger, redTeam and logistics -- so the dispatch pass asked
+  // nobody anything and 17 gates kept waiting for a moderator who cannot do
+  // research either. A rule that never matches is not conservatism.
+  //
+  // A revision carries one targetAgent, so a gate with five agents' findings is
+  // asked one agent at a time, heaviest load first. Each pass clears one
+  // agent's share and the gate returns with the rest, so the queue converges
+  // over passes rather than in one shot -- bounded per agent by the
+  // resolution-attempt limit, so a gate cannot cycle forever.
+  //
+  // Ties go to the agent appearing first in the blocker list, which is stable
+  // for a given dossier. Still null when nothing names an agent: an
+  // unattributed blocker is a decision, not a dispatch.
+  function dominantAgentFromBlockers(reasons){
+    const single=agentFromBlockers(reasons);
+    if(single)return single;
+    const counts=blockerCountsByAgent(reasons);
+    if(!counts.size)return null;
+    let best=null,bestCount=0;
+    for(const [agent,count] of counts){
+      if(count>bestCount){best=agent;bestCount=count;}
+    }
+    return best;
+  }
+
+  /** Only the blockers the dispatched agent is being asked to answer. */
+  function blockersForAgent(reasons,agentId){
+    const prefix=String(agentId);
+    return (reasons||[]).filter(reason=>{
+      const match=/^([A-Za-z][A-Za-z0-9]*)\s*[/:]/.exec(String(reason).trim());
+      return Boolean(match)&&match[1]===prefix;
+    });
+  }
+
+  return {hasRouteGeometryConflict,agentFromBlockers,blockerCountsByAgent,dominantAgentFromBlockers,blockersForAgent};
 });
