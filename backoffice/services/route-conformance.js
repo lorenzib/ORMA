@@ -251,10 +251,18 @@ function assessRouteConformance(coordinates, routeLines, options = {}){
  * them. A line that leaves the numbers it prints is not background research a
  * moderator can judge sufficient -- it is the directions being wrong.
  */
+// The identifier the blocker is filed under. A moderator cannot accept this one
+// with a reason -- directions that lead off the route are the directions being
+// wrong -- and the acceptance check recognises it by this id. It used to
+// recognise it by the sentence below instead, which is why that sentence ends
+// the way it does; the id is what carries the meaning now, so the wording is
+// free to read however serves a human best.
+const OFF_DECLARED_ROUTE_BLOCKER_ID = 'geometry/off-declared-route';
+
 function routeConformanceBlockingReasons(assessment){
   if(!assessment || assessment.status !== 'rejected') return [];
   const refs = (assessment.refs || []).join(', ') || 'its declared route';
-  return [`geometry/off-declared-route: the line leaves ${refs} for ${assessment.offRouteKm} km `
+  return [`${OFF_DECLARED_ROUTE_BLOCKER_ID}: the line leaves ${refs} for ${assessment.offRouteKm} km `
     + `of ${assessment.distanceKm} km (up to ${assessment.maxOffsetM} m): `
     + 'supported authoritative route guidance is required'];
 }
@@ -262,4 +270,5 @@ function routeConformanceBlockingReasons(assessment){
 module.exports = {
   OFF_ROUTE_M, MAX_OFF_ROUTE_SHARE, MIN_STRETCH_M,
   routeLinesFor, assessRouteConformance, routeConformanceBlockingReasons,
+  OFF_DECLARED_ROUTE_BLOCKER_ID,
 };
