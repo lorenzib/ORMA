@@ -9,7 +9,7 @@ const output=path.join(root,'dist','backoffice');
 
 const files=[
   'backoffice-firebase.js','backoffice-login.js','backoffice-auth-guard.js','backoffice-session.js',
-  'backoffice-hosted-dashboard.js','trail-verify-desk.js','backoffice/dashboard-model.js',
+  'backoffice-hosted-dashboard.js','trail-verify-desk.js','backoffice/revision-target.js','backoffice/dashboard-model.js',
   'moderation-page.js','moderation.css','community-content-states.js',
   'backoffice-review.css','styles.css','favicon-32.png','logo.svg','backoffice/content-review-decisions.js','backoffice/content-receipt-model.js',
 ];

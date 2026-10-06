@@ -46,6 +46,11 @@ jobs:
       ORMA_SPECIALIST_LIMIT: ${{ github.event.inputs.specialist_limit || '10' }}
       ORMA_PUBLICATION_FORCE_RETRY: ${{ github.event.inputs.force_publication_retry || 'false' }}
       ORMA_CAMPAIGN_AUTOMATION_ENABLED: ${{ vars.ORMA_CAMPAIGN_AUTOMATION_ENABLED || 'false' }}
+      # A gate standing only on findings an agent can supply is asked of that
+      # agent. Set the repository variable to 'false' to stop it without a
+      # code change; the limit is per pass.
+      ORMA_GATE_DISPATCH_ENABLED: ${{ vars.ORMA_GATE_DISPATCH_ENABLED || 'true' }}
+      ORMA_GATE_DISPATCH_LIMIT: '3'
       ORMA_CAMPAIGN_LIMIT: '10'
       ORMA_CAMPAIGN_CAPACITY: '15'
     steps:

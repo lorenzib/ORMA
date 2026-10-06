@@ -23,9 +23,10 @@ function loadGrouping(){
   return new Function(`${grouping}\n${label}\nreturn groupBlockers;`)();
 }
 
+// The rule moved into backoffice/revision-target.js so the worker could reach
+// it too, which means these cases can require it instead of slicing the desk.
 function loadAgentFromBlockers(){
-  const source = script.slice(script.indexOf('function hasRouteGeometryConflict'), script.indexOf('function groupBlockers'));
-  return new Function(`${source}\nreturn agentFromBlockers;`)();
+  return require('./backoffice/revision-target').agentFromBlockers;
 }
 
 /** The body of renderMachineState, refusing to hand back an empty slice. */
