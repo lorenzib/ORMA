@@ -4297,12 +4297,15 @@ function breedInsights(name){
     if(trail.tier === 'under-review' || trail.curated === false){
       return trail.routeAudit ? 'mapped' : 'imported';
     }
-    // A curated listing has been prepared and reviewed by ORMA, but curation
-    // alone is not field verification. It sits at `mapped` (route reviewed) and
-    // only earns `route-audited` once its evidence dossier graduates. Before,
-    // this returned `route-audited`, so every curated trail wore the verified
-    // seal without earning it.
-    return 'mapped';
+    // TEMPORARY (2026-10): a curated listing resolves to `route-audited` again,
+    // so it wears "Verified by ORMA". The earned-seal tightening (#516) made
+    // curation resolve to `mapped` ("Reviewed by ORMA"), which is the honest
+    // end state -- but it shipped while 0 trails had actually graduated, so the
+    // live catalogue advertised zero verified trails. Hold the stronger seal on
+    // the curated catalogue until the verification pipeline graduates a real
+    // batch, then flip this back to `mapped`. The `mapped`/route-reviewed tier
+    // and its labels stay in place, dormant, so re-applying is one line.
+    return 'route-audited';
   }
 
   function tierLabel(tierOrTrail){
