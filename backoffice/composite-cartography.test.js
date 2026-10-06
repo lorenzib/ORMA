@@ -134,4 +134,33 @@ describe('the dossier names what the route actually is',()=>{
     const result={source:{externalId:'relation/123'},relation:{tags:{name:'Tre Cime'}}};
     expect(routeIdentityValue(result,{trailName:'x'},compositeRelations(result))).toBe('Tre Cime · relation/123');
   });
+
+  // Lago di Braies is covered end to end by one relation carrying no ref at
+  // all, tagged `Seeweg` -- which is what the signs by the lake say. Citing
+  // "relation/12043472" there is the composite label problem again, one level
+  // down: it identifies the relation, not the route a walker follows.
+  test('a route with no number is cited by its name, not its relation id',()=>{
+    const result={source:{externalId:'composite/lago-braies',
+      relations:[{externalRelationId:'relation/12043472',ref:null,name:'Seeweg',coveragePercent:100}]},
+      relation:{tags:{name:'Lago di Braies Seeweg circuit'}}};
+    expect(routeIdentityValue(result,{trailName:'x'},compositeRelations(result)))
+      .toBe('Lago di Braies Seeweg circuit · 1 approved route(s) along Seeweg');
+  });
+
+  test('a number still wins over a name where there is one',()=>{
+    const result={source:{externalId:'composite/mixed',relations:[
+      {externalRelationId:'relation/1',ref:'105',name:'Rifugio traverse',coveragePercent:60},
+      {externalRelationId:'relation/2',ref:null,name:'Seeweg',coveragePercent:40}]},
+      relation:{tags:{name:'A walk'}}};
+    expect(routeIdentityValue(result,{trailName:'x'},compositeRelations(result)))
+      .toBe('A walk · 2 approved route(s) along 105, Seeweg');
+  });
+
+  test('and the id remains the last resort when a route has neither',()=>{
+    const result={source:{externalId:'composite/bare',
+      relations:[{externalRelationId:'relation/9',ref:null,name:null,coveragePercent:100}]},
+      relation:{tags:{name:'A walk'}}};
+    expect(routeIdentityValue(result,{trailName:'x'},compositeRelations(result)))
+      .toBe('A walk · 1 approved route(s) along relation/9');
+  });
 });

@@ -1,6 +1,7 @@
 'use strict';
 
 const { discoverRouteComposite, relationsFromPayload } = require('./workflows/discover-route-composite');
+const { UNATTENDED_APPROVER } = require('./cli/approve-composites');
 const { campaignItem, planCatalogueCampaign } = require('./workflows/plan-catalogue-campaign');
 const { buildRoutesNearPathQuery, samplePath } = require('./services/osm-relation-client');
 
@@ -262,5 +263,32 @@ describe('a route source at the scale of the walk', () => {
     // Two short legs a long way apart must not be credited with the gap.
     const split = [[46.6, 11.7], [46.601, 11.7], [47.5, 12.9], [47.501, 12.9]];
     expect(lineKilometres(split)).toBeLessThan(1);
+  });
+});
+
+// Who an approval says took it.
+//
+// The approve workflow carried `default: 'Benedetta Lorenzi (ORMA owner)'` on
+// its approved_by input, so every dispatched run signed the owner's name on a
+// gate she had not stood at. Two composites were approved that way inside a PR
+// about registering npm scripts. The rule itself is real -- a fresh coverage
+// measurement that holds below the threshold -- but a rule is not a person.
+describe('an unattended approval does not claim a person',()=>{
+  const workflow=require('fs').readFileSync('.github/workflows/orma-approve-composites.yml','utf8');
+
+  test('the workflow offers no approver by default',()=>{
+    const input=workflow.match(/approved_by:[\s\S]*?default:\s*(.*)/);
+    expect(input).not.toBeNull();
+    expect(input[1].trim().replace(/['"]/g,'')).toBe('');
+  });
+
+  test('and only passes --by when somebody named one',()=>{
+    expect(workflow).toMatch(/if \[ -n "\$APPROVED_BY" \]; then args\+=\(--by "\$APPROVED_BY"\); fi/);
+    expect(workflow).not.toMatch(/--by "\$APPROVED_BY"\s*$/m);
+  });
+
+  test('so what it records names the run, not a moderator',()=>{
+    expect(UNATTENDED_APPROVER).toContain('orma-approve-composites');
+    expect(UNATTENDED_APPROVER).not.toMatch(/human-moderator/);
   });
 });
