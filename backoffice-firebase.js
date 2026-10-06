@@ -68,13 +68,22 @@ async function moderatorCheck(){
   const cached=cachedClaim();
   if(cached&&cached.moderator)return {ok:true,uid:currentUser.uid};
   try{
-    const token=await getIdTokenResult(currentUser,true);
-    const moderator=token.claims?.moderator===true;
+    // Read the token Firebase already holds before asking its token endpoint
+    // for another one. An established moderator claim does not need a forced
+    // refresh on every page navigation, and doing that is what can trip the
+    // endpoint's rate limit. A negative answer is refreshed once so a claim
+    // granted since the token was minted still becomes visible immediately.
+    let token=await getIdTokenResult(currentUser,false);
+    let moderator=token.claims?.moderator===true;
+    if(!moderator){
+      token=await getIdTokenResult(currentUser,true);
+      moderator=token.claims?.moderator===true;
+    }
     claimCache={uid:currentUser.uid,moderator,at:Date.now()};
     return moderator?{ok:true,uid:currentUser.uid}:{ok:false,reason:'not-moderator'};
   }catch(error){
     // Nothing was learned about this account, so nothing is recorded about it.
-    return {ok:false,reason:'check-failed',error:authMessage(error?.code)};
+    return {ok:false,reason:'check-failed',error:friendlyError(error?.code)};
   }
 }
 
