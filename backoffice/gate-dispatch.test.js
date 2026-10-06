@@ -4,7 +4,8 @@ const fs=require('fs');
 const path=require('path');
 const {planGateDispatches,RESOLUTION_ATTEMPT_LIMIT}=require('./workflows/dispatch-unanswered-gates');
 const {dispatchUnansweredGates,ingestDossierReviews}=require('./workflows/run-live-backoffice-worker');
-const {routeGuidanceBlockingReasons}=require('./workflows/compile-verified-dossier');
+const {routeGuidanceBlockingReasons,dossierBlockingReasons}=require('./workflows/compile-verified-dossier');
+const {agentFromBlockers,blockerCountsByAgent}=require('./revision-target');
 
 const at='2026-10-06T08:00:00.000Z';
 
@@ -112,11 +113,11 @@ describe('a gate nobody can answer is asked of the agent that can',()=>{
 describe('what it deliberately leaves standing',()=>{
   const held=plan=>plan.held.map(entry=>entry.reason);
 
-  test('blockers that name no single agent are a decision, not a dispatch',()=>{
+  test('blockers that name no agent at all are a decision, not a dispatch',()=>{
     const {orchestration,reviewQueue}=parkedGate({blockingReasons:['not-closed-loop']});
     const plan=planGateDispatches(orchestration,reviewQueue,{});
     expect(plan.dispatches).toEqual([]);
-    expect(held(plan)).toEqual(['blockers-do-not-name-one-agent']);
+    expect(held(plan)).toEqual(['blockers-name-no-agent']);
   });
 
   // apply-dossier-review stops queueing at the sixth attempt and marks the
@@ -162,6 +163,97 @@ describe('what it deliberately leaves standing',()=>{
     const plan=planGateDispatches(many.orchestration,many.reviewQueue,{limit:2});
     expect(plan.dispatches).toHaveLength(2);
     expect(plan.deferred).toBe(3);
+  });
+});
+
+describe('a gate several agents are blocking is asked one agent at a time',()=>{
+  // The blockers come from the producer, not from a hand-typed copy. This is
+  // the shape every real gate has: dossierBlockingReasons emits
+  // `${agentId}/${claimId}: ${finding}` plus `${agentId}: recommendation is …`
+  // per specialist, and five specialists research a mountain trail.
+  // Route guidance has to be SATISFIED for this to be the live shape. The live
+  // gates have a sourced recommended start -- #608 established that the four
+  // route claims were not what was holding them -- and without one
+  // dossierBlockingReasons prepends a logistics/recommended-start blocker,
+  // which agentFromBlockers answers on its own. So the dossier carries a
+  // supported recommended start, and what remains is genuinely several agents'
+  // research. (This caught a hand-built fixture that was not the real shape.)
+  const SOURCED=[{url:'https://comune.example/start',authority:'Comune di Example',label:'Official route guide'}];
+  const cleanLogistics={agentId:'logistics',result:{recommendation:'advance',openQuestions:[],claims:[
+    {id:'recommended-start',category:'logistics',finding:'supported-proposal',
+     proposedValue:'Start at the lakeside car park.',sources:SOURCED,blockers:[]}]}};
+  const outputs=(...rest)=>[cleanLogistics,...rest];
+  const multiAgent=()=>dossierBlockingReasons(outputs(
+    {agentId:'terrainPoi',result:{recommendation:'block',claims:[
+      {id:'shade',finding:'conflicted'},{id:'livestock',finding:'unresolved'},{id:'surface',finding:'conflicted'}]}},
+    {agentId:'evidenceLibrarian',result:{recommendation:'block',claims:[
+      {id:'provenance',finding:'conflicted'}]}},
+    {agentId:'regulatoryRanger',result:{recommendation:'needs-resolution',claims:[
+      {id:'dog-access',finding:'unresolved'}]}},
+  ));
+
+  test('the live queue shape dispatches, where requiring one agent dispatched nothing',()=>{
+    const blockingReasons=multiAgent();
+    // Four agents named at once -- the condition that held every gate on 6 Oct.
+    expect([...blockerCountsByAgent(blockingReasons).keys()].length).toBeGreaterThan(1);
+    expect(agentFromBlockers(blockingReasons)).toBeNull();
+
+    const {orchestration,reviewQueue}=parkedGate({blockingReasons});
+    const plan=planGateDispatches(orchestration,reviewQueue,{});
+    expect(plan.held).toEqual([]);
+    // Heaviest load first: terrainPoi carries 4 of the blockers, the others 2.
+    expect(plan.dispatches).toEqual([expect.objectContaining({targetAgent:'terrainPoi'})]);
+  });
+
+  test('the agent is asked for its own findings and told who holds the rest',()=>{
+    const blockingReasons=multiAgent();
+    const {orchestration,reviewQueue}=parkedGate({blockingReasons});
+    const [dispatch]=planGateDispatches(orchestration,reviewQueue,{}).dispatches;
+
+    // Not asked to answer for work that is not its own.
+    expect(dispatch.agentBlockingReasons.every(reason=>reason.startsWith('terrainPoi'))).toBe(true);
+    expect(dispatch.note).not.toContain('evidenceLibrarian/provenance');
+    // And not left to assume the gate clears when it is done.
+    expect(dispatch.note).toContain('evidenceLibrarian');
+    expect(dispatch.note).toContain('regulatoryRanger');
+    expect(dispatch.outstandingAgents).toEqual(expect.arrayContaining(['terrainPoi','evidenceLibrarian','regulatoryRanger']));
+  });
+
+  test('the gate converges: once one agent is answered the next is asked',()=>{
+    // terrainPoi came back clean; the remaining blockers are the others'.
+    const remaining=dossierBlockingReasons(outputs(
+      {agentId:'evidenceLibrarian',result:{recommendation:'block',claims:[
+        {id:'provenance',finding:'conflicted'},{id:'provenance-waymark',finding:'counter-evidence'}]}},
+      {agentId:'regulatoryRanger',result:{recommendation:'needs-resolution',claims:[
+        {id:'dog-access',finding:'unresolved'}]}},
+    ));
+    const {orchestration,reviewQueue}=parkedGate({blockingReasons:remaining});
+    const plan=planGateDispatches(orchestration,reviewQueue,{});
+    expect(plan.dispatches).toEqual([expect.objectContaining({targetAgent:'evidenceLibrarian'})]);
+  });
+
+  test('route guidance still outranks a heavier load elsewhere',()=>{
+    // Only Logistics can supply route guidance, and it is the one unwaivable
+    // blocker, so it is asked even when another agent carries more findings.
+    // No clean logistics output here, so the producer itself supplies the
+    // route-guidance blocker alongside a heavier terrain load.
+    const blockingReasons=dossierBlockingReasons([
+      {agentId:'terrainPoi',result:{recommendation:'block',claims:[
+        {id:'shade',finding:'conflicted'},{id:'livestock',finding:'unresolved'},
+        {id:'surface',finding:'conflicted'},{id:'water',finding:'unresolved'}]}},
+    ]);
+    expect(blockingReasons).toEqual(expect.arrayContaining(ROUTE_GUIDANCE));
+    const {orchestration,reviewQueue}=parkedGate({blockingReasons});
+    const [dispatch]=planGateDispatches(orchestration,reviewQueue,{}).dispatches;
+    expect(dispatch.targetAgent).toBe('logistics');
+  });
+
+  test('a per-agent attempt limit still holds the gate',()=>{
+    const blockingReasons=multiAgent();
+    const {orchestration,reviewQueue}=parkedGate({blockingReasons,resolutionAttempts:{terrainPoi:RESOLUTION_ATTEMPT_LIMIT}});
+    const plan=planGateDispatches(orchestration,reviewQueue,{});
+    expect(plan.dispatches).toEqual([]);
+    expect(plan.held.map(entry=>entry.reason)).toEqual(['resolution-attempts-exhausted']);
   });
 });
 

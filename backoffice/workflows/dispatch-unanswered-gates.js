@@ -17,13 +17,21 @@
 // the current output contract, which is the thing that was missing: nothing
 // re-runs an agent on a trail sitting at a human gate.
 //
-// Deliberately conservative. It dispatches only when the blockers name exactly
-// one agent, only on the two gate types the revision path handles, never past
-// the resolution-attempt limit, never over a decision already waiting to be
-// applied, and never more than a handful per pass -- each dispatch costs a model
-// call on a metered account.
+// Deliberately conservative. It only ever requests a revision, only on the two
+// gate types the revision path handles, never past the resolution-attempt
+// limit, never over a decision already waiting to be applied, and never more
+// than a handful per pass -- each dispatch costs a model call on a metered
+// account.
+//
+// It asks one agent at a time. The first cut dispatched only when the blockers
+// named exactly one agent, and on the live queue that was none of them: all
+// seven dossier gates carried findings from four or five agents at once, so the
+// pass asked nobody anything. A revision carries one targetAgent, so a
+// multi-agent gate is asked heaviest-load-first and returns with the rest,
+// converging over passes. A gate whose blockers name no agent at all is still
+// held -- that is a decision, not a dispatch.
 
-const {agentFromBlockers}=require('../revision-target');
+const {dominantAgentFromBlockers,blockerCountsByAgent,blockersForAgent}=require('../revision-target');
 const {MAX_AUTOMATED_ATTEMPTS}=require('../contracts/resolution-policy-v1');
 
 // The gates whose revision path apply-dossier-review implements. An
@@ -50,8 +58,9 @@ const MAX_LISTED_REASONS=12;
  * held logistics output captured before the route-guidance claims existed, so
  * "try again" without that is an invitation to return the same dossier.
  */
-function dispatchNote(targetAgent,reasons){
+function dispatchNote(targetAgent,reasons,alsoOutstanding){
   const outstanding=(reasons||[]).slice(0,MAX_LISTED_REASONS).map(reason=>`- ${String(reason).trim()}`);
+  const shared=(alsoOutstanding||[]).filter(agent=>agent!==targetAgent);
   return [
     `ORMA automation: this gate has been standing with findings only ${targetAgent} can supply, so it is being`,
     'asked rather than left for a moderator who cannot supply them.',
@@ -60,6 +69,10 @@ function dispatchNote(targetAgent,reasons){
     'Where a source genuinely does not exist, say so explicitly in the claim rather than omitting it — an',
     'absent claim reads as work not done and returns the trail here unchanged.',
     '',
+    // The gate usually holds several agents' findings. Listing only this
+    // agent's share keeps it from answering for work that is not its own, and
+    // naming the others keeps it from assuming the gate clears when it is done.
+    ...(shared.length?[`Other findings on this gate belong to ${shared.join(', ')} and are being asked separately.`,'']:[]),
     'Outstanding:',
     ...outstanding,
   ].join('\n');
@@ -89,12 +102,15 @@ function planGateDispatches(orchestration,reviewQueue,options={}){
     // The queue item is the durable record and the trail is the live state; if
     // the trail has already moved off its gate, the item is stale.
     if(!String(trail.state||'').endsWith('-human-gate')){hold(item,'trail-no-longer-at-a-gate');continue;}
-    const targetAgent=agentFromBlockers(item.blockingReasons);
-    if(!targetAgent){hold(item,'blockers-do-not-name-one-agent');continue;}
+    const targetAgent=dominantAgentFromBlockers(item.blockingReasons);
+    if(!targetAgent){hold(item,'blockers-name-no-agent');continue;}
     if((trail.resolutionAttempts?.[targetAgent]||0)>=RESOLUTION_ATTEMPT_LIMIT){hold(item,'resolution-attempts-exhausted');continue;}
+    const outstandingAgents=[...blockerCountsByAgent(item.blockingReasons).keys()];
+    const mine=blockersForAgent(item.blockingReasons,targetAgent);
     dispatches.push({reviewId:item.reviewId,candidateId:item.candidateId,trailName:item.trailName||trail.trailName||null,
       gateType:item.gateType,targetAgent,blockingReasons:item.blockingReasons||[],
-      note:dispatchNote(targetAgent,item.blockingReasons)});
+      outstandingAgents,agentBlockingReasons:mine,
+      note:dispatchNote(targetAgent,mine.length?mine:item.blockingReasons,outstandingAgents)});
   }
 
   return {dispatches:dispatches.slice(0,limit),held,deferred:Math.max(0,dispatches.length-limit)};
