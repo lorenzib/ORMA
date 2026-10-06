@@ -11,7 +11,7 @@ const source=fs.readFileSync('./trail-verify-desk.js','utf8');
 const {agentFromBlockers}=require('./backoffice/revision-target');
 
 // The wording comes from the producer; only the claim id varies per case.
-const {routeGuidanceBlockingReasons}=require('./backoffice/workflows/compile-verified-dossier.js');
+const {routeGuidanceBlockingReasons,dossierBlockingReasons}=require('./backoffice/workflows/compile-verified-dossier.js');
 const ROUTE_GUIDANCE_SHAPE=routeGuidanceBlockingReasons([])[0];
 const ROUTE_GUIDANCE=id=>ROUTE_GUIDANCE_SHAPE.replace(/^logistics\/[^:]+/,`logistics/${id}`);
 
@@ -45,6 +45,25 @@ describe('a revision goes to the agent its blockers name', () => {
       ROUTE_GUIDANCE('recommended-start'),
       'regulatoryRanger: open question — Does the 6.6 km supplied OSM geometry exactly correspond to the official 5.5 km loop?',
     ])).toBe('cartographer');
+  });
+
+  // The agents more often file that mismatch as a terse claim-status blocker
+  // than as prose: evidenceLibrarian/provenance-geometry-and-distance,
+  // redTeam/rt3-osm-line-not-closed-as-rendered, rt3-geometry-official-gpx-
+  // uncompared. Whoever files it, the line is the cartographer's to settle, so
+  // it outranks a heavier terrain load. Built from the producer, osm-16363583's
+  // real shape. See [[gate-dispatch-single-agent-gap]].
+  test('a terse geometry/GPX claim-status conflict goes to the cartographer, whoever filed it', () => {
+    const blockers=dossierBlockingReasons([
+      {agentId:'evidenceLibrarian',result:{recommendation:'block',claims:[
+        {id:'provenance-geometry-and-distance',finding:'conflicted'}]}},
+      {agentId:'redTeam',result:{recommendation:'block',claims:[
+        {id:'rt3-osm-line-not-closed-as-rendered',finding:'counter-evidence'},
+        {id:'rt3-geometry-official-gpx-uncompared',finding:'unresolved'}]}},
+      {agentId:'terrainPoi',result:{recommendation:'block',claims:[
+        {id:'shade',finding:'conflicted'},{id:'livestock',finding:'unresolved'}]}},
+    ]);
+    expect(pick(blockers)).toBe('cartographer');
   });
 
   test('anything it cannot read falls back rather than guess', () => {

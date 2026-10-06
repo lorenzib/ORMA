@@ -29,8 +29,35 @@
   // cartographer-prefixed blocker, so recognise only the concrete source/shape
   // comparisons they produce. This keeps a route-identity problem from spending
   // another cycle asking Logistics to describe geometry that may be wrong.
+  // The agents often file the mapped-line-vs-official-GPX conflict not as prose
+  // in an open question but as a terse claim-status blocker -- evidenceLibrarian
+  // raises "provenance-geometry-and-distance: conflicted", redTeam raises
+  // "rt3-geometry-official-gpx-uncompared: unresolved" or
+  // "rt3-osm-line-not-closed-as-rendered: counter-evidence". Whoever files it,
+  // settling which line is the route is the cartographer's job, so recognise
+  // the claim id by the thing it is about: geometry, the gpx, the osm line, or
+  // whether the loop closes. Measured on osm-16363583 (Le Marais de Pré
+  // Lombard): three such blockers sat under evidenceLibrarian and redTeam while
+  // the gate dispatched to terrainPoi on sheer blocker count, so the line was
+  // never re-anchored and every terrain answer was researched against the wrong
+  // geometry.
+  const GEOMETRY_CLAIM_STATUS=/^[A-Za-z][A-Za-z0-9]*\/([\w-]+):\s*(?:conflicted|counter-evidence|unresolved)\s*$/;
+  function isGeometryConflictBlocker(reason){
+    const match=GEOMETRY_CLAIM_STATUS.exec(String(reason).trim());
+    if(!match)return false;
+    const id=match[1].toLowerCase();
+    return /(?:^|-)(?:geometry|gpx)(?:-|$)/.test(id)||/osm-line/.test(id)||/not-closed/.test(id);
+  }
+
+  /** The blockers that make this a cartographer question, so a dispatch to the
+   * cartographer can be scoped to them rather than to every agent's findings. */
+  function geometryConflictBlockers(reasons){
+    return (reasons||[]).filter(isGeometryConflictBlocker);
+  }
+
   function hasRouteGeometryConflict(reasons){
     return (reasons||[]).some(reason=>{
+      if(isGeometryConflictBlocker(reason))return true;
       const text=String(reason).toLowerCase();
       return (/(?:supplied|mapped|osm)\s+(?:route\s+)?geometry/.test(text)
           &&/(?:official|published)\b.{0,50}\b(?:route|loop|gpx)/.test(text))
@@ -122,5 +149,5 @@
     });
   }
 
-  return {hasRouteGeometryConflict,agentFromBlockers,blockerCountsByAgent,dominantAgentFromBlockers,blockersForAgent};
+  return {hasRouteGeometryConflict,geometryConflictBlockers,agentFromBlockers,blockerCountsByAgent,dominantAgentFromBlockers,blockersForAgent};
 });

@@ -31,7 +31,7 @@
 // converging over passes. A gate whose blockers name no agent at all is still
 // held -- that is a decision, not a dispatch.
 
-const {dominantAgentFromBlockers,blockerCountsByAgent,blockersForAgent}=require('../revision-target');
+const {dominantAgentFromBlockers,blockerCountsByAgent,blockersForAgent,geometryConflictBlockers}=require('../revision-target');
 const {MAX_AUTOMATED_ATTEMPTS}=require('../contracts/resolution-policy-v1');
 
 // The gates whose revision path apply-dossier-review implements. An
@@ -106,7 +106,12 @@ function planGateDispatches(orchestration,reviewQueue,options={}){
     if(!targetAgent){hold(item,'blockers-name-no-agent');continue;}
     if((trail.resolutionAttempts?.[targetAgent]||0)>=RESOLUTION_ATTEMPT_LIMIT){hold(item,'resolution-attempts-exhausted');continue;}
     const outstandingAgents=[...blockerCountsByAgent(item.blockingReasons).keys()];
-    const mine=blockersForAgent(item.blockingReasons,targetAgent);
+    // A geometry conflict is the cartographer's to settle, but the agents file
+    // it under evidenceLibrarian/redTeam claim ids, so blockersForAgent finds
+    // nothing prefixed 'cartographer'. Scope the note to the geometry blockers
+    // that routed it here, rather than falling back to every agent's findings.
+    let mine=blockersForAgent(item.blockingReasons,targetAgent);
+    if(!mine.length&&targetAgent==='cartographer')mine=geometryConflictBlockers(item.blockingReasons);
     dispatches.push({reviewId:item.reviewId,candidateId:item.candidateId,trailName:item.trailName||trail.trailName||null,
       gateType:item.gateType,targetAgent,blockingReasons:item.blockingReasons||[],
       outstandingAgents,agentBlockingReasons:mine,
