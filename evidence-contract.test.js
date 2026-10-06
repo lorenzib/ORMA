@@ -135,25 +135,20 @@ describe('a trail the verification pipeline graduates earns the seal', () => {
     expect(evidence.tierLabel(published())).toBe('ORMA route-audited');
   });
 
-  // TEMPORARILY SKIPPED (2026-10): the earned-seal tightening (#516) is held
-  // back in trust/evidence-v1.js — a curated/partial listing resolves to
-  // `route-audited` again while the live catalogue would otherwise advertise
-  // zero verified trails. Re-enable these (remove the .skip) in the same change
-  // that flips evidence-v1's curated default back to `mapped`.
-  test.skip('a partial verification settles its one fact and claims no seal', () => {
+  test('a partial verification settles its one fact and claims no seal', () => {
     // routeGuidance, routeRefs and routeShape overrides each answer a single
     // question. Counting them as whole-trail verification is what made the
     // catalogue look as though the pipeline could not earn the seal at all.
     expect(evidence.tierOf(published({ ormaVerified: false, graduation: undefined }))).toBe('mapped');
   });
 
-  test.skip('a graduation short of its own required list does not earn it', () => {
+  test('a graduation short of its own required list does not earn it', () => {
     const partial = published({ graduation: { status: 'verified', required: GRADUATION_CHECKS,
       completed: GRADUATION_CHECKS.filter(check => check !== 'water') } });
     expect(evidence.tierOf(partial)).toBe('mapped');
   });
 
-  test.skip('curation on its own still earns nothing, which is the point of the change', () => {
+  test('curation on its own still earns nothing, which is the point of the change', () => {
     expect(evidence.tierOf({ id: 'osm-1', curated: true, path: [[11.9, 46.6], [11.91, 46.61]] })).toBe('mapped');
   });
 });
