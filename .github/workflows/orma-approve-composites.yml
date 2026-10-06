@@ -72,10 +72,28 @@ jobs:
           MODE: ${{ inputs.mode }}
         run: |
           set -euo pipefail
-          if git diff --quiet -- backoffice-data/route-composites.json; then
-            echo "No composite changed. Nothing to open."
-            exit 0
-          fi
+          # Not "is the file dirty": the tools rewrite updatedAt on every run,
+          # so a run that held every proposal looks identical to one that
+          # approved a composite. Compare the composites themselves.
+          ledger=backoffice-data/route-composites.json
+          git show HEAD:"$ledger" > /tmp/composites-before.json
+          summary="$(node -e '
+            const fs = require("fs");
+            const { compositesChanged, describeChange } = require("./backoffice/workflows/composite-ledger-change");
+            const before = fs.readFileSync("/tmp/composites-before.json", "utf8");
+            const after = fs.readFileSync(process.argv[1], "utf8");
+            if(!compositesChanged(before, after)) process.exit(3);
+            process.stdout.write(describeChange(before, after).join("; "));
+          ' "$ledger")" || {
+            status=$?
+            if [ "$status" = "3" ]; then
+              echo "No composite changed; only the ledger timestamp moved."
+              git checkout -- "$ledger"
+              exit 0
+            fi
+            exit "$status"
+          }
+          echo "Composites changed: ${summary:-figures only}"
           branch="orma-bot/route-composites"
           git config user.name "ORMA Backoffice"
           git config user.email "orma-backoffice@users.noreply.github.com"
@@ -93,7 +111,7 @@ jobs:
           if [ -z "$pr" ]; then
             gh pr create --base main --head "$branch" \
               --title "Rule on route composites ($MODE)" \
-              --body "Dispatched run of the composite $MODE. Read the diff before merging: an approved composite becomes a trail's route source."
+              --body "Dispatched run of the composite $MODE. ${summary:-Figures changed without a state moving.} Read the diff before merging: an approved composite becomes a trail's route source."
           else
             echo "Updated existing pull request #$pr"
           fi
