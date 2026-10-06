@@ -62,6 +62,37 @@ describe('asking whether an approval would land, without making one',()=>{
     expect(result.wouldCompile).toBe(true);
   });
 
+  test('an agent refusing outright is reported above the pile of loose ends',async()=>{
+    // Lac de la Thuile printed 69 blockers as one paragraph, which buried the
+    // only line that decided anything: two agents saying block.
+    const {blockingAgents,byAgent,shortError}=require('./cli/check-dossier-approval');
+    const reasons=['redTeam: recommendation is block','evidenceLibrarian: recommendation is block',
+      'redTeam/water-fountain: counter-evidence','logistics: open question — is the car park open?'];
+    expect(blockingAgents(reasons)).toEqual(['evidenceLibrarian','redTeam']);
+    expect(byAgent(reasons)).toEqual([['redTeam',2],['evidenceLibrarian',1],['logistics',1]]);
+  });
+
+  test('the compiler restating every blocker is cut to its point',async()=>{
+    const {shortError}=require('./cli/check-dossier-approval');
+    // The message lists the whole dossier's unfinished business; the blockers
+    // are reported in their own right just below it.
+    expect(shortError('A blocked dossier cannot be compiled as verified: a; b; c'))
+      .toBe('the blockers below have not been accepted');
+    // A genuine machinery refusal keeps its own words.
+    expect(shortError('Trail requires a sourced recommended start before verification: recommended-start'))
+      .toMatch(/requires a sourced recommended start/);
+  });
+
+  test('every blocker still reaches the JSON, only the printing is trimmed',async()=>{
+    const many=Array.from({length:30},(_,index)=>({id:'x',note:index}));
+    const withBlockers=[{agentId:'cartographer',jobId:'jc',result:cartResult},
+      {agentId:'logistics',jobId:'jl',result:{...logResult,recommendation:'needs-resolution',
+        openQuestions:many.map(entry=>`Question ${entry.note}`)}}];
+    const [result]=await main({argv:[],store:store(withBlockers)});
+    expect(result.blockers.length).toBeGreaterThan(10);
+    expect(result.blockersByAgent[0][0]).toBe('logistics');
+  });
+
   test('it can be pointed at one trail',async()=>{
     expect(await main({argv:['--candidate','osm-does-not-exist'],store:store(outputs)})).toEqual([]);
   });
