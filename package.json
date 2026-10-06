@@ -63,6 +63,7 @@
     "backoffice:materialize-publications": "node backoffice/cli/materialize-publications.js",
     "backoffice:verification-state": "node backoffice/cli/report-verification-state.js",
     "backoffice:verification-funnel": "node backoffice/cli/report-verification-funnel.js",
+    "backoffice:check-approval": "node backoffice/cli/check-dossier-approval.js",
     "backoffice:gate-evidence": "node backoffice/cli/report-gate-evidence.js",
     "backoffice:dump-dossier": "node backoffice/cli/dump-dossier-claims.js",
     "backoffice:record-publication-failure": "node backoffice/cli/record-publication-failure.js",
