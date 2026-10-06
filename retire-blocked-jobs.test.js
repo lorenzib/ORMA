@@ -17,6 +17,35 @@ describe('retiring blocked jobs', () => {
     expect(planRetirement(jobs, ['dead-lane']).retire.map(item => item.id)).toEqual(['3']);
   });
 
+  // Ten queued jobs of a lane deleted months earlier sat in the pipeline,
+  // counted as work owed by every report and reachable by no tool: retirement
+  // only ever read blocked jobs, and nothing else retires anything.
+  test('retires a queued job only where the lane has no processor left', () => {
+    const jobs = [job('1', 'dead-lane', 'queued'), job('2', 'live-lane', 'queued')];
+    const { retire, skipped } = planRetirement(jobs, ['dead-lane', 'live-lane'], { liveJobTypes: ['live-lane'] });
+    expect(retire.map(item => item.id)).toEqual(['1']);
+    expect(retire[0].retiredFrom).toBe('queued');
+    // A queued job in a lane that still runs is someone's work.
+    expect(skipped).toEqual([expect.objectContaining({ id: '2', reason: 'queued in a lane that still runs' })]);
+  });
+
+  test('a caller who cannot say which lanes run does not retire queued work', () => {
+    const jobs = [job('1', 'dead-lane', 'queued')];
+    expect(planRetirement(jobs, ['dead-lane']).retire).toEqual([]);
+  });
+
+  test('a running job is never retired, named lane or not', () => {
+    const jobs = [job('1', 'dead-lane', 'running')];
+    expect(planRetirement(jobs, ['dead-lane'], { liveJobTypes: [] }).retire).toEqual([]);
+  });
+
+  test('says which state each job was retired from', () => {
+    const jobs = [job('1', 'dead-lane'), job('2', 'dead-lane', 'queued')];
+    const { retire } = planRetirement(jobs, ['dead-lane'], { liveJobTypes: [] });
+    expect(retire.map(item => item.retiredFrom)).toEqual(['blocked', 'queued']);
+    expect(retirementFields('lane removed', '2026-10-06T17:00:00.000Z', 'queued').retiredFrom).toBe('queued');
+  });
+
   test('refuses the job types that carry trail verification', () => {
     expect(PROTECTED_JOB_TYPES).toEqual(['trail-verification-specialist', 'trail-claim-resolution']);
     const jobs = PROTECTED_JOB_TYPES.map((type, index) => job(String(index), type));
