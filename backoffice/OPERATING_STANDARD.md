@@ -63,6 +63,22 @@ automated-resolution limit, never over a decision already waiting to be applied,
 and at most a few gates per queue pass because each dispatch costs a model call. Setting the repository variable
 `ORMA_GATE_DISPATCH_ENABLED` to `false` stops it without a code change.
 
+What is left at that gate is a decision, and some of those cannot be made from
+a review card either: whether a trail can be verified despite nobody
+establishing the livestock on it means reading a comune page or a pasture
+notice. So an adjudicator reads those sources and writes what it found into the
+field beside each blocker, with the publisher and a verbatim quote.
+
+It recommends and never accepts. The tick stays the moderator's, because the
+reason beside it is kept with the verification permanently and has to be a
+person's sentence; a suggested reason can be replaced, and the replacement is
+what is kept. A recommendation to accept is withheld unless it cites a source
+that was actually retrieved, is never offered for a blocker the contract
+refuses to waive, and stops being shown once the gate's blockers change,
+because it then answers a different question. "Nobody could justify accepting
+this" is shown as prominently as the other answer. `ORMA_GATE_ADJUDICATION_ENABLED`
+set to `false` stops it.
+
 Customer hazard reports are a separate, equally automatic lane. A signed-in
 contributor reports a hazard on one trail; the Hazard Analyst searches for
 independent corroboration in official notices, park and comune bulletins, alpine

@@ -23,6 +23,7 @@
     registry:'backoffice-data/orma-verified-registry.json',
     pipeline:'backoffice-data/pipeline-health.json',
     worker:'backoffice-data/worker-health.json',
+    adjudications:'backoffice-data/gate-adjudications.json',
   };
   const LOCAL_MODE=['localhost','127.0.0.1'].includes(location.hostname);
   const DRAFT_KEY='orma-verify-notes-v1';
@@ -55,6 +56,11 @@
   let routeReview={items:[]};
   let catalogue={items:[]},registry={verified:[]};
   let pipeline=null,worker=null;
+  // Cited recommendations against the blockers at a gate, written by the
+  // adjudicator. Read only when a gate is actually waiting on one, because the
+  // desk polls once a minute against a daily Firestore budget that is already
+  // being spent.
+  let adjudications={items:[]};
   let coverageError='';
   let drafts=stored(DRAFT_KEY),receipts=stored(RECEIPT_KEY);
 
@@ -403,6 +409,7 @@
       openRoute:(()=>{const carto=(item.specialistOutputs||[]).find(output=>output.agentId==='cartographer');
         return carto?.result?.assessment?.isClosed===false;})(),
       claims:claimLines(item),
+      verdicts:verdictsFor(item),
       evidence:()=>evidenceBlock(item),
       // Revision goes back to whoever raised the finding, so there is no
       // "revision owner" dropdown to think about.
@@ -410,6 +417,19 @@
       submit:(action,note,acceptedBlockers)=>send('dossier',{reviewId:item.reviewId,candidateId:item.candidateId,action,
         targetAgent:agentFromBlockers(item.blockingReasons)||(item.specialistOutputs||[])[0]?.agentId||'auditor',note,acceptedBlockers:acceptedBlockers||[]}),
     }));
+  }
+
+  // A recommendation is shown only while it answers the blockers in front of
+  // the reader. Blockers are recomputed every pass, so one written against a
+  // different set is about a different question and is withheld rather than
+  // offered as though it still applied.
+  function verdictsFor(item){
+    const stored=(adjudications.items||[]).find(entry=>entry.reviewId===item.reviewId);
+    if(!stored)return [];
+    const now=(item.blockingReasons||[]).filter(reason=>!unwaivableBlocker(reason)).map(String);
+    const then=(stored.blockers||[]).map(String);
+    if(now.length!==then.length||!now.every(reason=>then.includes(reason)))return [];
+    return stored.verdicts||[];
   }
 
   function fromContent(){
@@ -830,6 +850,50 @@
   // One row per raw blocker string, because that string is what the contract
   // matches on. The grouped explanation above stays as it is: it is for reading,
   // this is for deciding.
+  // How sure the adjudicator was, in words rather than a label nobody can rank.
+  const CONFIDENCE_WORDS={
+    corroborated:'two independent sources agree',
+    'single-source':'one source only',
+    unsourced:'no source found — reasoning only',
+  };
+
+  /**
+   * What the adjudicator found about one blocker.
+   *
+   * A recommendation to accept pre-fills the reason box and nothing else: the
+   * tick stays hers, because the sentence beside it is kept with the
+   * verification for good and has to be a person's. A 'cannot-accept' is shown
+   * too — that somebody looked and found nothing is the most useful thing to
+   * know before deciding, and leaving it out would make silence look like
+   * nobody having tried.
+   */
+  function verdictNote(verdict){
+    if(!verdict)return null;
+    const box=el('div',`vd-verdict is-${verdict.recommendation}`);
+    const lede=verdict.recommendation==='accept'
+      ?'ORMA automation suggests this does not stop verification:'
+      :verdict.recommendation==='needs-supply'
+        ?'ORMA automation: this has to be supplied, not ticked off.'
+        :'ORMA automation looked and could not justify accepting this:';
+    box.append(el('p','vd-verdict-lede',lede));
+    if(verdict.reason)box.append(el('p','vd-verdict-reason',verdict.reason));
+    const confidence=CONFIDENCE_WORDS[verdict.confidence];
+    if(confidence)box.append(el('p','vd-verdict-confidence',confidence));
+    if((verdict.sources||[]).length){
+      const list=el('ul','vd-verdict-sources');
+      verdict.sources.forEach(source=>{
+        const row=el('li');
+        const link=el('a','',source.publisher||source.url);
+        link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';
+        row.append(link);
+        if(source.quote)row.append(el('span','vd-verdict-quote',` “${source.quote}”`));
+        list.append(row);
+      });
+      box.append(list);
+    }
+    return box;
+  }
+
   function acceptanceList(decision,onChange){
     const waivable=decision.blockers.filter(reason=>!unwaivableBlocker(reason));
     const supplied=decision.blockers.filter(reason=>unwaivableBlocker(reason));
@@ -866,7 +930,13 @@
       tick.addEventListener('change',()=>{if(tick.checked)window.setTimeout(()=>why.focus(),0);update();});
       why.addEventListener('input',update);
       row.append(tick,text,why);
+      // A suggested reason is typed into the box for her, never ticked for her.
+      // Editing it is the normal case, not a correction: it is her sentence.
+      const verdict=(decision.verdicts||[]).find(entry=>String(entry.blocker)===String(reason));
+      if(verdict?.recommendation==='accept'&&verdict.reason)why.value=verdict.reason;
       box.append(row);
+      const note=verdictNote(verdict);
+      if(note)box.append(note);
       if(index===0)row.classList.add('is-first');
     });
     return {node:box,accepted,waivable};
@@ -1291,6 +1361,14 @@
         artifact('pipeline-health',URLS.pipeline,null),
         artifact('worker-health',URLS.worker,null),
       ]);
+      // One more read, and only when it can change what is on screen: a gate
+      // waiting with a blocker a reason could clear. Unconditional, this would
+      // be 1,440 reads a day against a budget that is already running out
+      // before midnight.
+      adjudications=(dossier.items||[]).some(item=>item.state==='awaiting-human'
+        &&(item.blockingReasons||[]).some(reason=>!unwaivableBlocker(reason)))
+        ?await artifact('gate-adjudications',URLS.adjudications,{items:[]})
+        :{items:[]};
       coverageError='';
       stateNode.textContent='';
       stateNode.classList.remove('is-error');

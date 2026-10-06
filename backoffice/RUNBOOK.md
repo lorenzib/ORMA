@@ -62,6 +62,15 @@ without you. A gate is left standing — and stays visible to you — when its
 blockers do not name exactly one agent, when the automated-resolution limit is
 reached, or when a decision of yours is already waiting to be applied.
 
+The gates that are left get a recommendation instead. Beside each blocker you
+can tick off, the adjudicator writes why it thinks the blocker does not stop
+verification, with the publisher and a quote you can open. Nothing is ticked
+for you and nothing is accepted until you tick it; the suggested sentence is
+editable, and yours is what is kept with the verification. Where it looked and
+could not justify accepting, it says so instead — that is the answer more
+often than not, and it is worth reading before you decide. Recommendations
+appear in the run output under `gateAdjudications`.
+
 ## Failure recovery
 
 ### Worker or model failure
@@ -121,6 +130,10 @@ Required repository variables:
 Gate dispatch is on by default and needs no variable. Set
 `ORMA_GATE_DISPATCH_ENABLED=false` to stop it, or `ORMA_GATE_DISPATCH_LIMIT` to
 change how many gates one pass may hand over (default 3).
+
+The adjudicator is likewise on by default: `ORMA_GATE_ADJUDICATION_ENABLED=false`
+stops it, `ORMA_GATE_ADJUDICATION_LIMIT` sets how many gates one pass may
+research (default 2, lower than the dispatch because each one is a web search).
 
 Trail-photo coverage no longer has an activation variable. It runs inside every
 worker pass and stops queueing on its own once every published trail has a

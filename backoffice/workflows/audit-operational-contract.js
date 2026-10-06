@@ -11,12 +11,13 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
     read(root,'backoffice/OPERATING_STANDARD.md'),read(root,'backoffice/HOSTING.md'),read(root,'backoffice/dashboard-model.js'),read(root,'package.json'),
     read(root,'backoffice/workflows/dispatch-unanswered-gates.js'),
+    read(root,'backoffice/workflows/adjudicate-gate-blockers.js'),read(root,'trail-verify-desk.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -46,6 +47,18 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&workflows['orma-backoffice-worker.yml']?.includes('ORMA_GATE_DISPATCH_ENABLED')
     &&standard.includes('sent to that agent rather than left on the desk'),
     'A gate standing only on findings one agent can supply is dispatched to that agent before the same pass applies decisions, requesting a revision only — never an approval or a rejection — and never past the automated-resolution limit');
+  add('gate-recommendations-never-decide',
+    worker.includes('adjudicateStandingGates')
+    &&worker.indexOf('await adjudicateStandingGates(store')>worker.indexOf('await ingestDossierReviews(store)')
+    // The adjudicator writes no decision and the desk never ticks on her behalf.
+    &&!adjudicator.includes("acceptedBlockers")
+    &&adjudicator.includes('blocker-cannot-be-accepted')
+    &&adjudicator.includes('accept-without-a-retrievable-source')
+    &&desk.includes('never ticked for her')
+    &&!desk.includes('tick.checked=true')
+    &&workflows['orma-backoffice-worker.yml']?.includes('ORMA_GATE_ADJUDICATION_ENABLED')
+    &&standard.includes('It recommends and never accepts'),
+    'A blocker only a moderator can decide arrives with a cited recommendation in the reason field, after the dispatch and apply steps; the recommendation cites a retrieved source, is never offered for an unwaivable blocker, and nothing is ticked or accepted without a person');
   add('hazard-snapshot-publication',workflows['orma-hazard-watch.yml']?.includes('orma-bot/hazard-snapshot')&&workflows['orma-hazard-watch.yml']?.includes('gh pr merge')&&workflows['orma-hazard-watch.yml']?.includes('--auto')&&workflows['orma-hazard-watch.yml']?.includes('/actions/runs/${run}/approve')&&workflows['orma-hazard-watch.yml']?.includes('gh workflow run deploy-pages.yml --ref main')&&workflows['orma-hazard-watch.yml']?.includes('gh pr update-branch')&&standard.includes('automatic pull request whenever the warning set changes'),'The public warning snapshot reaches the website through a pull request whenever the warning set changes: the run approves the PR\'s own quality-gate run (a bot never graduates from the first-time-contributor policy), merges once it passes, and dispatches the website deploy, which nothing done with the workflow token starts by itself');
   add('hazard-cadence',workflows['orma-hazard-watch.yml']?.includes("cron: '7 */3 * * *'")&&workflows['orma-hazard-watch.yml']?.includes('timezone: Europe/Rome'),'Groundskeeper targets minute 7 of every third hour in Europe/Rome, clear of the queue worker and within the Firestore daily quota');
   add('daily-orma-verified-intake',workflows['orma-trail-campaign.yml']?.includes("cron: '30 9 * * *'")&&workflows['orma-trail-campaign.yml']?.includes('timezone: Europe/Rome')&&workflows['orma-trail-campaign.yml']?.includes('ORMA_CAMPAIGN_AUTOMATION_ENABLED'),'ORMA Verified candidate intake targets 09:30 Europe/Rome every day, after the Firestore quota reset window');

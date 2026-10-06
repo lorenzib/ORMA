@@ -51,6 +51,10 @@ jobs:
       # code change; the limit is per pass.
       ORMA_GATE_DISPATCH_ENABLED: ${{ vars.ORMA_GATE_DISPATCH_ENABLED || 'true' }}
       ORMA_GATE_DISPATCH_LIMIT: '3'
+      # The adjudicator that writes a cited recommendation onto a gate only she
+      # can decide. Same kill switch shape as the dispatch above.
+      ORMA_GATE_ADJUDICATION_ENABLED: ${{ vars.ORMA_GATE_ADJUDICATION_ENABLED || 'true' }}
+      ORMA_GATE_ADJUDICATION_LIMIT: '2'
       ORMA_CAMPAIGN_LIMIT: '10'
       ORMA_CAMPAIGN_CAPACITY: '15'
     steps:
