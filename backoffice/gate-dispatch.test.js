@@ -219,6 +219,34 @@ describe('a gate several agents are blocking is asked one agent at a time',()=>{
     expect(dispatch.outstandingAgents).toEqual(expect.arrayContaining(['terrainPoi','evidenceLibrarian','regulatoryRanger']));
   });
 
+  // osm-16363583 (Le Marais) sat at the dossier gate with a 76 m-open OSM trace
+  // the operator's official GPX would replace, flagged by evidenceLibrarian and
+  // redTeam. terrainPoi carried more blockers, so the dispatch asked terrainPoi
+  // to research shade and livestock against a line that was going to change.
+  // Settling the geometry is the cartographer's job regardless of who raised
+  // it, and it comes first.
+  test('a geometry conflict is the cartographer’s, ahead of a heavier terrain load',()=>{
+    const blockingReasons=dossierBlockingReasons(outputs(
+      {agentId:'terrainPoi',result:{recommendation:'block',claims:[
+        {id:'shade',finding:'conflicted'},{id:'livestock',finding:'unresolved'},
+        {id:'surface',finding:'conflicted'},{id:'water',finding:'unresolved'}]}},
+      {agentId:'evidenceLibrarian',result:{recommendation:'block',claims:[
+        {id:'provenance-geometry-and-distance',finding:'conflicted'}]}},
+      {agentId:'redTeam',result:{recommendation:'block',claims:[
+        {id:'rt3-osm-line-not-closed-as-rendered',finding:'counter-evidence'}]}},
+    ));
+    const {orchestration,reviewQueue}=parkedGate({blockingReasons});
+    const [dispatch]=planGateDispatches(orchestration,reviewQueue,{}).dispatches;
+    expect(dispatch.targetAgent).toBe('cartographer');
+    // Scoped to the geometry blockers that routed it here, not terrainPoi's load.
+    expect(dispatch.agentBlockingReasons.length).toBeGreaterThan(0);
+    expect(dispatch.agentBlockingReasons.every(reason=>/geometry|gpx|osm-line|not-closed/.test(reason))).toBe(true);
+    expect(dispatch.note).toContain('provenance-geometry-and-distance');
+    expect(dispatch.note).not.toContain('terrainPoi/shade');
+    // Still told who holds the rest, so it does not assume the gate clears.
+    expect(dispatch.note).toContain('terrainPoi');
+  });
+
   test('the gate converges: once one agent is answered the next is asked',()=>{
     // terrainPoi came back clean; the remaining blockers are the others'.
     const remaining=dossierBlockingReasons(outputs(
