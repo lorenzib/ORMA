@@ -68,7 +68,7 @@ Complete one record per route and package version.
 | Field | Result |
 |---|---|
 | Trail ID | `alpe-siusi` |
-| Package version | `2026.09.05-beta.8` |
+| Package version | `2026.10.06-beta.9` |
 | Reviewed at (ISO date/time and timezone) |  |
 | Reviewer |  |
 | Weather and recent conditions |  |
@@ -84,6 +84,8 @@ Complete one record per route and package version.
 | Offline safety context understandable | Pass / Fail |
 | Defect IDs and notes |  |
 | Overall result | Pass / Fail |
+
+Revision `2026.10.06-beta.9` changed only the stated distance and the schematic elevation profile's km marks: the catalogue carried a 7.5 km hand estimate, and the geometry gate measured the approved composite (paths 7, 6 and 30) at 5.5 km. The route line, routing graph and map corridor are unchanged from beta.8. Check the distance shown against your own track as part of "Loop and direction representation accurate".
 
 ## Pass and stop rules
 

@@ -53,8 +53,10 @@ describe('a route’s shape is declared, not guessed from its geometry', () => {
       if(trail.routeShape==='out-and-back') return false;
       return Math.abs(trail.distance/line-1) >= 0.2;
     }).map(trail => trail.id).sort();
+    // Alpe di Siusi left this list on 2026-10-06: its catalogue distance was a
+    // 7.5 km hand estimate; the composite the geometry gate measured is 5.5 km.
     expect(unexplained).toEqual([
-      'alpe-siusi','cinque-torri-assisted','geotrail-bulla','lago-carezza','prato-piazza',
+      'cinque-torri-assisted','geotrail-bulla','lago-carezza','prato-piazza',
     ]);
   });
 });
