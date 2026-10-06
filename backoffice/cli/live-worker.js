@@ -26,9 +26,9 @@ function blockedLanes(result = {}){
 
 // GitHub step outputs are the only channel back to the workflow that survives
 // the step boundary; the log is for people.
-async function reportWork(work,env=process.env){
+async function reportWork(work,env=process.env,pipeline=null){
   const outcome=workOutcome(work);
-  console.log(`[orma-live-worker] work ${outcome} · ${workMessage(work)}`);
+  console.log(`[orma-live-worker] work ${outcome} · ${workMessage(work,pipeline)}`);
   if(!env.GITHUB_OUTPUT) return null;
   // Random delimiter per GitHub's own guidance: a provider error is arbitrary
   // text, and a fixed delimiter appearing inside it would let the value break
@@ -40,7 +40,7 @@ async function reportWork(work,env=process.env){
     `work_succeeded=${work.succeeded}`,
     `work_failed=${work.failed}`,
     `work_provider_parked=${work.providerParked}`,
-    `work_message<<${delimiter}\n${workMessage(work)}\n${delimiter}`,
+    `work_message<<${delimiter}\n${workMessage(work,pipeline)}\n${delimiter}`,
   ];
   await fs.appendFile(env.GITHUB_OUTPUT,`${lines.join('\n')}\n`);
   return outcome;
@@ -59,12 +59,12 @@ async function main(){
     campaignQueueCapacity:positiveInteger(process.env.ORMA_CAMPAIGN_QUEUE_CAPACITY,40),
     limit:5,specialistLimit,specialistCandidateId });
   const work = summariseWorkAttempted(result);
-  console.log(JSON.stringify({ ...result, work: { ...work, outcome:workOutcome(work), message:workMessage(work) } }, null, 2));
+  console.log(JSON.stringify({ ...result, work: { ...work, outcome:workOutcome(work), message:workMessage(work,result.pipeline) } }, null, 2));
   // Handed to the workflow rather than signalled by the exit code: a run where
   // every job was refused still completed every step it was asked to run, and
   // failing it here would hide the publication lanes behind a red X that has
   // nothing to do with them.
-  await reportWork(work);
+  await reportWork(work,process.env,result.pipeline);
   if(blockedLanes(result).length) process.exitCode = 1;
 }
 
