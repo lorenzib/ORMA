@@ -44,6 +44,10 @@ jobs:
         run: npm run backoffice:verification-state
       - name: Report the verification funnel
         run: npm run backoffice:verification-funnel
+
+      # A long queue and an idle worker look identical in every other report.
+      - name: Report why the job queue is not moving
+        run: npm run backoffice:job-queue
       - name: Report what each waiting gate is asking
         env:
           TRAIL: ${{ inputs.trail }}
