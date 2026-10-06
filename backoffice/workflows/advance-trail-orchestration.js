@@ -4,7 +4,7 @@ const {specialistJob}=require('./apply-dossier-review');
 const {fitReviewQueue}=require('./review-queue-compaction');
 const {summarize}=require('./build-live-orchestration');
 const {routeGuidanceBlockingReasons,routeGuidanceContractStale,ROUTE_GUIDANCE_CONTRACT,
-  ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
+  ROUTE_GUIDANCE_CLAIM_IDS,dossierBlockingReasons,currentBlockingReasons}=require('./compile-verified-dossier');
 const {
   MAX_AUTOMATED_ATTEMPTS,resolutionCandidates,ensureResolutionEntries,pendingAttempt,
   completedAttempts,reconcileCompletedAttempt,addQueuedAttempt,attemptStrategyText,
@@ -19,20 +19,6 @@ function latest(jobs,candidateId,agentId,status='completed'){
     .sort((a,b)=>timeValue(b.completedAt||b.createdAt)-timeValue(a.completedAt||a.createdAt))[0]||null;
 }
 
-function dossierBlockingReasons(outputs){
-  const reasons=routeGuidanceBlockingReasons(outputs);
-  for(const output of outputs){
-    const result=output.result||{};
-    if(result.recommendation&&result.recommendation!=='advance') reasons.push(`${output.agentId}: recommendation is ${result.recommendation}`);
-    for(const question of result.openQuestions||[]) reasons.push(`${output.agentId}: open question — ${question}`);
-    for(const claim of result.claims||[]){
-      if(['conflicted','unresolved','counter-evidence'].includes(claim.finding)) reasons.push(`${output.agentId}/${claim.id}: ${claim.finding}`);
-      if(claim.resolution?.state==='source-exhausted') reasons.push(`${output.agentId}/${claim.id}: five automated resolution strategies exhausted`);
-      for(const blocker of claim.blockers||[]) reasons.push(`${output.agentId}/${claim.id}: ${blocker}`);
-    }
-  }
-  return [...new Set(reasons)];
-}
 
 function resolutionLedger(trail){return Object.values(trail.claimResolution||{});}
 
@@ -154,9 +140,8 @@ async function restoreMissingGateReviews(store,state,queue,at,jobs=[]){
     const geometry=outputs.find(item=>item.agentId==='cartographer')||outputs[0];
     // Never restore a trail as approvable unless the same checks that gate a fresh
     // one still pass. When the evidence cannot be re-read, it needs a human.
-    const blockingReasons=outputs.length
-      ?(gateType==='geometry-approval'?(geometry?.result?.blockers||[]):dossierBlockingReasons(outputs))
-      :(trail.blockers||[]);
+    // The same rule now decides every gate, from one implementation.
+    const blockingReasons=currentBlockingReasons({gateType,specialistOutputs:outputs,blockingReasons:trail.blockers||[]});
     const approvalAllowed=gateType==='agent-failure'?false
       :outputs.length?(gateType==='geometry-approval'
         ?geometry?.result?.reviewState==='ready-for-human-review'&&!blockingReasons.length

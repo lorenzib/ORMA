@@ -181,9 +181,56 @@ function acceptedBlockerMap(acceptedBlockers){
 }
 
 /** Every blocker still standing: unaccepted, or accepted without a real reason. */
+function dossierBlockingReasons(outputs){
+  const reasons=routeGuidanceBlockingReasons(outputs);
+  for(const output of outputs){
+    const result=output.result||{};
+    if(result.recommendation&&result.recommendation!=='advance') reasons.push(`${output.agentId}: recommendation is ${result.recommendation}`);
+    for(const question of result.openQuestions||[]) reasons.push(`${output.agentId}: open question — ${question}`);
+    for(const claim of result.claims||[]){
+      if(['conflicted','unresolved','counter-evidence'].includes(claim.finding)) reasons.push(`${output.agentId}/${claim.id}: ${claim.finding}`);
+      if(claim.resolution?.state==='source-exhausted') reasons.push(`${output.agentId}/${claim.id}: five automated resolution strategies exhausted`);
+      for(const blocker of claim.blockers||[]) reasons.push(`${output.agentId}/${claim.id}: ${blocker}`);
+    }
+  }
+  return [...new Set(reasons)];
+}
+
+/**
+ * The blockers as the checks read the evidence now, rather than as they were
+ * written down when the gate opened.
+ *
+ * A gate item is written once, at the transition into a gate, and its
+ * specialist outputs can be refreshed afterwards without the reasons being
+ * recomputed. Six dossiers reached the desk that way: one stored 41 reasons
+ * where the same outputs yield 17, omitting redTeam's recommendation to block
+ * and a logistics/recommended-start requirement -- a route-guidance reason, the
+ * one class no written reason can answer. The desk was offering an approval the
+ * contract would refuse.
+ *
+ * b23d447a fixed this for a gate item that had gone missing and stated the rule
+ * for all of them: re-run the real checks rather than trusting a stored flag,
+ * and never be more permissive than a fresh gate. This applies it wherever a
+ * decision is weighed.
+ *
+ * Where there is nothing to re-read, the stored list stands: evidence that
+ * cannot be re-read is a reason to keep what a human last saw, not to wave a
+ * dossier through on an empty list.
+ */
+function currentBlockingReasons(review){
+  const outputs=review?.specialistOutputs||[];
+  if(!outputs.length)return review?.blockingReasons||[];
+  if(review?.gateType==='geometry-approval'){
+    // A geometry gate's blockers are the cartographer's own, not the dossier's.
+    const geometry=outputs.find(output=>output.agentId==='cartographer')||outputs[0];
+    return geometry?.result?.blockers||review?.blockingReasons||[];
+  }
+  return dossierBlockingReasons(outputs);
+}
+
 function unacceptedBlockers(review,acceptedBlockers){
   const accepted=acceptedBlockerMap(acceptedBlockers);
-  return (review?.blockingReasons||[]).filter(reason=>!accepted.has(String(reason)));
+  return currentBlockingReasons(review).filter(reason=>!accepted.has(String(reason)));
 }
 
 function compileVerifiedDossier(review,trail,options={}){
@@ -256,4 +303,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={MIN_ACCEPTANCE_REASON,compositeRelations,routeIdentityValue,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={MIN_ACCEPTANCE_REASON,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
