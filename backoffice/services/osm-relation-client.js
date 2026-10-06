@@ -53,10 +53,25 @@ function buildRoutesNearPathQuery(path, radiusMetres = 60){
   ].join('\n');
 }
 
-async function fetchRoutesNearPath(path, options = {}){
+// The lifts a path runs along. An itinerary that rides one carries a stretch
+// that is not walked, and no hiking relation covers a chairlift: OSM maps it as
+// an aerialway, not a path. Asking a route to explain it gets a correct "no" to
+// the wrong question.
+function buildAerialwaysNearPathQuery(path, radiusMetres = 80){
+  const corridor = samplePath(path).map(point => `${point[0]},${point[1]}`).join(',');
+  if(!corridor) throw new Error('A drawn path is required to look for lifts');
+  return [
+    '[out:json][timeout:90];',
+    `way(around:${radiusMetres},${corridor})["aerialway"];`,
+    'out tags geom;',
+  ].join('\n');
+}
+
+// One query, tried against each mirror in turn. Three callers had their own
+// copy of this loop; the third was about to be written.
+async function runQuery(query, options, failure){
   const endpoints = options.endpoints || DEFAULT_ENDPOINTS;
   const fetchImpl = options.fetchImpl || fetch;
-  const query = buildRoutesNearPathQuery(path, options.radiusMetres);
   let lastError = null;
   for(const endpoint of endpoints){
     const controller = new AbortController();
@@ -79,54 +94,62 @@ async function fetchRoutesNearPath(path, options = {}){
       clearTimeout(timeout);
     }
   }
-  throw new Error(`Unable to look for route relations: ${lastError ? lastError.message : 'no endpoint available'}`);
+  throw new Error(`${failure}: ${lastError ? lastError.message : 'no endpoint available'}`);
 }
 
+async function fetchRoutesNearPath(path, options = {}){
+  return runQuery(buildRoutesNearPathQuery(path, options.radiusMetres), options,
+    'Unable to look for route relations');
+}
+
+// The lifts a path runs along, as polylines to measure against.
+async function fetchAerialwaysNearPath(path, options = {}){
+  const { payload } = await runQuery(buildAerialwaysNearPathQuery(path, options.radiusMetres), options,
+    'Unable to look for lifts');
+  return (payload.elements || [])
+    .filter(element => element.type === 'way' && Array.isArray(element.geometry))
+    .map(element => ({
+      id: element.id,
+      tags: element.tags || {},
+      points: element.geometry
+        .filter(node => Number.isFinite(node.lat) && Number.isFinite(node.lon))
+        .map(node => [node.lat, node.lon]),
+    }))
+    .filter(way => way.points.length > 1);
+}
+
+// A single relation comes from the OpenStreetMap API first -- it is the source
+// of record, and it answers without queuing behind an Overpass mirror -- with
+// Overpass as the fallback. Its own timeout, which is shorter than a corridor
+// query's for the same reason.
 async function fetchRelation(externalId, options = {}){
-  const endpoints = options.endpoints || DEFAULT_ENDPOINTS;
   const fetchImpl = options.fetchImpl || fetch;
-  const query = buildRelationQuery(externalId);
-  let lastError = null;
   const relationId = numericRelationId(externalId);
   const mainApiUrl = `https://api.openstreetmap.org/api/0.6/relation/${relationId}/full.json`;
-  const mainController = new AbortController();
-  const mainTimeout = setTimeout(() => mainController.abort(), options.timeoutMs || 60000);
+  const controller = new AbortController();
+  const timeoutMs = options.timeoutMs || 60000;
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  let mainError = null;
   try{
     const response = await fetchImpl(mainApiUrl, {
-      signal: mainController.signal,
+      signal: controller.signal,
       headers: { 'user-agent': USER_AGENT },
     });
     if(!response.ok) throw new Error(`OpenStreetMap API returned HTTP ${response.status}`);
     return { endpoint: mainApiUrl, query: null, payload: await response.json() };
   }catch(error){
-    lastError = error;
+    mainError = error;
   }finally{
-    clearTimeout(mainTimeout);
+    clearTimeout(timeout);
   }
-  for(const endpoint of endpoints){
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), options.timeoutMs || 60000);
-    try{
-      const response = await fetchImpl(endpoint, {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'user-agent': USER_AGENT,
-        },
-        body: `data=${encodeURIComponent(query)}`,
-        signal: controller.signal,
-      });
-      if(!response.ok) throw new Error(`Overpass returned HTTP ${response.status}`);
-      const payload = await response.json();
-      return { endpoint, query, payload };
-    }catch(error){
-      lastError = error;
-    }finally{
-      clearTimeout(timeout);
-    }
+  try{
+    return await runQuery(buildRelationQuery(externalId), { ...options, timeoutMs },
+      'Unable to fetch OSM relation');
+  }catch(error){
+    throw new Error(`${error.message} (OpenStreetMap API first: ${mainError.message})`);
   }
-  throw new Error(`Unable to fetch OSM relation: ${lastError ? lastError.message : 'no endpoint available'}`);
 }
 
 module.exports = { DEFAULT_ENDPOINTS, USER_AGENT, ROUTE_SAMPLE_POINTS, numericRelationId, buildRelationQuery,
-  samplePath, buildRoutesNearPathQuery, fetchRoutesNearPath, fetchRelation };
+  samplePath, buildRoutesNearPathQuery, fetchRoutesNearPath, fetchRelation,
+  buildAerialwaysNearPathQuery, fetchAerialwaysNearPath };

@@ -5,8 +5,8 @@ const fs = require('fs/promises');
 const path = require('path');
 const { option } = require('./discover');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
-const { fetchRoutesNearPath } = require('../services/osm-relation-client');
-const { discoverRouteComposite, ruleOnComposite, rejectComposite } = require('../workflows/discover-route-composite');
+const { fetchRoutesNearPath, fetchAerialwaysNearPath } = require('../services/osm-relation-client');
+const { discoverRouteComposite, ruleOnComposite, rejectComposite, ridesALift } = require('../workflows/discover-route-composite');
 const { ON_ROUTE_PERCENT } = require('../workflows/plan-catalogue-campaign');
 
 // Opens the geometry gate on a proposed composite.
@@ -68,7 +68,9 @@ async function main(args = process.argv.slice(2)){
     }
     try{
       const { payload } = await fetchRoutesNearPath(trail.path);
-      measured = discoverRouteComposite(trail, payload);
+      // Only for an itinerary that rides one, so no other trail pays for the query.
+      const aerialways = ridesALift(trail) ? await fetchAerialwaysNearPath(trail.path) : [];
+      measured = discoverRouteComposite(trail, payload, { aerialways });
     }catch(error){
       console.log(`[composites] ${trailId} · held, could not measure: ${error.message}`);
       held += 1;

@@ -3,7 +3,8 @@
 const { discoverRouteComposite, relationsFromPayload } = require('./workflows/discover-route-composite');
 const { UNATTENDED_APPROVER } = require('./cli/approve-composites');
 const { campaignItem, planCatalogueCampaign } = require('./workflows/plan-catalogue-campaign');
-const { buildRoutesNearPathQuery, samplePath } = require('./services/osm-relation-client');
+const { buildRoutesNearPathQuery, samplePath, buildAerialwaysNearPathQuery,
+  fetchRelation, fetchAerialwaysNearPath } = require('./services/osm-relation-client');
 
 // Many ORMA walks are not one OSM relation. Seceda goes up path 1 and back
 // path 1A; the Sassolungo loop runs over three. A check that can only read one
@@ -290,5 +291,65 @@ describe('an unattended approval does not claim a person',()=>{
   test('so what it records names the run, not a moderator',()=>{
     expect(UNATTENDED_APPROVER).toContain('orma-approve-composites');
     expect(UNATTENDED_APPROVER).not.toMatch(/human-moderator/);
+  });
+});
+
+// Where a relation is fetched from, and in what order.
+//
+// The OpenStreetMap API is the source of record and answers without queuing
+// behind an Overpass mirror, so it is asked first and Overpass is the fallback.
+// Nothing covered that, and extracting the shared Overpass loop quietly deleted
+// the whole first leg: every test still passed.
+describe('fetching one relation',()=>{
+  const payload={elements:[{type:'relation',id:7}]};
+
+  test('asks OpenStreetMap before any Overpass mirror',async()=>{
+    const seen=[];
+    const fetchImpl=async url=>{seen.push(url);return {ok:true,json:async()=>payload};};
+    const result=await fetchRelation('relation/7',{fetchImpl});
+    expect(seen).toEqual(['https://api.openstreetmap.org/api/0.6/relation/7/full.json']);
+    expect(result).toMatchObject({endpoint:seen[0],query:null,payload});
+  });
+
+  test('falls back to Overpass when OpenStreetMap will not answer',async()=>{
+    const seen=[];
+    const fetchImpl=async url=>{
+      seen.push(url);
+      if(url.includes('openstreetmap.org')) return {ok:false,status:503};
+      return {ok:true,json:async()=>payload};
+    };
+    const result=await fetchRelation('relation/7',{fetchImpl,endpoints:['https://overpass.example/api']});
+    expect(seen).toHaveLength(2);
+    expect(seen[1]).toBe('https://overpass.example/api');
+    expect(result.payload).toBe(payload);
+    expect(result.query).toContain('relation(7)');
+  });
+
+  test('and when neither answers, says so about both',async()=>{
+    const fetchImpl=async url=>({ok:false,status:url.includes('openstreetmap.org')?503:504});
+    await expect(fetchRelation('relation/7',{fetchImpl,endpoints:['https://overpass.example/api']}))
+      .rejects.toThrow(/Unable to fetch OSM relation.*OpenStreetMap API first/s);
+  });
+});
+
+describe('looking for the lifts a path runs along',()=>{
+  test('the query asks for aerialways with their geometry',()=>{
+    const query=buildAerialwaysNearPathQuery([[46.5,12.0],[46.6,12.1]],80);
+    expect(query).toContain('["aerialway"]');
+    expect(query).toContain('around:80');
+    expect(query).toContain('out tags geom;');
+  });
+
+  test('and ways come back as polylines, single-node ways dropped',async()=>{
+    const fetchImpl=async()=>({ok:true,json:async()=>({elements:[
+      {type:'way',id:900787867,tags:{aerialway:'chair_lift',name:'5 Torri'},
+        geometry:[{lat:46.5185,lon:12.0385},{lat:46.5082,lon:12.0465}]},
+      {type:'way',id:2,tags:{aerialway:'goods'},geometry:[{lat:46.5,lon:12.0}]},
+      {type:'node',id:3},
+    ]})});
+    const lifts=await fetchAerialwaysNearPath([[46.5,12.0],[46.6,12.1]],{fetchImpl});
+    expect(lifts).toHaveLength(1);
+    expect(lifts[0]).toMatchObject({id:900787867,tags:{aerialway:'chair_lift',name:'5 Torri'}});
+    expect(lifts[0].points).toEqual([[46.5185,12.0385],[46.5082,12.0465]]);
   });
 });

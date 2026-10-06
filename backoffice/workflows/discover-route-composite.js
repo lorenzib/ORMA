@@ -65,6 +65,87 @@ function lineKilometres(points){
   return total;
 }
 
+// A chairlift is mapped as two or three nodes over a kilometre of cable, so
+// asking whether a walked point is near one of its *vertices* misses the middle
+// of the ride. Densifying the line first keeps the nearest-vertex test that the
+// rest of this file uses, and for a straight cable span that is exact.
+const RIDE_SAMPLE_M = 20;
+
+// How much longer than the cable the matched stretch may be before it stops
+// looking like a ride. The station approaches add a little; they do not double it.
+const RIDE_LENGTH_TOLERANCE = 1.5;
+
+function densify(points, spacingMetres = RIDE_SAMPLE_M){
+  const dense = [];
+  for(let index = 0; index < points.length - 1; index += 1){
+    const start = points[index];
+    const end = points[index + 1];
+    const steps = Math.max(1, Math.ceil(metresBetween(start, end) / spacingMetres));
+    for(let step = 0; step < steps; step += 1){
+      dense.push([start[0] + (end[0] - start[0]) * step / steps,
+        start[1] + (end[1] - start[1]) * step / steps]);
+    }
+  }
+  if(points.length) dense.push(points[points.length - 1]);
+  return dense;
+}
+
+/**
+ * The stretch of a walk that is ridden rather than walked.
+ *
+ * Only for an itinerary that declares it rides a lift. `liftAccess.dependency`
+ * is curated and already says exactly this: "required when the itinerary itself
+ * rides the lift, optional when a lift only shortens the walk". Where a lift is
+ * merely nearby -- and in a ski area a path often runs right under one -- the
+ * walk is still walked and nothing here applies.
+ *
+ * One contiguous stretch, the longest, because a ride is continuous. Scattered
+ * points that happen to pass beneath a cable are not a ride and must not excuse
+ * ground a walker covers on foot.
+ */
+function ridesALift(trail){ return trail?.liftAccess?.dependency === 'required'; }
+
+function riddenStretch(trail, aerialways, radiusMetres = ON_ROUTE_METRES){
+  if(!ridesALift(trail)) return null;
+  const walked = Array.isArray(trail.path) ? trail.path : [];
+  const lines = (aerialways || []).filter(way => (way.points || []).length > 1)
+    .map(way => ({ ...way, dense: densify(way.points) }));
+  if(!walked.length || !lines.length) return null;
+
+  let best = null;
+  let run = null;
+  walked.forEach((point, index) => {
+    const on = lines.find(line => line.dense.some(vertex => metresBetween(point, vertex) <= radiusMetres));
+    if(!on){ run = null; return; }
+    if(!run || run.way !== on.id) run = { from:index, to:index, way:on.id, tags:on.tags };
+    else run.to = index;
+    if(!best || (run.to - run.from) > (best.to - best.from)) best = { ...run };
+  });
+  if(!best) return null;
+
+  // Excusing ground is the direction that flatters a proposal, so it is capped
+  // by the cable's own length. A walk leaves the top station still beside the
+  // line, which is the station and fairly counted with the ride; a walk running
+  // under a cable for twice its length is something else, and the honest answer
+  // there is to measure the lot and let the coverage figure say so.
+  const stretch = lineKilometres(walked.slice(best.from, best.to + 1));
+  // Measured on the densified line: lineKilometres drops any step of a kilometre
+  // or more as a gap between disjoint pieces, and a cable mapped as two nodes is
+  // exactly one such step. Its own length would otherwise come back as zero.
+  const cable = lineKilometres(lines.find(line => line.id === best.way).dense);
+  if(cable > 0 && stretch > cable * RIDE_LENGTH_TOLERANCE) return null;
+
+  return {
+    fromIndex: best.from,
+    toIndex: best.to,
+    pointCount: best.to - best.from + 1,
+    metres: Math.round(stretch * 1000),
+    cableMetres: Math.round(cable * 1000),
+    aerialway: best.tags?.aerialway || null,
+    name: best.tags?.name || trail.liftAccess?.name || null,
+  };
+}
+
 function coveredIndices(walked, relation, radiusMetres){
   const covered = new Set();
   walked.forEach((point, index) => {
@@ -93,7 +174,17 @@ function discoverRouteComposite(trail, payload, options = {}){
   }));
   const atScale = relation => share.get(relation.id) >= MINIMUM_WALK_SHARE;
 
-  const outstanding = new Set(walked.map((_, index) => index));
+  // A ride is not walked, so it is not the routes' job to explain it. Measuring
+  // it would hold a hiking relation responsible for a cable, and cinque-torri
+  // sat unproposable at 88% because 1 km of its 5.3 is the 5 Torri chairlift.
+  // Removed from the denominator rather than counted as covered: the question
+  // is what share of the *walk* runs along a waymarked route.
+  const ridden = riddenStretch(trail, options.aerialways, radiusMetres);
+  const isRidden = index => ridden && index >= ridden.fromIndex && index <= ridden.toIndex;
+  const measured = walked.map((_, index) => index).filter(index => !isRidden(index));
+  if(!measured.length) return null;
+
+  const outstanding = new Set(measured);
   const chosen = [];
 
   // Paths at the walk's own scale first. Only if they leave the route
@@ -115,11 +206,14 @@ function discoverRouteComposite(trail, payload, options = {}){
     }
   }
 
-  const covered = walked.length - outstanding.size;
+  const covered = measured.length - outstanding.size;
   return {
     radiusMetres,
     candidateRelationCount: relations.length,
-    coveragePercent: Math.round((covered / walked.length) * 100),
+    coveragePercent: Math.round((covered / measured.length) * 100),
+    // Stated, never silent. A denominator that quietly shrank would be the same
+    // trick as a stored blocker list nobody recomputes.
+    ...(ridden ? { riddenSegment: ridden, walkedPointCount: measured.length } : {}),
     // Ordered by where each path first carries the walk, which is the order a
     // reader meets the numbers on the ground.
     relations: chosen
@@ -128,7 +222,7 @@ function discoverRouteComposite(trail, payload, options = {}){
         ref: relation.tags.ref || null,
         name: relation.tags.name || null,
         network: relation.tags.network || null,
-        coveragePercent: Math.round((coverage.get(relation.id).size / walked.length) * 100),
+        coveragePercent: Math.round(([...coverage.get(relation.id)].filter(index => !isRidden(index)).length / measured.length) * 100),
         walkSharePercent: Math.min(100, Math.round(share.get(relation.id) * 100)),
         firstCoveredIndex: Math.min(...coverage.get(relation.id)),
       }))
@@ -168,5 +262,5 @@ function rejectComposite(composite, options = {}){
     rejectedBy:options.approvedBy || 'human-moderator' } };
 }
 
-module.exports = { MAX_RELATIONS, MINIMUM_WALK_SHARE, lineKilometres, discoverRouteComposite, relationsFromPayload, metresBetween,
-  ruleOnComposite, rejectComposite };
+module.exports = { MAX_RELATIONS, MINIMUM_WALK_SHARE, RIDE_SAMPLE_M, RIDE_LENGTH_TOLERANCE, lineKilometres, discoverRouteComposite, relationsFromPayload, metresBetween,
+  densify, riddenStretch, ridesALift, ruleOnComposite, rejectComposite };
