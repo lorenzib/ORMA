@@ -287,6 +287,18 @@ body.bo-shell{margin:0;background:var(--bo-bg);color:var(--bo-ink)}
 .vd-shape-copy[disabled]{opacity:.45;cursor:not-allowed;}
 @media (max-width:640px){.vd-shape-option{flex:1 1 100%;}}
 
+/* Decisions already recorded: out of the queue, still on the page, because an
+   answer that has not been collected yet is worth seeing without being asked
+   for twice. */
+.vd-answered{margin-top:22px;border-top:1px solid #dfe5e0;padding-top:16px;}
+.vd-answered-title{margin:0;font-size:14px;font-weight:700;color:#5d6b60;}
+.vd-answered-lede{margin:5px 0 12px;font-size:12.5px;line-height:1.5;color:var(--bo-ink-soft,#5d6b60);max-width:64ch;}
+.vd-answered-row{padding:10px 13px;border:1px solid #e2e7e3;border-radius:10px;background:#fafbfa;}
+.vd-answered-row+.vd-answered-row{margin-top:8px;}
+.vd-answered-row strong{display:block;font-size:14px;color:#2f3d33;}
+.vd-answered-row p{margin:3px 0 0;font-size:12.5px;line-height:1.45;color:#6b7a6e;}
+.vd-answered-row small{display:block;margin-top:4px;font-size:11px;color:#8a968c;}
+
 /* Trails that gave up: out of the queue, but not out of sight. */
 .vd-blocked{margin-top:22px;border-top:1px solid #dfe5e0;padding-top:16px;}
 .vd-blocked-title{margin:0;font-size:14px;font-weight:700;color:#5d6b60;}

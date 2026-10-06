@@ -68,7 +68,7 @@
 
   function activityTitle(item){
     const action=item.action||(item.decisions||[]).map(decision=>decision.action).filter(Boolean).join(', ');
-    const stream={dossier:'Evidence',content:'Trail content',publication:'Release','new-trail':'New Trail',hazard:'Hazard'}[item.stream]||'Workflow';
+    const stream={dossier:'Evidence',route:'Route choice',content:'Trail content',publication:'Release','new-trail':'New Trail',hazard:'Hazard'}[item.stream]||'Workflow';
     return `${stream}${action?` · ${action.replace(/-/g,' ')}`:''}`;
   }
 
@@ -225,11 +225,15 @@
     set('dashboardUpdated','Refreshing protected Firestore…');
     try{
       const remote=await api();
-      const [orchestration,dossiers,execution,routeReview,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,jobResult,historyResult,communityResult,verifiedRegistry]=await Promise.all([
+      const [orchestration,dossiers,execution,routeReview,routeReviewResult,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,jobResult,historyResult,communityResult,verifiedRegistry]=await Promise.all([
         required(remote,'trail-orchestration'),
         required(remote,'dossier-review-queue'),
         required(remote,'verified-trail-editorial-execution'),
         optional(remote,'route-review',{items:[]}),
+        // The recorded answers to those route questions. The artifact keeps
+        // asking until a cartographer run rebuilds it, so without these the
+        // queue would ask again for every choice already made.
+        remote.getRouteReviews(),
         required(remote,'publication-staging'),
         optional(remote,'publication-requests',{requests:[]}),
         optional(remote,'worker-health',null),
@@ -248,12 +252,13 @@
       ]);
       if(!jobResult?.ok)throw new Error(`Could not load agent jobs: ${jobResult?.error||'unknown error'}`);
       if(!historyResult?.ok)throw new Error(`Could not load decision receipts: ${historyResult?.error||'unknown error'}`);
+      if(!routeReviewResult?.ok)throw new Error(`Could not load route choices: ${routeReviewResult?.error||'unknown error'}`);
       if(!newTrailReviewResult?.ok)throw new Error(`Could not load New Trail decisions: ${newTrailReviewResult?.error||'unknown error'}`);
       if(!hazardReviewResult?.ok)throw new Error(`Could not load hazard decisions: ${hazardReviewResult?.error||'unknown error'}`);
       if(!communityResult?.ok)throw new Error(`Could not load community moderation: ${communityResult?.error||'unknown error'}`);
 
       const strategyStatus={summary:{editorialStatus:'parked for MVP',newsletterStatus:'parked for MVP',productStatus:'parked for MVP'}};
-      const model=window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,routeReview,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviews:newTrailReviewResult.reviews||[],hazards,hazardQueue,hazardStatus,hazardReviews:hazardReviewResult.reviews||[],strategyStatus,jobs:jobResult.jobs||[],history:historyResult.decisions||[]});
+      const model=window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,routeReview,routeReviews:routeReviewResult.reviews||[],publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviews:newTrailReviewResult.reviews||[],hazards,hazardQueue,hazardStatus,hazardReviews:hazardReviewResult.reviews||[],strategyStatus,jobs:jobResult.jobs||[],history:historyResult.decisions||[]});
       document.getElementById('executiveDecisionQueue').classList.remove('is-error');
       coverage=window.ORMADashboardModel.buildCoverageGrid({hazards,verifiedRegistry,orchestration});
       renderCoverage();

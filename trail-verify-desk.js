@@ -38,6 +38,7 @@
     stuck:document.getElementById('verifyStuck'),
     age:document.getElementById('verifyMachineAge'),
   };
+  const answeredNode=document.getElementById('verifyAnswered');
   const blockedNode=document.getElementById('verifyBlocked');
   const prNode=document.getElementById('verifyPr');
   const prCountNode=document.getElementById('verifyPrCount');
@@ -1114,7 +1115,62 @@
   // into this one. Recording a choice queues it for automation; nothing
   // published changes.
   function routeNeedsHuman(item){return /human|direct-confirmation/i.test(item&&item.reviewState||'');}
+  // What you answered, from this session and from Firestore. The question lives
+  // in the route-review artifact, which only a cartographer run rebuilds, so
+  // without reading the answers back the desk asks again on every visit for
+  // every choice already made.
   const routeReceipts={};
+  let routeDecisions=[];
+  const ROUTE_ACTION_SAID={
+    'approve-route':'Kept the chosen route',
+    'approve-route-variants':'Kept the chosen route variants',
+    'request-route-research':'Sent back for more research',
+    'reject-route-source':'Rejected the source',
+    'route-unresolved':'Left unresolved',
+  };
+
+  function stampMs(value){
+    if(!value)return 0;
+    if(typeof value.toDate==='function')return value.toDate().getTime();
+    if(value.seconds)return Number(value.seconds)*1000;
+    const parsed=Date.parse(value);return Number.isNaN(parsed)?0:parsed;
+  }
+
+  // Read once per page load and again after each submit, never on the minute
+  // poll: this is a hundred-document read and the daily Firestore quota is
+  // small. Nothing but this desk writes these, so that is current enough.
+  async function loadRouteDecisions(){
+    if(LOCAL_MODE)return;
+    try{
+      const result=await (await remote()).getRouteReviews();
+      if(result&&result.ok)routeDecisions=result.reviews||[];
+    }catch(error){/* the in-session receipt still covers what was just saved */}
+  }
+
+  /**
+   * One answer per candidate, newest first. A decision automation refused
+   * (blocked) or a later decision replaced (superseded) is not an answer, and
+   * neither is one taken against an older version of the question — a rebuilt
+   * artifact is the cartographer asking again.
+   */
+  function routeAnswers(){
+    const answers=new Map();
+    const askedMs=stampMs(routeReview.generatedAt);
+    const remember=(candidateId,answer)=>{
+      if(!candidateId)return;
+      const current=answers.get(candidateId);
+      if(!current||answer.at>=current.at)answers.set(candidateId,answer);
+    };
+    for(const review of routeDecisions){
+      if(['blocked','superseded'].includes(review.status))continue;
+      const at=stampMs(review.processedAt||review.submittedAt);
+      if(at&&askedMs&&at<askedMs)continue;
+      remember(review.candidateId,{at,action:review.action||'',status:review.status||'queued'});
+    }
+    for(const [candidateId,receipt] of Object.entries(routeReceipts))
+      remember(candidateId,{at:receipt.at,action:receipt.action||'',status:'queued'});
+    return answers;
+  }
 
   async function submitRouteChoice(item,action,proposalIds,note,article,status){
     if(action==='approve'&&!proposalIds.length){status.textContent='Select at least one route variant to keep.';return;}
@@ -1124,9 +1180,11 @@
     try{
       const result=await send('route',{candidateId:item.candidateId,action:realAction,proposalIds,note:String(note||'').trim()});
       if(result&&result.ok===false)throw new Error(result.error||'submit failed');
-      routeReceipts[item.candidateId]={at:Date.now()};
+      routeReceipts[item.candidateId]={at:Date.now(),action:realAction};
       status.textContent='Route choice saved. The next automation run collects it; nothing on the public site changed.';
-      window.setTimeout(load,1200);
+      // Re-read the recorded answers before refreshing, so the card leaves the
+      // queue on the strength of what Firestore holds and not only this tab.
+      window.setTimeout(()=>{loadRouteDecisions().then(load);},1200);
     }catch(error){
       status.classList.add('is-error');status.textContent=`Could not record route choice: ${error.message}`;
       article.querySelectorAll('button').forEach(button=>{button.disabled=false;});
@@ -1146,10 +1204,6 @@
       const list=el('ul','vd-checklist');
       item.findings.forEach(finding=>list.append(el('li','',typeof finding==='string'?finding:JSON.stringify(finding))));
       article.append(el('h3','vd-checklist-title','What the sources found'),list);
-    }
-    if(routeReceipts[item.candidateId]){
-      article.append(el('p','vd-status',`Route choice saved ${new Date(routeReceipts[item.candidateId].at).toLocaleTimeString()}. The next automation run picks it up.`));
-      return article;
     }
     const multiple=item.selectionMode==='one-or-more';
     const proposals=el('div','vd-route-proposals');
@@ -1184,8 +1238,33 @@
     return article;
   }
 
-  function routeChoiceCards(){
-    return (routeReview.items||[]).filter(routeNeedsHuman).map(routeCard);
+  function routeChoiceCards(answers){
+    return (routeReview.items||[]).filter(routeNeedsHuman)
+      .filter(item=>!answers.has(item.candidateId)).map(routeCard);
+  }
+
+  // An answer already given is not a question. It stays on the page, under the
+  // queue, because a choice automation has not collected yet is worth seeing —
+  // just never worth being asked for a second time.
+  function renderAnswered(answers){
+    if(!answeredNode)return;
+    const rows=(routeReview.items||[]).filter(routeNeedsHuman)
+      .filter(item=>answers.has(item.candidateId));
+    answeredNode.replaceChildren();
+    answeredNode.hidden=!rows.length;
+    if(!rows.length)return;
+    answeredNode.append(el('h2','vd-answered-title',
+      `${plural(rows.length,'route choice')} already recorded`));
+    answeredNode.append(el('p','vd-answered-lede',
+      'You have answered these. They are out of the queue and waiting on the next automation run, not on you.'));
+    rows.forEach(item=>{
+      const answer=answers.get(item.candidateId);
+      const row=el('article','vd-answered-row');
+      row.append(el('strong','',item.title||item.candidateId));
+      row.append(el('p','',ROUTE_ACTION_SAID[answer.action]||'Decision recorded'));
+      if(answer.at)row.append(el('small','',`Saved ${new Date(answer.at).toLocaleString()}`));
+      answeredNode.append(row);
+    });
   }
 
   function render(){
@@ -1193,7 +1272,8 @@
     // click each, and burying them under the ones needing thought is what makes
     // a short queue feel long.
     // Route choice is stage 0, the earliest gate, so it leads the queue.
-    const routeCards=routeChoiceCards();
+    const answers=routeAnswers();
+    const routeCards=routeChoiceCards(answers);
     const decisions=[...fromDossier(),...fromContent(),...fromPublish()]
       .sort((a,b)=>Number(b.ready===true)-Number(a.ready===true));
     const total=routeCards.length+decisions.length;
@@ -1206,6 +1286,7 @@
       decisions.forEach(decision=>queueNode.append(card(decision)));
     }
     renderMachine();
+    renderAnswered(answers);
     renderBlocked();
     renderCoverage();
     renderPullRequests();
@@ -1250,8 +1331,10 @@
     }
   }
 
-  refreshBtn.addEventListener('click',load);
-  load();
+  // The Refresh button is the one place a person asks for everything again, so
+  // it re-reads the recorded answers too; the minute poll does not.
+  refreshBtn.addEventListener('click',()=>loadRouteDecisions().then(load));
+  loadRouteDecisions().then(load);
   // Poll once a minute, and only while the tab is visible, so a backgrounded
   // desk cannot drain the Firestore daily quota.
   // Refreshing on top of somebody mid-decision takes away the box they are

@@ -125,7 +125,7 @@ const DECISION_HISTORY_PER_SOURCE=6;
 async function getDecisionHistory(){
   if(!await moderatorIdentity())return {ok:false,error:'moderator-required',decisions:[]};
   try{
-    const sources=[['backofficeDossierReviews','dossier'],['backofficeReviews','content'],['backofficePublicationReviews','publication'],['backofficeNewTrailReviews','new-trail'],['backofficeHazardReviews','hazard'],['backofficeEditorialReviews','editorial'],['backofficeNewsletterReviews','newsletter'],['backofficeAnalystReviews','analyst']];
+    const sources=[['backofficeDossierReviews','dossier'],['backofficeRouteReviews','route'],['backofficeReviews','content'],['backofficePublicationReviews','publication'],['backofficeNewTrailReviews','new-trail'],['backofficeHazardReviews','hazard'],['backofficeEditorialReviews','editorial'],['backofficeNewsletterReviews','newsletter'],['backofficeAnalystReviews','analyst']];
     const snapshots=await Promise.all(sources.map(([name])=>getDocs(query(collection(db,name),orderBy('submittedAt','desc'),limit(DECISION_HISTORY_PER_SOURCE)))));
     const decisions=snapshots.flatMap((snapshot,index)=>snapshot.docs.map(item=>({id:item.id,stream:sources[index][1],...item.data()})))
       .sort((a,b)=>(b.submittedAt?.seconds||0)-(a.submittedAt?.seconds||0)).slice(0,30);

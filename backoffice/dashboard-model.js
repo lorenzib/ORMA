@@ -151,6 +151,7 @@
     if(status==='pull-request-opened')return 'The tested website diff is ready for your final GitHub review.';
     if(status==='published')return `Published on the ORMA website from commit ${String(item.publicationCommit||'unknown').slice(0,7)}. The successful deployment receipt and live trail link are saved.`;
     if(status==='approved-for-pr-creation')return 'Approval consumed. ORMA automation is preparing the website pull request.';
+    if(item.stream==='route')return 'Route choice recorded and retained in the audit trail; this gate no longer waits on you.';
     if(item.stream==='dossier'&&item.action==='request-revision')return 'Revision handed to the selected trail specialist.';
     if(item.stream==='content')return 'Content decision consumed; the trail advances when both outputs are approved.';
     if(item.stream==='new-trail')return item.action==='send-to-verification'?'Selection consumed; the candidate is entering the capacity-limited Existing Trails verification fleet.':'New Trail decision consumed and retained in the scouting audit trail.';
@@ -175,7 +176,7 @@
 
   function buildDashboardModel(input={}){
     const orchestration=input.orchestration||{};const dossiers=input.dossiers||{};const execution=input.execution||{};
-    const routeReview=input.routeReview||{items:[]};
+    const routeReview=input.routeReview||{items:[]};const routeReviews=input.routeReviews||[];
     const publication=input.publication||{};const publicationRequests=input.publicationRequests||{requests:[]};
     const newTrailScouting=input.newTrailScouting||{candidates:[],summary:{}};const newTrailReviews=input.newTrailReviews||[];const newTrailStatus=input.newTrailStatus||{};
     const hazards=input.hazards||{hazards:[]};const hazardQueue=input.hazardQueue||{items:[]};const hazardReviews=input.hazardReviews||[];const hazardStatus=input.hazardStatus||{};
@@ -242,12 +243,31 @@
     const analystMockupItems=analystParked?[]:[...latestDesignByIdea.values()].filter(design=>{const review=analystMockupReviews.get(design.ideaId);return !review||['blocked','superseded'].includes(review.status)||(review.status==='processed'&&review.action==='request-mockup-revision');});
     const newsletterHandoffs=newsletterParked?0:newsletterReviews.filter(review=>['queued','processing'].includes(review.status)).length;
     const analystHandoffs=analystParked?0:analystReviews.filter(review=>['queued','processing'].includes(review.status)).length;
+    // A route choice already recorded is not waiting on anyone. The answer is
+    // its own Firestore document while the question stays in the `route-review`
+    // artifact, which only a cartographer run rebuilds — so without this the
+    // same card is asked again on every refresh, long after it was answered.
+    // The rule matches the dossier one: a recorded decision leaves the queue,
+    // and a question genuinely asked again — a newer artifact, or a decision
+    // automation could not apply — comes back.
+    const latestRouteReviews=latestReviewBy(routeReviews,'candidateId');
+    const routeAskedMs=dateMs(routeReview.generatedAt);
+    const routeAnswered=new Set();
+    for(const [candidateId,review] of latestRouteReviews){
+      if(['blocked','superseded'].includes(review.status))continue;
+      const answeredMs=dateMs(review.processedAt||review.submittedAt);
+      if(answeredMs&&routeAskedMs&&answeredMs<routeAskedMs)continue;
+      routeAnswered.add(candidateId);
+    }
+    const routeHandoffs=[...latestRouteReviews.values()]
+      .filter(review=>review.status==='queued'&&routeAnswered.has(review.candidateId)).length;
 
     const decisions=[];
     // Route choices / geometry confirmations awaiting a human. These live in the
     // route-review artifact (separate from the dossier queue), so surface them
     // first — they are the earliest gate and were previously invisible here.
-    const routeItems=(routeReview.items||[]).filter(item=>/human|direct-confirmation/i.test(item.reviewState||''));
+    const routeItems=(routeReview.items||[]).filter(item=>/human|direct-confirmation/i.test(item.reviewState||'')
+      &&!routeAnswered.has(item.candidateId));
     for(const item of routeItems)decisions.push({
       id:`route-${item.candidateId}`,kind:'route',stage:'0 · Route choice',
       title:item.title||names.get(item.candidateId)||item.candidateId,
@@ -308,7 +328,7 @@
     }
     const activity=[...activityById.values()].sort((a,b)=>b.at-a.at).slice(0,8).map(item=>({...item,message:activityMessage(item)}));
     return {
-      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,newTrailItems,hazardItems,editorialItems,newsletterItem,analystIdeaItems,analystMockupItems,publicationInFlight,handoffsInFlight:handoffsInFlight+newTrailHandoffs+hazardHandoffs+editorialHandoffs+newsletterHandoffs+analystHandoffs,automationFailures,workerHealth,campaignHealth,
+      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,newTrailItems,hazardItems,editorialItems,newsletterItem,analystIdeaItems,analystMockupItems,publicationInFlight,handoffsInFlight:handoffsInFlight+routeHandoffs+newTrailHandoffs+hazardHandoffs+editorialHandoffs+newsletterHandoffs+analystHandoffs,automationFailures,workerHealth,campaignHealth,
       blockerCount:blockedCandidates.size,trackedTrails:orchestration.summary?.trails||(orchestration.trails||[]).length,
       newTrailProgress:{candidates:(newTrailScouting.candidates||[]).length,waiting:newTrailItems.length,inFlight:newTrailHandoffs,status:newTrailStatus.status||'not-run'},
       groundskeeperProgress:{active:(hazards.hazards||[]).filter(item=>item.state==='active').length,waiting:hazardItems.length,sourceFailures:Number(hazardStatus.summary?.sourceFailures||0),status:hazardStatus.status||'not-run'},

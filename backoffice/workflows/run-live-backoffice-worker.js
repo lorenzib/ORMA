@@ -6,6 +6,8 @@ const { buildVerifiedTrailRevisionJobs } = require('./queue-verified-trail-revis
 const { buildPublicationStaging } = require('./build-publication-staging');
 const { runVerifiedTrailRevision } = require('./run-verified-trail-revision');
 const { applyDossierReview } = require('./apply-dossier-review');
+const { applyRouteReview } = require('./apply-route-review');
+const { admitChosenRoutes } = require('./admit-chosen-routes');
 const { runTrailSpecialist } = require('./run-trail-specialist');
 const { advanceTrailOrchestration } = require('./advance-trail-orchestration');
 const {buildVerifiedEditorialHandoff}=require('./verified-editorial-handoff');
@@ -196,6 +198,99 @@ async function ingestPublicationReviews(store){
   return outcomes;
 }
 
+// Stage 0: the route choice. The desk writes one document per answer and the
+// question stays in the `route-review` artifact, so until this ran the same
+// card was asked for again on every refresh and the chosen line never became
+// the candidate's route.
+async function ingestRouteReviews(store){
+  if(typeof store.listRouteReviews!=='function')return [];
+  const reviews=await store.listRouteReviews('queued');const outcomes=[];
+  // Two answers for one trail are one answer and one change of mind. Applying
+  // both would replay the older one over the newer, so only the newest is
+  // applied and the rest are marked superseded rather than failed.
+  const effectiveByCandidate=new Map();
+  for(const review of reviews){
+    const current=effectiveByCandidate.get(review.candidateId);
+    const key=`${iso(review.submittedAt)}:${review.id}`;
+    const currentKey=current?`${iso(current.submittedAt)}:${current.id}`:'';
+    if(!current||key>currentKey)effectiveByCandidate.set(review.candidateId,review);
+  }
+  for(const review of reviews){
+    const effective=effectiveByCandidate.get(review.candidateId);
+    if(effective?.id===review.id)continue;
+    await store.markRouteReview(review.id,'superseded',{supersededBy:effective.id});
+    outcomes.push({reviewId:review.id,candidateId:review.candidateId,status:'superseded',supersededBy:effective.id});
+  }
+  for(const review of effectiveByCandidate.values()){
+    try{
+      const [routeReview,ledger]=await Promise.all([
+        store.getArtifact('route-review'),store.getArtifact('route-review-ledger'),
+      ]);
+      if(!routeReview)throw new Error('Route review artifact is not seeded');
+      // The chosen lines, read before the decision is applied. Bounded by the
+      // six proposal ids a decision may carry.
+      const geometries=new Map();
+      for(const proposalId of (review.proposalIds||[]).slice(0,6)){
+        const proposal=await store.getArtifact(`route-proposal-geometry-${proposalId}`);
+        if(proposal)geometries.set(String(proposalId),proposal);
+      }
+      const result=applyRouteReview(routeReview,ledger,review,{at:iso(review.submittedAt),geometries});
+      const writes=[store.setArtifact('route-review',result.routeReview,{lastRouteDecisionId:review.id}),
+        store.setArtifact('route-review-ledger',result.ledger)];
+      // The line the rest of the pipeline reads for this candidate. Promoted
+      // only when the chosen proposal's geometry was found: a decision is never
+      // lost to a missing file, and a wrong line is never written in its place.
+      for(const promotion of result.promotions){
+        if(!promotion.feature)continue;
+        writes.push(store.setArtifact(`route-proposal-${promotion.candidateId}`,promotion.feature,
+          {proposalId:promotion.proposalId,approvedAt:iso(review.submittedAt)}));
+      }
+      await Promise.all(writes);
+      await store.markRouteReview(review.id,'processed',{outcome:result.outcome});
+      outcomes.push({reviewId:review.id,status:'processed',...result.outcome});
+    }catch(error){
+      await store.markRouteReview(review.id,'blocked',{error:String(error.message||error).slice(0,2000)});
+      outcomes.push({reviewId:review.id,candidateId:review.candidateId,status:'blocked',error:error.message});
+    }
+  }
+  return outcomes;
+}
+
+// A chosen route is only an answer until the trail it names is in the fleet.
+// This runs every pass, not only when a decision arrives: what holds an
+// admission back — a full fleet, a catalogue entry that is not there yet — is
+// usually temporary, and the trail should enter as soon as it clears.
+async function admitRouteChoices(store,options={}){
+  try{
+    const routeReview=await store.getArtifact('route-review');
+    if(!routeReview)return [];
+    const orchestration=await store.getArtifact('trail-orchestration')
+      ||{contractVersion:'1.0.0',publicMutationAllowed:false,trails:[]};
+    const trailById=options.trailById
+      ||new Map((options.productionTrails||[]).map(trail=>[trail.id,trail]));
+    const result=admitChosenRoutes(orchestration,routeReview,{at:options.at||new Date().toISOString(),
+      trailById,capacity:options.campaignCapacity||DEFAULT_TRAIL_CAPACITY});
+    if(result.changed){
+      for(const job of result.jobs){
+        if(typeof store.putJobIfAbsent==='function')await store.putJobIfAbsent(job);else await store.putJob(job);
+      }
+      await Promise.all([
+        store.setArtifact('trail-orchestration',result.orchestration),
+        store.setArtifact('route-review',result.routeReview),
+      ]);
+    }
+    return [
+      ...result.admitted.map(entry=>({candidateId:entry.candidateId,trailId:entry.trailId,
+        status:entry.alreadyInFleet?'already-in-verification':'admitted',jobIds:entry.jobIds})),
+      ...result.held.map(entry=>({candidateId:entry.candidateId,status:'held',reason:entry.reason})),
+    ];
+  }catch(error){
+    // An admission that cannot be written is a contract problem, not a queue
+    // problem: it fails the run rather than disappearing into a log.
+    return [{status:'blocked',error:String(error.message||error).slice(0,2000)}];
+  }
+}
+
 async function ingestDossierReviews(store){
   const reviews=await store.listDossierReviews('queued'); const outcomes=[];
   for(const review of reviews){
@@ -345,6 +440,8 @@ async function runLiveBackofficeWorker(store, options = {}){
     ? await store.requeueOutageBlockedJobs({ ...options, limit: options.outageRequeueLimit,
         jobTypes: PROCESSABLE_JOB_TYPES })
     : [];
+  const routeReviews=await ingestRouteReviews(store);
+  const routeAdmissions=await admitRouteChoices(store,{...options,productionTrails});
   const dossierReviews=await ingestDossierReviews(store);
   const advancementBefore=await advanceTrailOrchestration(store,options);
   const reviews = await ingestTrailReviews(store, options);
@@ -357,7 +454,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   // afford to list jobs itself -- it polls once a minute against a free-tier
   // quota -- so the one place already holding every job writes the summary down.
   const pipeline = await recordPipelineHealth(store, options);
-  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
 /**
@@ -379,4 +476,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestRouteReviews,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
