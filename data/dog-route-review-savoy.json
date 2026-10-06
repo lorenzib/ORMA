@@ -212,14 +212,6 @@
     ]
   },
   {
-    "id": 5327648,
-    "name": "Chalet des Pyramides",
-    "reasons": [
-      "contains T3+/ferrata/ladder/dog=no way",
-      "not a loop (loops-only mode)"
-    ]
-  },
-  {
     "id": 5329763,
     "name": "Plan de l'Aiguille - Montenvers",
     "reasons": [
@@ -236,13 +228,6 @@
   {
     "id": 5330336,
     "name": "Chalet du Chapeau",
-    "reasons": [
-      "not a loop (loops-only mode)"
-    ]
-  },
-  {
-    "id": 5330417,
-    "name": "Refuge Albert Ier",
     "reasons": [
       "not a loop (loops-only mode)"
     ]
@@ -1552,6 +1537,13 @@
     ]
   },
   {
+    "id": 15575531,
+    "name": "Chalet Rochette",
+    "reasons": [
+      "contains T3+/ferrata/ladder/dog=no way"
+    ]
+  },
+  {
     "id": 15575610,
     "name": "Tour de l'Adran",
     "reasons": [
@@ -1665,13 +1657,6 @@
     "name": "Boucle l'alpage et son histoire",
     "reasons": [
       "not a loop (loops-only mode)"
-    ]
-  },
-  {
-    "id": 15676096,
-    "name": "Les alpages du Lachat d'en Haut",
-    "reasons": [
-      "contains T3+/ferrata/ladder/dog=no way"
     ]
   },
   {
@@ -2526,6 +2511,20 @@
   {
     "id": 21131328,
     "name": "La Pierre aux Lièvres",
+    "reasons": [
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
+    "id": 21391092,
+    "name": "Le Friaz - Les Grands Bois",
+    "reasons": [
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
+    "id": 21391097,
+    "name": "Le Gérat (Sude) - Les Sellières",
     "reasons": [
       "not a loop (loops-only mode)"
     ]

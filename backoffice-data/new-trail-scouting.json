@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-03T10:00:05.787Z",
+  "generatedAt": "2026-10-01T11:09:30.246Z",
   "mode": "candidate-only",
   "publicMutationAllowed": false,
   "policy": {
@@ -11,6 +11,103 @@
     "animalSuitabilityRequiresVerification": true
   },
   "candidates": [
+    {
+      "id": "osm-relation-12025052",
+      "osmRelation": 12025052,
+      "name": "Panoramarundweg",
+      "region": "dolomites",
+      "distanceKm": 1.7,
+      "loopEvidence": "geometry closes within 341 m",
+      "animalFit": "No OSM dog prohibition found; animal suitability still requires evidence review.",
+      "difficulty": "not tagged",
+      "surfaceSummary": {
+        "ground": 0.6,
+        "dirt": 0.2
+      },
+      "center": [
+        11.4337882627907,
+        46.35228510232558
+      ],
+      "nearestExisting": {
+        "trailId": "osm-12027153",
+        "trailName": "GEOWeg - Sentiero GEOlogico",
+        "distanceKm": 1.569659978153051
+      },
+      "expansionTier": "existing-area",
+      "expansionScore": 3,
+      "whyCandidate": "A plausible loop under 12 km, 1.6 km from GEOWeg - Sentiero GEOlogico, awaiting full route and dog-suitability verification.",
+      "sourceUrl": "https://hiking.waymarkedtrails.org/#route?id=12025052",
+      "status": "awaiting-ceo-selection",
+      "nextStage": "route-identity-and-geometry",
+      "publicMutationAllowed": false,
+      "priority": 1
+    },
+    {
+      "id": "osm-relation-12079333",
+      "osmRelation": 12079333,
+      "name": "Giro dei Masi",
+      "region": "dolomites",
+      "distanceKm": 6.1,
+      "loopEvidence": "source-tagged loop",
+      "animalFit": "No OSM dog prohibition found; animal suitability still requires evidence review.",
+      "difficulty": "not tagged",
+      "surfaceSummary": {
+        "asphalt": 2.1,
+        "paved": 0.1,
+        "ground": 0
+      },
+      "center": [
+        11.006479357657659,
+        46.16667527657657
+      ],
+      "nearestExisting": {
+        "trailId": "osm-7045225",
+        "trailName": "Giro del Fausior",
+        "distanceKm": 3.8265977932100816
+      },
+      "expansionTier": "existing-area",
+      "expansionScore": 3,
+      "whyCandidate": "A plausible loop under 12 km, 3.8 km from Giro del Fausior, awaiting full route and dog-suitability verification.",
+      "sourceUrl": "https://hiking.waymarkedtrails.org/#route?id=12079333",
+      "status": "awaiting-ceo-selection",
+      "nextStage": "route-identity-and-geometry",
+      "publicMutationAllowed": false,
+      "priority": 2
+    },
+    {
+      "id": "osm-relation-15662134",
+      "osmRelation": 15662134,
+      "name": "Sagenweg Laurein",
+      "region": "dolomites",
+      "distanceKm": 3.6,
+      "loopEvidence": "geometry closes within 353 m",
+      "animalFit": "No OSM dog prohibition found; animal suitability still requires evidence review.",
+      "difficulty": "not tagged",
+      "surfaceSummary": {
+        "gravel": 0.1,
+        "earth": 0.6,
+        "sett": 0,
+        "asphalt": 0.2,
+        "concrete": 0.1
+      },
+      "center": [
+        11.064402961627907,
+        46.45743420116277
+      ],
+      "nearestExisting": {
+        "trailId": "osm-3885162",
+        "trailName": "Seeweg",
+        "distanceKm": 11.099803618852107
+      },
+      "expansionTier": "existing-area",
+      "expansionScore": 3,
+      "whyCandidate": "A plausible loop under 12 km, 11.1 km from Seeweg, awaiting full route and dog-suitability verification.",
+      "sourceUrl": "https://hiking.waymarkedtrails.org/#route?id=15662134",
+      "status": "awaiting-ceo-selection",
+      "nextStage": "route-identity-and-geometry",
+      "publicMutationAllowed": false,
+      "priority": 3
+    },
     {
       "id": "osm-relation-16395059",
       "osmRelation": 16395059,
@@ -41,14 +138,14 @@
       "status": "awaiting-ceo-selection",
       "nextStage": "route-identity-and-geometry",
       "publicMutationAllowed": false,
-      "priority": 1
+      "priority": 4
     }
   ],
   "summary": {
-    "candidates": 1,
+    "candidates": 4,
     "primaryRegion": "dolomites",
-    "primaryRegionCandidates": 0,
-    "existingArea": 1,
+    "primaryRegionCandidates": 3,
+    "existingArea": 4,
     "adjacentArea": 0,
     "newArea": 0
   }
