@@ -15,13 +15,45 @@
     {
       "id": "alpe-siusi",
       "fields": {
-        "liftAccess": { "type": "gondola", "dependency": "optional", "name": "Alpe di Siusi cable car", "notes": "A closed cabin from Siusi to Compatsch spares the road; the loop itself needs no lift." }
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "optional",
+          "name": "Alpe di Siusi cable car",
+          "notes": "A closed cabin from Siusi to Compatsch spares the road; the loop itself needs no lift."
+        }
       }
     },
     {
       "id": "osm-18055492",
       "fields": {
-        "liftAccess": { "type": "gondola", "dependency": "optional", "name": "Télécabine du Mont d'Arbois", "notes": "A closed cabin can lift you to the top station in summer; the route also climbs on foot." }
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "optional",
+          "name": "Télécabine du Mont d'Arbois",
+          "notes": "A closed cabin can lift you to the top station in summer; the route also climbs on foot."
+        }
+      }
+    },
+    {
+      "id": "giro-del-bulacia",
+      "fields": {
+        "liftAccess": {
+          "type": "mixed",
+          "dependency": "optional",
+          "name": "Puflatsch–Bullaccia Telemix",
+          "notes": "The loop starts and ends in Compatsch and climbs to Puflatsch on foot; the official itinerary offers the Telemix (closed 8-seat cabins alternating with 6-seat bubble chairs) only to spare the first ascent, and the route passes its top station. Compatsch itself is reached by the closed Alpe di Siusi gondola or by bus; the road is private."
+        }
+      }
+    },
+    {
+      "id": "osm-11855879",
+      "fields": {
+        "liftAccess": {
+          "type": "chairlift",
+          "dependency": "optional",
+          "name": "Cherz I chairlift",
+          "notes": "The loop stays on the Cherz plateau at about 2,100 m and rides no lift. Reach it on foot from Passo Campolongo, a path from beside the Cherz I bottom station climbs about 220 m, or by the Cherz I chairlift (4-seat, open chairs) when it operates; the Vizza chairlift (2-seat, open) tops out 90 m from the start. The start point is named after a lift station as an access landmark, not because the route depends on it."
+        }
       }
     }
   ]
