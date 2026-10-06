@@ -43,6 +43,14 @@ function isCircularRoute(options = {}){
   return true;
 }
 
+// How close a line must run to count as on the route. The question the identity
+// check is really asking, and the only one that separates a trail that walks
+// part of a longer route from a trail whose relation is not its route at all.
+// Here rather than beside any one caller: three modules agree on it, and the
+// cartographer, the batch runner and the composite discovery cannot import each
+// other for it without a cycle.
+const ON_ROUTE_METRES = 60;
+
 function assessGeometry(coordinates, options = {}){
   const closureThresholdM = options.closureThresholdM || 100;
   const routeShape = ROUTE_SHAPES.includes(options.routeShape) ? options.routeShape : 'loop';
@@ -93,4 +101,4 @@ function assessGeometry(coordinates, options = {}){
   };
 }
 
-module.exports = { isCircularRoute, ROUTE_SHAPES, assessGeometry, distanceMeters };
+module.exports = { ON_ROUTE_METRES, isCircularRoute, ROUTE_SHAPES, assessGeometry, distanceMeters };

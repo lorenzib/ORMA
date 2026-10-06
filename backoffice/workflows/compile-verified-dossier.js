@@ -105,6 +105,26 @@ const ROUTE_GUIDANCE_CONTRACT=`rg-${createHash('sha256')
 
 function logisticsOutput(outputs){return (outputs||[]).find(output=>output.agentId==='logistics');}
 
+/** The routes an approved composite is made of, empty for a single relation. */
+function compositeRelations(result){
+  return Array.isArray(result?.source?.relations) ? result.source.relations.filter(Boolean) : [];
+}
+
+/**
+ * What the dossier says this route is. A single relation names itself; a
+ * composite names the routes it runs along, because its own id is a label this
+ * project invented and no walker will ever see on a signpost.
+ */
+function routeIdentityValue(result,trail,composed){
+  const name=result?.relation?.tags?.name||trail?.trailName;
+  if(composed.length){
+    const numbered=composed.map(relation=>relation.ref||relation.externalRelationId).filter(Boolean);
+    const along=numbered.length?`along ${numbered.join(', ')}`:`along ${composed.length} mapped route(s)`;
+    return `${name} · ${composed.length} approved route(s) ${along}`;
+  }
+  return `${name} · ${result?.source?.externalId||trail?.sourceTrail?.externalRelationId||'source identifier retained'}`;
+}
+
 /** The route-guidance contract a stored logistics result was produced under. */
 function routeGuidanceContractOf(outputs){
   return logisticsOutput(outputs)?.result?.claimContracts?.routeGuidance||null;
@@ -186,9 +206,18 @@ function compileVerifiedDossier(review,trail,options={}){
   const claims=[];let geometry=null;
   for(const output of review.specialistOutputs||[]){const result=output.result||{};
     if(output.agentId==='cartographer'){
-      geometry=result.geometry||null;const ids=[addSource(result.source),addSource({label:'Raw OSM relation',url:result.source?.endpoint,
-        authority:`${result.source?.externalId||''} version ${result.source?.relationVersion||''}`,relationTimestamp:result.source?.relationTimestamp,licence:result.source?.licence})].filter(Boolean);
-      claims.push({id:'route-identity',label:'Approved route identity',state:'supported',proposedValue:`${result.relation?.tags?.name||trail.trailName} · ${result.source?.externalId||trail.sourceTrail?.externalRelationId||'source identifier retained'}`,sourceIds:ids});
+      geometry=result.geometry||null;
+      // A composite names several routes, and the reader is owed all of them:
+      // "composite/alpe-siusi" identifies nothing a walker could follow, while
+      // the eleven relations behind it are the numbers on the signposts. Each
+      // becomes a source of its own, so a dossier cites what it rests on.
+      const composed=compositeRelations(result);
+      const ids=[addSource(result.source),addSource({label:'Raw OSM relation',url:result.source?.endpoint,
+        authority:`${result.source?.externalId||''} version ${result.source?.relationVersion||''}`,relationTimestamp:result.source?.relationTimestamp,licence:result.source?.licence}),
+        ...composed.map(relation=>addSource({label:`Route ${relation.ref||relation.externalRelationId}`,
+          url:`https://www.openstreetmap.org/${relation.externalRelationId}`,
+          authority:'OpenStreetMap',licence:result.source?.licence||'ODbL-1.0'}))].filter(Boolean);
+      claims.push({id:'route-identity',label:'Approved route identity',state:'supported',proposedValue:routeIdentityValue(result,trail,composed),sourceIds:ids});
       claims.push({id:'route-geometry',label:'Approved route geometry',state:'supported',proposedValue:`Human-approved ${result.assessment?.pointCount||geometry?.coordinates?.length||0}-point reconstruction; ${result.assessment?.distanceKm||result.comparison?.reconstructedDistanceKm||'unreported'} km.`,sourceIds:ids});
       continue;
     }
@@ -227,4 +256,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={MIN_ACCEPTANCE_REASON,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={MIN_ACCEPTANCE_REASON,compositeRelations,routeIdentityValue,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
