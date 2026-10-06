@@ -23,6 +23,40 @@ const ROUTES = Object.freeze({
   'osm-way-25736154':'lago-braies-circuit.geojson',
 });
 
+/** Every proposal a route-choice question offers, single or multi-variant. */
+function routeProposals(routeReview){
+  const proposals=[];
+  for(const item of routeReview.items||[]){
+    for(const proposal of [...(item.proposals||[]),item.proposal]){
+      if(!proposal||!proposal.id||!proposal.geometryRef)continue;
+      if(proposals.some(seen=>seen.id===proposal.id))continue;
+      proposals.push(proposal);
+    }
+  }
+  return proposals;
+}
+
+/**
+ * The catalogue trail each route question is about, copied onto a stored
+ * question that predates the field.
+ *
+ * The questions were seeded before they named a trail, and the stored artifact
+ * now holds recorded decisions, so it must never be replaced wholesale by the
+ * file. This copies one identity field onto the items that lack it and leaves
+ * everything else — every decision, state and receipt — exactly as stored.
+ */
+function withTrailIds(stored,file){
+  const named=new Map((file.items||[]).filter(item=>item.trailId).map(item=>[item.candidateId,item.trailId]));
+  const added=[];
+  const items=(stored.items||[]).map(item=>{
+    const trailId=named.get(item.candidateId);
+    if(!trailId||item.trailId)return item;
+    added.push(`${item.candidateId} -> ${trailId}`);
+    return {...item,trailId};
+  });
+  return {artifact:added.length?{...stored,items}:stored,added};
+}
+
 function trailOnlyReviewQueue(queue){
   const submissions=(queue.submissions||[]).map(submission=>({
     ...submission,
@@ -41,6 +75,15 @@ async function main(){
         latestOutputRef:trail.currentJobId?`firestore:trail-specialist-output-${trail.currentJobId}`:trail.latestOutputRef}))};
     }
     const created=await store.setArtifactIfAbsent(id,data,{seededFrom:name});console.log(`[orma-seed] ${id} · ${created?'created':'already present'}`);
+  }
+  const routeQuestionsFile=JSON.parse(await fs.readFile(path.join(root,'backoffice-data','route-review.json'),'utf8'));
+  const storedRouteQuestions=await store.getArtifact('route-review');
+  if(storedRouteQuestions){
+    const {artifact,added}=withTrailIds(storedRouteQuestions,routeQuestionsFile);
+    if(added.length){
+      await store.setArtifact('route-review',artifact,{trailIdsNamed:added.length});
+      for(const line of added) console.log(`[orma-seed] route-review trail named · ${line}`);
+    }
   }
   const revisionQueue = JSON.parse(await fs.readFile(path.join(root, 'backoffice-data', 'verified-trail-revision-queue.json'), 'utf8'));
   for(const job of revisionQueue.jobs || []) await store.putJobIfAbsent(job);
@@ -66,6 +109,15 @@ async function main(){
     await store.setArtifactIfAbsent(`route-proposal-${candidateId}`,route,{seededFrom:name});
     console.log(`[orma-seed] route-proposal-${candidateId}`);
   }
+  // Every line a route choice can keep, keyed by the proposal the editor picks
+  // rather than by the candidate. Applying a choice promotes one of these into
+  // `route-proposal-<candidateId>`; without them the decision is recorded with
+  // its geometry unresolved, which is the honest outcome but not the useful one.
+  for(const proposal of routeProposals(routeQuestionsFile)){
+    const geometry=JSON.parse(await fs.readFile(path.join(root,proposal.geometryRef),'utf8'));
+    await store.setArtifactIfAbsent(`route-proposal-geometry-${proposal.id}`,geometry,{seededFrom:proposal.geometryRef});
+    console.log(`[orma-seed] route-proposal-geometry-${proposal.id}`);
+  }
   const orchestration=JSON.parse(await fs.readFile(path.join(root,'backoffice-data','trail-orchestration.json'),'utf8'));
   for(const trail of orchestration.trails||[]){
     if(!trail.latestOutputRef)continue;
@@ -77,4 +129,4 @@ async function main(){
 
 if(require.main === module) main().catch(error => { console.error(`[orma-seed] ${error.stack || error.message}`); process.exitCode = 1; });
 
-module.exports = { FILES, ROUTES, trailOnlyReviewQueue, main };
+module.exports = { FILES, ROUTES, routeProposals, withTrailIds, trailOnlyReviewQueue, main };

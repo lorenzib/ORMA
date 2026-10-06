@@ -10,6 +10,7 @@ const COLLECTIONS = Object.freeze({
   reviews: 'backofficeReviews',
   publicationReviews: 'backofficePublicationReviews',
   dossierReviews: 'backofficeDossierReviews',
+  routeReviews:'backofficeRouteReviews',
   newTrailReviews:'backofficeNewTrailReviews',
   hazardReviews:'backofficeHazardReviews',
   editorialReviews:'backofficeEditorialReviews',
@@ -345,6 +346,14 @@ class FirestoreBackofficeStore {
 
   async markDossierReview(id,status,fields={}){
     return this.markReviewCollection(COLLECTIONS.dossierReviews,id,status,fields);
+  }
+
+  async listRouteReviews(status='queued'){
+    return this.listReviewCollection(COLLECTIONS.routeReviews,status);
+  }
+
+  async markRouteReview(id,status,fields={}){
+    return this.markReviewCollection(COLLECTIONS.routeReviews,id,status,fields);
   }
 
   async listNewTrailReviews(status='queued'){
