@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-06T15:04:26.258Z",
+  "generatedAt": "2026-10-06T17:14:11.533Z",
   "regions": {
     "dolomites": {
       "trailCount": 109,
-      "trails": "data/regions/dolomites-trails.js?v=c7bf16b0fc85",
+      "trails": "data/regions/dolomites-trails.js?v=8d28a2d33d0f",
       "details": {
-        "alpe-siusi": "data/trail-details/alpe-siusi.js?v=eef158ec93eb",
+        "alpe-siusi": "data/trail-details/alpe-siusi.js?v=e97dc520aba2",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
         "santa-maddalena": "data/trail-details/santa-maddalena.js?v=51be0f8486e5",
         "tre-cime": "data/trail-details/tre-cime.js?v=9afc5a1d3be3",

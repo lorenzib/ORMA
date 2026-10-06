@@ -23,7 +23,7 @@ describe('Alpe di Siusi offline package', () => {
     expect(manifest.bounds).toEqual(graph.bounds);
     expect(manifest.image).toEqual({ width:1200, height:720 });
     expect(manifest.elevationProfile).toMatchObject({
-      strategy:'route-profile-v1', pointCount:5, distanceKm:7.5, ascentM:150,
+      strategy:'route-profile-v1', pointCount:5, distanceKm:5.5, ascentM:150,
       demPackaged:false,
     });
   });
