@@ -221,6 +221,21 @@ function routeGuidanceLeads(trail){
 
 async function runTrailSpecialist({job,trail,context},options={}){
   if(job.agentId==='cartographer'){
+    // The planner already names two jobs here: 'verify-current-relation' for a
+    // trail that is one OSM relation, and 'locate-authoritative-route-geometry'
+    // for one whose identity is an approved composite of several. Only the
+    // first is built. The second fell through to the relation reconstructor,
+    // which demands a single externalId and threw
+    // 'route-source-identity-unresolved' -- so a trail whose identity was
+    // settled and approved reported that its identity was unresolved, and
+    // every requeue threw it again.
+    //
+    // run-catalogue-batch.js refuses the same way, and says what is actually
+    // missing. Reconstructing a composite is not a matter of fetching more
+    // relations: alpe-siusi's three cover 46%, 42% and 25% of its path and
+    // each runs well beyond it, so their union is the network, not the walk.
+    // That needs a check of its own rather than this one stretched.
+    if(job.action!=='verify-current-relation') throw new Error('source-identity-research-required');
     const result=await runCartographer(candidateFromProductionTrail(trail),referenceFromProductionTrail(trail),options);
     return {responseId:null,model:'deterministic-osm-cartographer',result};
   }
