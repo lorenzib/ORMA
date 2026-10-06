@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "updatedAt": "2026-10-06T21:23:55.852Z",
+  "updatedAt": "2026-10-06T21:33:44.000Z",
   "composites": {
     "alpe-siusi": {
       "state": "approved",
@@ -276,8 +276,11 @@
         }
       ],
       "approvedAt": "2026-10-06T14:48:31.625Z",
-      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
-      "relationsUnchangedSinceProposal": true
+      "approvedBy": "orma-approve-composites (automated coverage rule)",
+      "relationsUnchangedSinceProposal": true,
+      "ratifiedAt": "2026-10-06T21:33:44.000Z",
+      "ratifiedBy": "Benedetta Lorenzi (ORMA owner)",
+      "ratifiedNote": "Approved by a dispatched run on 2026-10-06 whose approved_by input defaulted to the owner's name; that default was removed in #609. Reviewed against the measurements and confirmed by the owner."
     },
     "tre-cime": {
       "state": "approved",
@@ -307,8 +310,11 @@
         }
       ],
       "approvedAt": "2026-10-06T14:44:33.250Z",
-      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
-      "relationsUnchangedSinceProposal": true
+      "approvedBy": "orma-approve-composites (automated coverage rule)",
+      "relationsUnchangedSinceProposal": true,
+      "ratifiedAt": "2026-10-06T21:33:44.000Z",
+      "ratifiedBy": "Benedetta Lorenzi (ORMA owner)",
+      "ratifiedNote": "Approved by a dispatched run on 2026-10-06 whose approved_by input defaulted to the owner's name; that default was removed in #609. Reviewed against the measurements and confirmed by the owner."
     },
     "cinque-torri-assisted": {
       "state": "approved",
