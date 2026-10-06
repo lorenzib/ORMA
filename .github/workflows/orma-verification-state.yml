@@ -44,6 +44,8 @@ jobs:
         run: npm run backoffice:verification-state
       - name: Report the verification funnel
         run: npm run backoffice:verification-funnel
+      - name: Check whether the waiting dossiers would approve
+        run: npm run backoffice:check-approval
 
       # A long queue and an idle worker look identical in every other report.
       - name: Report why the job queue is not moving
