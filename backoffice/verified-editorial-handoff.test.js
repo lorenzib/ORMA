@@ -121,4 +121,50 @@ describe('automatic ORMA Verified editorial handoff',()=>{
     expect(artifacts['route-proposal-trail-a']).toEqual(expect.objectContaining({candidateId:'trail-a',geometry:dossier.routeGeometry,publicMutationAllowed:false}));
     expect(marks[0].fields.queuedJobIds).toHaveLength(2);
   });
+
+  test('the same approval works when the queue item has been summarised',async()=>{
+    // The queue is kept under Firestore's 1 MB ceiling by replacing each
+    // claim's sources with a pointer to the full specialist output. Nothing
+    // followed the pointer, so once an item was summarised the gate saw claims
+    // with no evidence and refused: all seven dossiers waiting on 6 October
+    // were in that state, and no trail has ever been verified here.
+    const {summariseOutput}=require('./workflows/review-queue-compaction');
+    const routeSource={label:'Park authority',url:'https://example.test/trail',authority:'Park',accessedAt:at};
+    const guidance=['recommended-start','route-number-status','route-number-sequence','route-number-switches']
+      .map(id=>({id,category:'route',proposedValue:`Value for ${id}`,finding:'supported-proposal',
+        confidence:.95,rationale:'Official route guide.',sources:[routeSource],blockers:[]}));
+    const cartResult={source:{provider:'OSM',url:'https://www.openstreetmap.org/relation/1',
+      endpoint:'https://api.openstreetmap.org/api/0.6/relation/1/full',externalId:'relation/1',
+      relationVersion:1,relationTimestamp:at,licence:'ODbL-1.0'},relation:{tags:{name:'Trail A'}},
+      geometry:dossier.routeGeometry,assessment:{pointCount:3,distanceKm:2}};
+    const logResult={claims:guidance};
+    const full=[{agentId:'cartographer',jobId:'cart-a',result:cartResult},
+      {agentId:'logistics',jobId:'log-a',result:logResult}];
+
+    const reviewItem={reviewId:'dossier-review-a',candidateId:'trail-a',trailId:'trail-a',trailName:'Trail A',
+      gateType:'dossier-approval',state:'awaiting-human',approvalAllowed:true,
+      sourceTrail:{externalRelationId:'relation/1'},
+      // Exactly what the compaction leaves behind.
+      specialistOutputs:full.map(summariseOutput)};
+    expect(reviewItem.specialistOutputs.every(output=>output.result.detailWithheld)).toBe(true);
+
+    const artifacts={'trail-orchestration':{contractVersion:'1.0.0',publicMutationAllowed:false,summary:{},trails:[{trailId:'trail-a',candidateId:'trail-a',trailName:'Trail A',state:'dossier-human-gate',stage:'complete-evidence-dossier',attempts:{},resolutionAttempts:{},jobIds:['cart-a','log-a'],gate:{id:'dossier-approval',status:'awaiting-human'},sourceTrail:{externalRelationId:'relation/1'},publicMutationAllowed:false}]},
+      'dossier-review-queue':{contractVersion:'1.0.0',items:[reviewItem],publicMutationAllowed:false},
+      // The artifacts the pointers name.
+      'trail-specialist-output-cart-a':cartResult,
+      'trail-specialist-output-log-a':logResult};
+    const queued=[];const marks=[];
+    const store={listDossierReviews:async()=>[{id:'approval-a',reviewId:'dossier-review-a',candidateId:'trail-a',action:'approve',submittedAt:at,submittedBy:'moderator'}],
+      getArtifact:async id=>artifacts[id]||null,setArtifact:async(id,value)=>{artifacts[id]=value;},
+      putJobIfAbsent:async job=>{queued.push(job);return true;},putJob:async job=>queued.push(job),
+      markDossierReview:async(id,status,fields)=>marks.push({id,status,fields})};
+
+    const outcomes=await ingestDossierReviews(store);
+    expect(outcomes).toEqual([expect.objectContaining({status:'processed',ormaVerified:true})]);
+    expect(artifacts['orma-verified-registry-live'].verified).toHaveLength(1);
+    // The restored detail is read, never written back: the decided item is
+    // stripped on the way out, so the queue does not regrow.
+    const decided=artifacts['dossier-review-queue'].items.find(item=>item.reviewId==='dossier-review-a');
+    expect(decided.specialistOutputs).toBeUndefined();
+  });
 });
