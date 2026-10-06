@@ -4262,6 +4262,7 @@
           "lng": 12.085296,
           "label": "Lago di Braies access, use the approved official P1–P4 parking set"
         },
+        "routeNumberStatus": "official-numbered-route",
         "routeNumberGuidance": {
           "mode": "numbered",
           "start": "Start at the lakeside access by Hotel Lago di Braies / Hotel Pragser Wildsee.",
