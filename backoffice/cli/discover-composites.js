@@ -5,8 +5,8 @@ const fs = require('fs/promises');
 const path = require('path');
 const { option } = require('./discover');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
-const { fetchRoutesNearPath } = require('../services/osm-relation-client');
-const { discoverRouteComposite } = require('../workflows/discover-route-composite');
+const { fetchRoutesNearPath, fetchAerialwaysNearPath } = require('../services/osm-relation-client');
+const { discoverRouteComposite, ridesALift } = require('../workflows/discover-route-composite');
 const { identityContradiction, hasFullGraduation, relationExternalId } = require('../workflows/plan-catalogue-campaign');
 
 // Proposes the waymarked paths a walk follows, for trails whose recorded
@@ -51,7 +51,9 @@ async function main(args = process.argv.slice(2)){
     }
     try{
       const { payload } = await fetchRoutesNearPath(trail.path);
-      const found = discoverRouteComposite(trail, payload);
+      // Only for an itinerary that rides one, so no other trail pays for the query.
+      const aerialways = ridesALift(trail) ? await fetchAerialwaysNearPath(trail.path) : [];
+      const found = discoverRouteComposite(trail, payload, { aerialways });
       if(!found || !found.relations.length){
         console.log(`[composites] ${trail.id} · no route relation follows this walk`);
       }else{
