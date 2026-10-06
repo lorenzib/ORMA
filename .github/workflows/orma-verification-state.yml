@@ -58,3 +58,8 @@ jobs:
           else
             npm run backoffice:gate-evidence
           fi
+      - name: Dump one trail's claims verbatim
+        if: inputs.trail != ''
+        env:
+          TRAIL: ${{ inputs.trail }}
+        run: npm run backoffice:dump-dossier -- --trail="$TRAIL"

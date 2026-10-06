@@ -28,38 +28,73 @@ function tally(list,pick){
 }
 
 
-// Why the route-guidance gate is refusing, in the agent's own words. The gate
-// needs four logistics claims, each a supported-proposal with an https source
-// carrying a named authority; "supported authoritative route guidance is
-// required" says one is missing but never which part failed. Reading the claims
-// back is the difference between fixing the prompt, the evidence, or the gate.
-const ROUTE_GUIDANCE_CLAIMS=['recommended-start','route-number-status','route-number-sequence','route-number-switches'];
+// Why the route-guidance gate is refusing, in the agent's own words. Which part
+// of a claim failed is the difference between fixing the prompt, the evidence,
+// or the gate.
+//
+// The verdicts come from the gate's own functions rather than from a copy of its
+// rules. The copy that used to live here read only the FIRST logistics output
+// and called every claim unsourced, while the gate -- which searches every
+// output, because a claim settled in an earlier pass is carried forward --
+// found them fine. A report that contradicts the thing it reports on is worse
+// than no report: on 6 October it said all four claims failed on all seven
+// dossiers, none of which was true.
+const {supportedLogisticsClaim,authoritativeRecommendedStart}=require('../workflows/compile-verified-dossier');
+
+// Since #472 only the start blocks verification. The three numbered-route claims
+// earn "official route confirmed" and are reported so a reader can see what a
+// trail would gain, never as something holding it back.
+const VERIFICATION_CLAIMS=['recommended-start'];
+const OFFICIAL_ROUTE_CLAIMS=['route-number-status','route-number-sequence','route-number-switches'];
+const ROUTE_GUIDANCE_CLAIMS=[...VERIFICATION_CLAIMS,...OFFICIAL_ROUTE_CLAIMS];
+
+/** Every logistics claim with this id, newest last, across all of the outputs. */
+function logisticsClaims(item,id){
+  return (item.specialistOutputs||[])
+    .filter(output=>output.agentId==='logistics')
+    .flatMap(output=>(output.result?.claims||[]).filter(claim=>claim.id===id));
+}
 
 function routeGuidanceDiagnosis(items){
   return items.filter(item=>item.gateType==='dossier-approval').map(item=>{
-    const logistics=(item.specialistOutputs||[]).find(output=>output.agentId==='logistics');
-    const claims=logistics?.result?.claims||[];
+    const outputs=(item.specialistOutputs||[]).filter(output=>output.agentId==='logistics');
+    // The standing recommendation is the most recent one, not the first.
+    const latest=outputs[outputs.length-1]||null;
+    // A summarised queue item has had its sources stripped on purpose, with a
+    // pointer to the full output. Reporting that as a claim without evidence
+    // would invent a failure out of a storage decision.
+    const summarised=outputs.some(output=>output.result?.detailWithheld);
     return {
       trailId:item.trailId,
-      logisticsRan:Boolean(logistics),
-      recommendation:logistics?.result?.recommendation||null,
-      openQuestions:(logistics?.result?.openQuestions||[]).slice(0,4),
+      logisticsRan:Boolean(latest),
+      logisticsOutputCount:outputs.length,
+      recommendation:latest?.result?.recommendation||null,
+      openQuestions:(latest?.result?.openQuestions||[]).slice(0,4),
+      detailWithheld:summarised,
+      // What the orchestrator itself recorded, so a disagreement with the rows
+      // below is visible rather than silent.
+      gateBlockingReasons:(item.blockingReasons||[]).slice(0,6),
       claims:ROUTE_GUIDANCE_CLAIMS.map(id=>{
-        const claim=claims.find(entry=>entry.id===id);
-        if(!claim)return {id,present:false};
-        const sources=(claim.sources||[]).map(source=>({
-          authority:String(source.authority||'').trim()||null,
-          https:/^https:\/\//.test(source.url||''),
-          url:String(source.url||'').slice(0,90),
-        }));
+        const found=logisticsClaims(item,id);
+        const claim=found[found.length-1];
+        const blocksVerification=VERIFICATION_CLAIMS.includes(id);
+        // The gate's own verdict, asked of the whole review exactly as
+        // compileVerifiedDossier asks it.
+        const passes=blocksVerification
+          ? Boolean(authoritativeRecommendedStart(item))
+          : Boolean(supportedLogisticsClaim(item,id));
+        if(!claim)return {id,present:false,blocksVerification,passes};
         return {
-          id,present:true,finding:claim.finding,
+          id,present:true,blocksVerification,passes,
+          finding:claim.finding,
           hasValue:Boolean(String(claim.proposedValue||'').trim()),
           value:String(claim.proposedValue||'').slice(0,160),
-          // Exactly the three conditions supportedLogisticsClaim checks.
-          passes:claim.finding==='supported-proposal'&&Boolean(String(claim.proposedValue||'').trim())
-            &&sources.some(source=>source.https&&source.authority),
-          sources,
+          sources:(claim.sources||[]).map(source=>({
+            authority:String(source.authority||'').trim()||null,
+            https:/^https:\/\//.test(source.url||''),
+            url:String(source.url||'').slice(0,90),
+          })),
+          sourcesWithheld:summarised&&!(claim.sources||[]).length,
           blockers:claim.blockers||[],
         };
       }),
@@ -282,4 +317,4 @@ async function main(options={}){
 
 if(require.main===module)main().catch(error=>{console.error(`[verification] ${error.stack||error.message}`);process.exitCode=1;});
 
-module.exports={tally,decisionHistory,buildVerificationReport,main};
+module.exports={tally,decisionHistory,routeGuidanceDiagnosis,buildVerificationReport,main};
