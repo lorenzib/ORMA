@@ -17,7 +17,7 @@ function authoritativeRecommendedStart(review){
       &&(claim.sources||[]).some(source=>/^https:\/\//.test(source.url||'')&&String(source.authority||'').trim()));
 }
 
-const {routeConformanceBlockingReasons}=require('../services/route-conformance');
+const {routeConformanceBlockingReasons,OFF_DECLARED_ROUTE_BLOCKER_ID}=require('../services/route-conformance');
 
 // Two different promises, separated. "ORMA Verified" answers the question a dog
 // owner is actually asking -- is this walk safe for my dog -- from water, heat,
@@ -159,14 +159,32 @@ function routeGuidanceBlockingReasons(outputs){
 // factFromClaim refuses any claim whose humanAcceptedFinding is not a supported
 // proposal. Accepting is a judgement about the dossier, not about the world.
 const MIN_ACCEPTANCE_REASON=10;
-const ROUTE_GUIDANCE_BLOCKER=/supported authoritative route guidance is required$/;
-
 // Route guidance is the one blocker no reason can wave through. Every other
 // blocker is background research a human can judge sufficient; this one is
 // content printed on the trail page for a walker to follow, so waiving it means
 // publishing a walk with no directions. It is the agent's job, and #304 made it
 // one it can do.
-function waivableBlocker(reason){return !ROUTE_GUIDANCE_BLOCKER.test(String(reason));}
+//
+// Recognised by the identifier the blocker is filed under, not by its wording.
+// It used to match the sentence the two producers ended with, and #472 reworded
+// one of them on 2026-09-17: from then on the class that cannot be waived did
+// not contain the missing recommended start it was written for. The desk showed
+// a tick-box for it, the approve guard passed, and compileVerifiedDossier threw
+// instead -- and since desk decisions are queued, that surfaced as an item that
+// would not move. Every test covering it hand-typed the retired sentence, so
+// they all passed.
+//
+// The logistics ids come from the list routeGuidanceBlockingReasons iterates,
+// so requiring a new claim makes it unwaivable in the same edit.
+const UNWAIVABLE_BLOCKER_IDS=Object.freeze([
+  ...VERIFICATION_ROUTE_CLAIMS.map(id=>`logistics/${id}`),
+  OFF_DECLARED_ROUTE_BLOCKER_ID,
+]);
+
+/** The id a blocking reason is filed under: everything before the first colon. */
+function blockerId(reason){return String(reason).split(':')[0].trim();}
+
+function waivableBlocker(reason){return !UNWAIVABLE_BLOCKER_IDS.includes(blockerId(reason));}
 
 function acceptedBlockerMap(acceptedBlockers){
   const accepted=new Map();
@@ -303,4 +321,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={MIN_ACCEPTANCE_REASON,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};

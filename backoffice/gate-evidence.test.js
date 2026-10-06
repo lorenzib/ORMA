@@ -5,6 +5,13 @@
 // trail, and which ten no decision can clear at all.
 
 const {buildGateEvidence,geometryEvidence,claimEvidence,classifyBlocker,summariseBlockers}=require('./workflows/gate-evidence');
+const {routeGuidanceBlockingReasons}=require('./workflows/compile-verified-dossier');
+
+// Taken from the producer, never retyped. The hand-typed copy that stood here
+// named route-number-status, which #472 made non-blocking, in a sentence #472
+// stopped emitting -- so this asserted that a string nothing produces cannot
+// be waived, while the one that is produced could be.
+const [ROUTE_GUIDANCE]=routeGuidanceBlockingReasons([]);
 
 const NOW=Date.parse('2026-09-30T00:00:00Z');
 const item=(overrides={})=>({
@@ -62,8 +69,7 @@ describe('ordered by what is worth doing first',()=>{
 
 describe('which blockers a reason can answer',()=>{
   test('route guidance cannot be waived, whatever reason is written',()=>{
-    const [entry]=build([item({gateType:'dossier-approval',
-      blockingReasons:['logistics/route-number-status: supported authoritative route guidance is required']})]).items;
+    const [entry]=build([item({gateType:'dossier-approval',blockingReasons:[ROUTE_GUIDANCE]})]).items;
     expect(entry.blockers[0].waivable).toBe(false);
     expect(entry.unwaivable).toBe(1);
   });

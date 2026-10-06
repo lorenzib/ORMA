@@ -22,7 +22,11 @@ function buildControl(){
 
 const EXHAUSTED='terrainPoi/livestock: five automated resolution strategies exhausted';
 const OPEN_QUESTION='logistics: open question — is the parking usable?';
-const ROUTE_GUIDANCE='logistics/route-number-sequence: supported authoritative route guidance is required';
+const {routeGuidanceBlockingReasons,UNWAIVABLE_BLOCKER_IDS}=require('./backoffice/workflows/compile-verified-dossier.js');
+
+// Taken from the producer, never retyped -- see the comment on the desk's own
+// copy of the id list.
+const [ROUTE_GUIDANCE]=routeGuidanceBlockingReasons([]);
 
 describe('ticking a blocker off', () => {
   let acceptanceList;
@@ -111,5 +115,22 @@ describe('the desk carries the decision to the contract', () => {
   test('the control is styled', () => {
     expect(styles).toContain('.vd-accept{');
     expect(styles).toContain('.vd-accept-why:disabled');
+  });
+});
+
+// The desk cannot require the contract, so it keeps its own copy of the list.
+// A copy nothing compares is how the old classifier drifted for nineteen days.
+describe('the desk and the contract agree on what cannot be ticked off',()=>{
+  test('the mirrored list is the contract\'s list',()=>{
+    const line=source.match(/const UNWAIVABLE_BLOCKER_IDS=\[([^\]]*)\]/);
+    expect(line).not.toBeNull();
+    const desk=line[1].split(',').map(part=>part.trim().replace(/^'|'$/g,'')).filter(Boolean);
+    expect(desk).toEqual([...UNWAIVABLE_BLOCKER_IDS]);
+  });
+
+  test('and every blocker the producers emit is on it',()=>{
+    for(const reason of routeGuidanceBlockingReasons([])){
+      expect(UNWAIVABLE_BLOCKER_IDS).toContain(reason.split(':')[0].trim());
+    }
   });
 });
