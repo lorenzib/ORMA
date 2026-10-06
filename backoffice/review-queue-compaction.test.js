@@ -2,7 +2,7 @@
 
 const {
   MAX_PREVIEW_POINTS, simplifyCoordinates, previewOutput, compactDecidedItem, compactReviewQueue,
-  summariseOutput, trimResolution, capReasons, fitReviewQueue, QUEUE_BUDGET,
+  summariseOutput, trimResolution, fitReviewQueue, QUEUE_BUDGET,
 } = require('./workflows/review-queue-compaction');
 const { measureArtifact } = require('./workflows/artifact-size');
 
@@ -142,12 +142,17 @@ describe('review queue compaction', () => {
     expect(trimmed.water.attempts).toBeUndefined();
   });
 
-  test('a blocking reason is bounded, and says when it was cut', () => {
-    // These are what the reviewer reads, so they are capped rather than
-    // dropped, and never silently.
-    const capped = capReasons(['x'.repeat(5000), ...Array.from({ length:80 }, (u, i) => `reason ${i}`)]);
-    expect(capped[0].endsWith('…')).toBe(true);
-    expect(capped[capped.length - 1]).toMatch(/and \d+ more/);
+  test('a waiting gate keeps every blocking reason, whole', () => {
+    // These were capped at 40 entries and 300 characters, on the reading that
+    // they are what the reviewer reads. They are what the reviewer *ticks*: the
+    // gate requires an acceptance per blocker, keyed on the blocker's exact
+    // text. A dropped entry has no box and a truncated one is filed under text
+    // the gate never looks for, so either way the approval cannot be completed.
+    // gate-ballot-identity.test.js runs that seam end to end.
+    const reasons = ['x'.repeat(5000), ...Array.from({ length:80 }, (u, i) => `reason ${i}`)];
+    const kept = compactDecidedItem({ ...item('awaiting-human', 20), blockingReasons:reasons });
+    expect(kept.blockingReasons).toEqual(reasons);
+    expect(kept.blockingReasonsAbridged).toBeUndefined();
   });
 
   test('the queue fits its budget at catalogue scale, without losing a review', () => {
