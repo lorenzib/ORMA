@@ -375,7 +375,10 @@ class FirestoreBackofficeStore {
       submittedBy:String(input.submittedBy||'backoffice-cli'),publicMutationAllowed:false,
     };
     const ref=await this.db.collection(COLLECTIONS.dossierReviews).add(doc);
-    this.invalidate(`${COLLECTIONS.dossierReviews}:`);
+    // The cache key is `reviews:<collection>:<status>`, so the prefix has to
+    // carry the `reviews:` segment -- see listReviewCollection. Without it the
+    // apply step later in the same pass re-reads the pre-submit list.
+    this.invalidate(`reviews:${COLLECTIONS.dossierReviews}:`);
     return {ok:true,reviewId:ref.id,status:'queued'};
   }
 
@@ -389,7 +392,7 @@ class FirestoreBackofficeStore {
       submittedBy:String(input.submittedBy||'backoffice-cli'),publicMutationAllowed:false,
     };
     const ref=await this.db.collection(COLLECTIONS.routeReviews).add(doc);
-    this.invalidate(`${COLLECTIONS.routeReviews}:`);
+    this.invalidate(`reviews:${COLLECTIONS.routeReviews}:`);
     return {ok:true,reviewId:ref.id,status:'queued'};
   }
 
