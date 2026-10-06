@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-10-06T15:04:26.000Z",
   "trails": [
     {
       "id": "cinque-torri-assisted",
@@ -5276,6 +5276,31 @@
               "reviewedAt": "2026-09-30"
             }
           ]
+        }
+      }
+    },
+    {
+      "id": "osm-11855879",
+      "verificationScope": "startPoint",
+      "reviewedAt": "2026-10-06",
+      "reviewedBy": "curation",
+      "sources": [
+        {
+          "label": "OpenStreetMap, Cherz I bottom station, Passo Campolongo bus stop and parking (map API, nodes 46.5202/11.8734 area)",
+          "url": "https://www.openstreetmap.org/#map=18/46.52020/11.87336",
+          "reviewedAt": "2026-10-06"
+        },
+        {
+          "label": "Waymarked Trails, Roda de Cherz relation 11855879 (roundtrip on the Cherz plateau)",
+          "url": "https://hiking.waymarkedtrails.org/#route?id=11855879",
+          "reviewedAt": "2026-10-06"
+        }
+      ],
+      "fields": {
+        "startPoint": {
+          "lat": 46.52004,
+          "lng": 11.87393,
+          "label": "Passo Campolongo (1,875 m), parking and bus stop beside the Cherz I chairlift base on the SP244. A path climbs about 220 m from here to the Cherz plateau, where the loop begins; the Cherz I open chair covers the same climb when it runs"
         }
       }
     }
