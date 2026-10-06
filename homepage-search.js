@@ -24,16 +24,16 @@
   // ---- Preset "preview as" dogs, expressed as REAL profile objects so
   //      scoreTrail/effectiveOverrides read them with zero translation. ----
   var PRESETS = {
-    medium: { key: 'medium', name: 'Medium dog', sub: 'Guest default', emoji: '🐾', badge: '🐾',
+    medium: { key: 'medium', name: t('hp.preset.medium.name', 'Medium dog'), sub: t('hp.preset.medium.sub', 'Guest default'), emoji: '🐾', badge: '🐾',
               chipBg: 'var(--sage-dim)', chipColor: 'var(--ink)',
               profile: { name: 'Medium dog', breed: '', fitness: 'moderate', conditions: [], weightBand: '15-20' } },
-    rufus:  { key: 'rufus', name: 'Rufus', sub: 'Large · heat-sensitive', emoji: '🐕', badge: 'R',
+    rufus:  { key: 'rufus', name: 'Rufus', sub: t('hp.preset.rufus.sub', 'Large · heat-sensitive'), emoji: '🐕', badge: 'R',
               chipBg: 'var(--accent)', chipColor: '#fff',
               profile: { name: 'Rufus', breed: '', fitness: 'moderate', conditions: ['heat'], weightBand: '30-40' } },
-    bella:  { key: 'bella', name: 'Bella', sub: 'Small · takes it easy', emoji: '🐕', badge: 'B',
+    bella:  { key: 'bella', name: 'Bella', sub: t('hp.preset.bella.sub', 'Small · takes it easy'), emoji: '🐕', badge: 'B',
               chipBg: '#8A5A16', chipColor: '#fff',
               profile: { name: 'Bella', breed: '', fitness: 'low', conditions: [], weightBand: '5-10' } },
-    milo:   { key: 'milo', name: 'Milo', sub: 'High energy', emoji: '🐕', badge: 'M',
+    milo:   { key: 'milo', name: 'Milo', sub: t('hp.preset.milo.sub', 'High energy'), emoji: '🐕', badge: 'M',
               chipBg: 'var(--success)', chipColor: '#fff',
               profile: { name: 'Milo', breed: '', fitness: 'high', conditions: [], weightBand: '15-20' } },
   };
@@ -50,17 +50,19 @@
   // Trails and the logged-in map so a filter always means the same thing.
   // Day hikes lead everywhere; the long multi-day itineraries are an opt-in, so
   // the guest homepage hides them by default just like Browse and the map.
-  var DURATION_SEG = [{ label: 'Day hikes', v: 'day' }, { label: 'Multi-day', v: 'multi' }];
-  var DIST_SEG = [{ label: 'Any', v: 'any' }, { label: 'Under 5 km', v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' }];
-  var DIFF_SEG = [{ label: 'Any', v: 'any' }, { label: 'Low risk', v: 'low-risk' }, { label: 'Moderate', v: 'moderate' }, { label: 'Caution', v: 'caution' }];
-  var TERRAIN_SEG = [{ label: 'Any', v: 'any' }, { label: 'Gentle only', v: 'soft' }, { label: 'Up to mixed', v: 'mixed' }, { label: 'Rocky is okay', v: 'rocky' }];
-  var MATCH_SEG = [{ label: 'Any', v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 }];
+  // Labels come from i18n.js (loaded before this script) with the English
+  // literal as fallback; the values are the shared discovery vocabulary.
+  var DURATION_SEG = [{ label: t('hp.filters.dayHikes', 'Day hikes'), v: 'day' }, { label: t('hp.filters.multiDay', 'Multi-day'), v: 'multi' }];
+  var DIST_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.under5', 'Under 5 km'), v: 'u5' }, { label: t('hp.filters.5to10', '5–10 km'), v: '5to10' }, { label: t('hp.filters.10plus', '10 km+'), v: '10p' }];
+  var DIFF_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.lowRisk', 'Low risk'), v: 'low-risk' }, { label: t('hp.filters.moderate', 'Moderate'), v: 'moderate' }, { label: t('hp.filters.caution', 'Caution'), v: 'caution' }];
+  var TERRAIN_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.gentle', 'Gentle only'), v: 'soft' }, { label: t('hp.filters.mixed', 'Up to mixed'), v: 'mixed' }, { label: t('hp.filters.rocky', 'Rocky is okay'), v: 'rocky' }];
+  var MATCH_SEG = [{ label: t('hp.filters.any', 'Any'), v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 }];
 
   var POPULAR = [
     { label: 'Lago di Braies', apply: function () { state.query = 'Braies'; state.searched = true; } },
     { label: 'Alpe di Siusi', apply: function () { state.query = 'Alpe di Siusi'; state.searched = true; } },
-    { label: 'Shady & short', apply: function () { state.query = ''; state.shade = '40'; state.dist = 'u5'; state.searched = true; } },
-    { label: 'Near water', apply: function () { state.query = 'Carezza'; state.searched = true; } },
+    { label: t('hp.popular.shadyShort', 'Shady & short'), apply: function () { state.query = ''; state.shade = '40'; state.dist = 'u5'; state.searched = true; } },
+    { label: t('hp.popular.nearWater', 'Near water'), apply: function () { state.query = 'Carezza'; state.searched = true; } },
   ];
 
   // ---- element refs ----
@@ -197,9 +199,9 @@
     var level = t && ['low-risk', 'moderate', 'caution'].indexOf(t.safetyLevel) !== -1
       ? t.safetyLevel : 'moderate';
     var map = {
-      'low-risk': { label: 'Low-risk', dot: '#2C5C34' },
-      'moderate': { label: 'Moderate', dot: '#8A5A16' },
-      'caution': { label: 'Caution', dot: '#9C3A25' },
+      'low-risk': { label: tr('hp.difficulty.lowRisk', 'Low-risk'), dot: '#2C5C34' },
+      'moderate': { label: tr('hp.difficulty.moderate', 'Moderate'), dot: '#8A5A16' },
+      'caution': { label: tr('hp.difficulty.caution', 'Caution'), dot: '#9C3A25' },
     };
     return { value: level, label: map[level].label, dot: map[level].dot };
   }
@@ -383,11 +385,11 @@
     el.diffSeg.innerHTML = segHtml(DIFF_SEG, state.diff, 'diff');
     el.terrainSeg.innerHTML = segHtml(TERRAIN_SEG, state.terrain, 'terrain');
     el.matchSeg.innerHTML = segHtml(MATCH_SEG, state.minMatch, 'minMatch');
-    el.matchLabel.textContent = 'Minimum match for ' + dogMeta().name;
+    el.matchLabel.textContent = tr('hp.filters.minMatchFor', 'Minimum match for {name}', { name: dogMeta().name });
     el.waterToggle.classList.toggle('on', state.hasWater);
     el.waterToggle.setAttribute('aria-checked', state.hasWater ? 'true' : 'false');
     var n = rankedList().length;
-    el.filtersApply.textContent = 'Show ' + n + ' ' + (n === 1 ? 'trail' : 'trails');
+    el.filtersApply.textContent = tr('hp.filters.showCount', 'Show {count}', { count: countText(n) });
   }
 
   function renderFiltersButton() {
@@ -442,20 +444,21 @@
     var m = dogMeta();
     var list = rankedList();
     var n = list.length;
-    var countTxt = n + ' ' + (n === 1 ? 'trail' : 'trails');
+    var countTxt = countText(n);
+    var forDog = tr('hp.sug.forDog', 'for {name}', { name: esc(m.name.toLowerCase()) });
     if (!n) {
       el.suggest.innerHTML =
-        '<div class="hp-sug-empty"><div class="hp-sug-empty-h">No trails match “' + esc(state.query.trim()) + '”</div>' +
-        '<p>Try a different valley, or loosen a filter.</p>' +
-        '<button type="button" data-action="reset">Reset filters</button></div>';
+        '<div class="hp-sug-empty"><div class="hp-sug-empty-h">' + tr('hp.sug.noMatch', 'No trails match “{query}”', { query: esc(state.query.trim()) }) + '</div>' +
+        '<p>' + esc(tr('hp.sug.noMatchHint', 'Try a different valley, or loosen a filter.')) + '</p>' +
+        '<button type="button" data-action="reset">' + esc(tr('hp.sug.reset', 'Reset filters')) + '</button></div>';
       el.search.removeAttribute('aria-activedescendant');
-      if(el.searchStatus) el.searchStatus.textContent = 'No trail suggestions found.';
+      if(el.searchStatus) el.searchStatus.textContent = tr('hp.sug.noneStatus', 'No trail suggestions found.');
       return;
     }
     el.suggest.innerHTML =
       '<div class="hp-sug-head"><span class="hp-sug-kick">' +
         '<span class="hp-sug-chip" style="background:' + m.chipBg + ';color:' + m.chipColor + '">' + esc(m.badge) + '</span>' +
-        'Top matches for ' + esc(m.name) + '</span><span class="hp-sug-count">' + countTxt + '</span></div>' +
+        tr('hp.sug.topFor', 'Top matches for {name}', { name: esc(m.name) }) + '</span><span class="hp-sug-count">' + countTxt + '</span></div>' +
       list.slice(0, 5).map(function (entry, index) {
         var t = entry.t, s = entry.score, ti = tier(s), df = difficulty(t);
         return '<button type="button" class="hp-sug-item" id="hpSuggestion' + index + '" role="option" aria-selected="' + (state.activeSuggest === index ? 'true' : 'false') + '" data-href="' + esc(trailHref(t)) + '">' +
@@ -463,12 +466,12 @@
           '<span class="hp-sug-main"><span class="hp-sug-name">' + esc(t.name) + '</span>' +
           '<span class="hp-sug-meta"><span class="hp-badge-dot" style="background:' + df.dot + '"></span>' + df.label +
           '<span class="hp-sug-sep">·</span>' + esc(t.distance) + ' km · ' + esc(valleyOf(t)) + '</span></span>' +
-          '<span class="hp-sug-match"><span class="verdict" style="color:' + ti.color + '">' + esc(ti.label) + '</span><span class="lab">for ' + esc(m.name.toLowerCase()) + '</span></span>' +
+          '<span class="hp-sug-match"><span class="verdict" style="color:' + ti.color + '">' + esc(ti.label) + '</span><span class="lab">' + forDog + '</span></span>' +
         '</button>';
       }).join('') +
       '<button type="button" class="hp-sug-more" data-action="search">' +
-        '<span>See all ' + countTxt + ' for “' + esc(state.query.trim()) + '” →</span>' +
-        '<span class="hp-sug-key">↵ Enter</span></button>';
+        '<span>' + tr('hp.sug.seeAll', 'See all {count} for “{query}” →', { count: countTxt, query: esc(state.query.trim()) }) + '</span>' +
+        '<span class="hp-sug-key">' + esc(tr('hp.sug.enter', '↵ Enter')) + '</span></button>';
     var options = el.suggest.querySelectorAll('[role="option"]');
     if(state.activeSuggest >= options.length) state.activeSuggest = options.length - 1;
     if(state.activeSuggest >= 0) el.search.setAttribute('aria-activedescendant', 'hpSuggestion' + state.activeSuggest);
@@ -538,15 +541,15 @@
     if (state.searched) {
       var list = rankedList();
       var q = state.query.trim();
-      var title = q ? 'Trails matching “' + esc(q) + '”' : 'Filtered trails';
-      var sub = list.length + ' ' + (list.length === 1 ? 'trail' : 'trails') + ' · ranked for ' + esc(dogMeta().name);
+      var title = q ? tr('hp.results.matching', 'Trails matching “{query}”', { query: esc(q) }) : esc(tr('hp.results.filtered', 'Filtered trails'));
+      var sub = tr('hp.results.rankedFor', '{count} · ranked for {name}', { count: countText(list.length), name: esc(dogMeta().name) });
       var body;
       if (list.length) {
         body = '<div class="hp-list">' + list.map(rowHtml).join('') + '</div>';
       } else {
-        body = '<div class="hp-empty"><h3>No trails match those filters</h3>' +
-          '<p>Try widening your distance or clearing a filter.</p>' +
-          '<button type="button" class="hp-search-btn" data-action="reset">Reset filters</button></div>';
+        body = '<div class="hp-empty"><h3>' + esc(tr('hp.results.empty', 'No trails match those filters')) + '</h3>' +
+          '<p>' + esc(tr('hp.results.emptyHint', 'Try widening your distance or clearing a filter.')) + '</p>' +
+          '<button type="button" class="hp-search-btn" data-action="reset">' + esc(tr('hp.sug.reset', 'Reset filters')) + '</button></div>';
       }
       el.content.innerHTML =
         '<div class="hp-results-head"><div><div class="hp-results-title">' + title + '</div>' +
@@ -692,6 +695,9 @@
     if (s === key) { s = fallback; if (vars) for (var k in vars) s = s.split('{' + k + '}').join(vars[k]); }
     return s;
   }
+  // `t` is shadowed by trail parameters in a few renderers; `tr` is the same lookup under a safe name.
+  var tr = t;
+  function countText(n) { return tr(n === 1 ? 'hp.count.one' : 'hp.count.many', n === 1 ? '{n} trail' : '{n} trails', { n: n }); }
   function chairliftOpts() {
     return [
       { label: t('hp.wizard.chairlift.never', 'Not for us, or never tried'), v: 'never' },

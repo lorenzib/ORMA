@@ -41,7 +41,14 @@ describe('trail data trust states', () => {
     const trust = loadTrust();
     expect(trust.riskLabel(imported, 'Low-risk terrain')).toBe('Low-risk terrain');
     expect(trust.provenanceLabel(imported)).toBe('Imported trail');
-    expect(trust.provenanceLabel(reviewed)).toBe('Verified by ORMA');
+    // A source-reviewed but not-yet-graduated listing is reviewed, not verified:
+    // the seal is earned by graduation, never by curation or a source record.
+    expect(trust.provenanceLabel(reviewed)).toBe('Reviewed by ORMA');
+    expect(trust.provenanceLabel({ ...reviewed, graduation: {
+      status: 'verified',
+      required: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+      completed: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+    } })).toBe('Verified by ORMA');
   });
 
   test('missing observations become actionable guidance, not audit language', () => {
@@ -143,12 +150,14 @@ describe('trail data trust states', () => {
     })).toBe(80);
   });
 
-  test('tierOf resolves the three public tiers without a data migration', () => {
+  test('tierOf resolves the public tiers without a data migration', () => {
     const trust = loadTrust();
     const route = [[46.5, 11.6], [46.51, 11.61]];
     // Legacy data: derived from curated with no explicit tier.
     expect(trust.tierOf({ curated: false, path: route })).toBe('under-review');
-    expect(trust.tierOf({ path: route })).toBe('route-audited');
+    // A curated listing with a route but no graduation is reviewed, not
+    // audited: the verified tier must be earned, not assumed from curation.
+    expect(trust.tierOf({ path: route })).toBe('route-reviewed');
     expect(trust.tierOf(undefined)).toBe('under-review');
     // An in-progress graduation is still under review.
     expect(trust.tierOf({ curated: false, path: route, graduation: {
@@ -262,5 +271,28 @@ describe('trail data trust states', () => {
     // Missing or unparseable distance never counts as multi-day.
     expect(trust.isMultiDay({})).toBe(false);
     expect(trust.isMultiDay(null)).toBe(false);
+  });
+});
+
+describe('the badge words follow the dictionary when one is loaded', () => {
+  function loadTrustWith(t){
+    const context = { window: {}, console };
+    context.window.window = context.window;
+    if(t) context.window.t = t;
+    vm.createContext(context);
+    vm.runInContext(fs.readFileSync(path.join(__dirname, 'trail-trust.js'), 'utf8'), context);
+    return context.window.DoloPawsTrailTrust;
+  }
+  const reviewed = { tier: 'route-reviewed', path: [[46, 11], [46.01, 11.01]] };
+
+  test('tier labels translate through the page lookup', () => {
+    const trust = loadTrustWith(key => ({ 'tier.reviewed':'Revisionato da ORMA', 'tier.imported':'Percorso importato' })[key] || key);
+    expect(trust.provenanceLabel(reviewed)).toBe('Revisionato da ORMA');
+    expect(trust.provenanceLabel({})).toBe('Percorso importato');
+  });
+
+  test('without a lookup, or with one that does not know the key, the English stands', () => {
+    expect(loadTrustWith(null).provenanceLabel(reviewed)).toBe('Reviewed by ORMA');
+    expect(loadTrustWith(key => key).provenanceLabel(reviewed)).toBe('Reviewed by ORMA');
   });
 });

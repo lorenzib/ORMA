@@ -46,6 +46,11 @@ jobs:
       ORMA_SPECIALIST_LIMIT: ${{ github.event.inputs.specialist_limit || '10' }}
       ORMA_PUBLICATION_FORCE_RETRY: ${{ github.event.inputs.force_publication_retry || 'false' }}
       ORMA_CAMPAIGN_AUTOMATION_ENABLED: ${{ vars.ORMA_CAMPAIGN_AUTOMATION_ENABLED || 'false' }}
+      # A gate standing only on findings an agent can supply is asked of that
+      # agent. Set the repository variable to 'false' to stop it without a
+      # code change; the limit is per pass.
+      ORMA_GATE_DISPATCH_ENABLED: ${{ vars.ORMA_GATE_DISPATCH_ENABLED || 'true' }}
+      ORMA_GATE_DISPATCH_LIMIT: '3'
       ORMA_CAMPAIGN_LIMIT: '10'
       ORMA_CAMPAIGN_CAPACITY: '15'
     steps:
@@ -213,6 +218,7 @@ jobs:
         shell: bash
         env:
           ORMA_GATE_ALLOWED: ${{ steps.website_gate.outputs.publication_allowed }}
+          ORMA_GATE_PENDING: ${{ steps.website_gate.outputs.publication_pending }}
           ORMA_GATE_MESSAGE: ${{ steps.website_gate.outputs.message }}
           ORMA_GATE_RUN_URL: ${{ steps.website_gate.outputs.validation_run_url }}
           ORMA_WORKER_WORK_OUTCOME: ${{ steps.process_queues.outputs.work_outcome }}
@@ -271,7 +277,10 @@ jobs:
           elif [ "${{ steps.confirm_deployed_publication.outcome }}" = "failure" ]; then
             outcome="failure"
             stage="publication-deployment-receipt"
-          elif [ "$ORMA_GATE_ALLOWED" != "true" ]; then
+          elif [ "$ORMA_GATE_ALLOWED" != "true" ] && [ "$ORMA_GATE_PENDING" != "true" ]; then
+            # A gate still waiting on a validation run is not a blocked one.
+            # Publication is withheld either way, but only this branch means
+            # something needs a person.
             outcome="blocked"
             stage="website-publication-gate"
             message="$ORMA_GATE_MESSAGE"

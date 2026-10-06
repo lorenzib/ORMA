@@ -5,18 +5,19 @@ const source=fs.readFileSync('./trail-verify-desk.js','utf8');
 // Six trails sit at the dossier gate blocked entirely on logistics route
 // guidance; handing those to terrainPoi returns the same dossier and costs a
 // model call to learn nothing.
-function agentFromBlockers(){
-  const start=source.indexOf('  function hasRouteGeometryConflict(reasons){');
-  const end=source.indexOf('  function groupBlockers(reasons){');
-  expect(start).toBeGreaterThan(-1);
-  return new Function(`${source.slice(start,end)}\nreturn agentFromBlockers;`)();
-}
+// The rule now lives in backoffice/revision-target.js, where the worker pass
+// that dispatches a standing gate reads the same function. Requiring it means
+// these cases cover the rule the automation actually runs, not a copy of it.
+const {agentFromBlockers}=require('./backoffice/revision-target');
 
-const ROUTE_GUIDANCE=id=>`logistics/${id}: supported authoritative route guidance is required`;
+// The wording comes from the producer; only the claim id varies per case.
+const {routeGuidanceBlockingReasons}=require('./backoffice/workflows/compile-verified-dossier.js');
+const ROUTE_GUIDANCE_SHAPE=routeGuidanceBlockingReasons([])[0];
+const ROUTE_GUIDANCE=id=>ROUTE_GUIDANCE_SHAPE.replace(/^logistics\/[^:]+/,`logistics/${id}`);
 
 describe('a revision goes to the agent its blockers name', () => {
   let pick;
-  beforeEach(()=>{pick=agentFromBlockers();});
+  beforeEach(()=>{pick=agentFromBlockers;});
 
   test('the six dossier-gate trails ask logistics', () => {
     expect(pick(['recommended-start','route-number-status','route-number-sequence','route-number-switches']

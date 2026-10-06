@@ -1,6 +1,6 @@
 'use strict';
 
-const { ON_ROUTE_METRES } = require('./run-catalogue-batch');
+const { ON_ROUTE_METRES } = require('../services/geometry-validator');
 
 // Which documented waymarked paths does this walk follow?
 //

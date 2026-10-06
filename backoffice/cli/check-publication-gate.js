@@ -8,7 +8,10 @@ function apiUrl(env){
   const repository=String(env.GITHUB_REPOSITORY||'').trim();
   const sha=String(env.GITHUB_SHA||'').trim();
   if(!repository||!sha)throw new Error('GITHUB_REPOSITORY and GITHUB_SHA are required');
-  return `https://api.github.com/repos/${repository}/actions/workflows/validate.yml/runs?head_sha=${encodeURIComponent(sha)}&status=completed&per_page=10`;
+  // No status filter: a run still in progress has to come back too, or the gate
+  // cannot tell "validation is running" from "validation never ran" and reports
+  // a sixty-second wait as a fault.
+  return `https://api.github.com/repos/${repository}/actions/workflows/validate.yml/runs?head_sha=${encodeURIComponent(sha)}&per_page=10`;
 }
 
 async function latestValidationRuns(env,request=fetch){
@@ -24,6 +27,7 @@ async function writeOutputs(file,gate){
   if(!file)return;
   const output=[
     `publication_allowed=${gate.allowed?'true':'false'}`,
+    `publication_pending=${gate.pending?'true':'false'}`,
     `status=${gate.status}`,
     `conclusion=${gate.conclusion}`,
     `validation_run_url=${gate.validationRunUrl||''}`,
@@ -38,7 +42,8 @@ async function main(options={}){
   try{gate=evaluatePublicationGate(await latestValidationRuns(env,options.fetch||fetch),env.GITHUB_SHA);}
   catch(error){gate=evaluatePublicationGate([],env.GITHUB_SHA);gate.message=`Website publication is paused because validation health could not be checked: ${String(error.message||error).replace(/\s+/g,' ').slice(0,600)} Queue and agent work may continue; approvals stay saved.`;}
   await writeOutputs(env.GITHUB_OUTPUT,gate);
-  console.log(`[orma-publication-gate] ${gate.allowed?'open':'blocked'} · ${gate.conclusion} · ${gate.validationRunUrl||'no validation run URL'}`);
+  const state=gate.allowed?'open':gate.pending?'waiting':'blocked';
+  console.log(`[orma-publication-gate] ${state} · ${gate.conclusion} · ${gate.validationRunUrl||'no validation run URL'}`);
   if(!gate.allowed)console.log(`[orma-publication-gate] ${gate.message}`);
   return gate;
 }

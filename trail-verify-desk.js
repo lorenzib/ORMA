@@ -15,6 +15,7 @@
    */
   const URLS={
     dossier:'backoffice-data/dossier-review-queue.json',
+    routeReview:'backoffice-data/route-review.json',
     orchestration:'backoffice-data/trail-orchestration.json',
     editorial:'backoffice-data/verified-trail-editorial-execution.json',
     staging:'backoffice-data/publication-staging.json',
@@ -27,6 +28,11 @@
   const DRAFT_KEY='orma-verify-notes-v1';
   const RECEIPT_KEY='orma-verify-receipts-v1';
 
+  // Which agent a revision should go to. The rule is shared with the worker
+  // pass that dispatches a standing gate on its own, so the desk and the
+  // automation can never disagree about who is being asked.
+  const {agentFromBlockers}=globalThis.ORMARevisionTarget;
+
   const stateNode=document.getElementById('verifyState');
   const queueNode=document.getElementById('verifyQueue');
   const countNode=document.getElementById('verifyCount');
@@ -37,12 +43,16 @@
     stuck:document.getElementById('verifyStuck'),
     age:document.getElementById('verifyMachineAge'),
   };
+  const answeredNode=document.getElementById('verifyAnswered');
   const blockedNode=document.getElementById('verifyBlocked');
   const prNode=document.getElementById('verifyPr');
   const prCountNode=document.getElementById('verifyPrCount');
   const refreshBtn=document.getElementById('verifyRefresh');
 
   let dossier={items:[]},orchestration={trails:[],summary:{}},editorial={outputs:[]},staging={items:[]},publication={requests:[]};
+  // Stage-0 route choice: the earliest human gate, its own review artifact,
+  // separate from the dossier queue. Carried here when the desks merged.
+  let routeReview={items:[]};
   let catalogue={items:[]},registry={verified:[]};
   let pipeline=null,worker=null;
   let coverageError='';
@@ -209,47 +219,6 @@
    * One entry per distinct problem, with the raw ids kept for hovering, plus
    * the agent's working kept separately so the card can fold it away.
    */
-  // Which agent a revision should go to. The desk used to send it to whichever
-  // specialist output happened to be first, so a trail blocked entirely on
-  // logistics route guidance could have its revision handed to terrainPoi, which
-  // cannot supply route guidance and would return the same dossier. Every
-  // blocking reason names the agent it belongs to -- "logistics/route-number-
-  // sequence: ..." or "logistics: open question ..." -- so when they all name
-  // the same one, that is who is being asked.
-  // An explicit mismatch between the official route and the mapped geometry has
-  // to be settled before Logistics can write directions for that line. Agents
-  // currently report that mismatch inside their open questions rather than as a
-  // cartographer-prefixed blocker, so recognise only the concrete source/shape
-  // comparisons they produce. This keeps a route-identity problem from spending
-  // another cycle asking Logistics to describe geometry that may be wrong.
-  function hasRouteGeometryConflict(reasons){
-    return (reasons||[]).some(reason=>{
-      const text=String(reason).toLowerCase();
-      return (/(?:supplied|mapped|osm)\s+(?:route\s+)?geometry/.test(text)
-          &&/(?:official|published)\b.{0,50}\b(?:route|loop|gpx)/.test(text))
-        ||/specific osm member ways/.test(text)
-        ||(/official\s+(?:route\s+)?gpx/.test(text)
-          &&/(?:same|match|correspond|difference|extension)/.test(text));
-    });
-  }
-
-  // Route guidance is mandatory and only Logistics can supply it. A dossier can
-  // also carry Ranger or Terrain findings, so the generic "all reasons name the
-  // same agent" rule below would otherwise fall back to the first output --
-  // usually the Cartographer -- and send the revision to somebody who cannot
-  // clear the gate. Geometry conflicts above are the one prerequisite.
-  function agentFromBlockers(reasons){
-    if(hasRouteGeometryConflict(reasons))return 'cartographer';
-    if((reasons||[]).some(reason=>/^logistics\/(recommended-start|route-number-(status|sequence|switches))\s*:/.test(String(reason).trim())))return 'logistics';
-    const named=new Set();
-    for(const reason of reasons||[]){
-      const match=/^([A-Za-z][A-Za-z0-9]*)\s*[/:]/.exec(String(reason).trim());
-      if(!match)return null;
-      named.add(match[1]);
-    }
-    return named.size===1?[...named][0]:null;
-  }
-
   function groupBlockers(reasons){
     const groups=[],loose=[],working=[];
     (reasons||[]).forEach(reason=>{
@@ -478,6 +447,7 @@
     if(LOCAL_MODE)return {ok:true,reviewId:'local'};
     const api=await remote();
     if(kind==='dossier')return api.submitDossierReview(payload);
+    if(kind==='route')return api.submitRouteReview(payload);
     if(kind==='publication')return api.submitPublicationReview(payload);
     return api.submitTrailReview({gate:'content-review',decisions:[payload]});
   }
@@ -838,7 +808,19 @@
   // ---- rendering ----
 
   const MIN_ACCEPT_REASON=10;
-  const ROUTE_GUIDANCE_BLOCKER=/supported authoritative route guidance is required$/;
+
+  // Mirrors UNWAIVABLE_BLOCKER_IDS in backoffice/workflows/compile-verified-dossier.js.
+  // The desk is a browser script and cannot require it, so desk-accept-blockers.test.js
+  // compares the two lists: change the contract without changing this and that test fails.
+  //
+  // Recognised by the id a blocker is filed under, never by its wording. This
+  // was a regex over the sentence both producers ended with until #472 reworded
+  // one of them, and for nineteen days the desk offered a tick-box for the one
+  // blocker a reason cannot address. Ticking it got the moderator nowhere: the
+  // approval was queued, the worker's compile threw, and the item simply never
+  // moved.
+  const UNWAIVABLE_BLOCKER_IDS=['logistics/recommended-start','geometry/off-declared-route'];
+  const unwaivableBlocker=reason=>UNWAIVABLE_BLOCKER_IDS.includes(String(reason).split(':')[0].trim());
 
   // Ticking a blocker off. Five agents researching a trail always leave loose
   // ends, and a gate that opens only when none remain never opens. Accepting one
@@ -849,8 +831,8 @@
   // matches on. The grouped explanation above stays as it is: it is for reading,
   // this is for deciding.
   function acceptanceList(decision,onChange){
-    const waivable=decision.blockers.filter(reason=>!ROUTE_GUIDANCE_BLOCKER.test(String(reason)));
-    const supplied=decision.blockers.filter(reason=>ROUTE_GUIDANCE_BLOCKER.test(String(reason)));
+    const waivable=decision.blockers.filter(reason=>!unwaivableBlocker(reason));
+    const supplied=decision.blockers.filter(reason=>unwaivableBlocker(reason));
     const box=el('div','vd-accept');
     const accepted=new Map();
 
@@ -892,6 +874,7 @@
 
   function card(decision){
     const article=el('article',`vd-card${decision.ready?'':' is-blocked'}`);
+    article.id=`review-${decision.key}`;
     const head=el('div','vd-card-head');
     const heading=el('div');
     heading.append(el('p','vd-gate',decision.gate.label),el('h2','',decision.trailName));
@@ -1102,30 +1085,203 @@
     });
   }
 
+  // ---- Stage 0: route choice ----------------------------------------------
+  // The earliest human gate: which official route variant(s) become ORMA
+  // trails. Its own review artifact, restored here when the dossier desk merged
+  // into this one. Recording a choice queues it for automation; nothing
+  // published changes.
+  function routeNeedsHuman(item){return /human|direct-confirmation/i.test(item&&item.reviewState||'');}
+  // What you answered, from this session and from Firestore. The question lives
+  // in the route-review artifact, which only a cartographer run rebuilds, so
+  // without reading the answers back the desk asks again on every visit for
+  // every choice already made.
+  const routeReceipts={};
+  let routeDecisions=[];
+  const ROUTE_ACTION_SAID={
+    'approve-route':'Kept the chosen route',
+    'approve-route-variants':'Kept the chosen route variants',
+    'request-route-research':'Sent back for more research',
+    'reject-route-source':'Rejected the source',
+    'route-unresolved':'Left unresolved',
+  };
+
+  function stampMs(value){
+    if(!value)return 0;
+    if(typeof value.toDate==='function')return value.toDate().getTime();
+    if(value.seconds)return Number(value.seconds)*1000;
+    const parsed=Date.parse(value);return Number.isNaN(parsed)?0:parsed;
+  }
+
+  // Read once per page load and again after each submit, never on the minute
+  // poll: this is a hundred-document read and the daily Firestore quota is
+  // small. Nothing but this desk writes these, so that is current enough.
+  async function loadRouteDecisions(){
+    if(LOCAL_MODE)return;
+    try{
+      const result=await (await remote()).getRouteReviews();
+      if(result&&result.ok)routeDecisions=result.reviews||[];
+    }catch(error){/* the in-session receipt still covers what was just saved */}
+  }
+
+  /**
+   * One answer per candidate, newest first. A decision automation refused
+   * (blocked) or a later decision replaced (superseded) is not an answer, and
+   * neither is one taken against an older version of the question — a rebuilt
+   * artifact is the cartographer asking again.
+   */
+  function routeAnswers(){
+    const answers=new Map();
+    const askedMs=stampMs(routeReview.generatedAt);
+    const remember=(candidateId,answer)=>{
+      if(!candidateId)return;
+      const current=answers.get(candidateId);
+      if(!current||answer.at>=current.at)answers.set(candidateId,answer);
+    };
+    for(const review of routeDecisions){
+      if(['blocked','superseded'].includes(review.status))continue;
+      const at=stampMs(review.processedAt||review.submittedAt);
+      if(at&&askedMs&&at<askedMs)continue;
+      remember(review.candidateId,{at,action:review.action||'',status:review.status||'queued'});
+    }
+    for(const [candidateId,receipt] of Object.entries(routeReceipts))
+      remember(candidateId,{at:receipt.at,action:receipt.action||'',status:'queued'});
+    return answers;
+  }
+
+  async function submitRouteChoice(item,action,proposalIds,note,article,status){
+    if(action==='approve'&&!proposalIds.length){status.textContent='Select at least one route variant to keep.';return;}
+    const realAction=action==='approve'?(proposalIds.length>1?'approve-route-variants':'approve-route'):action;
+    article.querySelectorAll('button').forEach(button=>{button.disabled=true;});
+    status.classList.remove('is-error');status.textContent='Recording route choice…';
+    try{
+      const result=await send('route',{candidateId:item.candidateId,action:realAction,proposalIds,note:String(note||'').trim()});
+      if(result&&result.ok===false)throw new Error(result.error||'submit failed');
+      routeReceipts[item.candidateId]={at:Date.now(),action:realAction};
+      status.textContent='Route choice saved. The next automation run collects it; nothing on the public site changed.';
+      // Re-read the recorded answers before refreshing, so the card leaves the
+      // queue on the strength of what Firestore holds and not only this tab.
+      window.setTimeout(()=>{loadRouteDecisions().then(load);},1200);
+    }catch(error){
+      status.classList.add('is-error');status.textContent=`Could not record route choice: ${error.message}`;
+      article.querySelectorAll('button').forEach(button=>{button.disabled=false;});
+    }
+  }
+
+  function routeCard(item){
+    const article=el('article','vd-card vd-route is-ready');
+    article.id=`route-${item.candidateId}`;
+    const head=el('div','vd-card-head');
+    const heading=el('div');
+    heading.append(el('p','vd-gate','Stage 0 · Route choice'),el('h2','',item.title||item.candidateId));
+    head.append(heading,el('span','vd-route-mode',item.selectionMode==='one-or-more'?'Keep one or more variants':'Choose one route'));
+    article.append(head);
+    if(item.routeIdentity)article.append(el('p','vd-question',item.routeIdentity));
+    if(Array.isArray(item.findings)&&item.findings.length){
+      const list=el('ul','vd-checklist');
+      item.findings.forEach(finding=>list.append(el('li','',typeof finding==='string'?finding:JSON.stringify(finding))));
+      article.append(el('h3','vd-checklist-title','What the sources found'),list);
+    }
+    const multiple=item.selectionMode==='one-or-more';
+    const proposals=el('div','vd-route-proposals');
+    (item.proposals||[]).forEach(proposal=>{
+      const label=el('label','vd-route-proposal');
+      const input=document.createElement('input');
+      input.type=multiple?'checkbox':'radio';input.name=`route-${item.candidateId}`;input.value=proposal.id;input.dataset.proposalId=proposal.id;
+      if(proposal.recommended)input.checked=true;
+      const text=el('div','vd-route-proposal-text');
+      text.append(el('strong','',proposal.label||proposal.id));
+      if(proposal.summary)text.append(el('p','',proposal.summary));
+      if(proposal.recommended)text.append(el('small','vd-route-rec','Recommended'));
+      label.append(input,text);
+      proposals.append(label);
+    });
+    article.append(proposals);
+    const note=document.createElement('textarea');
+    note.placeholder='Optional: note why you kept, rejected or sent this route back for research…';
+    article.append(note);
+    const status=el('p','vd-status','');
+    const actions=el('div','vd-actions');
+    const chosen=()=>Array.from(proposals.querySelectorAll('input[data-proposal-id]:checked')).map(input=>input.value);
+    [['approve',multiple?'Keep selected route(s)':'Keep this route','is-approve'],
+      ['request-route-research','Send for more research',''],
+      ['reject-route-source','Reject source','is-reject']].forEach(([action,label,cls])=>{
+      const button=el('button',cls,label);button.type='button';
+      button.addEventListener('click',()=>submitRouteChoice(item,action,chosen(),note.value,article,status));
+      actions.append(button);
+    });
+    article.append(actions,status);
+    article.append(el('small','vd-route-safety','Recording a route choice queues it for ORMA automation and never changes the public website.'));
+    return article;
+  }
+
+  function routeChoiceCards(answers){
+    return (routeReview.items||[]).filter(routeNeedsHuman)
+      .filter(item=>!answers.has(item.candidateId)).map(routeCard);
+  }
+
+  // An answer already given is not a question. It stays on the page, under the
+  // queue, because a choice automation has not collected yet is worth seeing —
+  // just never worth being asked for a second time.
+  function renderAnswered(answers){
+    if(!answeredNode)return;
+    const rows=(routeReview.items||[]).filter(routeNeedsHuman)
+      .filter(item=>answers.has(item.candidateId));
+    answeredNode.replaceChildren();
+    answeredNode.hidden=!rows.length;
+    if(!rows.length)return;
+    answeredNode.append(el('h2','vd-answered-title',
+      `${plural(rows.length,'route choice')} already recorded`));
+    answeredNode.append(el('p','vd-answered-lede',
+      'You have answered these. They are out of the queue and waiting on the next automation run, not on you.'));
+    rows.forEach(item=>{
+      const answer=answers.get(item.candidateId);
+      const row=el('article','vd-answered-row');
+      row.append(el('strong','',item.title||item.candidateId));
+      row.append(el('p','',ROUTE_ACTION_SAID[answer.action]||'Decision recorded'));
+      if(answer.at)row.append(el('small','',`Saved ${new Date(answer.at).toLocaleString()}`));
+      answeredNode.append(row);
+    });
+  }
+
   function render(){
     // Trails that are clean by every automated check come first: they are one
     // click each, and burying them under the ones needing thought is what makes
     // a short queue feel long.
+    // Route choice is stage 0, the earliest gate, so it leads the queue.
+    const answers=routeAnswers();
+    const routeCards=routeChoiceCards(answers);
     const decisions=[...fromDossier(),...fromContent(),...fromPublish()]
       .sort((a,b)=>Number(b.ready===true)-Number(a.ready===true));
-    countNode.textContent=decisions.length?plural(decisions.length,'trail'):'Nothing waiting';
+    const total=routeCards.length+decisions.length;
+    countNode.textContent=total?plural(total,'trail'):'Nothing waiting';
     queueNode.replaceChildren();
-    if(!decisions.length){
+    if(!total){
       queueNode.append(el('p','vd-empty','Nothing needs you right now.'));
     }else{
+      routeCards.forEach(cardNode=>queueNode.append(cardNode));
       decisions.forEach(decision=>queueNode.append(card(decision)));
     }
     renderMachine();
+    renderAnswered(answers);
     renderBlocked();
     renderCoverage();
     renderPullRequests();
+    // Deep links from Backoffice Home (#route-<id> / #review-<id>) land on the
+    // right card. Once only, so the minute refresh does not keep yanking the
+    // page back.
+    if(!hashScrolled&&location.hash){
+      const target=document.getElementById(location.hash.slice(1));
+      if(target){target.scrollIntoView({block:'start'});hashScrolled=true;}
+    }
   }
+  let hashScrolled=false;
 
   async function load(){
     refreshBtn.disabled=true;
     try{
-      [dossier,orchestration,editorial,staging,publication,catalogue,registry,pipeline,worker]=await Promise.all([
+      [dossier,routeReview,orchestration,editorial,staging,publication,catalogue,registry,pipeline,worker]=await Promise.all([
         artifact('dossier-review-queue',URLS.dossier,{items:[]}),
+        artifact('route-review',URLS.routeReview,{items:[]}),
         artifact('trail-orchestration',URLS.orchestration,{trails:[],summary:{}}),
         artifact('verified-trail-editorial-execution',URLS.editorial,{outputs:[]}),
         artifact('publication-staging',URLS.staging,{items:[]}),
@@ -1151,8 +1307,10 @@
     }
   }
 
-  refreshBtn.addEventListener('click',load);
-  load();
+  // The Refresh button is the one place a person asks for everything again, so
+  // it re-reads the recorded answers too; the minute poll does not.
+  refreshBtn.addEventListener('click',()=>loadRouteDecisions().then(load));
+  loadRouteDecisions().then(load);
   // Poll once a minute, and only while the tab is visible, so a backgrounded
   // desk cannot drain the Firestore daily quota.
   // Refreshing on top of somebody mid-decision takes away the box they are

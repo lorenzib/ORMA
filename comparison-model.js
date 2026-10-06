@@ -12,6 +12,7 @@
   // so rather than guessing from a copy that may have drifted.
   function categoryLabel(category){
     const shared = root && root.OrmaMatchVerdict;
+    if(shared && typeof shared.categoryLabel === 'function') return shared.categoryLabel(category) || '';
     const verdict = shared && shared.VERDICTS[category];
     return (verdict && verdict.label) || '';
   }

@@ -1,10 +1,11 @@
 const status = require('./scripts/backoffice-status');
 
 describe('backoffice status report', () => {
-  test('catalogue counts cover every trail across the three tiers', () => {
+  test('catalogue counts cover every trail across the public tiers', () => {
     const c = status.catalogueCounts();
     expect(c.total).toBeGreaterThan(100);
-    const summed = c.tiers['under-review'] + c.tiers['route-audited'] + c.tiers['dolopaws-walked'];
+    const summed = c.tiers['under-review'] + c.tiers['route-reviewed']
+      + c.tiers['route-audited'] + c.tiers['dolopaws-walked'];
     expect(summed).toBe(c.total);
   });
 

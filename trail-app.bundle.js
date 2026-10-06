@@ -4216,10 +4216,28 @@ function breedInsights(name){
   'use strict';
 
   const VERSION = '1.0.0';
+  // Seven here, but only six of them can ever be reviewed through
+  // `verified.categories`. VERIFICATION.md names those six -- water, heat,
+  // exposure, livestock, surfaceHazards, access -- as the safety checks a
+  // source review covers, and puts `route` with photo, routeNumbers, mapPoints
+  // and elevation in `graduation`, which is a different record answering a
+  // different question.
+  //
+  // So canonicalReviewState(trail, 'route') reads a list that by contract never
+  // contains 'route', and a verified trail reports its route evidence as
+  // unknown. That reads like a bug and is not one: it is this module modelling
+  // route as a review category when the standard treats it as a graduation
+  // check. Nothing ships that distinction today -- assessTrail and the
+  // freshness contract below have no caller outside evidence-contract.test.js;
+  // the product uses tierOf, tierLabel and dateText. Wiring the per-category
+  // contract to a reader-facing surface means settling that difference first.
   const CATEGORIES = Object.freeze([
     'route', 'water', 'heat', 'exposure', 'livestock',
     'surfaceHazards', 'access',
   ]);
+  // The six a source review can establish, as VERIFICATION.md defines them.
+  const REVIEWABLE_CATEGORIES = Object.freeze(
+    CATEGORIES.filter(category => category !== 'route'));
   const TIERS = Object.freeze([
     'imported', 'mapped', 'route-audited', 'field-verified',
   ]);
@@ -4279,7 +4297,18 @@ function breedInsights(name){
     if(trail.tier === 'under-review' || trail.curated === false){
       return trail.routeAudit ? 'mapped' : 'imported';
     }
-    return 'route-audited';
+    // A curated listing has been prepared and reviewed by ORMA, but curation
+    // alone is not field verification. It sits at `mapped` (route reviewed) and
+    // only earns `route-audited` once its evidence dossier graduates.
+    //
+    // #516 established this and #589 held it back, because it shipped while no
+    // trail had graduated and the catalogue would have advertised zero verified
+    // trails. Four have now graduated -- tre-cime, lago-braies,
+    // cinque-torri-assisted and osm-14381570 -- so the seal means something
+    // when it appears, and the other 24 read "Reviewed by ORMA" until their own
+    // dossiers graduate. Four of 162 is the honest count, not a failure of the
+    // catalogue to describe itself.
+    return 'mapped';
   }
 
   function tierLabel(tierOrTrail){
@@ -4432,6 +4461,7 @@ function breedInsights(name){
     categoryEvidence,
     communityObservation,
     assessTrail,
+    REVIEWABLE_CATEGORIES,
   });
 });
 ;
@@ -5762,19 +5792,46 @@ function effectiveOverrides(profile, adjustOverride){
     return value>=STRONG_AT?'strong-option':value>=POSSIBLE_AT?'possible-with-cautions':'not-recommended';
   }
 
+  // The dictionary lookup, when a page has one. i18n.js exposes `t` globally;
+  // tests and the build have none, and then the English in VERDICTS stands.
+  function dictionary(translate){
+    if(typeof translate==='function')return translate;
+    const g=typeof globalThis!=='undefined'?globalThis:null;
+    return g&&typeof g.t==='function'?g.t:null;
+  }
+
+  /**
+   * The words for a category, translated where a dictionary is loaded. The
+   * trail page already said "Ottima scelta" through recommendation.category.*
+   * while browse, compare and the homepage still said "Strong option" from the
+   * English in VERDICTS: one vocabulary, two languages at once. Resolving the
+   * label here, at the one place every surface reads it, keeps them together.
+   */
+  function categoryLabel(category,translate){
+    const verdict=VERDICTS[category];
+    if(!verdict)return '';
+    const t=dictionary(translate);
+    if(t){
+      const key=`recommendation.category.${category}`;
+      const value=t(key);
+      if(value&&value!==key)return value;
+    }
+    return verdict.label;
+  }
+
   /**
    * The verdict for a recommendation, or for a bare score where that is all a
    * caller has. The engine's category always wins: it already accounts for a
    * prohibition and for evidence too thin to reassure on.
    */
-  function verdictFor(input){
+  function verdictFor(input,translate){
     const recommendation=input&&typeof input==='object'?input:null;
     const score=recommendation
       ? (Number.isFinite(recommendation.score)?recommendation.score:null)
       : (Number.isFinite(Number(input))?Number(input):null);
     const declared=recommendation&&VERDICTS[recommendation.category]?recommendation.category:null;
     const verdict=VERDICTS[declared||categoryForScore(score)];
-    return {...verdict,score:Number.isFinite(score)?score:null};
+    return {...verdict,label:categoryLabel(verdict.category,translate),score:Number.isFinite(score)?score:null};
   }
 
   // How completely a trail is known, said calmly. Confidence describes the data
@@ -5830,7 +5887,7 @@ function effectiveOverrides(profile, adjustOverride){
   }
 
   return {VERDICTS,STRONG_AT,POSSIBLE_AT,CONFIDENCE_LEVELS,CONFIDENCE_LABELS,
-    categoryForScore,verdictFor,confidenceLabel,evidenceLine};
+    categoryForScore,categoryLabel,verdictFor,confidenceLabel,evidenceLine};
 });
 ;
 
@@ -5856,7 +5913,7 @@ function effectiveOverrides(profile, adjustOverride){
   // The three public tiers a trail can sit in. See VERIFICATION.md ("Trail
   // tiers"). "under-review" is shown but not yet audited; "route-audited"
   // cleared the desk mechanism; "dolopaws-walked" means a human walked it.
-  const TIERS = Object.freeze(['under-review', 'route-audited', 'dolopaws-walked']);
+  const TIERS = Object.freeze(['under-review', 'route-reviewed', 'route-audited', 'dolopaws-walked']);
 
   // Single source of truth for a trail's tier. An explicit `trail.tier`
   // (or a `walked` flag) wins; otherwise the tier is derived so it can never
@@ -5873,6 +5930,10 @@ function effectiveOverrides(profile, adjustOverride){
       const canonicalTier = root.DoloPawsEvidenceV1.tierOf(trail);
       if (canonicalTier === 'field-verified') return 'dolopaws-walked';
       if (canonicalTier === 'route-audited') return 'route-audited';
+      // `mapped` is a route reviewed by ORMA but not yet field-verified. On a
+      // curated listing that reads "Reviewed by ORMA"; on an imported one it is
+      // still just imported map data.
+      if (canonicalTier === 'mapped') return trail && trail.curated === false ? 'under-review' : 'route-reviewed';
       return 'under-review';
     }
     if (!trail) return 'under-review';
@@ -5881,31 +5942,51 @@ function effectiveOverrides(profile, adjustOverride){
     else if (trail.walked === true) tier = 'dolopaws-walked';
     else {
       const graduation = graduationProgress(trail);
+      // The verified seal is earned by a graduated evidence dossier, never by
+      // curation alone; a curated-but-unverified listing is "route-reviewed".
       if (graduation && graduation.verified) tier = 'route-audited';
-      else tier = trail.curated === false ? 'under-review' : 'route-audited';
+      else tier = trail.curated === false ? 'under-review' : 'route-reviewed';
     }
     // Invariant: the published ORMA tiers claim the *route* was audited or
     // walked, so they require a mapped route. A trail with no `path` (a
     // viewpoint or place listing) has no route to audit, cap it at
     // under-review no matter what its flags say.
-    if ((tier === 'route-audited' || tier === 'dolopaws-walked') && !hasRoute(trail)) {
+    if ((tier === 'route-audited' || tier === 'dolopaws-walked' || tier === 'route-reviewed') && !hasRoute(trail)) {
       return 'under-review';
     }
     return tier;
+  }
+
+  // The dictionary lookup when a page has one (i18n.js exposes `t` globally);
+  // tests and the build have none, and then the English here stands.
+  function translated(key, fallback) {
+    const g = typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : null);
+    const t = g && typeof g.t === 'function' ? g.t : null;
+    if (t) {
+      const value = t(key);
+      if (value && value !== key) return value;
+    }
+    return fallback;
   }
 
   // Short tier badge text, the headline label a visitor sees on a card or
   // trail page. The fuller `provenanceLabel` (below) adds progress/date detail.
   function tierLabel(trail) {
     const tier = tierOf(trail);
-    if (tier === 'dolopaws-walked' || tier === 'route-audited') return 'Verified by ORMA';
-    return 'Imported trail';
+    if (tier === 'dolopaws-walked' || tier === 'route-audited') return translated('tier.routeAudited', 'Verified by ORMA');
+    if (tier === 'route-reviewed') return translated('tier.reviewed', 'Reviewed by ORMA');
+    return translated('tier.imported', 'Imported trail');
   }
 
-  // Badge visual style per tier, reusing the existing pill styles: under-review
-  // keeps the muted "imported" look, the two ORMA tiers use the "verified" look.
+  // Badge visual style per tier. Only an earned verification gets the green
+  // "verified" pill; a reviewed-but-not-verified listing takes the muted
+  // "neutral" pill so the seal is never mistaken for field verification, and an
+  // imported trail keeps the "imported" look.
   function tierBadgeStyle(trail) {
-    return tierOf(trail) === 'under-review' ? 'imported' : 'verified';
+    const tier = tierOf(trail);
+    if (tier === 'dolopaws-walked' || tier === 'route-audited') return 'verified';
+    if (tier === 'route-reviewed') return 'neutral';
+    return 'imported';
   }
 
   const REVIEW_CATEGORIES = Object.freeze(['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access']);
@@ -9164,6 +9245,31 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
  * BEFORE trail.js.
  */
 
+/**
+ * Where along the walk a position on the drawn line is.
+ *
+ * For most shapes the line is the walk, and position is the fraction along it
+ * times the stated distance. A there-and-back is drawn once and walked twice:
+ * the line is one leg, so the fraction scales by half the distance on the way
+ * out and mirrors into the second half on the way back. Scaling by the full
+ * distance put the walker at the finish the moment they reached the
+ * turnaround -- 5.5 km at Rifugio Nuvolau, with the whole descent to come.
+ *
+ * Pure, so the arithmetic can be checked without a GPS or a map.
+ */
+function hikeRoutePositionKm(input){
+  const totalMeters = Number(input && input.totalMeters) || 1;
+  const statedKm = Number(input && input.statedKm) || 0;
+  const routeProgressM = Number(input && input.routeProgressM) || 0;
+  const outAndBack = !!(input && input.outAndBack);
+  const furthestRouteM = Number(input && input.furthestRouteM) || 0;
+  const returnMarginM = Number(input && input.returnMarginM) || 150;
+  const legKm = outAndBack ? statedKm / 2 : statedKm;
+  const alongLegKm = (routeProgressM / totalMeters) * legKm;
+  const returning = outAndBack && (furthestRouteM - routeProgressM) > returnMarginM;
+  return returning ? Math.max(0, statedKm - alongLegKm) : alongLegKm;
+}
+
 function initHikeMode(map, trail, options){
   if (!('geolocation' in navigator)) return; // no GPS, don't show the button
   if (!Array.isArray(trail.path) || trail.path.length < 2) return;
@@ -9189,10 +9295,24 @@ function initHikeMode(map, trail, options){
   // Route-position consumers such as the elevation profile use the trail's
   // stated length. Distance walked is accumulated separately from GPS fixes.
   const statedKm = trail.distance || totalMeters / 1000;
-  const isLoop = metersBetween(
-    trail.path[0][0], trail.path[0][1],
-    trail.path[trail.path.length - 1][0], trail.path[trail.path.length - 1][1]
-  ) <= 75;
+  // A there-and-back is drawn once and walked twice, so the line is one leg of
+  // the stated distance. Scaling position by the full distance put the walker
+  // at the finish the moment they reached the turnaround -- 5.5 km at Rifugio
+  // Nuvolau, with the whole descent still to come.
+  const outAndBack = trail.routeShape === 'out-and-back';
+  // Declared shape wins over guessing from the ends. A there-and-back whose
+  // line is later completed closes on itself, and closure alone would then
+  // read it as a loop and switch off the next-water and next-hut readouts.
+  const isLoop = trail.routeShape
+    ? trail.routeShape === 'loop'
+    : metersBetween(
+      trail.path[0][0], trail.path[0][1],
+      trail.path[trail.path.length - 1][0], trail.path[trail.path.length - 1][1]
+    ) <= 75;
+  // How far out the walk has reached, so the return leg can be told from the
+  // outbound one. Both are the same line in the same direction of travel.
+  let furthestRouteM = 0;
+  const RETURN_MARGIN_M = 150;
 
   // ---- UI elements ---------------------------------------------------------
   const startBtn = document.createElement('button');
@@ -9640,7 +9760,11 @@ function initHikeMode(map, trail, options){
       ? cum[rejoin.segmentIndex] +
         (cum[rejoin.segmentIndex + 1] - cum[rejoin.segmentIndex]) * rejoin.segmentFraction
       : cum[snap.idx];
-    const currentRouteKm = (routeProgressM / totalMeters) * statedKm;
+    if(routeProgressM > furthestRouteM) furthestRouteM = routeProgressM;
+    const currentRouteKm = hikeRoutePositionKm({
+      routeProgressM, totalMeters, statedKm, outAndBack, furthestRouteM,
+      returnMarginM:RETURN_MARGIN_M,
+    });
     if(assessment.usableForProgress){
       if(window.DoloPawsHikeDistance){
         distanceTracker = window.DoloPawsHikeDistance.update(
@@ -9894,6 +10018,10 @@ function initHikeMode(map, trail, options){
     latestRouteDistanceM = null;
     manualRejoinActive = false;
     lastIdx = progress ? progress.pathIndex : 0;
+    // A walk resumed on the way back has already been to the far end. Without
+    // this the readout would call the return leg outbound until the walker got
+    // 150 m past wherever the app happened to restart.
+    furthestRouteM = progress && cum[lastIdx] !== undefined ? cum[lastIdx] : 0;
     lastValidFixAt = progress ? progress.recordedAt : null;
     offRouteStreak = 0;
     offRouteSince = null;
@@ -15528,24 +15656,17 @@ if(document.querySelector('.td2')){
   (function reviewRecord() {
     const meta = $('trailReviewMeta');
     if (!meta) return;
-    const graduation = trust && trust.graduationProgress ? trust.graduationProgress(t) : null;
-    const progress = trust && trust.reviewProgress ? trust.reviewProgress(t) : null;
-    if (graduation) {
+    // The record follows the same tier as the seal, so the pill and the
+    // sentence can never disagree. Only an earned verification claims the date;
+    // a reviewed-but-unverified listing says exactly that.
+    const tier = trust && trust.tierOf ? trust.tierOf(t) : null;
+    if (tier === 'route-audited' || tier === 'dolopaws-walked') {
       const date = trust.formatReviewDate(t.reviewedAt || (t.verified && t.verified.date));
-      meta.textContent = graduation.verified
-        ? `Verified by ORMA on ${date}. Check current conditions before setting out.`
-        : 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
-    } else if (progress) {
-      meta.textContent = progress.checked === progress.total
-        ? 'Trail details have been reviewed by ORMA. Check current conditions before setting out.'
-        : 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
-    } else if (t.routeAudit && t.reviewedAt) {
-      const date = trust ? trust.formatReviewDate(t.reviewedAt) : t.reviewedAt;
-      meta.textContent = `Route details reviewed by ORMA on ${date}. Check current conditions before setting out.`;
+      meta.textContent = `Verified by ORMA on ${date}. Check current conditions before setting out.`;
+    } else if (tier === 'route-reviewed') {
+      meta.textContent = 'Trail details prepared and reviewed by ORMA — not yet field-verified. Check local access rules and current conditions before setting out.';
     } else {
-      meta.textContent = t.curated === false
-        ? 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.'
-        : 'Trail information prepared by ORMA. Check current conditions before setting out.';
+      meta.textContent = 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
     }
   })();
 

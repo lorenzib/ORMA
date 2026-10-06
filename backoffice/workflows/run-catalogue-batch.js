@@ -3,9 +3,38 @@
 const { runCartographer } = require('./run-cartographer');
 const { relationExternalId } = require('./plan-catalogue-campaign');
 
-function candidateFromProductionTrail(trail){
+/**
+ * An approved composite settles route identity exactly as a relation does --
+ * plan-catalogue-campaign has said so since composites existed, and admits
+ * trails to the campaign on the strength of one. This function did not know
+ * that, so six trails carrying a human-approved composite were admitted and
+ * then thrown out here, and their jobs sat blocked on
+ * route-source-identity-unresolved since 22 August.
+ *
+ * Composites are passed in rather than read from disk: this runs inside the
+ * worker, where the artifact is already loaded.
+ */
+function approvedCompositeFor(trail, composites){
+  const composite = composites && composites[trail && trail.id];
+  return composite && composite.state === 'approved' ? composite : null;
+}
+
+function candidateFromProductionTrail(trail, composites){
   const externalId = relationExternalId(trail);
-  if(!externalId) throw new Error('route-source-identity-unresolved');
+  const composite = externalId ? null : approvedCompositeFor(trail, composites);
+  if(!externalId && !composite) throw new Error('route-source-identity-unresolved');
+  if(composite){
+    return {
+      id: trail.id,
+      name: trail.name,
+      // No single relation to name. The identity is the approved list, and the
+      // geometry is the curated path -- see services/composite-geometry.js.
+      composite,
+      path: trail.path,
+      routeShape: trail.routeShape || null,
+      geometryAssessment: { distanceKm: Number.isFinite(trail.distance) ? trail.distance : null },
+    };
+  }
   return {
     id: trail.id,
     name: trail.name,
@@ -41,11 +70,7 @@ function metresBetween(a, b){
   return 2 * 6371000 * Math.asin(Math.sqrt(chord));
 }
 
-// How much of the trail's own route lies on the reconstructed relation. This is
-// the question the identity check is really asking, and the only one that
-// separates a trail that walks part of a longer route from a trail whose
-// relation is not its route at all.
-const ON_ROUTE_METRES = 60;
+const { ON_ROUTE_METRES } = require('../services/geometry-validator');
 
 function pathContainmentPercent(trail, result){
   const walked = Array.isArray(trail && trail.path) ? trail.path : [];
@@ -139,4 +164,4 @@ async function runCatalogueBatch(campaign, trails, options = {}){
   };
 }
 
-module.exports = { candidateFromProductionTrail, referenceFromProductionTrail, identityCheckFrom, pathContainmentPercent, ON_ROUTE_METRES, runCatalogueBatch };
+module.exports = { approvedCompositeFor, candidateFromProductionTrail, referenceFromProductionTrail, identityCheckFrom, pathContainmentPercent, ON_ROUTE_METRES, runCatalogueBatch };

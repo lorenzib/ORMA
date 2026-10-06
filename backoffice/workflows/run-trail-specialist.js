@@ -3,6 +3,7 @@
 const {createStructuredResponse}=require('../services/openai-responses-client');
 const {runCartographer}=require('./run-cartographer');
 const {candidateFromProductionTrail,referenceFromProductionTrail}=require('./run-catalogue-batch');
+const {loadRouteComposites}=require('../services/route-composites');
 const {mergeClaimResolutionResult}=require('./claim-resolution');
 const {CLAIM_ENTITY_TYPE,POLICY_BY_RULE}=require('./compile-operational-facts');
 const {locateOnRoute}=require('../../hazard-location');
@@ -93,7 +94,18 @@ function validateVariesClaims(result,job){
       throw new Error(`Claim ${claim.id} does not vary by the day and cannot be answered "varies"`);
     }
     if(attempt<MIN_VARIES_RESOLUTION_ATTEMPT){
-      throw new Error(`Claim ${claim.id} cannot be answered "varies" before resolution attempt ${MIN_VARIES_RESOLUTION_ATTEMPT}; it has had ${attempt}`);
+      // "varies" has to be earned by having looked, but throwing here was the
+      // wrong enforcement: a thrown specialist run is retried at the SAME
+      // resolutionAttempt, so the counter never climbed to 2, the check could
+      // never pass, and the trail blocked forever (observed: regulatoryRanger
+      // seasonal-restrictions jobs stuck "blocked after the full retry budget").
+      // Downgrade to unresolved instead, which IS a resolvable finding, so the
+      // resolution loop re-queues the claim with an incremented attempt. Once it
+      // has genuinely been through MIN_VARIES_RESOLUTION_ATTEMPT attempts, the
+      // agent's "varies" reaches the accepting branch below.
+      claim.finding='unresolved';
+      claim.reopenedFromVaries=true;
+      continue;
     }
     if(!String(claim.variesWith||'').trim()){
       throw new Error(`Claim ${claim.id} is "varies" but does not say what it varies with`);
@@ -210,15 +222,32 @@ function routeGuidanceLeads(trail){
 
 async function runTrailSpecialist({job,trail,context},options={}){
   if(job.agentId==='cartographer'){
-    const result=await runCartographer(candidateFromProductionTrail(trail),referenceFromProductionTrail(trail),options);
+    // Six curated trails have no relation of their own and an approved
+    // composite instead. Without this the candidate builder throws
+    // route-source-identity-unresolved on every one of them.
+    const composites=options.routeComposites||loadRouteComposites(options.root);
+    const result=await runCartographer(candidateFromProductionTrail(trail,composites),referenceFromProductionTrail(trail),options);
     return {responseId:null,model:'deterministic-osm-cartographer',result};
   }
   const prompt=PROMPTS[job.agentId]; if(!prompt)throw new Error(`No live specialist handler for ${job.agentId}`);
   const runAgent=options.runAgent||createStructuredResponse;
   const clientOptions={...(options.clientOptions||{}),model:options.clientOptions?.model||modelForAgent(job.agentId,options.env)};
+  // The validator rejects "varies" before resolution attempt 2, and nothing ever
+  // told the agent which attempt it was on: a first pass carries no resolution
+  // prompt at all, so an agent reading "only after you have tried to pin it
+  // down" concludes it has tried, answers "varies", and is refused by a number
+  // it was never given. The retry then re-sends the identical prompt, so it
+  // answers the same way until the budget is gone -- seven seasonal-restrictions
+  // jobs blocked that way before anything said so out loud.
+  //
+  // Both branches are built from the constants the validator reads, so the rule
+  // and the instruction cannot drift apart.
+  const variesPrompt=Number(job.resolutionAttempt||0)>=MIN_VARIES_RESOLUTION_ATTEMPT
+    ? `\n\nOn this attempt you may conclude finding "varies" for ${VARIABLE_CLAIM_IDS.join(' or ')} if the evidence establishes that the answer genuinely depends on when someone walks. It still needs variesWith naming what it depends on, and a source establishing the variability itself.`
+    : `\n\nDo not return finding "varies" on this pass, for any claim. It is reserved for automated resolution attempt ${MIN_VARIES_RESOLUTION_ATTEMPT} and later, so that it is always a conclusion drawn from repeated looking rather than a first impression. Where you cannot establish ${VARIABLE_CLAIM_IDS.join(' or ')} on this pass, return finding "unresolved" and say in blockers what you would need; a later attempt will be allowed to conclude that it varies.`;
   const resolutionPrompt=job.resolutionAttempt?`\n\nThis is automated evidence-resolution attempt ${job.resolutionAttempt} of ${job.maximumResolutionAttempts||5} for claim(s) ${(job.claimIds||[]).join(', ')}. Use this materially different strategy: ${job.resolutionStrategyLabel} (${job.resolutionStrategy}). ${job.resolutionInstruction} Return a complete updated specialist result: preserve unrelated prior claims, include every targeted claim, and list only questions that remain open after this attempt. Never claim success merely because a source was not found.`:'';
   const response=await runAgent({schemaName:`orma_${job.agentId}_trail_findings`,schema:SPECIALIST_SCHEMA,webSearch:true,
-    messages:[{role:'developer',content:prompt+resolutionPrompt},
+    messages:[{role:'developer',content:prompt+resolutionPrompt+variesPrompt},
       {role:'user',content:JSON.stringify({job,trail,ormaRecord:routeGuidanceLeads(trail),context})}]},clientOptions);
   validateSpecialistResult(response.data,job.agentId);
   validateVariesClaims(response.data,job);

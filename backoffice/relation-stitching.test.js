@@ -1,6 +1,6 @@
 'use strict';
 
-const {mergePieces,MERGE_TOLERANCE_M,stitchWays,reconstructRelation}=require('./services/relation-geometry');
+const {mergePieces,MERGE_TOLERANCE_M,stitchWays,reconstructRelation,memberWays}=require('./services/relation-geometry');
 
 // About 11 m per 0.0001 degree of latitude at this scale, which is the unit the
 // gaps below are expressed in.
@@ -77,5 +77,45 @@ describe('a relation reconstructed end to end',()=>{
     const result=reconstructRelation(payload([a,b]),'relation/99',{});
     expect(result.assessment.issues).not.toContain('disconnected-components');
     expect(result.geometry.coordinates.length).toBe(9);
+  });
+});
+
+// Albannette petite boucle lists nine of its twenty-six ways twice. Stitched
+// once per listing, the line measured 5.02 km over 3.99 km of mapped way --
+// and 5.0 km is exactly the official figure, so the duplicate made a route
+// that is a fifth short look like a route that matched.
+describe('a way a relation lists more than once',()=>{
+  const node=(id,lat,lng)=>({type:'node',id,lat,lon:lng});
+  const payload=(members)=>({elements:[
+    {type:'relation',id:1,tags:{},members},
+    {type:'way',id:10,nodes:[100,101]},
+    {type:'way',id:11,nodes:[101,102]},
+    node(100,46.5,11.8),node(101,46.5,11.805),node(102,46.5,11.81),
+  ]});
+  const asMember=ref=>({type:'way',ref,role:''});
+
+  test('is walked once, not once per listing',()=>{
+    const {ways,duplicateWayCount}=memberWays(payload([asMember(10),asMember(11),asMember(10)]),1);
+    expect(ways.map(way=>way.id)).toEqual([10,11]);
+    expect(duplicateWayCount).toBe(1);
+  });
+
+  test('and the line is the ground it covers, not twice some of it',()=>{
+    const once=stitchWays(memberWays(payload([asMember(10),asMember(11)]),1).ways);
+    const twice=stitchWays(memberWays(payload([asMember(10),asMember(11),asMember(10)]),1).ways);
+    expect(twice[0].coordinates).toEqual(once[0].coordinates);
+  });
+
+  test('a relation listing nothing twice is untouched',()=>{
+    const {ways,duplicateWayCount}=memberWays(payload([asMember(10),asMember(11)]),1);
+    expect(ways.map(way=>way.id)).toEqual([10,11]);
+    expect(duplicateWayCount).toBe(0);
+  });
+
+  // The first listing is the one kept, so a role carried by the first entry is
+  // the role the way keeps.
+  test('the first listing is the one kept',()=>{
+    const members=[{type:'way',ref:10,role:'excursion'},asMember(11),{type:'way',ref:10,role:''}];
+    expect(memberWays(payload(members),1).ways[0].role).toBe('excursion');
   });
 });

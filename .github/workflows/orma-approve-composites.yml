@@ -1,0 +1,121 @@
+name: ORMA rule on route composites
+
+# Discovering the waymarked paths a walk follows, and ruling on the proposals.
+# Both need Overpass, which is why they live here: the corridor query is large,
+# the public mirrors throttle and time out, and the backoffice worker already
+# reaches them reliably from Actions where a laptop on a shared address does not.
+#
+# Dispatched by hand because ruling is a human act. An approved composite is the
+# moment a set of relations becomes a route source for a trail, so the person
+# dispatching is recorded as the approver, and a proposal that could not be
+# measured is held rather than approved -- "nothing was approved unmeasured".
+#
+# The result is a repository file, so it comes back as a pull request to read
+# before it counts, never a commit straight to main.
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'What to do'
+        type: choice
+        options: [discover, approve]
+        required: true
+        default: discover
+      candidate:
+        description: 'Single trail id (blank does every eligible one)'
+        required: false
+        default: ''
+      approved_by:
+        description: 'Who is approving. Leave blank for an unattended run and it records itself, not a person.'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: orma-route-composites
+  cancel-in-progress: false
+
+jobs:
+  rule:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Rule on composites
+        env:
+          MODE: ${{ inputs.mode }}
+          CANDIDATE: ${{ inputs.candidate }}
+          APPROVED_BY: ${{ inputs.approved_by }}
+        run: |
+          set -euo pipefail
+          args=()
+          # Explicit if rather than `[ -n ... ] && ...`: under set -e the and-list
+          # form is only safe while something follows it, and that is not a
+          # property worth depending on.
+          if [ -n "$CANDIDATE" ]; then args+=(--candidate "$CANDIDATE"); fi
+          # Only pass an approver when a person named one. Passing it blank
+          # would be the CLI's problem to interpret; leaving it off says plainly
+          # that nobody is claiming this approval.
+          if [ -n "$APPROVED_BY" ]; then args+=(--by "$APPROVED_BY"); fi
+          if [ "$MODE" = "approve" ]; then
+            npm run backoffice:approve-composites -- "${args[@]}"
+          else
+            npm run backoffice:discover-composites -- "${args[@]}"
+          fi
+      - name: Open a pull request for what changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MODE: ${{ inputs.mode }}
+        run: |
+          set -euo pipefail
+          # Not "is the file dirty": the tools rewrite updatedAt on every run,
+          # so a run that held every proposal looks identical to one that
+          # approved a composite. Compare the composites themselves.
+          ledger=backoffice-data/route-composites.json
+          git show HEAD:"$ledger" > /tmp/composites-before.json
+          summary="$(node -e '
+            const fs = require("fs");
+            const { compositesChanged, describeChange } = require("./backoffice/workflows/composite-ledger-change");
+            const before = fs.readFileSync("/tmp/composites-before.json", "utf8");
+            const after = fs.readFileSync(process.argv[1], "utf8");
+            if(!compositesChanged(before, after)) process.exit(3);
+            process.stdout.write(describeChange(before, after).join("; "));
+          ' "$ledger")" || {
+            status=$?
+            if [ "$status" = "3" ]; then
+              echo "No composite changed; only the ledger timestamp moved."
+              git checkout -- "$ledger"
+              exit 0
+            fi
+            exit "$status"
+          }
+          echo "Composites changed: ${summary:-figures only}"
+          branch="orma-bot/route-composites"
+          git config user.name "ORMA Backoffice"
+          git config user.email "orma-backoffice@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add backoffice-data/route-composites.json
+          # Anything else touched is a bug in the tool, not a result to merge.
+          git diff --quiet || {
+            echo "The composite run left other tracked files changed:"
+            git diff --name-only
+            exit 1
+          }
+          git commit -m "Rule on route composites ($MODE)"
+          git push --force origin "$branch"
+          pr="$(gh pr list --head "$branch" --state open --json number --jq '.[0].number')"
+          if [ -z "$pr" ]; then
+            gh pr create --base main --head "$branch" \
+              --title "Rule on route composites ($MODE)" \
+              --body "Dispatched run of the composite $MODE. ${summary:-Figures changed without a state moving.} Read the diff before merging: an approved composite becomes a trail's route source."
+          else
+            echo "Updated existing pull request #$pr"
+          fi

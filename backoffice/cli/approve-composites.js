@@ -19,13 +19,20 @@ const { ON_ROUTE_PERCENT } = require('../workflows/plan-catalogue-campaign');
 
 const PACE_MS = 2000;
 
+// What an approval is recorded as when nobody named an approver. This runs from
+// a workflow that can be dispatched unattended, and the rule it applies is a
+// fresh coverage measurement -- real, but not a person's judgement. Recording
+// "human-moderator", or a named owner carried in as an input default, puts
+// somebody's name on a decision they did not take.
+const UNATTENDED_APPROVER = 'orma-approve-composites (automated coverage rule)';
+
 function sleep(milliseconds){ return new Promise(resolve => setTimeout(resolve, milliseconds)); }
 
 async function main(args = process.argv.slice(2)){
   const root = path.resolve(__dirname, '..', '..');
   const compositesPath = path.join(root, 'backoffice-data', 'route-composites.json');
   const candidateId = option(args, '--candidate', '');
-  const approvedBy = option(args, '--by', 'human-moderator');
+  const approvedBy = option(args, '--by', '').trim() || UNATTENDED_APPROVER;
   const reject = args.includes('--reject');
   // Trails to leave proposed in a bulk run. A held proposal is untouched, so it
   // can be ruled on separately once whatever is holding it is settled.
@@ -91,4 +98,4 @@ if(require.main === module){
   main().catch(error => { console.error(`[composites] ${error.message}`); process.exit(1); });
 }
 
-module.exports = { main };
+module.exports = { main, UNATTENDED_APPROVER };

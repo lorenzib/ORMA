@@ -68,7 +68,7 @@
 
   function activityTitle(item){
     const action=item.action||(item.decisions||[]).map(decision=>decision.action).filter(Boolean).join(', ');
-    const stream={dossier:'Evidence',content:'Trail content',publication:'Release','new-trail':'New Trail',hazard:'Hazard'}[item.stream]||'Workflow';
+    const stream={dossier:'Evidence',route:'Route choice',content:'Trail content',publication:'Release','new-trail':'New Trail',hazard:'Hazard'}[item.stream]||'Workflow';
     return `${stream}${action?` · ${action.replace(/-/g,' ')}`:''}`;
   }
 
@@ -104,6 +104,25 @@
     if(health.runUrl){action.href=health.runUrl;action.hidden=false;}else action.hidden=true;
   }
 
+  function renderBlockingIssues(model){
+    const list=document.getElementById('blockingIssuesList');
+    if(!list)return;
+    list.replaceChildren();
+    for(const item of model.blockingIssues||[]){
+      const row=element('article','bo-blocking-row');
+      const copy=element('div','bo-blocking-copy');
+      copy.append(element('h3','',item.title));
+      const reasons=element('ul','bo-blocking-reasons');
+      (item.reasons||[]).forEach(reason=>reasons.append(element('li','',reason)));
+      copy.append(reasons);
+      const owner=element('span',`bo-blocking-owner is-${String(item.owner||'agents').toLowerCase()}`,item.owner||'Agents');
+      const action=item.href?element('a','bo-blocking-action',`${item.nextAction} ↗`):element('span','bo-blocking-action is-waiting',item.nextAction);
+      if(item.href){action.href=item.href;if(item.external){action.target='_blank';action.rel='noopener';}}
+      row.append(copy,owner,action);list.append(row);
+    }
+    if(!list.children.length)list.append(element('p','bo-decision-empty','No trail currently has a blocking issue.'));
+  }
+
   function render(model,community){
     set('needsReviewCount',model.summary.needsYou+community.items.length);
     set('agentWorkCount',model.summary.agentWork);
@@ -122,8 +141,22 @@
       :'Protected heartbeat';
     renderHealth('workerHealth',model.workerHealth,workerMeta);
     renderHealth('campaignHealth',model.campaignHealth,model.campaignHealth.meta);
+    renderBlockingIssues(model);
     renderDecisions(model,community);
     renderActivity(model);
+  }
+
+  function bindBlockingIssues(){
+    const toggle=document.getElementById('blockingIssuesToggle');
+    const panel=document.getElementById('blockingIssuesPanel');
+    const label=document.getElementById('blockingIssuesToggleLabel');
+    if(!toggle||!panel)return;
+    toggle.addEventListener('click',()=>{
+      const opening=panel.hidden;
+      panel.hidden=!opening;
+      toggle.setAttribute('aria-expanded',String(opening));
+      if(label)label.textContent=opening?'Hide breakdown':'View breakdown';
+    });
   }
 
 
@@ -225,11 +258,15 @@
     set('dashboardUpdated','Refreshing protected Firestore…');
     try{
       const remote=await api();
-      const [orchestration,dossiers,execution,routeReview,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,jobResult,historyResult,communityResult,verifiedRegistry]=await Promise.all([
+      const [orchestration,dossiers,execution,routeReview,routeReviewResult,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,jobResult,historyResult,communityResult,verifiedRegistry]=await Promise.all([
         required(remote,'trail-orchestration'),
         required(remote,'dossier-review-queue'),
         required(remote,'verified-trail-editorial-execution'),
         optional(remote,'route-review',{items:[]}),
+        // The recorded answers to those route questions. The artifact keeps
+        // asking until a cartographer run rebuilds it, so without these the
+        // queue would ask again for every choice already made.
+        remote.getRouteReviews(),
         required(remote,'publication-staging'),
         optional(remote,'publication-requests',{requests:[]}),
         optional(remote,'worker-health',null),
@@ -248,12 +285,13 @@
       ]);
       if(!jobResult?.ok)throw new Error(`Could not load agent jobs: ${jobResult?.error||'unknown error'}`);
       if(!historyResult?.ok)throw new Error(`Could not load decision receipts: ${historyResult?.error||'unknown error'}`);
+      if(!routeReviewResult?.ok)throw new Error(`Could not load route choices: ${routeReviewResult?.error||'unknown error'}`);
       if(!newTrailReviewResult?.ok)throw new Error(`Could not load New Trail decisions: ${newTrailReviewResult?.error||'unknown error'}`);
       if(!hazardReviewResult?.ok)throw new Error(`Could not load hazard decisions: ${hazardReviewResult?.error||'unknown error'}`);
       if(!communityResult?.ok)throw new Error(`Could not load community moderation: ${communityResult?.error||'unknown error'}`);
 
       const strategyStatus={summary:{editorialStatus:'parked for MVP',newsletterStatus:'parked for MVP',productStatus:'parked for MVP'}};
-      const model=window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,routeReview,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviews:newTrailReviewResult.reviews||[],hazards,hazardQueue,hazardStatus,hazardReviews:hazardReviewResult.reviews||[],strategyStatus,jobs:jobResult.jobs||[],history:historyResult.decisions||[]});
+      const model=window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,routeReview,routeReviews:routeReviewResult.reviews||[],publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviews:newTrailReviewResult.reviews||[],hazards,hazardQueue,hazardStatus,hazardReviews:hazardReviewResult.reviews||[],strategyStatus,jobs:jobResult.jobs||[],history:historyResult.decisions||[]});
       document.getElementById('executiveDecisionQueue').classList.remove('is-error');
       coverage=window.ORMADashboardModel.buildCoverageGrid({hazards,verifiedRegistry,orchestration});
       renderCoverage();
@@ -293,6 +331,7 @@
     const node=document.getElementById('dashboardUpdated');
     if(node&&node.textContent.startsWith('Live ·'))node.textContent=node.textContent.replace(/refresh in \d+s/,`refresh in ${seconds}s`);
   },1000);
+  bindBlockingIssues();
   bindCoverageControls();
   load();
 })();

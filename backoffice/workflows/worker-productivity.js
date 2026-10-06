@@ -84,10 +84,31 @@ function plural(count, singular){
   return `${count} ${count === 1 ? singular : `${singular}s`}`;
 }
 
-/** What a person needs to read on the desk, without opening a run log. */
-function workMessage(summary){
+function whenDue(iso){
+  const date = iso ? new Date(iso) : null;
+  if(!date || Number.isNaN(date.getTime())) return '';
+  const minutes = Math.max(1, Math.round((date.getTime() - Date.now()) / 60000));
+  return minutes <= 90 ? ` The next is due in about ${plural(minutes, 'minute')}.` : ` The next is due at ${iso}.`;
+}
+
+/**
+ * What a person needs to read on the desk, without opening a run log.
+ *
+ * "No agent work to pick up" was true and useless beside a pipeline summary
+ * reporting 103 queued: claimJob refuses a job whose notBefore has not passed,
+ * so a queue of retries waiting out their backoff reads exactly like an empty
+ * one. Where the pipeline can say how many are merely waiting, say so.
+ */
+function workMessage(summary, pipeline){
   const outcome = workOutcome(summary);
-  if(outcome === 'idle') return 'This run had no agent work to pick up.';
+  if(outcome === 'idle'){
+    const waiting = Number(pipeline?.working?.queuedWaitingBackoff || 0);
+    const due = Number(pipeline?.working?.queuedDue || 0);
+    if(waiting && !due){
+      return `No agent work was due. ${plural(waiting, 'job')} queued, all waiting out a retry backoff.${whenDue(pipeline?.working?.nextDueAt)}`;
+    }
+    return 'This run had no agent work to pick up.';
+  }
   if(outcome === 'productive'){
     return summary.failed
       ? `${plural(summary.succeeded, 'job')} completed and ${summary.failed} failed.`

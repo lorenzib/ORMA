@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "updatedAt": "2026-09-06T13:07:10.117Z",
+  "updatedAt": "2026-10-06T14:48:33.627Z",
   "composites": {
     "alpe-siusi": {
       "state": "approved",
@@ -254,6 +254,59 @@
         }
       ],
       "approvedAt": "2026-09-06T10:03:31.867Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": true
+    },
+    "lago-braies": {
+      "state": "approved",
+      "proposedAt": "2026-10-06T13:08:49.091Z",
+      "trailName": "Lago di Braies Seeweg circuit",
+      "coveragePercent": 100,
+      "radiusMetres": 60,
+      "candidateRelationCount": 7,
+      "relations": [
+        {
+          "externalRelationId": "relation/12043472",
+          "ref": null,
+          "name": "Seeweg",
+          "network": "lwn",
+          "coveragePercent": 100,
+          "walkSharePercent": 67,
+          "firstCoveredIndex": 0
+        }
+      ],
+      "approvedAt": "2026-10-06T14:48:31.625Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": true
+    },
+    "tre-cime": {
+      "state": "approved",
+      "proposedAt": "2026-10-06T13:15:06.344Z",
+      "trailName": "Tre Cime di Lavaredo classic circuit",
+      "coveragePercent": 100,
+      "radiusMetres": 60,
+      "candidateRelationCount": 18,
+      "relations": [
+        {
+          "externalRelationId": "relation/1067603",
+          "ref": "105",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 63,
+          "walkSharePercent": 30,
+          "firstCoveredIndex": 0
+        },
+        {
+          "externalRelationId": "relation/1116663",
+          "ref": "101",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 53,
+          "walkSharePercent": 33,
+          "firstCoveredIndex": 0
+        }
+      ],
+      "approvedAt": "2026-10-06T14:44:33.250Z",
       "approvedBy": "Benedetta Lorenzi (ORMA owner)",
       "relationsUnchangedSinceProposal": true
     }

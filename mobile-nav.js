@@ -125,18 +125,14 @@
     copyBlock.className = 'dog-profile-banner__copy';
     const kicker = document.createElement('p');
     kicker.className = 'dog-profile-banner__kicker';
-    kicker.textContent = 'Personalised trail matching';
     const title = document.createElement('h2');
     title.id = 'dogProfileBannerTitle';
-    title.textContent = 'Add your dog';
     const description = document.createElement('p');
-    description.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
     copyBlock.append(kicker, title, description);
 
     const profile = document.createElement('a');
     profile.className = 'dog-profile-banner__action hp-dog-profile-cta';
     profile.href = '/?wizard=1';
-    profile.textContent = 'Add your dog';
     profile.addEventListener('click', event => {
       if(profile.dataset.action !== 'save-pending-dog') return;
       event.preventDefault();
@@ -158,17 +154,21 @@
       const current = arguments.length ? summary : authSummary();
       const member = arguments.length > 1 ? signedIn : !!current;
       const pending = member ? null : pendingDogProfile();
+      // Words come from the dictionary when the page has loaded i18n.js; the
+      // English literal stands until then (and in tests), and the i18n-ready
+      // listener below re-runs this so a late dictionary still wins.
+      kicker.textContent = copy('mobile.banner.kicker', 'Personalised trail matching');
       if(pending){
-        const saveLabel = `Save ${pending.name}’s profile`;
+        const saveLabel = copy('mobile.banner.save', 'Save {name}’s profile', { name: pending.name });
         title.textContent = saveLabel;
-        description.textContent = `${pending.name}’s matches are ready on this device. Create a free account to keep the profile.`;
+        description.textContent = copy('mobile.banner.saveCopy', '{name}’s matches are ready on this device. Create a free account to keep the profile.', { name: pending.name });
         profile.textContent = saveLabel;
         profile.href = '#save-dog-profile';
         profile.dataset.action = 'save-pending-dog';
       }else{
-        title.textContent = 'Add your dog';
-        description.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
-        profile.textContent = 'Add your dog';
+        title.textContent = copy('hp.guest.addDog', 'Add your dog');
+        description.textContent = copy('hp.guest.medium.sub', 'Add your dog for personalised matches. Create a free account only when you choose to save.');
+        profile.textContent = copy('hp.guest.addDog', 'Add your dog');
         profile.href = member ? addDogAccountHref() : '/?wizard=1';
         delete profile.dataset.action;
       }
@@ -178,6 +178,7 @@
       banner.hidden = hasDogProfile(current) || (!!homepageGuestBanner && !member);
     }
     sync();
+    window.addEventListener('dolopaws-i18n-ready', () => sync(), { once:true });
     window.addEventListener('dolopaws-auth-changed', event => {
       const user = event.detail && event.detail.user;
       sync(user ? authSummary() : null, !!user);

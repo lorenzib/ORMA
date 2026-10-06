@@ -6,6 +6,10 @@ const { buildVerifiedTrailRevisionJobs } = require('./queue-verified-trail-revis
 const { buildPublicationStaging } = require('./build-publication-staging');
 const { runVerifiedTrailRevision } = require('./run-verified-trail-revision');
 const { applyDossierReview } = require('./apply-dossier-review');
+const { planGateDispatches } = require('./dispatch-unanswered-gates');
+const { rehydrateReviewQueue } = require('./rehydrate-review-detail');
+const { applyRouteReview,promotableFeature,unpromotedChoices } = require('./apply-route-review');
+const { admitChosenRoutes } = require('./admit-chosen-routes');
 const { runTrailSpecialist } = require('./run-trail-specialist');
 const { advanceTrailOrchestration } = require('./advance-trail-orchestration');
 const {buildVerifiedEditorialHandoff}=require('./verified-editorial-handoff');
@@ -133,6 +137,20 @@ const PROCESSABLE_JOB_TYPES = Object.freeze([
   'verified-trail-editorial-first-pass', 'verified-trail-editorial-revision',
 ]);
 
+// How many jobs a pass may try to claim for each slot it wants to fill. A claim
+// can still lose a race with another worker, so one attempt per slot would
+// under-fill the batch; an unbounded walk would turn a long unclaimable queue
+// into a long run of refused claims.
+const ATTEMPTS_PER_SLOT=3;
+
+/** The job's own schedule, read the way claimJob reads it. */
+function claimNotBefore(job,now){
+  const value=job&&job.notBefore;
+  if(!value)return false;
+  const at=typeof value.toDate==='function'?value.toDate():new Date(value.seconds?value.seconds*1000:value);
+  return at.getTime()>(now?new Date(now).getTime():Date.now());
+}
+
 async function processTrailSpecialistJobs(store,options={}){
   const workerId=options.workerId||`orma-worker-${randomUUID()}`;
   let queued=(await store.listJobs(['queued'])).filter(job=>['trail-verification-specialist','trail-claim-resolution'].includes(job.jobType));const outcomes=[];
@@ -141,7 +159,16 @@ async function processTrailSpecialistJobs(store,options={}){
   const production=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
   const trails=[...production,...(intake?.candidates||[])];
   const trailById=new Map(trails.map(trail=>[trail.id,trail]));
-  for(const pending of queued.slice(0,options.specialistLimit||5)){
+  // Fill the batch rather than taking the oldest N and giving up on them. A
+  // queued job is not necessarily a claimable one — claimJob refuses anything
+  // whose notBefore is still ahead — so taking a fixed slice let a handful of
+  // scheduled jobs at the front hold back every job behind them, on every pass,
+  // while the run reported only that it had attempted nothing. Attempts are
+  // still bounded, so a queue full of unclaimable work cannot spin.
+  const limit=options.specialistLimit||5;
+  const claimable=queued.filter(job=>!claimNotBefore(job,options.now));
+  for(const pending of claimable.slice(0,limit*ATTEMPTS_PER_SLOT)){
+    if(outcomes.length>=limit)break;
     const job=await store.claimJob(pending.id,workerId);if(!job)continue;
     try{
       const trail=trailById.get(job.candidateId);if(!trail)throw new Error(`Production trail not found: ${job.candidateId}`);
@@ -196,6 +223,167 @@ async function ingestPublicationReviews(store){
   return outcomes;
 }
 
+// Stage 0: the route choice. The desk writes one document per answer and the
+// question stays in the `route-review` artifact, so until this ran the same
+// card was asked for again on every refresh and the chosen line never became
+// the candidate's route.
+async function ingestRouteReviews(store){
+  if(typeof store.listRouteReviews!=='function')return [];
+  const reviews=await store.listRouteReviews('queued');const outcomes=[];
+  // Two answers for one trail are one answer and one change of mind. Applying
+  // both would replay the older one over the newer, so only the newest is
+  // applied and the rest are marked superseded rather than failed.
+  const effectiveByCandidate=new Map();
+  for(const review of reviews){
+    const current=effectiveByCandidate.get(review.candidateId);
+    const key=`${iso(review.submittedAt)}:${review.id}`;
+    const currentKey=current?`${iso(current.submittedAt)}:${current.id}`:'';
+    if(!current||key>currentKey)effectiveByCandidate.set(review.candidateId,review);
+  }
+  for(const review of reviews){
+    const effective=effectiveByCandidate.get(review.candidateId);
+    if(effective?.id===review.id)continue;
+    await store.markRouteReview(review.id,'superseded',{supersededBy:effective.id});
+    outcomes.push({reviewId:review.id,candidateId:review.candidateId,status:'superseded',supersededBy:effective.id});
+  }
+  for(const review of effectiveByCandidate.values()){
+    try{
+      const [routeReview,ledger]=await Promise.all([
+        store.getArtifact('route-review'),store.getArtifact('route-review-ledger'),
+      ]);
+      if(!routeReview)throw new Error('Route review artifact is not seeded');
+      // The chosen lines, read before the decision is applied. Bounded by the
+      // six proposal ids a decision may carry.
+      const geometries=new Map();
+      for(const proposalId of (review.proposalIds||[]).slice(0,6)){
+        const proposal=await store.getArtifact(`route-proposal-geometry-${proposalId}`);
+        if(proposal)geometries.set(String(proposalId),proposal);
+      }
+      const result=applyRouteReview(routeReview,ledger,review,{at:iso(review.submittedAt),geometries});
+      const writes=[store.setArtifact('route-review',result.routeReview,{lastRouteDecisionId:review.id}),
+        store.setArtifact('route-review-ledger',result.ledger)];
+      // The line the rest of the pipeline reads for this candidate. Promoted
+      // only when the chosen proposal's geometry was found: a decision is never
+      // lost to a missing file, and a wrong line is never written in its place.
+      for(const promotion of result.promotions){
+        if(!promotion.feature)continue;
+        writes.push(store.setArtifact(`route-proposal-${promotion.candidateId}`,promotion.feature,
+          {proposalId:promotion.proposalId,approvedAt:iso(review.submittedAt)}));
+      }
+      await Promise.all(writes);
+      await store.markRouteReview(review.id,'processed',{outcome:result.outcome});
+      outcomes.push({reviewId:review.id,status:'processed',...result.outcome});
+    }catch(error){
+      await store.markRouteReview(review.id,'blocked',{error:String(error.message||error).slice(0,2000)});
+      outcomes.push({reviewId:review.id,candidateId:review.candidateId,status:'blocked',error:error.message});
+    }
+  }
+  return outcomes;
+}
+
+/**
+ * Writes the line a recorded choice is still owed.
+ *
+ * A choice applied before its proposal geometry reached the store promoted
+ * nothing — correctly, because a decision must not be lost to a missing file —
+ * and applying happens once. Nothing else would ever write that line, so the
+ * trail would enter verification pointing at a route artifact that does not
+ * exist. This closes that: it costs one read per recorded choice and stops
+ * reading as soon as the line is there.
+ */
+async function promoteOwedLines(store,routeReview,at){
+  const promoted=[];
+  for(const owed of unpromotedChoices(routeReview)){
+    if(await store.getArtifact(`route-proposal-${owed.promoteAs}`))continue;
+    const stored=await store.getArtifact(`route-proposal-geometry-${owed.proposalId}`);
+    const {feature,...refusal}=promotableFeature(stored,owed.proposalId);
+    if(!feature){
+      // A line that is simply not seeded yet is not news on every pass; one
+      // that disagrees with its own proposal id is.
+      if(stored)promoted.push({candidateId:owed.candidateId,status:'promotion-refused',
+        proposalId:owed.proposalId,...refusal});
+      continue;
+    }
+    await store.setArtifact(`route-proposal-${owed.promoteAs}`,feature,
+      {proposalId:owed.proposalId,promotedAt:at});
+    promoted.push({candidateId:owed.candidateId,trailId:owed.promoteAs,status:'promoted',
+      proposalId:owed.proposalId});
+  }
+  return promoted;
+}
+
+// A chosen route is only an answer until the trail it names is in the fleet.
+// This runs every pass, not only when a decision arrives: what holds an
+// admission back — a full fleet, a catalogue entry that is not there yet — is
+// usually temporary, and the trail should enter as soon as it clears.
+async function admitRouteChoices(store,options={}){
+  try{
+    const at=options.at||new Date().toISOString();
+    const routeReview=await store.getArtifact('route-review');
+    if(!routeReview)return [];
+    const promoted=await promoteOwedLines(store,routeReview,at);
+    const orchestration=await store.getArtifact('trail-orchestration')
+      ||{contractVersion:'1.0.0',publicMutationAllowed:false,trails:[]};
+    const trailById=options.trailById
+      ||new Map((options.productionTrails||[]).map(trail=>[trail.id,trail]));
+    const result=admitChosenRoutes(orchestration,routeReview,{at,
+      trailById,capacity:options.campaignCapacity||DEFAULT_TRAIL_CAPACITY});
+    if(result.changed){
+      for(const job of result.jobs){
+        if(typeof store.putJobIfAbsent==='function')await store.putJobIfAbsent(job);else await store.putJob(job);
+      }
+      await Promise.all([
+        store.setArtifact('trail-orchestration',result.orchestration),
+        store.setArtifact('route-review',result.routeReview),
+      ]);
+    }
+    return [
+      ...promoted,
+      ...result.admitted.map(entry=>({candidateId:entry.candidateId,trailId:entry.trailId,
+        status:entry.alreadyInFleet?'already-in-verification':'admitted',jobIds:entry.jobIds})),
+      ...result.held.map(entry=>({candidateId:entry.candidateId,status:'held',reason:entry.reason})),
+    ];
+  }catch(error){
+    // An admission that cannot be written is a contract problem, not a queue
+    // problem: it fails the run rather than disappearing into a log.
+    return [{status:'blocked',error:String(error.message||error).slice(0,2000)}];
+  }
+}
+
+/**
+ * Send a standing gate to the agent that can clear it.
+ *
+ * Submits exactly the queued decision the desk submits, through the same store
+ * method, so ingestDossierReviews below applies it identically -- this is a
+ * transport, not a second state machine. It only ever requests a revision:
+ * approval and rejection stay human decisions.
+ */
+async function dispatchUnansweredGates(store,options={}){
+  if(options.gateDispatchEnabled===false)return [];
+  if(typeof store.submitDossierReview!=='function'||typeof store.listDossierReviews!=='function')return [];
+  const [orchestration,reviewQueue]=await Promise.all([
+    store.getArtifact('trail-orchestration'),store.getArtifact('dossier-review-queue'),
+  ]);
+  if(!orchestration||!reviewQueue)return [];
+  const queued=await store.listDossierReviews('queued');
+  const plan=planGateDispatches(orchestration,reviewQueue,{limit:options.gateDispatchLimit,
+    queuedReviewIds:queued.map(review=>review.reviewId)});
+  const outcomes=[];
+  for(const dispatch of plan.dispatches){
+    try{
+      const written=await store.submitDossierReview({reviewId:dispatch.reviewId,candidateId:dispatch.candidateId,
+        action:'request-revision',targetAgent:dispatch.targetAgent,note:dispatch.note,
+        submittedBy:'orma-gate-dispatch-v1'});
+      outcomes.push({reviewId:dispatch.reviewId,candidateId:dispatch.candidateId,targetAgent:dispatch.targetAgent,
+        status:'dispatched',decisionId:written?.reviewId||null});
+    }catch(error){
+      outcomes.push({reviewId:dispatch.reviewId,candidateId:dispatch.candidateId,targetAgent:dispatch.targetAgent,
+        status:'blocked',error:String(error.message||error).slice(0,2000)});
+    }
+  }
+  return outcomes;
+}
+
 async function ingestDossierReviews(store){
   const reviews=await store.listDossierReviews('queued'); const outcomes=[];
   for(const review of reviews){
@@ -204,7 +392,14 @@ async function ingestDossierReviews(store){
         store.getArtifact('trail-orchestration'),store.getArtifact('dossier-review-queue'),
       ]);
       if(!orchestration||!reviewQueue)throw new Error('Trail orchestration artifacts are not seeded');
-      const result=applyDossierReview(orchestration,reviewQueue,review,{at:iso(review.submittedAt)});
+      // An approval reads the claims' sources, and compaction removes them from
+      // a waiting item, leaving a pointer. Follow it first, for this one item,
+      // or the gate refuses evidence that exists. Nothing persists: an approved
+      // item becomes decided and has its outputs dropped on the way out.
+      const decided=review.action==='approve'
+        ? await rehydrateReviewQueue(store,reviewQueue,review.reviewId)
+        : reviewQueue;
+      const result=applyDossierReview(orchestration,decided,review,{at:iso(review.submittedAt)});
       for(const job of result.jobs)await store.putJob(job);
       const writes=[];
       if(result.verifiedDossier){
@@ -345,6 +540,11 @@ async function runLiveBackofficeWorker(store, options = {}){
     ? await store.requeueOutageBlockedJobs({ ...options, limit: options.outageRequeueLimit,
         jobTypes: PROCESSABLE_JOB_TYPES })
     : [];
+  const routeReviews=await ingestRouteReviews(store);
+  const routeAdmissions=await admitRouteChoices(store,{...options,productionTrails});
+  // Before the apply step, so a gate dispatched here becomes a queued agent
+  // job in this same pass rather than waiting three hours for the next one.
+  const gateDispatches=await dispatchUnansweredGates(store,options);
   const dossierReviews=await ingestDossierReviews(store);
   const advancementBefore=await advanceTrailOrchestration(store,options);
   const reviews = await ingestTrailReviews(store, options);
@@ -357,7 +557,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   // afford to list jobs itself -- it polls once a minute against a free-tier
   // quota -- so the one place already holding every job writes the summary down.
   const pipeline = await recordPipelineHealth(store, options);
-  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
 /**
@@ -379,4 +579,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,claimNotBefore, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

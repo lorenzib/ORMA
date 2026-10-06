@@ -20,8 +20,19 @@ function applyVerifiedTrailOverrides(trails, artifact){
     const isRouteShapeVerification = entry && entry.verificationScope === 'routeShape'
       && ['loop','out-and-back','point-to-point'].includes(shape)
       && typeof entry.fields.routeShapeNote === 'string' && entry.fields.routeShapeNote.trim().length > 0;
-    if(!entry || typeof entry.id !== 'string' || !entry.fields || (!isFullTrailVerification && !isRouteRefVerification && !isRouteGuidanceVerification && !isRouteShapeVerification)){
-      throw new Error('Verified trail override must contain an id and full-trail, route-reference, route-guidance or route-shape verification');
+    // Where a walk is best begun is a human call too. The import pipeline
+    // anchors a start to the nearest mapped access point within 400 m of the
+    // route, which on a plateau loop can only ever be a lift's top station;
+    // the road, parking and bus stop a kilometre below never qualify. A
+    // scoped start point names that real access without claiming anything
+    // else about the trail, and must say where the knowledge came from.
+    const start = entry && entry.fields && entry.fields.startPoint;
+    const isStartPointVerification = entry && entry.verificationScope === 'startPoint'
+      && start && Number.isFinite(start.lat) && Number.isFinite(start.lng)
+      && typeof start.label === 'string' && start.label.trim().length > 0
+      && Array.isArray(entry.sources) && entry.sources.some(source=>/^https:\/\//.test(source?.url||'')&&source?.reviewedAt);
+    if(!entry || typeof entry.id !== 'string' || !entry.fields || (!isFullTrailVerification && !isRouteRefVerification && !isRouteGuidanceVerification && !isRouteShapeVerification && !isStartPointVerification)){
+      throw new Error('Verified trail override must contain an id and full-trail, route-reference, route-guidance, route-shape or start-point verification');
     }
     const index = next.findIndex(trail => trail.id === entry.id);
     if(index >= 0) next[index] = { ...next[index], ...entry.fields, id:entry.id };

@@ -90,6 +90,31 @@ the Cartographer supplies a source-matched full-resolution proposal. Exported
 audit JSON contains both the original parking decisions and a nested
 `routeReview` record. Neither channel mutates public trail data.
 
+On the live desk the same gate is answered against Firestore: `submitRouteReview`
+writes one queued `backofficeRouteReviews` document, and the next worker pass
+runs `backoffice/workflows/apply-route-review.js`, which closes the question in
+`route-review`, appends a receipt to `route-review-ledger` and promotes the
+chosen line to `route-proposal-<trailId>` — the artifact the rest of the pipeline
+already reads, under the catalogue trail the question names (`trailId` on each
+item). The promotion happens only when the stored geometry names the chosen
+proposal, so a mismatched file is refused rather than published under the wrong
+trail. Keeping more than one variant records the extras as
+`pendingVariantIntake`: a second variant becomes a second ORMA trail only once it
+has its own candidate.
+
+A choice applied before its proposal geometry reached the store promotes
+nothing — a decision must not be lost to a missing file — so the worker writes
+that line on a later pass instead, under the same proposal-id guard. Applying
+happens once; the line is owed until it is there.
+
+`backoffice/workflows/admit-chosen-routes.js` then puts that trail into the
+verification fleet, at the stage the choice leaves it — geometry approved by a
+human, evidence still to research — and queues the same three specialists every
+other trail gets, with the chosen line as their context. It runs on every worker
+pass, so a trail held back by a full fleet (the same 15-trail budget the campaign
+spends from) or by a missing catalogue entry enters as soon as that clears; the
+reason is reported per trail. Nothing in this path mutates public trail data.
+
 Official GPX tracks are converted into draft GeoJSON proposals with
 `npm run backoffice:build-route-proposals`. The converter preserves every track
 point, records computed distance and closure, and marks every output as

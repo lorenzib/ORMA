@@ -324,60 +324,60 @@
     <div class="browse-search-group">
       <label class="browse-search-shell">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
-        <input class="browse-search" id="browseSearch" type="search" placeholder="Search trail, country, region or valley" aria-label="Search trails and destinations">
+        <input class="browse-search" id="browseSearch" type="search" placeholder="Search trail, country, region or valley" data-i18n-ph="browse.search.ph" aria-label="Search trails and destinations" data-i18n-aria-label="browse.search.aria">
       </label>
-      <button type="button" id="browseSearchBtn" class="browse-search-submit">Search</button>
+      <button type="button" id="browseSearchBtn" class="browse-search-submit" data-i18n="browse.search.go">Search</button>
     </div>
     <div class="browse-area-controls" aria-label="Choose trail area">
       <label class="browse-geo-group geo-filter-control" for="browseCountrySelect">
-        <span class="browse-geo-label">Country</span>
+        <span class="browse-geo-label" data-i18n="browse.geo.country">Country</span>
         <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-kicker-until-selected data-control-kicker="Country" aria-label="Filter trails by country"></select></span>
       </label>
       <label class="browse-geo-group geo-filter-control" for="browseRegionSelect">
-        <span class="browse-geo-label">Region</span>
+        <span class="browse-geo-label" data-i18n="browse.geo.region">Region</span>
         <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label data-kicker-until-selected data-control-kicker="Region" aria-label="Filter trails by region"></select></span>
       </label>
       <label class="browse-geo-group browse-geo-group--valley geo-filter-control" for="browseValleySelect">
-        <span class="browse-geo-label">Valley</span>
+        <span class="browse-geo-label" data-i18n="browse.geo.valley">Valley</span>
         <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-kicker-until-selected data-control-kicker="Valley" aria-label="Filter trails by valley"></select></span>
       </label>
     </div>
     <div class="li-menuwrap" id="browseFiltersWrap">
         <button type="button" id="browseFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
-          Filter trails<span id="browseFiltersCount"></span> <span class="li-caret">▾</span>
+          <span data-i18n="browse.filters.button">Filter trails</span><span id="browseFiltersCount"></span> <span class="li-caret">▾</span>
         </button>
         <div class="li-menu li-filters-menu discovery-filter-panel" id="browseFiltersMenu" hidden>
           <div class="li-fhead">
-            <span>Filter trails</span>
-            <button type="button" id="browseFiltersReset">Reset all</button>
+            <span data-i18n="browse.filters.title">Filter trails</span>
+            <button type="button" id="browseFiltersReset" data-i18n="browse.filters.resetAll">Reset all</button>
           </div>
           <div class="browse-filter-group">
-            <div class="browse-filter-group__title">Route essentials</div>
-            <div class="li-fsec">Distance</div>
+            <div class="browse-filter-group__title" data-i18n="browse.filters.essentials">Route essentials</div>
+            <div class="li-fsec" data-i18n="browse.filters.distance">Distance</div>
             <div class="li-seg" id="brDistSeg"></div>
-            <div class="li-fsec">Trail rating</div>
+            <div class="li-fsec" data-i18n="browse.filters.rating">Trail rating</div>
             <div class="li-seg" id="brRiskSeg"></div>
-            <div class="li-fsec">Minimum match</div>
+            <div class="li-fsec" data-i18n="browse.filters.minMatch">Minimum match</div>
             <div class="li-seg" id="brMatchSeg"></div>
           </div>
           <div class="browse-filter-group">
-            <div class="browse-filter-group__title">Terrain &amp; trail conditions</div>
-            <div class="li-fsec">Terrain underfoot</div>
+            <div class="browse-filter-group__title" data-i18n="browse.filters.conditions">Terrain &amp; trail conditions</div>
+            <div class="li-fsec" data-i18n="browse.filters.terrain">Terrain underfoot</div>
             <div class="li-seg" id="brTerrainSeg"></div>
           </div>
-          <button type="button" class="li-apply" id="browseFiltersApply">Show trails</button>
+          <button type="button" class="li-apply" id="browseFiltersApply" data-i18n="browse.filters.show">Show trails</button>
         </div>
       </div>
     <div class="browse-refinement-controls" aria-label="Refine trail results">
-      <div class="browse-quick-filters" aria-label="Quick dog filters">
-        <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26" aria-hidden="true"></span><span>High shade</span></button>
-        <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="22" aria-hidden="true"></span><span>Water</span></button>
+      <div class="browse-quick-filters" aria-label="Quick dog filters" data-i18n-aria-label="browse.quick.aria">
+        <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26" aria-hidden="true"></span><span data-i18n="browse.quick.shade">High shade</span></button>
+        <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="22" aria-hidden="true"></span><span data-i18n="browse.quick.water">Water</span></button>
         <button type="button" class="browse-quick-filter" id="browseChairlifts" aria-pressed="false" data-audit-label="Chairlift-assisted routes" title="Routes that ride an open chairlift are hidden by default: they can be fatal for a dog not used to one" data-i18n-title="browse.chairlifts.title"><span aria-hidden="true">⚠</span><span data-i18n="browse.chairlifts.label">Include chairlift routes</span></button>
-        <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Show long multi-day itineraries (over 25 km)"><span aria-hidden="true">🏕️</span><span>Multi-day</span></button>
+        <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Show long multi-day itineraries (over 25 km)" data-i18n-title="browse.quick.multiDayTitle"><span aria-hidden="true">🏕️</span><span data-i18n="browse.quick.multiDay">Multi-day</span></button>
       </div>
       <button type="button" id="browseSavedOnly" class="browse-saved-only" aria-pressed="false">
-        <span class="orma-saved-heart" aria-hidden="true">♥</span><span>Saved</span><span class="browse-saved-count" id="browseSavedCount">0</span>
+        <span class="orma-saved-heart" aria-hidden="true">♥</span><span data-i18n="browse.quick.saved">Saved</span><span class="browse-saved-count" id="browseSavedCount">0</span>
       </button>
     </div>
     <div class="browse-filter-controls" id="browseFilterControls" hidden>
@@ -434,22 +434,22 @@
     </div>
   </div>
   <div id="browseLocationBreadcrumb" class="browse-location-breadcrumb" aria-live="polite"></div>
-  <div class="browse-view-toggle" role="group" aria-label="Choose catalogue view">
-    <button type="button" class="on" data-browse-view="list" aria-pressed="true">List</button>
-    <button type="button" data-browse-view="map" aria-pressed="false">Map</button>
+  <div class="browse-view-toggle" role="group" aria-label="Choose catalogue view" data-i18n-aria-label="browse.view.aria">
+    <button type="button" class="on" data-browse-view="list" aria-pressed="true" data-i18n="browse.view.list">List</button>
+    <button type="button" data-browse-view="map" aria-pressed="false" data-i18n="browse.view.map">Map</button>
   </div>
   <section id="browseExplorer" class="browse-explorer" data-mobile-view="list" aria-label="Trail catalogue and map">
-    <div class="browse-map-pane" aria-label="Map of matching trails">
+    <div class="browse-map-pane" aria-label="Map of matching trails" data-i18n-aria-label="browse.map.aria">
       <div id="browseMap">
-        <div class="browse-map-placeholder"><strong>Loading the trail map…</strong><span>You can keep browsing the catalogue while the map loads.</span></div>
+        <div class="browse-map-placeholder"><strong data-i18n="browse.map.loading">Loading the trail map…</strong><span data-i18n="browse.map.loadingSub">You can keep browsing the catalogue while the map loads.</span></div>
       </div>
       <button type="button" id="browseSearchArea" class="browse-search-area" hidden>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg>
-        Search this area
+        <span data-i18n="browse.map.searchArea">Search this area</span>
       </button>
-      <div class="browse-map-style" role="group" aria-label="Map appearance">
-        <button type="button" class="on" data-browse-map-style="map" aria-pressed="true">Map</button>
-        <button type="button" data-browse-map-style="terrain" aria-pressed="false">Terrain</button>
+      <div class="browse-map-style" role="group" aria-label="Map appearance" data-i18n-aria-label="browse.map.styleAria">
+        <button type="button" class="on" data-browse-map-style="map" aria-pressed="true" data-i18n="browse.map.styleMap">Map</button>
+        <button type="button" data-browse-map-style="terrain" aria-pressed="false" data-i18n="browse.map.styleTerrain">Terrain</button>
       </div>
     </div>
     <div class="browse-list-pane">
@@ -680,10 +680,10 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260917-1"></script>
-<script src="i18n.js?v=20260930-3"></script>
-<script src="trust/evidence-v1.js?v=20260815-4"></script>
-<script src="trail-trust.js?v=20260819-5"></script>
+<script src="mobile-nav.js?v=20261006-1"></script>
+<script src="i18n.js?v=20261006-1"></script>
+<script src="trust/evidence-v1.js?v=20261006-2"></script>
+<script src="trail-trust.js?v=20261005-1"></script>
 <script src="scoring/recommendation-v1.js?v=20260917-1"></script>
 <script src="scoring/recommendation-adapters-v1.js?v=20260917-1"></script>
 <script src="scoring-conditions.js?v=1"></script>
@@ -698,11 +698,11 @@
 <script src="guest-context.js?v=20260917-2" defer></script>
 <script src="auth-ui.js?v=20260916-2" defer></script>
 <script src="discovery-state.js?v=20260822-1" defer></script>
-<script src="discovery-filters.js?v=20260917-1" defer></script>
+<script src="discovery-filters.js?v=20261005-1" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
 <script src="area-dropdown.js?v=20260823-2"></script>
 <script src="map-runtime.js?v=20260908-2"></script>
-<script src="match-verdict.js?v=1"></script>
+<script src="match-verdict.js?v=20261002-1"></script>
 <script src="map-style.js?v=20260908-2"></script>
 <script src="browse-map.js?v=20260909-1"></script>
 <script>
@@ -857,12 +857,19 @@
     const categoryReviewed = (parts, category) => parts.verification
       && parts.verification.categories
       && parts.verification.categories[category] === 'verified';
+    // Dictionary lookup with the English literal as fallback; i18n.js is loaded
+    // before this script, so a translated page gets its words here too.
+    const bt = (key, fallback, vars) => {
+      let s = (typeof window.t === 'function') ? window.t(key, vars) : key;
+      if(s === key){ s = fallback; if(vars) for(const k in vars) s = s.split('{' + k + '}').join(vars[k]); }
+      return s;
+    };
     const COLLECTIONS = {
-      'shady': { title: 'Shady routes', blurb: 'Shade and a water point are listed',
+      'shady': { title: bt('browse.coll.shady.title', 'Shady routes'), blurb: bt('browse.coll.shady.blurb', 'Shade and a water point are listed'),
         filter: t => filterApi.matches(t, { heat:'shade-reviewed', water:true }) },
-      'water': { title: 'Routes with water', blurb: 'A water point is listed',
+      'water': { title: bt('browse.coll.water.title', 'Routes with water'), blurb: bt('browse.coll.water.blurb', 'A water point is listed'),
         filter: t => filterApi.matches(t, { water:true }) },
-      'meadow': { title: 'Open meadow strolls', blurb: 'Open ground and gentle or mixed terrain',
+      'meadow': { title: bt('browse.coll.meadow.title', 'Open meadow strolls'), blurb: bt('browse.coll.meadow.blurb', 'Open ground and gentle or mixed terrain'),
         filter: t => {
           const parts = canonicalParts(t);
           return categoryReviewed(parts, 'heat')
@@ -871,7 +878,7 @@
             && Number.isFinite(parts.suitability.terrainRank)
             && parts.suitability.terrainRank <= 1;
         } },
-      'gentle': { title: 'Gentle short loops', blurb: 'Easy, low-climb walks under 4 km',
+      'gentle': { title: bt('browse.coll.gentle.title', 'Gentle short loops'), blurb: bt('browse.coll.gentle.blurb', 'Easy, low-climb walks under 4 km'),
         filter: t => {
           const parts = canonicalParts(t);
           return Number.isFinite(parts.metrics.distanceKm)
@@ -956,7 +963,7 @@
         tray = document.createElement('aside');
         tray.id = 'compareTray';
         tray.className = 'compare-tray';
-        tray.setAttribute('aria-label', 'Selected trails to compare');
+        tray.setAttribute('aria-label', bt('browse.compare.aria', 'Selected trails to compare'));
         document.body.appendChild(tray);
       }
       tray.hidden = compareIds.length === 0;
@@ -969,13 +976,13 @@
       });
       tray.innerHTML =
         '<div class="compare-tray__copy">' +
-          `<strong>${selected.length} of 3 selected</strong>` +
+          `<strong>${esc(bt('browse.compare.count', '{n} of 3 selected', { n: selected.length }))}</strong>` +
           `<span class="compare-tray__names">${esc(selected.map(trail => trail.name).join(' · '))}</span>` +
         '</div>' +
         '<div class="compare-tray__actions">' +
-          '<button type="button" class="compare-tray__clear">Clear</button>' +
+          `<button type="button" class="compare-tray__clear">${esc(bt('browse.compare.clear', 'Clear'))}</button>` +
           `<a class="compare-tray__go" href="${esc(compareHref)}" aria-disabled="${ready ? 'false' : 'true'}">` +
-            (ready ? 'Compare trails' : 'Choose 1 more') +
+            esc(ready ? bt('browse.compare.go', 'Compare trails') : bt('browse.compare.chooseMore', 'Choose 1 more')) +
           '</a>' +
         '</div>';
       tray.querySelector('.compare-tray__clear').addEventListener('click', () => {
@@ -1010,8 +1017,8 @@
     // same words recommendation-decision.js and the trail page already use.
     function scoredSubjectLabel(){
       const dog = dogValue === 'custom' ? deviceDogProfile() : null;
-      if(dog && dog.name) return `For ${dog.name}`;
-      return `For ${window.t ? window.t('recommendation.subject.guest') : 'a medium dog'}`;
+      if(dog && dog.name) return bt('browse.card.forDog', 'For {name}', { name: dog.name });
+      return bt('browse.card.forDog', 'For {name}', { name: window.t ? window.t('recommendation.subject.guest') : 'a medium dog' });
     }
 
     function matchScore(trail){
@@ -1087,14 +1094,14 @@
     }
 
     const COUNTRIES = [
-      { value:'all', label:'All countries', match:() => true },
-      { value:'italy', label:'Italy', match:t => t.region === 'dolomites' },
-      { value:'france', label:'France', match:t => t.region === 'savoy' },
+      { value:'all', label:bt('browse.geo.allCountries', 'All countries'), match:() => true },
+      { value:'italy', label:bt('browse.geo.italy', 'Italy'), match:t => t.region === 'dolomites' },
+      { value:'france', label:bt('browse.geo.france', 'France'), match:t => t.region === 'savoy' },
     ];
     const REGIONS = [
-      { value: 'all', label: 'All regions', country:'all', match: () => true },
-      { value: 'dolomites', label: 'Dolomites', country:'italy', match: t => t.region === 'dolomites' },
-      { value: 'savoy', label: 'Savoy', country:'france', match: t => t.region === 'savoy' },
+      { value: 'all', label: bt('browse.geo.allRegions', 'All regions'), country:'all', match: () => true },
+      { value: 'dolomites', label: bt('browse.geo.dolomites', 'Dolomites'), country:'italy', match: t => t.region === 'dolomites' },
+      { value: 'savoy', label: bt('browse.geo.savoy', 'Savoy'), country:'france', match: t => t.region === 'savoy' },
     ];
     function renderBreadcrumb(){
       if(!breadcrumb) return;
@@ -1159,7 +1166,7 @@
       const entries = valleyEntries();
       if(valleyValue !== 'all' && !entries.some(([valley]) => valley === valleyValue)) valleyValue = 'all';
       const total = entries.reduce((sum, [, count]) => sum + count, 0);
-      const items = [option({ value:'all', label:'All valleys' }, total)]
+      const items = [option({ value:'all', label:bt('browse.geo.allValleys', 'All valleys') }, total)]
         .concat(entries.map(([valley, count]) => option({ value:valley, label:valley }, count)));
       valleySelect.replaceChildren(...items);
       valleySelect.value = valleyValue;
@@ -1175,7 +1182,7 @@
       if(chairliftsBtn) chairliftsBtn.setAttribute('aria-pressed', String(liftsValue === 'include'));
       if(savedOnlyBtn){
         savedOnlyBtn.setAttribute('aria-pressed', String(savedOnly));
-        savedOnlyBtn.setAttribute('aria-label', savedOnly ? 'Show all trails' : 'Show saved trails only');
+        savedOnlyBtn.setAttribute('aria-label', savedOnly ? bt('browse.saved.showAll', 'Show all trails') : bt('browse.saved.onlySaved', 'Show saved trails only'));
       }
       if(savedCount) savedCount.textContent = String(Object.keys(currentFavorites).length);
       if(!filtersBtn) return;
@@ -1203,16 +1210,16 @@
     function buildFilterPanel(){
       if(!filtersMenu) return;
       brSeg('brDistSeg', [
-        { label:'Any', v:'all' }, { label:'Under 5 km', v:'u5' }, { label:'5–10 km', v:'5to10' }, { label:'10 km+', v:'10p' },
+        { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.under5', 'Under 5 km'), v:'u5' }, { label:bt('hp.filters.5to10', '5–10 km'), v:'5to10' }, { label:bt('hp.filters.10plus', '10 km+'), v:'10p' },
       ], distance.value, v => { distance.value = v; });
       brSeg('brRiskSeg', [
-        { label:'Any', v:'all' }, { label:'Low risk', v:'low-risk' }, { label:'Moderate', v:'moderate' }, { label:'Caution', v:'caution' },
+        { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.lowRisk', 'Low risk'), v:'low-risk' }, { label:bt('hp.filters.moderate', 'Moderate'), v:'moderate' }, { label:bt('hp.filters.caution', 'Caution'), v:'caution' },
       ], risk.value, v => { risk.value = v; });
       brSeg('brTerrainSeg', [
-        { label:'Any', v:'' }, { label:'Gentle only', v:'soft' }, { label:'Up to mixed', v:'mixed' }, { label:'Rocky is okay', v:'rocky' },
+        { label:bt('hp.filters.any', 'Any'), v:'' }, { label:bt('hp.filters.gentle', 'Gentle only'), v:'soft' }, { label:bt('hp.filters.mixed', 'Up to mixed'), v:'mixed' }, { label:bt('hp.filters.rocky', 'Rocky is okay'), v:'rocky' },
       ], terrain.value, v => { terrain.value = v; });
       brSeg('brMatchSeg', [
-        { label:'Any', v:'' }, { label:'60%+', v:'60' }, { label:'75%+', v:'75' }, { label:'85%+', v:'85' },
+        { label:bt('hp.filters.any', 'Any'), v:'' }, { label:'60%+', v:'60' }, { label:'75%+', v:'75' }, { label:'85%+', v:'85' },
       ], minMatchValue, v => { minMatchValue = v; });
     }
     const filtersReset = document.getElementById('browseFiltersReset');
@@ -1285,8 +1292,9 @@
       let pool = currentTrailPool();
       const activeFilters = filterApi.active(currentFilterState());
       const hasFilters = activeFilters.length > 0 || savedOnly || !!mapBoundsFilter;
-      if(filtersApply) filtersApply.textContent = `Show ${pool.length} ${pool.length === 1 ? 'trail' : 'trails'}`;
-      resultCount.innerHTML = `<span class="browse-result-accessible">${pool.length} trail${pool.length === 1 ? '' : 's'} found. </span>${pool.length} of ${trails.length} trails${mapBoundsFilter ? ' in this map area' : ''}`;
+      const poolCount = bt(pool.length === 1 ? 'hp.count.one' : 'hp.count.many', pool.length === 1 ? '{n} trail' : '{n} trails', { n: pool.length });
+      if(filtersApply) filtersApply.textContent = bt('browse.filters.showCount', 'Show {count}', { count: poolCount });
+      resultCount.innerHTML = `<span class="browse-result-accessible">${esc(bt('browse.results.foundAria', '{count} found.', { count: poolCount }))} </span>${esc(bt('browse.results.ofTotal', '{n} of {total} trails', { n: pool.length, total: trails.length }))}${mapBoundsFilter ? esc(bt('browse.results.inMapArea', ' in this map area')) : ''}`;
       clear.hidden = !hasFilters;
       const totalPages = Math.max(1, Math.ceil(pool.length / PER_PAGE));
       if(page > totalPages) page = totalPages;
@@ -1301,34 +1309,34 @@
       if(!pageTrails.length && savedOnly){
         emptyHtml = '<div class="browse-empty empty-state">' +
           '<div class="empty-state__icon" aria-hidden="true">' + emptyIcon + '</div>' +
-          '<p class="empty-state__title">No saved trails match these choices</p>' +
-          '<p class="empty-state__copy">Turn off Saved or adjust the visible filters to return to the full trail catalogue.</p>' +
-          '<div class="browse-recovery"><button type="button" data-show-all>Show all trails</button></div></div>';
+          `<p class="empty-state__title">${esc(bt('browse.empty.savedTitle', 'No saved trails match these choices'))}</p>` +
+          `<p class="empty-state__copy">${esc(bt('browse.empty.savedCopy', 'Turn off Saved or adjust the visible filters to return to the full trail catalogue.'))}</p>` +
+          `<div class="browse-recovery"><button type="button" data-show-all>${esc(bt('browse.saved.showAll', 'Show all trails'))}</button></div></div>`;
       } else if(!pageTrails.length){
         recovery = filterApi.diagnoseZero(trails, currentFilterState(), filterOptions());
         const chips = activeFilters.map(item =>
           `<span class="browse-empty__filter">${esc(item.label)}</span>`
         ).join('');
         const safeActions = recovery.broadenings.slice(0, 3).map((item, index) =>
-          `<button type="button" class="safe" data-safe-recovery="${index}">${esc(item.label)} · show ${item.count}</button>`
+          `<button type="button" class="safe" data-safe-recovery="${index}">${esc(bt('browse.empty.show', '{label} · show {count}', { label: item.label, count: item.count }))}</button>`
         ).join('');
         const removeActions = recovery.restrictive.slice(0, 3).map((item, index) =>
-          `<button type="button" data-remove-recovery="${index}">Remove ${esc(item.label)} · show ${item.countWithout}</button>`
+          `<button type="button" data-remove-recovery="${index}">${esc(bt('browse.empty.remove', 'Remove {label} · show {count}', { label: item.label, count: item.countWithout }))}</button>`
         ).join('');
         emptyHtml = '<div class="browse-empty empty-state">' +
           '<div class="empty-state__icon" aria-hidden="true">' + emptyIcon + '</div>' +
-          '<p class="empty-state__title">No trails match this combination</p>' +
-          '<p class="empty-state__copy">The highlighted choices are being applied together. Reviewed filters never assume that missing safety data is positive.</p>' +
+          `<p class="empty-state__title">${esc(bt('browse.empty.title', 'No trails match this combination'))}</p>` +
+          `<p class="empty-state__copy">${esc(bt('browse.empty.copy', 'The highlighted choices are being applied together. Reviewed filters never assume that missing safety data is positive.'))}</p>` +
           '<div class="browse-empty__filters">' + chips + '</div>' +
           '<div class="browse-recovery">' + safeActions + removeActions +
-            '<button type="button" data-clear-empty>Reset every filter</button>' +
+            `<button type="button" data-clear-empty>${esc(bt('browse.empty.resetAll', 'Reset every filter'))}</button>` +
           '</div></div>';
       }
 
       list.innerHTML = pageTrails.length ? pageTrails.map(t => {
         const thumb = window.DoloPawsTrailVisual
           ? window.DoloPawsTrailVisual.render(t, { className:'photo' })
-          : `<div class="trail-visual trail-visual--placeholder photo" role="img" aria-label="${t.name}: photo coming soon"><span class="trail-visual-placeholder-label">Photo coming soon</span></div>`;
+          : `<div class="trail-visual trail-visual--placeholder photo" role="img" aria-label="${esc(bt('browse.card.photoSoonAria', '{name}: photo coming soon', { name: t.name }))}"><span class="trail-visual-placeholder-label">${esc(bt('browse.card.photoSoon', 'Photo coming soon'))}</span></div>`;
         const s = SAFETY[t.safetyLevel] || SAFETY['moderate'];
         const icons = window.DoloPawsIcons;
         const trust = window.DoloPawsTrailTrust;
@@ -1345,8 +1353,8 @@
         const tierClass = verdict.tone;
         const reasonIsWater = !!(t.waterSources && t.waterSources.length);
         const reason = reasonIsWater
-          ? `Water access listed at ${t.waterSources.length === 1 ? 'one point' : t.waterSources.length + ' points'}`
-          : (t.shadeCoverage >= 50 ? `${t.shadeCoverage}% shade along the route` : '');
+          ? (t.waterSources.length === 1 ? bt('browse.card.waterOne', 'Water access listed at one point') : bt('browse.card.waterMany', 'Water access listed at {n} points', { n: t.waterSources.length }))
+          : (t.shadeCoverage >= 50 ? bt('browse.card.shade', '{pct}% shade along the route', { pct: t.shadeCoverage }) : '');
         const openHref = `trail.html?id=${encodeURIComponent(t.id)}&from=${encodeURIComponent(browseStateTarget())}`;
         const isCompared = compareIds.includes(t.id);
         const compareDisabled = !isCompared && compareIds.length >= compareApi.MAX_TRAILS;
@@ -1374,7 +1382,7 @@
                 <a class="browse-card-open" href="${openHref}">${window.t('card.details')} →</a>
                 <button type="button" class="browse-card-compare" data-compare-id="${esc(t.id)}"
                   aria-pressed="${isCompared ? 'true' : 'false'}" ${compareDisabled ? 'disabled' : ''}>
-                  ${isCompared ? 'Selected' : 'Compare'}
+                  ${esc(isCompared ? bt('browse.compare.selected', 'Selected') : bt('browse.compare.add', 'Compare'))}
                 </button>
               </div>
             </div>

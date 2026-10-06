@@ -58,6 +58,42 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     expect(read('browse-trails.html')).toContain('<b data-i18n="browse.guest.title">Guest mode · Scores use a medium-dog profile.</b>');
   });
 
+  test('the search card, filter panel and suggestions carry Italian copy', () => {
+    const dictionary = read('i18n.js');
+    for(const key of ['hp.search.ph','hp.search.go','hp.search.previewAs','hp.popular.label','hp.preset.medium.name','hp.filters.button','hp.filters.title','hp.filters.minMatchFor','hp.filters.showCount','hp.filters.dayHikes','hp.filters.rocky','hp.count.one','hp.count.many','hp.sug.topFor','hp.sug.seeAll','hp.results.matching','hp.results.rankedFor','hp.results.empty']){
+      expect((dictionary.match(new RegExp(`'${key.replace(/\./g,'\\.')}':`, 'g')) || []).length).toBe(2);
+    }
+    expect(dictionary).toContain("'hp.preset.medium.name': 'Cane di taglia media'");
+    expect(dictionary).toContain("'hp.sug.topFor': 'Migliori abbinamenti per {name}'");
+    const html = read('index.html');
+    expect(html).toContain('data-i18n-ph="hp.search.ph"');
+    expect(html).toContain('<span id="hpDogLabel" data-i18n="hp.preset.medium.name">Medium dog</span>');
+    expect(html).toContain('<span data-i18n="hp.filters.button">Filter trails</span>');
+    expect(html).toContain('id="hpSearchBtn" data-i18n="hp.search.go">Search →</button>');
+    expect(html).toContain('<span class="hp-popular-label" data-i18n="hp.popular.label">Popular:</span>');
+    // The trail-shadowed renderers use the `tr` alias, never a bare `t(` that would resolve to the trail.
+    expect(controller).toContain('var tr = t;');
+    expect(controller).toContain("tr('hp.sug.topFor', 'Top matches for {name}', { name: esc(m.name) })");
+    expect(controller).toContain("'low-risk': { label: tr('hp.difficulty.lowRisk', 'Low-risk'), dot: '#2C5C34' }");
+  });
+
+  test('the Browse page carries Italian copy for its controls, cards, tray and empty states', () => {
+    const dictionary = read('i18n.js');
+    const browse = read('browse-trails.html');
+    for(const key of ['browse.search.ph','browse.search.go','browse.geo.country','browse.geo.allCountries','browse.filters.button','browse.filters.showCount','browse.quick.shade','browse.saved.onlySaved','browse.view.list','browse.map.searchArea','browse.results.ofTotal','browse.compare.count','browse.compare.go','browse.card.forDog','browse.card.waterMany','browse.empty.title','browse.empty.remove','browse.coll.shady.title']){
+      expect((dictionary.match(new RegExp(`'${key.replace(/\./g,'\\.')}':`, 'g')) || []).length).toBe(2);
+    }
+    expect(dictionary).toContain("'browse.empty.title': 'Nessun sentiero corrisponde a questa combinazione'");
+    expect(browse).toContain('data-i18n-ph="browse.search.ph"');
+    expect(browse).toContain('<span data-i18n="browse.filters.button">Filter trails</span>');
+    expect(browse).toContain('data-browse-view="list" aria-pressed="true" data-i18n="browse.view.list">List</button>');
+    expect(browse).toContain("bt('browse.compare.count', '{n} of 3 selected', { n: selected.length })");
+    expect(browse).toContain("bt('browse.results.ofTotal', '{n} of {total} trails', { n: pool.length, total: trails.length })");
+    expect(browse).toContain("bt('browse.card.forDog', 'For {name}', { name: dog.name })");
+    // Segment options reuse the homepage vocabulary keys so both panels say the same thing.
+    expect(browse).toContain("{ label:bt('hp.filters.rocky', 'Rocky is okay'), v:'rocky' }");
+  });
+
   test('a declared small dog sees chairlift-assisted routes on the guest homepage', () => {
     expect(controller).toContain('adapters.chairliftSafe(activeProfile())');
     expect(controller).toContain('filters.matches(t, fstate, options)');
@@ -86,7 +122,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
 
   test('the homepage ships the new controller and guest-context versions', () => {
     const html = read('index.html');
-    expect(html).toContain('homepage-search.js?v=20260930-3');
+    expect(html).toContain('homepage-search.js?v=20261002-1');
     expect(html).toContain('guest-context.js?v=20260917-2');
     expect(read('browse-trails.html')).toContain('guest-context.js?v=20260917-2');
   });

@@ -64,7 +64,13 @@ describe('pipeline health', () => {
       job({ status:'queued' }), job({ status:'queued' }),
       job({ status:'running' }), job({ status:'ready-for-review' }),
     ]);
-    expect(health.working).toEqual({ queued:2, running:1, readyForReview:1 });
+    // queued splits into what a worker could claim now and what is waiting out
+    // a retry backoff: claimJob refuses a job whose notBefore has not passed,
+    // so the two look identical in a status-only count.
+    expect(health.working).toEqual({
+      queued:2, queuedDue:2, queuedWaitingBackoff:0, nextDueAt:null,
+      running:1, readyForReview:1,
+    });
     expect(health.stopped.total).toBe(0);
   });
 

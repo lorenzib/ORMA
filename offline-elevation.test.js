@@ -19,7 +19,8 @@ describe('offline elevation profiles', () => {
 
   test('interpolates route elevation between stored samples', () => {
     expect(elevation.elevationAtKm(profile('lago-carezza'), 0.325)).toBeCloseTo(1537);
-    expect(elevation.elevationAtKm(profile('alpe-siusi'), 3)).toBeCloseTo(1850);
+    // Alpe di Siusi's profile marks sit at 1.5 km (1800 m) and 2.9 km (1900 m); their midpoint reads 1850.
+    expect(elevation.elevationAtKm(profile('alpe-siusi'), 2.2)).toBeCloseTo(1850);
   });
 
   test('builds a finite SVG profile and clamps the live cursor', () => {

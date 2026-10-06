@@ -10,6 +10,7 @@ const COLLECTIONS = Object.freeze({
   reviews: 'backofficeReviews',
   publicationReviews: 'backofficePublicationReviews',
   dossierReviews: 'backofficeDossierReviews',
+  routeReviews:'backofficeRouteReviews',
   newTrailReviews:'backofficeNewTrailReviews',
   hazardReviews:'backofficeHazardReviews',
   editorialReviews:'backofficeEditorialReviews',
@@ -217,6 +218,31 @@ class FirestoreBackofficeStore {
     return releasable.map(doc => doc.id);
   }
 
+  // The sibling of requeueOutageBlockedJobs for a fault that was ours. The
+  // caller names the error it has fixed; see workflows/requeue-fixed-jobs.js
+  // for why there is no "release everything blocked".
+  async requeueBlockedJobsMatching(jobIds = [], fields = {}){
+    const ids = (Array.isArray(jobIds) ? jobIds : []).map(String).filter(Boolean);
+    if(!ids.length) return [];
+    const batch = this.db.batch();
+    for(const id of ids){
+      batch.update(this.db.collection(COLLECTIONS.jobs).doc(id), {
+        status: 'queued',
+        systemFailures: 0,
+        requeuedAt: Timestamp.fromDate(new Date()),
+        requeueReason: String(fields.requeueReason || 'the cause was fixed').slice(0, 300),
+        notBefore: FieldValue.delete(),
+        workerId: FieldValue.delete(),
+        startedAt: FieldValue.delete(),
+        leaseExpiresAt: FieldValue.delete(),
+        updatedAt: FieldValue.serverTimestamp(),
+      });
+    }
+    await batch.commit();
+    this.invalidate('jobs:');
+    return ids;
+  }
+
   async claimJob(id, workerId, options = {}){
     const now = options.now || new Date();
     const leaseMs = options.leaseMs || 15 * 60 * 1000;
@@ -320,6 +346,51 @@ class FirestoreBackofficeStore {
 
   async markDossierReview(id,status,fields={}){
     return this.markReviewCollection(COLLECTIONS.dossierReviews,id,status,fields);
+  }
+
+  async listRouteReviews(status='queued'){
+    return this.listReviewCollection(COLLECTIONS.routeReviews,status);
+  }
+
+  async markRouteReview(id,status,fields={}){
+    return this.markReviewCollection(COLLECTIONS.routeReviews,id,status,fields);
+  }
+
+  // Submit a moderator decision from a credentialed context (CLI/workflow),
+  // writing exactly the queued doc the desk's ORMABackoffice.submitDossierReview
+  // writes, so the worker's apply step reads it identically. The gate decision
+  // itself stays a human one; this is only the transport.
+  async submitDossierReview(input={}){
+    const doc={
+      contractVersion:'1.0.0',type:'trail-dossier-review',status:'queued',
+      reviewId:String(input.reviewId||''),candidateId:String(input.candidateId||''),
+      action:String(input.action||''),targetAgent:String(input.targetAgent||''),
+      note:String(input.note||'').trim().slice(0,1500),
+      acceptedBlockers:(Array.isArray(input.acceptedBlockers)?input.acceptedBlockers:[])
+        .slice(0,50)
+        .map(entry=>({blocker:String(entry&&entry.blocker||'').slice(0,300),
+          reason:String(entry&&entry.reason||'').trim().slice(0,300)}))
+        .filter(entry=>entry.blocker&&entry.reason),
+      submittedAt:FieldValue.serverTimestamp(),
+      submittedBy:String(input.submittedBy||'backoffice-cli'),publicMutationAllowed:false,
+    };
+    const ref=await this.db.collection(COLLECTIONS.dossierReviews).add(doc);
+    this.invalidate(`${COLLECTIONS.dossierReviews}:`);
+    return {ok:true,reviewId:ref.id,status:'queued'};
+  }
+
+  async submitRouteReview(input={}){
+    const doc={
+      contractVersion:'1.0.0',type:'route-choice-review',status:'queued',
+      candidateId:String(input.candidateId||''),action:String(input.action||''),
+      proposalIds:Array.isArray(input.proposalIds)?input.proposalIds.map(id=>String(id)).slice(0,6):[],
+      note:String(input.note||'').trim().slice(0,1500),
+      submittedAt:FieldValue.serverTimestamp(),
+      submittedBy:String(input.submittedBy||'backoffice-cli'),publicMutationAllowed:false,
+    };
+    const ref=await this.db.collection(COLLECTIONS.routeReviews).add(doc);
+    this.invalidate(`${COLLECTIONS.routeReviews}:`);
+    return {ok:true,reviewId:ref.id,status:'queued'};
   }
 
   async listNewTrailReviews(status='queued'){

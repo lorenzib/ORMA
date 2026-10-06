@@ -17,6 +17,7 @@
 
 const { FirestoreBackofficeStore } = require('../services/firestore-backoffice-store');
 const { PROTECTED_JOB_TYPES, planRetirement, retirementFields } = require('../workflows/retire-blocked-jobs');
+const { PROCESSABLE_JOB_TYPES } = require('../workflows/run-live-backoffice-worker');
 
 function parseArgs(argv) {
   const jobTypes = [];
@@ -38,35 +39,40 @@ async function main(options = {}) {
   if (!jobTypes.length) {
     // Show what is there rather than an empty usage line: the first question
     // is always "which lanes are even failing?".
-    const blocked = (await store.listJobs(['blocked'])).filter(job => job.status === 'blocked');
+    const spent = (await store.listJobs(['blocked'])).filter(job => job.status === 'blocked');
+    // Queued work in a lane with no processor will never be claimed by anyone.
+    // It is not failing, so it never appeared here, and it never left either.
+    const stranded = (await store.listJobs(['queued']))
+      .filter(job => job.status === 'queued' && !PROCESSABLE_JOB_TYPES.includes(String(job.jobType)));
+    const blocked = [...spent, ...stranded];
     const counts = new Map();
     blocked.forEach(job => {
-      const key = job.jobType || '(unknown)';
+      const key = `${job.jobType || '(unknown)'}${job.status === 'queued' ? ' (queued, no processor)' : ''}`;
       counts.set(key, (counts.get(key) || 0) + 1);
     });
-    console.log(`[retire] ${blocked.length} blocked job(s). Name a lane with --job-type:\n`);
+    console.log(`[retire] ${spent.length} blocked and ${stranded.length} stranded job(s). Name a lane with --job-type:\n`);
     [...counts.entries()].sort((a, b) => b[1] - a[1]).forEach(([jobType, count]) => {
-      const guard = PROTECTED_JOB_TYPES.includes(jobType) ? '  (protected, cannot be retired)' : '';
+      const guard = PROTECTED_JOB_TYPES.includes(jobType.split(' ')[0]) ? '  (protected, cannot be retired)' : '';
       console.log(`  ${String(count).padStart(3)}  ${jobType}${guard}`);
     });
     console.log('\n[retire] Nothing was changed.');
     return { blocked: blocked.length, retired: 0 };
   }
 
-  const jobs = await store.listJobs(['blocked']);
-  const { retire, refused } = planRetirement(jobs, jobTypes);
+  const jobs = await store.listJobs(['blocked', 'queued']);
+  const { retire, refused } = planRetirement(jobs, jobTypes, { liveJobTypes: PROCESSABLE_JOB_TYPES });
 
   refused.forEach(jobType =>
     console.error(`[retire] Refusing "${jobType}": it carries trail verification, and retiring it would erase a real failure.`));
 
   if (!retire.length) {
-    console.log('[retire] No blocked job matches those job types. Nothing was changed.');
+    console.log('[retire] No blocked or stranded job matches those job types. Nothing was changed.');
     return { blocked: jobs.length, retired: 0, refused };
   }
 
-  console.log(`[retire] ${retire.length} blocked job(s) would be retired:\n`);
+  console.log(`[retire] ${retire.length} job(s) would be retired:\n`);
   retire.slice(0, 20).forEach(job =>
-    console.log(`  ${job.jobType}  ${job.id}\n      ${String(job.lastError || '(no error recorded)').slice(0, 110)}`));
+    console.log(`  ${job.retiredFrom.padEnd(7)} ${job.jobType}  ${job.id}\n      ${String(job.lastError || '(no error recorded)').slice(0, 110)}`));
   if (retire.length > 20) console.log(`  … and ${retire.length - 20} more`);
 
   if (!apply) {
@@ -78,7 +84,7 @@ async function main(options = {}) {
   let retired = 0;
   for (const job of retire) {
     // completeSystemJob keeps the document and its history; nothing is deleted.
-    await store.completeSystemJob(job.id, retirementFields(reason, at));
+    await store.completeSystemJob(job.id, retirementFields(reason, at, job.retiredFrom));
     retired += 1;
   }
   console.log(`\n[retire] Retired ${retired} job(s), recorded as "${reason}".`);

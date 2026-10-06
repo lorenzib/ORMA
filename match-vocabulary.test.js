@@ -269,3 +269,35 @@ describe('the number is gone from browse', () => {
     expect(home).toContain('verdict.evidenceLine({ confidence: presentation.confidence, translate: window.t })');
   });
 });
+
+describe('the verdict words follow the dictionary when one is loaded', () => {
+  const italian = key => ({
+    'recommendation.category.strong-option':'Ottima scelta',
+    'recommendation.category.possible-with-cautions':'Possibile con precauzioni',
+    'recommendation.category.not-recommended':'Non consigliato',
+  })[key] || key;
+
+  test('an explicit translator renames the verdict and leaves everything else', () => {
+    const verdict = verdictFor(92, italian);
+    expect(verdict.label).toBe('Ottima scelta');
+    expect(verdict.category).toBe('strong-option');
+    expect(verdict.color).toBe(VERDICTS['strong-option'].color);
+    expect(verdictFor({score:90,category:'not-recommended'}, italian).label).toBe('Non consigliato');
+  });
+
+  test('a translator that does not know the key falls back to the English in VERDICTS', () => {
+    expect(verdictFor(92, key => key).label).toBe('Strong option');
+    expect(verdictFor(50, () => '').label).toBe('Not recommended');
+  });
+
+  test('the global dictionary is picked up without being passed', () => {
+    globalThis.t = italian;
+    try {
+      expect(verdictFor(70).label).toBe('Possibile con precauzioni');
+      expect(require('./match-verdict.js').categoryLabel('strong-option')).toBe('Ottima scelta');
+    } finally {
+      delete globalThis.t;
+    }
+    expect(verdictFor(70).label).toBe('Possible with cautions');
+  });
+});

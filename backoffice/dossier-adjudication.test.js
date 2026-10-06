@@ -1,5 +1,6 @@
 const {applyDossierReview}=require('./workflows/apply-dossier-review.js');
-const {unacceptedBlockers,waivableBlocker,MIN_ACCEPTANCE_REASON}=require('./workflows/compile-verified-dossier.js');
+const {unacceptedBlockers,waivableBlocker,MIN_ACCEPTANCE_REASON,
+  routeGuidanceBlockingReasons}=require('./workflows/compile-verified-dossier.js');
 const {operationalFactsFromClaims}=require('./workflows/compile-operational-facts.js');
 
 // osm-16363583 has three claims at source-exhausted after seven, five and five
@@ -7,7 +8,10 @@ const {operationalFactsFromClaims}=require('./workflows/compile-operational-fact
 // moderator can accept them, or that trail can never be verified.
 const EXHAUSTED='terrainPoi/livestock: five automated resolution strategies exhausted';
 const OPEN_QUESTION='logistics: open question — is the salle-des-fetes parking usable during the renovation?';
-const ROUTE_GUIDANCE='logistics/route-number-sequence: supported authoritative route guidance is required';
+// Taken from the producer, never retyped. The hand-typed copy that stood here
+// named route-number-sequence -- a claim #472 made non-blocking -- and the
+// sentence #472 stopped emitting, so it tested a string nothing produces.
+const [ROUTE_GUIDANCE]=routeGuidanceBlockingReasons([]);
 const REASON='Walked it in August; the pasture is fenced and the fence is signed.';
 
 describe('which blockers a reason can address', () => {
@@ -67,8 +71,16 @@ describe('approving a dossier with accepted blockers', () => {
     return {orchestration,reviewQueue};
   }
 
+  // The blocker has to come from the evidence now, not only from the stored
+  // list: the guard reads what the checks say about the outputs attached to the
+  // item. A fixture that wrote a blocker down without an output producing it was
+  // asserting the stored list, which is the thing that went stale.
+  const EXHAUSTED_OUTPUT={agentId:'terrainPoi',jobId:'j2',result:{recommendation:'advance',openQuestions:[],
+    claims:[{id:'livestock',category:'terrain',proposedValue:'unknown',finding:'supported-proposal',
+      confidence:0.4,rationale:'',blockers:[],sources:[],resolution:{state:'source-exhausted'}}]}};
+
   test('it is refused while a blocker is unaddressed', () => {
-    const {orchestration,reviewQueue}=setup([EXHAUSTED]);
+    const {orchestration,reviewQueue}=setup([EXHAUSTED],[LOGISTICS_OUTPUT,EXHAUSTED_OUTPUT]);
     expect(()=>applyDossierReview(orchestration,reviewQueue,{reviewId:'r1',action:'approve'},{at}))
       .toThrow(/were not addressed/);
   });

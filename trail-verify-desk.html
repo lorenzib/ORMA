@@ -7,7 +7,7 @@
   <title>Verify trails | ORMA</title>
   <link rel="icon" href="favicon-32.png" sizes="32x32">
   <link rel="stylesheet" href="styles.css?v=20260916-5">
-  <link rel="stylesheet" href="backoffice-review.css?v=20260917-1">
+  <link rel="stylesheet" href="backoffice-review.css?v=20261002-1">
   <script>document.documentElement.classList.add('bo-auth-pending')</script>
 </head>
 <body class="bo-shell">
@@ -49,6 +49,7 @@
         <span id="verifyCount" class="vd-count"></span>
       </div>
       <div id="verifyQueue" class="vd-queue"></div>
+      <section id="verifyAnswered" class="vd-answered" aria-label="Decisions you have already recorded" hidden></section>
       <section id="verifyBlocked" class="vd-blocked" aria-label="Trails stopped after every attempt" hidden></section>
     </section>
 
@@ -98,6 +99,7 @@
   <script type="module" src="backoffice-firebase.js"></script>
   <script src="backoffice-auth-guard.js?v=20260819-1"></script>
   <script src="backoffice-session.js?v=20260819-1"></script>
-  <script src="trail-verify-desk.js?v=20260918-1"></script>
+  <script src="backoffice/revision-target.js?v=20261006-1"></script>
+  <script src="trail-verify-desk.js?v=20261002-1"></script>
 </body>
 </html>

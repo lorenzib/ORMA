@@ -29,9 +29,28 @@ describe('CEO dashboard workflow model',()=>{
 
   test('each evidence decision names its trail and explains the automatic handoff',()=>{
     const model=buildDashboardModel({orchestration:{trails:[{candidateId:'trail-a',trailName:'Trail A',blockers:['not-closed-loop']}]},dossiers:{items:[{reviewId:'gate-a',candidateId:'trail-a',trailName:'Trail A',state:'awaiting-human',approvalAllowed:false}]},publication:{items:[]},jobs:[],history:[]});
-    expect(model.decisions[0]).toEqual(expect.objectContaining({kind:'evidence',title:'Trail A',href:'trail-dossier-desk.html#review-gate-a'}));
+    expect(model.decisions[0]).toEqual(expect.objectContaining({kind:'evidence',title:'Trail A',href:'trail-verify-desk.html#review-gate-a'}));
     expect(model.decisions[0].next).toContain('returns to this desk');
     expect(model.blockerCount).toBe(1);
+    expect(model.blockingIssues[0]).toEqual(expect.objectContaining({title:'Trail A',owner:'You',nextAction:'Review evidence',href:'trail-verify-desk.html#review-gate-a',reasons:expect.arrayContaining(['Evidence findings prevent approval','Not closed loop'])}));
+  });
+
+  test('the blocker breakdown de-duplicates a trail and keeps the most actionable owner and handoff',()=>{
+    const model=buildDashboardModel({
+      orchestration:{trails:[
+        {candidateId:'trail-a',trailName:'Trail A',state:'geometry-human-gate',stage:'route-identity-and-geometry',blockers:['official-distance-conflict']},
+        {candidateId:'trail-b',trailName:'Trail B',state:'autonomous-resolution',stage:'autonomous-claim-resolution',blockers:['water-unresolved']},
+      ]},
+      dossiers:{items:[{reviewId:'gate-a',candidateId:'trail-a',trailName:'Trail A',state:'awaiting-human',approvalAllowed:false,blockingReasons:['not-closed-loop']}]},
+      publication:{items:[]},history:[],jobs:[
+        {id:'job-a',candidateId:'trail-a',jobType:'trail-verification-specialist',status:'blocked',lastError:'Agent contract failed'},
+      ],
+    });
+    expect(model.summary.blockers).toBe(2);
+    expect(model.blockingIssues).toEqual([
+      expect.objectContaining({id:'trail-a',title:'Trail A',owner:'You',nextAction:'Review evidence',reasons:['Not closed loop','Agent contract failed','Official distance conflict']}),
+      expect.objectContaining({id:'trail-b',title:'Trail B',owner:'Agents',nextAction:'Await agent resolution',reasons:['Water unresolved']}),
+    ]);
   });
 
   test('route-review choices surface as the first gate and only when a human is required',()=>{
@@ -48,10 +67,65 @@ describe('CEO dashboard workflow model',()=>{
     // Two human-gated states surface; the automated "enrichment-pending" one does not.
     expect(routeDecisions.map(item=>item.id)).toEqual(['route-tre-cime','route-monte-pelmo']);
     // Route choices lead the queue (stage 0) ahead of the evidence gate.
-    expect(model.decisions[0]).toEqual(expect.objectContaining({kind:'route',stage:'0 · Route choice',title:'Choose the intended Tre Cime loop',href:'trail-dossier-desk.html'}));
+    expect(model.decisions[0]).toEqual(expect.objectContaining({kind:'route',stage:'0 · Route choice',title:'Choose the intended Tre Cime loop',href:'trail-verify-desk.html#route-tre-cime'}));
     // A candidate id falls back to the orchestration name when the item has no title.
     expect(routeDecisions[1]).toEqual(expect.objectContaining({title:'monte-pelmo',actionLabel:'Review route'}));
     expect(model.summary.needsYou).toBe(2);
+  });
+
+  // The route-review artifact keeps asking until a cartographer run rebuilds it,
+  // so an answered question stayed on the home queue for ever. A recorded answer
+  // is not a question.
+  describe('a route choice you have already recorded',()=>{
+    const asked='2026-09-01T09:00:00Z';
+    function model(routeReviews){
+      return buildDashboardModel({
+        orchestration:{trails:[]},dossiers:{items:[]},publication:{items:[]},jobs:[],history:[],
+        routeReview:{generatedAt:asked,items:[
+          {candidateId:'tre-cime',title:'Choose the intended Tre Cime loop',reviewState:'ready-for-human-route-choice'},
+          {candidateId:'monte-pelmo',reviewState:'source-exhausted-direct-confirmation'},
+        ]},
+        routeReviews,
+      });
+    }
+
+    test('leaves the queue and counts as handed off instead',()=>{
+      const built=model([{candidateId:'tre-cime',action:'approve-route-variants',status:'queued',submittedAt:'2026-09-01T13:38:18Z'}]);
+      expect(built.decisions.map(item=>item.id)).toEqual(['route-monte-pelmo']);
+      expect(built.summary.needsYou).toBe(1);
+      expect(built.handoffsInFlight).toBe(1);
+    });
+
+    test('comes back when automation could not apply it',()=>{
+      const built=model([{candidateId:'tre-cime',action:'approve-route',status:'blocked',submittedAt:'2026-09-01T13:38:18Z'}]);
+      expect(built.decisions.map(item=>item.id)).toEqual(['route-tre-cime','route-monte-pelmo']);
+      expect(built.handoffsInFlight).toBe(0);
+    });
+
+    test('comes back when the cartographer asks the question again',()=>{
+      // A decision taken against the previous artifact does not answer a
+      // question rebuilt after it.
+      const built=model([{candidateId:'tre-cime',action:'approve-route',status:'queued',submittedAt:'2026-08-20T10:00:00Z'}]);
+      expect(built.decisions.map(item=>item.id)).toEqual(['route-tre-cime','route-monte-pelmo']);
+    });
+
+    test('a later decision replacing an earlier one still counts as answered',()=>{
+      const built=model([
+        {candidateId:'tre-cime',action:'approve-route',status:'superseded',submittedAt:'2026-09-01T11:00:00Z'},
+        {candidateId:'tre-cime',action:'request-route-research',status:'queued',submittedAt:'2026-09-01T13:38:18Z'},
+      ]);
+      expect(built.decisions.map(item=>item.id)).toEqual(['route-monte-pelmo']);
+    });
+
+    test('its receipt says the gate no longer waits on you',()=>{
+      const built=buildDashboardModel({
+        orchestration:{trails:[{candidateId:'tre-cime',trailName:'Tre Cime Loop',blockers:[]}]},
+        dossiers:{items:[]},publication:{items:[]},jobs:[],routeReview:{generatedAt:asked,items:[]},
+        history:[{id:'route-a',stream:'route',candidateId:'tre-cime',action:'approve-route-variants',status:'processed',submittedAt:'2026-09-01T13:38:18Z'}],
+      });
+      expect(built.activity[0]).toEqual(expect.objectContaining({title:'Tre Cime Loop',
+        message:expect.stringContaining('no longer waits on you')}));
+    });
   });
 
   test('a just-submitted decision leaves the CEO queue immediately while its receipt remains visible',()=>{

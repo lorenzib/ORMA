@@ -22,6 +22,18 @@ describe('live worker exit code',()=>{
 
   test('a blocked review or a failed hazard vetting fails the run',()=>{
     expect(blockedLanes({reviews:[{status:'blocked'}]})).toEqual(['reviews']);
+    // A route choice the worker could not apply is the editor's decision going
+    // nowhere, which is exactly what a red run is for.
+    expect(blockedLanes({routeReviews:[{status:'blocked'}]})).toEqual(['routeReviews']);
+    expect(blockedLanes({routeReviews:[{status:'superseded'}]})).toEqual([]);
+    // A trail waiting for a free fleet slot is not a failure; an admission that
+    // could not be written is.
+    expect(blockedLanes({routeAdmissions:[{status:'held',reason:'verification-capacity-reached'}]})).toEqual([]);
+    expect(blockedLanes({routeAdmissions:[{status:'blocked',error:'contract'}]})).toEqual(['routeAdmissions']);
+    // A gate the automation could not hand to its agent stays on the desk
+    // waiting for someone who cannot clear it, so it is a red run too.
+    expect(blockedLanes({gateDispatches:[{status:'blocked',error:'write refused'}]})).toEqual(['gateDispatches']);
+    expect(blockedLanes({gateDispatches:[{status:'dispatched'}]})).toEqual([]);
     expect(blockedLanes({publications:[{status:'processed'}]})).toEqual([]);
     expect(blockedLanes({communityHazards:{vetted:[{status:'vetting-failed'}]}})).toEqual(['communityHazards']);
     expect(blockedLanes({communityHazards:{vetted:[{status:'published'}]}})).toEqual([]);
@@ -29,6 +41,6 @@ describe('live worker exit code',()=>{
 
   test('the worker still exports the lanes the exit check names',()=>{
     expect(typeof worker.runLiveBackofficeWorker).toBe('function');
-    expect(REVIEW_LANES).toEqual(['reviews','dossierReviews','publications']);
+    expect(REVIEW_LANES).toEqual(['reviews','routeReviews','routeAdmissions','gateDispatches','dossierReviews','publications']);
   });
 });

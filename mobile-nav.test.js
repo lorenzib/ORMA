@@ -81,6 +81,42 @@ describe('shared navigation hardening', () => {
     expect(banner.querySelector('a').getAttribute('href')).toBe('/?wizard=1');
   });
 
+  test('the banner takes its words from the page dictionary, in both states, and again when i18n arrives late', () => {
+    const italian = (key, vars) => {
+      let s = ({
+        'mobile.banner.kicker':'Abbinamento personalizzato dei sentieri',
+        'hp.guest.addDog':'Aggiungi il tuo cane',
+        'hp.guest.medium.sub':'Aggiungi il tuo cane per abbinamenti personalizzati. Crea un account gratuito solo quando decidi di salvare.',
+        'mobile.banner.save':'Salva il profilo di {name}',
+        'mobile.banner.saveCopy':'Gli abbinamenti di {name} sono pronti su questo dispositivo. Crea un account gratuito per conservare il profilo.',
+      })[key] || key;
+      Object.keys(vars || {}).forEach(k => { s = s.split('{' + k + '}').join(vars[k]); });
+      return s;
+    };
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.localStorage.setItem('dolopaws-pending-dog-profile', JSON.stringify({ name:'Pip' }));
+    isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"><button id="accountBtn">Log in</button></div></nav>';
+    isolated.eval(mobileNav);
+    const banner = isolated.document.querySelector('.dog-profile-banner');
+    // No dictionary yet: English.
+    expect(banner.querySelector('h2').textContent).toBe('Save Pip’s profile');
+    // i18n.js loads lazily on static pages and announces itself; the banner re-syncs.
+    isolated.t = italian;
+    isolated.dispatchEvent(new isolated.CustomEvent('dolopaws-i18n-ready'));
+    expect(banner.querySelector('.dog-profile-banner__kicker').textContent).toBe('Abbinamento personalizzato dei sentieri');
+    expect(banner.querySelector('h2').textContent).toBe('Salva il profilo di Pip');
+    expect(banner.querySelector('.dog-profile-banner__copy > p:last-child').textContent)
+      .toBe('Gli abbinamenti di Pip sono pronti su questo dispositivo. Crea un account gratuito per conservare il profilo.');
+    expect(banner.querySelector('.dog-profile-banner__action').textContent).toBe('Salva il profilo di Pip');
+    // Without a device dog the add-dog copy is Italian too.
+    isolated.localStorage.removeItem('dolopaws-pending-dog-profile');
+    isolated.dispatchEvent(new isolated.CustomEvent('dolopaws-profile-summary-changed', { detail:{ summary:null } }));
+    expect(['Aggiungi il tuo cane', 'Salva il profilo di Pip']).toContain(banner.querySelector('h2').textContent);
+  });
+
   test('invites a guest to save the named device profile instead of adding the dog again', () => {
     const frame = document.createElement('iframe');
     document.body.appendChild(frame);
@@ -259,7 +295,7 @@ describe('shared navigation hardening', () => {
     expect(pages.length).toBeGreaterThan(150);
     pages.forEach(file => {
       expect(fs.readFileSync(file, 'utf8')).toMatch(
-        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=(?:20260823-[12]|20260831-1|20260901-[245]|20260905-[123]|20260908-1|20260909-1|20260910-[123]|20260916-1|20260917-1)"/
+        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=(?:20260823-[12]|20260831-1|20260901-[245]|20260905-[123]|20260908-1|20260909-1|20260910-[123]|20260916-1|20260917-1|20261006-1)"/
       );
     });
   });
