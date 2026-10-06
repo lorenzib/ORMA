@@ -50,8 +50,16 @@
     <section class="bo-exec-kpis" aria-label="Live trail operating summary">
       <article><strong id="needsReviewCount">—</strong><span>Needs you</span></article>
       <article><strong id="agentWorkCount">—</strong><span>Agent jobs</span></article>
-      <article><strong id="publicWarningCount">—</strong><span>Blocked</span></article>
+      <article class="bo-blocking-kpi"><button id="blockingIssuesToggle" type="button" aria-expanded="false" aria-controls="blockingIssuesPanel"><strong id="publicWarningCount">—</strong><span>Trails with blocking issues</span><small id="blockingIssuesToggleLabel">View breakdown</small></button></article>
       <article><strong id="publishedCount">—</strong><span>PRs ready</span></article>
+    </section>
+
+    <section id="blockingIssuesPanel" class="bo-blocking-panel" aria-labelledby="blockingIssuesTitle" hidden>
+      <div class="bo-blocking-panel-head">
+        <div><p class="eyebrow">What is blocking progress, and who owns the next step</p><h2 id="blockingIssuesTitle">Trails with blocking issues</h2></div>
+        <p>A trail appears once even when several checks found problems. Items waiting on you overlap with the “Needs you” total above.</p>
+      </div>
+      <div id="blockingIssuesList" class="bo-blocking-list"></div>
     </section>
 
     <section class="bo-exec-decisions" aria-labelledby="decisionsTitle">
