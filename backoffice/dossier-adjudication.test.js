@@ -67,8 +67,16 @@ describe('approving a dossier with accepted blockers', () => {
     return {orchestration,reviewQueue};
   }
 
+  // The blocker has to come from the evidence now, not only from the stored
+  // list: the guard reads what the checks say about the outputs attached to the
+  // item. A fixture that wrote a blocker down without an output producing it was
+  // asserting the stored list, which is the thing that went stale.
+  const EXHAUSTED_OUTPUT={agentId:'terrainPoi',jobId:'j2',result:{recommendation:'advance',openQuestions:[],
+    claims:[{id:'livestock',category:'terrain',proposedValue:'unknown',finding:'supported-proposal',
+      confidence:0.4,rationale:'',blockers:[],sources:[],resolution:{state:'source-exhausted'}}]}};
+
   test('it is refused while a blocker is unaddressed', () => {
-    const {orchestration,reviewQueue}=setup([EXHAUSTED]);
+    const {orchestration,reviewQueue}=setup([EXHAUSTED],[LOGISTICS_OUTPUT,EXHAUSTED_OUTPUT]);
     expect(()=>applyDossierReview(orchestration,reviewQueue,{reviewId:'r1',action:'approve'},{at}))
       .toThrow(/were not addressed/);
   });
