@@ -7,6 +7,7 @@ const { buildPublicationStaging } = require('./build-publication-staging');
 const { runVerifiedTrailRevision } = require('./run-verified-trail-revision');
 const { applyDossierReview } = require('./apply-dossier-review');
 const { planGateDispatches } = require('./dispatch-unanswered-gates');
+const { rehydrateReviewQueue } = require('./rehydrate-review-detail');
 const { applyRouteReview,promotableFeature,unpromotedChoices } = require('./apply-route-review');
 const { admitChosenRoutes } = require('./admit-chosen-routes');
 const { runTrailSpecialist } = require('./run-trail-specialist');
@@ -368,7 +369,14 @@ async function ingestDossierReviews(store){
         store.getArtifact('trail-orchestration'),store.getArtifact('dossier-review-queue'),
       ]);
       if(!orchestration||!reviewQueue)throw new Error('Trail orchestration artifacts are not seeded');
-      const result=applyDossierReview(orchestration,reviewQueue,review,{at:iso(review.submittedAt)});
+      // An approval reads the claims' sources, and compaction removes them from
+      // a waiting item, leaving a pointer. Follow it first, for this one item,
+      // or the gate refuses evidence that exists. Nothing persists: an approved
+      // item becomes decided and has its outputs dropped on the way out.
+      const decided=review.action==='approve'
+        ? await rehydrateReviewQueue(store,reviewQueue,review.reviewId)
+        : reviewQueue;
+      const result=applyDossierReview(orchestration,decided,review,{at:iso(review.submittedAt)});
       for(const job of result.jobs)await store.putJob(job);
       const writes=[];
       if(result.verifiedDossier){
