@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "updatedAt": "2026-10-06T13:19:41.972Z",
+  "updatedAt": "2026-10-06T14:44:35.259Z",
   "composites": {
     "alpe-siusi": {
       "state": "approved",
@@ -277,7 +277,7 @@
       ]
     },
     "tre-cime": {
-      "state": "proposed",
+      "state": "approved",
       "proposedAt": "2026-10-06T13:15:06.344Z",
       "trailName": "Tre Cime di Lavaredo classic circuit",
       "coveragePercent": 100,
@@ -302,7 +302,10 @@
           "walkSharePercent": 33,
           "firstCoveredIndex": 0
         }
-      ]
+      ],
+      "approvedAt": "2026-10-06T14:44:33.250Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": true
     }
   }
 }
