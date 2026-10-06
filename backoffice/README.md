@@ -102,6 +102,11 @@ trail. Keeping more than one variant records the extras as
 `pendingVariantIntake`: a second variant becomes a second ORMA trail only once it
 has its own candidate.
 
+A choice applied before its proposal geometry reached the store promotes
+nothing — a decision must not be lost to a missing file — so the worker writes
+that line on a later pass instead, under the same proposal-id guard. Applying
+happens once; the line is owed until it is there.
+
 `backoffice/workflows/admit-chosen-routes.js` then puts that trail into the
 verification fleet, at the stage the choice leaves it — geometry approved by a
 human, evidence still to research — and queues the same three specialists every
