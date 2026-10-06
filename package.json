@@ -78,6 +78,7 @@
     "backoffice:valley-research": "node backoffice/cli/valley-research.js",
     "backoffice:retire-blocked-jobs": "node backoffice/cli/retire-blocked-jobs.js",
     "backoffice:requeue-fixed": "node backoffice/cli/requeue-fixed-jobs.js",
+    "backoffice:submit-review": "node backoffice/cli/submit-review.js",
     "backoffice:route-shape": "node backoffice/cli/declare-route-shape.js",
     "backoffice:artifact-sizes": "node backoffice/cli/report-artifact-sizes.js",
     "fetch:towns": "node scripts/fetch-towns.js",
