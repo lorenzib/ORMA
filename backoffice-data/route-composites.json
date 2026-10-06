@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "updatedAt": "2026-10-06T14:48:33.627Z",
+  "updatedAt": "2026-10-06T21:12:41.070Z",
   "composites": {
     "alpe-siusi": {
       "state": "approved",
@@ -309,6 +309,53 @@
       "approvedAt": "2026-10-06T14:44:33.250Z",
       "approvedBy": "Benedetta Lorenzi (ORMA owner)",
       "relationsUnchangedSinceProposal": true
+    },
+    "cinque-torri-assisted": {
+      "state": "proposed",
+      "proposedAt": "2026-10-06T21:12:39.067Z",
+      "trailName": "Cinque Torri three-refuges assisted circuit",
+      "coveragePercent": 94,
+      "radiusMetres": 60,
+      "candidateRelationCount": 6,
+      "relations": [
+        {
+          "externalRelationId": "relation/3197410",
+          "ref": "424",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 16,
+          "walkSharePercent": 24,
+          "firstCoveredIndex": 0
+        },
+        {
+          "externalRelationId": "relation/11588900",
+          "ref": "425",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 66,
+          "walkSharePercent": 100,
+          "firstCoveredIndex": 18
+        },
+        {
+          "externalRelationId": "relation/3170143",
+          "ref": "439",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 15,
+          "walkSharePercent": 87,
+          "firstCoveredIndex": 89
+        }
+      ],
+      "riddenSegment": {
+        "fromIndex": 0,
+        "toIndex": 24,
+        "pointCount": 25,
+        "metres": 1438,
+        "cableMetres": 1297,
+        "aerialway": "chair_lift",
+        "name": "5 Torri"
+      },
+      "walkedPointCount": 179
     }
   }
 }
