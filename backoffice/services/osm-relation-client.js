@@ -41,7 +41,21 @@ function samplePath(path, maximum = ROUTE_SAMPLE_POINTS){
   return sampled;
 }
 
-function buildRoutesNearPathQuery(path, radiusMetres = 60){
+const AERIALWAY_RADIUS_M = 80;
+
+/**
+ * The route relations running near a drawn path, and -- for an itinerary that
+ * rides a lift -- the aerialways too, in one request.
+ *
+ * They were two. Overpass is why this work lives in Actions at all: the public
+ * mirrors throttle and time out, and a second round trip is a second chance to
+ * get nothing. A dispatched discover run failed on each query in turn on
+ * consecutive attempts, having fetched the other one fine.
+ *
+ * Only an itinerary that rides a lift asks for them, so no other trail pays for
+ * a clause it has no use for.
+ */
+function buildRoutesNearPathQuery(path, radiusMetres = 60, options = {}){
   const corridor = samplePath(path).map(point => `${point[0]},${point[1]}`).join(',');
   if(!corridor) throw new Error('A drawn path is required to look for route relations');
   return [
@@ -50,21 +64,27 @@ function buildRoutesNearPathQuery(path, radiusMetres = 60){
     '.routes out body;',
     'way(r.routes);',
     'out geom;',
+    ...(options.includeAerialways ? [
+      `way(around:${options.aerialwayRadiusMetres || AERIALWAY_RADIUS_M},${corridor})["aerialway"];`,
+      'out tags geom;',
+    ] : []),
   ].join('\n');
 }
 
-// The lifts a path runs along. An itinerary that rides one carries a stretch
-// that is not walked, and no hiking relation covers a chairlift: OSM maps it as
-// an aerialway, not a path. Asking a route to explain it gets a correct "no" to
-// the wrong question.
-function buildAerialwaysNearPathQuery(path, radiusMetres = 80){
-  const corridor = samplePath(path).map(point => `${point[0]},${point[1]}`).join(',');
-  if(!corridor) throw new Error('A drawn path is required to look for lifts');
-  return [
-    '[out:json][timeout:90];',
-    `way(around:${radiusMetres},${corridor})["aerialway"];`,
-    'out tags geom;',
-  ].join('\n');
+// No hiking relation covers a chairlift: OSM maps it as an aerialway, not a
+// path. Reading them out of the corridor payload keeps that one request.
+function aerialwaysFromPayload(payload){
+  return ((payload && payload.elements) || [])
+    .filter(element => element.type === 'way' && element.tags && element.tags.aerialway
+      && Array.isArray(element.geometry))
+    .map(element => ({
+      id: element.id,
+      tags: element.tags,
+      points: element.geometry
+        .filter(node => Number.isFinite(node.lat) && Number.isFinite(node.lon))
+        .map(node => [node.lat, node.lon]),
+    }))
+    .filter(way => way.points.length > 1);
 }
 
 // One query, tried against each mirror in turn. Three callers had their own
@@ -98,24 +118,8 @@ async function runQuery(query, options, failure){
 }
 
 async function fetchRoutesNearPath(path, options = {}){
-  return runQuery(buildRoutesNearPathQuery(path, options.radiusMetres), options,
+  return runQuery(buildRoutesNearPathQuery(path, options.radiusMetres, options), options,
     'Unable to look for route relations');
-}
-
-// The lifts a path runs along, as polylines to measure against.
-async function fetchAerialwaysNearPath(path, options = {}){
-  const { payload } = await runQuery(buildAerialwaysNearPathQuery(path, options.radiusMetres), options,
-    'Unable to look for lifts');
-  return (payload.elements || [])
-    .filter(element => element.type === 'way' && Array.isArray(element.geometry))
-    .map(element => ({
-      id: element.id,
-      tags: element.tags || {},
-      points: element.geometry
-        .filter(node => Number.isFinite(node.lat) && Number.isFinite(node.lon))
-        .map(node => [node.lat, node.lon]),
-    }))
-    .filter(way => way.points.length > 1);
 }
 
 // A single relation comes from the OpenStreetMap API first -- it is the source
@@ -152,4 +156,4 @@ async function fetchRelation(externalId, options = {}){
 
 module.exports = { DEFAULT_ENDPOINTS, USER_AGENT, ROUTE_SAMPLE_POINTS, numericRelationId, buildRelationQuery,
   samplePath, buildRoutesNearPathQuery, fetchRoutesNearPath, fetchRelation,
-  buildAerialwaysNearPathQuery, fetchAerialwaysNearPath };
+  AERIALWAY_RADIUS_M, aerialwaysFromPayload };
