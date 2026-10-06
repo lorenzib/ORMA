@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "updatedAt": "2026-10-06T14:44:35.259Z",
+  "updatedAt": "2026-10-06T14:48:33.627Z",
   "composites": {
     "alpe-siusi": {
       "state": "approved",
@@ -258,7 +258,7 @@
       "relationsUnchangedSinceProposal": true
     },
     "lago-braies": {
-      "state": "proposed",
+      "state": "approved",
       "proposedAt": "2026-10-06T13:08:49.091Z",
       "trailName": "Lago di Braies Seeweg circuit",
       "coveragePercent": 100,
@@ -274,7 +274,10 @@
           "walkSharePercent": 67,
           "firstCoveredIndex": 0
         }
-      ]
+      ],
+      "approvedAt": "2026-10-06T14:48:31.625Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": true
     },
     "tre-cime": {
       "state": "approved",
