@@ -80,6 +80,8 @@
     "backoffice:requeue-fixed": "node backoffice/cli/requeue-fixed-jobs.js",
     "backoffice:submit-review": "node backoffice/cli/submit-review.js",
     "backoffice:route-shape": "node backoffice/cli/declare-route-shape.js",
+    "backoffice:discover-composites": "node backoffice/cli/discover-composites.js",
+    "backoffice:approve-composites": "node backoffice/cli/approve-composites.js",
     "backoffice:artifact-sizes": "node backoffice/cli/report-artifact-sizes.js",
     "fetch:towns": "node scripts/fetch-towns.js",
     "test:future": "CLOCK_SHIFT_DAYS=${CLOCK_SHIFT_DAYS:-365} jest --setupFilesAfterEnv=./test-support/shift-clock.js"

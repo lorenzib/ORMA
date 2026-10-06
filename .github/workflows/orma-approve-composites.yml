@@ -57,7 +57,10 @@ jobs:
         run: |
           set -euo pipefail
           args=()
-          [ -n "$CANDIDATE" ] && args+=(--candidate "$CANDIDATE")
+          # Explicit if rather than `[ -n ... ] && ...`: under set -e the and-list
+          # form is only safe while something follows it, and that is not a
+          # property worth depending on.
+          if [ -n "$CANDIDATE" ]; then args+=(--candidate "$CANDIDATE"); fi
           if [ "$MODE" = "approve" ]; then
             npm run backoffice:approve-composites -- "${args[@]}" --by "$APPROVED_BY"
           else
