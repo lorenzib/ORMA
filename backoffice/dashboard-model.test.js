@@ -32,6 +32,25 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.decisions[0]).toEqual(expect.objectContaining({kind:'evidence',title:'Trail A',href:'trail-verify-desk.html#review-gate-a'}));
     expect(model.decisions[0].next).toContain('returns to this desk');
     expect(model.blockerCount).toBe(1);
+    expect(model.blockingIssues[0]).toEqual(expect.objectContaining({title:'Trail A',owner:'You',nextAction:'Review evidence',href:'trail-verify-desk.html#review-gate-a',reasons:expect.arrayContaining(['Evidence findings prevent approval','Not closed loop'])}));
+  });
+
+  test('the blocker breakdown de-duplicates a trail and keeps the most actionable owner and handoff',()=>{
+    const model=buildDashboardModel({
+      orchestration:{trails:[
+        {candidateId:'trail-a',trailName:'Trail A',state:'geometry-human-gate',stage:'route-identity-and-geometry',blockers:['official-distance-conflict']},
+        {candidateId:'trail-b',trailName:'Trail B',state:'autonomous-resolution',stage:'autonomous-claim-resolution',blockers:['water-unresolved']},
+      ]},
+      dossiers:{items:[{reviewId:'gate-a',candidateId:'trail-a',trailName:'Trail A',state:'awaiting-human',approvalAllowed:false,blockingReasons:['not-closed-loop']}]},
+      publication:{items:[]},history:[],jobs:[
+        {id:'job-a',candidateId:'trail-a',jobType:'trail-verification-specialist',status:'blocked',lastError:'Agent contract failed'},
+      ],
+    });
+    expect(model.summary.blockers).toBe(2);
+    expect(model.blockingIssues).toEqual([
+      expect.objectContaining({id:'trail-a',title:'Trail A',owner:'You',nextAction:'Review evidence',reasons:['Not closed loop','Agent contract failed','Official distance conflict']}),
+      expect.objectContaining({id:'trail-b',title:'Trail B',owner:'Agents',nextAction:'Await agent resolution',reasons:['Water unresolved']}),
+    ]);
   });
 
   test('route-review choices surface as the first gate and only when a human is required',()=>{
