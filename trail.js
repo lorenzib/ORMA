@@ -2271,13 +2271,17 @@ function renderTrail(t){
       let nearbyLayersAdded = false;
       function renderNearbyTrailLayers(){
         if(nearbyLayersAdded) return;
-        // The first call runs inside a map-ready path, but the region can land
-        // at any time, and addSource on a style that has not finished loading
-        // throws. Wait for the style rather than guessing.
-        if(typeof map.isStyleLoaded === 'function' && !map.isStyleLoaded()){
-          map.once('load', renderNearbyTrailLayers);
-          return;
-        }
+        // No isStyleLoaded() gate here. It reports false transiently while
+        // tiles and sources are still arriving -- which is not the same as
+        // being unable to add a layer -- and gating on it skipped the inline
+        // call entirely on the live site, then deferred to map.once('load'),
+        // which never fires again once load has passed. The toggle stayed
+        // hidden with five neighbours available.
+        //
+        // This call site is the one the original code ran in, so it adds
+        // directly. A call driven by a late region may genuinely arrive before
+        // the style can take a layer, so that failure is caught and retried on
+        // the next styledata rather than predicted.
         const nearbyTrails = nearbyTrailCandidates(t, typeof trails !== 'undefined' ? trails : []);
         const otherTrails = nearbyTrails.map(item => item.trail);
         const nearbyToggleBtn = document.getElementById('nearbyToggle');
@@ -2288,7 +2292,10 @@ function renderTrail(t){
           }
         }
         if(otherTrails.length){
+          // Set before the adds, so a retry cannot double-add; cleared again if
+          // the style refuses them.
           nearbyLayersAdded = true;
+          try {
           map.addSource('other-trails', {
             type: 'geojson',
             data: {
@@ -2417,6 +2424,18 @@ function renderTrail(t){
                 map.fitBounds(bounds, { padding: 60, maxZoom: 17 });
               }
             });
+          }
+          } catch (error) {
+            // The style was not ready to take these layers. Undo the flag and
+            // try again when more style data lands; the adds above are the only
+            // thing that can fail, and a partial add is cleaned up by removing
+            // whatever went in before the throw.
+            nearbyLayersAdded = false;
+            ['other-trails-line', 'other-trails-hit', 'nearby-trail-points-circle', 'nearby-trail-points-label']
+              .forEach(id => { if(map.getLayer(id)) map.removeLayer(id); });
+            ['other-trails', 'nearby-trail-points']
+              .forEach(id => { if(map.getSource(id)) map.removeSource(id); });
+            map.once('styledata', renderNearbyTrailLayers);
           }
         }
       }
