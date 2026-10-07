@@ -48,7 +48,7 @@ describe('trail photo carousel', () => {
         image:'images/tre-cime-gallery-01.jpg',
         alt:'Tre Cime from the circuit trail',
         caption:'Tre Cime di Lavaredo from the circuit trail',
-        credit:{ text:'Benedetta Lorenzi · ORMA original' },
+        credit:{ text:'ORMA original' },
       }],
     });
     await new Promise(resolve => setTimeout(resolve, 0));
