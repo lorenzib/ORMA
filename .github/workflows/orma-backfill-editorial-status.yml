@@ -1,0 +1,57 @@
+name: ORMA backfill editorial status
+
+# One-off reconciliation, run by hand. Until #649 an editorial decision was
+# recorded without moving the output it was made about, so outputs decided
+# before it still read `ready-for-review` -- six of them on the live database,
+# behind three trails that are already on the website.
+#
+# This replays decisions already recorded in processed submissions. It decides
+# nothing, queues nothing and touches no public state; the only artifact it can
+# write is verified-trail-editorial-execution. Dry run by default: tick 'apply'
+# to write.
+#
+# The state lives in Firestore, so it runs here where the credential is rather
+# than from anyone's checkout.
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Actually write the change. Leave unchecked for a dry run."
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orma-backfill-editorial-status
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check worker credentials
+        run: test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+      - run: npm ci
+      - name: Backfill editorial output status
+        env:
+          APPLY: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          if [ "$APPLY" = "true" ]; then
+            npm run backoffice:backfill-editorial-status -- --apply
+          else
+            echo "[backfill] Dry run. Tick 'apply' to write."
+            npm run backoffice:backfill-editorial-status
+          fi
