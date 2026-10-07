@@ -43,8 +43,12 @@ describe('Firestore usage meter',()=>{
     meter.read(5).write(2);
     const before=meter.snapshot();
     meter.read(3).write(1);
-    expect(meter.since(before)).toEqual({reads:3,writes:1,readCalls:1,writeCalls:1});
-    expect(meter.snapshot()).toEqual({reads:8,writes:3,readCalls:2,writeCalls:2});
+    // Both now also carry the per-call-site breakdown; these calls named no
+    // site, so it is all filed as unattributed.
+    expect(meter.since(before)).toEqual({reads:3,writes:1,readCalls:1,writeCalls:1,
+      bySource:{unattributed:{reads:3,writes:1,readCalls:1,writeCalls:1}}});
+    expect(meter.snapshot()).toEqual({reads:8,writes:3,readCalls:2,writeCalls:2,
+      bySource:{unattributed:{reads:8,writes:3,readCalls:2,writeCalls:2}}});
   });
 
   test('the store counts documents, not calls, and never counts a cache hit',async()=>{
@@ -87,5 +91,82 @@ describe('Firestore usage meter',()=>{
     await first.getArtifact('x');await second.getArtifact('x');
     expect(usage.reads).toBe(2);
     expect(first.usage).toBe(second.usage);
+  });
+});
+
+/**
+ * A total says a pass cost 2,304 reads. It does not say what to narrow, and the
+ * first guess at that was wrong: the orchestration status scan was blamed for a
+ * read the store had already stopped making. Each call site names itself so the
+ * drain ledger can rank them.
+ */
+describe('reads are attributed to the call site that made them', () => {
+  const {FirestoreUsageMeter,costliestSources}=require('./services/firestore-usage');
+
+  test('a snapshot carries the per-site tally as well as the total',()=>{
+    const meter=new FirestoreUsageMeter();
+    meter.read(850,'job-get-by-id');
+    meter.read(130,'job-list-by-status');
+    meter.write(10,'job-write');
+
+    const snapshot=meter.snapshot();
+    expect(snapshot).toEqual(expect.objectContaining({reads:980,writes:10}));
+    expect(snapshot.bySource['job-get-by-id']).toEqual({reads:850,writes:0,readCalls:1,writeCalls:0});
+    expect(snapshot.bySource['job-write']).toEqual({reads:0,writes:10,readCalls:0,writeCalls:1});
+  });
+
+  test('a snapshot is a copy, so later spend does not rewrite it',()=>{
+    const meter=new FirestoreUsageMeter();
+    meter.read(100,'artifact-get');
+    const before=meter.snapshot();
+    meter.read(400,'artifact-get');
+
+    expect(before.bySource['artifact-get'].reads).toBe(100);
+    expect(meter.snapshot().bySource['artifact-get'].reads).toBe(500);
+  });
+
+  test('`since` diffs each site and omits the ones that did nothing',()=>{
+    const meter=new FirestoreUsageMeter();
+    meter.read(100,'job-get-by-id');
+    meter.read(50,'artifact-get');
+    const before=meter.snapshot();
+
+    meter.read(30,'job-get-by-id');
+    meter.write(4,'job-claim');
+
+    const spent=meter.since(before);
+    expect(spent.reads).toBe(30);
+    expect(spent.bySource['job-get-by-id']).toEqual({reads:30,writes:0,readCalls:1,writeCalls:0});
+    expect(spent.bySource['job-claim']).toEqual({reads:0,writes:4,readCalls:0,writeCalls:1});
+    // artifact-get spent nothing since the snapshot, so it is not noise in the diff.
+    expect(spent.bySource['artifact-get']).toBeUndefined();
+  });
+
+  test('an unlabelled call still counts, under a name that says so',()=>{
+    const meter=new FirestoreUsageMeter();
+    meter.read(7);
+    expect(meter.snapshot().reads).toBe(7);
+    expect(meter.snapshot().bySource.unattributed.reads).toBe(7);
+  });
+
+  test('sites rank by documents read, which is what the free tier rations',()=>{
+    const ranked=costliestSources({
+      'job-write':{reads:0,writes:60,readCalls:0,writeCalls:60},
+      'job-get-by-id':{reads:1700,writes:0,readCalls:2,writeCalls:0},
+      'job-list-by-status':{reads:520,writes:0,readCalls:4,writeCalls:0},
+    });
+    expect(ranked.map(entry=>entry.source)).toEqual(['job-get-by-id','job-list-by-status','job-write']);
+  });
+
+  // The labels are only useful if they are the store's, not this test's.
+  test('every usage call in the store names its call site',()=>{
+    const source=require('fs')
+      .readFileSync(require('path').join(__dirname,'services/firestore-backoffice-store.js'),'utf8');
+    const calls=source.match(/this\.usage\.(?:read|write)\(/g)||[];
+    expect(calls.length).toBeGreaterThan(20);
+    const unlabelled=source.split('\n')
+      .filter(line=>/this\.usage\.(?:read|write)\(/.test(line))
+      .filter(line=>!/this\.usage\.(?:read|write)\([^;]*,\s*'[a-z-]+'\)/.test(line));
+    expect(unlabelled).toEqual([]);
   });
 });

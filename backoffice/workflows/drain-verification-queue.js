@@ -16,6 +16,7 @@
 // the spend per pass so the next budget is a measurement, not a guess.
 
 const {summariseWorkAttempted}=require('./worker-productivity');
+const {costliestSources}=require('../services/firestore-usage');
 
 const DEFAULT_BUDGETS=Object.freeze({
   maxMinutes:240,
@@ -105,6 +106,10 @@ async function drainVerificationQueue(options={}){
     durationMs:now()-startedAtMs,budgets,stoppedBecause:state.stoppedBecause,
     totals:{passes:state.passes.length,reads:totals.reads,writes:totals.writes,
       attempted:sum('attempted'),succeeded:sum('succeeded'),failed:sum('failed')},
+    // Which call sites the reads went to, biggest first. A total says a pass
+    // cost 2,304 reads; it does not say what to narrow, and the first guess at
+    // that was wrong.
+    costliest:costliestSources(totals.bySource||{}),
     averages:averages(state.passes),passes:state.passes};
 }
 
