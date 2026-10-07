@@ -1,7 +1,7 @@
 // Which agent a blocked gate is actually asking.
 //
 // This rule was written for the desk, and for a while it only ever ran there:
-// it decided where Benedetta's "request revision" click was sent. That made it
+// it decided where the moderator's "request revision" click was sent. That made it
 // unreachable by anything else, and the pipeline paid for it. Nothing re-runs
 // an agent on a trail parked at a human gate -- advance-trail-orchestration
 // handles geometry-audit, evidence-research, evidence-resolution,

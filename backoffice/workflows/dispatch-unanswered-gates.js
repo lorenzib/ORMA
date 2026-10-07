@@ -8,7 +8,7 @@
 // has done: a start point no source has been read for, a route sequence no
 // agent has gone looking for. The desk already knows the difference, because
 // `agentFromBlockers` can name the one specialist a set of blockers belongs to.
-// Until now that rule only ran when Benedetta clicked "request revision", so a
+// Until now that rule only ran when the moderator clicked "request revision", so a
 // gate whose blockers only Logistics can clear waited for a person who cannot
 // clear them either. Seven dossier gates stood that way for eleven days.
 //
