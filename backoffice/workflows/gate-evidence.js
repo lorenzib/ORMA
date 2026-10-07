@@ -115,7 +115,12 @@ function describeItem(item,trail,nowMs){
     trailName:item.trailName||item.trailId||item.candidateId||'(unnamed)',
     candidateId:item.candidateId||item.trailId||null,
     gateType:item.gateType||'(unknown)',
-    approvalAllowed:item.approvalAllowed===true,
+    // The stored flag AND nothing standing against the current evidence. The
+    // flag is written once when the gate opens; #632 made the blockers beside
+    // it recomputed, so a stale `true` could print "nothing is blocking this
+    // one" directly above a list of blockers. Never more permissive than a
+    // fresh gate, which is the rule #590 established for the decision path.
+    approvalAllowed:item.approvalAllowed===true&&!reasons.length,
     waitingDays:daysSince(item.openedAt,nowMs),
     allowedActions:item.allowedActions||[],
     blockers:reasons,
@@ -141,6 +146,12 @@ function describeItem(item,trail,nowMs){
   };
 }
 
+/** No decision made at this gate can clear it: the job has to run, or the
+ * directions have to be supplied. */
+function notClearable(entry){
+  return entry.gateType==='agent-failure'||entry.unwaivable>0;
+}
+
 function buildGateEvidence({orchestration,reviewQueue,nowMs=Date.now()}){
   const trails=new Map((orchestration?.trails||[]).map(trail=>[trail.candidateId||trail.trailId,trail]));
   const waiting=(reviewQueue?.items||[]).filter(item=>item.state==='awaiting-human');
@@ -154,8 +165,24 @@ function buildGateEvidence({orchestration,reviewQueue,nowMs=Date.now()}){
   return {
     total:described.length,
     readyToApprove:described.filter(entry=>entry.approvalAllowed).length,
-    // No decision at this gate clears an agent failure; the job has to run.
-    notClearableHere:described.filter(entry=>entry.gateType==='agent-failure').length,
+    // Two ways a gate cannot be cleared by any decision made at it, and the
+    // count had only ever included the first.
+    //
+    // An agent failure needs the job to run. Route guidance needs the
+    // directions supplied -- it is the one class `waivableBlocker` refuses, so
+    // no written reason answers it and approving is not available. Both leave
+    // "request a revision" open, which is why this is "cannot be cleared"
+    // rather than "cannot be acted on".
+    //
+    // Measured 7 October: three dossier gates arrived carrying four unwaivable
+    // route-guidance blockers each, and the report's own headline said `0 that
+    // no decision here can clear` -- so it read as three gates of available
+    // work when none of them could be approved.
+    notClearableHere:described.filter(entry=>notClearable(entry)).length,
+    notClearable:{
+      agentFailure:described.filter(entry=>entry.gateType==='agent-failure').length,
+      routeGuidanceMissing:described.filter(entry=>entry.gateType!=='agent-failure'&&entry.unwaivable>0).length,
+    },
     items:described,
   };
 }

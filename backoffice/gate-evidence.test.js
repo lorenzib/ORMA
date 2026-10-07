@@ -36,6 +36,39 @@ describe('only what is actually waiting',()=>{
   test('it says how many no decision can clear',()=>{
     const report=build([item({gateType:'agent-failure'}),item({candidateId:'t2',gateType:'agent-failure'}),item({candidateId:'t3'})]);
     expect(report.notClearableHere).toBe(2);
+    expect(report.notClearable).toEqual({agentFailure:2,routeGuidanceMissing:0});
+  });
+
+  test('a gate held by route guidance counts too, and is counted separately',()=>{
+    // Measured 7 October: three dossier gates arrived carrying four unwaivable
+    // route-guidance blockers each and the headline said `0 that no decision
+    // here can clear`, so three gates nobody could approve read as available
+    // work. The two kinds need opposite things -- a job has to run, or an agent
+    // has to supply directions -- so the count distinguishes them.
+    const report=build([
+      item({candidateId:'needs-directions',gateType:'dossier-approval',blockingReasons:[ROUTE_GUIDANCE]}),
+      item({candidateId:'needs-a-job',gateType:'agent-failure'}),
+      item({candidateId:'hers',gateType:'dossier-approval',blockingReasons:['terrainPoi/shade: conflicted']}),
+    ]);
+    expect(report.notClearableHere).toBe(2);
+    expect(report.notClearable).toEqual({agentFailure:1,routeGuidanceMissing:1});
+    // The one with only waivable blockers is genuinely hers and is not counted.
+    expect(report.items.find(entry=>entry.candidateId==='hers').unwaivable).toBe(0);
+  });
+
+  test('a stale clean flag does not survive a blocker standing against it',()=>{
+    // approvalAllowed is written once when the gate opens; #632 made the
+    // blockers beside it recomputed. A stale `true` printed "nothing is
+    // blocking this one" directly above the list of what was blocking it.
+    const report=build([item({approvalAllowed:true,blockingReasons:['terrainPoi/shade: conflicted']})]);
+    expect(report.readyToApprove).toBe(0);
+    expect(report.items[0].approvalAllowed).toBe(false);
+  });
+
+  test('a genuinely clean gate is still clean',()=>{
+    const report=build([item({approvalAllowed:true})]);
+    expect(report.readyToApprove).toBe(1);
+    expect(report.notClearableHere).toBe(0);
   });
 });
 
