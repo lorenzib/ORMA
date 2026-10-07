@@ -31,7 +31,9 @@
 // converging over passes. A gate whose blockers name no agent at all is still
 // held -- that is a decision, not a dispatch.
 
-const {dominantAgentFromBlockers,blockerCountsByAgent,blockersForAgent,geometryConflictBlockers}=require('../revision-target');
+const {hasRouteGeometryConflict,dominantAgentFromBlockers,blockerCountsByAgent,blockersForAgent,geometryConflictBlockers}=require('../revision-target');
+const {answerableCountsByAgent}=require('../blocker-kinds');
+const {waivableBlocker}=require('./compile-verified-dossier');
 const {MAX_AUTOMATED_ATTEMPTS}=require('../contracts/resolution-policy-v1');
 
 // The gates whose revision path apply-dossier-review implements. An
@@ -102,8 +104,37 @@ function planGateDispatches(orchestration,reviewQueue,options={}){
     // The queue item is the durable record and the trail is the live state; if
     // the trail has already moved off its gate, the item is stale.
     if(!String(trail.state||'').endsWith('-human-gate')){hold(item,'trail-no-longer-at-a-gate');continue;}
+    // A gate holding nothing a re-run could answer is not a dispatch, whatever
+    // its blockers add up to.
+    //
+    // dominantAgentFromBlockers falls back to raw counts when no agent holds
+    // anything answerable, so an all-contested gate still names somebody. That
+    // was right when it was written: holding meant nothing happened, and
+    // naming somebody at least moved. It is wrong now. Asking an agent to
+    // re-run a claim it already researched into a contradiction returns the
+    // same contradiction, and spends one of five resolution attempts to learn
+    // nothing -- the exact cost the attempt limit exists to ration.
+    //
+    // And holding no longer means nothing happens. Since #634 the adjudicator
+    // reads the sources behind a contested finding and writes a cited
+    // recommendation beside it, which is what a disagreement between sources
+    // actually needs. blocker-kinds puts it plainly: contested is hers,
+    // unresearched is the agent's debt. So a gate with no debt left goes to her
+    // with help, not back to an agent that has already answered.
     const targetAgent=dominantAgentFromBlockers(item.blockingReasons);
     if(!targetAgent){hold(item,'blockers-name-no-agent');continue;}
+    // Two kinds of blocker must reach an agent whatever blocker-kinds makes of
+    // their wording, because no decision of hers can clear them: anything the
+    // contract refuses to waive -- route guidance, which is supplied and never
+    // accepted -- and a geometry conflict, which has to be settled before
+    // directions can be written for that line. Route-guidance blockers in fact
+    // classify as undetermined, because no status line is filed for them, so
+    // without this they would be held -- exactly the gates #617 was built to
+    // move.
+    const mustReachAnAgent=hasRouteGeometryConflict(item.blockingReasons)
+      ||(item.blockingReasons||[]).some(reason=>!waivableBlocker(reason));
+    if(!mustReachAnAgent
+      &&!answerableCountsByAgent(item.blockingReasons).size){hold(item,'nothing-a-re-run-can-answer');continue;}
     if((trail.resolutionAttempts?.[targetAgent]||0)>=RESOLUTION_ATTEMPT_LIMIT){hold(item,'resolution-attempts-exhausted');continue;}
     const outstandingAgents=[...blockerCountsByAgent(item.blockingReasons).keys()];
     // A geometry conflict is the cartographer's to settle, but the agents file

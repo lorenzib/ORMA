@@ -29,6 +29,7 @@
 
 const {createStructuredResponse}=require('../services/openai-responses-client');
 const {MIN_ACCEPTANCE_REASON,waivableBlocker}=require('./compile-verified-dossier');
+const {blockerDisposition}=require('../blocker-kinds');
 
 // The desk requires the same minimum before it will accept a typed reason, and
 // compile-verified-dossier drops a shorter one on the way in. Read from the
@@ -121,6 +122,38 @@ function adjudicableBlockers(item){
   return (item?.blockingReasons||[]).filter(reason=>waivableBlocker(reason));
 }
 
+// What blocker-kinds makes of one blocker, in the words the agent needs.
+// 'contested' means evidence was read and disagrees; 'unresearched' means none
+// was found; 'undetermined' means neither could be established, which is itself
+// something a person has to read.
+const KIND_WORDS=Object.freeze({
+  contested:'sources disagree — weigh the ones that exist',
+  unresearched:'no source was found — go and look',
+  undetermined:'unclassified — read it as written',
+});
+
+function dispositionIndex(item){
+  const {classified}=blockerDisposition(item?.blockingReasons||[]);
+  return new Map(classified.map(entry=>[String(entry.reason),entry.disposition]));
+}
+
+function kindOf(item,reason){
+  return KIND_WORDS[dispositionIndex(item).get(String(reason))]||KIND_WORDS.undetermined;
+}
+
+/**
+ * How much of this gate is a judgement rather than missing work.
+ *
+ * The budget is gates per pass, so this is what decides which gates get one. A
+ * contested blocker is where a cited recommendation is worth most: the sources
+ * exist, they disagree, and somebody has to weigh them. Since the dispatch now
+ * holds a gate with nothing a re-run can answer, these are also the gates that
+ * arrive here most often.
+ */
+function contestedCount(item){
+  return blockerDisposition(adjudicableBlockers(item)).contested.length;
+}
+
 function prompt(item,trail){
   return [
     {role:'developer',content:[
@@ -131,6 +164,7 @@ function prompt(item,trail){
       'Return "needs-supply" when the blocker is not a judgement call at all but missing work — a start point or route sequence that has to be established rather than waived.',
       'Return "cannot-accept" when you looked and found either nothing, or something that argues against verifying this trail. This is the right answer more often than "accept"; a trail left waiting costs nothing, and a wrongly verified one is a dog walked somewhere nobody checked.',
       'Set confidence "corroborated" only when two independent publishers agree, "single-source" for one, "unsourced" when your reason rests on reasoning rather than a document.',
+      'Each blocker is tagged with what kind of problem it is, and the two want different work. Where sources disagree, the evidence exists: read what each one says and judge between them, rather than going to look for a third. Where no source was found, the work is the search itself — and if you cannot find one either, say so, because that is the finding.',
       'The reason must say why the blocker does not stop verification. It must never assert that the underlying fact is true — the claim stays exactly as the agent left it.',
     ].join('\n')},
     {role:'user',content:[
@@ -138,8 +172,13 @@ function prompt(item,trail){
       `Area: ${trail?.area||trail?.valley||'unstated'}`,
       trail?.routeReference?`Route reference: ${trail.routeReference}`:null,
       '',
-      'Blockers to judge, verbatim:',
-      ...adjudicableBlockers(item).map(reason=>`- ${reason}`),
+      // A contradiction and a gap want opposite work. Weighing two sources that
+      // disagree is reading both; an absence is going to look for the document
+      // nobody found. Told only "here is a blocker", the agent treats a settled
+      // disagreement as a gap and goes looking for a third source instead of
+      // judging the two in front of it.
+      'Blockers to judge, verbatim, with what kind of problem each one is:',
+      ...adjudicableBlockers(item).map(reason=>`- [${kindOf(item,reason)}] ${reason}`),
     ].filter(value=>value!==null).join('\n')},
   ];
 }
@@ -188,6 +227,6 @@ function adjudicationMatches(adjudication,item){
   return now.length===then.length&&now.every(reason=>then.includes(reason));
 }
 
-module.exports={ADJUDICATION_SCHEMA,MIN_REASON,CORROBORATION_HOSTS,CONFIDENCE,RECOMMENDATIONS,
-  host,independentHosts,reviewVerdicts,adjudicableBlockers,prompt,
+module.exports={ADJUDICATION_SCHEMA,MIN_REASON,CORROBORATION_HOSTS,CONFIDENCE,RECOMMENDATIONS,KIND_WORDS,
+  host,independentHosts,reviewVerdicts,adjudicableBlockers,contestedCount,kindOf,prompt,
   adjudicateGateBlockers,mergeAdjudications,adjudicationMatches};

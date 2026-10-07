@@ -7,7 +7,7 @@ const { buildPublicationStaging } = require('./build-publication-staging');
 const { runVerifiedTrailRevision } = require('./run-verified-trail-revision');
 const { applyDossierReview } = require('./apply-dossier-review');
 const { planGateDispatches } = require('./dispatch-unanswered-gates');
-const { adjudicateGateBlockers, adjudicableBlockers, mergeAdjudications, adjudicationMatches } = require('./adjudicate-gate-blockers');
+const { adjudicateGateBlockers, adjudicableBlockers, contestedCount, mergeAdjudications, adjudicationMatches } = require('./adjudicate-gate-blockers');
 const { rehydrateReviewQueue } = require('./rehydrate-review-detail');
 const { applyRouteReview,promotableFeature,unpromotedChoices } = require('./apply-route-review');
 const { admitChosenRoutes } = require('./admit-chosen-routes');
@@ -468,7 +468,16 @@ async function adjudicateStandingGates(store,options={}){
     &&!adjudicationMatches(byReview.get(String(item.reviewId)),item));
   const trailById=new Map((options.productionTrails||[]).map(trail=>[String(trail.id),trail]));
   const outcomes=[];
-  for(const item of waiting.slice(0,limit)){
+  // Two gates a pass, so which two matters. A contested blocker is where a
+  // cited recommendation is worth most -- the sources exist and disagree, and
+  // somebody has to weigh them -- while a gate that is all missing work is
+  // better served by the dispatch asking the agent again. Ties keep queue
+  // order, which is oldest gate first.
+  const ranked=waiting
+    .map((item,index)=>({item,index,contested:contestedCount(item)}))
+    .sort((a,b)=>b.contested-a.contested||a.index-b.index)
+    .map(entry=>entry.item);
+  for(const item of ranked.slice(0,limit)){
     try{
       const adjudication=await adjudicateGateBlockers(item,{at:options.at,
         trail:trailById.get(String(item.trailId||item.candidateId))||null,
