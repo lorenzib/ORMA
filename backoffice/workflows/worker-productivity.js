@@ -63,10 +63,18 @@ function summariseWorkAttempted(result = {}){
     attempted: all.length,
     succeeded: all.length - failures.length,
     failed: failures.length,
-    // Every single failure was the provider refusing to answer. Nothing is
-    // wrong with the work and no decision at the desk will move it; the account
-    // or the provider has to come back first.
-    providerParked: failures.length > 0 && failures.every(failure => providerOutage(failure.error)),
+    // The provider refused everything this pass attempted. Nothing is wrong
+    // with the work and no decision at the desk will move it; the account or
+    // the provider has to come back first.
+    //
+    // Nothing succeeding is part of it. "Every failure was an outage" is also
+    // true of a pass where nine jobs completed and the tenth hit a per-minute
+    // ceiling, and that pass is working — the drain stops on `provider-parked`,
+    // so calling that parked would stop a drain that was getting through its
+    // queue. Running a batch concurrently makes a single throttled call much
+    // more likely, which is what surfaced this.
+    providerParked: failures.length > 0 && failures.length === all.length
+      && failures.every(failure => providerOutage(failure.error)),
     reasons: reasons(failures),
   };
 }
