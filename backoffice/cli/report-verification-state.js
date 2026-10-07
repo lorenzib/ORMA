@@ -21,6 +21,10 @@ function jobAge(values){
   return {oldest:times[0].toISOString().slice(0,10),newest:times[times.length-1].toISOString().slice(0,10)};
 }
 
+// How many stalls to name in the printed lines. The whole report is dumped as
+// JSON into a workflow log, so every other list here is sampled too.
+const STALL_SAMPLE=8;
+
 function tally(list,pick){
   const counts=new Map();
   for(const item of list){const key=pick(item)||'(none)';counts.set(key,(counts.get(key)||0)+1);}
@@ -262,7 +266,7 @@ async function buildVerificationReport({store}){
       // has not been made, publicationMappingBlockers when the item cannot be
       // pointed at a website record. Saying which is the difference between
       // "approve six drafts" and "fix a bug".
-      publicationStalls:(staging?.items||[]).map(item=>({
+      publicationStalls:(staging?.items||[]).slice(0,STALL_SAMPLE*4).map(item=>({
         candidateId:item.candidateId||null,
         targetTrailId:item.targetTrailId||null,
         operation:item.operation||null,
@@ -282,7 +286,7 @@ async function buildVerificationReport({store}){
       // draft genuinely awaiting a reader can be told from one whose decision
       // was made and whose trail is already on the website.
       editorialByStatus:tally((execution?.outputs||[]),output=>String(output.status||'(unset)')),
-      editorialOutputJobs:(execution?.outputs||[]).map(output=>({
+      editorialOutputJobs:(execution?.outputs||[]).slice(0,STALL_SAMPLE*4).map(output=>({
         jobId:output.jobId||null,status:output.status||null,
         candidateId:output.candidateId||null,
       })),
@@ -334,6 +338,35 @@ async function main(options={}){
       :null;
     console.log(`[verification] The pipeline is not moving: ${worker.consecutiveUnproductiveRuns} worker run(s) in a row finished no job${days===null?'':`, nothing completed for ${days} day(s)`}.`);
     if(worker.reason) console.log(`[verification] ${worker.reason}`);
+  }
+  // The last numbers before the website, said out loud. These were added to
+  // the report object and printed nowhere, so reading them meant pulling the
+  // JSON dump out of a workflow log -- which is how the one blocked trail went
+  // seven weeks without anyone naming it.
+  const staged=report.downstream.publicationStalls||[];
+  // An item that is ready to go is not stalled, and listing it under a heading
+  // about stopping short is how a clean queue reads as a problem.
+  const stalls=staged.filter(item=>item.missingApprovals.length||item.publicationMappingBlockers.length
+    ||item.state!=='ready-for-publication-preview');
+  if(staged.length){
+    const waitingOnAPerson=stalls.filter(item=>item.missingApprovals.length&&!item.publicationMappingBlockers.length);
+    const defects=stalls.filter(item=>item.publicationMappingBlockers.length);
+    console.log(`\n[verification] ${staged.length} trail(s) staged for the website, ${report.downstream.publicationReady} ready to go.`);
+    if(waitingOnAPerson.length)console.log(`[verification]   ${waitingOnAPerson.length} waiting on a decision you can make now.`);
+    if(defects.length)console.log(`[verification]   ${defects.length} held by a mapping defect, which no decision clears.`);
+    for(const item of stalls.slice(0,STALL_SAMPLE)){
+      const name=item.targetTrailId||item.candidateId||'(no candidate)';
+      console.log(`[verification]   ${name} · ${item.operation||'?'} · ${item.state||'?'}`);
+      for(const approval of item.missingApprovals)console.log(`[verification]       awaiting ${approval}`);
+      for(const blocker of item.publicationMappingBlockers)console.log(`[verification]       cannot map: ${blocker}`);
+    }
+    if(stalls.length>STALL_SAMPLE)console.log(`[verification]   ... and ${stalls.length-STALL_SAMPLE} more; the full list is in the JSON above.`);
+  }
+  // "ready-for-review" keeps counting a draft whose decision was already made,
+  // because an output's status is not moved when the decision is recorded.
+  const byStatus=report.downstream.editorialByStatus||[];
+  if(byStatus.length>1||(byStatus[0]&&byStatus[0][0]!=='(unset)')){
+    console.log(`[verification] Editorial outputs by status: ${byStatus.map(([status,count])=>`${count} ${status}`).join(' · ')}`);
   }
   if(!report.verifiedRegistryExists){
     console.log('[verification] No verified registry yet: no approval has completed on this database.');
