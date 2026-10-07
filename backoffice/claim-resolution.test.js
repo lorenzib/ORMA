@@ -9,11 +9,11 @@ function baseResult(agentId,claims=[]){return {contractVersion:'1.0.0',candidate
   openQuestions:[],recommendation:claims.some(claim=>claim.finding==='unresolved')?'needs-resolution':'advance',publicMutationAllowed:false};}
 
 describe('autonomous five-attempt claim resolution',()=>{
-  test('schedules five materially different strategies at 0, 1, 6, 24 and 72 hours',()=>{
+  test('schedules five materially different strategies at 0, 0, 1, 1 and 6 hours',()=>{
     const entry={attempts:[]};const at='2026-08-20T00:00:00.000Z';
     for(let index=0;index<5;index+=1){
       const strategy=strategyFor(entry);expect(strategy).toEqual(expect.objectContaining({attemptNumber:index+1,strategy:STRATEGIES[index].id}));
-      expect(notBeforeFor(at,index+1)).toBe(new Date(new Date(at).getTime()+[0,1,6,24,72][index]*3600000).toISOString());
+      expect(notBeforeFor(at,index+1)).toBe(new Date(new Date(at).getTime()+[0,0,1,1,6][index]*3600000).toISOString());
       const attempt=addQueuedAttempt(entry,{id:`job-${index+1}`},at);attempt.status='completed';
     }
     expect(()=>strategyFor(entry)).toThrow('limit reached (5)');
@@ -32,7 +32,7 @@ describe('autonomous five-attempt claim resolution',()=>{
     expect(merged.recommendation).toBe('block');
   });
 
-  test('orchestration immediately queues attempt one, then delays a distinct second strategy by one hour',async()=>{
+  test('orchestration immediately queues attempt one, then a distinct second strategy as soon as the first returns',async()=>{
     const artifacts={
       'trail-orchestration':{contractVersion:'1.0.0',generatedAt:'2026-08-20T00:00:00.000Z',publicMutationAllowed:false,summary:{},trails:[{
         trailId:'trail-a',candidateId:'trail-a',trailName:'Trail A',state:'evidence-research',stage:'parallel-evidence-research',
@@ -71,7 +71,7 @@ describe('autonomous five-attempt claim resolution',()=>{
     const second=await advanceTrailOrchestration(store,{at:'2026-08-20T00:10:00.000Z'});
     expect(second.queued).toHaveLength(1);
     const attemptTwo=jobs.find(job=>job.resolutionAttempt===2);
-    expect(attemptTwo).toEqual(expect.objectContaining({resolutionStrategy:STRATEGIES[1].id,notBefore:'2026-08-20T01:10:00.000Z'}));
+    expect(attemptTwo).toEqual(expect.objectContaining({resolutionStrategy:STRATEGIES[1].id,notBefore:'2026-08-20T00:10:00.000Z'}));
     const ledger=artifacts['trail-orchestration'].trails[0].claimResolution['logistics:parking'];
     expect(ledger.attempts).toEqual([
       expect.objectContaining({attemptNumber:1,status:'completed',finding:'unresolved'}),

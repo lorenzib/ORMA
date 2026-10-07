@@ -87,8 +87,11 @@ errors retry the same job and do not consume one of the five evidence attempts.
 
 ### Evidence remains unresolved
 
-The claim ledger runs five materially different strategies at 0, 1, 6, 24 and
-72 hours. After the fifth unresolved result, the claim becomes
+The claim ledger runs five materially different strategies at 0, 0, 1, 1 and
+6 hours. A strategy that ran and found nothing is followed promptly, because
+the delay between strategies never protected anything: a model or provider
+error is rescheduled separately and costs the claim none of its five attempts.
+After the fifth unresolved result, the claim becomes
 `source-exhausted`; it requires authority contact, a field check or a continued
 block. No unknown fact is promoted to green.
 

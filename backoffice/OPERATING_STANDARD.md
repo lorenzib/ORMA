@@ -408,6 +408,23 @@ detail to complete a dossier. For an existing public trail, the evidence policy
 accepts a genuinely unresolved optional claim as non-blocking with a recorded
 reason; the claim remains unknown and publishes no unsupported fact.
 
+A strategy that found nothing is followed promptly. The five attempts are paced
+at 0, 0, 1, 1 and 6 hours, and that pacing is not failure handling: a model or
+provider error reschedules the job on its own ladder and costs the claim none of
+its five attempts. The delay between two deliberately different searches was
+doing nothing else, and it was expensive. Until 2026-10-07 it read 0, 1, 6, 24
+and 72 hours — 103 hours of waiting per claim that went the distance, on a trail
+that cannot leave evidence-resolution until its slowest claim is terminal. That
+is most of a trail's life spent waiting for the web to change its mind, and it
+stopped the queue drain too: a third of the queue sat unclaimable, so repeated
+passes found nothing, called the queue idle and stopped.
+
+Six hours before the fifth attempt is kept deliberately. It is the one place a
+delay can plausibly change an answer, because the last strategy is a final
+targeted search rather than a new angle. Nothing about the evidence threshold
+moves: five materially different strategies are still required, source-exhausted
+still means what it said, and a claim is still never promoted from silence.
+
 ## Two campaign budgets, and where a stopped trail goes
 
 Admission to the pipeline is bounded by two separate budgets, because they
