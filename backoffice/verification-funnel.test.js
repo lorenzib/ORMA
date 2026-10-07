@@ -136,3 +136,42 @@ describe('the funnel reads in the order trails travel',()=>{
     expect(report.mostAttempts[0]).toEqual(expect.objectContaining({trailId:'looping',attempts:15}));
   });
 });
+
+// "blocked 1 · oldest 47d" stood for seven weeks and named neither the trail
+// nor the reason. stalled() returns false for a terminal state by design, so a
+// blocked trail is the one kind the report counts and never names -- the very
+// thing `stalled.sample` exists to avoid for every other state.
+describe('a trail in a terminal state is named',()=>{
+  const at=(days)=>new Date(Date.UTC(2026,9,7)-days*86400000).toISOString();
+  const NOW=Date.UTC(2026,9,7);
+  const trail=(over={})=>({candidateId:'osm-1',trailId:'t1',state:'blocked',
+    updatedAt:at(47),attempts:{cartographer:3},blockers:['route-source-identity-unresolved'],...over});
+
+  test('with its age, attempts and blockers',()=>{
+    const report=buildFunnel({orchestration:{trails:[trail()]},jobs:[],nowMs:NOW});
+    expect(report.terminal).toHaveLength(1);
+    expect(report.terminal[0]).toMatchObject({candidateId:'osm-1',state:'blocked',daysInState:47,
+      blockers:['route-source-identity-unresolved']});
+  });
+
+  test('rejected counts too, oldest first',()=>{
+    const report=buildFunnel({orchestration:{trails:[
+      trail({candidateId:'new',updatedAt:at(2)}),
+      trail({candidateId:'old',state:'rejected',updatedAt:at(60)}),
+    ]},jobs:[],nowMs:NOW});
+    expect(report.terminal.map(t=>t.candidateId)).toEqual(['old','new']);
+  });
+
+  // The distinction the summary hid: a blocked trail may still be owed work.
+  test('and says whether anything is still coming for it',()=>{
+    const report=buildFunnel({orchestration:{trails:[trail()]},
+      jobs:[{candidateId:'osm-1',status:'queued'}],nowMs:NOW});
+    expect(report.terminal[0].pendingJobs).toBe(1);
+    expect(report.terminal[0].stalled).toBe(false);
+  });
+
+  test('a pipeline with nothing terminal names nothing',()=>{
+    const report=buildFunnel({orchestration:{trails:[trail({state:'red-team'})]},jobs:[],nowMs:NOW});
+    expect(report.terminal).toEqual([]);
+  });
+});
