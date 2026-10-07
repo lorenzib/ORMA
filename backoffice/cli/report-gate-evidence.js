@@ -142,6 +142,16 @@ async function main(options={}){
 
   line(`${report.total} gate(s) awaiting you · ${report.readyToApprove} clean by every automated check`
     +` · ${report.notClearableHere} that no decision here can clear.`);
+  // Which kind, because the two need opposite things: a job has to run, or an
+  // agent has to supply directions. A bare count reads as "nothing to do here"
+  // when one of them is a revision waiting to be requested.
+  const {agentFailure,routeGuidanceMissing}=report.notClearable;
+  if(agentFailure||routeGuidanceMissing){
+    const parts=[];
+    if(routeGuidanceMissing)parts.push(`${routeGuidanceMissing} waiting on route guidance only logistics can supply`);
+    if(agentFailure)parts.push(`${agentFailure} waiting on a job that has to run`);
+    line(`  of those: ${parts.join(' · ')}`);
+  }
 
   const shown=focus.only?report.items.filter(entry=>entry.candidateId===focus.only):report.items;
   if(focus.only&&!shown.length)line(`No gate is waiting for ${focus.only}.`);
