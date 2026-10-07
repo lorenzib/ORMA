@@ -114,13 +114,13 @@ describe('merging facts into the table', () => {
     const other = { ...empty, facts:[{
       id:'tre-cime-rifugio-auronzo', trail_id:'tre-cime', entity_type:'rifugio',
       entity_name:'Rifugio Auronzo', dog_policy:'accepted', policy_notes:null,
-      verified_at:'2026-07-01', verified_source:'phone', verified_by:'Benedetta',
+      verified_at:'2026-07-01', verified_source:'phone', verified_by:'ORMA owner',
     }] };
     const merged = compiler.mergeOperationalFacts(other,
       compiler.operationalFactsFromClaims([claim()], context), '2026-09-05T10:00:00Z');
 
     expect(merged.table.facts).toHaveLength(2);
-    expect(merged.table.facts.find(f => f.trail_id === 'tre-cime').verified_by).toBe('Benedetta');
+    expect(merged.table.facts.find(f => f.trail_id === 'tre-cime').verified_by).toBe('ORMA owner');
     expect(table.validateTable(merged.table)).toEqual([]);
   });
 });
