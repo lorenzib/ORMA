@@ -12,12 +12,12 @@ describe('trail photo provenance', () => {
   });
 
   test('supports an owned-photo credit without inventing a source link', () => {
-    expect(provenance.heroCredit({ imageCredit:{ text:'Benedetta Lorenzi · ORMA original' } }))
+    expect(provenance.heroCredit({ imageCredit:{ text:'ORMA original' } }))
       .toEqual({
-        text:'Benedetta Lorenzi · ORMA original',
+        text:'ORMA original',
         url:'',
         bare:false,
-        label:'Photo: Benedetta Lorenzi · ORMA original',
+        label:'Photo: ORMA original',
       });
   });
 
@@ -29,7 +29,7 @@ describe('trail photo provenance', () => {
           image:'images/tre-cime-gallery-01.jpg',
           alt:'Tre Cime from the circuit trail',
           caption:'Tre Cime di Lavaredo from the circuit trail',
-          credit:{ text:'Benedetta Lorenzi · ORMA original' },
+          credit:{ text:'ORMA original' },
         },
         { source:'community', image:'images/not-editorial.jpg' },
         { source:'orma-editorial', image:'https://example.com/untrusted.jpg' },
