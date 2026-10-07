@@ -543,5 +543,6 @@ module.exports = {
   legacyInputErrors,
   adaptLegacyTrail,
   validateCatalog,
+  assignSlugs,
   buildCanonicalCatalog,
 };

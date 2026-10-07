@@ -1258,7 +1258,7 @@ function initHikeMode(map, trail, options){
       if (!user){
         // Guests fall back to the journal's pending-walk flow, which asks
         // them to log in first (photos can't follow it).
-        const returnToTrail = `trail.html?id=${encodeURIComponent(trail.id)}`;
+        const returnToTrail = `trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(trail.id) : (trail.id)))}`;
         window.location.href = `journal.html?trail=${encodeURIComponent(trail.id)}&duration=${elapsedMinutes}&completion=${encodeURIComponent(completion.completionId)}&from=${encodeURIComponent(returnToTrail)}`;
         return;
       }
@@ -1321,7 +1321,7 @@ function initHikeMode(map, trail, options){
     }
     if(otherTrailId){
       const open = document.createElement('a');
-      open.href = `trail.html?id=${encodeURIComponent(otherTrailId)}`;
+      open.href = `trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(otherTrailId) : (otherTrailId)))}`;
       open.textContent = window.t('hike.openTrail');
       open.style.cssText = 'color:#fff;padding:6px 8px;font-weight:800;';
       actions.appendChild(open);

@@ -45,7 +45,12 @@ describe('Trail comparison journey', () => {
   test('users can remove a trail, open details, and return to comparison', () => {
     expect(controller).toContain('data-remove-id=');
     expect(controller).toContain('stateApi.toggle(selectedIds, button.dataset.removeId)');
-    expect(controller).toContain('trail.html?id=${encodeURIComponent(entry.id)}&from=${encodeURIComponent(compareReturn)}');
+    // The link carries the return target, and names the trail by its readable
+    // slug rather than its raw id. Asserted as two facts instead of one exact
+    // expression, so wrapping the id in the slug resolver does not read as a
+    // broken journey.
+    expect(controller).toContain('&from=${encodeURIComponent(compareReturn)}');
+    expect(controller).toContain('slugFor(entry.id)');
     expect(trail).toMatch(/browse-trails\|compare\|saved\|journal/);
     expect(trail).toContain("returnTarget.startsWith('compare.html') ? '← Back to comparison'");
     expect(trailBlueprint).toContain("/^browse-trails\\.html(?:[?#]|$)/");

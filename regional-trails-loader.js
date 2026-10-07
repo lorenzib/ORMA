@@ -46,12 +46,43 @@
     }
   }
 
+  // A URL may name a trail by its id or by its readable slug. The id stays the
+  // key -- it addresses the detail files and every link already shared -- so an
+  // id always wins, and a slug is resolved to one. Anything unknown is returned
+  // unchanged so the "trail not found" path still reports what was asked for.
+  function resolveTrailId(value) {
+    if (!value) return value;
+    var key = String(value);
+    if (manifest.trailRegion && manifest.trailRegion[key]) return key;
+    return (manifest.slugToId && manifest.slugToId[key]) || key;
+  }
+
+  function slugFor(trailOrId) {
+    var id = trailOrId && trailOrId.id ? trailOrId.id : trailOrId;
+    if (!id) return id;
+    if (trailOrId && trailOrId.slug) return trailOrId.slug;
+    return (manifest.trailSlug && manifest.trailSlug[String(id)]) || String(id);
+  }
+
+  // Every in-app link to a trail should read as its title. Falls back to the id
+  // when a trail is not in the manifest, which keeps a link working rather than
+  // emitting an empty one.
+  function trailHref(trailOrId, extra) {
+    var href = 'trail.html?id=' + encodeURIComponent(slugFor(trailOrId));
+    if (!extra) return href;
+    Object.keys(extra).forEach(function (key) {
+      if (extra[key] === undefined || extra[key] === null || extra[key] === '') return;
+      href += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(extra[key]);
+    });
+    return href;
+  }
+
   var current = document.currentScript;
   var params = new URLSearchParams(window.location.search);
-  var trailId = params.get('id');
+  var trailId = resolveTrailId(params.get('id'));
   var requested = params.get('region');
   var mode = current && current.dataset.defaultRegion || 'all';
-  if (mode === 'trail') mode = manifest.trailRegion[params.get('id')] || 'dolomites';
+  if (mode === 'trail') mode = manifest.trailRegion[trailId] || 'dolomites';
   else if (requested && manifest.regions[requested]) mode = requested;
   var initial = mode === 'all' ? Object.keys(manifest.regions) : [mode];
 
@@ -78,7 +109,10 @@
     isLoaded: function (region) { return loaded.has(region); },
     trailCount: function (region) { return manifest.regions[region] && manifest.regions[region].trailCount || 0; },
     poiUrl: poiUrl,
-    regionForTrail: function (trailId) { return manifest.trailRegion[trailId] || null; },
+    regionForTrail: function (id) { return manifest.trailRegion[resolveTrailId(id)] || null; },
+    resolveTrailId: resolveTrailId,
+    slugFor: slugFor,
+    trailHref: trailHref,
     primeTrailDetail: primeTrailDetail,
   };
 })();

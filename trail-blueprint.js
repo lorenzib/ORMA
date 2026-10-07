@@ -190,7 +190,7 @@
       'images/itineraire-decouverte-de-la-nature.webp':'images/itineraire-decouverte-de-la-nature-480.webp',
     }[source] || source);
     grid.innerHTML = picks.map(o => `
-      <a class="near-card" href="trail.html?id=${encodeURIComponent(o.id)}" data-near-id="${esc(o.id)}">
+      <a class="near-card" href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(o.id) : (o.id)))}" data-near-id="${esc(o.id)}">
         <div class="ph"${o.imageIcon ? ` style="background-image:url('${esc(cardPhoto(o.imageIcon))}');"` : ''}><span class="pct near-pct" hidden></span></div>
         <div class="bd">
           <div class="nm">${esc(o.name)}</div>

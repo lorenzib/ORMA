@@ -259,7 +259,7 @@
   function trailHref(t) {
     return window.DoloPawsDiscoveryState
       ? window.DoloPawsDiscoveryState.trailHref(t.id, canonicalBrowseState())
-      : 'trail.html?id=' + encodeURIComponent(t.id);
+      : 'trail.html?id=' + encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)));
   }
   function valleyOf(t) { return t.valley || t.area || ''; }
 

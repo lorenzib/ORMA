@@ -137,7 +137,7 @@
       ].filter(Boolean).join(' · ');
       popup = new root.maplibregl.Popup({ offset:18, closeButton:true, maxWidth:'250px' })
         .setLngLat(coordinate)
-        .setHTML(`<div class="browse-map-popup"><strong>${escapeHtml(trail.name || 'Trail')}</strong>${metadata ? `<span>${escapeHtml(metadata)}</span>` : ''}<b>Dog suitability at a glance</b><a href="trail.html?id=${encodeURIComponent(trail.id)}">Open trail →</a></div>`)
+        .setHTML(`<div class="browse-map-popup"><strong>${escapeHtml(trail.name || 'Trail')}</strong>${metadata ? `<span>${escapeHtml(metadata)}</span>` : ''}<b>Dog suitability at a glance</b><a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(trail.id) : (trail.id)))}">Open trail →</a></div>`)
         .addTo(map);
     }
 

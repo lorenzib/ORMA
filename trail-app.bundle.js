@@ -10487,7 +10487,7 @@ function initHikeMode(map, trail, options){
       if (!user){
         // Guests fall back to the journal's pending-walk flow, which asks
         // them to log in first (photos can't follow it).
-        const returnToTrail = `trail.html?id=${encodeURIComponent(trail.id)}`;
+        const returnToTrail = `trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(trail.id) : (trail.id)))}`;
         window.location.href = `journal.html?trail=${encodeURIComponent(trail.id)}&duration=${elapsedMinutes}&completion=${encodeURIComponent(completion.completionId)}&from=${encodeURIComponent(returnToTrail)}`;
         return;
       }
@@ -10550,7 +10550,7 @@ function initHikeMode(map, trail, options){
     }
     if(otherTrailId){
       const open = document.createElement('a');
-      open.href = `trail.html?id=${encodeURIComponent(otherTrailId)}`;
+      open.href = `trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(otherTrailId) : (otherTrailId)))}`;
       open.textContent = window.t('hike.openTrail');
       open.style.cssText = 'color:#fff;padding:6px 8px;font-weight:800;';
       actions.appendChild(open);
@@ -14285,7 +14285,13 @@ function buildItinerary(t){
 }
 
 const params = new URLSearchParams(window.location.search);
-const trailId = params.get('id');
+// A URL may name a trail by id or by its readable slug. The loader owns that
+// mapping (it has the manifest) and the id stays the key everywhere below, so
+// a link shared before slugs existed resolves to exactly the same trail.
+const requestedTrailParam = params.get('id');
+const trailId = (window.DoloPawsRegionalData && window.DoloPawsRegionalData.resolveTrailId)
+  ? window.DoloPawsRegionalData.resolveTrailId(requestedTrailParam)
+  : requestedTrailParam;
 const trailReturnTarget = params.get('from');
 const hikeDeepLinkRequested = params.get('hike') === '1';
 // The day the reader was planning for when they left the list. Without it this
@@ -14411,7 +14417,7 @@ function renderTrail(t){
   }
   const logWalkBtn = document.getElementById('logWalkBtn');
   if(logWalkBtn){
-    const journalReturn = encodeURIComponent(`trail.html?id=${encodeURIComponent(t.id)}`);
+    const journalReturn = encodeURIComponent(`trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)))}`);
     logWalkBtn.href = `journal.html?trail=${encodeURIComponent(t.id)}&from=${journalReturn}`;
   }
   // Do not reserve an empty elevation panel for routes without profile data.
@@ -15208,7 +15214,7 @@ function renderTrail(t){
             .setHTML(
               `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${escName(p.name)}</div>` +
               `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${escName(String(p.distance))} km trail${p.awayKm != null ? ` · ${escName(String(p.awayKm))} km away` : ''}</div>` +
-              `<a href="trail.html?id=${encodeURIComponent(p.id)}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">Open this trail →</a>`
+              `<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(p.id) : (p.id)))}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">Open this trail →</a>`
             )
             .addTo(map);
         };
@@ -15756,7 +15762,7 @@ if(document.querySelector('.td2')){
       'images/itineraire-decouverte-de-la-nature.webp':'images/itineraire-decouverte-de-la-nature-480.webp',
     }[source] || source);
     grid.innerHTML = picks.map(o => `
-      <a class="near-card" href="trail.html?id=${encodeURIComponent(o.id)}" data-near-id="${esc(o.id)}">
+      <a class="near-card" href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(o.id) : (o.id)))}" data-near-id="${esc(o.id)}">
         <div class="ph"${o.imageIcon ? ` style="background-image:url('${esc(cardPhoto(o.imageIcon))}');"` : ''}><span class="pct near-pct" hidden></span></div>
         <div class="bd">
           <div class="nm">${esc(o.name)}</div>

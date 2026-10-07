@@ -576,7 +576,7 @@
           // text, exactly as the group this replaced did.
           const a = document.createElement('a');
           a.className = 'nav-dogmenu-item';
-          a.href = prefix + 'trail.html?id=' + encodeURIComponent(item.id);
+          a.href = prefix + 'trail.html?id=' + encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(item.id) : (item.id)));
           a.textContent = item.name;
           menu.appendChild(a);
         });

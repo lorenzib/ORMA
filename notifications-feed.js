@@ -73,7 +73,7 @@
           + (flag.confirmationSource === 'community' && flag.confirmations > 0
             ? 'Confirmed by ' + flag.confirmations + ' walker' + (flag.confirmations === 1 ? '' : 's') + '.'
             : 'Community report, conditions can change.'),
-        href: 'trail.html?id=' + flag.trailId,
+        href: 'trail.html?id=' + encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(flag.trailId) : (flag.trailId))),
       });
     });
 
@@ -121,7 +121,7 @@
           icon: 'verified', alert: false, group: 'earlier', timeLabel: shortDate(entry.date),
           title: t.name + ' has updated trail information',
           body: sources + ' Its trail details have been updated.',
-          href: 'trail.html?id=' + t.id
+          href: 'trail.html?id=' + encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)))
         });
       });
 
