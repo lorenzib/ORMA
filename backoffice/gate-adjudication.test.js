@@ -199,13 +199,17 @@ describe('the worker lane',()=>{
 
   // Adjudicating a gate that is about to be handed back to an agent spends a
   // model call on a question whose blockers are already changing.
-  test('it runs after the dispatch and the apply step',()=>{
+  test('it runs after the dispatch and after every automatic decision',()=>{
     const worker=fs.readFileSync(path.join(__dirname,'workflows/run-live-backoffice-worker.js'),'utf8');
+    const last=needle=>worker.lastIndexOf(needle);
     const dispatch=worker.indexOf('await dispatchUnansweredGates(store');
-    const ingest=worker.indexOf('await ingestDossierReviews(store)');
     const adjudicate=worker.indexOf('await adjudicateStandingGates(store');
     expect(dispatch).toBeGreaterThan(-1);
-    expect(adjudicate).toBeGreaterThan(ingest);
-    expect(ingest).toBeGreaterThan(dispatch);
+    expect(adjudicate).toBeGreaterThan(dispatch);
+    // Anchored on the last call of each repeated lane: a gate the pass was
+    // going to decide or hand back must be gone before a search is spent on it.
+    expect(last('await ingestDossierReviews(store')).toBeGreaterThan(-1);
+    expect(adjudicate).toBeGreaterThan(last('await ingestDossierReviews(store'));
+    expect(adjudicate).toBeGreaterThan(last('await automateEvidenceGates(store'));
   });
 });

@@ -9,15 +9,19 @@ these responsibilities and gates unless the CEO explicitly changes the model.
 
 ## Operating principles
 
-1. Agents prepare and recommend. The CEO sees only work that needs a decision.
+1. Agents prepare and recommend. For trails already on the public site, the
+   existing-catalogue evidence policy makes routine verification and publication
+   decisions; the CEO sees exceptions and audit receipts, not a routine queue.
 2. Work is reviewed once at the correct gate. A downstream team consumes an
    approved result and does not ask for the same decision again.
 3. Unresolved review packets are preserved. Scheduled runs must not duplicate,
    silently replace, or reset work that is already waiting for review.
 4. A revision request runs promptly. It never waits for the next weekly or
    fortnightly cycle.
-5. Every public mutation has an explicit human gate. The result must state
-   whether it was saved locally, committed, pushed, deployed, or blocked.
+5. Every public mutation has an explicit release gate. Existing-catalogue trail
+   updates use the evidence policy plus the protected repository quality gate;
+   other lanes retain their stated human gate. The result must state whether it
+   was saved, committed, pushed, merged, deployed, or blocked.
 6. Failures remain visible and honest. An agent must not present a blocked or
    incomplete result as published work, and a source outage must not erase the
    last known public safety state.
@@ -51,10 +55,8 @@ Weather warnings are never presented as proof that a specific trail is closed.
 A verification gate that is standing only on findings an agent can supply is
 sent to that agent rather than left on the desk. This is principle 1 applied to
 a gate that was already open: nothing re-ran an agent on a trail parked at a
-human gate, so research nobody had done waited for a moderator who could not do
-it either. The dispatch requests a revision and nothing else — approving,
-waiving and rejecting remain moderator decisions, and it changes no public
-state, so principle 5 is untouched. It asks one agent at a time, the
+gate, so research nobody had done waited for a moderator who could not do it
+either. It asks one agent at a time, the
 one carrying the most outstanding findings, and tells it which other agents hold
 the rest; a gate blocked on several agents is therefore cleared over successive
 passes rather than in one. It fires only when the blockers name an agent at all
@@ -63,11 +65,37 @@ automated-resolution limit, never over a decision already waiting to be applied,
 and at most a few gates per queue pass because each dispatch costs a model call. Setting the repository variable
 `ORMA_GATE_DISPATCH_ENABLED` to `false` stops it without a code change.
 
-What is left at that gate is a decision, and some of those cannot be made from
+For trails already published on ORMA, the remaining gates are policy decisions:
+
+- clean, source-identified geometry is accepted automatically;
+- verification requires a sourced recommended start and complete reader-usable
+  route guidance: trail-number sequence and switch points, or a sourced landmark
+  and turn sequence for a genuinely unnumbered route;
+- every assigned optional claim is actively scouted through the full research
+  ladder. An exhausted optional claim is accepted only as unknown and is omitted
+  from publishable facts; it is never promoted from silence or a model guess;
+- an exhausted critical geometry or route-guidance failure is rejected from
+  ORMA Verified automatically and remains visible as an unverified exception;
+- editorial copy is generated only from the locked supported facts and accepted
+  after deterministic contract validation; the trail's existing licensed image
+  is retained rather than reopening photo sourcing;
+- a complete existing-trail update is materialised in a pull request, merged only
+  after `Validate ORMA` passes, and deployed with a protected receipt.
+
+This policy removes routine CEO intervention; it does not guarantee that every
+route earns the badge. A trail whose route or navigation cannot be substantiated
+stays on the site without an ORMA Verified claim until new evidence exists.
+The existing-site campaign is bounded to catalogue records that already have a
+publishable trail page and its card and hero artwork. Catalogue drafts remain in
+the ordinary intake lane and are not silently published by this backfill.
+
+What survives all of that is a decision, and some of those cannot be made from
 a review card either: whether a trail can be verified despite nobody
 establishing the livestock on it means reading a comune page or a pasture
 notice. So an adjudicator reads those sources and writes what it found into the
-field beside each blocker, with the publisher and a verbatim quote.
+field beside each blocker, with the publisher and a verbatim quote. It runs
+after every automatic decision in the pass, so it only ever researches gates
+that are genuinely a person's.
 
 It recommends and never accepts. The tick stays the moderator's, because the
 reason beside it is kept with the verification permanently and has to be a
@@ -134,7 +162,8 @@ review, subject to the shared capacity limit. The hosted worker checks
 its durable specialist queue before general editorial, newsletter and
 Analyst generation work. It may keep up to 15 trails in verification and run
 up to ten specialist jobs per worker pass. This changes working capacity only:
-all geometry, evidence, dossier, editorial and release gates remain required.
+all geometry, evidence, dossier, editorial and release checks remain required;
+for the existing public catalogue they are applied by the evidence policy above.
 
 For every named or numbered official route, verification must identify the
 recommended starting point and direction from an authoritative route source.
@@ -162,10 +191,10 @@ the source retires it.
 
 Not every walk is one relation. A loop may go up one numbered path and back
 another, and its source is then the ordered set of paths it follows. Those are
-proposed by measuring which documented routes carry the walk, and a proposal is
-evidence, never a decision: a composite becomes a route source only when a human
-approves it at the geometry gate, and only while it covers the walk. The paths
-are recorded in the order a reader meets them on the ground.
+proposed by measuring which documented routes carry the walk. For an existing
+public trail, a composite becomes a route source only when the deterministic
+coverage and evidence-policy checks accept it, and only while it covers the
+walk. The paths are recorded in the order a reader meets them on the ground.
 
 A route source must be at the scale of the walk. A long-distance route running
 along a trail covers all of it at once, and reading guidance from it would send
@@ -218,14 +247,15 @@ OpenAI remains in use for trail verification and for scouting additional trails.
   production moderator login.
 - Every queue has one clear purpose and one clearly named desk.
 - Copy review presents a real current-versus-proposed page preview.
-- The CEO may approve, edit and approve, request a revision, or reject/park when
-  that action applies.
+- The CEO may approve, edit and approve, request a revision, or reject/park in
+  lanes that retain a human gate. Existing-catalogue verification is monitored
+  through receipts and exceptions rather than routine decisions.
 - Revision requests are processed immediately and return to the same desk.
 - Approval must produce a visible receipt. For website copy, that receipt
   includes the commit and deployment state.
 - No unrelated dirty workspace files may be included in an automated commit.
-- Agent output must not bypass tests, source/licensing checks, or a required
-  human gate.
+- Agent output must not bypass tests, source/licensing checks, or the release
+  gate assigned to its lane.
 - Before consuming an approved trail publication, the hosted
   worker checks the latest completed `Validate ORMA` run for its exact commit.
   A failed, cancelled, or missing result pauses only materialization and pull
@@ -298,22 +328,20 @@ which reaches the moderator through the dossier review queue.
 
 ## Declaring a route's shape
 
-The geometry validator assumes a trail is a loop, so a route that legitimately
-does not return to its start — a there-and-back, or a point-to-point — is
-faulted `not-closed-loop` and cannot clear its gate. That judgement is a
-moderator's to make, not an agent's, so it is recorded as a verification
-override in `data/verified-trail-overrides.json` by
+The geometry validator reads a trail's declared shape and the source relation's
+`roundtrip` tag, so a legitimate there-and-back or point-to-point route is not
+faulted merely for remaining open. A moderator can still record a corrected
+shape as a verification override in `data/verified-trail-overrides.json` by
 
     npm run backoffice:route-shape -- --trail <id> --shape <shape> --note "<why>"
 
 with a note of at least ten characters, which becomes the evidence for the
 declaration. Only a moderator's own observation belongs in that note.
 
-The desk cannot make this declaration itself: the override is a repository file,
-and `backofficeReviews` accepts only content-review writes. Where a trail is
-faulted for not closing, the Trail Verification Desk therefore composes the
-command with the trail's id already filled in and offers it to be copied. It
-writes nothing; running the command is what records the decision.
+The automated existing-trail lane never invents a shape to clear this check. If
+neither the catalogue nor the route source establishes the shape and the line
+fails its geometry contract, the trail remains unverified without opening a
+routine CEO task. The command is retained as an exceptional correction tool.
 
 ## Route guidance is asked for, not only demanded
 
@@ -334,7 +362,7 @@ is never a reason to omit the directions.
 
 ## Optional evidence is exhausted, not merely absent
 
-An optional detail is non-blocking at the final human gate; it is not optional
+An optional detail is non-blocking at the final evidence-policy gate; it is not optional
 research. Every verification specialist actively scouts every claim it owns,
 including parking operation, public transport, water, shade, surface, livestock,
 temporary access and entity policies. The absence of a detail from the first
@@ -356,9 +384,9 @@ measurement that could settle it. A current operational fact is dated; silence
 is never converted into absence, permission or safety.
 
 This persistence does not lower the evidence threshold. Agents never invent a
-detail to complete a dossier, and the moderator may still accept a genuinely
-unresolved optional claim as non-blocking with a recorded reason. The claim
-remains unresolved and publishes no unsupported fact.
+detail to complete a dossier. For an existing public trail, the evidence policy
+accepts a genuinely unresolved optional claim as non-blocking with a recorded
+reason; the claim remains unknown and publishes no unsupported fact.
 
 ## Two campaign budgets, and where a stopped trail goes
 
@@ -464,7 +492,7 @@ handoff, so the copy may say which months without any of it being inferred.
 
 A backoffice change is not complete until:
 
-1. its team owner and human gate are unambiguous;
+1. its team owner and release gate are unambiguous;
 2. the CEO can see the relevant progress or decision in the dashboard;
 3. unresolved work survives refreshes and later scheduled runs;
 4. approval, revision, failure, and publication states are truthful;

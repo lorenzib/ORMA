@@ -839,7 +839,7 @@
   // blocker a reason cannot address. Ticking it got the moderator nowhere: the
   // approval was queued, the worker's compile threw, and the item simply never
   // moved.
-  const UNWAIVABLE_BLOCKER_IDS=['logistics/recommended-start','geometry/off-declared-route'];
+  const UNWAIVABLE_BLOCKER_IDS=['logistics/recommended-start','logistics/route-number-status','logistics/route-number-sequence','logistics/route-number-switches','geometry/off-declared-route','not-closed-loop','implausibly-short','suspicious-coordinate-jump','relation-not-hiking-route','missing-member-geometry','disconnected-components','composite-coverage-dropped','composite-relations-changed','official-distance-conflict','declared-route-unavailable','route-source-identity-unresolved','route-source-identity-contradicted','route-geometry-unavailable','usable-geometry-missing','unmeasurable-offset'];
   const unwaivableBlocker=reason=>UNWAIVABLE_BLOCKER_IDS.includes(String(reason).split(':')[0].trim());
 
   // Ticking a blocker off. Five agents researching a trail always leave loose

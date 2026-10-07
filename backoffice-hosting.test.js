@@ -154,7 +154,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(workflow).toContain('ORMA_WORKER_FAILURE_STAGE="$stage"');
     expect(workflow).toContain('force_publication_retry:');
     expect(workflow).toContain("ORMA_PUBLICATION_FORCE_RETRY: ${{ github.event.inputs.force_publication_retry || 'false' }}");
-    expect(workflow).toContain("ORMA_CAMPAIGN_AUTOMATION_ENABLED: ${{ vars.ORMA_CAMPAIGN_AUTOMATION_ENABLED || 'false' }}");
+    expect(workflow).toContain("ORMA_CAMPAIGN_AUTOMATION_ENABLED: 'true'");
     expect(workflow).toContain('data/generated/trail-validation-report.json data/trail-details data/regions');
     expect(workflow).toContain('name: Check website publication gate');
     expect(workflow).toContain('npm run backoffice:publication-gate');

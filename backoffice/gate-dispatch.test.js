@@ -113,11 +113,11 @@ describe('a gate nobody can answer is asked of the agent that can',()=>{
 describe('what it deliberately leaves standing',()=>{
   const held=plan=>plan.held.map(entry=>entry.reason);
 
-  test('blockers that name no agent at all are a decision, not a dispatch',()=>{
+  test('a raw geometry blocker is routed to the cartographer',()=>{
     const {orchestration,reviewQueue}=parkedGate({blockingReasons:['not-closed-loop']});
     const plan=planGateDispatches(orchestration,reviewQueue,{});
-    expect(plan.dispatches).toEqual([]);
-    expect(held(plan)).toEqual(['blockers-name-no-agent']);
+    expect(plan.dispatches).toEqual([expect.objectContaining({targetAgent:'cartographer'})]);
+    expect(held(plan)).toEqual([]);
   });
 
   // apply-dossier-review stops queueing at the sixth attempt and marks the
@@ -179,9 +179,10 @@ describe('a gate several agents are blocking is asked one agent at a time',()=>{
   // supported recommended start, and what remains is genuinely several agents'
   // research. (This caught a hand-built fixture that was not the real shape.)
   const SOURCED=[{url:'https://comune.example/start',authority:'Comune di Example',label:'Official route guide'}];
-  const cleanLogistics={agentId:'logistics',result:{recommendation:'advance',openQuestions:[],claims:[
-    {id:'recommended-start',category:'logistics',finding:'supported-proposal',
-     proposedValue:'Start at the lakeside car park.',sources:SOURCED,blockers:[]}]}};
+  const cleanLogistics={agentId:'logistics',result:{recommendation:'advance',openQuestions:[],claims:
+    ['recommended-start','route-number-status','route-number-sequence','route-number-switches'].map(id=>({
+      id,category:'logistics',finding:'supported-proposal',proposedValue:`Supported ${id}`,
+      sources:SOURCED,blockers:[]}))}};
   const outputs=(...rest)=>[cleanLogistics,...rest];
   const multiAgent=()=>dossierBlockingReasons(outputs(
     {agentId:'terrainPoi',result:{recommendation:'block',claims:[
@@ -290,7 +291,7 @@ describe('a gate several agents are blocking is asked one agent at a time',()=>{
 test('the worker dispatches before it applies decisions',()=>{
   const worker=fs.readFileSync(path.join(__dirname,'workflows/run-live-backoffice-worker.js'),'utf8');
   const dispatch=worker.indexOf('await dispatchUnansweredGates(store');
-  const ingest=worker.indexOf('await ingestDossierReviews(store)');
+  const ingest=worker.indexOf('await ingestDossierReviews(store');
   expect(dispatch).toBeGreaterThan(-1);
   expect(ingest).toBeGreaterThan(dispatch);
 });

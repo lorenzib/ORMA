@@ -5,6 +5,7 @@ const path=require('path');
 const {FirestoreBackofficeStore}=require('../services/firestore-backoffice-store');
 const {loadProductionTrails}=require('../../scripts/load-production-trails');
 const {runScheduledTrailCampaign}=require('../workflows/campaign-scheduler');
+const {currentSiteTrails}=require('../services/public-site-trails');
 
 async function main(args=process.argv.slice(2)){
   const flag=args.indexOf('--limit');const limit=flag>=0?Number(args[flag+1]):10;
@@ -15,7 +16,7 @@ async function main(args=process.argv.slice(2)){
   const force=!args.includes('--scheduled')||args.includes('--force');
   const workflowRunUrl=process.env.GITHUB_RUN_ID&&process.env.GITHUB_REPOSITORY
     ?`${process.env.GITHUB_SERVER_URL||'https://github.com'}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`:null;
-  const result=await runScheduledTrailCampaign(store,loadProductionTrails(root),{enabled:true,force,limit,capacity,
+  const result=await runScheduledTrailCampaign(store,currentSiteTrails(loadProductionTrails(root)),{enabled:true,force,limit,capacity,
     trigger:force?'manual':'daily-backup',workflowRunUrl,runId:process.env.GITHUB_RUN_ID||null});
   if(result.status!=='completed'){
     console.log(`[trail-campaign] ${result.status}. Next eligible: ${result.nextEligibleAt||'not recorded'}`);return result;

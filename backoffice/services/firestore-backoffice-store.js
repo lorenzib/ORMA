@@ -332,12 +332,37 @@ class FirestoreBackofficeStore {
     return this.markReviewCollection(COLLECTIONS.reviews,id,status,fields);
   }
 
+  async submitContentReview(input={}){
+    const decisions=(Array.isArray(input.decisions)?input.decisions:[]).slice(0,20).map(decision=>({
+      jobId:String(decision?.jobId||''),action:String(decision?.action||''),
+      note:String(decision?.note||'').trim().slice(0,1500),
+    })).filter(decision=>decision.jobId&&decision.action);
+    if(!decisions.length)throw new Error('At least one content decision is required');
+    const doc={contractVersion:'1.0.0',type:'verified-trail-content-review',gate:'content-review',status:'queued',
+      decisions,submittedAt:FieldValue.serverTimestamp(),submittedBy:String(input.submittedBy||'backoffice-cli'),
+      publicMutationAllowed:false};
+    const ref=await this.db.collection(COLLECTIONS.reviews).add(doc);
+    this.invalidate(`reviews:${COLLECTIONS.reviews}:`);
+    return {ok:true,reviewId:ref.id,status:'queued'};
+  }
+
   async listPublicationReviews(status = 'queued'){
     return this.listReviewCollection(COLLECTIONS.publicationReviews,status);
   }
 
   async markPublicationReview(id, status, fields = {}){
     return this.markReviewCollection(COLLECTIONS.publicationReviews,id,status,fields);
+  }
+
+  async submitPublicationReview(input={}){
+    const doc={contractVersion:'1.0.0',type:'verified-trail-publication-review',status:'queued',
+      candidateId:String(input.candidateId||''),action:String(input.action||''),
+      note:String(input.note||'').trim().slice(0,1500),submittedAt:FieldValue.serverTimestamp(),
+      submittedBy:String(input.submittedBy||'backoffice-cli'),publicMutationAllowed:false};
+    if(!doc.candidateId||!doc.action)throw new Error('Publication candidate and action are required');
+    const ref=await this.db.collection(COLLECTIONS.publicationReviews).add(doc);
+    this.invalidate(`reviews:${COLLECTIONS.publicationReviews}:`);
+    return {ok:true,reviewId:ref.id,status:'queued'};
   }
 
   async listDossierReviews(status = 'queued'){
@@ -356,10 +381,10 @@ class FirestoreBackofficeStore {
     return this.markReviewCollection(COLLECTIONS.routeReviews,id,status,fields);
   }
 
-  // Submit a moderator decision from a credentialed context (CLI/workflow),
+  // Submit an auditable decision from a credentialed context (CLI/workflow),
   // writing exactly the queued doc the desk's ORMABackoffice.submitDossierReview
-  // writes, so the worker's apply step reads it identically. The gate decision
-  // itself stays a human one; this is only the transport.
+  // writes, so the worker's apply step reads it identically. The actor field
+  // distinguishes moderator decisions from the existing-trail evidence policy.
   async submitDossierReview(input={}){
     const doc={
       contractVersion:'1.0.0',type:'trail-dossier-review',status:'queued',

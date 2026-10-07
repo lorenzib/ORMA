@@ -90,7 +90,7 @@ describe('approving a dossier with accepted blockers', () => {
     const {orchestration,reviewQueue}=setup([ROUTE_GUIDANCE],[]);
     expect(()=>applyDossierReview(orchestration,reviewQueue,
       {reviewId:'r1',action:'approve',acceptedBlockers:[{blocker:ROUTE_GUIDANCE,reason:REASON}]},{at}))
-      .toThrow(/Route guidance cannot be accepted, only supplied/);
+      .toThrow(/Critical route or geometry evidence cannot be accepted, only supplied/);
   });
 
   test('the moderator, the reason and the moment are kept with the verification', () => {

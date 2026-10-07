@@ -59,6 +59,7 @@
     return (reasons||[]).some(reason=>{
       if(isGeometryConflictBlocker(reason))return true;
       const text=String(reason).toLowerCase();
+      if(/^(?:not-closed-loop|implausibly-short|suspicious-coordinate-jump|relation-not-hiking-route|missing-member-geometry|disconnected-components|composite-coverage-dropped|composite-relations-changed|official-distance-conflict|official-distance-unavailable|declared-route-unavailable|route-source-identity-unresolved|route-source-identity-contradicted|route-geometry-unavailable|usable-geometry-missing|unmeasurable-offset)(?::|$)/.test(text))return true;
       return (/(?:supplied|mapped|osm)\s+(?:route\s+)?geometry/.test(text)
           &&/(?:official|published)\b.{0,50}\b(?:route|loop|gpx)/.test(text))
         ||/specific osm member ways/.test(text)

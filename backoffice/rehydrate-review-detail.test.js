@@ -7,6 +7,7 @@ const {compileVerifiedDossier}=require('./workflows/compile-verified-dossier');
 const sourced=[{url:'https://comune.example/start',authority:'Comune di Example',label:'Official guide'}];
 const claim=id=>({id,category:'logistics',finding:'supported-proposal',
   proposedValue:`A real value for ${id}`,sources:sourced,blockers:[]});
+const ROUTE_GUIDANCE=['recommended-start','route-number-status','route-number-sequence','route-number-switches'];
 const cartographer={agentId:'cartographer',jobId:'jc',result:{
   geometry:{type:'LineString',coordinates:[[11.9,46.6],[11.91,46.61]]},
   relation:{tags:{name:'Example Trail'}},assessment:{pointCount:2,distanceKm:9.5},
@@ -14,7 +15,7 @@ const cartographer={agentId:'cartographer',jobId:'jc',result:{
     relationTimestamp:'2026-09-01T00:00:00Z',licence:'ODbL',url:'https://osm.example/relation/1',authority:'OpenStreetMap'},
   routeConformance:{status:'conformant',offRouteKm:0,maxDeviationMetres:12}}};
 const logistics={agentId:'logistics',jobId:'jl',
-  result:{recommendation:'advance',openQuestions:[],claims:[claim('recommended-start')]}};
+  result:{recommendation:'advance',openQuestions:[],claims:ROUTE_GUIDANCE.map(claim)}};
 const trail={candidateId:'osm-1',trailId:'osm-1',trailName:'Example Trail'};
 const item=outputs=>({reviewId:'r1',trailId:'osm-1',candidateId:'osm-1',gateType:'dossier-approval',
   state:'awaiting-human',approvalAllowed:true,specialistOutputs:outputs});
@@ -28,7 +29,7 @@ describe('an approval reads the evidence compaction put out of reach',()=>{
     // The whole bug in two lines. Same dossier, same evidence.
     const summarised=item([cartographer,logistics].map(summariseOutput));
     expect(()=>compileVerifiedDossier(summarised,trail,{at:'2026-10-06T00:00:00Z'}))
-      .toThrow(/requires a sourced recommended start/);
+      .toThrow(/requires sourced route guidance/);
 
     const restored=await rehydrateItem(store(artifacts),summarised);
     expect(()=>compileVerifiedDossier(restored,trail,{at:'2026-10-06T00:00:00Z'})).not.toThrow();
@@ -53,7 +54,7 @@ describe('an approval reads the evidence compaction put out of reach',()=>{
     const restored=await rehydrateItem(store({}),summarised);
     expect(restored.specialistOutputs[0].result.detailWithheld).toBe(true);
     expect(()=>compileVerifiedDossier(restored,trail,{at:'2026-10-06T00:00:00Z'}))
-      .toThrow(/requires a sourced recommended start/);
+      .toThrow(/requires sourced route guidance/);
   });
 
   test('only the item being decided is restored',async()=>{
