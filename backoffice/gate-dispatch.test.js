@@ -258,7 +258,14 @@ describe('a gate several agents are blocking is asked one agent at a time',()=>{
     ));
     const {orchestration,reviewQueue}=parkedGate({blockingReasons:remaining});
     const plan=planGateDispatches(orchestration,reviewQueue,{});
-    expect(plan.dispatches).toEqual([expect.objectContaining({targetAgent:'evidenceLibrarian'})]);
+    // regulatoryRanger, though evidenceLibrarian carries more. Both of
+    // evidenceLibrarian's findings are contested -- it read sources and they
+    // disagree -- and re-running it cannot settle that; dog-access is simply
+    // unresearched. So the answerable share is asked first, and the gate
+    // converges on a card holding two real disagreements instead of a list
+    // whose length is mostly unfinished research. Raw blocker count picked
+    // evidenceLibrarian here until blocker-kinds.js existed.
+    expect(plan.dispatches).toEqual([expect.objectContaining({targetAgent:'regulatoryRanger'})]);
   });
 
   test('route guidance still outranks a heavier load elsewhere',()=>{

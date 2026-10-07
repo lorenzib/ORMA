@@ -94,6 +94,37 @@ function printClaims(claims){
   }
 }
 
+/**
+ * How the list divides before any of it is read: what the sources disagree
+ * about, against what no source was found for.
+ *
+ * This is the line that says whether a sitting is worth having. Forty blockers
+ * of which three are contested is three decisions and a research backlog; forty
+ * of which none are is not a decision at all, and the gate is waiting on an
+ * agent. The contested ones are named, because there are few enough to name and
+ * they are the reason to open the card.
+ */
+function printDisposition(item){
+  const split=item.disposition;
+  if(!split||!(split.contested+split.unresearched+split.undetermined))return;
+  const parts=[`${split.contested} contested`,`${split.unresearched} unresearched`];
+  if(split.undetermined)parts.push(`${split.undetermined} unclassified`);
+  line(`      ${parts.join(' · ')}`);
+  if(!split.contested&&split.unresearched){
+    line('      nothing here is contested — no source was found for any of it, so this is a question for the agent');
+    return;
+  }
+  if(!split.contested){
+    // All unclassified. Saying "no source was found" here would be a claim
+    // about evidence nobody made: these name no agent or no claim, so what is
+    // true is only that the classifier could not place them. Measured on
+    // osm-14381930 (La Plagne), which is exactly this case.
+    line('      none of this is classified — it names no agent or claim, so it is yours to read');
+    return;
+  }
+  for(const reason of split.contestedReasons.slice(0,6))line(`        CONTESTED ${reason.slice(0,100)}`);
+}
+
 /** One trail's blockers in full, for the sitting where they are actually weighed. */
 function focusFrom(argv){
   const only=argv.find(arg=>arg.startsWith('--trail='));
@@ -128,6 +159,7 @@ async function main(options={}){
     // Said before the blockers, because it changes what the list below is: not
     // the decision, but as much of it as the queue had room to keep.
     if(item.ballotAbridged)line('      the queue shortened this list to fit, so an approval here would be refused');
+    printDisposition(item);
     if(item.geometry)printGeometry(item.geometry);
     if(item.claims.length)printClaims(item.claims);
     printBlockers(item,full);

@@ -7,6 +7,7 @@ on:
       - backoffice-*.js
       - trail-verify-desk.html
       - trail-verify-desk.js
+      - backoffice/blocker-kinds.js
       - backoffice/revision-target.js
       - backoffice/dashboard-model.js
       - backoffice/content-receipt-model.js
@@ -39,6 +40,7 @@ on:
       - backoffice-*.js
       - trail-verify-desk.html
       - trail-verify-desk.js
+      - backoffice/blocker-kinds.js
       - backoffice/revision-target.js
       - backoffice/dashboard-model.js
       - backoffice/content-receipt-model.js

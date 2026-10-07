@@ -9,6 +9,7 @@
 // replaces. Read-only: it reads the queue and reports, and decides nothing.
 
 const {waivableBlocker,currentBlockingReasons}=require('./compile-verified-dossier');
+const {classifyBlocker,blockerDisposition}=require('../blocker-kinds');
 
 // Ordered by what is worth doing first, not alphabetically. A dossier approval
 // is a trail verified; a clean geometry gate is one click; a blocked geometry
@@ -76,15 +77,11 @@ function claimEvidence(outputs){
 // Counting them by shape says what the sitting is: mostly open questions means
 // the evidence is thin, several conflicted claims means the sources disagree,
 // and those want different judgements.
-function classifyBlocker(reason){
-  const text=String(reason);
-  const agent=(text.match(/^([A-Za-z]+)[:/]/)||[])[1]||'(unattributed)';
-  if(/^[A-Za-z]+: recommendation is /.test(text))return {agent,kind:'verdict'};
-  if(/open question —/.test(text))return {agent,kind:'open-question'};
-  const claim=text.match(/^[A-Za-z]+\/([\w-]+): (conflicted|unresolved|counter-evidence|needs-resolution)\s*$/);
-  if(claim)return {agent,kind:'claim-status',claim:claim[1],finding:claim[2]};
-  return {agent,kind:'detail'};
-}
+//
+// The taxonomy itself lives in backoffice/blocker-kinds.js, which the desk and
+// the dispatch target read too. It was duplicated here for one commit; a second
+// hand-maintained copy of a rule about blocker wording is precisely how the
+// route-guidance regex went stale for nineteen days.
 
 function summariseBlockers(blockers){
   const byAgent=new Map();
@@ -96,7 +93,7 @@ function summariseBlockers(blockers){
     bucket.total+=1;
     if(shape.kind==='open-question')bucket.openQuestions+=1;
     if(shape.kind==='claim-status')bucket.claimStatuses.push(`${shape.claim} ${shape.finding}`);
-    if(shape.kind==='verdict')bucket.verdict=entry.reason.split('recommendation is ')[1]||null;
+    if(shape.kind==='verdict')bucket.verdict=shape.recommendation||null;
   }
   return [...byAgent.values()].sort((a,b)=>b.total-a.total);
 }
@@ -127,6 +124,14 @@ function describeItem(item,trail,nowMs){
     // desk cannot show every box an approval needs ticked. Worth saying: the
     // decision is not available until the queue has room again.
     ballotAbridged:item.blockingReasonsAbridged===true,
+    // How the list divides: what the sources disagree about, which she can
+    // settle, against what no source was found for, which she cannot. A gate
+    // with nothing contested is not waiting on a decision at all.
+    disposition:(()=>{
+      const {contested,unresearched,undetermined}=blockerDisposition(reasons.map(entry=>entry.reason));
+      return {contested:contested.length,unresearched:unresearched.length,
+        undetermined:undetermined.length,contestedReasons:contested};
+    })(),
     state:trail?.state||null,
     stage:trail?.stage||null,
     baselineBlockers:item.sourceTrail?.baselineBlockers||[],
