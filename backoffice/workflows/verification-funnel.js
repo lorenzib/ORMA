@@ -154,6 +154,12 @@ function buildFunnel({orchestration, jobs = [], reviewQueue, nowMs = Date.now()}
       // Named, because a stalled trail needs a person to look at it by hand.
       sample: stalledTrails.slice(0, 12),
     },
+    // A terminal state is a dead end, and `stalled` cannot cover it: stalled()
+    // returns false for TERMINAL by design, so a blocked trail is the one kind
+    // that gets counted and never named. "blocked 1 · oldest 47d" was true for
+    // seven weeks and told nobody which trail or why.
+    terminal: TERMINAL.flatMap(state => (byState.get(state) || [])
+      .sort((a, b) => (b.daysInState ?? -1) - (a.daysInState ?? -1))),
     // High attempt counts with no progress mean the loop is spending money
     // without converging, which reads as healthy work from every other angle.
     mostAttempts: [...described].sort((a, b) => b.attempts - a.attempts).slice(0, 8),

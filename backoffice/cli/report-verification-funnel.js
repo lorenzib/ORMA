@@ -49,6 +49,16 @@ async function main(options={}){
     console.log('[funnel] These are stopped, not slow: no worker run will pick them up.');
     for(const [state,count] of report.stalled.byState) console.log(`[funnel]   ${state}: ${count}`);
   }
+  if(report.terminal.length){
+    console.log(`\n[funnel] ${report.terminal.length} trail(s) in a terminal state, named because a count cannot be acted on:`);
+    for(const trail of report.terminal){
+      const age=trail.daysInState===null?'':` · ${trail.daysInState}d`;
+      const jobs=trail.pendingJobs?` · ${trail.pendingJobs} job(s) still queued`:' · no job owed';
+      console.log(`[funnel]   ${trail.state} ${trail.candidateId}${age} · ${trail.attempts} attempt(s)${jobs}`);
+      for(const blocker of trail.blockers) console.log(`[funnel]       ${blocker}`);
+      if(!trail.blockers.length) console.log('[funnel]       (no blocker recorded)');
+    }
+  }
   console.log('\n[funnel] Nothing was changed.');
   return report;
 }
