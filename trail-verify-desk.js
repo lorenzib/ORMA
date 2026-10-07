@@ -33,6 +33,7 @@
   // pass that dispatches a standing gate on its own, so the desk and the
   // automation can never disagree about who is being asked.
   const {agentFromBlockers}=globalThis.ORMARevisionTarget;
+  const {blockerDisposition}=globalThis.ORMABlockerKinds;
 
   const stateNode=document.getElementById('verifyState');
   const queueNode=document.getElementById('verifyQueue');
@@ -975,6 +976,19 @@
       const {groups,loose,working}=groupBlockers(decision.blockers);
       const box=el('div','vd-blockers');
       box.append(el('h3','','Cannot be approved yet'));
+      // What the list actually is, before she starts reading it. Forty entries
+      // of which three are contested is three decisions and a research
+      // backlog; forty of which none are is not a decision at all, and saying
+      // so is the difference between a sitting and an afternoon lost to
+      // defending work nobody did.
+      const split=blockerDisposition(decision.blockers);
+      if(split.contested.length||split.unresearched.length){
+        const note=el('p','vd-blocker-split');
+        note.textContent=split.contested.length
+          ? `${split.contested.length} where the sources disagree, and ${split.unresearched.length} where no source was found.`
+          : `No source was found for any of these ${split.unresearched.length}. None of it is a disagreement you can settle — it is research the agents did not finish.`;
+        box.append(note);
+      }
       groups.forEach(({group,raw})=>{
         const item=el('div','vd-blocker');
         item.append(el('strong','',group.title),el('p','',group.detail),el('p','vd-remedy',group.remedy));

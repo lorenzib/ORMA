@@ -125,14 +125,18 @@ describe('the evidence the gate is actually asking about',()=>{
 // produced a report nobody would read, which is the same as no report.
 describe('blockers are counted by shape, not listed',()=>{
   test('each of the four shapes is recognised',()=>{
+    // The recommendation travels with the shape, so summariseBlockers no longer
+    // re-splits the sentence to get at it.
     expect(classifyBlocker('terrainPoi: recommendation is block'))
-      .toEqual({agent:'terrainPoi',kind:'verdict'});
+      .toEqual({agent:'terrainPoi',kind:'verdict',recommendation:'block'});
     expect(classifyBlocker('terrainPoi: open question — Can a field visit confirm grazing?'))
       .toEqual({agent:'terrainPoi',kind:'open-question'});
     expect(classifyBlocker('terrainPoi/livestock: unresolved'))
       .toEqual({agent:'terrainPoi',kind:'claim-status',claim:'livestock',finding:'unresolved'});
+    // A detail carries the claim it is filed under, so blocker-kinds.js can
+    // read its standing from that claim rather than from its own prose.
     expect(classifyBlocker('terrainPoi/livestock: No parcel-level record verifies it.'))
-      .toEqual({agent:'terrainPoi',kind:'detail'});
+      .toEqual({agent:'terrainPoi',kind:'detail',claim:'livestock'});
   });
 
   test('a blocker naming no agent is still counted, not dropped',()=>{
