@@ -19,7 +19,9 @@ const BASE_SPECIALISTS=Object.freeze([
   // gate rather than to a separate manual exercise.
   {agentId:'regulatoryRanger',action:'verify-dog-and-seasonal-rules',
     claimIds:['dog-access','leash-rules','seasonal-restrictions','rifugio-dog-policy','lift-dog-policy']},
-  {agentId:'terrainPoi',action:'verify-terrain-water-heat-and-livestock',claimIds:['elevation','shade','surface','water','exposure','livestock']},
+  {agentId:'terrainPoi',action:'verify-terrain-water-heat-and-livestock',claimIds:[
+    'elevation','shade','surface','water','mountain-huts','food-drink','other-places','exposure','livestock','animals',
+  ]},
 ]);
 
 function specialistJob(trail,spec,attempt,at){
@@ -43,7 +45,7 @@ function applyDossierReview(orchestration,reviewQueue,decision,options={}){
     if(standing.length){
       const unwaivable=standing.filter(reason=>!waivableBlocker(reason));
       throw new Error(unwaivable.length
-        ? `Route guidance cannot be accepted, only supplied: ${unwaivable.join('; ')}`
+        ? `Critical route or geometry evidence cannot be accepted, only supplied: ${unwaivable.join('; ')}`
         : `This dossier has blockers that were not addressed: ${standing.join('; ')}`);
     }
   }

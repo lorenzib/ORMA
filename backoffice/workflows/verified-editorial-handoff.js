@@ -5,7 +5,7 @@ const {LOCKED_FACT_FIELDS}=require('./plan-verified-trail-editorial');
 
 function assertVerifiedDossier(dossier){
   if(!dossier||dossier.reviewState!=='accepted'||dossier.ormaVerification?.status!=='verified'){
-    throw new Error('Only a human-approved ORMA Verified dossier can enter editorial handoff');
+    throw new Error('Only an accepted ORMA Verified dossier can enter editorial handoff');
   }
   const unsupported=(dossier.claims||[]).filter(claim=>claim.state!=='supported');
   if(unsupported.length)throw new Error(`Verified editorial handoff found unsupported claims: ${unsupported.map(claim=>claim.id).join(', ')}`);
@@ -15,7 +15,7 @@ function assertVerifiedDossier(dossier){
   if(missing.length)throw new Error(`Verified editorial handoff requires route guidance: ${missing.join(', ')}`);
 }
 
-function editorialItem(dossier,record,at){
+function editorialItem(dossier,record,at,options={}){
   assertVerifiedDossier(dossier);
   const requiredStartFact=(dossier.claims||[]).find(claim=>claim.id==='logistics-recommended-start');
   return {
@@ -24,6 +24,7 @@ function editorialItem(dossier,record,at){
     dossierArtifactRef:`firestore:verified-dossier-${dossier.candidateId}`,
     verifiedAt:record?.verifiedAt||dossier.ormaVerification.verifiedAt,
     verificationConditions:record?.conditions||dossier.ormaVerification.conditions||[],
+    acceptedUnknowns:dossier.ormaVerification.acceptedBlockers||[],
     // A locked fact keeps everything the claim was made of, not only its prose.
     // An entity policy is a rifugio or lift name, a rule and the date its source
     // was read; dropping those here left the operational facts table unreachable.
@@ -31,6 +32,7 @@ function editorialItem(dossier,record,at){
       sourceIds:claim.sourceIds||[],state:claim.state,claimId:claim.claimId||null,agentId:claim.agentId||null,
       humanAcceptedFinding:claim.humanAcceptedFinding||null,
       entityName:claim.entityName||null,rule:claim.rule||null,observedAt:claim.observedAt||null,
+      location:claim.location||null,
       variesWith:claim.variesWith||null})),
     evidenceSources:dossier.sources||[],routeGeometry:dossier.routeGeometry||null,
     editorialBrief:{objective:'Produce concise premium ORMA trail copy using only the locked dossier facts.',
@@ -41,17 +43,19 @@ function editorialItem(dossier,record,at){
     visualBrief:{objective:'Find a genuinely reusable trail image or return an explicit owned-photo checklist.',
       requiredChecks:['direct preview','source page','creator','licence','licence URL','credit','location-safe alt text'],
       prohibited:['infer trail conditions from a photograph','mark an incompletely licensed asset ready']},
-    humanGates:[
-      {id:'editorial-approval',status:'pending',checks:['copy matches locked facts','mandatory caveats remain prominent','tone matches ORMA']},
-      {id:'asset-and-licensing-approval',status:'pending',checks:['preview and source verified','creator, credit and licence verified','alt text approved','image is not condition evidence']},
-      {id:'publication-approval',status:'locked',checks:['copy and asset gates approved','website field mapping reviewed','explicit separate publish decision recorded']},
+    assetPolicy:options.preserveExistingAssets?'preserve-existing':'source-new-asset',
+    gates:[
+      {id:'editorial-evidence-policy',status:'pending',checks:['copy matches locked facts','mandatory caveats remain prominent','tone matches ORMA']},
+      ...(options.preserveExistingAssets?[]:[{id:'asset-and-licensing-approval',status:'pending',checks:['preview and source verified','creator, credit and licence verified','alt text approved','image is not condition evidence']}]),
+      {id:'publication-quality-gate',status:'locked',checks:['content policy passed','website field mapping complete','repository quality gate passes']},
     ],
     queuedAt:at,publicMutationAllowed:false,publicationAuthorized:false,
   };
 }
 
 function editorialJobs(item,at){
-  return ['copywriter','visualDirector'].map(agentId=>{
+  const agents=item.assetPolicy==='preserve-existing'?['copywriter']:['copywriter','visualDirector'];
+  return agents.map(agentId=>{
     const suffix=agentId==='copywriter'?'copy':'visual';
     const jobId=`verified-${item.candidateId}-${suffix}`;const verificationKey=String(item.verifiedAt||at).replace(/[:.]/g,'-');
     const job=createAgentJob({id:`trail-first-pass-${jobId}-${verificationKey}`,agentId,
@@ -64,13 +68,15 @@ function editorialJobs(item,at){
 }
 
 function buildVerifiedEditorialHandoff(dossier,record,existingQueue,options={}){
-  const at=options.at||new Date().toISOString();const item=editorialItem(dossier,record,at);const jobs=editorialJobs(item,at);
+  const at=options.at||new Date().toISOString();const item=editorialItem(dossier,record,at,options);const jobs=editorialJobs(item,at);
   const items=[...(existingQueue?.items||[]).filter(candidate=>candidate.candidateId!==item.candidateId),item];
   const knownJobs=new Map((existingQueue?.jobs||[]).map(job=>[job.id,job]));for(const job of jobs)knownJobs.set(job.id,job);
   const queue={contractVersion:'1.0.0',generatedAt:at,mode:'draft-only',stage:'verified-trail-editorial-readiness',
     sourceRegistry:'firestore:orma-verified-registry-live',publicMutationAllowed:false,publicationAuthorized:false,
     lockedFactFields:LOCKED_FACT_FIELDS,items,jobs:[...knownJobs.values()],summary:{verifiedTrails:items.length,
-      copywriterJobs:items.length,visualDirectorJobs:items.length,humanGatesPending:items.length*2,publicationGatesLocked:items.length}};
+      copywriterJobs:items.length,visualDirectorJobs:items.filter(candidate=>candidate.assetPolicy!=='preserve-existing').length,
+      automatedPolicyGatesPending:items.filter(candidate=>candidate.assetPolicy==='preserve-existing').length,
+      humanGatesPending:items.filter(candidate=>candidate.assetPolicy!=='preserve-existing').length*2,publicationGatesLocked:items.length}};
   return {item,jobs,queue};
 }
 

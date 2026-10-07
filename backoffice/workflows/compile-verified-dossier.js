@@ -19,23 +19,13 @@ function authoritativeRecommendedStart(review){
 
 const {routeConformanceBlockingReasons,OFF_DECLARED_ROUTE_BLOCKER_ID}=require('../services/route-conformance');
 
-// Two different promises, separated. "ORMA Verified" answers the question a dog
-// owner is actually asking -- is this walk safe for my dog -- from water, heat,
-// exposure, livestock, surface hazards, access, an approved geometry and a
-// sourced trailhead. Whether a comune published a numbered route sheet is a fact
-// about municipal record-keeping, not about the walk, and requiring it meant
-// "Verified" really read "well documented by its local authority".
-//
-// 101 catalogue trails have no such sheet and never will. Six reached the gate
-// and were sent back for these three claims. They are still researched and still
-// recorded -- they earn "official route confirmed" -- but they no longer stand
-// between a safe trail and its badge.
 const OFFICIAL_ROUTE_CLAIMS=['route-number-status','route-number-sequence','route-number-switches'];
 
-// Kept required: a walker cannot start a walk they cannot find the start of, and
-// a park or refuge page naming the trailhead clears this far more often than a
-// numbered route sheet does.
-const VERIFICATION_ROUTE_CLAIMS=Object.freeze(['recommended-start']);
+// A verified line without instructions for following it is not a verified
+// walk. Numbered routes must name the sequence and switches. Genuinely
+// unnumbered routes satisfy the same contract with a sourced landmark sequence
+// and turn instructions; they do not get an empty "not applicable" shortcut.
+const VERIFICATION_ROUTE_CLAIMS=Object.freeze(['recommended-start',...OFFICIAL_ROUTE_CLAIMS]);
 
 function supportedLogisticsClaim(review,id){
   return (review.specialistOutputs||[]).flatMap(output=>(output.result?.claims||[]).map(claim=>({agentId:output.agentId,claim})))
@@ -70,9 +60,8 @@ function assertRouteConformance(review,trail){
 }
 
 function assertRouteGuidance(review,trail){
-  if(!authoritativeRecommendedStart(review)){
-    throw new Error(`${trail?.trailName||trail?.trailId||'Trail'} requires a sourced recommended start before verification: recommended-start`);
-  }
+  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>!supportedLogisticsClaim(review,id));
+  if(missing.length)throw new Error(`${trail?.trailName||trail?.trailId||'Trail'} requires sourced route guidance before verification: ${missing.join(', ')}`);
 }
 
 /**
@@ -148,8 +137,8 @@ function routeGuidanceContractStale(outputs){
 
 function routeGuidanceBlockingReasons(outputs){
   const review={specialistOutputs:outputs||[]};
-  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>!authoritativeRecommendedStart(review));
-  return missing.map(id=>`logistics/${id}: a sourced recommended start is required`);
+  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>!supportedLogisticsClaim(review,id));
+  return missing.map(id=>`logistics/${id}: sourced, reader-usable route guidance is required`);
 }
 
 
@@ -184,6 +173,11 @@ const MIN_ACCEPTANCE_REASON=10;
 const UNWAIVABLE_BLOCKER_IDS=Object.freeze([
   ...VERIFICATION_ROUTE_CLAIMS.map(id=>`logistics/${id}`),
   OFF_DECLARED_ROUTE_BLOCKER_ID,
+  'not-closed-loop','implausibly-short','suspicious-coordinate-jump',
+  'relation-not-hiking-route','missing-member-geometry','disconnected-components',
+  'composite-coverage-dropped','composite-relations-changed','official-distance-conflict',
+  'declared-route-unavailable','route-source-identity-unresolved','route-source-identity-contradicted',
+  'route-geometry-unavailable','usable-geometry-missing','unmeasurable-offset',
 ]);
 
 /** The id a blocking reason is filed under: everything before the first colon. */
@@ -291,7 +285,12 @@ function compileVerifiedDossier(review,trail,options={}){
       claims.push({id:'route-geometry',label:'Approved route geometry',state:'supported',proposedValue:`Human-approved ${result.assessment?.pointCount||geometry?.coordinates?.length||0}-point reconstruction; ${result.assessment?.distanceKm||result.comparison?.reconstructedDistanceKm||'unreported'} km.`,sourceIds:ids});
       continue;
     }
-    for(const claim of result.claims||[]){const ids=(claim.sources||[]).map(addSource).filter(Boolean);claims.push({id:`${output.agentId}-${claim.id}`,
+    for(const claim of result.claims||[]){
+      // An accepted optional unknown is permission to finish the dossier, not
+      // permission to turn the model's best guess into a fact. Keep the reason
+      // in acceptedBlockers below and publish only evidence-backed findings.
+      if(!['supported-proposal','varies'].includes(claim.finding))continue;
+      const ids=(claim.sources||[]).map(addSource).filter(Boolean);claims.push({id:`${output.agentId}-${claim.id}`,
       label:`${claim.category}: ${claim.id}`,state:'supported',proposedValue:claim.proposedValue,sourceIds:ids,humanAcceptedFinding:claim.finding,
       confidence:claim.confidence,rationale:claim.rationale,
       // The dossier claim id is namespaced by agent, so the specialist's own id
@@ -299,17 +298,18 @@ function compileVerifiedDossier(review,trail,options={}){
       // not on how this function chose to prefix it.
       agentId:output.agentId,claimId:claim.id,
       entityName:claim.entityName||null,rule:claim.rule||null,observedAt:claim.observedAt||null,
+      location:claim.location||null,
       // What a claim answered "varies" depends on. Dropping it here would leave
       // the reader with "unknown" for something the agent actually established.
       variesWith:claim.variesWith||null});}
   }
   const dossier={contractVersion:'1.0.0',candidateId:trail.candidateId,trailId:trail.trailId,trailName:trail.trailName,
     reviewState:'accepted',sources:[...sourceMap.values()],claims,routeGeometry:geometry,
-    ormaVerification:{status:'verified',verifiedAt:at,verifiedBy:options.verifiedBy||'human-moderator',reviewId:review.reviewId,
+    ormaVerification:{status:'verified',verifiedAt:at,verifiedBy:options.verifiedBy||'orma-evidence-policy-v1',reviewId:review.reviewId,
       // Kept with the verification, because a reader is entitled to know a
       // trail was verified with caveats and what the moderator said about them.
       acceptedBlockers:[...acceptedBlockerMap(options.acceptedBlockers)]
-        .map(([blocker,reason])=>({blocker,reason,acceptedBy:options.verifiedBy||'human-moderator',acceptedAt:at})),
+        .map(([blocker,reason])=>({blocker,reason,acceptedBy:options.verifiedBy||'orma-evidence-policy-v1',acceptedAt:at})),
       conditions:['Recheck time-sensitive access, restriction, parking and water claims on their scheduled maintenance cadence.'],
       officialRoute:officialRouteConfirmation(review)},
     specialistOutputRefs:(review.specialistOutputs||[]).map(output=>`firestore:trail-specialist-output-${output.jobId}`),

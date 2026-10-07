@@ -11,7 +11,8 @@ const cartResult={geometry:{type:'LineString',coordinates:[[11.9,46.6],[11.91,46
   source:{externalId:'relation/1',endpoint:'https://overpass.example',relationVersion:'4',
     relationTimestamp:'2026-09-01T00:00:00Z',licence:'ODbL',url:'https://osm.example/relation/1',authority:'OpenStreetMap'},
   routeConformance:{status:'conformant',offRouteKm:0,maxDeviationMetres:12}};
-const logResult={recommendation:'advance',openQuestions:[],claims:[claim('recommended-start')]};
+const ROUTE_GUIDANCE=['recommended-start','route-number-status','route-number-sequence','route-number-switches'];
+const logResult={recommendation:'advance',openQuestions:[],claims:ROUTE_GUIDANCE.map(claim)};
 const outputs=[{agentId:'cartographer',jobId:'jc',result:cartResult},
   {agentId:'logistics',jobId:'jl',result:logResult}];
 const item=specialistOutputs=>({reviewId:'r1',trailId:'osm-1',candidateId:'osm-1',trailName:'Example Trail',
@@ -47,10 +48,10 @@ describe('asking whether an approval would land, without making one',()=>{
 
   test('a dossier that genuinely cannot compile says why',async()=>{
     const unsourced=[{agentId:'cartographer',jobId:'jc',result:cartResult},
-      {agentId:'logistics',jobId:'jl',result:{...logResult,claims:[{...claim('recommended-start'),sources:[]}]}}];
+      {agentId:'logistics',jobId:'jl',result:{...logResult,claims:ROUTE_GUIDANCE.map(id=>id==='recommended-start'?{...claim(id),sources:[]}:claim(id))}}];
     const [result]=await main({argv:[],store:store(unsourced,{'trail-specialist-output-jl':null})});
     expect(result.wouldCompile).toBe(false);
-    expect(result.error).toMatch(/requires a sourced recommended start/);
+    expect(result.error).toMatch(/requires sourced route guidance.*recommended-start/);
   });
 
   test('blockers a moderator would accept are reported as the decision, not a failure',async()=>{
@@ -79,8 +80,8 @@ describe('asking whether an approval would land, without making one',()=>{
     expect(shortError('A blocked dossier cannot be compiled as verified: a; b; c'))
       .toBe('the blockers below have not been accepted');
     // A genuine machinery refusal keeps its own words.
-    expect(shortError('Trail requires a sourced recommended start before verification: recommended-start'))
-      .toMatch(/requires a sourced recommended start/);
+    expect(shortError('Trail requires sourced route guidance before verification: recommended-start'))
+      .toMatch(/requires sourced route guidance/);
   });
 
   test('every blocker still reaches the JSON, only the printing is trimmed',async()=>{

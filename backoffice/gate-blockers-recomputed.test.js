@@ -18,7 +18,7 @@ const {currentBlockingReasons,unacceptedBlockers,dossierBlockingReasons,
 // exactly what went stale when #472 reworded it.
 
 const output=(agentId,result)=>({agentId,jobId:`${agentId}-1`,result});
-const claim=(id,finding)=>({id,finding,blockers:[],sources:[]});
+const claim=(id,finding)=>({id,finding,proposedValue:`value for ${id}`,blockers:[],sources:[]});
 const review=(overrides={})=>({gateType:'dossier-approval',blockingReasons:[],specialistOutputs:[],...overrides});
 
 describe('the blockers a gate is judged on',()=>{
