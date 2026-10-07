@@ -45,6 +45,10 @@ async function main(options = {}){
     const until = job.until ? ` · waits until ${job.until} (${job.inMinutes} min)` : '';
     console.log(`[queue]   ${job.status.padEnd(24)} ${job.jobType} · ${job.candidateId || 'no candidate'}${until}`);
   }
+  if(report.scheduled.length){
+    const soonest=report.scheduled[0];
+    console.log(`[queue] ${report.byReason.find(entry=>entry.reason==='waiting-for-its-schedule')?.count||0} job(s) wait on a schedule, not on the worker; the soonest is ${soonest.jobType} · ${soonest.candidateId||'no candidate'} in ${soonest.inMinutes} min.`);
+  }
   if(report.starved){
     console.log('[queue] STARVED: nothing at the head can be claimed, while claimable work waits behind it.');
     console.log('[queue] The pass will report "no agent work to pick up" however long the queue is.');
