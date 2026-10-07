@@ -17,6 +17,14 @@ function summaryMarkdown(ledger){
     `${ledger.totals.passes} passes · ${ledger.totals.succeeded} jobs done of ${ledger.totals.attempted} attempted · ${ledger.totals.reads} reads · ${ledger.totals.writes} writes · ${Math.round(ledger.durationMs/60_000)} min`,
     averages?`Per pass: ${averages.readsPerPass} reads, ${averages.writesPerPass} writes, ${averages.jobsPerPass} jobs, ${averages.minutesPerPass} min. Per job: ${averages.readsPerJob??'-'} reads, ${averages.writesPerJob??'-'} writes.`:'',
     '',
+    ...(ledger.costliest&&ledger.costliest.length?[
+      '### Where the reads went',
+      '',
+      '| call site | reads | writes | calls |','|---|---|---|---|',
+      ...ledger.costliest.map(entry=>
+        `| \`${entry.source}\` | ${entry.reads} | ${entry.writes} | ${entry.readCalls+entry.writeCalls} |`),
+      '',
+    ]:[]),
     '| pass | outcome | done/attempted | reads | writes | duration |','|---|---|---|---|---|---|',...rows,
   ].join('\n');
 }
