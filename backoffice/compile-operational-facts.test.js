@@ -129,7 +129,7 @@ describe('facts only reach the table through the publication gate', () => {
   test('an approved publication carries its facts; nothing else does', () => {
     const at = '2026-09-05T10:00:00Z';
     const result = materializeApprovedPublications({
-      requests:{ requests:[{ id:'approval-1', candidateId:'cand-1', status:'approved-for-pr-creation', approvedBy:'Benedetta' }] },
+      requests:{ requests:[{ id:'approval-1', candidateId:'cand-1', status:'approved-for-pr-creation', approvedBy:'ORMA owner' }] },
       staging:{ items:[{
         candidateId:'cand-1',
         targetTrailId:'seceda',
@@ -148,7 +148,7 @@ describe('facts only reach the table through the publication gate', () => {
     expect(result.operationalFacts.facts[0].entity_name).toBe('Rifugio Fuciade');
     // The approver is recorded, not the agent, because the approval is what
     // makes the fact publishable.
-    expect(result.operationalFacts.facts[0].verified_by).toBe('Benedetta');
+    expect(result.operationalFacts.facts[0].verified_by).toBe('ORMA owner');
     expect(table.validateTable(result.operationalFacts)).toEqual([]);
   });
 

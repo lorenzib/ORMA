@@ -19,7 +19,7 @@ const verifiedRifugio = {
   policy_notes:'Not in the dining room.',
   verified_at:'2026-08-14',
   verified_source:'phone',
-  verified_by:'Benedetta',
+  verified_by:'ORMA owner',
 };
 
 const trail = { id:'tre-cime', rifugi:[{ km:6.5, name:'Baita Troier' }] };
