@@ -129,7 +129,8 @@ Parking approval remains disabled until a dossier's parking gate is cleared.
 ## Automated resolution policy
 
 An unresolved mandatory claim may receive up to **five** automated research
-attempts. Attempts are scheduled at 0, 1, 6, 24 and 72 hours. Every attempt
+attempts. Attempts are scheduled at 0, 0, 1, 1 and 6 hours — strategy pacing,
+not failure backoff, which `failJob` carries separately. Every attempt
 must use a materially different source or verification strategy; repeating a
 search does not qualify as another attempt. After the fifth unsuccessful pass,
 the claim becomes `source-exhausted` and must move to direct contact, a field

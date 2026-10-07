@@ -292,8 +292,11 @@ describe('ORMA backoffice MVP', () => {
   test('resolution policy permits five distinct automated attempts', () => {
     expect(resolutionPolicy.MAX_AUTOMATED_ATTEMPTS).toBe(5);
     const attempts = Array.from({ length: 4 }, (_, index) => ({ strategy: `strategy-${index + 1}` }));
+    // The pacing belongs to the policy, not to this test: the subject here is
+    // that five distinct attempts are permitted and a sixth is not.
     expect(resolutionPolicy.assertNextStrategy(attempts, 'strategy-5')).toEqual({
-      attemptNumber: 5, strategy: 'strategy-5', delayHours: 72,
+      attemptNumber: 5, strategy: 'strategy-5',
+      delayHours: resolutionPolicy.RETRY_DELAYS_HOURS[4],
     });
     const exhausted = [...attempts, { strategy: 'strategy-5' }];
     expect(resolutionPolicy.resolutionStatus(exhausted, 'unresolved')).toBe('source-exhausted');
