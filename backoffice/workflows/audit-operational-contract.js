@@ -58,7 +58,11 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&desk.includes('never ticked for her')
     &&!desk.includes('tick.checked=true')
     &&workflows['orma-backoffice-worker.yml']?.includes('ORMA_GATE_ADJUDICATION_ENABLED')
-    &&standard.includes('It recommends and never accepts'),
+    &&standard.includes('It recommends and never accepts')
+    // A contradiction is not a dispatch, and the adjudicator is what receives it.
+    &&gateDispatch.includes('nothing-a-re-run-can-answer')
+    &&gateDispatch.includes('answerableCountsByAgent')
+    &&adjudicator.includes('contestedCount'),
     'A blocker only a moderator can decide arrives with a cited recommendation in the reason field, after the dispatch and apply steps; the recommendation cites a retrieved source, is never offered for an unwaivable blocker, and nothing is ticked or accepted without a person');
   add('hazard-snapshot-publication',workflows['orma-hazard-watch.yml']?.includes('orma-bot/hazard-snapshot')&&workflows['orma-hazard-watch.yml']?.includes('gh pr merge')&&workflows['orma-hazard-watch.yml']?.includes('--auto')&&workflows['orma-hazard-watch.yml']?.includes('/actions/runs/${run}/approve')&&workflows['orma-hazard-watch.yml']?.includes('gh workflow run deploy-pages.yml --ref main')&&workflows['orma-hazard-watch.yml']?.includes('gh pr update-branch')&&standard.includes('automatic pull request whenever the warning set changes'),'The public warning snapshot reaches the website through a pull request whenever the warning set changes: the run approves the PR\'s own quality-gate run (a bot never graduates from the first-time-contributor policy), merges once it passes, and dispatches the website deploy, which nothing done with the workflow token starts by itself');
   add('hazard-cadence',workflows['orma-hazard-watch.yml']?.includes("cron: '7 */3 * * *'")&&workflows['orma-hazard-watch.yml']?.includes('timezone: Europe/Rome'),'Groundskeeper targets minute 7 of every third hour in Europe/Rome, clear of the queue worker and within the Firestore daily quota');

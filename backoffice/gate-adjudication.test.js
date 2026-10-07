@@ -3,7 +3,8 @@
 const fs=require('fs');
 const path=require('path');
 const {reviewVerdicts,adjudicableBlockers,adjudicateGateBlockers,mergeAdjudications,
-  adjudicationMatches,independentHosts,prompt}=require('./workflows/adjudicate-gate-blockers');
+  adjudicationMatches,independentHosts,contestedCount,prompt}=require('./workflows/adjudicate-gate-blockers');
+const {planGateDispatches}=require('./workflows/dispatch-unanswered-gates');
 const {adjudicateStandingGates}=require('./workflows/run-live-backoffice-worker');
 const {routeGuidanceBlockingReasons,MIN_ACCEPTANCE_REASON}=require('./workflows/compile-verified-dossier');
 
@@ -211,5 +212,71 @@ describe('the worker lane',()=>{
     expect(last('await ingestDossierReviews(store')).toBeGreaterThan(-1);
     expect(adjudicate).toBeGreaterThan(last('await ingestDossierReviews(store'));
     expect(adjudicate).toBeGreaterThan(last('await automateEvidenceGates(store'));
+  });
+});
+
+// blocker-kinds settles which blockers are hers and which are an agent's debt.
+// A contradiction and a gap are different problems; before #636 the dispatch
+// could not tell them apart and sent both back to an agent.
+const CONTESTED_STATUS='terrainPoi/shade: conflicted';
+const CONTESTED_DETAIL='terrainPoi/shade: Official description includes wooded sections.';
+const UNRESEARCHED='terrainPoi/livestock: unresolved';
+
+describe('a contradiction is hers, with help',()=>{
+  const gate=(blockingReasons)=>({
+    orchestration:{trails:[{candidateId:'cand-a',trailId:'trail-a',trailName:'Trail A',
+      state:'dossier-human-gate',gate:{id:'dossier-approval',status:'awaiting-human'},
+      blockers:blockingReasons,attempts:{},resolutionAttempts:{},jobIds:[]}]},
+    reviewQueue:{items:[{reviewId:'review-a',candidateId:'cand-a',trailId:'trail-a',
+      gateType:'dossier-approval',state:'awaiting-human',approvalAllowed:false,blockingReasons,
+      specialistOutputs:[{agentId:'terrainPoi',result:{}}]}]},
+  });
+
+  // The handoff this change exists for: the dispatch stops taking a gate it
+  // cannot move, and the adjudicator is what picks it up.
+  test('the dispatch holds a gate with nothing a re-run can answer',()=>{
+    const {orchestration,reviewQueue}=gate([CONTESTED_STATUS,CONTESTED_DETAIL]);
+    const plan=planGateDispatches(orchestration,reviewQueue,{});
+    expect(plan.dispatches).toEqual([]);
+    expect(plan.held.map(entry=>entry.reason)).toEqual(['nothing-a-re-run-can-answer']);
+  });
+
+  test('and the adjudicator takes it instead',async()=>{
+    const {reviewQueue}=gate([CONTESTED_STATUS,CONTESTED_DETAIL]);
+    const artifacts={'dossier-review-queue':reviewQueue,'gate-adjudications':null};
+    const subject={getArtifact:async id=>artifacts[id]||null,
+      setArtifact:async(id,value)=>{artifacts[id]=value;}};
+    const outcomes=await adjudicateStandingGates(subject,{at,runAgent:async()=>({model:'m',responseId:'r',
+      data:{verdicts:[{blocker:CONTESTED_STATUS,recommendation:'cannot-accept',
+        reason:'The two descriptions disagree and neither is official.',confidence:'unsourced',sources:[]}],summary:''}})});
+    expect(outcomes).toEqual([expect.objectContaining({reviewId:'review-a',status:'adjudicated'})]);
+  });
+
+  // Re-running an agent on a claim it already researched into a contradiction
+  // returns the same contradiction and spends one of five attempts doing it.
+  test('a gate still carrying answerable work is dispatched as before',()=>{
+    const {orchestration,reviewQueue}=gate([CONTESTED_STATUS,UNRESEARCHED]);
+    const plan=planGateDispatches(orchestration,reviewQueue,{});
+    expect(plan.dispatches).toEqual([expect.objectContaining({targetAgent:'terrainPoi'})]);
+    expect(plan.held).toEqual([]);
+  });
+
+  test('the agent is told which blockers are a disagreement and which are a gap',()=>{
+    const asked=prompt({blockingReasons:[CONTESTED_STATUS,UNRESEARCHED]},{trailName:'Trail A'})[1].content;
+    expect(asked).toContain(`[sources disagree — weigh the ones that exist] ${CONTESTED_STATUS}`);
+    expect(asked).toContain(`[no source was found — go and look] ${UNRESEARCHED}`);
+  });
+
+  test('the budget goes to the gate that is most a judgement',async()=>{
+    const mostlyGaps={reviewId:'review-gaps',candidateId:'cand-gaps',gateType:'dossier-approval',
+      state:'awaiting-human',blockingReasons:[UNRESEARCHED,'terrainPoi/water: unresolved']};
+    const contested={reviewId:'review-contested',candidateId:'cand-contested',gateType:'dossier-approval',
+      state:'awaiting-human',blockingReasons:[CONTESTED_STATUS,CONTESTED_DETAIL]};
+    expect(contestedCount(contested)).toBeGreaterThan(contestedCount(mostlyGaps));
+    const artifacts={'dossier-review-queue':{items:[mostlyGaps,contested]},'gate-adjudications':null};
+    const subject={getArtifact:async id=>artifacts[id]||null,setArtifact:async(id,value)=>{artifacts[id]=value;}};
+    const outcomes=await adjudicateStandingGates(subject,{at,gateAdjudicationLimit:1,
+      runAgent:async()=>({model:'m',responseId:'r',data:{verdicts:[],summary:''}})});
+    expect(outcomes.map(entry=>entry.reviewId)).toEqual(['review-contested']);
   });
 });

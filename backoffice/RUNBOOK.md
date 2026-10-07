@@ -59,8 +59,14 @@ answered.
 
 It only ever requests a revision. Nothing is approved, waived or rejected
 without you. A gate is left standing — and stays visible to you — when its
-blockers do not name exactly one agent, when the automated-resolution limit is
-reached, or when a decision of yours is already waiting to be applied.
+blockers name no agent at all, when nothing on it is work a re-run could
+finish, when the automated-resolution limit is reached, or when a decision of
+yours is already waiting to be applied.
+
+That second one is the common case and it is deliberate. Where the sources were
+read and disagree, the agent has already answered; asking it again gets the same
+disagreement back. Those gates are yours, and they are the ones the adjudicator
+researches first.
 
 The gates that are left get a recommendation instead. Beside each blocker you
 can tick off, the adjudicator writes why it thinks the blocker does not stop
