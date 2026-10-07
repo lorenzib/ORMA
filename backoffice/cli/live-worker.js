@@ -62,6 +62,11 @@ async function main(){
     // Bounded because each dispatch costs a model call on a metered account.
     gateDispatchEnabled:process.env.ORMA_GATE_DISPATCH_ENABLED!=='false',
     gateDispatchLimit:positiveInteger(process.env.ORMA_GATE_DISPATCH_LIMIT,3),
+    // What is left at a gate after the dispatch gets a cited recommendation
+    // beside each blocker. Smaller budget than the dispatch: an adjudication is
+    // a web-search call, and it recommends rather than moving anything.
+    gateAdjudicationEnabled:process.env.ORMA_GATE_ADJUDICATION_ENABLED!=='false',
+    gateAdjudicationLimit:positiveInteger(process.env.ORMA_GATE_ADJUDICATION_LIMIT,2),
     limit:5,specialistLimit,specialistCandidateId });
   const work = summariseWorkAttempted(result);
   console.log(JSON.stringify({ ...result, work: { ...work, outcome:workOutcome(work), message:workMessage(work,result.pipeline) } }, null, 2));

@@ -7,6 +7,7 @@ const { buildPublicationStaging } = require('./build-publication-staging');
 const { runVerifiedTrailRevision } = require('./run-verified-trail-revision');
 const { applyDossierReview } = require('./apply-dossier-review');
 const { planGateDispatches } = require('./dispatch-unanswered-gates');
+const { adjudicateGateBlockers, adjudicableBlockers, mergeAdjudications, adjudicationMatches } = require('./adjudicate-gate-blockers');
 const { rehydrateReviewQueue } = require('./rehydrate-review-detail');
 const { applyRouteReview,promotableFeature,unpromotedChoices } = require('./apply-route-review');
 const { admitChosenRoutes } = require('./admit-chosen-routes');
@@ -439,6 +440,52 @@ async function ingestDossierReviews(store,options={}){
   return outcomes;
 }
 
+/**
+ * Write a cited recommendation onto the gates that are genuinely hers.
+ *
+ * Runs after the dispatch and apply steps on purpose: a gate being handed back
+ * to an agent is about to have different blockers, so adjudicating it would
+ * spend a model call on a question that is already changing. What is left here
+ * is a gate nobody can clear by re-running an agent — the ones she has to
+ * decide, and the ones she cannot research from a review card.
+ *
+ * It recommends only. Nothing is accepted, nothing is approved, and the
+ * artifact it writes is never read by the apply path.
+ */
+async function adjudicateStandingGates(store,options={}){
+  if(options.gateAdjudicationEnabled===false)return [];
+  if(typeof store.getArtifact!=='function'||typeof store.setArtifact!=='function')return [];
+  const limit=Number.isInteger(options.gateAdjudicationLimit)&&options.gateAdjudicationLimit>0
+    ?options.gateAdjudicationLimit:2;
+  const reviewQueue=await store.getArtifact('dossier-review-queue');
+  if(!reviewQueue)return [];
+  let stored=await store.getArtifact('gate-adjudications');
+  const byReview=new Map((stored?.items||[]).map(item=>[String(item.reviewId),item]));
+  const waiting=(reviewQueue.items||[]).filter(item=>item.state==='awaiting-human'
+    &&adjudicableBlockers(item).length
+    // A recommendation already standing against this exact blocker set is the
+    // answer; re-asking costs a model call to learn the same thing.
+    &&!adjudicationMatches(byReview.get(String(item.reviewId)),item));
+  const trailById=new Map((options.productionTrails||[]).map(trail=>[String(trail.id),trail]));
+  const outcomes=[];
+  for(const item of waiting.slice(0,limit)){
+    try{
+      const adjudication=await adjudicateGateBlockers(item,{at:options.at,
+        trail:trailById.get(String(item.trailId||item.candidateId))||null,
+        runAgent:options.runAgent,clientOptions:options.clientOptions});
+      stored=mergeAdjudications(stored,adjudication);
+      await store.setArtifact('gate-adjudications',stored);
+      outcomes.push({reviewId:item.reviewId,candidateId:item.candidateId,status:'adjudicated',
+        recommended:adjudication.verdicts.filter(verdict=>verdict.recommendation==='accept').length,
+        verdicts:adjudication.verdicts.length,dropped:adjudication.dropped.length});
+    }catch(error){
+      outcomes.push({reviewId:item.reviewId,candidateId:item.candidateId,status:'adjudication-failed',
+        error:String(error.message||error).slice(0,2000)});
+    }
+  }
+  return outcomes;
+}
+
 async function ingestNewTrailReviews(store){
   if(typeof store.listNewTrailReviews!=='function')return [];
   const reviews=await store.listNewTrailReviews('queued');const outcomes=[];const effectiveByCandidate=new Map();
@@ -570,6 +617,12 @@ async function runLiveBackofficeWorker(store, options = {}){
   const advancementAfter=await advanceTrailOrchestration(store,options);
   automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:siteTrails}));
   dossierReviews.push(...await ingestDossierReviews(store,{...options,productionTrails}));
+  // Last of the gate lanes, after every automatic decision this pass can make
+  // and after the gates going back to an agent are gone. What is still waiting
+  // here is hers, so this is the only set worth researching a recommendation
+  // for -- and a web search spent on a gate that was about to be decided
+  // automatically is a web search wasted.
+  const gateAdjudications=await adjudicateStandingGates(store,{...options,productionTrails});
   const editorialFirstPass=await processEditorialFirstPassJobs(store,{...options,productionTrails:siteTrails});
   const jobs = await processRevisionJobs(store, options);
   const automatedEditorial=await automateEditorialReviews(store,{...options,productionTrails:siteTrails});
@@ -580,7 +633,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   // afford to list jobs itself -- it polls once a minute against a free-tier
   // quota -- so the one place already holding every job writes the summary down.
   const pipeline = await recordPipelineHealth(store, options);
-  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
 }
 
 /**
@@ -602,4 +655,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,claimNotBefore, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,claimNotBefore, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
