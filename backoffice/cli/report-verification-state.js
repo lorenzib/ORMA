@@ -344,14 +344,22 @@ async function main(options={}){
   // JSON dump out of a workflow log -- which is how the one blocked trail went
   // seven weeks without anyone naming it.
   const staged=report.downstream.publicationStalls||[];
-  // An item that is ready to go is not stalled, and listing it under a heading
-  // about stopping short is how a clean queue reads as a problem.
-  const stalls=staged.filter(item=>item.missingApprovals.length||item.publicationMappingBlockers.length
-    ||item.state!=='ready-for-publication-preview');
+  // Stalled means a recorded cause, not "a state I did not think to exclude".
+  // build-publication-staging derives an item's state from exactly two lists,
+  // so an item holding neither is not waiting on anything: it is ready, or
+  // already published. Naming the states instead got this wrong on its first
+  // live run, which listed three *published* trails as stopped short because
+  // the filter excluded ready-for-publication-preview and nothing else.
+  const stalls=staged.filter(item=>item.missingApprovals.length||item.publicationMappingBlockers.length);
+  const published=staged.filter(item=>item.state==='published').length;
   if(staged.length){
     const waitingOnAPerson=stalls.filter(item=>item.missingApprovals.length&&!item.publicationMappingBlockers.length);
     const defects=stalls.filter(item=>item.publicationMappingBlockers.length);
-    console.log(`\n[verification] ${staged.length} trail(s) staged for the website, ${report.downstream.publicationReady} ready to go.`);
+    const done=published?`${published} already published`:null;
+    const ready=report.downstream.publicationReady?`${report.downstream.publicationReady} ready to go`:null;
+    const waiting=stalls.length?`${stalls.length} stopped short`:null;
+    console.log(`\n[verification] ${staged.length} trail(s) staged for the website: `
+      +([done,ready,waiting].filter(Boolean).join(' \u00b7 ')||'none ready, none stopped'));
     if(waitingOnAPerson.length)console.log(`[verification]   ${waitingOnAPerson.length} waiting on a decision you can make now.`);
     if(defects.length)console.log(`[verification]   ${defects.length} held by a mapping defect, which no decision clears.`);
     for(const item of stalls.slice(0,STALL_SAMPLE)){
