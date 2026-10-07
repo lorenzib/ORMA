@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-07T13:28:51.309Z",
+  "generatedAt": "2026-10-07T16:28:48.482Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-10-07T08:00:00+00:00",
       "expiresAt": "2026-10-08T05:59:00+00:00",
       "firstPublishedAt": "2026-10-07T07:33:17.879Z",
-      "lastSeenAt": "2026-10-07T13:28:51.309Z",
+      "lastSeenAt": "2026-10-07T16:28:48.482Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -42,7 +42,7 @@
       "effectiveAt": "2026-10-07T08:00:00+00:00",
       "expiresAt": "2026-10-09T05:59:00+00:00",
       "firstPublishedAt": "2026-10-05T22:23:15.462Z",
-      "lastSeenAt": "2026-10-07T13:28:51.309Z",
+      "lastSeenAt": "2026-10-07T16:28:48.482Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -62,12 +62,12 @@
       "message": "An official moderate rain-flood warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/1f15a83f-09c7-4e2d-8288-a4be28bd4ac1",
-      "identifier": "2.49.0.0.250.0.FR.20261007100106.025022",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/711ceb6d-8bf1-43a6-a5ca-b8de5fab1a97",
+      "identifier": "2.49.0.0.250.0.FR.20261007160115.993022",
       "effectiveAt": "2026-10-07T22:00:00+00:00",
       "expiresAt": "2026-10-08T22:00:00+00:00",
       "firstPublishedAt": "2026-10-07T07:33:17.879Z",
-      "lastSeenAt": "2026-10-07T13:28:51.309Z",
+      "lastSeenAt": "2026-10-07T16:28:48.482Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -117,12 +117,12 @@
       "message": "An official moderate rain-flood warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/1f15a83f-09c7-4e2d-8288-a4be28bd4ac1",
-      "identifier": "2.49.0.0.250.0.FR.20261007100106.025022",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/711ceb6d-8bf1-43a6-a5ca-b8de5fab1a97",
+      "identifier": "2.49.0.0.250.0.FR.20261007160115.993022",
       "effectiveAt": "2026-10-07T22:00:00+00:00",
       "expiresAt": "2026-10-08T22:00:00+00:00",
       "firstPublishedAt": "2026-10-07T07:33:17.879Z",
-      "lastSeenAt": "2026-10-07T13:28:51.309Z",
+      "lastSeenAt": "2026-10-07T16:28:48.482Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -219,7 +219,7 @@
       "effectiveAt": "2026-10-07T18:00:00+00:00",
       "expiresAt": "2026-10-09T21:59:00+00:00",
       "firstPublishedAt": "2026-10-05T10:29:05.859Z",
-      "lastSeenAt": "2026-10-07T13:28:51.309Z",
+      "lastSeenAt": "2026-10-07T16:28:48.482Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -430,7 +430,7 @@
       "effectiveAt": "2026-10-07T18:00:00+00:00",
       "expiresAt": "2026-10-09T21:59:00+00:00",
       "firstPublishedAt": "2026-10-05T22:23:15.462Z",
-      "lastSeenAt": "2026-10-07T13:28:51.309Z",
+      "lastSeenAt": "2026-10-07T16:28:48.482Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
