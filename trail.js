@@ -2263,146 +2263,165 @@ function renderTrail(t){
       // clicking one pops up its name and a link straight to its page. Added
       // BEFORE the main route's layers so the current trail always draws on
       // top of its neighbours.
-      const nearbyTrails = nearbyTrailCandidates(t, typeof trails !== 'undefined' ? trails : []);
-      const otherTrails = nearbyTrails.map(item => item.trail);
-      const nearbyToggleBtn = document.getElementById('nearbyToggle');
-      if(nearbyToggleBtn){
-        nearbyToggleBtn.hidden = nearbyTrails.length === 0;
-        if(nearbyTrails.length){
-          setLayerChipLabel(nearbyToggleBtn, 'nearby', `Nearby trails (${nearbyTrails.length})`);
+      // Re-runnable, because a trail page now paints from its own detail file
+      // and the rest of the region arrives after the paint: at first render
+      // there are no neighbours to draw. Every layer here is inserted with an
+      // explicit beforeId, so adding them later still keeps the current trail
+      // drawn on top of its neighbours.
+      let nearbyLayersAdded = false;
+      function renderNearbyTrailLayers(){
+        if(nearbyLayersAdded) return;
+        // The first call runs inside a map-ready path, but the region can land
+        // at any time, and addSource on a style that has not finished loading
+        // throws. Wait for the style rather than guessing.
+        if(typeof map.isStyleLoaded === 'function' && !map.isStyleLoaded()){
+          map.once('load', renderNearbyTrailLayers);
+          return;
         }
-      }
-      if(otherTrails.length){
-        map.addSource('other-trails', {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: otherTrails.map(x => ({
-              type: 'Feature',
-              properties: { id: x.id, name: x.name, safetyLevel: x.safetyLevel, distance: x.distance },
-              geometry: { type: 'LineString', coordinates: x.path.map(([lat, lng]) => [lng, lat]) },
-            })),
-          },
-        });
-        map.addLayer({
-          id: 'other-trails-line',
-          type: 'line',
-          source: 'other-trails',
-          minzoom: 9,
-          layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
-          paint: {
-            'line-color': '#858D88',
-            'line-width': 3.5,
-            'line-opacity': 0.52,
-            'line-dasharray': [1.5, 1.25],
-          },
-        }, 'waymarked-hiking-layer');
-        // Wide invisible twin so the thin neighbour lines are easy to hit.
-        map.addLayer({
-          id: 'other-trails-hit',
-          type: 'line',
-          source: 'other-trails',
-          minzoom: 9,
-          layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
-          paint: { 'line-color': '#000', 'line-width': 16, 'line-opacity': 0.01 },
-        }, 'waymarked-hiking-layer');
-        map.addSource('nearby-trail-points', {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: nearbyTrails.map(item => ({
-              type: 'Feature',
-              properties: {
-                id: item.trail.id,
-                name: item.trail.name,
-                safetyLevel: item.trail.safetyLevel,
-                distance: item.trail.distance,
-                awayKm: Math.round(item.distanceKm * 10) / 10,
-              },
-              geometry: { type: 'Point', coordinates: [item.mapPoint[1], item.mapPoint[0]] },
-            })),
-          },
-        });
-        map.addLayer({
-          id: 'nearby-trail-points-circle',
-          type: 'circle',
-          source: 'nearby-trail-points',
-          layout: { visibility: 'none' },
-          paint: {
-            'circle-radius': 6,
-            'circle-color': '#929A95',
-            'circle-stroke-color': '#ffffff',
-            'circle-stroke-width': 2,
-          },
-        });
-        map.addLayer({
-          id: 'nearby-trail-points-label',
-          type: 'symbol',
-          source: 'nearby-trail-points',
-          minzoom: 8,
-          layout: {
-            visibility: 'none',
-            'text-field': ['get', 'name'],
-            'text-size': 11,
-            'text-font': ['Noto Sans Regular'],
-            'text-offset': [0, 1.25],
-            'text-anchor': 'top',
-          },
-          paint: {
-            'text-color': '#59615C',
-            'text-halo-color': '#ffffff',
-            'text-halo-width': 2,
-          },
-        });
-        const escName = s => String(s == null ? '' : s).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
-        const openNearbyPopup = (e) => {
-          // If this click also lands on the current trail's own route,
-          // let the main route win, no neighbour popup on top of it.
-          if(e.type === 'click' && e.features && e.features[0] && e.features[0].geometry.type === 'LineString' && map.getLayer('single-trail-path-line')){
-            const onMain = map.queryRenderedFeatures(e.point, { layers: ['single-trail-path-line'] });
-            if(onMain.length) return;
-          }
-          const f = e.features && e.features[0];
-          if(!f) return;
-          const p = f.properties;
-          new maplibregl.Popup({ offset: 12, maxWidth: '260px' })
-            .setLngLat(e.lngLat)
-            .setHTML(
-              `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${escName(p.name)}</div>` +
-              `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${escName(String(p.distance))} km trail${p.awayKm != null ? ` · ${escName(String(p.awayKm))} km away` : ''}</div>` +
-              `<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(p.id) : (p.id)))}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">Open this trail →</a>`
-            )
-            .addTo(map);
-        };
-        map.on('click', 'other-trails-hit', openNearbyPopup);
-        map.on('click', 'nearby-trail-points-circle', openNearbyPopup);
-        map.on('mouseenter', 'other-trails-hit', () => { map.getCanvas().style.cursor = 'pointer'; });
-        map.on('mouseleave', 'other-trails-hit', () => { map.getCanvas().style.cursor = ''; });
-        map.on('mouseenter', 'nearby-trail-points-circle', () => { map.getCanvas().style.cursor = 'pointer'; });
-        map.on('mouseleave', 'nearby-trail-points-circle', () => { map.getCanvas().style.cursor = ''; });
-
+        const nearbyTrails = nearbyTrailCandidates(t, typeof trails !== 'undefined' ? trails : []);
+        const otherTrails = nearbyTrails.map(item => item.trail);
+        const nearbyToggleBtn = document.getElementById('nearbyToggle');
         if(nearbyToggleBtn){
-          let showingNearbyOverview = false;
-          nearbyToggleBtn.addEventListener('click', () => {
-            showingNearbyOverview = !showingNearbyOverview;
-            nearbyToggleBtn.classList.toggle('on', showingNearbyOverview);
-            nearbyToggleBtn.setAttribute('aria-pressed', showingNearbyOverview ? 'true' : 'false');
-            ['other-trails-line', 'other-trails-hit', 'nearby-trail-points-circle', 'nearby-trail-points-label'].forEach(id => {
-              if(map.getLayer(id)) map.setLayoutProperty(id, 'visibility', showingNearbyOverview ? 'visible' : 'none');
-            });
-            const bounds = new maplibregl.LngLatBounds();
-            t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
-            if(showingNearbyOverview){
-              otherTrails.forEach(trail => trail.path.forEach(([lat, lng]) => bounds.extend([lng, lat])));
-              setLayerChipLabel(nearbyToggleBtn, 'routes', 'Focus this trail');
-              map.fitBounds(bounds, { padding: 54, maxZoom: 13 });
-            } else {
-              setLayerChipLabel(nearbyToggleBtn, 'nearby', `Nearby trails (${nearbyTrails.length})`);
-              map.fitBounds(bounds, { padding: 60, maxZoom: 17 });
-            }
+          nearbyToggleBtn.hidden = nearbyTrails.length === 0;
+          if(nearbyTrails.length){
+            setLayerChipLabel(nearbyToggleBtn, 'nearby', `Nearby trails (${nearbyTrails.length})`);
+          }
+        }
+        if(otherTrails.length){
+          nearbyLayersAdded = true;
+          map.addSource('other-trails', {
+            type: 'geojson',
+            data: {
+              type: 'FeatureCollection',
+              features: otherTrails.map(x => ({
+                type: 'Feature',
+                properties: { id: x.id, name: x.name, safetyLevel: x.safetyLevel, distance: x.distance },
+                geometry: { type: 'LineString', coordinates: x.path.map(([lat, lng]) => [lng, lat]) },
+              })),
+            },
           });
+          map.addLayer({
+            id: 'other-trails-line',
+            type: 'line',
+            source: 'other-trails',
+            minzoom: 9,
+            layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
+            paint: {
+              'line-color': '#858D88',
+              'line-width': 3.5,
+              'line-opacity': 0.52,
+              'line-dasharray': [1.5, 1.25],
+            },
+          }, 'waymarked-hiking-layer');
+          // Wide invisible twin so the thin neighbour lines are easy to hit.
+          map.addLayer({
+            id: 'other-trails-hit',
+            type: 'line',
+            source: 'other-trails',
+            minzoom: 9,
+            layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
+            paint: { 'line-color': '#000', 'line-width': 16, 'line-opacity': 0.01 },
+          }, 'waymarked-hiking-layer');
+          map.addSource('nearby-trail-points', {
+            type: 'geojson',
+            data: {
+              type: 'FeatureCollection',
+              features: nearbyTrails.map(item => ({
+                type: 'Feature',
+                properties: {
+                  id: item.trail.id,
+                  name: item.trail.name,
+                  safetyLevel: item.trail.safetyLevel,
+                  distance: item.trail.distance,
+                  awayKm: Math.round(item.distanceKm * 10) / 10,
+                },
+                geometry: { type: 'Point', coordinates: [item.mapPoint[1], item.mapPoint[0]] },
+              })),
+            },
+          });
+          map.addLayer({
+            id: 'nearby-trail-points-circle',
+            type: 'circle',
+            source: 'nearby-trail-points',
+            layout: { visibility: 'none' },
+            paint: {
+              'circle-radius': 6,
+              'circle-color': '#929A95',
+              'circle-stroke-color': '#ffffff',
+              'circle-stroke-width': 2,
+            },
+          });
+          map.addLayer({
+            id: 'nearby-trail-points-label',
+            type: 'symbol',
+            source: 'nearby-trail-points',
+            minzoom: 8,
+            layout: {
+              visibility: 'none',
+              'text-field': ['get', 'name'],
+              'text-size': 11,
+              'text-font': ['Noto Sans Regular'],
+              'text-offset': [0, 1.25],
+              'text-anchor': 'top',
+            },
+            paint: {
+              'text-color': '#59615C',
+              'text-halo-color': '#ffffff',
+              'text-halo-width': 2,
+            },
+          });
+          const escName = s => String(s == null ? '' : s).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+          const openNearbyPopup = (e) => {
+            // If this click also lands on the current trail's own route,
+            // let the main route win, no neighbour popup on top of it.
+            if(e.type === 'click' && e.features && e.features[0] && e.features[0].geometry.type === 'LineString' && map.getLayer('single-trail-path-line')){
+              const onMain = map.queryRenderedFeatures(e.point, { layers: ['single-trail-path-line'] });
+              if(onMain.length) return;
+            }
+            const f = e.features && e.features[0];
+            if(!f) return;
+            const p = f.properties;
+            new maplibregl.Popup({ offset: 12, maxWidth: '260px' })
+              .setLngLat(e.lngLat)
+              .setHTML(
+                `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${escName(p.name)}</div>` +
+                `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${escName(String(p.distance))} km trail${p.awayKm != null ? ` · ${escName(String(p.awayKm))} km away` : ''}</div>` +
+                `<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(p.id) : (p.id)))}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">Open this trail →</a>`
+              )
+              .addTo(map);
+          };
+          map.on('click', 'other-trails-hit', openNearbyPopup);
+          map.on('click', 'nearby-trail-points-circle', openNearbyPopup);
+          map.on('mouseenter', 'other-trails-hit', () => { map.getCanvas().style.cursor = 'pointer'; });
+          map.on('mouseleave', 'other-trails-hit', () => { map.getCanvas().style.cursor = ''; });
+          map.on('mouseenter', 'nearby-trail-points-circle', () => { map.getCanvas().style.cursor = 'pointer'; });
+          map.on('mouseleave', 'nearby-trail-points-circle', () => { map.getCanvas().style.cursor = ''; });
+
+          if(nearbyToggleBtn){
+            let showingNearbyOverview = false;
+            nearbyToggleBtn.addEventListener('click', () => {
+              showingNearbyOverview = !showingNearbyOverview;
+              nearbyToggleBtn.classList.toggle('on', showingNearbyOverview);
+              nearbyToggleBtn.setAttribute('aria-pressed', showingNearbyOverview ? 'true' : 'false');
+              ['other-trails-line', 'other-trails-hit', 'nearby-trail-points-circle', 'nearby-trail-points-label'].forEach(id => {
+                if(map.getLayer(id)) map.setLayoutProperty(id, 'visibility', showingNearbyOverview ? 'visible' : 'none');
+              });
+              const bounds = new maplibregl.LngLatBounds();
+              t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
+              if(showingNearbyOverview){
+                otherTrails.forEach(trail => trail.path.forEach(([lat, lng]) => bounds.extend([lng, lat])));
+                setLayerChipLabel(nearbyToggleBtn, 'routes', 'Focus this trail');
+                map.fitBounds(bounds, { padding: 54, maxZoom: 13 });
+              } else {
+                setLayerChipLabel(nearbyToggleBtn, 'nearby', `Nearby trails (${nearbyTrails.length})`);
+                map.fitBounds(bounds, { padding: 60, maxZoom: 17 });
+              }
+            });
+          }
         }
       }
+      renderNearbyTrailLayers();
+      window.addEventListener('dolopaws-region-loaded', renderNearbyTrailLayers);
 
       if(Array.isArray(t.path) && t.path.length > 1){
         const selectedRouteColor = window._dolopawsTrailRouteColor || detailRouteColorForScore(guestMatchScore(t));

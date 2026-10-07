@@ -649,7 +649,10 @@
     const status = document.getElementById('offlinePackageStatus');
     if(!panel || !downloadButton || !openButton || !removeButton || !status) return;
 
-    const trailId = new URLSearchParams(window.location.search).get('id');
+    const raw = new URLSearchParams(window.location.search).get('id');
+    // The two offline packages are keyed by trail id, and lago-carezza's slug
+    // is lago-di-carezza-loop, so an unresolved param hides the panel.
+    const trailId = (window.DoloPawsRegionalData && window.DoloPawsRegionalData.resolveTrailId ? window.DoloPawsRegionalData.resolveTrailId(raw) : (raw));
     const trailCollection = typeof trails !== 'undefined' ? trails : null;
     const availability = availabilityForTrail(trailId, trailCollection);
     if(!availability.visible) return;

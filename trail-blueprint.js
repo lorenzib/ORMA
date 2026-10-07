@@ -14,7 +14,10 @@
   'use strict';
 
   const params = new URLSearchParams(window.location.search);
-  const trailId = params.get('id');
+  // The URL may name the trail by its readable slug; the loader owns that
+  // mapping. Reading the raw param here made every slug URL miss the lookup
+  // below, and the whole blueprint returned early.
+  const trailId = (window.DoloPawsRegionalData && window.DoloPawsRegionalData.resolveTrailId ? window.DoloPawsRegionalData.resolveTrailId(params.get('id')) : (params.get('id')));
   const t = (typeof trails !== 'undefined') ? trails.find(x => x.id === trailId) : null;
   if (!t) return;
 
@@ -172,7 +175,11 @@
   })();
 
   /* ---- Nearby trails (same valley first, then same region) ------- */
-  (function nearby() {
+  // Re-runnable on purpose. A trail page loads its own detail file first and
+  // the rest of the region after the paint, so the first call here sees one
+  // trail, finds no neighbours and returns; the region announces itself when it
+  // lands and this runs again with a real pool.
+  function nearby() {
     const wrapEl = $('nearbyTrails'), grid = $('nearbyGrid');
     if (!wrapEl || !grid || typeof trails === 'undefined') return;
     const pool = trails.filter(o => o.id !== t.id);
@@ -221,7 +228,9 @@
     if (window.DoloPawsAuth) personalise();
     else window.addEventListener('dolopaws-auth-ready', personalise, { once: true });
     window.addEventListener('dolopaws-auth-changed', personalise);
-  })();
+  }
+  nearby();
+  window.addEventListener('dolopaws-region-loaded', nearby);
 
   /* ---- Dog tips note (verified trails only) ----------------------- */
   (function tipsNote() {

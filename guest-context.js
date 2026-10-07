@@ -237,7 +237,7 @@
     const returnTarget = requested || safeReturnTarget(current);
     return {
       action:action || null,
-      trailId:safeTrailId(trailId || params.get('id')),
+      trailId:safeTrailId(trailId || (window.DoloPawsRegionalData && window.DoloPawsRegionalData.resolveTrailId ? window.DoloPawsRegionalData.resolveTrailId(params.get('id')) : (params.get('id')))),
       returnTarget,
       discovery:discoveryFromTarget(from || returnTarget),
     };
