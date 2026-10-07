@@ -29,7 +29,10 @@ describe('what is holding a queued job', () => {
   test('a job scheduled for later says when, in minutes a person can act on',()=>{
     const report=summarise([job({notBefore:'2026-10-06T16:45:00.000Z'})]);
     expect(report.claimableNow).toBe(0);
-    expect(report.head.jobs[0]).toEqual(expect.objectContaining({status:WAITING,inMinutes:45,
+    // Listed as scheduled, not as the head: the worker skips it before taking
+    // its batch, so it is waiting on a clock rather than on the worker.
+    expect(report.head.jobs).toEqual([]);
+    expect(report.scheduled[0]).toEqual(expect.objectContaining({status:WAITING,inMinutes:45,
       until:'2026-10-06T16:45:00.000Z'}));
     expect(report.soonestClaimable).toBe(45);
   });
@@ -73,8 +76,9 @@ describe('the head is the worker\'s head, not the queue\'s', () => {
 });
 
 describe('the head of the queue is what decides whether anything runs', () => {
-  // The worker takes the oldest N per pass and stops there, so a few
-  // unclaimable jobs at the front starve everything behind them.
+  // The worker filters twice before taking its batch -- to the lanes it runs,
+  // and (since #615) to the jobs that are due. Neither sits in front of
+  // anything, so neither can starve the pass.
   const head=[
     job({id:'old-1',createdAt:'2026-09-01T00:00:00.000Z',notBefore:'2026-10-07T00:00:00.000Z'}),
     job({id:'old-2',createdAt:'2026-09-02T00:00:00.000Z',notBefore:'2026-10-07T00:00:00.000Z'}),
@@ -82,8 +86,23 @@ describe('the head of the queue is what decides whether anything runs', () => {
   ];
   const behind=job({id:'new-1',createdAt:'2026-10-05T00:00:00.000Z'});
 
-  test('names the starvation rather than reporting an idle worker',()=>{
+  // What this tool reported for a day after #615 landed: STARVED, against a
+  // worker that had just been changed to skip exactly these jobs.
+  test('old scheduled jobs no longer starve the work behind them',()=>{
     const report=summarise([...head,behind]);
+    expect(report.head.jobs.map(entry=>entry.id)).toEqual(['new-1']);
+    expect(report.head.claimable).toBe(1);
+    expect(report.claimableNow).toBe(1);
+    expect(report.starved).toBe(false);
+    expect(report.scheduled).toHaveLength(3);
+  });
+
+  // Starvation is still real for a job the worker does claim and cannot run:
+  // an unknown trail is claimed, fails, and spends a slot doing it.
+  test('but a head of unrunnable jobs still starves what waits behind',()=>{
+    const unknown=index=>job({id:`u-${index}`,createdAt:`2026-09-0${index}T00:00:00.000Z`,
+      candidateId:'osm-relation-1484751'});
+    const report=summarise([unknown(1),unknown(2),unknown(3),behind],{headCount:3});
     expect(report.head.claimable).toBe(0);
     expect(report.claimableNow).toBe(1);
     expect(report.starved).toBe(true);
@@ -105,8 +124,9 @@ describe('the head of the queue is what decides whether anything runs', () => {
     expect(summarise(head).starved).toBe(false);
   });
 
-  test('reads oldest first, because that is the order the worker reads',()=>{
-    const report=summarise([behind,...head]);
-    expect(report.head.jobs.map(entry=>entry.id)).toEqual(['old-1','old-2','old-3']);
+  test('reads oldest first among the jobs the worker will actually look at',()=>{
+    const older=job({id:'old-ready',createdAt:'2026-08-01T00:00:00.000Z'});
+    const report=summarise([behind,...head,older]);
+    expect(report.head.jobs.map(entry=>entry.id)).toEqual(['old-ready','new-1']);
   });
 });

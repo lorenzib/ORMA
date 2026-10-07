@@ -71,10 +71,16 @@ function summariseJobQueue(jobs=[],options={}){
   });
   const byReason=new Map();
   for(const job of described)byReason.set(job.status,(byReason.get(job.status)||0)+1);
-  // What the worker would actually pick up: it filters to the lanes it runs
-  // before taking its batch, so a retired lane sits beside the queue rather
-  // than in front of it.
-  const inReach=described.filter(job=>job.status!==RETIRED_LANE);
+  // What the worker would actually pick up. It filters twice before taking its
+  // batch -- to the lanes it runs, and to the jobs that are due -- so neither a
+  // retired lane nor a job scheduled for tomorrow sits in front of anything.
+  //
+  // The schedule half of that was #615, and this model was not updated with it:
+  // for a day it reported STARVED, "the pass will report no agent work to pick
+  // up however long the queue is", against a worker that had just been changed
+  // to skip exactly those jobs. 85 claimable jobs were reported as unreachable
+  // behind ten scheduled ones the worker never looks at.
+  const inReach=described.filter(job=>job.status!==RETIRED_LANE&&job.status!==WAITING);
   const head=inReach.slice(0,headCount);
   const waiting=described.filter(job=>job.status===WAITING&&job.inMinutes!=null);
   return {
@@ -85,6 +91,10 @@ function summariseJobQueue(jobs=[],options={}){
     // The head is what the worker actually tries. If none of it can be claimed,
     // the pass does nothing however long the queue behind it is.
     head:{count:head.length,claimable:head.filter(job=>job.status===CLAIMABLE).length,jobs:head},
+    // Not in anyone's way since #615, but still the answer to "when does this
+    // move", so it keeps its own list rather than disappearing with the head.
+    scheduled:described.filter(job=>job.status===WAITING)
+      .sort((a,b)=>(a.inMinutes??0)-(b.inMinutes??0)).slice(0,10),
     // Queued, and in no lane this worker runs. Not in anyone's way, and not
     // work either — it will sit there until someone retires it.
     outsideEveryLane:described.filter(job=>job.status===RETIRED_LANE).length,
