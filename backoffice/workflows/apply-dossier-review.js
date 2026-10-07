@@ -4,6 +4,7 @@ const { createAgentJob }=require('../contracts/agent-job-v1');
 const { summarize }=require('./build-live-orchestration');
 const {fitReviewQueue}=require('./review-queue-compaction');
 const {compileVerifiedDossier,verificationRecord,unacceptedBlockers,waivableBlocker}=require('./compile-verified-dossier');
+const {retirementFields}=require('./retire-blocked-jobs');
 
 const BASE_SPECIALISTS=Object.freeze([
   // Route guidance is logistics' work too, and the output contract has demanded
@@ -53,9 +54,19 @@ function applyDossierReview(orchestration,reviewQueue,decision,options={}){
   const trail=orchestration.trails.find(item=>item.candidateId===review.candidateId);
   if(!trail) throw new Error('Orchestration trail was not found');
   const next=JSON.parse(JSON.stringify(orchestration)); const nextTrail=next.trails.find(item=>item.candidateId===trail.candidateId);
-  const jobs=[];let verifiedDossier=null;let verifiedRecord=null;
+  const jobs=[];const cancelJobIds=[];let verifiedDossier=null;let verifiedRecord=null;
   if(decision.action==='reject'){
     nextTrail.state='rejected'; nextTrail.gate={...nextTrail.gate,status:'rejected',reviewedAt:at};
+    // A rejected trail is finished, and work queued against it is not. Nothing
+    // used to stop those jobs: giro-del-bulacia was rejected holding five, and
+    // the worker has no guard that skips a job for a dead trail, so they would
+    // have been claimed and run -- agent calls and Firestore writes spent on a
+    // trail nobody will publish, out of a budget that is the thing capping the
+    // pipeline.
+    //
+    // The ids only; whether each is still queued is the caller's to read, and a
+    // job already running is left to finish rather than abandoned half-done.
+    cancelJobIds.push(...(nextTrail.jobIds||[]));
   }else if(decision.action==='approve'&&review.gateType==='geometry-approval'){
     nextTrail.state='evidence-research'; nextTrail.stage='parallel-evidence-research';
     nextTrail.gate={...nextTrail.gate,status:'approved',reviewedAt:at};
@@ -89,7 +100,40 @@ function applyDossierReview(orchestration,reviewQueue,decision,options={}){
   // already done its work by the time the decided item gives it up.
   const nextQueue=fitReviewQueue({...reviewQueue,updatedAt:at,items:reviewQueue.items.map(item=>item.reviewId===review.reviewId
     ?{...item,state:'processed',decision:{...decision,reviewedAt:at},publicMutationAllowed:false}:item)});
-  return {orchestration:next,reviewQueue:nextQueue,jobs,verifiedDossier,verifiedRecord};
+  return {orchestration:next,reviewQueue:nextQueue,jobs,cancelJobIds,verifiedDossier,verifiedRecord};
 }
 
-module.exports={BASE_SPECIALISTS,specialistJob,applyDossierReview};
+const REJECTED_TRAIL_REASON='the trail was rejected at the dossier gate';
+
+/** Stop the jobs a rejected trail still owns. Queued only: a running job finishes. */
+async function cancelJobsForRejectedTrail(store,cancelJobIds,at){
+  if(!cancelJobIds||!cancelJobIds.length)return [];
+  const jobs=await store.getJobsByIds(cancelJobIds);
+  const stopped=[];
+  for(const job of jobs){
+    if(!job||job.status!=='queued')continue;
+    await store.completeSystemJob(job.id,retirementFields(REJECTED_TRAIL_REASON,at,'queued'));
+    stopped.push(job.id);
+  }
+  return stopped;
+}
+
+/**
+ * The same invariant, enforced continuously rather than only at the moment of
+ * rejection: a rejected trail owns no queued work.
+ *
+ * Fixing the transition alone would leave the jobs already orphaned by earlier
+ * rejections exactly where they are -- five of them, on a trail rejected before
+ * this existed -- and would miss any future route to `rejected` that does not
+ * run through applyDossierReview. Reading an artifact the pass already has
+ * costs nothing when there is nothing to stop.
+ */
+async function cancelOrphanedRejectedJobs(store,orchestration,at){
+  const rejected=(orchestration?.trails||[]).filter(trail=>trail.state==='rejected');
+  const ids=rejected.flatMap(trail=>trail.jobIds||[]);
+  if(!ids.length)return [];
+  return cancelJobsForRejectedTrail(store,ids,at);
+}
+
+module.exports={BASE_SPECIALISTS,REJECTED_TRAIL_REASON,specialistJob,applyDossierReview,
+  cancelJobsForRejectedTrail,cancelOrphanedRejectedJobs};
