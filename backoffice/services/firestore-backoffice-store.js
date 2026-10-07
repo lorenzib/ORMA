@@ -69,8 +69,38 @@ class FirestoreBackofficeStore {
   get usage(){ if(!this._usage) this._usage = new FirestoreUsageMeter(); return this._usage; }
   set usage(meter){ this._usage = meter; }
 
+  /**
+   * Job documents already read through this store, by id.
+   *
+   * getJobsByIds is the pass's single largest read: advanceTrailOrchestration
+   * asks for every job each trail has ever had, twice per pass, and
+   * `trail.jobIds` is append-only — so the cost grew with every job ever
+   * created. The first metered drain put a pass at 2,304 reads to do ten jobs
+   * of work. The status queries had a cache; the point reads had none.
+   *
+   * Lazy for the same reason `usage` is: a store built from the prototype
+   * without the constructor, as several tests do, must still read and evict
+   * rather than throw.
+   */
+  get jobCache(){ if(!this._jobCache) this._jobCache = new Map(); return this._jobCache; }
+
   invalidate(prefix){
     for(const key of this.queryCache.keys()) if(key.startsWith(prefix)) this.queryCache.delete(key);
+  }
+
+  /**
+   * These job documents changed: the status queries are stale, and so is any
+   * copy of the named documents.
+   *
+   * Every write to the jobs collection goes through here, which is what makes
+   * the per-document cache safe to serve from — it can only hold a document
+   * that no write through this store has touched since it was read. A caller
+   * that writes a job must name it; `firestore-backoffice-store.test.js` asserts
+   * that nothing in this file invalidates the job queries any other way.
+   */
+  forgetJobs(ids = []){
+    this.invalidate('jobs:');
+    for(const id of (Array.isArray(ids) ? ids : [ids])) if(id) this.jobCache.delete(String(id));
   }
 
   async getArtifact(id){
@@ -104,15 +134,15 @@ class FirestoreBackofficeStore {
   async putJob(job){
     await this.db.collection(COLLECTIONS.jobs).doc(job.id).set({ ...job, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
     this.usage.write(1);
-    this.invalidate('jobs:');
+    this.forgetJobs([job.id]);
   }
 
   async putJobIfAbsent(job){
     const ref=this.db.collection(COLLECTIONS.jobs).doc(job.id);
     return this.db.runTransaction(async transaction=>{
-      const snapshot=await transaction.get(ref);this.usage.read(1);if(snapshot.exists){this.invalidate('jobs:');return false;}
+      const snapshot=await transaction.get(ref);this.usage.read(1);if(snapshot.exists){this.forgetJobs([job.id]);return false;}
       transaction.set(ref,{...job,updatedAt:FieldValue.serverTimestamp()});this.usage.write(1);return true;
-    }).finally(()=>this.invalidate('jobs:'));
+    }).finally(()=>this.forgetJobs([job.id]));
   }
 
   async listJobs(statuses = ['queued']){
@@ -146,11 +176,24 @@ class FirestoreBackofficeStore {
     if(!unique.length) return [];
     const collection = this.db.collection(COLLECTIONS.jobs);
     const jobs = [];
-    for(let index = 0; index < unique.length; index += 300){
-      const refs = unique.slice(index, index + 300).map(id => collection.doc(id));
+    // Only ids this store has not already read, or has read and since written.
+    // Within one pass the orchestration runs twice over very nearly the same id
+    // list, so the second walk pays for the handful of jobs the pass itself
+    // claimed, completed or queued rather than for all of them again.
+    const wanted = unique.filter(id => !this.jobCache.has(id));
+    for(const id of unique) if(this.jobCache.has(id)) jobs.push(this.jobCache.get(id));
+    for(let index = 0; index < wanted.length; index += 300){
+      const refs = wanted.slice(index, index + 300).map(id => collection.doc(id));
       const snapshots = await this.db.getAll(...refs);
       this.usage.read(refs.length);
-      snapshots.forEach(snapshot => { if(snapshot.exists) jobs.push({ id: snapshot.id, ...snapshot.data() }); });
+      snapshots.forEach(snapshot => {
+        if(!snapshot.exists) return;
+        const job = { id: snapshot.id, ...snapshot.data() };
+        // Absence is not cached. A missing id can be created later by
+        // putJobIfAbsent, and re-reading it costs one document.
+        this.jobCache.set(snapshot.id, job);
+        jobs.push(job);
+      });
     }
     return jobs.sort((a, b) => String(a.createdAt || '').localeCompare(String(b.createdAt || '')));
   }
@@ -173,7 +216,7 @@ class FirestoreBackofficeStore {
     }));
     await batch.commit();
     this.usage.write(expired.length);
-    this.invalidate('jobs:');
+    this.forgetJobs(expired.map(doc => doc.id));
     return expired.map(doc => doc.id);
   }
 
@@ -234,7 +277,7 @@ class FirestoreBackofficeStore {
     }));
     await batch.commit();
     this.usage.write(releasable.length);
-    this.invalidate('jobs:');
+    this.forgetJobs(releasable.map(doc => doc.id));
     return releasable.map(doc => doc.id);
   }
 
@@ -260,7 +303,7 @@ class FirestoreBackofficeStore {
     }
     await batch.commit();
     this.usage.write(ids.length);
-    this.invalidate('jobs:');
+    this.forgetJobs(ids);
     return ids;
   }
 
@@ -281,7 +324,7 @@ class FirestoreBackofficeStore {
       });
       this.usage.write(1);
       return { id, ...job, status: 'running', workerId, startedAt: now.toISOString() };
-    }).finally(()=>this.invalidate('jobs:'));
+    }).finally(()=>this.forgetJobs([id]));
   }
 
   async completeJob(id, fields = {}){
@@ -290,14 +333,14 @@ class FirestoreBackofficeStore {
       leaseExpiresAt: FieldValue.delete(), updatedAt: FieldValue.serverTimestamp(),
     });
     this.usage.write(1);
-    this.invalidate('jobs:');
+    this.forgetJobs([id]);
   }
 
   async completeSystemJob(id, fields={}){
     await this.db.collection(COLLECTIONS.jobs).doc(id).update({...fields,status:'completed',completedAt:FieldValue.serverTimestamp(),
       leaseExpiresAt:FieldValue.delete(),updatedAt:FieldValue.serverTimestamp()});
     this.usage.write(1);
-    this.invalidate('jobs:');
+    this.forgetJobs([id]);
   }
 
   async markJobReviewed(id, action, reviewedAt){
@@ -309,7 +352,7 @@ class FirestoreBackofficeStore {
       updatedAt:FieldValue.serverTimestamp(),
     });
     this.usage.write(1);
-    this.invalidate('jobs:');
+    this.forgetJobs([id]);
   }
 
   async failJob(id, error, options = {}){
@@ -335,7 +378,7 @@ class FirestoreBackofficeStore {
         leaseExpiresAt: FieldValue.delete(), updatedAt: FieldValue.serverTimestamp(),
       });
       this.usage.write(1);
-    }).finally(()=>this.invalidate('jobs:'));
+    }).finally(()=>this.forgetJobs([id]));
   }
 
   async listReviewCollection(collection,status){
