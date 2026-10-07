@@ -5,7 +5,7 @@ const { recordVerifiedTrailReview,applyVerifiedTrailReviewStatus,assertVerifiedT
 const { buildVerifiedTrailRevisionJobs } = require('./queue-verified-trail-revisions');
 const { buildPublicationStaging } = require('./build-publication-staging');
 const { runVerifiedTrailRevision } = require('./run-verified-trail-revision');
-const { applyDossierReview } = require('./apply-dossier-review');
+const { applyDossierReview, cancelJobsForRejectedTrail, cancelOrphanedRejectedJobs } = require('./apply-dossier-review');
 const { planGateDispatches } = require('./dispatch-unanswered-gates');
 const { adjudicateGateBlockers, adjudicableBlockers, contestedCount, mergeAdjudications, adjudicationMatches } = require('./adjudicate-gate-blockers');
 const { rehydrateReviewQueue } = require('./rehydrate-review-detail');
@@ -408,6 +408,12 @@ async function dispatchUnansweredGates(store,options={}){
 
 async function ingestDossierReviews(store,options={}){
   const reviews=await store.listDossierReviews('queued'); const outcomes=[];
+  // Before anything else: a rejected trail owns no queued work. Catches what
+  // earlier rejections orphaned, and any route to `rejected` that does not
+  // come through applyDossierReview.
+  const swept=await cancelOrphanedRejectedJobs(store,
+    await store.getArtifact('trail-orchestration'),iso(options.now||new Date()));
+  if(swept.length)outcomes.push({status:'stopped-orphaned-jobs',stoppedJobs:swept.length});
   for(const review of reviews){
     try{
       const [orchestration,reviewQueue]=await Promise.all([
@@ -423,6 +429,7 @@ async function ingestDossierReviews(store,options={}){
         : reviewQueue;
       const result=applyDossierReview(orchestration,decided,review,{at:iso(review.submittedAt)});
       for(const job of result.jobs)await store.putJob(job);
+      const stopped=await cancelJobsForRejectedTrail(store,result.cancelJobIds,iso(review.submittedAt));
       const writes=[];
       if(result.verifiedDossier){
         const [registryValue,editorialQueue]=await Promise.all([store.getArtifact('orma-verified-registry-live'),store.getArtifact('verified-trail-editorial-queue')]);
@@ -444,7 +451,8 @@ async function ingestDossierReviews(store,options={}){
         store.markDossierReview(review.id,'processed',{queuedJobIds:result.jobs.map(job=>job.id)}),
         ...writes,
       ]);
-      outcomes.push({reviewId:review.id,status:'processed',queuedJobs:result.jobs.length,ormaVerified:!!result.verifiedDossier});
+      outcomes.push({reviewId:review.id,status:'processed',queuedJobs:result.jobs.length,
+        ...(stopped.length?{stoppedJobs:stopped.length}:{}),ormaVerified:!!result.verifiedDossier});
     }catch(error){
       await store.markDossierReview(review.id,'blocked',{error:String(error.message||error).slice(0,2000)});
       outcomes.push({reviewId:review.id,status:'blocked',error:error.message});
