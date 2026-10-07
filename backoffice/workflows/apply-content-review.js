@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { REVIEWED_STATUSES } = require('../contracts/content-result-v1');
 
 function safeSourcePath(root, sourceRef){
   if(typeof sourceRef !== 'string' || !sourceRef) throw new Error('Review packet has no sourceRef');
@@ -99,6 +100,45 @@ function recordVerifiedTrailReview(execution, decisions){
   });
 }
 
+/**
+ * The execution with each reviewed output moved off `ready-for-review`.
+ *
+ * recordVerifiedTrailReview returns what happened; nothing applied it to the
+ * output, and ingestTrailReviews wrote the review queue and the staging
+ * artifact but never the execution. So an output said `ready-for-review`
+ * forever: on 7 October all six outputs behind the three published trails still
+ * did, every decision approved and every trail live. That is not only a wrong
+ * count -- it makes the first real editorial queue unreadable, because waiting
+ * work and finished work give the same answer.
+ *
+ * A `blocked` outcome leaves the output alone: the decision did not apply, so
+ * nothing about the output has changed. A revision later replaces the output
+ * under the same jobId and it returns to `ready-for-review` on its own, which
+ * is why `revision-queued` is a status here and not a terminal state.
+ *
+ * The summary is recomputed rather than adjusted, so it cannot drift from the
+ * outputs it describes.
+ */
+function applyVerifiedTrailReviewStatus(execution, outcomes){
+  const moved = new Map((outcomes || [])
+    .filter(outcome => outcome && outcome.jobId && REVIEWED_STATUSES.includes(outcome.status))
+    .map(outcome => [outcome.jobId, outcome.status]));
+  if(!moved.size) return execution;
+  const outputs = (execution?.outputs || []).map(output => moved.has(output.jobId)
+    ? { ...output, status: moved.get(output.jobId) }
+    : output);
+  return {
+    ...execution,
+    outputs,
+    summary: {
+      ...(execution?.summary || {}),
+      trails: new Set(outputs.map(output => output.candidateId)).size,
+      readyForReview: outputs.filter(output => output.status === 'ready-for-review').length,
+      blocked: outputs.filter(output => output.status === 'blocked').length,
+    },
+  };
+}
+
 function assertVerifiedTrailReviewDecisions(execution,decisions){
   const outputs=new Map((execution?.outputs||[]).map(output=>[output.jobId,output]));
   for(const decision of decisions||[]){
@@ -112,4 +152,4 @@ function assertVerifiedTrailReviewDecisions(execution,decisions){
   }
 }
 
-module.exports = { safeSourcePath, applyExactChanges, applyReviewChanges, applyContentReview, recordVerifiedTrailReview,assertVerifiedTrailReviewDecisions };
+module.exports = { safeSourcePath, applyExactChanges, applyReviewChanges, applyContentReview, recordVerifiedTrailReview,applyVerifiedTrailReviewStatus,assertVerifiedTrailReviewDecisions };
