@@ -404,6 +404,11 @@
       trailName:item.trailName||item.candidateId,
       candidateId:item.candidateId,
       blockers:item.blockingReasons||[],
+      // Set when the queue had to cut this gate's blocker list to fit its
+      // budget. Every box then on the card can be ticked and the approval will
+      // still be refused, because the gate checks the whole list -- so the
+      // acceptance control says that instead of inviting the attempt.
+      ballotAbridged:item.blockingReasonsAbridged===true,
       ready:item.approvalAllowed!==false,
       facts:(()=>{const carto=(item.specialistOutputs||[]).find(output=>output.agentId==='cartographer');return carto?geometryFacts(carto.result||{}):[];})(),
       openRoute:(()=>{const carto=(item.specialistOutputs||[]).find(output=>output.agentId==='cartographer');
@@ -899,6 +904,15 @@
     const supplied=decision.blockers.filter(reason=>unwaivableBlocker(reason));
     const box=el('div','vd-accept');
     const accepted=new Map();
+
+    // An abridged list cannot be ticked through: the gate weighs the whole
+    // list, so the entries the queue dropped have no box to tick and the
+    // approval is refused after it is queued, where nobody sees it.
+    if(decision.ballotAbridged){
+      box.append(el('p','vd-accept-blocked',
+        'The queue had to shorten this list to fit, so not every blocker is shown and an approval here would be refused. Send it back to the agent, or run the worker to rebuild the queue and reopen this card.'));
+      return {node:box,accepted,waivable:[]};
+    }
 
     if(supplied.length){
       const note=el('p','vd-accept-blocked');

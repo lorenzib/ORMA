@@ -32,9 +32,9 @@ describe('generated trail page assets', () => {
 
     const owned = photoCreditHtml({
       imageIcon:'images/tre-cime-hero.jpg',
-      imageCredit:{ text:'Benedetta Lorenzi · ORMA original' },
+      imageCredit:{ text:'ORMA original' },
     });
-    expect(owned).toContain('Photo: Benedetta Lorenzi · ORMA original');
+    expect(owned).toContain('Photo: ORMA original');
     expect(owned).not.toContain('<a ');
   });
 });
