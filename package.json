@@ -83,6 +83,7 @@
     "backoffice:retire-blocked-jobs": "node backoffice/cli/retire-blocked-jobs.js",
     "backoffice:requeue-fixed": "node backoffice/cli/requeue-fixed-jobs.js",
     "backoffice:submit-review": "node backoffice/cli/submit-review.js",
+    "backoffice:backfill-editorial-status": "node backoffice/cli/backfill-editorial-status.js",
     "backoffice:route-shape": "node backoffice/cli/declare-route-shape.js",
     "backoffice:discover-composites": "node backoffice/cli/discover-composites.js",
     "backoffice:approve-composites": "node backoffice/cli/approve-composites.js",
