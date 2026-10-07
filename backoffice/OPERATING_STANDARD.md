@@ -60,7 +60,15 @@ either. It asks one agent at a time, the
 one carrying the most outstanding findings, and tells it which other agents hold
 the rest; a gate blocked on several agents is therefore cleared over successive
 passes rather than in one. It fires only when the blockers name an agent at all
--- an unattributed blocker is a decision, not a dispatch -- never past the
+-- an unattributed blocker is a decision, not a dispatch -- and only when a
+re-run could answer something. Where evidence was read and disagrees, the
+agent has already given its answer: asking again returns the same
+contradiction and spends one of five resolution attempts to learn nothing, so
+that gate goes to the moderator with a recommendation instead. The exception is
+a blocker no decision of hers can clear -- route guidance, which is supplied and
+never accepted, and a geometry conflict, which has to be settled before
+directions can be written -- and those reach an agent whatever their wording
+looks like. It never fires past the
 automated-resolution limit, never over a decision already waiting to be applied,
 and at most a few gates per queue pass because each dispatch costs a model call. Setting the repository variable
 `ORMA_GATE_DISPATCH_ENABLED` to `false` stops it without a code change.
