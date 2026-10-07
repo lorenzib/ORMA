@@ -119,11 +119,21 @@ describe('what has to re-run when the region lands late', () => {
     expect(read('trail-blueprint.js')).toContain("window.addEventListener('dolopaws-region-loaded', nearby)");
     const trail = read('trail.js');
     expect(trail).toContain("window.addEventListener('dolopaws-region-loaded', renderNearbyTrailLayers)");
-    // Adding to a style that has not loaded throws, and the region can land at
-    // any moment.
-    expect(trail).toContain('map.isStyleLoaded');
     // Added once, however many times the region announces itself.
     expect(trail).toContain('if(nearbyLayersAdded) return;');
+    // Not gated on isStyleLoaded(): it reports false transiently while tiles
+    // are still arriving, which is not the same as being unable to add a
+    // layer. Gating on it skipped the inline call on the live site and then
+    // deferred to map.once('load'), which never fires again once load has
+    // passed -- the toggle stayed hidden with five neighbours available. A
+    // style that genuinely refuses the layers is caught and retried instead.
+    const body = trail.slice(
+      trail.indexOf('function renderNearbyTrailLayers()'),
+      trail.indexOf('renderNearbyTrailLayers();'),
+    );
+    expect(body).not.toContain('!map.isStyleLoaded()');
+    expect(body).toContain("map.once('styledata', renderNearbyTrailLayers)");
+    expect(body).toContain('nearbyLayersAdded = false;');
   });
 });
 
