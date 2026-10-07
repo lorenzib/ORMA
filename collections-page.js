@@ -22,7 +22,7 @@
   const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, char => ({
     '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;',
   })[char]);
-  const trailHref = trail => `trail.html?id=${encodeURIComponent(trail.id)}&from=collections.html`;
+  const trailHref = trail => `trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(trail.id) : (trail.id)))}&from=collections.html`;
   let country = 'all';
   let region = 'all';
   let valley = 'all';

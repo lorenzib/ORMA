@@ -142,7 +142,7 @@
     html += entries.map(entry =>
       `<div class="compare-cell compare-head"><div class="compare-area">${esc(entry.area)}</div>` +
       `<h2>${esc(entry.name)}</h2><div class="compare-actions">` +
-      `<a class="compare-open" href="trail.html?id=${encodeURIComponent(entry.id)}&from=${encodeURIComponent(compareReturn)}">Open trail →</a>` +
+      `<a class="compare-open" href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(entry.id) : (entry.id)))}&from=${encodeURIComponent(compareReturn)}">Open trail →</a>` +
       `<button type="button" class="compare-remove" data-remove-id="${esc(entry.id)}">Remove</button>` +
       '</div></div>'
     ).join('');

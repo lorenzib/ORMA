@@ -89,9 +89,15 @@
     return 'browse-trails.html' + (query ? '?' + query : '') + (hash || '');
   }
 
+  // Every browse card links through here, so this is where a trail stops being
+  // addressed by its osm id and starts being addressed by its title. The id is
+  // still what resolves on arrival, so a card rendered from a cached bundle
+  // keeps working.
   function trailHref(trailId, source){
     const browse = browseHref(source);
-    return 'trail.html?id=' + encodeURIComponent(trailId) + '&from=' + encodeURIComponent(browse);
+    const regional = typeof window !== 'undefined' && window.DoloPawsRegionalData;
+    const name = regional && regional.slugFor ? regional.slugFor(trailId) : trailId;
+    return 'trail.html?id=' + encodeURIComponent(name) + '&from=' + encodeURIComponent(browse);
   }
 
   function hasFilters(source){

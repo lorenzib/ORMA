@@ -294,7 +294,7 @@ function nearbySection(t, slug, all) {
   for (const o of sameRegion) { if (picks.length >= 4) break; picks.push(o); }
   if (!picks.length) return '';
   const items = picks.map((o) =>
-    `<a class="sp-near" href="../trail.html?id=${encodeURIComponent(o.id)}">
+    `<a class="sp-near" href="../trail.html?id=${encodeURIComponent(o.slug || o.id)}">
         <span class="sp-near-name">${escapeHtml(o.name)}</span>
         <span class="sp-near-meta"><span class="dp-badge dp-badge--${o.safetyLevel}"><span data-dp-icon="${o.safetyLevel === 'low-risk' ? 'verified' : 'warning'}" data-dp-icon-size="13" aria-hidden="true"></span><span>${displaySafetyLabel(o)}</span></span> ${o.distance} km</span>
       </a>`
@@ -534,7 +534,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
       ${facts}
   </div>
 
-  <a class="sp-cta" href="../trail.html?id=${encodeURIComponent(t.id)}">Open the full trail guide →</a>
+  <a class="sp-cta" href="../trail.html?id=${encodeURIComponent(slug)}">Open the full trail guide →</a>
 
   <div class="sp-body">
     ${glanceHtml}
@@ -552,7 +552,7 @@ ${reviewRecord}
          every trail against a medium dog for a reader who has not added one,
          and says plainly that is what it has done. Denying the answer and
          asking for an account first made a signup the price of finding out. -->
-    <p>The trail rating above describes the mountain, and it's the same for every dog. How it suits <em>yours</em> depends on their build, age and health. <a href="../trail.html?id=${encodeURIComponent(t.id)}">See this route's match</a> — scored for a medium dog until you add your own, free and in a minute.</p>
+    <p>The trail rating above describes the mountain, and it's the same for every dog. How it suits <em>yours</em> depends on their build, age and health. <a href="../trail.html?id=${encodeURIComponent(slug)}">See this route's match</a> — scored for a medium dog until you add your own, free and in a minute.</p>
     </div>
     <script>
     (function(){
@@ -567,11 +567,11 @@ ${reviewRecord}
           var n = p.name ? esc(p.name) : 'your dog';
           box.innerHTML = '<h2>Is this trail right for <em>' + n + '</em>?</h2>'
             + '<p>' + n + '\u2019s profile is saved. Open the interactive trail guide to see their personalised match and any cautions.</p>'
-            + '<p><a href="../trail.html?id=${encodeURIComponent(t.id)}">See ' + n + '\u2019s match for this trail \u2192</a></p>';
+            + '<p><a href="../trail.html?id=${encodeURIComponent(slug)}">See ' + n + '\u2019s match for this trail \u2192</a></p>';
         } else {
           box.innerHTML = '<h2>One step left: save your dog\u2019s profile</h2>'
             + '<p>You\u2019re signed in, but there\u2019s no dog profile saved yet. Add your dog\u2019s build, age and health once, and every trail, including this one, gets a personal match score.</p>'
-            + '<p><a href="../account.html?next=trail.html%3Fid%3D${encodeURIComponent(t.id)}">Finish your dog\u2019s profile \u2192</a></p>';
+            + '<p><a href="../account.html?next=trail.html%3Fid%3D${encodeURIComponent(slug)}">Finish your dog\u2019s profile \u2192</a></p>';
         }
       }catch(e){}
     })();
@@ -645,7 +645,7 @@ ${reviewRecord}
 </footer>
 
 <script src="../icon-system.js?v=20260717" defer></script>
-<script src="../mobile-nav.js?v=20261006-1"></script>
+<script src="../mobile-nav.js?v=20261007-1"></script>
 </body>
 </html>
 `;
@@ -700,7 +700,7 @@ function updateBrowseIndex(entries) {
       (r) =>
         `<p style="font-weight:700;color:var(--ink);break-inside:avoid;">${escapeHtml(REGION_LABEL[r])}</p>\n` +
         byRegion[r]
-          .map((e) => `<a href="trail.html?id=${encodeURIComponent(e.id)}" style="display:block;color:inherit;">${escapeHtml(e.name)}</a>`)
+          .map((e) => `<a href="trail.html?id=${encodeURIComponent(e.slug || e.id)}" style="display:block;color:inherit;">${escapeHtml(e.name)}</a>`)
           .join('\n')
     )
     .join('\n');

@@ -110,19 +110,19 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     expect(compare).toContain("const dogParam = params.get('dog') || (deviceDogProfile() ? 'custom' : 'medium');");
     expect(compare).toContain("if(dog === 'custom') return deviceDogProfile() || profiles.medium;");
     expect(compare).toContain('dog:dogParam,');
-    expect(read('compare.html')).toContain('compare-page.js?v=20260917-1');
+    expect(read('compare.html')).toContain('compare-page.js?v=20261007-1');
   });
 
   test('the collections map colours for the device dog when nobody is signed in', () => {
     const page = read('collections-page.js');
     expect(page).toMatch(/if\(!auth \|\| !auth\.currentUser[^\n]*\)\{\s*const device = deviceDogProfile\(\);\s*if\(device\) applyMatchSubject\(subjectFor\(device\)\);/);
     expect(page).toContain('matchSubject || scoring.GUEST_SUBJECT');
-    expect(read('collections.html')).toContain('collections-page.js?v=20260918-1');
+    expect(read('collections.html')).toContain('collections-page.js?v=20261007-1');
   });
 
   test('the homepage ships the new controller and guest-context versions', () => {
     const html = read('index.html');
-    expect(html).toContain('homepage-search.js?v=20261002-1');
+    expect(html).toContain('homepage-search.js?v=20261007-1');
     expect(html).toContain('guest-context.js?v=20260917-2');
     expect(read('browse-trails.html')).toContain('guest-context.js?v=20260917-2');
   });

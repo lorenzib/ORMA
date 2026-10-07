@@ -9,6 +9,15 @@ const { applyVerifiedTrailOverrides } = require('./verified-trail-overrides');
 const { applyTrailImageOverrides } = require('./trail-image-overrides');
 const { applyLiftAccess } = require('./lift-access');
 const { normaliseRouteRef, applyRouteNumberEvidence } = require('./route-number-evidence');
+// The same slug the static page generator names its files after, from the same
+// function and the same trail list, so trails/<slug>.html and
+// trail.html?id=<slug> can never disagree. assignSlugs suffixes a collision
+// with the trail's id, so it is order-dependent: deriving it from
+// loadProductionTrails (what generate-trail-pages reads) rather than from this
+// script's own loadTrails, which omits trail-audits.js, is what keeps the two
+// in step. A test asserts every published slug equals its page filename.
+const { assignSlugs } = require('./trail-adapter');
+const { loadProductionTrails } = require('./load-production-trails');
 
 const root = path.resolve(__dirname, '..');
 const outDir = path.join(root, 'data', 'regions');
@@ -166,7 +175,26 @@ const manifest = {
   generatedAt: new Date(Math.max(...sourceFiles.map(file => fs.statSync(path.join(root, file)).mtimeMs))).toISOString(),
   regions: {},
   trailRegion: {},
+  // A readable URL needs both directions: slugToId to answer "what did the
+  // visitor ask for", trailSlug to answer "what should this link say". The ids
+  // stay the key -- they address the detail files, the Firestore collections
+  // keyed by trail, and every link anyone has already shared -- so an osm id in
+  // a URL must keep resolving forever.
+  trailSlug: {},
+  slugToId: {},
 };
+
+{
+  const canonical = loadProductionTrails(root);
+  const slugs = assignSlugs(canonical);
+  canonical.forEach((trail, index) => {
+    const slug = slugs[index];
+    if (!slug) return;
+    manifest.trailSlug[trail.id] = slug;
+    // An id is also accepted as a slug, so resolution needs no special case.
+    if (!manifest.slugToId[slug]) manifest.slugToId[slug] = trail.id;
+  });
+}
 
 for (const [region, regionTrails] of Object.entries(byRegion)) {
   manifest.regions[region] = {
