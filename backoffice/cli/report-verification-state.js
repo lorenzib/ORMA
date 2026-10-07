@@ -253,6 +253,39 @@ async function buildVerificationReport({store}){
       editorialReadyForReview:(execution?.outputs||[]).filter(output=>output.status==='ready-for-review').length,
       publicationStaging:(staging?.items||[]).length,
       publicationReady:(staging?.items||[]).filter(item=>item.state==='ready-for-publication-preview').length,
+      // Which of the three ways a staged trail stops short, per trail.
+      //
+      // "3 staged, 0 ready" is the last number before the website and it named
+      // no cause, so the only way to tell a decision waiting on a moderator
+      // from a mapping defect was to open the desk. build-publication-staging
+      // already records both: missingApprovals when a copy or asset decision
+      // has not been made, publicationMappingBlockers when the item cannot be
+      // pointed at a website record. Saying which is the difference between
+      // "approve six drafts" and "fix a bug".
+      publicationStalls:(staging?.items||[]).map(item=>({
+        candidateId:item.candidateId||null,
+        targetTrailId:item.targetTrailId||null,
+        operation:item.operation||null,
+        state:item.state||null,
+        assetPolicy:item.assetPolicy||null,
+        missingApprovals:item.missingApprovals||[],
+        publicationMappingBlockers:item.publicationMappingBlockers||[],
+        // Whether the copy and asset decisions exist at all, as against
+        // existing and saying something other than approve.
+        copyDecision:item.sourceApprovals?.copy?.action||null,
+        visualDecision:item.sourceApprovals?.visual?.action||null,
+      })),
+      // An editorial output is written before it is reviewed, so a count of
+      // "ready-for-review" says work is waiting without saying for whom --
+      // and it keeps saying it after the review happened, because an output's
+      // status is not moved when its decision is recorded. Name the job, so a
+      // draft genuinely awaiting a reader can be told from one whose decision
+      // was made and whose trail is already on the website.
+      editorialByStatus:tally((execution?.outputs||[]),output=>String(output.status||'(unset)')),
+      editorialOutputJobs:(execution?.outputs||[]).map(output=>({
+        jobId:output.jobId||null,status:output.status||null,
+        candidateId:output.candidateId||null,
+      })),
     },
     routeGuidance:routeGuidanceDiagnosis(items),
     underResolution:claimsUnderResolution(trails),

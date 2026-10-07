@@ -40,8 +40,30 @@ describe('verification state report',()=>{
     });
     const report=await buildVerificationReport({store:target});
     expect(report.byState).toEqual([['red-team',2]]);
-    expect(report.downstream).toEqual({editorialOutputs:2,editorialReadyForReview:1,
-      publicationStaging:2,publicationReady:1});
+    expect(report.downstream).toEqual(expect.objectContaining({editorialOutputs:2,editorialReadyForReview:1,
+      publicationStaging:2,publicationReady:1}));
+    expect(report.downstream.editorialByStatus).toEqual([['ready-for-review',1],['draft',1]]);
+  });
+
+  test('says why each staged trail stopped short of the website',async()=>{
+    // "3 staged, 0 ready" was the last number before the website and it named
+    // no cause, so a moderator decision and a mapping defect were
+    // indistinguishable without opening the desk.
+    const target=store({
+      'trail-orchestration':{trails:[]},
+      'publication-staging':{items:[
+        {candidateId:'osm-1',targetTrailId:'t1',operation:'update-existing',state:'waiting-content-approvals',
+         missingApprovals:['editorial-approval'],publicationMappingBlockers:[],
+         sourceApprovals:{copy:null,visual:{action:'approve'}}},
+        {candidateId:'osm-2',state:'waiting-publication-mapping',missingApprovals:[],
+         publicationMappingBlockers:['website-target-mapping','route-number-guidance']},
+      ]},
+    });
+    const [waitingOnHer,waitingOnMapping]=(await buildVerificationReport({store:target})).downstream.publicationStalls;
+    expect(waitingOnHer).toEqual(expect.objectContaining({candidateId:'osm-1',
+      missingApprovals:['editorial-approval'],copyDecision:null,visualDecision:'approve'}));
+    expect(waitingOnMapping).toEqual(expect.objectContaining({candidateId:'osm-2',
+      publicationMappingBlockers:['website-target-mapping','route-number-guidance']}));
   });
 
   test('reports empty state without throwing and writes nothing',async()=>{
