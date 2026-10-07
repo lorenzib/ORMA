@@ -116,6 +116,26 @@ Pages deployment, or supply the known deployed commit to verify that exact
 deployment. The workflow discovers and validates the successful run itself; do
 not paste an unverified run URL or edit the Firestore receipt directly.
 
+## Draining the verification queue
+
+The scheduled worker runs ten specialist jobs every three hours. When the
+queue is longer than that clears -- the state report's `specialistJobs` says
+how many are queued -- run **ORMA verification drain** from the Actions tab.
+It repeats the worker's pass back to back under the worker's lock and stops
+on the first of: two idle passes (nothing left to claim), the clock budget,
+or the Firestore read or write budget. The defaults (240 minutes, 20,000
+reads, 8,000 writes) leave most of the free tier's day to the crons and the
+desk; lower them on a day the state report has already been run several
+times, because every report is reads too.
+
+The run summary and the `verification-drain` artifact carry the ledger: reads,
+writes and jobs per pass, and reads per job. That is the number to size a
+budget from -- and the number that says what Blaze would cost.
+
+The drain publishes nothing. A trail it carries to editorial or publication
+is picked up by the next scheduled worker pass, which materialises, opens
+the pull request, merges after Validate ORMA, and deploys.
+
 ## Activation and verification
 
 Required repository variables:

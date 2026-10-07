@@ -42,6 +42,9 @@ function workReceipt(input = {}){
     failed:Number(work.failed || 0),
     providerParked:Boolean(work.providerParked),
     message:text(work.message, 1200) || null,
+    // Firestore documents read and written by the pass. Absent when the pass
+    // predates the meter; null never means zero.
+    ...(work.usage && Number.isFinite(Number(work.usage.reads)) ? { usage:{ reads:Number(work.usage.reads), writes:Number(work.usage.writes || 0) } } : {}),
   };
 }
 

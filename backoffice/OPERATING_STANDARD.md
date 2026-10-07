@@ -287,6 +287,18 @@ OpenAI remains in use for trail verification and for scouting additional trails.
   a solo operator does not need quarter-hour batches, and the wider spacing keeps
   Firestore within its daily quota. Hazard freshness does not depend on this
   cadence; the hazard watch runs on its own three-hour schedule.
+- Verification drain: run by hand (`orma-verification-drain.yml`) when the
+  queue is longer than the three-hourly cadence can clear. It repeats the
+  worker's pass back to back under the worker's own lock, so it never runs
+  beside a scheduled pass, and stops on the first of: two idle passes, the
+  clock budget, or the Firestore read budget and write budget it was started
+  with (defaults 20,000 reads and 8,000 writes, leaving the rest of the day's
+  quota to the crons and the desk). Every pass is metered -- the store counts
+  the documents it reads and writes -- and the ledger is written once, as the
+  `verification-drain` artifact, so the cost of a pass is a measurement. The
+  drain decides nothing the scheduled worker would not: it runs the same
+  lanes with the same policy, and leaves publication (materialise, pull
+  request, merge, deploy) to the scheduled worker that follows it.
 - New Trail scouting: paused for the duration of the ORMA Verified backfill.
   Each newly admitted trail opens a new verification gap faster than the backfill
   closes one, so intake stays paused until the lane reaches full coverage of the

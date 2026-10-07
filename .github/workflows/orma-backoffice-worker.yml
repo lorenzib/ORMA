@@ -279,6 +279,8 @@ jobs:
           ORMA_WORKER_WORK_FAILED: ${{ steps.process_queues.outputs.work_failed }}
           ORMA_WORKER_WORK_PROVIDER_PARKED: ${{ steps.process_queues.outputs.work_provider_parked }}
           ORMA_WORKER_WORK_MESSAGE: ${{ steps.process_queues.outputs.work_message }}
+          ORMA_WORKER_WORK_READS: ${{ steps.process_queues.outputs.work_reads }}
+          ORMA_WORKER_WORK_WRITES: ${{ steps.process_queues.outputs.work_writes }}
         run: |
           outcome="success"
           stage=""

@@ -26,7 +26,7 @@ function blockedLanes(result = {}){
 
 // GitHub step outputs are the only channel back to the workflow that survives
 // the step boundary; the log is for people.
-async function reportWork(work,env=process.env,pipeline=null){
+async function reportWork(work,env=process.env,pipeline=null,usage=null){
   const outcome=workOutcome(work);
   console.log(`[orma-live-worker] work ${outcome} · ${workMessage(work,pipeline)}`);
   if(!env.GITHUB_OUTPUT) return null;
@@ -40,44 +40,56 @@ async function reportWork(work,env=process.env,pipeline=null){
     `work_succeeded=${work.succeeded}`,
     `work_failed=${work.failed}`,
     `work_provider_parked=${work.providerParked}`,
+    // Documents read and written this pass, so the health receipt can say what
+    // a pass costs against the daily Firestore quota.
+    `work_reads=${usage?Number(usage.reads||0):''}`,
+    `work_writes=${usage?Number(usage.writes||0):''}`,
     `work_message<<${delimiter}\n${workMessage(work,pipeline)}\n${delimiter}`,
   ];
   await fs.appendFile(env.GITHUB_OUTPUT,`${lines.join('\n')}\n`);
   return outcome;
 }
 
-async function main(){
-  if(!process.env.OPENAI_API_KEY) throw new Error('OPENAI_API_KEY is required');
-  const workerId = `github-${process.env.GITHUB_RUN_ID || 'manual'}-${process.env.GITHUB_RUN_ATTEMPT || '1'}`;
-  const specialistCandidateId=String(process.env.ORMA_SPECIALIST_CANDIDATE_ID||'').trim()||null;
-  const specialistLimit=positiveInteger(process.env.ORMA_SPECIALIST_LIMIT,10);
-  const workflowRunUrl=process.env.GITHUB_RUN_ID&&process.env.GITHUB_REPOSITORY
-    ?`${process.env.GITHUB_SERVER_URL||'https://github.com'}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`:null;
-  const result = await runLiveBackofficeWorker(new FirestoreBackofficeStore(), { workerId,runId:process.env.GITHUB_RUN_ID||null,
-    workflowRunUrl,campaignTrigger:'worker-catch-up',campaignEnabled:process.env.ORMA_CAMPAIGN_AUTOMATION_ENABLED==='true',
-    campaignLimit:positiveInteger(process.env.ORMA_CAMPAIGN_LIMIT,10),campaignCapacity:positiveInteger(process.env.ORMA_CAMPAIGN_CAPACITY,15),
-    campaignQueueCapacity:positiveInteger(process.env.ORMA_CAMPAIGN_QUEUE_CAPACITY,40),
+// One pass's options, read from the workflow environment. The drain
+// (cli/drain-verification-queue.js) runs the same pass in a loop and must not
+// drift from the scheduled worker, so both read them here.
+function workerOptions(env=process.env,{workerId}={}){
+  const specialistCandidateId=String(env.ORMA_SPECIALIST_CANDIDATE_ID||'').trim()||null;
+  const specialistLimit=positiveInteger(env.ORMA_SPECIALIST_LIMIT,10);
+  const workflowRunUrl=env.GITHUB_RUN_ID&&env.GITHUB_REPOSITORY
+    ?`${env.GITHUB_SERVER_URL||'https://github.com'}/${env.GITHUB_REPOSITORY}/actions/runs/${env.GITHUB_RUN_ID}`:null;
+  return { workerId:workerId||`github-${env.GITHUB_RUN_ID || 'manual'}-${env.GITHUB_RUN_ATTEMPT || '1'}`,runId:env.GITHUB_RUN_ID||null,
+    workflowRunUrl,campaignTrigger:'worker-catch-up',campaignEnabled:env.ORMA_CAMPAIGN_AUTOMATION_ENABLED==='true',
+    campaignLimit:positiveInteger(env.ORMA_CAMPAIGN_LIMIT,10),campaignCapacity:positiveInteger(env.ORMA_CAMPAIGN_CAPACITY,15),
+    campaignQueueCapacity:positiveInteger(env.ORMA_CAMPAIGN_QUEUE_CAPACITY,40),
     // A gate standing on findings only an agent can supply is dispatched to
     // that agent without waiting for a moderator who cannot supply them.
     // Bounded because each dispatch costs a model call on a metered account.
-    gateDispatchEnabled:process.env.ORMA_GATE_DISPATCH_ENABLED!=='false',
-    gateDispatchLimit:positiveInteger(process.env.ORMA_GATE_DISPATCH_LIMIT,3),
+    gateDispatchEnabled:env.ORMA_GATE_DISPATCH_ENABLED!=='false',
+    gateDispatchLimit:positiveInteger(env.ORMA_GATE_DISPATCH_LIMIT,3),
     // What is left at a gate after the dispatch gets a cited recommendation
     // beside each blocker. Smaller budget than the dispatch: an adjudication is
     // a web-search call, and it recommends rather than moving anything.
-    gateAdjudicationEnabled:process.env.ORMA_GATE_ADJUDICATION_ENABLED!=='false',
-    gateAdjudicationLimit:positiveInteger(process.env.ORMA_GATE_ADJUDICATION_LIMIT,2),
-    limit:5,specialistLimit,specialistCandidateId });
+    gateAdjudicationEnabled:env.ORMA_GATE_ADJUDICATION_ENABLED!=='false',
+    gateAdjudicationLimit:positiveInteger(env.ORMA_GATE_ADJUDICATION_LIMIT,2),
+    limit:5,specialistLimit,specialistCandidateId };
+}
+
+async function main(){
+  if(!process.env.OPENAI_API_KEY) throw new Error('OPENAI_API_KEY is required');
+  const store=new FirestoreBackofficeStore();
+  const result = await runLiveBackofficeWorker(store, workerOptions(process.env));
   const work = summariseWorkAttempted(result);
-  console.log(JSON.stringify({ ...result, work: { ...work, outcome:workOutcome(work), message:workMessage(work,result.pipeline) } }, null, 2));
+  const usage=store.usage?store.usage.snapshot():null;
+  console.log(JSON.stringify({ ...result, usage, work: { ...work, outcome:workOutcome(work), message:workMessage(work,result.pipeline) } }, null, 2));
   // Handed to the workflow rather than signalled by the exit code: a run where
   // every job was refused still completed every step it was asked to run, and
   // failing it here would hide the publication lanes behind a red X that has
   // nothing to do with them.
-  await reportWork(work,process.env,result.pipeline);
+  await reportWork(work,process.env,result.pipeline,usage);
   if(blockedLanes(result).length) process.exitCode = 1;
 }
 
 if(require.main === module) main().catch(error => { console.error(`[orma-live-worker] ${error.stack || error.message}`); process.exitCode = 1; });
 
-module.exports = { main,positiveInteger,blockedLanes,reportWork,REVIEW_LANES };
+module.exports = { main,positiveInteger,blockedLanes,reportWork,workerOptions,REVIEW_LANES };
