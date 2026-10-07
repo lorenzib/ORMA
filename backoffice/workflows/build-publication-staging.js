@@ -113,6 +113,36 @@ function verifiedFieldsFor(item, target, trailsById){
   return structuredFieldsFromTrail(trailsById.get(target.trailId));
 }
 
+const EXISTING_IMAGE_FIELDS=Object.freeze(['imageIcon','imageCredit','heroImage','imageSourcePage','imageCreator',
+  'imageLicence','imageLicenceUrl','imageCreditText','imageAlt','imageSourceType']);
+
+function existingImageFields(trail){
+  if(!trail||!String(trail.imageIcon||'').trim()||!String(trail.heroImage||'').trim()
+    ||!String(trail.imageAlt||'').trim()||!String(trail.imageCreditText||trail.imageCredit||'').trim())return null;
+  return Object.fromEntries(EXISTING_IMAGE_FIELDS.filter(key=>trail[key]!==undefined).map(key=>[key,trail[key]]));
+}
+
+function verifiedPoiFields(item){
+  const facts=item?.lockedFacts||[];
+  const unknown=new Set((item?.acceptedUnknowns||[]).map(entry=>String(entry.blocker||'').split(':')[0]));
+  const atPoint=fact=>fact.humanAcceptedFinding==='supported-proposal'&&String(fact.entityName||'').trim()
+    &&Number.isFinite(fact.location?.lat)&&Number.isFinite(fact.location?.lng);
+  const water=facts.filter(fact=>fact.claimId==='water'&&atPoint(fact)).map(fact=>({
+    km:Number.isFinite(fact.location.km)?fact.location.km:undefined,label:fact.entityName,
+    lat:fact.location.lat,lng:fact.location.lng,
+  }));
+  const facilities=facts.filter(fact=>['mountain-huts','food-drink'].includes(fact.claimId)&&atPoint(fact));
+  const rifugi=[...new Map(facilities.map(fact=>[`${fact.entityName}|${fact.location.lat}|${fact.location.lng}`,{
+    km:Number.isFinite(fact.location.km)?fact.location.km:undefined,name:fact.entityName,
+    lat:fact.location.lat,lng:fact.location.lng,
+  }])).values()];
+  const fields={};
+  if(water.length||unknown.has('terrainPoi/water'))fields.waterSources=water;
+  if(rifugi.length||unknown.has('terrainPoi/mountain-huts')||unknown.has('terrainPoi/food-drink'))fields.rifugi=rifugi;
+  if(unknown.has('terrainPoi/livestock')||unknown.has('terrainPoi/animals'))fields.livestockPresence='unknown';
+  return fields;
+}
+
 function buildPublicationStaging(editorialQueue, execution, reviewQueue, options = {}){
   const at = options.at || new Date().toISOString();
   const decisions = latestDecisions(reviewQueue);
@@ -126,7 +156,9 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
     const copyDecision = decisions.get(copyJobId) || null;
     const visualDecision = decisions.get(visualJobId) || null;
     const copyApproved = copyDecision?.action === 'approve';
-    const visualApproved = visualDecision?.action === 'approve';
+    const existingTrail=target?trailsById.get(target.trailId):null;
+    const retainedImage=item.assetPolicy==='preserve-existing'?existingImageFields(existingTrail):null;
+    const visualApproved = item.assetPolicy==='preserve-existing'?Boolean(retainedImage):visualDecision?.action === 'approve';
     const missingApprovals = [!copyApproved && 'editorial-approval', !visualApproved && 'asset-and-licensing-approval'].filter(Boolean);
     const copyOutput = outputs.get(copyJobId);
     const visualOutput = outputs.get(visualJobId);
@@ -147,18 +179,21 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
         desc: `${about}\n\n${dog}`,
         tips: practical,
         routeRef: target.routeRef,
-        imageIcon: hero.assetUrl,
-        imageCredit: { text:hero.credit, url:hero.sourcePageUrl },
-        heroImage: hero.assetUrl,
-        imageSourcePage: hero.sourcePageUrl,
-        imageCreator: hero.creator,
-        imageLicence: hero.license,
-        imageLicenceUrl: hero.licenseUrl,
-        imageCreditText: hero.credit,
-        imageAlt: hero.altText,
+        ...(retainedImage||{
+          imageIcon: hero.assetUrl,
+          imageCredit: { text:hero.credit, url:hero.sourcePageUrl },
+          heroImage: hero.assetUrl,
+          imageSourcePage: hero.sourcePageUrl,
+          imageCreator: hero.creator,
+          imageLicence: hero.license,
+          imageLicenceUrl: hero.licenseUrl,
+          imageCreditText: hero.credit,
+          imageAlt: hero.altText,
+        }),
         ormaVerified: true,
         routeNumberGuidance:routeGuidance,
         ...verifiedFields,
+        ...verifiedPoiFields(item),
         // After verifiedFields, which carry the previous record forward: what the
         // dossier established outranks what the trail used to say.
         ...(seasonalSuitabilityFrom(item)||{}),
@@ -167,8 +202,11 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
         graduation:{ status:'verified', required:['photo','route','routeNumbers','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'], completed:['photo','route','routeNumbers','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'] },
         verifiedAt: item.verifiedAt,
       },
-      lockedEvidence: { dossierRef: item.dossierRef, facts: item.lockedFacts, verificationConditions: item.verificationConditions },
-      humanGate: 'website-preview-and-publication-approval',
+      lockedEvidence: { dossierRef: item.dossierRef, facts: item.lockedFacts, verificationConditions: item.verificationConditions,
+        acceptedUnknowns:item.acceptedUnknowns||[] },
+      assetPolicy:item.assetPolicy||'source-new-asset',
+      humanGate:item.assetPolicy==='preserve-existing'?'automated-existing-trail-publication-policy':'website-preview-and-publication-approval',
+      policyGate: item.assetPolicy==='preserve-existing'?'existing-trail-evidence-and-quality-policy':'website-preview-and-publication-approval',
       publicationAuthorized: false,
       publicMutationAllowed: false,
     };
@@ -189,4 +227,4 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
   };
 }
 
-module.exports = {seasonalSuitabilityFrom, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };
+module.exports = {seasonalSuitabilityFrom,verifiedPoiFields, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS,EXISTING_IMAGE_FIELDS,existingImageFields, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };

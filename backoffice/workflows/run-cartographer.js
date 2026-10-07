@@ -88,7 +88,9 @@ async function runCompositeCartographer(candidate, dossier, options = {}){
     reconstructed.relation, options);
   const blockers = [...reconstructed.assessment.issues, ...((routeConformance && routeConformance.issues) || [])];
   if(comparison.withinOfficialDistanceTolerance === false) blockers.push('official-distance-conflict');
-  if(comparison.officialDistanceKm === null) blockers.push('official-distance-unavailable');
+  // Many valid local routes publish a line but no distance. Missing comparison
+  // data is recorded in `comparison`; it is not evidence that the geometry is
+  // wrong. A contradictory published distance still blocks above.
   return {
     contractVersion: VERSION,
     candidateId: candidate.id,
@@ -156,7 +158,7 @@ async function runCartographer(candidate, dossier, options = {}){
     reconstructed.relation, options);
   const blockers = [...reconstructed.assessment.issues, ...((routeConformance && routeConformance.issues) || [])];
   if(comparison.withinOfficialDistanceTolerance === false) blockers.push('official-distance-conflict');
-  if(comparison.officialDistanceKm === null) blockers.push('official-distance-unavailable');
+  // Missing official distance stays unknown; contradiction still blocks.
   const result = {
     contractVersion: VERSION,
     candidateId: candidate.id,

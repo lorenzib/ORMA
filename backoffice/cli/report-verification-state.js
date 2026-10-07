@@ -39,14 +39,10 @@ function tally(list,pick){
 // found them fine. A report that contradicts the thing it reports on is worse
 // than no report: on 6 October it said all four claims failed on all seven
 // dossiers, none of which was true.
-const {supportedLogisticsClaim,authoritativeRecommendedStart}=require('../workflows/compile-verified-dossier');
+const {supportedLogisticsClaim,VERIFICATION_ROUTE_CLAIMS}=require('../workflows/compile-verified-dossier');
 
-// Since #472 only the start blocks verification. The three numbered-route claims
-// earn "official route confirmed" and are reported so a reader can see what a
-// trail would gain, never as something holding it back.
-const VERIFICATION_CLAIMS=['recommended-start'];
-const OFFICIAL_ROUTE_CLAIMS=['route-number-status','route-number-sequence','route-number-switches'];
-const ROUTE_GUIDANCE_CLAIMS=[...VERIFICATION_CLAIMS,...OFFICIAL_ROUTE_CLAIMS];
+const VERIFICATION_CLAIMS=[...VERIFICATION_ROUTE_CLAIMS];
+const ROUTE_GUIDANCE_CLAIMS=[...VERIFICATION_CLAIMS];
 
 /** Every logistics claim with this id, newest last, across all of the outputs. */
 function logisticsClaims(item,id){
@@ -80,9 +76,7 @@ function routeGuidanceDiagnosis(items){
         const blocksVerification=VERIFICATION_CLAIMS.includes(id);
         // The gate's own verdict, asked of the whole review exactly as
         // compileVerifiedDossier asks it.
-        const passes=blocksVerification
-          ? Boolean(authoritativeRecommendedStart(item))
-          : Boolean(supportedLogisticsClaim(item,id));
+        const passes=Boolean(supportedLogisticsClaim(item,id));
         if(!claim)return {id,present:false,blocksVerification,passes};
         return {
           id,present:true,blocksVerification,passes,

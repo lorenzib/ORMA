@@ -72,15 +72,14 @@ describe('a Ranger claim reaches the operational facts table', () => {
   });
 
   test('an unresolved finding is not a verified fact, even in an accepted dossier', async () => {
-    // An accepted dossier marks every claim supported, because that is what the
-    // human accepted it to mean. Accepting a record that no rule is published
-    // accepts the absence, not a policy.
+    // Accepting an optional unknown lets the dossier finish; it does not turn
+    // that unknown into a supported policy or publish it downstream.
     const { dossier, facts } = await factsFor([
       claim({ finding:'unresolved', rule:'contact-required', entityName:'Rifugio Auronzo',
         proposedValue:'No dog rule published; a walker must ask', blockers:['no published policy'] }),
     ], 'tre-cime');
 
-    expect(dossier.claims.find(item => item.claimId === 'rifugio-dog-policy').state).toBe('supported');
+    expect(dossier.claims.find(item => item.claimId === 'rifugio-dog-policy')).toBeUndefined();
     expect(facts).toEqual([]);
   });
 

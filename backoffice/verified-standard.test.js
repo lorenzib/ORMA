@@ -25,13 +25,15 @@ const review=(logisticsClaims)=>({reviewId:'r-1',approvalAllowed:true,specialist
 const trail={candidateId:'osm-1',trailId:'osm-1',trailName:'Example Trail'};
 
 describe('what ORMA Verified requires',()=>{
-  test('a trail with no numbered route sheet can be verified',()=>{
-    // The case that matters: 101 catalogue trails have no such sheet and never
-    // will, and six reached the gate and were sent back for exactly this.
-    const dossier=compileVerifiedDossier(review([START]),trail,{at:'2026-09-18T00:00:00Z'});
+  test('a genuinely unnumbered trail can be verified with sourced landmark guidance',()=>{
+    const landmarkGuidance=[
+      claim('route-number-status',{proposedValue:'This route is landmark-led and has no numbered reference.'}),
+      claim('route-number-sequence',{proposedValue:'From the north car park follow the chapel, lake shore and signed return path.'}),
+      claim('route-number-switches',{proposedValue:'At the chapel fork keep left for the lake shore; at the south bridge turn onto the return path.'}),
+    ];
+    const dossier=compileVerifiedDossier(review([START,...landmarkGuidance]),trail,{at:'2026-09-18T00:00:00Z'});
     expect(dossier.ormaVerification.status).toBe('verified');
-    expect(dossier.ormaVerification.officialRoute).toEqual({confirmed:false,
-      missingClaims:['route-number-status','route-number-sequence','route-number-switches']});
+    expect(dossier.ormaVerification.officialRoute).toEqual({confirmed:true,missingClaims:[]});
   });
 
   test('a trail that does have one is verified and marked official',()=>{
@@ -40,27 +42,29 @@ describe('what ORMA Verified requires',()=>{
     expect(verificationRecord(dossier).officialRouteConfirmed).toBe(true);
   });
 
-  test('the marker reaches the registry either way, so the public side need not reopen the dossier',()=>{
-    expect(verificationRecord(compileVerifiedDossier(review([START]),trail)).officialRouteConfirmed).toBe(false);
+  test('the marker reaches the registry, so the public side need not reopen the dossier',()=>{
+    expect(verificationRecord(compileVerifiedDossier(review([START,...ROUTE_NUMBER_CLAIMS]),trail)).officialRouteConfirmed).toBe(true);
   });
 
   test('a walk with no sourced starting point still cannot be verified',()=>{
     // Loosening the gate is not removing it: a walk nobody can find the start
     // of cannot be walked, and this one is usually answerable from a park page.
     expect(()=>compileVerifiedDossier(review([...ROUTE_NUMBER_CLAIMS]),trail))
-      .toThrow(/requires a sourced recommended start/);
+      .toThrow(/requires sourced route guidance.*recommended-start/);
     expect(()=>assertRouteGuidance(review([]),trail)).toThrow(/recommended-start/);
   });
 
   test('a recommended start without a named authority does not count',()=>{
     const unsourced=claim('recommended-start',{sources:[{url:'https://blog.example/post'}]});
-    expect(()=>compileVerifiedDossier(review([unsourced]),trail)).toThrow(/requires a sourced recommended start/);
+    expect(()=>compileVerifiedDossier(review([unsourced,...ROUTE_NUMBER_CLAIMS]),trail)).toThrow(/requires sourced route guidance.*recommended-start/);
   });
 
-  test('missing route numbers are no longer a blocking reason at the gate',()=>{
-    expect(routeGuidanceBlockingReasons([{agentId:'logistics',result:{claims:[START]}}])).toEqual([]);
+  test('missing route-following instructions block the gate',()=>{
+    expect(routeGuidanceBlockingReasons([{agentId:'logistics',result:{claims:[START]}}]))
+      .toEqual(ROUTE_NUMBER_CLAIMS.map(claim=>`logistics/${claim.id}: sourced, reader-usable route guidance is required`));
     expect(routeGuidanceBlockingReasons([{agentId:'logistics',result:{claims:[]}}]))
-      .toEqual(['logistics/recommended-start: a sourced recommended start is required']);
+      .toEqual(['recommended-start',...ROUTE_NUMBER_CLAIMS.map(claim=>claim.id)]
+        .map(id=>`logistics/${id}: sourced, reader-usable route guidance is required`));
   });
 
   test('officialRouteConfirmation names exactly what is missing',()=>{
@@ -69,11 +73,10 @@ describe('what ORMA Verified requires',()=>{
   });
 });
 
-describe('loosening the gate must not re-queue trails that already passed it',()=>{
+describe('the route-guidance contract',()=>{
   test('the route-guidance contract is unchanged, so nothing is pulled back again',()=>{
-    // The hash is derived from what logistics is ASKED for, which is untouched.
-    // Only what the gate REQUIRES moved. If this value ever changes, every trail
-    // standing at the dossier gate is withdrawn and made to re-earn its claims.
+    // The hash is derived from what logistics is asked for. All four claims are
+    // now also required by the evidence-policy gate.
     expect(ROUTE_GUIDANCE_CONTRACT).toBe('rg-58766aa8');
     expect(ROUTE_GUIDANCE_CLAIM_IDS).toEqual(['recommended-start','route-number-status','route-number-sequence','route-number-switches']);
   });

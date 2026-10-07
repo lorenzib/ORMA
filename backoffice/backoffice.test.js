@@ -1326,7 +1326,7 @@ describe('ORMA backoffice MVP', () => {
     expect(reviewQueue.items[0]).toEqual(expect.objectContaining({approvalAllowed:false,blockingReasons:['not-closed-loop']}));
     // Approving without addressing the blocker still throws; a moderator may now
     // accept one with a reason instead, which dossier-adjudication.test.js covers.
-    expect(()=>applyDossierReview(orchestration,reviewQueue,{reviewId:reviewQueue.items[0].reviewId,action:'approve'},{at})).toThrow('were not addressed');
+    expect(()=>applyDossierReview(orchestration,reviewQueue,{reviewId:reviewQueue.items[0].reviewId,action:'approve'},{at})).toThrow('cannot be accepted');
   });
 
   test('geometry approval queues the three independent evidence specialists', () => {
@@ -1359,22 +1359,20 @@ describe('ORMA backoffice MVP', () => {
 
   test('the final gate locks approval when any specialist finding is unresolved', () => {
     expect(dossierBlockingReasons([{agentId:'redTeam',result:{recommendation:'needs-resolution',claims:[{id:'parking',finding:'unresolved',blockers:['No authority source']}]} }]))
-      .toEqual(expect.arrayContaining(['logistics/recommended-start: a sourced recommended start is required','redTeam: recommendation is needs-resolution','redTeam/parking: unresolved','redTeam/parking: No authority source']));
+      .toEqual(expect.arrayContaining(['logistics/recommended-start: sourced, reader-usable route guidance is required','logistics/route-number-sequence: sourced, reader-usable route guidance is required','redTeam: recommendation is needs-resolution','redTeam/parking: unresolved','redTeam/parking: No authority source']));
   });
 
-  test('a missing numbered route sheet does not block verification', () => {
-    // "ORMA Verified" answers whether the walk is safe for a dog. Whether a
-    // comune published a route sheet is a fact about municipal record-keeping;
-    // 101 catalogue trails have none and never will. It is still researched and
-    // still recorded -- it earns "official route confirmed" -- but it is not a
-    // wall in front of the safety facts.
+  test('reader-usable route guidance is required even when a route is unnumbered', () => {
     const withStartOnly=[{agentId:'logistics',result:{claims:[{id:'recommended-start',finding:'supported-proposal',proposedValue:'North car park',
       sources:[{url:'https://comune.example/parco',authority:'Comune di Example'}]}]}}];
-    expect(dossierBlockingReasons(withStartOnly)).toEqual([]);
-    // The start itself is still required: a walk nobody can find the start of
-    // cannot be walked.
+    expect(dossierBlockingReasons(withStartOnly)).toEqual([
+      'logistics/route-number-status: sourced, reader-usable route guidance is required',
+      'logistics/route-number-sequence: sourced, reader-usable route guidance is required',
+      'logistics/route-number-switches: sourced, reader-usable route guidance is required',
+    ]);
     expect(dossierBlockingReasons([{agentId:'logistics',result:{claims:[]}}]))
-      .toEqual(['logistics/recommended-start: a sourced recommended start is required']);
+      .toEqual(['recommended-start','route-number-status','route-number-sequence','route-number-switches']
+        .map(id=>`logistics/${id}: sourced, reader-usable route guidance is required`));
   });
 
   test('final human approval compiles a durable ORMA Verified editorial handoff', () => {

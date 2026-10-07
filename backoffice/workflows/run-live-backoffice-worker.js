@@ -21,8 +21,10 @@ const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
 const {summarisePipeline}=require('./pipeline-health');
 const {runHazardVetting,applyHazardVetting,expireCommunityHazards}=require('./community-hazard-vetting');
+const {automateEvidenceGates,automateEditorialReviews,automatePublicationReviews}=require('./automate-existing-trail-verification');
 const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
+const {currentSiteTrails,isCurrentSiteTrail}=require('../services/public-site-trails');
 const path=require('path');
 
 function iso(value){
@@ -103,9 +105,15 @@ async function processRevisionJobs(store, options = {}){
 async function processEditorialFirstPassJobs(store,options={}){
   const workerId=options.workerId||`orma-worker-${randomUUID()}`;
   const queued=(await store.listJobs(['queued'])).filter(job=>job.jobType==='verified-trail-editorial-first-pass');const outcomes=[];
+  const production=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
+  const existingIds=new Set(currentSiteTrails(production).map(trail=>String(trail.id)));
   for(const pending of queued.slice(0,options.editorialLimit||4)){
     const job=await store.claimJob(pending.id,workerId);if(!job)continue;
     try{
+      if(job.agentId==='visualDirector'&&existingIds.has(String(job.candidateId))){
+        await store.completeJob(job.id,{resolution:'Existing licensed trail image retained by evidence policy.'});
+        outcomes.push({jobId:job.id,agentId:job.agentId,status:'existing-asset-retained'});continue;
+      }
       const [editorialQueue,dossier,execution]=await Promise.all([
         store.getArtifact('verified-trail-editorial-queue'),store.getArtifact(`verified-dossier-${job.candidateId}`),
         store.getArtifact('verified-trail-editorial-execution'),
@@ -210,7 +218,7 @@ async function ingestPublicationReviews(store){
       const existing=(artifact.requests||[]).find(request=>request.id===review.id);
       const request = existing||{ id:review.id, candidateId:review.candidateId, targetTrailId:item.targetTrailId,
         action:review.action, note:review.note || '', status:review.action === 'approve-for-pr-creation' ? 'approved-for-pr-creation' : review.action,
-        reviewedAt:iso(review.submittedAt), publicMutationAllowed:false };
+        reviewedAt:iso(review.submittedAt),approvedBy:review.submittedBy||'backoffice-moderator', publicMutationAllowed:false };
       const requests=existing?(artifact.requests||[]):[...(artifact.requests || []), request];
       await store.setArtifact('publication-requests', { ...artifact, updatedAt:new Date().toISOString(), requests });
       await store.markPublicationReview(review.id, 'processed', { outcome:request });
@@ -384,7 +392,7 @@ async function dispatchUnansweredGates(store,options={}){
   return outcomes;
 }
 
-async function ingestDossierReviews(store){
+async function ingestDossierReviews(store,options={}){
   const reviews=await store.listDossierReviews('queued'); const outcomes=[];
   for(const review of reviews){
     try{
@@ -406,7 +414,10 @@ async function ingestDossierReviews(store){
         const [registryValue,editorialQueue]=await Promise.all([store.getArtifact('orma-verified-registry-live'),store.getArtifact('verified-trail-editorial-queue')]);
         const registry=registryValue||{contractVersion:'1.0.0',status:'active',verified:[],publicMutationAllowed:false,publicationAuthorized:false};
         registry.generatedAt=iso(review.submittedAt);registry.verified=[...(registry.verified||[]).filter(item=>item.candidateId!==result.verifiedRecord.candidateId),result.verifiedRecord];
-        const handoff=buildVerifiedEditorialHandoff(result.verifiedDossier,result.verifiedRecord,editorialQueue,{at:iso(review.submittedAt)});
+        const production=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
+        const preserveExistingAssets=production.some(trail=>trail.id===result.verifiedDossier.trailId&&isCurrentSiteTrail(trail));
+        const handoff=buildVerifiedEditorialHandoff(result.verifiedDossier,result.verifiedRecord,editorialQueue,
+          {at:iso(review.submittedAt),preserveExistingAssets});
         for(const job of handoff.jobs){const created=typeof store.putJobIfAbsent==='function'?await store.putJobIfAbsent(job):(await store.putJob(job),true);if(created)result.jobs.push(job);}
         writes.push(store.setArtifact(`verified-dossier-${result.verifiedDossier.candidateId}`,result.verifiedDossier),
           store.setArtifact(`route-proposal-${result.verifiedDossier.candidateId}`,{contractVersion:'1.0.0',candidateId:result.verifiedDossier.candidateId,geometry:result.verifiedDossier.routeGeometry,approvedAt:iso(review.submittedAt),publicMutationAllowed:false}),
@@ -521,7 +532,8 @@ async function processCommunityHazardReports(store,options={}){
 
 async function runLiveBackofficeWorker(store, options = {}){
   const productionTrails=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
-  const campaign=await runScheduledTrailCampaign(store,productionTrails,{enabled:options.campaignEnabled===true,
+  const siteTrails=currentSiteTrails(productionTrails);
+  const campaign=await runScheduledTrailCampaign(store,siteTrails,{enabled:options.campaignEnabled===true,
     at:options.at,limit:options.campaignLimit||DEFAULT_CAMPAIGN_LIMIT,capacity:options.campaignCapacity||DEFAULT_TRAIL_CAPACITY,
     queueCapacity:options.campaignQueueCapacity,trigger:options.campaignTrigger,
     workflowRunUrl:options.workflowRunUrl,runId:options.runId});
@@ -545,19 +557,30 @@ async function runLiveBackofficeWorker(store, options = {}){
   // Before the apply step, so a gate dispatched here becomes a queued agent
   // job in this same pass rather than waiting three hours for the next one.
   const gateDispatches=await dispatchUnansweredGates(store,options);
-  const dossierReviews=await ingestDossierReviews(store);
+  const automatedGates=[];const dossierReviews=[];
+  automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:siteTrails}));
+  dossierReviews.push(...await ingestDossierReviews(store,{...options,productionTrails}));
   const advancementBefore=await advanceTrailOrchestration(store,options);
+  // Advancement can open a clean geometry or dossier gate. Decide it in the
+  // same pass so "automatic" never means "wait three hours at a human desk".
+  automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:siteTrails}));
+  dossierReviews.push(...await ingestDossierReviews(store,{...options,productionTrails}));
   const reviews = await ingestTrailReviews(store, options);
   const specialistJobs=await processTrailSpecialistJobs(store,{...options,productionTrails});
   const advancementAfter=await advanceTrailOrchestration(store,options);
-  const editorialFirstPass=await processEditorialFirstPassJobs(store,options);
+  automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:siteTrails}));
+  dossierReviews.push(...await ingestDossierReviews(store,{...options,productionTrails}));
+  const editorialFirstPass=await processEditorialFirstPassJobs(store,{...options,productionTrails:siteTrails});
   const jobs = await processRevisionJobs(store, options);
+  const automatedEditorial=await automateEditorialReviews(store,{...options,productionTrails:siteTrails});
+  reviews.push(...await ingestTrailReviews(store,{...options,productionTrails}));
+  const automatedPublications=await automatePublicationReviews(store,{...options,productionTrails:siteTrails});
   const publications = await ingestPublicationReviews(store);
   // Last, so it describes the pipeline as this pass leaves it. The desk cannot
   // afford to list jobs itself -- it polls once a minute against a free-tier
   // quota -- so the one place already holding every job writes the summary down.
   const pipeline = await recordPipelineHealth(store, options);
-  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
 }
 
 /**

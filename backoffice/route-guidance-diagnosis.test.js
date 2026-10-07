@@ -6,6 +6,8 @@ const {routeGuidanceBlockingReasons}=require('./workflows/compile-verified-dossi
 const sourced=url=>[{url,authority:'Comune di Example',label:'Official guide'}];
 const claim=(id,over={})=>({id,category:'logistics',finding:'supported-proposal',
   proposedValue:`value for ${id}`,sources:sourced(`https://comune.example/${id}`),blockers:[],...over});
+const GUIDANCE_IDS=['recommended-start','route-number-status','route-number-sequence','route-number-switches'];
+const guidance=(over={})=>GUIDANCE_IDS.map(id=>claim(id,over[id]||{}));
 const logistics=(claims,over={})=>({agentId:'logistics',jobId:'j1',
   result:{recommendation:'advance',openQuestions:[],claims,...over}});
 const item=(outputs,over={})=>({trailId:'osm-1',gateType:'dossier-approval',state:'awaiting-human',
@@ -17,8 +19,8 @@ describe('a diagnosis of a gate has to agree with the gate',()=>{
     // called every claim unsourced on all seven dossiers, while the gate --
     // which searches every output -- found them fine and listed no
     // route-guidance blocker at all.
-    const first=logistics([claim('recommended-start',{sources:[]})],{recommendation:'needs-resolution'});
-    const revised=logistics([claim('recommended-start')]);
+    const first=logistics(guidance({'recommended-start':{sources:[]}}),{recommendation:'needs-resolution'});
+    const revised=logistics(guidance());
     const review=item([first,revised]);
 
     // The gate is satisfied, so the diagnosis must say so too.
@@ -31,8 +33,8 @@ describe('a diagnosis of a gate has to agree with the gate',()=>{
 
   test('the standing recommendation is the newest, not the first',()=>{
     const review=item([
-      logistics([claim('recommended-start')],{recommendation:'needs-resolution'}),
-      logistics([claim('recommended-start')],{recommendation:'advance'}),
+      logistics(guidance(),{recommendation:'needs-resolution'}),
+      logistics(guidance(),{recommendation:'advance'}),
     ]);
     const [diagnosed]=routeGuidanceDiagnosis([review]);
     expect(diagnosed.recommendation).toBe('advance');
@@ -40,23 +42,19 @@ describe('a diagnosis of a gate has to agree with the gate',()=>{
   });
 
   test('a genuinely unsourced start still fails, and matches the gate',()=>{
-    const review=item([logistics([claim('recommended-start',{sources:[]})])]);
+    const review=item([logistics(guidance({'recommended-start':{sources:[]}}))]);
     const [diagnosed]=routeGuidanceDiagnosis([review]);
     expect(diagnosed.claims.find(entry=>entry.id==='recommended-start').passes).toBe(false);
     expect(routeGuidanceBlockingReasons(review.specialistOutputs))
-      .toEqual(['logistics/recommended-start: a sourced recommended start is required']);
+      .toEqual(['logistics/recommended-start: sourced, reader-usable route guidance is required']);
   });
 
-  test('only the start is reported as blocking verification',()=>{
-    // #472 moved the numbered-route claims out of the gate. Reporting them as
-    // blockers sends a reader hunting for a route sheet that stopped mattering.
+  test('all route-following claims are reported as blocking verification',()=>{
     const review=item([logistics([claim('recommended-start')])]);
     const [diagnosed]=routeGuidanceDiagnosis([review]);
     const blocking=diagnosed.claims.filter(entry=>entry.blocksVerification).map(entry=>entry.id);
-    expect(blocking).toEqual(['recommended-start']);
-    const optional=diagnosed.claims.filter(entry=>!entry.blocksVerification);
-    expect(optional.map(entry=>entry.id)).toEqual(['route-number-status','route-number-sequence','route-number-switches']);
-    expect(optional.every(entry=>entry.passes===false)).toBe(true);
+    expect(blocking).toEqual(GUIDANCE_IDS);
+    expect(diagnosed.claims.filter(entry=>!entry.blocksVerification)).toEqual([]);
   });
 
   test('a summarised queue item says its sources were withheld, not absent',()=>{
@@ -71,7 +69,7 @@ describe('a diagnosis of a gate has to agree with the gate',()=>{
   });
 
   test('the gate’s own reasons travel beside the rows',()=>{
-    const review=item([logistics([claim('recommended-start')])],
+    const review=item([logistics(guidance())],
       {blockingReasons:['regulatoryRanger: recommendation is needs-resolution']});
     expect(routeGuidanceDiagnosis([review])[0].gateBlockingReasons)
       .toEqual(['regulatoryRanger: recommendation is needs-resolution']);

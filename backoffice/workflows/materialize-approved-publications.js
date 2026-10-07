@@ -11,9 +11,8 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
   const approved = (requests?.requests || []).filter(request =>
     publicationRequestIsRetryable(request,{at,force:forceRetry}) && !materializedApprovals.has(request.id));
   const entries = [];
-  // Rifugio and lift policies ride the same approval as the publication that
-  // carries them, so a fact can only reach the table through the human gate
-  // that approved its dossier.
+  // Rifugio and lift policies ride the same evidence-policy decision as the
+  // publication that carries them, so no fact bypasses the audited release.
   const approvedFacts = [];
 
   for(const request of approved){
@@ -46,7 +45,7 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
     approvedFacts.push(...operationalFactsFromClaims(item.proposedOperationalClaims, {
       trailId:item.targetTrailId,
       at,
-      verifiedBy:request.approvedBy || 'ORMA Regulatory Ranger',
+      verifiedBy:request.approvedBy || 'ORMA evidence policy',
     }));
 
     const index = next.trails.findIndex(trail => trail.id === entry.id);

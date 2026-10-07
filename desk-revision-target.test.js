@@ -66,11 +66,11 @@ describe('a revision goes to the agent its blockers name', () => {
     expect(pick(blockers)).toBe('cartographer');
   });
 
-  test('anything it cannot read falls back rather than guess', () => {
-    expect(pick(['not-closed-loop'])).toBeNull();
+  test('raw geometry blockers go to the cartographer; unreadable blockers fall back', () => {
+    expect(pick(['not-closed-loop'])).toBe('cartographer');
     expect(pick([])).toBeNull();
     expect(pick(undefined)).toBeNull();
-    expect(pick([ROUTE_GUIDANCE('recommended-start'),'not-closed-loop'])).toBe('logistics');
+    expect(pick([ROUTE_GUIDANCE('recommended-start'),'not-closed-loop'])).toBe('cartographer');
   });
 });
 
