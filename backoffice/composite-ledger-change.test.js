@@ -6,7 +6,7 @@ const ledger=(composites,updatedAt='2026-10-06T00:00:00.000Z')=>
   JSON.stringify({contractVersion:'1.0.0',updatedAt,composites});
 const proposed={'lago-braies':{state:'proposed',coveragePercent:100,relations:[{externalRelationId:'relation/1'}]}};
 const approved={'lago-braies':{state:'approved',coveragePercent:100,relations:[{externalRelationId:'relation/1'}],
-  approvedBy:'Benedetta Lorenzi (ORMA owner)'}};
+  approvedBy:'ORMA owner'}};
 
 describe('telling a decision from a timestamp',()=>{
   test('a run that ruled on nothing is not a change',()=>{
