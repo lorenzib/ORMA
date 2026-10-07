@@ -165,6 +165,37 @@ const PROCESSABLE_JOB_TYPES = Object.freeze([
 // into a long run of refused claims.
 const ATTEMPTS_PER_SLOT=3;
 
+// How many specialist jobs a pass asks the model about at once. The jobs in a
+// batch are independent — different trails, different claims — but they were
+// asked one at a time, so a pass spent almost all of its twelve minutes waiting
+// for one answer at a time. The first metered drain did ten jobs per pass at
+// 12 minutes a pass, which is what made a 45-minute drain window fit three
+// passes instead of eleven.
+//
+// Four rather than ten: the provider has a tokens-per-minute ceiling, and a
+// pass that trips it converts work into rescheduling. Raise it with
+// ORMA_SPECIALIST_CONCURRENCY once a drain shows headroom.
+const SPECIALIST_CONCURRENCY=4;
+
+/**
+ * Run `worker` over `items` with at most `concurrency` in flight, returning the
+ * results in the order of `items` rather than the order they finished, so a
+ * pass summary does not change shape because one agent answered faster.
+ */
+async function mapWithConcurrency(items,concurrency,worker){
+  const results=new Array(items.length);
+  let next=0;
+  const runners=Array.from({length:Math.max(1,Math.min(concurrency,items.length))},async()=>{
+    for(;;){
+      const index=next;next+=1;
+      if(index>=items.length)return;
+      results[index]=await worker(items[index],index);
+    }
+  });
+  await Promise.all(runners);
+  return results;
+}
+
 /** The job's own schedule, read the way claimJob reads it. */
 function claimNotBefore(job,now){
   const value=job&&job.notBefore;
@@ -189,9 +220,20 @@ async function processTrailSpecialistJobs(store,options={}){
   // still bounded, so a queue full of unclaimable work cannot spin.
   const limit=options.specialistLimit||5;
   const claimable=queued.filter(job=>!claimNotBefore(job,options.now));
+  // Claimed one at a time and in queue order. A claim is cheap, it has to win a
+  // race against other workers to count, and claiming in parallel would make
+  // which jobs a pass takes depend on which transaction landed first.
+  const claimed=[];
   for(const pending of claimable.slice(0,limit*ATTEMPTS_PER_SLOT)){
-    if(outcomes.length>=limit)break;
-    const job=await store.claimJob(pending.id,workerId);if(!job)continue;
+    if(claimed.length>=limit)break;
+    const job=await store.claimJob(pending.id,workerId);
+    if(job)claimed.push(job);
+  }
+  // The model calls are where the pass spends its time, and nothing in a batch
+  // depends on anything else in it.
+  const concurrency=Number(options.specialistConcurrency)>0
+    ?Number(options.specialistConcurrency):SPECIALIST_CONCURRENCY;
+  const results=await mapWithConcurrency(claimed,concurrency,async job=>{
     try{
       const trail=trailById.get(job.candidateId);if(!trail)throw new Error(`Production trail not found: ${job.candidateId}`);
       const context=[];
@@ -199,9 +241,13 @@ async function processTrailSpecialistJobs(store,options={}){
       const response=await runTrailSpecialist({job,trail,context},options);
       await store.setArtifact(`trail-specialist-output-${job.id}`,response.result,{agentId:job.agentId,candidateId:job.candidateId});
       await store.completeSystemJob(job.id,{responseId:response.responseId,model:response.model,outputRef:`firestore:trail-specialist-output-${job.id}`});
-      outcomes.push({jobId:job.id,agentId:job.agentId,status:'completed'});
-    }catch(error){await store.failJob(job.id,error,{maximumFailures:3});outcomes.push({jobId:job.id,agentId:job.agentId,status:'retry-or-blocked',error:error.message});}
-  }
+      return {jobId:job.id,agentId:job.agentId,status:'completed'};
+    }catch(error){
+      await store.failJob(job.id,error,{maximumFailures:3});
+      return {jobId:job.id,agentId:job.agentId,status:'retry-or-blocked',error:error.message};
+    }
+  });
+  outcomes.push(...results);
   return outcomes;
 }
 
@@ -685,4 +731,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,claimNotBefore, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

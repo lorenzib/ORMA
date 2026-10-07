@@ -141,3 +141,36 @@ describe('the desk says so out loud',()=>{
     expect(health.state).toBe('healthy');
   });
 });
+
+/**
+ * `provider-parked` stops a drain. It has to mean the provider refused
+ * everything, not that one call in a working pass was throttled — which is what
+ * "every failure was an outage" also describes. Asking a batch concurrently
+ * makes a single throttled call much more likely, so this rule now checks that
+ * nothing succeeded.
+ */
+describe('parked means the provider refused everything', () => {
+  const NO_CREDITS_ERROR='429: You have no credits remaining';
+
+  test('a pass that mostly worked is not parked, even if its one failure was an outage',()=>{
+    const summary=summariseWorkAttempted({specialistJobs:[
+      {jobId:'a',agentId:'terrainPoi',status:'completed'},
+      {jobId:'b',agentId:'logistics',status:'completed'},
+      {jobId:'c',agentId:'regulatoryRanger',status:'retry-or-blocked',error:NO_CREDITS_ERROR},
+    ]});
+
+    expect(summary).toEqual(expect.objectContaining({attempted:3,succeeded:2,failed:1}));
+    expect(summary.providerParked).toBe(false);
+    expect(workOutcome(summary)).toBe('productive');
+  });
+
+  test('a pass where the provider refused every job is still parked',()=>{
+    const summary=summariseWorkAttempted({specialistJobs:[
+      {jobId:'a',agentId:'terrainPoi',status:'retry-or-blocked',error:NO_CREDITS_ERROR},
+      {jobId:'b',agentId:'logistics',status:'retry-or-blocked',error:NO_CREDITS_ERROR},
+    ]});
+
+    expect(summary.providerParked).toBe(true);
+    expect(workOutcome(summary)).toBe('unproductive');
+  });
+});

@@ -72,6 +72,9 @@ function workerOptions(env=process.env,{workerId}={}){
     // a web-search call, and it recommends rather than moving anything.
     gateAdjudicationEnabled:env.ORMA_GATE_ADJUDICATION_ENABLED!=='false',
     gateAdjudicationLimit:positiveInteger(env.ORMA_GATE_ADJUDICATION_LIMIT,2),
+    // The batch is asked concurrently; this bounds how many model calls are in
+    // flight at once. Separate from specialistLimit, which bounds the batch.
+    specialistConcurrency:positiveInteger(env.ORMA_SPECIALIST_CONCURRENCY,4),
     limit:5,specialistLimit,specialistCandidateId };
 }
 
