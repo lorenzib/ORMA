@@ -125,23 +125,27 @@ function trimResolution(ledger) {
 }
 
 /**
- * Blocking reasons are what the reviewer reads, so they are kept -- but a
- * single reason is one sentence, and one long enough to matter to this budget
- * is already too long to read on a card. Bounded rather than dropped, and the
- * truncation is visible.
+ * A waiting gate's blocking reasons are not reading material -- they are the
+ * ballot. Approving requires an accepted entry per blocker, and
+ * acceptedBlockerMap keys on the blocker's exact text, which the gate then
+ * checks against the full list recomputed from the specialist outputs. So
+ * abridging this list does not cost detail, it costs the decision:
+ *
+ *   - drop entry 41 and that blocker can never be accepted, because nothing
+ *     ever shows it to the person who would accept it;
+ *   - truncate a long entry and the acceptance is filed under
+ *     "<300 chars>…" while the gate looks for the whole sentence, so the tick
+ *     matches nothing.
+ *
+ * Either way the desk offers an approval, the moderator fills in every box it
+ * shows, the decision is queued, and the worker's compile refuses it -- out of
+ * sight, because decisions are queued. That is the same silent-death shape as
+ * the route-guidance regex (#591), arrived at from the other direction.
+ *
+ * So the ballot is kept whole here. The queue budget is still enforced, by the
+ * tiers below, and when one of them does have to abridge a ballot it says so
+ * and the desk stops offering an approval it could not complete.
  */
-const MAX_REASON_CHARS = 300;
-const MAX_REASONS = 40;
-
-function capReasons(reasons) {
-  if (!Array.isArray(reasons)) return reasons;
-  const capped = reasons.slice(0, MAX_REASONS).map(reason => {
-    const text = String(reason);
-    return text.length > MAX_REASON_CHARS ? `${text.slice(0, MAX_REASON_CHARS)}…` : text;
-  });
-  if (reasons.length > MAX_REASONS) capped.push(`…and ${reasons.length - MAX_REASONS} more, in the full agent output`);
-  return capped;
-}
 
 /** A waiting review, small enough to keep every waiting review. */
 function summariseWaitingItem(item) {
@@ -149,7 +153,6 @@ function summariseWaitingItem(item) {
     ...item,
     specialistOutputs: Array.isArray(item.specialistOutputs) ? item.specialistOutputs.map(summariseOutput) : item.specialistOutputs,
     claimResolution: trimResolution(item.claimResolution),
-    blockingReasons: capReasons(item.blockingReasons),
   };
 }
 
@@ -238,7 +241,14 @@ function stripWaiting(item) {
   return { ...kept, specialistOutputRefs: outputRefs(item), detailWithheld: 'queue-budget' };
 }
 
-/** Tier 3: the reasons themselves, cut to the few that lead. */
+/**
+ * Tier 3: the reasons themselves, cut to the few that lead.
+ *
+ * This is the point where a ballot stops being complete, so it says so.
+ * blockingReasonsAbridged is what the desk reads to stop offering an approval
+ * whose boxes it can no longer all show -- an incomplete ballot is a decision
+ * that would be refused after it was queued, which the moderator never sees.
+ */
 const BUDGET_REASONS = 6;
 function trimReasons(item) {
   const reasons = Array.isArray(item.blockingReasons) ? item.blockingReasons : [];
@@ -247,6 +257,7 @@ function trimReasons(item) {
     ...item,
     blockingReasons: [...reasons.slice(0, BUDGET_REASONS),
       `…and ${reasons.length - BUDGET_REASONS} more, in the full agent output`],
+    blockingReasonsAbridged: true,
   };
 }
 
@@ -261,6 +272,7 @@ function countReasons(item) {
   return {
     ...item,
     blockingReasons: [`${reasons.length} blocking ${reasons.length === 1 ? 'reason' : 'reasons'}, in the full agent output`],
+    blockingReasonsAbridged: true,
     detailWithheld: 'queue-budget',
   };
 }
@@ -336,12 +348,9 @@ function fitReviewQueue(queue, options = {}) {
 
 module.exports = {
   MAX_PREVIEW_POINTS,
-  MAX_REASON_CHARS,
-  MAX_REASONS,
   QUEUE_BUDGET,
   summariseOutput,
   trimResolution,
-  capReasons,
   fitReviewQueue,
   BUDGET_REASONS,
   simplifyCoordinates,

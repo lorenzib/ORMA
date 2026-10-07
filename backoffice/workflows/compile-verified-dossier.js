@@ -233,21 +233,46 @@ function dossierBlockingReasons(outputs){
  * Where there is nothing to re-read, the stored list stands: evidence that
  * cannot be re-read is a reason to keep what a human last saw, not to wave a
  * dossier through on an empty list.
+ *
+ * A summarised output is that same case wearing a different hat, and it is the
+ * dangerous one. review-queue-compaction keeps a claim's id, category, finding
+ * and value and drops its `blockers`, its `resolution` and the output's
+ * `openQuestions` -- which is most of what dossierBlockingReasons reads. So
+ * recomputing from a summary yields a handful of reasons where the evidence has
+ * fifty, and recomputing is supposed to be the stricter answer, not a discount.
+ * rehydrateReviewQueue restores the detail before an approval and says a
+ * pointer it cannot follow leaves the gate to refuse; without this it would do
+ * the opposite, because fewer blockers is an easier approval.
+ *
+ * So where the detail is withheld the two lists are unioned: never fewer than
+ * the human last saw, never fewer than the evidence now says.
  */
+function detailWithheld(outputs){
+  return outputs.some(output=>output?.result?.detailWithheld);
+}
+
 function currentBlockingReasons(review){
   const outputs=review?.specialistOutputs||[];
-  if(!outputs.length)return review?.blockingReasons||[];
+  const stored=review?.blockingReasons||[];
+  if(!outputs.length)return stored;
   if(review?.gateType==='geometry-approval'){
     // A geometry gate's blockers are the cartographer's own, not the dossier's.
     const geometry=outputs.find(output=>output.agentId==='cartographer')||outputs[0];
-    return geometry?.result?.blockers||review?.blockingReasons||[];
+    const current=geometry?.result?.blockers;
+    if(!current)return stored;
+    return detailWithheld(outputs)?[...new Set([...stored,...current])]:current;
   }
-  return dossierBlockingReasons(outputs);
+  const current=dossierBlockingReasons(outputs);
+  return detailWithheld(outputs)?[...new Set([...stored,...current])]:current;
 }
 
 function unacceptedBlockers(review,acceptedBlockers){
   const accepted=acceptedBlockerMap(acceptedBlockers);
-  return currentBlockingReasons(review).filter(reason=>!accepted.has(String(reason)));
+  // Trimmed on both sides of the comparison. acceptedBlockerMap files an
+  // acceptance under the trimmed text, so matching the raw reason meant a
+  // blocker whose sentence ends in a space -- which agent prose does, when a
+  // reason is assembled from fragments -- could never be accepted at all.
+  return currentBlockingReasons(review).filter(reason=>!accepted.has(String(reason).trim()));
 }
 
 function compileVerifiedDossier(review,trail,options={}){

@@ -8,7 +8,7 @@
 // three are one click and which ten cannot be cleared at all is the work this
 // replaces. Read-only: it reads the queue and reports, and decides nothing.
 
-const {waivableBlocker}=require('./compile-verified-dossier');
+const {waivableBlocker,currentBlockingReasons}=require('./compile-verified-dossier');
 
 // Ordered by what is worth doing first, not alphabetically. A dossier approval
 // is a trail verified; a clean geometry gate is one click; a blocked geometry
@@ -102,7 +102,13 @@ function summariseBlockers(blockers){
 }
 
 function describeItem(item,trail,nowMs){
-  const reasons=(item.blockingReasons||[]).map(reason=>({
+  // The list a decision will be weighed against, recomputed from the outputs
+  // attached to the gate -- not the copy stored when it opened. Reporting the
+  // stored copy is how "41 blockers" came to be printed for seven different
+  // dossiers: that was the compaction cap, 40 reasons plus a summary line, and
+  // not a count of anything. currentBlockingReasons falls back to the stored
+  // list where there are no outputs to re-read.
+  const reasons=currentBlockingReasons(item).map(reason=>({
     reason:String(reason),
     // Route guidance is the one the dossier will not let a reason wave through:
     // it is the directions printed for a walker to follow.
@@ -117,6 +123,10 @@ function describeItem(item,trail,nowMs){
     allowedActions:item.allowedActions||[],
     blockers:reasons,
     unwaivable:reasons.filter(entry=>!entry.waivable).length,
+    // The queue had to abridge this gate's ballot to fit its budget, so the
+    // desk cannot show every box an approval needs ticked. Worth saying: the
+    // decision is not available until the queue has room again.
+    ballotAbridged:item.blockingReasonsAbridged===true,
     state:trail?.state||null,
     stage:trail?.stage||null,
     baselineBlockers:item.sourceTrail?.baselineBlockers||[],

@@ -125,6 +125,9 @@ async function main(options={}){
     }
     const age=item.waitingDays==null?'':` · waiting ${item.waitingDays}d`;
     line(`  ${item.approvalAllowed?'CLEAN ':'      '}${item.trailName} (${item.candidateId})${age}`);
+    // Said before the blockers, because it changes what the list below is: not
+    // the decision, but as much of it as the queue had room to keep.
+    if(item.ballotAbridged)line('      the queue shortened this list to fit, so an approval here would be refused');
     if(item.geometry)printGeometry(item.geometry);
     if(item.claims.length)printClaims(item.claims);
     printBlockers(item,full);
