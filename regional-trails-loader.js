@@ -19,7 +19,12 @@
       script.src = source;
       script.onload = function () {
         loaded.add(region);
+        // The annotation chain that the bundle runs once at startup has to run
+        // again over the trails that just arrived: region assignment, and the
+        // presentation audits, which the regional data generator does not read.
+        // Without this a late trail shows its un-audited generated figures.
         if (window.DoloPawsRegions) window.DoloPawsRegions.assign(window.trails);
+        if (window.DoloPawsTrailAudits) window.DoloPawsTrailAudits.apply(window.trails);
         window.dispatchEvent(new CustomEvent('dolopaws-region-loaded', { detail: { region: region } }));
         resolve(window.trails || []);
       };
@@ -77,12 +82,21 @@
     return href;
   }
 
+  var pendingRegions = [];
   var current = document.currentScript;
   var params = new URLSearchParams(window.location.search);
   var trailId = resolveTrailId(params.get('id'));
   var requested = params.get('region');
-  var mode = current && current.dataset.defaultRegion || 'all';
-  if (mode === 'trail') mode = manifest.trailRegion[trailId] || 'dolomites';
+  var declared = current && current.dataset.defaultRegion || 'all';
+  // `mode` becomes a region name, so the declared intent needs its own flag.
+  // It did not have one: `mode === 'trail'` was tested after mode had been
+  // overwritten with the region, so it was never true and every trail view
+  // document.write'd the whole regional catalogue -- 760 KB, 151 KB gzipped,
+  // blocking the parser -- instead of the one 12 KB detail file it needs to
+  // paint. That is the cost the comment below says it was avoiding.
+  var detailOnly = declared === 'trail';
+  var mode = declared;
+  if (detailOnly) mode = manifest.trailRegion[trailId] || 'dolomites';
   else if (requested && manifest.regions[requested]) mode = requested;
   var initial = mode === 'all' ? Object.keys(manifest.regions) : [mode];
 
@@ -93,15 +107,32 @@
     // A detail page needs one trail to paint its title, facts and route. Loading
     // a whole region here made every mobile detail view wait on the catalogue.
     // The full regional package can still be requested later for nearby trails.
-    var alreadyPrimed = mode === 'trail' && trailId && Array.isArray(window.trails) &&
+    var alreadyPrimed = detailOnly && trailId && Array.isArray(window.trails) &&
       window.trails.some(function (trail) { return trail && trail.id === trailId; });
-    var source = alreadyPrimed ? null : mode === 'trail' && trailId && entry.details && entry.details[trailId]
+    var detailSource = detailOnly && trailId && entry.details && entry.details[trailId]
       ? entry.details[trailId]
-      : assetUrl(region, 'trails');
+      : null;
+    var source = alreadyPrimed ? null : (detailSource || assetUrl(region, 'trails'));
     if (!source) return;
     document.write('<script src="' + source + '"><' + '/script>');
     if (source === entry.trails) loaded.add(region);
+    // Neighbours -- the nearby grid and the map's nearby layer -- need the rest
+    // of the region, so it is still fetched; just not in front of the paint.
+    // loadRegion re-runs the annotation chain and announces itself, and the
+    // sections that need it listen for that.
+    if (detailSource || alreadyPrimed) pendingRegions.push(region);
   });
+
+  // After the parser is done with the document, not before it starts.
+  if (pendingRegions.length) {
+    var fetchPending = function () {
+      pendingRegions.splice(0).forEach(function (region) {
+        loadRegion(region).catch(function () {});
+      });
+    };
+    if (document.readyState === 'complete') fetchPending();
+    else window.addEventListener('load', fetchPending, { once: true });
+  }
 
   window.DoloPawsRegionalData = {
     manifest: manifest,

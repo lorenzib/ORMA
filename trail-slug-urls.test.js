@@ -146,7 +146,7 @@ describe('the static pages and the app agree on the slug', () => {
     for (const page of ['trail.html', 'browse-trails.html', 'collections.html', 'compare.html']) {
       const html = fs.readFileSync(path.join(root, page), 'utf8');
       expect(html).toContain('regions-runtime-manifest.js?v=20261007-1');
-      expect(html).toContain('regional-trails-loader.js?v=20261007-1');
+      expect(html).toContain('regional-trails-loader.js?v=20261007-2');
     }
   });
 
@@ -156,17 +156,21 @@ describe('the static pages and the app agree on the slug', () => {
   // is exactly what happened to discovery-state.js, the file every browse card
   // links through.
   test('every script taught to emit a slug had its cache key moved', () => {
-    const SLUG_AWARE = [
-      'discovery-state', 'regional-trails-loader', 'browse-map', 'compare-page',
-      'collections-page', 'homepage-search', 'mobile-nav', 'notifications-feed',
-    ];
+    // regional-trails-loader moved again with the detail-first load order, so
+    // the expected token is per script rather than one shared value.
+    const SLUG_AWARE = {
+      'discovery-state': '20261007-1', 'regional-trails-loader': '20261007-2',
+      'browse-map': '20261007-1', 'compare-page': '20261007-1',
+      'collections-page': '20261007-1', 'homepage-search': '20261007-1',
+      'mobile-nav': '20261007-1', 'notifications-feed': '20261007-1',
+    };
     const stale = [];
     for (const name of fs.readdirSync(root).filter(file => file.endsWith('.html'))) {
       const html = fs.readFileSync(path.join(root, name), 'utf8');
-      for (const script of SLUG_AWARE) {
+      for (const [script, expected] of Object.entries(SLUG_AWARE)) {
         const pattern = new RegExp(`src="(?:[^"]*/)?${script}\\.js\\?v=([^"]+)"`, 'g');
         for (const match of html.matchAll(pattern)) {
-          if (match[1] !== '20261007-1') stale.push(`${name}: ${script}.js?v=${match[1]}`);
+          if (match[1] !== expected) stale.push(`${name}: ${script}.js?v=${match[1]} (want ${expected})`);
         }
       }
     }

@@ -9,8 +9,6 @@
 (function () {
   'use strict';
 
-  if (typeof trails === 'undefined' || !Array.isArray(trails)) return;
-
   const audits = {
     'osm-14381570': {
       // Route audit: 17 July 2026. Official route 09 record checked against
@@ -346,8 +344,21 @@
     }
   };
 
-  trails.forEach((trail) => {
-    const audit = audits[trail.id];
-    if (audit) Object.assign(trail, audit);
-  });
+  // Idempotent, and exported, because the overlay has to be applied again
+  // whenever more trails arrive. A trail page loads only its own detail file up
+  // front and fetches the rest of the region afterwards, so trails that land
+  // late would otherwise show their un-audited generated figures -- the
+  // regional data generator does not read this file, so for example
+  // osm-14381570 is 7.9 km / 262 m there and 7.7 km / 249 m once audited.
+  function apply(list) {
+    if (!Array.isArray(list)) return list;
+    list.forEach((trail) => {
+      const audit = trail && audits[trail.id];
+      if (audit) Object.assign(trail, audit);
+    });
+    return list;
+  }
+
+  if (typeof window !== 'undefined') window.DoloPawsTrailAudits = { apply: apply };
+  if (typeof trails !== 'undefined' && Array.isArray(trails)) apply(trails);
 })();

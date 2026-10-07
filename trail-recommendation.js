@@ -88,7 +88,8 @@
   }
 
   function currentTrail(){
-    const id = new URLSearchParams(window.location.search).get('id');
+    const raw = new URLSearchParams(window.location.search).get('id');
+    const id = (window.DoloPawsRegionalData && window.DoloPawsRegionalData.resolveTrailId ? window.DoloPawsRegionalData.resolveTrailId(raw) : (raw));
     return typeof trails !== 'undefined' ? trails.find(trail => trail.id === id) : null;
   }
 
