@@ -1,7 +1,7 @@
 'use strict';
 
 const { randomUUID } = require('crypto');
-const { recordVerifiedTrailReview,assertVerifiedTrailReviewDecisions } = require('./apply-content-review');
+const { recordVerifiedTrailReview,applyVerifiedTrailReviewStatus,assertVerifiedTrailReviewDecisions } = require('./apply-content-review');
 const { buildVerifiedTrailRevisionJobs } = require('./queue-verified-trail-revisions');
 const { buildPublicationStaging } = require('./build-publication-staging');
 const { runVerifiedTrailRevision } = require('./run-verified-trail-revision');
@@ -62,11 +62,24 @@ async function ingestTrailReviews(store, options = {}){
       const submission = { submissionId:review.id, submittedAt, status:'processed', decisions, outcomes:recorded, publicMutationAllowed:false };
       const nextReviewQueue = { contractVersion:'1.0.0', updatedAt:submittedAt,
         submissions:[...(reviewQueue?.submissions || []), submission] };
-      const staging = buildPublicationStaging(editorialQueue, execution, nextReviewQueue,
+      // The decision reaches the output it was made about. Without this the
+      // review queue and the staging artifact were written and the execution
+      // was not, so a reviewed output kept reading `ready-for-review` -- which
+      // is how six finished outputs behind three published trails were still
+      // advertising themselves as waiting months later.
+      const nextExecution = applyVerifiedTrailReviewStatus(execution, recorded);
+      const executionErrors = validateContentExecution(nextExecution);
+      if(executionErrors.length) throw new Error(executionErrors.join('; '));
+      // Staging reads the decisions rather than the status, so it is given the
+      // updated execution for consistency, not because the state depends on it.
+      const staging = buildPublicationStaging(editorialQueue, nextExecution, nextReviewQueue,
         { at:submittedAt,
           productionTrails:options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..')) });
       await Promise.all([
         store.setArtifact('content-review-queue', nextReviewQueue), store.setArtifact('publication-staging', staging),
+        ...(nextExecution!==execution
+          ? [store.setArtifact('verified-trail-editorial-execution', nextExecution, { lastWorkerId:'content-review-apply' })]
+          : []),
         store.markReview(review.id, 'processed', { outcomes:recorded, revisionJobIds:revisionJobs.map(job => job.id) }),
       ]);
       outcomes.push({ reviewId:review.id, status:'processed', revisions:revisionJobs.length });
