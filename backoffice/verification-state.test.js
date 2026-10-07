@@ -116,9 +116,34 @@ describe('the report says why a staged trail stopped short',()=>{
       {candidateId:'osm-3',targetTrailId:'t3',operation:'update-existing',
        state:'ready-for-publication-preview',missingApprovals:[],publicationMappingBlockers:[]},
     ]));
-    expect(out).toMatch(/1 trail\(s\) staged for the website, 1 ready to go/);
+    expect(out).toMatch(/1 trail\(s\) staged for the website: 1 ready to go/);
     expect(out).not.toMatch(/t3 ·/);
-    expect(out).not.toMatch(/waiting on a decision/);
+    expect(out).not.toMatch(/stopped short/);
+  });
+
+  // What the first live run got wrong: the filter named the states that are
+  // not stalls, and `published` was not among them, so three trails already on
+  // the website were listed as having stopped short of it.
+  test('a published trail is not stopped short of the website',async()=>{
+    const out=await lines(staging([
+      {candidateId:'tre-cime',targetTrailId:'tre-cime',operation:'update-existing',
+       state:'published',missingApprovals:[],publicationMappingBlockers:[]},
+    ]));
+    expect(out).toMatch(/1 trail\(s\) staged for the website: 1 already published/);
+    expect(out).not.toMatch(/stopped short/);
+    expect(out).not.toMatch(/tre-cime ·/);
+  });
+
+  test('and a mixed queue counts each kind without listing the finished ones',async()=>{
+    const out=await lines(staging([
+      {candidateId:'done',operation:'update-existing',state:'published',
+       missingApprovals:[],publicationMappingBlockers:[]},
+      {candidateId:'stuck',operation:'create-new',state:'waiting-publication-mapping',
+       missingApprovals:[],publicationMappingBlockers:['website-target-mapping']},
+    ]));
+    expect(out).toMatch(/2 trail\(s\) staged for the website: 1 already published · 1 stopped short/);
+    expect(out).toMatch(/stuck ·/);
+    expect(out).not.toMatch(/done ·/);
   });
 
   test('nothing staged says nothing at all',async()=>{
