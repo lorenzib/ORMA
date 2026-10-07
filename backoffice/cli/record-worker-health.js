@@ -42,6 +42,7 @@ function workInput(env){
     failed:Number.parseInt(env.ORMA_WORKER_WORK_FAILED,10) || 0,
     providerParked:env.ORMA_WORKER_WORK_PROVIDER_PARKED === 'true',
     message:env.ORMA_WORKER_WORK_MESSAGE || null,
+    ...(/^\d+$/.test(String(env.ORMA_WORKER_WORK_READS || '')) ? { usage:{ reads:Number(env.ORMA_WORKER_WORK_READS), writes:Number(env.ORMA_WORKER_WORK_WRITES) || 0 } } : {}),
   };
 }
 

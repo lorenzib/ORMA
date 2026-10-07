@@ -3,6 +3,7 @@
 const { getApps, initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 const { getFirestore, FieldValue, Timestamp } = require('firebase-admin/firestore');
 const { providerOutage } = require('./provider-outage');
+const { FirestoreUsageMeter, queryReads } = require('./firestore-usage');
 
 const COLLECTIONS = Object.freeze({
   artifacts: 'backofficeArtifacts',
@@ -58,7 +59,15 @@ class FirestoreBackofficeStore {
     this.db = backofficeDb(options);
     this.artifactCache = new Map();
     this.queryCache = new Map();
+    // Documents read and written through this store, for the quota ledger.
+    // Shared across stores when the caller passes one meter in.
+    this.usage = options.usage || new FirestoreUsageMeter();
   }
+
+  // Lazy, so a store built from the prototype without the constructor (as some
+  // tests do) still meters instead of throwing on its first read.
+  get usage(){ if(!this._usage) this._usage = new FirestoreUsageMeter(); return this._usage; }
+  set usage(meter){ this._usage = meter; }
 
   invalidate(prefix){
     for(const key of this.queryCache.keys()) if(key.startsWith(prefix)) this.queryCache.delete(key);
@@ -67,6 +76,7 @@ class FirestoreBackofficeStore {
   async getArtifact(id){
     if(this.artifactCache.has(id)) return this.artifactCache.get(id);
     const snapshot = await this.db.collection(COLLECTIONS.artifacts).doc(id).get();
+    this.usage.read(1);
     const data=snapshot.exists ? decodeArtifactData(snapshot.data()) : null;
     this.artifactCache.set(id,data);return data;
   }
@@ -76,15 +86,16 @@ class FirestoreBackofficeStore {
       contractVersion: '1.0.0', artifactId: id, ...metadata,
       ...encodeArtifactData(data), updatedAt: FieldValue.serverTimestamp(),
     }, { merge: true });
+    this.usage.write(1);
     this.artifactCache.set(id,data);
   }
 
   async setArtifactIfAbsent(id,data,metadata={}){
     const ref=this.db.collection(COLLECTIONS.artifacts).doc(id);
     const created=await this.db.runTransaction(async transaction=>{
-      const snapshot=await transaction.get(ref);if(snapshot.exists)return false;
+      const snapshot=await transaction.get(ref);this.usage.read(1);if(snapshot.exists)return false;
       transaction.set(ref,{contractVersion:'1.0.0',artifactId:id,...metadata,
-        ...encodeArtifactData(data),updatedAt:FieldValue.serverTimestamp()});return true;
+        ...encodeArtifactData(data),updatedAt:FieldValue.serverTimestamp()});this.usage.write(1);return true;
     });
     if(created)this.artifactCache.set(id,data);else this.artifactCache.delete(id);
     return created;
@@ -92,14 +103,15 @@ class FirestoreBackofficeStore {
 
   async putJob(job){
     await this.db.collection(COLLECTIONS.jobs).doc(job.id).set({ ...job, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+    this.usage.write(1);
     this.invalidate('jobs:');
   }
 
   async putJobIfAbsent(job){
     const ref=this.db.collection(COLLECTIONS.jobs).doc(job.id);
     return this.db.runTransaction(async transaction=>{
-      const snapshot=await transaction.get(ref);if(snapshot.exists){this.invalidate('jobs:');return false;}
-      transaction.set(ref,{...job,updatedAt:FieldValue.serverTimestamp()});return true;
+      const snapshot=await transaction.get(ref);this.usage.read(1);if(snapshot.exists){this.invalidate('jobs:');return false;}
+      transaction.set(ref,{...job,updatedAt:FieldValue.serverTimestamp()});this.usage.write(1);return true;
     }).finally(()=>this.invalidate('jobs:'));
   }
 
@@ -107,6 +119,7 @@ class FirestoreBackofficeStore {
     const key=`jobs:${[...statuses].sort().join(',')}`;
     if(this.queryCache.has(key)) return this.queryCache.get(key);
     const snapshots = await Promise.all(statuses.map(status => this.db.collection(COLLECTIONS.jobs).where('status', '==', status).get()));
+    this.usage.read(snapshots.reduce((total, snapshot) => total + queryReads(snapshot), 0));
     const jobs=snapshots.flatMap(snapshot => snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
       .sort((a, b) => String(a.createdAt || '').localeCompare(String(b.createdAt || '')));
     this.queryCache.set(key,jobs);return jobs;
@@ -117,6 +130,7 @@ class FirestoreBackofficeStore {
   // per worker pass. Fetch only the referenced documents instead.
   async listHazardReports(status='pending',limit=25){
     const snapshot=await this.db.collection(COLLECTIONS.hazardReports).where('status','==',status).limit(limit).get();
+    this.usage.read(queryReads(snapshot));
     return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
   }
 
@@ -124,6 +138,7 @@ class FirestoreBackofficeStore {
     await this.db.collection(COLLECTIONS.hazardReports).doc(id).set({
       ...fields,status,vettedAt:FieldValue.serverTimestamp(),updatedAt:FieldValue.serverTimestamp(),
     },{merge:true});
+    this.usage.write(1);
   }
 
   async getJobsByIds(ids = []){
@@ -134,6 +149,7 @@ class FirestoreBackofficeStore {
     for(let index = 0; index < unique.length; index += 300){
       const refs = unique.slice(index, index + 300).map(id => collection.doc(id));
       const snapshots = await this.db.getAll(...refs);
+      this.usage.read(refs.length);
       snapshots.forEach(snapshot => { if(snapshot.exists) jobs.push({ id: snapshot.id, ...snapshot.data() }); });
     }
     return jobs.sort((a, b) => String(a.createdAt || '').localeCompare(String(b.createdAt || '')));
@@ -142,6 +158,7 @@ class FirestoreBackofficeStore {
   async recoverExpiredJobs(options = {}){
     const now = options.now || new Date();
     const snapshot = await this.db.collection(COLLECTIONS.jobs).where('status', '==', 'running').get();
+    this.usage.read(queryReads(snapshot));
     const expired = snapshot.docs.filter(doc => {
       const value = doc.data().leaseExpiresAt;
       const expiry = value?.toDate ? value.toDate() : value ? new Date(value) : null;
@@ -155,6 +172,7 @@ class FirestoreBackofficeStore {
       updatedAt:FieldValue.serverTimestamp(),
     }));
     await batch.commit();
+    this.usage.write(expired.length);
     this.invalidate('jobs:');
     return expired.map(doc => doc.id);
   }
@@ -180,6 +198,7 @@ class FirestoreBackofficeStore {
     const limit = Number.isInteger(options.limit) && options.limit > 0 ? options.limit : 10;
     const snapshot = await this.db.collection(COLLECTIONS.jobs)
       .where('status', '==', 'blocked').limit(200).get();
+    this.usage.read(queryReads(snapshot));
     // Only lanes the caller still runs. A requeued job whose processor has been
     // removed goes back to 'queued' and stays there, and it spends the release
     // budget that live work needs: the first pass after this shipped released
@@ -214,6 +233,7 @@ class FirestoreBackofficeStore {
       updatedAt: FieldValue.serverTimestamp(),
     }));
     await batch.commit();
+    this.usage.write(releasable.length);
     this.invalidate('jobs:');
     return releasable.map(doc => doc.id);
   }
@@ -239,6 +259,7 @@ class FirestoreBackofficeStore {
       });
     }
     await batch.commit();
+    this.usage.write(ids.length);
     this.invalidate('jobs:');
     return ids;
   }
@@ -249,6 +270,7 @@ class FirestoreBackofficeStore {
     const ref = this.db.collection(COLLECTIONS.jobs).doc(id);
     return this.db.runTransaction(async transaction => {
       const snapshot = await transaction.get(ref);
+      this.usage.read(1);
       if(!snapshot.exists) return null;
       const job = snapshot.data();
       const notBefore = job.notBefore?.toDate ? job.notBefore.toDate() : job.notBefore ? new Date(job.notBefore) : null;
@@ -257,6 +279,7 @@ class FirestoreBackofficeStore {
         status: 'running', workerId, startedAt: Timestamp.fromDate(now),
         leaseExpiresAt: Timestamp.fromDate(new Date(now.getTime() + leaseMs)), updatedAt: FieldValue.serverTimestamp(),
       });
+      this.usage.write(1);
       return { id, ...job, status: 'running', workerId, startedAt: now.toISOString() };
     }).finally(()=>this.invalidate('jobs:'));
   }
@@ -266,12 +289,14 @@ class FirestoreBackofficeStore {
       ...fields, status: 'ready-for-review', completedAt: FieldValue.serverTimestamp(),
       leaseExpiresAt: FieldValue.delete(), updatedAt: FieldValue.serverTimestamp(),
     });
+    this.usage.write(1);
     this.invalidate('jobs:');
   }
 
   async completeSystemJob(id, fields={}){
     await this.db.collection(COLLECTIONS.jobs).doc(id).update({...fields,status:'completed',completedAt:FieldValue.serverTimestamp(),
       leaseExpiresAt:FieldValue.delete(),updatedAt:FieldValue.serverTimestamp()});
+    this.usage.write(1);
     this.invalidate('jobs:');
   }
 
@@ -283,13 +308,14 @@ class FirestoreBackofficeStore {
       status, reviewAction:action, reviewedAt:Timestamp.fromDate(new Date(reviewedAt)),
       updatedAt:FieldValue.serverTimestamp(),
     });
+    this.usage.write(1);
     this.invalidate('jobs:');
   }
 
   async failJob(id, error, options = {}){
     const ref = this.db.collection(COLLECTIONS.jobs).doc(id);
     await this.db.runTransaction(async transaction => {
-      const snapshot = await transaction.get(ref); if(!snapshot.exists) return;
+      const snapshot = await transaction.get(ref); this.usage.read(1); if(!snapshot.exists) return;
       const job = snapshot.data();
       // A provider outage says nothing about the job, so it never counts towards
       // the failure budget and never blocks. It waits longer instead, because
@@ -308,6 +334,7 @@ class FirestoreBackofficeStore {
         notBefore: blocked ? FieldValue.delete() : Timestamp.fromMillis(Date.now() + delayMs),
         leaseExpiresAt: FieldValue.delete(), updatedAt: FieldValue.serverTimestamp(),
       });
+      this.usage.write(1);
     }).finally(()=>this.invalidate('jobs:'));
   }
 
@@ -315,12 +342,14 @@ class FirestoreBackofficeStore {
     const key=`reviews:${collection}:${status}`;
     if(this.queryCache.has(key))return this.queryCache.get(key);
     const snapshot=await this.db.collection(collection).where('status','==',status).get();
+    this.usage.read(queryReads(snapshot));
     const reviews=snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
     this.queryCache.set(key,reviews);return reviews;
   }
 
   async markReviewCollection(collection,id,status,fields={}){
     await this.db.collection(collection).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+    this.usage.write(1);
     this.invalidate(`reviews:${collection}:`);
   }
 
@@ -341,7 +370,7 @@ class FirestoreBackofficeStore {
     const doc={contractVersion:'1.0.0',type:'verified-trail-content-review',gate:'content-review',status:'queued',
       decisions,submittedAt:FieldValue.serverTimestamp(),submittedBy:String(input.submittedBy||'backoffice-cli'),
       publicMutationAllowed:false};
-    const ref=await this.db.collection(COLLECTIONS.reviews).add(doc);
+    const ref=await this.db.collection(COLLECTIONS.reviews).add(doc);this.usage.write(1);
     this.invalidate(`reviews:${COLLECTIONS.reviews}:`);
     return {ok:true,reviewId:ref.id,status:'queued'};
   }
@@ -360,7 +389,7 @@ class FirestoreBackofficeStore {
       note:String(input.note||'').trim().slice(0,1500),submittedAt:FieldValue.serverTimestamp(),
       submittedBy:String(input.submittedBy||'backoffice-cli'),publicMutationAllowed:false};
     if(!doc.candidateId||!doc.action)throw new Error('Publication candidate and action are required');
-    const ref=await this.db.collection(COLLECTIONS.publicationReviews).add(doc);
+    const ref=await this.db.collection(COLLECTIONS.publicationReviews).add(doc);this.usage.write(1);
     this.invalidate(`reviews:${COLLECTIONS.publicationReviews}:`);
     return {ok:true,reviewId:ref.id,status:'queued'};
   }
@@ -399,7 +428,7 @@ class FirestoreBackofficeStore {
       submittedAt:FieldValue.serverTimestamp(),
       submittedBy:String(input.submittedBy||'backoffice-cli'),publicMutationAllowed:false,
     };
-    const ref=await this.db.collection(COLLECTIONS.dossierReviews).add(doc);
+    const ref=await this.db.collection(COLLECTIONS.dossierReviews).add(doc);this.usage.write(1);
     // The cache key is `reviews:<collection>:<status>`, so the prefix has to
     // carry the `reviews:` segment -- see listReviewCollection. Without it the
     // apply step later in the same pass re-reads the pre-submit list.
@@ -416,7 +445,7 @@ class FirestoreBackofficeStore {
       submittedAt:FieldValue.serverTimestamp(),
       submittedBy:String(input.submittedBy||'backoffice-cli'),publicMutationAllowed:false,
     };
-    const ref=await this.db.collection(COLLECTIONS.routeReviews).add(doc);
+    const ref=await this.db.collection(COLLECTIONS.routeReviews).add(doc);this.usage.write(1);
     this.invalidate(`reviews:${COLLECTIONS.routeReviews}:`);
     return {ok:true,reviewId:ref.id,status:'queued'};
   }
