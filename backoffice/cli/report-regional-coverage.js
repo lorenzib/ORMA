@@ -13,20 +13,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const vm = require('vm');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
 const { summariseRegionalCoverage } = require('../workflows/regional-coverage');
-
-// regions-config.js is a browser IIFE that assigns to window; the locality
-// table lives only there on purpose, so that the site and the import pipeline
-// cannot disagree about which valley a place is in.
-function loadRegions(root){
-  const context = { window:{}, console };
-  vm.createContext(context);
-  vm.runInContext(fs.readFileSync(path.join(root, 'regions-config.js'), 'utf8'), context,
-    { filename:'regions-config.js' });
-  return context.window.DoloPawsRegions;
-}
+const { loadRegionTaxonomy } = require('../services/region-taxonomy');
 
 function readJson(file){
   try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { return null; }
@@ -68,7 +57,7 @@ function render(coverage){
 
 function main(options = {}){
   const root = options.root || path.resolve(__dirname, '../..');
-  const regions = loadRegions(root);
+  const regions = loadRegionTaxonomy(root);
   const scouting = readJson(path.join(root, 'backoffice-data/new-trail-scouting.json'));
   const coverage = summariseRegionalCoverage({
     trails: options.trails || loadProductionTrails(root),
@@ -86,4 +75,4 @@ if(require.main === module){
   try { main(); } catch(error){ console.error(`[coverage] ${error.stack || error.message}`); process.exitCode = 1; }
 }
 
-module.exports = { main, render, loadRegions, loadValleyResearch };
+module.exports = { main, render, loadValleyResearch };
