@@ -34,6 +34,8 @@ async function main(env=process.env){
   const workerId=`github-drain-${env.GITHUB_RUN_ID||'manual'}-${env.GITHUB_RUN_ATTEMPT||'1'}`;
   const usage=new FirestoreUsageMeter();
   const base=workerOptions(env,{workerId});
+  // Outlives the per-pass stores: completed jobs only.
+  const completedJobs=new Map();
   const ledger=await drainVerificationQueue({
     usage,
     maxMinutes:positiveInteger(env.ORMA_DRAIN_MAX_MINUTES,undefined),
@@ -42,7 +44,15 @@ async function main(env=process.env){
     log:pass=>console.log(`[orma-drain] pass ${pass.index} · ${pass.outcome||'error'} · ${pass.succeeded??'-'}/${pass.attempted??'-'} jobs · ${pass.reads} reads · ${pass.writes} writes · ${Math.round(pass.durationMs/1000)}s${pass.error?` · ${pass.error}`:''}`),
     // A fresh store per pass: the store memoises artifacts and queue reads for
     // one pass, and a pass must see what the previous one wrote.
-    runPass:()=>runLiveBackofficeWorker(new FirestoreBackofficeStore({usage}),base),
+    //
+    // The completed-job cache is the exception, handed across passes on purpose.
+    // Measured on run 37783864537: `job-get-by-id` was 7,632 of 10,284 reads --
+    // 74% of the run -- because every pass re-read every job each trail had ever
+    // had from cold. Those documents are finished; sharing them is the whole
+    // difference between a drain that fits the free tier and one that does not.
+    // Only completed jobs are retained (see getJobsByIds), so nothing in flight
+    // is served from a previous pass.
+    runPass:()=>runLiveBackofficeWorker(new FirestoreBackofficeStore({usage,jobCache:completedJobs}),base),
   });
   console.log(JSON.stringify(ledger,null,2));
   try{
