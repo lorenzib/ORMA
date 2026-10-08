@@ -62,6 +62,11 @@ class FirestoreBackofficeStore {
     // Documents read and written through this store, for the quota ledger.
     // Shared across stores when the caller passes one meter in.
     this.usage = options.usage || new FirestoreUsageMeter();
+    // A caller may hand in a job cache to share across stores -- the drain does,
+    // because it builds a fresh store per pass and would otherwise re-read every
+    // completed job from cold on all of them. A shared cache keeps *only*
+    // completed jobs; see the getJobsByIds note.
+    if(options.jobCache){ this._jobCache = options.jobCache; this.sharedJobCache = true; }
   }
 
   // Lazy, so a store built from the prototype without the constructor (as some
@@ -83,6 +88,13 @@ class FirestoreBackofficeStore {
    * rather than throw.
    */
   get jobCache(){ if(!this._jobCache) this._jobCache = new Map(); return this._jobCache; }
+
+  /**
+   * Whether this cache outlives the store that filled it. True only when a
+   * caller injected one, and it narrows what may be kept: see getJobsByIds.
+   */
+  get sharedJobCache(){ return Boolean(this._sharedJobCache); }
+  set sharedJobCache(value){ this._sharedJobCache = Boolean(value); }
 
   invalidate(prefix){
     for(const key of this.queryCache.keys()) if(key.startsWith(prefix)) this.queryCache.delete(key);
@@ -191,7 +203,20 @@ class FirestoreBackofficeStore {
         const job = { id: snapshot.id, ...snapshot.data() };
         // Absence is not cached. A missing id can be created later by
         // putJobIfAbsent, and re-reading it costs one document.
-        this.jobCache.set(snapshot.id, job);
+        //
+        // A cache that outlives this store keeps only completed jobs. They are
+        // the bulk of the cost -- `trail.jobIds` is append-only, so a trail
+        // carries forty of them and the drain read all forty from cold on every
+        // pass, 74% of the whole run's reads -- and the orchestration only ever
+        // uses a completed job to find the newest per agent and read its output
+        // ref, neither of which changes again.
+        //
+        // Anything still in flight is re-read each pass. `forgetJobs` evicts our
+        // own writes precisely, but a queued or blocked job can also be moved by
+        // something outside this process (a requeue or retire run), and a stale
+        // in-flight job would make the orchestration act on a job that is no
+        // longer there.
+        if(!this.sharedJobCache || job.status === 'completed') this.jobCache.set(snapshot.id, job);
         jobs.push(job);
       });
     }

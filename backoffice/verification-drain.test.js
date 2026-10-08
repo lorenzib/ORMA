@@ -123,7 +123,12 @@ describe('the drain runs the worker pass, not a copy of it',()=>{
     expect(workerOptions(env).workerId).toBe('github-9-1');
     const cli=fs.readFileSync(path.join(__dirname,'cli/drain-verification-queue.js'),'utf8');
     expect(cli).toContain("workerOptions");
-    expect(cli).toContain('runLiveBackofficeWorker(new FirestoreBackofficeStore({usage})');
+    // The intent, asserted in parts rather than as one literal: each pass runs
+    // the worker's own pass against a real store that shares the meter. The
+    // completed-job cache is also handed in, which is why this is no longer a
+    // single exact string.
+    expect(cli).toMatch(/runLiveBackofficeWorker\(new FirestoreBackofficeStore\(\{usage[,}]/);
+    expect(cli).toContain('jobCache:completedJobs');
   });
 
   test('the workflow shares the worker lock, carries both budgets and publishes nothing',()=>{

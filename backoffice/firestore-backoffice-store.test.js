@@ -223,3 +223,90 @@ describe('job documents are read once per pass unless they change', () => {
     expect(source).toMatch(/forgetJobs\(ids = \[\]\)\{\n\s*this\.invalidate\('jobs:'\);/);
   });
 });
+
+/**
+ * The drain builds a fresh store per pass, because the store memoises artifacts
+ * and queue reads and a pass must see what the previous one wrote. That left the
+ * job cache cold on every pass: measured on drain run 37783864537,
+ * `job-get-by-id` was 7,632 of 10,284 reads — 74% of the whole run — because
+ * every pass re-read every job each trail had ever had.
+ *
+ * A completed job is finished: the orchestration only uses one to find the
+ * newest per agent and read its output ref. Those can cross passes. Nothing in
+ * flight can, because a requeue or retire run outside this process could move it.
+ */
+describe('a shared job cache keeps finished jobs and nothing else', () => {
+  function sharedStore(seed, jobCache) {
+    const docs = new Map(Object.entries(seed));
+    let reads = 0;
+    const docRef = id => ({ id, get: async () => { reads += 1; return snap(id); },
+      set: async () => {}, update: async () => {} });
+    const snap = id => ({ id, exists: docs.has(id), ref: docRef(id), data: () => docs.get(id) });
+    const db = {
+      settings: jest.fn(),
+      collection: () => ({ doc: docRef, where: () => ({ get: async () => ({ docs: [] }) }) }),
+      getAll: async (...refs) => { reads += refs.length; return refs.map(ref => snap(ref.id)); },
+      batch: () => ({ update: () => {}, commit: async () => {} }),
+      runTransaction: async fn => fn({ get: async ref => { reads += 1; return snap(ref.id); },
+        set: () => {}, update: () => {} }),
+    };
+    return { store: new FirestoreBackofficeStore({ db, jobCache }), reads: () => reads, docs };
+  }
+
+  const seed = {
+    'done-1': { status: 'completed', agentId: 'logistics', createdAt: '2026-10-01T00:00:00.000Z' },
+    'done-2': { status: 'completed', agentId: 'terrainPoi', createdAt: '2026-10-02T00:00:00.000Z' },
+    'live-1': { status: 'queued', agentId: 'redTeam', createdAt: '2026-10-03T00:00:00.000Z' },
+  };
+  const ids = ['done-1', 'done-2', 'live-1'];
+
+  test('a later pass pays only for the jobs still in flight', async () => {
+    const shared = new Map();
+
+    const first = sharedStore(seed, shared);
+    expect(await first.store.getJobsByIds(ids)).toHaveLength(3);
+    expect(first.reads()).toBe(3);
+
+    // What the drain does next: a brand new store, same shared cache.
+    const second = sharedStore(seed, shared);
+    expect(await second.store.getJobsByIds(ids)).toHaveLength(3);
+    // The two finished jobs came from the cache; only the queued one was read.
+    expect(second.reads()).toBe(1);
+  });
+
+  test('a queued job is never served from a previous pass', async () => {
+    const shared = new Map();
+    const first = sharedStore(seed, shared);
+    await first.store.getJobsByIds(ids);
+
+    expect(shared.has('done-1')).toBe(true);
+    expect(shared.has('live-1')).toBe(false);
+
+    // Something outside this process requeued it between passes.
+    const second = sharedStore({ ...seed,
+      'live-1': { status: 'blocked', agentId: 'redTeam', createdAt: '2026-10-03T00:00:00.000Z' } }, shared);
+    const jobs = await second.store.getJobsByIds(['live-1']);
+    expect(jobs[0].status).toBe('blocked');
+  });
+
+  test('a store with its own cache still keeps everything, as before', async () => {
+    const own = sharedStore(seed);
+    await own.store.getJobsByIds(ids);
+    const before = own.reads();
+    await own.store.getJobsByIds(ids);
+
+    expect(own.store.sharedJobCache).toBe(false);
+    // Unchanged from #661: within one store, the second walk is free.
+    expect(own.reads()).toBe(before);
+  });
+
+  test('our own write still evicts, shared cache or not', async () => {
+    const shared = new Map();
+    const { store } = sharedStore(seed, shared);
+    await store.getJobsByIds(['done-1']);
+    expect(shared.has('done-1')).toBe(true);
+
+    await store.putJob({ id: 'done-1', status: 'queued' });
+    expect(shared.has('done-1')).toBe(false);
+  });
+})
