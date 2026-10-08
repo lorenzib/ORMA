@@ -25,6 +25,25 @@ const OFFICIAL_ROUTE_CLAIMS=['route-number-status','route-number-sequence','rout
 // walk. Numbered routes must name the sequence and switches. Genuinely
 // unnumbered routes satisfy the same contract with a sourced landmark sequence
 // and turn instructions; they do not get an empty "not applicable" shortcut.
+//
+// "This walk never changes path" is not that shortcut, though, and refusing it
+// was costing more than it protected. Measured 2026-10-08: route-number-switches
+// blocked 11 trails and had failed `unresolved` on all 11, while
+// recommended-start failed `conflicted` 7 times out of 7 and research cleared 4
+// of those. A claim that comes back empty every single time is a question with
+// no answer to find, not hard research -- and on those same trails, from the
+// same pages, route-number-status always resolved and route-number-sequence
+// nearly always did. The agent had the route and no legal way to describe a
+// simple one.
+//
+// It cannot become the easy way out, because every one of the four claims must
+// be a supported proposal with an authority and an https source before this
+// gate opens: "there are no switches" can only pass beside a sourced
+// route-number-sequence that establishes the order independently. The order
+// still has to be established and cited; only the pretence that every walk has
+// a junction is gone. Same shape as `rule: not-applicable` for a route with no
+// rifugio -- see OPERATING_STANDARD, "A route with no rifugio must be able to
+// say so".
 const VERIFICATION_ROUTE_CLAIMS=Object.freeze(['recommended-start',...OFFICIAL_ROUTE_CLAIMS]);
 
 function supportedLogisticsClaim(review,id){

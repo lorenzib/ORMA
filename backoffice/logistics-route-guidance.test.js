@@ -89,3 +89,75 @@ describe('the agent is handed what ORMA already recorded', () => {
     expect(PROMPTS.logistics).toContain('return the four route-following claims even when the parking picture is unresolved');
   });
 });
+
+/**
+ * Measured 2026-10-08 on the live pipeline: `route-number-switches` blocked 11
+ * trails and had failed `unresolved` on all 11, never once `conflicted`, while
+ * `recommended-start` failed `conflicted` 7 times out of 7 and the resolution
+ * ladder cleared 4 of those. A claim that comes back empty every single time is
+ * a question with no answer to find.
+ *
+ * On those same trails, from the same pages, `route-number-status` resolved
+ * every time and `route-number-sequence` nearly always did. The agent had the
+ * route; what it lacked was a legal way to describe a walk that follows one
+ * path from start to finish.
+ */
+describe('a walk that never changes path can say so', () => {
+  const SOURCE=[{url:'https://www.comune.example.it/sentiero-401',authority:'Comune di Esempio'}];
+  const supported=(id,value)=>({id,finding:'supported-proposal',proposedValue:value,sources:SOURCE});
+
+  test('the prompt sanctions "there are none" and says what it still costs', () => {
+    expect(PROMPTS.logistics).toContain('has no decision point');
+    expect(PROMPTS.logistics).toContain('cited to the source that establishes it');
+    // The escape hatch it used 11 times out of 11 is now scoped.
+    expect(PROMPTS.logistics)
+      .toContain('Reserve unresolved for a route whose course you could not establish at all');
+  });
+
+  test('a switch is placed by landmark, and a missing coordinate never withholds one', () => {
+    expect(PROMPTS.logistics).toContain('locate each switch by the landmark a walker meets there');
+    expect(PROMPTS.logistics).toContain('never withhold a switch you can place by landmark');
+  });
+
+  test('the unnumbered-route shortcut is still refused', () => {
+    expect(PROMPTS.logistics).toContain('do not answer merely that no number applies');
+    expect(PROMPTS.logistics).toContain('ordered landmark sequence and useful turn instructions');
+  });
+
+  // The output contract is unchanged: the claim must still be returned.
+  test('omitting the claim is still refused, so "none" must be said out loud', () => {
+    const withoutSwitches={claims:REQUIRED.filter(id=>id!=='route-number-switches')
+      .map(id=>supported(id,'established'))};
+    expect(()=>validateSpecialistResult(withoutSwitches,'logistics',REQUIRED))
+      .toThrow('omitted mandatory route guidance claim(s): route-number-switches');
+  });
+
+  // The safeguard that stops this becoming the easy way out.
+  test('"no switches" is only ever accepted beside a sourced sequence', () => {
+    const {VERIFICATION_ROUTE_CLAIMS,supportedLogisticsClaim}=
+      require('./workflows/compile-verified-dossier.js');
+    const review=claims=>({specialistOutputs:[{agentId:'logistics',result:{claims}}]});
+
+    const whole=review(REQUIRED.map(id=>supported(id,
+      id==='route-number-switches'?'None — the route follows CAI 401 throughout.':'established')));
+    expect(VERIFICATION_ROUTE_CLAIMS.every(id=>supportedLogisticsClaim(whole,id))).toBe(true);
+
+    // Say "no switches" without establishing the order and the gate still refuses.
+    const orderMissing=review(REQUIRED.map(id=>id==='route-number-sequence'
+      ? {id,finding:'unresolved',proposedValue:'Unknown.',sources:[]}
+      : supported(id,id==='route-number-switches'?'None — follows CAI 401 throughout.':'established')));
+    expect(supportedLogisticsClaim(orderMissing,'route-number-switches')).toBeTruthy();
+    expect(supportedLogisticsClaim(orderMissing,'route-number-sequence')).toBeUndefined();
+    expect(VERIFICATION_ROUTE_CLAIMS.every(id=>supportedLogisticsClaim(orderMissing,id))).toBe(false);
+  });
+
+  // An unsourced "none" is a model guess, and buys nothing.
+  test('"no switches" with no source is refused like any other bare assertion', () => {
+    const unsourced={specialistOutputs:[{agentId:'logistics',result:{claims:[
+      {id:'route-number-switches',finding:'supported-proposal',
+        proposedValue:'None — follows 401 throughout.',sources:[]},
+    ]}}]};
+    const {supportedLogisticsClaim}=require('./workflows/compile-verified-dossier.js');
+    expect(supportedLogisticsClaim(unsourced,'route-number-switches')).toBeUndefined();
+  });
+});
