@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-08T07:34:18.496Z",
+  "generatedAt": "2026-10-08T10:27:29.261Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -17,32 +17,7 @@
       "effectiveAt": "2026-10-07T08:00:00+00:00",
       "expiresAt": "2026-10-08T05:59:00+00:00",
       "firstPublishedAt": "2026-10-07T07:33:17.879Z",
-      "lastSeenAt": "2026-10-08T07:34:18.496Z",
-      "removalRequiresHumanReview": true,
-      "trailIds": [
-        "piancavallo"
-      ],
-      "trailNames": [
-        "Piancavallo Malghe Loop"
-      ],
-      "sourceStatus": "available"
-    },
-    {
-      "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
-      "state": "active",
-      "severity": "severe",
-      "event": "Orange Thunderstorm Warning",
-      "area": "Friuli Venezia Giulia",
-      "title": "thunderstorm warning for Friuli Venezia Giulia",
-      "message": "An official severe thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/6932ca1f-ce38-429d-8801-5c6a2d48ff98",
-      "identifier": "2.49.0.0.380.3.IT.261007110057.104",
-      "effectiveAt": "2026-10-07T08:00:00+00:00",
-      "expiresAt": "2026-10-09T05:59:00+00:00",
-      "firstPublishedAt": "2026-10-05T22:23:15.462Z",
-      "lastSeenAt": "2026-10-08T07:34:18.496Z",
+      "lastSeenAt": "2026-10-08T10:27:29.261Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -62,12 +37,12 @@
       "message": "An official moderate rain-flood warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/3b58c1b4-f257-4a8d-8ecb-a239dcf7b494",
-      "identifier": "2.49.0.0.250.0.FR.20261008060034.876022",
-      "effectiveAt": "2026-10-08T04:00:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/1a97ccb3-a348-44f0-9554-1c596e76117b",
+      "identifier": "2.49.0.0.250.0.FR.20261008100021.435022",
+      "effectiveAt": "2026-10-08T08:00:00+00:00",
       "expiresAt": "2026-10-08T22:00:00+00:00",
       "firstPublishedAt": "2026-10-07T07:33:17.879Z",
-      "lastSeenAt": "2026-10-08T07:34:18.496Z",
+      "lastSeenAt": "2026-10-08T10:27:29.261Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -117,12 +92,12 @@
       "message": "An official moderate rain-flood warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/3b58c1b4-f257-4a8d-8ecb-a239dcf7b494",
-      "identifier": "2.49.0.0.250.0.FR.20261008060034.876022",
-      "effectiveAt": "2026-10-08T04:00:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/1a97ccb3-a348-44f0-9554-1c596e76117b",
+      "identifier": "2.49.0.0.250.0.FR.20261008100021.435022",
+      "effectiveAt": "2026-10-08T08:00:00+00:00",
       "expiresAt": "2026-10-08T22:00:00+00:00",
       "firstPublishedAt": "2026-10-07T07:33:17.879Z",
-      "lastSeenAt": "2026-10-08T07:34:18.496Z",
+      "lastSeenAt": "2026-10-08T10:27:29.261Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -205,6 +180,31 @@
       "sourceStatus": "available"
     },
     {
+      "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Yellow Thunderstorm Warning",
+      "area": "Friuli Venezia Giulia",
+      "title": "thunderstorm warning for Friuli Venezia Giulia",
+      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-italy",
+      "sourceLabel": "MeteoAlarm Italy",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/9e220658-02d8-4ad4-b45d-6eb0ceefa4b4",
+      "identifier": "2.49.0.0.380.3.IT.261008114809.098",
+      "effectiveAt": "2026-10-08T08:00:00+00:00",
+      "expiresAt": "2026-10-09T17:59:00+00:00",
+      "firstPublishedAt": "2026-10-05T22:23:15.462Z",
+      "lastSeenAt": "2026-10-08T10:27:29.261Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "piancavallo"
+      ],
+      "trailNames": [
+        "Piancavallo Malghe Loop"
+      ],
+      "sourceStatus": "available"
+    },
+    {
       "id": "meteoalarm-italy:thunderstorm:trentino-alto-adige",
       "state": "active",
       "severity": "moderate",
@@ -214,12 +214,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-italy",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/aee3d727-4f9f-4757-887c-618408849705",
-      "identifier": "2.49.0.0.380.3.IT.261007110057.101",
-      "effectiveAt": "2026-10-07T18:00:00+00:00",
-      "expiresAt": "2026-10-09T21:59:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/15c3fbb9-e874-4ad1-a099-0b1387f5e5e3",
+      "identifier": "2.49.0.0.380.3.IT.261008114809.097",
+      "effectiveAt": "2026-10-08T08:00:00+00:00",
+      "expiresAt": "2026-10-08T23:59:00+00:00",
       "firstPublishedAt": "2026-10-05T10:29:05.859Z",
-      "lastSeenAt": "2026-10-08T07:34:18.496Z",
+      "lastSeenAt": "2026-10-08T10:27:29.261Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -425,12 +425,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-italy",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/f2dd670d-b1a5-48f1-8505-e96b1b8e287b",
-      "identifier": "2.49.0.0.380.3.IT.261007110057.108",
-      "effectiveAt": "2026-10-07T18:00:00+00:00",
-      "expiresAt": "2026-10-09T21:59:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/58de6955-cd38-41c0-9eec-904b35052e2b",
+      "identifier": "2.49.0.0.380.3.IT.261008114809.100",
+      "effectiveAt": "2026-10-08T08:00:00+00:00",
+      "expiresAt": "2026-10-10T05:59:00+00:00",
       "firstPublishedAt": "2026-10-05T22:23:15.462Z",
-      "lastSeenAt": "2026-10-08T07:34:18.496Z",
+      "lastSeenAt": "2026-10-08T10:27:29.261Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
