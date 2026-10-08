@@ -1,6 +1,44 @@
 'use strict';
 
+const {DEFAULT_POLICY}=require('./regional-coverage');
+
 const HARD_DIFFICULTIES = new Set(['alpine_hiking', 'demanding_alpine_hiking', 'difficult_alpine_hiking']);
+
+/**
+ * How many published ORMA trails already sit in each valley.
+ *
+ * The ranking scored `existing-area` -- within 30 km of a published trail --
+ * highest, and a valley with nothing nearby lowest. At ORMA's density almost
+ * everything in the Dolomites is within 30 km of something, so the tier barely
+ * discriminated: measured on 2026-10-08, all four awaiting candidates were
+ * tagged `existing-area` while sitting in four different valleys, two of them
+ * thin and one with no ORMA trail at all.
+ *
+ * Proximity is not coverage. A 28th trail in Alta Pusteria adds less than a
+ * second trail in Cortina, and only the valley count can say so.
+ */
+function publishedByValley(trails){
+  const counts=new Map();
+  for(const trail of trails||[]){
+    if(!trail||!trail.valley)continue;
+    counts.set(trail.valley,(counts.get(trail.valley)||0)+1);
+  }
+  return counts;
+}
+
+/**
+ * How badly this candidate's valley needs another trail, from the same
+ * threshold the coverage report calls thin. Imported rather than restated: two
+ * copies of a target are two targets.
+ *
+ * Capped at the threshold, so the difference between twenty and twenty-seven
+ * published trails never outranks the region policy.
+ */
+function coverageNeed(valley,publishedCounts){
+  if(!valley)return 0;
+  const published=publishedCounts instanceof Map?(publishedCounts.get(valley)||0):0;
+  return Math.max(0,DEFAULT_POLICY.thinBelowPublished-published);
+}
 
 function haversineKm(a, b){
   const rad=value=>value*Math.PI/180;const dLat=rad(b[1]-a[1]);const dLng=rad(b[0]-a[0]);
@@ -34,10 +72,18 @@ function relationId(feature){return String(feature?.properties?.osm_relation||fe
 
 function compareScoutingCandidates(a,b,primaryRegion='dolomites'){
   const regionPriority=Number(b.region===primaryRegion)-Number(a.region===primaryRegion);
-  return regionPriority||b.expansionScore-a.expansionScore||(a.nearestExisting?.distanceKm??Infinity)-(b.nearestExisting?.distanceKm??Infinity)||a.distanceKm-b.distanceKm;
+  // Region first, so coherent expansion still beats an unrelated new region.
+  // Then what the candidate would add: a thin valley needs a trail more than a
+  // full one. Proximity stays as a tiebreak rather than the primary signal --
+  // it was answering "how close is this to what we have" when the question is
+  // "where are we missing".
+  const coveragePriority=(b.coverageNeed??0)-(a.coverageNeed??0);
+  return regionPriority||coveragePriority||b.expansionScore-a.expansionScore
+    ||(a.nearestExisting?.distanceKm??Infinity)-(b.nearestExisting?.distanceKm??Infinity)
+    ||a.distanceKm-b.distanceKm;
 }
 
-function buildCandidate(feature, region, trails, existingRelations){
+function buildCandidate(feature, region, trails, existingRelations, context={}){
   const properties=feature.properties||{};const relation=relationId(feature);const center=centerOf(feature.geometry);if(!relation||!center)return null;
   if(existingRelations.has(relation))return null;
   const distanceKm=Number(properties.distance_km);const closure=closureMeters(feature.geometry);
@@ -49,13 +95,25 @@ function buildCandidate(feature, region, trails, existingRelations){
   if(blockers.length)return null;
   const nearest=nearestExisting(center,trails.filter(trail=>trail.region===region));
   const expansionTier=!nearest?'uncovered':nearest.distanceKm<=30?'existing-area':nearest.distanceKm<=80?'adjacent-area':'new-area';
+  // regions-config stores [lng, lat]; nearestLocality takes (lat, lng). Absent
+  // the lookup, every candidate has no valley and the ordering falls back to
+  // exactly what it was.
+  const valley=typeof context.nearestLocality==='function'
+    ? (context.nearestLocality(Number(center[1]),Number(center[0]))||{}).valley||null
+    : null;
+  const published=valley&&context.publishedByValley instanceof Map
+    ? (context.publishedByValley.get(valley)||0):0;
+  const need=coverageNeed(valley,context.publishedByValley);
   return {
+    valley,valleyPublishedTrails:valley?published:null,coverageNeed:need,
     id:`osm-relation-${relation}`,osmRelation:Number(relation),name:properties.name||`OSM route ${relation}`,region,
     distanceKm,loopEvidence:properties.loop===true?'source-tagged loop':`geometry closes within ${Math.round(closure)} m`,
     animalFit:properties.dogFriendlyNotes||properties.leash||'No OSM dog prohibition found; animal suitability still requires evidence review.',
     difficulty:properties.sac_scale||'not tagged',surfaceSummary:properties.surfaces||{},center,nearestExisting:nearest,expansionTier,
     expansionScore:expansionTier==='existing-area'?3:expansionTier==='adjacent-area'?2:expansionTier==='new-area'?1:0,
-    whyCandidate:`A plausible loop under 12 km, ${nearest?`${nearest.distanceKm.toFixed(1)} km from ${nearest.trailName}`:'with no nearby published ORMA trail'}, awaiting full route and dog-suitability verification.`,
+    whyCandidate:`A plausible loop under 12 km, ${nearest?`${nearest.distanceKm.toFixed(1)} km from ${nearest.trailName}`:'with no nearby published ORMA trail'}`
+      +`${valley?`, in ${valley} where ORMA publishes ${published} trail${published===1?'':'s'}`:''}`
+      +', awaiting full route and dog-suitability verification.',
     sourceUrl:properties.waymarkedtrails||`https://www.openstreetmap.org/relation/${relation}`,status:'awaiting-ceo-selection',
     nextStage:'route-identity-and-geometry',publicMutationAllowed:false,
   };
@@ -65,12 +123,17 @@ function planNewTrailScouting(sources, trails, options={}){
   const at=options.at||new Date().toISOString();const limit=options.limit||25;const primaryRegion=options.primaryRegion||'dolomites';
   const excludedCandidateIds=new Set(options.excludedCandidateIds||[]);
   const existingRelations=new Set(trails.map(trail=>trail.osmRelation).filter(Boolean).map(String));
-  const candidates=sources.flatMap(source=>(source.data?.features||[]).map(feature=>buildCandidate(feature,source.region,trails,existingRelations)).filter(Boolean))
+  const context={nearestLocality:options.nearestLocality,publishedByValley:publishedByValley(trails)};
+  const candidates=sources.flatMap(source=>(source.data?.features||[]).map(feature=>buildCandidate(feature,source.region,trails,existingRelations,context)).filter(Boolean))
     .filter(candidate=>!excludedCandidateIds.has(candidate.id))
     .sort((a,b)=>compareScoutingCandidates(a,b,primaryRegion))
     .slice(0,limit).map((candidate,index)=>({...candidate,priority:index+1}));
-  return {contractVersion:'1.0.0',generatedAt:at,mode:'candidate-only',publicMutationAllowed:false,policy:{loopsRequired:true,maxDistanceKm:12,primaryRegion,expandFromExistingAreasFirst:true,animalSuitabilityRequiresVerification:true},candidates,
-    summary:{candidates:candidates.length,primaryRegion,primaryRegionCandidates:candidates.filter(item=>item.region===primaryRegion).length,existingArea:candidates.filter(item=>item.expansionTier==='existing-area').length,adjacentArea:candidates.filter(item=>item.expansionTier==='adjacent-area').length,newArea:candidates.filter(item=>item.expansionTier==='new-area').length}};
+  return {contractVersion:'1.0.0',generatedAt:at,mode:'candidate-only',publicMutationAllowed:false,policy:{loopsRequired:true,maxDistanceKm:12,primaryRegion,expandFromExistingAreasFirst:true,animalSuitabilityRequiresVerification:true,
+      thinValleyBelowPublished:DEFAULT_POLICY.thinBelowPublished},candidates,
+    summary:{candidates:candidates.length,primaryRegion,primaryRegionCandidates:candidates.filter(item=>item.region===primaryRegion).length,existingArea:candidates.filter(item=>item.expansionTier==='existing-area').length,adjacentArea:candidates.filter(item=>item.expansionTier==='adjacent-area').length,newArea:candidates.filter(item=>item.expansionTier==='new-area').length,
+      // What the proximity tiers could not say: how many land where ORMA is thin.
+      inThinValleys:candidates.filter(item=>item.coverageNeed>0).length,
+      valleysRepresented:new Set(candidates.map(item=>item.valley).filter(Boolean)).size}};
 }
 
 function applyNewTrailReview(packet,review,input,options={}){
@@ -83,4 +146,4 @@ function applyNewTrailReview(packet,review,input,options={}){
   return {contractVersion:'1.0.0',updatedAt:at,decisions,intake};
 }
 
-module.exports={haversineKm,centerOf,closureMeters,compareScoutingCandidates,buildCandidate,planNewTrailScouting,applyNewTrailReview};
+module.exports={haversineKm,centerOf,closureMeters,publishedByValley,coverageNeed,compareScoutingCandidates,buildCandidate,planNewTrailScouting,applyNewTrailReview};

@@ -229,8 +229,26 @@ Owns discovery before catalogue admission. It prioritises:
 
 - plausible loop routes;
 - animal-friendly evidence;
-- candidates close to areas ORMA already covers; and
+- valleys where ORMA is thin, measured against the catalogue rather than
+  guessed at; and
 - coherent geographic expansion before unrelated new regions.
+
+The third of those used to read "candidates close to areas ORMA already
+covers", and proximity turned out not to measure coverage. The ranking scored
+`existing-area` -- within 30 km of a published trail -- highest and a valley
+with nothing nearby lowest, and at ORMA's density almost everything in the
+Dolomites is within 30 km of something. Measured on 2026-10-08, all four
+awaiting candidates were tagged `existing-area` while sitting in four different
+valleys, two of them thin and one with no ORMA trail at all: the tier had
+nothing left to separate them but raw distance.
+
+A twenty-eighth trail in Alta Pusteria adds less than a second trail in
+Cortina, and only the valley count says so. So candidates are ordered by how
+far their valley is below the depth the coverage report calls thin, taken from
+that report's own threshold rather than a second copy of it. Region priority
+still comes first, so coherent expansion continues to beat an unrelated new
+region, and proximity remains a tiebreak rather than the signal. Where the
+valley taxonomy cannot be read the order falls back exactly to what it was.
 
 The active discovery phase is Dolomites-first. Scouting is paused during the
 ORMA Verified backfill; existing candidates are preserved and
