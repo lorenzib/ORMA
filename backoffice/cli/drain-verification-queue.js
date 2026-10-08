@@ -25,6 +25,14 @@ function summaryMarkdown(ledger){
         `| \`${entry.source}\` | ${entry.reads} | ${entry.writes} | ${entry.readCalls+entry.writeCalls} |`),
       '',
     ]:[]),
+    ...(ledger.failureReasons&&ledger.failureReasons.length?[
+      '### Why jobs failed',
+      '',
+      '| failures | error |','|---|---|',
+      ...ledger.failureReasons.slice(0,8).map(entry=>
+        `| ${entry.count} | ${String(entry.message).replace(/\|/g,'\\|').slice(0,220)} |`),
+      '',
+    ]:[]),
     '| pass | outcome | done/attempted | reads | writes | duration |','|---|---|---|---|---|---|',...rows,
   ].join('\n');
 }
@@ -41,7 +49,9 @@ async function main(env=process.env){
     maxMinutes:positiveInteger(env.ORMA_DRAIN_MAX_MINUTES,undefined),
     readBudget:positiveInteger(env.ORMA_DRAIN_READ_BUDGET,undefined),
     writeBudget:positiveInteger(env.ORMA_DRAIN_WRITE_BUDGET,undefined),
-    log:pass=>console.log(`[orma-drain] pass ${pass.index} · ${pass.outcome||'error'} · ${pass.succeeded??'-'}/${pass.attempted??'-'} jobs · ${pass.reads} reads · ${pass.writes} writes · ${Math.round(pass.durationMs/1000)}s${pass.error?` · ${pass.error}`:''}`),
+    log:pass=>console.log(`[orma-drain] pass ${pass.index} · ${pass.outcome||'error'} · ${pass.succeeded??'-'}/${pass.attempted??'-'} jobs · ${pass.reads} reads · ${pass.writes} writes · ${Math.round(pass.durationMs/1000)}s`
+      +`${pass.reasons?.length?` · ${pass.reasons.map(reason=>`${reason.count}x ${String(reason.message).slice(0,90)}`).join(' | ')}`:''}`
+      +`${pass.error?` · ${pass.error}`:''}`),
     // A fresh store per pass: the store memoises artifacts and queue reads for
     // one pass, and a pass must see what the previous one wrote.
     //

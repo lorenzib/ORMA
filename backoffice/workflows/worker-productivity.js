@@ -118,9 +118,15 @@ function workMessage(summary, pipeline){
     return 'This run had no agent work to pick up.';
   }
   if(outcome === 'productive'){
-    return summary.failed
-      ? `${plural(summary.succeeded, 'job')} completed and ${summary.failed} failed.`
-      : `${plural(summary.succeeded, 'job')} completed.`;
+    if(!summary.failed) return `${plural(summary.succeeded, 'job')} completed.`;
+    // A pass where everything failed got a diagnosis; a pass where a fifth
+    // failed got a number. The second is the common case and the one worth
+    // explaining: on drain 37804841788, 17 of 80 jobs failed and no receipt,
+    // ledger or report could say why, because this tally was computed here and
+    // then dropped. Nothing downstream had it either.
+    const cause = summary.reasons?.[0]?.message || 'No error message was captured.';
+    return `${plural(summary.succeeded, 'job')} completed and ${summary.failed} failed. `
+      + `Most common failure: ${cause}`;
   }
   const cause = summary.reasons[0]?.message || 'No error message was captured.';
   const parked = summary.providerParked

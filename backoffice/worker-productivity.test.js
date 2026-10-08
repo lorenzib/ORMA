@@ -28,7 +28,10 @@ describe('a worker run that finishes every step and completes no work',()=>{
     const summary=summariseWorkAttempted({specialistJobs:[refused('a','logistics'),{jobId:'b',agentId:'terrainPoi',status:'completed'}]});
     expect(summary).toEqual(expect.objectContaining({attempted:2,succeeded:1,failed:1}));
     expect(workOutcome(summary)).toBe('productive');
-    expect(workMessage(summary)).toBe('1 job completed and 1 failed.');
+    // A partly-failing pass now names the cause too; the count alone was the
+    // blind spot. Asserted in parts, since the cause comes from the fixture.
+    expect(workMessage(summary)).toContain('1 job completed and 1 failed.');
+    expect(workMessage(summary)).toContain('Most common failure:');
   });
 
   test('an empty queue is idle, never degraded',()=>{
@@ -172,5 +175,54 @@ describe('parked means the provider refused everything', () => {
 
     expect(summary.providerParked).toBe(true);
     expect(workOutcome(summary)).toBe('unproductive');
+  });
+});
+
+/**
+ * A pass where every job failed got a diagnosis. A pass where a fifth failed got
+ * a number. The second is the common case, and it was the one nobody could act
+ * on: on drain run 37804841788, 17 of 80 jobs failed and no receipt, ledger or
+ * report could say why. `summariseWorkAttempted` had counted the distinct errors
+ * all along and every consumer dropped them.
+ */
+describe('a pass that mostly worked still says why the rest did not', () => {
+  const NO_CREDITS_ERROR='429: You have no credits remaining';
+
+  test('the commonest failure is named beside the counts', () => {
+    const summary=summariseWorkAttempted({specialistJobs:[
+      {jobId:'a',agentId:'terrainPoi',status:'completed'},
+      {jobId:'b',agentId:'logistics',status:'completed'},
+      {jobId:'c',agentId:'logistics',status:'retry-or-blocked',
+        error:'Logistics result omitted mandatory route guidance claim(s): route-number-switches'},
+    ]});
+
+    expect(workOutcome(summary)).toBe('productive');
+    const message=workMessage(summary);
+    expect(message).toContain('2 jobs completed and 1 failed.');
+    expect(message).toContain('route-number-switches');
+  });
+
+  test('the loudest failure wins, not the first one seen', () => {
+    const summary=summariseWorkAttempted({specialistJobs:[
+      {jobId:'a',status:'completed'},
+      {jobId:'b',status:'retry-or-blocked',error:'A one-off wobble'},
+      {jobId:'c',status:'retry-or-blocked',error:NO_CREDITS_ERROR},
+      {jobId:'d',status:'retry-or-blocked',error:NO_CREDITS_ERROR},
+    ]});
+
+    expect(workMessage(summary)).toContain(NO_CREDITS_ERROR);
+    expect(workMessage(summary)).not.toContain('one-off wobble');
+  });
+
+  test('a clean pass stays a clean sentence', () => {
+    const summary=summariseWorkAttempted({specialistJobs:[
+      {jobId:'a',status:'completed'},{jobId:'b',status:'completed'}]});
+    expect(workMessage(summary)).toBe('2 jobs completed.');
+  });
+
+  test('a failure with no message says so rather than reading empty', () => {
+    const summary=summariseWorkAttempted({specialistJobs:[
+      {jobId:'a',status:'completed'},{jobId:'b',status:'retry-or-blocked'}]});
+    expect(workMessage(summary)).toContain('No error message was captured.');
   });
 });
