@@ -367,7 +367,9 @@ routine CEO task. The command is retained as an exceptional correction tool.
 
 Every walk has a recommended direction, and the dossier gate refuses a trail
 without one. The Logistics Agent is therefore asked for route guidance in the
-same job that asks for parking and access, and its output is refused without it.
+same job that asks for parking and access, and a result that omits route
+guidance has those claims recorded as unresolved rather than being thrown
+away -- see "A claim the agent did not answer is unresolved, not a failure".
 Those two contracts must not drift apart: asking only for parking while throwing
 the result away for lacking directions produced parking-only dossiers on trails
 whose start and sequence had already been written down.
@@ -486,6 +488,39 @@ blocker is background research a human can judge sufficient; route guidance is
 content printed on the trail page for a walker to follow, so waiving it would
 publish a walk with no directions. It is the agent's work, and it must be
 supplied rather than excused.
+
+## A claim the agent did not answer is unresolved, not a failure
+
+Two output contracts used to throw when a mandatory claim was absent: the four
+route-guidance claims from the Logistics Agent, and the six scouting claims from
+the Terrain & POI Analyst. A thrown result is a system failure, three of those
+block the job permanently, and the trail loses that work for good.
+
+An agent asked for six claims in one reply usually returns six and sometimes
+returns four. Measured by forcing one trail (osm-1116675) through repeatedly on
+2026-10-08: the first fix removed `water` from the omissions, the second named
+all five categories explicitly and forbade one claim standing in for several,
+and `water` came back anyway on the commit containing the second fix. Two
+wording changes, neither reliable, because wording was never the cause. Roughly
+a fifth of replies died and each death cost a life.
+
+So a claim the agent did not return is recorded as **unresolved**. That is the
+state the pipeline already holds for a question not yet settled, and the
+resolution ladder exists to work five materially different strategies through
+it. An omission becomes ordinary unfinished research instead of a fatal error
+nobody can act on.
+
+It asserts nothing and hides nothing: no sources, zero confidence, a rationale
+naming the agent and saying plainly that this is not evidence there is nothing
+to report, and a `<claim>-not-answered` blocker so it reaches the dossier gate
+and the desk. It buys no trail a verification either -- the gate requires a
+supported proposal with a named authority for every route-guidance claim, so an
+unanswered one refuses verification exactly as the thrown result did.
+
+An agent that returns **no claims at all** is a different thing: it did not omit
+a claim, it failed to work. That stays fatal and keeps its retries, because
+filling six unresolved claims there would report a job as done having answered
+nothing.
 
 ## A route with no fountain must be able to say so
 
