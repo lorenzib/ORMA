@@ -46,6 +46,29 @@ describe('a route with no fountain can say so', () => {
     expect(PROMPTS.terrainPoi).toContain('citing the source that establishes it');
   });
 
+  // #678 said "return that single claim". Forced through one trail
+  // (osm-1116675, worker run on 5927aad0) the agent did exactly that: it
+  // answered water with a sourced "none" and omitted the other four, and the
+  // error moved from `water, mountain-huts, food-drink, other-places` to
+  // `mountain-huts, food-drink, other-places, animals`. The fix worked and the
+  // sentence was ambiguous, which only a real run was going to show.
+  test('every empty category needs its own claim, not one standing in for all', () => {
+    expect(PROMPTS.terrainPoi).toContain('Answer every empty category with its own claim');
+    expect(PROMPTS.terrainPoi).toContain('one per category');
+    expect(PROMPTS.terrainPoi).toContain('One claim never stands in for several');
+    expect(PROMPTS.terrainPoi)
+      .toContain('answering water and leaving the rest out is the same omission');
+    // The wording that caused it must not come back.
+    expect(PROMPTS.terrainPoi).not.toContain('return that single claim');
+  });
+
+  test('a sourced "none" for water alone is still refused, as that run was', () => {
+    const result={claims:[{id:'water',finding:'supported-proposal',
+      proposedValue:'None on this route.',sources:SOURCE}]};
+    expect(()=>validateSpecialistResult(result,'terrainPoi',SCOUTED))
+      .toThrow('omitted mandatory scouting claim(s): mountain-huts, food-drink, other-places, livestock, animals');
+  });
+
   test('it still forbids inferring absence from silence', () => {
     expect(PROMPTS.terrainPoi).toContain('not the same as inferring absence from silence');
     expect(PROMPTS.terrainPoi).toContain('the honest finding is unresolved');
