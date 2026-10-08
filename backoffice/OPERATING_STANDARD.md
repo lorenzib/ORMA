@@ -487,6 +487,35 @@ content printed on the trail page for a walker to follow, so waiving it would
 publish a walk with no directions. It is the agent's work, and it must be
 supplied rather than excused.
 
+## A route with no fountain must be able to say so
+
+Measured on drain run 37831560802: **every one of the nine job failures was an
+agent omitting a mandatory claim**, and seven of those were the Terrain & POI
+Analyst. `water` was missing from all seven, `other-places` from six. No
+provider error, no throttling -- the validator refused the result because a
+required claim was simply not there, and a refused result spends one of the
+job's three lives, so this was quietly killing work rather than just adding
+noise.
+
+The cause is the same one this document already records for a route with no
+rifugio and for a walk that never changes path. The analyst is asked to return a
+claim for water, huts, food and drink, other places and animals "even when the
+honest result is unresolved" -- but a route with no fountain is not unresolved.
+Nothing was left unestablished; there is nothing there. Asked to choose between
+saying something false and saying nothing, the agent said nothing.
+
+So "there is none on this route" is a finding. It is returned as a single
+supported proposal whose value says so, citing the source that establishes it:
+an official route description or facility list that enumerates what is there, or
+a checked map layer. `VERIFICATION.md` already required exactly this for water --
+a documented "no water on route, carry a full supply" state -- and the
+instruction never offered it.
+
+This does not loosen the rule that silence is never absence. Where no source
+enumerates the category, the honest finding remains unresolved, and the claim is
+still returned saying what was looked at. What is forbidden either way is
+omitting the claim, because that is not an answer at all.
+
 ## A walk that never changes path must be able to say so
 
 Route guidance asks four things, and they are not equally answerable. Measured
