@@ -80,6 +80,25 @@ function link(block){
   return decodeXml(preferred?.[1].match(/href=["']([^"']+)["']/i)?.[1] || '');
 }
 
+/**
+ * Whether the body we were handed is the *whole* feed.
+ *
+ * This decides whether a source may remove warnings. `reconcileHazards` treats
+ * a complete successful snapshot as the authoritative list of what is currently
+ * active, so absence from it is removal evidence -- and a warning removed from
+ * `data/dynamic-hazards.json` disappears from the public page.
+ *
+ * It was hardcoded `true` for any HTTP 200 whose body parsed. A truncated
+ * response, a partial transfer or a feed cut off mid-document would therefore
+ * have authorised deleting every live warning for that source, silently. An
+ * Atom document that was cut short does not carry its closing tag, so requiring
+ * it is the cheap honest test: a genuinely quiet feed closes with no entries,
+ * and a truncated one does not close at all.
+ */
+function feedIsComplete(xml){
+  return typeof xml === 'string' && /<\/feed\s*>\s*$/i.test(xml.trim());
+}
+
 function parseAtomFeed(xml, source = {}){
   if(typeof xml !== 'string' || !/<feed\b/i.test(xml)) throw new Error('Warning source did not return an Atom feed');
   return [...xml.matchAll(/<entry\b[^>]*>([\s\S]*?)<\/entry>/gi)].map(match => {
@@ -229,4 +248,4 @@ function applyHazardReview(publicData, ledger, input, options = {}){
   };
 }
 
-module.exports = { parseAtomFeed, trailWarningArea, alertAppliesToTrail, shouldPublishAlert, reconcileHazards, buildHazardArtifacts, applyHazardReview, canonicalWarningId, mergeWarnings, dedupeHazards };
+module.exports = { feedIsComplete, parseAtomFeed, trailWarningArea, alertAppliesToTrail, shouldPublishAlert, reconcileHazards, buildHazardArtifacts, applyHazardReview, canonicalWarningId, mergeWarnings, dedupeHazards };

@@ -52,6 +52,19 @@ answered. There is no human removal gate. Source failure or outage never removes
 the last known warning, because an unreachable source is not evidence of safety.
 Weather warnings are never presented as proof that a specific trail is closed.
 
+A successfully fetched feed removes a warning only when it arrived **whole**. A
+complete snapshot is the authoritative list of what is currently active, so
+absence from it is removal evidence -- and that flag was set for any HTTP 200
+whose body parsed, which means a truncated response, a partial transfer or a
+document cut off mid-stream would have deleted every live warning for that
+source without anyone seeing it. An Atom document that was cut short does not
+carry its closing tag, so the feed must close before its silence counts; a
+partial-content response is refused outright. A source that answered partially
+may still **add** the warnings it carried, because those are real. What it may
+not do is remove the ones it failed to mention. This is the same principle the
+outage rule already states -- an unreachable source is not evidence of safety --
+applied to a source that answered badly rather than not at all.
+
 A verification gate that is standing only on findings an agent can supply is
 sent to that agent rather than left on the desk. This is principle 1 applied to
 a gate that was already open: nothing re-ran an agent on a trail parked at a
