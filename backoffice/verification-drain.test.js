@@ -166,3 +166,49 @@ describe('a pass reports what it cost',()=>{
     void written;
   });
 });
+
+/**
+ * The ledger recorded that jobs failed and never why. On run 37804841788, 17 of
+ * 80 failed and the run summary, the artifact and the report all showed the
+ * number alone — `summariseWorkAttempted` counts the distinct errors and the
+ * ledger dropped them one line before saving.
+ */
+describe('the ledger says why jobs failed', () => {
+  const {failureReasons}=require('./workflows/drain-verification-queue');
+
+  test('reasons are merged across passes, commonest first', () => {
+    const merged=failureReasons([
+      {reasons:[{message:'omitted route-number-switches',count:3},{message:'429 no credits',count:1}]},
+      {reasons:[{message:'429 no credits',count:4}]},
+      {reasons:[]},
+      {},
+    ]);
+
+    expect(merged).toEqual([
+      {message:'429 no credits',count:5},
+      {message:'omitted route-number-switches',count:3},
+    ]);
+  });
+
+  test('a run with no failures reports no reasons rather than an empty row', () => {
+    expect(failureReasons([{reasons:[]},{}])).toEqual([]);
+  });
+
+  test('a blank message is dropped, not counted as a distinct cause', () => {
+    expect(failureReasons([{reasons:[{message:'',count:2},{message:'real',count:1}]}]))
+      .toEqual([{message:'real',count:1}]);
+  });
+
+  test('the run summary prints the causes', () => {
+    const markdown=summaryMarkdown({
+      stoppedBecause:'time-budget',durationMs:1_200_000,
+      totals:{passes:1,succeeded:3,attempted:4,reads:700,writes:50,failed:1},
+      averages:null,
+      failureReasons:[{message:'Logistics result omitted mandatory route guidance claim(s)',count:1}],
+      passes:[{index:1,outcome:'productive',succeeded:3,attempted:4,reads:700,writes:50,durationMs:150_000}],
+    });
+
+    expect(markdown).toContain('Why jobs failed');
+    expect(markdown).toContain('omitted mandatory route guidance');
+  });
+});

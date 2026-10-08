@@ -53,6 +53,20 @@ function stopBeforePass(state,budgets,usage,elapsedMs){
   return null;
 }
 
+/** The distinct failures across the whole run, commonest first. */
+function failureReasons(passes){
+  const counts=new Map();
+  for(const pass of passes){
+    for(const reason of pass.reasons||[]){
+      const key=String(reason.message||'').slice(0,300);
+      if(!key)continue;
+      counts.set(key,(counts.get(key)||0)+Number(reason.count||0));
+    }
+  }
+  return [...counts.entries()].sort((a,b)=>b[1]-a[1])
+    .map(([message,count])=>({message,count}));
+}
+
 function averages(passes){
   const done=passes.filter(pass=>!pass.error);
   if(!done.length)return null;
@@ -88,6 +102,10 @@ async function drainVerificationQueue(options={}){
     const pass={index,startedAt:new Date(passStartedMs).toISOString(),durationMs:Math.max(0,now()-passStartedMs),
       reads:spent.reads,writes:spent.writes,
       ...(work?{attempted:work.attempted,succeeded:work.succeeded,failed:work.failed,providerParked:work.providerParked,
+        // Why, not just how many. summariseWorkAttempted already counts the
+        // distinct errors; the ledger used to drop them, so a 21% failure rate
+        // was a number nobody could act on.
+        ...(work.failed?{reasons:work.reasons||[]}:{}),
         outcome:work.attempted?(work.succeeded>0?'productive':'unproductive'):'idle'}:{}),
       ...(error?{error:String(error.message||error).slice(0,500)}:{})};
     state.passes.push(pass);
@@ -106,6 +124,7 @@ async function drainVerificationQueue(options={}){
     durationMs:now()-startedAtMs,budgets,stoppedBecause:state.stoppedBecause,
     totals:{passes:state.passes.length,reads:totals.reads,writes:totals.writes,
       attempted:sum('attempted'),succeeded:sum('succeeded'),failed:sum('failed')},
+    failureReasons:failureReasons(state.passes),
     // Which call sites the reads went to, biggest first. A total says a pass
     // cost 2,304 reads; it does not say what to narrow, and the first guess at
     // that was wrong.
@@ -116,4 +135,4 @@ async function drainVerificationQueue(options={}){
 // A stop the budget was designed to produce is not a failure of the drain.
 const CLEAN_STOPS=Object.freeze(['queue-idle','time-budget','read-budget','write-budget','pass-limit']);
 
-module.exports={DEFAULT_BUDGETS,CLEAN_STOPS,quotaExhausted,budgetsFrom,stopBeforePass,drainVerificationQueue};
+module.exports={DEFAULT_BUDGETS,CLEAN_STOPS,quotaExhausted,budgetsFrom,stopBeforePass,failureReasons,drainVerificationQueue};
