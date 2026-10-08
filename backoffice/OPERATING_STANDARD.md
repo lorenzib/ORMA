@@ -487,6 +487,42 @@ content printed on the trail page for a walker to follow, so waiving it would
 publish a walk with no directions. It is the agent's work, and it must be
 supplied rather than excused.
 
+## A walk that never changes path must be able to say so
+
+Route guidance asks four things, and they are not equally answerable. Measured
+on 2026-10-08: `route-number-status` blocked nothing at all,
+`route-number-sequence` blocked two trails, `recommended-start` blocked seven --
+and every one of those seven failed as *conflicted*, sources found and
+disagreeing, which the resolution ladder then cleared on four of them.
+`route-number-switches` blocked eleven, and all eleven failed as *unresolved*:
+nothing found, not once a disagreement. Research rescued two.
+
+A claim that comes back empty every single time is a question with no answer to
+find. On those same trails, from the same pages, the agent established whether
+the route was numbered and in what order its paths ran. It had the route. What it
+lacked was a way to describe a walk that follows one path from start to finish,
+because the only instruction naming that answer forbade it.
+
+So a route that keeps one reference throughout answers `route-number-switches`
+by saying there are none and naming the reference it follows, cited to the
+source that establishes it. That is a complete answer. `unresolved` is for a
+route whose course could not be established at all, not for a simple route.
+
+This is not the "not applicable" shortcut that unnumbered routes are still
+refused, and it cannot become one. All four claims must be supported proposals
+carrying a named authority and an https source before the gate opens, so "there
+are no switches" is only ever accepted beside a sourced `route-number-sequence`
+that establishes the order on its own evidence. What is gone is the pretence
+that every walk has a junction.
+
+A switch is located by the landmark a walker meets there -- the refuge, col,
+junction or bridge the source names. A mapped coordinate and a distance from the
+start are recorded when the source publishes them, and official route
+descriptions usually do not; a switch that can be placed by landmark is never
+withheld for want of a coordinate. Nothing in the dossier gate ever inspected
+those fields, so demanding them bought no assurance and cost the trail its
+verification.
+
 ## Some questions have no fixed answer
 
 Whether cattle are on a summer pasture depends on the day you walk, and no
