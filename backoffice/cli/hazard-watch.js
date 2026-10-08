@@ -4,7 +4,7 @@
 const fs = require('fs/promises');
 const path = require('path');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
-const { parseAtomFeed, buildHazardArtifacts } = require('../workflows/dynamic-hazards');
+const { parseAtomFeed, buildHazardArtifacts, feedIsComplete } = require('../workflows/dynamic-hazards');
 
 const SOURCES = [
   { key: 'meteoalarm-italy', label: 'MeteoAlarm Italy', url: 'https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy' },
@@ -18,8 +18,20 @@ async function fetchSource(source, fetchImpl){
   try{
     const response = await fetchImpl(source.url, { headers: { 'User-Agent': 'ORMA-hazard-watch/1.0' } });
     if(!response.ok) throw new Error(`HTTP ${response.status}`);
-    const observations = parseAtomFeed(await response.text(), source);
-    return { result: { key: source.key, label: source.label, url: source.url, ok: true, completeSnapshot: true, alertsRead: observations.length }, observations };
+    // 206 is `ok`, and it means we were handed part of the document. Removing
+    // every warning a partial body failed to mention is exactly the mistake
+    // this guards against.
+    if(response.status === 206) throw new Error('HTTP 206: the source returned only part of the feed');
+    const body = await response.text();
+    const observations = parseAtomFeed(body, source);
+    // A source that answered but did not hand over a whole feed may still ADD
+    // the warnings it carried -- those are real. What it may not do is remove
+    // the ones it failed to mention, because it may simply have been cut off.
+    const completeSnapshot = feedIsComplete(body);
+    return { result: { key: source.key, label: source.label, url: source.url, ok: true,
+      completeSnapshot, alertsRead: observations.length,
+      ...(completeSnapshot ? {} : { partialSnapshot: 'The feed did not close, so it may be truncated; warnings absent from it were not removed.' }) },
+      observations };
   }catch(error){
     return { result: { key: source.key, label: source.label, url: source.url, ok: false, alertsRead: 0, error: error.message }, observations: [] };
   }
