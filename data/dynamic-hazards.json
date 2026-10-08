@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-08T04:31:16.626Z",
+  "generatedAt": "2026-10-08T07:34:18.496Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-10-07T08:00:00+00:00",
       "expiresAt": "2026-10-08T05:59:00+00:00",
       "firstPublishedAt": "2026-10-07T07:33:17.879Z",
-      "lastSeenAt": "2026-10-08T04:31:16.626Z",
+      "lastSeenAt": "2026-10-08T07:34:18.496Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -42,7 +42,7 @@
       "effectiveAt": "2026-10-07T08:00:00+00:00",
       "expiresAt": "2026-10-09T05:59:00+00:00",
       "firstPublishedAt": "2026-10-05T22:23:15.462Z",
-      "lastSeenAt": "2026-10-08T04:31:16.626Z",
+      "lastSeenAt": "2026-10-08T07:34:18.496Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -67,7 +67,7 @@
       "effectiveAt": "2026-10-08T04:00:00+00:00",
       "expiresAt": "2026-10-08T22:00:00+00:00",
       "firstPublishedAt": "2026-10-07T07:33:17.879Z",
-      "lastSeenAt": "2026-10-08T04:31:16.626Z",
+      "lastSeenAt": "2026-10-08T07:34:18.496Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -122,7 +122,7 @@
       "effectiveAt": "2026-10-08T04:00:00+00:00",
       "expiresAt": "2026-10-08T22:00:00+00:00",
       "firstPublishedAt": "2026-10-07T07:33:17.879Z",
-      "lastSeenAt": "2026-10-08T04:31:16.626Z",
+      "lastSeenAt": "2026-10-08T07:34:18.496Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -219,7 +219,7 @@
       "effectiveAt": "2026-10-07T18:00:00+00:00",
       "expiresAt": "2026-10-09T21:59:00+00:00",
       "firstPublishedAt": "2026-10-05T10:29:05.859Z",
-      "lastSeenAt": "2026-10-08T04:31:16.626Z",
+      "lastSeenAt": "2026-10-08T07:34:18.496Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -430,7 +430,7 @@
       "effectiveAt": "2026-10-07T18:00:00+00:00",
       "expiresAt": "2026-10-09T21:59:00+00:00",
       "firstPublishedAt": "2026-10-05T22:23:15.462Z",
-      "lastSeenAt": "2026-10-08T04:31:16.626Z",
+      "lastSeenAt": "2026-10-08T07:34:18.496Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
