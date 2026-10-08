@@ -21,6 +21,7 @@ const {applyNewTrailReview}=require('./plan-new-trail-scouting');
 const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
 const {summarisePipeline}=require('./pipeline-health');
+const {summariseProgrammeHealth}=require('./programme-health');
 const {runHazardVetting,applyHazardVetting,expireCommunityHazards}=require('./community-hazard-vetting');
 const {automateEvidenceGates,automateEditorialReviews,automatePublicationReviews}=require('./automate-existing-trail-verification');
 const {validateContentExecution}=require('../contracts/content-result-v1');
@@ -709,13 +710,44 @@ async function runLiveBackofficeWorker(store, options = {}){
   // afford to list jobs itself -- it polls once a minute against a free-tier
   // quota -- so the one place already holding every job writes the summary down.
   const pipeline = await recordPipelineHealth(store, options);
-  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
+  // Beside it, and from the same already-loaded state: what the programme costs,
+  // what it owes, and which of those nobody can decide their way out of.
+  const programme = await recordProgrammeHealth(store,
+    {...options,jobsDone:(specialistJobs||[]).filter(job=>job.status==='completed').length});
+  return { workerId:options.workerId || null,campaign,pipeline,programme,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
 }
 
 /**
  * One artifact saying what is moving and what has stopped. Never fatal: a
  * failure to describe the pass must not fail the pass that did the work.
  */
+/**
+ * The five things the catalogue-verification lane has to answer about itself.
+ * Never fatal: failing to describe a pass must not fail the pass that did the
+ * work, which is the rule recordPipelineHealth already follows.
+ */
+async function recordProgrammeHealth(store, options = {}){
+  try{
+    if(typeof store.getArtifact!=='function'||typeof store.setArtifact!=='function')return null;
+    const orchestration=await store.getArtifact('trail-orchestration');
+    if(!orchestration)return null;
+    const health=summariseProgrammeHealth({
+      orchestration,
+      jobs:await store.listJobs(['queued','running','ready-for-review','blocked']),
+      reviewQueue:await store.getArtifact('dossier-review-queue'),
+      // The meter counts this store, so it is this pass's spend.
+      usage:typeof store.usage?.snapshot==='function'?store.usage.snapshot():undefined,
+      jobsDone:options.jobsDone||0,
+      nowMs:options.at?new Date(options.at).valueOf():Date.now(),
+    });
+    await store.setArtifact('programme-health',health,
+      {programme:health.programme,unwaivableOpen:health.evidenceGaps.unwaivableOpen});
+    return health;
+  }catch(error){
+    return {error:String(error?.message||error).slice(0,200)};
+  }
+}
+
 async function recordPipelineHealth(store, options = {}){
   try{
     if(typeof store.listJobs !== 'function' || typeof store.setArtifact !== 'function') return null;
@@ -731,4 +763,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore, recordPipelineHealth,recordProgrammeHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
