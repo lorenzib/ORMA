@@ -62,11 +62,22 @@ describe('a route with no fountain can say so', () => {
     expect(PROMPTS.terrainPoi).not.toContain('return that single claim');
   });
 
-  test('a sourced "none" for water alone is still refused, as that run was', () => {
+  test('a sourced "none" for water alone leaves the other five unresolved', () => {
     const result={claims:[{id:'water',finding:'supported-proposal',
       proposedValue:'None on this route.',sources:SOURCE}]};
-    expect(()=>validateSpecialistResult(result,'terrainPoi',SCOUTED))
-      .toThrow('omitted mandatory scouting claim(s): mountain-huts, food-drink, other-places, livestock, animals');
+    expect(()=>validateSpecialistResult(result,'terrainPoi',SCOUTED)).not.toThrow();
+
+    // The run that produced exactly this on 2026-10-08 died and spent a life.
+    // Now the five it skipped are unfinished research, and water keeps the
+    // sourced answer the agent actually gave.
+    expect(result.claims.find(entry=>entry.id==='water').finding).toBe('supported-proposal');
+    const rest=SCOUTED.filter(id=>id!=='water').map(id=>result.claims.find(e=>e.id===id));
+    expect(rest.every(entry=>entry&&entry.finding==='unresolved')).toBe(true);
+  });
+
+  test('an analyst that returned nothing at all is still a failure', () => {
+    expect(()=>validateSpecialistResult({claims:[]},'terrainPoi',SCOUTED))
+      .toThrow('returned no claims at all');
   });
 
   test('it still forbids inferring absence from silence', () => {
@@ -81,13 +92,20 @@ describe('a route with no fountain can say so', () => {
     expect(PROMPTS.terrainPoi).toContain('Omitting a claim is never the answer');
   });
 
-  // The output contract is unchanged: this makes the honest answer available,
-  // it does not stop the validator refusing a result that leaves one out.
-  test('a result that leaves water out is still refused', () => {
+  // This made the honest answer available. Leaving a category out is no longer
+  // fatal either -- it is recorded unresolved and researched -- because two
+  // wording fixes failed to make the agent reliable and each failure cost the
+  // job a life.
+  test('a category left out is recorded unresolved, asserting nothing', () => {
     const result={claims:SCOUTED.filter(id=>id!=='water')
       .map(id=>({id,finding:'unresolved',proposedValue:'Not established.',sources:[]}))};
-    expect(()=>validateSpecialistResult(result,'terrainPoi',SCOUTED))
-      .toThrow('omitted mandatory scouting claim(s): water');
+    expect(()=>validateSpecialistResult(result,'terrainPoi',SCOUTED)).not.toThrow();
+
+    const water=result.claims.find(entry=>entry.id==='water');
+    expect(water).toMatchObject({finding:'unresolved',confidence:0,category:'water'});
+    expect(water.sources).toEqual([]);
+    expect(water.blockers).toEqual(['water-not-answered']);
+    expect(water.rationale).toContain('not evidence that there is nothing to report');
   });
 
   test('a sourced "none" for every category is accepted', () => {

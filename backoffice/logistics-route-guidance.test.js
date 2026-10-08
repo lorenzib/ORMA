@@ -30,13 +30,38 @@ describe('logistics is asked for what its output must contain', () => {
   });
 
   // The two contracts must not drift apart again.
-  test('a result missing route guidance is still refused', () => {
+  // This used to throw. It no longer does, and the reason is measured rather
+  // than preferred: an agent asked for four claims in one reply sometimes
+  // returns three, throwing cost the job one of three lives, and two wording
+  // fixes (#678, #680) failed to make it reliable. The claim is now recorded
+  // unresolved and researched. What must not change is that a missing answer
+  // cannot buy verification, so that is what this asserts.
+  test('route guidance the agent did not answer becomes unresolved, and still cannot verify', () => {
     const claim=id=>({id,category:'parking',proposedValue:'x',finding:'supported-proposal',
       confidence:1,rationale:'',blockers:[],entityName:null,rule:'not-applicable',observedAt:null,
       sources:[{label:'Mairie',url:'https://example.org/a',authority:'municipality',accessedAt:'2026-09-01'}]});
-    expect(()=>validateSpecialistResult({claims:[claim('parking')]},'logistics'))
-      .toThrow(/omitted mandatory route guidance/);
+    const parkingOnly={claims:[claim('parking')]};
+    expect(()=>validateSpecialistResult(parkingOnly,'logistics')).not.toThrow();
+
+    const filled=REQUIRED.map(id=>parkingOnly.claims.find(entry=>entry.id===id));
+    expect(filled.every(Boolean)).toBe(true);
+    expect(filled.every(entry=>entry.finding==='unresolved')).toBe(true);
+    expect(filled.every(entry=>entry.sources.length===0)).toBe(true);
+    expect(filled.every(entry=>entry.blockers.includes(`${entry.id}-not-answered`))).toBe(true);
+
+    // The gate needs a supported proposal with an authority, so a filled claim
+    // refuses verification exactly as the thrown result did.
+    const {VERIFICATION_ROUTE_CLAIMS,supportedLogisticsClaim}=
+      require('./workflows/compile-verified-dossier.js');
+    const review={specialistOutputs:[{agentId:'logistics',result:parkingOnly}]};
+    expect(VERIFICATION_ROUTE_CLAIMS.some(id=>supportedLogisticsClaim(review,id))).toBe(false);
+
     expect(()=>validateSpecialistResult({claims:REQUIRED.map(claim)},'logistics')).not.toThrow();
+  });
+
+  test('an agent that returned nothing at all is still a failure, not an omission', () => {
+    expect(()=>validateSpecialistResult({claims:[]},'logistics'))
+      .toThrow('returned no claims at all');
   });
 });
 
@@ -124,12 +149,19 @@ describe('a walk that never changes path can say so', () => {
     expect(PROMPTS.logistics).toContain('ordered landmark sequence and useful turn instructions');
   });
 
-  // The output contract is unchanged: the claim must still be returned.
-  test('omitting the claim is still refused, so "none" must be said out loud', () => {
+  // "None" still has to be said out loud. It is no longer fatal to leave it
+  // out, but an unanswered claim is unresolved, and unresolved does not verify.
+  test('leaving switches out records it unresolved rather than accepting it', () => {
     const withoutSwitches={claims:REQUIRED.filter(id=>id!=='route-number-switches')
       .map(id=>supported(id,'established'))};
-    expect(()=>validateSpecialistResult(withoutSwitches,'logistics',REQUIRED))
-      .toThrow('omitted mandatory route guidance claim(s): route-number-switches');
+    expect(()=>validateSpecialistResult(withoutSwitches,'logistics',REQUIRED)).not.toThrow();
+
+    const switches=withoutSwitches.claims.find(entry=>entry.id==='route-number-switches');
+    expect(switches.finding).toBe('unresolved');
+    const {supportedLogisticsClaim}=require('./workflows/compile-verified-dossier.js');
+    expect(supportedLogisticsClaim(
+      {specialistOutputs:[{agentId:'logistics',result:withoutSwitches}]},'route-number-switches'))
+      .toBeUndefined();
   });
 
   // The safeguard that stops this becoming the easy way out.

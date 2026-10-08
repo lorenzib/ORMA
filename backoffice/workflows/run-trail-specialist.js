@@ -116,6 +116,67 @@ function validateVariesClaims(result,job){
   }
 }
 
+const MANDATORY_CLAIMS=Object.freeze({
+  logistics:['recommended-start','route-number-status','route-number-sequence','route-number-switches'],
+  terrainPoi:['water','mountain-huts','food-drink','other-places','livestock','animals'],
+});
+
+// The category a filled-in claim belongs to, so it is a valid claim rather than
+// a schema violation in a different costume.
+const MANDATORY_CLAIM_CATEGORY=Object.freeze({
+  'recommended-start':'route','route-number-status':'route',
+  'route-number-sequence':'route','route-number-switches':'route',
+  water:'water','mountain-huts':'facilities','food-drink':'facilities',
+  'other-places':'facilities',livestock:'livestock',animals:'animals',
+});
+
+/**
+ * Record a claim the agent did not return as unresolved, instead of throwing
+ * the whole result away.
+ *
+ * Why. Both guards used to throw, `failJob` counted that as a system failure,
+ * and three of those block the job permanently. An agent asked for six claims
+ * in one reply usually returns six and sometimes returns four -- not for any
+ * reason a prompt can address. Measured by forcing one trail through on
+ * 2026-10-08: #678 removed `water` from the omissions, #680 named all five
+ * categories explicitly and forbade one claim standing in for several, and
+ * `water` came back anyway on the commit containing #680. Two wording fixes,
+ * neither reliable, because wording was never the cause. Roughly a fifth of
+ * replies died and each death cost a life.
+ *
+ * An unresolved claim is the state the pipeline already has for exactly this,
+ * and the resolution ladder exists to work through five different strategies on
+ * it. So the omission becomes ordinary unfinished research.
+ *
+ * It asserts nothing and hides nothing. No sources, zero confidence, a
+ * rationale saying the agent did not answer, and a blocker so it reaches the
+ * dossier gate and the desk. It cannot sneak a trail through a gate either: the
+ * dossier gate needs `supported-proposal` for every route-guidance claim, so an
+ * unresolved one still refuses verification exactly as before.
+ */
+function fillOmittedClaims(result,ids,agentLabel){
+  result.claims=result.claims||[];
+  // An agent that returned nothing at all did not omit a claim, it failed to
+  // work. Filling six unresolved claims there would report a job as done having
+  // answered nothing and spend a resolution attempt to discover it, so that
+  // stays fatal and keeps its retry.
+  if(!result.claims.length){
+    throw new Error(`${agentLabel} returned no claims at all`);
+  }
+  const present=new Set(result.claims.map(claim=>claim.id));
+  const missing=ids.filter(id=>!present.has(id));
+  for(const id of missing){
+    result.claims.push({
+      id,category:MANDATORY_CLAIM_CATEGORY[id]||'provenance',
+      proposedValue:'Not answered on this pass.',
+      finding:'unresolved',confidence:0,
+      rationale:`${agentLabel} returned no ${id} claim on this pass, so it is recorded as unresolved and goes to automated resolution. This is not evidence that there is nothing to report.`,
+      sources:[],blockers:[`${id}-not-answered`],
+    });
+  }
+  return missing;
+}
+
 function validateSpecialistResult(result,agentId,requiredClaimIds=[]){
   for(const claim of result.claims||[]){
     if(claim.finding==='supported-proposal'&&!claim.sources.length)throw new Error(`Supported proposal ${claim.id} requires a source`);
@@ -139,17 +200,14 @@ function validateSpecialistResult(result,agentId,requiredClaimIds=[]){
     if(!(typeof claim.rule==='string'&&Object.hasOwn(POLICY_BY_RULE,claim.rule)))throw new Error(`Entity policy claim ${claim.id} requires a rule from the published vocabulary, got ${JSON.stringify(claim.rule)}`);
     if(!/^\d{4}-\d{2}-\d{2}/.test(String(claim.observedAt||'')))throw new Error(`Entity policy claim ${claim.id} requires the date its source was read`);
   }
+  // A claim the agent did not return is recorded as unresolved, not thrown.
+  // See fillOmittedClaims: a probabilistic agent against an all-or-nothing
+  // contract loses jobs for no reason anyone can act on.
   if(agentId==='logistics'){
-    const ids=new Set((result.claims||[]).map(claim=>claim.id));
-    const required=['recommended-start','route-number-status','route-number-sequence','route-number-switches'];
-    const missing=required.filter(id=>!ids.has(id));
-    if(missing.length)throw new Error(`Logistics result omitted mandatory route guidance claim(s): ${missing.join(', ')}`);
+    fillOmittedClaims(result,MANDATORY_CLAIMS.logistics,'The Logistics Agent');
   }
   if(agentId==='terrainPoi'&&requiredClaimIds.some(id=>['mountain-huts','food-drink','other-places','animals'].includes(id))){
-    const ids=new Set((result.claims||[]).map(claim=>claim.id));
-    const required=['water','mountain-huts','food-drink','other-places','livestock','animals'];
-    const missing=required.filter(id=>!ids.has(id));
-    if(missing.length)throw new Error(`Terrain & POI result omitted mandatory scouting claim(s): ${missing.join(', ')}`);
+    fillOmittedClaims(result,MANDATORY_CLAIMS.terrainPoi,'The Terrain & POI Analyst');
   }
 }
 
@@ -267,4 +325,4 @@ async function runTrailSpecialist({job,trail,context},options={}){
   return {responseId:response.responseId,model:response.model,result};
 }
 
-module.exports={CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
+module.exports={MANDATORY_CLAIMS,MANDATORY_CLAIM_CATEGORY,fillOmittedClaims,CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
