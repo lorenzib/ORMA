@@ -52,6 +52,35 @@ answered. There is no human removal gate. Source failure or outage never removes
 the last known warning, because an unreachable source is not evidence of safety.
 Weather warnings are never presented as proof that a specific trail is closed.
 
+Each authoritative source declares its own shape rather than all of them being
+assumed to be one feed. A connector states the documents to try, how to parse
+them, how to tell a whole body from a truncated one, and the months it publishes
+at all. Four are registered: MeteoAlarm Italy and France, and the Tyrol/South
+Tyrol/Trentino avalanche service for the provinces of Bolzano and Trento.
+
+**Out of season is not a source failure.** An avalanche bulletin does not exist
+in October, and reporting that every three hours would teach an operator to
+ignore source failures, which is the one signal in this lane that must never
+become noise. A source outside its window is not fetched, reports no error --
+and is explicitly **not** a complete snapshot, because a source that published
+nothing has not told anyone that last winter's warnings are over.
+
+A dated bulletin is not a live feed. The day's edition is published in the
+afternoon for the night ahead, so today's document is tried and then
+yesterday's; only when both are missing, in season, is the source unavailable
+and the last known warning retained.
+
+An avalanche bulletin names its area by EAWS region code rather than in prose,
+so it is matched to a trail on that code -- `IT-32-BZ` to Bolzano, `IT-32-TN` to
+Trento -- and an unrecognised code matches no trail rather than every trail.
+Only danger 4 and 5 are published: ORMA's trails are valley dog walks, not
+backcountry ski terrain, so a moderate rating is not news for them and
+publishing every bulletin would bury the warnings that matter. The level travels
+in the severity and in the bulletin's own words, and the displayed sentence
+still says it is not a trail-closure notice. The bulletin's own validity is the
+warning's expiry, so the existing expiry rule removes it with no new removal
+path.
+
 A successfully fetched feed removes a warning only when it arrived **whole**. A
 complete snapshot is the authoritative list of what is currently active, so
 absence from it is removal evidence -- and that flag was set for any HTTP 200

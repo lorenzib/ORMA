@@ -131,7 +131,19 @@ function trailWarningArea(trail){
   return null;
 }
 
+// An avalanche bulletin names its area by EAWS region code, not in prose, so it
+// is matched on the code rather than by searching text for a province name.
+// IT-32 is Trentino-Alto Adige; BZ and TN are its two provinces.
+const AVALANCHE_REGION_PROVINCE = Object.freeze({'IT-32-BZ':'alto-adige','IT-32-TN':'trentino'});
+
+function avalancheAppliesToTrail(alert, trail){
+  const prefix = Object.keys(AVALANCHE_REGION_PROVINCE)
+    .find(code => String(alert.regionCode || '').startsWith(code));
+  return !!prefix && AVALANCHE_REGION_PROVINCE[prefix] === trail.province;
+}
+
 function alertAppliesToTrail(alert, trail){
+  if(alert.regionCode) return avalancheAppliesToTrail(alert, trail);
   const target = trailWarningArea(trail);
   if(!target) return false;
   const area = alert.area.toLowerCase();
@@ -248,4 +260,4 @@ function applyHazardReview(publicData, ledger, input, options = {}){
   };
 }
 
-module.exports = { feedIsComplete, parseAtomFeed, trailWarningArea, alertAppliesToTrail, shouldPublishAlert, reconcileHazards, buildHazardArtifacts, applyHazardReview, canonicalWarningId, mergeWarnings, dedupeHazards };
+module.exports = { feedIsComplete,AVALANCHE_REGION_PROVINCE,avalancheAppliesToTrail, parseAtomFeed, trailWarningArea, alertAppliesToTrail, shouldPublishAlert, reconcileHazards, buildHazardArtifacts, applyHazardReview, canonicalWarningId, mergeWarnings, dedupeHazards };

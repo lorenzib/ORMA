@@ -4,44 +4,61 @@
 const fs = require('fs/promises');
 const path = require('path');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
-const { parseAtomFeed, buildHazardArtifacts, feedIsComplete } = require('../workflows/dynamic-hazards');
+const { buildHazardArtifacts } = require('../workflows/dynamic-hazards');
+const { CONNECTORS, inSeason } = require('../workflows/hazard-sources');
 
-const SOURCES = [
-  { key: 'meteoalarm-italy', label: 'MeteoAlarm Italy', url: 'https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy' },
-  { key: 'meteoalarm-france', label: 'MeteoAlarm France', url: 'https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france' },
-];
+const SOURCES = CONNECTORS;
 
 async function readJson(file, fallback){ try{return JSON.parse(await fs.readFile(file, 'utf8'));}catch(error){if(error.code === 'ENOENT')return fallback;throw error;} }
 async function writeJson(file, value){ await fs.mkdir(path.dirname(file), { recursive: true }); await fs.writeFile(file, `${JSON.stringify(value, null, 2)}\n`, 'utf8'); }
 
-async function fetchSource(source, fetchImpl){
-  try{
-    const response = await fetchImpl(source.url, { headers: { 'User-Agent': 'ORMA-hazard-watch/1.0' } });
-    if(!response.ok) throw new Error(`HTTP ${response.status}`);
-    // 206 is `ok`, and it means we were handed part of the document. Removing
-    // every warning a partial body failed to mention is exactly the mistake
-    // this guards against.
-    if(response.status === 206) throw new Error('HTTP 206: the source returned only part of the feed');
-    const body = await response.text();
-    const observations = parseAtomFeed(body, source);
-    // A source that answered but did not hand over a whole feed may still ADD
-    // the warnings it carried -- those are real. What it may not do is remove
-    // the ones it failed to mention, because it may simply have been cut off.
-    const completeSnapshot = feedIsComplete(body);
-    return { result: { key: source.key, label: source.label, url: source.url, ok: true,
-      completeSnapshot, alertsRead: observations.length,
-      ...(completeSnapshot ? {} : { partialSnapshot: 'The feed did not close, so it may be truncated; warnings absent from it were not removed.' }) },
-      observations };
-  }catch(error){
-    return { result: { key: source.key, label: source.label, url: source.url, ok: false, alertsRead: 0, error: error.message }, observations: [] };
+async function fetchSource(source, fetchImpl, options = {}){
+  const at = options.at || new Date().toISOString();
+  const urls = typeof source.urls === 'function' ? source.urls(at) : [source.url];
+  const describe = extra => ({ key: source.key, label: source.label, url: urls[0], kind: source.kind || 'weather-feed', ...extra });
+
+  // Out of season is not a failure. An avalanche bulletin does not exist in
+  // October, and reporting that every three hours would teach an operator to
+  // ignore source failures -- the one signal here that must not become noise.
+  // It is also NOT a complete snapshot: a source that published nothing has not
+  // told us the warnings it carried last winter are over.
+  if(!inSeason(source.season, at)){
+    return { result: describe({ ok: true, completeSnapshot: false, alertsRead: 0,
+      outOfSeason: `${source.label} publishes between ${source.season.from} and ${source.season.to}; nothing was read and nothing was removed.` }),
+      observations: [] };
   }
+
+  const attempts = [];
+  for(const url of urls){
+    try{
+      const response = await fetchImpl(url, { headers: { 'User-Agent': 'ORMA-hazard-watch/1.0' } });
+      if(!response.ok) throw new Error(`HTTP ${response.status}`);
+      // 206 is `ok`, and it means we were handed part of the document.
+      if(response.status === 206) throw new Error('HTTP 206: the source returned only part of the document');
+      const body = await response.text();
+      const observations = (source.parse || (() => []))(body, source);
+      // A source that answered but did not hand over a whole document may still
+      // ADD the warnings it carried -- those are real. What it may not do is
+      // remove the ones it failed to mention, because it may have been cut off.
+      const completeSnapshot = (source.complete || (() => false))(body);
+      return { result: describe({ url, ok: true, completeSnapshot, alertsRead: observations.length,
+        ...(completeSnapshot ? {} : { partialSnapshot: 'The document did not close, so it may be truncated; warnings absent from it were not removed.' }) }),
+        observations };
+    }catch(error){
+      attempts.push(`${url}: ${error.message}`);
+    }
+  }
+  // Every candidate failed. A dated bulletin legitimately has no edition yet in
+  // the early hours, which is why yesterday's is tried too; if both are gone the
+  // source is unavailable and the last known warning is retained.
+  return { result: describe({ ok: false, alertsRead: 0, error: attempts.join(' · ') }), observations: [] };
 }
 
 async function runHazardWatch(options = {}){
   const root = options.root || path.resolve(__dirname, '..', '..');
   const at = options.at || new Date().toISOString();
   const fetchImpl = options.fetchImpl || fetch;
-  const runs = await Promise.all((options.sources || SOURCES).map(source => fetchSource(source, fetchImpl)));
+  const runs = await Promise.all((options.sources || SOURCES).map(source => fetchSource(source, fetchImpl, { at })));
   const previous = options.store
     ? (await options.store.getArtifact('dynamic-hazards') || await readJson(path.join(root, 'data', 'dynamic-hazards.json'), { hazards: [] }))
     : await readJson(path.join(root, 'data', 'dynamic-hazards.json'), { hazards: [] });
