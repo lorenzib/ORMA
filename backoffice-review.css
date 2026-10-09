@@ -102,6 +102,41 @@ body.bo-shell{margin:0;background:var(--bo-bg);color:var(--bo-ink)}
 @media(max-width:600px){.bo-library-connect{grid-template-columns:1fr}.bo-library-connect small{grid-column:auto}.bo-trail-image-filters,.bo-trail-upload__rights-kind{grid-template-columns:1fr}}
 @media(max-width:800px){.bo-newsletter-preview{grid-template-columns:1fr}.bo-newsletter-sources{grid-column:auto}.bo-newsletter-issue{padding:21px}}
 
+/* Programmes board. Purpose-built rather than borrowed: the first version
+   reused .bo-card-grid, which is a two-column main+sidebar layout, so three
+   cards could not sit in it; and .bo-card-head, which is space-between, so a
+   long headline collided with the title. */
+.bo-programmes{display:grid;gap:16px;margin:20px 0 8px}
+.bo-programme{border:1px solid var(--bo-line);border-radius:14px;background:#fff;padding:20px 22px}
+.bo-programme-head{display:grid;gap:4px;margin-bottom:16px}
+.bo-programme-head h3{margin:0;font:500 21px/1.2 Georgia,serif}
+.bo-programme-headline{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--bo-ink)}
+.bo-programme-headline::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--bo-warn,#b37a28);flex:0 0 auto}
+.bo-programme.is-settled .bo-programme-headline::before{background:#3f7a58}
+.bo-programme.is-absent .bo-programme-headline{color:var(--bo-muted);font-weight:500}
+.bo-programme.is-absent .bo-programme-headline::before{background:var(--bo-line)}
+/* A compact strip, not six 24px Georgia tiles: the two numbers that matter
+   must not look identical to the four that do not. */
+.bo-programme-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:0 0 14px}
+.bo-programme-stats div{padding:9px 11px;border:1px solid var(--bo-line);border-radius:9px;background:#fbfcfa}
+.bo-programme-stats strong{display:block;font:500 20px/1.15 Georgia,serif;color:var(--bo-ink)}
+.bo-programme-stats span{display:block;margin-top:2px;color:var(--bo-muted);font-size:11px;font-weight:700}
+.bo-programme-stats .is-emphasis strong{color:var(--bo-accent)}
+.bo-programme-stats .is-warning{border-color:#e0c08a;background:#fffaf0}
+.bo-programme-stats .is-warning strong{color:#815612}
+.bo-programme-note{margin:0 0 10px;color:var(--bo-muted);font-size:13px;line-height:1.5}
+.bo-gap-group{margin:0 0 12px;padding:12px 14px;border:1px solid var(--bo-line);border-radius:10px;background:#fbfcfa}
+.bo-gap-group.is-blocking{border-color:#e3c4bf;background:#fff7f5}
+.bo-gap-group h4{margin:0;font-size:13px}
+.bo-gap-group>p{margin:3px 0 10px;color:var(--bo-muted);font-size:12px}
+.bo-gap{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:7px 0;border-top:1px solid var(--bo-line)}
+.bo-gap:first-of-type{border-top:0}
+.bo-gap strong{font-size:13px;font-weight:600}
+.bo-gap em{grid-column:1/-1;color:var(--bo-muted);font-size:12px;font-style:normal;line-height:1.45}
+.bo-gap span{color:var(--bo-muted);font-size:12px;white-space:nowrap}
+.bo-programme-foot{display:grid;gap:4px;margin-top:14px;padding-top:12px;border-top:1px solid var(--bo-line);color:var(--bo-muted);font-size:12px;line-height:1.5}
+@media(max-width:700px){.bo-programme-stats{grid-template-columns:1fr 1fr}.bo-gap{grid-template-columns:1fr}.bo-gap span{white-space:normal}}
+
 /* Keep the sign-in form visible while Firebase resolves the session. A
    transient auth delay must never look like a blank or broken backoffice. */
 .bo-login-shell{min-height:100vh;background:radial-gradient(circle at 20% 10%,#e8f0e9 0,transparent 34%),linear-gradient(145deg,#f6f7f2 0%,#edf2ec 100%)}
