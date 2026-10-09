@@ -222,6 +222,92 @@
     return tr;
   }
 
+  function renderProgrammes(board){
+    const host=document.getElementById('programmeBoard');
+    if(!host)return;
+    const cards=(board?.programmes||[]).map(programme=>{
+      const card=element('article','bo-card');
+      const head=element('div','bo-card-head');
+      head.append(element('h3',null,programme.name),element('strong',null,programme.headline));
+      card.append(head);
+
+      if(!programme.available){
+        card.append(element('p','bo-empty',programme.headline));
+        return card;
+      }
+
+      // Throughput: the counts, with the ones that need attention marked.
+      const counts=element('div','bo-desk-summary');
+      for(const item of programme.throughput||[]){
+        const cell=element('article',item.warn?'is-warning':item.emphasis?'is-emphasis':null);
+        cell.append(element('strong',null,String(item.value)),element('span',null,item.label));
+        counts.append(cell);
+      }
+      card.append(counts);
+
+      // Evidence gaps, split by whether a decision could clear them.
+      if(programme.gaps){
+        card.append(element('p','eyebrow',
+          `Evidence gaps · ${programme.gaps.unwaivable} no decision can clear · ${programme.gaps.waivable} you could judge`));
+        if(programme.gaps.rows.length){
+          const list=element('ul','bo-coverage-scroll');
+          for(const row of programme.gaps.rows){
+            const age=row.oldestDays===null?'':` · oldest ${row.oldestDays}d`;
+            const item=element('li',null,
+              `${row.unwaivable?'UNWAIVABLE ':''}${row.claim} — ${row.open} open${age} · first: ${row.firstFinding||'—'}`);
+            list.append(item);
+          }
+          card.append(list);
+        }
+      }
+
+      if(programme.retries){
+        const r=programme.retries;
+        card.append(element('p','eyebrow',
+          `Retries · ${r.claims} claims tracked · ${r.exhausted} out of attempts${r.limit?` of ${r.limit}`:''}`));
+        if(r.neverPaid.length){
+          // A strategy that has never resolved anything is budget buying nothing.
+          card.append(element('p','bo-empty',
+            `Never resolved anything yet: ${r.neverPaid.join(', ')}`));
+        }
+      }
+
+      if(programme.cost){
+        const c=programme.cost;
+        card.append(element('p','eyebrow',
+          `Cost · ${c.readsPerPass??'—'} lookups last pass${c.readsPerJob?`, ${c.readsPerJob} per job`:''}`
+          +`${c.shareOfFreeDay!==null?` · ${c.shareOfFreeDay}% of a free day`:''}`
+          +`${c.passesLeft?` · about ${c.passesLeft} passes left in today's free allowance`:''}`));
+      }
+
+      if(programme.thinnest&&programme.thinnest.length){
+        card.append(element('p','eyebrow','Thinnest valleys'));
+        const list=element('ul','bo-coverage-scroll');
+        for(const row of programme.thinnest){
+          list.append(element('li',null,
+            `${row.valley} — ${row.published} published, ${row.verified} verified · ${row.state}`));
+        }
+        card.append(list);
+      }
+      if(programme.unmeasured||programme.unplacedTrails){
+        card.append(element('p','bo-empty',
+          `${programme.unmeasured} valley(s) have no evidence file`
+          +`${programme.unplacedTrails?`; ${programme.unplacedTrails} trail(s) carry no valley and are in no figure above`:''}.`));
+      }
+
+      const f=programme.freshness||{};
+      const parts=[];
+      if(f.writtenHoursAgo!==null&&f.writtenHoursAgo!==undefined)parts.push(`written ${f.writtenHoursAgo}h ago`);
+      if(f.oldestClaimDays!==null&&f.oldestClaimDays!==undefined)parts.push(`oldest untouched claim ${f.oldestClaimDays}d`);
+      if(f.oldestStateDays!==null&&f.oldestStateDays!==undefined)parts.push(`oldest trail in its stage ${f.oldestStateDays}d`);
+      // Stated even when it is stale: a green panel over a two-day-old summary
+      // is the failure this section exists to prevent.
+      card.append(element('p','eyebrow',`Freshness · ${parts.length?parts.join(' · '):'not recorded'}`));
+      return card;
+    });
+    host.replaceChildren(...(cards.length?cards:[element('p','bo-empty','No programme summaries yet.')]));
+  }
+
   function renderCoverage(){
     const body=document.getElementById('coverageRows');
     const empty=document.getElementById('coverageEmpty');
@@ -258,7 +344,7 @@
     set('dashboardUpdated','Refreshing protected Firestore…');
     try{
       const remote=await api();
-      const [orchestration,dossiers,execution,routeReview,routeReviewResult,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,jobResult,historyResult,communityResult,verifiedRegistry]=await Promise.all([
+      const [orchestration,dossiers,execution,routeReview,routeReviewResult,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,jobResult,historyResult,communityResult,verifiedRegistry,programmeHealth,regionalCoverage]=await Promise.all([
         required(remote,'trail-orchestration'),
         required(remote,'dossier-review-queue'),
         required(remote,'verified-trail-editorial-execution'),
@@ -282,6 +368,10 @@
         remote.getDecisionHistory(),
         remote.getModerationQueue(),
         optional(remote,'orma-verified-registry-live',{verified:[]}),
+        // One document each, written by the worker pass. The desk never derives
+        // these: listing a collection here would cost ~100 reads a poll.
+        optional(remote,'programme-health',null),
+        optional(remote,'regional-coverage',null),
       ]);
       if(!jobResult?.ok)throw new Error(`Could not load agent jobs: ${jobResult?.error||'unknown error'}`);
       if(!historyResult?.ok)throw new Error(`Could not load decision receipts: ${historyResult?.error||'unknown error'}`);
@@ -295,6 +385,8 @@
       document.getElementById('executiveDecisionQueue').classList.remove('is-error');
       coverage=window.ORMADashboardModel.buildCoverageGrid({hazards,verifiedRegistry,orchestration});
       renderCoverage();
+      renderProgrammes(window.ORMADashboardModel.buildProgrammeBoard(
+        {programmeHealth,regionalCoverage,hazards,hazardStatus}));
       render(model,communityResult);
       seconds=REFRESH_SECONDS;
       lastLoadedAt=Date.now();

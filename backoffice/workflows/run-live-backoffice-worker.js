@@ -22,11 +22,14 @@ const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
 const {summarisePipeline}=require('./pipeline-health');
 const {summariseProgrammeHealth}=require('./programme-health');
+const {summariseRegionalCoverage}=require('./regional-coverage');
+const {nearestLocalityFor}=require('../services/region-taxonomy');
 const {runHazardVetting,applyHazardVetting,expireCommunityHazards}=require('./community-hazard-vetting');
 const {automateEvidenceGates,automateEditorialReviews,automatePublicationReviews}=require('./automate-existing-trail-verification');
 const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
 const {currentSiteTrails,isCurrentSiteTrail}=require('../services/public-site-trails');
+const fs=require('fs');
 const path=require('path');
 
 function iso(value){
@@ -714,13 +717,56 @@ async function runLiveBackofficeWorker(store, options = {}){
   // what it owes, and which of those nobody can decide their way out of.
   const programme = await recordProgrammeHealth(store,
     {...options,jobsDone:(specialistJobs||[]).filter(job=>job.status==='completed').length});
-  return { workerId:options.workerId || null,campaign,pipeline,programme,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
+  // The expansion programme's numbers come from the repository, not Firestore,
+  // so the pass that has the checkout is the one that can write them down for a
+  // desk that does not.
+  const coverage = await recordRegionalCoverage(store,{...options,productionTrails:siteTrails});
+  return { workerId:options.workerId || null,campaign,pipeline,programme,coverage,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
 }
 
 /**
  * One artifact saying what is moving and what has stopped. Never fatal: a
  * failure to describe the pass must not fail the pass that did the work.
  */
+/**
+ * Per-valley coverage, written where a desk can read it.
+ *
+ * The catalogue, the valley taxonomy and the per-valley evidence files are all
+ * in the repository, so this costs no reads to derive -- but the hosted
+ * backoffice is served without `data/` or `backoffice-data/` (the
+ * private-hosting-boundary rule), so a desk cannot read them. The worker has
+ * both the checkout and the credential, so it is the one place that can join
+ * them and write the result down.
+ *
+ * Never fatal, for the same reason the other summaries are not.
+ */
+async function recordRegionalCoverage(store, options = {}){
+  try{
+    if(typeof store.setArtifact!=='function')return null;
+    const root=path.resolve(__dirname,'../..');
+    const research=[];
+    const dir=path.join(root,'backoffice-data/valley-research');
+    if(fs.existsSync(dir)){
+      for(const name of fs.readdirSync(dir).filter(file=>file.endsWith('.json'))){
+        try{research.push(JSON.parse(fs.readFileSync(path.join(dir,name),'utf8')));}catch{/* a damaged file is not a reason to lose the rest */}
+      }
+    }
+    const scouting=await store.getArtifact('new-trail-scouting');
+    const coverage=summariseRegionalCoverage({
+      trails:options.productionTrails||loadProductionTrails(root),
+      valleyResearch:research,
+      scoutingCandidates:(scouting&&scouting.candidates)||[],
+      nearestLocality:nearestLocalityFor(root),
+      at:options.at||new Date().toISOString(),
+    });
+    await store.setArtifact('regional-coverage',coverage,
+      {programme:coverage.programme,valleys:coverage.totals.valleys});
+    return coverage;
+  }catch(error){
+    return {error:String(error?.message||error).slice(0,200)};
+  }
+}
+
 /**
  * The five things the catalogue-verification lane has to answer about itself.
  * Never fatal: failing to describe a pass must not fail the pass that did the
@@ -763,4 +809,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore, recordPipelineHealth,recordProgrammeHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
