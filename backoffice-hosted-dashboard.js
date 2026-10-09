@@ -282,6 +282,7 @@
           `Never resolved anything yet: ${programme.retries.neverPaid.join(', ')}.`));
       }
       if(programme.cost?.sentence)foot.append(element('p',null,programme.cost.sentence));
+      if(programme.cost?.todaySentence)foot.append(element('p',null,programme.cost.todaySentence));
       if(programme.unmeasured||programme.unplacedTrails){
         foot.append(element('p',null,
           `${programme.unmeasured} valley${programme.unmeasured===1?' has':'s have'} no evidence file`
