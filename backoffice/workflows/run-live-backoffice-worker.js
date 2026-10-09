@@ -22,6 +22,7 @@ const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
 const {summarisePipeline}=require('./pipeline-health');
 const {summariseProgrammeHealth}=require('./programme-health');
+const {accumulateUsage,ARTIFACT_ID:USAGE_DAY_ARTIFACT}=require('./firestore-usage-day');
 const {summariseRegionalCoverage}=require('./regional-coverage');
 const {nearestLocalityFor}=require('../services/region-taxonomy');
 const {runHazardVetting,applyHazardVetting,expireCommunityHazards}=require('./community-hazard-vetting');
@@ -715,19 +716,44 @@ async function runLiveBackofficeWorker(store, options = {}){
   const pipeline = await recordPipelineHealth(store, options);
   // Beside it, and from the same already-loaded state: what the programme costs,
   // what it owes, and which of those nobody can decide their way out of.
+  // Before the summary, so the summary can read today's running total. A pass
+  // knows what it spent; only the total says what is left.
+  const usageDay = await recordDayUsage(store, options);
   const programme = await recordProgrammeHealth(store,
-    {...options,jobsDone:(specialistJobs||[]).filter(job=>job.status==='completed').length});
+    {...options,dayUsage:usageDay&&!usageDay.error?usageDay:null,
+      jobsDone:(specialistJobs||[]).filter(job=>job.status==='completed').length});
   // The expansion programme's numbers come from the repository, not Firestore,
   // so the pass that has the checkout is the one that can write them down for a
   // desk that does not.
   const coverage = await recordRegionalCoverage(store,{...options,productionTrails:siteTrails});
-  return { workerId:options.workerId || null,campaign,pipeline,programme,coverage,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,pipeline,programme,coverage,usageDay,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
 }
 
 /**
  * One artifact saying what is moving and what has stopped. Never fatal: a
  * failure to describe the pass must not fail the pass that did the work.
  */
+/**
+ * Add this pass's spend to today's running total.
+ *
+ * Deliberately last-but-one and never fatal: the figure is for a human to read,
+ * and losing it must not fail a pass that did the work. The read and write it
+ * costs are themselves counted on the next pass, which is honest.
+ */
+async function recordDayUsage(store, options = {}){
+  try{
+    if(typeof store.getArtifact!=='function'||typeof store.setArtifact!=='function')return null;
+    const spent=typeof store.usage?.snapshot==='function'?store.usage.snapshot():null;
+    if(!spent)return null;
+    const previous=await store.getArtifact(USAGE_DAY_ARTIFACT);
+    const next=accumulateUsage(previous,spent,options.at?new Date(options.at).valueOf():Date.now());
+    await store.setArtifact(USAGE_DAY_ARTIFACT,next,{day:next.day,reads:next.reads});
+    return next;
+  }catch(error){
+    return {error:String(error?.message||error).slice(0,200)};
+  }
+}
+
 /**
  * Per-valley coverage, written where a desk can read it.
  *
@@ -784,6 +810,7 @@ async function recordProgrammeHealth(store, options = {}){
       // The meter counts this store, so it is this pass's spend.
       usage:typeof store.usage?.snapshot==='function'?store.usage.snapshot():undefined,
       jobsDone:options.jobsDone||0,
+      dayUsage:options.dayUsage||null,
       nowMs:options.at?new Date(options.at).valueOf():Date.now(),
     });
     await store.setArtifact('programme-health',health,
@@ -809,4 +836,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

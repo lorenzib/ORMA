@@ -604,13 +604,15 @@
         },
         cost:{
           readsPerPass:cost.reads??null,readsPerJob:cost.readsPerJob??null,
-          shareOfFreeDay:cost.reads&&cost.dailyFreeReads
-            ?Math.round((cost.reads/cost.dailyFreeReads)*100):null,
-          passesLeft:cost.passesLeftInFreeReads??null,
           sentence:cost.reads
-            ?`${cost.reads.toLocaleString('en-GB')} database lookups last run`
-              +`${cost.dailyFreeReads?`, ${Math.round((cost.reads/cost.dailyFreeReads)*100)}% of today's free allowance`:''}.`
+            ?`${cost.reads.toLocaleString('en-GB')} database lookups on the last run`
+              +`${cost.readsPerJob?`, ${cost.readsPerJob} per job`:''}.`
             :'No cost recorded for the last run.',
+          // What is actually left today, rather than what a whole free day
+          // would fund. The old line said the same thing at 9am and at 9pm.
+          todaySentence:cost.today?cost.today.sentence:null,
+          todayShare:cost.today?cost.today.sharePercent:null,
+          todayPassesLeft:cost.today?cost.today.passesLeft:null,
         },
         freshness:{
           writtenHoursAgo:ageHours(health.generatedAt),

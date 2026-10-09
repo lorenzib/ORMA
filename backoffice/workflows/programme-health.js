@@ -19,6 +19,7 @@
 const {buildFunnel}=require('./verification-funnel');
 const {UNWAIVABLE_BLOCKER_IDS}=require('./compile-verified-dossier');
 const {MAX_AUTOMATED_ATTEMPTS,STRATEGIES}=require('./claim-resolution');
+const {describeDayUsage}=require('./firestore-usage-day');
 
 const CONTRACT_VERSION='1.0.0';
 const PROGRAMME='catalogue-verification';
@@ -121,19 +122,23 @@ function retries(entries){
 }
 
 /** What the last pass cost, against the ceiling that actually stops the lane. */
-function cost(usage={},jobsDone=0){
+function cost(usage={},jobsDone=0,dayUsage=null){
   const reads=Number(usage.reads)||0;
   const writes=Number(usage.writes)||0;
   return {reads,writes,jobsDone,
     readsPerJob:jobsDone?Math.round(reads/jobsDone):null,
     writesPerJob:jobsDone?Math.round(writes/jobsDone):null,
     dailyFreeReads:DAILY_FREE_READS,dailyFreeWrites:DAILY_FREE_WRITES,
-    // How many more passes this size the day's free allowance would fund.
-    passesLeftInFreeReads:reads?Math.floor(DAILY_FREE_READS/reads):null,
+    // What has actually been spent today, which is the only thing that answers
+    // "can I run a drain". The old figure here was DAILY_FREE_READS / reads and
+    // subtracted nothing, so it read the same whether the day was untouched or
+    // nearly gone.
+    today:describeDayUsage(dayUsage,reads),
     bySource:usage.bySource||null};
 }
 
-function summariseProgrammeHealth({orchestration,jobs=[],reviewQueue,usage,jobsDone=0,nowMs=Date.now()}={}){
+function summariseProgrammeHealth(options={}){
+  const {orchestration,jobs=[],reviewQueue,usage,jobsDone=0,nowMs=Date.now()}=options;
   // Read from the funnel's own fields rather than a copy of them: `stages` and
   // `totalTrails` are what it returns, and guessing otherwise is how a report
   // ends up confidently printing undefined.
@@ -163,7 +168,7 @@ function summariseProgrammeHealth({orchestration,jobs=[],reviewQueue,usage,jobsD
     },
     evidenceGaps:evidenceGaps(entries,nowMs),
     retries:retries(entries),
-    cost:cost(usage,jobsDone),
+    cost:cost(usage,jobsDone,options.dayUsage),
     freshness:{
       generatedAt:new Date(nowMs).toISOString(),
       oldestStateDays:stateAges.length?Math.max(...stateAges):null,

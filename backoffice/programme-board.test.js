@@ -121,20 +121,31 @@ describe('catalogue verification', () => {
 
   test('cost is a sentence, with a thousands separator', () => {
     const costly=buildProgrammeBoard({nowMs:NOW,
-      programmeHealth:{...health,cost:{...health.cost,reads:1641}}});
+      programmeHealth:{...health,cost:{...health.cost,reads:1641,readsPerJob:182}}});
     expect(find(costly,'catalogue-verification').cost.sentence)
-      .toBe("1,641 database lookups last run, 3% of today's free allowance.");
-  });
-  test('a strategy that never resolved anything is named', () => {
+      .toBe('1,641 database lookups on the last run, 182 per job.');
+  });  test('a strategy that never resolved anything is named', () => {
     expect(find(board(),'catalogue-verification').retries.neverPaid)
       .toEqual(['direct-verification-escalation-check']);
   });
 
-  test('cost is a share of the free day, not a bare number', () => {
-    expect(find(board(),'catalogue-verification').cost)
-      .toMatchObject({readsPerPass:600,readsPerJob:90,shareOfFreeDay:1,passesLeft:83});
+  test('cost reports the last run, and separately what today has left', () => {
+    const programme=find(board(),'catalogue-verification');
+    expect(programme.cost).toMatchObject({readsPerPass:600,readsPerJob:90});
+    // With no day total yet there is nothing honest to say about what is left.
+    expect(programme.cost.todaySentence).toBeNull();
   });
 
+  test('given a day total, it says what is left rather than what a day would fund', () => {
+    const withDay=buildProgrammeBoard({nowMs:NOW,programmeHealth:{...health,
+      cost:{...health.cost,today:{day:'2026-10-09',readsSoFar:13200,sharePercent:26,
+        remainingReads:36800,passesLeft:22,
+        sentence:'At least 13,200 of 50,000 free lookups used today (26%).'}}}});
+    const cost=find(withDay,'catalogue-verification').cost;
+    expect(cost.todayShare).toBe(26);
+    expect(cost.todayPassesLeft).toBe(22);
+    expect(cost.todaySentence).toMatch(/^At least 13,200/);
+  });
   test('a stuck trail is marked for attention and explained', () => {
     const programme=find(board(),'catalogue-verification');
     expect(programme.throughput.find(tile=>tile.label==='Stuck'))

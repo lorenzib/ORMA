@@ -117,13 +117,21 @@ describe('retries say whether the research budget pays', () => {
 });
 
 describe('cost is stated against the ceiling that actually stops the lane', () => {
-  test('per-job cost and the share of a free day', () => {
+  test('per-job cost, and no claim about the day without a day total', () => {
     const summary=cost({reads:1500,writes:60},10);
     expect(summary.readsPerJob).toBe(150);
     expect(summary.dailyFreeReads).toBe(DAILY_FREE_READS);
-    expect(summary.passesLeftInFreeReads).toBe(33);
+    // The figure that used to live here was DAILY_FREE_READS / reads, which
+    // subtracted nothing and read the same at 9am and 9pm.
+    expect(summary.passesLeftInFreeReads).toBeUndefined();
+    expect(summary.today).toBeNull();
   });
 
+  test('given the day\'s running total, it carries what is actually left', () => {
+    const summary=cost({reads:1650,writes:50},9,
+      {day:'2026-10-09',reads:13_200,writes:400,passes:8});
+    expect(summary.today).toMatchObject({readsSoFar:13_200,sharePercent:26,passesLeft:22});
+  });
   test('a pass that did no work reports no per-job figure rather than zero', () => {
     const summary=cost({reads:300,writes:0},0);
     expect(summary.readsPerJob).toBeNull();
