@@ -16,7 +16,10 @@
 const {feedIsComplete,buildHazardArtifacts}=require('./workflows/dynamic-hazards');
 const {fetchSource}=require('./cli/hazard-watch');
 
-const SOURCE={key:'meteoalarm-italy',label:'MeteoAlarm Italy',url:'https://feeds.example.test/italy'};
+// The real connector, not a hand-made stand-in: it carries its own parse and
+// completeness rules now, and a fixture that invents them tests nothing.
+const {CONNECTORS}=require('./workflows/hazard-sources');
+const SOURCE=CONNECTORS.find(connector=>connector.key==='meteoalarm-italy');
 const AT='2026-10-09T08:00:00.000Z';
 
 const entry=`<entry><identifier>IT-1</identifier><event>Thunderstorm</event>`
