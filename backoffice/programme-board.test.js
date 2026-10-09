@@ -57,27 +57,74 @@ describe('the three programmes each answer the same five questions', () => {
 describe('catalogue verification', () => {
   const board=()=>buildProgrammeBoard({programmeHealth:health,nowMs:NOW});
 
-  test('the headline is the number the programme exists to move, at zero', () => {
-    // "0 verified" is the point of putting it on the wall, not a reason to hide it.
-    expect(find(board(),'catalogue-verification').headline)
-      .toBe('0 verified · 0 ready for editorial');
+  test('the headline is a sentence, and says the thing that has not happened', () => {
+    // It read "0 verified · 0 ready for editorial" — two fragments and a dot.
+    expect(find(board(),'catalogue-verification').headline).toBe('No trail has finished yet');
     expect(find(board(),'catalogue-verification').settled).toBe(false);
   });
 
-  test('gaps are split by whether a decision could clear them', () => {
+  test('once something finishes, the headline says so and the card settles', () => {
+    const done=buildProgrammeBoard({nowMs:NOW,
+      programmeHealth:{...health,throughput:{...health.throughput,verified:1}}});
+    expect(find(done,'catalogue-verification').headline).toBe('1 trail verified');
+    expect(find(done,'catalogue-verification').settled).toBe(true);
+  });
+
+  test('four tiles, not six: the ones that matter cannot look like wallpaper', () => {
+    const tiles=find(board(),'catalogue-verification').throughput;
+    expect(tiles.map(tile=>tile.label)).toEqual(['In progress','Finished','Needs you','Stuck']);
+    // Both gates as one number a person can act on, not two to add up.
+    expect(tiles.find(tile=>tile.label==='Needs you').value).toBe(5);
+  });
+  test('gaps are two named piles, headed by who can clear them', () => {
     const gaps=find(board(),'catalogue-verification').gaps;
-    // 16 livestock gaps are a judgement she could make; 11 route-guidance ones
-    // are not. Counting them together is what hid the switches problem.
     expect(gaps).toMatchObject({unwaivable:11,waivable:16});
-    expect(gaps.rows[0]).toMatchObject({claim:'logistics/route-number-switches',unwaivable:true});
+    expect(gaps.groups.map(group=>group.title))
+      .toEqual(['Only an agent can supply these','You could judge these']);
+    expect(gaps.groups[0].rows[0].claim).toBe('logistics/route-number-switches');
   });
 
-  test('a gap carries how it first failed, which the count cannot say', () => {
-    const rows=find(board(),'catalogue-verification').gaps.rows;
-    expect(rows[0].firstFinding).toBe('unresolved 11');
-    expect(rows[1].firstFinding).toBe('unresolved 14 · conflicted 2');
+  test('a claim is named in words, not as a path', () => {
+    const gaps=find(board(),'catalogue-verification').gaps;
+    // `logistics/route-number-switches` on screen is not an answer to anyone.
+    expect(gaps.groups[0].rows[0].label).toBe('where the path changes');
+    expect(gaps.groups[1].rows[0].label).toBe('livestock on the route');
   });
 
+  test('an unnamed claim still reads as words rather than a path', () => {
+    const odd=buildProgrammeBoard({nowMs:NOW,programmeHealth:{...health,
+      evidenceGaps:{unwaivableOpen:0,waivableOpen:1,byClaim:[
+        {claim:'someAgent/a-new-check',open:1,unwaivable:false,oldestDays:0,
+          firstFindings:{unresolved:1}}]}}});
+    expect(find(odd,'catalogue-verification').gaps.groups[0].rows[0].label).toBe('a new check');
+  });
+
+  test('an empty pile is not shown at all', () => {
+    const only=buildProgrammeBoard({nowMs:NOW,programmeHealth:{...health,
+      evidenceGaps:{unwaivableOpen:0,waivableOpen:1,byClaim:[
+        {claim:'terrainPoi/water',open:1,unwaivable:false,oldestDays:1,
+          firstFindings:{unresolved:1}}]}}});
+    expect(find(only,'catalogue-verification').gaps.groups).toHaveLength(1);
+    expect(find(only,'catalogue-verification').gaps.groups[0].title).toBe('You could judge these');
+  });
+  test('how it failed is said in words, because the two causes need different work', () => {
+    const groups=find(board(),'catalogue-verification').gaps.groups;
+    expect(groups[0].rows[0].why).toBe('found nothing 11×');
+    expect(groups[1].rows[0].why).toBe('found nothing 14×, sources disagreed 2×');
+  });
+
+  test('the retries line is a sentence', () => {
+    // It read "79 out of attempts of 5".
+    expect(find(board(),'catalogue-verification').retries.sentence)
+      .toBe('12 of 124 questions have used all 5 tries and will not be asked again.');
+  });
+
+  test('cost is a sentence, with a thousands separator', () => {
+    const costly=buildProgrammeBoard({nowMs:NOW,
+      programmeHealth:{...health,cost:{...health.cost,reads:1641}}});
+    expect(find(costly,'catalogue-verification').cost.sentence)
+      .toBe("1,641 database lookups last run, 3% of today's free allowance.");
+  });
   test('a strategy that never resolved anything is named', () => {
     expect(find(board(),'catalogue-verification').retries.neverPaid)
       .toEqual(['direct-verification-escalation-check']);
@@ -88,12 +135,18 @@ describe('catalogue verification', () => {
       .toMatchObject({readsPerPass:600,readsPerJob:90,shareOfFreeDay:1,passesLeft:83});
   });
 
-  test('a stalled trail is marked for attention', () => {
-    const stalled=find(board(),'catalogue-verification').throughput
-      .find(item=>item.label==='Stalled');
-    expect(stalled).toMatchObject({value:1,warn:true});
+  test('a stuck trail is marked for attention and explained', () => {
+    const programme=find(board(),'catalogue-verification');
+    expect(programme.throughput.find(tile=>tile.label==='Stuck'))
+      .toMatchObject({value:1,warn:true});
+    expect(programme.notes).toContain('1 stopped — no job will pick them up.');
   });
 
+  test('a count worth nothing at zero gets neither a tile nor a sentence', () => {
+    const calm=buildProgrammeBoard({nowMs:NOW,programmeHealth:{...health,
+      throughput:{...health.throughput,inRedTeam:0,stalled:0}}});
+    expect(find(calm,'catalogue-verification').notes).toEqual([]);
+  });
   test('freshness is stated, because a green panel over a stale summary is the failure', () => {
     expect(find(board(),'catalogue-verification').freshness)
       .toEqual({writtenHoursAgo:1,oldestClaimDays:8,oldestStateDays:19});
@@ -107,13 +160,19 @@ describe('geographical expansion', () => {
     expect(find(board(),'geographical-expansion').headline).toBe('0 of 29 valleys covered');
   });
 
-  test('the thinnest valleys that have any trails are listed', () => {
-    // A valley with none is an expansion candidate, not a thin one to top up;
-    // the scouting lane ranks those.
+  test('only valleys that are actually thin are listed', () => {
+    // It listed a 27-trail valley because it sorted third. A shortlist that
+    // includes the fullest valley is not a shortlist.
     expect(find(board(),'geographical-expansion').thinnest.map(row=>row.valley))
-      .toEqual(['Cortina – Ampezzo','Alta Pusteria – Tre Cime']);
+      .toEqual(['Cortina – Ampezzo']);
   });
 
+  test('four tiles here too, with what is left said in a line', () => {
+    const programme=find(board(),'geographical-expansion');
+    expect(programme.throughput.map(tile=>tile.label))
+      .toEqual(['Valleys','Covered','Thin','Candidates awaiting you']);
+    expect(programme.notes).toEqual(['1 started, 11 not started.']);
+  });
   test('what cannot be measured is surfaced', () => {
     expect(find(board(),'geographical-expansion'))
       .toMatchObject({unmeasured:2,unplacedTrails:1});

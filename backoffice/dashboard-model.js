@@ -457,6 +457,69 @@
     }};
   }
 
+  // What each claim is actually about, in the words a person would use. The
+  // board showed raw ids -- `logistics/route-number-switches` -- to a reader
+  // who needs to know that eight trails are missing walking directions.
+  const CLAIM_LABELS=Object.freeze({
+    'logistics/recommended-start':'where the walk starts',
+    'logistics/route-number-status':'whether the route is numbered',
+    'logistics/route-number-sequence':'the order of the paths',
+    'logistics/route-number-switches':'where the path changes',
+    'logistics/parking':'parking',
+    'logistics/road-access':'road access',
+    'logistics/public-transport':'public transport',
+    'logistics/pedestrian-connection':'getting from the car park to the trail',
+    'logistics/recommended-direction':'which way round to walk it',
+    'terrainPoi/water':'water on the route',
+    'terrainPoi/shade':'shade',
+    'terrainPoi/surface':'the ground underfoot',
+    'terrainPoi/elevation':'how much climbing',
+    'terrainPoi/exposure':'exposed sections',
+    'terrainPoi/livestock':'livestock on the route',
+    'terrainPoi/animals':'animals',
+    'terrainPoi/mountain-huts':'mountain huts',
+    'terrainPoi/food-drink':'food and drink',
+    'terrainPoi/other-places':'other places worth naming',
+    'regulatoryRanger/dog-access':'whether dogs are allowed',
+    'regulatoryRanger/leash-rules':'lead rules',
+    'regulatoryRanger/seasonal-restrictions':'seasonal rules',
+    'regulatoryRanger/rifugio-dog-policy':'whether a refuge takes dogs',
+    'regulatoryRanger/lift-dog-policy':'whether a lift takes dogs',
+    'evidenceLibrarian/provenance':'where the facts came from',
+  });
+
+  function plainClaim(id){
+    if(CLAIM_LABELS[id])return CLAIM_LABELS[id];
+    // An id nobody has named yet still reads as words rather than a path.
+    return String(id||'').split('/').pop().replace(/-/g,' ')||'an unnamed check';
+  }
+
+  // "unresolved 16" is the machine's word for "we looked and found nothing",
+  // and it means something different from "sources disagreed" -- which is the
+  // distinction that mattered most when this was diagnosed by hand.
+  // One gap, as a line a person can read: what it is about, how many trails it
+  // holds, how long, and how it failed.
+  function gapRow(row){
+    return {
+      claim:row.claim,
+      label:plainClaim(row.claim),
+      open:row.open,
+      oldestDays:row.oldestDays??null,
+      why:plainFinding(row.firstFindings),
+      unwaivable:!!row.unwaivable,
+    };
+  }
+
+  function plainFinding(findings){
+    const words={unresolved:'found nothing',conflicted:'sources disagreed',
+      varies:'depends on the day','counter-evidence':'evidence against',
+      'supported-proposal':'answered'};
+    return Object.entries(findings||{})
+      .sort((a,b)=>b[1]-a[1])
+      .map(([finding,count])=>`${words[finding]||finding} ${count}×`)
+      .join(', ');
+  }
+
   /**
    * The three programmes, each answering the same five questions.
    *
@@ -491,33 +554,50 @@
         available:true,
         // The number the programme exists to move, stated even at zero -- which
         // is the whole point of putting it on the wall.
-        headline:`${t.verified||0} verified · ${t.readyForEditorial||0} ready for editorial`,
+        headline:Number(t.verified||0)
+          ?`${t.verified} trail${t.verified===1?'':'s'} verified`
+          :'No trail has finished yet',
         settled:Number(t.verified||0)>0,
+        // Four, not six. A tile for every field turns the two numbers that
+        // matter into wallpaper.
         throughput:[
-          {label:'In the pipeline',value:t.inPipeline||0},
-          {label:'Verified',value:t.verified||0,emphasis:true},
-          {label:'Ready for editorial',value:t.readyForEditorial||0,emphasis:true},
-          {label:'At red team',value:t.inRedTeam||0},
-          {label:'Stalled',value:t.stalled||0,warn:Number(t.stalled||0)>0},
-          {label:'Awaiting geometry approval',value:stage('geometry-human-gate')},
+          {label:'In progress',value:t.inPipeline||0},
+          {label:'Finished',value:t.verified||0,emphasis:true},
+          {label:'Needs you',value:stage('geometry-human-gate')+stage('dossier-human-gate'),
+            warn:stage('geometry-human-gate')+stage('dossier-human-gate')>0},
+          {label:'Stuck',value:t.stalled||0,warn:Number(t.stalled||0)>0},
         ],
+        // The counts that only matter when they are not zero belong in a
+        // sentence, not in a tile of their own.
+        notes:[
+          Number(t.inRedTeam||0)?`${t.inRedTeam} at the last check before the finish.`:null,
+          Number(t.stalled||0)?`${t.stalled} stopped — no job will pick them up.`:null,
+        ].filter(Boolean),
         // Split because they need different work: nobody can decide their way
         // out of an unwaivable gap.
+        // Split into the two piles that need different work, each headed by a
+        // sentence saying which is which. Counting them together is what hid
+        // the directions problem behind a bigger livestock number.
         gaps:{
           unwaivable:gaps.unwaivableOpen||0,
           waivable:gaps.waivableOpen||0,
-          rows:(gaps.byClaim||[]).slice(0,6).map(row=>({
-            claim:row.claim,open:row.open,unwaivable:!!row.unwaivable,
-            oldestDays:row.oldestDays??null,
-            // "found nothing, every time" and "sources disagree" are different
-            // problems, and the count alone cannot tell them apart.
-            firstFinding:Object.entries(row.firstFindings||{})
-              .sort((a,b)=>b[1]-a[1]).map(([finding,count])=>`${finding} ${count}`).join(' · '),
-          })),
+          groups:[
+            {
+              title:'Only an agent can supply these',
+              note:'No decision of yours clears them.',
+              rows:(gaps.byClaim||[]).filter(row=>row.unwaivable).slice(0,5).map(gapRow),
+            },
+            {
+              title:'You could judge these',
+              note:'Each can be accepted at the gate with a written reason.',
+              rows:(gaps.byClaim||[]).filter(row=>!row.unwaivable).slice(0,5).map(gapRow),
+            },
+          ].filter(group=>group.rows.length),
         },
         retries:{
-          claims:retries.claims||0,exhausted:retries.exhausted||0,
-          limit:retries.maximumAttempts||null,
+          // Was "79 out of attempts of 5", which is not a sentence.
+          sentence:`${retries.exhausted||0} of ${retries.claims||0} questions have used all `
+            +`${retries.maximumAttempts||5} tries and will not be asked again.`,
           // A strategy that has never resolved anything is a share of the
           // research budget buying nothing.
           neverPaid:(retries.strategyNeverPaid||[]).map(row=>row.strategy),
@@ -527,6 +607,10 @@
           shareOfFreeDay:cost.reads&&cost.dailyFreeReads
             ?Math.round((cost.reads/cost.dailyFreeReads)*100):null,
           passesLeft:cost.passesLeftInFreeReads??null,
+          sentence:cost.reads
+            ?`${cost.reads.toLocaleString('en-GB')} database lookups last run`
+              +`${cost.dailyFreeReads?`, ${Math.round((cost.reads/cost.dailyFreeReads)*100)}% of today's free allowance`:''}.`
+            :'No cost recorded for the last run.',
         },
         freshness:{
           writtenHoursAgo:ageHours(health.generatedAt),
@@ -546,12 +630,18 @@
         throughput:[
           {label:'Valleys',value:t.valleys||0},
           {label:'Covered',value:t.covered||0,emphasis:true},
-          {label:'Started',value:t.started||0},
-          {label:'Not started',value:t.unstarted||0},
           {label:'Thin',value:t.thin||0},
-          {label:'Candidates awaiting you',value:t.candidatesAwaitingSelection||0},
+          {label:'Candidates awaiting you',value:t.candidatesAwaitingSelection||0,
+            warn:Number(t.candidatesAwaitingSelection||0)>0},
         ],
-        thinnest:(coverage.valleys||[]).filter(row=>row.valley&&row.published>0)
+        notes:[
+          `${t.started||0} started, ${t.unstarted||0} not started.`,
+        ],
+        // Only valleys that are actually thin. Listing a 27-trail valley under
+        // "thinnest" because it sorted third is not a shortlist.
+        thinnest:(coverage.valleys||[])
+          .filter(row=>row.valley&&row.published>0
+            &&row.published<(coverage.policy?.thinBelowPublished??5))
           .slice().sort((a,b)=>a.published-b.published).slice(0,6)
           .map(row=>({valley:row.valley,published:row.published,verified:row.verified,state:row.state})),
         // A valley with no evidence file cannot say what it still needs, and a
@@ -564,18 +654,23 @@
 
     const sourceFailures=Number(hazardStatus?.summary?.sourceFailures||0);
     const partial=(hazardStatus?.sources||[]).filter(source=>source.ok&&source.completeSnapshot===false).length;
+    const carriedThroughOutage=hazards.filter(item=>item.sourceStatus==='unavailable').length;
     const safety={
       available:!!hazardStatus.checkedAt||hazards.length>0,
       headline:`${hazards.length} live warning${hazards.length===1?'':'s'}`,
       settled:sourceFailures===0&&partial===0,
+      // A tile per field made four zeros as loud as the one number that moves.
+      // Anything at zero is reassurance, and reassurance is a sentence.
       throughput:[
         {label:'Live warnings',value:hazards.length},
         {label:'Community-reported',value:hazards.filter(item=>item.origin==='community').length},
-        {label:'Source failures',value:sourceFailures,warn:sourceFailures>0},
         // A source that answered badly may add but never remove: #682.
-        {label:'Partial feeds',value:partial,warn:partial>0},
-        {label:'Carried through an outage',value:hazards.filter(item=>item.sourceStatus==='unavailable').length},
+        ...(sourceFailures?[{label:'Source failures',value:sourceFailures,warn:true}]:[]),
+        ...(partial?[{label:'Partial feeds',value:partial,warn:true}]:[]),
+        ...(carriedThroughOutage?[{label:'Carried through an outage',value:carriedThroughOutage}]:[]),
       ],
+      notes:[sourceFailures||partial||carriedThroughOutage
+        ?null:'Every source answered in full; nothing is being carried through an outage.'].filter(Boolean),
       freshness:{writtenHoursAgo:ageHours(hazardStatus.checkedAt)},
     };
 

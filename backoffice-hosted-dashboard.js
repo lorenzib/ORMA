@@ -226,83 +226,75 @@
     const host=document.getElementById('programmeBoard');
     if(!host)return;
     const cards=(board?.programmes||[]).map(programme=>{
-      const card=element('article','bo-card');
-      const head=element('div','bo-card-head');
-      head.append(element('h3',null,programme.name),element('strong',null,programme.headline));
+      const card=element('article','bo-programme'
+        +(programme.settled?' is-settled':'')+(programme.available?'':' is-absent'));
+
+      const head=element('div','bo-programme-head');
+      head.append(element('h3',null,programme.name),
+        element('p','bo-programme-headline',programme.headline));
       card.append(head);
+      // A programme with no summary says that once, in its headline, and stops.
+      // The first version printed the same sentence twice.
+      if(!programme.available)return card;
 
-      if(!programme.available){
-        card.append(element('p','bo-empty',programme.headline));
-        return card;
-      }
-
-      // Throughput: the counts, with the ones that need attention marked.
-      const counts=element('div','bo-desk-summary');
+      const stats=element('div','bo-programme-stats');
       for(const item of programme.throughput||[]){
-        const cell=element('article',item.warn?'is-warning':item.emphasis?'is-emphasis':null);
+        const cell=element('div',item.warn?'is-warning':item.emphasis?'is-emphasis':null);
         cell.append(element('strong',null,String(item.value)),element('span',null,item.label));
-        counts.append(cell);
+        stats.append(cell);
       }
-      card.append(counts);
+      card.append(stats);
 
-      // Evidence gaps, split by whether a decision could clear them.
-      if(programme.gaps){
-        card.append(element('p','eyebrow',
-          `Evidence gaps · ${programme.gaps.unwaivable} no decision can clear · ${programme.gaps.waivable} you could judge`));
-        if(programme.gaps.rows.length){
-          const list=element('ul','bo-coverage-scroll');
-          for(const row of programme.gaps.rows){
-            const age=row.oldestDays===null?'':` · oldest ${row.oldestDays}d`;
-            const item=element('li',null,
-              `${row.unwaivable?'UNWAIVABLE ':''}${row.claim} — ${row.open} open${age} · first: ${row.firstFinding||'—'}`);
-            list.append(item);
-          }
-          card.append(list);
+      for(const note of programme.notes||[])card.append(element('p','bo-programme-note',note));
+
+      // Two piles, each headed by who can clear it.
+      for(const group of programme.gaps?.groups||[]){
+        const box=element('section','bo-gap-group'+(group.rows.some(row=>row.unwaivable)?' is-blocking':''));
+        box.append(element('h4',null,group.title),element('p',null,group.note));
+        for(const row of group.rows){
+          const line=element('div','bo-gap');
+          line.append(element('strong',null,row.label),
+            element('span',null,`${row.open} trail${row.open===1?'':'s'}`
+              +(row.oldestDays===null?'':` · oldest ${row.oldestDays}d`)));
+          if(row.why)line.append(element('em',null,row.why));
+          box.append(line);
         }
-      }
-
-      if(programme.retries){
-        const r=programme.retries;
-        card.append(element('p','eyebrow',
-          `Retries · ${r.claims} claims tracked · ${r.exhausted} out of attempts${r.limit?` of ${r.limit}`:''}`));
-        if(r.neverPaid.length){
-          // A strategy that has never resolved anything is budget buying nothing.
-          card.append(element('p','bo-empty',
-            `Never resolved anything yet: ${r.neverPaid.join(', ')}`));
-        }
-      }
-
-      if(programme.cost){
-        const c=programme.cost;
-        card.append(element('p','eyebrow',
-          `Cost · ${c.readsPerPass??'—'} lookups last pass${c.readsPerJob?`, ${c.readsPerJob} per job`:''}`
-          +`${c.shareOfFreeDay!==null?` · ${c.shareOfFreeDay}% of a free day`:''}`
-          +`${c.passesLeft?` · about ${c.passesLeft} passes left in today's free allowance`:''}`));
+        card.append(box);
       }
 
       if(programme.thinnest&&programme.thinnest.length){
-        card.append(element('p','eyebrow','Thinnest valleys'));
-        const list=element('ul','bo-coverage-scroll');
+        const box=element('section','bo-gap-group');
+        box.append(element('h4',null,'Where ORMA is thinnest'),
+          element('p',null,'Fewest published trails first — scouting now ranks by this.'));
         for(const row of programme.thinnest){
-          list.append(element('li',null,
-            `${row.valley} — ${row.published} published, ${row.verified} verified · ${row.state}`));
+          const line=element('div','bo-gap');
+          line.append(element('strong',null,row.valley),
+            element('span',null,`${row.published} published · ${row.verified} verified`));
+          box.append(line);
         }
-        card.append(list);
-      }
-      if(programme.unmeasured||programme.unplacedTrails){
-        card.append(element('p','bo-empty',
-          `${programme.unmeasured} valley(s) have no evidence file`
-          +`${programme.unplacedTrails?`; ${programme.unplacedTrails} trail(s) carry no valley and are in no figure above`:''}.`));
+        card.append(box);
       }
 
+      const foot=element('div','bo-programme-foot');
+      if(programme.retries?.sentence)foot.append(element('p',null,programme.retries.sentence));
+      if(programme.retries?.neverPaid?.length){
+        foot.append(element('p',null,
+          `Never resolved anything yet: ${programme.retries.neverPaid.join(', ')}.`));
+      }
+      if(programme.cost?.sentence)foot.append(element('p',null,programme.cost.sentence));
+      if(programme.unmeasured||programme.unplacedTrails){
+        foot.append(element('p',null,
+          `${programme.unmeasured} valley${programme.unmeasured===1?' has':'s have'} no evidence file`
+          +`${programme.unplacedTrails?`; ${programme.unplacedTrails} trail${programme.unplacedTrails===1?' carries':'s carry'} no valley and ${programme.unplacedTrails===1?'is':'are'} in no figure above`:''}.`));
+      }
       const f=programme.freshness||{};
-      const parts=[];
-      if(f.writtenHoursAgo!==null&&f.writtenHoursAgo!==undefined)parts.push(`written ${f.writtenHoursAgo}h ago`);
-      if(f.oldestClaimDays!==null&&f.oldestClaimDays!==undefined)parts.push(`oldest untouched claim ${f.oldestClaimDays}d`);
-      if(f.oldestStateDays!==null&&f.oldestStateDays!==undefined)parts.push(`oldest trail in its stage ${f.oldestStateDays}d`);
-      // Stated even when it is stale: a green panel over a two-day-old summary
-      // is the failure this section exists to prevent.
-      card.append(element('p','eyebrow',`Freshness · ${parts.length?parts.join(' · '):'not recorded'}`));
+      const age=[];
+      if(f.writtenHoursAgo!==null&&f.writtenHoursAgo!==undefined)age.push(`updated ${f.writtenHoursAgo}h ago`);
+      if(f.oldestClaimDays!==null&&f.oldestClaimDays!==undefined)age.push(`oldest untouched question ${f.oldestClaimDays}d`);
+      // Said even when stale: a green panel over a two-day-old summary is the
+      // failure this section exists to prevent.
+      foot.append(element('p',null,age.length?age.join(' · '):'Freshness not recorded.'));
+      card.append(foot);
       return card;
     });
     host.replaceChildren(...(cards.length?cards:[element('p','bo-empty','No programme summaries yet.')]));
