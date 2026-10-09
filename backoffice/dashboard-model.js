@@ -457,5 +457,137 @@
     }};
   }
 
-  return {buildDashboardModel,buildCoverageGrid,describeVerificationStage,VERIFICATION_STEPS,VERIFICATION_TOTAL_STEPS,dateMs,deriveWorkerHealth,deriveCampaignHealth,latestPublicationState,activityMessage,candidateFromActivity,isPausedSafetyPacket};
+  /**
+   * The three programmes, each answering the same five questions.
+   *
+   * Backoffice Home could say "needs you: 0" truthfully while eleven trails sat
+   * on a question with no answer, because nothing on it described a programme's
+   * own health. Finding that on 2026-10-08 meant dispatching a report, saving
+   * the run log and parsing 124 records by hand.
+   *
+   * Every figure here is read from an artifact a worker pass already wrote, so
+   * the screen costs three documents however long it is left open.
+   */
+  function buildProgrammeBoard(input={}){
+    const health=input.programmeHealth||null;
+    const coverage=input.regionalCoverage||null;
+    const hazards=(input.hazards&&input.hazards.hazards)||[];
+    const hazardStatus=input.hazardStatus||{};
+    const nowMs=input.nowMs||Date.now();
+
+    const ageHours=value=>{
+      const at=dateMs(value);
+      return at?Math.max(0,Math.round((nowMs-at)/3_600_000)):null;
+    };
+
+    const verification=health?(()=>{
+      const t=health.throughput||{};
+      const gaps=health.evidenceGaps||{};
+      const retries=health.retries||{};
+      const cost=health.cost||{};
+      const fresh=health.freshness||{};
+      const stage=state=>(t.stages||[]).find(row=>row.state===state)?.trails||0;
+      return {
+        available:true,
+        // The number the programme exists to move, stated even at zero -- which
+        // is the whole point of putting it on the wall.
+        headline:`${t.verified||0} verified · ${t.readyForEditorial||0} ready for editorial`,
+        settled:Number(t.verified||0)>0,
+        throughput:[
+          {label:'In the pipeline',value:t.inPipeline||0},
+          {label:'Verified',value:t.verified||0,emphasis:true},
+          {label:'Ready for editorial',value:t.readyForEditorial||0,emphasis:true},
+          {label:'At red team',value:t.inRedTeam||0},
+          {label:'Stalled',value:t.stalled||0,warn:Number(t.stalled||0)>0},
+          {label:'Awaiting geometry approval',value:stage('geometry-human-gate')},
+        ],
+        // Split because they need different work: nobody can decide their way
+        // out of an unwaivable gap.
+        gaps:{
+          unwaivable:gaps.unwaivableOpen||0,
+          waivable:gaps.waivableOpen||0,
+          rows:(gaps.byClaim||[]).slice(0,6).map(row=>({
+            claim:row.claim,open:row.open,unwaivable:!!row.unwaivable,
+            oldestDays:row.oldestDays??null,
+            // "found nothing, every time" and "sources disagree" are different
+            // problems, and the count alone cannot tell them apart.
+            firstFinding:Object.entries(row.firstFindings||{})
+              .sort((a,b)=>b[1]-a[1]).map(([finding,count])=>`${finding} ${count}`).join(' · '),
+          })),
+        },
+        retries:{
+          claims:retries.claims||0,exhausted:retries.exhausted||0,
+          limit:retries.maximumAttempts||null,
+          // A strategy that has never resolved anything is a share of the
+          // research budget buying nothing.
+          neverPaid:(retries.strategyNeverPaid||[]).map(row=>row.strategy),
+        },
+        cost:{
+          readsPerPass:cost.reads??null,readsPerJob:cost.readsPerJob??null,
+          shareOfFreeDay:cost.reads&&cost.dailyFreeReads
+            ?Math.round((cost.reads/cost.dailyFreeReads)*100):null,
+          passesLeft:cost.passesLeftInFreeReads??null,
+        },
+        freshness:{
+          writtenHoursAgo:ageHours(health.generatedAt),
+          oldestClaimDays:fresh.oldestClaimDays??null,
+          oldestStateDays:fresh.oldestStateDays??null,
+        },
+      };
+    })():{available:false,headline:'No programme summary yet — the next worker pass writes one.'};
+
+    const expansion=coverage?(()=>{
+      const t=coverage.totals||{};
+      const gaps=coverage.gaps||{};
+      return {
+        available:true,
+        headline:`${t.covered||0} of ${t.valleys||0} valleys covered`,
+        settled:false,
+        throughput:[
+          {label:'Valleys',value:t.valleys||0},
+          {label:'Covered',value:t.covered||0,emphasis:true},
+          {label:'Started',value:t.started||0},
+          {label:'Not started',value:t.unstarted||0},
+          {label:'Thin',value:t.thin||0},
+          {label:'Candidates awaiting you',value:t.candidatesAwaitingSelection||0},
+        ],
+        thinnest:(coverage.valleys||[]).filter(row=>row.valley&&row.published>0)
+          .slice().sort((a,b)=>a.published-b.published).slice(0,6)
+          .map(row=>({valley:row.valley,published:row.published,verified:row.verified,state:row.state})),
+        // A valley with no evidence file cannot say what it still needs, and a
+        // trail with no valley is in no figure at all.
+        unmeasured:(gaps.valleysWithoutResearchFile||[]).length,
+        unplacedTrails:gaps.unplacedTrails||0,
+        freshness:{writtenHoursAgo:ageHours(coverage.generatedAt)},
+      };
+    })():{available:false,headline:'No coverage summary yet — the next worker pass writes one.'};
+
+    const sourceFailures=Number(hazardStatus?.summary?.sourceFailures||0);
+    const partial=(hazardStatus?.sources||[]).filter(source=>source.ok&&source.completeSnapshot===false).length;
+    const safety={
+      available:!!hazardStatus.checkedAt||hazards.length>0,
+      headline:`${hazards.length} live warning${hazards.length===1?'':'s'}`,
+      settled:sourceFailures===0&&partial===0,
+      throughput:[
+        {label:'Live warnings',value:hazards.length},
+        {label:'Community-reported',value:hazards.filter(item=>item.origin==='community').length},
+        {label:'Source failures',value:sourceFailures,warn:sourceFailures>0},
+        // A source that answered badly may add but never remove: #682.
+        {label:'Partial feeds',value:partial,warn:partial>0},
+        {label:'Carried through an outage',value:hazards.filter(item=>item.sourceStatus==='unavailable').length},
+      ],
+      freshness:{writtenHoursAgo:ageHours(hazardStatus.checkedAt)},
+    };
+
+    return {
+      generatedAt:new Date(nowMs).toISOString(),
+      programmes:[
+        {id:'catalogue-verification',name:'Catalogue verification',...verification},
+        {id:'geographical-expansion',name:'Geographical expansion',...expansion},
+        {id:'dynamic-safety',name:'Dynamic safety',...safety},
+      ],
+    };
+  }
+
+  return {buildDashboardModel,buildCoverageGrid,buildProgrammeBoard,describeVerificationStage,VERIFICATION_STEPS,VERIFICATION_TOTAL_STEPS,dateMs,deriveWorkerHealth,deriveCampaignHealth,latestPublicationState,activityMessage,candidateFromActivity,isPausedSafetyPacket};
 });
