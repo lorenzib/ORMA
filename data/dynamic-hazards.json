@@ -1,32 +1,7 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-10T07:28:15.388Z",
+  "generatedAt": "2026-10-10T10:23:06.307Z",
   "hazards": [
-    {
-      "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
-      "state": "active",
-      "severity": "moderate",
-      "event": "Yellow Thunderstorm Warning",
-      "area": "Friuli Venezia Giulia",
-      "title": "thunderstorm warning for Friuli Venezia Giulia",
-      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/2bf837f4-b3e0-4997-900b-f295b8bf2ed7",
-      "identifier": "2.49.0.0.380.3.IT.261009104343.062",
-      "effectiveAt": "2026-10-09T08:00:00+00:00",
-      "expiresAt": "2026-10-10T17:59:00+00:00",
-      "firstPublishedAt": "2026-10-05T22:23:15.462Z",
-      "lastSeenAt": "2026-10-10T07:28:15.388Z",
-      "removalRequiresHumanReview": true,
-      "trailIds": [
-        "piancavallo"
-      ],
-      "trailNames": [
-        "Piancavallo Malghe Loop"
-      ],
-      "sourceStatus": "available"
-    },
     {
       "id": "meteoalarm-italy:thunderstorm:trentino-alto-adige",
       "state": "active",
@@ -42,7 +17,7 @@
       "effectiveAt": "2026-10-08T08:00:00+00:00",
       "expiresAt": "2026-10-08T23:59:00+00:00",
       "firstPublishedAt": "2026-10-05T10:29:05.859Z",
-      "lastSeenAt": "2026-10-10T07:28:15.388Z",
+      "lastSeenAt": "2026-10-10T10:23:06.307Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -253,7 +228,7 @@
       "effectiveAt": "2026-10-09T08:00:00+00:00",
       "expiresAt": "2026-10-09T23:59:00+00:00",
       "firstPublishedAt": "2026-10-05T22:23:15.462Z",
-      "lastSeenAt": "2026-10-10T07:28:15.388Z",
+      "lastSeenAt": "2026-10-10T10:23:06.307Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
