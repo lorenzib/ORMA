@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-11T07:29:34.426Z",
+  "generatedAt": "2026-10-11T10:23:57.246Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:thunderstorm:veneto",
@@ -12,12 +12,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-italy",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/82cf7262-f6e9-43c7-bc7c-2a5436c11518",
-      "identifier": "2.49.0.0.380.3.IT.261009104343.063",
-      "effectiveAt": "2026-10-09T08:00:00+00:00",
-      "expiresAt": "2026-10-09T23:59:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/54883810-5aa2-454f-9401-2dc81dcd3eef",
+      "identifier": "2.49.0.0.380.3.IT.261011105941.024",
+      "effectiveAt": "2026-10-11T17:00:00+00:00",
+      "expiresAt": "2026-10-12T05:59:00+00:00",
       "firstPublishedAt": "2026-10-05T22:23:15.462Z",
-      "lastSeenAt": "2026-10-11T07:29:34.426Z",
+      "lastSeenAt": "2026-10-11T10:23:57.246Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
