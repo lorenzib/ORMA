@@ -66,7 +66,7 @@ const ADJUDICATION_SCHEMA={type:'object',additionalProperties:false,properties:{
     sources:{type:'array',maxItems:MAX_SOURCES,items:{type:'object',additionalProperties:false,properties:{
       url:{type:'string'},publisher:{type:'string'},quote:{type:'string'},
     },required:['url','publisher','quote']}},
-  },required:['blocker','recommendation','reason','confidence','sources']}},
+  },required:['blockerId','recommendation','reason','confidence','sources']}},
   summary:{type:'string'},
 },required:['verdicts','summary']};
 
