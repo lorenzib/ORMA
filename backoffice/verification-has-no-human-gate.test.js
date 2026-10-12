@@ -146,3 +146,52 @@ describe('the worker hands the policy the whole catalogue',()=>{
     expect(worker).toMatch(/automatePublicationReviews\(store,\{[^}]*siteTrails/);
   });
 });
+
+// With the desk gone there is nowhere to look at a gate, so the decision has to
+// say what the gate was short of. "request-revision" alone cannot distinguish a
+// trail one search away from verification from one heading for a rejection,
+// and that is the only question worth asking of this pipeline.
+describe('a decision says what the gate was short of',()=>{
+  const catalogue=[{id:UNPUBLISHED}];
+  const ROUTE='logistics/route-number-switches: sourced, reader-usable route guidance is required';
+  const OPTIONAL='terrainPoi/water: five automated resolution strategies exhausted';
+  const decide=async(blockingReasons)=>{
+    const subject=store([gate(UNPUBLISHED,blockingReasons)]);
+    const [outcome]=await automateEvidenceGates(subject,{at,productionTrails:catalogue});
+    return outcome;
+  };
+
+  test('a clean gate reports no shortfall at all',async()=>{
+    const outcome=await decide([]);
+    expect(outcome.action).toBe('approve');
+    expect(outcome.missingRouteGuidance).toBeUndefined();
+    expect(outcome.blockerCount).toBeUndefined();
+  });
+
+  test('missing directions are named as route guidance',async()=>{
+    const outcome=await decide([ROUTE]);
+    expect(outcome).toEqual(expect.objectContaining({
+      missingRouteGuidance:['logistics/route-number-switches'],
+      unwaivable:['logistics/route-number-switches'],
+      blockerCount:1}));
+  });
+
+  test('and the agent it was asked of is recorded',async()=>{
+    expect((await decide([ROUTE])).targetAgent).toBe('logistics');
+  });
+
+  // The distinction that matters: this one is heading for an approval once the
+  // ladder runs out, because nothing about it is unwaivable.
+  test('optional detail is counted but is not route guidance',async()=>{
+    const outcome=await decide([OPTIONAL]);
+    expect(outcome.blockerCount).toBe(1);
+    expect(outcome.missingRouteGuidance).toBeUndefined();
+    expect(outcome.unwaivable).toBeUndefined();
+  });
+
+  test('a gate short of both reports both, so the fate is readable',async()=>{
+    const outcome=await decide([ROUTE,OPTIONAL]);
+    expect(outcome.blockerCount).toBe(2);
+    expect(outcome.missingRouteGuidance).toEqual(['logistics/route-number-switches']);
+  });
+});

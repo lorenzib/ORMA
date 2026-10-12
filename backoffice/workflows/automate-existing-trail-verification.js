@@ -1,6 +1,6 @@
 'use strict';
 
-const {currentBlockingReasons,waivableBlocker}=require('./compile-verified-dossier');
+const {currentBlockingReasons,waivableBlocker,blockerId,ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
 const {planGateDispatches}=require('./dispatch-unanswered-gates');
 const {rehydrateReviewQueue}=require('./rehydrate-review-detail');
 const {blockerCountsByAgent,blockersForAgent}=require('../revision-target');
@@ -10,6 +10,27 @@ const POLICY_ACTOR='orma-existing-trail-verifier-v1';
 const OPTIONAL_UNKNOWN_REASON='Automated evidence policy: the full research ladder was exhausted; this remains unknown and no unsupported fact will be published.';
 
 function queuedIds(reviews,key){return new Set((reviews||[]).map(review=>String(review[key]||'')));}
+
+/**
+ * What a gate was short of, in the two terms that decide its fate.
+ *
+ * Route guidance is the only blocker class that can never be waived, so it is
+ * the only one that turns into a rejection once research runs out. Everything
+ * else is optional detail that is accepted as unknown. Reporting the counts
+ * separately is what distinguishes a trail that is one search away from being
+ * verified from one that is heading for a rejection -- and until this, both
+ * logged as `"action": "request-revision"` and nothing else.
+ */
+function shortOf(item){
+  const blockers=currentBlockingReasons(item);
+  if(!blockers.length)return {};
+  const routeGuidance=[...new Set(blockers.map(blockerId)
+    .filter(id=>ROUTE_GUIDANCE_CLAIM_IDS.includes(String(id).replace(/^logistics\//,''))))];
+  const unwaivable=[...new Set(blockers.filter(reason=>!waivableBlocker(reason)).map(blockerId))];
+  return {blockerCount:blockers.length,
+    ...(routeGuidance.length?{missingRouteGuidance:routeGuidance}:{}),
+    ...(unwaivable.length?{unwaivable}:{})};
+}
 
 /**
  * Decide routine evidence gates under the approved existing-catalogue policy.
@@ -58,8 +79,15 @@ async function automateEvidenceGates(store,options={}){
       const written=await store.submitDossierReview({reviewId:item.reviewId,candidateId:item.candidateId,
         ...decision,submittedBy:POLICY_ACTOR});
       pending.add(String(item.reviewId));
+      // An action on its own does not say what the gate was short of, and with
+      // no desk left to look at there is nowhere else to find out. A revision
+      // that went to logistics means the directions are still missing; one that
+      // went anywhere else means optional detail. Those are different problems
+      // with different fixes and they read identically as "request-revision".
       outcomes.push({reviewId:item.reviewId,candidateId:item.candidateId,gateType:item.gateType,
-        action:decision.action,status:'queued',decisionId:written?.reviewId||null});
+        action:decision.action,status:'queued',decisionId:written?.reviewId||null,
+        ...(decision.targetAgent?{targetAgent:decision.targetAgent}:{}),
+        ...shortOf(item)});
     }catch(error){outcomes.push({reviewId:item.reviewId,candidateId:item.candidateId,status:'blocked',error:String(error.message||error)});}
   }
   return outcomes;
