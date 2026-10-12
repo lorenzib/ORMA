@@ -58,6 +58,20 @@ Source failure or outage never removes the last known warning, because an
 unreachable source is not evidence of safety.
 Weather warnings are never presented as proof that a specific trail is closed.
 
+Nobody publishes trail closures as data for these regions, so a closure reaches
+ORMA two ways and neither is a feed. A walker reports one, or the Closure Scout
+goes looking: once per run it searches one area's comune, park,
+forestry, protezione civile, alpine club and operator pages, and
+files them as pending hazard reports. It publishes nothing. A scouted notice goes through the same
+Hazard Analyst vetting as a walker's report, which searches independently for
+corroboration, and the notice the scout found is evidence rather than its own
+corroboration. A notice names the trails it affects by an id printed beside
+them, and one naming anything else is discarded. A scouted notice is never
+presented as a walker's sighting, and where an authority stated an end date that
+date is the expiry, capped at the corroborated lifetime so a long closure is
+renewed by re-vetting rather than trusted for a season. The scout is off unless
+switched on, and the budget is areas per run, oldest first.
+
 Each authoritative source declares its own shape rather than all of them being
 assumed to be one feed. A connector states the documents to try, how to parse
 them, how to tell a whole body from a truncated one, and the months it publishes

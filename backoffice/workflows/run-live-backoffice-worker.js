@@ -26,6 +26,7 @@ const {accumulateUsage,ARTIFACT_ID:USAGE_DAY_ARTIFACT}=require('./firestore-usag
 const {summariseRegionalCoverage}=require('./regional-coverage');
 const {nearestLocalityFor}=require('../services/region-taxonomy');
 const {runHazardVetting,applyHazardVetting,expireCommunityHazards}=require('./community-hazard-vetting');
+const {scoutAreaClosures,hazardReportsFromNotices,nextAreasToScout,mergeScoutingHistory}=require('./scout-area-closures');
 const {automateEvidenceGates,automateEditorialReviews,automatePublicationReviews}=require('./automate-existing-trail-verification');
 const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
@@ -620,6 +621,50 @@ async function ingestHazardReviews(store){
 // against independent sources by the Hazard Analyst, then published, published
 // under an explicit unverified label, or rejected. Published community hazards
 // re-check themselves and expire without asking.
+/**
+ * Go looking for closure notices in one area and file what is found as pending
+ * hazard reports. It publishes nothing: the vetting pass picks them up next run
+ * and the Hazard Analyst decides, exactly as for a hiker's report.
+ *
+ * Bounded and switchable like every other agent pass here. The budget is areas
+ * per run, and `nextAreasToScout` takes the one scouted longest ago, so a small
+ * budget rotates over all of them instead of re-reading the same valley.
+ */
+async function scoutClosureNotices(store,options={}){
+  if(options.closureScoutEnabled!==true)return [];
+  if(typeof store.putHazardReportIfAbsent!=='function')return [];
+  const at=options.at||new Date().toISOString();
+  const limit=Number.isInteger(options.closureScoutLimit)&&options.closureScoutLimit>0
+    ?options.closureScoutLimit:1;
+  const trails=(options.productionTrails||[]).filter(trail=>trail&&trail.id);
+  if(!trails.length)return [];
+  let history=await store.getArtifact('closure-scouting');
+  const outcomes=[];
+  for(const target of nextAreasToScout(trails,history,{limit})){
+    try{
+      const result=await scoutAreaClosures(target.area,target.trails,
+        {at,runAgent:options.runAgent,clientOptions:options.clientOptions});
+      const reports=hazardReportsFromNotices(result,{at});
+      let filed=0;
+      for(const report of reports){
+        if(await store.putHazardReportIfAbsent(report))filed+=1;
+      }
+      history=mergeScoutingHistory(history,result);
+      await store.setArtifact('closure-scouting',history);
+      // Notices found but already on file are the normal steady state for a
+      // standing closure, so filed and found are reported separately.
+      outcomes.push({area:target.area,status:'scouted',trailsAsked:result.trailsAsked,
+        found:result.notices.length,filed,
+        ...(result.dropped.length?{discardedBy:result.dropped.reduce((tally,entry)=>
+          ({...tally,[entry.rule]:(tally[entry.rule]||0)+1}),{})}:{})});
+    }catch(error){
+      outcomes.push({area:target.area,status:'scouting-failed',
+        error:String(error.message||error).slice(0,2000)});
+    }
+  }
+  return outcomes;
+}
+
 async function processCommunityHazardReports(store,options={}){
   if(typeof store.listHazardReports!=='function')return {vetted:[],expired:0,revetted:0};
   const at=options.at||new Date().toISOString();
@@ -675,6 +720,10 @@ async function runLiveBackofficeWorker(store, options = {}){
     workflowRunUrl:options.workflowRunUrl,runId:options.runId});
   const newTrailReviews=await ingestNewTrailReviews(store);
   const hazardReviews=await ingestHazardReviews(store);
+  // Scout first, vet second, and a notice filed now is vetted on the next pass:
+  // the Analyst's corroboration search is the gate, and running it in the same
+  // pass that found the notice would read the same pages minutes apart.
+  const closureScouting=await scoutClosureNotices(store,{...options,productionTrails:siteTrails});
   const communityHazards=await processCommunityHazardReports(store,
     {...options,trailById:new Map(productionTrails.map(trail=>[trail.id,trail]))});
   const recoveredJobs = typeof store.recoverExpiredJobs === 'function'
@@ -734,7 +783,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   // so the pass that has the checkout is the one that can write them down for a
   // desk that does not.
   const coverage = await recordRegionalCoverage(store,{...options,productionTrails:siteTrails});
-  return { workerId:options.workerId || null,campaign,pipeline,programme,coverage,usageDay,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,pipeline,programme,coverage,usageDay,newTrailReviews,hazardReviews,closureScouting,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
 }
 
 /**
@@ -844,4 +893,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore,scoutClosureNotices, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

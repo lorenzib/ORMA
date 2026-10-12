@@ -176,6 +176,26 @@ class FirestoreBackofficeStore {
     return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
   }
 
+  /**
+   * File a hazard report only if that document does not exist yet.
+   *
+   * The closure scout derives a report's id from the notice, so the same notice
+   * found again next week is the same document. Without the if-absent check a
+   * standing closure would be re-filed and re-vetted every pass, which spends a
+   * model call to re-learn what is already published.
+   */
+  async putHazardReportIfAbsent(report){
+    const ref=this.db.collection(COLLECTIONS.hazardReports).doc(report.id);
+    return this.db.runTransaction(async transaction=>{
+      const snapshot=await transaction.get(ref);
+      this.usage.read(1,'hazard-report-write');
+      if(snapshot.exists)return false;
+      transaction.set(ref,{...report,createdAt:report.createdAt||null,updatedAt:FieldValue.serverTimestamp()});
+      this.usage.write(1,'hazard-report-write');
+      return true;
+    });
+  }
+
   async markHazardReport(id,status,fields={}){
     await this.db.collection(COLLECTIONS.hazardReports).doc(id).set({
       ...fields,status,vettedAt:FieldValue.serverTimestamp(),updatedAt:FieldValue.serverTimestamp(),

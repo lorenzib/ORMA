@@ -56,6 +56,13 @@ jobs:
       # can decide. Same kill switch shape as the dispatch above.
       ORMA_GATE_ADJUDICATION_ENABLED: ${{ vars.ORMA_GATE_ADJUDICATION_ENABLED || 'true' }}
       ORMA_GATE_ADJUDICATION_LIMIT: '2'
+      # The Closure Scout searches one area's authorities for published
+      # restrictions and files what it finds for vetting. Nobody publishes trail
+      # closures as data for these regions, so this is how a closure is found
+      # without waiting for a walker to report one. Off unless the repository
+      # variable is 'true': it is an extra web-search call per area per run.
+      ORMA_CLOSURE_SCOUT_ENABLED: ${{ vars.ORMA_CLOSURE_SCOUT_ENABLED || 'false' }}
+      ORMA_CLOSURE_SCOUT_LIMIT: ${{ vars.ORMA_CLOSURE_SCOUT_LIMIT || '1' }}
       ORMA_CAMPAIGN_LIMIT: '10'
       ORMA_CAMPAIGN_CAPACITY: '15'
     steps:
