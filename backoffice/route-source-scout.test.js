@@ -191,3 +191,96 @@ describe('the pass end to end, with no network and no model',()=>{
     expect(needsSource([dolo,savoy],{region:'dolomites'}).map(entry=>entry.id)).toEqual(['d1']);
   });
 });
+
+// An official route sheet is very often a PDF -- an alpine club magazine, a
+// comune leaflet. 18 of the 60 finds in the first Dolomites sweep were refused
+// as `quote-is-not-on-the-page`, and several were PDFs whose text could not be
+// read at all, so a good authority was thrown away for the wrong reason.
+describe('a quote in a PDF can be proved too',()=>{
+  const zlib=require('zlib');
+  const {pdfText,looksLikePdf,pdfLiteral,pdfHexString}=require('./workflows/scout-route-sources');
+
+  /**
+   * A real little PDF, built here rather than committed as a binary, so the
+   * fixture is derived from the format instead of being a blob nobody can read.
+   * `pieces` are the strings the page draws, which is what a writer emits.
+   */
+  const buildPdf=(pieces,{compress=true,hex=false}={})=>{
+    const draw=pieces.map(text=>hex
+      ?`<${Buffer.from(text,'latin1').toString('hex')}> Tj`
+      :`(${text.replace(/([()\\])/g,'\\$1')}) Tj`).join('\n');
+    const content=`BT /F1 12 Tf 72 700 Td\n${draw}\nET`;
+    const stream=compress?zlib.deflateSync(Buffer.from(content,'latin1')):Buffer.from(content,'latin1');
+    return Buffer.concat([
+      Buffer.from('%PDF-1.4\n1 0 obj<</Type/Catalog>>endobj\n4 0 obj<</Length '
+        +stream.length+(compress?'/Filter/FlateDecode':'')+'>>stream\n','latin1'),
+      stream,
+      Buffer.from('\nendstream\nendobj\ntrailer<</Root 1 0 R>>\n%%EOF\n','latin1'),
+    ]);
+  };
+
+  const SENTENCE='Il sentiero parte dalla chiesa di San Vito e sale al rifugio';
+
+  test('a sentence drawn as one string is found',()=>{
+    const pdf=buildPdf([SENTENCE]);
+    expect(looksLikePdf(pdf)).toBe(true);
+    expect(quoteIsInPage(SENTENCE,pdf,'application/pdf')).toBe(true);
+  });
+
+  test('a sentence split per word is found',()=>{
+    const pdf=buildPdf(SENTENCE.split(' '));
+    expect(quoteIsInPage(SENTENCE,pdf,'application/pdf')).toBe(true);
+  });
+
+  // What the real alpenverein.it magazine does: every character drawn on its
+  // own for kerning, so the spaced reading breaks every word.
+  test('a sentence split mid-word for kerning is still found',()=>{
+    const pdf=buildPdf(SENTENCE.split(''));
+    expect(pdfText(pdf).spaced).not.toContain('sentiero');
+    expect(quoteIsInPage(SENTENCE,pdf,'application/pdf')).toBe(true);
+  });
+
+  test('an uncompressed stream and a hex string are both read',()=>{
+    expect(quoteIsInPage(SENTENCE,buildPdf([SENTENCE],{compress:false}),'application/pdf')).toBe(true);
+    expect(quoteIsInPage(SENTENCE,buildPdf([SENTENCE],{hex:true}),'application/pdf')).toBe(true);
+  });
+
+  // The guarantee that matters: reading PDFs must not make it easier to pass.
+  test('a quote that is not in the PDF is still refused',()=>{
+    const pdf=buildPdf([SENTENCE]);
+    expect(quoteIsInPage('Il sentiero parte dal parcheggio comunale del paese',pdf,'application/pdf')).toBe(false);
+  });
+
+  test('a PDF with no text at all proves nothing',()=>{
+    const scanned=Buffer.from('%PDF-1.4\n1 0 obj<</Type/Catalog>>endobj\n%%EOF\n','latin1');
+    expect(pdfText(scanned)).toEqual({spaced:'',tight:''});
+    expect(quoteIsInPage(SENTENCE,scanned,'application/pdf')).toBe(false);
+  });
+
+  test('an unreadable or encrypted document returns nothing rather than guessing',()=>{
+    const noise=Buffer.concat([Buffer.from('%PDF-1.7\n','latin1'),
+      Buffer.from('stream\n','latin1'),Buffer.from([0x01,0x02,0x03,0x04,0x05]),
+      Buffer.from('\nendstream\n','latin1')]);
+    expect(pdfText(noise).tight).toBe('');
+  });
+
+  test('something that is not a PDF is not treated as one',()=>{
+    expect(looksLikePdf('<html><p>hello</p></html>')).toBe(false);
+    expect(pdfText(Buffer.from('<html><p>hello</p></html>'))).toEqual({spaced:'',tight:''});
+  });
+
+  test('html is still read as html, not as a document',()=>{
+    expect(quoteIsInPage(SENTENCE,`<p>${SENTENCE}.</p>`,'text/html')).toBe(true);
+  });
+
+  test('PDF string escapes and hex strings decode as the spec says',()=>{
+    expect(pdfLiteral('a\\(b\\)c')).toBe('a(b)c');
+    expect(pdfLiteral('a\\101b')).toBe('aAb');
+    expect(pdfHexString('48656c6c6f')).toBe('Hello');
+  });
+
+  test('a PDF declared only by its content type is read',()=>{
+    const pdf=buildPdf([SENTENCE]);
+    expect(quoteIsInPage(SENTENCE,pdf,'application/pdf; charset=binary')).toBe(true);
+  });
+});

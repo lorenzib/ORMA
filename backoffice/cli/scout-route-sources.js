@@ -24,6 +24,10 @@ const { SOURCED_ROUTE_PAGES } = require('../../scripts/route-number-evidence');
 const { scoutRouteSource, confirmProposal, mergeSourcedPages } = require('../workflows/scout-route-sources');
 
 const FETCH_TIMEOUT_MS = 20000;
+// A route leaflet is a few hundred kilobytes; an alpine club's magazine can be
+// eleven megabytes. Large enough for a real route sheet, small enough that a
+// mis-typed link to a video cannot hold up the pass.
+const MAX_BYTES = 24 * 1024 * 1024;
 
 function parseArgs(argv){
   const out = { region:null, province:null, limit:5, apply:false, trail:null };
@@ -38,14 +42,30 @@ function parseArgs(argv){
   return out;
 }
 
-/** The page as it actually is now, which is what the quote is checked against. */
+/**
+ * The page as it actually is now, which is what the quote is checked against.
+ *
+ * A PDF is read as bytes, because an official route sheet is very often one and
+ * its text has to be extracted rather than decoded as a document. Everything
+ * else is read as text so the response's own charset still applies.
+ */
 async function retrieve(url, fetchImpl = fetch){
   try{
     const response = await fetchImpl(url, { redirect:'follow',
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
       headers:{ 'User-Agent':'ORMA-route-source-scout/1.0' } });
     if(!response.ok) return { ok:false, error:`HTTP ${response.status}` };
-    return { ok:true, body: await response.text() };
+    const contentType = response.headers?.get?.('content-type') || '';
+    const declared = Number.parseInt(response.headers?.get?.('content-length') || '', 10);
+    if(Number.isFinite(declared) && declared > MAX_BYTES){
+      return { ok:false, error:`too large to read (${declared} bytes)` };
+    }
+    if(/application\/pdf/i.test(contentType) || /\.pdf($|[?#])/i.test(url)){
+      const bytes = Buffer.from(await response.arrayBuffer());
+      if(bytes.length > MAX_BYTES) return { ok:false, error:`too large to read (${bytes.length} bytes)` };
+      return { ok:true, body: bytes, contentType };
+    }
+    return { ok:true, body: await response.text(), contentType };
   }catch(error){
     return { ok:false, error:String(error?.message || error).slice(0, 200) };
   }

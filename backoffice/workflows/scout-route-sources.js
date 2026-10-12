@@ -21,6 +21,7 @@
  * It proposes; `confirmProposal` decides. Nothing here writes.
  */
 
+const zlib=require('zlib');
 const {createStructuredResponse}=require('../services/openai-responses-client');
 
 const MAX_QUOTE=300;
@@ -55,6 +56,81 @@ function readableText(html){
     .trim();
 }
 
+// An official route sheet is very often a PDF -- an alpine club's magazine, a
+// comune's trail leaflet. 18 of the 60 finds in the first Dolomites sweep were
+// refused as `quote-is-not-on-the-page` and several of those were PDFs whose
+// text this could not read at all, so a perfectly good authority was being
+// thrown away for the wrong reason.
+//
+// Deliberately minimal, and deliberately conservative. It inflates the
+// FlateDecode content streams a standard PDF writer produces and takes the
+// strings the text operators draw. It does not implement font encodings,
+// CID maps, encryption or OCR, and it is not meant to: when it cannot read a
+// document it returns nothing, the quote does not match, and the find is
+// refused exactly as before. The failure mode is a source ORMA declines to
+// use, never a source it wrongly accepts.
+const PDF_STREAM=/stream\r?\n?([\s\S]*?)endstream/g;
+
+function inflate(chunk){
+  const bytes=Buffer.from(chunk,'latin1');
+  for(const attempt of [zlib.inflateSync,zlib.inflateRawSync]){
+    try{return attempt(bytes).toString('latin1');}catch(error){/* not this encoding */}
+  }
+  return '';
+}
+
+/** A PDF string literal's escapes, resolved the way the spec defines them. */
+function pdfLiteral(raw){
+  return String(raw)
+    .replace(/\\([nrtbf])/g,(match,code)=>({n:'\n',r:'\r',t:'\t',b:'',f:''})[code])
+    .replace(/\\([0-7]{1,3})/g,(match,octal)=>String.fromCharCode(Number.parseInt(octal,8)))
+    .replace(/\\(.)/g,'$1');
+}
+
+function pdfHexString(raw){
+  const hex=String(raw).replace(/[^0-9a-f]/gi,'');
+  let out='';
+  for(let i=0;i+1<hex.length;i+=2)out+=String.fromCharCode(Number.parseInt(hex.slice(i,i+2),16));
+  return out;
+}
+
+/**
+ * The text a PDF draws, as two readings.
+ *
+ * A writer splits a line into separate drawn strings, sometimes per word and
+ * sometimes mid-word for kerning. Joining with spaces reads the first correctly
+ * and breaks words in the second; joining with nothing does the reverse. Both
+ * are returned and a quote matching either is accepted, because either is a
+ * true reading of what the page draws -- and the quote has to be at least
+ * MIN_QUOTE characters of the agent's own text, so an accidental match across a
+ * fragment boundary is not a realistic way to pass this.
+ */
+function pdfText(buffer){
+  const raw=Buffer.isBuffer(buffer)?buffer.toString('latin1'):String(buffer||'');
+  if(!/^%PDF-/.test(raw.slice(0,8)))return {spaced:'',tight:''};
+  const pieces=[];
+  for(const match of raw.matchAll(PDF_STREAM)){
+    const content=/[\x00-\x08\x0e-\x1f]/.test(match[1].slice(0,64))?inflate(match[1]):match[1];
+    if(!content||!/(?:Tj|TJ|'|")/.test(content))continue;
+    for(const token of content.matchAll(/\((?:\\.|[^\\()])*\)|<[0-9a-fA-F\s]+>/g)){
+      const text=token[0].startsWith('(')
+        ?pdfLiteral(token[0].slice(1,-1))
+        :pdfHexString(token[0].slice(1,-1));
+      if(text.trim())pieces.push(text);
+    }
+  }
+  return {
+    spaced:pieces.join(' ').replace(/\s+/g,' ').trim(),
+    tight:pieces.join('').replace(/\s+/g,' ').trim(),
+  };
+}
+
+function looksLikePdf(body,contentType){
+  if(/application\/pdf/i.test(String(contentType||'')))return true;
+  const head=Buffer.isBuffer(body)?body.slice(0,8).toString('latin1'):String(body||'').slice(0,8);
+  return /^%PDF-/.test(head);
+}
+
 /**
  * Quote matching that tolerates typography and nothing else.
  *
@@ -71,10 +147,18 @@ function normalise(text){
     .trim();
 }
 
-function quoteIsInPage(quote,html){
+function quoteIsInPage(quote,body,contentType){
   const needle=normalise(quote);
   if(needle.length<MIN_QUOTE)return false;
-  return normalise(readableText(html)).includes(needle);
+  if(looksLikePdf(body,contentType)){
+    const {spaced,tight}=pdfText(body);
+    if(normalise(spaced).includes(needle))return true;
+    // The same comparison with every space removed from both sides, for a
+    // writer that split the line mid-word.
+    const squeeze=text=>normalise(text).replace(/ /g,'');
+    return squeeze(tight).includes(squeeze(quote))||squeeze(spaced).includes(squeeze(quote));
+  }
+  return normalise(readableText(body)).includes(needle);
 }
 
 /**
@@ -96,7 +180,7 @@ function confirmProposal(proposal,trail,page){
   // reviewer: a page that cannot be retrieved, or that does not contain the
   // sentence the agent copied from it, is not evidence.
   if(!page||page.ok!==true)return reject('page-could-not-be-retrieved');
-  if(!quoteIsInPage(quote,page.body))return reject('quote-is-not-on-the-page');
+  if(!quoteIsInPage(quote,page.body,page.contentType))return reject('quote-is-not-on-the-page');
   return {confirmed:true,source:{
     url,publisher:String(proposal.publisher||'').trim()||host(url),
     name:String(proposal.name||'').trim()||trail?.name||null,
@@ -151,5 +235,5 @@ function mergeSourcedPages(existing,confirmed,options={}){
 }
 
 module.exports={SCOUT_SCHEMA,NOT_AN_AUTHORITY,MIN_QUOTE,MAX_QUOTE,
-  host,readableText,normalise,quoteIsInPage,confirmProposal,prompt,
+  host,readableText,normalise,quoteIsInPage,pdfText,looksLikePdf,pdfLiteral,pdfHexString,confirmProposal,prompt,
   scoutRouteSource,mergeSourcedPages};
