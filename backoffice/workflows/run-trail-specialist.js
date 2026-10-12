@@ -91,7 +91,29 @@ function validateVariesClaims(result,job){
   for(const claim of result.claims||[]){
     if(claim.finding!=='varies')continue;
     if(!VARIABLE_CLAIM_IDS.includes(claim.id)){
-      throw new Error(`Claim ${claim.id} does not vary by the day and cannot be answered "varies"`);
+      // Same enforcement mistake as the attempt check below, one branch up, and
+      // it cost jobs on 9 October: terrainPoi answered a claim it called
+      // `livestock-and-guardian-dogs` with "varies". `claim.id` is a free
+      // string in the schema, so an agent can name a claim ORMA does not have,
+      // and a near-miss of a real variable claim is the likely way it does.
+      // Throwing retried the run at the same resolutionAttempt, the agent
+      // invented the same id again, and the job died on its failure budget
+      // without the claim ever being researched.
+      //
+      // The rule itself is right: "varies" is not an available answer here,
+      // either because the claim does not vary by the day or because ORMA never
+      // asked it. Unresolved is what is actually true -- nothing was
+      // established -- and it is resolvable, so the loop re-queues it with an
+      // incremented attempt instead of spending the budget on the same reply.
+      //
+      // The id is NOT corrected to the nearest real claim. Matching an agent's
+      // wording back to a known id is the failure this codebase has paid for in
+      // #632, #717 and #721; an unrecognised claim is recorded as unrecognised.
+      claim.finding='unresolved';
+      claim.reopenedFromVaries=true;
+      claim.blockers=[...(claim.blockers||[]),`${claim.id}-cannot-vary`];
+      claim.rationale=`${String(claim.rationale||'').trim()} Answered "varies", which is not available for ${claim.id}: ORMA treats it as a claim with a fixed answer, or does not ask it at all. Recorded as unresolved and sent to automated resolution.`.trim();
+      continue;
     }
     if(attempt<MIN_VARIES_RESOLUTION_ATTEMPT){
       // "varies" has to be earned by having looked, but throwing here was the

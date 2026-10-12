@@ -25,10 +25,18 @@ describe('a question that has no fixed answer', () => {
   });
 
   // Water and shade are features of the route, not conditions of the day.
+  // The rule is unchanged; the enforcement is no longer fatal. Throwing retried
+  // the run at the same resolutionAttempt, so an agent that answered "varies"
+  // again -- which it did, under a claim id ORMA does not even have -- spent the
+  // job's whole failure budget without the claim being researched once. These
+  // now assert the rule in the stronger form: the answer never survives, and it
+  // is reopened rather than killing the job, exactly as the too-early case below.
   test.each(['water','shade','recommended-start','elevation'])
     ('%s cannot be answered "varies"', id => {
-      expect(()=>validateVariesClaims({claims:[varies({id})]},job(3)))
-        .toThrow(/does not vary by the day/);
+      const result={claims:[varies({id})]};
+      expect(()=>validateVariesClaims(result,job(3))).not.toThrow();
+      expect(result.claims[0].finding).toBe('unresolved');
+      expect(result.claims[0].blockers).toContain(`${id}-cannot-vary`);
     });
 
   test('the eligible set stays deliberately small', () => {
