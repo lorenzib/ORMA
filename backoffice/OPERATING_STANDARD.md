@@ -47,9 +47,15 @@ Owns trails that are already in ORMA and verifies:
 Dynamic hazards run hourly and are fully automatic in both directions. A
 source-backed severe, extreme, or dog-critical warning is added without review.
 A warning is removed without review when a successfully fetched authoritative
-feed stops listing it, or when its own stated expiry passes on a source that
-answered. There is no human removal gate. Source failure or outage never removes
-the last known warning, because an unreachable source is not evidence of safety.
+feed stops listing it, when its own stated expiry passes on a source that
+answered, or when it stated no expiry and no answering source has carried
+it for seven days. That last rule is the backstop for a warning whose source
+answers but never hands over a whole document: the first two rules cannot reach
+it, and without the backstop it is published for ever. A warning that did state
+an expiry is never removed early by it -- a source that published a validity
+period is still publishing it. There is no human removal gate.
+Source failure or outage never removes the last known warning, because an
+unreachable source is not evidence of safety.
 Weather warnings are never presented as proof that a specific trail is closed.
 
 Each authoritative source declares its own shape rather than all of them being
