@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-12T07:52:42.886Z",
+  "generatedAt": "2026-10-12T10:31:25.937Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:thunderstorm:veneto",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-10-11T17:00:00+00:00",
       "expiresAt": "2026-10-12T05:59:00+00:00",
       "firstPublishedAt": "2026-10-05T22:23:15.462Z",
-      "lastSeenAt": "2026-10-12T07:52:42.886Z",
+      "lastSeenAt": "2026-10-12T10:31:25.937Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
