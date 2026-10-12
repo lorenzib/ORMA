@@ -48,6 +48,13 @@ jobs:
         run: npm run backoffice:check-approval
 
       # A long queue and an idle worker look identical in every other report.
+      # Reads the orchestration artifact the step above already loaded, so this
+      # costs no extra Firestore reads and calls no model. It answers whether
+      # the research ladder's last attempts buy anything for the claims that
+      # are allowed to stay unknown.
+      - name: Report which attempt answered the claim
+        run: npm run backoffice:resolution-yield
+
       - name: Report why the job queue is not moving
         run: npm run backoffice:job-queue
       - name: Report what each waiting gate is asking

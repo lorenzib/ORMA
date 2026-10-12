@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+'use strict';
+
+/**
+ * report-resolution-yield -- which attempt actually answered the claim.
+ *
+ *   npm run backoffice:resolution-yield
+ *
+ * Reads one artifact, calls no model, writes nothing. The point is to set the
+ * research ladder's length from what it yields instead of from an intuition
+ * about it: for a waivable claim, the end of the ladder and the attempt that
+ * would have been last reach the same place, because an unanswered waivable
+ * claim is recorded unknown and the trail is approved regardless.
+ */
+
+const { FirestoreBackofficeStore } = require('../services/firestore-backoffice-store');
+const { resolutionYield } = require('../workflows/resolution-yield');
+
+async function main(options = {}){
+  const store = options.store || new FirestoreBackofficeStore();
+  const orchestration = await store.getArtifact('trail-orchestration');
+  if(!orchestration){ console.log('[yield] No orchestration artifact. Nothing to measure.'); return null; }
+  const result = resolutionYield(orchestration, options);
+
+  console.log(`[yield] ${result.claims} claim(s) across the catalogue · ${result.waivableClaims} waivable · ${result.routeGuidanceClaims} route guidance.`);
+  console.log(`[yield] Of the waivable ones, ${result.resolved} were answered and ${result.exhausted} exhausted the ladder.`);
+  console.log(`[yield] ${result.searchesSpentOnWaivable} search(es) spent on waivable claims in total.`);
+  console.log('');
+  console.log('[yield] Which attempt produced the answer:');
+  if(!result.resolvedOnAttempt.length) console.log('[yield]   nothing resolved yet.');
+  for(const row of result.resolvedOnAttempt){
+    console.log(`[yield]   attempt ${row.attempt}: ${row.count} answer(s)`);
+  }
+  console.log('');
+  console.log('[yield] If the ladder were cut for waivable claims only:');
+  for(const row of result.savedAt){
+    console.log(`[yield]   cut to ${row.cut}: ${row.answersLost} answer(s) lost, ${row.searchesSaved} search(es) saved`);
+  }
+  console.log('[yield] Route guidance keeps its full ladder either way. Nothing was changed.');
+  return result;
+}
+
+if(require.main === module) main().catch(error => { console.error(`[yield] ${error.stack || error.message}`); process.exitCode = 1; });
+
+module.exports = { main };
