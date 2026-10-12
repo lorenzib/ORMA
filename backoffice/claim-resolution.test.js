@@ -141,3 +141,63 @@ describe('"varies" on a claim that cannot vary does not kill the job',()=>{
     expect(()=>resolve([claim(),claim({id:'water'}),claim({id:'livestock'})],1)).not.toThrow();
   });
 });
+
+// Observed on alpe-siusi: the cartographer cited ORMA's own internal artifact
+// pointer as a source. The agent is shown prior specialist output, which
+// carries those pointers in `outputRef`, so it had read one and taken it for a
+// page it had visited. Throwing blocked the job permanently -- the retry reread
+// the same context and cited the same pointer -- and that job was one of the
+// four agent failures holding the dossier stage.
+describe('a source nobody can open is dropped, not fatal',()=>{
+  const {dropUnretrievableSources,validateSpecialistResult}=
+    require('./workflows/run-trail-specialist');
+  const POINTER='firestore:trail-specialist-output-trail-verification-alpe-siusi-cartographer-1';
+  const web=url=>({url,title:'Official notice',publisher:'comune.example'});
+  const claim=(overrides={})=>({id:'water',category:'terrain',proposedValue:'A fountain at the col.',
+    finding:'supported-proposal',confidence:0.8,rationale:'The comune lists it.',
+    sources:[web('https://comune.example/acqua')],...overrides});
+
+  test('the internal pointer is removed and recorded',()=>{
+    const result={claims:[claim({sources:[web('https://comune.example/acqua'),web(POINTER)]})]};
+    const dropped=dropUnretrievableSources(result);
+    expect(dropped).toEqual([{claimId:'water',url:POINTER}]);
+    expect(result.claims[0].sources.map(source=>source.url))
+      .toEqual(['https://comune.example/acqua']);
+  });
+
+  test('a claim keeping a real source stays supported',()=>{
+    const result={claims:[claim({sources:[web('https://comune.example/acqua'),web(POINTER)]})]};
+    expect(()=>validateSpecialistResult(result,'cartographer')).not.toThrow();
+    expect(result.claims[0].finding).toBe('supported-proposal');
+    expect(result.claims[0].blockers).toContain('water-source-not-retrievable');
+  });
+
+  // The whole point: it must not survive as "supported" on a citation nobody
+  // can check. Unresolved is resolvable, so the loop asks again.
+  test('a claim left with no real source stops calling itself supported',()=>{
+    const result={claims:[claim({sources:[web(POINTER)]})]};
+    expect(()=>validateSpecialistResult(result,'cartographer')).not.toThrow();
+    expect(result.claims[0].finding).toBe('unresolved');
+    expect(result.claims[0].blockers).toContain('water-source-not-retrievable');
+    expect(result.claims[0].rationale).toContain('not a retrievable page');
+  });
+
+  test('http, ftp and a bare domain are all unretrievable',()=>{
+    for(const url of ['http://comune.example/x','ftp://comune.example/x','comune.example/x','']){
+      const result={claims:[claim({sources:[web(url)]})]};
+      validateSpecialistResult(result,'cartographer');
+      expect(result.claims[0].sources).toEqual([]);
+    }
+  });
+
+  test('a result with only real sources is untouched',()=>{
+    const result={claims:[claim()]};
+    expect(dropUnretrievableSources(result)).toEqual([]);
+    expect(result.claims[0]).toEqual(claim());
+  });
+
+  test('a supported proposal that never had a source is still fatal',()=>{
+    expect(()=>validateSpecialistResult({claims:[claim({sources:[]})]},'cartographer'))
+      .toThrow(/requires a source/);
+  });
+});
