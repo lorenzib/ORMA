@@ -54,6 +54,19 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&standard.includes('files them as pending hazard reports'),
     'Closure notices the scout finds are filed for vetting rather than published, and a published notice is never labelled as a hiker report');
 
+  // The CEO removed the verification desk on 12 October: the evidence policy
+  // decides every catalogue trail, published or not. Pinned because the scope
+  // lives at a call site and shipped narrow once already -- the policy was
+  // handed only the published trails, so 22 catalogue trails had no automatic
+  // decision and queued for her instead.
+  add('verification-has-no-human-gate',
+    worker.includes('const catalogueTrails=productionTrails;')
+    &&worker.includes('automateEvidenceGates(store,{...options,productionTrails:catalogueTrails})')
+    &&!worker.includes('automateEvidenceGates(store,{...options,productionTrails:siteTrails})')
+    &&standard.includes('there is no human verification gate')
+    &&standard.includes('Trail verification is not one of them'),
+    'Trail verification is decided by the evidence policy for every catalogue trail, published or not, and never queued for the CEO');
+
   add('automatic-hazard-lifecycle',hazards.includes("if(successful.has(old.sourceKey) && expired) return;")&&!hazards.includes("state: 'resolution-review'")&&hazards.includes("old.origin === 'community'")&&worker.includes('processCommunityHazardReports')&&vetting.includes("webSearch:true")&&vetting.includes('reported-unverified')&&standard.includes('There is no human removal gate'),'Hazards are added and removed without a human gate, and customer reports are published only after the Hazard Analyst finds or fails to find independent corroboration');
   const {RESOLUTION_ATTEMPT_LIMIT}=require('./dispatch-unanswered-gates');
   add('agent-answerable-gates-are-dispatched',

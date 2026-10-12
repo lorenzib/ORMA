@@ -9,18 +9,21 @@ these responsibilities and gates unless the CEO explicitly changes the model.
 
 ## Operating principles
 
-1. Agents prepare and recommend. For trails already on the public site, the
-   existing-catalogue evidence policy makes routine verification and publication
-   decisions; the CEO sees exceptions and audit receipts, not a routine queue.
+1. Agents prepare and recommend. Verification is decided by the evidence policy
+   for every trail in the catalogue, published or not:
+   there is no human verification gate, and the CEO sees exceptions and audit
+   receipts rather than a queue of decisions. Publication of a trail that is not yet on the public
+   site remains a separate lane with its own gate -- the policy settles whether
+   a trail is verified, not whether it ships.
 2. Work is reviewed once at the correct gate. A downstream team consumes an
    approved result and does not ask for the same decision again.
 3. Unresolved review packets are preserved. Scheduled runs must not duplicate,
    silently replace, or reset work that is already waiting for review.
 4. A revision request runs promptly. It never waits for the next weekly or
    fortnightly cycle.
-5. Every public mutation has an explicit release gate. Existing-catalogue trail
-   updates use the evidence policy plus the protected repository quality gate;
-   other lanes retain their stated human gate. The result must state whether it
+5. Every public mutation has an explicit release gate. Catalogue trail
+   verification and existing-catalogue updates use the evidence policy plus the
+   protected repository quality gate; other lanes retain their stated human gate. The result must state whether it
    was saved, committed, pushed, merged, deployed, or blocked.
 6. Failures remain visible and honest. An agent must not present a blocked or
    incomplete result as published work, and a source outage must not erase the
@@ -336,8 +339,10 @@ OpenAI remains in use for trail verification and for scouting additional trails.
 - Every queue has one clear purpose and one clearly named desk.
 - Copy review presents a real current-versus-proposed page preview.
 - The CEO may approve, edit and approve, request a revision, or reject/park in
-  lanes that retain a human gate. Existing-catalogue verification is monitored
-  through receipts and exceptions rather than routine decisions.
+  lanes that retain a human gate. Trail verification is not one of them: it is
+  monitored through receipts and exceptions rather than decided, for every
+  catalogue trail rather than only the published ones. A geometry or dossier
+  gate is settled by the evidence policy in the same worker pass that opens it.
 - Revision requests are processed immediately and return to the same desk.
 - Approval must produce a visible receipt. For website copy, that receipt
   includes the commit and deployment state.
