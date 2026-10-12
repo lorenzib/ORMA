@@ -94,3 +94,55 @@ describe('it reads what is already loaded',()=>{
     expect(entry.attempts).toBe(0);
   });
 });
+
+// Route guidance decides whether a trail can be verified at all, and it is
+// resolved in the same pool as the optional detail. A trail whose directions
+// cannot be established has already paid for everything else by then.
+describe('what a doomed trail cost before anyone knew',()=>{
+  const trail=(trailId,entries)=>({trailId,
+    claimResolution:Object.fromEntries(entries.map((entry,index)=>[`c${index}`,entry]))});
+  const yielded=trails=>resolutionYield({trails});
+
+  test('a trail whose directions exhausted is counted as doomed',()=>{
+    const result=yielded([trail('t1',[
+      claim('logistics','route-number-sequence','source-exhausted',5),
+      claim('terrainPoi','shade','source-exhausted',5),
+      claim('terrainPoi','water','supported',2),
+    ])]);
+    expect(result.doomedTrails).toBe(1);
+    // Everything spent on that trail's optional claims: 5 + 2.
+    expect(result.wastedOnDoomed).toBe(7);
+  });
+
+  test('a trail whose directions hold is not counted, however much it spent',()=>{
+    const result=yielded([trail('t1',[
+      claim('logistics','route-number-sequence','supported',4),
+      claim('terrainPoi','shade','source-exhausted',5),
+    ])]);
+    expect(result.doomedTrails).toBe(0);
+    expect(result.wastedOnDoomed).toBe(0);
+  });
+
+  test('contradicted directions doom a trail just as exhausted ones do',()=>{
+    expect(yielded([trail('t1',[
+      claim('logistics','recommended-start','contradicted',3),
+      claim('terrainPoi','shade','supported',1),
+    ])]).doomedTrails).toBe(1);
+  });
+
+  test('the states of the route claims are reported, not just the count',()=>{
+    const result=yielded([trail('t1',[
+      claim('logistics','recommended-start','supported',1),
+      claim('logistics','route-number-switches','source-exhausted',5),
+    ])]);
+    expect(result.guidanceStates).toEqual({supported:1,'source-exhausted':1});
+  });
+
+  test('one doomed trail is counted once however many directions failed',()=>{
+    expect(yielded([trail('t1',[
+      claim('logistics','route-number-sequence','source-exhausted',5),
+      claim('logistics','route-number-switches','source-exhausted',5),
+      claim('terrainPoi','shade','supported',1),
+    ])]).doomedTrails).toBe(1);
+  });
+});
