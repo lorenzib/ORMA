@@ -79,3 +79,65 @@ describe('autonomous five-attempt claim resolution',()=>{
     ]);
   });
 });
+
+// 9 October: terrainPoi answered a claim it called `livestock-and-guardian-dogs`
+// with "varies". claim.id is a free string in the schema, so an agent can name a
+// claim ORMA does not have, and a near-miss of a real variable claim is the
+// likely way it does. Throwing retried the run at the same resolutionAttempt,
+// so the agent invented the same id again and the job died on its failure
+// budget -- the mistake the attempt check below it already records as wrong.
+describe('"varies" on a claim that cannot vary does not kill the job',()=>{
+  const {validateVariesClaims,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT}=
+    require('./workflows/run-trail-specialist');
+  const claim=(overrides={})=>({id:'livestock-and-guardian-dogs',category:'terrain',
+    proposedValue:'Depends on the season.',finding:'varies',confidence:0.4,
+    rationale:'Pastures are used in summer.',sources:[],...overrides});
+  const resolve=(claims,attempt)=>{
+    const result={claims};
+    validateVariesClaims(result,{resolutionAttempt:attempt});
+    return result.claims;
+  };
+
+  test('an invented claim id is recorded, not thrown',()=>{
+    const [kept]=resolve([claim()],MIN_VARIES_RESOLUTION_ATTEMPT);
+    expect(kept.finding).toBe('unresolved');
+    expect(kept.blockers).toContain('livestock-and-guardian-dogs-cannot-vary');
+    expect(kept.reopenedFromVaries).toBe(true);
+  });
+
+  test('and is never corrected to the real claim it resembles',()=>{
+    const [kept]=resolve([claim()],MIN_VARIES_RESOLUTION_ATTEMPT);
+    expect(kept.id).toBe('livestock-and-guardian-dogs');
+    expect(VARIABLE_CLAIM_IDS).toContain('livestock');
+    expect(VARIABLE_CLAIM_IDS).not.toContain('livestock-and-guardian-dogs');
+  });
+
+  test('a real claim that genuinely cannot vary is recorded the same way',()=>{
+    const [kept]=resolve([claim({id:'water'})],MIN_VARIES_RESOLUTION_ATTEMPT);
+    expect(kept.finding).toBe('unresolved');
+    expect(kept.blockers).toContain('water-cannot-vary');
+  });
+
+  test('it says in the rationale why "varies" was not kept',()=>{
+    const [kept]=resolve([claim()],MIN_VARIES_RESOLUTION_ATTEMPT);
+    expect(kept.rationale).toContain('not available for livestock-and-guardian-dogs');
+    expect(kept.rationale).toContain('Pastures are used in summer.');
+  });
+
+  test('a claim that may vary, answered late enough, is still accepted',()=>{
+    const [kept]=resolve([claim({id:'livestock',variesWith:'the grazing season',
+      sources:[{url:'https://comune.example/alpeggio',title:'t',publisher:'p'}]})],
+      MIN_VARIES_RESOLUTION_ATTEMPT);
+    expect(kept.finding).toBe('varies');
+  });
+
+  test('and answered too early is still reopened, not thrown',()=>{
+    const [kept]=resolve([claim({id:'livestock'})],0);
+    expect(kept.finding).toBe('unresolved');
+    expect(kept.reopenedFromVaries).toBe(true);
+  });
+
+  test('nothing here is fatal any more',()=>{
+    expect(()=>resolve([claim(),claim({id:'water'}),claim({id:'livestock'})],1)).not.toThrow();
+  });
+});
