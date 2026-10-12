@@ -68,6 +68,7 @@ describe('every schema the agents are given is one the API will accept',()=>{
       'run-guide-content.js:PICTURE_SCHEMA',
       'run-trail-specialist.js:SPECIALIST_SCHEMA',
       'scout-area-closures.js:SCOUT_SCHEMA',
+      'scout-route-sources.js:SCOUT_SCHEMA',
     ]);
   });
 
