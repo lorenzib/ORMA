@@ -11,13 +11,14 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
     read(root,'backoffice/OPERATING_STANDARD.md'),read(root,'backoffice/HOSTING.md'),read(root,'backoffice/dashboard-model.js'),read(root,'package.json'),
     read(root,'backoffice/workflows/dispatch-unanswered-gates.js'),
     read(root,'backoffice/workflows/adjudicate-gate-blockers.js'),read(root,'trail-verify-desk.js'),
+    read(root,'backoffice/workflows/scout-area-closures.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -37,6 +38,22 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   add('retired-lanes-are-gone',standard.includes('lanes are\nretired')&&!standard.includes('### 4. Newsletter')&&!standard.includes('### 6. Analyst')&&packageManifest.includes('backoffice:worker:live')&&!packageManifest.includes('backoffice:strategy-cycle')&&!packageManifest.includes('backoffice:product-discovery'),'The Newsletter, Social, Analyst, Design and website-copy lanes are removed from the standard and the entry points, not merely gated');
   add('quota-metered-drain',workflows['orma-verification-drain.yml']?.includes('group: orma-backoffice-worker')&&workflows['orma-verification-drain.yml']?.includes('ORMA_DRAIN_READ_BUDGET')&&workflows['orma-verification-drain.yml']?.includes('ORMA_DRAIN_WRITE_BUDGET')&&standard.includes('Verification drain')&&standard.includes('read budget'),'A hand-run drain repeats the worker pass under the worker lock and stops at a Firestore read and write budget, so clearing the queue cannot exhaust the daily quota the crons need');
   add('worker-cadence',workflows['orma-backoffice-worker.yml']?.includes("cron: '20 */3 * * *'")&&workflows['orma-backoffice-worker.yml']?.includes('ORMA_WORKER_AUTOMATION_ENABLED')&&standard.includes('every three hours'),'The queue worker has a three-hour target and an activation variable, keeping Firestore within its daily quota');
+  // The scout brings back an authority's notice; it never publishes one. The
+  // lane's own gate -- the Analyst searching independently -- stays in front of
+  // every scouted notice, and a published notice is never presented as a
+  // walker's sighting.
+  add('scouted-closures-are-vetted-not-published',
+    closureScout.includes("status:'pending'")
+    &&!closureScout.includes("state:'active'")
+    &&closureScout.includes("reportedBy:'orma-closure-scout'")
+    &&closureScout.includes('webSearch:true')
+    &&vetting.includes('SCOUTED_UNVERIFIED_NOTICE')
+    &&vetting.includes("Official notice found by ORMA")
+    &&worker.includes('scoutClosureNotices')
+    &&worker.includes("options.closureScoutEnabled!==true")
+    &&standard.includes('files them as pending hazard reports'),
+    'Closure notices the scout finds are filed for vetting rather than published, and a published notice is never labelled as a hiker report');
+
   add('automatic-hazard-lifecycle',hazards.includes("if(successful.has(old.sourceKey) && expired) return;")&&!hazards.includes("state: 'resolution-review'")&&hazards.includes("old.origin === 'community'")&&worker.includes('processCommunityHazardReports')&&vetting.includes("webSearch:true")&&vetting.includes('reported-unverified')&&standard.includes('There is no human removal gate'),'Hazards are added and removed without a human gate, and customer reports are published only after the Hazard Analyst finds or fails to find independent corroboration');
   const {RESOLUTION_ATTEMPT_LIMIT}=require('./dispatch-unanswered-gates');
   add('agent-answerable-gates-are-dispatched',
