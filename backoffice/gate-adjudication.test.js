@@ -346,3 +346,42 @@ describe('a verdict names a blocker the gate actually filed',()=>{
       discardedBy:{'blocker-is-not-on-this-gate':2}}));
   });
 });
+
+// #717 fixed verdicts being rejected wholesale. This is what would have kept
+// that fix from ever reaching the gates it was written for.
+describe('a gate whose every verdict was rejected gets asked again',()=>{
+  const standing=(overrides={})=>({contractVersion:'1.0.0',reviewId:'review-a',candidateId:'cand-a',
+    blockers:adjudicableBlockers(item()),blockerCount:adjudicableBlockers(item()).length,
+    verdicts:[],dropped:[],...overrides});
+
+  test('everything discarded is not an answer, so it does not park the gate',()=>{
+    const rejected=standing({dropped:[{blocker:EXHAUSTED,rule:'blocker-is-not-on-this-gate'}]});
+    expect(adjudicationMatches(rejected,item())).toBe(false);
+  });
+
+  test('but looking and finding nothing to recommend still stands',()=>{
+    expect(adjudicationMatches(standing(),item())).toBe(true);
+  });
+
+  test('a recommendation that survived still stands',()=>{
+    const kept=standing({verdicts:[{blocker:EXHAUSTED,recommendation:'cannot-accept',
+      reason:'Nothing published either way.',confidence:'unsourced',sources:[]}],
+      dropped:[{blocker:'x',rule:'duplicate-verdict'}]});
+    expect(adjudicationMatches(kept,item())).toBe(true);
+  });
+
+  test('so the worker re-asks the gate it had already written off',async()=>{
+    const gate={reviewId:'review-a',candidateId:'cand-a',gateType:'dossier-approval',
+      state:'awaiting-human',blockingReasons:[EXHAUSTED,CONFLICTED]};
+    const artifacts={'dossier-review-queue':{items:[gate]},
+      'gate-adjudications':{items:[standing({blockers:[EXHAUSTED,CONFLICTED],
+        dropped:[{blocker:EXHAUSTED,rule:'blocker-is-not-on-this-gate'}]})]}};
+    const store={getArtifact:async id=>artifacts[id]||null,setArtifact:async(id,value)=>{artifacts[id]=value;}};
+    let asked=0;
+    const outcomes=await adjudicateStandingGates(store,{at,runAgent:async()=>{asked+=1;
+      return {model:'m',responseId:'r',data:{verdicts:[{blockerId:'B1',recommendation:'cannot-accept',
+        reason:'Nothing published either way.',confidence:'unsourced',sources:[]}],summary:''}};}});
+    expect(asked).toBe(1);
+    expect(outcomes).toEqual([expect.objectContaining({status:'adjudicated',verdicts:1,dropped:0})]);
+  });
+});

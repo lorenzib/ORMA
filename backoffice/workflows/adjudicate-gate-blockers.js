@@ -263,6 +263,17 @@ function mergeAdjudications(existing,adjudication,options={}){
  */
 function adjudicationMatches(adjudication,item){
   if(!adjudication||!item)return false;
+  // An adjudication that kept nothing while discarding something is not an
+  // answer to the gate -- it is a contract rule rejecting every verdict on the
+  // way in, which is what #717 found: two gates recorded `verdicts: 0,
+  // dropped: 12`, and this function then treated that as a standing
+  // recommendation and never asked again. The fix for the rejection would
+  // never have reached the only gates that needed it.
+  //
+  // Returning no verdicts and discarding nothing is different, and still
+  // stands: the agent looked and had nothing to recommend, which is a finding
+  // and the most common honest one. Re-asking it would buy the same silence.
+  if(!(adjudication.verdicts||[]).length&&(adjudication.dropped||[]).length)return false;
   const now=adjudicableBlockers(item).map(String);
   const then=(adjudication.blockers||[]).map(String);
   return now.length===then.length&&now.every(reason=>then.includes(reason));
