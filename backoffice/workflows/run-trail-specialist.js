@@ -346,6 +346,45 @@ function routeGuidanceLeads(trail){
   };
 }
 
+// OpenStreetMap is where ORMA's lines come from and it is not an authority on
+// how to walk them. A relation records that a path exists; it does not publish
+// a start point, a numbered sequence or the turns a reader follows, and the
+// logistics prompt forbids inferring any of them "from proximity or map
+// appearance alone".
+const MAP_DATA_SOURCE=/waymarkedtrails|openstreetmap/i;
+
+/**
+ * Whether this trail has anything an authoritative route claim could cite.
+ *
+ * The four route claims are unwaivable, and supportedLogisticsClaim requires a
+ * sourced supported proposal for each. A trail whose only sources are the OSM
+ * relation its line came from cannot satisfy that however long it is
+ * researched: the agent correctly declines to invent directions, the claims
+ * stay unresolved, and the policy rejects the trail at the end of the ladder.
+ *
+ * Measured 2026-10-12: 126 of 162 catalogue trails are in that position. They
+ * were being researched first simply because their jobs were queued first,
+ * which spent most of the model budget on trails that cannot pass.
+ */
+function routeSourceReady(trail){
+  return (routeGuidanceLeads(trail)?.citedSources||[])
+    .some(source=>/^https:\/\//.test(String(source?.url||''))&&!MAP_DATA_SOURCE.test(String(source.url)));
+}
+
+/**
+ * Claimable work with the trails that can actually be verified first.
+ *
+ * Within each group the queue's own order is kept, so this changes which trail
+ * a pass spends its budget on and nothing else. A trail awaiting a source is
+ * not dropped -- it is simply not researched ahead of one that can finish.
+ */
+function verifiableFirst(jobs,trailById){
+  const ready=job=>routeSourceReady(trailById?.get?.(job?.candidateId));
+  return [...(jobs||[]).map((job,index)=>({job,index,ready:ready(job)}))]
+    .sort((a,b)=>(a.ready===b.ready?a.index-b.index:(a.ready?-1:1)))
+    .map(entry=>entry.job);
+}
+
 async function runTrailSpecialist({job,trail,context},options={}){
   if(job.agentId==='cartographer'){
     // Six curated trails have no relation of their own and an approved
@@ -387,4 +426,4 @@ async function runTrailSpecialist({job,trail,context},options={}){
   return {responseId:response.responseId,model:response.model,result};
 }
 
-module.exports={MANDATORY_CLAIMS,MANDATORY_CLAIM_CATEGORY,fillOmittedClaims,dropUnretrievableSources,CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
+module.exports={MANDATORY_CLAIMS,MANDATORY_CLAIM_CATEGORY,fillOmittedClaims,dropUnretrievableSources,MAP_DATA_SOURCE,routeSourceReady,verifiableFirst,CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
