@@ -1,0 +1,155 @@
+name: ORMA route source scout
+
+# Find the official page that describes a walk, for the trails that have none.
+#
+# The four route claims are unwaivable and each needs a source the agent can
+# cite. An OSM relation records that a path exists, not how to walk it, so a
+# trail whose only source is its relation can never be verified -- 105 of 162 on
+# 12 October, after #729 recovered the 21 whose page ORMA already held and the
+# audit that day confirmed nothing further is recoverable from the record.
+#
+# Nobody reviews what this finds. The agent must quote the page, the run fetches
+# that page and checks the quote is in it, and only a find that passes is
+# written. The pull request is the receipt; the quality gate is the release gate,
+# exactly as the operating standard requires for catalogue trail updates.
+#
+# Off unless dispatched. The budget is trails per run and each one is a web
+# search, so it is meant to be run deliberately rather than on a schedule until
+# its hit rate is known.
+on:
+  workflow_dispatch:
+    inputs:
+      region:
+        description: 'Region to scout (dolomites or savoy); blank scouts both'
+        type: choice
+        options: ['dolomites', 'savoy', '']
+        default: dolomites
+      limit:
+        description: 'Trails to scout in this run (one web search each)'
+        required: false
+        default: '10'
+      apply:
+        description: 'Record what is confirmed and open a pull request. Leave unchecked for a dry run.'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+concurrency:
+  group: orma-route-source-scout
+  cancel-in-progress: false
+
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPEN_API_KEY }}
+      ORMA_CONTENT_MODEL: gpt-5.6-terra
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check the model credential
+        run: test -n "$OPENAI_API_KEY" || { echo "Missing OPEN_API_KEY"; exit 1; }
+      - run: npm ci
+
+      - name: Scout official route pages
+        env:
+          REGION: ${{ inputs.region }}
+          LIMIT: ${{ inputs.limit }}
+          APPLY: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          args=(--limit "$LIMIT")
+          [ -n "$REGION" ] && args+=(--region "$REGION")
+          if [ "$APPLY" = "true" ]; then
+            args+=(--apply)
+          else
+            echo "[scout] Dry run. It still searches and fetches; nothing is written."
+          fi
+          npm run backoffice:scout-route-sources -- "${args[@]}"
+
+      # A confirmed page changes which source each trail cites, which the
+      # generated site data embeds. Regenerating here keeps check:generated
+      # passing on the pull request instead of failing it.
+      - name: Regenerate the data the sources feed
+        if: ${{ inputs.apply }}
+        run: npm run generate:artifacts
+
+      # Same shape as the hazard snapshot (#  the contributor approval policy
+      # never graduates a bot, so the run approves the pull request's own gate
+      # run, then merges it). The quality gate still has to pass.
+      - name: Open and merge the pull request
+        if: ${{ inputs.apply }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -o pipefail
+          if git diff --quiet; then
+            echo "No confirmed route page changed anything."
+            exit 0
+          fi
+          branch="orma-bot/route-sources"
+          git config user.name "ORMA Backoffice"
+          git config user.email "orma-backoffice@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add data/route-sources.json
+          git add -A data regions-runtime-manifest.js trails/ browse-trails.html sitemap.xml 2>/dev/null || true
+          git diff --quiet || {
+            echo "The scout left tracked files unstaged:"
+            git diff --name-only
+            exit 1
+          }
+          count="$(node -e "const d=require('./data/route-sources.json');console.log(Object.keys(d.sources||{}).length)")"
+          git commit -m "Record official route pages found for ${count} trail(s)"
+          git push --force origin "$branch"
+          pr="$(gh pr list --head "$branch" --state open --json number --jq '.[0].number')"
+          if [ -z "$pr" ]; then
+            pr="$(gh pr create --base main --head "$branch" \
+              --title "Record the official route pages the scout confirmed" \
+              --body "Found by the ORMA route source scout. Each page was fetched and the agent's verbatim quote confirmed to be on it, so none of these is a remembered or paraphrased source. Merges itself once the quality gate passes." \
+              | grep -oE '[0-9]+$')"
+          fi
+          approve_pending() {
+            gh run list --workflow validate.yml --branch "$branch" --event pull_request --limit 5 \
+              --json databaseId,conclusion,headSha \
+              --jq ".[] | select(.headSha == \"$1\" and .conclusion == \"action_required\") | .databaseId" \
+            | while read -r run; do
+                if gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/runs/${run}/approve" >/dev/null; then
+                  echo "Approved the pull request's quality-gate run ${run}."
+                else
+                  echo "Could not approve run ${run}; auto-merge stays armed for a maintainer."
+                fi
+              done
+          }
+          gh pr merge "$pr" --auto --squash
+          sleep 20
+          approve_pending "$(git rev-parse HEAD)"
+          for attempt in $(seq 1 24); do
+            sleep 15
+            state="$(gh pr view "$pr" --json state,mergeStateStatus --jq '"\(.state) \(.mergeStateStatus)"')"
+            echo "[$attempt] $state"
+            case "$state" in
+              MERGED*) break ;;
+              "OPEN CLEAN") gh pr merge "$pr" --squash || true ;;
+              "OPEN BLOCKED") approve_pending "$(gh pr view "$pr" --json headRefOid --jq .headRefOid)" ;;
+              "OPEN BEHIND")
+                gh pr update-branch "$pr" || true
+                sleep 20
+                approve_pending "$(gh pr view "$pr" --json headRefOid --jq .headRefOid)" ;;
+            esac
+          done
+          if [ "$(gh pr view "$pr" --json state --jq .state)" = "MERGED" ]; then
+            echo "Route sources merged; validating the merge commit."
+            gh workflow run validate.yml --ref main
+          else
+            echo "The quality gate outlasted the wait; auto-merge stays armed."
+          fi

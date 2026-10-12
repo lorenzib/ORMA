@@ -75,6 +75,19 @@ date is the expiry, capped at the corroborated lifetime so a long closure is
 renewed by re-vetting rather than trusted for a season. The scout is off unless
 switched on, and the budget is areas per run, oldest first.
 
+A walk whose only source is the OpenStreetMap relation its line came from
+cannot be verified: the route claims need a source a reader can be shown, and a
+relation records that a path exists rather than how to walk it. The Route Source
+Scout searches the comune, park, tourism board, forestry service, alpine club
+and operator for the page that describes one such walk, and nobody reviews what
+it finds. The agent must quote the page; the run then fetches that page and
+confirms the quote is on it, and only a find that passes is recorded. A find
+whose page is gone, or whose quote is not in it, is dropped with the rule that
+dropped it so a later pass can try a different page. Aggregators are refused in
+the prompt and again in code. The pull request is the receipt and the quality
+gate is the release gate, as it is for every catalogue trail update. The scout
+runs only when dispatched, with a budget in trails per run.
+
 Each authoritative source declares its own shape rather than all of them being
 assumed to be one feed. A connector states the documents to try, how to parse
 them, how to tell a whole body from a truncated one, and the months it publishes

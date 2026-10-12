@@ -66,6 +66,10 @@ function waymarkDescription(value) {
   return { osmc: raw, described: mark ? `${face}, marked "${mark}"` : face };
 }
 
+function hostOf(url) {
+  try { return new URL(String(url)).hostname.replace(/^www\./, ''); } catch (error) { return null; }
+}
+
 function officialRoutePage(value) {
   const url = String(value == null ? '' : value).trim();
   if (!/^https:\/\//.test(url)) return null;
@@ -97,8 +101,39 @@ function mappedRouteEvidence(root) {
   return byRelation;
 }
 
-function applyRouteNumberEvidence(trails, root, evidence = mappedRouteEvidence(root)) {
+// Official route pages found by the Route Source Scout and confirmed by
+// fetching the page. The OSM snapshot's `website` tag covers 51 of 148 route
+// features and nothing else in the record carries one, so for the rest the page
+// has to be found on the web. This is where a confirmed find lands, keyed by
+// trail id, and it is the only route-source input that is not an OSM tag.
+const SOURCED_ROUTE_PAGES = 'data/route-sources.json';
+
+function sourcedRoutePages(root) {
+  try {
+    const raw = JSON.parse(fs.readFileSync(path.join(root, SOURCED_ROUTE_PAGES), 'utf8'));
+    return new Map(Object.entries(raw?.sources || {})
+      .filter(([, entry]) => /^https:\/\//.test(String(entry?.url || '')))
+      .map(([trailId, entry]) => [String(trailId), entry]));
+  } catch (error) {
+    // Absent is the normal state until the scout has found anything.
+    return new Map();
+  }
+}
+
+function applyRouteNumberEvidence(trails, root, evidence = mappedRouteEvidence(root), sourced = sourcedRoutePages(root)) {
   return trails.map(trail => {
+    // A confirmed official page is the best route evidence there is, so it is
+    // attached whatever else the trail has -- including when the trail declares
+    // its own status, because the status says what kind of route it is and this
+    // says where a reader can be shown it. A declared status is never
+    // overwritten; only the citable source is added.
+    const page = sourced.get(String(trail.id));
+    if (page) return {
+      ...trail,
+      routeNumberStatus: trail.routeNumberStatus || 'official-route-page',
+      routeNumberSource: { provider: page.publisher || hostOf(page.url),
+        name: page.name || trail.name || null, url: page.url },
+    };
     if (trail.routeNumberStatus) return trail;
     if (Array.isArray(trail.routeRefs) && trail.routeRefs.length) {
       return { ...trail, routeNumberStatus: 'documented' };
@@ -163,4 +198,5 @@ function applyRouteNumberEvidence(trails, root, evidence = mappedRouteEvidence(r
   });
 }
 
-module.exports = { ROUTE_SOURCE_FILES, normaliseRouteRef, officialRoutePage, waymarkDescription, mappedRouteEvidence, applyRouteNumberEvidence };
+module.exports = {
+  SOURCED_ROUTE_PAGES, sourcedRoutePages, hostOf, ROUTE_SOURCE_FILES, normaliseRouteRef, officialRoutePage, waymarkDescription, mappedRouteEvidence, applyRouteNumberEvidence };
