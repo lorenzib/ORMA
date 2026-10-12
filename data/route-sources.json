@@ -1,7 +1,15 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-12T19:40:50.460Z",
+  "generatedAt": "2026-10-12T20:04:08.598Z",
   "sources": {
+    "giro-del-sasso-lungo": {
+      "url": "https://www.valdifassa.it/escursioni-e-passeggiate-in-val-di-fassa/gruppo-sassolungo/il-giro-del-sassolungo/",
+      "publisher": "Val di Fassa tourism board (Valdifassa.it)",
+      "name": "Il giro del Sassolungo",
+      "quote": "Dal Rifugio Passo Sella 2183 m si segue il comodo e frequentato sentiero 528 verso nord, al cospetto del gigantesco Sassolungo, dei gruppi delle Odle e del Puez al di là della sottostante Val Gardena, con il massiccio del Sella e le omonime torri sulla destra.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
     "lago-carezza": {
       "url": "https://eggental.com/it/activity/breve-giro-del-lago-di-carezza_5712",
       "publisher": "Val d’Ega Turismo Soc. Coop.",
@@ -9,6 +17,110 @@
       "quote": "Il breve percorso circolare del Lago di Carezza inizia al parcheggio, dove si segue la segnaletica gialla.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T19:40:50.460Z"
+    },
+    "nuvolau": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/al-rifugio-nuvolau/",
+      "publisher": "Cortina Dolomiti / Cortina Marketing (local tourism board)",
+      "name": "Al Rifugio Nuvolau",
+      "quote": "Dal parcheggio del Passo Giau prendete il sentiero n° 443: potrete ammirare alla vostra sinistra le pareti frastagliate de Ra Gusela e sulla destra i profili della Croda da Lago e dei Lastoi de Formin.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-1780768": {
+      "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoiedf6cb529c8a7bd40bd3a49332d95f0a.the--talblickweg--path-in-the-val-casies-valley.tesido-taisten",
+      "publisher": "South Tyrol Tourism / Tourism Association Gsiesertal Valley-Welsberg-Taisten",
+      "name": "The Talblickweg path in the Gsiesertal Valley",
+      "quote": "Following partly the valley road, partly farm access roads and other paths, from the area of Welsberg-Taisten the trail leads along one side of the Gsiesertal Valley to the end of the valley near St. Magdalena and back out of the valley on the other side.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-3202880": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi78f78b7fec7706efe8118a3e4e471486.montiggler-seen-runde.montiggl",
+      "publisher": "Südtirol.info (IDM Südtirol), with Tourismusverein Eppan listed as contact",
+      "name": "Montiggler Seen Runde",
+      "quote": "Vom Parkplatz entlang der Markierung 1/A erreicht man den Kleinen Montiggler See, den man im Uhrzeigersinn umrundet.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-3885162": {
+      "url": "https://www.merano-suedtirol.it/de/ultental/aktivurlaub/wandern-bergsteigen/wanderwege/121154963-nuovo-percorso-del-lago.html",
+      "publisher": "Tourismusgenossenschaft Ultental/Proveis",
+      "name": "Neuer Seeweg",
+      "quote": "Der Neue Seeweg Ultental ist eine barrierefreie und flach angelegte Uferpromenade, die direkt am landschaftlich reizvollen Zoggler Stausee entlangführt.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-6404633": {
+      "url": "https://www.ecomuseo.vanoi.it/visita/anello-dei-pradi-p357",
+      "publisher": "Ecomuseo del Vanoi",
+      "name": "Anello dei Pradi",
+      "quote": "Il percorso ad anello dei Pradi inizia da Prà de Madègo (1.100 m) e si snoda per 3,7 km in uno scenario rurale ricco di testimonianze del passato.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-6410700": {
+      "url": "https://www.antholzertal.com/de/activity/dolomitenblickrunde_211086",
+      "publisher": "Tourismusgenossenschaft Antholzertal",
+      "name": "Dolomitenblickrunde",
+      "quote": "Vom Kirmlehof folgt man der Dolomitenblickrunde weiter über die Obergoste.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-7277805": {
+      "url": "https://www.merano-suedtirol.it/it/val-passiria/vacanze-in-montagna/camminate-escursioni/sentieri-escursionistici/121154995-sentiero-waltner-rundweg-a-valtina.html",
+      "publisher": "Associazione turistica Val Passiria (Tourismusverein Passeiertal)",
+      "name": "Sentiero “Waltner Rundweg” a Valtina",
+      "quote": "Partendo dall’albergo Alpenrose si segue il sentiero che porta alla chiesa.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-7446701": {
+      "url": "https://www.merano-suedtirol.it/de/passeiertal/aktivurlaub/wandern-bergsteigen/wanderwege/121154995-circular-path-waltner-rundweg-in-walten-valtina.html",
+      "publisher": "Tourismusverein Passeiertal",
+      "name": "Waltner Rundweg in Walten",
+      "quote": "Vom Gasthof Alpenrose führt der Weg in Richtung Kirche.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-9492594": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi520181808239e9eae0e8d1da49b742c4.walther-von-der-vogelweide-rundweg.lajen-dorf",
+      "publisher": "Südtirol.info (provincial tourism board; route contact: Infobüro Lajen)",
+      "name": "Walther von der Vogelweide Rundweg",
+      "quote": "Der Start zum Walther v.d. Vogelweide Rundweg erfolgt am Sportplatz von Lajen. Auf der Markierung 35, auch markiert mit Vogelweider Rundweg, stetig leicht absteigend in Richtung Ried bis zum Vogelweider Hof, dem angeblichen Geburtshaus des Walther v.d.Vogelweide. Ab dem Hof noch ungefähr 300 Meter d",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-9493733": {
+      "url": "https://www.altabadia.org/en/dolomites/snowshoeing-winter-hiking-dolomites/detail/oa/lakes-path-tru-di-lec",
+      "publisher": "Alta Badia Tourism Cooperative",
+      "name": "Lakes path - Tru di lec",
+      "quote": "From the bus stop in Badia, follow the directions for “Tru di lec“ and walk uphill until you reach the Hotel Gran Ander.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "piancavallo": {
+      "url": "https://www.mypiancavallo.com/info/il-territorio/cartina-sentieri.html",
+      "publisher": "MyPiancavallo, hosting the Piancavallo trail map reprinted by Promo Tur Servizi in collaboration with AIAT Piancavallo e Dolomiti Friulane",
+      "name": "Passeggiata delle Malghe",
+      "quote": "Si tratta del “Sentiero delle Sorgenti del Tornidor” (segnavia giallo – blu), che partendo dalle vicinanze del maneggio raggiunge la Casera di Pian delle More e la sorgente del Tornidor; della “Passeggiata delle Malghe” (segnavia giallo – blu), un anello che, partendo nei pressi della rotonda di ing",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "prato-piazza": {
+      "url": "https://www.dreizinnen.com/de/activity/sommerwanderung-parkplatz-pl-tzwiese-strudelkopf_50065",
+      "publisher": "Konsortium 3 Zinnen Dolomites (regional tourism board, including Tourismusverein Prags)",
+      "name": "Sommerwanderung - Parkplatz Plätzwiese - Strudelkopf",
+      "quote": "Du startest vom Parkplatz zum Berggasthaus Plätzwiese und gehst weiter auf die Straße zur Dürrensteinhütte Nr.37.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "santa-maddalena": {
+      "url": "https://www.odlesdolomites.com/en/activities/48ACC63FE1421483734B750F6788CED9",
+      "publisher": "Tourismusgenossenschaft Odles",
+      "name": "Circular hike St. Magdalena",
+      "quote": "From the central square, a path leads in the direction to Fallerhof.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
     "valley-view": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi4d53fc3760a30cad25696849c7669dd5.sonnseitenweg-panoramaweg.st--peter---villnoess",
