@@ -1,0 +1,22 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-10-12T19:40:50.460Z",
+  "sources": {
+    "lago-carezza": {
+      "url": "https://eggental.com/it/activity/breve-giro-del-lago-di-carezza_5712",
+      "publisher": "Val d’Ega Turismo Soc. Coop.",
+      "name": "Breve giro del Lago di Carezza",
+      "quote": "Il breve percorso circolare del Lago di Carezza inizia al parcheggio, dove si segue la segnaletica gialla.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T19:40:50.460Z"
+    },
+    "valley-view": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi4d53fc3760a30cad25696849c7669dd5.sonnseitenweg-panoramaweg.st--peter---villnoess",
+      "publisher": "Tourismusgenossenschaft Odles, via Südtirol.info (IDM Südtirol)",
+      "name": "Sonnseitenweg-Panoramaweg",
+      "quote": "Vom Bühlerhof läuft man leicht ansteigend bis zum Beginn des Panoramaweges (1389 m), der mit Berg-Symbolen markiert ist. Der Panoramaweg verläuft relativ eben bis zur Wegkreuzung mit Weg Nr. 11.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T19:40:50.460Z"
+    }
+  }
+}
