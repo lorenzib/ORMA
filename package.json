@@ -91,7 +91,8 @@
     "backoffice:approve-composites": "node backoffice/cli/approve-composites.js",
     "backoffice:artifact-sizes": "node backoffice/cli/report-artifact-sizes.js",
     "fetch:towns": "node scripts/fetch-towns.js",
-    "test:future": "CLOCK_SHIFT_DAYS=${CLOCK_SHIFT_DAYS:-365} jest --setupFilesAfterEnv=./test-support/shift-clock.js"
+    "test:future": "CLOCK_SHIFT_DAYS=${CLOCK_SHIFT_DAYS:-365} jest --setupFilesAfterEnv=./test-support/shift-clock.js",
+    "backoffice:route-source-backlog": "node backoffice/cli/report-route-source-backlog.js"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.6.8",

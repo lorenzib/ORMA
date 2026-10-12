@@ -11,7 +11,7 @@ const { adjudicateGateBlockers, adjudicableBlockers, contestedCount, mergeAdjudi
 const { rehydrateReviewQueue } = require('./rehydrate-review-detail');
 const { applyRouteReview,promotableFeature,unpromotedChoices } = require('./apply-route-review');
 const { admitChosenRoutes } = require('./admit-chosen-routes');
-const { runTrailSpecialist } = require('./run-trail-specialist');
+const { runTrailSpecialist, routeSourceReady, verifiableFirst } = require('./run-trail-specialist');
 const { advanceTrailOrchestration } = require('./advance-trail-orchestration');
 const {buildVerifiedEditorialHandoff}=require('./verified-editorial-handoff');
 const {runVerifiedEditorialFirstPass}=require('./run-verified-editorial-first-pass');
@@ -225,7 +225,17 @@ async function processTrailSpecialistJobs(store,options={}){
   // while the run reported only that it had attempted nothing. Attempts are
   // still bounded, so a queue full of unclaimable work cannot spin.
   const limit=options.specialistLimit||5;
-  const claimable=queued.filter(job=>!claimNotBefore(job,options.now));
+  // Trails that can actually be verified go first. The four route claims are
+  // unwaivable, and a trail whose only source is the OSM relation its line came
+  // from can never supply them: the agent correctly declines to invent
+  // directions, the claims stay unresolved and the policy rejects the trail at
+  // the end of the ladder. Measured 12 October, 126 of 162 catalogue trails are
+  // in that position, so queue order was spending most of the model budget on
+  // trails that cannot pass. Order inside each group is unchanged.
+  const claimable=verifiableFirst(queued.filter(job=>!claimNotBefore(job,options.now)),trailById);
+  // The size of that group is a sourcing backlog rather than a job outcome, so
+  // it is not pushed in here -- `npm run backoffice:route-source-backlog`
+  // reports it, and these outcomes stay one entry per job for their callers.
   // Claimed one at a time and in queue order. A claim is cheap, it has to win a
   // race against other workers to count, and claiming in parallel would make
   // which jobs a pass takes depend on which transaction landed first.
