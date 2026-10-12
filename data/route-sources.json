@@ -1,7 +1,15 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-12T20:04:08.598Z",
+  "generatedAt": "2026-10-12T20:14:56.229Z",
   "sources": {
+    "geotrail-bulla": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi989d38877e70605be1a85f34d9ce0f7c.geotrail-pufels.st--michael---kastelruth",
+      "publisher": "Seiser Alm Marketing (via Südtirol.info / IDM Südtirol)",
+      "name": "Geotrail Pufels",
+      "quote": "Die Wanderung startet beim Panider Sattel und führt der Beschilderung „Geotrail“ folgend über die alte Gemeindestraße nach Pufels und wieder zurück zum Ausgangspunkt.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
     "giro-del-sasso-lungo": {
       "url": "https://www.valdifassa.it/escursioni-e-passeggiate-in-val-di-fassa/gruppo-sassolungo/il-giro-del-sassolungo/",
       "publisher": "Val di Fassa tourism board (Valdifassa.it)",
@@ -9,6 +17,14 @@
       "quote": "Dal Rifugio Passo Sella 2183 m si segue il comodo e frequentato sentiero 528 verso nord, al cospetto del gigantesco Sassolungo, dei gruppi delle Odle e del Puez al di là della sottostante Val Gardena, con il massiccio del Sella e le omonime torri sulla destra.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "lago-braies": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/insider-tipps/pragser-wildsee-wandern",
+      "publisher": "IDM Südtirol-Alto Adige (regional tourism board)",
+      "name": "Rundweg um den Pragser Wildsee",
+      "quote": "Die abwechslungsreiche Rundwanderung führt dich über ein gemächliches Auf und Ab vorbei an einer Kapelle, durch lichte und dichtere Waldabschnitte und bringt dich dem imposanten Seekofel näher.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
     "lago-carezza": {
       "url": "https://eggental.com/it/activity/breve-giro-del-lago-di-carezza_5712",
@@ -25,6 +41,22 @@
       "quote": "Dal parcheggio del Passo Giau prendete il sentiero n° 443: potrete ammirare alla vostra sinistra le pareti frastagliate de Ra Gusela e sulla destra i profili della Croda da Lago e dei Lastoi de Formin.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-1116680": {
+      "url": "https://www.sesto.it/it/attivita/escursioni/tour-escursionistici/AC5A47FCF7F0609BF66F8357787C1DB7-sentiero-tematico-percorso-intorno-a-sesto.html",
+      "publisher": "Ass. Turistica di Sesto",
+      "name": "Sentiero tematico: Percorso intorno a Sesto",
+      "quote": "Al parcheggio presso il ristorante Hennstoll (1450 m), si gira a destra alla sbarra verso Gilte e si prosegue fino all'Hotel Rainer.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
+    "osm-11775760": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-sudtirol/pdp-erlebnisse.smgpoided61cbccffcce945596496bc2cdf7da.carl-toldt-weg-in-vahrn-bei-brixen.vahrn",
+      "publisher": "Südtirol.info (provincial tourism portal); route contact: Brixen Tourismus Genossenschaft",
+      "name": "Carl-Toldt-Weg in Vahrn bei Brixen",
+      "quote": "Vom Dorfparkplatz in Vahrn (677 m) folgt man der Beschilderung des Themenweges „Naturdenkmal Schalderer Bach“ und steigt links vom Bach mäßig steil bis zur Kneippanlage auf.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
     "osm-1780768": {
       "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoiedf6cb529c8a7bd40bd3a49332d95f0a.the--talblickweg--path-in-the-val-casies-valley.tesido-taisten",
@@ -50,6 +82,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "osm-6404258": {
+      "url": "https://www.olang.com/de/activity/spaziergang-oberolang-salla-oberolang_5019",
+      "publisher": "Tourismusverein Olang / Olang-Valdaora",
+      "name": "Spaziergang Oberolang – Salla - Oberolang",
+      "quote": "Diese gemütliche Wanderung startet in Oberolang und führt zunächst in Richtung Stausee.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
     "osm-6404633": {
       "url": "https://www.ecomuseo.vanoi.it/visita/anello-dei-pradi-p357",
       "publisher": "Ecomuseo del Vanoi",
@@ -66,6 +106,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "osm-6529356": {
+      "url": "https://www.muntdarina.com/aktiv/wandern/",
+      "publisher": "Munt da Rina / Welschellener Alm (Bernadetta Winkler)",
+      "name": "Anton-Schwingshackl-Weg",
+      "quote": "Diese anspruchsvolle Rundwanderung führt Sie von Onach zu uns auf die Munt da Rina Alm (3:00h) und zum schönen Glittner See!",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
     "osm-7277805": {
       "url": "https://www.merano-suedtirol.it/it/val-passiria/vacanze-in-montagna/camminate-escursioni/sentieri-escursionistici/121154995-sentiero-waltner-rundweg-a-valtina.html",
       "publisher": "Associazione turistica Val Passiria (Tourismusverein Passeiertal)",
@@ -74,6 +122,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "osm-7388748": {
+      "url": "https://www.lozzodicadore.eu/parcodellamemoria/13-1-col-vidal-e-13-2-anello-dei-colli-solo-testo-e-pdf/",
+      "publisher": "Parco della Memoria di Pian dei Buoi / Lozzo di Cadore",
+      "name": "13.2 – ANELLO DEI COLLI",
+      "quote": "L’escursione lungo L’Anello dei Colli (segnavia n. 33, colori bianco-verde) inizia presso il Bivio Pellegrini (m 1820) e si sviluppa inizialmente in direzione sud sulla vecchia strada militare di Val da Porte, cui segue, dopo un centinaio di metri, una netta deviazione verso est (variante anello 33)",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
     "osm-7446701": {
       "url": "https://www.merano-suedtirol.it/de/passeiertal/aktivurlaub/wandern-bergsteigen/wanderwege/121154995-circular-path-waltner-rundweg-in-walten-valtina.html",
       "publisher": "Tourismusverein Passeiertal",
@@ -81,6 +137,14 @@
       "quote": "Vom Gasthof Alpenrose führt der Weg in Richtung Kirche.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-9487078": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif3fcc4ba68834cc3f669758ebd680dd0.oswald-von-wolkenstein-weg.seis",
+      "publisher": "Seiser Alm Marketing",
+      "name": "Oswald von Wolkenstein-Weg",
+      "quote": "Dort biegt ihr dann scharf links ansteigend zum Oswald von Wolkenstein-Weg ab (Wanderweg Nr. 3).",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
     "osm-9492594": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi520181808239e9eae0e8d1da49b742c4.walther-von-der-vogelweide-rundweg.lajen-dorf",
@@ -97,6 +161,30 @@
       "quote": "From the bus stop in Badia, follow the directions for “Tru di lec“ and walk uphill until you reach the Hotel Gran Ander.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-9511973": {
+      "url": "https://www.altabadia.org/it/tour/detail/oa/da-badia-attraverso-i-prati-dellarmentara",
+      "publisher": "Società Cooperativa Turistica Alta Badia",
+      "name": "Da Badia attraverso i prati dell'Armentara",
+      "quote": "Dalla fermata dell‘autobus imbocchi la strada con l‘indicazione “Roda de Armentara” che oltrepassa la frazione di San Linert e costeggia i masi Fussé, Ciastel e Valgiarëi.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
+    "osm-9511999": {
+      "url": "https://www.altabadia.org/it/tour/detail/oa/sentiero-dei-masi-tru-dles-viles",
+      "publisher": "Società Cooperativa Turistica Alta Badia",
+      "name": "Sentiero dei masi - Tru dles viles",
+      "quote": "Da La Villa (fermata dell'autobus davanti all’Associazione Turistica), segui le indicazioni “Tru dles viles – Badia”.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
+    "osm-9651462": {
+      "url": "https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoic210170ea03c994dc853c5205cdecf8d.sentiero-delle-leggende.onies",
+      "publisher": "IDM Südtirol / Suedtirol.info, official South Tyrol tourism board",
+      "name": "Sentiero delle leggende",
+      "quote": "Il punto di partenza è l'ufficio informazioni.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
     "piancavallo": {
       "url": "https://www.mypiancavallo.com/info/il-territorio/cartina-sentieri.html",
@@ -121,6 +209,14 @@
       "quote": "From the central square, a path leads in the direction to Fallerhof.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "sentiero-hans-e-paula-steger": {
+      "url": "https://www.seiseralm.it/it/info-e-service/info-aggiornate/informazioni-a-z/1FD50CBCFA16C0C65CC6F7A178B6416D-escursione-sul-sentiero-hans-e-paula-steger.html",
+      "publisher": "Alpe di Siusi Marketing Soc. coop. (official Alpe di Siusi tourism board)",
+      "name": "Escursione sul Sentiero Hans e Paula Steger",
+      "quote": "Il sentiero Hans e Paula Steger conduce da Compatsch a Saltria.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
     "valley-view": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi4d53fc3760a30cad25696849c7669dd5.sonnseitenweg-panoramaweg.st--peter---villnoess",
