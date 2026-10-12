@@ -36,6 +36,10 @@ async function main(options = {}){
   for(const row of result.savedAt){
     console.log(`[yield]   cut to ${row.cut}: ${row.answersLost} answer(s) lost, ${row.searchesSaved} search(es) saved`);
   }
+  console.log('');
+  console.log(`[yield] Route guidance, resolved in the same pool as the rest: ${JSON.stringify(result.guidanceStates)}`);
+  console.log(`[yield] ${result.doomedTrails} trail(s) cannot be verified because their directions could not be established,`);
+  console.log(`[yield] and ${result.wastedOnDoomed} search(es) went on optional detail for those trails before anyone knew.`);
   console.log('[yield] Route guidance keeps its full ladder either way. Nothing was changed.');
   return result;
 }

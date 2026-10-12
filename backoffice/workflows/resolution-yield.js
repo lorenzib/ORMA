@@ -71,8 +71,25 @@ function resolutionYield(orchestration,options={}){
     const saved=waivable.reduce((total,entry)=>total+Math.max(0,entry.attempts-cut),0);
     savedAt.push({cut,answersLost:lost,searchesSaved:saved});
   }
+  // Route guidance decides whether a trail can be verified at all, and it is
+  // resolved in the same pool as the optional detail. A trail whose directions
+  // cannot be established has already paid for everything else by the time
+  // anyone finds out, so the size of that waste is worth reporting beside the
+  // ladder's yield.
+  const guidance=entries.filter(entry=>entry.routeGuidance);
+  const guidanceStates={};
+  for(const entry of guidance)guidanceStates[entry.state||'unknown']=(guidanceStates[entry.state||'unknown']||0)+1;
+  const doomedTrails=[...new Set(guidance
+    .filter(entry=>entry.state==='source-exhausted'||entry.state==='contradicted')
+    .map(entry=>entry.trailId))];
+  const wastedOnDoomed=waivable
+    .filter(entry=>doomedTrails.includes(entry.trailId))
+    .reduce((total,entry)=>total+entry.attempts,0);
   return {
     claims:entries.length,
+    guidanceStates,
+    doomedTrails:doomedTrails.length,
+    wastedOnDoomed,
     waivableClaims:waivable.length,
     routeGuidanceClaims:entries.length-waivable.length,
     resolved:resolved.length,
