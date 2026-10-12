@@ -714,6 +714,13 @@ async function processCommunityHazardReports(store,options={}){
 async function runLiveBackofficeWorker(store, options = {}){
   const productionTrails=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
   const siteTrails=currentSiteTrails(productionTrails);
+  // Verification is decided for every trail in the catalogue, not only the ones
+  // already published. The evidence policy used to be handed siteTrails, so the
+  // 22 catalogue trails that are not on the site yet had no automatic decision
+  // and waited at a desk instead -- 8 of them on 12 October, 3 of those with
+  // nothing blocking them at all. Publication is a separate lane and keeps its
+  // own gate; this decides whether a trail is verified, not whether it ships.
+  const catalogueTrails=productionTrails;
   const campaign=await runScheduledTrailCampaign(store,siteTrails,{enabled:options.campaignEnabled===true,
     at:options.at,limit:options.campaignLimit||DEFAULT_CAMPAIGN_LIMIT,capacity:options.campaignCapacity||DEFAULT_TRAIL_CAPACITY,
     queueCapacity:options.campaignQueueCapacity,trigger:options.campaignTrigger,
@@ -743,17 +750,17 @@ async function runLiveBackofficeWorker(store, options = {}){
   // job in this same pass rather than waiting three hours for the next one.
   const gateDispatches=await dispatchUnansweredGates(store,options);
   const automatedGates=[];const dossierReviews=[];
-  automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:siteTrails}));
+  automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:catalogueTrails}));
   dossierReviews.push(...await ingestDossierReviews(store,{...options,productionTrails}));
   const advancementBefore=await advanceTrailOrchestration(store,options);
   // Advancement can open a clean geometry or dossier gate. Decide it in the
   // same pass so "automatic" never means "wait three hours at a human desk".
-  automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:siteTrails}));
+  automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:catalogueTrails}));
   dossierReviews.push(...await ingestDossierReviews(store,{...options,productionTrails}));
   const reviews = await ingestTrailReviews(store, options);
   const specialistJobs=await processTrailSpecialistJobs(store,{...options,productionTrails});
   const advancementAfter=await advanceTrailOrchestration(store,options);
-  automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:siteTrails}));
+  automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:catalogueTrails}));
   dossierReviews.push(...await ingestDossierReviews(store,{...options,productionTrails}));
   // Last of the gate lanes, after every automatic decision this pass can make
   // and after the gates going back to an agent are gone. What is still waiting
