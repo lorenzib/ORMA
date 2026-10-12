@@ -13,7 +13,7 @@
  * standard is careful about. This was the uncareful one.
  */
 
-const {feedIsComplete,buildHazardArtifacts}=require('./workflows/dynamic-hazards');
+const {feedIsComplete,buildHazardArtifacts,reconcileHazards}=require('./workflows/dynamic-hazards');
 const {fetchSource}=require('./cli/hazard-watch');
 
 // The real connector, not a hand-made stand-in: it carries its own parse and
@@ -99,5 +99,55 @@ describe('what a partial feed may and may not do', () => {
       [{key:'meteoalarm-italy',ok:true,completeSnapshot:false,alertsRead:1}],trails,{at:AT});
     // Add but not remove: the alerts a partial body carried are real.
     expect(events(artifacts).sort()).toEqual(['Heavy snow','Thunderstorm']);
+  });
+});
+
+// A warning needs some way out. Removal needs either a complete snapshot that
+// stops listing it or the warning's own stated expiry; a warning with neither,
+// from a source that answers but never closes its document, was published for
+// ever. Measured before this: a severe avalanche warning first seen on 10
+// January was still on the public page the following October.
+describe('a warning that stated no expiry cannot be published for ever',()=>{
+  const {UNCONFIRMED_REMOVAL_DAYS}=require('./workflows/dynamic-hazards');
+  const answering=[{key:'meteoalarm-italy',ok:true,completeSnapshot:false,alertsRead:0}];
+  const trails=[{id:'t1',name:'T1',province:'belluno',region:'dolomites'}];
+  const noExpiry=(overrides={})=>({id:'meteoalarm-italy:avalanche:veneto',state:'active',
+    severity:'severe',event:'Avalanche',area:'Veneto',sourceKey:'meteoalarm-italy',
+    sourceLabel:'MeteoAlarm Italy',title:'avalanche warning for Veneto',expiresAt:null,
+    firstPublishedAt:'2026-01-10T00:00:00.000Z',lastSeenAt:'2026-01-10T00:00:00.000Z',
+    trailIds:['t1'],trailNames:['T1'],...overrides});
+  const after=(days,hazard=noExpiry())=>reconcileHazards([hazard],[],answering,trails,
+    {at:new Date(new Date(hazard.lastSeenAt||hazard.firstPublishedAt).getTime()
+      +days*86400000).toISOString()});
+
+  test('it survives while the silence is still short',()=>{
+    expect(after(UNCONFIRMED_REMOVAL_DAYS-1)).toHaveLength(1);
+  });
+
+  test('and is gone once its source has not carried it for the full window',()=>{
+    expect(after(UNCONFIRMED_REMOVAL_DAYS)).toHaveLength(0);
+    expect(after(270)).toHaveLength(0);
+  });
+
+  test('a source that is failing still never removes it',()=>{
+    const down=[{key:'meteoalarm-italy',ok:false,error:'HTTP 500'}];
+    const [kept]=reconcileHazards([noExpiry()],[],down,trails,{at:'2026-10-12T00:00:00.000Z'});
+    expect(kept).toEqual(expect.objectContaining({sourceStatus:'unavailable'}));
+  });
+
+  test('a warning the source is still carrying is not aged out',()=>{
+    const alert={id:'x',sourceKey:'meteoalarm-italy',sourceLabel:'MeteoAlarm Italy',
+      identifier:'x',event:'Avalanche',area:'Veneto',severity:'severe',
+      certainty:'likely',urgency:'expected',sentAt:null,effectiveAt:null,expiresAt:null,
+      title:'Avalanche — Veneto',summary:''};
+    expect(reconcileHazards([noExpiry()],[alert],answering,trails,
+      {at:'2026-10-12T00:00:00.000Z'})).toHaveLength(1);
+  });
+
+  test('and the removal says it was never reconfirmed, not that it expired',()=>{
+    const {status}=buildHazardArtifacts({hazards:[noExpiry()]},[],answering,trails,
+      {at:'2026-10-12T00:00:00.000Z'});
+    expect(status.automaticRemovals).toEqual([expect.objectContaining({
+      reason:`unconfirmed-by-its-source-for-${UNCONFIRMED_REMOVAL_DAYS}-days`})]);
   });
 });

@@ -3,6 +3,39 @@
 const DOG_CRITICAL_EVENTS = /avalanche|forest fire|wildfire|thunderstorm|snow|ice|extreme temperature|high temperature|heat|flood/i;
 const SEVERITY_RANK = { extreme: 4, severe: 3, moderate: 2, minor: 1, unknown: 0 };
 
+// The last way out for a warning that has no other one.
+//
+// Removal needs either a complete snapshot that stops listing the warning, or
+// the warning's own stated expiry. A warning with no expiry, from a source that
+// keeps answering but never hands over a whole document, has neither -- and was
+// therefore published for ever. Measured: a severe avalanche warning first seen
+// on 10 January was still on the public page in October.
+//
+// Seven days of a source answering and never once carrying a warning that
+// stated no expiry is the backstop. It is deliberately long: every warning ORMA publishes is measured in
+// hours or days, an avalanche bulletin is daily, and a week is well past the
+// life of any of them. Where the source is in fact broken, a warning nobody can
+// reconfirm for a week is not safer for being left up -- it is a stale red
+// banner on a walk that may be fine, which is how a hazard lane loses its
+// credibility. The removal is recorded with its reason either way.
+//
+// A source that is failing is still excluded, by `successful` at the call site:
+// an unreachable source is not evidence of safety and this does not change that.
+const UNCONFIRMED_REMOVAL_DAYS = 7;
+
+/** Days since the source last carried this warning, or 0 when unknowable. */
+function daysUnconfirmed(hazard, at){
+  const seen = hazard.lastSeenAt || hazard.firstPublishedAt;
+  if(!seen) return 0;
+  const elapsed = new Date(at).getTime() - new Date(seen).getTime();
+  return Number.isFinite(elapsed) ? elapsed / 86400000 : 0;
+}
+
+/** Whether a warning's own stated expiry has passed. */
+function warningExpired(hazard, at){
+  return !!hazard.expiresAt && new Date(hazard.expiresAt).getTime() <= new Date(at).getTime();
+}
+
 // The event family a warning belongs to, with its colour/severity prefix and the
 // trailing "warning" stripped: "Orange Thunderstorm Warning" -> "thunderstorm".
 function warningEventLabel(event){
@@ -211,6 +244,12 @@ function reconcileHazards(previous = [], observations = [], sourceResults = [], 
     // successfully, is over. Removal is automatic; there is no human gate.
     const expired = old.expiresAt && new Date(old.expiresAt).getTime() <= new Date(at).getTime();
     if(successful.has(old.sourceKey) && expired) return;
+    // Only a warning that never stated an expiry. One that did has a way out
+    // already -- the rule above -- and its source has published a validity
+    // period, which seven days of silence does not get to overrule: a feed that
+    // says "valid until the 20th" is still saying so on the 9th.
+    if(successful.has(old.sourceKey) && !old.expiresAt
+      && daysUnconfirmed(old, at) >= UNCONFIRMED_REMOVAL_DAYS) return;
     next.push({ ...old, lastCheckedAt: at });
   });
   next.push(...observed.values());
@@ -227,7 +266,9 @@ function buildHazardArtifacts(previousData, observations, sourceResults, trails,
   const automaticallyRemoved = (previousData?.hazards || []).filter(item => item.origin !== 'community' && !remainingKeys.has(canonicalWarningId(item.sourceKey, item.event, item.area))).map(item => ({
     hazardId:item.id, sourceKey:item.sourceKey, sourceLabel:item.sourceLabel || null,
     title:item.title || null, removedAt:at,
-    reason:completeSources.has(item.sourceKey)?'absent-from-complete-authoritative-snapshot':'source-warning-expired',
+    reason:completeSources.has(item.sourceKey)?'absent-from-complete-authoritative-snapshot'
+      :warningExpired(item,at)?'source-warning-expired'
+      :`unconfirmed-by-its-source-for-${UNCONFIRMED_REMOVAL_DAYS}-days`,
   }));
   return {
     publicData: { contractVersion: '1.0.0', generatedAt: at, hazards },
@@ -237,7 +278,7 @@ function buildHazardArtifacts(previousData, observations, sourceResults, trails,
       summary: { active: hazards.filter(item => item.state === 'active').length, awaitingRemovalReview: hazards.filter(item => item.state === 'resolution-review').length, automaticallyRemoved: automaticallyRemoved.length, sourceFailures: sourceResults.filter(item => !item.ok).length },
       sources: sourceResults,
       automaticRemovals: automaticallyRemoved,
-      policy: 'Authoritative warnings are added and removed automatically: a warning absent from a complete successful snapshot, or past its own stated expiry on a source that answered, is removed without human review. Source failure never means safe. Community reports follow the separate Hazard Analyst vetting lifecycle.',
+      policy: `Authoritative warnings are added and removed automatically: a warning absent from a complete successful snapshot, past its own stated expiry on a source that answered, or not carried by an answering source for ${UNCONFIRMED_REMOVAL_DAYS} days, is removed without human review. Source failure never means safe. Community reports follow the separate Hazard Analyst vetting lifecycle.`,
     },
   };
 }
@@ -260,4 +301,4 @@ function applyHazardReview(publicData, ledger, input, options = {}){
   };
 }
 
-module.exports = { feedIsComplete,AVALANCHE_REGION_PROVINCE,avalancheAppliesToTrail, parseAtomFeed, trailWarningArea, alertAppliesToTrail, shouldPublishAlert, reconcileHazards, buildHazardArtifacts, applyHazardReview, canonicalWarningId, mergeWarnings, dedupeHazards };
+module.exports = { feedIsComplete,UNCONFIRMED_REMOVAL_DAYS,daysUnconfirmed,warningExpired,AVALANCHE_REGION_PROVINCE,avalancheAppliesToTrail, parseAtomFeed, trailWarningArea, alertAppliesToTrail, shouldPublishAlert, reconcileHazards, buildHazardArtifacts, applyHazardReview, canonicalWarningId, mergeWarnings, dedupeHazards };
