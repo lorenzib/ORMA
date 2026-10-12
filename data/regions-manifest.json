@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-12T19:01:19.392Z",
+  "generatedAt": "2026-10-12T19:38:00.932Z",
   "regions": {
     "dolomites": {
       "trailCount": 109,
-      "trails": "data/regions/dolomites-trails.js?v=d8024c3d5c95",
+      "trails": "data/regions/dolomites-trails.js?v=afa9c3fcffe8",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=26654e90f48e",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -15,9 +15,9 @@
         "nuvolau": "data/trail-details/nuvolau.js?v=b1400bb9ab30",
         "sassolungo": "data/trail-details/sassolungo.js?v=1e1af5c14a1f",
         "lago-braies": "data/trail-details/lago-braies.js?v=043940efe894",
-        "lago-carezza": "data/trail-details/lago-carezza.js?v=58bb650692c5",
+        "lago-carezza": "data/trail-details/lago-carezza.js?v=0cb14ee0f4a7",
         "lago-sorapis": "data/trail-details/lago-sorapis.js?v=873824962623",
-        "valley-view": "data/trail-details/valley-view.js?v=39eedcd80b3a",
+        "valley-view": "data/trail-details/valley-view.js?v=26e0289b51cd",
         "piancavallo": "data/trail-details/piancavallo.js?v=0c4235fc8b16",
         "geotrail-bulla": "data/trail-details/geotrail-bulla.js?v=e510d4659556",
         "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=d61340fd3f92",
