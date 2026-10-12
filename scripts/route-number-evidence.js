@@ -104,11 +104,35 @@ function applyRouteNumberEvidence(trails, root, evidence = mappedRouteEvidence(r
       return { ...trail, routeNumberStatus: 'documented' };
     }
     const mapped = evidence.get(String(trail.osmRelation));
+    // A number and an official page are not alternatives, and taking the number
+    // first threw the page away: 23 trails were filed as `mapped-relation-ref`
+    // with their cited source pointing at Waymarked Trails while the snapshot
+    // held a comune or alpine-club page describing the route. The route claims
+    // require a source the agent can cite, an OSM relation is not one, so those
+    // trails could never be verified -- osm-7548201 "Anello di Ciampeviei"
+    // carried 99 blockers with route guidance missing and a Comune di Lozzo di
+    // Cadore page in the snapshot the agent was never shown.
+    //
+    // The number is still recorded; what changes is which source is cited.
     if (mapped && mapped.ref) return {
       ...trail,
       routeRefs: [mapped.ref],
+      // The number stays the stronger identity, which is what this status is
+      // about and what "a number outranks a page" settled.
       routeNumberStatus: 'mapped-relation-ref',
-      routeNumberSource: { provider: 'Waymarked Trails / OpenStreetMap', name: mapped.name, url: mapped.url },
+      // The cited source is a different question, and taking the relation here
+      // threw the page away. Waymarked Trails is not a source the route claims
+      // can cite -- an OSM relation records that a path exists, not how to walk
+      // it -- so where the snapshot also holds an official page, that is what
+      // the agent is given. 23 trails were in this position, their cited source
+      // pointing at OSM while a comune or alpine-club page sat unused in the
+      // same record: osm-7548201 "Anello di Ciampeviei" carried 99 blockers
+      // with route guidance missing and a Comune di Lozzo di Cadore page the
+      // agent was never shown. The relation still reaches it as
+      // `waymarkedtrails`, so this adds evidence rather than replacing it.
+      routeNumberSource: mapped.website
+        ? { provider: mapped.website.host, name: mapped.name, url: mapped.website.url }
+        : { provider: 'Waymarked Trails / OpenStreetMap', name: mapped.name, url: mapped.url },
     };
     // No number, but an official page describing the route. The OSM relation is
     // still passed to the agent separately as `waymarkedtrails`, so pointing the

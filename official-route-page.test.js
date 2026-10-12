@@ -23,6 +23,35 @@ describe('a route with no number is not a route with no identity',()=>{
     expect(result.routeRefs).toEqual(['50']);
   });
 
+  // ...but it does not outrank it as the cited source, which is the separate
+  // question this used to answer with the relation. The route claims need a
+  // source the agent can cite and an OSM relation is not one, so a trail with
+  // both was unverifiable while holding a usable page: 23 were in that state,
+  // osm-7548201 among them at 99 blockers with route guidance missing.
+  test('but the page is cited rather than the relation',()=>{
+    const [result]=applyRouteNumberEvidence([trail()],'.',
+      evidence({ref:'50',website:{url:'https://example.org/route',host:'example.org'}}));
+    expect(result.routeNumberSource).toEqual({provider:'example.org',
+      name:'Rundweg Laugen Elvas',url:'https://example.org/route'});
+  });
+
+  test('with a number and no page the relation is still cited',()=>{
+    const [result]=applyRouteNumberEvidence([trail()],'.',evidence({ref:'50'}));
+    expect(result.routeNumberSource.provider).toBe('Waymarked Trails / OpenStreetMap');
+  });
+
+  // The measurable consequence, derived from the catalogue rather than retyped.
+  test('more of the catalogue can now cite something other than a map',()=>{
+    const {routeSourceReady}=require('./backoffice/workflows/run-trail-specialist');
+    const {loadProductionTrails}=require('./scripts/load-production-trails');
+    const trails=loadProductionTrails(require('path').resolve(__dirname));
+    const ready=trails.filter(routeSourceReady);
+    const citingRelation=ready.filter(item=>
+      /waymarkedtrails|openstreetmap/i.test(String(item.routeNumberSource?.url||'')));
+    expect(ready.length).toBeGreaterThan(40);
+    expect(citingRelation).toEqual([]);
+  });
+
   test('no number and no page is still a finding, not a gap',()=>{
     const [result]=applyRouteNumberEvidence([trail()],'.',evidence());
     expect(result.routeNumberStatus).toBe('not-listed-in-mapped-source');
