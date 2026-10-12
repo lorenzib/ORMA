@@ -138,7 +138,12 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;}
 #elevProf{width:100%;height:180px;display:block;border-radius:14px;border:1px solid rgba(27,31,25,.1);background:#fbfaf4;touch-action:none;}
 .td-elev-figs{display:flex;gap:28px;margin-top:12px;font-size:13px;color:#5c6055;font-family:'Inter',sans-serif;}
 .td-elev-figs strong{font-weight:600;color:#1b1f19;}
-#matchDescription{font-size:14.5px;line-height:1.7;color:#3a3d34;margin:0;font-family:'Inter',sans-serif;}
+/* The lead paragraph of the About card. It carried its own size, leading and a
+   colour a shade off the card's (#3a3d34 against #3A473C), and being an id it
+   won over the card's own rule -- so the one card spoke in two voices and the
+   directions underneath were the quieter of them. Same setting as the rest of
+   the card now. */
+#matchDescription{font-size:14px;line-height:1.65;color:#3A473C;margin:0;font-family:'Inter',sans-serif;}
 .trail-data-details{margin-top:22px;font-size:12px;color:#8a8d80;}
 .trail-data-details summary{cursor:pointer;}
 
@@ -896,8 +901,12 @@ body{background:#EFECE2;}
 .td2-about-getting .td2-parking-grid,.td2-about-around .td2-parking-grid{display:block;}
 .td2-about-getting .td2-park,.td2-about-around .td2-park{padding:0;border:0;border-radius:0;background:transparent;}
 .td2-about-getting .td2-park .ic,.td2-about-around .td2-park .ic{display:none;}
-.td2-about-getting .td2-park .t,.td2-about-around .td2-park .t{font-size:13px;}
-.td2-about-getting .td2-park .s,.td2-about-around .td2-park .s{margin-top:7px;font-size:13px;line-height:1.55;color:#56665A;}
+.td2-about-getting .td2-park .t,.td2-about-around .td2-park .t{font-size:14px;}
+/* One voice inside this card. The lead paragraph was 14px/1.65 in #3A473C and
+   the directions beneath it 13px/1.55 in a lighter #56665A -- three differences
+   in one card, and the smaller lighter setting was the half somebody reads
+   outdoors on a phone. Both now use the lead paragraph's setting. */
+.td2-about-getting .td2-park .s,.td2-about-around .td2-park .s{margin-top:7px;font-size:14px;line-height:1.65;color:#3A473C;}
 .td2-route-ref-list{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:9px;}
 .td2-route-ref{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;box-sizing:border-box;padding:5px 10px;border:3px solid #B54835;border-radius:8px;background:#fff;color:#202821;font:800 15px/1 'Inter',sans-serif;box-shadow:0 1px 2px rgba(32,40,33,.08);}
 .td2-route-ref-arrow{color:#657369;font-size:17px;font-weight:800;}

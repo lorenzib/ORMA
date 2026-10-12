@@ -24,7 +24,20 @@
   const $ = (id) => document.getElementById(id);
   const trust = window.DoloPawsTrailTrust;
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const cardCopy = (s) => String(s == null ? '' : s)
+  // Where ORMA got a route is not something a walker asked. 123 of 162 trails
+  // still described themselves as "imported from the OpenStreetMap hiking
+  // network", and 70 start points as an "(OSM-verified access point)" -- the
+  // provenance of the record leaking into the copy a reader is given. The
+  // number it cites is already shown as a waymark badge, so nothing is lost by
+  // dropping it, and the screening sentence says the same fact in a reader's
+  // words instead of the pipeline's.
+  const readerVoice = (s) => String(s)
+    .replace(/,?\s*imported from the OpenStreetMap hiking network(\s*\(trail [^)]*\))?/gi, '')
+    .replace(/\s*\(OSM-verified access point\)/gi, '')
+    .replace(/Passed automated dog-suitability screening:\s*no\s+([^.]+?)\s+on record\./i,
+      (match, items) => `No ${items} are recorded on this route.`)
+    .replace(/^\s*Imported route[.:,\s-]*/i, '');
+  const cardCopy = (s) => readerVoice(String(s == null ? '' : s))
     .trim()
     .replace(/\s*(?:—|--)+\s*/g, '. ')
     .replace(/\.\s*\./g, '.')
@@ -653,7 +666,11 @@
       ? window.DoloPawsTrailRouteRefs.forTrail(t)
       : [];
     const startLabel = cardCopy(sp.label || t.valley || t.area || 'the marked trailhead')
-      .replace(/^Start here[.:\s-]*/i, '');
+      // `Start here, Lift station Vinouve` -- the comma is part of the prefix,
+      // and leaving it printed "Head to , Lift station Vinouve". trail-trust
+      // strips the same prefix with `/^Start here\s*[,—-]\s*/i`; this copy of
+      // the rule did not list the comma at all.
+      .replace(/^Start here\s*[,.:;—–-]*\s*/i, '');
     const routeSequence = routeRefs.join(' → ');
     const hasSectionOnlyRefs = Array.isArray(t.routeRefSegments) && t.routeRefSegments.length > 0;
     const routeSwitches = window.DoloPawsTrailRouteRefs
