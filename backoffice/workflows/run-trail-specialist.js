@@ -199,10 +199,50 @@ function fillOmittedClaims(result,ids,agentLabel){
   return missing;
 }
 
+/**
+ * A citation nobody can open is dropped, not thrown over.
+ *
+ * Observed on alpe-siusi: the cartographer cited
+ * `firestore:trail-specialist-output-trail-verification-alpe-siusi-cartographer-...`
+ * as a source. That is ORMA's own internal artifact pointer, and the agent is
+ * shown prior specialist output that carries such pointers in `outputRef`, so
+ * it had read one and mistaken it for a page it had visited.
+ *
+ * Throwing blocked the job for good -- a thrown run is retried at the same
+ * resolutionAttempt, so the agent read the same context and cited the same
+ * pointer again until the failure budget ran out. That job was one of the four
+ * agent failures holding the dossier stage.
+ *
+ * So an unretrievable source is removed and recorded. What it may not do is
+ * leave a claim still calling itself supported: a supported proposal with no
+ * source it retrieved is an assertion, and it becomes unresolved so the
+ * resolution loop asks again with a different strategy.
+ */
+function dropUnretrievableSources(result){
+  const dropped=[];
+  for(const claim of result.claims||[]){
+    const keep=(claim.sources||[]).filter(source=>/^https:\/\//.test(String(source?.url||'')));
+    if(keep.length===(claim.sources||[]).length)continue;
+    for(const source of claim.sources||[]){
+      if(!/^https:\/\//.test(String(source?.url||''))){
+        dropped.push({claimId:claim.id,url:String(source?.url||'').slice(0,200)});
+      }
+    }
+    claim.sources=keep;
+    claim.blockers=[...(claim.blockers||[]),`${claim.id}-source-not-retrievable`];
+    if(claim.finding==='supported-proposal'&&!keep.length){
+      claim.finding='unresolved';
+      claim.rationale=`${String(claim.rationale||'').trim()} The source cited for this claim is not a retrievable page, so it is recorded as unresolved rather than supported.`.trim();
+    }
+  }
+  return dropped;
+}
+
 function validateSpecialistResult(result,agentId,requiredClaimIds=[]){
+  const unretrievable=dropUnretrievableSources(result);
+  if(unretrievable.length)result.unretrievableSources=unretrievable;
   for(const claim of result.claims||[]){
     if(claim.finding==='supported-proposal'&&!claim.sources.length)throw new Error(`Supported proposal ${claim.id} requires a source`);
-    for(const source of claim.sources||[]){if(!/^https:\/\//.test(source.url))throw new Error(`Specialist source must be HTTPS: ${source.url}`);}
   }
   for(const claim of result.claims||[]){
     if(!ENTITY_POLICY_CLAIM_IDS.includes(claim.id)||claim.finding!=='supported-proposal')continue;
@@ -347,4 +387,4 @@ async function runTrailSpecialist({job,trail,context},options={}){
   return {responseId:response.responseId,model:response.model,result};
 }
 
-module.exports={MANDATORY_CLAIMS,MANDATORY_CLAIM_CATEGORY,fillOmittedClaims,CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
+module.exports={MANDATORY_CLAIMS,MANDATORY_CLAIM_CATEGORY,fillOmittedClaims,dropUnretrievableSources,CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
