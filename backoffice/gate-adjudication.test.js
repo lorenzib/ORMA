@@ -3,7 +3,7 @@
 const fs=require('fs');
 const path=require('path');
 const {reviewVerdicts,adjudicableBlockers,adjudicateGateBlockers,mergeAdjudications,
-  adjudicationMatches,independentHosts,contestedCount,prompt}=require('./workflows/adjudicate-gate-blockers');
+  adjudicationMatches,independentHosts,contestedCount,prompt,ballot}=require('./workflows/adjudicate-gate-blockers');
 const {planGateDispatches}=require('./workflows/dispatch-unanswered-gates');
 const {adjudicateStandingGates}=require('./workflows/run-live-backoffice-worker');
 const {routeGuidanceBlockingReasons,MIN_ACCEPTANCE_REASON}=require('./workflows/compile-verified-dossier');
@@ -278,5 +278,71 @@ describe('a contradiction is hers, with help',()=>{
     const outcomes=await adjudicateStandingGates(subject,{at,gateAdjudicationLimit:1,
       runAgent:async()=>({model:'m',responseId:'r',data:{verdicts:[],summary:''}})});
     expect(outcomes.map(entry=>entry.reviewId)).toEqual(['review-contested']);
+  });
+});
+
+// The gate is a ballot, and a vote has to name a candidate the gate can find.
+// Every test above hands the blocker back as the identical JS string, which is
+// the one thing a language model is not doing: it is reading a rendered line.
+// So these derive the answer from prompt() instead of retyping it -- the same
+// rule #590 established for fixtures, applied to the agent's side of the call.
+describe('a verdict names a blocker the gate actually filed',()=>{
+  const blockers=[EXHAUSTED,CONFLICTED];
+  const asked=()=>prompt(item({blockingReasons:blockers}),{trailName:'Trail A'})[1].content
+    .split('\n').filter(line=>line.startsWith('- '));
+  const answer=blockerId=>({blockerId,recommendation:'cannot-accept',
+    reason:'Nothing published either way.',confidence:'unsourced',sources:[]});
+  const kept=verdicts=>reviewVerdicts(verdicts,adjudicableBlockers(item({blockingReasons:blockers})))
+    .verdicts.map(verdict=>verdict.blocker);
+
+  test('the prompt prints an id beside every blocker',()=>{
+    expect(asked()).toEqual([
+      `- B1 [no source was found — go and look] ${EXHAUSTED}`,
+      `- B2 [sources disagree — weigh the ones that exist] ${CONFLICTED}`,
+    ]);
+  });
+
+  test('an id the prompt printed resolves to that blocker',()=>{
+    const ids=ballot(adjudicableBlockers(item({blockingReasons:blockers}))).map(entry=>entry.id);
+    expect(kept(ids.map(answer))).toEqual(blockers);
+  });
+
+  // What the gates on 9 October did: 12 verdicts in, 12 dropped, 0 recommended.
+  // Answering with the line it was shown is the literal reading of "copy it
+  // verbatim", and it used to match nothing at all.
+  test('the rendered line it was shown is still understood',()=>{
+    expect(kept(asked().map(answer))).toEqual(blockers);
+    expect(kept(asked().map(line=>answer(line.slice(2))))).toEqual(blockers);
+  });
+
+  test('so is the blocker re-punctuated, which is how an agent copies prose',()=>{
+    expect(kept(blockers.map(reason=>answer(`${reason}.`)))).toEqual(blockers);
+    expect(kept(blockers.map(reason=>answer(reason.toUpperCase())))).toEqual(blockers);
+  });
+
+  test('an id this gate never printed is still refused',()=>{
+    const result=reviewVerdicts([answer('B9')],adjudicableBlockers(item({blockingReasons:blockers})));
+    expect(result.verdicts).toEqual([]);
+    expect(result.dropped.map(entry=>entry.rule)).toEqual(['blocker-is-not-on-this-gate']);
+  });
+
+  test('and so is a blocker belonging to some other gate',()=>{
+    const result=reviewVerdicts([answer('terrainPoi/water: invented')],
+      adjudicableBlockers(item({blockingReasons:blockers})));
+    expect(result.verdicts).toEqual([]);
+    expect(result.dropped.map(entry=>entry.rule)).toEqual(['blocker-is-not-on-this-gate']);
+  });
+
+  // The count alone read as "the adjudicator had nothing to offer" for three
+  // days. A gate discarded entirely by one rule has to name the rule.
+  test('a gate that threw everything away reports what threw it',async()=>{
+    const gate={reviewId:'review-a',candidateId:'cand-a',gateType:'dossier-approval',
+      state:'awaiting-human',blockingReasons:blockers};
+    const artifacts={'dossier-review-queue':{items:[gate]},'gate-adjudications':null};
+    const store={getArtifact:async id=>artifacts[id]||null,setArtifact:async(id,value)=>{artifacts[id]=value;}};
+    const [outcome]=await adjudicateStandingGates(store,{at,runAgent:async()=>({model:'m',responseId:'r',
+      data:{verdicts:blockers.map((reason,index)=>answer(`B${index+9}`)),summary:''}})});
+    expect(outcome).toEqual(expect.objectContaining({status:'adjudicated',verdicts:0,dropped:2,
+      discardedBy:{'blocker-is-not-on-this-gate':2}}));
   });
 });

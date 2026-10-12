@@ -22,10 +22,19 @@
 //     supplied, not waived (compile-verified-dossier is explicit: "Route
 //     guidance cannot be accepted, only supplied"), so a recommendation to
 //     accept one is dropped.
-//   - invent a blocker. A verdict is matched to the queue item's own blocker
-//     strings verbatim; anything else is discarded, because a reason attached to
+//   - invent a blocker. A verdict is matched back to a blocker this gate
+//     actually filed; anything else is discarded, because a reason attached to
 //     a blocker nobody filed would pre-fill a field for a decision that is not
 //     being asked.
+//
+// That match used to be the blocker's prose, echoed back byte for byte. It is
+// an id now. The gate is a ballot and #632 settled this once already: a line
+// the agent is shown reads `- [no source was found] terrainPoi/livestock: ...`,
+// so "copy the blocker verbatim" has no single honest answer -- the bullet and
+// the kind tag are on the line too. Every near-copy missed, and a gate whose
+// every verdict missed reported no recommendation rather than a mismatch. The
+// ballot is numbered now, and prompt() and reviewVerdicts() both read the
+// numbering from ballot() so the two cannot drift apart again.
 
 const {createStructuredResponse}=require('../services/openai-responses-client');
 const {MIN_ACCEPTANCE_REASON,waivableBlocker}=require('./compile-verified-dossier');
@@ -50,7 +59,7 @@ const RECOMMENDATIONS=Object.freeze(['accept','cannot-accept','needs-supply']);
 
 const ADJUDICATION_SCHEMA={type:'object',additionalProperties:false,properties:{
   verdicts:{type:'array',maxItems:MAX_VERDICTS,items:{type:'object',additionalProperties:false,properties:{
-    blocker:{type:'string',description:'The blocker string being judged, copied verbatim from the list given to you.'},
+    blockerId:{type:'string',description:'The id of the blocker being judged, exactly as printed at the start of its line (for example "B2"). One verdict per id.'},
     recommendation:{type:'string',enum:[...RECOMMENDATIONS]},
     reason:{type:'string',description:'Why this blocker does not stop the trail being verified, in one sentence a reader of the verification record would understand. Never a claim that the underlying fact is true.'},
     confidence:{type:'string',enum:[...CONFIDENCE]},
@@ -60,6 +69,31 @@ const ADJUDICATION_SCHEMA={type:'object',additionalProperties:false,properties:{
   },required:['blocker','recommendation','reason','confidence','sources']}},
   summary:{type:'string'},
 },required:['verdicts','summary']};
+
+/**
+ * The blockers as a numbered ballot. The id is positional and lives only for
+ * this one call, which is the point: it is short enough to echo exactly, and it
+ * carries no meaning the agent could reason its way around.
+ */
+function ballot(blockers){
+  return (blockers||[]).map((reason,index)=>({id:`B${index+1}`,reason:String(reason)}));
+}
+
+/**
+ * A blocker's prose reduced to what two people would agree is the same blocker.
+ * Only a fallback: an agent that answers with the text instead of the id, or
+ * copies the whole rendered line, still gets its verdict counted rather than
+ * silently dropped.
+ */
+function normaliseBlocker(text){
+  return String(text||'')
+    .replace(/^\s*[-*\u2022]\s*/,'')
+    .replace(/^\s*B\d+[).:]?\s*/i,'')
+    .replace(/^\s*\[[^\]]*\]\s*/,'')
+    .replace(/\s+/g,' ')
+    .replace(/[\s.;:,]+$/,'')
+    .trim().toLowerCase();
+}
 
 function host(url){
   try{return new URL(String(url)).host.replace(/^www\./,'').toLowerCase();}catch(error){return '';}
@@ -83,13 +117,17 @@ function cleanSources(sources){
  * indistinguishable from one that was never asked for.
  */
 function reviewVerdicts(verdicts,blockers){
-  const standing=new Map((blockers||[]).map(reason=>[String(reason).trim(),String(reason)]));
+  const paper=ballot(blockers);
+  const byId=new Map(paper.map(entry=>[entry.id.toLowerCase(),entry.reason]));
+  const byProse=new Map(paper.map(entry=>[normaliseBlocker(entry.reason),entry.reason]));
   const kept=[],dropped=[];
   const seen=new Set();
-  const drop=(verdict,rule)=>dropped.push({blocker:String(verdict?.blocker||'').slice(0,300),rule});
+  const answered=verdict=>String(verdict?.blockerId||verdict?.blocker||'').trim();
+  const drop=(verdict,rule)=>dropped.push({blocker:answered(verdict).slice(0,300),rule});
 
   for(const verdict of (verdicts||[]).slice(0,MAX_VERDICTS)){
-    const blocker=standing.get(String(verdict?.blocker||'').trim());
+    const given=answered(verdict);
+    const blocker=byId.get(given.toLowerCase())||byProse.get(normaliseBlocker(given));
     if(!blocker){drop(verdict,'blocker-is-not-on-this-gate');continue;}
     if(seen.has(blocker)){drop(verdict,'duplicate-verdict');continue;}
     const recommendation=RECOMMENDATIONS.includes(verdict.recommendation)?verdict.recommendation:null;
@@ -166,6 +204,7 @@ function prompt(item,trail){
       'Set confidence "corroborated" only when two independent publishers agree, "single-source" for one, "unsourced" when your reason rests on reasoning rather than a document.',
       'Each blocker is tagged with what kind of problem it is, and the two want different work. Where sources disagree, the evidence exists: read what each one says and judge between them, rather than going to look for a third. Where no source was found, the work is the search itself — and if you cannot find one either, say so, because that is the finding.',
       'The reason must say why the blocker does not stop verification. It must never assert that the underlying fact is true — the claim stays exactly as the agent left it.',
+      'Each blocker below is printed with an id such as B1. Put that id in blockerId, exactly as printed, one verdict per blocker. Never invent an id and never answer with the blocker\u2019s wording in its place.',
     ].join('\n')},
     {role:'user',content:[
       `Trail: ${trail?.trailName||item?.trailName||item?.candidateId}`,
@@ -177,8 +216,10 @@ function prompt(item,trail){
       // nobody found. Told only "here is a blocker", the agent treats a settled
       // disagreement as a gap and goes looking for a third source instead of
       // judging the two in front of it.
-      'Blockers to judge, verbatim, with what kind of problem each one is:',
-      ...adjudicableBlockers(item).map(reason=>`- [${kindOf(item,reason)}] ${reason}`),
+      'Blockers to judge, verbatim, each with its id and what kind of problem it is:',
+      ...(()=>{const kinds=dispositionIndex(item);
+        return ballot(adjudicableBlockers(item)).map(({id,reason})=>
+          `- ${id} [${KIND_WORDS[kinds.get(reason)]||KIND_WORDS.undetermined}] ${reason}`);})(),
     ].filter(value=>value!==null).join('\n')},
   ];
 }
@@ -228,5 +269,5 @@ function adjudicationMatches(adjudication,item){
 }
 
 module.exports={ADJUDICATION_SCHEMA,MIN_REASON,CORROBORATION_HOSTS,CONFIDENCE,RECOMMENDATIONS,KIND_WORDS,
-  host,independentHosts,reviewVerdicts,adjudicableBlockers,contestedCount,kindOf,prompt,
+  host,independentHosts,ballot,normaliseBlocker,reviewVerdicts,adjudicableBlockers,contestedCount,kindOf,prompt,
   adjudicateGateBlockers,mergeAdjudications,adjudicationMatches};

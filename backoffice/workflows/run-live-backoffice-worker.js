@@ -556,9 +556,17 @@ async function adjudicateStandingGates(store,options={}){
         runAgent:options.runAgent,clientOptions:options.clientOptions});
       stored=mergeAdjudications(stored,adjudication);
       await store.setArtifact('gate-adjudications',stored);
+      // A count of what was thrown away says a gate got no recommendation; it
+      // never says whether the agent had nothing to offer or whether the answer
+      // was rejected on the way in. The rules are what distinguishes the two,
+      // so they are summarised here -- a whole gate discarded for one rule is a
+      // contract bug, and that read as "no recommendation" for three days.
+      const discardedBy=adjudication.dropped.reduce((tally,entry)=>
+        ({...tally,[entry.rule]:(tally[entry.rule]||0)+1}),{});
       outcomes.push({reviewId:item.reviewId,candidateId:item.candidateId,status:'adjudicated',
         recommended:adjudication.verdicts.filter(verdict=>verdict.recommendation==='accept').length,
-        verdicts:adjudication.verdicts.length,dropped:adjudication.dropped.length});
+        verdicts:adjudication.verdicts.length,dropped:adjudication.dropped.length,
+        ...(adjudication.dropped.length?{discardedBy}:{})});
     }catch(error){
       outcomes.push({reviewId:item.reviewId,candidateId:item.candidateId,status:'adjudication-failed',
         error:String(error.message||error).slice(0,2000)});
