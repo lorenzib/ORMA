@@ -367,6 +367,7 @@ describe('trail page map controls', () => {
     expect(bundle.indexOf('// ---- trail-route-refs.js ----')).toBeLessThan(bundle.indexOf('// ---- trail.js ----'));
     const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
     expect(blueprint).toContain("verifiedRouteGuidance ? 'How to follow this route'");
+    expect(blueprint).toContain("routeRefs.length ? 'Waymarked trail numbers' : 'Following the route'");
     expect(blueprint).toContain('Begin the hike on trail <b>${esc(routeSwitches[0].from)}</b>');
     expect(blueprint).toContain('At approximately km ${esc(item.km.toFixed(1)');
     expect(blueprint).toContain('switch from trail <b>${esc(item.from)}</b> to trail <b>${esc(item.to)}</b>');
@@ -376,7 +377,6 @@ describe('trail page map controls', () => {
     expect(blueprint).toContain('for the final section to the route finish');
     expect(blueprint).toContain('marked only on the verified section');
     expect(blueprint).toContain('aroundGrid.innerHTML = routeRefMarkup ? renderCards([routeCard])');
-    expect(blueprint).toContain(".replace(/^\\s*route\\s+overview\\s*:\\s*/i, '')");
     expect(blueprint).toContain('<b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route.');
     expect(blueprint).toContain('? `${routeBadges}<div class="s"><p><b>Start:</b>');
     expect(blueprint).not.toContain('does not publish a usable trail number or numbered switch');
@@ -386,6 +386,49 @@ describe('trail page map controls', () => {
     expect(html).toContain('.td2-content-column,.td2-sidebar-column{display:contents;}');
     expect(html).not.toContain('class="td2-lower-grid"');
     expect(html).not.toContain('id="offlineTestBtn"');
+  });
+
+
+  // "About this trail" prints the whole description at the top of the card.
+  // "Getting around" used to fall back to the first paragraph of that same
+  // description, so on 76 of the 109 Dolomites trails -- every route with no
+  // recorded trail numbers -- the visitor read the identical sentence twice,
+  // a few centimetres apart, inside one card.
+  //
+  // Asserted against the section rather than the wording: anything that reads
+  // the description back into this card reintroduces the repetition, however
+  // it is phrased.
+  test('getting around never reprints the description shown above it', () => {
+    const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
+    const start = blueprint.indexOf('Getting there + getting around');
+    expect(start).toBeGreaterThan(-1);
+    const end = blueprint.indexOf("(function sidebar()", start);
+    expect(end).toBeGreaterThan(start);
+    // Comments stripped, so the rule is read off the code and a comment that
+    // merely explains the fix cannot fail it.
+    const codeOnly = text => text.split('\n')
+      .filter(line => !/^\s*(?:\/\/|\/\*|\*)/.test(line))
+      .join('\n');
+    const section = codeOnly(blueprint.slice(start, end));
+
+    // The description is the duplicated material; this card must not read it.
+    expect(section).not.toContain('t.desc');
+    expect(section).not.toContain('routeOverview');
+
+    // What it says instead when nothing about the route is recorded: the
+    // honest note, on its own.
+    expect(section).toContain(': noRouteNumbers;');
+    expect(section).toContain('<b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route.');
+
+    // The sourced cases keep their real guidance.
+    expect(section).toContain('<b>Start:</b> ${esc(verifiedRouteGuidance.start)}');
+    expect(section).toContain('Begin the hike on trail <b>${esc(routeSwitches[0].from)}</b>');
+
+    // The built bundle is what the browser runs, so it has to carry the fix.
+    const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
+    const bundleStart = bundle.indexOf('Getting there + getting around');
+    expect(bundleStart).toBeGreaterThan(-1);
+    expect(codeOnly(bundle.slice(bundleStart, bundle.indexOf("(function sidebar()", bundleStart)))).not.toContain('t.desc');
   });
 
   test('card copy normalises long dash separators', () => {
