@@ -82,9 +82,11 @@ function renderOnThisRoute(t, table){
       `<span class="td2-onroute-kind">${escapeLiftPopupText(kind)}</span>${policy}${notes}${stamp}</li>`;
   }).join('');
 
+  // No heading of its own: #td2OnRouteCard supplies "On this route" above it,
+  // and a card that states its own title twice is the repetition this page
+  // was just cleared of.
   return `
     <div style="margin-bottom:14px;" id="td2OnRoute">
-      <div class="dp-inline-status" style="font-weight:700;color:var(--ink);margin-bottom:4px;">${trailProductIcon('hut')}<span>On this route</span></div>
       <ul class="td2-onroute">${items}</ul>
     </div>`;
 }
@@ -110,32 +112,58 @@ function hydrateOnThisRoute(t){
     .catch(() => {});
 }
 
+// The body of the "On this route" card: the places the walk passes, then the
+// water on it.
+//
+// The old version of this also printed a plain "Rifugi on the way" list under
+// the places list. The two listed the same huts at the same kilometres, so it
+// is gone: the places list says everything it said and adds the dog policy.
+//
+// An absence is not printed here. The dog-safety column already says whether
+// water is mapped on the route, and repeating it as "No drinking water
+// sources recorded" would put the same fact on the page twice.
 function renderTrailDetailContent(t){
-  const rifugi = Array.isArray(t.rifugi) ? t.rifugi : [];
   const water = Array.isArray(t.waterSources) ? t.waterSources : [];
+  const places = renderOnThisRoute(t, null);
 
-  const rifugiHtml = rifugi.length > 0
-    ? `<ul style="margin:0 0 14px;padding-left:18px;">${rifugi.map(r => `<li>Km ${r.km}, ${r.name}</li>`).join('')}</ul>`
-    : `<p style="margin:0 0 14px;">${window.t('trail.noRifugi')}</p>`;
-
+  // Water reads in the same list as the places above it. It used to be a
+  // bare bulleted list with its own inline styling inside the same card,
+  // which looked like two different pages stitched together.
+  //
+  // The label is printed whole: trail-trust owns the ", availability can
+  // change" qualifier and splitting it back off here is the kind of copy of
+  // another module's rule that has gone stale before.
   const waterHtml = water.length > 0
-    ? `<ul style="margin:0 0 8px;padding-left:18px;">${water.map(w => `<li>Km ${w.km}, ${trustedWaterLabel(t, w.label)}</li>`).join('')}</ul>` +
-      (t.curated === false ? '<p style="margin:0 0 14px;font-size:12px;color:var(--ink-soft);">Availability can change. Carry a backup supply.</p>' : '')
-    : `<p style="margin:0 0 14px;">${window.t('trail.noWater')}</p>`;
-
-  setTimeout(() => hydrateOnThisRoute(t), 0);
-
-  return `
-    ${renderOnThisRoute(t, null)}
-    <div style="margin-bottom:14px;">
-      <div class="dp-inline-status" style="font-weight:700;color:var(--ink);margin-bottom:4px;">${trailProductIcon('hut')}<span>${withoutLeadingSymbol(window.t('trail.rifugiHead'))}</span></div>
-      ${rifugiHtml}
-    </div>
-    <div style="margin-bottom:14px;">
+    ? `<div style="margin-bottom:4px;">
       <div class="dp-inline-status" style="font-weight:700;color:var(--ink);margin-bottom:4px;">${trailProductIcon('water')}<span>${withoutLeadingSymbol(window.t('trail.waterHead'))}</span></div>
-      ${waterHtml}
-    </div>
-  `;
+      <ul class="td2-onroute">${water.map(w =>
+        `<li><span class="td2-onroute-name">Km ${w.km}, ${trustedWaterLabel(t, w.label)}</span></li>`).join('')}</ul>`
+      // Only the part the per-point labels do not already carry. trail-trust
+      // appends ", availability can change" to every unverified water point,
+      // so the old footnote made the reader meet the same caveat twice in
+      // consecutive lines -- four times on a route with three water points.
+      + (t.curated === false ? '<p style="margin:0;font-size:12px;color:var(--ink-soft);">Carry a backup supply.</p>' : '')
+      + '</div>'
+    : '';
+
+  if(places) setTimeout(() => hydrateOnThisRoute(t), 0);
+  return `${places}${waterHtml}`;
+}
+
+// Writes the card and reveals it only when the route has something to name.
+// Falls back to the retired hidden node for a visitor whose browser still has
+// the previous trail.html, which has no card to write into.
+function paintOnRouteCard(t){
+  const body = document.getElementById('td2OnRouteBody');
+  const card = document.getElementById('td2OnRouteCard');
+  const markup = renderTrailDetailContent(t);
+  if(!body || !card){
+    const legacy = document.getElementById('trailDetailContent');
+    if(legacy) legacy.innerHTML = markup;
+    return;
+  }
+  body.innerHTML = markup;
+  card.hidden = !markup;
 }
 
 function distMeters(a, b){
@@ -1849,7 +1877,7 @@ function renderTrail(t){
     window.addEventListener('dolopaws-auth-changed', paintMatch);
   })();
 
-  document.getElementById('trailDetailContent').innerHTML = renderTrailDetailContent(t);
+  paintOnRouteCard(t);
 
   // "Good to know", curated insights (history, geology, best practice)
   // with cited sources, for trails that have them in trails-data.js.
