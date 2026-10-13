@@ -14,6 +14,23 @@ const BASE_AGENTS=Object.freeze(['logistics','regulatoryRanger','terrainPoi']);
 
 function timeValue(value){if(!value)return 0;if(typeof value.toMillis==='function')return value.toMillis();if(Number.isFinite(value.seconds))return value.seconds*1000;return new Date(value).valueOf()||0;}
 
+/**
+ * Whether a job is evidence from after the trail was sent back for another look.
+ *
+ * A reconsidered trail returns to the audit that rejected it with a fresh pass
+ * queued, and the fresh pass has not run yet. `latest()` returns the newest
+ * COMPLETED job, which at that moment is still the one that produced the
+ * rejection -- so the gate reopened on the old verdict and rejected the trail
+ * again before the new audit ever ran. Twenty trails went back on 13 October
+ * and all twenty were re-rejected in the next pass, for that reason alone.
+ *
+ * A trail must not advance on the evidence that sent it back.
+ */
+function afterReconsideration(trail,job){
+  if(!trail||!trail.reconsideredAt||!job)return true;
+  return timeValue(job.completedAt||job.createdAt)>=timeValue(trail.reconsideredAt);
+}
+
 function latest(jobs,candidateId,agentId,status='completed'){
   return jobs.filter(job=>job.candidateId===candidateId&&job.agentId===agentId&&job.status===status)
     .sort((a,b)=>timeValue(b.completedAt||b.createdAt)-timeValue(a.completedAt||a.createdAt))[0]||null;
@@ -283,6 +300,8 @@ async function advanceTrailOrchestration(store,options={}){
     }
     if(trail.state==='geometry-audit'){
       const job=latest(jobs,trail.candidateId,'cartographer'); if(!job)continue;
+      // Still waiting on the look it was sent back for.
+      if(!afterReconsideration(trail,job))continue;
       const result=await store.getArtifact(`trail-specialist-output-${job.id}`); if(!result)continue;
       trail.state='geometry-human-gate';trail.stage='route-identity-and-geometry';trail.currentJobId=job.id;trail.latestOutputRef=`firestore:trail-specialist-output-${job.id}`;
       trail.blockers=result.blockers||[];trail.gate={id:'geometry-approval',status:'awaiting-human',openedAt:at};trail.updatedAt=at;
@@ -294,6 +313,7 @@ async function advanceTrailOrchestration(store,options={}){
     if(trail.state==='evidence-research'){
       const base=BASE_AGENTS.map(agent=>latest(jobs,trail.candidateId,agent));
       if(base.some(job=>!job))continue;
+      if(base.some(job=>!afterReconsideration(trail,job)))continue;
       const outputs=[];for(const job of base){const result=await store.getArtifact(`trail-specialist-output-${job.id}`);if(result)outputs.push({agentId:job.agentId,jobId:job.id,result});}
       const candidates=resolutionCandidates(outputs);
       if(candidates.length){
@@ -347,4 +367,4 @@ async function advanceTrailOrchestration(store,options={}){
   return {advanced,restored,releasedGates,queued:queued.map(job=>job.id)};
 }
 
-module.exports={compactOrchestration,GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
+module.exports={ afterReconsideration,compactOrchestration,GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
