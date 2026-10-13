@@ -2,7 +2,8 @@
 
 const { fetchRelation, fetchRoutesNearPath } = require('../services/osm-relation-client');
 const { assessRouteConformance, routeLinesFor } = require('../services/route-conformance');
-const { rebuildLostTheRoute, withoutRebuildFaults, INCOMPLETE_REBUILD_NOTE } = require('./reconstruction-quality');
+const { rebuildLostTheRoute, withoutRebuildFaults, INCOMPLETE_REBUILD_NOTE,
+  openRouteNotABrokenLoop, OPEN_ROUTE_NOTE } = require('./reconstruction-quality');
 const { reconstructRelation } = require('../services/relation-geometry');
 const { reconstructComposite } = require('../services/composite-geometry');
 const { discoverRouteComposite } = require('./discover-route-composite');
@@ -171,9 +172,21 @@ async function runCartographer(candidate, dossier, options = {}){
     heldPath: candidate.path,
     officialKm: comparison.officialDistanceKm,
   });
-  const blockers = rebuild.incomplete
+  // A route nobody declared a loop, whose line is the full published distance
+  // and simply ends elsewhere, was never a loop. Faulting it for not closing
+  // holds it to a shape it never claimed.
+  const openRoute = openRouteNotABrokenLoop({
+    declaredShape: candidate.routeShape || null,
+    lineKm: reconstructed.assessment.distanceKm,
+    officialKm: comparison.officialDistanceKm,
+    closed: reconstructed.assessment.isClosed,
+  });
+  const afterRebuild = rebuild.incomplete
     ? [...withoutRebuildFaults(rawBlockers), INCOMPLETE_REBUILD_NOTE]
     : rawBlockers;
+  const blockers = openRoute.open
+    ? [...afterRebuild.filter(blocker => blocker !== 'not-closed-loop'), OPEN_ROUTE_NOTE]
+    : afterRebuild;
   const result = {
     contractVersion: VERSION,
     candidateId: candidate.id,
@@ -182,6 +195,7 @@ async function runCartographer(candidate, dossier, options = {}){
     generatedAt: options.at || new Date().toISOString(),
     reviewState: blockers.length ? 'blocked' : 'ready-for-human-review',
     rebuild,
+    openRoute,
     source: {
       provider: fetched.query ? 'OpenStreetMap via Overpass' : 'OpenStreetMap main API',
       url: candidate.source.url,
