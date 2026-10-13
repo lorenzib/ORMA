@@ -2,6 +2,7 @@
 
 const { fetchRelation, fetchRoutesNearPath } = require('../services/osm-relation-client');
 const { assessRouteConformance, routeLinesFor } = require('../services/route-conformance');
+const { rebuildLostTheRoute, withoutRebuildFaults, INCOMPLETE_REBUILD_NOTE } = require('./reconstruction-quality');
 const { reconstructRelation } = require('../services/relation-geometry');
 const { reconstructComposite } = require('../services/composite-geometry');
 const { discoverRouteComposite } = require('./discover-route-composite');
@@ -156,9 +157,23 @@ async function runCartographer(candidate, dossier, options = {}){
   const comparison = compareMetrics(candidate.geometryAssessment, reconstructed, dossier && dossier.referenceMetrics);
   const routeConformance = await measureRouteConformance(reconstructed.geometry.coordinates,
     reconstructed.relation, options);
-  const blockers = [...reconstructed.assessment.issues, ...((routeConformance && routeConformance.issues) || [])];
-  if(comparison.withinOfficialDistanceTolerance === false) blockers.push('official-distance-conflict');
+  const rawBlockers = [...reconstructed.assessment.issues, ...((routeConformance && routeConformance.issues) || [])];
+  if(comparison.withinOfficialDistanceTolerance === false) rawBlockers.push('official-distance-conflict');
   // Missing official distance stays unknown; contradiction still blocks.
+  //
+  // A rebuild that lost a material part of a line ORMA already holds, where the
+  // held line matches the distance the authority publishes, has failed. Its
+  // connectivity and its length describe the rebuild, not the route, so they
+  // are set aside and the failure is recorded as the audit's own. Everything
+  // else it found still stands.
+  const rebuild = rebuildLostTheRoute({
+    rebuiltKm: reconstructed.assessment.distanceKm,
+    heldPath: candidate.path,
+    officialKm: comparison.officialDistanceKm,
+  });
+  const blockers = rebuild.incomplete
+    ? [...withoutRebuildFaults(rawBlockers), INCOMPLETE_REBUILD_NOTE]
+    : rawBlockers;
   const result = {
     contractVersion: VERSION,
     candidateId: candidate.id,
@@ -166,6 +181,7 @@ async function runCartographer(candidate, dossier, options = {}){
     action: 'reconstruct-full-osm-relation',
     generatedAt: options.at || new Date().toISOString(),
     reviewState: blockers.length ? 'blocked' : 'ready-for-human-review',
+    rebuild,
     source: {
       provider: fetched.query ? 'OpenStreetMap via Overpass' : 'OpenStreetMap main API',
       url: candidate.source.url,
