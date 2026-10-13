@@ -38,6 +38,16 @@ async function main(options = {}){
   }
   console.log('');
   console.log(`[yield] Route guidance, resolved in the same pool as the rest: ${JSON.stringify(result.guidanceStates)}`);
+  // Per claim, because a trail needs all four and the aggregate cannot say
+  // whether one rule is holding everything or all four are merely hard.
+  console.log('[yield] Each of the four, and how often it is answered:');
+  for(const claim of result.guidanceByClaim||[]){
+    const share=claim.total?Math.round((claim.supported/claim.total)*100):0;
+    console.log(`[yield]   ${String(claim.claimId).padEnd(22)} ${String(claim.supported).padStart(3)}/${String(claim.total).padEnd(3)} answered (${share}%)`
+      +` · ${claim.sourceExhausted} exhausted · ${claim.contradicted} contradicted · ${claim.searches} search(es)`);
+  }
+  console.log(`[yield] ${(result.trailsWithAllFourDirections||[]).length} of ${result.trailsWithAnyDirection} trail(s) have all four settled`
+    +`${(result.trailsWithAllFourDirections||[]).length?`: ${result.trailsWithAllFourDirections.join(', ')}`:''}`);
   console.log(`[yield] ${result.doomedTrails} trail(s) cannot be verified because their directions could not be established,`);
   console.log(`[yield] and ${result.wastedOnDoomed} search(es) went on optional detail for those trails before anyone knew.`);
   console.log('[yield] Route guidance keeps its full ladder either way. Nothing was changed.');
