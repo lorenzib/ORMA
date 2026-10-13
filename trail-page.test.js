@@ -343,8 +343,9 @@ describe('trail page map controls', () => {
     const story = document.querySelector('.td2-story');
     const contentColumn = document.querySelector('.td2-content-column');
     const sidebarColumn = document.querySelector('.td2-sidebar-column');
+    // What the walk is, then what is on it, then what other people said.
     expect(Array.from(story.children).map(node => node.id)).toEqual([
-      'td2AboutCard', 'td2PhotosCard', 'td2ReviewsCard'
+      'td2AboutCard', 'td2OnRouteCard', 'td2PhotosCard', 'td2ReviewsCard'
     ]);
     expect(story.parentElement).toBe(contentColumn);
     expect(story.previousElementSibling.classList.contains('td2-map-stack')).toBe(true);
@@ -429,6 +430,48 @@ describe('trail page map controls', () => {
     const bundleStart = bundle.indexOf('Getting there + getting around');
     expect(bundleStart).toBeGreaterThan(-1);
     expect(codeOnly(bundle.slice(bundleStart, bundle.indexOf("(function sidebar()", bundleStart)))).not.toContain('t.desc');
+  });
+
+
+  // The rifugi, the lifts and the water points were rendered into
+  // #trailDetailContent, which carries the `hidden` attribute. From 15 July
+  // until this change every visitor got the markup and none of them could see
+  // it: a walk past three rifugi and a stream named none of them, and only
+  // dots on the map said otherwise. 130 of the 162 trails have something to
+  // name here.
+  test('what the route passes is in a card a visitor can see', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const trailJs = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+
+    // A card of its own, hidden until something is written into it.
+    expect(html).toContain('<div class="td2-card td2-section" id="td2OnRouteCard" hidden>');
+    expect(html).toContain('<div id="td2OnRouteBody"></div>');
+
+    // Written to the visible card, never again to the retired hidden node.
+    expect(trailJs).toContain('paintOnRouteCard(t);');
+    expect(trailJs).not.toContain("document.getElementById('trailDetailContent').innerHTML = renderTrailDetailContent(t)");
+    expect(trailJs).toContain('card.hidden = !markup;');
+  });
+
+  test('the on-route card states each thing once', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const trailJs = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+
+    // The card's own kick is the heading; the list inside must not repeat it.
+    expect(html).toContain('<div class="td2-kick" style="margin-bottom:14px;">On this route</div>');
+    expect(trailJs).not.toContain("<span>On this route</span>");
+
+    // The old "Rifugi on the way" list named the same huts at the same
+    // kilometres as the places list directly above it.
+    expect(trailJs).not.toContain("window.t('trail.rifugiHead')");
+
+    // trail-trust already appends ", availability can change" to every
+    // unverified water point, so the footnote must not say it again.
+    expect(trailJs).not.toContain('Availability can change. Carry a backup supply.');
+    expect(trailJs).toContain('Carry a backup supply.');
+
+    // Water reads in the same list as the places above it.
+    expect(trailJs).toContain('<ul class="td2-onroute">${water.map(w =>');
   });
 
   test('card copy normalises long dash separators', () => {
