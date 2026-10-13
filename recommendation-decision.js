@@ -196,21 +196,47 @@
       if(!fallback) return null;
       return tr(`recommendation.fits.${entry.code}`, fallback, { ...extra, ...(entry.vars || {}) });
     };
-    const fine = [];
-    const fits = [];
+    /**
+     * What the card leads with, when it can only show a few.
+     *
+     * The engine emits positives in calculation order and every one of them
+     * costs nothing, so that order ranks nothing -- taking the first four was
+     * taking an arbitrary four. These are not equally worth the space:
+     * VERIFICATION.md states the rule this follows, that "a long or hot route
+     * with no mapped water is the single interaction that most often harms
+     * dogs". Heat and water are the two an owner most needs to see confirmed,
+     * and shade is the heat half of that pair, so they go first.
+     *
+     * Then what the owner actually asked for -- how far, how long, how steep,
+     * what underfoot. Everything else keeps the engine's order behind them,
+     * which preserves the existing principle that absences rank below
+     * presences without restating it.
+     *
+     * Ordering only, never selection: nothing is added or dropped here, and
+     * ties keep the engine's own order.
+     */
+    const FIT_TIERS = [
+      ['trail.water.', 'conditions.heat.', 'trail.heat.', 'trail.shade.'],
+      ['trail.distance.', 'trail.duration.', 'trail.ascent.', 'trail.terrain.'],
+    ];
+    const foldable = [];
     const rows = [];
     for(const entry of breakdownFactors){
       const source = allFactors.find(factor => factor.code === entry.code) || entry;
       const phrase = entry.kind === 'positive' && entry.impact >= 0 ? finePhrase(source) : null;
       if(phrase){
-        fine.push(phrase);
-        // Same positive, same order, as a sentence. Kept in step by being
-        // filled in the same pass: a positive that has a phrase and no
-        // sentence would silently vanish from the card that lists sentences.
-        fits.push(fitSentence(source) || phrase);
+        // Phrase and sentence are taken together, so a positive that has one
+        // and not the other cannot silently vanish from whichever list renders.
+        foldable.push({ code:entry.code, phrase, sentence:fitSentence(source) || phrase });
       }
       else rows.push(entry);
     }
+    // fine keeps the engine's order, because fineLine is a prose sentence on
+    // the trail page and reordering it would rewrite that page's wording.
+    // fits is the card's list and is ordered for what the card has to do:
+    // show the few that matter when it cannot show them all.
+    const fine = foldable.map(item => item.phrase);
+    const fits = ordered(foldable, FIT_TIERS, FIT_TIERS.length).map(item => item.sentence);
     const joined = fine.length <= 1 ? fine.join('') : tr('recommendation.list.and', '{first} and {last}', {
       first:fine.slice(0, -1).join(', '),
       last:fine[fine.length - 1],
