@@ -11,7 +11,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -19,6 +19,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/dispatch-unanswered-gates.js'),
     read(root,'backoffice/workflows/adjudicate-gate-blockers.js'),read(root,'trail-verify-desk.js'),
     read(root,'backoffice/workflows/scout-area-closures.js'),
+    read(root,'backoffice/cli/record-worker-health.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -102,6 +103,24 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const setupNodeCount=(workflowText.match(/actions\/setup-node@v7/g)||[]).length;const node24Count=(workflowText.match(/node-version:\s*24/g)||[]).length;
   add('supported-ci-runtime',setupNodeCount>0&&node24Count===setupNodeCount&&!workflowText.includes('node-version: 20')&&!workflowText.match(/actions\/(?:checkout|setup-node|setup-java|cache)@v4/)&&!workflowText.includes('google-github-actions/auth@v2'),'All Node workflows use Node 24 and supported Node-24 action runtimes');
   add('private-hosting-boundary',hosting.includes('must never contain files')&&hosting.includes('`backoffice-data/`, `data/`')&&builder.includes("file.endsWith('.json')")&&builder.includes("file.startsWith(`backoffice-data${path.sep}`)")&&builder.includes("file.startsWith(`data${path.sep}`)"),'The Hosting allowlist excludes internal JSON and data directories');
+  // The alarm is the one thing that cannot be allowed to fail quietly, since
+  // its whole job is to prevent quiet failure. Dropping `issues: write`,
+  // renaming the step id or losing the step would each disable it without
+  // failing a run, which is exactly how the worker went down unnoticed on 13
+  // October.
+  add('a-stopped-worker-says-so',
+    publicationWorkflow.includes('issues: write')
+    &&publicationWorkflow.includes('id: worker_health')
+    &&publicationWorkflow.includes('Say so when the worker has stopped')
+    &&publicationWorkflow.includes('steps.worker_health.outputs.consecutive_failures')
+    &&publicationWorkflow.includes('steps.worker_health.outcome')
+    &&publicationWorkflow.includes('gh issue create')
+    &&publicationWorkflow.includes('gh issue close')
+    &&healthCli.includes('GITHUB_OUTPUT')
+    &&healthCli.includes('lastFailure')
+    &&standard.includes('A worker that has stopped says so'),
+    'A worker that fails twice in a row, or that cannot write its own health receipt, opens a GitHub issue naming the failed stage and the last successful run, and the next successful run closes it; no dashboard has to be open for the operator to learn that nothing is being verified');
+
   const failures=checks.filter(item=>item.status==='fail');
   return {contractVersion:'1.0.0',generatedAt:options.at||new Date().toISOString(),status:failures.length?'failed':'pass',summary:{passed:checks.length-failures.length,failed:failures.length,total:checks.length},checks,manualChecks:[
     {id:'github-actions-pr-creation',instruction:'Repository Settings → Actions → General must allow GitHub Actions to create pull requests before approved trail publication can recover.'},

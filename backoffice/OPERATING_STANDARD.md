@@ -723,6 +723,27 @@ description that mentions cattle becomes a claim about grazing on the day
 someone walks. What a claim varies with travels with it to the editorial
 handoff, so the copy may say which months without any of it being inferred.
 
+## A worker that has stopped says so
+
+The queue worker records a health receipt on every run, including the number of
+runs that have failed in a row. That count existed from the first run and was
+read only by the dashboard, which nobody opens while they believe the pipeline
+is running. On 13 October the worker stopped at 16:00 on an oversized Firestore
+document, the schedule went on firing and failing every three hours, and it was
+found hours later by being asked about rather than by saying so.
+
+The worker therefore raises a GitHub issue, `ORMA worker has stopped`, carrying
+the failure count, the last successful run and the stage that failed. It is
+opened on the second consecutive failure, so a single blip stays quiet, and on
+the first failure that prevents the health receipt from being written at all,
+because that case has no counter to wait for. It is commented on while the
+failure persists, and the next successful run closes it.
+
+One issue, found by its own label rather than by title search, so a search
+index that has not caught up cannot open a second one every three hours. The
+issue is the notification: no dashboard has to be open and nothing has to be
+asked for the operator to learn that nothing is being verified.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:

@@ -46,6 +46,33 @@ function workInput(env){
   };
 }
 
+// Out to the workflow, so something can act on a worker that has stopped.
+// The count was recorded from the very first run and read only by the
+// dashboard, which nobody opens while they believe the pipeline is running: it
+// died at 16:00 on 13 October on an oversized Firestore document and was found
+// hours later by being asked about, not by saying so.
+//
+// Single-line values only, so none of them can break out of the output file:
+// a status and a count are enumerated, a timestamp is ISO, and the stage is
+// already capped at 160 characters by the receipt that records it.
+function healthOutputs(health={}){
+  return {
+    health_status:String(health.status||''),
+    consecutive_failures:String(Number(health.consecutiveFailures||0)),
+    last_successful_at:String(health.lastSuccessfulAt||''),
+    // `lastFailure`, not `failure`: the receipt names it that way, and reading
+    // the wrong key reported every stopped worker as stage "unknown".
+    failure_stage:String(health.lastFailure?.stage||'').replace(/[\r\n]+/g,' ').trim(),
+  };
+}
+
+async function announceHealth(health,env=process.env){
+  if(!env.GITHUB_OUTPUT) return null;
+  const outputs=healthOutputs(health);
+  await fs.appendFile(env.GITHUB_OUTPUT,`${Object.entries(outputs).map(([key,value])=>`${key}=${value}`).join('\n')}\n`);
+  return outputs;
+}
+
 async function main(options={}){
   const env=options.env||process.env;
   const store=options.store||new FirestoreBackofficeStore();
@@ -65,9 +92,10 @@ async function main(options={}){
     },{at});
   await store.setArtifact('worker-health',health,{runId:health.runId,status:health.status});
   console.log(`[orma-worker-health] ${health.status} · run ${health.runId||'manual'} · ${health.workflowRunUrl||'no run URL'}`);
+  await announceHealth(health,env);
   return health;
 }
 
 if(require.main===module)main().catch(error=>{console.error(`[orma-worker-health] ${error.stack||error.message}`);process.exitCode=1;});
 
-module.exports={failureMessage,main,runInput,workInput,workflowRunUrl};
+module.exports={announceHealth,failureMessage,healthOutputs,main,runInput,workInput,workflowRunUrl};
