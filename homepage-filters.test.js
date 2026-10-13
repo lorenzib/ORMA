@@ -694,6 +694,43 @@ describe('returning homepage region + valley filters', () => {
     expect(fitItems).toContain('The 3.6 km distance is comfortable.');
   });
 
+  test('the reasons stop at four, so the cautions are not buried', async () => {
+    // Seven reasons against two cautions is lopsided, and on a card about
+    // whether a walk suits a dog the cautions are the half worth reading.
+    const positives = [
+      { code:'trail.terrain.within-tolerance', message:'Terrain is fine.' },
+      { code:'trail.distance.within-range', message:'Distance is within range.', vars:{ distance:'3.6' } },
+      { code:'trail.ascent.within-range', message:'Ascent is within range.', vars:{ ascent:'39' } },
+      { code:'trail.exposure.none-known', message:'No exposed section.' },
+      { code:'trail.surface-hazards.none-known', message:'No recorded surface hazards.' },
+      { code:'trail.dog-access.leash', message:'Dogs allowed on a leash.' },
+      { code:'conditions.heat.low', message:'Temperatures are low today.' },
+    ];
+    const context = loadHomepageContext(sampleTrails);
+    context.recommendTrail.mockImplementation(() => ({
+      scoringVersion:'1.6.0', score:86, category:'recommended', confidence:'high',
+      positiveReasons:positives,
+      factors:positives.map(entry => ({ ...entry, impact:0 })),
+      cautions:[{ message:'No confirmed water on the route, so carry it all.' }],
+      hardStops:[], unknowns:[],
+    }));
+    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" };', context);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+
+    const panel = document.querySelector('.li-answer-explanation');
+    const columns = [...panel.querySelectorAll('div')].filter(div => div.querySelector('ul'));
+    expect(columns[0].querySelectorAll('li')).toHaveLength(4);
+    // The ones kept are the first four the engine emitted, in its order.
+    expect([...columns[0].querySelectorAll('li')].map(item => item.textContent)).toEqual([
+      'The terrain is manageable.',
+      'The 3.6 km distance is comfortable.',
+      'The 39 m climb is gentle.',
+      'No exposed sections are recorded.',
+    ]);
+    // Fewer than four is left alone, rather than padded from somewhere else.
+    expect(columns[1].querySelectorAll('li')).toHaveLength(1);
+  });
+
   test('a future date is reflected in the recommendation instead of being labelled today', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liSetWalkDate(liDateOffsetIso(1));', context);
