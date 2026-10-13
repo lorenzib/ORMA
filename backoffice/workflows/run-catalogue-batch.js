@@ -45,6 +45,11 @@ function candidateFromProductionTrail(trail, composites){
     geometryAssessment: {
       distanceKm: Number.isFinite(trail.distance) ? trail.distance : null,
     },
+    // The line ORMA already holds, so the audit can tell a trail that is wrong
+    // from a rebuild that came up short. Without it the cartographer has only
+    // the relation it just rebuilt and nothing to weigh it against, and a
+    // relation it cannot stitch whole reads as a trail with a broken route.
+    path: trail.path,
     // A declared route shape is a verified fact about the trail, and the
     // geometry check is the thing that needs it. Dropping it here is what let a
     // declared out-and-back keep failing for not closing.
