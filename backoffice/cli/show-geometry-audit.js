@@ -22,7 +22,11 @@ function parseArgs(argv){
 
 async function main(options = {}){
   const { trail: trailId } = parseArgs(options.argv || process.argv.slice(2));
-  if(!trailId){ console.error('[geometry] --trail <id> is required.'); process.exitCode = 1; return null; }
+  // Thrown rather than setting process.exitCode, because this is called from a
+  // test as well as from a shell. Setting it here marked the whole jest process
+  // as failed after every test had passed: 3523 passing and exit 1, which reads
+  // exactly like a crash and took a CI re-run to tell apart from one.
+  if(!trailId) throw new Error('--trail <id> is required.');
   const store = options.store || new FirestoreBackofficeStore();
 
   const orchestration = await store.getArtifact('trail-orchestration');
@@ -51,6 +55,10 @@ async function main(options = {}){
   return audit;
 }
 
-if(require.main === module) main().catch(error => { console.error(`[geometry] ${error.stack || error.message}`); process.exitCode = 1; });
+// Only the shell entry point decides the process's fate.
+if(require.main === module) main().catch(error => {
+  console.error(`[geometry] ${error.message}`);
+  process.exitCode = 1;
+});
 
 module.exports = { parseArgs, main };

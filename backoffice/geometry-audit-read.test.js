@@ -77,7 +77,11 @@ describe('the reader end to end',()=>{
     expect(await main({argv:['--trail','nope'],store:store({'trail-orchestration':{trails:[]}})})).toBeNull();
   });
 
-  test('a missing --trail is refused',async()=>{
-    expect(await main({argv:[],store:store({})})).toBeNull();
+  // It must refuse without marking the calling process as failed: setting
+  // process.exitCode here reported 3523 passing tests and then exit 1.
+  test('a missing --trail is refused without failing the caller',async()=>{
+    const before=process.exitCode;
+    await expect(main({argv:[],store:store({})})).rejects.toThrow('--trail <id> is required');
+    expect(process.exitCode).toBe(before);
   });
 });
