@@ -236,7 +236,27 @@
     // fits is the card's list and is ordered for what the card has to do:
     // show the few that matter when it cannot show them all.
     const fine = foldable.map(item => item.phrase);
-    const fits = ordered(foldable, FIT_TIERS, FIT_TIERS.length).map(item => item.sentence);
+    /**
+     * The heat-and-water cluster leads, but it does not take the whole lead.
+     *
+     * On a route that is cool, shaded and watered, all three are positives and
+     * they filled every slot the card shows -- so a reader learned three ways
+     * of saying the walk will not overheat the dog and nothing about how far
+     * or how steep it is. Two makes the point; the third says it again.
+     *
+     * The surplus is demoted, never dropped, so the card still carries every
+     * positive and the trail page's full line is unchanged. This stays an
+     * ordering, which is the property the tests hold it to.
+     */
+    const FIT_CLUSTER_LEAD = 2;
+    const inCluster = item => FIT_TIERS[0].some(prefix => item.code.startsWith(prefix));
+    const ranked = ordered(foldable, FIT_TIERS, FIT_TIERS.length);
+    const cluster = ranked.filter(inCluster);
+    const fits = [
+      ...cluster.slice(0, FIT_CLUSTER_LEAD),
+      ...ranked.filter(item => !inCluster(item)),
+      ...cluster.slice(FIT_CLUSTER_LEAD),
+    ].map(item => item.sentence);
     const joined = fine.length <= 1 ? fine.join('') : tr('recommendation.list.and', '{first} and {last}', {
       first:fine.slice(0, -1).join(', '),
       last:fine[fine.length - 1],
