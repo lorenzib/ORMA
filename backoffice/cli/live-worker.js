@@ -18,8 +18,34 @@ function positiveInteger(value,fallback){
 // before the exit code could be set.
 const REVIEW_LANES = Object.freeze(['reviews', 'routeReviews', 'routeAdmissions', 'gateDispatches', 'dossierReviews', 'publications']);
 
+/**
+ * A decision that could not be applied because the gate it was about had
+ * already been decided.
+ *
+ * The evidence policy runs three times in a pass -- before the apply step,
+ * after advancement opens a gate, and again at the end -- so that a gate
+ * opening mid-pass is settled in the same pass rather than waiting three hours.
+ * One consequence is that a gate can be decided and applied between two of
+ * those calls, leaving an earlier decision with nothing left to apply to.
+ *
+ * That is the automation agreeing with itself, not a failure. The work
+ * succeeded and the gate is decided either way; failing the whole run for it
+ * reported `10 jobs completed` and then exited 1. A real apply failure -- an
+ * unwaivable blocker still standing, orchestration not seeded -- still fails.
+ *
+ * This rule existed when a dossier review was the CEO's own decision, where a
+ * decision that could not be applied genuinely needed a person. Since #726 they
+ * are the policy's, and this case is routine.
+ */
+const DECISION_ALREADY_MADE = /no longer awaiting a decision/i;
+
+function benignBlock(item = {}){
+  return DECISION_ALREADY_MADE.test(String(item.error || ''));
+}
+
 function blockedLanes(result = {}){
-  return REVIEW_LANES.filter(lane => (result[lane] || []).some(item => item.status === 'blocked'))
+  return REVIEW_LANES.filter(lane => (result[lane] || [])
+      .some(item => item.status === 'blocked' && !benignBlock(item)))
     .concat((result.communityHazards?.vetted || [])
       .some(item => item.status === 'vetting-failed' && !providerOutage(item.error)) ? ['communityHazards'] : []);
 }
@@ -100,4 +126,5 @@ async function main(){
 
 if(require.main === module) main().catch(error => { console.error(`[orma-live-worker] ${error.stack || error.message}`); process.exitCode = 1; });
 
-module.exports = { main,positiveInteger,blockedLanes,reportWork,workerOptions,REVIEW_LANES };
+module.exports = {
+  DECISION_ALREADY_MADE, benignBlock, main,positiveInteger,blockedLanes,reportWork,workerOptions,REVIEW_LANES };
