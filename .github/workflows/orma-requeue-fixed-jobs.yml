@@ -21,6 +21,10 @@ on:
         description: 'Error to release (blank lists every blocked error and changes nothing)'
         required: false
         default: ''
+      reconsider_rejected:
+        description: 'Instead of releasing jobs, look again at trails REJECTED for this reason (blank lists them)'
+        required: false
+        default: ''
       apply:
         description: 'Actually release them. Leave unchecked for a dry run.'
         type: boolean
@@ -79,3 +83,18 @@ jobs:
             echo "[requeue] Dry run. Tick 'apply' to release them."
           fi
           npm run backoffice:requeue-fixed -- "${args[@]}"
+
+      # A rejected trail is terminal and keeps the verdict that rejected it, so
+      # a rule change reaches every trail still moving and none of the ones it
+      # would have saved. Same discipline as the requeue above: the reason is
+      # named, the pass is bounded, and nothing is written without 'apply'.
+      - name: Look again at rejected trails
+        if: ${{ inputs.reconsider_rejected != '' }}
+        env:
+          REASON: ${{ inputs.reconsider_rejected }}
+          APPLY: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          args=(--reason "$REASON")
+          [ "$APPLY" = "true" ] && args+=(--apply)
+          npm run backoffice:reconsider -- "${args[@]}"
