@@ -720,12 +720,13 @@ describe('returning homepage region + valley filters', () => {
     const panel = document.querySelector('.li-answer-explanation');
     const columns = [...panel.querySelectorAll('div')].filter(div => div.querySelector('ul'));
     expect(columns[0].querySelectorAll('li')).toHaveLength(4);
-    // The ones kept are the first four the engine emitted, in its order.
+    // Heat leads, then what the owner asked for. This fixture has no water
+    // positive, so the heat half of the pair is what comes first.
     expect([...columns[0].querySelectorAll('li')].map(item => item.textContent)).toEqual([
+      'Today is cool enough.',
       'The terrain is manageable.',
       'The 3.6 km distance is comfortable.',
       'The 39 m climb is gentle.',
-      'No exposed sections are recorded.',
     ]);
     // Fewer than four is left alone, rather than padded from somewhere else.
     expect(columns[1].querySelectorAll('li')).toHaveLength(1);

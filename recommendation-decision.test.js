@@ -262,3 +262,65 @@ describe('the positives as sentences, for a card that lists them', () => {
     expect(view.fineLine).toBe('Fine for Teo: the terrain, the 3.6 km distance and the 39 m climb.');
   });
 });
+
+describe('what the card leads with when it cannot show them all', () => {
+  // The card shows four. The engine emits positives in calculation order and
+  // every one costs nothing, so that order ranks nothing and the first four
+  // were an arbitrary four. VERIFICATION.md states the rule this follows:
+  // "a long or hot route with no mapped water is the single interaction that
+  // most often harms dogs".
+  const mixed = [
+    { code:'trail.dog-access.leash', message:'Leashed.', impact:0 },
+    { code:'trail.livestock.none', message:'No livestock.', impact:0 },
+    { code:'trail.distance.within-range', message:'Distance.', impact:0, vars:{ distance:'3.6' } },
+    { code:'trail.water.reviewed', message:'Water.', impact:0 },
+    { code:'trail.exposure.none-known', message:'No exposure.', impact:0 },
+    { code:'conditions.heat.low', message:'Cool.', impact:0 },
+    { code:'trail.terrain.within-tolerance', message:'Terrain.', impact:0 },
+  ];
+  const withPositives = factors => ({
+    ...recommendation, factors,
+    positiveReasons:factors.map(factor => ({ code:factor.code, message:factor.message })),
+  });
+
+  test('water and heat come first, then what the owner asked for',()=>{
+    const view = decision.present(withPositives(mixed), { dogName:'Teo' });
+    expect(view.fits.slice(0, 4)).toEqual([
+      'There is water on the route.',
+      'Today is cool enough.',
+      'The 3.6 km distance is comfortable.',
+      'The terrain is manageable.',
+    ]);
+  });
+
+  test('it orders, it never selects',()=>{
+    // Nothing is added or dropped by ranking; the card does its own capping.
+    const view = decision.present(withPositives(mixed), { dogName:'Teo' });
+    expect([...view.fits].sort()).toEqual([
+      'Dogs are allowed on a leash.',
+      'No exposed sections are recorded.',
+      'No livestock is recorded.',
+      'The 3.6 km distance is comfortable.',
+      'The terrain is manageable.',
+      'There is water on the route.',
+      'Today is cool enough.',
+    ]);
+  });
+
+  test('ties keep the engine\'s own order',()=>{
+    // Two in the same tier are not reshuffled against each other.
+    const view = decision.present(withPositives([
+      { code:'trail.shade.good', message:'Shade.', impact:0 },
+      { code:'trail.water.reviewed', message:'Water.', impact:0 },
+    ]), { dogName:'Teo' });
+    expect(view.fits).toEqual(['There is good shade.', 'There is water on the route.']);
+  });
+
+  test('fine keeps the engine order, so the trail page sentence is unchanged',()=>{
+    // fits is ordered for a card that shows four; fineLine is prose on the
+    // trail page, and reordering it would rewrite that page's wording.
+    const view = decision.present(withPositives(mixed), { dogName:'Teo' });
+    expect(view.fine[0]).toBe('dog access on a leash');
+    expect(view.fineLine.startsWith('Fine for Teo: dog access on a leash,')).toBe(true);
+  });
+});
