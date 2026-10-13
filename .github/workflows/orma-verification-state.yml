@@ -67,6 +67,15 @@ jobs:
       - name: Report which trails are closest to verified
         run: npm run backoffice:closest
 
+      # Why one named trail is not moving, which the stage reports cannot say:
+      # a trail held at evidence-resolution by a base agent with no completed
+      # job has no blocker and nothing queued, so it reads as ready.
+      - name: Read why one trail is not moving
+        if: ${{ inputs.trail != '' }}
+        env:
+          TRAIL: ${{ inputs.trail }}
+        run: npm run backoffice:trail-progress -- --trail="$TRAIL"
+
       - name: Report why the job queue is not moving
         run: npm run backoffice:job-queue
       - name: Report what each waiting gate is asking
