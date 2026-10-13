@@ -652,6 +652,48 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelector('.li-row--answer').textContent).not.toContain('86%');
   });
 
+  test('both halves of the answer card are written and set the same way', async () => {
+    // "Why it fits Teo" used the adapter's fold-line: the positives joined
+    // into one sentence. With seven of them that is a verbless list sitting
+    // beside two plain sentences, which is what made the card read as two
+    // voices. It also rendered larger, because the paragraph carried
+    // `li-answer-fine` -- a class with no rule in any stylesheet -- while the
+    // column beside it is set to 11px.
+    const context = loadHomepageContext(sampleTrails);
+    context.recommendTrail.mockImplementation(() => ({
+      scoringVersion:'1.6.0', score:86, category:'recommended', confidence:'high',
+      positiveReasons:[
+        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.' },
+        { code:'trail.distance.within-range', message:'Distance is within range.' },
+        { code:'trail.exposure.none-known', message:'No exposed section.' },
+      ],
+      factors:[
+        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
+        { code:'trail.distance.within-range', message:'Distance is within range.', impact:0, vars:{ distance:'3.6' } },
+        { code:'trail.exposure.none-known', message:'No exposed section.', impact:0 },
+      ],
+      cautions:[{ message:'No confirmed water on the route, so carry it all.' }],
+      hardStops:[], unknowns:[],
+    }));
+    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" };', context);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+
+    const panel = document.querySelector('.li-answer-explanation');
+    expect(panel.textContent).toContain('Why it fits Teo');
+    expect(panel.textContent).toContain('What to know today');
+    // The class that was never styled is gone, so neither column can inherit a
+    // different size from the other.
+    expect(panel.querySelector('.li-answer-fine')).toBeNull();
+    // Both columns are lists, so one CSS rule sets both.
+    const columns = [...panel.querySelectorAll('div')].filter(div => div.querySelector('ul'));
+    expect(columns).toHaveLength(2);
+    // And every reason is a whole sentence, like the column beside it.
+    const fitItems = [...columns[0].querySelectorAll('li')].map(item => item.textContent);
+    expect(fitItems.length).toBeGreaterThan(0);
+    expect(fitItems.every(text => /^[A-Z].*\.$/.test(text.trim()))).toBe(true);
+    expect(fitItems).toContain('The 3.6 km distance is comfortable.');
+  });
+
   test('a future date is reflected in the recommendation instead of being labelled today', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liSetWalkDate(liDateOffsetIso(1));', context);

@@ -3606,18 +3606,28 @@ function liRecommendationExplanationHtml(trail, profile, open){
   const standalone = (view.breakdownRows || [])
     .filter(row => row && row.kind === 'positive' && row.message)
     .map(row => row.message);
-  const bullets = (standalone.length ? standalone : view.fine.length ? [] : view.reasons).slice(0, 2);
-  // The adapter's own line is "Fine for Eddie: the terrain and the 39 m
-  // climb." Under a heading that already says "Why it fits Eddie" the name
-  // lands twice in eleven words, so the card keeps the phrases and lets the
-  // heading supply the subject.
-  const fineList = view.fine.length <= 1 ? view.fine.join('') : liT('recommendation.list.and', '{first} and {last}', {
-    first:view.fine.slice(0, -1).join(', '),
-    last:view.fine[view.fine.length - 1],
-  });
-  const fineSentence = fineList ? `${fineList.charAt(0).toUpperCase()}${fineList.slice(1)}.` : '';
+  const bullets = (standalone.length ? standalone : view.fits.length ? [] : view.reasons).slice(0, 2);
+  // Both halves of this card say the same kind of thing in the same way.
+  //
+  // "What to know today" has always been short sentences in a list. This side
+  // used the adapter's fold-line instead -- the phrases joined into one
+  // sentence with the "Fine for Eddie:" prefix dropped, because the heading
+  // already names the dog. With seven positives that is a seven-item fragment
+  // with no verb in it, set beside two plain sentences, and it reads as two
+  // voices on one card.
+  //
+  // It also *looked* different, for a reason no test could see: the paragraph
+  // carried `li-answer-fine`, a class with no rule anywhere in the stylesheet,
+  // so it inherited the card's base size while the list beside it is set to
+  // 11px. Listing these fixes the size as a side effect, because they now use
+  // the same rule.
+  //
+  // Every positive, as the joined line carried every positive. Only how it is
+  // written and set has changed; dropping reasons would be a second change
+  // nobody asked for, and the list stays scannable at seven.
+  const fitList = view.fits;
   const fitBody = [
-    fineSentence ? `<p class="li-answer-fine">${liPersonalisationText(fineSentence)}</p>` : '',
+    fitList.length ? `<ul>${items(fitList)}</ul>` : '',
     bullets.length ? `<ul>${items(bullets)}</ul>` : '',
   ].join('');
   const fit = fitBody
