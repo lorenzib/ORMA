@@ -95,7 +95,8 @@
     "backoffice:route-source-backlog": "node backoffice/cli/report-route-source-backlog.js",
     "backoffice:scout-route-sources": "node backoffice/cli/scout-route-sources.js",
     "backoffice:resolution-yield": "node backoffice/cli/report-resolution-yield.js",
-    "backoffice:geometry-audit": "node backoffice/cli/show-geometry-audit.js"
+    "backoffice:geometry-audit": "node backoffice/cli/show-geometry-audit.js",
+    "backoffice:reconsider": "node backoffice/cli/reconsider-rejected-trails.js"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.6.8",
