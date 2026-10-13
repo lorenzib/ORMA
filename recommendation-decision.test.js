@@ -307,6 +307,42 @@ describe('what the card leads with when it cannot show them all', () => {
     ]);
   });
 
+  test('the heat and water cluster takes two of the lead, not all of it',()=>{
+    // A cool, shaded, watered route has three cluster positives, and they
+    // filled every slot the card shows -- three ways of saying the walk will
+    // not overheat the dog, and nothing about how far or how steep it is.
+    const cool = [
+      { code:'trail.water.reviewed', message:'Water.', impact:0 },
+      { code:'trail.shade.good', message:'Shade.', impact:0 },
+      { code:'conditions.heat.low', message:'Cool.', impact:0 },
+      { code:'trail.distance.within-range', message:'Distance.', impact:0, vars:{ distance:'3.6' } },
+      { code:'trail.terrain.within-tolerance', message:'Terrain.', impact:0 },
+    ];
+    const view = decision.present(withPositives(cool), { dogName:'Teo' });
+    expect(view.fits.slice(0, 4)).toEqual([
+      'There is water on the route.',
+      'There is good shade.',
+      'The 3.6 km distance is comfortable.',
+      'The terrain is manageable.',
+    ]);
+    // Demoted, never dropped: the card still carries every positive.
+    expect(view.fits).toHaveLength(cool.length);
+    expect(view.fits[view.fits.length - 1]).toBe('Today is cool enough.');
+  });
+
+  test('a cluster of two or fewer is left where it is',()=>{
+    const view = decision.present(withPositives([
+      { code:'trail.water.reviewed', message:'Water.', impact:0 },
+      { code:'conditions.heat.low', message:'Cool.', impact:0 },
+      { code:'trail.terrain.within-tolerance', message:'Terrain.', impact:0 },
+    ]), { dogName:'Teo' });
+    expect(view.fits).toEqual([
+      'There is water on the route.',
+      'Today is cool enough.',
+      'The terrain is manageable.',
+    ]);
+  });
+
   test('ties keep the engine\'s own order',()=>{
     // Two in the same tier are not reshuffled against each other.
     const view = decision.present(withPositives([
