@@ -16303,8 +16303,6 @@ if(document.querySelector('.td2')){
     const verifiedRouteGuidance = t.routeNumberGuidance && typeof t.routeNumberGuidance === 'object'
       ? t.routeNumberGuidance
       : null;
-    const routeOverview = cardCopy(String(t.desc || '').split(/\n\s*\n/)[0] || '')
-      .replace(/^\s*route\s+overview\s*:\s*/i, '');
     const guidanceIsLandmarkLed = verifiedRouteGuidance && verifiedRouteGuidance.mode === 'landmarks';
     const routeBadges = routeRefs.length
       ? `<div class="td2-route-ref-list" aria-label="Trail numbers in order">${routeRefs.map((ref, index) =>
@@ -16332,12 +16330,15 @@ if(document.querySelector('.td2')){
           : routeRefs.length === 1
             ? `Follow waymarked trail <b>${esc(routeRefs[0])}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.`
             : `This hike uses trails ${esc(routeSequence)}, but the exact numbered switch point${routeRefs.length > 2 ? 's are' : ' is'} still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.`}</div>`}`
-      : routeOverview
-        ? `${noRouteNumbers}<div class="s"><p>${esc(routeOverview)}</p></div>`
-        : '';
+      // Nothing sourced to say about following this route. This card used to
+      // fall back to the first paragraph of t.desc, which "About this trail"
+      // prints in full a few centimetres above: on 76 of 109 Dolomites trails
+      // the visitor read the same sentence twice on one card. A route with no
+      // recorded numbers says so, and says it once.
+      : noRouteNumbers;
     const routeCard = {
       ic:'',
-      t:verifiedRouteGuidance ? 'How to follow this route' : (routeSwitches.length ? 'Waymarked trail numbers and switches' : (routeRefs.length ? 'Waymarked trail numbers' : 'Route overview')),
+      t:verifiedRouteGuidance ? 'How to follow this route' : (routeSwitches.length ? 'Waymarked trail numbers and switches' : (routeRefs.length ? 'Waymarked trail numbers' : 'Following the route')),
       s:routeRefMarkup,
       routeRefs:true,
     };
