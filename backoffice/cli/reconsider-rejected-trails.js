@@ -19,6 +19,7 @@
 
 const { FirestoreBackofficeStore } = require('../services/firestore-backoffice-store');
 const { planReconsideration, returnedTrail } = require('../workflows/reconsider-rejected-trails');
+const { compactOrchestration } = require('../workflows/advance-trail-orchestration');
 const { specialistJob } = require('../workflows/apply-dossier-review');
 
 function parseArgs(argv){
@@ -74,7 +75,7 @@ async function main(options = {}){
     queued.push(job);
   }
   for(const job of queued) await store.putJob(job);
-  await store.setArtifact('trail-orchestration', next);
+  await store.setArtifact('trail-orchestration', compactOrchestration(next));
   console.log(`[reconsider] Sent ${queued.length} trail(s) back and queued a fresh pass for each.`);
   console.log('[reconsider] They are judged again from scratch; a trail that still fails is rejected again.');
   return { ...plan, queued: queued.map(job => job.id) };

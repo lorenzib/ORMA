@@ -184,6 +184,35 @@ async function restoreMissingGateReviews(store,state,queue,at,jobs=[]){
  * existed. Applied on the way out so the 240 KB already stored compacts on the
  * first pass, rather than waiting for a migration nobody would run.
  */
+// A claim that has finished is not going to be attempted again, so the
+// scheduling detail on each of its attempts is dead weight: which job ran it,
+// when it was scheduled, and the hour before which it could not start. What is
+// still read is how many attempts there were and what they tried.
+//
+// trail-orchestration reached 1017.1 KB against Firestore's 1023.9 KB limit on
+// 13 October and every worker run failed on the save -- scheduled and manual
+// alike -- with "The value of property data is longer than 1048487 bytes". The
+// pipeline stopped completely. 48 trails at 21.2 KB each, and the report named
+// claimResolution as most of it.
+const SETTLED_STATES = Object.freeze(['supported','contradicted','source-exhausted',
+  'contact-required','field-check-required']);
+
+function trimSettledAttempts(entry){
+  if(!entry||!SETTLED_STATES.includes(String(entry.state)))return entry;
+  if(!Array.isArray(entry.attempts)||!entry.attempts.length)return entry;
+  let changed=false;
+  const attempts=entry.attempts.map(attempt=>{
+    if(!attempt||(attempt.jobId===undefined&&attempt.scheduledAt===undefined
+      &&attempt.notBefore===undefined))return attempt;
+    changed=true;
+    // The count and what each attempt tried survive, because the resolution
+    // yield report reads both and a reopened claim must not repeat a strategy.
+    const {jobId,scheduledAt,notBefore,...kept}=attempt;
+    return kept;
+  });
+  return changed?{...entry,attempts}:entry;
+}
+
 function compactOrchestration(state){
   if(!state||!Array.isArray(state.trails))return state;
   return {...state,trails:state.trails.map(trail=>{
@@ -201,7 +230,9 @@ function compactOrchestration(state){
         const {instruction,strategyLabel,...kept}=attempt;
         return kept;
       });
-      return [key,changed?{...entry,attempts}:entry];
+      const withTrimmed=trimSettledAttempts(changed?{...entry,attempts}:entry);
+      if(withTrimmed!==entry)changed=true;
+      return [key,withTrimmed];
     });
     return changed?{...trail,claimResolution:Object.fromEntries(entries)}:trail;
   })};
@@ -367,4 +398,4 @@ async function advanceTrailOrchestration(store,options={}){
   return {advanced,restored,releasedGates,queued:queued.map(job=>job.id)};
 }
 
-module.exports={ afterReconsideration,compactOrchestration,GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
+module.exports={ afterReconsideration,SETTLED_STATES,trimSettledAttempts,compactOrchestration,GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};

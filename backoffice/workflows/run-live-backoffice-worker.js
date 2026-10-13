@@ -12,7 +12,7 @@ const { rehydrateReviewQueue } = require('./rehydrate-review-detail');
 const { applyRouteReview,promotableFeature,unpromotedChoices } = require('./apply-route-review');
 const { admitChosenRoutes } = require('./admit-chosen-routes');
 const { runTrailSpecialist, routeSourceReady, verifiableFirst } = require('./run-trail-specialist');
-const { advanceTrailOrchestration } = require('./advance-trail-orchestration');
+const { advanceTrailOrchestration, compactOrchestration } = require('./advance-trail-orchestration');
 const {buildVerifiedEditorialHandoff}=require('./verified-editorial-handoff');
 const {runVerifiedEditorialFirstPass}=require('./run-verified-editorial-first-pass');
 const {runScheduledTrailCampaign}=require('./campaign-scheduler');
@@ -417,7 +417,7 @@ async function admitRouteChoices(store,options={}){
         if(typeof store.putJobIfAbsent==='function')await store.putJobIfAbsent(job);else await store.putJob(job);
       }
       await Promise.all([
-        store.setArtifact('trail-orchestration',result.orchestration),
+        store.setArtifact('trail-orchestration',compactOrchestration(result.orchestration)),
         store.setArtifact('route-review',result.routeReview),
       ]);
     }
@@ -508,7 +508,7 @@ async function ingestDossierReviews(store,options={}){
           store.setArtifact('verified-trail-editorial-queue',handoff.queue,{lastVerifiedCandidateId:result.verifiedDossier.candidateId}));
       }
       await Promise.all([
-        store.setArtifact('trail-orchestration',result.orchestration),
+        store.setArtifact('trail-orchestration',compactOrchestration(result.orchestration)),
         store.setArtifact('dossier-review-queue',result.reviewQueue),
         store.markDossierReview(review.id,'processed',{queuedJobIds:result.jobs.map(job=>job.id)}),
         ...writes,
