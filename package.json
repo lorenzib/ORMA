@@ -94,7 +94,8 @@
     "test:future": "CLOCK_SHIFT_DAYS=${CLOCK_SHIFT_DAYS:-365} jest --setupFilesAfterEnv=./test-support/shift-clock.js",
     "backoffice:route-source-backlog": "node backoffice/cli/report-route-source-backlog.js",
     "backoffice:scout-route-sources": "node backoffice/cli/scout-route-sources.js",
-    "backoffice:resolution-yield": "node backoffice/cli/report-resolution-yield.js"
+    "backoffice:resolution-yield": "node backoffice/cli/report-resolution-yield.js",
+    "backoffice:geometry-audit": "node backoffice/cli/show-geometry-audit.js"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.6.8",
