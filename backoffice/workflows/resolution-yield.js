@@ -79,6 +79,39 @@ function resolutionYield(orchestration,options={}){
   const guidance=entries.filter(entry=>entry.routeGuidance);
   const guidanceStates={};
   for(const entry of guidance)guidanceStates[entry.state||'unknown']=(guidanceStates[entry.state||'unknown']||0)+1;
+  // Which of the four, specifically.
+  //
+  // A trail needs all four of these, so the aggregate hides the thing worth
+  // knowing: four claims each answered seven times in ten still only clear a
+  // trail a quarter of the time, and if one of the four is answered far less
+  // often than the others it is that one rule holding the pipeline, not the
+  // contract as a whole. The aggregate cannot tell those two cases apart and
+  // they call for opposite fixes.
+  const byClaim=ROUTE_GUIDANCE_CLAIM_IDS.map(claimId=>{
+    const forClaim=guidance.filter(entry=>entry.claimId===claimId);
+    const states={};
+    for(const entry of forClaim)states[entry.state||'unknown']=(states[entry.state||'unknown']||0)+1;
+    return {
+      claimId,
+      total:forClaim.length,
+      supported:states.supported||0,
+      sourceExhausted:states['source-exhausted']||0,
+      contradicted:states.contradicted||0,
+      researchable:states.researchable||0,
+      searches:forClaim.reduce((total,entry)=>total+entry.attempts,0),
+    };
+  });
+  // The trails whose directions are all four settled: what the gate would pass
+  // today if nothing else stood. Counted from the ledger rather than from the
+  // gate, which no trail has reached.
+  const guidanceByTrail=new Map();
+  for(const entry of guidance){
+    if(!guidanceByTrail.has(entry.trailId))guidanceByTrail.set(entry.trailId,new Map());
+    guidanceByTrail.get(entry.trailId).set(entry.claimId,entry.state);
+  }
+  const trailsWithAllFour=[...guidanceByTrail.entries()]
+    .filter(([,claims])=>ROUTE_GUIDANCE_CLAIM_IDS.every(id=>claims.get(id)==='supported'))
+    .map(([trailId])=>trailId);
   const doomedTrails=[...new Set(guidance
     .filter(entry=>entry.state==='source-exhausted'||entry.state==='contradicted')
     .map(entry=>entry.trailId))];
@@ -88,6 +121,9 @@ function resolutionYield(orchestration,options={}){
   return {
     claims:entries.length,
     guidanceStates,
+    guidanceByClaim:byClaim,
+    trailsWithAllFourDirections:trailsWithAllFour,
+    trailsWithAnyDirection:guidanceByTrail.size,
     doomedTrails:doomedTrails.length,
     wastedOnDoomed,
     waivableClaims:waivable.length,

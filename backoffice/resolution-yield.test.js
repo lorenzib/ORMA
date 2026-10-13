@@ -146,3 +146,46 @@ describe('what a doomed trail cost before anyone knew',()=>{
     ])]).doomedTrails).toBe(1);
   });
 });
+
+// A trail needs all four route-guidance claims, so the aggregate hides the
+// thing worth knowing. Four claims each answered seven times in ten clear a
+// trail only a quarter of the time; one claim answered twice in ten with the
+// other three near-certain looks identical in the aggregate and calls for the
+// opposite fix. The claim ids come from the producer, so requiring a fifth
+// claim shows up here rather than being silently left out of the breakdown.
+describe('which of the four directions is the one blocking',()=>{
+  const trail=(trailId,states)=>({trailId,
+    claimResolution:Object.fromEntries(Object.entries(states).map(([claimId,state],index)=>
+      [`c${index}`,{agentId:'logistics',claimId,state,attempts:[1]}])) });
+
+  const allFour=state=>Object.fromEntries(ROUTE_GUIDANCE_CLAIM_IDS.map(id=>[id,state]));
+
+  test('every route-guidance claim is reported, in the producer’s own list',()=>{
+    const result=resolutionYield({trails:[trail('t1',allFour('supported'))]});
+    expect(result.guidanceByClaim.map(row=>row.claimId)).toEqual([...ROUTE_GUIDANCE_CLAIM_IDS]);
+    expect(result.guidanceByClaim.every(row=>row.supported===1&&row.total===1)).toBe(true);
+  });
+
+  test('one unanswerable claim is named rather than averaged away',()=>{
+    const hard=ROUTE_GUIDANCE_CLAIM_IDS[ROUTE_GUIDANCE_CLAIM_IDS.length-1];
+    const states=allFour('supported');
+    states[hard]='source-exhausted';
+    const result=resolutionYield({trails:[trail('t1',states),trail('t2',states)]});
+    const row=result.guidanceByClaim.find(item=>item.claimId===hard);
+    expect(row).toEqual(expect.objectContaining({supported:0,sourceExhausted:2,total:2}));
+    // The other three look healthy, which is exactly why the aggregate misleads.
+    expect(result.guidanceByClaim.filter(item=>item.claimId!==hard)
+      .every(item=>item.supported===2)).toBe(true);
+  });
+
+  test('a trail counts as settled only when all four are supported',()=>{
+    const short=allFour('supported');
+    short[ROUTE_GUIDANCE_CLAIM_IDS[0]]='source-exhausted';
+    const result=resolutionYield({trails:[
+      trail('complete',allFour('supported')),
+      trail('one-short',short),
+    ]});
+    expect(result.trailsWithAllFourDirections).toEqual(['complete']);
+    expect(result.trailsWithAnyDirection).toBe(2);
+  });
+});
