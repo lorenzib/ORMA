@@ -55,6 +55,12 @@ jobs:
       - name: Report which attempt answered the claim
         run: npm run backoffice:resolution-yield
 
+      - name: Read one trail's geometry audit
+        if: ${{ inputs.trail != '' }}
+        env:
+          TRAIL: ${{ inputs.trail }}
+        run: npm run backoffice:geometry-audit -- --trail="$TRAIL"
+
       - name: Report why the job queue is not moving
         run: npm run backoffice:job-queue
       - name: Report what each waiting gate is asking
