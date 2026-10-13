@@ -97,7 +97,8 @@
     "backoffice:resolution-yield": "node backoffice/cli/report-resolution-yield.js",
     "backoffice:geometry-audit": "node backoffice/cli/show-geometry-audit.js",
     "backoffice:reconsider": "node backoffice/cli/reconsider-rejected-trails.js",
-    "backoffice:closest": "node backoffice/cli/report-closest-to-verified.js"
+    "backoffice:closest": "node backoffice/cli/report-closest-to-verified.js",
+    "backoffice:trail-progress": "node backoffice/cli/show-trail-progress.js"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.6.8",
