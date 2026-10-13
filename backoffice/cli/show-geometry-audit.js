@@ -14,10 +14,18 @@
 const { FirestoreBackofficeStore } = require('../services/firestore-backoffice-store');
 const { latestCartographerJobId, findTrail, readGeometryAudit } = require('../workflows/geometry-audit-read');
 
+// Both spellings, because the repository's other CLIs are called with
+// `--trail <id>` and its workflows with `--trail=<id>`: the state workflow used
+// the second and this read only the first, so the step ran and reported the
+// argument missing on a trail it had been given.
 function parseArgs(argv){
   let trail = null;
-  for(let i = 0; i < argv.length; i += 1) if(argv[i] === '--trail') trail = argv[i += 1];
-  return { trail };
+  for(let i = 0; i < argv.length; i += 1){
+    const arg = String(argv[i]);
+    if(arg === '--trail'){ trail = argv[i += 1]; continue; }
+    if(arg.startsWith('--trail=')) trail = arg.slice('--trail='.length);
+  }
+  return { trail: trail || null };
 }
 
 async function main(options = {}){

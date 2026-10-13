@@ -1,7 +1,7 @@
 'use strict';
 
 const {latestCartographerJobId,findTrail,readGeometryAudit}=require('./workflows/geometry-audit-read');
-const {main}=require('./cli/show-geometry-audit');
+const {main,parseArgs}=require('./cli/show-geometry-audit');
 
 /**
  * The gate records a blocker's name and nothing else, and once the evidence
@@ -83,5 +83,27 @@ describe('the reader end to end',()=>{
     const before=process.exitCode;
     await expect(main({argv:[],store:store({})})).rejects.toThrow('--trail <id> is required');
     expect(process.exitCode).toBe(before);
+  });
+});
+
+// The state workflow calls this with `--trail=<id>` and the repository's other
+// CLIs with `--trail <id>`. Reading only the second meant the step ran and
+// reported the argument missing on a trail it had been handed.
+describe('the trail can be named either way',()=>{
+  test('two tokens, as the other CLIs are called',()=>{
+    expect(parseArgs(['--trail','osm-1']).trail).toBe('osm-1');
+  });
+
+  test('one token with an equals, as the workflow calls it',()=>{
+    expect(parseArgs(['--trail=osm-1']).trail).toBe('osm-1');
+  });
+
+  test('an empty value is no value, not an empty string',()=>{
+    expect(parseArgs(['--trail=']).trail).toBeNull();
+    expect(parseArgs([]).trail).toBeNull();
+  });
+
+  test('an id containing an equals survives',()=>{
+    expect(parseArgs(['--trail=osm=1']).trail).toBe('osm=1');
   });
 });
