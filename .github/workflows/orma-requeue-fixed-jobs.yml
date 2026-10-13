@@ -88,13 +88,18 @@ jobs:
       # a rule change reaches every trail still moving and none of the ones it
       # would have saved. Same discipline as the requeue above: the reason is
       # named, the pass is bounded, and nothing is written without 'apply'.
+      # Always, because the CLI's blank mode is the listing: "what were trails
+      # rejected for" is the question you ask before you can name a reason, and
+      # gating the step on a reason made that answer unreachable from here. It
+      # reads one artifact, calls no model and writes nothing without 'apply'.
       - name: Look again at rejected trails
-        if: ${{ inputs.reconsider_rejected != '' }}
         env:
           REASON: ${{ inputs.reconsider_rejected }}
           APPLY: ${{ inputs.apply }}
         run: |
           set -euo pipefail
-          args=(--reason "$REASON")
-          [ "$APPLY" = "true" ] && args+=(--apply)
+          args=()
+          [ -n "$REASON" ] && args+=(--reason "$REASON")
+          # Only a named reason may change anything; a blank one lists.
+          [ -n "$REASON" ] && [ "$APPLY" = "true" ] && args+=(--apply)
           npm run backoffice:reconsider -- "${args[@]}"
