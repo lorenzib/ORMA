@@ -52,6 +52,47 @@
     'trail.sightlines.open': 'open sightlines',
   });
 
+  /**
+   * The same positives as whole sentences, for a card that lists them instead
+   * of folding them into one line.
+   *
+   * The homepage card shows "Why it fits Teo" beside "What to know today", and
+   * the second column is short sentences -- "No confirmed water on the route,
+   * so carry it all." Joining the phrases above under that heading produced a
+   * seven-item fragment with no verb in it, so the two columns read as two
+   * different voices on one card.
+   *
+   * No name in them. The heading already says who it fits, and the fold-line
+   * above was written to stop the name landing twice in eleven words; once per
+   * bullet would be worse. The heading binds the subject, so "The terrain is
+   * manageable." is read as manageable *for this dog*, which is what the
+   * engine actually said -- these are per-dog fit statements, never claims
+   * about the trail in the abstract.
+   *
+   * "recorded" stays wherever the phrase above has it. Mapped absence of a
+   * hazard is not evidence the hazard is absent, and the sentence must not
+   * quietly upgrade it.
+   */
+  const FIT_SENTENCES = Object.freeze({
+    'trail.distance.within-range': 'The {distance} km distance is comfortable.',
+    'trail.ascent.within-range': 'The {ascent} m climb is gentle.',
+    'trail.terrain.within-tolerance': 'The terrain is manageable.',
+    'trail.duration.within-preference': 'The walking time fits.',
+    'conditions.heat.low': 'Today is cool enough.',
+    'trail.heat.low': 'The route does not get too hot.',
+    'trail.shade.good': 'There is good shade.',
+    'trail.exposure.none-known': 'No exposed sections are recorded.',
+    'trail.surface-hazards.none-known': 'No surface hazards are recorded.',
+    'trail.water.reviewed': 'There is water on the route.',
+    'trail.dog-access.allowed': 'Dogs are allowed.',
+    'trail.dog-access.leash': 'Dogs are allowed on a leash.',
+    'trail.livestock.none': 'No livestock is recorded.',
+    'trail.wildlife.low': 'Wildlife activity is low.',
+    'trail.road.none': 'There are no road sections.',
+    'trail.crowding.quiet': 'The route is usually quiet.',
+    'trail.sightlines.open': 'The sightlines are open.',
+  });
+
   // Calm framing: confidence describes data completeness, not danger. "low"
   // must not read as a warning, missing data never lowers the score. The words
   // live in match-verdict.js, beside the rule about when they are worth saying
@@ -150,13 +191,24 @@
       if(!fallback) return null;
       return tr(`recommendation.fine.${entry.code}`, fallback, { ...extra, ...(entry.vars || {}) });
     };
+    const fitSentence = entry => {
+      const fallback = FIT_SENTENCES[entry.code];
+      if(!fallback) return null;
+      return tr(`recommendation.fits.${entry.code}`, fallback, { ...extra, ...(entry.vars || {}) });
+    };
     const fine = [];
+    const fits = [];
     const rows = [];
     for(const entry of breakdownFactors){
-      const phrase = entry.kind === 'positive' && entry.impact >= 0
-        ? finePhrase(allFactors.find(factor => factor.code === entry.code) || entry)
-        : null;
-      if(phrase) fine.push(phrase);
+      const source = allFactors.find(factor => factor.code === entry.code) || entry;
+      const phrase = entry.kind === 'positive' && entry.impact >= 0 ? finePhrase(source) : null;
+      if(phrase){
+        fine.push(phrase);
+        // Same positive, same order, as a sentence. Kept in step by being
+        // filled in the same pass: a positive that has a phrase and no
+        // sentence would silently vanish from the card that lists sentences.
+        fits.push(fitSentence(source) || phrase);
+      }
       else rows.push(entry);
     }
     const joined = fine.length <= 1 ? fine.join('') : tr('recommendation.list.and', '{first} and {last}', {
@@ -214,6 +266,9 @@
       breakdown:breakdownFactors,
       breakdownRows:rows,
       fine,
+      // The same positives as sentences, for a card that lists them rather
+      // than folding them into fineLine.
+      fits,
       fineLine:fine.length
         ? tr('recommendation.fine.line', 'Fine for {name}: {items}.', { name:subject, items:joined })
         : null,

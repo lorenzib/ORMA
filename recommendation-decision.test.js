@@ -201,3 +201,64 @@ describe('canonical recommendation decision presentation', () => {
     expect(result.additionalUnknowns).toBe(3);
   });
 });
+
+describe('the positives as sentences, for a card that lists them', () => {
+  // The homepage shows "Why it fits Teo" beside "What to know today". The
+  // second column has always been short sentences; this side used the
+  // fold-line, which with seven positives is a seven-item fragment with no
+  // verb in it. Same facts, same order -- a different voice.
+  // A factor only folds when its code is also a positive reason, which is how
+  // the engine emits them: the reason says it is good, the factor says what it
+  // cost. Both are needed or nothing is classified positive at all.
+  const positives = [
+    { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
+    { code:'trail.distance.within-range', message:'Distance is within range.', impact:0, vars:{ distance:'3.6' } },
+    { code:'trail.ascent.within-range', message:'Ascent is within range.', impact:0, vars:{ ascent:'39' } },
+  ];
+  const withPositives = factors => ({
+    ...recommendation, factors,
+    positiveReasons:factors.map(factor => ({ code:factor.code, message:factor.message })),
+  });
+
+  test('every folded positive also has a whole sentence', () => {
+    const view = decision.present(withPositives(positives), { dogName:'Teo' });
+    expect(view.fits).toEqual([
+      'The terrain is manageable.',
+      'The 3.6 km distance is comfortable.',
+      'The 39 m climb is gentle.',
+    ]);
+    // Same positives, same order, so the two lists cannot disagree about what
+    // the score was made of.
+    expect(view.fits).toHaveLength(view.fine.length);
+  });
+
+  test('no sentence names the dog, because the heading already does', () => {
+    const view = decision.present(withPositives(positives), { dogName:'Teo' });
+    expect(view.fits.some(sentence => sentence.includes('Teo'))).toBe(false);
+  });
+
+  test('a positive with a phrase but no sentence keeps the phrase', () => {
+    // It must not vanish from a card that renders sentences. Both lists are
+    // filled in the same pass so a new phrase cannot silently drop a reason.
+    const view = decision.present(
+      withPositives([{ code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 }]),
+      { dogName:'Teo' });
+    expect(view.fits).toHaveLength(view.fine.length);
+  });
+
+  test('a mapped absence stays a recorded absence', () => {
+    // "No surface hazards are recorded" is not "there are no surface hazards".
+    // Mapped absence of a hazard is never, by itself, evidence it is absent,
+    // and turning a phrase into a sentence must not upgrade the claim.
+    const view = decision.present(withPositives([
+      { code:'trail.surface-hazards.none-known', message:'No recorded hazards.', impact:0 },
+      { code:'trail.exposure.none-known', message:'No exposed section.', impact:0 },
+    ]), { dogName:'Teo' });
+    expect(view.fits).toEqual(['No surface hazards are recorded.', 'No exposed sections are recorded.']);
+  });
+
+  test('fineLine is untouched, so the trail page reads as it did', () => {
+    const view = decision.present(withPositives(positives), { dogName:'Teo' });
+    expect(view.fineLine).toBe('Fine for Teo: the terrain, the 3.6 km distance and the 39 m climb.');
+  });
+});
