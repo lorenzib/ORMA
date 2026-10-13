@@ -3622,10 +3622,14 @@ function liRecommendationExplanationHtml(trail, profile, open){
   // 11px. Listing these fixes the size as a side effect, because they now use
   // the same rule.
   //
-  // Every positive, as the joined line carried every positive. Only how it is
-  // written and set has changed; dropping reasons would be a second change
-  // nobody asked for, and the list stays scannable at seven.
-  const fitList = view.fits;
+  // Four at most. Seen at full length on the live card, seven reasons against
+  // two cautions is lopsided, and on a card about whether a walk suits a dog
+  // the cautions are the half worth reading. The engine emits the positives in
+  // its own order and they all cost nothing, so there is no "most important"
+  // four to pick -- this is the first four, and the trail page still carries
+  // the complete line for anyone who wants all of them.
+  const FIT_LIMIT = 4;
+  const fitList = view.fits.slice(0, FIT_LIMIT);
   const fitBody = [
     fitList.length ? `<ul>${items(fitList)}</ul>` : '',
     bullets.length ? `<ul>${items(bullets)}</ul>` : '',
