@@ -101,5 +101,57 @@ function withoutRebuildFaults(blockers){
   return (blockers || []).filter(blocker => !REBUILD_DERIVED.includes(String(blocker)));
 }
 
+/**
+ * Whether a line that does not close is an open route rather than a broken loop.
+ *
+ * `isCircularRoute` assumes a route is circular when nothing says otherwise, so
+ * an undeclared route is held to a loop's standard and faulted for not coming
+ * back. `not-closed-loop` was the single largest cause of rejection: 15 of 23.
+ *
+ * The declaration genuinely cannot be read off the shape of the line -- an
+ * out-and-back retraces itself and looks like a loop that failed to close -- and
+ * a test of mine comparing line lengths between the closing and non-closing
+ * groups found no signal at all, because both sit at the full published
+ * distance.
+ *
+ * That was the wrong comparison. The signal is not between the groups, it is
+ * inside the non-closing one: a loop that is BROKEN is missing the piece that
+ * would have closed it, so its line comes up short. A route that was simply
+ * never a loop is complete and ends somewhere else.
+ *
+ *   undeclared trails whose line does not close:   73
+ *     line matches the published distance:         72   <- complete, open routes
+ *     line also short:                              1   <- genuinely incomplete
+ *
+ * Measured 13 October. Anello di Ciampeviei walks its full 7.1 km, follows its
+ * route numbers for every metre of it, and ends 437 m from where it started.
+ * Nothing about that is a fault; it is a route through a village that finishes
+ * on a different street.
+ *
+ * So: undeclared, complete, and open is an open route. Undeclared, SHORT and
+ * open is still faulted, and a route somebody declared a loop is always held to
+ * closing.
+ */
+function openRouteNotABrokenLoop({declaredShape, lineKm, officialKm, closed}){
+  if(closed)return {open:false, reason:'the line closes'};
+  if(declaredShape)return {open:false, reason:`declared ${declaredShape}, so it is held to that`};
+  if(!Number.isFinite(lineKm)||!Number.isFinite(officialKm)||officialKm<=0){
+    return {open:false, reason:'no published distance to weigh the line against'};
+  }
+  const complete=Math.abs(lineKm-officialKm)/officialKm<=HELD_LINE_TOLERANCE;
+  return {
+    open:complete,
+    lineKm:Math.round(lineKm*100)/100,
+    officialKm,
+    reason:complete
+      ?'the line is the full published distance and ends elsewhere, so it was never a loop'
+      :'the line is short as well as open, which is a loop missing the piece that would close it',
+  };
+}
+
+// What the audit records instead. Not unwaivable: it describes the route's
+// shape, which is a fact about the walk rather than a fault in it.
+const OPEN_ROUTE_NOTE = 'route-is-open-not-circular';
+
 module.exports = { LOST_SHARE, HELD_LINE_TOLERANCE, INCOMPLETE_REBUILD_NOTE, REBUILD_DERIVED,
-  metres, rebuildLostTheRoute, withoutRebuildFaults };
+  OPEN_ROUTE_NOTE, metres, rebuildLostTheRoute, withoutRebuildFaults, openRouteNotABrokenLoop };

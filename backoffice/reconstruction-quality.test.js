@@ -92,3 +92,71 @@ describe('which faults belong to the rebuild',()=>{
     expect(withoutRebuildFaults([])).toEqual([]);
   });
 });
+
+/**
+ * `not-closed-loop` was the single largest cause of rejection: 15 of 23.
+ * isCircularRoute assumes a route is circular when nothing says otherwise, so
+ * an undeclared route is held to a loop's standard.
+ *
+ * The declaration cannot be read off the shape of the line, and an earlier test
+ * of mine comparing line lengths between the closing and non-closing groups
+ * found no signal -- both sit at the full published distance. That was the
+ * wrong comparison. The signal is inside the non-closing group: a BROKEN loop
+ * is missing the piece that would close it, so its line is short; a route that
+ * was never a loop is complete and ends somewhere else.
+ *
+ *   undeclared trails whose line does not close:  73
+ *     line matches the published distance:        72
+ *     line also short:                             1
+ */
+describe('an open route is not a broken loop',()=>{
+  const {openRouteNotABrokenLoop,OPEN_ROUTE_NOTE}=require('./workflows/reconstruction-quality');
+  const {UNWAIVABLE_BLOCKER_IDS}=require('./workflows/compile-verified-dossier');
+
+  // Anello di Ciampeviei: 7.1 km published, walks all of it, follows its route
+  // numbers for every metre, ends 437 m from where it started.
+  test('a complete line that ends elsewhere was never a loop',()=>{
+    const r=openRouteNotABrokenLoop({declaredShape:null,lineKm:7.22,officialKm:7.1,closed:false});
+    expect(r.open).toBe(true);
+    expect(r.reason).toContain('never a loop');
+  });
+
+  // The guard: a loop missing its closing piece is short, and still faulted.
+  test('a line that is short as well as open is still a broken loop',()=>{
+    expect(openRouteNotABrokenLoop({declaredShape:null,lineKm:5.35,officialKm:6.6,closed:false}).open)
+      .toBe(false);
+  });
+
+  test('a route somebody declared a loop is always held to closing',()=>{
+    expect(openRouteNotABrokenLoop({declaredShape:'loop',lineKm:7.22,officialKm:7.1,closed:false}).open)
+      .toBe(false);
+  });
+
+  test('a declared out-and-back is not re-decided here either',()=>{
+    expect(openRouteNotABrokenLoop({declaredShape:'out-and-back',lineKm:7.2,officialKm:7.1,closed:false}).open)
+      .toBe(false);
+  });
+
+  test('a line that closes is not this question at all',()=>{
+    expect(openRouteNotABrokenLoop({declaredShape:null,lineKm:7.1,officialKm:7.1,closed:true}).open)
+      .toBe(false);
+  });
+
+  test('with no published distance the line cannot be judged complete',()=>{
+    expect(openRouteNotABrokenLoop({declaredShape:null,lineKm:7.1,officialKm:null,closed:false}).open)
+      .toBe(false);
+    expect(openRouteNotABrokenLoop({declaredShape:null,lineKm:null,officialKm:7.1,closed:false}).open)
+      .toBe(false);
+  });
+
+  // It records the shape rather than faulting the trail, so nothing is silently
+  // waved through.
+  test('what it records is not something a trail is faulted for',()=>{
+    expect(UNWAIVABLE_BLOCKER_IDS).not.toContain(OPEN_ROUTE_NOTE);
+  });
+
+  test('a line longer than published is not complete either',()=>{
+    expect(openRouteNotABrokenLoop({declaredShape:null,lineKm:12,officialKm:7.1,closed:false}).open)
+      .toBe(false);
+  });
+});

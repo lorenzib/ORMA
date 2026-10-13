@@ -39,10 +39,31 @@ async function audit(trail){
 }
 
 describe('a declared route shape reaches the geometry check', () => {
-  test('an undeclared open route is still faulted for not closing', async () => {
+  // The geometry check still measures it: an undeclared route is assumed
+  // circular and the raw assessment records that it does not close.
+  test('an undeclared open route is still measured as not closing', async () => {
     const result = await audit(trailDeclared(null));
     expect(result.assessment.issues).toContain('not-closed-loop');
+  });
+
+  // What changed is the judgement on it. This fixture's line is 5.40 km against
+  // a published 5.2 km -- the full route, ending somewhere else -- which is a
+  // route that was never a loop rather than a loop that failed to close. 72 of
+  // the catalogue's 73 undeclared non-closing trails are in exactly that state.
+  test('but a complete one is not faulted for it', async () => {
+    const result = await audit(trailDeclared(null));
+    expect(result.blockers).not.toContain('not-closed-loop');
+    expect(result.blockers).toContain('route-is-open-not-circular');
+    expect(result.openRoute.open).toBe(true);
+  });
+
+  // A loop missing the piece that would close it comes up short, and is faulted.
+  test('a short one still is, because that is a loop with a piece missing', async () => {
+    const result = await runCartographer(candidateFromProductionTrail(trailDeclared(null)),
+      { referenceMetrics:{ distanceKm:8 } },
+      { fetchRelation: async () => ({ payload:RELATION, endpoint:'test', query:null }) });
     expect(result.blockers).toContain('not-closed-loop');
+    expect(result.openRoute.open).toBe(false);
     expect(result.reviewState).toBe('blocked');
   });
 
