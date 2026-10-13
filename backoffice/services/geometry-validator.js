@@ -51,8 +51,32 @@ function isCircularRoute(options = {}){
 // other for it without a cycle.
 const ON_ROUTE_METRES = 60;
 
+// How far a loop's two ends may sit apart and still be the same place.
+//
+// A flat 100 m rejected "Boucle du Taillefer": a declared loop, 6.71 km of line
+// reconstructed from its relation, ends 101 metres apart. One metre over, on a
+// route where 101 m is 1.5% of the walk. That is the resolution of the
+// underlying map data, not a route that fails to come back.
+//
+// So it scales with the line, with a floor and a ceiling. The floor keeps a
+// short loop strict, where 100 m is a real distance -- a 400 m village circuit
+// missing 100 m is missing a quarter of itself. The ceiling is the honest limit
+// of the idea: past 250 m two points are not the same place on any walk,
+// however long it is, and a 17 km loop missing 340 m is missing something.
+//
+// Measured against the catalogue before changing it: of 162 published lines, 83
+// miss a flat 100 m and 81 miss this, so it forgives the near-misses and leaves
+// every genuinely open route failing. A caller may still state its own.
+const CLOSURE_FLOOR_M = 100;
+const CLOSURE_CEILING_M = 250;
+const CLOSURE_SHARE = 0.02;
+
+function closureToleranceM(lineLengthM){
+  if(!Number.isFinite(lineLengthM) || lineLengthM <= 0) return CLOSURE_FLOOR_M;
+  return Math.min(CLOSURE_CEILING_M, Math.max(CLOSURE_FLOOR_M, lineLengthM * CLOSURE_SHARE));
+}
+
 function assessGeometry(coordinates, options = {}){
-  const closureThresholdM = options.closureThresholdM || 100;
   const routeShape = ROUTE_SHAPES.includes(options.routeShape) ? options.routeShape : 'loop';
   const issues = [];
   if(!Array.isArray(coordinates) || coordinates.length < 2){
@@ -78,6 +102,9 @@ function assessGeometry(coordinates, options = {}){
   const totalM = segments.reduce((sum, segment) => sum + segment, 0);
   const maxSegmentM = Math.max(...segments);
   const closureDistanceM = distanceMeters(coordinates[0], coordinates[coordinates.length - 1]);
+  // Measured after the line's length is known, because the tolerance depends on
+  // it. An explicit threshold from the caller still wins.
+  const closureThresholdM = options.closureThresholdM || closureToleranceM(totalM);
   const isClosed = closureDistanceM <= closureThresholdM;
   // Only a route that is meant to close is faulted for not closing.
   const circular = isCircularRoute(options);
@@ -94,6 +121,9 @@ function assessGeometry(coordinates, options = {}){
     circular,
     isClosed,
     closureDistanceM: Math.round(closureDistanceM),
+    // What it was measured against, so a rejection one metre over is readable
+    // rather than inferred.
+    closureThresholdM: Math.round(closureThresholdM),
     distanceKm: Math.round(totalM / 10) / 100,
     maxSegmentM: Math.round(maxSegmentM),
     pointCount: coordinates.length,
@@ -101,4 +131,5 @@ function assessGeometry(coordinates, options = {}){
   };
 }
 
-module.exports = { ON_ROUTE_METRES, isCircularRoute, ROUTE_SHAPES, assessGeometry, distanceMeters };
+module.exports = { ON_ROUTE_METRES, CLOSURE_FLOOR_M, CLOSURE_CEILING_M, CLOSURE_SHARE,
+  closureToleranceM, isCircularRoute, ROUTE_SHAPES, assessGeometry, distanceMeters };
