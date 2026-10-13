@@ -30,6 +30,9 @@ permissions:
   contents: write
   pull-requests: write
   actions: write
+  # The worker says so when it has stopped, and an issue is the only channel
+  # here that reaches somebody who is not already looking.
+  issues: write
 
 jobs:
   process-agent-queue:
@@ -274,6 +277,7 @@ jobs:
           npm run backoffice:confirm-publications
 
       - name: Record worker completion
+        id: worker_health
         if: ${{ always() }}
         shell: bash
         env:
@@ -366,3 +370,71 @@ jobs:
           ORMA_WORKER_FAILURE_MESSAGE="$message" \
           ORMA_WORKER_VALIDATION_RUN_URL="$validation_url" \
           npm run backoffice:worker:health
+
+      # A worker that dies quietly is worse than one that never starts. The
+      # consecutive-failure count was recorded from the very first run and read
+      # only by the dashboard, which nobody opens while they believe the
+      # pipeline is running: it stopped at 16:00 on 13 October, on a Firestore
+      # document that had outgrown its limit, and was found hours later by
+      # being asked about rather than by saying so.
+      #
+      # One issue, opened on the second consecutive failure so a single blip
+      # stays quiet, commented on while it persists, and closed by the run that
+      # recovers. The issue is the notification; nothing here needs watching.
+      - name: Say so when the worker has stopped
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STATUS: ${{ steps.worker_health.outputs.health_status }}
+          FAILURES: ${{ steps.worker_health.outputs.consecutive_failures }}
+          LAST_OK: ${{ steps.worker_health.outputs.last_successful_at }}
+          STAGE: ${{ steps.worker_health.outputs.failure_stage }}
+          # A worker that could not even write its own health receipt has no
+          # counter to debounce against, and is the one case where silence is
+          # guaranteed. Raised on the first occurrence for that reason.
+          HEALTH_STEP: ${{ steps.worker_health.outcome }}
+          LABEL: orma-worker-stopped
+        shell: bash
+        run: |
+          set -o pipefail
+          title="ORMA worker has stopped"
+          run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          # Found by label, not by title search: issue search is indexed
+          # asynchronously, and an index that has not caught up would open a
+          # second issue every three hours. A label lookup is exact and
+          # immediate. Creating it is idempotent.
+          gh label create "$LABEL" --description "The scheduled backoffice worker is not completing" --color B60205 >/dev/null 2>&1 || true
+          existing="$(gh issue list --state open --label "$LABEL" --limit 1 --json number --jq '.[0].number' 2>/dev/null || true)"
+
+          # Recovered, or nothing standing: close whatever is open and say so.
+          if [ "${HEALTH_STEP:-success}" != "failure" ] && { [ "${STATUS:-}" = "healthy" ] || [ "${FAILURES:-0}" = "0" ]; }; then
+            if [ -n "$existing" ]; then
+              gh issue comment "$existing" --body "Recovered: the worker completed at $(date -u +%FT%TZ). ${run_url}" || true
+              gh issue close "$existing" --reason completed || true
+            fi
+            exit 0
+          fi
+
+          if [ "${HEALTH_STEP:-success}" = "failure" ]; then
+            headline="The ORMA backoffice worker could not even record its own health, so the failure count below may be behind."
+          else
+            # One failure is a blip; two in a row is the pipeline being down.
+            if [ "${FAILURES:-0}" -lt 2 ]; then
+              echo "One failure so far. Not raising an alarm until the next run also fails."
+              exit 0
+            fi
+            headline="The ORMA backoffice worker has failed ${FAILURES} runs in a row and is not advancing any trail."
+          fi
+
+          body="${headline}
+
+          Last successful run: ${LAST_OK:-unknown}
+          Failed at stage: ${STAGE:-unknown}
+          This run: ${run_url}
+
+          Nothing is being verified while this is open. The run log above carries the error; \`npm run backoffice:artifact-sizes\` and \`npm run backoffice:closest\` are the two quickest reads. This issue closes itself when a run succeeds."
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "Still failing. ${headline} ${run_url}" || true
+          else
+            gh issue create --title "$title" --body "$body" --label "$LABEL" || true
+          fi

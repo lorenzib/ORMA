@@ -1,7 +1,10 @@
 'use strict';
 
 const {beginWorkerRun,finishWorkerRun}=require('./workflows/worker-health');
-const {main,runInput}=require('./cli/record-worker-health');
+const {announceHealth,healthOutputs,main,runInput}=require('./cli/record-worker-health');
+const fs=require('fs/promises');
+const os=require('os');
+const path=require('path');
 
 describe('durable ORMA worker health receipts',()=>{
   test('records a running heartbeat then a successful bounded history receipt',()=>{
@@ -35,5 +38,58 @@ describe('durable ORMA worker health receipts',()=>{
     expect(runInput(env).workflowRunUrl).toBe('https://github.com/lorenzib/ORMA/actions/runs/456');
     expect(result.status).toBe('running');
     expect(writes).toEqual([expect.objectContaining({id:'worker-health',metadata:{runId:'456',status:'running'}})]);
+  });
+});
+
+// A worker that dies quietly is worse than one that never starts. The count was
+// recorded from the first run and read only by the dashboard: the worker
+// stopped at 16:00 on 13 October and was found hours later by being asked
+// about. These assertions are read off the receipt the producer actually
+// writes, because the first version of this read `failure` instead of
+// `lastFailure` and reported every stopped worker's stage as blank.
+describe('saying so when the worker has stopped',()=>{
+  function twoFailuresInARow(){
+    const first=finishWorkerRun(beginWorkerRun(null,{runId:'1'},{at:'2026-10-13T13:00:00Z'}),{outcome:'success'},{at:'2026-10-13T13:02:00Z'});
+    const second=finishWorkerRun(beginWorkerRun(first,{runId:'2'},{at:'2026-10-13T16:00:00Z'}),{outcome:'failure',failureStage:'agent-work',failureMessage:'Document exceeds the maximum allowed size.'},{at:'2026-10-13T16:02:00Z'});
+    return finishWorkerRun(beginWorkerRun(second,{runId:'3'},{at:'2026-10-13T19:00:00Z'}),{outcome:'failure',failureStage:'agent-work',failureMessage:'Document exceeds the maximum allowed size.'},{at:'2026-10-13T19:02:00Z'});
+  }
+
+  test('reports the stopped worker by the names the receipt actually uses',()=>{
+    const stopped=twoFailuresInARow();
+    expect(healthOutputs(stopped)).toEqual({
+      health_status:stopped.status,
+      consecutive_failures:String(stopped.consecutiveFailures),
+      last_successful_at:stopped.lastSuccessfulAt,
+      failure_stage:stopped.lastFailure.stage,
+    });
+    // The alarm only fires from the second failure, and only a named stage
+    // tells anybody where to look.
+    expect(Number(healthOutputs(stopped).consecutive_failures)).toBeGreaterThanOrEqual(2);
+    expect(healthOutputs(stopped).failure_stage).not.toBe('');
+  });
+
+  test('a recovered run reports nothing standing, so the alarm closes itself',()=>{
+    const recovered=finishWorkerRun(beginWorkerRun(twoFailuresInARow(),{runId:'4'},{at:'2026-10-13T22:00:00Z'}),{outcome:'success'},{at:'2026-10-13T22:02:00Z'});
+    expect(healthOutputs(recovered)).toEqual(expect.objectContaining({health_status:'healthy',consecutive_failures:'0'}));
+  });
+
+  test('a provider message cannot break out of the GitHub output file',()=>{
+    const stage=healthOutputs({lastFailure:{stage:'agent-work\nconsecutive_failures=0'}}).failure_stage;
+    expect(stage).not.toMatch(/[\r\n]/);
+  });
+
+  test('the CLI writes the stopped worker to the step outputs',async()=>{
+    const file=path.join(await fs.mkdtemp(path.join(os.tmpdir(),'orma-health-')),'outputs.txt');
+    const previous=twoFailuresInARow();
+    const store={getArtifact:async()=>previous,setArtifact:async()=>{}};
+    const env={GITHUB_OUTPUT:file,GITHUB_RUN_ID:'5',ORMA_WORKER_HEALTH_OUTCOME:'failure',ORMA_WORKER_FAILURE_STAGE:'agent-work',ORMA_WORKER_FAILURE_MESSAGE:'Document exceeds the maximum allowed size.'};
+    const health=await main({store,env,at:'2026-10-14T01:02:00Z'});
+    const written=Object.fromEntries((await fs.readFile(file,'utf8')).trim().split('\n').map(line=>line.split('=')));
+    expect(written).toEqual(healthOutputs(health));
+    expect(written.consecutive_failures).toBe(String(previous.consecutiveFailures+1));
+  });
+
+  test('nothing is written when the run is not inside a GitHub step',async()=>{
+    expect(await announceHealth({status:'failed',consecutiveFailures:2},{})).toBeNull();
   });
 });
