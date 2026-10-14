@@ -224,8 +224,25 @@ function dossierBlockingReasons(outputs){
     if(result.recommendation&&result.recommendation!=='advance') reasons.push(`${output.agentId}: recommendation is ${result.recommendation}`);
     for(const question of result.openQuestions||[]) reasons.push(`${output.agentId}: open question — ${question}`);
     for(const claim of result.claims||[]){
-      if(['conflicted','unresolved','counter-evidence'].includes(claim.finding)) reasons.push(`${output.agentId}/${claim.id}: ${claim.finding}`);
-      if(claim.resolution?.state==='source-exhausted') reasons.push(`${output.agentId}/${claim.id}: five automated resolution strategies exhausted`);
+      // One claim, one blocker. A claim that has run out of research used to
+      // report twice -- its raw finding *and* the exhausted sentence -- and
+      // the two say the same thing at different stages of the same story.
+      //
+      // The duplicate was not merely noise. The evidence policy stops sending
+      // a trail back when every blocker an agent still owns is an exhausted
+      // one, and that could never be true while each exhausted claim also
+      // filed an `unresolved` line beside itself. The short-circuit that ends
+      // the circulating was unreachable, so a trail went round until the agent
+      // ran out of gate attempts instead. Le Belvédère reached the dossier
+      // gate on 13 October with 110 blockers, not one of them unwaivable, and
+      // was sent back to research detail that had already given up.
+      const exhausted=claim.resolution?.state==='source-exhausted';
+      if(!exhausted&&['conflicted','unresolved','counter-evidence'].includes(claim.finding)) reasons.push(`${output.agentId}/${claim.id}: ${claim.finding}`);
+      // The count comes from the claim, because it is no longer one number:
+      // route guidance keeps five attempts and optional detail stops at three.
+      // It is never matched on -- `automated resolution strategies exhausted`
+      // is the part consumers recognise -- so the figure here is for a reader.
+      if(claim.resolution?.state==='source-exhausted') reasons.push(`${output.agentId}/${claim.id}: ${claim.resolution.maximumAttempts||'all'} automated resolution strategies exhausted`);
       for(const blocker of claim.blockers||[]) reasons.push(`${output.agentId}/${claim.id}: ${blocker}`);
     }
   }

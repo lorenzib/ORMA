@@ -2,10 +2,31 @@
 
 const {
   MAX_AUTOMATED_ATTEMPTS,
+  MAX_WAIVABLE_ATTEMPTS,
   RETRY_DELAYS_HOURS,
+  attemptCeiling,
   assertNextStrategy,
   resolutionStatus,
 }=require('../contracts/resolution-policy-v1');
+const {ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
+
+/**
+ * How many attempts this claim gets: the full ladder for the directions a walk
+ * cannot be verified without, three for everything else.
+ *
+ * Read from ROUTE_GUIDANCE_CLAIM_IDS rather than a list repeated here, so a
+ * fifth route claim keeps its full ladder without a second edit.
+ */
+function ceilingFor(claimId){
+  return attemptCeiling({unwaivable:ROUTE_GUIDANCE_CLAIM_IDS.includes(String(claimId))});
+}
+
+// The sentence both the dossier and the gate policy recognise. It carries no
+// number, because the number is now two different numbers and the last time a
+// count was written into prose that other code matched on, a reworded producer
+// left the consumer silently matching nothing (#472). The count travels beside
+// it, in `resolution.maximumAttempts`.
+const EXHAUSTED_PHRASE='automated resolution strategies exhausted';
 
 const RESOLVABLE_FINDINGS=new Set(['unresolved','conflicted']);
 const STRATEGIES=Object.freeze([
@@ -42,7 +63,8 @@ function dateValue(value){const date=new Date(value);return Number.isNaN(date.va
 function strategyFor(entry){
   const completed=(entry.attempts||[]).filter(attempt=>attempt.status==='completed');
   const strategy=STRATEGIES[completed.length];
-  const policy=assertNextStrategy(completed,strategy?.id||'automated-strategies-exhausted');
+  const policy=assertNextStrategy(completed,strategy?.id||'automated-strategies-exhausted',
+    {unwaivable:ROUTE_GUIDANCE_CLAIM_IDS.includes(String(entry.claimId))});
   return {...strategy,...policy};
 }
 
@@ -139,13 +161,14 @@ function annotateResolvedClaim(claim,job,at){
   const attempts=Array.from({length:job.resolutionAttempt},(_,index)=>({strategy:STRATEGIES[index].id}));
   const state=claim.finding==='supported-proposal'?'supported'
     :claim.finding==='counter-evidence'?'contradicted'
-      :resolutionStatus(attempts,'unresolved');
-  const blockers=[...(claim.blockers||[])];
-  if(state==='source-exhausted'&&!blockers.includes('Five materially different automated research strategies were exhausted.')){
-    blockers.push('Five materially different automated research strategies were exhausted.');
-  }
+      :resolutionStatus(attempts,'unresolved',{unwaivable:ROUTE_GUIDANCE_CLAIM_IDS.includes(String(claim.id))});
+  const ceiling=ceilingFor(claim.id);
+  const exhausted=`${ceiling} materially different automated research strategies were exhausted.`;
+  const blockers=(claim.blockers||[]).filter(blocker=>
+    !/materially different automated research strategies were exhausted/i.test(String(blocker)));
+  if(state==='source-exhausted')blockers.push(exhausted);
   return {...claim,blockers,resolution:{state,attemptNumber:job.resolutionAttempt,
-    maximumAttempts:MAX_AUTOMATED_ATTEMPTS,strategy:job.resolutionStrategy,
+    maximumAttempts:ceiling,strategy:job.resolutionStrategy,
     strategyLabel:job.resolutionStrategyLabel,completedAt:at}};
 }
 
@@ -163,11 +186,14 @@ function mergeClaimResolutionResult(previous,next,job,at){
   const states=claims.map(claim=>claim.resolution?.state);
   const recommendation=states.includes('source-exhausted')||states.includes('contradicted')?'block'
     :claims.some(claim=>RESOLVABLE_FINDINGS.has(claim.finding))?'needs-resolution':next.recommendation;
+  // A job can target several claims; the record states the longest ladder any
+  // of them is entitled to, so it never understates what is still to come.
+  const ceiling=Math.max(...[...targets].map(ceilingFor),MAX_WAIVABLE_ATTEMPTS);
   return {...previous,...next,claims,recommendation,resolutionAttempt:{claimIds:[...targets],
-    attemptNumber:job.resolutionAttempt,maximumAttempts:MAX_AUTOMATED_ATTEMPTS,
+    attemptNumber:job.resolutionAttempt,maximumAttempts:ceiling,
     strategy:job.resolutionStrategy,strategyLabel:job.resolutionStrategyLabel,completedAt:at}};
 }
 
-module.exports={MAX_AUTOMATED_ATTEMPTS,RESOLVABLE_FINDINGS,STRATEGIES,strategyById,attemptStrategyText,keyFor,strategyFor,notBeforeFor,
+module.exports={MAX_AUTOMATED_ATTEMPTS,MAX_WAIVABLE_ATTEMPTS,EXHAUSTED_PHRASE,ceilingFor,RESOLVABLE_FINDINGS,STRATEGIES,strategyById,attemptStrategyText,keyFor,strategyFor,notBeforeFor,
   resolutionCandidates,ensureResolutionEntries,pendingAttempt,completedAttempts,resolutionStateFor,
   reconcileCompletedAttempt,addQueuedAttempt,annotateResolvedClaim,mergeClaimResolutionResult};

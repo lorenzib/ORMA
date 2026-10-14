@@ -51,7 +51,12 @@ function gateDecision(item,reviewQueue,orchestration,queuedReviewIds){
   const trail=(orchestration.trails||[]).find(candidate=>String(candidate.candidateId)===String(item.candidateId));
   const remaining=[...blockerCountsByAgent(blockers).keys()].find(agentId=>{
     const mine=blockersForAgent(blockers,agentId);
-    const exhaustedByClaim=mine.length&&mine.every(reason=>/five automated resolution strategies exhausted/i.test(reason));
+    // Without the count. This read `/five automated.../` while the producer
+    // wrote "five", and the moment optional detail stopped at three the two
+    // would have stopped matching -- leaving every trail whose remaining
+    // blockers were all exhausted looking like it still had research to do,
+    // and circulating for ever. Exactly the shape of #472.
+    const exhaustedByClaim=mine.length&&mine.every(reason=>/automated resolution strategies exhausted/i.test(reason));
     return !exhaustedByClaim&&Number(trail?.resolutionAttempts?.[agentId]||0)<MAX_AUTOMATED_ATTEMPTS;
   });
   if(remaining)return {action:'request-revision',targetAgent:remaining,acceptedBlockers:[],

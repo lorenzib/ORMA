@@ -289,19 +289,37 @@ describe('ORMA backoffice MVP', () => {
     expect(treCimeDossier.claims.find(claim => claim.id === 'parking-pin').state).toBe('supported');
   });
 
-  test('resolution policy permits five distinct automated attempts', () => {
+  test('an unwaivable claim permits five distinct automated attempts', () => {
     expect(resolutionPolicy.MAX_AUTOMATED_ATTEMPTS).toBe(5);
+    const unwaivable = { unwaivable: true };
     const attempts = Array.from({ length: 4 }, (_, index) => ({ strategy: `strategy-${index + 1}` }));
     // The pacing belongs to the policy, not to this test: the subject here is
     // that five distinct attempts are permitted and a sixth is not.
-    expect(resolutionPolicy.assertNextStrategy(attempts, 'strategy-5')).toEqual({
+    expect(resolutionPolicy.assertNextStrategy(attempts, 'strategy-5', unwaivable)).toEqual({
       attemptNumber: 5, strategy: 'strategy-5',
       delayHours: resolutionPolicy.RETRY_DELAYS_HOURS[4],
     });
     const exhausted = [...attempts, { strategy: 'strategy-5' }];
-    expect(resolutionPolicy.resolutionStatus(exhausted, 'unresolved')).toBe('source-exhausted');
-    expect(() => resolutionPolicy.assertNextStrategy(exhausted, 'strategy-6')).toThrow('limit reached (5)');
-    expect(() => resolutionPolicy.assertNextStrategy(attempts, 'strategy-1')).toThrow('materially different');
+    expect(resolutionPolicy.resolutionStatus(exhausted, 'unresolved', unwaivable)).toBe('source-exhausted');
+    expect(() => resolutionPolicy.assertNextStrategy(exhausted, 'strategy-6', unwaivable)).toThrow('limit reached (5)');
+    expect(() => resolutionPolicy.assertNextStrategy(attempts, 'strategy-1', unwaivable)).toThrow('materially different');
+  });
+
+  // Optional detail is recorded unknown whether it exhausts at three or at
+  // five, and the gate will not approve a trail while any of it is still
+  // researchable. Shortening this ladder is what lets a trail whose only
+  // outstanding work is optional reach approval at all.
+  test('optional detail stops at three, and says nothing is left at three', () => {
+    const ceiling = resolutionPolicy.MAX_WAIVABLE_ATTEMPTS;
+    expect(ceiling).toBe(3);
+    expect(resolutionPolicy.attemptCeiling({})).toBe(ceiling);
+    expect(resolutionPolicy.attemptCeiling({ unwaivable: true })).toBe(resolutionPolicy.MAX_AUTOMATED_ATTEMPTS);
+    const attempts = Array.from({ length: ceiling }, (_, index) => ({ strategy: `strategy-${index + 1}` }));
+    expect(resolutionPolicy.resolutionStatus(attempts, 'unresolved')).toBe('source-exhausted');
+    expect(() => resolutionPolicy.assertNextStrategy(attempts, 'strategy-4')).toThrow(`limit reached (${ceiling})`);
+    // An answer still beats the ceiling: exhausting is about running out of
+    // looks, not about discarding one that worked.
+    expect(resolutionPolicy.resolutionStatus(attempts, 'supported')).toBe('supported');
   });
 
   test('new specialist agents are registered with human gates and no approval authority', () => {

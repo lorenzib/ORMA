@@ -222,3 +222,32 @@ describe('who the gate is dispatched to',()=>{
     expect(dominantAgentFromBlockers(['not-closed-loop','disconnected-components'])).toBe('cartographer');
   });
 });
+
+// The dispatcher asks this what a re-run could answer. An exhausted claim is
+// still unestablished -- its disposition stays `unresearched` -- but asking
+// again is precisely what has already been done to the end of its ladder.
+// Counting it kept parked gates being sent to an agent with nothing left to
+// try, and the evidence policy reads that as research still outstanding, so a
+// trail whose claims had all given up never reached the step that approves it.
+describe('a spent ladder is not work another run can do',()=>{
+  const {dossierBlockingReasons}=require('./workflows/compile-verified-dossier');
+  const {ceilingFor}=require('./workflows/claim-resolution');
+
+  // Built by the producer, so the sentence this turns on cannot go stale here.
+  const exhaustedReason=dossierBlockingReasons([{agentId:'terrainPoi',result:{recommendation:'advance',
+    openQuestions:[],claims:[{id:'water',category:'water',finding:'unresolved',proposedValue:'Unknown.',
+      sources:[],blockers:[],resolution:{state:'source-exhausted',maximumAttempts:ceilingFor('water')}}]}}])
+    .find(reason=>reason.startsWith('terrainPoi/water'));
+
+  test('an exhausted claim is still unresearched, and still not answerable',()=>{
+    expect(exhaustedReason).toBeDefined();
+    const [entry]=classifyBlockers([exhaustedReason]);
+    expect(entry.disposition).toBe('unresearched');
+    expect([...answerableCountsByAgent([exhaustedReason]).keys()]).toEqual([]);
+  });
+
+  test('a claim that has not run out is still answerable',()=>{
+    expect([...answerableCountsByAgent(['terrainPoi/water: unresolved']).keys()])
+      .toEqual(['terrainPoi']);
+  });
+});
