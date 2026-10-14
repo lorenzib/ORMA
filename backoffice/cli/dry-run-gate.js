@@ -39,8 +39,9 @@ function sayShortlist(reports){
     const stands=report.unwaivable.length
       ? `blocked by ${report.unwaivable.join(', ')}`
       : 'nothing unwaivable';
+    const ends=report.wouldDecideWhenResearchEnds;
     console.log(`[dry-run]   ${String(report.state).padEnd(20)} ${report.trailName}`);
-    console.log(`[dry-run]   ${' '.repeat(20)} ${stands} · would ${report.wouldDecide}`);
+    console.log(`[dry-run]   ${' '.repeat(20)} ${stands} · would ${report.wouldDecide}, and ${ends} once research ends`);
   }
   const clear=reports.filter(report=>!report.unwaivable.length);
   console.log(`[dry-run] ${clear.length} of ${reports.length} have nothing unwaivable standing${clear.length?`: ${clear.map(report=>report.trailId).join(', ')}`:''}`);
@@ -50,6 +51,10 @@ function sayShortlist(reports){
   }else if(clear.length){
     console.log('[dry-run] None would be approved yet: each still has optional research the policy wants finished first.');
   }
+  // The question worth asking when there is no budget to run anything.
+  const eventual=reports.filter(report=>report.wouldDecideWhenResearchEnds==='approve');
+  console.log(`[dry-run] ${eventual.length} of ${reports.length} would be approved once their research is over, on the evidence already held${eventual.length?`: ${eventual.map(report=>report.trailId).join(', ')}`:''}`);
+  console.log('[dry-run] That is a floor, not a forecast: more research can answer a claim, never add a blocker that is not already here.');
   console.log('[dry-run] Read-only. Nothing was changed.');
   return reports;
 }
@@ -78,6 +83,7 @@ function say(report){
   }
   console.log(`[dry-run] ${report.waivableCount} optional blocker(s) the policy may accept as unknown.`);
   console.log(`[dry-run] The gate would: ${report.wouldDecide}${report.becauseOf?` → ${report.becauseOf}`:''}`);
+  console.log(`[dry-run] Once the research is over, on this same evidence: ${report.wouldDecideWhenResearchEnds}`);
   if(report.note)console.log(`[dry-run] Reason: ${String(report.note).slice(0,300)}`);
   console.log('[dry-run] Read-only. Nothing was changed.');
   return report;

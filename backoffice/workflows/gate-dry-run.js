@@ -24,6 +24,7 @@
 const {dossierBlockingReasons,routeGuidanceBlockingReasons,supportedRouteGuidance,
   waivableBlocker,blockerId,ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
 const {gateDecision}=require('./automate-existing-trail-verification');
+const {MAX_AUTOMATED_ATTEMPTS}=require('../contracts/resolution-policy-v1');
 
 /** The outputs the gate would see: the newest completed job from each agent. */
 function latestOutputsByAgent(jobs,candidateId,outputFor){
@@ -91,6 +92,27 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
   let decision=null;
   try{ decision=gateDecision(review,{items:[review]},orchestration,new Set()); }
   catch(error){ decision={action:'errored',note:error.message}; }
+  // And what it would decide once the research is over.
+  //
+  // "request-revision" today says only that some agent still has attempts
+  // left; it does not say whether the trail can ever be verified, which is the
+  // question actually being asked. Running the same policy over the same
+  // evidence with every agent's attempts spent answers it: if the end state is
+  // approve, the trail needs passes and nothing else, and the only thing
+  // between it and a seal is credits.
+  //
+  // The evidence is not changed, so this is a floor and not a forecast. More
+  // research can only answer claims, never create a blocker that is not
+  // already here.
+  const spent={...orchestration,trails:(orchestration?.trails||[]).map(item=>
+    item.candidateId===trail.candidateId
+      ? {...item,resolutionAttempts:Object.fromEntries(
+          ['logistics','regulatoryRanger','terrainPoi','evidenceLibrarian','redTeam','cartographer']
+            .map(agentId=>[agentId,MAX_AUTOMATED_ATTEMPTS]))}
+      : item)};
+  let ending=null;
+  try{ ending=gateDecision(review,{items:[review]},spent,new Set()); }
+  catch(error){ ending={action:'errored',note:error.message}; }
   return {
     found:true,
     trailId:trail.trailId,
@@ -106,6 +128,9 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
     unwaivable,
     waivableCount:blockingReasons.filter(waivableBlocker).length,
     wouldDecide:decision?.action||'nothing',
+    // What it comes to once every agent has spent its attempts on this same
+    // evidence: the answer to "can this trail be verified at all".
+    wouldDecideWhenResearchEnds:ending?.action||'nothing',
     becauseOf:decision?.targetAgent||null,
     note:decision?.note||null,
   };
