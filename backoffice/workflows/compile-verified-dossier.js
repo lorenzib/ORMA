@@ -18,6 +18,7 @@ function authoritativeRecommendedStart(review){
 }
 
 const {routeConformanceBlockingReasons,OFF_DECLARED_ROUTE_BLOCKER_ID}=require('../services/route-conformance');
+const {routeGuidanceFromMap}=require('./route-guidance-from-map');
 
 const OFFICIAL_ROUTE_CLAIMS=['route-number-status','route-number-sequence','route-number-switches'];
 
@@ -79,7 +80,7 @@ function assertRouteConformance(review,trail){
 }
 
 function assertRouteGuidance(review,trail){
-  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>!supportedLogisticsClaim(review,id));
+  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>!supportedRouteGuidance(review,id));
   if(missing.length)throw new Error(`${trail?.trailName||trail?.trailId||'Trail'} requires sourced route guidance before verification: ${missing.join(', ')}`);
 }
 
@@ -154,9 +155,44 @@ function routeGuidanceContractStale(outputs){
   return routeGuidanceContractOf(outputs)!==ROUTE_GUIDANCE_CONTRACT;
 }
 
+/**
+ * The two claims the map itself can answer, where the geometry audit measured
+ * them.
+ *
+ * Only these two. A relation records that these ways carry route 101 and where
+ * they run, so it can say what the route is and where its number changes. It
+ * does not publish a start point, and it cannot say whether a walk is navigated
+ * by numbers or by landmarks -- those stay the agent's to establish from an
+ * authority, and remain unanswerable from the map however much of it we read.
+ */
+const MAP_ANSWERABLE_CLAIMS=Object.freeze(['route-number-sequence','route-number-switches']);
+
+function cartographerOutput(outputs){return (outputs||[]).find(output=>output.agentId==='cartographer');}
+
+function mapReadRouteGuidance(outputs,options={}){
+  const result=cartographerOutput(outputs)?.result;
+  if(!result?.routeGuidance)return {};
+  return routeGuidanceFromMap(result.routeGuidance,result.source?.relations,options);
+}
+
+/**
+ * Whether this route claim is answered: by an authority the agent cited, or --
+ * for the two the map can answer -- by what the geometry audit measured.
+ *
+ * The agent's answer wins where it has one. An operator's published description
+ * is better evidence than a measurement of the ways, and says what somebody
+ * recommends rather than only what is drawn.
+ */
+function supportedRouteGuidance(review,id,options={}){
+  const sourced=supportedLogisticsClaim(review,id);
+  if(sourced)return sourced;
+  if(!MAP_ANSWERABLE_CLAIMS.includes(id))return null;
+  return mapReadRouteGuidance(review?.specialistOutputs,options)[id]||null;
+}
+
 function routeGuidanceBlockingReasons(outputs){
   const review={specialistOutputs:outputs||[]};
-  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>!supportedLogisticsClaim(review,id));
+  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>!supportedRouteGuidance(review,id));
   return missing.map(id=>`logistics/${id}: sourced, reader-usable route guidance is required`);
 }
 
@@ -387,4 +423,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
