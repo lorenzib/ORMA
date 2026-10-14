@@ -45,3 +45,33 @@ describe('reliable catalogue campaign scheduling',()=>{
     expect(writes.at(-1).value).toEqual(expect.objectContaining({status:'failed',nextEligibleAt:'2026-08-20T07:16:00.000Z',lastFailure:expect.objectContaining({outcome:'failure'})}));
   });
 });
+
+// The scheduler has always taken `force` and nothing ever passed it, so a
+// trail named for the pipeline joined a queue for the next morning instead of
+// going in. Dispatched at 13:00 the campaign answered "not-due, next eligible
+// 07:30 tomorrow", and nothing said so -- the request looked accepted and
+// simply never happened, the same way the capacity budget refused it silently.
+describe('naming a trail is the ask, not a request to queue for tomorrow',()=>{
+  const {workerOptions}=require('./cli/live-worker');
+  const fs=require('fs');
+  const path=require('path');
+
+  test('a campaign that is not due runs anyway when a trail is named',()=>{
+    const previous={nextEligibleAt:'2026-08-21T07:30:00.000Z',lastSuccessfulAt:'2026-08-20T07:30:00.000Z'};
+    expect(campaignEligibility(previous,{at}).due).toBe(false);
+    expect(campaignEligibility(previous,{at,force:true}).due).toBe(true);
+  });
+
+  test('the worker forces it exactly when trails were named',()=>{
+    // Read off the call site, so the wiring cannot be quietly removed.
+    const worker=fs.readFileSync(path.join(__dirname,'workflows/run-live-backoffice-worker.js'),'utf8');
+    expect(worker).toContain('force:(options.reverifyTrailIds||[]).length>0');
+  });
+
+  test('named ids reach the worker options from the environment',()=>{
+    expect(workerOptions({ORMA_REVERIFY_TRAIL_IDS:'tre-cime, lago-braies'}).reverifyTrailIds)
+      .toEqual(['tre-cime','lago-braies']);
+    // An ordinary pass names nothing and keeps the daily rhythm.
+    expect(workerOptions({}).reverifyTrailIds).toEqual([]);
+  });
+});

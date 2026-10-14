@@ -735,6 +735,19 @@ async function runLiveBackofficeWorker(store, options = {}){
     at:options.at,limit:options.campaignLimit||DEFAULT_CAMPAIGN_LIMIT,capacity:options.campaignCapacity||DEFAULT_TRAIL_CAPACITY,
     queueCapacity:options.campaignQueueCapacity,trigger:options.campaignTrigger,
     reverifyTrailIds:options.reverifyTrailIds||[],
+    // Naming a trail is the ask, so it runs the campaign rather than joining a
+    // queue for tomorrow.
+    //
+    // The campaign is deliberately once a day: it is the thing that admits new
+    // trails and spends model credits on them, and a daily rhythm is right for
+    // that. It is wrong for a person who has just named three walks and wants
+    // to see what the pipeline makes of them. Dispatched at 13:00 the answer
+    // was "not-due, next eligible 07:30 tomorrow" -- and, like the capacity
+    // budget before it, nothing said so. The request looked accepted and
+    // simply never happened.
+    //
+    // The scheduler has always taken `force`; nothing ever passed it.
+    force:(options.reverifyTrailIds||[]).length>0,
     workflowRunUrl:options.workflowRunUrl,runId:options.runId});
   const newTrailReviews=await ingestNewTrailReviews(store);
   const hazardReviews=await ingestHazardReviews(store);
