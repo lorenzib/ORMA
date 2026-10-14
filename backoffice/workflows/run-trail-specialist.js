@@ -5,6 +5,7 @@ const {runCartographer}=require('./run-cartographer');
 const {candidateFromProductionTrail,referenceFromProductionTrail}=require('./run-catalogue-batch');
 const {loadRouteComposites}=require('../services/route-composites');
 const {mergeClaimResolutionResult}=require('./claim-resolution');
+const {ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
 const {CLAIM_ENTITY_TYPE,POLICY_BY_RULE}=require('./compile-operational-facts');
 const {locateOnRoute}=require('../../hazard-location');
 const {ROUTE_GUIDANCE_CONTRACT}=require('./compile-verified-dossier');
@@ -238,9 +239,58 @@ function dropUnretrievableSources(result){
   return dropped;
 }
 
+/**
+ * A route claim the gate could never use is unresolved, not supported.
+ *
+ * supportedLogisticsClaim asks for three things before a route claim counts:
+ * a supported proposal, a value with something in it, and a source that is an
+ * https page with a named authority behind it. Nothing checked the last two
+ * when the agent handed the claim in. A claim could cite a real page with no
+ * authority named, pass validation, read as answered everywhere, and refuse
+ * the gate for ever -- without ever being researched again, because the
+ * resolution ladder only picks up `unresolved` and `conflicted`.
+ *
+ * Les Marais d'Albens is what that looks like from the outside. It was
+ * rejected for a missing route-number-sequence while route-number-sequence
+ * showed zero exhausted claims across the whole catalogue: nobody had ever
+ * researched it, and nobody ever would have.
+ *
+ * Downgraded rather than thrown. A thrown run is retried at the same attempt,
+ * so the agent reads the same context, hands in the same claim, and burns the
+ * failure budget reaching the same place -- the lesson of #681, #722 and #724.
+ * Unresolved sends it round the ladder with a different strategy instead.
+ *
+ * Scoped to the four route claims, which are the only ones the gate reads this
+ * way. Holding optional detail to a standard the gate does not apply would
+ * push honest answers back into research for nothing.
+ */
+function demoteClaimsTheGateCannotUse(result,agentId){
+  if(agentId!=='logistics')return [];
+  const demoted=[];
+  for(const claim of result.claims||[]){
+    if(!ROUTE_GUIDANCE_CLAIM_IDS.includes(String(claim.id)))continue;
+    if(claim.finding!=='supported-proposal')continue;
+    const hasValue=Boolean(String(claim.proposedValue||'').trim());
+    const hasAuthority=(claim.sources||[]).some(source=>
+      /^https:\/\//.test(String(source?.url||''))&&String(source?.authority||'').trim());
+    if(hasValue&&hasAuthority)continue;
+    const missing=!hasValue&&!hasAuthority?'no value and no source authority'
+      :hasValue?'no named authority on any source':'no proposed value';
+    demoted.push({claimId:claim.id,missing});
+    claim.finding='unresolved';
+    claim.blockers=[...(claim.blockers||[]),`${claim.id}-not-citable`];
+    claim.rationale=`${String(claim.rationale||'').trim()} Recorded as unresolved rather than supported: the route guidance a walker reads has to name the authority it came from, and this claim has ${missing}.`.trim();
+  }
+  return demoted;
+}
+
 function validateSpecialistResult(result,agentId,requiredClaimIds=[]){
   const unretrievable=dropUnretrievableSources(result);
   if(unretrievable.length)result.unretrievableSources=unretrievable;
+  // After the unretrievable sources are gone, so a claim left citing nothing
+  // usable is caught here rather than counted as sourced.
+  const uncitable=demoteClaimsTheGateCannotUse(result,agentId);
+  if(uncitable.length)result.uncitableRouteClaims=uncitable;
   for(const claim of result.claims||[]){
     if(claim.finding==='supported-proposal'&&!claim.sources.length)throw new Error(`Supported proposal ${claim.id} requires a source`);
   }
@@ -458,4 +508,4 @@ async function runTrailSpecialist({job,trail,context},options={}){
   return {responseId:response.responseId,model:response.model,result};
 }
 
-module.exports={MANDATORY_CLAIMS,MANDATORY_CLAIM_CATEGORY,fillOmittedClaims,dropUnretrievableSources,MAP_DATA_SOURCE,routeSourceReady,verifiableFirst,CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
+module.exports={demoteClaimsTheGateCannotUse,MANDATORY_CLAIMS,MANDATORY_CLAIM_CATEGORY,fillOmittedClaims,dropUnretrievableSources,MAP_DATA_SOURCE,routeSourceReady,verifiableFirst,CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
