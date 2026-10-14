@@ -40,3 +40,26 @@ describe('reading the verification state from a laptop',()=>{
     expect(manifest.scripts['backoffice:state']).toBe('node scripts/show-verification-state.js');
   });
 });
+
+// A step that names the credentials again can name them wrongly. The gate
+// dry-run did: it wrote FIREBASE_SERVICE_ACCOUNT_JSON where the secret is
+// FIREBASE_SERVICE_ACCOUNT, so a step-level override replaced the job's
+// working value with an empty one and the run failed on "Could not load the
+// default credentials" -- in a workflow whose every other step simply inherits
+// them.
+describe('no step re-declares the credentials the job already provides',()=>{
+  const yaml=require('js-yaml');
+  const fs=require('fs');
+  const path=require('path');
+
+  test('the reports inherit the job credentials rather than naming their own',()=>{
+    const file=path.join(__dirname,'..','.github/workflows',WORKFLOW);
+    const job=Object.values(yaml.load(fs.readFileSync(file,'utf8')).jobs)[0];
+    expect(Object.keys(job.env)).toEqual(expect.arrayContaining(
+      ['FIREBASE_PROJECT_ID','FIREBASE_SERVICE_ACCOUNT_JSON']));
+    const offenders=(job.steps||[])
+      .filter(step=>step.env&&Object.keys(step.env).some(key=>key.startsWith('FIREBASE_')))
+      .map(step=>step.name);
+    expect(offenders).toEqual([]);
+  });
+});
