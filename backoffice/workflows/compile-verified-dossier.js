@@ -267,7 +267,34 @@ function acceptedBlockerMap(acceptedBlockers){
 }
 
 /** Every blocker still standing: unaccepted, or accepted without a real reason. */
+/**
+ * A note attached to an answered claim, filed so it cannot be mistaken for the
+ * claim having no answer.
+ *
+ * The logistics prompt tells the agent to supply a switch it can place by a
+ * landmark even where no coordinate was published, and to say what is missing.
+ * Tre Cime's agent did exactly that: it established the Rifugio Locatelli
+ * switch, cited it to the Consorzio Turistico, and noted that no coordinate or
+ * distance-from-start was published for it.
+ *
+ * That note was filed as `logistics/route-number-switches`, which is in the
+ * class no reason can waive -- a class written for a claim with no answer at
+ * all. So the gate rejected the best-documented walk in the catalogue because
+ * its agent had been thorough. An agent that found the switch and said nothing
+ * else would have passed.
+ *
+ * The caveat keeps the claim it belongs to, under its own suffix, so it still
+ * reaches the desk and the agent that could clear it, and is accepted as
+ * unknown like any other optional detail.
+ */
+function caveatOnAnsweredClaim(output,claim,review){
+  return output.agentId==='logistics'
+    && VERIFICATION_ROUTE_CLAIMS.includes(claim.id)
+    && Boolean(supportedRouteGuidance(review,claim.id));
+}
+
 function dossierBlockingReasons(outputs){
+  const review={specialistOutputs:outputs||[]};
   const reasons=routeGuidanceBlockingReasons(outputs);
   for(const output of outputs){
     const result=output.result||{};
@@ -293,7 +320,10 @@ function dossierBlockingReasons(outputs){
       // It is never matched on -- `automated resolution strategies exhausted`
       // is the part consumers recognise -- so the figure here is for a reader.
       if(claim.resolution?.state==='source-exhausted') reasons.push(`${output.agentId}/${claim.id}: ${claim.resolution.maximumAttempts||'all'} automated resolution strategies exhausted`);
-      for(const blocker of claim.blockers||[]) reasons.push(`${output.agentId}/${claim.id}: ${blocker}`);
+      const caveat=caveatOnAnsweredClaim(output,claim,review);
+      for(const blocker of claim.blockers||[]) reasons.push(caveat
+        ? `${output.agentId}/${claim.id}-caveat: ${blocker}`
+        : `${output.agentId}/${claim.id}: ${blocker}`);
     }
   }
   return [...new Set(reasons)];
