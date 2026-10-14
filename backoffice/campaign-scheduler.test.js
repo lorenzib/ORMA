@@ -75,3 +75,57 @@ describe('naming a trail is the ask, not a request to queue for tomorrow',()=>{
     expect(workerOptions({}).reverifyTrailIds).toEqual([]);
   });
 });
+
+// Named ids travel: workflow input -> environment -> workerOptions ->
+// runScheduledTrailCampaign -> startLiveTrailCampaign -> planCatalogueCampaign.
+//
+// Every link had a passing test and the chain was still broken. The scheduler
+// named four options when it called the planner and dropped the rest, so the
+// ids stopped one call short of the thing that reads them. The campaign ran,
+// reported `reverifying: 0`, and admitted nothing. Three separate releases
+// went out before production showed it.
+//
+// So this walks the whole chain in one go rather than each link apart.
+describe('a named trail survives every hop from the workflow input',()=>{
+  const fs=require('fs');
+  const path=require('path');
+  const {workerOptions}=require('./cli/live-worker');
+
+  function catalogue(){
+    const src=fs.readFileSync(path.join(__dirname,'../data/regions/dolomites-trails.js'),'utf8');
+    return JSON.parse(src.match(/var incoming=(\[[\s\S]*?\]);/)[1]);
+  }
+
+  test('the id named in the workflow reaches the jobs the campaign creates',async()=>{
+    const trails=catalogue();
+    // A real graduated trail: the case the whole chain exists for.
+    const sealed=trails.find(trail=>trail.graduation?.status==='verified');
+    expect(sealed).toBeTruthy();
+
+    // 1. The workflow input, as the YAML sets it.
+    const workflow=fs.readFileSync(path.join(__dirname,'../.github/workflows/orma-backoffice-worker.yml'),'utf8');
+    expect(workflow).toContain('ORMA_REVERIFY_TRAIL_IDS: ${{ github.event.inputs.reverify_trail_ids');
+
+    // 2. The environment, through the worker's own option builder.
+    const options=workerOptions({ORMA_REVERIFY_TRAIL_IDS:sealed.id});
+    expect(options.reverifyTrailIds).toEqual([sealed.id]);
+
+    // 3-5. Scheduler, campaign starter, planner -- and the job at the end.
+    const store=memoryStore();
+    const result=await runScheduledTrailCampaign(store,trails,{
+      enabled:true,at,limit:5,capacity:5,
+      reverifyTrailIds:options.reverifyTrailIds,
+      force:options.reverifyTrailIds.length>0,
+    });
+    expect(result.status).toBe('completed');
+    expect([...store.jobs.values()].map(job=>job.candidateId)).toContain(sealed.id);
+  });
+
+  test('without the name, the same graduated trail is left alone',async()=>{
+    const trails=catalogue();
+    const sealed=trails.find(trail=>trail.graduation?.status==='verified');
+    const store=memoryStore();
+    await runScheduledTrailCampaign(store,trails,{enabled:true,at,limit:5,capacity:5,force:true});
+    expect([...store.jobs.values()].map(job=>job.candidateId)).not.toContain(sealed.id);
+  });
+});

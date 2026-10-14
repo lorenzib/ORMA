@@ -83,7 +83,14 @@ async function runScheduledTrailCampaign(store,trails,options={}){
   await store.setArtifact('trail-campaign-health',started,{status:'running',runId:runIdentity.runId});
   try{
     const result=await startLiveTrailCampaign(store,trails,
-      {at:eligibility.at,limit:options.limit||5,capacity:options.capacity||5,queueCapacity:options.queueCapacity});
+      {at:eligibility.at,limit:options.limit||5,capacity:options.capacity||5,queueCapacity:options.queueCapacity,
+        // The trails asked for by name. This step named four options and
+        // dropped the rest, so the ids travelled from the workflow input
+        // through the environment and the worker and stopped here, one call
+        // short of the planner that reads them. The campaign ran, reported
+        // `reverifying: 0`, and admitted nothing -- the fourth place in this
+        // chain where the request looked accepted and never happened.
+        reverifyTrailIds:options.reverifyTrailIds||[]});
     const completedAt=options.completedAt||new Date().toISOString();const receipt={outcome:'success',startedAt:eligibility.at,completedAt,
       admitted:result.jobIds.length,remainingQueueable:result.campaign.summary.remainingQueueable,
       routeNumberGuidanceVerified:result.campaign.summary.routeNumberGuidanceVerified,
