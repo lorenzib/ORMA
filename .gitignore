@@ -19,3 +19,6 @@ _site/
 # session that starts a preview server appends to it. Tracking it guaranteed a
 # permanently dirty tree; the tooling recreates it wherever it is needed.
 .claude/launch.json
+
+# Written by scripts/report-route-gaps.js so a cancelled run keeps its answers.
+route-gap-report.json
