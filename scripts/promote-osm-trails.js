@@ -95,11 +95,74 @@ function haversineMeters(lat1, lng1, lat2, lng2) {
   return 2 * R * Math.asin(Math.sqrt(s));
 }
 
+/** The widest gap between consecutive points, in metres. */
+function widestGapMeters(pts) {
+  let widest = 0;
+  for (let i = 1; i < pts.length; i += 1) {
+    const gap = haversineMeters(pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1]);
+    if (gap > widest) widest = gap;
+  }
+  return widest;
+}
+
+/**
+ * Put a relation's pieces in walking order before they become one line.
+ *
+ * A MultiLineString arrives as however many ways the relation lists, in
+ * whatever order it lists them and pointing whichever way they were drawn.
+ * Concatenating them as they come put a jump at every join the size of the
+ * distance between two unrelated ends -- which is why twenty-one catalogue
+ * trails were held back as drafts for "geometry jump", several of them for a
+ * gap the route does not actually have.
+ *
+ * Greedy nearest-end chaining: start from the longest piece, then repeatedly
+ * attach whichever remaining piece has an end closest to either free end of
+ * the chain, reversing it when that is the closer way round.
+ *
+ * This reorders and reorients. It never merges, drops or invents a point, so
+ * `segments` still counts the pieces the relation really has and a genuine
+ * hole in the data still reads as a gap of its true size.
+ */
+function chainLines(lines) {
+  const remaining = lines
+    .map(line => line.map(([lng, lat]) => [lat, lng]))
+    .filter(piece => piece.length)
+    .sort((a, b) => b.length - a.length);
+  if (!remaining.length) return [];
+  let chained = remaining.shift();
+  while (remaining.length) {
+    let best = null;
+    for (let i = 0; i < remaining.length; i += 1) {
+      const piece = remaining[i];
+      const head = piece[0];
+      const tail = piece[piece.length - 1];
+      const options = [
+        { gap: haversineMeters(chained[chained.length - 1][0], chained[chained.length - 1][1], head[0], head[1]), i, reverse: false, append: true },
+        { gap: haversineMeters(chained[chained.length - 1][0], chained[chained.length - 1][1], tail[0], tail[1]), i, reverse: true, append: true },
+        { gap: haversineMeters(chained[0][0], chained[0][1], tail[0], tail[1]), i, reverse: false, append: false },
+        { gap: haversineMeters(chained[0][0], chained[0][1], head[0], head[1]), i, reverse: true, append: false },
+      ];
+      for (const option of options) if (!best || option.gap < best.gap) best = option;
+    }
+    const piece = best.reverse ? remaining[best.i].slice().reverse() : remaining[best.i];
+    chained = best.append ? chained.concat(piece) : piece.concat(chained);
+    remaining.splice(best.i, 1);
+  }
+  return chained;
+}
+
 // Flatten a (Multi)LineString into one [lat, lng] path, plus cumulative km.
 function toPath(geometry) {
   const lines = geometry.type === 'LineString' ? [geometry.coordinates] : geometry.coordinates;
-  const pts = [];
-  for (const line of lines) for (const [lng, lat] of line) pts.push([lat, lng]);
+  const asListed = [];
+  for (const line of lines) for (const [lng, lat] of line) asListed.push([lat, lng]);
+  // Greedy chaining is a heuristic, and on one catalogue relation it picked an
+  // order fractionally worse than the one the file already had. So the two are
+  // compared and the better kept: this step can narrow a route's widest gap
+  // and can never widen it, which is the property that makes it safe to run
+  // over the whole catalogue rather than the trails known to be broken.
+  const chained = lines.length > 1 ? chainLines(lines) : asListed;
+  const pts = widestGapMeters(chained) < widestGapMeters(asListed) ? chained : asListed;
   const cumKm = [0];
   for (let i = 1; i < pts.length; i += 1) {
     cumKm.push(cumKm[i - 1] + haversineMeters(pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1]) / 1000);
@@ -550,4 +613,10 @@ async function main() {
   console.log(`[done] Wrote ${entries.length} promoted trails -> ${OUTPUT_PATH}`);
 }
 
-main().catch((err) => { console.error(err); process.exit(1); });
+// Guarded so the geometry assembly above can be tested without fetching or
+// writing anything. Running the script directly is unchanged.
+if (require.main === module) {
+  main().catch((err) => { console.error(err); process.exit(1); });
+}
+
+module.exports = { chainLines, toPath, widestGapMeters, haversineMeters };
