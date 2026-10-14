@@ -247,9 +247,9 @@ function supportedRouteGuidance(review,id,options={}){
   return recordReadRouteGuidance(review,options)[id]||null;
 }
 
-function routeGuidanceBlockingReasons(outputs){
+function routeGuidanceBlockingReasons(outputs,options={}){
   const review={specialistOutputs:outputs||[]};
-  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>!supportedRouteGuidance(review,id));
+  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>!supportedRouteGuidance(review,id,options));
   return missing.map(id=>`logistics/${id}: sourced, reader-usable route guidance is required`);
 }
 
@@ -330,15 +330,15 @@ function acceptedBlockerMap(acceptedBlockers){
  * reaches the desk and the agent that could clear it, and is accepted as
  * unknown like any other optional detail.
  */
-function caveatOnAnsweredClaim(output,claim,review){
+function caveatOnAnsweredClaim(output,claim,review,options={}){
   return output.agentId==='logistics'
     && VERIFICATION_ROUTE_CLAIMS.includes(claim.id)
-    && Boolean(supportedRouteGuidance(review,claim.id));
+    && Boolean(supportedRouteGuidance(review,claim.id,options));
 }
 
-function dossierBlockingReasons(outputs){
+function dossierBlockingReasons(outputs,options={}){
   const review={specialistOutputs:outputs||[]};
-  const reasons=routeGuidanceBlockingReasons(outputs);
+  const reasons=routeGuidanceBlockingReasons(outputs,options);
   for(const output of outputs){
     const result=output.result||{};
     if(result.recommendation&&result.recommendation!=='advance') reasons.push(`${output.agentId}: recommendation is ${result.recommendation}`);
@@ -363,7 +363,7 @@ function dossierBlockingReasons(outputs){
       // It is never matched on -- `automated resolution strategies exhausted`
       // is the part consumers recognise -- so the figure here is for a reader.
       if(claim.resolution?.state==='source-exhausted') reasons.push(`${output.agentId}/${claim.id}: ${claim.resolution.maximumAttempts||'all'} automated resolution strategies exhausted`);
-      const caveat=caveatOnAnsweredClaim(output,claim,review);
+      const caveat=caveatOnAnsweredClaim(output,claim,review,options);
       for(const blocker of claim.blockers||[]) reasons.push(caveat
         ? `${output.agentId}/${claim.id}-caveat: ${blocker}`
         : `${output.agentId}/${claim.id}: ${blocker}`);
