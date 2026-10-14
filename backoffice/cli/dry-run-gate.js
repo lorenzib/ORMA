@@ -14,7 +14,11 @@ const {loadProductionTrails}=require('../../scripts/load-production-trails');
 const path=require('path');
 
 function parseArgs(argv){
-  const args={trail:null,limit:10};
+  // Every trail on the way, not a shortlist. With no budget to run anything,
+  // the number worth knowing is how many of the whole pipeline can ever be
+  // verified on the evidence already held -- that is what decides whether the
+  // next top-up buys four trails or forty. --limit narrows it again.
+  const args={trail:null,limit:Number.MAX_SAFE_INTEGER};
   for(let index=0;index<argv.length;index+=1){
     const [key,inline]=String(argv[index]).replace(/^--/,'').split('=');
     const value=inline||argv[index+1];
@@ -34,17 +38,18 @@ function parseArgs(argv){
  * eye.
  */
 function sayShortlist(reports){
-  console.log(`[dry-run] ${reports.length} trail(s) nearest the seal, asked what the gate would say.`);
+  console.log(`[dry-run] ${reports.length} trail(s) on the way, asked what the gate would say.`);
   for(const report of reports){
     const stands=report.unwaivable.length
       ? `blocked by ${report.unwaivable.join(', ')}`
       : 'nothing unwaivable';
     const ends=report.wouldDecideWhenResearchEnds;
-    console.log(`[dry-run]   ${String(report.state).padEnd(20)} ${report.trailName}`);
-    console.log(`[dry-run]   ${' '.repeat(20)} ${stands} · would ${report.wouldDecide}, and ${ends} once research ends`);
+    // One line each. Fifty trails over two lines apiece is a wall nobody reads.
+    const verdict=ends==='approve'?'CAN be verified':`cannot: ${stands}`;
+    console.log(`[dry-run]   ${String(report.state).padEnd(20)} ${verdict.padEnd(34)} ${report.trailName}`);
   }
   const clear=reports.filter(report=>!report.unwaivable.length);
-  console.log(`[dry-run] ${clear.length} of ${reports.length} have nothing unwaivable standing${clear.length?`: ${clear.map(report=>report.trailId).join(', ')}`:''}`);
+  console.log(`[dry-run] ${clear.length} of ${reports.length} have nothing unwaivable standing.`);
   const approvable=clear.filter(report=>report.wouldDecide==='approve');
   if(approvable.length){
     console.log(`[dry-run] ${approvable.length} would be approved right now: ${approvable.map(report=>report.trailId).join(', ')}`);
@@ -53,7 +58,21 @@ function sayShortlist(reports){
   }
   // The question worth asking when there is no budget to run anything.
   const eventual=reports.filter(report=>report.wouldDecideWhenResearchEnds==='approve');
-  console.log(`[dry-run] ${eventual.length} of ${reports.length} would be approved once their research is over, on the evidence already held${eventual.length?`: ${eventual.map(report=>report.trailId).join(', ')}`:''}`);
+  console.log(`[dry-run] ${eventual.length} of ${reports.length} would be approved once their research is over, on the evidence already held.`);
+  if(eventual.length)console.log(`[dry-run]   ${eventual.map(report=>report.trailId).join(', ')}`);
+  // What stands in the way of the rest, counted, so the next thing to fix is
+  // the one blocking the most trails rather than the one most recently seen.
+  const standing=new Map();
+  for(const report of reports){
+    if(report.wouldDecideWhenResearchEnds==='approve')continue;
+    for(const id of report.unwaivable)standing.set(id,(standing.get(id)||0)+1);
+  }
+  if(standing.size){
+    console.log('[dry-run] What stops the rest, most common first:');
+    for(const [id,count] of [...standing.entries()].sort((a,b)=>b[1]-a[1])){
+      console.log(`[dry-run]   ${String(count).padStart(3)}x ${id}`);
+    }
+  }
   console.log('[dry-run] That is a floor, not a forecast: more research can answer a claim, never add a blocker that is not already here.');
   console.log('[dry-run] Read-only. Nothing was changed.');
   return reports;

@@ -1053,11 +1053,12 @@ describe('map-first returning homepage layout contract', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     expect(script).not.toContain("icons.chipHtml('veterinary', label)");
     expect(script).not.toContain('care.loadMapLayer(map, veterinaryOrigin)');
-    // And the homepage stops shipping a file only the trail page uses. The
-    // trail page gets it from its own bundle, so nothing there changes.
+    // The module went with it on 2026-10-15, once the trail page's own chip
+    // was removed for the same reason and nothing was left using it.
     expect(html).not.toContain('veterinary-care.js');
+    expect(fs.existsSync(path.join(__dirname, 'veterinary-care.js'))).toBe(false);
     expect(fs.readFileSync(path.join(__dirname, 'scripts', 'build-trail-page-bundle.js'), 'utf8'))
-      .toContain("'veterinary-care.js'");
+      .not.toContain("'veterinary-care.js'");
   });
 
   test('keeps route shields above a stronger ORMA highlight and only clusters five or more trails', () => {

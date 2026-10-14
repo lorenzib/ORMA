@@ -2089,7 +2089,7 @@ function renderTrail(t){
       // sights are planning extras and stay behind Layers so the route, not a
       // field of identical pins, is what you see first. Mirrors
       // DEFAULT_VISIBLE_GROUPS in detail-pois.js.
-      const poiStates = { fountains: true, huts: true, food: false, places: false, veterinary: false };
+      const poiStates = { fountains: true, huts: true, food: false, places: false };
       const amenityMarkers = [];       // { marker, group } for curated fallbacks
       if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(map);
       const setLayerChipLabel = (button, iconKey, label) => {
@@ -2100,7 +2100,6 @@ function renderTrail(t){
       };
       setLayerChipLabel(document.getElementById('routesToggle'), 'routes', 'Trail routes');
       setLayerChipLabel(document.getElementById('liftsToggle'), 'lifts', 'Lift stations');
-      setLayerChipLabel(document.getElementById('veterinaryToggle'), 'veterinary', 'Veterinary clinics');
       setLayerChipLabel(document.getElementById('nearbyToggle'), 'nearby', 'Nearby trails');
       addTerrainSource(map);
       increaseLabelDensity(map);
@@ -2174,54 +2173,13 @@ function renderTrail(t){
         });
       });
 
-      // Veterinary facilities are fetched only when requested: the nearest
-      // options can sit well beyond the route viewport and do not need to
-      // compete with the trail during ordinary map use.
-      const veterinaryButton = document.getElementById('veterinaryToggle');
-      let veterinaryResults = null;
-      let veterinaryLoad = null;
-      if(veterinaryButton){
-        veterinaryButton.addEventListener('click', async () => {
-          const care = window.ORMA_VeterinaryCare;
-          if(!care) return;
-          poiStates.veterinary = !poiStates.veterinary;
-          veterinaryButton.classList.toggle('on', poiStates.veterinary);
-          veterinaryButton.setAttribute('aria-pressed', String(poiStates.veterinary));
-          if(!poiStates.veterinary){
-            care.setVisible(map, false);
-            return;
-          }
-          if(veterinaryResults){
-            care.setVisible(map, true);
-            care.focusFacilities(map, t, veterinaryResults);
-            return;
-          }
-          veterinaryButton.disabled = true;
-          setLayerChipLabel(veterinaryButton, 'veterinary', 'Finding veterinary clinics…');
-          try{
-            veterinaryLoad = veterinaryLoad || care.loadMapLayer(map, t);
-            veterinaryResults = await veterinaryLoad;
-            if(!veterinaryResults.length){
-              poiStates.veterinary = false;
-              veterinaryButton.classList.remove('on');
-              veterinaryButton.setAttribute('aria-pressed', 'false');
-              setLayerChipLabel(veterinaryButton, 'veterinary', 'No veterinary clinics mapped nearby');
-              return;
-            }
-            setLayerChipLabel(veterinaryButton, 'veterinary', `Veterinary clinics (${veterinaryResults.length})`);
-            care.setVisible(map, poiStates.veterinary);
-            if(poiStates.veterinary) care.focusFacilities(map, t, veterinaryResults);
-          }catch(error){
-            veterinaryLoad = null;
-            poiStates.veterinary = false;
-            veterinaryButton.classList.remove('on');
-            veterinaryButton.setAttribute('aria-pressed', 'false');
-            setLayerChipLabel(veterinaryButton, 'veterinary', 'Veterinary clinics unavailable');
-          }finally{
-            veterinaryButton.disabled = false;
-          }
-        });
-      }
+      // No veterinary layer. It showed whatever OpenStreetMap happened to have
+      // mapped within a wide radius, and across this catalogue that is thin
+      // enough to mislead: an empty map reads as "no vet nearby" rather than
+      // "nobody has mapped one", which is the wrong thing to tell an owner.
+      // Removed from the homepage and from here on 2026-10-15, and
+      // veterinary-care.js went with it.
+
       // detail-pois.js adds its layers asynchronously (after a fetch), so
       // reapply whenever a POI source finishes loading.
       map.on('sourcedata', (e) => {

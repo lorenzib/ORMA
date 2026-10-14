@@ -74,8 +74,11 @@ describe('the gate can be asked about the shortlist, not only one trail',()=>{
   const path=require('path');
   const {parseArgs}=require('../backoffice/cli/dry-run-gate');
 
-  test('no trail named means the shortlist',()=>{
-    expect(parseArgs([])).toEqual({trail:null,limit:10});
+  test('no trail named means every trail on the way, not a shortlist',()=>{
+    // With no budget to run anything, the number worth knowing is how many of
+    // the whole pipeline can ever be verified on the evidence already held.
+    expect(parseArgs([]).trail).toBeNull();
+    expect(parseArgs([]).limit).toBe(Number.MAX_SAFE_INTEGER);
     expect(parseArgs(['--limit=3']).limit).toBe(3);
   });
 
