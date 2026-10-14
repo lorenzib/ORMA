@@ -1,5 +1,5 @@
 const fs=require('fs');
-const {startLiveTrailCampaign,agentWorking,DEFAULT_TRAIL_CAPACITY,DEFAULT_GATE_CAPACITY}=require('./workflows/start-live-trail-campaign.js');
+const {startLiveTrailCampaign,agentWorking,DEFAULT_TRAIL_CAPACITY,DEFAULT_GATE_CAPACITY,MAX_NAMED_ADMISSIONS}=require('./workflows/start-live-trail-campaign.js');
 
 // The pipeline as it actually stood on 2026-09-08: fifteen active trails against
 // a capacity of fifteen, so the campaign admitted nothing and 145 trails could
@@ -122,5 +122,53 @@ describe('the desk shows trails that gave up', () => {
   test('it says why each one stopped, in the same words as the queue', () => {
     expect(desk).toContain('groupBlockers(trail.reasons)');
     expect(desk).toContain('No reason was recorded.');
+  });
+});
+
+// 34 trails were active against a capacity of 15 on 14 October, so `available`
+// was zero and nothing could enter at all. Three trails asked for by name --
+// Tre Cime, Lago di Braies and Cinque Torri, to put the seals they earned
+// under the curated process through the rule that governs everything else --
+// were refused silently: the request looked accepted and simply never
+// happened.
+describe('a trail asked for by name gets in',()=>{
+  // Well past capacity, the way the live pipeline was.
+  const oversubscribed=Array.from({length:DEFAULT_TRAIL_CAPACITY+19},
+    (_,index)=>trail(`busy-${index}`,'evidence-resolution'));
+
+  test('a closed queue admits nothing when nothing is named',async()=>{
+    const store=storeWith(oversubscribed);
+    const result=await startLiveTrailCampaign(store,candidates(5),{at:'2026-10-14T12:00:00.000Z'});
+    expect(result.jobIds).toEqual([]);
+    expect(result.campaign.summary.jobsCreated).toBe(0);
+  });
+
+  test('it admits the named trail, and only that one',async()=>{
+    const pool=candidates(5);
+    const wanted=pool[2].id;
+    const store=storeWith(oversubscribed);
+    const result=await startLiveTrailCampaign(store,pool,
+      {at:'2026-10-14T12:00:00.000Z',reverifyTrailIds:[wanted]});
+    expect(result.campaign.selectedTrailIds).toEqual([wanted]);
+    expect(store.jobs.map(job=>job.candidateId)).toEqual([wanted]);
+    // The rest still wait for room rather than being lost.
+    expect(result.campaign.summary.remainingQueueable).toBeGreaterThan(0);
+  });
+
+  test('it cannot become a way around the budget',async()=>{
+    const pool=candidates(MAX_NAMED_ADMISSIONS+4);
+    const store=storeWith(oversubscribed);
+    const result=await startLiveTrailCampaign(store,pool,
+      {at:'2026-10-14T12:00:00.000Z',reverifyTrailIds:pool.map(item=>item.id)});
+    expect(result.campaign.selectedTrailIds.length).toBe(MAX_NAMED_ADMISSIONS);
+  });
+
+  test('with room to spare, naming one does not displace the ordinary intake',async()=>{
+    const pool=candidates(5);
+    const store=storeWith([trail('busy-0','evidence-resolution')]);
+    const result=await startLiveTrailCampaign(store,pool,
+      {at:'2026-10-14T12:00:00.000Z',limit:3,reverifyTrailIds:[pool[4].id]});
+    expect(result.campaign.selectedTrailIds).toContain(pool[4].id);
+    expect(result.campaign.selectedTrailIds.length).toBeGreaterThan(1);
   });
 });
