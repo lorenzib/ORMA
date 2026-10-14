@@ -63,3 +63,31 @@ describe('no step re-declares the credentials the job already provides',()=>{
     expect(offenders).toEqual([]);
   });
 });
+
+// Asking one trail at a time means a workflow run each, so a shortlist of ten
+// is half an hour of dispatching. The sweep is the question actually worth
+// asking before spending anything: who is close, and who is blocked by
+// something no research will clear.
+describe('the gate can be asked about the shortlist, not only one trail',()=>{
+  const yaml=require('js-yaml');
+  const fs=require('fs');
+  const path=require('path');
+  const {parseArgs}=require('../backoffice/cli/dry-run-gate');
+
+  test('no trail named means the shortlist',()=>{
+    expect(parseArgs([])).toEqual({trail:null,limit:10});
+    expect(parseArgs(['--limit=3']).limit).toBe(3);
+  });
+
+  test('the workflow asks one trail or the shortlist, never neither',()=>{
+    const file=path.join(__dirname,'..','.github/workflows',WORKFLOW);
+    const steps=Object.values(yaml.load(fs.readFileSync(file,'utf8')).jobs)[0].steps;
+    const dryRuns=steps.filter(step=>String(step.run||'').includes('backoffice:gate-dryrun'));
+    expect(dryRuns).toHaveLength(2);
+    const conditions=dryRuns.map(step=>step.if);
+    expect(conditions).toEqual(expect.arrayContaining([
+      expect.stringContaining("inputs.trail != ''"),
+      expect.stringContaining("inputs.trail == ''"),
+    ]));
+  });
+});

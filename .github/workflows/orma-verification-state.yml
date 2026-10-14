@@ -88,6 +88,13 @@ jobs:
           TRAIL: ${{ inputs.trail }}
         run: npm run backoffice:gate-dryrun -- --trail="$TRAIL"
 
+      # With no trail named, the same question asked of the shortlist: who is
+      # close, and who is blocked by something no research will clear. Free,
+      # and the answer decides where the model budget goes.
+      - name: What the gate would say about the trails nearest the seal
+        if: ${{ inputs.trail == '' }}
+        run: npm run backoffice:gate-dryrun
+
       - name: Report why the job queue is not moving
         run: npm run backoffice:job-queue
       - name: Report what each waiting gate is asking
