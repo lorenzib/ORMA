@@ -3,6 +3,10 @@ name: ORMA backoffice worker
 on:
   workflow_dispatch:
     inputs:
+      reverify_trail_ids:
+        description: 'Trail ids to put through the pipeline even though they already carry a graduation, comma separated. One standard for every trail.'
+        required: false
+        default: ''
       candidate_id:
         description: Optional trail candidate ID for a controlled run
         required: false
@@ -46,6 +50,7 @@ jobs:
       ORMA_CONTENT_ROUTINE_MODEL: gpt-5.6-luna
       ORMA_CONTENT_AUDIT_MODEL: gpt-5.6-terra
       ORMA_SPECIALIST_CANDIDATE_ID: ${{ github.event.inputs.candidate_id || '' }}
+      ORMA_REVERIFY_TRAIL_IDS: ${{ github.event.inputs.reverify_trail_ids || '' }}
       ORMA_SPECIALIST_LIMIT: ${{ github.event.inputs.specialist_limit || '10' }}
       ORMA_SPECIALIST_CONCURRENCY: ${{ vars.ORMA_SPECIALIST_CONCURRENCY || '4' }}
       ORMA_PUBLICATION_FORCE_RETRY: ${{ github.event.inputs.force_publication_retry || 'false' }}

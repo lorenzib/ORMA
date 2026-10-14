@@ -40,7 +40,8 @@ async function startLiveTrailCampaign(store,trails,options={}){
   // the moderator already has a backlog helps nobody, and the review queue has
   // its own byte ceiling.
   const available=Math.max(0,Math.min(capacity-active,queueCapacity-parked));
-  const campaign=planCatalogueCampaign(trails,{at,jobLimit:Math.max(1,Math.min(limit,available||1)),excludedTrailIds:excluded});
+  const campaign=planCatalogueCampaign(trails,{at,jobLimit:Math.max(1,Math.min(limit,available||1)),
+    excludedTrailIds:excluded,reverifyTrailIds:options.reverifyTrailIds||[]});
   if(!available){campaign.summary.remainingQueueable+=campaign.jobs.length;campaign.summary.jobsCreated=0;campaign.selectedTrailIds=[];campaign.jobs=[];}
   const byId=new Map(campaign.items.map(item=>[item.trailId,item]));const created=[];
   for(const planned of campaign.jobs){

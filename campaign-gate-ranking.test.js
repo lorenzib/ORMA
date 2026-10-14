@@ -73,3 +73,43 @@ describe('the campaign prefers trails that can finish', () => {
     expect(clearable.length).toBe(10);
   });
 });
+
+// Tre Cime, Lago di Braies and Cinque Torri graduated under the curated
+// process, before the four route-guidance claims became the contract, and have
+// never been through the agentic pipeline at all. They carry a seal no current
+// rule has ever tested, and the campaign skipped them for being verified
+// already -- so the one standard was not applied to every trail.
+describe('one standard for every trail',()=>{
+  const graduated=(id)=>trail(id,{graduation:{status:'verified',
+    completed:[...planner.GRADUATION_CHECKS||[]].length
+      ?[...planner.GRADUATION_CHECKS]
+      :['photo','route','routeNumbers','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access']}});
+
+  const list=[graduated('already-sealed'),trail('ordinary-a'),trail('ordinary-b')];
+
+  test('a graduated trail is still left alone by default',()=>{
+    const plan=planner.planCatalogueCampaign(list,{jobLimit:10});
+    expect(plan.selectedTrailIds).not.toContain('already-sealed');
+    expect(plan.summary.reverifying).toBe(0);
+  });
+
+  test('naming it puts it through the pipeline like any other trail',()=>{
+    const plan=planner.planCatalogueCampaign(list,{jobLimit:10,reverifyTrailIds:['already-sealed']});
+    expect(plan.selectedTrailIds).toContain('already-sealed');
+    expect(plan.summary.reverifying).toBe(1);
+  });
+
+  test('a named trail is picked first, not buried below the ungraduated ones',()=>{
+    // A graduated trail has no baseline blockers, so it scores near the floor.
+    // Asking for it by name and watching it never be picked is the same as not
+    // being able to ask.
+    const plan=planner.planCatalogueCampaign(list,{jobLimit:1,reverifyTrailIds:['already-sealed']});
+    expect(plan.selectedTrailIds).toEqual(['already-sealed']);
+  });
+
+  test('naming a trail that was never graduated changes nothing about it',()=>{
+    const plan=planner.planCatalogueCampaign(list,{jobLimit:10,reverifyTrailIds:['ordinary-a']});
+    expect(plan.selectedTrailIds).toContain('ordinary-a');
+    expect(plan.summary.reverifying).toBe(0);
+  });
+});

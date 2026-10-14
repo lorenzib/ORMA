@@ -734,6 +734,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   const campaign=await runScheduledTrailCampaign(store,siteTrails,{enabled:options.campaignEnabled===true,
     at:options.at,limit:options.campaignLimit||DEFAULT_CAMPAIGN_LIMIT,capacity:options.campaignCapacity||DEFAULT_TRAIL_CAPACITY,
     queueCapacity:options.campaignQueueCapacity,trigger:options.campaignTrigger,
+    reverifyTrailIds:options.reverifyTrailIds||[],
     workflowRunUrl:options.workflowRunUrl,runId:options.runId});
   const newTrailReviews=await ingestNewTrailReviews(store);
   const hazardReviews=await ingestHazardReviews(store);
