@@ -516,7 +516,16 @@ async function main() {
   console.log(`[done] Rejection reasons -> ${reviewPath} (rescue any via dog-route-overrides.json)`);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+// Guarded so the Overpass client can be reused by other scripts without this
+// one fetching the whole catalogue on import. Running it directly is unchanged.
+if (require.main === module) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}
+
+// The mirror list, the user agent and the backoff are the part worth sharing:
+// a second copy is how one of them learns about a dead mirror and the other
+// does not.
+module.exports = { fetchWithRetries, OVERPASS_URLS, USER_AGENT };
