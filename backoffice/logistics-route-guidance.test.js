@@ -1,5 +1,5 @@
 const {BASE_SPECIALISTS}=require('./workflows/apply-dossier-review.js');
-const {routeGuidanceLeads,PROMPTS,validateSpecialistResult,runTrailSpecialist}=require('./workflows/run-trail-specialist.js');
+const {routeGuidanceLeads,routeSourceReady,PROMPTS,validateSpecialistResult,runTrailSpecialist}=require('./workflows/run-trail-specialist.js');
 const fs=require('fs');
 
 const REQUIRED=['recommended-start','route-number-status','route-number-sequence','route-number-switches'];
@@ -191,5 +191,59 @@ describe('a walk that never changes path can say so', () => {
     ]}}]};
     const {supportedLogisticsClaim}=require('./workflows/compile-verified-dossier.js');
     expect(supportedLogisticsClaim(unsourced,'route-number-switches')).toBeUndefined();
+  });
+});
+
+// Tre Cime di Lavaredo has carried "Start at Rifugio Auronzo", the 101-to-105
+// order and the switch at Rifugio Locatelli since September, each cited to the
+// Consorzio Turistico and the Dolomiti Bellunesi portal. That is exactly the
+// shape the four route claims are asked for, and the agent sent to research it
+// was handed the description and a list of links and asked to find it again.
+describe('the agent is shown what ORMA already recorded',()=>{
+  function dolomitesTrail(id){
+    const src=fs.readFileSync('data/regions/dolomites-trails.js','utf8');
+    return JSON.parse(src.match(/var incoming=(\[[\s\S]*?\]);/)[1]).find(item=>item.id===id);
+  }
+  // A real trail, so this moves if the catalogue does rather than passing
+  // against a shape nothing publishes.
+  const treCime=dolomitesTrail('tre-cime');
+
+  test('the recorded start, order and turns reach the lead',()=>{
+    expect(treCime.routeNumberGuidance).toBeTruthy();
+    const leads=routeGuidanceLeads(treCime);
+    expect(leads.recordedRouteGuidance).toEqual({
+      mode:treCime.routeNumberGuidance.mode,
+      start:treCime.routeNumberGuidance.start,
+      sequence:treCime.routeNumberGuidance.sequence,
+      switches:treCime.routeNumberGuidance.switches,
+    });
+  });
+
+  test('its authorities are cited first, so they are the pages opened first',()=>{
+    const leads=routeGuidanceLeads(treCime);
+    const recorded=treCime.routeNumberGuidance.sources.filter(source=>/^https:\/\//.test(source.url));
+    expect(leads.citedSources.slice(0,recorded.length).map(source=>source.url))
+      .toEqual(recorded.map(source=>source.url));
+    expect(leads.citedSources.slice(0,recorded.length).every(source=>source.authority)).toBe(true);
+  });
+
+  test('a trail whose only sourcing is this field counts as researchable',()=>{
+    // Without the guidance's own sources it reads as having nothing citable
+    // and is researched last of all, behind trails that cannot finish.
+    const stripped={...treCime,routeNumberGuidance:null};
+    expect(routeSourceReady(treCime)).toBe(true);
+    const onlyGuidance={id:'x',routeNumberGuidance:treCime.routeNumberGuidance};
+    expect(routeSourceReady(onlyGuidance)).toBe(true);
+    expect(routeSourceReady({id:'x',...(stripped.source?{}:{})})).toBe(false);
+  });
+
+  test('a trail with no recorded guidance is unchanged',()=>{
+    expect(routeGuidanceLeads({id:'x'}).recordedRouteGuidance).toBeNull();
+  });
+
+  test('the prompt says it is a lead to confirm, never evidence to echo',()=>{
+    expect(PROMPTS.logistics).toContain('recordedRouteGuidance');
+    expect(PROMPTS.logistics).toContain('it is a lead and not evidence');
+    expect(PROMPTS.logistics).toContain('cite the source rather than the record');
   });
 });
