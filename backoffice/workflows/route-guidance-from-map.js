@@ -51,9 +51,12 @@ function km(value){
 function sequenceValue(sequence){
   const refs = (sequence || []).filter(Boolean);
   if(!refs.length) return null;
-  const list = refs.length === 1 ? `route ${refs[0]}`
-    : `routes ${refs.slice(0, -1).join(', ')} and then ${refs[refs.length - 1]}`;
-  return `The mapped route follows ${list}, in that order from the start. ${READ_FROM_MAP}`;
+  // One number has no order to be in, and saying "in that order" of a single
+  // route reads as though something were missing from the sentence.
+  const said = refs.length === 1
+    ? `route ${refs[0]} from end to end`
+    : `routes ${refs.slice(0, -1).join(', ')} and then ${refs[refs.length - 1]}, in that order from the start`;
+  return `The mapped route follows ${said}. ${READ_FROM_MAP}`;
 }
 
 /**

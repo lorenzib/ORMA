@@ -169,10 +169,24 @@ const MAP_ANSWERABLE_CLAIMS=Object.freeze(['route-number-sequence','route-number
 
 function cartographerOutput(outputs){return (outputs||[]).find(output=>output.agentId==='cartographer');}
 
+/**
+ * The routes behind the numbers, however the line was built.
+ *
+ * A composite names the several relations it runs along; a single relation
+ * names itself through source.externalId. Both are citable, and reading only
+ * the first left 150 of 162 trails unable to cite the map they came from.
+ */
+function citableRelations(result){
+  if(result?.source?.relations?.length)return result.source.relations;
+  const externalId=result?.source?.externalId;
+  const ref=result?.relation?.tags?.ref;
+  return externalId&&ref ? [{externalRelationId:externalId,ref:String(ref)}] : [];
+}
+
 function mapReadRouteGuidance(outputs,options={}){
   const result=cartographerOutput(outputs)?.result;
   if(!result?.routeGuidance)return {};
-  return routeGuidanceFromMap(result.routeGuidance,result.source?.relations,options);
+  return routeGuidanceFromMap(result.routeGuidance,citableRelations(result),options);
 }
 
 /**
@@ -423,4 +437,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={citableRelations,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};

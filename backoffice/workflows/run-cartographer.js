@@ -214,6 +214,17 @@ async function runCartographer(candidate, dossier, options = {}){
     geometry: reconstructed.geometry,
     components: reconstructed.components,
     assessment: reconstructed.assessment,
+    // One relation is one number, from end to end, so the map answers the
+    // order and the turns outright: the walk follows this route throughout and
+    // changes number nowhere. The composite path reaches the same answer by
+    // measuring which of several routes carries each stretch; here there is
+    // only one and nothing needs measuring.
+    //
+    // 150 of 162 trails are built this way, so leaving it to the composite
+    // path covered twelve of them.
+    ...(reconstructed.relation?.tags?.ref
+      ? { routeGuidance: { sequence: [String(reconstructed.relation.tags.ref)], switches: [], segments: [] } }
+      : {}),
     routeConformance,
     comparison,
     blockers,
