@@ -32,6 +32,10 @@ on:
         description: Specialist jobs per pass
         required: false
         default: '10'
+      candidate_id:
+        description: Drain one trail rather than the queue, to find out what it takes to verify it
+        required: false
+        default: ''
 
 concurrency:
   group: orma-backoffice-worker
@@ -60,6 +64,14 @@ jobs:
       ORMA_GATE_ADJUDICATION_LIMIT: '2'
       ORMA_CAMPAIGN_LIMIT: '10'
       ORMA_CAMPAIGN_CAPACITY: '15'
+      # One trail rather than the queue.
+      #
+      # The drain already runs passes back to back; the worker already scopes a
+      # pass to a candidate. Only this workflow could not say which, so finding
+      # out what a trail takes meant dispatching the three-hourly worker by hand
+      # and waiting three hours between passes. Tre Cime crossed four stages in
+      # five passes that way, over an afternoon, with nothing blocking it.
+      ORMA_SPECIALIST_CANDIDATE_ID: ${{ github.event.inputs.candidate_id || '' }}
       ORMA_DRAIN_MAX_MINUTES: ${{ github.event.inputs.max_minutes || '240' }}
       ORMA_DRAIN_READ_BUDGET: ${{ github.event.inputs.read_budget || '20000' }}
       ORMA_DRAIN_WRITE_BUDGET: ${{ github.event.inputs.write_budget || '8000' }}
