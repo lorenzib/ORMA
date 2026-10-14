@@ -1,5 +1,6 @@
 const {BASE_SPECIALISTS}=require('./workflows/apply-dossier-review.js');
 const {routeGuidanceLeads,routeSourceReady,PROMPTS,validateSpecialistResult,runTrailSpecialist}=require('./workflows/run-trail-specialist.js');
+const {supportedLogisticsClaim,ROUTE_GUIDANCE_CLAIM_IDS}=require('./workflows/compile-verified-dossier.js');
 const fs=require('fs');
 
 const REQUIRED=['recommended-start','route-number-status','route-number-sequence','route-number-switches'];
@@ -245,5 +246,74 @@ describe('the agent is shown what ORMA already recorded',()=>{
     expect(PROMPTS.logistics).toContain('recordedRouteGuidance');
     expect(PROMPTS.logistics).toContain('it is a lead and not evidence');
     expect(PROMPTS.logistics).toContain('cite the source rather than the record');
+  });
+});
+
+// The gate asks three things of a route claim; the validator checked one.
+//
+// A claim could cite a real page with no authority named, pass validation,
+// read as answered everywhere, and refuse the gate for ever -- never
+// researched again, because the resolution ladder only picks up `unresolved`
+// and `conflicted`. Les Marais d'Albens is what that looks like: rejected for
+// a missing route-number-sequence while route-number-sequence showed zero
+// exhausted claims in the entire catalogue. Nobody had ever researched it.
+describe('a route claim the gate cannot use is unresolved, not supported',()=>{
+  const claim=over=>({id:ROUTE_GUIDANCE_CLAIM_IDS[2],category:'route',finding:'supported-proposal',
+    proposedValue:'Follow 101 to Rifugio Locatelli, then 105 back.',confidence:0.9,
+    rationale:'Read from the operator route page.',
+    sources:[{label:'Operator',url:'https://example.test/route',authority:'Route operator',accessedAt:'2026-10-14'}],
+    blockers:[],...over});
+  const validated=over=>{
+    const result={claims:[claim(over)],openQuestions:[],recommendation:'advance'};
+    validateSpecialistResult(result,'logistics',[]);
+    return result;
+  };
+  // What the gate itself would say about the same claim, so the two cannot
+  // drift apart again: this is the rule being mirrored, not a copy of it.
+  const gateAccepts=result=>Boolean(supportedLogisticsClaim(
+    {specialistOutputs:[{agentId:'logistics',result}]},ROUTE_GUIDANCE_CLAIM_IDS[2]));
+
+  test('a properly cited claim is left alone, and the gate takes it',()=>{
+    const result=validated({});
+    expect(result.claims[0].finding).toBe('supported-proposal');
+    expect(result.uncitableRouteClaims).toBeUndefined();
+    expect(gateAccepts(result)).toBe(true);
+  });
+
+  test('a source with no named authority sends the claim back to research',()=>{
+    const result=validated({sources:[{label:'A page',url:'https://example.test/route'}]});
+    expect(result.claims[0].finding).toBe('unresolved');
+    expect(result.uncitableRouteClaims[0].missing).toMatch(/authority/);
+    // Which is the point: unresolved is what the resolution ladder picks up.
+    expect(gateAccepts(result)).toBe(false);
+  });
+
+  test('a supported claim with nothing proposed goes back too',()=>{
+    const result=validated({proposedValue:'   '});
+    expect(result.claims[0].finding).toBe('unresolved');
+    expect(result.uncitableRouteClaims[0].missing).toMatch(/value/);
+  });
+
+  test('it never throws, because a thrown run replays the same claim',()=>{
+    expect(()=>validated({sources:[]})).not.toThrow();
+  });
+
+  test('optional detail is not held to a standard the gate does not apply',()=>{
+    const result={claims:[{id:'water',category:'water',finding:'supported-proposal',
+      proposedValue:'A fountain at the trailhead.',confidence:0.8,rationale:'Mapped.',
+      sources:[{label:'Map',url:'https://example.test/map'}],blockers:[]}],
+      openQuestions:[],recommendation:'advance'};
+    validateSpecialistResult(result,'terrainPoi',[]);
+    expect(result.claims[0].finding).toBe('supported-proposal');
+    expect(result.uncitableRouteClaims).toBeUndefined();
+  });
+
+  test('every claim the gate reads this way is covered',()=>{
+    for(const id of ROUTE_GUIDANCE_CLAIM_IDS){
+      const result={claims:[claim({id,sources:[{label:'A page',url:'https://example.test/route'}]})],
+        openQuestions:[],recommendation:'advance'};
+      validateSpecialistResult(result,'logistics',[]);
+      expect(result.claims[0].finding).toBe('unresolved');
+    }
   });
 });
