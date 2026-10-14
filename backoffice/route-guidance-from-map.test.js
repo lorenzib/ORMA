@@ -2,7 +2,7 @@
 
 const {routeGuidanceFromMap,sequenceValue,switchesValue,READ_FROM_MAP,MAP_AUTHORITY}
   =require('./workflows/route-guidance-from-map');
-const {supportedRouteGuidance,MAP_ANSWERABLE_CLAIMS,ROUTE_GUIDANCE_CLAIM_IDS,
+const {supportedRouteGuidance,citableRelations,MAP_ANSWERABLE_CLAIMS,ROUTE_GUIDANCE_CLAIM_IDS,
   routeGuidanceBlockingReasons}=require('./workflows/compile-verified-dossier');
 
 const RELATIONS=[{externalRelationId:'relation/1484751',ref:'101'},
@@ -89,5 +89,47 @@ describe('what the map may and may not answer',()=>{
   test('without a measurement the map answers nothing',()=>{
     const review={specialistOutputs:[cartographer(undefined)]};
     for(const id of MAP_ANSWERABLE_CLAIMS) expect(supportedRouteGuidance(review,id)).toBeNull();
+  });
+});
+
+// 150 of 162 trails are built from a single relation rather than a composite,
+// and 134 of those are imported. Reading only the composite's relation list
+// left every one of them unable to cite the map it came from, so the easiest
+// answer in the catalogue -- one relation is one number, from end to end --
+// was the one not being given.
+describe('a walk built from one relation',()=>{
+  const single=(ref,externalId='relation/14381570')=>({agentId:'cartographer',result:{
+    routeGuidance:{sequence:[String(ref)],switches:[],segments:[]},
+    relation:{tags:{ref:String(ref)}},
+    source:{externalId}}});
+
+  test('the relation cites itself',()=>{
+    expect(citableRelations(single('14').result))
+      .toEqual([{externalRelationId:'relation/14381570',ref:'14'}]);
+  });
+
+  test('both claims are answered, and the turns claim says there are none',()=>{
+    const review={specialistOutputs:[single('14')]};
+    const sequence=supportedRouteGuidance(review,'route-number-sequence');
+    const switches=supportedRouteGuidance(review,'route-number-switches');
+    // One number has no order to be in.
+    expect(sequence.proposedValue).toContain('route 14 from end to end');
+    expect(sequence.proposedValue).not.toContain('in that order');
+    // "This walk never changes path" is a complete answer, not a missing one.
+    expect(switches.proposedValue).toContain('stays on route 14 throughout');
+    expect(switches.proposedValue).toContain('no change of number recorded');
+  });
+
+  test('a relation with no number on it answers nothing',()=>{
+    const unnumbered={agentId:'cartographer',result:{
+      routeGuidance:{sequence:[],switches:[],segments:[]},
+      relation:{tags:{}},source:{externalId:'relation/99'}}};
+    const review={specialistOutputs:[unnumbered]};
+    for(const id of MAP_ANSWERABLE_CLAIMS) expect(supportedRouteGuidance(review,id)).toBeNull();
+  });
+
+  test('a composite still cites all the routes it runs along',()=>{
+    expect(citableRelations({source:{relations:RELATIONS},relation:{tags:{ref:'x'}}}))
+      .toEqual(RELATIONS);
   });
 });
