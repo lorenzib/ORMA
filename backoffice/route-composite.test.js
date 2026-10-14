@@ -373,3 +373,36 @@ describe('looking for the lifts a path runs along',()=>{
     expect(aerialwaysFromPayload(null)).toEqual([]);
   });
 });
+
+// The measurement already knows which numbered path carries each point of the
+// walk: it is how the relations are chosen. It was collapsed to a coverage
+// percentage and thrown away, and the agents were sent to the web to research
+// the order and the turns it had just worked out.
+describe('the numbers are read off the walk that was measured',()=>{
+  test('Seceda goes up 1 and back 1A, in that order, with the turn placed',()=>{
+    const found=discoverRouteComposite(trail(),PAYLOAD);
+    expect(found.routeRefSequence).toEqual(['1','1A']);
+    expect(found.routeRefSwitches).toHaveLength(1);
+    expect(found.routeRefSwitches[0]).toEqual(expect.objectContaining({from:'1',to:'1A'}));
+    // Where it happens, so it can be read as a direction rather than a fact.
+    const [change]=found.routeRefSwitches;
+    expect(Number.isFinite(change.lat)&&Number.isFinite(change.lng)).toBe(true);
+    expect(change.km).toBeGreaterThan(0);
+  });
+
+  test('the stretches line up with the path the trail already stores',()=>{
+    const found=discoverRouteComposite(trail(),PAYLOAD);
+    const walk=trail().path;
+    expect(found.routeRefSegments[0].fromIndex).toBe(0);
+    expect(found.routeRefSegments.at(-1).toIndex).toBe(walk.length-1);
+    // The points themselves are not repeated: the indices say where each
+    // stretch sits, and the artifact has a byte ceiling.
+    expect(found.routeRefSegments.every(segment=>!segment.path)).toBe(true);
+  });
+
+  test('a walk on one path alone reports a sequence and no turn',()=>{
+    const found=discoverRouteComposite(trail({path:LEG_A}),PAYLOAD);
+    expect(found.routeRefSequence).toEqual(['1']);
+    expect(found.routeRefSwitches).toEqual([]);
+  });
+});

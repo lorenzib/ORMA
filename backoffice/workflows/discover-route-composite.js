@@ -22,6 +22,8 @@ const MAX_RELATIONS = 6;
 // the route.
 const MINIMUM_WALK_SHARE = 0.1;
 
+const { routeRefSegments } = require('./route-ref-segments');
+
 function metresBetween(a, b){
   const radians = Math.PI / 180;
   const dLat = (b[0] - a[0]) * radians;
@@ -227,6 +229,46 @@ function discoverRouteComposite(trail, payload, options = {}){
         firstCoveredIndex: Math.min(...coverage.get(relation.id)),
       }))
       .sort((a, b) => a.firstCoveredIndex - b.firstCoveredIndex),
+    // The per-point answer this measurement has already worked out, kept
+    // instead of collapsed.
+    //
+    // Everything above reduces it to percentages and the index each relation
+    // first appears at. The assignment itself -- you are on 101 here and 105
+    // there -- is two of the four route-guidance claims: the order of the refs
+    // is route-number-sequence, and where one gives way to the next is
+    // route-number-switches, with a coordinate and a distance from the start.
+    // It was computed on every discovery run and discarded, while the agents
+    // were sent to the web to research it.
+    ...refGuidanceFrom(walked, chosen, coverage, isRidden),
+  };
+}
+
+/**
+ * The numbered stretches of the walk, read from the coverage just measured.
+ *
+ * Ordered by the greedy choice above, which is the order the relations were
+ * picked to explain the walk, so where two cover the same point the one that
+ * explains more of the walk is offered first. The hysteresis in
+ * routeRefSegments then keeps the walker on it while it still carries them.
+ *
+ * A ridden stretch carries no number: a chairlift is not a waymarked path, and
+ * saying "follow 424" across it would be a direction nobody can take.
+ */
+function refGuidanceFrom(walked, chosen, coverage, isRidden){
+  const refByRelation = new Map(chosen.map(relation => [relation.id, relation.tags?.ref || null]));
+  const carriers = index => (isRidden(index) ? [] : chosen
+    .filter(relation => coverage.get(relation.id)?.has(index))
+    .map(relation => refByRelation.get(relation.id))
+    .filter(Boolean));
+  const guidance = routeRefSegments(walked, carriers);
+  if(!guidance.segments.length) return {};
+  return {
+    // Without the point lists, which would repeat the whole walk once per
+    // stretch in an artifact that already has a byte ceiling. The indices say
+    // where each stretch sits on the path the trail already stores.
+    routeRefSegments: guidance.segments.map(({ path, ...segment }) => segment),
+    routeRefSwitches: guidance.switches,
+    routeRefSequence: guidance.sequence,
   };
 }
 
