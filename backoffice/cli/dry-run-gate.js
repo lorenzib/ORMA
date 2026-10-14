@@ -9,15 +9,47 @@
 
 const {FirestoreBackofficeStore}=require('../services/firestore-backoffice-store');
 const {gateDryRun}=require('../workflows/gate-dry-run');
+const {closestToVerified}=require('../workflows/closest-to-verified');
 
 function parseArgs(argv){
-  const args={trail:null};
+  const args={trail:null,limit:10};
   for(let index=0;index<argv.length;index+=1){
     const [key,inline]=String(argv[index]).replace(/^--/,'').split('=');
-    if(key!=='trail')continue;
-    args.trail=inline||argv[index+1]||null;
+    const value=inline||argv[index+1];
+    if(key==='trail')args.trail=value||null;
+    if(key==='limit'){
+      const parsed=Number.parseInt(value,10);
+      if(Number.isInteger(parsed)&&parsed>0)args.limit=parsed;
+    }
   }
   return args;
+}
+
+/**
+ * One line per trail, so a sweep reads as a shortlist rather than as ten
+ * reports. The trails with nothing unwaivable are the ones worth spending on,
+ * and they are named at the end so the answer does not have to be assembled by
+ * eye.
+ */
+function sayShortlist(reports){
+  console.log(`[dry-run] ${reports.length} trail(s) nearest the seal, asked what the gate would say.`);
+  for(const report of reports){
+    const stands=report.unwaivable.length
+      ? `blocked by ${report.unwaivable.join(', ')}`
+      : 'nothing unwaivable';
+    console.log(`[dry-run]   ${String(report.state).padEnd(20)} ${report.trailName}`);
+    console.log(`[dry-run]   ${' '.repeat(20)} ${stands} · would ${report.wouldDecide}`);
+  }
+  const clear=reports.filter(report=>!report.unwaivable.length);
+  console.log(`[dry-run] ${clear.length} of ${reports.length} have nothing unwaivable standing${clear.length?`: ${clear.map(report=>report.trailId).join(', ')}`:''}`);
+  const approvable=clear.filter(report=>report.wouldDecide==='approve');
+  if(approvable.length){
+    console.log(`[dry-run] ${approvable.length} would be approved right now: ${approvable.map(report=>report.trailId).join(', ')}`);
+  }else if(clear.length){
+    console.log('[dry-run] None would be approved yet: each still has optional research the policy wants finished first.');
+  }
+  console.log('[dry-run] Read-only. Nothing was changed.');
+  return reports;
 }
 
 function say(report){
@@ -49,28 +81,38 @@ function say(report){
   return report;
 }
 
-async function main(options={}){
-  const args=parseArgs(options.argv||process.argv.slice(2));
-  if(!args.trail)throw new Error('A trail is required: --trail <id>');
-  const store=options.store||new FirestoreBackofficeStore();
-  const [orchestration,jobs]=await Promise.all([
-    store.getArtifact('trail-orchestration'),
-    store.listJobs(['completed']),
-  ]);
+/** One trail's verdict, reading only that trail's own outputs. */
+async function dryRunOne(store,orchestration,jobs,trailId,at){
   const trail=(orchestration?.trails||[]).find(item=>
-    String(item.trailId)===String(args.trail)||String(item.candidateId)===String(args.trail));
-  // Only this trail's outputs are fetched, so the cost is its own jobs rather
-  // than the catalogue's.
+    String(item.trailId)===String(trailId)||String(item.candidateId)===String(trailId));
   const mine=(jobs||[]).filter(job=>trail&&job.candidateId===trail.candidateId);
   const outputs=new Map();
   for(const job of mine){
     const result=await store.getArtifact(`trail-specialist-output-${job.id}`);
     if(result)outputs.set(job.id,result);
   }
-  return say(gateDryRun({orchestration,jobs:mine,outputFor:id=>outputs.get(id)||null,
-    trailId:args.trail,at:options.at}));
+  return gateDryRun({orchestration,jobs:mine,outputFor:id=>outputs.get(id)||null,trailId,at});
+}
+
+async function main(options={}){
+  const args=parseArgs(options.argv||process.argv.slice(2));
+  const store=options.store||new FirestoreBackofficeStore();
+  const [orchestration,jobs]=await Promise.all([
+    store.getArtifact('trail-orchestration'),
+    store.listJobs(['completed']),
+  ]);
+  if(args.trail)return say(await dryRunOne(store,orchestration,jobs,args.trail,options.at));
+  // No trail named: sweep the ones nearest the seal, which is the question
+  // worth asking before spending anything -- who is close, and who is blocked
+  // by something no amount of research will clear.
+  const nearest=closestToVerified(orchestration,{limit:args.limit}).nearest;
+  const reports=[];
+  for(const row of nearest){
+    reports.push(await dryRunOne(store,orchestration,jobs,row.trailId,options.at));
+  }
+  return sayShortlist(reports.filter(report=>report.found));
 }
 
 if(require.main===module)main().catch(error=>{console.error(`[dry-run] ${error.message}`);process.exitCode=1;});
 
-module.exports={parseArgs,main};
+module.exports={parseArgs,sayShortlist,dryRunOne,main};
