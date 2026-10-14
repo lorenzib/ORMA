@@ -182,3 +182,68 @@ describe('saying what a long way round is made of', () => {
     expect(line).toMatch(/made of: unclassified, track/);
   });
 });
+
+
+describe('the edit, written out', () => {
+  const { instructions, gapKey } = require('./scripts/report-route-gaps');
+  const gap = (metres) => ({ from: [46.50, 11.000], to: [46.50, 11.030], metres });
+
+  test('a route that needs an edit gets its relation, its gap and its ways', () => {
+    const only = gap(2295);
+    const route = { id: 'osm-6529356', name: 'Anton Schwingshackl Weg', gaps: [only] };
+    const text = instructions([route], {
+      [gapKey('osm-6529356', only)]: {
+        connected: true, alongPathsM: 5057,
+        madeOf: ['unclassified', 'track \u201cWieser\u201d'], wayIds: [12345, 67890],
+      },
+    }).join('\n');
+
+    // The relation to open, by link rather than a number to retype.
+    expect(text).toContain('https://www.openstreetmap.org/relation/6529356');
+    // Where the hole is, so it can be found on the map.
+    expect(text).toContain('Gap of 2295 m, from 46.50000,11.00000');
+    // And the ways to add, each one linked and named.
+    expect(text).toContain('https://www.openstreetmap.org/way/12345  unclassified');
+    expect(text).toContain('https://www.openstreetmap.org/way/67890  track');
+    expect(text).toContain('Add 2 way(s) to the relation');
+  });
+
+  test('a route still unanswered is not written up', () => {
+    // An instruction built on a mirror refusal would send somebody to add
+    // nothing, which is worse than saying nothing.
+    const only = gap(2295);
+    const route = { id: 'osm-1', name: 'Unknown', gaps: [only] };
+    expect(instructions([route], {})).toEqual([]);
+    expect(instructions([route], { [gapKey('osm-1', only)]: { failed: true, error: 'fetch failed' } })).toEqual([]);
+  });
+
+  test('a route with no mapped connection is not written up either', () => {
+    const only = gap(2295);
+    const route = { id: 'osm-2', name: 'Unmapped', gaps: [only] };
+    expect(instructions([route], {
+      [gapKey('osm-2', only)]: { connected: false, reason: 'nothing mapped in the box' },
+    })).toEqual([]);
+  });
+
+  test('every gap on a multi-gap route is written up, not just the first', () => {
+    const [a, b] = [gap(2295), { from: [46.52, 11.000], to: [46.52, 11.020], metres: 1500 }];
+    const route = { id: 'osm-3', name: 'Two holes', gaps: [a, b] };
+    const text = instructions([route], {
+      [gapKey('osm-3', a)]: { connected: true, alongPathsM: 2400, madeOf: ['path'], wayIds: [1] },
+      [gapKey('osm-3', b)]: { connected: true, alongPathsM: 1600, madeOf: ['track'], wayIds: [2] },
+    }).join('\n');
+    expect(text).toContain('Gap of 2295 m');
+    expect(text).toContain('Gap of 1500 m');
+    expect(text).toContain('/way/1');
+    expect(text).toContain('/way/2');
+  });
+
+  test('an answer recorded before the ways were captured says so', () => {
+    const only = gap(2295);
+    const route = { id: 'osm-4', name: 'Older answer', gaps: [only] };
+    const text = instructions([route], {
+      [gapKey('osm-4', only)]: { connected: true, alongPathsM: 2400 },
+    }).join('\n');
+    expect(text).toContain('no way ids recorded');
+  });
+});

@@ -101,6 +101,7 @@ function connects(ways, gap){
   for(const way of ways){
     const geometry = way.geometry || [];
     const label = `${way.tags?.highway || 'way'}${way.tags?.name ? ` \u201c${way.tags.name}\u201d` : ''}`;
+    const member = { id: way.id, label };
     for(let i = 0; i < geometry.length; i += 1){
       const node = key(geometry[i].lat, geometry[i].lon);
       positions.set(node, [geometry[i].lat, geometry[i].lon]);
@@ -108,8 +109,8 @@ function connects(ways, gap){
         const previous = key(geometry[i - 1].lat, geometry[i - 1].lon);
         link(previous, node);
         link(node, previous);
-        wayOfEdge.set(`${previous}|${node}`, label);
-        wayOfEdge.set(`${node}|${previous}`, label);
+        wayOfEdge.set(`${previous}|${node}`, member);
+        wayOfEdge.set(`${node}|${previous}`, member);
       }
     }
   }
@@ -139,14 +140,27 @@ function connects(ways, gap){
     queue.sort((a, b) => a[0] - b[0]);
     const [cost, node] = queue.shift();
     if(node === finish.node){
+      // The ways the connection runs along, in order, each one named once.
+      // These are what somebody adds to the relation, so the id is the point
+      // and the label is only there to make the list readable.
       const along = [];
       let cursor = node;
       while(cameFrom.has(cursor)){
-        const label = wayOfEdge.get(`${cameFrom.get(cursor)}|${cursor}`);
-        if(label && along[along.length - 1] !== label) along.push(label);
+        const member = wayOfEdge.get(`${cameFrom.get(cursor)}|${cursor}`);
+        // One object per way, so identity is the test. Keying on the way's id
+        // would collapse every untagged way into one where ids are absent.
+        if(member && along[along.length - 1] !== member) along.push(member);
         cursor = cameFrom.get(cursor);
       }
-      return { connected: true, alongPathsM: Math.round(cost), madeOf: [...new Set(along.reverse())] };
+      along.reverse();
+      const seen = new Set();
+      const members = along.filter(member => !seen.has(member) && seen.add(member));
+      return {
+        connected: true,
+        alongPathsM: Math.round(cost),
+        madeOf: members.map(member => member.label),
+        wayIds: members.map(member => member.id).filter(id => Number.isFinite(id)),
+      };
     }
     if(cost > (distance.get(node) ?? Infinity)) continue;
     for(const next of graph.get(node) || []){
@@ -231,6 +245,41 @@ function summarise(routes, gaps){
   return verdicts;
 }
 
+/**
+ * What somebody opens an editor and does, per route.
+ *
+ * The report says which trails need a relation edit; this says what the edit
+ * is. Every line is a link, because the alternative is retyping a nine-digit
+ * id into a search box twenty-one times.
+ */
+function instructions(routes, gaps){
+  const lines = [];
+  for(const route of routes){
+    const answers = route.gaps.map(gap => ({ gap, verdict: gaps[gapKey(route.id, gap)] }));
+    if(!answers.length || !answers.every(({ verdict }) => verdict && verdict.connected)) continue;
+    const relation = route.id.replace(/^osm-/, '');
+    lines.push('');
+    lines.push(`### ${route.name}  (${route.id})`);
+    lines.push(`Relation: https://www.openstreetmap.org/relation/${relation}`);
+    for(const { gap, verdict } of answers){
+      lines.push(`  Gap of ${gap.metres} m, from ${gap.from[0].toFixed(5)},${gap.from[1].toFixed(5)}`
+        + ` to ${gap.to[0].toFixed(5)},${gap.to[1].toFixed(5)}`);
+      lines.push(`  Open there: https://www.openstreetmap.org/edit#map=16/${gap.from[0].toFixed(5)}/${gap.from[1].toFixed(5)}`);
+      const members = verdict.wayIds || [];
+      if(!members.length){
+        lines.push('    (no way ids recorded — re-run the report for this trail)');
+        continue;
+      }
+      lines.push(`    Add ${members.length} way(s) to the relation:`);
+      members.forEach((id, index) => {
+        const label = (verdict.madeOf || [])[index] || 'way';
+        lines.push(`      https://www.openstreetmap.org/way/${id}  ${label}`);
+      });
+    }
+  }
+  return lines;
+}
+
 function report(routes, gaps){
   const verdicts = summarise(routes, gaps);
   console.log('\n[gaps] \u2500\u2500 what each one needs \u2500\u2500');
@@ -243,7 +292,12 @@ function report(routes, gaps){
     console.log(`[gaps]   ${verdicts.unchecked.join(' ')}`);
   }
   console.log(`[gaps] Checkpoint: ${path.relative(ROOT, CHECKPOINT)}`);
-  console.log('\n[gaps] Nothing was changed.');
+  const edits = instructions(routes, gaps);
+  if(edits.length){
+    console.log('\n[gaps] ── the edit, per route ──');
+    for(const line of edits) console.log(line);
+  }
+  console.log('\n[gaps] Nothing was changed. These are edits for a person to make in OpenStreetMap.');
   return verdicts;
 }
 
@@ -260,7 +314,13 @@ async function main(){
   const only = (process.argv.find(arg => arg.startsWith('--trail=')) || '').split('=')[1] || null;
   const routes = draftRoutes(only);
   const gaps = loadCheckpoint();
-  const answered = gap => gaps[gap] && !gaps[gap].failed;
+  const answered = gap => {
+    const verdict = gaps[gap];
+    if(!verdict || verdict.failed) return false;
+    // A connected answer recorded before the ways were captured cannot feed an
+    // instruction, so it is asked again rather than quietly leaving a blank.
+    return !verdict.connected || Array.isArray(verdict.wayIds);
+  };
   const known = routes.reduce((count, route) =>
     count + route.gaps.filter(gap => answered(gapKey(route.id, gap))).length, 0);
   console.log(`[gaps] ${routes.length} route(s) with a gap over ${PUBLICATION_GAP_KM} km`);
@@ -308,4 +368,4 @@ if(require.main === module){
   main().catch(error => { console.error(error); process.exit(1); });
 }
 
-module.exports = { gapsIn, boundingBox, connects, query, draftRoutes, gapKey, summarise, describe, CHECKPOINT, PUBLICATION_GAP_KM };
+module.exports = { gapsIn, boundingBox, connects, query, draftRoutes, gapKey, summarise, describe, instructions, CHECKPOINT, PUBLICATION_GAP_KM };
