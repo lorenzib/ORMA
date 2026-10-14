@@ -161,47 +161,126 @@ function draftRoutes(only){
   return routes.sort((a, b) => a.gaps.length - b.gaps.length || a.gaps[0].metres - b.gaps[0].metres);
 }
 
-async function main(){
-  const only = (process.argv.find(arg => arg.startsWith('--trail=')) || '').split('=')[1] || null;
-  const routes = draftRoutes(only);
-  console.log(`[gaps] ${routes.length} route(s) with a gap over ${PUBLICATION_GAP_KM} km\n`);
+/**
+ * One gap's answer, and the checkpoint it is written into.
+ *
+ * The first full run was cancelled on the job timeout with eight routes
+ * unchecked, and the answers it had already paid Overpass for survived only
+ * because they happened to be in the log. A checkpoint written after every gap
+ * means a run that is cut short still hands over what it learned, and the next
+ * run skips what is already known rather than asking again.
+ */
+const CHECKPOINT = path.join(ROOT, 'route-gap-report.json');
 
-  const verdicts = { editable: [], unmapped: [], failed: [] };
+function loadCheckpoint(){
+  if(!fs.existsSync(CHECKPOINT)) return {};
+  try{ return JSON.parse(fs.readFileSync(CHECKPOINT, 'utf8')).gaps || {}; }
+  catch(error){ return {}; }
+}
+
+function saveCheckpoint(gaps){
+  fs.writeFileSync(CHECKPOINT, `${JSON.stringify({ generatedAt: new Date().toISOString(), gaps }, null, 2)}\n`);
+}
+
+/** A gap identifies itself by where it is, so the key survives a route-file
+ *  refresh that changes how many pieces a relation has. */
+const gapKey = (id, gap) => `${id}@${gap.from[0].toFixed(5)},${gap.from[1].toFixed(5)}`;
+
+function describe(gap, verdict){
+  if(verdict.failed) return `${gap.metres} m gap \u00b7 could not be checked: ${verdict.error}`;
+  if(verdict.connected){
+    return `${gap.metres} m gap \u00b7 CONNECTED along mapped paths in ${verdict.alongPathsM} m`
+      + ` (${(verdict.alongPathsM / gap.metres).toFixed(1)}x the straight line)`;
+  }
+  return `${gap.metres} m gap \u00b7 NOT CONNECTED \u2014 ${verdict.reason}`;
+}
+
+function summarise(routes, gaps){
+  const verdicts = { editable: [], unmapped: [], unchecked: [] };
   for(const route of routes){
-    console.log(`[gaps] ${route.id} — ${route.name} (${route.gaps.length} gap(s))`);
-    const outcomes = [];
-    for(const gap of route.gaps){
-      try{
-        const payload = await fetchWithRetries(query(gap), { attempts: 2, timeoutMs: 90000 });
-        const verdict = connects(payload.elements || [], gap);
-        outcomes.push(verdict);
-        if(verdict.connected){
-          const detour = (verdict.alongPathsM / gap.metres).toFixed(1);
-          console.log(`         ${gap.metres} m gap · CONNECTED along mapped paths in ${verdict.alongPathsM} m (${detour}x the straight line)`);
-        }else{
-          console.log(`         ${gap.metres} m gap · NOT CONNECTED — ${verdict.reason}`);
-        }
-      }catch(error){
-        outcomes.push({ failed: true });
-        console.log(`         ${gap.metres} m gap · could not be checked: ${error.message}`);
-      }
-    }
-    if(outcomes.some(outcome => outcome.failed)) verdicts.failed.push(route.id);
-    else if(outcomes.every(outcome => outcome.connected)) verdicts.editable.push(route.id);
+    const answers = route.gaps.map(gap => gaps[gapKey(route.id, gap)]).filter(Boolean);
+    if(answers.length < route.gaps.length || answers.some(answer => answer.failed)) verdicts.unchecked.push(route.id);
+    else if(answers.every(answer => answer.connected)) verdicts.editable.push(route.id);
     else verdicts.unmapped.push(route.id);
   }
+  return verdicts;
+}
 
-  console.log('\n[gaps] ── what each one needs ──');
+function report(routes, gaps){
+  const verdicts = summarise(routes, gaps);
+  console.log('\n[gaps] \u2500\u2500 what each one needs \u2500\u2500');
   console.log(`[gaps] ${verdicts.editable.length} need only a relation edit: the connecting way is already mapped.`);
   if(verdicts.editable.length) console.log(`[gaps]   ${verdicts.editable.join(' ')}`);
   console.log(`[gaps] ${verdicts.unmapped.length} need a survey or a rejection: no mapped way joins the ends.`);
   if(verdicts.unmapped.length) console.log(`[gaps]   ${verdicts.unmapped.join(' ')}`);
-  if(verdicts.failed.length) console.log(`[gaps] ${verdicts.failed.length} could not be checked: ${verdicts.failed.join(' ')}`);
+  if(verdicts.unchecked.length){
+    console.log(`[gaps] ${verdicts.unchecked.length} still unanswered \u2014 run again to pick them up:`);
+    console.log(`[gaps]   ${verdicts.unchecked.join(' ')}`);
+  }
+  console.log(`[gaps] Checkpoint: ${path.relative(ROOT, CHECKPOINT)}`);
   console.log('\n[gaps] Nothing was changed.');
+  return verdicts;
+}
+
+async function askAbout(gap){
+  // Shorter per-request timeout and fewer attempts than the catalogue fetcher
+  // uses: this asks many small questions rather than one large one, and a
+  // mirror that has not answered in 45 seconds is costing the run more than
+  // the answer is worth. Anything missed is retried in the second pass.
+  const payload = await fetchWithRetries(query(gap), { attempts: 2, timeoutMs: 45000 });
+  return connects(payload.elements || [], gap);
+}
+
+async function main(){
+  const only = (process.argv.find(arg => arg.startsWith('--trail=')) || '').split('=')[1] || null;
+  const routes = draftRoutes(only);
+  const gaps = loadCheckpoint();
+  const answered = gap => gaps[gap] && !gaps[gap].failed;
+  const known = routes.reduce((count, route) =>
+    count + route.gaps.filter(gap => answered(gapKey(route.id, gap))).length, 0);
+  console.log(`[gaps] ${routes.length} route(s) with a gap over ${PUBLICATION_GAP_KM} km`);
+  if(known) console.log(`[gaps] ${known} gap(s) already answered in the checkpoint, and will not be asked again`);
+  console.log('');
+
+  // Printed before the process can be killed, so a cancelled run still ends
+  // with the tally rather than a severed list of lines.
+  let finished = false;
+  for(const signal of ['SIGTERM', 'SIGINT']){
+    process.on(signal, () => {
+      if(!finished){
+        console.log(`\n[gaps] stopped on ${signal} \u2014 reporting what is known so far`);
+        report(routes, gaps);
+      }
+      process.exit(1);
+    });
+  }
+
+  // Two passes: everything once, then whatever the mirrors refused. A failure
+  // here is almost always the mirror rather than the question, and asking the
+  // same question later usually answers it.
+  for(const pass of [1, 2]){
+    const outstanding = routes.flatMap(route => route.gaps
+      .filter(gap => !answered(gapKey(route.id, gap)))
+      .map(gap => ({ route, gap })));
+    if(!outstanding.length) break;
+    if(pass === 2) console.log(`\n[gaps] second pass over ${outstanding.length} gap(s) the mirrors refused\n`);
+    for(const { route, gap } of outstanding){
+      let verdict;
+      try{ verdict = await askAbout(gap); }
+      catch(error){ verdict = { failed: true, error: error.message }; }
+      gaps[gapKey(route.id, gap)] = { ...verdict, trailId: route.id, name: route.name, metres: gap.metres };
+      saveCheckpoint(gaps);
+      console.log(`[gaps] ${route.id} \u2014 ${route.name}`);
+      console.log(`         ${describe(gap, verdict)}`);
+    }
+  }
+
+  finished = true;
+  report(routes, gaps);
 }
 
 if(require.main === module){
   main().catch(error => { console.error(error); process.exit(1); });
 }
 
-module.exports = { gapsIn, boundingBox, connects, query, draftRoutes, PUBLICATION_GAP_KM };
+module.exports = { gapsIn, boundingBox, connects, query, draftRoutes, gapKey, summarise, describe, CHECKPOINT, PUBLICATION_GAP_KM };

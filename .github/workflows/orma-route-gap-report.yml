@@ -35,9 +35,11 @@ concurrency:
 jobs:
   report:
     runs-on: ubuntu-latest
-    # Overpass backs off for up to 45s per attempt across four mirrors, and
-    # there are twenty-odd gaps to ask about.
-    timeout-minutes: 45
+    # The first full run was cancelled on a 45-minute limit with eight routes
+    # unchecked. Overpass backs off across four mirrors and there are twenty-odd
+    # gaps, so the budget has to cover a bad patch rather than a good one. The
+    # script checkpoints after every gap, so even this limit loses nothing.
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -55,3 +57,12 @@ jobs:
           else
             node scripts/report-route-gaps.js
           fi
+      # always(), so a run cut short still hands over the gaps it did answer.
+      # Feed it back in as route-gap-report.json to carry on where it stopped.
+      - name: Keep the answers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: route-gap-report
+          path: route-gap-report.json
+          if-no-files-found: warn

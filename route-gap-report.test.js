@@ -87,3 +87,60 @@ describe('which routes it looks at', () => {
     expect(gapsIn(broken)[0].metres).toBeGreaterThan(1000);
   });
 });
+
+describe('surviving a run that is cut short', () => {
+  const { gapKey, summarise, describe: describeGap } = require('./scripts/report-route-gaps');
+  const route = (id, ...gaps) => ({ id, name: id, gaps });
+  const gap = (lat, lng, metres) => ({ from: [lat, lng], to: [lat, lng + 0.03], metres });
+
+  test('a gap is keyed by where it is, not by its position in the file', () => {
+    // A route-file refresh can change how many pieces a relation has. Keying
+    // on an index would then re-ask questions already paid for, or worse,
+    // attach an old answer to a different gap.
+    const one = gap(46.50, 11.000, 2295);
+    expect(gapKey('osm-1', one)).toBe(gapKey('osm-1', { ...one, metres: 9999 }));
+    expect(gapKey('osm-1', one)).not.toBe(gapKey('osm-2', one));
+    expect(gapKey('osm-1', one)).not.toBe(gapKey('osm-1', gap(46.51, 11.000, 2295)));
+  });
+
+  test('a route whose gaps are all connected needs only a relation edit', () => {
+    const only = gap(46.50, 11.000, 2295);
+    expect(summarise([route('osm-1', only)],
+      { [gapKey('osm-1', only)]: { connected: true, alongPathsM: 2400 } }))
+      .toEqual({ editable: ['osm-1'], unmapped: [], unchecked: [] });
+  });
+
+  test('one unconnected gap is enough to need a survey', () => {
+    const [a, b] = [gap(46.50, 11.000, 2295), gap(46.52, 11.000, 1800)];
+    const verdicts = summarise([route('osm-1', a, b)], {
+      [gapKey('osm-1', a)]: { connected: true, alongPathsM: 2400 },
+      [gapKey('osm-1', b)]: { connected: false, reason: 'ways exist but do not join the two ends' },
+    });
+    expect(verdicts.unmapped).toEqual(['osm-1']);
+    expect(verdicts.editable).toEqual([]);
+  });
+
+  test('a gap the mirrors refused leaves the route unanswered, never editable', () => {
+    // The distinction the first run lost: "could not be checked" is not a
+    // finding, and a route carrying one must not be reported as settled.
+    const [a, b] = [gap(46.50, 11.000, 2295), gap(46.52, 11.000, 1800)];
+    const verdicts = summarise([route('osm-1', a, b)], {
+      [gapKey('osm-1', a)]: { connected: true, alongPathsM: 2400 },
+      [gapKey('osm-1', b)]: { failed: true, error: 'fetch failed' },
+    });
+    expect(verdicts.unchecked).toEqual(['osm-1']);
+    expect(verdicts.editable).toEqual([]);
+  });
+
+  test('a gap nobody has reached yet is unanswered too', () => {
+    const only = gap(46.50, 11.000, 2295);
+    expect(summarise([route('osm-1', only)], {}).unchecked).toEqual(['osm-1']);
+  });
+
+  test('each verdict says plainly which of the three it is', () => {
+    const only = gap(46.50, 11.000, 2295);
+    expect(describeGap(only, { connected: true, alongPathsM: 2400 })).toMatch(/CONNECTED along mapped paths/);
+    expect(describeGap(only, { connected: false, reason: 'nothing mapped in the box' })).toMatch(/NOT CONNECTED/);
+    expect(describeGap(only, { failed: true, error: 'fetch failed' })).toMatch(/could not be checked/);
+  });
+});
