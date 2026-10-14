@@ -101,3 +101,33 @@ describe('asking the gate before the trail arrives',()=>{
     expect(outputs.map(output=>output.jobId)).toEqual(['new']);
   });
 });
+
+// "request-revision" says only that some agent still has attempts left. It
+// does not say whether the trail can ever be verified, which is the question
+// actually being asked -- and the only one worth asking when there is no
+// budget to run anything.
+describe('whether a trail can be verified at all',()=>{
+  test('a trail with nothing unwaivable is approved once the research ends',()=>{
+    const report=run([sourcedDirections()]);
+    expect(report.unwaivable).toEqual([]);
+    // Today it may still be sent back for optional detail.
+    expect(['approve','request-revision']).toContain(report.wouldDecide);
+    // But on this same evidence, with every attempt spent, it is approved.
+    expect(report.wouldDecideWhenResearchEnds).toBe('approve');
+  });
+
+  test('a trail missing a direction is rejected however long it researches',()=>{
+    const report=run([startAndStatusOnly()]);
+    expect(report.unwaivable.length).toBeGreaterThan(0);
+    expect(report.wouldDecideWhenResearchEnds).toBe('reject');
+  });
+
+  test('the evidence is not changed, so the end state is a floor',()=>{
+    // More research can answer a claim; it can never add a blocker that is not
+    // already here. So an end state of approve cannot become a rejection.
+    const outputs=[sourcedDirections()];
+    const before=run(outputs).blockerCount;
+    run(outputs);
+    expect(run(outputs).blockerCount).toBe(before);
+  });
+});
