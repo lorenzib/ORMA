@@ -88,6 +88,13 @@ function workerOptions(env=process.env,{workerId}={}){
     workflowRunUrl,campaignTrigger:'worker-catch-up',campaignEnabled:env.ORMA_CAMPAIGN_AUTOMATION_ENABLED==='true',
     campaignLimit:positiveInteger(env.ORMA_CAMPAIGN_LIMIT,10),campaignCapacity:positiveInteger(env.ORMA_CAMPAIGN_CAPACITY,15),
     campaignQueueCapacity:positiveInteger(env.ORMA_CAMPAIGN_QUEUE_CAPACITY,40),
+    // Trails to put through the pipeline even though they already carry a
+    // graduation. One standard for every trail: a seal earned under the
+    // curated process, before the four route-guidance claims were the
+    // contract, has never been tested by the rule that governs everything
+    // else. Named explicitly, because nothing in the record yet distinguishes
+    // an old graduation from a current one.
+    reverifyTrailIds:String(env.ORMA_REVERIFY_TRAIL_IDS||'').split(',').map(id=>id.trim()).filter(Boolean),
     // A gate standing on findings only an agent can supply is dispatched to
     // that agent without waiting for a moderator who cannot supply them.
     // Bounded because each dispatch costs a model call on a metered account.

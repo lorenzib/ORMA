@@ -262,9 +262,30 @@ function planCatalogueCampaign(trails, options = {}){
   const excludedTrailIds = new Set(Array.isArray(options.excludedTrailIds) ? options.excludedTrailIds : []);
   const identityChecks = options.identityChecks || {};
   const composites = options.composites || {};
+  const reverify = new Set(Array.isArray(options.reverifyTrailIds) ? options.reverifyTrailIds : []);
+  // A trail named for re-verification goes first.
+  //
+  // Ranking it by the usual score would bury it: a graduated trail has no
+  // baseline blockers, so it scores near the floor and sorts below a hundred
+  // ungraduated ones. Asking for it by name and watching it never be picked is
+  // the same as not being able to ask.
   const items = trails.map(trail => campaignItem(trail, identityChecks, composites)).sort((a, b) =>
-    b.priorityScore - a.priorityScore || a.name.localeCompare(b.name) || a.trailId.localeCompare(b.trailId));
-  const queueable = items.filter(item => !item.modernGraduationVerified
+    (reverify.has(b.trailId) ? 1 : 0) - (reverify.has(a.trailId) ? 1 : 0)
+    || b.priorityScore - a.priorityScore || a.name.localeCompare(b.name) || a.trailId.localeCompare(b.trailId));
+  // A trail already graduated is normally left alone: re-verifying what is
+  // verified spends model credits and Firestore reads to reach the answer it
+  // already has.
+  //
+  // Named here, it is queued anyway. Tre Cime, Lago di Braies and Cinque Torri
+  // graduated under the curated process, before the four route-guidance claims
+  // became the contract, and have never been through the agentic pipeline at
+  // all -- they carry a seal no current rule has ever tested. One standard for
+  // every trail means being able to put them through it.
+  //
+  // Deliberate and named rather than automatic: nothing distinguishes an old
+  // graduation from a current one in the record yet, so a blanket rule would
+  // re-verify every verified trail on every campaign, for ever.
+  const queueable = items.filter(item => (!item.modernGraduationVerified || reverify.has(item.trailId))
     && item.campaignState !== 'rejected'
     && !excludedTrailIds.has(item.trailId));
   const selected = queueable.slice(0, jobLimit);
@@ -287,6 +308,7 @@ function planCatalogueCampaign(trails, options = {}){
       sourceIdentityContradicted: items.filter(item => item.identityCheck).length,
       sourcedByComposite: items.filter(item => item.routeComposite).length,
       previouslyQueued: excludedTrailIds.size,
+      reverifying: items.filter(item => item.modernGraduationVerified && reverify.has(item.trailId)).length,
       remainingQueueable: queueable.length - selected.length,
       jobsCreated: jobs.length,
     },
