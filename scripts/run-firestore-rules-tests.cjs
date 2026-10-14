@@ -99,8 +99,27 @@ function waitForPort(child){
   });
 }
 
+/**
+ * Where jest actually is, rather than where it would be in a plain checkout.
+ *
+ * This was `ROOT/node_modules/jest/bin/jest.js`, which does not exist in a git
+ * worktree: a worktree has no node_modules of its own and Node finds jest by
+ * walking up to the parent repository. So `npm run quality:gate` failed here
+ * with a bare MODULE_NOT_FOUND for anyone following AGENTS.md, which requires
+ * the work be done in a worktree and the gate be run before asking to merge --
+ * the two could not both be satisfied without a hand-made symlink.
+ *
+ * Resolved from `jest/package.json` rather than the binary: jest's `exports`
+ * map does not expose `./bin/jest.js`, so resolving that path directly throws
+ * ERR_PACKAGE_PATH_NOT_EXPORTED. The manifest is exported, and its directory
+ * is the package root.
+ */
+function jestBinary(){
+  return path.join(path.dirname(require.resolve('jest/package.json')), 'bin', 'jest.js');
+}
+
 function runTests(){
-  const jestBin = path.join(ROOT, 'node_modules', 'jest', 'bin', 'jest.js');
+  const jestBin = jestBinary();
   return new Promise((resolve, reject) => {
     const test = spawn(process.execPath, [
       jestBin,
@@ -158,8 +177,15 @@ async function main(){
   }
 }
 
-main().catch(error => {
-  console.error(error.message || error);
-  console.error(`Firestore Emulator log: ${LOG_PATH}`);
-  process.exitCode = 1;
-});
+// Guarded so the path resolution above can be tested without starting an
+// emulator. `npm run test:firestore-rules` runs this file directly, where
+// require.main is this module, so the behaviour there is unchanged.
+if(require.main === module){
+  main().catch(error => {
+    console.error(error.message || error);
+    console.error(`Firestore Emulator log: ${LOG_PATH}`);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = { jestBinary };
