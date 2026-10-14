@@ -438,3 +438,74 @@ jobs:
           else
             gh issue create --title "$title" --body "$body" --label "$LABEL" || true
           fi
+
+      # The other way the pipeline stops, and the quieter one.
+      #
+      # A run can complete every step, go green, and achieve nothing: the jobs
+      # are claimed, the model provider refuses them all, and the worker
+      # reports success because nothing about the run went wrong. The failure
+      # alarm above never fires, because there is no failure. The pipeline sat
+      # dead from 11 October this way, and stopped again on 14 October when the
+      # OpenAI credits ran out — found both times by somebody asking.
+      #
+      # Its own issue rather than the one above, because what to go and do is
+      # different: that one is a bug to read a log for, this one is usually a
+      # bill to pay.
+      - name: Say so when the worker is getting nothing done
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UNPRODUCTIVE: ${{ steps.worker_health.outputs.consecutive_unproductive }}
+          LAST_PRODUCTIVE: ${{ steps.worker_health.outputs.last_productive_at }}
+          SINCE: ${{ steps.worker_health.outputs.unproductive_since }}
+          PARKED: ${{ steps.worker_health.outputs.provider_parked }}
+          MESSAGE: ${{ steps.worker_health.outputs.unproductive_message }}
+          LABEL: orma-worker-idle
+        shell: bash
+        run: |
+          set -o pipefail
+          title="ORMA worker is running but getting nothing done"
+          run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          gh label create "$LABEL" --description "The worker completes but no job succeeds" --color D93F0B >/dev/null 2>&1 || true
+          existing="$(gh issue list --state open --label "$LABEL" --limit 1 --json number --jq '.[0].number' 2>/dev/null || true)"
+
+          # A run that got something done, or had nothing to do, closes it. An
+          # idle run leaves the counter alone, so it never reads as recovery
+          # on its own.
+          if [ "${UNPRODUCTIVE:-0}" = "0" ]; then
+            if [ -n "$existing" ]; then
+              gh issue comment "$existing" --body "Working again: a run got jobs through at $(date -u +%FT%TZ). ${run_url}" || true
+              gh issue close "$existing" --reason completed || true
+            fi
+            exit 0
+          fi
+
+          # One pass where nothing landed can be a rate limit or a bad minute.
+          if [ "${UNPRODUCTIVE:-0}" -lt 2 ]; then
+            echo "One unproductive run so far. Not raising an alarm until the next one is also empty."
+            exit 0
+          fi
+
+          if [ "${PARKED:-false}" = "true" ]; then
+            cause="The model provider refused every request, so this is billing or an outage rather than anything in the code. Credits: https://platform.openai.com/settings/organization/billing"
+          else
+            cause="Jobs are being claimed and none are completing. The run log carries the error from the agents."
+          fi
+
+          body="The ORMA backoffice worker has completed ${UNPRODUCTIVE} runs in a row without a single job getting through. The runs are green: nothing is failing, and nothing is being verified either.
+
+          Nothing has been got done since: ${LAST_PRODUCTIVE:-unknown}
+          Empty since: ${SINCE:-unknown}
+          This run: ${run_url}
+
+          ${cause}
+
+          What the worker said:
+          ${MESSAGE:-(no message recorded)}
+
+          This issue closes itself when a run gets jobs through."
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "Still empty: ${UNPRODUCTIVE} runs in a row with nothing completed. ${run_url}" || true
+          else
+            gh issue create --title "$title" --body "$body" --label "$LABEL" || true
+          fi

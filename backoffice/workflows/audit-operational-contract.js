@@ -134,8 +134,16 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&publicationWorkflow.includes('gh issue close')
     &&healthCli.includes('GITHUB_OUTPUT')
     &&healthCli.includes('lastFailure')
+    // The quieter stop: a run that completes every step and gets nothing
+    // done reports success, so the failure alarm above is correctly silent
+    // and only this one speaks. Both ways the pipeline stops have to be
+    // covered, or the covered one lends false confidence to the other.
+    &&publicationWorkflow.includes('Say so when the worker is getting nothing done')
+    &&publicationWorkflow.includes('steps.worker_health.outputs.consecutive_unproductive')
+    &&healthCli.includes('consecutiveUnproductiveRuns')
+    &&healthCli.includes('providerParked')
     &&standard.includes('A worker that has stopped says so'),
-    'A worker that fails twice in a row, or that cannot write its own health receipt, opens a GitHub issue naming the failed stage and the last successful run, and the next successful run closes it; no dashboard has to be open for the operator to learn that nothing is being verified');
+    'A worker that fails twice in a row, that cannot write its own health receipt, or that completes two runs in a row without a single job getting through, opens a GitHub issue naming what happened and when anything last worked, and the next good run closes it; no dashboard has to be open for the operator to learn that nothing is being verified');
 
   const failures=checks.filter(item=>item.status==='fail');
   return {contractVersion:'1.0.0',generatedAt:options.at||new Date().toISOString(),status:failures.length?'failed':'pass',summary:{passed:checks.length-failures.length,failed:failures.length,total:checks.length},checks,manualChecks:[

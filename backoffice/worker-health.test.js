@@ -56,12 +56,16 @@ describe('saying so when the worker has stopped',()=>{
 
   test('reports the stopped worker by the names the receipt actually uses',()=>{
     const stopped=twoFailuresInARow();
-    expect(healthOutputs(stopped)).toEqual({
+    expect(healthOutputs(stopped)).toEqual(expect.objectContaining({
       health_status:stopped.status,
       consecutive_failures:String(stopped.consecutiveFailures),
       last_successful_at:stopped.lastSuccessfulAt,
       failure_stage:stopped.lastFailure.stage,
-    });
+    }));
+    // Every value is a single line: the workflow reads them as plain
+    // `key=value` pairs, and a newline in one would end the value early and
+    // leave the rest of it parsed as another output.
+    expect(Object.values(healthOutputs(stopped)).every(value=>!/[\r\n]/.test(value))).toBe(true);
     // The alarm only fires from the second failure, and only a named stage
     // tells anybody where to look.
     expect(Number(healthOutputs(stopped).consecutive_failures)).toBeGreaterThanOrEqual(2);
@@ -91,5 +95,68 @@ describe('saying so when the worker has stopped',()=>{
 
   test('nothing is written when the run is not inside a GitHub step',async()=>{
     expect(await announceHealth({status:'failed',consecutiveFailures:2},{})).toBeNull();
+  });
+});
+
+// The other way the pipeline stops. A run claims its jobs, the provider
+// refuses every one, and the worker reports success because nothing about the
+// run went wrong: green tick, empty pipeline, and the failure alarm silent
+// because there is no failure. That is how it sat dead from 11 October, and
+// how it stopped again on 14 October when the OpenAI credits ran out.
+describe('saying so when the worker is getting nothing done',()=>{
+  const emptyRun=message=>({outcome:'success',work:{outcome:'unproductive',attempted:10,succeeded:0,
+    failed:10,providerParked:true,message}});
+  const fullRun={outcome:'success',work:{outcome:'productive',attempted:10,succeeded:10,failed:0,
+    providerParked:false,message:'10 jobs completed.'}};
+
+  function twoEmptyRuns(){
+    const worked=finishWorkerRun(beginWorkerRun(null,{runId:'1'},{at:'2026-10-14T10:15:00Z'}),fullRun,{at:'2026-10-14T10:20:00Z'});
+    const first=finishWorkerRun(beginWorkerRun(worked,{runId:'2'},{at:'2026-10-14T10:45:00Z'}),emptyRun('no credits remaining'),{at:'2026-10-14T10:50:00Z'});
+    return finishWorkerRun(beginWorkerRun(first,{runId:'3'},{at:'2026-10-14T13:45:00Z'}),emptyRun('no credits remaining'),{at:'2026-10-14T13:50:00Z'});
+  }
+
+  test('a run that gets nothing done still reports healthy, which is why this exists',()=>{
+    const empty=twoEmptyRuns();
+    expect(empty.status).toBe('healthy');
+    expect(empty.consecutiveFailures).toBe(0);
+    // The failure alarm reads those two and stays quiet, correctly.
+    expect(healthOutputs(empty).consecutive_failures).toBe('0');
+  });
+
+  test('the empty runs are counted and dated, by the names the receipt uses',()=>{
+    const empty=twoEmptyRuns();
+    expect(healthOutputs(empty)).toEqual(expect.objectContaining({
+      consecutive_unproductive:String(empty.consecutiveUnproductiveRuns),
+      last_productive_at:empty.lastProductiveAt,
+      unproductive_since:empty.lastUnproductive.since,
+      provider_parked:'true',
+    }));
+    expect(Number(healthOutputs(empty).consecutive_unproductive)).toBeGreaterThanOrEqual(2);
+    // Dated from the first empty run, not the latest, so the issue can say how
+    // long nothing has been happening.
+    expect(empty.lastUnproductive.since).toBe('2026-10-14T10:50:00Z');
+  });
+
+  test('a run that gets work through clears it, so the alarm closes',()=>{
+    const recovered=finishWorkerRun(beginWorkerRun(twoEmptyRuns(),{runId:'4'},{at:'2026-10-14T19:00:00Z'}),fullRun,{at:'2026-10-14T19:05:00Z'});
+    expect(healthOutputs(recovered).consecutive_unproductive).toBe('0');
+  });
+
+  test('an idle run leaves the count alone rather than reading as recovery',()=>{
+    const idle={outcome:'success',work:{outcome:'idle',attempted:0,succeeded:0,failed:0,providerParked:false,message:'Nothing queued.'}};
+    const after=finishWorkerRun(beginWorkerRun(twoEmptyRuns(),{runId:'5'},{at:'2026-10-14T16:45:00Z'}),idle,{at:'2026-10-14T16:50:00Z'});
+    expect(healthOutputs(after).consecutive_unproductive).toBe(String(twoEmptyRuns().consecutiveUnproductiveRuns));
+  });
+
+  test('the provider message reaches the step outputs whole, in a heredoc',async()=>{
+    const file=path.join(await fs.mkdtemp(path.join(os.tmpdir(),'orma-idle-')),'outputs.txt');
+    const said='OpenAI request failed (429): You have no credits remaining.\nAdd credits to continue.';
+    const health=finishWorkerRun(beginWorkerRun(twoEmptyRuns(),{runId:'6'},{at:'2026-10-14T16:45:00Z'}),emptyRun(said),{at:'2026-10-14T16:50:00Z'});
+    const written=await announceHealth(health,{GITHUB_OUTPUT:file});
+    const text=await fs.readFile(file,'utf8');
+    expect(written.unproductive_message).toContain('no credits remaining');
+    // A multi-line value has to be delimited or it breaks the output file.
+    expect(text).toMatch(/unproductive_message<<ORMA_HEALTH_[0-9a-f]{32}\n/);
+    expect(text).toContain('Add credits to continue.');
   });
 });

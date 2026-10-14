@@ -773,6 +773,21 @@ index that has not caught up cannot open a second one every three hours. The
 issue is the notification: no dashboard has to be open and nothing has to be
 asked for the operator to learn that nothing is being verified.
 
+A worker can also stop without failing. The jobs are claimed, the model
+provider refuses every one, and the run reports success because nothing about
+the run went wrong: a green tick, an empty pipeline, and the alarm above
+correctly silent because there was no failure. That is how the pipeline sat
+dead from 11 October 2026, and how it stopped again on 14 October when the
+OpenAI credits ran out.
+
+So two runs in a row where not one job gets through raise a second issue,
+`ORMA worker is running but getting nothing done`, carrying when anything last
+worked, how long it has been empty, and the provider's own words. It is a
+separate issue from the one above because what to go and do is different: that
+one is a bug to read a log for, this one is usually a bill to pay. A run that
+gets work through closes it. A run with nothing queued is neither, and leaves
+the count where it found it.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:
