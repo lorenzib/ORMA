@@ -138,11 +138,14 @@ describe('trail page map controls', () => {
     // that used to be visible must be reachable, not merely gone.
     expect([...panel.querySelectorAll('button')].map(button => button.id)).toEqual([
       'routesToggle', 'fountainsToggle', 'hutsToggle', 'foodToggle',
-      'placesToggle', 'liftsToggle', 'veterinaryToggle', 'nearbyToggle',
+      'placesToggle', 'liftsToggle', 'nearbyToggle',
     ]);
     expect(document.getElementById('fountainsToggle').getAttribute('aria-pressed')).toBe('true');
     expect(document.getElementById('hutsToggle').getAttribute('aria-pressed')).toBe('true');
-    expect(document.getElementById('veterinaryToggle')).not.toBeNull();
+    // No veterinary chip: the OSM coverage behind it was too thin to show
+    // someone deciding where to walk a dog, and an empty map read as "no vet
+    // nearby" rather than "nobody has mapped one". Removed 2026-10-15.
+    expect(document.getElementById('veterinaryToggle')).toBeNull();
     expect(document.getElementById('foodToggle').getAttribute('aria-pressed')).toBe('false');
     expect(document.getElementById('placesToggle').getAttribute('aria-pressed')).toBe('false');
     expect(document.getElementById('routePointToggle')).toBeNull();
@@ -245,7 +248,7 @@ describe('trail page map controls', () => {
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
       'detail-pois.js', 'trail-access-directions.js', 'footpath-router.js',
-      'veterinary-care.js', 'trail.js', 'trail-reports.js', 'trail-blueprint.js',
+      'trail.js', 'trail-reports.js', 'trail-blueprint.js',
       'trail-recommendation.js', 'offline-packages.js', 'trail-detail-ui.js',
       'trail-mobile.js',
     ].forEach(source => expect(bundle).toContain(`// ---- ${source} ----`));
@@ -682,7 +685,7 @@ describe('trail page map controls', () => {
     expect(document.getElementById('hutsToggle').getAttribute('aria-pressed')).toBe('true');
     expect(document.getElementById('foodToggle').getAttribute('aria-pressed')).toBe('false');
     expect(document.getElementById('placesToggle').getAttribute('aria-pressed')).toBe('false');
-    expect(trail).toContain('const poiStates = { fountains: true, huts: true, food: false, places: false, veterinary: false }');
+    expect(trail).toContain('const poiStates = { fountains: true, huts: true, food: false, places: false }');
     expect(detailPois).toContain("const DEFAULT_VISIBLE_GROUPS = new Set(['water', 'huts'])");
     // Collision handling on the POI symbols: ~40 identical pins over a 7.5 km
     // route made the route the least visible thing on the map.
