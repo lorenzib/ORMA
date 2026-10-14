@@ -12,6 +12,8 @@ const DEFAULT_TRAIL_CAPACITY=15;
 // far larger; it exists so a backlog eventually stops intake rather than growing
 // without limit past what the review queue artifact can hold.
 const DEFAULT_GATE_CAPACITY=40;
+// How many trails may be admitted by name past a closed queue in one pass.
+const MAX_NAMED_ADMISSIONS=5;
 
 const TERMINAL_STATES=new Set(['ready-for-editorial','rejected','blocked']);
 const GATE_STATES=new Set(['geometry-human-gate','dossier-human-gate']);
@@ -40,9 +42,30 @@ async function startLiveTrailCampaign(store,trails,options={}){
   // the moderator already has a backlog helps nobody, and the review queue has
   // its own byte ceiling.
   const available=Math.max(0,Math.min(capacity-active,queueCapacity-parked));
-  const campaign=planCatalogueCampaign(trails,{at,jobLimit:Math.max(1,Math.min(limit,available||1)),
-    excludedTrailIds:excluded,reverifyTrailIds:options.reverifyTrailIds||[]});
-  if(!available){campaign.summary.remainingQueueable+=campaign.jobs.length;campaign.summary.jobsCreated=0;campaign.selectedTrailIds=[];campaign.jobs=[];}
+  // A trail asked for by name is admitted whether or not there is room.
+  //
+  // The budget stops *automatic* intake from flooding a queue that is already
+  // oversubscribed, which is a real risk: 34 trails were active against a
+  // capacity of 15 the day this was written, so available was zero and nothing
+  // could enter at all. Naming a trail is not automatic intake. It is somebody
+  // deciding that this walk is the one worth the credits, and a budget that
+  // refuses it silently makes the whole control useless -- the request looks
+  // accepted and simply never happens.
+  //
+  // Bounded by how many can be named at once, so it cannot become a way around
+  // the budget: a handful, not a catalogue.
+  const named=[...new Set((options.reverifyTrailIds||[]).filter(Boolean))].slice(0,MAX_NAMED_ADMISSIONS);
+  const jobLimit=Math.max(1,Math.min(limit,available||1)+named.length);
+  const campaign=planCatalogueCampaign(trails,{at,jobLimit,
+    excludedTrailIds:excluded,reverifyTrailIds:named});
+  if(!available){
+    // Only the named ones survive a closed queue; everything else waits for room.
+    const admitted=campaign.jobs.filter(job=>named.includes(job.candidateId));
+    campaign.summary.remainingQueueable+=campaign.jobs.length-admitted.length;
+    campaign.summary.jobsCreated=admitted.length;
+    campaign.selectedTrailIds=admitted.map(job=>job.candidateId);
+    campaign.jobs=admitted;
+  }
   const byId=new Map(campaign.items.map(item=>[item.trailId,item]));const created=[];
   for(const planned of campaign.jobs){
     const job=liveJob(planned);const item=byId.get(job.candidateId);
@@ -61,4 +84,4 @@ async function startLiveTrailCampaign(store,trails,options={}){
   return {campaign,jobIds:created.map(job=>job.id),summary:existing.summary};
 }
 
-module.exports={DEFAULT_GATE_CAPACITY,TERMINAL_STATES,GATE_STATES,agentWorking,DEFAULT_CAMPAIGN_LIMIT,DEFAULT_TRAIL_CAPACITY,liveJob,startLiveTrailCampaign};
+module.exports={MAX_NAMED_ADMISSIONS,DEFAULT_GATE_CAPACITY,TERMINAL_STATES,GATE_STATES,agentWorking,DEFAULT_CAMPAIGN_LIMIT,DEFAULT_TRAIL_CAPACITY,liveJob,startLiveTrailCampaign};
