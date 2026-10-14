@@ -18,7 +18,9 @@
 const {spawnSync}=require('child_process');
 const WORKFLOW='orma-verification-state.yml';
 // The reports the workflow runs, by the prefix each one tags its lines with.
-const SECTIONS={closest:'closest',yield:'yield',funnel:'funnel',state:'report',evidence:'evidence'};
+const SECTIONS={closest:'closest',yield:'yield',funnel:'funnel',state:'report',evidence:'evidence',
+  // What the gate would say about a named trail, asked now rather than waited for.
+  gate:'dry-run',progress:'progress'};
 
 function gh(args,{quiet=false}={}){
   const result=spawnSync('gh',args,{encoding:'utf8'});
