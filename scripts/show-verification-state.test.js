@@ -29,10 +29,10 @@ describe('reading the verification state from a laptop',()=>{
     const workflow=fs.readFileSync(path.join(__dirname,'..','.github/workflows',WORKFLOW),'utf8');
     // The workflow runs these CLIs; each tags its lines with the prefix above.
     for(const command of ['backoffice:closest','backoffice:resolution-yield',
-      'backoffice:verification-funnel','backoffice:verification-state','backoffice:gate-evidence']){
+      'backoffice:verification-funnel','backoffice:verification-state','backoffice:gate-evidence','backoffice:gate-dryrun']){
       expect(workflow).toContain(command);
     }
-    expect(Object.keys(SECTIONS)).toEqual(['closest','yield','funnel','state','evidence']);
+    expect(Object.keys(SECTIONS)).toEqual(['closest','yield','funnel','state','evidence','gate','progress']);
   });
 
   test('it is registered under a name that is short enough to remember',()=>{
