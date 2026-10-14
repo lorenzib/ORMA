@@ -101,16 +101,21 @@ function resolutionYield(orchestration,options={}){
       searches:forClaim.reduce((total,entry)=>total+entry.attempts,0),
     };
   });
-  // The trails whose directions are all four settled: what the gate would pass
-  // today if nothing else stood. Counted from the ledger rather than from the
-  // gate, which no trail has reached.
+  // Trails with no direction still outstanding in the ledger.
+  //
+  // NOT "all four supported": the ledger only holds claims an agent could not
+  // answer first time, so a trail whose directions came straight back has no
+  // entry for them and could never satisfy that. Reported as 0 of 24 on its
+  // first live run, which was an artefact of the question, not the pipeline.
+  // What it can honestly say is that nothing about this trail's directions is
+  // still open.
   const guidanceByTrail=new Map();
   for(const entry of guidance){
     if(!guidanceByTrail.has(entry.trailId))guidanceByTrail.set(entry.trailId,new Map());
     guidanceByTrail.get(entry.trailId).set(entry.claimId,entry.state);
   }
   const trailsWithAllFour=[...guidanceByTrail.entries()]
-    .filter(([,claims])=>ROUTE_GUIDANCE_CLAIM_IDS.every(id=>claims.get(id)==='supported'))
+    .filter(([,claims])=>[...claims.values()].every(state=>state==='supported'))
     .map(([trailId])=>trailId);
   const doomedTrails=[...new Set(guidance
     .filter(entry=>entry.state==='source-exhausted'||entry.state==='contradicted')
@@ -122,7 +127,7 @@ function resolutionYield(orchestration,options={}){
     claims:entries.length,
     guidanceStates,
     guidanceByClaim:byClaim,
-    trailsWithAllFourDirections:trailsWithAllFour,
+    trailsWithNoDirectionOutstanding:trailsWithAllFour,
     trailsWithAnyDirection:guidanceByTrail.size,
     doomedTrails:doomedTrails.length,
     wastedOnDoomed,

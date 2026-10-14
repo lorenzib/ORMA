@@ -26,8 +26,18 @@ function parseArgs(argv){
 function waiting(row){
   if(row.blockers.line.length) return `the line: ${row.blockers.line.join(', ')}`;
   if(row.blockers.directions.length) return `directions: ${row.blockers.directions.map(id => id.replace('logistics/', '')).join(', ')}`;
-  const { settled, known } = row.directions;
-  if(known) return `directions ${settled}/4 settled · ${row.blockers.waivable} optional detail open`;
+  // Out of the directions that needed researching, not out of four.
+  //
+  // The ledger only ever holds a claim an agent could not answer first time,
+  // so a trail whose directions were answered straight off has no entry for
+  // them at all. Against a hardcoded four that printed "directions 1/4
+  // settled" for a trail with nothing missing, and three months of reading
+  // this report said the pipeline was further from the end than it was.
+  const { settled, known, exhausted, researching } = row.directions;
+  if(known) return `${settled}/${known} researched direction(s) answered`
+    + (exhausted ? `, ${exhausted} gave up` : '')
+    + (researching ? `, ${researching} still looking` : '')
+    + ` · ${row.blockers.waivable} optional detail open`;
   return row.blockers.waivable ? `${row.blockers.waivable} optional detail open` : 'nothing standing — waiting on its next pass';
 }
 

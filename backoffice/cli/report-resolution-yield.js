@@ -46,8 +46,9 @@ async function main(options = {}){
     console.log(`[yield]   ${String(claim.claimId).padEnd(22)} ${String(claim.supported).padStart(3)}/${String(claim.total).padEnd(3)} answered (${share}%)`
       +` · ${claim.sourceExhausted} exhausted · ${claim.contradicted} contradicted · ${claim.searches} search(es)`);
   }
-  console.log(`[yield] ${(result.trailsWithAllFourDirections||[]).length} of ${result.trailsWithAnyDirection} trail(s) have all four settled`
-    +`${(result.trailsWithAllFourDirections||[]).length?`: ${result.trailsWithAllFourDirections.join(', ')}`:''}`);
+  const settled=result.trailsWithNoDirectionOutstanding||[];
+  console.log(`[yield] ${settled.length} of ${result.trailsWithAnyDirection} trail(s) that needed direction research have none outstanding`
+    +`${settled.length?`: ${settled.join(', ')}`:''}`);
   console.log(`[yield] ${result.doomedTrails} trail(s) cannot be verified because their directions could not be established,`);
   console.log(`[yield] and ${result.wastedOnDoomed} search(es) went on optional detail for those trails before anyone knew.`);
   console.log('[yield] Route guidance keeps its full ladder either way. Nothing was changed.');

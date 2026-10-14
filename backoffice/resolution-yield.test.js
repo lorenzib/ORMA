@@ -178,14 +178,29 @@ describe('which of the four directions is the one blocking',()=>{
       .every(item=>item.supported===2)).toBe(true);
   });
 
-  test('a trail counts as settled only when all four are supported',()=>{
+  // The ledger holds only the claims an agent could not answer first time, so
+  // "all four supported" is a question it can never answer yes to: a trail
+  // whose directions came straight back has no entry for them at all. It read
+  // 0 of 24 on its first live run for that reason alone. What it can say is
+  // whether anything about a trail's directions is still outstanding.
+  test('a trail is settled when none of its researched directions is outstanding',()=>{
     const short=allFour('supported');
     short[ROUTE_GUIDANCE_CLAIM_IDS[0]]='source-exhausted';
     const result=resolutionYield({trails:[
       trail('complete',allFour('supported')),
       trail('one-short',short),
+      // One direction, answered. Nothing outstanding, even though three of the
+      // four never reached the ledger.
+      trail('answered-first-time',{[ROUTE_GUIDANCE_CLAIM_IDS[0]]:'supported'}),
     ]});
-    expect(result.trailsWithAllFourDirections).toEqual(['complete']);
-    expect(result.trailsWithAnyDirection).toBe(2);
+    expect(result.trailsWithNoDirectionOutstanding).toEqual(['complete','answered-first-time']);
+    expect(result.trailsWithAnyDirection).toBe(3);
+  });
+
+  test('a direction still being researched leaves the trail outstanding',()=>{
+    const result=resolutionYield({trails:[
+      trail('still-looking',{[ROUTE_GUIDANCE_CLAIM_IDS[0]]:'researchable'}),
+    ]});
+    expect(result.trailsWithNoDirectionOutstanding).toEqual([]);
   });
 });
