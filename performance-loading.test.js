@@ -25,10 +25,12 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(homepage).toContain("window.addEventListener('dolopaws-mobile-layout-change'");
     expect(homepage).toContain("window.matchMedia('(max-width: 700px)').matches");
     expect(homepage).toContain('return trailMapSchedule.start().then(result =>');
-    // Browse maps start with the marked network off: choosing a walk and
-    // following one want different maps. The Layers chip restores it.
-    expect(homepage).toContain('const overlayStates = { routes: false, lifts: false');
-    expect(homepage).toContain("addWaymarkedHiking(trailMapInstance, { beforeId: firstLabelLayer.id, visible: false })");
+    // The marked network starts on, reversed deliberately on 2026-10-14. The
+    // POIs below stay off and lazily loaded -- this layer is a raster tile
+    // source that costs nothing until the map draws it, which is why it can be
+    // on by default where the POI datasets cannot.
+    expect(homepage).toContain('const overlayStates = { routes: true, lifts: false');
+    expect(homepage).toContain("addWaymarkedHiking(trailMapInstance, { beforeId: firstLabelLayer.id, visible: true })");
     expect(homepage).toContain('onIdle(loadSecondaryMapData, 5000)');
     const secondaryMapData = homepage.slice(
       homepage.indexOf('const loadSecondaryMapData = () =>'),

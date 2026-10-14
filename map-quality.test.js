@@ -233,13 +233,16 @@ describe('shared map quality profile', () => {
     expect(read('scoring.js')).toContain("GUEST_SUBJECT = Object.freeze({ terrain:'1', distance:'10', heatSensitive:false })");
   });
 
-  test('browse maps start quiet, the navigating map does not', () => {
-    // AllTrails shows no path network at browse zooms at all. Ours has to
-    // appear eventually, Dolomites walkers follow the numbers on signposts, // but not while you are still deciding which valley to drive to.
+  test('the browse map shows the path network, the collection map waits for zoom', () => {
+    // This was the other way round, on the reasoning that AllTrails shows no
+    // path network at browse zooms and the lines bury the ORMA routes you are
+    // choosing between. Reversed deliberately on 2026-10-14 after seeing it on
+    // the real map: the lines give the valley its shape, and a reader who
+    // wants them should not have to know the Layers panel exists.
     const homepage = read('script.js');
-    expect(homepage).toContain('const overlayStates = { routes: false, lifts: false');
-    expect(homepage).toContain('visible: false });');
-    // Nothing is removed without a way back: the Layers chip drives the layer.
+    expect(homepage).toContain('const overlayStates = { routes: true, lifts: false');
+    expect(homepage).toContain('visible: true });');
+    // Still one tap to turn off: the Layers chip drives the layer either way.
     expect(homepage).toContain("routes:   ['waymarked-hiking-layer']");
 
     // The collection map opens at a fixed zoom 9 and has no layers control, so
