@@ -126,6 +126,10 @@ async function runCompositeCartographer(candidate, dossier, options = {}){
     // routeConformance because it is the same kind of thing: a measurement the
     // cartographer made, which the dossier reads rather than researches.
     ...(reconstructed.routeGuidance ? { routeGuidance: reconstructed.routeGuidance } : {}),
+    // What ORMA already recorded about this walk, travelling with everything
+    // else the audit measured so the dossier can read it rather than send an
+    // agent to rediscover it.
+    ...(candidate.trailRecord ? { trailRecord: candidate.trailRecord } : {}),
     routeConformance,
     comparison,
     blockers,
@@ -225,6 +229,7 @@ async function runCartographer(candidate, dossier, options = {}){
     ...(reconstructed.relation?.tags?.ref
       ? { routeGuidance: { sequence: [String(reconstructed.relation.tags.ref)], switches: [], segments: [] } }
       : {}),
+    ...(candidate.trailRecord ? { trailRecord: candidate.trailRecord } : {}),
     routeConformance,
     comparison,
     blockers,

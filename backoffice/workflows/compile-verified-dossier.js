@@ -19,6 +19,7 @@ function authoritativeRecommendedStart(review){
 
 const {routeConformanceBlockingReasons,OFF_DECLARED_ROUTE_BLOCKER_ID}=require('../services/route-conformance');
 const {routeGuidanceFromMap}=require('./route-guidance-from-map');
+const {routeGuidanceFromRecord}=require('./route-guidance-from-record');
 
 const OFFICIAL_ROUTE_CLAIMS=['route-number-status','route-number-sequence','route-number-switches'];
 
@@ -197,11 +198,53 @@ function mapReadRouteGuidance(outputs,options={}){
  * is better evidence than a measurement of the ways, and says what somebody
  * recommends rather than only what is drawn.
  */
+/**
+ * The two ORMA can answer from its own record: where it says the walk starts,
+ * and what a walker should look for at junctions.
+ *
+ * 161 of 162 trails carry a named start point with coordinates. An agent asked
+ * for it is being paid to rediscover what the catalogue has had all along, and
+ * a trail whose search comes back empty is refused for want of a fact ORMA
+ * could state itself -- while the public page has rendered exactly that fact,
+ * as a suggestion, for a long time.
+ *
+ * Measured on the ten trails nearest the seal: five were blocked by these two
+ * together with the two the map answers, every claim empty because no
+ * authority had published anything about that walk.
+ */
+const RECORD_ANSWERABLE_CLAIMS=Object.freeze(['recommended-start','route-number-status']);
+
+function recordReadRouteGuidance(review,options={}){
+  // From the cartographer's output, the way the map measurement travels, so no
+  // caller has to thread the catalogue trail through the gate to reach it.
+  const result=cartographerOutput(review?.specialistOutputs)?.result;
+  const trail=options.trail||review?.trail||result?.trailRecord;
+  if(!trail)return {};
+  // The refs the geometry audit measured, so the status reads the numbers this
+  // walk actually follows rather than the catalogue's sparser copy.
+  const measuredRefs=result?.routeGuidance?.sequence;
+  return routeGuidanceFromRecord(trail,{...options,measuredRefs});
+}
+
+/**
+ * Whether this route claim is answered, and by the best thing that can answer
+ * it.
+ *
+ * An authority the agent cited first: it says what somebody recommends. Then
+ * the map, which says what is drawn. Then ORMA's own record, which says what
+ * ORMA chose -- the weakest of the three, and the one that must always say so.
+ * A trail is not refused for lacking the first when it has the second or the
+ * third, so long as the reader is told which they have.
+ */
 function supportedRouteGuidance(review,id,options={}){
   const sourced=supportedLogisticsClaim(review,id);
   if(sourced)return sourced;
-  if(!MAP_ANSWERABLE_CLAIMS.includes(id))return null;
-  return mapReadRouteGuidance(review?.specialistOutputs,options)[id]||null;
+  if(MAP_ANSWERABLE_CLAIMS.includes(id)){
+    const measured=mapReadRouteGuidance(review?.specialistOutputs,options)[id];
+    if(measured)return measured;
+  }
+  if(!RECORD_ANSWERABLE_CLAIMS.includes(id))return null;
+  return recordReadRouteGuidance(review,options)[id]||null;
 }
 
 function routeGuidanceBlockingReasons(outputs){
@@ -467,4 +510,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={citableRelations,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
