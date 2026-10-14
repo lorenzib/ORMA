@@ -164,6 +164,19 @@
     const counts=new Map();
     for(const entry of classifyBlockers(reasons)){
       if(entry.disposition!=='unresearched')continue;
+      // A ladder that has run out is not work another run can do.
+      //
+      // `unresearched` answers "is this established?", and for an exhausted
+      // claim the answer is still no. This function answers a different
+      // question -- "can asking again help?" -- and there the answer is no as
+      // well, because asking again is exactly what has already been done to
+      // the end of its ladder.
+      //
+      // Counting it here kept parked gates being dispatched to an agent with
+      // nothing left to try, which is what the evidence policy reads as "this
+      // trail still has research outstanding". A trail with nothing but spent
+      // claims therefore never reached the step that approves it.
+      if(EXHAUSTED.test(entry.reason))continue;
       if(entry.agent===UNATTRIBUTED)continue;
       // A verdict is the agent's other findings restated, so counting it is
       // counting the same work twice -- and it would give an agent with one

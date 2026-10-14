@@ -6,7 +6,7 @@ const {summarize}=require('./build-live-orchestration');
 const {routeGuidanceBlockingReasons,routeGuidanceContractStale,ROUTE_GUIDANCE_CONTRACT,
   ROUTE_GUIDANCE_CLAIM_IDS,dossierBlockingReasons,currentBlockingReasons}=require('./compile-verified-dossier');
 const {
-  MAX_AUTOMATED_ATTEMPTS,resolutionCandidates,ensureResolutionEntries,pendingAttempt,
+  MAX_AUTOMATED_ATTEMPTS,ceilingFor,resolutionCandidates,ensureResolutionEntries,pendingAttempt,
   completedAttempts,reconcileCompletedAttempt,addQueuedAttempt,attemptStrategyText,
 }=require('./claim-resolution');
 
@@ -54,7 +54,10 @@ function queueClaimResolution(trail,entry,jobs,queued,at){
   const job=specialistJob(trail,{agentId:entry.agentId,action:'resolve-unresolved-claim',claimIds:[entry.claimId]},executionAttempt,at);
   const attempt=addQueuedAttempt(entry,job,at);
   job.jobType='trail-claim-resolution';job.resolutionAttempt=attempt.attemptNumber;
-  job.maximumResolutionAttempts=MAX_AUTOMATED_ATTEMPTS;job.resolutionKey=entry.key;
+  // The claim's own ladder, not the longest one: the agent is told how many
+  // looks it has, and "attempt 3 of 5" on a claim that retires at three is a
+  // promise of two more searches that will never be asked for.
+  job.maximumResolutionAttempts=ceilingFor(entry.claimId);job.resolutionKey=entry.key;
   // The wording comes from the strategy table, not from the stored attempt.
   const wording=attemptStrategyText(attempt);
   job.resolutionStrategy=attempt.strategy;job.resolutionStrategyLabel=wording.label;
@@ -359,7 +362,7 @@ async function advanceTrailOrchestration(store,options={}){
       const changed=await reconcileResolutionAttempts(store,trail,jobs,at);let scheduled=false;
       for(const entry of resolutionLedger(trail)){
         if(entry.state!=='researchable'||pendingAttempt(entry,jobs))continue;
-        if(completedAttempts(entry).length>=MAX_AUTOMATED_ATTEMPTS){entry.state='source-exhausted';entry.updatedAt=at;continue;}
+        if(completedAttempts(entry).length>=ceilingFor(entry.claimId)){entry.state='source-exhausted';entry.updatedAt=at;continue;}
         queueClaimResolution(trail,entry,jobs,queued,at);scheduled=true;
       }
       const pending=resolutionLedger(trail).some(entry=>pendingAttempt(entry,[...jobs,...queued]));

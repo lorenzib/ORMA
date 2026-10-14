@@ -2,7 +2,7 @@
 
 const fs=require('fs/promises');
 const path=require('path');
-const {MAX_AUTOMATED_ATTEMPTS,RETRY_DELAYS_HOURS}=require('../contracts/resolution-policy-v1');
+const {MAX_AUTOMATED_ATTEMPTS,MAX_WAIVABLE_ATTEMPTS,RETRY_DELAYS_HOURS}=require('../contracts/resolution-policy-v1');
 
 async function read(root,relative){return fs.readFile(path.join(root,relative),'utf8');}
 
@@ -11,7 +11,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -20,6 +20,8 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/adjudicate-gate-blockers.js'),read(root,'trail-verify-desk.js'),
     read(root,'backoffice/workflows/scout-area-closures.js'),
     read(root,'backoffice/cli/record-worker-health.js'),
+    read(root,'backoffice/workflows/automate-existing-trail-verification.js'),
+    read(root,'backoffice/workflows/compile-verified-dossier.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -29,6 +31,20 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   add('immutable-review-contracts',reviewCollections.every(name=>rules.includes(`/${name}/{`)&&client.includes(`'${name}'`))&&!rules.includes('/backofficeImageReviews/{')&&!rules.includes('/backofficeImageUploads/{'),`${reviewCollections.length} moderator review collections have client and rules contracts, and the trail-photo collections are gone`);
   add('backfill-worker-coverage',['ingestHazardReviews','ingestDossierReviews'].every(name=>worker.includes(name))&&!worker.includes('ingestImageReviews')&&!worker.includes('refreshTrailPhotoBackfill')&&!worker.includes('ingestNewsletterReviews')&&!worker.includes('ingestAnalystReviews')&&!worker.includes('ingestEditorialReviews'),'The worker runs only the hazard and verification lanes; the retired lanes, trail photos included, are removed rather than gated');
   add('five-attempt-resolution',MAX_AUTOMATED_ATTEMPTS===5&&JSON.stringify(RETRY_DELAYS_HOURS)===JSON.stringify([0,0,1,1,6]),'Five materially different evidence attempts are scheduled at 0, 0, 1, 1 and 6 hours: strategy pacing, not failure backoff, which failJob carries separately');
+  // Two ladders, and the sentence that ends one of them carries no number.
+  // A consumer matching the literal "five" would have matched nothing from the
+  // day optional detail stopped at three, and every trail whose remaining
+  // blockers were all exhausted would have circulated for ever looking like it
+  // still had research to do.
+  add('optional-detail-stops-at-three',
+    MAX_WAIVABLE_ATTEMPTS===3
+    &&MAX_WAIVABLE_ATTEMPTS<MAX_AUTOMATED_ATTEMPTS
+    &&!gatePolicy.includes('five automated resolution strategies exhausted')
+    &&gatePolicy.includes('automated resolution strategies exhausted')
+    &&!dossier.includes('five automated resolution strategies exhausted')
+    &&dossier.includes('automated resolution strategies exhausted')
+    &&standard.includes('Optional detail stops at three'),
+    'Route guidance keeps all five research attempts and optional detail stops at three, since an optional claim is recorded unknown either way while the policy will not approve a trail with one still researchable; the exhausted sentence states no count, so no consumer matches a number that is now two numbers');
   add('publication-failure-receipts',workflows['orma-backoffice-worker.yml']?.includes('Record publication automation failure')&&workflows['orma-backoffice-worker.yml']?.includes('force_publication_retry'),'Publication approval is retained through durable failure receipts and an explicit recovery input');
   const publicationWorkflow=workflows['orma-backoffice-worker.yml']||'';
   add('publication-validation-circuit-breaker',publicationWorkflow.includes('backoffice:publication-gate')&&publicationWorkflow.includes("if: steps.website_gate.outputs.publication_allowed == 'true'")&&publicationWorkflow.includes('outcome="blocked"')&&dashboard.includes("artifact.status==='blocked'"),'A red or missing Validate ORMA result pauses only website materialization, preserves approvals, and appears as a blocked dashboard heartbeat while queue work continues');

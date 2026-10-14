@@ -2,6 +2,18 @@
 
 const {OPTIONAL_UNKNOWN_REASON,gateDecision,automateEditorialReviews,automatePublicationReviews}=require('./workflows/automate-existing-trail-verification');
 const {buildVerifiedEditorialHandoff}=require('./workflows/verified-editorial-handoff');
+const {dossierBlockingReasons}=require('./workflows/compile-verified-dossier');
+const {MAX_WAIVABLE_ATTEMPTS,ceilingFor}=require('./workflows/claim-resolution');
+const {ROUTE_GUIDANCE_CLAIM_IDS}=require('./workflows/compile-verified-dossier');
+
+// Directions the gate accepts: a supported proposal with an authority behind an
+// https source, which is what supportedLogisticsClaim actually requires. Built
+// from the producer's own claim list so a fifth direction appears here too.
+const sourcedDirections=()=>({agentId:'logistics',result:{recommendation:'advance',openQuestions:[],
+  claims:ROUTE_GUIDANCE_CLAIM_IDS.map(id=>({id,category:'access',finding:'supported-proposal',
+    proposedValue:'Follow the waymarked route.',confidence:0.9,rationale:'Official page.',
+    sources:[{label:'Operator',url:'https://example.test/route',authority:'Route operator',accessedAt:'2026-10-13'}],
+    blockers:[]}))}});
 const {buildPublicationStaging,existingImageFields,verifiedPoiFields}=require('./workflows/build-publication-staging');
 
 const at='2026-10-07T10:00:00.000Z';
@@ -24,6 +36,33 @@ describe('existing catalogue evidence policy',()=>{
     const decision=gateDecision(item,{items:[item]},trail,new Set());
     expect(decision.action).toBe('approve');
     expect(decision.acceptedBlockers).toEqual([{blocker:item.blockingReasons[0],reason:OPTIONAL_UNKNOWN_REASON}]);
+  });
+
+  // The fixtures above hand-type "five automated resolution strategies
+  // exhausted". Since optional detail stopped at three, the producer writes
+  // "3 ...", and a test that types the old sentence passes against a string
+  // nothing emits. This one builds the reason with the producer, so it moves
+  // when the producer moves.
+  test('a trail whose only work left is exhausted optional detail is approved',()=>{
+    const exhaustedClaim={id:'water',category:'water',finding:'unresolved',proposedValue:'Unknown.',
+      sources:[],blockers:[],resolution:{state:'source-exhausted',maximumAttempts:ceilingFor('water')}};
+    // Le Belvédère's shape: directions sourced, one optional detail given up on.
+    const reasons=dossierBlockingReasons([sourcedDirections(),{agentId:'terrainPoi',
+      result:{recommendation:'advance',openQuestions:[],claims:[exhaustedClaim]}}]);
+    expect(reasons).toHaveLength(1);
+    // What the producer actually says, with the ladder optional detail now has.
+    expect(reasons).toContain(`terrainPoi/water: ${MAX_WAIVABLE_ATTEMPTS} automated resolution strategies exhausted`);
+    expect(reasons.join(' ')).not.toMatch(/five automated/i);
+
+    const item=review({approvalAllowed:false,blockingReasons:reasons});
+    const decision=gateDecision(item,{items:[item]},orchestration({resolutionAttempts:{terrainPoi:MAX_WAIVABLE_ATTEMPTS}}),new Set());
+    expect(decision.action).toBe('approve');
+    expect(decision.acceptedBlockers.map(entry=>entry.blocker)).toEqual(reasons);
+  });
+
+  test('optional detail is retired two attempts sooner than a direction',()=>{
+    expect(ceilingFor('water')).toBe(MAX_WAIVABLE_ATTEMPTS);
+    expect(ceilingFor('route-number-switches')).toBeGreaterThan(MAX_WAIVABLE_ATTEMPTS);
   });
 
   test('sends a researchable claim back to its specialist in the same pass',()=>{

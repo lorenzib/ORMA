@@ -141,7 +141,7 @@ passes rather than in one. It fires only when the blockers name an agent at all
 -- an unattributed blocker is a decision, not a dispatch -- and only when a
 re-run could answer something. Where evidence was read and disagrees, the
 agent has already given its answer: asking again returns the same
-contradiction and spends one of five resolution attempts to learn nothing, so
+contradiction and spends one of its resolution attempts to learn nothing, so
 that gate goes to the moderator with a recommendation instead. The exception is
 a blocker no decision of hers can clear -- route guidance, which is supplied and
 never accepted, and a geometry conflict, which has to be settled before
@@ -522,8 +522,37 @@ passes found nothing, called the queue idle and stopped.
 Six hours before the fifth attempt is kept deliberately. It is the one place a
 delay can plausibly change an answer, because the last strategy is a final
 targeted search rather than a new angle. Nothing about the evidence threshold
-moves: five materially different strategies are still required, source-exhausted
-still means what it said, and a claim is still never promoted from silence.
+moves: source-exhausted still means what it said, and a claim is still never
+promoted from silence.
+
+### Optional detail stops at three
+
+Route guidance keeps all five attempts. Optional detail stops at three.
+
+The two are not the same kind of claim. Directions decide whether a trail can
+be verified at all, so their ladder is worth its full length. Optional detail
+is recorded `unknown` whether it runs out at three attempts or at five, and the
+reader sees the same thing either way — but the evidence policy will not approve
+a trail while any claim is still researchable. The cost of the last two
+attempts is therefore not two searches. It is the trail.
+
+Le Belvédère reached the dossier gate on 13 October 2026, the first trail ever
+to get there, carrying 110 blockers and not one of them unwaivable. Nothing
+about it needed a human or a decision. It was sent back to look again for
+details that were going to be written down as unknown regardless.
+
+Three is measured. Across the catalogue the ladder answered 55 claims on the
+first attempt, 22 on the second, 14 on the third, 16 on the fourth and 7 on the
+fifth. Stopping optional detail at three gives up 23 answers and saves 270
+searches; what it buys is that a trail whose only outstanding work is optional
+can reach approval.
+
+The count is not written into the sentence other code reads. An exhausted claim
+says `<n> automated resolution strategies exhausted`, and every consumer matches
+the words rather than the number — because there are now two numbers, and a
+consumer that had been matching the literal `five` would have quietly matched
+nothing from the day this changed, leaving every such trail circulating for
+ever.
 
 ## Two campaign budgets, and where a stopped trail goes
 

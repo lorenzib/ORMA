@@ -4,31 +4,57 @@ const {
   STRATEGIES,strategyFor,notBeforeFor,addQueuedAttempt,mergeClaimResolutionResult,
 }=require('./workflows/claim-resolution');
 const {advanceTrailOrchestration}=require('./workflows/advance-trail-orchestration');
+const {MAX_AUTOMATED_ATTEMPTS,MAX_WAIVABLE_ATTEMPTS,RETRY_DELAYS_HOURS}=require('./contracts/resolution-policy-v1');
+const {ROUTE_GUIDANCE_CLAIM_IDS}=require('./workflows/compile-verified-dossier');
 
 function baseResult(agentId,claims=[]){return {contractVersion:'1.0.0',candidateId:'trail-a',agentId,summary:'Checked.',claims,
   openQuestions:[],recommendation:claims.some(claim=>claim.finding==='unresolved')?'needs-resolution':'advance',publicMutationAllowed:false};}
 
-describe('autonomous five-attempt claim resolution',()=>{
-  test('schedules five materially different strategies at 0, 0, 1, 1 and 6 hours',()=>{
-    const entry={attempts:[]};const at='2026-08-20T00:00:00.000Z';
-    for(let index=0;index<5;index+=1){
-      const strategy=strategyFor(entry);expect(strategy).toEqual(expect.objectContaining({attemptNumber:index+1,strategy:STRATEGIES[index].id}));
-      expect(notBeforeFor(at,index+1)).toBe(new Date(new Date(at).getTime()+[0,0,1,1,6][index]*3600000).toISOString());
+describe('autonomous claim resolution',()=>{
+  // Two ladders since 2026-10-13: the directions a walk cannot be verified
+  // without keep all five looks, and optional detail stops at three. Both
+  // lengths are read from the contract rather than typed here, so changing one
+  // of them fails the assertion that is actually wrong rather than every test
+  // in the file.
+  const walkLadder=(entry,ceiling)=>{
+    const at='2026-08-20T00:00:00.000Z';
+    for(let index=0;index<ceiling;index+=1){
+      const strategy=strategyFor(entry);
+      expect(strategy).toEqual(expect.objectContaining({attemptNumber:index+1,strategy:STRATEGIES[index].id}));
+      expect(notBeforeFor(at,index+1)).toBe(new Date(new Date(at).getTime()+RETRY_DELAYS_HOURS[index]*3600000).toISOString());
       const attempt=addQueuedAttempt(entry,{id:`job-${index+1}`},at);attempt.status='completed';
     }
-    expect(()=>strategyFor(entry)).toThrow('limit reached (5)');
+    expect(()=>strategyFor(entry)).toThrow(`limit reached (${ceiling})`);
+  };
+
+  test('a direction keeps the full ladder of materially different strategies',()=>{
+    walkLadder({claimId:ROUTE_GUIDANCE_CLAIM_IDS[0],attempts:[]},MAX_AUTOMATED_ATTEMPTS);
   });
 
-  test('the fifth unresolved result becomes source-exhausted without losing prior supported claims',()=>{
+  test('optional detail stops at three rather than researching to five',()=>{
+    walkLadder({claimId:'parking',attempts:[]},MAX_WAIVABLE_ATTEMPTS);
+    expect(MAX_WAIVABLE_ATTEMPTS).toBeLessThan(MAX_AUTOMATED_ATTEMPTS);
+  });
+
+  test('a claim with no id named is treated as optional, never granted the long ladder',()=>{
+    walkLadder({attempts:[]},MAX_WAIVABLE_ATTEMPTS);
+  });
+
+  test('the last unresolved result becomes source-exhausted without losing prior supported claims',()=>{
     const previous=baseResult('logistics',[
       {id:'parking',category:'parking',proposedValue:'Unknown.',finding:'unresolved',confidence:0,rationale:'No source.',sources:[],blockers:['pin-unverified']},
       {id:'access',category:'access',proposedValue:'Road open.',finding:'supported-proposal',confidence:.9,rationale:'Official.',sources:[{label:'Road authority',url:'https://example.test/road',authority:'Authority',accessedAt:'2026-08-20'}],blockers:[]},
     ]);
     const next=baseResult('logistics',[{id:'parking',category:'parking',proposedValue:'Still unknown.',finding:'unresolved',confidence:.1,rationale:'Final search found no exact pin.',sources:[],blockers:['pin-unverified']}]);
-    const merged=mergeClaimResolutionResult(previous,next,{claimIds:['parking'],resolutionAttempt:5,resolutionStrategy:STRATEGIES[4].id,resolutionStrategyLabel:STRATEGIES[4].label},'2026-08-20T00:10:00.000Z');
+    // `parking` is optional detail, so its ladder ends at MAX_WAIVABLE_ATTEMPTS.
+    const last=MAX_WAIVABLE_ATTEMPTS;
+    const merged=mergeClaimResolutionResult(previous,next,{claimIds:['parking'],resolutionAttempt:last,resolutionStrategy:STRATEGIES[last-1].id,resolutionStrategyLabel:STRATEGIES[last-1].label},'2026-08-20T00:10:00.000Z');
     expect(merged.claims).toHaveLength(2);
     expect(merged.claims.find(claim=>claim.id==='access').finding).toBe('supported-proposal');
-    expect(merged.claims.find(claim=>claim.id==='parking').resolution).toEqual(expect.objectContaining({state:'source-exhausted',attemptNumber:5,maximumAttempts:5}));
+    expect(merged.claims.find(claim=>claim.id==='parking').resolution).toEqual(expect.objectContaining({state:'source-exhausted',attemptNumber:last,maximumAttempts:MAX_WAIVABLE_ATTEMPTS}));
+    // The sentence the gate policy recognises carries no hardcoded count.
+    expect(merged.claims.find(claim=>claim.id==='parking').blockers)
+      .toContain(`${MAX_WAIVABLE_ATTEMPTS} materially different automated research strategies were exhausted.`);
     expect(merged.recommendation).toBe('block');
   });
 
