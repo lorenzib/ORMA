@@ -121,6 +121,11 @@ async function runCompositeCartographer(candidate, dossier, options = {}){
     components: reconstructed.components,
     assessment: reconstructed.assessment,
     coverage: reconstructed.coverage,
+    // Which numbered route carries each stretch, and where one gives way to
+    // the next, read off the relations this walk is built from. Travels beside
+    // routeConformance because it is the same kind of thing: a measurement the
+    // cartographer made, which the dossier reads rather than researches.
+    ...(reconstructed.routeGuidance ? { routeGuidance: reconstructed.routeGuidance } : {}),
     routeConformance,
     comparison,
     blockers,

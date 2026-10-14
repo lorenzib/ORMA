@@ -96,6 +96,16 @@ function reconstructComposite(trail, composite, measured, options = {}){
   }));
 
   return {
+    // What the fresh measurement worked out about which numbered route carries
+    // each stretch of the walk. Taken from `measured` rather than from the
+    // approved composite: the composite records which routes were accepted,
+    // the measurement records where each of them actually runs, and only the
+    // second can say what order a walker meets them in.
+    ...(measured?.routeRefSequence?.length ? { routeGuidance: {
+      sequence: measured.routeRefSequence,
+      switches: measured.routeRefSwitches || [],
+      segments: measured.routeRefSegments || [],
+    } } : {}),
     relation: {
       // Named for what it is. Nothing downstream should mistake it for a
       // relation id it could fetch.

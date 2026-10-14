@@ -11,7 +11,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -22,6 +22,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/cli/record-worker-health.js'),
     read(root,'backoffice/workflows/automate-existing-trail-verification.js'),
     read(root,'backoffice/workflows/compile-verified-dossier.js'),
+    read(root,'backoffice/workflows/route-guidance-from-map.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -144,6 +145,22 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&healthCli.includes('providerParked')
     &&standard.includes('A worker that has stopped says so'),
     'A worker that fails twice in a row, that cannot write its own health receipt, or that completes two runs in a row without a single job getting through, opens a GitHub issue naming what happened and when anything last worked, and the next good run closes it; no dashboard has to be open for the operator to learn that nothing is being verified');
+
+  // What the map may answer, and that it always says it did.
+  //
+  // The risk this pins is not that the measurement is wrong but that it stops
+  // looking like a measurement: a value that loses its provenance line, or a
+  // start point quietly answered from a relation that publishes none, would
+  // both read to a walker as an authority's directions.
+  add('map-read-guidance-says-so',
+    mapGuidance.includes('not from a published route description')
+    &&mapGuidance.includes('The mapped route follows')
+    &&!mapGuidance.includes('`Follow route')
+    &&mapGuidance.includes("authority: MAP_AUTHORITY")
+    &&dossier.includes("MAP_ANSWERABLE_CLAIMS=Object.freeze(['route-number-sequence','route-number-switches'])")
+    &&dossier.includes('const sourced=supportedLogisticsClaim(review,id);')
+    &&standard.includes('Read off the map, and said to be read off the map'),
+    'The order of a walk\'s numbers and where they change may be read from the route relations it is built from, and every such value says so in its own words and cites the relation; the start point and whether the route is numbered stay the agent\'s to establish from an authority, and a cited authority always wins over the measurement');
 
   const failures=checks.filter(item=>item.status==='fail');
   return {contractVersion:'1.0.0',generatedAt:options.at||new Date().toISOString(),status:failures.length?'failed':'pass',summary:{passed:checks.length-failures.length,failed:failures.length,total:checks.length},checks,manualChecks:[

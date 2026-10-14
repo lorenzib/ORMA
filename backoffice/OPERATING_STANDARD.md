@@ -788,6 +788,46 @@ one is a bug to read a log for, this one is usually a bill to pay. A run that
 gets work through closes it. A run with nothing queued is neither, and leaves
 the count where it found it.
 
+## Read off the map, and said to be read off the map
+
+ORMA's lines are built from OpenStreetMap route relations, and the geometry
+audit measures which of them carries each stretch of a walk. That measurement
+answers two of the four route-guidance claims: the order of the numbers along
+the line, and where one number gives way to the next.
+
+It was computed on every run and thrown away. The agents were sent to the web
+to research what had just been measured, and `route-number-switches` came back
+answered half the time, which is every trail that cannot be verified for want
+of directions.
+
+Reading relation membership is not inferring a route from map appearance, which
+the logistics prompt rightly forbids. Somebody recorded that these ways carry
+route 101; reading that back is no more an inference than reading a walk's
+distance off its line.
+
+**The map answers two of the four, and only two.** A relation records where
+these ways run, so it can say what the route is and where its number changes.
+It does not publish a start point, and it cannot say whether a walk is followed
+by numbers or by landmarks. `recommended-start` and `route-number-status` stay
+the agent's to establish from an authority, and no amount of map reading
+answers them.
+
+An authority the agent cited always wins. An operator's published description
+is better evidence than a measurement of the ways: it says what somebody
+recommends, where the map only says what is drawn.
+
+**And it says so, in the value itself.** Every map-read value ends with "Read
+from the OpenStreetMap route relations this walk is built from, not from a
+published route description", and is written descriptively -- "the mapped route
+follows 101, then 105" rather than "follow 101, then 105" -- because a relation
+recommends nothing. The provenance travels in the value and not only in the
+citation, since a value is quoted and summarised far from its source. The
+citation is the relation itself, attributed to OpenStreetMap.
+
+A reader is therefore always told which of the two they have, and the
+difference between a walk whose directions an operator published and one whose
+directions were read off the map is visible rather than blurred.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:
