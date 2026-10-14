@@ -19,6 +19,23 @@ function approvedCompositeFor(trail, composites){
   return composite && composite.state === 'approved' ? composite : null;
 }
 
+/**
+ * What ORMA already recorded about the walk, carried to the cartographer so it
+ * can travel to the dossier with everything else the audit measured.
+ *
+ * 161 of 162 trails have a named start point. Without this the gate never sees
+ * it, and a trail whose research found no authority is refused for want of a
+ * fact the catalogue has had all along.
+ */
+function recordedWalk(trail){
+  return {
+    id: trail.id,
+    name: trail.name || null,
+    startPoint: trail.startPoint || null,
+    routeRefs: Array.isArray(trail.routeRefs) ? trail.routeRefs : [],
+  };
+}
+
 function candidateFromProductionTrail(trail, composites){
   const externalId = relationExternalId(trail);
   const composite = externalId ? null : approvedCompositeFor(trail, composites);
@@ -33,6 +50,7 @@ function candidateFromProductionTrail(trail, composites){
       path: trail.path,
       routeShape: trail.routeShape || null,
       geometryAssessment: { distanceKm: Number.isFinite(trail.distance) ? trail.distance : null },
+      trailRecord: recordedWalk(trail),
     };
   }
   return {
@@ -54,6 +72,7 @@ function candidateFromProductionTrail(trail, composites){
     // geometry check is the thing that needs it. Dropping it here is what let a
     // declared out-and-back keep failing for not closing.
     routeShape: trail.routeShape || null,
+    trailRecord: recordedWalk(trail),
   };
 }
 

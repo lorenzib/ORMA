@@ -838,6 +838,43 @@ A reader is therefore always told which of the two they have, and the
 difference between a walk whose directions an operator published and one whose
 directions were read off the map is visible rather than blurred.
 
+## Three kinds of answer, and the reader is told which
+
+A route-guidance claim may be answered three ways, and they are not equal. The
+contract takes the best available and says in the value itself which it was.
+
+**An authority the agent cited** is the best. It says what somebody recommends,
+not merely what is drawn, and it always wins where it exists.
+
+**The map** comes next, for the two claims it can establish: the order of the
+numbers along the line, and where one gives way to the next. See "Read off the
+map, and said to be read off the map".
+
+**ORMA's own record** is the weakest, and answers the other two. 161 of the 162
+trails carry a named start point with coordinates, and the geometry audit
+measures the numbers each walk follows. An agent sent to research a start point
+is being paid to rediscover what the catalogue has had all along, and a trail
+whose search finds no authority was being refused for want of a fact ORMA could
+state itself. Measured on the ten trails nearest the seal on 14 October 2026:
+five were blocked by all four claims at once, every one empty because nothing
+had been published about that walk anywhere.
+
+The public page has rendered exactly this for a long time -- "Suggested start,
+<place>. Check current access before travelling." Only the gate refused it.
+
+So ORMA may answer those two as ORMA. Every such value ends with "ORMA's own
+suggestion from the walk it recorded, not an operator's recommendation", and
+the citation is ORMA's own record attributed to ORMA, because no authority was
+found and naming one would be the invention this contract exists to refuse.
+The start carries "Check current access before travelling"; the numbers do not,
+because access is about whether somebody may begin there today and attaching it
+to a sentence about trail numbers warns about the wrong fact.
+
+What ORMA may never do is make a walk up. The start is one it already published
+and a reader can see on the map; the status is read off the numbers the audit
+measured. A walk with neither a record nor an authority is answered by nobody,
+and is not verified.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:
