@@ -24,9 +24,16 @@ on:
         description: 'Optional: one trail id to check (e.g. osm-6244965). Blank checks every draft.'
         required: false
         default: ''
+      fresh:
+        description: 'Ignore the last run and ask about every gap again.'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
+  # To find the last run of this workflow and download the checkpoint it left.
+  actions: read
 
 concurrency:
   group: orma-route-gap-report
@@ -47,6 +54,31 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      # The checkpoint the script writes survives a cancellation within a run,
+      # but a fresh run starts from a clean checkout -- so without this, asking
+      # about four unanswered gaps costs twenty-one questions. Pull the last
+      # run's answers in first and the script skips what it already knows.
+      - name: Carry over what the last run answered
+        if: ${{ !inputs.fresh }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # No previous run, or no artifact on it, is an ordinary outcome and
+          # must not fail the job -- it just means there is nothing to carry.
+          previous=$(gh run list --workflow orma-route-gap-report.yml --status completed \
+              --limit 20 --json databaseId --jq '.[].databaseId' || true)
+          for id in $previous; do
+            if gh run download "$id" --name route-gap-report --dir . 2>/dev/null; then
+              echo "[gaps] resumed from run $id"
+              break
+            fi
+          done
+          if [ -f route-gap-report.json ]; then
+            node -e "const g=require('./route-gap-report.json').gaps||{};const a=Object.values(g).filter(v=>!v.failed).length;console.log('[gaps] carried over '+a+' answered gap(s) of '+Object.keys(g).length);"
+          else
+            echo "[gaps] no previous checkpoint; starting fresh"
+          fi
       - name: Ask OpenStreetMap what each gap needs
         env:
           TRAIL: ${{ inputs.trail }}
