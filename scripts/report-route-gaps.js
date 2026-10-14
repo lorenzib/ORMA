@@ -94,8 +94,13 @@ function connects(ways, gap){
     graph.get(a).add(b);
   };
   const positions = new Map();
+  // Which way each step belongs to. A connection twice the straight line is
+  // either the terrain or a router going the wrong way round, and the only
+  // way to tell from a report is to say what it is made of.
+  const wayOfEdge = new Map();
   for(const way of ways){
     const geometry = way.geometry || [];
+    const label = `${way.tags?.highway || 'way'}${way.tags?.name ? ` \u201c${way.tags.name}\u201d` : ''}`;
     for(let i = 0; i < geometry.length; i += 1){
       const node = key(geometry[i].lat, geometry[i].lon);
       positions.set(node, [geometry[i].lat, geometry[i].lon]);
@@ -103,6 +108,8 @@ function connects(ways, gap){
         const previous = key(geometry[i - 1].lat, geometry[i - 1].lon);
         link(previous, node);
         link(node, previous);
+        wayOfEdge.set(`${previous}|${node}`, label);
+        wayOfEdge.set(`${node}|${previous}`, label);
       }
     }
   }
@@ -126,17 +133,28 @@ function connects(ways, gap){
 
   // Dijkstra over the walkable graph, so the answer carries how far round it is.
   const distance = new Map([[start.node, 0]]);
+  const cameFrom = new Map();
   const queue = [[0, start.node]];
   while(queue.length){
     queue.sort((a, b) => a[0] - b[0]);
     const [cost, node] = queue.shift();
-    if(node === finish.node) return { connected: true, alongPathsM: Math.round(cost) };
+    if(node === finish.node){
+      const along = [];
+      let cursor = node;
+      while(cameFrom.has(cursor)){
+        const label = wayOfEdge.get(`${cameFrom.get(cursor)}|${cursor}`);
+        if(label && along[along.length - 1] !== label) along.push(label);
+        cursor = cameFrom.get(cursor);
+      }
+      return { connected: true, alongPathsM: Math.round(cost), madeOf: [...new Set(along.reverse())] };
+    }
     if(cost > (distance.get(node) ?? Infinity)) continue;
     for(const next of graph.get(node) || []){
       const here = positions.get(node);
       const there = positions.get(next);
       const step = cost + haversineMeters(here[0], here[1], there[0], there[1]);
       if(step < (distance.get(next) ?? Infinity)){
+        cameFrom.set(next, node);
         distance.set(next, step);
         queue.push([step, next]);
       }
@@ -189,8 +207,15 @@ const gapKey = (id, gap) => `${id}@${gap.from[0].toFixed(5)},${gap.from[1].toFix
 function describe(gap, verdict){
   if(verdict.failed) return `${gap.metres} m gap \u00b7 could not be checked: ${verdict.error}`;
   if(verdict.connected){
-    return `${gap.metres} m gap \u00b7 CONNECTED along mapped paths in ${verdict.alongPathsM} m`
-      + ` (${(verdict.alongPathsM / gap.metres).toFixed(1)}x the straight line)`;
+    const detour = verdict.alongPathsM / gap.metres;
+    const line = `${gap.metres} m gap \u00b7 CONNECTED along mapped paths in ${verdict.alongPathsM} m`
+      + ` (${detour.toFixed(1)}x the straight line)`;
+    // Only where the way round is long enough to wonder about. Below this it
+    // is a direct connector and the detail is noise.
+    if(detour >= 1.5 && (verdict.madeOf || []).length){
+      return `${line}\n           made of: ${verdict.madeOf.join(', ')}`;
+    }
+    return line;
   }
   return `${gap.metres} m gap \u00b7 NOT CONNECTED \u2014 ${verdict.reason}`;
 }

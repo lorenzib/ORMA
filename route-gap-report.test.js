@@ -144,3 +144,41 @@ describe('surviving a run that is cut short', () => {
     expect(describeGap(only, { failed: true, error: 'fetch failed' })).toMatch(/could not be checked/);
   });
 });
+
+
+describe('saying what a long way round is made of', () => {
+  // `describe` is jest's here, so the formatter is taken under its own name.
+  const { describe: describeGap } = require('./scripts/report-route-gaps');
+  // Measured on the live data: osm-6529356 connects in 5057 m across a 2680 m
+  // gap, and osm-13337921 in 2032 m across 1009 m. Both looked like a router
+  // going the wrong way round a loop. Allowing every highway type, including
+  // the roads the walkable filter excludes, returned the identical route -- so
+  // the terrain is the cause and there is nothing shorter to find. Reading the
+  // ways is how that is told apart without a one-off script.
+  const way = (highway, name, coordinates) =>
+    ({ tags: name ? { highway, name } : { highway }, geometry: coordinates.map(([lat, lon]) => ({ lat, lon })) });
+
+  test('a connection names the ways it runs along', () => {
+    const gap = { from: [46.50, 11.000], to: [46.50, 11.030], metres: 2295 };
+    const verdict = connects([
+      way('track', 'Wieser', [[46.50, 11.000], [46.505, 11.015]]),
+      way('path', null, [[46.505, 11.015], [46.50, 11.030]]),
+    ], gap);
+    expect(verdict.connected).toBe(true);
+    expect(verdict.madeOf).toEqual(expect.arrayContaining(['track \u201cWieser\u201d', 'path']));
+  });
+
+  test('a direct connector does not print its ways', () => {
+    // Below 1.5x there is nothing to wonder about and the detail is noise.
+    const gap = { from: [46.50, 11.000], to: [46.50, 11.030], metres: 2295 };
+    const line = describeGap(gap, { connected: true, alongPathsM: 2400, madeOf: ['path'] });
+    expect(line).not.toMatch(/made of/);
+  });
+
+  test('a long way round prints them', () => {
+    const gap = { from: [46.50, 11.000], to: [46.50, 11.030], metres: 2295 };
+    const line = describeGap(gap, { connected: true, alongPathsM: 4600, madeOf: ['unclassified', 'track \u201cWieser\u201d'] });
+    expect(line).toMatch(/2\.0x the straight line/);
+    expect(line).toMatch(/made of: unclassified, track/);
+  });
+});
