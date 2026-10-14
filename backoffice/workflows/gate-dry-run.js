@@ -44,9 +44,9 @@ function latestOutputsByAgent(jobs,candidateId,outputFor){
  * taken longest to answer by hand. An authority the agent cited, the map the
  * line was built from, or nothing yet.
  */
-function routeGuidanceSources(review){
+function routeGuidanceSources(review,options={}){
   return ROUTE_GUIDANCE_CLAIM_IDS.map(claimId=>{
-    const answer=supportedRouteGuidance(review,claimId);
+    const answer=supportedRouteGuidance(review,claimId,options);
     if(!answer)return {claimId,answered:false,from:null,authority:null};
     // supportedLogisticsClaim returns {agentId, claim}; the map returns a claim.
     const claim=answer.claim||answer;
@@ -67,19 +67,26 @@ function routeGuidanceSources(review){
  * `outputFor(jobId)` hands back a stored specialist output, so the caller owns
  * the reading and this stays testable without a store.
  */
-function gateDryRun({orchestration,jobs,outputFor,trailId,at}={}){
+function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrail}={}){
   const trail=(orchestration?.trails||[]).find(item=>
     String(item.trailId)===String(trailId)||String(item.candidateId)===String(trailId));
   if(!trail)return {found:false,trailId};
   const specialistOutputs=latestOutputsByAgent(jobs,trail.candidateId,outputFor||(()=>null));
   const agents=specialistOutputs.map(output=>output.agentId).sort();
-  const blockingReasons=dossierBlockingReasons(specialistOutputs);
+  const blockingReasons=dossierBlockingReasons(specialistOutputs,
+    catalogueTrail?{trail:catalogueTrail}:{});
   const unwaivable=[...new Set(blockingReasons.filter(reason=>!waivableBlocker(reason)).map(blockerId))];
   const review={reviewId:`dry-run-${trail.candidateId}`,candidateId:trail.candidateId,
     trailId:trail.trailId,trailName:trail.trailName,gateType:'dossier-approval',
     state:'awaiting-human',approvalAllowed:!blockingReasons.length,blockingReasons,
     specialistOutputs,sourceTrail:trail.sourceTrail,
     allowedActions:['approve','request-revision','reject'],publicMutationAllowed:false};
+  // ORMA's own record is current catalogue data, not a measurement frozen when
+  // the audit ran. Reading it from the stored output would report what the
+  // catalogue said the day the cartographer last ran -- which is the stale
+  // picture this tool exists to replace -- and would miss a start point
+  // corrected since.
+  const options={...(catalogueTrail?{trail:catalogueTrail}:{})};
   // The policy that actually decides, asked over a queue holding only this one.
   let decision=null;
   try{ decision=gateDecision(review,{items:[review]},orchestration,new Set()); }
@@ -93,7 +100,7 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at}={}){
     agentsReporting:agents,
     // Advancement past the evidence stages needs one completed job from each.
     missingAgents:['logistics','regulatoryRanger','terrainPoi'].filter(agent=>!agents.includes(agent)),
-    routeGuidance:routeGuidanceSources(review),
+    routeGuidance:routeGuidanceSources(review,options),
     routeGuidanceBlockers:routeGuidanceBlockingReasons(specialistOutputs).map(blockerId),
     blockerCount:blockingReasons.length,
     unwaivable,

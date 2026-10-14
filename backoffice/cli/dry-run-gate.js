@@ -10,6 +10,8 @@
 const {FirestoreBackofficeStore}=require('../services/firestore-backoffice-store');
 const {gateDryRun}=require('../workflows/gate-dry-run');
 const {closestToVerified}=require('../workflows/closest-to-verified');
+const {loadProductionTrails}=require('../../scripts/load-production-trails');
+const path=require('path');
 
 function parseArgs(argv){
   const args={trail:null,limit:10};
@@ -82,7 +84,7 @@ function say(report){
 }
 
 /** One trail's verdict, reading only that trail's own outputs. */
-async function dryRunOne(store,orchestration,jobs,trailId,at){
+async function dryRunOne(store,orchestration,jobs,trailId,at,catalogue){
   const trail=(orchestration?.trails||[]).find(item=>
     String(item.trailId)===String(trailId)||String(item.candidateId)===String(trailId));
   const mine=(jobs||[]).filter(job=>trail&&job.candidateId===trail.candidateId);
@@ -91,7 +93,9 @@ async function dryRunOne(store,orchestration,jobs,trailId,at){
     const result=await store.getArtifact(`trail-specialist-output-${job.id}`);
     if(result)outputs.set(job.id,result);
   }
-  return gateDryRun({orchestration,jobs:mine,outputFor:id=>outputs.get(id)||null,trailId,at});
+  return gateDryRun({orchestration,jobs:mine,outputFor:id=>outputs.get(id)||null,trailId,at,
+    // The catalogue as it stands, not as the last audit recorded it.
+    trail:catalogue?.get(String(trail?.trailId))||catalogue?.get(String(trail?.candidateId))||null});
 }
 
 async function main(options={}){
@@ -101,14 +105,20 @@ async function main(options={}){
     store.getArtifact('trail-orchestration'),
     store.listJobs(['completed']),
   ]);
-  if(args.trail)return say(await dryRunOne(store,orchestration,jobs,args.trail,options.at));
+  // Read once and shared, so a sweep of ten does not read the catalogue ten
+  // times. Absent is not fatal: without it ORMA's own record simply cannot
+  // answer, which is what the report then says.
+  let catalogue=null;
+  try{ catalogue=new Map(loadProductionTrails(path.resolve(__dirname,'../..')).map(trail=>[String(trail.id),trail])); }
+  catch(error){ console.log(`[dry-run] Could not read the trail catalogue (${error.message}); ORMA's own record will not answer.`); }
+  if(args.trail)return say(await dryRunOne(store,orchestration,jobs,args.trail,options.at,catalogue));
   // No trail named: sweep the ones nearest the seal, which is the question
   // worth asking before spending anything -- who is close, and who is blocked
   // by something no amount of research will clear.
   const nearest=closestToVerified(orchestration,{limit:args.limit}).nearest;
   const reports=[];
   for(const row of nearest){
-    reports.push(await dryRunOne(store,orchestration,jobs,row.trailId,options.at));
+    reports.push(await dryRunOne(store,orchestration,jobs,row.trailId,options.at,catalogue));
   }
   return sayShortlist(reports.filter(report=>report.found));
 }
