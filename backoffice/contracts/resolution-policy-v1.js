@@ -36,7 +36,21 @@ const MAX_WAIVABLE_ATTEMPTS = 3;
 //
 // Eight hours keeps the one property the tail genuinely had: the final targeted
 // search is not issued seconds after the fourth against the same index.
-const RETRY_DELAYS_HOURS = Object.freeze([0, 0, 1, 1, 6]);
+//
+// The two one-hour waits went on 2026-10-14. They paced the third and fourth
+// attempts, which are different angles on the same question -- a new search of
+// the same web -- and an hour does not change what that web holds. What they
+// did instead was hold a trail still: a trail cannot leave evidence-resolution
+// until its slowest claim is terminal, so each one-hour wait was an hour of
+// the whole trail, not of one claim. Tre Cime sat at stage four of eight with
+// nothing wrong with it, waiting forty-three minutes for a search that could
+// have run immediately.
+//
+// The six hours before the fifth is kept, for the reason it was always kept:
+// the last strategy is a final targeted search rather than a new angle, and it
+// is the one place where waiting can plausibly change the answer. Optional
+// detail stops at three attempts and so now waits not at all.
+const RETRY_DELAYS_HOURS = Object.freeze([0, 0, 0, 0, 6]);
 const TERMINAL_STATES = Object.freeze([
   'supported', 'contradicted', 'source-exhausted',
   'contact-required', 'field-check-required',

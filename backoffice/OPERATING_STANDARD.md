@@ -509,7 +509,7 @@ accepts a genuinely unresolved optional claim as non-blocking with a recorded
 reason; the claim remains unknown and publishes no unsupported fact.
 
 A strategy that found nothing is followed promptly. The five attempts are paced
-at 0, 0, 1, 1 and 6 hours, and that pacing is not failure handling: a model or
+at 0, 0, 0, 0 and 6 hours, and that pacing is not failure handling: a model or
 provider error reschedules the job on its own ladder and costs the claim none of
 its five attempts. The delay between two deliberately different searches was
 doing nothing else, and it was expensive. Until 2026-10-07 it read 0, 1, 6, 24
@@ -524,6 +524,16 @@ delay can plausibly change an answer, because the last strategy is a final
 targeted search rather than a new angle. Nothing about the evidence threshold
 moves: source-exhausted still means what it said, and a claim is still never
 promoted from silence.
+
+The one-hour waits before the third and fourth attempts went on 14 October
+2026. They paced two different angles on the same question -- a new search of
+the same web -- and an hour does not change what that web holds. What they did
+instead was hold a trail still, because a trail cannot leave
+evidence-resolution until its slowest claim is terminal: each wait cost an hour
+of the whole trail, not of one claim. Tre Cime sat at stage four of eight with
+nothing wrong with it, waiting forty-three minutes for a search that could have
+run at once. Optional detail stops at three attempts and so now waits not at
+all.
 
 ### Optional detail stops at three
 
