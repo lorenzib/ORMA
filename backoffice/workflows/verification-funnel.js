@@ -13,7 +13,7 @@ const FUNNEL = Object.freeze([
   'geometry-audit', 'geometry-human-gate', 'evidence-research', 'evidence-resolution',
   'provenance-audit', 'red-team', 'dossier-human-gate', 'ready-for-editorial',
 ]);
-const TERMINAL = Object.freeze(['rejected', 'blocked']);
+const TERMINAL = Object.freeze(['imported', 'rejected', 'blocked']);
 
 // A trail lands in dossier-human-gate two ways: from red-team with a real
 // dossier to approve, or by an agent job failing anywhere downstream of the

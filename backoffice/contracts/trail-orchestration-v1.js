@@ -4,7 +4,20 @@ const VERSION = '1.0.0';
 const STATES = Object.freeze([
   'geometry-audit', 'geometry-human-gate', 'evidence-research', 'evidence-resolution',
   'provenance-audit', 'red-team', 'dossier-human-gate',
-  'ready-for-editorial', 'rejected', 'blocked',
+  'ready-for-editorial',
+  // Where a walk goes when nobody has published directions for it.
+  //
+  // Not a failure and not a verdict on the trail: Les Marais d'Albens is a
+  // real 6.6 km walk with no official page anywhere, and no amount of research
+  // will produce one. Calling that `rejected` reads as "ORMA looked and says
+  // no", keeps it in the counts of things going wrong, and leaves it eligible
+  // to be picked up and paid for again.
+  //
+  // `imported` is what the public page has always called such a trail. It
+  // stays on the site with its terrain, its elevation and its honest badge;
+  // the pipeline simply stops spending on it.
+  'imported',
+  'rejected', 'blocked',
 ]);
 
 function validateTrailOrchestration(artifact){
