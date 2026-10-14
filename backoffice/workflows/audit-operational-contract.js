@@ -11,7 +11,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -24,6 +24,9 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/compile-verified-dossier.js'),
     read(root,'backoffice/workflows/route-guidance-from-map.js'),
     read(root,'backoffice/workflows/route-guidance-from-record.js'),
+    read(root,'backoffice/workflows/apply-dossier-review.js'),
+    read(root,'backoffice/contracts/trail-orchestration-v1.js'),
+    read(root,'backoffice/workflows/start-live-trail-campaign.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -178,6 +181,19 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&dossier.includes('const sourced=supportedLogisticsClaim(review,id);')
     &&standard.includes('Three kinds of answer, and the reader is told which'),
     'Where no authority and no map can answer, ORMA answers the start and the trail numbers from the walk it already recorded, every value saying it is ORMA\'s own suggestion and citing ORMA rather than an authority nobody found; an authority always wins, and a walk with neither a record nor an authority is not verified');
+
+  // A walk nobody wrote about is not a walk that failed.
+  //
+  // Pinned because the two were one state and the difference is invisible from
+  // the outside: both stop the trail, and only one of them should read as
+  // something going wrong or be eligible to be paid for again.
+  add('a-walk-nobody-wrote-about-rests',
+    dossierReview.includes('function restingState(')
+    &&dossierReview.includes("? 'imported' : 'rejected'")
+    &&orchestrationStates.includes("'imported'")
+    &&campaign.includes("TERMINAL_STATES=new Set(['ready-for-editorial','imported','rejected','blocked'])")
+    &&standard.includes('A walk nobody wrote about rests, it is not rejected'),
+    'A refusal standing only on route guidance rests as imported, keeping its place on the site while the pipeline stops spending on it; a refusal standing on a broken line or a contradicted identity is still a rejection, and resting is terminal so a rested trail holds no place in the intake budget');
 
   const failures=checks.filter(item=>item.status==='fail');
   return {contractVersion:'1.0.0',generatedAt:options.at||new Date().toISOString(),status:failures.length?'failed':'pass',summary:{passed:checks.length-failures.length,failed:failures.length,total:checks.length},checks,manualChecks:[

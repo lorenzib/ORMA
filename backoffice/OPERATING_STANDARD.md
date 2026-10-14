@@ -875,6 +875,37 @@ and a reader can see on the map; the status is read off the numbers the audit
 measured. A walk with neither a record nor an authority is answered by nobody,
 and is not verified.
 
+## A walk nobody wrote about rests, it is not rejected
+
+Les Marais d'Albens is a real 6.6 km walk near Albens. Its municipality has
+never published a description of it, and no amount of research will produce a
+page that does not exist. Eight trails in the catalogue are in that position.
+
+Calling that `rejected` says three wrong things. It reads as ORMA having looked
+at the walk and said no. It keeps the trail in the counts of things going
+wrong, where it crowds out the trails that really are failing. And it leaves
+the trail eligible to be picked up and paid for again, which is how 202
+searches went on optional detail for trails that could never finish.
+
+So a refusal standing **only** on route guidance rests as `imported`, which is
+what the public page has always called such a trail. It keeps its place on the
+site with its terrain, its elevation and its honest badge; the pipeline simply
+stops spending on it. The trail records why, so a later reader does not have to
+derive it again.
+
+A refusal standing on anything else is still a rejection. A line that does not
+resolve, a route that has been withdrawn, an identity contradicted by its
+source -- those are problems somebody could fix, and they should stay visible
+as problems.
+
+The distinction is drawn from the blockers rather than from the wording of a
+note. A reworded note is how an unwaivable class came to stop containing the
+blocker it was written for.
+
+Resting is terminal. A rested trail is not agent work, holds no place in the
+intake budget, and waits for no decision. Nothing re-opens it but somebody
+finding a source that did not exist before.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:

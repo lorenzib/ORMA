@@ -15,7 +15,7 @@ const DEFAULT_GATE_CAPACITY=40;
 // How many trails may be admitted by name past a closed queue in one pass.
 const MAX_NAMED_ADMISSIONS=5;
 
-const TERMINAL_STATES=new Set(['ready-for-editorial','rejected','blocked']);
+const TERMINAL_STATES=new Set(['ready-for-editorial','imported','rejected','blocked']);
 const GATE_STATES=new Set(['geometry-human-gate','dossier-human-gate']);
 // Anything not terminal and not parked is treated as agent work, so a state this
 // list has not met yet consumes the tight budget rather than silently freeing it.

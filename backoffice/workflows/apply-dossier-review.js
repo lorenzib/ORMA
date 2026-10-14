@@ -3,7 +3,32 @@
 const { createAgentJob }=require('../contracts/agent-job-v1');
 const { summarize }=require('./build-live-orchestration');
 const {fitReviewQueue}=require('./review-queue-compaction');
-const {compileVerifiedDossier,verificationRecord,unacceptedBlockers,waivableBlocker}=require('./compile-verified-dossier');
+const {compileVerifiedDossier,verificationRecord,unacceptedBlockers,waivableBlocker,
+  blockerId,ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
+
+/**
+ * Where a refused trail goes: to rest, or to the rejected pile.
+ *
+ * They are different things and were the same state. A walk nobody has
+ * published directions for has not failed anything -- Les Marais d'Albens is a
+ * real 6.6 km walk whose municipality has never described it, and no amount of
+ * research will produce a page that does not exist. A walk whose line does not
+ * resolve, or whose identity is contradicted, has a problem somebody could fix.
+ *
+ * So a refusal standing only on route guidance rests as `imported`, which is
+ * what the public page has always called such a trail. Anything else is
+ * rejected, as before.
+ *
+ * The distinction is drawn from the blockers rather than from the wording of a
+ * note, because a reworded note is how an unwaivable class came to miss the
+ * blocker it was written for.
+ */
+function restingState(blockers){
+  const unwaivable=[...new Set((blockers||[]).filter(reason=>!waivableBlocker(reason)).map(blockerId))];
+  if(!unwaivable.length) return 'rejected';
+  const routeGuidance=new Set(ROUTE_GUIDANCE_CLAIM_IDS.map(id=>`logistics/${id}`));
+  return unwaivable.every(id=>routeGuidance.has(id)) ? 'imported' : 'rejected';
+}
 const {retirementFields}=require('./retire-blocked-jobs');
 
 const BASE_SPECIALISTS=Object.freeze([
@@ -56,7 +81,14 @@ function applyDossierReview(orchestration,reviewQueue,decision,options={}){
   const next=JSON.parse(JSON.stringify(orchestration)); const nextTrail=next.trails.find(item=>item.candidateId===trail.candidateId);
   const jobs=[];const cancelJobIds=[];let verifiedDossier=null;let verifiedRecord=null;
   if(decision.action==='reject'){
-    nextTrail.state='rejected'; nextTrail.gate={...nextTrail.gate,status:'rejected',reviewedAt:at};
+    const resting=restingState(review.blockingReasons);
+    nextTrail.state=resting;
+    nextTrail.gate={...nextTrail.gate,status:resting==='imported'?'rested':'rejected',reviewedAt:at};
+    if(resting==='imported'){
+      // Said on the trail, so a later reader does not have to re-derive why a
+      // real walk stopped here.
+      nextTrail.restedBecause='No published route description was found for this walk, so ORMA cannot state how to follow it. It stays an imported trail.';
+    }
     // A rejected trail is finished, and work queued against it is not. Nothing
     // used to stop those jobs: giro-del-bulacia was rejected holding five, and
     // the worker has no guard that skips a job for a dead trail, so they would
@@ -135,5 +167,5 @@ async function cancelOrphanedRejectedJobs(store,orchestration,at){
   return cancelJobsForRejectedTrail(store,ids,at);
 }
 
-module.exports={BASE_SPECIALISTS,REJECTED_TRAIL_REASON,specialistJob,applyDossierReview,
+module.exports={restingState,BASE_SPECIALISTS,REJECTED_TRAIL_REASON,specialistJob,applyDossierReview,
   cancelJobsForRejectedTrail,cancelOrphanedRejectedJobs};

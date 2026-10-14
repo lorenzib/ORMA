@@ -114,11 +114,12 @@ describe('what a snapshot can and cannot claim about the past',()=>{
 
 describe('the funnel reads in the order trails travel',()=>{
   test('stages come out in pipeline order, so the drop-off is where it looks',()=>{
+    const {STATES}=require('./contracts/trail-orchestration-v1');
     const report=build([]);
-    expect(report.stages.map(stage=>stage.state)).toEqual([
-      'geometry-audit','geometry-human-gate','evidence-research','evidence-resolution',
-      'provenance-audit','red-team','dossier-human-gate','ready-for-editorial','rejected','blocked',
-    ]);
+    // Read off the contract rather than retyped, so a state added there shows
+    // up in the funnel rather than failing a copy of the list. `imported` was
+    // added on 15 October and this test was the only thing that noticed.
+    expect(report.stages.map(stage=>stage.state)).toEqual([...STATES]);
   });
 
   test('dwell time reports the oldest trail in each stage, not the newest',()=>{
