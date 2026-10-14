@@ -1,0 +1,57 @@
+name: ORMA route gap report
+
+# Read-only diagnostic, run by hand.
+#
+# Twenty-one catalogue trails are held back as drafts because the line drawn
+# for a walker jumps 1-6 km somewhere along it. #773 showed the order of the
+# relation's pieces is not the cause for these, so each is either a relation
+# missing a way that is already mapped -- minutes of editing -- or a stretch
+# nobody has mapped, which needs a survey or a rejection. Those need completely
+# different work and the catalogue cannot tell them apart.
+#
+# This asks Overpass for the walkable ways around each gap and reports whether
+# the two ends are joined. It fetches and prints; it writes no artifact,
+# commits nothing and changes no trail.
+#
+# It runs here rather than on a laptop because Overpass answers 406 to requests
+# it treats as anonymous bots, which is what a hand-rolled curl from a home
+# connection gets. The repository's own client -- its mirror list, user agent
+# and backoff -- is reused rather than copied.
+on:
+  workflow_dispatch:
+    inputs:
+      trail:
+        description: 'Optional: one trail id to check (e.g. osm-6244965). Blank checks every draft.'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orma-route-gap-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    # Overpass backs off for up to 45s per attempt across four mirrors, and
+    # there are twenty-odd gaps to ask about.
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Ask OpenStreetMap what each gap needs
+        env:
+          TRAIL: ${{ inputs.trail }}
+        run: |
+          set -euo pipefail
+          if [ -n "$TRAIL" ]; then
+            node scripts/report-route-gaps.js --trail="$TRAIL"
+          else
+            node scripts/report-route-gaps.js
+          fi
