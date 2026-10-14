@@ -2,6 +2,7 @@
 'use strict';
 
 const fs=require('fs/promises');
+const {randomUUID}=require('crypto');
 const {FirestoreBackofficeStore}=require('../services/firestore-backoffice-store');
 const {beginWorkerRun,finishWorkerRun}=require('../workflows/worker-health');
 const {summarizeFailureLog}=require('./record-publication-failure');
@@ -63,14 +64,33 @@ function healthOutputs(health={}){
     // `lastFailure`, not `failure`: the receipt names it that way, and reading
     // the wrong key reported every stopped worker as stage "unknown".
     failure_stage:String(health.lastFailure?.stage||'').replace(/[\r\n]+/g,' ').trim(),
+    // A run that completes every step and gets nothing done is the other way
+    // the pipeline stops, and the quieter one: the run is green, the schedule
+    // keeps firing, and the dashboard nobody opens is the only thing that
+    // knows. It is how the pipeline sat dead from 11 October, and how it
+    // stopped again on 14 October when the OpenAI credits ran out mid-session.
+    consecutive_unproductive:String(Number(health.consecutiveUnproductiveRuns||0)),
+    last_productive_at:String(health.lastProductiveAt||''),
+    unproductive_since:String(health.lastUnproductive?.since||''),
+    // Billing or an outage rather than anything in the code, which is a
+    // different thing to go and do.
+    provider_parked:String(Boolean(health.lastUnproductive?.providerParked)),
   };
 }
 
 async function announceHealth(health,env=process.env){
   if(!env.GITHUB_OUTPUT) return null;
   const outputs=healthOutputs(health);
-  await fs.appendFile(env.GITHUB_OUTPUT,`${Object.entries(outputs).map(([key,value])=>`${key}=${value}`).join('\n')}\n`);
-  return outputs;
+  // The provider's own words, which is what says "no credits remaining"
+  // rather than "something went wrong". Arbitrary text over several lines, so
+  // it travels in a heredoc with a random delimiter per GitHub's guidance: a
+  // fixed one appearing inside the message would let it break out of the file.
+  const message=String(health.lastUnproductive?.message||'').trim();
+  const delimiter=`ORMA_HEALTH_${randomUUID().replace(/-/g,'')}`;
+  await fs.appendFile(env.GITHUB_OUTPUT,
+    `${Object.entries(outputs).map(([key,value])=>`${key}=${value}`).join('\n')}\n`
+    +`unproductive_message<<${delimiter}\n${message}\n${delimiter}\n`);
+  return {...outputs,unproductive_message:message};
 }
 
 async function main(options={}){
