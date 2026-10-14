@@ -212,3 +212,37 @@ describe('the ledger says why jobs failed', () => {
     expect(markdown).toContain('omitted mandatory route guidance');
   });
 });
+
+// The drain already runs passes back to back, and the worker already scopes a
+// pass to one candidate. Only the workflow could not say which, so finding out
+// what a trail takes meant dispatching the three-hourly worker by hand and
+// waiting three hours between passes: Tre Cime crossed four stages in five
+// passes that way, over an afternoon, with nothing blocking it.
+describe('the drain can be pointed at one trail',()=>{
+  const fs=require('fs');
+  const path=require('path');
+  const {workerOptions}=require('./cli/live-worker');
+  const workflow=()=>fs.readFileSync(
+    path.join(__dirname,'../.github/workflows/orma-verification-drain.yml'),'utf8');
+
+  test('the workflow takes a candidate and passes it to the worker',()=>{
+    expect(workflow()).toContain('candidate_id:');
+    expect(workflow()).toContain("ORMA_SPECIALIST_CANDIDATE_ID: ${{ github.event.inputs.candidate_id || '' }}");
+  });
+
+  test('the drain reads it through the same options the worker uses',()=>{
+    // Same builder, so a scoped drain pass and a scoped worker pass agree.
+    expect(workerOptions({ORMA_SPECIALIST_CANDIDATE_ID:'tre-cime'}).specialistCandidateId).toBe('tre-cime');
+    expect(workerOptions({}).specialistCandidateId).toBeNull();
+    const drain=fs.readFileSync(path.join(__dirname,'cli/drain-verification-queue.js'),'utf8');
+    expect(drain).toContain("require('./live-worker')");
+    expect(drain).toContain('workerOptions(env');
+  });
+
+  test('the budgets still hold, because a scoped drain is still a drain',()=>{
+    for(const guard of ['ORMA_DRAIN_READ_BUDGET','ORMA_DRAIN_WRITE_BUDGET',
+      'ORMA_DRAIN_MAX_MINUTES','group: orma-backoffice-worker']){
+      expect(workflow()).toContain(guard);
+    }
+  });
+});
