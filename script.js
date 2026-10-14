@@ -1116,13 +1116,13 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
 
   // UI: one compact "Layers" button that expands into a chip panel, // replaces the old stack of full-width buttons that covered a third of
   // the map on mobile.
-  // Marked routes default OFF here. This is a browse map: you are
-  // choosing which walk to do, not following one, and the full marked
-    // network buries the ORMA routes you are meant to be picking between.
-    // AllTrails draws no path network at all at these zooms. The Layers
-    // panel ticks it back on in one tap, and the trail detail map still
-    // shows it by default, that is where you actually read trail numbers.
-  const overlayStates = { routes: false, lifts: false, fountains: false, huts: false, barsCafes: false, veterinary: false, terrain: false };
+  // Marked routes default ON. They were off, on the reasoning that a browse
+  // map is for choosing a walk rather than following one and the full network
+  // buries the ORMA routes you are picking between. Reversed deliberately:
+  // seen on the real map the lines give the valley its shape, and a reader
+  // who wants them should not have to know the Layers panel exists to find
+  // them. The panel still turns them off in one tap.
+  const overlayStates = { routes: true, lifts: false, fountains: false, huts: false, barsCafes: false, terrain: false };
   const layersBtn = document.createElement('button');
   layersBtn.type = 'button';
   layersBtn.textContent = t('map.layers');
@@ -1226,59 +1226,13 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   mkChip(t('chips.huts'), 'huts');
   mkChip(t('chips.food'), 'barsCafes');
 
-  // Veterinary facilities use the same OSM-backed layer and medical-cross
-  // icon as the trail detail map. Fetch only when requested because the
-  // search radius is much wider than the ordinary amenity datasets.
-  const veterinaryChip = document.createElement('button');
-  veterinaryChip.type = 'button';
-  const setVeterinaryLabel = label => {
-    veterinaryChip.innerHTML = icons ? icons.chipHtml('veterinary', label) : label;
-  };
-  setVeterinaryLabel(t('chips.veterinary'));
-  chipStyle(veterinaryChip, false);
-  let veterinaryResults = null;
-  let veterinaryLoad = null;
-  let veterinaryOrigin = null;
-  veterinaryChip.addEventListener('click', async () => {
-    const care = window.ORMA_VeterinaryCare;
-    if(!care) return;
-    overlayStates.veterinary = !overlayStates.veterinary;
-    chipStyle(veterinaryChip, overlayStates.veterinary);
-    if(!overlayStates.veterinary){
-      care.setVisible(map, false);
-      return;
-    }
-    if(veterinaryResults){
-      care.setVisible(map, true);
-      care.focusFacilities(map, veterinaryOrigin, veterinaryResults);
-      return;
-    }
-    veterinaryChip.disabled = true;
-    setVeterinaryLabel('Finding veterinary clinics…');
-    try{
-      const center = map.getCenter();
-      veterinaryOrigin = { lat: Number(center.lat), lng: Number(center.lng) };
-      veterinaryLoad = veterinaryLoad || care.loadMapLayer(map, veterinaryOrigin);
-      veterinaryResults = await veterinaryLoad;
-      if(!veterinaryResults.length){
-        overlayStates.veterinary = false;
-        chipStyle(veterinaryChip, false);
-        setVeterinaryLabel('No veterinary clinics mapped nearby');
-        return;
-      }
-      setVeterinaryLabel(`${t('chips.veterinary')} (${veterinaryResults.length})`);
-      care.setVisible(map, overlayStates.veterinary);
-      if(overlayStates.veterinary) care.focusFacilities(map, veterinaryOrigin, veterinaryResults);
-    }catch(error){
-      veterinaryLoad = null;
-      overlayStates.veterinary = false;
-      chipStyle(veterinaryChip, false);
-      setVeterinaryLabel('Veterinary clinics unavailable');
-    }finally{
-      veterinaryChip.disabled = false;
-    }
-  });
-  panel.appendChild(veterinaryChip);
+  // No veterinary chip here. The layer was backed by whatever OSM happened to
+  // have mapped within a wide radius, which on this catalogue is too thin to
+  // put in front of someone deciding where to walk a dog: an empty map reads
+  // as "no vet nearby" rather than "nobody has mapped one", and that is the
+  // wrong thing to tell an owner. Removed 2026-10-14 for that reason, not as
+  // a layout change -- veterinary-care.js and the trail page's own chip are
+  // untouched.
 
   // Map · Satellite · 3D live together in one visible switch on the map
   // (same group as the trail page), not buried inside the Layers panel.
@@ -1626,7 +1580,7 @@ function initTrailMap(){
     // than washed to grey. See map-style.js.
     const firstLabelLayer = { id: window.ORMAMapStyle.firstLabelLayerId(trailMapInstance) };
     window.ORMAMapStyle.quietBasemap(trailMapInstance);
-    window.ORMAMapStyle.addWaymarkedHiking(trailMapInstance, { beforeId: firstLabelLayer.id, visible: false });
+    window.ORMAMapStyle.addWaymarkedHiking(trailMapInstance, { beforeId: firstLabelLayer.id, visible: true });
     addBaseHillshade(trailMapInstance, 'waymarked-hiking-layer');
     
     trailMapInstance.addSource('trail-paths', {

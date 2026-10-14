@@ -1045,13 +1045,19 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toContain("mkChip(t('chips.fountains'), 'fountains')");
   });
 
-  test('offers OSM veterinary clinics with the shared medical-cross icon', () => {
-    const translations = fs.readFileSync(path.join(__dirname, 'i18n.js'), 'utf8');
+  test('does not offer veterinary clinics, because the data is too thin', () => {
+    // Removed 2026-10-14. The layer was whatever OSM happened to have mapped
+    // in a wide radius, and on this catalogue that is sparse enough to be
+    // misleading: an empty map reads as "no vet nearby" rather than "nobody
+    // has mapped one", which is the wrong thing to tell a dog owner.
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
-    expect(html).toContain('veterinary-care.js?v=20260901-1');
-    expect(translations).toContain("'chips.veterinary': 'Veterinary clinics'");
-    expect(script).toContain("icons.chipHtml('veterinary', label)");
-    expect(script).toContain('care.loadMapLayer(map, veterinaryOrigin)');
+    expect(script).not.toContain("icons.chipHtml('veterinary', label)");
+    expect(script).not.toContain('care.loadMapLayer(map, veterinaryOrigin)');
+    // And the homepage stops shipping a file only the trail page uses. The
+    // trail page gets it from its own bundle, so nothing there changes.
+    expect(html).not.toContain('veterinary-care.js');
+    expect(fs.readFileSync(path.join(__dirname, 'scripts', 'build-trail-page-bundle.js'), 'utf8'))
+      .toContain("'veterinary-care.js'");
   });
 
   test('keeps route shields above a stronger ORMA highlight and only clusters five or more trails', () => {
