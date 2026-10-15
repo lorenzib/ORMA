@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -34,6 +34,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/numbers-along-the-walk.js'),
     read(root,'backoffice/workflows/resurvey-named-trails.js'),
     read(root,'backoffice/cli/resurvey-trails.js'),
+    read(root,'backoffice/cli/dry-run-gate.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -238,6 +239,24 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&dossier.includes('const sourced=supportedLogisticsClaim(review,id);')
     &&standard.includes('A walk with no number says how to follow it'),
     'A walk the map was searched for numbers on and found none is answered from ORMA\'s record in landmark terms -- the start, then each recorded landmark in order with its distance -- or, where none is recorded, told to follow the walk\'s name and the mapped line; it rests on the audit\'s positive measured-and-none mark so a walk nobody measured is never told it has no number, water labels are not offered as landmarks, and a measured number or a cited authority still wins');
+
+  // An outage is not evidence about a trail, but it has to leave a mark.
+  //
+  // The risk is the one that is invisible from outside: a measurement that
+  // could not be taken reads exactly like a walk nobody can supply directions
+  // for, and only one of the two is worth doing anything about. La Croix des
+  // Salles sat that way with both its route claims unanswered.
+  add('a-measurement-that-could-not-be-taken-says-so',
+    cartographer.includes('const routeNumbersUnmeasured = along.measured ? null :')
+    &&cartographer.includes('{ measured: false, why:')
+    // Never mistaken for having looked.
+    &&cartographer.includes('const routeNumbersAbsent = along.measured && !along.guidance;')
+    // And named as its own thing: a survey to run again.
+    &&dryRun.includes('routeNumbersUnmeasured:unmeasured')
+    &&dryRunCli.includes('SURVEY AGAIN (the numbers were never measured)')
+    &&dryRunCli.includes('resurvey_trail_ids')
+    &&standard.includes('A measurement that could not be taken says so'),
+    'A geometry survey records what went wrong when the corridor query could not be taken, so an outage never reads as a walk nobody can supply directions for; the gate dry run names it as a survey to run again rather than a refusal, and a walk whose own relation carries a number is not marked unmeasured because no query was needed');
 
   // A free, deterministic survey can be taken again for a named trail.
   //

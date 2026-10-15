@@ -984,6 +984,28 @@ over both.
 Saying nothing was the worse option. A walker expecting to follow "route 23"
 who arrives to find only name-boards has been let down by a blank page.
 
+### A measurement that could not be taken says so
+
+Three outcomes, not two: the survey found numbers, it looked and found none, or
+**it could not look**. The third must never read as the second.
+
+La Croix des Salles was surveyed on 15 October 2026 and came back with no number
+measurement at all, because the Overpass corridor query fails for that trail.
+Nothing recorded that a measurement had been attempted and could not be taken,
+so the trail sat with its two route claims unanswered — reading exactly like a
+walk nobody can supply directions for, when what it was short of was a request
+that reached the map.
+
+An outage is not evidence about a trail. But it has to leave a mark, or it
+becomes one: a silent failure and an honest refusal are indistinguishable from
+the outside, and only one of them is worth doing anything about.
+
+The audit records what went wrong, and the gate dry run names it as its own
+category — **a survey to run again**, beside the faults to fix, the judgements
+to make and the research to commission. A walk whose own relation carries a
+number needed no corridor query at all, so it is not marked unmeasured; nothing
+was missed.
+
 ### A named trail can be surveyed again
 
 The geometry audit is deterministic — it reads OpenStreetMap and measures, with

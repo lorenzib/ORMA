@@ -98,13 +98,20 @@ async function measureComposite(candidate, options = {}){
  * second idea of what "along the walk" means, and no model call.
  */
 async function measureNumbersAlong(path, options = {}){
-  if(!Array.isArray(path) || path.length < 2) return { measured: false };
+  if(!Array.isArray(path) || path.length < 2){
+    return { measured: false, why: 'the walk has no line to measure along' };
+  }
   try{
     const { payload } = await (options.fetchRoutesNearPath || fetchRoutesNearPath)(path, options);
     return { measured: true, guidance: numbersAlongTheWalk(path, payload, options) };
   }catch(error){
-    // Unmeasured, not degraded. An Overpass outage is not evidence about a trail.
-    return { measured: false };
+    // Unmeasured, not degraded. An Overpass outage is not evidence about a
+    // trail -- but it has to leave a mark, or it reads as one. La Croix des
+    // Salles was surveyed on 15 October 2026 and came back with no measurement
+    // at all because the corridor query failed for it, and the trail simply sat
+    // showing its two route claims unanswered. Nothing said a measurement had
+    // been attempted and could not be taken, so nothing said to try again.
+    return { measured: false, why: String(error.message || error).slice(0, 160) };
   }
 }
 
@@ -207,6 +214,11 @@ async function runCartographer(candidate, dossier, options = {}){
   // existed carry neither mark, so nothing is claimed of them -- the trap #806
   // fell into, where a derived field only existed for trails measured since.
   const routeNumbersAbsent = along.measured && !along.guidance;
+  // Three outcomes, not two. Found numbers, looked and found none, or could
+  // not look -- and the third must not read as the second. A walk whose own
+  // relation carries a number needed no corridor query, so it is not
+  // unmeasured; nothing was missed.
+  const routeNumbersUnmeasured = along.measured ? null : (along.why || 'the measurement could not be taken');
   const rawBlockers = [...reconstructed.assessment.issues, ...((routeConformance && routeConformance.issues) || [])];
   if(comparison.withinOfficialDistanceTolerance === false) rawBlockers.push('official-distance-conflict');
   // Missing official distance stays unknown; contradiction still blocks.
@@ -266,6 +278,7 @@ async function runCartographer(candidate, dossier, options = {}){
     // path covered twelve of them.
     ...(routeGuidance ? { routeGuidance } : {}),
     ...(routeNumbersAbsent ? { routeNumbersAbsent: true } : {}),
+    ...(routeNumbersUnmeasured ? { routeNumbersUnmeasured } : {}),
     ...(candidate.trailRecord ? { trailRecord: candidate.trailRecord } : {}),
     routeConformance,
     comparison,
