@@ -108,4 +108,30 @@ function routeGuidanceFromMap(guidance, relations, options = {}){
   };
 }
 
-module.exports = { MAP_AUTHORITY, READ_FROM_MAP, relationUrl, mapSources, sequenceValue, switchesValue, routeGuidanceFromMap };
+/**
+ * The guidance a single numbered relation gives on its own.
+ *
+ * One relation is one number from end to end, so the map answers the order and
+ * the turns outright: the walk follows this route throughout and changes number
+ * nowhere. Nothing needs measuring -- the composite path reaches the same
+ * answer by working out which of several routes carries each stretch, and here
+ * there is only one.
+ *
+ * It lives here rather than in the cartographer because both the pass that
+ * writes an audit and the gate that reads one need it, and the gate needs it
+ * for audits taken before this existed. 150 of 162 trails are built from a
+ * single relation, and for nineteen of the catalogue's blocked trails the
+ * number was sitting in an audit already stored, unread, while agents were sent
+ * to the web to research it.
+ */
+function singleRelationGuidance(relation){
+  const ref = relation?.tags?.ref;
+  if(!ref) return null;
+  // A composite names the numbers it runs along, joined, and those are several
+  // routes in an order this cannot know. Measuring them is the composite
+  // path's job, and it writes its own guidance.
+  if(String(ref).includes(';')) return null;
+  return { sequence: [String(ref)], switches: [], segments: [] };
+}
+
+module.exports = { MAP_AUTHORITY, READ_FROM_MAP, relationUrl, mapSources, sequenceValue, switchesValue, singleRelationGuidance, routeGuidanceFromMap };

@@ -5,6 +5,7 @@ const { assessRouteConformance, routeLinesFor } = require('../services/route-con
 const { rebuildLostTheRoute, withoutRebuildFaults, INCOMPLETE_REBUILD_NOTE,
   openRouteNotABrokenLoop, OPEN_ROUTE_NOTE } = require('./reconstruction-quality');
 const { reconstructRelation } = require('../services/relation-geometry');
+const { singleRelationGuidance } = require('./route-guidance-from-map');
 const { reconstructComposite } = require('../services/composite-geometry');
 const { discoverRouteComposite } = require('./discover-route-composite');
 const { VERSION, validateCartographerResult } = require('../contracts/cartographer-result-v1');
@@ -218,16 +219,14 @@ async function runCartographer(candidate, dossier, options = {}){
     geometry: reconstructed.geometry,
     components: reconstructed.components,
     assessment: reconstructed.assessment,
-    // One relation is one number, from end to end, so the map answers the
-    // order and the turns outright: the walk follows this route throughout and
-    // changes number nowhere. The composite path reaches the same answer by
-    // measuring which of several routes carries each stretch; here there is
-    // only one and nothing needs measuring.
+    // One relation is one number from end to end. The derivation is shared
+    // with the gate, which has to reach the same answer for audits taken
+    // before this field was written at all.
     //
     // 150 of 162 trails are built this way, so leaving it to the composite
     // path covered twelve of them.
-    ...(reconstructed.relation?.tags?.ref
-      ? { routeGuidance: { sequence: [String(reconstructed.relation.tags.ref)], switches: [], segments: [] } }
+    ...(singleRelationGuidance(reconstructed.relation)
+      ? { routeGuidance: singleRelationGuidance(reconstructed.relation) }
       : {}),
     ...(candidate.trailRecord ? { trailRecord: candidate.trailRecord } : {}),
     routeConformance,
