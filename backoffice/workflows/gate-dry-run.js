@@ -22,7 +22,7 @@
  */
 
 const {dossierBlockingReasons,routeGuidanceBlockingReasons,supportedRouteGuidance,
-  waivableBlocker,blockerId,ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
+  currentBlockingReasons,waivableBlocker,blockerId,ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
 const {gateDecision}=require('./automate-existing-trail-verification');
 const {MAX_AUTOMATED_ATTEMPTS}=require('../contracts/resolution-policy-v1');
 
@@ -122,21 +122,26 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
   let ending=null;
   try{ ending=gateDecision(review,{items:[review]},spent,new Set()); }
   catch(error){ ending={action:'errored',note:error.message}; }
-  // A claim the ladder answered that the gate still names as the thing
+  // A claim the ladder answered that the *decision* still names as the thing
   // deciding against the trail.
   //
-  // These two numbers are supposed to be one fact. Where they disagree the
-  // report was saying "all four answered" and "reject, because two of them are
-  // required" on consecutive lines, and the only way to notice was to read both
-  // and spot it. Fenn Promenade and Anello di Ciampeviei both read that way on
-  // 15 October 2026, and finding out why took an afternoon of reading the gate
-  // by hand rather than a line of its own report.
+  // These are two computations of one fact, and the comparison has to be
+  // between the two that actually differ. The report reads the catalogue as it
+  // stands; `currentBlockingReasons` is what the policy decides on, recomputed
+  // from the stored outputs alone and never handed the trail -- so ORMA's own
+  // record can answer in the report and not in the decision.
   //
-  // It is never a judgement about the walk. It means one of the two
-  // computations is seeing evidence the other cannot, so it is reported as the
-  // fault it is.
+  // Fenn Promenade read exactly that way on 15 October 2026: all four
+  // directions answered, "Nothing unwaivable stands", zero blockers, and the
+  // gate rejected it for recommended-start and route-number-status being
+  // required. The only way to notice was to read both halves and spot it, and
+  // finding out why took an afternoon of reading the gate by hand.
+  //
+  // It is never a judgement about the walk. It means one computation is seeing
+  // evidence the other cannot, so it is reported as the fault it is.
   const answered=new Set(routeGuidance.filter(entry=>entry.answered).map(entry=>entry.claimId));
-  const overruled=unwaivable.filter(id=>answered.has(String(id).split('/').pop()));
+  const decided=currentBlockingReasons(review).filter(reason=>!waivableBlocker(reason)).map(blockerId);
+  const overruled=[...new Set(decided.filter(id=>answered.has(String(id).split('/').pop())))];
   return {
     found:true,
     trailId:trail.trailId,
