@@ -85,3 +85,67 @@ describe('a note on an answered claim is not a missing answer',()=>{
     expect(decision.acceptedBlockers.map(entry=>entry.blocker)).toEqual(blockingReasons);
   });
 });
+
+// The other half of the same rule, found 15 October 2026.
+//
+// The caveat test was applied to a claim's notes and not to its own finding, so
+// an agent that answered "unresolved" while the map had the answer still filed
+// an unwaivable refusal. Anello di Ciampeviei is what that looked like from
+// outside: the dry-run printed "route-number-switches answered by the map" and
+// rejected the trail for route-number-switches being unknown, in one report.
+// 23 of the 34 trails nearest the seal were held that way.
+describe('a finding on a claim the map answered is not a missing answer',()=>{
+  // The map establishes the order of the numbers and where one gives way to
+  // the next. A loop that stays on one number has no decision point, and the
+  // measurement says so rather than leaving it blank.
+  const cartographer={agentId:'cartographer',result:{
+    source:{externalId:'relation/7548201',relations:[{externalRelationId:'relation/7548201',ref:'69'}]},
+    routeGuidance:{sequence:['69'],switches:[]}}};
+
+  const agentGaveUpOnSwitches=()=>logistics({'route-number-switches':{
+    finding:'unresolved',proposedValue:'',sources:[],blockers:[]}});
+
+  test('the trail is no longer refused for a claim the map answered',()=>{
+    const reasons=dossierBlockingReasons([agentGaveUpOnSwitches(),cartographer]);
+    expect(reasons.some(reason=>!waivableBlocker(reason))).toBe(false);
+  });
+
+  test('the finding is kept, under the claim it belongs to',()=>{
+    // Not dropped: the agent's answer is still true, still reaches the desk,
+    // and still goes round the resolution ladder.
+    const reasons=dossierBlockingReasons([agentGaveUpOnSwitches(),cartographer]);
+    const theOne=reasons.find(reason=>reason.includes('route-number-switches'));
+    expect(theOne).toContain('unresolved');
+    expect(blockerId(theOne)).toBe('logistics/route-number-switches-caveat');
+  });
+
+  test('with nothing to answer it, the claim still refuses the trail',()=>{
+    // The guard that matters. Without the map nothing answers it anywhere, and
+    // a walk nobody can give directions for must not verify.
+    const reasons=dossierBlockingReasons([agentGaveUpOnSwitches()]);
+    const theOne=reasons.find(reason=>reason.includes('route-number-switches'));
+    expect(blockerId(theOne)).toBe('logistics/route-number-switches');
+    expect(waivableBlocker(theOne)).toBe(false);
+  });
+
+  test('a claim the map cannot answer is unaffected',()=>{
+    // The map establishes the order and the switches, never the start. An
+    // unresolved start has to keep refusing, or a walk with no findable
+    // beginning would verify.
+    const noStart=logistics({'recommended-start':{
+      finding:'unresolved',proposedValue:'',sources:[],blockers:[]}});
+    const reasons=dossierBlockingReasons([noStart,cartographer]);
+    const theOne=reasons.find(reason=>reason.includes('recommended-start'));
+    expect(blockerId(theOne)).toBe('logistics/recommended-start');
+    expect(waivableBlocker(theOne)).toBe(false);
+  });
+
+  test('an ordinary claim is not touched by this rule',()=>{
+    // Scoped to the four route claims. A terrain claim that came back
+    // unresolved is ordinary optional detail and keeps its own id.
+    const withTerrain={agentId:'terrainPoi',result:{recommendation:'advance',openQuestions:[],
+      claims:[{id:'livestock',category:'terrain',finding:'unresolved',proposedValue:'',sources:[],blockers:[]}]}};
+    const reasons=dossierBlockingReasons([withTerrain,cartographer]);
+    expect(reasons).toContain('terrainPoi/livestock: unresolved');
+  });
+});

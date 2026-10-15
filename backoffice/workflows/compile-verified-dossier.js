@@ -375,14 +375,35 @@ function dossierBlockingReasons(outputs,options={}){
       // gate on 13 October with 110 blockers, not one of them unwaivable, and
       // was sent back to research detail that had already given up.
       const exhausted=claim.resolution?.state==='source-exhausted';
-      if(!exhausted&&['conflicted','unresolved','counter-evidence'].includes(claim.finding)) reasons.push(`${output.agentId}/${claim.id}: ${claim.finding}`);
+      // The same rule as the caveat below, applied to the finding itself.
+      //
+      // It was applied only to a claim's notes, so an agent that answered
+      // "unresolved" while the map had the answer still filed an unwaivable
+      // refusal under the claim's own id. Anello di Ciampeviei is what that
+      // looks like from outside: the dry-run prints "route-number-switches
+      // answered by the map" and rejects the trail for route-number-switches
+      // being unknown, in the same report.
+      //
+      // That is the ladder being bypassed for the one case it exists to
+      // rescue. "Three kinds of answer" says the contract takes the best
+      // available; a researcher who found nothing is not better than a
+      // measurement that did, and must not outrank it.
+      //
+      // Kept under the caveat suffix rather than dropped: the agent's finding
+      // is still true and still reaches the desk and the resolution ladder,
+      // it simply stops refusing a trail whose claim is answered.
+      const answeredElsewhere=caveatOnAnsweredClaim(output,claim,review,options);
+      if(!exhausted&&['conflicted','unresolved','counter-evidence'].includes(claim.finding)){
+        reasons.push(answeredElsewhere
+          ? `${output.agentId}/${claim.id}-caveat: ${claim.finding}`
+          : `${output.agentId}/${claim.id}: ${claim.finding}`);
+      }
       // The count comes from the claim, because it is no longer one number:
       // route guidance keeps five attempts and optional detail stops at three.
       // It is never matched on -- `automated resolution strategies exhausted`
       // is the part consumers recognise -- so the figure here is for a reader.
       if(claim.resolution?.state==='source-exhausted') reasons.push(`${output.agentId}/${claim.id}: ${claim.resolution.maximumAttempts||'all'} automated resolution strategies exhausted`);
-      const caveat=caveatOnAnsweredClaim(output,claim,review,options);
-      for(const blocker of claim.blockers||[]) reasons.push(caveat
+      for(const blocker of claim.blockers||[]) reasons.push(answeredElsewhere
         ? `${output.agentId}/${claim.id}-caveat: ${blocker}`
         : `${output.agentId}/${claim.id}: ${blocker}`);
     }
