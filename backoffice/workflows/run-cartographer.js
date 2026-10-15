@@ -98,13 +98,13 @@ async function measureComposite(candidate, options = {}){
  * second idea of what "along the walk" means, and no model call.
  */
 async function measureNumbersAlong(path, options = {}){
-  if(!Array.isArray(path) || path.length < 2) return null;
+  if(!Array.isArray(path) || path.length < 2) return { measured: false };
   try{
     const { payload } = await (options.fetchRoutesNearPath || fetchRoutesNearPath)(path, options);
-    return numbersAlongTheWalk(path, payload, options);
+    return { measured: true, guidance: numbersAlongTheWalk(path, payload, options) };
   }catch(error){
     // Unmeasured, not degraded. An Overpass outage is not evidence about a trail.
-    return null;
+    return { measured: false };
   }
 }
 
@@ -195,9 +195,18 @@ async function runCartographer(candidate, dossier, options = {}){
     reconstructed.relation, options);
   // Its own number where it has one, and otherwise the numbered walking routes
   // it runs along -- which is what a walker reads off a signpost either way.
-  const routeGuidance = singleRelationGuidance(reconstructed.relation)
-    || await measureNumbersAlong(reconstructed.geometry.coordinates
+  const ownNumber = singleRelationGuidance(reconstructed.relation);
+  const along = ownNumber
+    ? { measured: true, guidance: ownNumber }
+    : await measureNumbersAlong(reconstructed.geometry.coordinates
       .map(([lng, lat]) => [lat, lng]), options);
+  const routeGuidance = along.guidance || null;
+  // Measured and found nothing is a fact about the walk. Never measured is a
+  // fact about ORMA, and the two must not read alike: a walk is told it carries
+  // no number only where somebody looked. Audits taken before this measurement
+  // existed carry neither mark, so nothing is claimed of them -- the trap #806
+  // fell into, where a derived field only existed for trails measured since.
+  const routeNumbersAbsent = along.measured && !along.guidance;
   const rawBlockers = [...reconstructed.assessment.issues, ...((routeConformance && routeConformance.issues) || [])];
   if(comparison.withinOfficialDistanceTolerance === false) rawBlockers.push('official-distance-conflict');
   // Missing official distance stays unknown; contradiction still blocks.
@@ -256,6 +265,7 @@ async function runCartographer(candidate, dossier, options = {}){
     // 150 of 162 trails are built this way, so leaving it to the composite
     // path covered twelve of them.
     ...(routeGuidance ? { routeGuidance } : {}),
+    ...(routeNumbersAbsent ? { routeNumbersAbsent: true } : {}),
     ...(candidate.trailRecord ? { trailRecord: candidate.trailRecord } : {}),
     routeConformance,
     comparison,

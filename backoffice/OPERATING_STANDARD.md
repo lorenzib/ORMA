@@ -947,6 +947,43 @@ route that merely crosses the walk is folded away by the 150-metre minimum, and
 a stretch with no number left on it is not an answer: an empty list of waymarks
 is not guidance.
 
+### A walk with no number says how to follow it
+
+Some walks carry no number and have no numbered route running along them
+either. Boucle du Taillefer and Boucle du Lac Vert were measured against the
+live map on 15 October 2026 and have nothing. Asking them what order the numbers
+come in has no answer, and refusing them for want of one refuses them for ever.
+
+What they have is landmarks ORMA wrote down by hand: a kilometre mark and a
+sentence — "Taillefer high point (766 m): benches and the double panorama over
+the Grand and Petit lac d'Annecy". That is what somebody walking it actually
+follows, and it is what the walk is given instead of a number: the start, then
+each landmark in the order a walker meets it, with the distance to each.
+
+Two of the seven have nothing but a start point. Those say so and tell the
+walker to follow the walk's name on local signs and the mapped ORMA line on the
+page, because that is what a person does on an unnamed, unnumbered path. It
+invents nothing — no distances, no places.
+
+Water sources are not landmarks. Their labels are mostly "Drinking water
+(OSM-verified location)", which is useful on a trail page and useless as a
+thing to navigate by, and five identical sentences is not guidance.
+
+**Only where somebody looked.** Measured-and-found-nothing is a fact about the
+walk; never-measured is a fact about ORMA, and the two must not read alike. The
+geometry audit marks an audit where it searched for numbers along the walk and
+found none, and the record answers these two claims only on that mark. An audit
+taken before that measurement existed carries neither, so nothing is claimed of
+it — the trap the derived route number fell into, where a field existed only for
+trails measured after it shipped.
+
+The record stays the bottom rung. A number measured off the map is better
+evidence than a landmark and still wins, and an authority's own description wins
+over both.
+
+Saying nothing was the worse option. A walker expecting to follow "route 23"
+who arrives to find only name-boards has been let down by a blank page.
+
 ### The audit on the shelf is read, not re-taken
 
 The measurement is derived where the audit is read, not stored by whichever
