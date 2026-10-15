@@ -22,6 +22,7 @@ const { loadProductionTrails } = require('../../scripts/load-production-trails')
 const { routeSourceReady } = require('../workflows/run-trail-specialist');
 const { SOURCED_ROUTE_PAGES } = require('../../scripts/route-number-evidence');
 const { scoutRouteSource, confirmProposal, mergeSourcedPages } = require('../workflows/scout-route-sources');
+const { leadsFirst } = require('../workflows/route-source-leads');
 
 const FETCH_TIMEOUT_MS = 20000;
 // A route leaflet is a few hundred kilobytes; an alpine club's magazine can be
@@ -30,7 +31,8 @@ const FETCH_TIMEOUT_MS = 20000;
 const MAX_BYTES = 24 * 1024 * 1024;
 
 function parseArgs(argv){
-  const out = { region:null, province:null, limit:5, apply:false, trail:null };
+  const out = { region:null, province:null, limit:5, apply:false, trail:null,
+    leads:true, leadWindow:null };
   for(let i = 0; i < argv.length; i += 1){
     const arg = argv[i];
     if(arg === '--region'){ out.region = argv[i += 1]; continue; }
@@ -38,6 +40,9 @@ function parseArgs(argv){
     if(arg === '--trail'){ out.trail = argv[i += 1]; continue; }
     if(arg === '--limit'){ out.limit = Number.parseInt(argv[i += 1], 10) || 5; continue; }
     if(arg === '--apply'){ out.apply = true; continue; }
+    // The queue's own order, for comparing a pass against the old behaviour.
+    if(arg === '--no-leads'){ out.leads = false; continue; }
+    if(arg === '--lead-window'){ out.leadWindow = Number.parseInt(argv[i += 1], 10) || null; continue; }
   }
   return out;
 }
@@ -87,9 +92,23 @@ async function main(options = {}){
   // without needing the whole catalogue beside it.
   const trails = options.trails || loadProductionTrails(options.catalogueRoot || path.resolve(__dirname, '../..'));
   const waiting = needsSource(trails, args);
-  const batch = waiting.slice(0, args.limit);
 
-  console.log(`[scout] ${waiting.length} trail(s) need an official route page; scouting ${batch.length}.`);
+  // Ask the regional portal, by name, which of these a board has actually
+  // published, and spend the budget on those. Costs no model call. A lead is
+  // never a source: it only decides the order, and a walk with no lead is still
+  // scouted once the leads run out.
+  let batch = waiting.slice(0, args.limit);
+  let leadNote = '';
+  if(args.leads && waiting.length > args.limit){
+    const selection = await leadsFirst(waiting, { limit:args.limit,
+      window: args.leadWindow || undefined, pauseMs: options.pauseMs ?? 350,
+      probe: options.probe, fetchImpl: options.fetchImpl });
+    batch = selection.batch;
+    leadNote = ` ${selection.leads} of ${selection.probed} looked up had a published page`;
+  }
+
+  console.log(`[scout] ${waiting.length} trail(s) need an official route page; scouting ${batch.length}.`
+    + (leadNote ? `\n[scout]${leadNote}; those go first.` : ''));
   if(!batch.length){ console.log('[scout] Nothing to do.'); return { confirmed:[], dropped:[] }; }
 
   const confirmed = [], dropped = [];
