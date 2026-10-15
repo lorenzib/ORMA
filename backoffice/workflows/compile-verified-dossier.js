@@ -18,7 +18,7 @@ function authoritativeRecommendedStart(review){
 }
 
 const {routeConformanceBlockingReasons,OFF_DECLARED_ROUTE_BLOCKER_ID}=require('../services/route-conformance');
-const {routeGuidanceFromMap}=require('./route-guidance-from-map');
+const {routeGuidanceFromMap,singleRelationGuidance}=require('./route-guidance-from-map');
 const {routeGuidanceFromRecord}=require('./route-guidance-from-record');
 
 const OFFICIAL_ROUTE_CLAIMS=['route-number-status','route-number-sequence','route-number-switches'];
@@ -184,10 +184,28 @@ function citableRelations(result){
   return externalId&&ref ? [{externalRelationId:externalId,ref:String(ref)}] : [];
 }
 
+/**
+ * What the map says, read out of the audit on the shelf.
+ *
+ * `routeGuidance` is written when a geometry audit runs, and the audits already
+ * stored were taken before that field existed. Depending on it meant the map
+ * answered only for a trail audited since 14 October -- so nineteen of the
+ * catalogue's twenty-seven blocked trails were refused for a route number that
+ * was sitting in their own audit, under `relation.tags.ref`, all along. Four of
+ * those were held by nothing else.
+ *
+ * `citableRelations` just above already reaches into an old audit to build the
+ * citation from that same tag. Only the answer still demanded a fresh pass, so
+ * the two halves of one fact disagreed about which audits they could read.
+ *
+ * Deriving it here instead costs nothing and needs no re-audit: it is the same
+ * function the cartographer writes with, applied at read time.
+ */
 function mapReadRouteGuidance(outputs,options={}){
   const result=cartographerOutput(outputs)?.result;
-  if(!result?.routeGuidance)return {};
-  return routeGuidanceFromMap(result.routeGuidance,citableRelations(result),options);
+  const guidance=result?.routeGuidance||singleRelationGuidance(result?.relation);
+  if(!guidance)return {};
+  return routeGuidanceFromMap(guidance,citableRelations(result),options);
 }
 
 /**

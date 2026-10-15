@@ -868,6 +868,35 @@ A reader is therefore always told which of the two they have, and the
 difference between a walk whose directions an operator published and one whose
 directions were read off the map is visible rather than blurred.
 
+### The audit on the shelf is read, not re-taken
+
+The measurement is derived where the audit is read, not stored by whichever
+pass happened to run last.
+
+The geometry audit writes the derived answer into its result. Audits taken
+before that field existed do not carry it, and nothing re-audits a trail
+already parked at a gate — so for its first day the map answered only for
+trails audited since. Nineteen of the catalogue's twenty-seven blocked trails
+carry a route number on the very relation they are built from: Fenn Promenade
+is route 20, Anello di Ciampeviei is 69, Dörferrundweg is 4, B05 is B05. Every
+one of them was refused for want of route guidance that was sitting in its own
+audit under `relation.tags.ref`.
+
+Ten lines above the reader, the citation builder already reached into an old
+audit for that same tag. So the two halves of one fact disagreed about which
+audits they could read: the source could be cited from an audit the answer
+could not be taken from.
+
+A single relation is a single number from end to end, so its guidance needs no
+measurement — only the composite path, where several routes carry different
+stretches, needs one. **That derivation has one definition, used by the pass
+that writes an audit and by the gate that reads one**, so a fresh audit and a
+stored one reach the same answer and cannot drift apart. The gate therefore
+needs no re-audit to see what the map has always said.
+
+A walk the map gives no number for stays unanswered rather than invented, and a
+composite's joined label is left to the measurement that can order it.
+
 ## Three kinds of answer, and the reader is told which
 
 A route-guidance claim may be answered three ways, and they are not equal. The

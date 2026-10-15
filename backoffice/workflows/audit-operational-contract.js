@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -29,6 +29,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/apply-dossier-review.js'),
     read(root,'backoffice/contracts/trail-orchestration-v1.js'),
     read(root,'backoffice/workflows/start-live-trail-campaign.js'),
+    read(root,'backoffice/workflows/run-cartographer.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -186,6 +187,28 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&dossier.includes('const sourced=supportedLogisticsClaim(review,id);')
     &&standard.includes('Read off the map, and said to be read off the map'),
     'The order of a walk\'s numbers and where they change may be read from the route relations it is built from, and every such value says so in its own words and cites the relation; the start point and whether the route is numbered stay the agent\'s to establish from an authority, and a cited authority always wins over the measurement');
+
+  // One derivation for the pass that writes an audit and the gate that reads
+  // one.
+  //
+  // The risk is a measurement that exists only for trails measured since the
+  // code shipped. The derived field is written by the geometry audit, nothing
+  // re-audits a trail already parked at a gate, and nineteen of twenty-seven
+  // blocked trails carried their number on the relation all along -- while the
+  // citation builder ten lines above the reader was already reading that same
+  // tag out of an old audit.
+  add('one-derivation-for-writer-and-reader',
+    mapGuidance.includes('function singleRelationGuidance')
+    // The cartographer derives rather than restates, so there is one definition.
+    &&cartographer.includes('singleRelationGuidance(reconstructed.relation)')
+    &&!cartographer.includes('sequence: [String(reconstructed.relation.tags.ref)]')
+    // And the gate reaches the same answer out of an audit that predates it.
+    &&dossier.includes('result?.routeGuidance||singleRelationGuidance(result?.relation)')
+    // A walk with no number stays unanswered; a composite's joined label is
+    // the measurement's to order.
+    &&mapGuidance.includes("if(String(ref).includes(';')) return null;")
+    &&standard.includes('The audit on the shelf is read, not re-taken'),
+    'A single relation is a single number from end to end, and that derivation has one definition used both by the pass that writes a geometry audit and by the gate that reads one, so the map answers for an audit taken before the field existed without any re-audit; an unnumbered walk stays unanswered and a composite label is left to the measurement that can order it');
 
   // ORMA may answer from its own record, and must always say that it did.
   //
