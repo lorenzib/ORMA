@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -32,6 +32,8 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/run-cartographer.js'),
     read(root,'backoffice/workflows/gate-dry-run.js'),
     read(root,'backoffice/workflows/numbers-along-the-walk.js'),
+    read(root,'backoffice/workflows/resurvey-named-trails.js'),
+    read(root,'backoffice/cli/resurvey-trails.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -236,6 +238,29 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&dossier.includes('const sourced=supportedLogisticsClaim(review,id);')
     &&standard.includes('A walk with no number says how to follow it'),
     'A walk the map was searched for numbers on and found none is answered from ORMA\'s record in landmark terms -- the start, then each recorded landmark in order with its distance -- or, where none is recorded, told to follow the walk\'s name and the mapped line; it rests on the audit\'s positive measured-and-none mark so a walk nobody measured is never told it has no number, water labels are not offered as landmarks, and a measured number or a cited authority still wins');
+
+  // A free, deterministic survey can be taken again for a named trail.
+  //
+  // The risk is the one that cost three improvements their effect: the survey
+  // is where the map reading lives, and nothing in the pipeline goes backwards,
+  // so a better survey reaches only trails not yet past it. And the risk of the
+  // fix is a re-survey that sends the trail back a stage, which would mark
+  // every agent's evidence as stale and stall it waiting on research nobody
+  // queued.
+  add('a-named-trail-can-be-surveyed-again',
+    packageManifest.includes('"backoffice:resurvey"')
+    &&resurvey.includes('function planResurvey(orchestration, ids)')
+    // The trail stays put. Pinned as the whole returned shape, so adding a
+    // stage or a reconsideredAt to it is the thing that breaks.
+    &&resurvey.includes('return { ...trail, attempts, jobIds: [...(trail.jobIds || []), jobId] };')
+    &&!resurvey.includes('reconsideredAt:')
+    &&resurvey.includes('attempts.cartographer = Number(attempts.cartographer || 0) + 1;')
+    // Held rather than double-surveyed, and resting trails left alone.
+    &&resurvey.includes("if(String(trail.state) === 'geometry-audit')")
+    &&resurvey.includes("RESTING = Object.freeze(['imported', 'rejected'])")
+    &&resurveyCli.includes("if(!args.apply){")
+    &&standard.includes('A named trail can be surveyed again'),
+    'A named trail can have its deterministic, model-free geometry survey taken again, dry run until --apply; the trail stays exactly where it is because every reader already takes the newest output per agent, so no stage is reset and no agent\'s evidence is marked stale -- a trail already at the survey is held, a resting trail is left alone, and an unknown name is reported');
 
   // One derivation for the pass that writes an audit and the gate that reads
   // one.

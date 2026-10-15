@@ -984,6 +984,39 @@ over both.
 Saying nothing was the worse option. A walker expecting to follow "route 23"
 who arrives to find only name-boards has been let down by a blank page.
 
+### A named trail can be surveyed again
+
+The geometry audit is deterministic — it reads OpenStreetMap and measures, with
+no model call — and it is where the map reading lives. So **every improvement to
+it is invisible to a trail already past it**, and nothing in the pipeline goes
+backwards.
+
+That cost three improvements their effect on 15 October 2026: the route number
+sitting unread in a stored audit, the numbered walking routes running along a
+walk that carries none of its own, and the mark saying somebody looked for them
+and found none. Each landed, and each applied only to trails surveyed
+afterwards. Five of the eight trails still blocked had moved past the survey and
+could never benefit from a better one.
+
+`npm run backoffice:resurvey -- --trails <id>,<id>` queues a fresh survey for
+named trails, dry run until `--apply`. It costs no model credits.
+
+**It changes nothing else.** The trail stays exactly where it is; only its
+survey is taken again. It does not have to move, because every reader already
+takes the newest completed output per agent — so the new survey is what the gate
+reads the moment it lands, and the research already paid for is untouched.
+
+Sending the trail back a stage would stall it. `reconsider-rejected-trails` does
+that, correctly, for a trail that was rejected — but it also sets
+`reconsideredAt`, which marks **every** agent's evidence as predating the
+return, so a trail sent back for a survey would wait at evidence-research for
+research nobody queued. A rejection keeps its own way back; a re-survey is the
+narrower thing.
+
+A trail already at the survey is held rather than given a second audit of the
+same line, a resting trail is not waiting on a survey at all, and a name that is
+not in the pipeline is reported rather than silently dropped.
+
 ### The audit on the shelf is read, not re-taken
 
 The measurement is derived where the audit is read, not stored by whichever
