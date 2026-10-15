@@ -259,6 +259,12 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&resurvey.includes("if(String(trail.state) === 'geometry-audit')")
     &&resurvey.includes("RESTING = Object.freeze(['imported', 'rejected'])")
     &&resurveyCli.includes("if(!args.apply){")
+    // And it can actually be run. The state is in Firestore and the credential
+    // stays in Actions, so an npm script on its own is a command nobody can
+    // run -- which is what shipping it alone left the standard describing.
+    &&workflows['orma-requeue-fixed-jobs.yml']?.includes('resurvey_trail_ids')
+    &&workflows['orma-requeue-fixed-jobs.yml']?.includes('npm run backoffice:resurvey')
+    &&workflows['orma-requeue-fixed-jobs.yml']?.includes("if: inputs.resurvey_trail_ids != ''")
     &&standard.includes('A named trail can be surveyed again'),
     'A named trail can have its deterministic, model-free geometry survey taken again, dry run until --apply; the trail stays exactly where it is because every reader already takes the newest output per agent, so no stage is reset and no agent\'s evidence is marked stale -- a trail already at the survey is held, a resting trail is left alone, and an unknown name is reported');
 
