@@ -55,6 +55,10 @@ function verdictOf(report){
   const real=report.unwaivable.filter(id=>!contested.includes(id));
   const parts=[];
   if(fault.length)parts.push(`FAULT ${fault.join(', ')}`);
+  // A survey that could not be taken is a fourth thing, and the one most
+  // easily mistaken for a refusal: the trail looks short of evidence when what
+  // it is short of is a request that reached the map.
+  if(report.routeNumbersUnmeasured)parts.push('SURVEY AGAIN (the numbers were never measured)');
   if(contested.length)parts.push(`contested ${contested.join(', ')}`);
   if(real.length)parts.push(`blocked by ${real.join(', ')}`);
   if(parts.length)return parts.join(' + ');
@@ -127,6 +131,15 @@ function sayShortlist(reports){
       console.log(`[dry-run]   ${report.trailName}: ${report.contestedAnswers.join(', ')}`);
     }
   }
+  const unsurveyed=reports.filter(report=>report.routeNumbersUnmeasured
+    &&report.wouldDecideWhenResearchEnds!=='approve');
+  if(unsurveyed.length){
+    console.log(`[dry-run] ${unsurveyed.length} are waiting on a survey that could not be taken, not on research:`);
+    for(const report of unsurveyed){
+      console.log(`[dry-run]   ${report.trailName}: ${report.routeNumbersUnmeasured}`);
+    }
+    console.log("[dry-run]   Run them again with the requeue workflow's resurvey_trail_ids. It costs no model credits.");
+  }
   const unclear=reports.filter(report=>!report.reportVersusDecision?.length&&!report.unwaivable.length
     &&report.wouldDecideWhenResearchEnds!=='approve');
   if(unclear.length){
@@ -160,6 +173,10 @@ function say(report){
   if(report.reportVersusDecision?.length){
     console.log(`[dry-run] FAULT — the report and the decision disagree about: ${report.reportVersusDecision.join(', ')}`);
     console.log('[dry-run] Two computations of one fact. This is ORMA\u2019s bug, not a verdict on the walk.');
+  }
+  if(report.routeNumbersUnmeasured){
+    console.log(`[dry-run] The numbers along this walk were never measured: ${report.routeNumbersUnmeasured}`);
+    console.log("[dry-run] Survey it again (resurvey_trail_ids on the requeue workflow). No model credits.");
   }
   if(report.contestedAnswers?.length){
     console.log(`[dry-run] Answered, and held on purpose: ${report.contestedAnswers.join(', ')} — the agent found sources that contradict each other.`);

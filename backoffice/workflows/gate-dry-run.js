@@ -181,6 +181,11 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
   //
   // It is never a judgement about the walk. It means one computation is seeing
   // evidence the other cannot, so it is reported as the fault it is.
+  // A measurement that was attempted and could not be taken. It is not a
+  // verdict and not research to commission: it is a survey to run again, and
+  // without it a trail reads as refused for want of evidence nobody could get.
+  const unmeasured=latestOutputsByAgent(jobs,trail.candidateId,outputFor||(()=>null))
+    .find(output=>output.agentId==='cartographer')?.result?.routeNumbersUnmeasured||null;
   const decided=[...new Set(currentBlockingReasons(review)
     .filter(reason=>!waivableBlocker(reason)).map(blockerId))];
   const disagreement=reportVersusDecision(unwaivable,decided);
@@ -201,6 +206,9 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
     // Answered, and held on purpose because the agent found sources that
     // contradict each other. The one category a person can decide about.
     contestedAnswers:contested,
+    // Why the numbers along this walk were never measured, where somebody
+    // tried. A survey to run again, not a walk to research.
+    routeNumbersUnmeasured:unmeasured,
     routeGuidanceBlockers:routeGuidanceBlockingReasons(specialistOutputs).map(blockerId),
     blockerCount:blockingReasons.length,
     unwaivable,
