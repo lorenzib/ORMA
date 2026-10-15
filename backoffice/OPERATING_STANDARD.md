@@ -656,6 +656,42 @@ content printed on the trail page for a walker to follow, so waiving it would
 publish a walk with no directions. It is the agent's work, and it must be
 supplied rather than excused.
 
+### A note about the agent's own search is not a missing answer
+
+The unwaivable class is written for a direction **nobody can supply**. It is not
+written for an agent reporting what happened when it looked.
+
+The three-source ladder exists so that where the agent cannot establish a
+direction, the map or ORMA's own record can. But the agent's own admission that
+it could not — `unresolved`, or every strategy spent — was filed under the claim
+id, which is the class no reason can waive. So the answer was computed,
+reported, and then overruled by the very failure the ladder exists to cover.
+**The ladder could never once rescue a trail.**
+
+Anello di Ciampeviei, 15 October 2026: its start, status and sequence came from
+the Lozzo di Cadore authority and its switches from the map — all four answered
+— and the gate rejected it for `logistics/route-number-switches: unresolved`.
+Thirteen trails carrying a route number on their own relation stood behind it.
+
+Where a claim is answered by any rung of the ladder, what the agent reports
+about its own search is filed as a caveat under the claim's own suffix. It still
+reaches the desk and the agent that could clear it, and is accepted as unknown
+like any other optional detail. It no longer decides.
+
+**Only `unresolved` and an exhausted ladder move.** `conflicted` and
+`counter-evidence` mean the agent learned something that contradicts, and a
+measurement of where the ways run does not settle a disagreement between two
+authorities about what anybody recommends. Those keep deciding, and a walk the
+ladder answers nowhere is refused exactly as before.
+
+This is the second place the same mistake was made. The first was a footnote:
+Tre Cime's agent established the Rifugio Locatelli switch, cited it, and noted
+that no coordinate had been published for it — and that note, filed as the
+claim, rejected the best-documented walk in the catalogue. An agent that found
+the switch and said nothing else would have passed. A note is a note wherever it
+is written down, and the rule now holds for a claim's finding as well as for its
+footnotes.
+
 ## A claim the agent did not answer is unresolved, not a failure
 
 Two output contracts used to throw when a mandatory claim was absent: the four

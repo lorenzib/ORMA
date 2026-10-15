@@ -44,31 +44,47 @@ const unresolvedClaim=claimId=>({agentId:'logistics',jobId:'log-1',result:{
         authority:'Lozzo di Cadore / Parco Sentieristico Terre Alte'}],blockers:[]})),
   ]}});
 
-function run(outputs,over={}){
+// The catalogue's own record of the walk: a named start with coordinates, which
+// 161 of the 162 trails carry.
+const START={id:'osm-7548201',name:'Anello di Ciampeviei',
+  startPoint:{label:'Village car park',lat:46.47,lng:12.47}};
+
+function run(outputs,over={},trail=null){
   const jobs=outputs.map(output=>({id:output.jobId,candidateId:'osm-7548201',
     agentId:output.agentId,status:'completed',completedAt:'2026-10-15T12:00:00Z'}));
   const byId=new Map(outputs.map(output=>[output.jobId,output.result]));
   return gateDryRun({orchestration:{trails:[{trailId:'osm-7548201',candidateId:'osm-7548201',
     trailName:'Anello di Ciampeviei',state:'evidence-resolution',resolutionAttempts:{},...over}]},
-    jobs,outputFor:id=>byId.get(id)||null,trailId:'osm-7548201'});
+    jobs,outputFor:id=>byId.get(id)||null,trailId:'osm-7548201',trail});
 }
 
 describe('the report says why, and never argues with itself',()=>{
   test('an answered claim that still blocks is reported as a fault',()=>{
-    const outputs=[numberedRelation('69'),unresolvedClaim('route-number-switches')];
-    const report=run(outputs);
+    // The still-live disagreement, and the one that is harder to see: ORMA's
+    // own record answers in the report, which reads the catalogue as it stands,
+    // and cannot answer in the decision, which recomputes from the stored
+    // outputs alone and is never handed the trail. Fenn Promenade read that way
+    // -- all four answered, nothing unwaivable, zero blockers, reject.
+    //
+    // This fixture was first written round the map and a claim the agent could
+    // not settle. That is the fault the very next change removed, so the test
+    // became one forbidding its own fix: a test that pins a live bug as its
+    // fixture outlives the bug.
+    const report=run([numberedRelation('69'),unresolvedClaim('recommended-start')],{},START);
 
-    // The map answered it, as the report already said.
-    const review={specialistOutputs:outputs.map(({agentId,result})=>({agentId,result}))};
-    expect(supportedRouteGuidance(review,'route-number-switches').derivedFrom).toBe('route-relations');
-    expect(report.routeGuidance.find(entry=>entry.claimId==='route-number-switches'))
-      .toMatchObject({answered:true,from:'the map'});
+    // The report can see it, because it was given the catalogue.
+    expect(report.routeGuidance.find(entry=>entry.claimId==='recommended-start'))
+      .toMatchObject({answered:true,from:"ORMA's own record"});
 
-    // And the gate still names it as what decides against the trail. That is
-    // the live fault, and the report now states it instead of leaving two
-    // numbers to be compared by eye.
-    expect(report.unwaivable).toContain('logistics/route-number-switches');
-    expect(report.overruledAnswers).toEqual(['logistics/route-number-switches']);
+    // The report's own blocker list agrees it is answered -- it had the
+    // catalogue too -- so nothing in the report looks wrong.
+    expect(report.unwaivable).not.toContain('logistics/recommended-start');
+    // And the decision, which had no catalogue, rejects for exactly that
+    // claim. That is the contradiction, and it is now stated rather than left
+    // to be spotted across two halves of a report.
+    expect(report.overruledAnswers).toEqual(['logistics/recommended-start']);
+    expect(report.wouldDecideWhenResearchEnds).toBe('reject');
+    expect(report.note).toContain('logistics/recommended-start');
   });
 
   test('a genuinely unanswered claim is not a fault, just a blocker',()=>{
@@ -107,13 +123,19 @@ describe('the report says why, and never argues with itself',()=>{
   });
 
   test('the gate recomputes its own blockers, which is where the two can part',()=>{
-    // The report reads the catalogue as it stands; the decision recomputes
-    // from the stored outputs alone. Pinning that they are two computations is
-    // what makes a disagreement between them a reportable fault rather than a
-    // surprise.
-    const outputs=[numberedRelation('69'),unresolvedClaim('route-number-switches')]
-      .map(output=>({agentId:output.agentId,result:output.result}));
+    // The report reads the catalogue as it stands; the decision recomputes from
+    // the stored outputs alone and is handed no trail, so ORMA's own record
+    // cannot answer there. Pinning that they are two computations is what makes
+    // a disagreement between them a reportable fault rather than a surprise.
+    const outputs=[numberedRelation('69'),unresolvedClaim('recommended-start')]
+      .map(({agentId,result})=>({agentId,result}));
     expect(currentBlockingReasons({specialistOutputs:outputs,blockingReasons:[],
-      gateType:'dossier-approval'})).toContain('logistics/route-number-switches: unresolved');
+      gateType:'dossier-approval'})).toContain('logistics/recommended-start: unresolved');
+    // The map's two are answered out of the audit itself, which the decision
+    // can read as well, so those two never part.
+    expect(supportedRouteGuidance({specialistOutputs:[outputs[0]]},'route-number-switches')
+      .derivedFrom).toBe('route-relations');
+    expect(currentBlockingReasons({specialistOutputs:outputs,blockingReasons:[],
+      gateType:'dossier-approval'})).not.toContain('logistics/route-number-switches: unresolved');
   });
 });
