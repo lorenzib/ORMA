@@ -958,6 +958,37 @@ other cannot — never that there is anything wrong with the walk. A trail
 carrying both a fault and a real blocker says both: one is a bug to fix, the
 other a walk somebody has to go and research, and they were reading alike.
 
+### ORMA's own suggestion is not overruled by a disagreement between others
+
+A contradiction an agent finds between published sources normally decides:
+reading where the ways run does not settle a disagreement between two
+authorities about what anybody recommends.
+
+It does not decide where the answer is **ORMA's own record**. That value says in
+its own words that it is ORMA's suggestion from the walk it recorded, not an
+operator's recommendation, and tells the reader to check access before going.
+Two operators disagreeing with each other does not make ORMA's own recorded
+start point wrong — and suppressing it leaves the reader with no answer at all
+rather than a better one.
+
+It was rejecting ten trails on 15 October 2026 whose start ORMA has always
+published: Albannette, Anello dei Forti, B02, B05, B08, Rafeil-Rundweg, Giro del
+Zimon, Circuit Béatrice de Savoie and two more, every one
+`recommended-start: conflicted` over a start sitting in the catalogue.
+
+The conflict is still recorded, still reaches the desk and the agent that could
+settle it, and is accepted as unknown like any other optional detail. What it no
+longer does is suppress ORMA's own answer in favour of none.
+
+**Only a conflict over a record-answered claim moves.** `counter-evidence` means
+the agent found evidence *against*, and a contradiction over a claim an
+authority answered is a disagreement a measurement cannot settle. Both still
+decide.
+
+A held contradiction is therefore a judgement somebody can make, not a bug and
+not missing research, and the gate dry run names it as its own category. Calling
+it a fault sent a reader looking for code that was behaving exactly as written.
+
 ## Three kinds of answer, and the reader is told which
 
 A route-guidance claim may be answered three ways, and they are not equal. The

@@ -46,20 +46,24 @@ function parseArgs(argv){
  */
 function verdictOf(report){
   if(report.wouldDecideWhenResearchEnds==='approve')return 'CAN be verified';
-  const overruled=report.overruledAnswers||[];
-  // A trail can carry both, and the two want completely different work: one is
-  // a bug to fix, the other a walk somebody has to go and research. Returning
-  // the fault first hid the real blocker, so Boucle du Taillefer read as a pure
-  // bug when it also genuinely carries no route number.
-  const real=report.unwaivable.filter(id=>!overruled.includes(id));
-  if(overruled.length&&real.length)return `FAULT ${overruled.join(', ')} + blocked by ${real.join(', ')}`;
-  if(overruled.length)return `FAULT: answered, yet blocked by ${overruled.join(', ')}`;
-  if(real.length)return `cannot: blocked by ${real.join(', ')}`;
-  // Nothing unwaivable, and still not an approval. The gate is deciding on
+  const fault=report.reportVersusDecision||[];
+  const contested=report.contestedAnswers||[];
+  // Three different things, and each wants different work: a fault is code to
+  // fix, a contested answer is a judgement somebody can make, and a blocker is
+  // a walk somebody has to go and research. They all read as `cannot` once, and
+  // ten trails read as FAULT when the rule was working exactly as written.
+  const real=report.unwaivable.filter(id=>!contested.includes(id));
+  const parts=[];
+  if(fault.length)parts.push(`FAULT ${fault.join(', ')}`);
+  if(contested.length)parts.push(`contested ${contested.join(', ')}`);
+  if(real.length)parts.push(`blocked by ${real.join(', ')}`);
+  if(parts.length)return parts.join(' + ');
+  // Nothing standing, and still not an approval. The gate is deciding on
   // something this report cannot see, which is worth naming rather than
   // printing as though the trail were refused.
   return `unclear: nothing unwaivable, yet ${report.wouldDecideWhenResearchEnds}`;
 }
+
 
 /**
  * One line per trail, so a sweep reads as a shortlist rather than as ten
@@ -95,7 +99,7 @@ function sayShortlist(reports){
     // "what stops the rest" read as research to commission when it was a bug
     // to fix, which is the one distinction this tally exists to draw.
     for(const id of report.unwaivable){
-      if((report.overruledAnswers||[]).includes(id))continue;
+      if((report.contestedAnswers||[]).includes(id))continue;
       standing.set(id,(standing.get(id)||0)+1);
     }
   }
@@ -105,16 +109,25 @@ function sayShortlist(reports){
       console.log(`[dry-run]   ${String(count).padStart(3)}x ${id}`);
     }
   }
-  // How much of the blocked list is ORMA arguing with itself rather than a walk
-  // nobody wrote directions for. The two want completely different work.
-  const faults=reports.filter(report=>report.overruledAnswers?.length);
+  // Three lists, because they go to three different places: a fault to the
+  // person who broke it, a contested answer to whoever can judge it, and the
+  // rest to research.
+  const faults=reports.filter(report=>report.reportVersusDecision?.length);
   if(faults.length){
-    console.log(`[dry-run] ${faults.length} of these are a FAULT, not a verdict: the claim is answered and still named as what blocks it.`);
+    console.log(`[dry-run] ${faults.length} are a FAULT: the report and the decision disagree about what blocks them.`);
     for(const report of faults){
-      console.log(`[dry-run]   ${report.trailName}: ${report.overruledAnswers.join(', ')}`);
+      console.log(`[dry-run]   ${report.trailName}: ${report.reportVersusDecision.join(', ')}`);
     }
   }
-  const unclear=reports.filter(report=>!report.overruledAnswers?.length&&!report.unwaivable.length
+  const contested=reports.filter(report=>report.wouldDecideWhenResearchEnds!=='approve'
+    &&report.contestedAnswers?.length);
+  if(contested.length){
+    console.log(`[dry-run] ${contested.length} are answered and held on purpose, because the agent found sources that contradict each other:`);
+    for(const report of contested){
+      console.log(`[dry-run]   ${report.trailName}: ${report.contestedAnswers.join(', ')}`);
+    }
+  }
+  const unclear=reports.filter(report=>!report.reportVersusDecision?.length&&!report.unwaivable.length
     &&report.wouldDecideWhenResearchEnds!=='approve');
   if(unclear.length){
     console.log(`[dry-run] ${unclear.length} have nothing unwaivable and still would not be approved; the gate is reading something this report cannot see.`);
@@ -144,9 +157,12 @@ function say(report){
     const who=claim.authority?` · ${claim.authority}`:'';
     console.log(`[dry-run]   ${name} answered by ${claim.from}${who}`);
   }
-  if(report.overruledAnswers?.length){
-    console.log(`[dry-run] FAULT — answered above, and still named as what decides against it: ${report.overruledAnswers.join(', ')}`);
-    console.log('[dry-run] Two computations of one fact disagree. This is ORMA\u2019s bug, not a verdict on the walk.');
+  if(report.reportVersusDecision?.length){
+    console.log(`[dry-run] FAULT — the report and the decision disagree about: ${report.reportVersusDecision.join(', ')}`);
+    console.log('[dry-run] Two computations of one fact. This is ORMA\u2019s bug, not a verdict on the walk.');
+  }
+  if(report.contestedAnswers?.length){
+    console.log(`[dry-run] Answered, and held on purpose: ${report.contestedAnswers.join(', ')} — the agent found sources that contradict each other.`);
   }
   if(report.unwaivable.length){
     console.log(`[dry-run] Cannot be waived, so these decide it: ${report.unwaivable.join(', ')}`);

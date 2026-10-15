@@ -249,10 +249,32 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&gatePolicy.includes('const item=trail?{...found,trail}:found;')
     // And the two computations are compared, so a future divergence is a
     // reported fault rather than an afternoon of reading the gate by hand.
-    &&dryRun.includes('function overruledAnswers(routeGuidance,decidedUnwaivable)')
+    &&dryRun.includes('function reportVersusDecision(reportUnwaivable,decidedUnwaivable)')
     &&dryRun.includes('currentBlockingReasons(review)')
     &&standard.includes('The record answers in the decision, not only in the report'),
     'The catalogue the worker already loads rides the gate item so ORMA\'s own record answers in the decision and not only in the report, read live rather than taken from the audit; the dry run compares the two computations and reports a disagreement as a fault, never as a verdict on the walk');
+
+  // ORMA's own clearly-labelled suggestion is not overruled by two operators
+  // disagreeing with each other.
+  //
+  // The risk runs both ways. Suppressing ORMA's own answer leaves no answer at
+  // all, which rejected ten trails on 15 October 2026 whose start the catalogue
+  // has always published. And letting any contradiction move would waive one on
+  // a claim an authority answered, where a measurement settles nothing -- so it
+  // moves only where the answer is ORMA's own record, and only for a conflict.
+  add('ormas-own-suggestion-stands-when-authorities-conflict',
+    dossier.includes("const ormaOwnAnswer=standing?.derivedFrom==='orma-record'")
+    &&dossier.includes("||(claim.finding==='conflicted'&&ormaOwnAnswer)")
+    // Not counter-evidence, and not a conflict over an authority's own answer.
+    &&!dossier.includes("claim.finding==='counter-evidence'&&ormaOwnAnswer")
+    // The value the reader gets says whose suggestion it is, which is what
+    // makes this honest rather than a loosened gate.
+    &&recordGuidance.includes('not an operator\u2019s recommendation')
+    &&recordGuidance.includes('CHECK_ACCESS')
+    // And the report names a held contradiction as a judgement, not a bug.
+    &&dryRun.includes('function contestedAnswers(routeGuidance,decidedUnwaivable)')
+    &&standard.includes('own suggestion is not overruled by a disagreement between others'),
+    'Where ORMA\'s own record answers a direction, an agent reporting that published sources contradict each other no longer suppresses it: the value says in its own words that it is ORMA\'s suggestion and tells the reader to check access, the conflict is still recorded as optional detail, and only a conflict over a record-answered claim moves -- counter-evidence and a contradiction over an authority\'s own answer still decide');
 
   // ORMA may answer from its own record, and must always say that it did.
   //

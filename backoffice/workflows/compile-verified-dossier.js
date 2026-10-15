@@ -349,9 +349,21 @@ function acceptedBlockerMap(acceptedBlockers){
  * unknown like any other optional detail.
  */
 function caveatOnAnsweredClaim(output,claim,review,options={}){
-  return output.agentId==='logistics'
-    && VERIFICATION_ROUTE_CLAIMS.includes(claim.id)
-    && Boolean(supportedRouteGuidance(review,claim.id,options));
+  return Boolean(answerStandingFor(output,claim,review,options));
+}
+
+/**
+ * The answer standing for this agent's route claim, whatever the agent made of
+ * its own search, and `null` where nothing answers it.
+ *
+ * `supportedLogisticsClaim` hands back `{agentId, claim}` and the map and the
+ * record hand back the claim itself, so the wrapper is unwrapped here once
+ * rather than at each reader.
+ */
+function answerStandingFor(output,claim,review,options={}){
+  if(output.agentId!=='logistics'||!VERIFICATION_ROUTE_CLAIMS.includes(claim.id))return null;
+  const answer=supportedRouteGuidance(review,claim.id,options);
+  return answer?(answer.claim||answer):null;
 }
 
 function dossierBlockingReasons(outputs,options={}){
@@ -397,8 +409,29 @@ function dossierBlockingReasons(outputs,options={}){
       // and a measurement of where the ways run does not settle a disagreement
       // between two authorities about what to recommend. Those keep deciding.
       const answeredElsewhere=caveatOnAnsweredClaim(output,claim,review,options);
+      const standing=answerStandingFor(output,claim,review,options);
       // An exhausted ladder is the same sentence after five tries.
-      const aboutTheSearch=claim.finding==='unresolved'||exhausted;
+      //
+      // A contradiction is different in kind, and mostly still decides: a
+      // measurement of where the ways run does not settle a disagreement
+      // between two authorities about what to recommend.
+      //
+      // Except where the answer is ORMA's own record. That value says in its
+      // own words that it is ORMA's suggestion from the walk it recorded and
+      // not an operator's recommendation, and tells the reader to check access
+      // before going. Two operators disagreeing with each other does not make
+      // ORMA's own recorded start point wrong, and it was rejecting ten trails
+      // on 15 October 2026 whose start ORMA has always published -- Albannette,
+      // Anello dei Forti, B02, B05, B08 and five more, every one
+      // `recommended-start: conflicted` over a start the catalogue holds.
+      //
+      // The conflict is still recorded, still reaches the desk and the agent
+      // that could settle it, and is accepted as unknown like any other
+      // optional detail. What it no longer does is suppress ORMA's own answer
+      // in favour of no answer at all.
+      const ormaOwnAnswer=standing?.derivedFrom==='orma-record';
+      const aboutTheSearch=claim.finding==='unresolved'||exhausted
+        ||(claim.finding==='conflicted'&&ormaOwnAnswer);
       const file=answeredElsewhere&&aboutTheSearch
         ? `${output.agentId}/${claim.id}-caveat`
         : `${output.agentId}/${claim.id}`;
@@ -584,4 +617,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={trailRecordFor,citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={answerStandingFor,trailRecordFor,citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
