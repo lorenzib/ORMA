@@ -210,6 +210,29 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&standard.includes('The audit on the shelf is read, not re-taken'),
     'A single relation is a single number from end to end, and that derivation has one definition used both by the pass that writes a geometry audit and by the gate that reads one, so the map answers for an audit taken before the field existed without any re-audit; an unnumbered walk stays unanswered and a composite label is left to the measurement that can order it');
 
+  // The unwaivable class is for a direction nobody can supply, not for an
+  // agent reporting what happened when it looked.
+  //
+  // The risk is the ladder being unable to rescue anything: the answer computed
+  // from the map or the record, then overruled by the agent's own admission
+  // that it could not find one, filed under the claim id that nothing can
+  // waive. Ciampeviei had all four answered and was rejected for
+  // `logistics/route-number-switches: unresolved`.
+  //
+  // And the other direction: a claim no rung answered, or an agent reporting a
+  // contradiction rather than a dead end, must still decide.
+  add('a-note-about-the-search-is-not-a-missing-answer',
+    dossier.includes('const aboutTheSearch=')
+    &&dossier.includes("claim.finding==='unresolved'||exhausted")
+    &&dossier.includes('answeredElsewhere&&aboutTheSearch')
+    // Only when some rung of the ladder answered it.
+    &&dossier.includes('const answeredElsewhere=caveatOnAnsweredClaim(output,claim,review,options);')
+    // A contradiction is not a dead end, so it is not in the moving set.
+    &&!dossier.includes("aboutTheSearch=claim.finding==='conflicted'")
+    &&!dossier.includes("'counter-evidence'].includes(claim.finding)||exhausted")
+    &&standard.includes("A note about the agent's own search is not a missing answer"),
+    'A route claim answered by any rung of the ladder files what the agent reports about its own search as a caveat under the claim\'s own suffix -- still reaching the desk, still accepted as unknown, no longer deciding -- and only an unresolved finding or an exhausted ladder moves; a contradiction keeps deciding, and a claim no rung answered is refused exactly as before');
+
   // ORMA may answer from its own record, and must always say that it did.
   //
   // The risk is not that the start is wrong -- it is one ORMA already published

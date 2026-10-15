@@ -375,14 +375,46 @@ function dossierBlockingReasons(outputs,options={}){
       // gate on 13 October with 110 blockers, not one of them unwaivable, and
       // was sent back to research detail that had already given up.
       const exhausted=claim.resolution?.state==='source-exhausted';
-      if(!exhausted&&['conflicted','unresolved','counter-evidence'].includes(claim.finding)) reasons.push(`${output.agentId}/${claim.id}: ${claim.finding}`);
+      // What the agent found out about its own search, filed where it cannot be
+      // mistaken for the walk having no answer.
+      //
+      // The whole point of the three-source ladder is that where the agent
+      // cannot establish a direction, the map or ORMA's record can. But the
+      // agent's own admission that it could not -- `unresolved`, or every
+      // strategy spent -- was itself filed under the claim id, which is in the
+      // class no reason can waive. So the answer was computed, reported, and
+      // then overruled by the very failure it exists to cover: the ladder could
+      // never once rescue a trail.
+      //
+      // Anello di Ciampeviei read that way on 15 October 2026. Its start,
+      // status and sequence came from the Lozzo di Cadore authority and its
+      // switches from the map -- all four answered -- and the gate rejected it
+      // for `logistics/route-number-switches: unresolved`. Thirteen trails
+      // carrying a route number on their own relation stood behind it.
+      //
+      // Only `unresolved` and an exhausted ladder move. `conflicted` and
+      // `counter-evidence` mean the agent learned something that contradicts,
+      // and a measurement of where the ways run does not settle a disagreement
+      // between two authorities about what to recommend. Those keep deciding.
+      const answeredElsewhere=caveatOnAnsweredClaim(output,claim,review,options);
+      // An exhausted ladder is the same sentence after five tries.
+      const aboutTheSearch=claim.finding==='unresolved'||exhausted;
+      const file=answeredElsewhere&&aboutTheSearch
+        ? `${output.agentId}/${claim.id}-caveat`
+        : `${output.agentId}/${claim.id}`;
+      if(!exhausted&&['conflicted','unresolved','counter-evidence'].includes(claim.finding)){
+        reasons.push(`${file}: ${claim.finding}`);
+      }
       // The count comes from the claim, because it is no longer one number:
       // route guidance keeps five attempts and optional detail stops at three.
       // It is never matched on -- `automated resolution strategies exhausted`
       // is the part consumers recognise -- so the figure here is for a reader.
-      if(claim.resolution?.state==='source-exhausted') reasons.push(`${output.agentId}/${claim.id}: ${claim.resolution.maximumAttempts||'all'} automated resolution strategies exhausted`);
-      const caveat=caveatOnAnsweredClaim(output,claim,review,options);
-      for(const blocker of claim.blockers||[]) reasons.push(caveat
+      if(exhausted){
+        reasons.push(`${file}: ${claim.resolution.maximumAttempts||'all'} automated resolution strategies exhausted`);
+      }
+      // A footnote on an answered claim was the first place this went wrong, and
+      // it moves whatever the finding says: a note is a note.
+      for(const blocker of claim.blockers||[]) reasons.push(answeredElsewhere
         ? `${output.agentId}/${claim.id}-caveat: ${blocker}`
         : `${output.agentId}/${claim.id}: ${blocker}`);
     }
