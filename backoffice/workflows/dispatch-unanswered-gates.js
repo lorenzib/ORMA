@@ -50,6 +50,30 @@ const DISPATCHABLE_GATES=Object.freeze(['dossier-approval','geometry-approval'])
 // typed again here, so the two cannot drift apart.
 const RESOLUTION_ATTEMPT_LIMIT=MAX_AUTOMATED_ATTEMPTS;
 
+/**
+ * How often a gate is dispatched when nothing unwaivable stands.
+ *
+ * The full limit is right for a gate held by route guidance: that blocker
+ * decides whether the trail can be verified at all, and chasing it five times
+ * is worth the calls. It is wrong for a gate held only by optional detail,
+ * where the verdict is already settled and every dispatch buys a fuller
+ * dossier rather than a different answer.
+ *
+ * Measured: a trail with nothing unwaivable took five dispatches to logistics
+ * and two policy revisions -- seven model calls, each a web search -- to reach
+ * the approval it was always going to get.
+ */
+const OPTIONAL_DETAIL_DISPATCHES=1;
+
+/** Whether any blocker on this gate is one no reason can waive. */
+function heldBySomethingUnwaivable(item){
+  return (item?.blockingReasons||[]).some(reason=>!waivableBlocker(reason));
+}
+
+function dispatchLimitFor(item){
+  return heldBySomethingUnwaivable(item)?RESOLUTION_ATTEMPT_LIMIT:OPTIONAL_DETAIL_DISPATCHES;
+}
+
 const DEFAULT_LIMIT=3;
 const MAX_LISTED_REASONS=12;
 
@@ -135,7 +159,7 @@ function planGateDispatches(orchestration,reviewQueue,options={}){
       ||(item.blockingReasons||[]).some(reason=>!waivableBlocker(reason));
     if(!mustReachAnAgent
       &&!answerableCountsByAgent(item.blockingReasons).size){hold(item,'nothing-a-re-run-can-answer');continue;}
-    if((trail.resolutionAttempts?.[targetAgent]||0)>=RESOLUTION_ATTEMPT_LIMIT){hold(item,'resolution-attempts-exhausted');continue;}
+    if((trail.resolutionAttempts?.[targetAgent]||0)>=dispatchLimitFor(item)){hold(item,'resolution-attempts-exhausted');continue;}
     const outstandingAgents=[...blockerCountsByAgent(item.blockingReasons).keys()];
     // A geometry conflict is the cartographer's to settle, but the agents file
     // it under evidenceLibrarian/redTeam claim ids, so blockersForAgent finds
@@ -152,4 +176,4 @@ function planGateDispatches(orchestration,reviewQueue,options={}){
   return {dispatches:dispatches.slice(0,limit),held,deferred:Math.max(0,dispatches.length-limit)};
 }
 
-module.exports={DISPATCHABLE_GATES,RESOLUTION_ATTEMPT_LIMIT,DEFAULT_LIMIT,dispatchNote,planGateDispatches};
+module.exports={DISPATCHABLE_GATES,RESOLUTION_ATTEMPT_LIMIT,OPTIONAL_DETAIL_DISPATCHES,heldBySomethingUnwaivable,dispatchLimitFor,DEFAULT_LIMIT,dispatchNote,planGateDispatches};

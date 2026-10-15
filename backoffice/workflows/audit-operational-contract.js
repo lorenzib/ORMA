@@ -3,6 +3,8 @@
 const fs=require('fs/promises');
 const path=require('path');
 const {MAX_AUTOMATED_ATTEMPTS,MAX_WAIVABLE_ATTEMPTS,RETRY_DELAYS_HOURS}=require('../contracts/resolution-policy-v1');
+const {MAX_OPTIONAL_REVISIONS}=require('./automate-existing-trail-verification');
+const {OPTIONAL_DETAIL_DISPATCHES,dispatchLimitFor}=require('./dispatch-unanswered-gates');
 
 async function read(root,relative){return fs.readFile(path.join(root,relative),'utf8');}
 
@@ -50,6 +52,25 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&dossier.includes('automated resolution strategies exhausted')
     &&standard.includes('Optional detail stops at three'),
     'Route guidance keeps all five research attempts and optional detail stops at three, since an optional claim is recorded unknown either way while the policy will not approve a trail with one still researchable; the exhausted sentence states no count, so no consumer matches a number that is now two numbers');
+  // The ladder is one layer; the gate asking again is another. The policy
+  // rejects a missing direction before it ever reaches here, so a gate still
+  // open is held only by optional detail and the verdict is already settled --
+  // every further revision buys a thicker dossier, not a different answer.
+  // Fifteen model calls bought the approval the first pass already stood on.
+  add('a-settled-verdict-is-not-researched-again',
+    MAX_OPTIONAL_REVISIONS===1
+    &&OPTIONAL_DETAIL_DISPATCHES===1
+    &&MAX_OPTIONAL_REVISIONS<MAX_AUTOMATED_ATTEMPTS
+    &&OPTIONAL_DETAIL_DISPATCHES<MAX_AUTOMATED_ATTEMPTS
+    // One look is kept, not none: a first pass can miss what a second finds.
+    &&MAX_OPTIONAL_REVISIONS>0&&OPTIONAL_DETAIL_DISPATCHES>0
+    // A gate on route guidance still gets the full ladder.
+    &&dispatchLimitFor({blockingReasons:['logistics/route-number-switches: sourced route guidance is required']})===MAX_AUTOMATED_ATTEMPTS
+    &&dispatchLimitFor({blockingReasons:['logistics: open question — where is the car park?']})===OPTIONAL_DETAIL_DISPATCHES
+    &&gatePolicy.includes('MAX_OPTIONAL_REVISIONS')
+    &&!gatePolicy.includes('[agentId]||0)<MAX_AUTOMATED_ATTEMPTS')
+    &&standard.includes('A settled verdict is not researched again'),
+    'A gate held only by optional detail is dispatched once and revised once per agent, because the policy has already rejected anything unwaivable and the remaining calls buy a thicker dossier rather than a different verdict; a gate held by route guidance keeps all five, and one look is kept rather than none');
   add('publication-failure-receipts',workflows['orma-backoffice-worker.yml']?.includes('Record publication automation failure')&&workflows['orma-backoffice-worker.yml']?.includes('force_publication_retry'),'Publication approval is retained through durable failure receipts and an explicit recovery input');
   const publicationWorkflow=workflows['orma-backoffice-worker.yml']||'';
   add('publication-validation-circuit-breaker',publicationWorkflow.includes('backoffice:publication-gate')&&publicationWorkflow.includes("if: steps.website_gate.outputs.publication_allowed == 'true'")&&publicationWorkflow.includes('outcome="blocked"')&&dashboard.includes("artifact.status==='blocked'"),'A red or missing Validate ORMA result pauses only website materialization, preserves approvals, and appears as a blocked dashboard heartbeat while queue work continues');
