@@ -99,12 +99,21 @@ async function automateEvidenceGates(store,options={}){
   if(!orchestration||!rawQueue)return [];
   const existingIds=Array.isArray(options.productionTrails)
     ?new Set(options.productionTrails.map(trail=>String(trail.id))):null;
+  // The catalogue the worker already loaded, keyed so the decision can answer
+  // from ORMA's own record. It was being used only to scope which trails to
+  // look at, while the two claims the record answers rejected 22 of 34 trails
+  // for want of a fact sitting in this very list.
+  const catalogue=new Map((options.productionTrails||[]).map(trail=>[String(trail.id),trail]));
   const pending=queuedIds(queued,'reviewId');const outcomes=[];
   for(const raw of (rawQueue.items||[]).filter(item=>item.state==='awaiting-human').slice(0,options.autoVerificationLimit||20)){
     if(existingIds&&!existingIds.has(String(raw.trailId||raw.candidateId)))continue;
     if(pending.has(String(raw.reviewId)))continue;
     const hydrated=await rehydrateReviewQueue(store,rawQueue,raw.reviewId);
-    const item=(hydrated.items||[]).find(entry=>entry.reviewId===raw.reviewId)||raw;
+    const found=(hydrated.items||[]).find(entry=>entry.reviewId===raw.reviewId)||raw;
+    // Read live rather than taken from the audit, so a start point corrected
+    // since the cartographer last ran is the one the gate decides on.
+    const trail=catalogue.get(String(found.trailId))||catalogue.get(String(found.candidateId))||null;
+    const item=trail?{...found,trail}:found;
     const decision=gateDecision(item,hydrated,orchestration,pending);
     if(!decision)continue;
     try{

@@ -46,8 +46,15 @@ function parseArgs(argv){
  */
 function verdictOf(report){
   if(report.wouldDecideWhenResearchEnds==='approve')return 'CAN be verified';
-  if(report.overruledAnswers?.length)return `FAULT: answered, yet blocked by ${report.overruledAnswers.join(', ')}`;
-  if(report.unwaivable.length)return `cannot: blocked by ${report.unwaivable.join(', ')}`;
+  const overruled=report.overruledAnswers||[];
+  // A trail can carry both, and the two want completely different work: one is
+  // a bug to fix, the other a walk somebody has to go and research. Returning
+  // the fault first hid the real blocker, so Boucle du Taillefer read as a pure
+  // bug when it also genuinely carries no route number.
+  const real=report.unwaivable.filter(id=>!overruled.includes(id));
+  if(overruled.length&&real.length)return `FAULT ${overruled.join(', ')} + blocked by ${real.join(', ')}`;
+  if(overruled.length)return `FAULT: answered, yet blocked by ${overruled.join(', ')}`;
+  if(real.length)return `cannot: blocked by ${real.join(', ')}`;
   // Nothing unwaivable, and still not an approval. The gate is deciding on
   // something this report cannot see, which is worth naming rather than
   // printing as though the trail were refused.
@@ -84,10 +91,16 @@ function sayShortlist(reports){
   const standing=new Map();
   for(const report of reports){
     if(report.wouldDecideWhenResearchEnds==='approve')continue;
-    for(const id of report.unwaivable)standing.set(id,(standing.get(id)||0)+1);
+    // A fault is counted as a fault below, not here. Counting it in both made
+    // "what stops the rest" read as research to commission when it was a bug
+    // to fix, which is the one distinction this tally exists to draw.
+    for(const id of report.unwaivable){
+      if((report.overruledAnswers||[]).includes(id))continue;
+      standing.set(id,(standing.get(id)||0)+1);
+    }
   }
   if(standing.size){
-    console.log('[dry-run] What stops the rest, most common first:');
+    console.log('[dry-run] What research the rest still needs, most common first:');
     for(const [id,count] of [...standing.entries()].sort((a,b)=>b[1]-a[1])){
       console.log(`[dry-run]   ${String(count).padStart(3)}x ${id}`);
     }
@@ -190,4 +203,4 @@ async function main(options={}){
 
 if(require.main===module)main().catch(error=>{console.error(`[dry-run] ${error.message}`);process.exitCode=1;});
 
-module.exports={parseArgs,sayShortlist,dryRunOne,main};
+module.exports={parseArgs,verdictOf,sayShortlist,dryRunOne,main};

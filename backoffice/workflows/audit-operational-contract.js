@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -30,6 +30,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/contracts/trail-orchestration-v1.js'),
     read(root,'backoffice/workflows/start-live-trail-campaign.js'),
     read(root,'backoffice/workflows/run-cartographer.js'),
+    read(root,'backoffice/workflows/gate-dry-run.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -232,6 +233,26 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&!dossier.includes("'counter-evidence'].includes(claim.finding)||exhausted")
     &&standard.includes("A note about the agent's own search is not a missing answer"),
     'A route claim answered by any rung of the ladder files what the agent reports about its own search as a caveat under the claim\'s own suffix -- still reaching the desk, still accepted as unknown, no longer deciding -- and only an unresolved finding or an exhausted ladder moves; a contradiction keeps deciding, and a claim no rung answered is refused exactly as before');
+
+  // The report and the decision are two computations of one fact.
+  //
+  // The risk is a claim answered everywhere except where it counts. A gate
+  // recomputes its blockers from the stored outputs and was handed no trail, so
+  // ORMA's record answered in every report and in no decision: 22 of 34 trails
+  // named these two claims as what rejected them while the catalogue held the
+  // answer.
+  add('the-record-answers-in-the-decision-too',
+    dossier.includes('function trailRecordFor(review)')
+    &&dossier.includes("dossierBlockingReasons(outputs,trail?{trail}:{})")
+    // Read live, not taken from an audit that may predate the field.
+    &&gatePolicy.includes('catalogue.get(String(found.trailId))')
+    &&gatePolicy.includes('const item=trail?{...found,trail}:found;')
+    // And the two computations are compared, so a future divergence is a
+    // reported fault rather than an afternoon of reading the gate by hand.
+    &&dryRun.includes('function overruledAnswers(routeGuidance,decidedUnwaivable)')
+    &&dryRun.includes('currentBlockingReasons(review)')
+    &&standard.includes('The record answers in the decision, not only in the report'),
+    'The catalogue the worker already loads rides the gate item so ORMA\'s own record answers in the decision and not only in the report, read live rather than taken from the audit; the dry run compares the two computations and reports a disagreement as a fault, never as a verdict on the walk');
 
   // ORMA may answer from its own record, and must always say that it did.
   //

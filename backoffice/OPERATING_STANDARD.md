@@ -933,6 +933,31 @@ needs no re-audit to see what the map has always said.
 A walk the map gives no number for stays unanswered rather than invented, and a
 composite's joined label is left to the measurement that can order it.
 
+### The record answers in the decision, not only in the report
+
+A gate recomputes its blockers from the stored outputs rather than trusting
+what was written down when it opened, which is right. But it was handed no
+trail, so **ORMA's own record answered in every report and in no decision.**
+
+Measured on 15 October 2026: **22 of 34 trails** named `recommended-start` or
+`route-number-status` as the thing rejecting them while ORMA's own catalogue
+held the answer. Fenn Promenade's report read "all four answered · nothing
+unwaivable · 0 blockers" directly above "reject, because those two are
+required".
+
+The catalogue the worker already loads — it was being used only to scope which
+trails to look at — now rides the gate item, read live rather than taken from
+the audit, so a start point corrected since the cartographer last ran is the one
+the gate decides on. Where there is no record to read, the two claims it answers
+are honestly refused rather than quietly waved through.
+
+**The report and the decision are two computations of one fact and must agree.**
+The gate dry run compares them and reports any disagreement as a fault rather
+than a verdict, because a disagreement means one of them is seeing evidence the
+other cannot — never that there is anything wrong with the walk. A trail
+carrying both a fault and a real blocker says both: one is a bug to fix, the
+other a walk somebody has to go and research, and they were reading alike.
+
 ## Three kinds of answer, and the reader is told which
 
 A route-guidance claim may be answered three ways, and they are not equal. The

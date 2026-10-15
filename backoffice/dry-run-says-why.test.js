@@ -1,6 +1,6 @@
 'use strict';
 
-const {gateDryRun}=require('./workflows/gate-dry-run');
+const {gateDryRun,overruledAnswers}=require('./workflows/gate-dry-run');
 const {singleRelationGuidance}=require('./workflows/route-guidance-from-map');
 const {ROUTE_GUIDANCE_CLAIM_IDS,currentBlockingReasons,
   supportedRouteGuidance}=require('./workflows/compile-verified-dossier');
@@ -59,32 +59,51 @@ function run(outputs,over={},trail=null){
 }
 
 describe('the report says why, and never argues with itself',()=>{
-  test('an answered claim that still blocks is reported as a fault',()=>{
-    // The still-live disagreement, and the one that is harder to see: ORMA's
-    // own record answers in the report, which reads the catalogue as it stands,
-    // and cannot answer in the decision, which recomputes from the stored
-    // outputs alone and is never handed the trail. Fenn Promenade read that way
-    // -- all four answered, nothing unwaivable, zero blockers, reject.
+  test('the detector fires when the two computations disagree, and only then',()=>{
+    // Tested directly, because the thing it guards must now never happen: the
+    // report and the decision are handed the same evidence, so a disagreement
+    // is a fault somebody has reintroduced.
     //
-    // This fixture was first written round the map and a claim the agent could
-    // not settle. That is the fault the very next change removed, so the test
-    // became one forbidding its own fix: a test that pins a live bug as its
-    // fixture outlives the bug.
-    const report=run([numberedRelation('69'),unresolvedClaim('recommended-start')],{},START);
+    // This test was twice written round whichever contradiction was live at the
+    // time, and twice the next commit removed it -- leaving a test that
+    // forbade its own fix. A fixture that pins a live bug outlives the bug.
+    const guidance=[{claimId:'recommended-start',answered:true},
+      {claimId:'route-number-status',answered:true},
+      {claimId:'route-number-sequence',answered:false}];
 
-    // The report can see it, because it was given the catalogue.
+    // Fenn Promenade's shape on 15 October: answered in the report, rejected by
+    // the decision for exactly those two.
+    expect(overruledAnswers(guidance,
+      ['logistics/recommended-start','logistics/route-number-status']))
+      .toEqual(['logistics/recommended-start','logistics/route-number-status']);
+
+    // A claim nobody answered is a blocker, not a contradiction.
+    expect(overruledAnswers(guidance,['logistics/route-number-sequence'])).toEqual([]);
+    // And agreement reports nothing at all.
+    expect(overruledAnswers(guidance,[])).toEqual([]);
+    expect(overruledAnswers([],['logistics/recommended-start'])).toEqual([]);
+  });
+
+  test("ORMA's own record answers in the decision, not only in the report",()=>{
+    // The fault that made the detector necessary. The gate recomputes its
+    // blockers from the stored outputs, and the record answered in every report
+    // and in no decision: 22 of 34 trails named these two claims as the thing
+    // rejecting them while the catalogue held the answer.
+    const report=run([numberedRelation('69')],{},START);
     expect(report.routeGuidance.find(entry=>entry.claimId==='recommended-start'))
       .toMatchObject({answered:true,from:"ORMA's own record"});
+    expect(report.overruledAnswers).toEqual([]);
+    expect(report.unwaivable).toEqual([]);
+    // Which is the whole point: the verdict changes, not just the wording.
+    expect(report.wouldDecideWhenResearchEnds).toBe('approve');
+  });
 
-    // The report's own blocker list agrees it is answered -- it had the
-    // catalogue too -- so nothing in the report looks wrong.
-    expect(report.unwaivable).not.toContain('logistics/recommended-start');
-    // And the decision, which had no catalogue, rejects for exactly that
-    // claim. That is the contradiction, and it is now stated rather than left
-    // to be spotted across two halves of a report.
-    expect(report.overruledAnswers).toEqual(['logistics/recommended-start']);
-    expect(report.wouldDecideWhenResearchEnds).toBe('reject');
-    expect(report.note).toContain('logistics/recommended-start');
+  test('and without the catalogue it is honestly refused, not quietly waved through',()=>{
+    // No record to read, so the two claims it answers are genuinely missing.
+    const report=run([numberedRelation('69')]);
+    expect(report.routeGuidance.find(entry=>entry.claimId==='recommended-start').answered).toBe(false);
+    expect(report.unwaivable).toContain('logistics/recommended-start');
+    expect(report.overruledAnswers).toEqual([]);
   });
 
   test('a genuinely unanswered claim is not a fault, just a blocker',()=>{
