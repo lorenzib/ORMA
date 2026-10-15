@@ -6,6 +6,33 @@ const {rehydrateReviewQueue}=require('./rehydrate-review-detail');
 const {blockerCountsByAgent,blockersForAgent}=require('../revision-target');
 const {MAX_AUTOMATED_ATTEMPTS}=require('../contracts/resolution-policy-v1');
 
+/**
+ * How many times the gate sends a trail back when only optional detail stands.
+ *
+ * By the time this is reached the policy has already established that nothing
+ * unwaivable is outstanding -- a missing route claim rejects two lines above.
+ * So every revision from here researches detail the policy will record as
+ * `unknown` whichever way it goes: the verdict is already decided and only the
+ * thickness of the dossier is at stake.
+ *
+ * It was MAX_AUTOMATED_ATTEMPTS, five per agent. Measured on a trail with
+ * nothing unwaivable: fifteen revisions before approval, three agents by five,
+ * each one a specialist job and each a model call with a web search.
+ * "Itinéraire découverte de la nature" spent eleven passes that way on 15
+ * October and came to rest without a seal, and a whole top-up bought about a
+ * trail and a half.
+ *
+ * One more look per agent keeps what the patience was for -- a first pass can
+ * genuinely miss what a second finds -- and gives up the twelve calls that
+ * were buying a fuller account of car park coordinates. ORMA tells a walker
+ * the trail is real and what its terrain means for a dog; it does not promise
+ * an exhaustive census of the cafés near it.
+ *
+ * A trail short of route guidance is untouched: that rejects above, and the
+ * dispatch that chases a missing direction runs before any of this.
+ */
+const MAX_OPTIONAL_REVISIONS=1;
+
 const POLICY_ACTOR='orma-existing-trail-verifier-v1';
 const OPTIONAL_UNKNOWN_REASON='Automated evidence policy: the full research ladder was exhausted; this remains unknown and no unsupported fact will be published.';
 
@@ -57,7 +84,7 @@ function gateDecision(item,reviewQueue,orchestration,queuedReviewIds){
     // blockers were all exhausted looking like it still had research to do,
     // and circulating for ever. Exactly the shape of #472.
     const exhaustedByClaim=mine.length&&mine.every(reason=>/automated resolution strategies exhausted/i.test(reason));
-    return !exhaustedByClaim&&Number(trail?.resolutionAttempts?.[agentId]||0)<MAX_AUTOMATED_ATTEMPTS;
+    return !exhaustedByClaim&&Number(trail?.resolutionAttempts?.[agentId]||0)<MAX_OPTIONAL_REVISIONS;
   });
   if(remaining)return {action:'request-revision',targetAgent:remaining,acceptedBlockers:[],
     note:`ORMA evidence policy: continue exhaustive optional-detail scouting for ${blockersForAgent(blockers,remaining).join('; ')}. Preserve unsupported claims as unknown.`};
@@ -150,4 +177,4 @@ async function automatePublicationReviews(store,options={}){
   return outcomes;
 }
 
-module.exports={POLICY_ACTOR,OPTIONAL_UNKNOWN_REASON,gateDecision,automateEvidenceGates,automateEditorialReviews,automatePublicationReviews};
+module.exports={MAX_OPTIONAL_REVISIONS,POLICY_ACTOR,OPTIONAL_UNKNOWN_REASON,gateDecision,automateEvidenceGates,automateEditorialReviews,automatePublicationReviews};

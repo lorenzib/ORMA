@@ -564,6 +564,36 @@ consumer that had been matching the literal `five` would have quietly matched
 nothing from the day this changed, leaving every such trail circulating for
 ever.
 
+### A settled verdict is not researched again
+
+The research ladder is one layer. The gate is another, and it was asking the
+same question fifteen more times.
+
+When the evidence policy reaches a dossier gate it first rejects anything
+standing on a missing direction. So a gate that is still open past that point
+is held only by optional detail, and the verdict is already known: approve, and
+record the rest as unknown. Every revision from there buys a thicker dossier,
+never a different answer. It was five revisions per agent, three agents
+reporting, plus five dispatches to the agent with the most blockers — fifteen
+model calls, each one a specialist job with a web search, to arrive where the
+first pass already stood.
+
+A gate held only by optional detail now gets **one** dispatch and **one**
+revision per agent. A gate held by route guidance keeps the full limit, because
+that blocker decides whether the trail can be verified at all and is worth
+every call. One look is kept rather than none: a first pass can genuinely miss
+what a second finds.
+
+Measured on the same trail, before and after: fifteen model calls to reach
+approval, now three. A trail short of directions still costs five, and still
+ends in a rejection the walker is better off with.
+
+This is the cost of the catalogue, not of one walk. On 15 October 2026 a
+twenty-dollar top-up bought about a trail and a half, and *Itinéraire
+découverte de la nature* spent eleven passes before coming to rest with no seal
+at all. ORMA promises a walker that a trail is real and that its terrain has
+been read for a dog. It does not promise an exhaustive census of the car parks.
+
 ## Two campaign budgets, and where a stopped trail goes
 
 Admission to the pipeline is bounded by two separate budgets, because they
