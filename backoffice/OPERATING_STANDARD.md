@@ -634,6 +634,46 @@ validation and retired the job, while answering `unresolved` instead blocked the
 dossier gate. A contract that no honest answer satisfies stops the pipeline just
 as surely as a missing agent.
 
+## A seal does not wait for optional detail
+
+The four route claims are the only unwaivable ones, and since the map and
+ORMA's own record learned to answer them, a trail can have all four settled from
+its **geometry survey alone** — which is free, deterministic and needs no model.
+Measured 15 October 2026: **152 of the catalogue's 162 trails** hold everything
+those four need.
+
+Everything an agent researches beyond them is optional, and the evidence policy
+accepts it as unknown once research runs out. A trail in that position is not
+waiting to find out whether it can be verified. It is waiting to find out how
+full its page will be — and the seal was queued behind that.
+
+It cost the catalogue its throughput. Eight stages and about eight jobs a trail,
+three worker passes a day: four trails a day, **forty days for 162 and three
+months for a thousand**. Five of those jobs are model calls producing detail
+that half the time comes back unknown. On 16 October they could not run at all,
+because the credits had gone, while seven trails they were blocking needed
+nothing from them.
+
+So where a survey has settled all four directions and no agent has yet spoken,
+the trail goes to the dossier gate on what it has.
+
+**What the seal says, stated plainly.** It says the line is real and the
+directions are right. It does not say every café on the route has been found.
+That was always what the contract encoded — those four are unwaivable and
+everything else is explicitly waivable — but the queue made the seal wait for
+the waivable part, so in practice it promised more than it said. It now promises
+exactly what it says.
+
+**Only where no agent has spoken at all.** A trail already part-way through
+research keeps its research; overtaking it would throw away work already paid
+for. And a trail whose directions are not settled waits for the agents exactly
+as it always did.
+
+Research is deferred, not cancelled. A sealed trail's page is filled in by the
+agents afterwards, at whatever rate credits allow, and that lane is not built
+yet — until it is, a trail sealed this way carries unknowns a later pass would
+have answered.
+
 ## Approval means every blocker was addressed, not that there were none
 
 Five agents researching a mountain trail always leave loose ends, and a gate
