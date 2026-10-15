@@ -207,12 +207,35 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     // Measured with the same functions the composite search uses.
     &&numbersAlong.includes("require('./discover-route-composite')")
     &&numbersAlong.includes("require('./route-ref-segments')")
-    &&cartographer.includes('singleRelationGuidance(reconstructed.relation)\n    || await measureNumbersAlong(')
+    &&cartographer.includes('const ownNumber = singleRelationGuidance(reconstructed.relation);')
+    &&cartographer.includes('await measureNumbersAlong(')
     // Said to be running along them, not being them.
     &&mapGuidance.includes('This walk carries no route number of its own. The mapped route runs along')
     &&dossier.includes('if(result?.routeGuidance?.relations?.length)return result.routeGuidance.relations;')
     &&standard.includes('A walk with no number of its own still has numbers along it'),
     'A walk carrying no route number of its own has the numbered walking routes running along it measured with the same functions the composite search uses: footpath route relations only -- never a cycle route, and never a way\'s own ref, which is where the road numbers are -- a crossing route folded away, a numberless stretch refused as an answer, the value saying it runs along those waymarks rather than being them, and the citation naming them rather than the unnumbered walk');
+
+  // A walk with no number still tells a walker how to follow it.
+  //
+  // The risk is a walk being told it has no number because nobody looked.
+  // Measured-and-found-nothing is a fact about the walk; never-measured is a
+  // fact about ORMA, and an audit taken before the along-the-walk measurement
+  // existed can say neither -- so the claim rests on a positive mark and not on
+  // an absent field.
+  add('a-walk-with-no-number-says-how-to-follow-it',
+    cartographer.includes('const routeNumbersAbsent = along.measured && !along.guidance;')
+    &&dossier.includes('const routeNumbersAbsent=Boolean(result?.routeNumbersAbsent);')
+    &&recordGuidance.includes('if(options.routeNumbersAbsent){')
+    // Landmarks in order with their distance, and the honest fallback.
+    &&recordGuidance.includes('function recordedLandmarks(trail)')
+    &&recordGuidance.includes('no landmark sequence recorded for it')
+    // Water labels are not landmarks.
+    &&!recordGuidance.includes('trail?.waterSources')
+    // The record is still the bottom rung: the map's number wins where it has one.
+    &&dossier.includes('if(MAP_ANSWERABLE_CLAIMS.includes(id)){')
+    &&dossier.includes('const sourced=supportedLogisticsClaim(review,id);')
+    &&standard.includes('A walk with no number says how to follow it'),
+    'A walk the map was searched for numbers on and found none is answered from ORMA\'s record in landmark terms -- the start, then each recorded landmark in order with its distance -- or, where none is recorded, told to follow the walk\'s name and the mapped line; it rests on the audit\'s positive measured-and-none mark so a walk nobody measured is never told it has no number, water labels are not offered as landmarks, and a measured number or a cited authority still wins');
 
   // One derivation for the pass that writes an audit and the gate that reads
   // one.
@@ -312,10 +335,15 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     recordGuidance.includes('not an operator\u2019s recommendation')
     &&recordGuidance.includes("authority: ORMA_AUTHORITY")
     &&recordGuidance.includes('const ORMA_AUTHORITY = \'ORMA\'')
-    &&dossier.includes("RECORD_ANSWERABLE_CLAIMS=Object.freeze(['recommended-start','route-number-status'])")
+    // The start and the numbering for any walk, and the other two only for a
+    // walk the map was searched on and found none -- where there is no number
+    // for anybody to supply.
+    &&dossier.includes("RECORD_ANSWERABLE_CLAIMS=Object.freeze(['recommended-start','route-number-status',")
+    &&dossier.includes("'route-number-sequence','route-number-switches'])")
+    &&recordGuidance.includes('if(options.routeNumbersAbsent){')
     &&dossier.includes('const sourced=supportedLogisticsClaim(review,id);')
     &&standard.includes('Three kinds of answer, and the reader is told which'),
-    'Where no authority and no map can answer, ORMA answers the start and the trail numbers from the walk it already recorded, every value saying it is ORMA\'s own suggestion and citing ORMA rather than an authority nobody found; an authority always wins, and a walk with neither a record nor an authority is not verified');
+    'Where no authority and no map can answer, ORMA answers the start and the trail numbers from the walk it already recorded, every value saying it is ORMA\'s own suggestion and citing ORMA rather than an authority nobody found; for a walk the map was searched on and found no number it also answers the order and the turns in landmark terms, since no number exists for anybody to supply; an authority always wins, and a walk with neither a record nor an authority is not verified');
 
   // A walk nobody wrote about is not a walk that failed.
   //

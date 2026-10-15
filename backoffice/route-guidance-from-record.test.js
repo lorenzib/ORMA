@@ -82,11 +82,18 @@ describe('the ladder the gate climbs',()=>{
     proposedValue:'Start at the Plaine-Joux car park.',
     sources:[{label:'Commune',url:'https://example.test/r',authority:'Commune de Passy'}]}]}});
 
-  test('ORMA answers the two the map cannot',()=>{
-    expect(RECORD_ANSWERABLE_CLAIMS).toEqual(['recommended-start','route-number-status']);
-    // Between them the map and the record cover all four.
-    expect([...MAP_ANSWERABLE_CLAIMS,...RECORD_ANSWERABLE_CLAIMS].sort())
+  test('ORMA answers the two the map cannot, and the numbers for a walk with none',()=>{
+    // The first two for any walk. The other two only where the map has been
+    // searched for numbers and found none, because then there is no number for
+    // anybody to supply and landmarks are the honest answer -- the record
+    // refuses them without the audit's measured-and-none mark.
+    expect(RECORD_ANSWERABLE_CLAIMS).toEqual(['recommended-start','route-number-status',
+      'route-number-sequence','route-number-switches']);
+    // Between them the map and the record cover all four, and the two they
+    // both answer are the two the map answers better where it can.
+    expect([...new Set([...MAP_ANSWERABLE_CLAIMS,...RECORD_ANSWERABLE_CLAIMS])].sort())
       .toEqual([...ROUTE_GUIDANCE_CLAIM_IDS].sort());
+    expect(MAP_ANSWERABLE_CLAIMS.every(id=>RECORD_ANSWERABLE_CLAIMS.includes(id))).toBe(true);
   });
 
   test('all four are answered for a walk no authority has written about',()=>{

@@ -75,6 +75,83 @@ function recordedStatus(trail, measuredRefs){
 }
 
 /**
+ * The places ORMA already recorded along this walk, in the order a walker
+ * meets them.
+ *
+ * `decisionPoints` are hand-written: a kilometre mark and a sentence saying
+ * what is there and what to do about it -- "Taillefer high point (766 m):
+ * benches and the double panorama over the Grand and Petit lac d'Annecy". That
+ * is the best landmark ORMA holds. Named huts and bars come next, and they
+ * carry a kilometre mark too.
+ *
+ * Water sources are left out on purpose. Their labels are mostly "Drinking
+ * water (OSM-verified location)" -- useful on a trail page, useless as a thing
+ * to navigate by, and a sequence of five identical sentences is not guidance.
+ */
+function recordedLandmarks(trail){
+  const seen = new Set();
+  const landmarks = [];
+  const add = (km, text) => {
+    const name = trimmed(text);
+    const at = Number(km);
+    if(!name || !Number.isFinite(at) || seen.has(name.toLowerCase())) return;
+    seen.add(name.toLowerCase());
+    landmarks.push({ km: at, name });
+  };
+  // A decision point is written as "place: what is there" -- "Taillefer high
+  // point (766 m): benches and the double panorama over the two lakes". The
+  // place is the landmark; the rest belongs on the trail page, and reading the
+  // whole sentence into a list leaves "...over the two lakes at 3.6 km".
+  for(const point of trail?.decisionPoints || []){
+    add(point?.km, trimmed(point?.instruction).split(/\s*:\s/)[0]);
+  }
+  for(const hut of trail?.rifugi || []) add(hut?.km, hut?.name);
+  return landmarks.sort((left, right) => left.km - right.km);
+}
+
+const km = value => `${Number(value).toFixed(1).replace(/\.0$/, '')} km`;
+
+/** "passes X at 3.6 km, then Y at 6.2 km" -- an order, not an instruction. */
+function landmarkRun(landmarks){
+  if(!landmarks.length) return null;
+  const said = landmarks.map(landmark => `${landmark.name} at ${km(landmark.km)}`);
+  return said.length === 1 ? said[0] : `${said.slice(0, -1).join('; then ')}; then ${said[said.length - 1]}`;
+}
+
+/**
+ * How to follow a walk that has no number, which is the only honest answer for
+ * one.
+ *
+ * Two of the catalogue's unnumbered walks have a landmark ORMA wrote down and
+ * two have nothing but a start, so both cases are answered. Where there are
+ * landmarks a walker gets them in order with the distance to each; where there
+ * are none they are told to follow the walk's name on the signs and the line on
+ * the page, which is what somebody walking it actually does.
+ *
+ * Saying nothing was the worse option. A walker expecting to follow "route 23"
+ * who arrives to find only name-boards has been let down by a blank, and a gate
+ * that refuses the walk for want of a number it does not have refuses it for
+ * ever.
+ */
+function followedByLandmark(trail, claimId){
+  const landmarks = recordedLandmarks(trail);
+  const run = landmarkRun(landmarks);
+  const start = recordedStart(trail);
+  // Lower-cased into the sentence above, so the place keeps its own capitals.
+  const from = start ? `from ${start.label}, the` : 'the';
+  const changes = claimId === 'route-number-switches';
+  const noNumber = changes
+    ? 'This walk carries no route number, so no number changes along it.'
+    : 'This walk carries no route number and no numbered route runs along it.';
+  // Only claimed where there are landmarks to follow. Saying a walk is
+  // "followed by landmark" and then that none is recorded is two sentences
+  // arguing with each other.
+  return run
+    ? `${noNumber} It is followed by name and by landmark: ${from} route passes ${run}.`
+    : `${noNumber} ORMA has no landmark sequence recorded for it: follow the walk’s name on local signs and the mapped ORMA line on this page.`;
+}
+
+/**
  * The claims ORMA can answer about itself.
  *
  * `url` is where the suggestion is published, so the citation points at
@@ -108,7 +185,17 @@ function routeGuidanceFromRecord(trail, options = {}){
   if(status){
     claims['route-number-status'] = claim('route-number-status', `${status} ${ORMA_SUGGESTION}`);
   }
+  // Only where somebody looked and found no number. Measured-and-none is a
+  // fact about the walk; never-measured is a fact about ORMA, and telling a
+  // walker a walk has no number because nobody checked would be a false
+  // statement rather than a weak one.
+  if(options.routeNumbersAbsent){
+    for(const id of ['route-number-sequence', 'route-number-switches']){
+      claims[id] = claim(id, `${followedByLandmark(trail, id)} ${ORMA_SUGGESTION}`);
+    }
+  }
   return claims;
 }
 
-module.exports = { ORMA_AUTHORITY, ORMA_SUGGESTION, CHECK_ACCESS, recordedStart, recordedStatus, routeGuidanceFromRecord };
+module.exports = { ORMA_AUTHORITY, ORMA_SUGGESTION, CHECK_ACCESS, recordedStart, recordedStatus,
+  recordedLandmarks, landmarkRun, followedByLandmark, routeGuidanceFromRecord };

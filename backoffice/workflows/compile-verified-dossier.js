@@ -234,7 +234,14 @@ function mapReadRouteGuidance(outputs,options={}){
  * together with the two the map answers, every claim empty because no
  * authority had published anything about that walk.
  */
-const RECORD_ANSWERABLE_CLAIMS=Object.freeze(['recommended-start','route-number-status']);
+// The two it answers for any walk, plus the two it answers only for a walk the
+// map has been searched for numbers and found none -- where the honest answer
+// is landmarks and the mapped line, and there is no number for anybody to
+// supply. `routeGuidanceFromRecord` refuses those two without the audit's
+// measured-and-none mark, so a walk nobody has measured is not told it has no
+// number.
+const RECORD_ANSWERABLE_CLAIMS=Object.freeze(['recommended-start','route-number-status',
+  'route-number-sequence','route-number-switches']);
 
 function recordReadRouteGuidance(review,options={}){
   // From the cartographer's output, the way the map measurement travels, so no
@@ -245,7 +252,11 @@ function recordReadRouteGuidance(review,options={}){
   // The refs the geometry audit measured, so the status reads the numbers this
   // walk actually follows rather than the catalogue's sparser copy.
   const measuredRefs=result?.routeGuidance?.sequence;
-  return routeGuidanceFromRecord(trail,{...options,measuredRefs});
+  // Measured and found nothing, which only an audit taken since the
+  // along-the-walk measurement existed can say. Absent on an older audit, so
+  // nothing is claimed of it.
+  const routeNumbersAbsent=Boolean(result?.routeNumbersAbsent);
+  return routeGuidanceFromRecord(trail,{...options,measuredRefs,routeNumbersAbsent});
 }
 
 /**
