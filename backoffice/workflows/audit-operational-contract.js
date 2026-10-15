@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,orchestrationAdvance]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -35,6 +35,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/resurvey-named-trails.js'),
     read(root,'backoffice/cli/resurvey-trails.js'),
     read(root,'backoffice/cli/dry-run-gate.js'),
+    read(root,'backoffice/workflows/advance-trail-orchestration.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -257,6 +258,25 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&dryRunCli.includes('resurvey_trail_ids')
     &&standard.includes('A measurement that could not be taken says so'),
     'A geometry survey records what went wrong when the corridor query could not be taken, so an outage never reads as a walk nobody can supply directions for; the gate dry run names it as a survey to run again rather than a refusal, and a walk whose own relation carries a number is not marked unmeasured because no query was needed');
+
+  // The seal waits for the four unwaivable claims and for nothing else.
+  //
+  // The risk runs both ways. Waiting on optional detail queued the seal behind
+  // five model calls that cannot change the verdict -- forty days for 162
+  // trails, and a dead stop when the credits went. And not waiting on the four
+  // would publish a walk with no directions, which is the one thing no reason
+  // can waive.
+  add('a-seal-does-not-wait-for-optional-detail',
+    orchestrationAdvance.includes('function directionsSettledWithoutAgents(outputs,catalogueTrail)')
+    // Asked of the four, through the function the gate itself uses.
+    &&orchestrationAdvance.includes('return !routeGuidanceBlockingReasons(outputs,catalogueTrail?{trail:catalogueTrail}:{}).length;')
+    // Only on a survey, and only where no agent has spoken.
+    &&orchestrationAdvance.includes("if(base.every(job=>!job)){")
+    &&orchestrationAdvance.includes("trail.stage='directions-settled-by-survey'")
+    // The catalogue reaches the decision, read live.
+    &&worker.includes('advanceTrailOrchestration(store,{...options,productionTrails})')
+    &&standard.includes('A seal does not wait for optional detail'),
+    'Where a free geometry survey has settled all four unwaivable route claims and no agent has spoken, the trail goes to the dossier gate on what it has and its optional detail is recorded unknown -- so a seal is never queued behind model calls that cannot change the verdict; a trail part-way through research keeps it, and one whose directions are unsettled waits for the agents as before');
 
   // A free, deterministic survey can be taken again for a named trail.
   //

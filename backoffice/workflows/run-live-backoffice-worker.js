@@ -776,14 +776,14 @@ async function runLiveBackofficeWorker(store, options = {}){
   const automatedGates=[];const dossierReviews=[];
   automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:catalogueTrails}));
   dossierReviews.push(...await ingestDossierReviews(store,{...options,productionTrails}));
-  const advancementBefore=await advanceTrailOrchestration(store,options);
+  const advancementBefore=await advanceTrailOrchestration(store,{...options,productionTrails});
   // Advancement can open a clean geometry or dossier gate. Decide it in the
   // same pass so "automatic" never means "wait three hours at a human desk".
   automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:catalogueTrails}));
   dossierReviews.push(...await ingestDossierReviews(store,{...options,productionTrails}));
   const reviews = await ingestTrailReviews(store, options);
   const specialistJobs=await processTrailSpecialistJobs(store,{...options,productionTrails});
-  const advancementAfter=await advanceTrailOrchestration(store,options);
+  const advancementAfter=await advanceTrailOrchestration(store,{...options,productionTrails});
   automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:catalogueTrails}));
   dossierReviews.push(...await ingestDossierReviews(store,{...options,productionTrails}));
   // Last of the gate lanes, after every automatic decision this pass can make
