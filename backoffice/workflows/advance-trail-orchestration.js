@@ -12,6 +12,34 @@ const {
 
 const BASE_AGENTS=Object.freeze(['logistics','regulatoryRanger','terrainPoi']);
 
+/**
+ * Whether this trail's directions are settled without any agent having spoken.
+ *
+ * The four route claims are the only unwaivable ones, and since the map and
+ * ORMA's own record learned to answer them, a trail can have all four settled
+ * from its geometry survey alone -- which is free and deterministic. Measured
+ * on 15 October 2026: 152 of the catalogue's 162 trails hold everything those
+ * four need, and no model has to be asked.
+ *
+ * Everything else an agent researches is optional, and the evidence policy
+ * accepts it as unknown once research runs out. So a trail in that position is
+ * not waiting to find out whether it can be verified. It is waiting to find out
+ * how full its page will be, and the seal was queued behind that.
+ *
+ * It cost the whole catalogue its throughput. Eight stages and about eight
+ * jobs per trail, three worker passes a day: four trails a day, forty days for
+ * 162, and three months for a thousand. Five of those jobs are model calls
+ * producing detail that half the time comes back unknown -- and on 16 October
+ * they could not run at all, because the credits had gone, while the seven
+ * trails they were blocking needed nothing from them.
+ */
+function directionsSettledWithoutAgents(outputs,catalogueTrail){
+  if(!outputs.length||!outputs.some(output=>output.agentId==='cartographer'))return false;
+  // Asked of the geometry survey alone. An agent's answer is better and wins
+  // wherever one exists, but nothing here waits for one.
+  return !routeGuidanceBlockingReasons(outputs,catalogueTrail?{trail:catalogueTrail}:{}).length;
+}
+
 function timeValue(value){if(!value)return 0;if(typeof value.toMillis==='function')return value.toMillis();if(Number.isFinite(value.seconds))return value.seconds*1000;return new Date(value).valueOf()||0;}
 
 /**
@@ -243,6 +271,10 @@ function compactOrchestration(state){
 
 async function advanceTrailOrchestration(store,options={}){
   const at=options.at||new Date().toISOString(); const state=await store.getArtifact('trail-orchestration');
+  // Read live, so a start point corrected since the survey ran is the one the
+  // fast lane decides on. Absent, ORMA's own record simply cannot answer and
+  // the trail waits for agents exactly as it always did.
+  const catalogue=new Map((options.productionTrails||[]).map(trail=>[String(trail.id),trail]));
   if(!state)return {advanced:[],queued:[]};
   const jobs=await orchestrationJobs(store,state);
   const reviewQueue=await store.getArtifact('dossier-review-queue')||{contractVersion:'1.0.0',items:[],publicMutationAllowed:false};
@@ -346,6 +378,36 @@ async function advanceTrailOrchestration(store,options={}){
     }
     if(trail.state==='evidence-research'){
       const base=BASE_AGENTS.map(agent=>latest(jobs,trail.candidateId,agent));
+      // The seal does not wait for optional detail.
+      //
+      // Where the survey has already settled all four directions, nothing an
+      // agent can add decides whether this trail is verified -- only how full
+      // its page is. So it goes to the gate on what it has, and its optional
+      // detail is recorded unknown exactly as it would be if the agents had
+      // searched and found nothing.
+      //
+      // Only when no agent has spoken at all. A trail already part-way through
+      // research keeps its research: overtaking it would throw away work
+      // already paid for.
+      if(base.every(job=>!job)){
+        const survey=latest(jobs,trail.candidateId,'cartographer');
+        const result=survey&&await store.getArtifact(`trail-specialist-output-${survey.id}`);
+        const outputs=result?[{agentId:'cartographer',jobId:survey.id,result}]:[];
+        const catalogueTrail=catalogue.get(String(trail.trailId))||catalogue.get(String(trail.candidateId))||null;
+        if(directionsSettledWithoutAgents(outputs,catalogueTrail)){
+          const blockingReasons=dossierBlockingReasons(outputs,catalogueTrail?{trail:catalogueTrail}:{});
+          trail.state='dossier-human-gate';trail.stage='directions-settled-by-survey';
+          trail.currentJobId=survey.id;trail.gate={id:'dossier-approval',status:'awaiting-human',openedAt:at};
+          trail.updatedAt=at;
+          nextQueue.items.push({reviewId:`dossier-approval-${trail.candidateId}-${survey.id}`,
+            candidateId:trail.candidateId,trailId:trail.trailId,trailName:trail.trailName,
+            gateType:'dossier-approval',state:'awaiting-human',openedAt:at,
+            approvalAllowed:!blockingReasons.length,blockingReasons,sourceTrail:trail.sourceTrail,
+            specialistOutputs:outputs,claimResolution:resolutionLedger(trail),
+            allowedActions:['approve','request-revision','reject'],publicMutationAllowed:false});
+          advanced.push(trail.trailId);continue;
+        }
+      }
       if(base.some(job=>!job))continue;
       if(base.some(job=>!afterReconsideration(trail,job)))continue;
       const outputs=[];for(const job of base){const result=await store.getArtifact(`trail-specialist-output-${job.id}`);if(result)outputs.push({agentId:job.agentId,jobId:job.id,result});}
@@ -401,4 +463,4 @@ async function advanceTrailOrchestration(store,options={}){
   return {advanced,restored,releasedGates,queued:queued.map(job=>job.id)};
 }
 
-module.exports={ afterReconsideration,SETTLED_STATES,trimSettledAttempts,compactOrchestration,GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
+module.exports={directionsSettledWithoutAgents, afterReconsideration,SETTLED_STATES,trimSettledAttempts,compactOrchestration,GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
