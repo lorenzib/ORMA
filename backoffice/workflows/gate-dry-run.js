@@ -31,20 +31,40 @@ const {MAX_AUTOMATED_ATTEMPTS}=require('../contracts/resolution-policy-v1');
 const SOURCE_NAMES=Object.freeze({'route-relations':'the map','orma-record':"ORMA's own record"});
 
 /**
- * The claims the report says are answered that the decision still names as
- * what rejects the trail.
+ * Where the report and the decision disagree about what blocks a trail.
  *
- * Two computations of one fact, and they must agree. The report reads the
- * catalogue as it stands; `currentBlockingReasons` is what the policy decides
- * on. Both are now given the same evidence, so anything here is a fault
- * somebody has reintroduced -- which is what this exists to catch.
+ * Two computations of one fact. The report recomputes the blockers with the
+ * catalogue in hand; `currentBlockingReasons` is what the policy decides on.
+ * Both are now given the same evidence, so anything here is a fault somebody
+ * has reintroduced -- which is what this exists to catch.
+ *
+ * It compares the two lists rather than asking whether a claim is answered.
+ * Asking that mislabelled ten trails as faults on 15 October 2026: their start
+ * was answered and deliberately held by a contradiction the agent had found,
+ * both halves agreed about it, and nothing was wrong except the word on the
+ * line. A rule working as designed is not a bug, and printing it as one sends
+ * somebody to look for code that is behaving.
  *
  * It is never a judgement about the walk. It means one computation is seeing
  * evidence the other cannot.
  */
-function overruledAnswers(routeGuidance,decidedUnwaivable){
+function reportVersusDecision(reportUnwaivable,decidedUnwaivable){
+  const report=new Set(reportUnwaivable||[]);const decided=new Set(decidedUnwaivable||[]);
+  return [...new Set([...report,...decided])].filter(id=>report.has(id)!==decided.has(id));
+}
+
+/**
+ * A direction that is answered and still held, because the agent found sources
+ * that contradict each other.
+ *
+ * Not a fault and not a missing answer: a judgement the contract makes on
+ * purpose, since reading where the ways run does not settle a disagreement
+ * between two authorities about what anybody recommends. It is named separately
+ * because it is the one category a person can decide about -- the others are
+ * code to fix or research to commission.
+ */
+function contestedAnswers(routeGuidance,decidedUnwaivable){
   const answered=new Set((routeGuidance||[]).filter(entry=>entry.answered).map(entry=>entry.claimId));
-  // The blocker id is `<agent>/<claim>`, and it is the claim that is answered.
   return [...new Set((decidedUnwaivable||[]).filter(id=>answered.has(String(id).split('/').pop())))];
 }
 
@@ -161,8 +181,10 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
   //
   // It is never a judgement about the walk. It means one computation is seeing
   // evidence the other cannot, so it is reported as the fault it is.
-  const decided=currentBlockingReasons(review).filter(reason=>!waivableBlocker(reason)).map(blockerId);
-  const overruled=overruledAnswers(routeGuidance,decided);
+  const decided=[...new Set(currentBlockingReasons(review)
+    .filter(reason=>!waivableBlocker(reason)).map(blockerId))];
+  const disagreement=reportVersusDecision(unwaivable,decided);
+  const contested=contestedAnswers(routeGuidance,decided);
   return {
     found:true,
     trailId:trail.trailId,
@@ -173,9 +195,12 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
     // Advancement past the evidence stages needs one completed job from each.
     missingAgents:['logistics','regulatoryRanger','terrainPoi'].filter(agent=>!agents.includes(agent)),
     routeGuidance,
-    // Answered by the ladder and still named as what decides against it: the
-    // two computations disagree, and that is a fault rather than a verdict.
-    overruledAnswers:overruled,
+    // The report and the decision disagreeing about what blocks this trail:
+    // a fault rather than a verdict, and after #810 it should be empty.
+    reportVersusDecision:disagreement,
+    // Answered, and held on purpose because the agent found sources that
+    // contradict each other. The one category a person can decide about.
+    contestedAnswers:contested,
     routeGuidanceBlockers:routeGuidanceBlockingReasons(specialistOutputs).map(blockerId),
     blockerCount:blockingReasons.length,
     unwaivable,
@@ -189,4 +214,4 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
   };
 }
 
-module.exports={latestOutputsByAgent,routeGuidanceSources,overruledAnswers,gateDryRun};
+module.exports={latestOutputsByAgent,routeGuidanceSources,reportVersusDecision,contestedAnswers,gateDryRun};

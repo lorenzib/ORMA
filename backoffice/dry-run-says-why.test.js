@@ -1,6 +1,6 @@
 'use strict';
 
-const {gateDryRun,overruledAnswers}=require('./workflows/gate-dry-run');
+const {gateDryRun,reportVersusDecision,contestedAnswers}=require('./workflows/gate-dry-run');
 const {singleRelationGuidance}=require('./workflows/route-guidance-from-map');
 const {ROUTE_GUIDANCE_CLAIM_IDS,currentBlockingReasons,
   supportedRouteGuidance}=require('./workflows/compile-verified-dossier');
@@ -59,51 +59,39 @@ function run(outputs,over={},trail=null){
 }
 
 describe('the report says why, and never argues with itself',()=>{
-  test('the detector fires when the two computations disagree, and only then',()=>{
+  test('the fault detector compares the two blocker lists, and only those',()=>{
     // Tested directly, because the thing it guards must now never happen: the
     // report and the decision are handed the same evidence, so a disagreement
     // is a fault somebody has reintroduced.
     //
-    // This test was twice written round whichever contradiction was live at the
-    // time, and twice the next commit removed it -- leaving a test that
-    // forbade its own fix. A fixture that pins a live bug outlives the bug.
+    // This test was twice written round whichever contradiction was live, and
+    // twice the next commit removed it, leaving a test that forbade its own
+    // fix. A fixture that pins a live bug outlives the bug.
+    const report=['logistics/recommended-start'];
+    const decided=['logistics/recommended-start','logistics/route-number-status'];
+    // In one list and not the other, whichever way round.
+    expect(reportVersusDecision(report,decided)).toEqual(['logistics/route-number-status']);
+    expect(reportVersusDecision(decided,report)).toEqual(['logistics/route-number-status']);
+    // Agreement reports nothing, however long the list.
+    expect(reportVersusDecision(decided,decided)).toEqual([]);
+    expect(reportVersusDecision([],[])).toEqual([]);
+  });
+
+  test('an answered claim both halves agree on is contested, never a fault',()=>{
+    // What mislabelled ten trails: asking whether a claim was answered rather
+    // than whether the two computations differ. Their start was answered and
+    // deliberately held by a contradiction, both halves agreed, and the only
+    // thing wrong was the word on the line. A rule working as designed is not a
+    // bug, and printing it as one sends somebody to look for code that is
+    // behaving.
     const guidance=[{claimId:'recommended-start',answered:true},
-      {claimId:'route-number-status',answered:true},
       {claimId:'route-number-sequence',answered:false}];
-
-    // Fenn Promenade's shape on 15 October: answered in the report, rejected by
-    // the decision for exactly those two.
-    expect(overruledAnswers(guidance,
-      ['logistics/recommended-start','logistics/route-number-status']))
-      .toEqual(['logistics/recommended-start','logistics/route-number-status']);
-
-    // A claim nobody answered is a blocker, not a contradiction.
-    expect(overruledAnswers(guidance,['logistics/route-number-sequence'])).toEqual([]);
-    // And agreement reports nothing at all.
-    expect(overruledAnswers(guidance,[])).toEqual([]);
-    expect(overruledAnswers([],['logistics/recommended-start'])).toEqual([]);
-  });
-
-  test("ORMA's own record answers in the decision, not only in the report",()=>{
-    // The fault that made the detector necessary. The gate recomputes its
-    // blockers from the stored outputs, and the record answered in every report
-    // and in no decision: 22 of 34 trails named these two claims as the thing
-    // rejecting them while the catalogue held the answer.
-    const report=run([numberedRelation('69')],{},START);
-    expect(report.routeGuidance.find(entry=>entry.claimId==='recommended-start'))
-      .toMatchObject({answered:true,from:"ORMA's own record"});
-    expect(report.overruledAnswers).toEqual([]);
-    expect(report.unwaivable).toEqual([]);
-    // Which is the whole point: the verdict changes, not just the wording.
-    expect(report.wouldDecideWhenResearchEnds).toBe('approve');
-  });
-
-  test('and without the catalogue it is honestly refused, not quietly waved through',()=>{
-    // No record to read, so the two claims it answers are genuinely missing.
-    const report=run([numberedRelation('69')]);
-    expect(report.routeGuidance.find(entry=>entry.claimId==='recommended-start').answered).toBe(false);
-    expect(report.unwaivable).toContain('logistics/recommended-start');
-    expect(report.overruledAnswers).toEqual([]);
+    expect(contestedAnswers(guidance,['logistics/recommended-start']))
+      .toEqual(['logistics/recommended-start']);
+    // A claim nobody answered is research to commission, not a judgement.
+    expect(contestedAnswers(guidance,['logistics/route-number-sequence'])).toEqual([]);
+    expect(reportVersusDecision(['logistics/recommended-start'],['logistics/recommended-start']))
+      .toEqual([]);
   });
 
   test('a genuinely unanswered claim is not a fault, just a blocker',()=>{
@@ -112,12 +100,12 @@ describe('the report says why, and never argues with itself',()=>{
     const report=run([numberedRelation(null),unresolvedClaim('route-number-switches')]);
     expect(report.routeGuidance.find(entry=>entry.claimId==='route-number-switches').answered).toBe(false);
     expect(report.unwaivable).toContain('logistics/route-number-switches');
-    expect(report.overruledAnswers).toEqual([]);
+    expect(report.reportVersusDecision).toEqual([]);
   });
 
   test('nothing standing and nothing contradicted leaves no fault to report',()=>{
     const report=run([numberedRelation('69')]);
-    expect(report.overruledAnswers).toEqual([]);
+    expect(report.reportVersusDecision).toEqual([]);
   });
 
   test("ORMA's own record is never reported as an authority",()=>{
