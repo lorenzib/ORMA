@@ -32,6 +32,29 @@ function parseArgs(argv){
 }
 
 /**
+ * One trail's verdict in a few words, and never a contradictory few.
+ *
+ * It read `cannot: nothing unwaivable`, which is a sentence that argues with
+ * itself. Three different situations were printing it: a trail the gate rejects
+ * for a reason the report cannot see, a trail that simply has not been
+ * researched yet, and a trail whose answered claim is being overruled. Six
+ * trails came free on 15 October 2026 and every one of them read as `cannot`,
+ * so the sweep said nothing had changed when a third of the blocked list had.
+ *
+ * The verdict a reader needs is whether spending money on this trail ends in a
+ * seal, so each of the three says which it is.
+ */
+function verdictOf(report){
+  if(report.wouldDecideWhenResearchEnds==='approve')return 'CAN be verified';
+  if(report.overruledAnswers?.length)return `FAULT: answered, yet blocked by ${report.overruledAnswers.join(', ')}`;
+  if(report.unwaivable.length)return `cannot: blocked by ${report.unwaivable.join(', ')}`;
+  // Nothing unwaivable, and still not an approval. The gate is deciding on
+  // something this report cannot see, which is worth naming rather than
+  // printing as though the trail were refused.
+  return `unclear: nothing unwaivable, yet ${report.wouldDecideWhenResearchEnds}`;
+}
+
+/**
  * One line per trail, so a sweep reads as a shortlist rather than as ten
  * reports. The trails with nothing unwaivable are the ones worth spending on,
  * and they are named at the end so the answer does not have to be assembled by
@@ -40,13 +63,9 @@ function parseArgs(argv){
 function sayShortlist(reports){
   console.log(`[dry-run] ${reports.length} trail(s) on the way, asked what the gate would say.`);
   for(const report of reports){
-    const stands=report.unwaivable.length
-      ? `blocked by ${report.unwaivable.join(', ')}`
-      : 'nothing unwaivable';
-    const ends=report.wouldDecideWhenResearchEnds;
     // One line each. Fifty trails over two lines apiece is a wall nobody reads.
-    const verdict=ends==='approve'?'CAN be verified':`cannot: ${stands}`;
-    console.log(`[dry-run]   ${String(report.state).padEnd(20)} ${verdict.padEnd(34)} ${report.trailName}`);
+    const verdict=verdictOf(report);
+    console.log(`[dry-run]   ${String(report.state).padEnd(20)} ${verdict.padEnd(46)} ${report.trailName}`);
   }
   const clear=reports.filter(report=>!report.unwaivable.length);
   console.log(`[dry-run] ${clear.length} of ${reports.length} have nothing unwaivable standing.`);
@@ -73,6 +92,23 @@ function sayShortlist(reports){
       console.log(`[dry-run]   ${String(count).padStart(3)}x ${id}`);
     }
   }
+  // How much of the blocked list is ORMA arguing with itself rather than a walk
+  // nobody wrote directions for. The two want completely different work.
+  const faults=reports.filter(report=>report.overruledAnswers?.length);
+  if(faults.length){
+    console.log(`[dry-run] ${faults.length} of these are a FAULT, not a verdict: the claim is answered and still named as what blocks it.`);
+    for(const report of faults){
+      console.log(`[dry-run]   ${report.trailName}: ${report.overruledAnswers.join(', ')}`);
+    }
+  }
+  const unclear=reports.filter(report=>!report.overruledAnswers?.length&&!report.unwaivable.length
+    &&report.wouldDecideWhenResearchEnds!=='approve');
+  if(unclear.length){
+    console.log(`[dry-run] ${unclear.length} have nothing unwaivable and still would not be approved; the gate is reading something this report cannot see.`);
+    for(const report of unclear){
+      console.log(`[dry-run]   ${report.trailName}: ${String(report.note||'no reason given').slice(0,120)}`);
+    }
+  }
   console.log('[dry-run] That is a floor, not a forecast: more research can answer a claim, never add a blocker that is not already here.');
   console.log('[dry-run] Read-only. Nothing was changed.');
   return reports;
@@ -94,6 +130,10 @@ function say(report){
     if(!claim.answered){ console.log(`[dry-run]   ${name} NOT ANSWERED`); continue; }
     const who=claim.authority?` · ${claim.authority}`:'';
     console.log(`[dry-run]   ${name} answered by ${claim.from}${who}`);
+  }
+  if(report.overruledAnswers?.length){
+    console.log(`[dry-run] FAULT — answered above, and still named as what decides against it: ${report.overruledAnswers.join(', ')}`);
+    console.log('[dry-run] Two computations of one fact disagree. This is ORMA\u2019s bug, not a verdict on the walk.');
   }
   if(report.unwaivable.length){
     console.log(`[dry-run] Cannot be waived, so these decide it: ${report.unwaivable.join(', ')}`);

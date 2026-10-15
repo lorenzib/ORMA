@@ -26,6 +26,10 @@ const {dossierBlockingReasons,routeGuidanceBlockingReasons,supportedRouteGuidanc
 const {gateDecision}=require('./automate-existing-trail-verification');
 const {MAX_AUTOMATED_ATTEMPTS}=require('../contracts/resolution-policy-v1');
 
+// What answered a claim, in the words the standard uses for it. A claim with
+// no `derivedFrom` is the agent's own, cited to somebody who published it.
+const SOURCE_NAMES=Object.freeze({'route-relations':'the map','orma-record':"ORMA's own record"});
+
 /** The outputs the gate would see: the newest completed job from each agent. */
 function latestOutputsByAgent(jobs,candidateId,outputFor){
   const completed=(jobs||[]).filter(job=>job.candidateId===candidateId&&job.status==='completed');
@@ -55,7 +59,11 @@ function routeGuidanceSources(review,options={}){
     return {
       claimId,
       answered:true,
-      from:claim.derivedFrom==='route-relations'?'the map':'an authority',
+      // Three sources, never blurred. The standard requires a reader be told
+      // which of them they have, and ORMA's own record is the weakest -- it
+      // was reading as "answered by an authority - ORMA", which is the one
+      // thing it must never read as.
+      from:SOURCE_NAMES[claim.derivedFrom]||'an authority',
       authority:source?.authority||null,
       value:String(claim.proposedValue||'').slice(0,160),
     };
@@ -88,6 +96,7 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
   // picture this tool exists to replace -- and would miss a start point
   // corrected since.
   const options={...(catalogueTrail?{trail:catalogueTrail}:{})};
+  const routeGuidance=routeGuidanceSources(review,options);
   // The policy that actually decides, asked over a queue holding only this one.
   let decision=null;
   try{ decision=gateDecision(review,{items:[review]},orchestration,new Set()); }
@@ -113,6 +122,21 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
   let ending=null;
   try{ ending=gateDecision(review,{items:[review]},spent,new Set()); }
   catch(error){ ending={action:'errored',note:error.message}; }
+  // A claim the ladder answered that the gate still names as the thing
+  // deciding against the trail.
+  //
+  // These two numbers are supposed to be one fact. Where they disagree the
+  // report was saying "all four answered" and "reject, because two of them are
+  // required" on consecutive lines, and the only way to notice was to read both
+  // and spot it. Fenn Promenade and Anello di Ciampeviei both read that way on
+  // 15 October 2026, and finding out why took an afternoon of reading the gate
+  // by hand rather than a line of its own report.
+  //
+  // It is never a judgement about the walk. It means one of the two
+  // computations is seeing evidence the other cannot, so it is reported as the
+  // fault it is.
+  const answered=new Set(routeGuidance.filter(entry=>entry.answered).map(entry=>entry.claimId));
+  const overruled=unwaivable.filter(id=>answered.has(String(id).split('/').pop()));
   return {
     found:true,
     trailId:trail.trailId,
@@ -122,7 +146,10 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
     agentsReporting:agents,
     // Advancement past the evidence stages needs one completed job from each.
     missingAgents:['logistics','regulatoryRanger','terrainPoi'].filter(agent=>!agents.includes(agent)),
-    routeGuidance:routeGuidanceSources(review,options),
+    routeGuidance,
+    // Answered by the ladder and still named as what decides against it: the
+    // two computations disagree, and that is a fault rather than a verdict.
+    overruledAnswers:overruled,
     routeGuidanceBlockers:routeGuidanceBlockingReasons(specialistOutputs).map(blockerId),
     blockerCount:blockingReasons.length,
     unwaivable,
