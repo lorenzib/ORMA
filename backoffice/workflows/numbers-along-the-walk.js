@@ -6,11 +6,16 @@
  * ORMA refused seven trails on 15 October 2026 for want of route guidance,
  * having concluded they had no route number. They had none *of their own* --
  * `ref` on the relation the line is built from -- which is a different thing.
- * Read properly, four of the six that could be read run along numbered walking
- * routes: Le Marais de Pré Lombard along 23, 25 and 22; La Croix des Salles
- * along 9 and 56; Le Mont d'Arbois along 2, 44, 54 and 56; Itinéraire de
- * découverte historique along GR 96. A walker on La Croix des Salles follows
- * waymarks 9 and 56. Nobody wrote that on the loop; it is on the map.
+ * A tag search for numbered walking routes sharing any way with the walk found
+ * candidates on four of the six that could be read: 9 and 56 on La Croix des
+ * Salles, 23, 25 and 22 on Le Marais de Pré Lombard, 2, 44, 54 and 56 on Le
+ * Mont d'Arbois, GR 96 on Itinéraire de découverte historique.
+ *
+ * Sharing a way is not carrying the walk, which is why this measures rather
+ * than reads tags: a route qualifies only where it runs within the corridor
+ * along at least 150 metres. Le Mont d'Arbois has nothing qualifying under that
+ * test despite four numbers appearing beside it, and that is the right answer
+ * -- a route brushing the walk for twenty metres is not something to follow.
  *
  * The measurement already existed. `discoverRouteComposite` works out which of
  * several routes carries each stretch of a walk, and `routeRefSegments` turns

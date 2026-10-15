@@ -910,12 +910,18 @@ directions were read off the map is visible rather than blurred.
 nothing about the waymarks a walker actually follows.
 
 Seven trails were refused for want of route guidance on 15 October 2026 after
-ORMA read that one tag and concluded they had no numbers. Read properly, four of
-the six that could be read run along numbered walking routes: La Croix des
-Salles along 9 and 56, Le Marais de Pré Lombard along 23, 25 and 22, Le Mont
-d'Arbois along 2, 44, 54 and 56, Itinéraire de découverte historique along GR
-96. A walker on La Croix des Salles follows waymarks 9 and 56. Nobody wrote that
-on the loop; it is on the map.
+ORMA read that one tag and concluded they had no numbers. Asking the looser
+question — which numbered walking routes share any way with the walk — found
+candidates on four of the six that could be read: 9 and 56 on La Croix des
+Salles, 23, 25 and 22 on Le Marais de Pré Lombard, 2, 44, 54 and 56 on Le Mont
+d'Arbois, GR 96 on Itinéraire de découverte historique.
+
+**Sharing a way is not carrying the walk, and the measurement is the stricter
+question.** A route counts only where it runs within the corridor along a
+stretch of at least 150 metres, so one that brushes the walk for twenty is not
+guidance. Measured that way, Le Mont d'Arbois has nothing qualifying despite
+four numbers appearing beside it — which is the right answer, and the reason the
+measurement decides rather than the tag search that found the candidates.
 
 The measurement already existed and was pointed at one case only. The composite
 search works out which of several routes carries each stretch of a walk, and
