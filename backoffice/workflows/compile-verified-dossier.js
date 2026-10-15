@@ -460,9 +460,33 @@ function detailWithheld(outputs){
   return outputs.some(output=>output?.result?.detailWithheld);
 }
 
+/**
+ * The catalogue record the decision is about.
+ *
+ * ORMA answers two of the four directions from its own record, and the gate
+ * recomputes its blockers from the stored outputs alone -- so the record
+ * answered in every report and in no decision. Measured on 15 October 2026:
+ * **22 of 34 trails** named `recommended-start` or `route-number-status` as the
+ * thing rejecting them while ORMA's own catalogue held the answer. Fenn
+ * Promenade's report read "all four answered · nothing unwaivable · 0
+ * blockers" directly above "reject, because those two are required".
+ *
+ * It rides the review where a caller supplies it, else the audit, which is how
+ * the map measurement travels. Not the audit alone: `trailRecord` is written
+ * only when the candidate carried one, so an audit taken before that is an
+ * audit the record can never answer from -- the same shape as the route number
+ * that sat unread in a stored audit until #806.
+ */
+function trailRecordFor(review){
+  return review?.trail
+    ||cartographerOutput(review?.specialistOutputs)?.result?.trailRecord
+    ||null;
+}
+
 function currentBlockingReasons(review){
   const outputs=review?.specialistOutputs||[];
   const stored=review?.blockingReasons||[];
+  const trail=trailRecordFor(review);
   if(!outputs.length)return stored;
   if(review?.gateType==='geometry-approval'){
     // A geometry gate's blockers are the cartographer's own, not the dossier's.
@@ -471,7 +495,7 @@ function currentBlockingReasons(review){
     if(!current)return stored;
     return detailWithheld(outputs)?[...new Set([...stored,...current])]:current;
   }
-  const current=dossierBlockingReasons(outputs);
+  const current=dossierBlockingReasons(outputs,trail?{trail}:{});
   return detailWithheld(outputs)?[...new Set([...stored,...current])]:current;
 }
 
@@ -560,4 +584,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={trailRecordFor,citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};

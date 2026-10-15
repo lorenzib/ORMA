@@ -30,6 +30,24 @@ const {MAX_AUTOMATED_ATTEMPTS}=require('../contracts/resolution-policy-v1');
 // no `derivedFrom` is the agent's own, cited to somebody who published it.
 const SOURCE_NAMES=Object.freeze({'route-relations':'the map','orma-record':"ORMA's own record"});
 
+/**
+ * The claims the report says are answered that the decision still names as
+ * what rejects the trail.
+ *
+ * Two computations of one fact, and they must agree. The report reads the
+ * catalogue as it stands; `currentBlockingReasons` is what the policy decides
+ * on. Both are now given the same evidence, so anything here is a fault
+ * somebody has reintroduced -- which is what this exists to catch.
+ *
+ * It is never a judgement about the walk. It means one computation is seeing
+ * evidence the other cannot.
+ */
+function overruledAnswers(routeGuidance,decidedUnwaivable){
+  const answered=new Set((routeGuidance||[]).filter(entry=>entry.answered).map(entry=>entry.claimId));
+  // The blocker id is `<agent>/<claim>`, and it is the claim that is answered.
+  return [...new Set((decidedUnwaivable||[]).filter(id=>answered.has(String(id).split('/').pop())))];
+}
+
 /** The outputs the gate would see: the newest completed job from each agent. */
 function latestOutputsByAgent(jobs,candidateId,outputFor){
   const completed=(jobs||[]).filter(job=>job.candidateId===candidateId&&job.status==='completed');
@@ -89,6 +107,10 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
     trailId:trail.trailId,trailName:trail.trailName,gateType:'dossier-approval',
     state:'awaiting-human',approvalAllowed:!blockingReasons.length,blockingReasons,
     specialistOutputs,sourceTrail:trail.sourceTrail,
+    // The catalogue record, so the decision answers from ORMA's own record
+    // exactly as the gate pass now does. Without it the dry run would be
+    // stricter than the gate and report a fault that production does not have.
+    ...(catalogueTrail?{trail:catalogueTrail}:{}),
     allowedActions:['approve','request-revision','reject'],publicMutationAllowed:false};
   // ORMA's own record is current catalogue data, not a measurement frozen when
   // the audit ran. Reading it from the stored output would report what the
@@ -139,9 +161,8 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
   //
   // It is never a judgement about the walk. It means one computation is seeing
   // evidence the other cannot, so it is reported as the fault it is.
-  const answered=new Set(routeGuidance.filter(entry=>entry.answered).map(entry=>entry.claimId));
   const decided=currentBlockingReasons(review).filter(reason=>!waivableBlocker(reason)).map(blockerId);
-  const overruled=[...new Set(decided.filter(id=>answered.has(String(id).split('/').pop())))];
+  const overruled=overruledAnswers(routeGuidance,decided);
   return {
     found:true,
     trailId:trail.trailId,
@@ -168,4 +189,4 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
   };
 }
 
-module.exports={latestOutputsByAgent,routeGuidanceSources,gateDryRun};
+module.exports={latestOutputsByAgent,routeGuidanceSources,overruledAnswers,gateDryRun};
