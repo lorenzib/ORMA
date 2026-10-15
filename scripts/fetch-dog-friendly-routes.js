@@ -271,11 +271,44 @@ function simplify(points, tolerance = 0.00005) {
   return [points[0], points[points.length - 1]];
 }
 
+/**
+ * The members that are the walk, as OSM's hiking-route schema defines them.
+ *
+ * A member with no role is the route. `approach` is how a walker reaches it,
+ * `excursion` an optional side trip, `alternative`/`alternate` a variant, and
+ * `link`/`connection` a joining stretch. None of those is the line a reader is
+ * told to walk, and stitching them in is what produced the "geometry jump" that
+ * held 18 of 22 draft trails out of publication: the path walked the loop back
+ * to the trailhead and then teleported to the start of a spur. Measured
+ * 16 October, relation 11795251 (`1 - Dörferrundweg`) had a widest gap of
+ * 4.08 km with every member and 0.14 km without these, and relation 12164395
+ * 2.07 km against 0.08 km. Both relations are `roundtrip=yes` and their plain
+ * members close to within 81 and 29 metres.
+ *
+ * `forward` and `backward` are kept, because they ARE the route: they mark a
+ * direction-specific carriageway where it splits. Nine catalogue relations tag
+ * every member that way and have no plain member at all, so treating any role
+ * as off-route would leave them with no geometry whatever -- two of them,
+ * osm-12121798 and osm-12127424, are trails the verification gate would pass.
+ *
+ * Named roles rather than an allowlist, so a role nobody has met yet is kept.
+ * Wrongly keeping one repeats a jump this already catches; wrongly dropping one
+ * deletes a walk's geometry, which is far worse.
+ */
+const OFF_ROUTE_ROLES = new Set([
+  'approach', 'excursion', 'alternative', 'alternate', 'link', 'connection',
+]);
+
+function isRouteMember(member) {
+  return member?.type === 'way'
+    && !OFF_ROUTE_ROLES.has(String(member.role || '').trim().toLowerCase());
+}
+
 // Stitch relation member ways into as few continuous lines as possible,
 // so loop detection and rendering are cleaner than raw fragments.
 function stitchMembers(members) {
-  const segments = members
-    .filter((m) => m.type === 'way' && Array.isArray(m.geometry) && m.geometry.length > 1)
+  const segments = (members || [])
+    .filter((m) => isRouteMember(m) && Array.isArray(m.geometry) && m.geometry.length > 1)
     .map((m) => m.geometry.map((p) => [p.lon, p.lat]));
   if (!segments.length) return [];
 
@@ -402,9 +435,11 @@ async function main() {
       if (!lines.length) continue;
 
       // Aggregate surface breakdown (km per surface value) from member ways.
+      // The same members as the line itself, or an approach road's asphalt is
+      // counted as surface the walk is made of.
       const surfaces = {};
       for (const m of el.members) {
-        if (m.type !== 'way' || !Array.isArray(m.geometry) || m.geometry.length < 2) continue;
+        if (!isRouteMember(m) || !Array.isArray(m.geometry) || m.geometry.length < 2) continue;
         const s = waySurface.get(m.ref);
         if (!s) continue;
         let meters = 0;
@@ -528,4 +563,5 @@ if (require.main === module) {
 // The mirror list, the user agent and the backoff are the part worth sharing:
 // a second copy is how one of them learns about a dead mirror and the other
 // does not.
-module.exports = { fetchWithRetries, OVERPASS_URLS, USER_AGENT };
+module.exports = { fetchWithRetries, OVERPASS_URLS, USER_AGENT,
+  OFF_ROUTE_ROLES, isRouteMember, stitchMembers };
