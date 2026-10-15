@@ -47,16 +47,26 @@ function km(value){
   return Number.isFinite(Number(value)) ? `${Number(value).toFixed(1).replace(/\.0$/, '')} km` : null;
 }
 
-/** "the mapped route follows 101, then 105" -- an order, not an instruction. */
-function sequenceValue(sequence){
+/**
+ * "the mapped route follows 101, then 105" -- an order, not an instruction.
+ *
+ * A walk that carries no number of its own but runs along numbered paths says
+ * so first. The numbers are the ones on the signposts a walker passes, which is
+ * what they need; what they must not read is that this walk *is* route 23,
+ * because it would send them along 23 at the point the walk leaves it.
+ */
+function sequenceValue(sequence, alongOtherRoutes){
   const refs = (sequence || []).filter(Boolean);
   if(!refs.length) return null;
   // One number has no order to be in, and saying "in that order" of a single
   // route reads as though something were missing from the sentence.
   const said = refs.length === 1
-    ? `route ${refs[0]} from end to end`
-    : `routes ${refs.slice(0, -1).join(', ')} and then ${refs[refs.length - 1]}, in that order from the start`;
-  return `The mapped route follows ${said}. ${READ_FROM_MAP}`;
+    ? (alongOtherRoutes ? `waymarked route ${refs[0]}` : `route ${refs[0]} from end to end`)
+    : `${alongOtherRoutes ? 'waymarked routes' : 'routes'} ${refs.slice(0, -1).join(', ')}`
+      + ` and then ${refs[refs.length - 1]}, in that order from the start`;
+  return alongOtherRoutes
+    ? `This walk carries no route number of its own. The mapped route runs along ${said}. ${READ_FROM_MAP}`
+    : `The mapped route follows ${said}. ${READ_FROM_MAP}`;
 }
 
 /**
@@ -66,17 +76,23 @@ function sequenceValue(sequence){
  * missing one -- the same rule the logistics prompt states for a route with no
  * decision point -- so it is written out rather than left null.
  */
-function switchesValue(switches, sequence){
+function switchesValue(switches, sequence, alongOtherRoutes){
   const refs = (sequence || []).filter(Boolean);
   if(!refs.length) return null;
   const changes = (switches || []).filter(change => change && change.from && change.to);
+  const named = refs.length === 1
+    ? `${alongOtherRoutes ? 'waymarked route' : 'route'} ${refs[0]}`
+    : `${alongOtherRoutes ? 'waymarked routes' : 'routes'} ${refs.join(' and ')}`;
   if(!changes.length){
-    return `The mapped route stays on ${refs.length === 1 ? `route ${refs[0]}` : `routes ${refs.join(' and ')}`} throughout, with no change of number recorded along it. ${READ_FROM_MAP}`;
+    return alongOtherRoutes
+      ? `The mapped route runs along ${named} throughout, with no change of waymark recorded along it. ${READ_FROM_MAP}`
+      : `The mapped route stays on ${named} throughout, with no change of number recorded along it. ${READ_FROM_MAP}`;
   }
+  const said = alongOtherRoutes ? 'waymarked route' : 'route';
   const sentences = changes.map(change => {
     const where = km(change.km);
     const near = change.landmark ? `, near ${change.landmark}` : '';
-    return `route ${change.from} gives way to route ${change.to}${where ? ` about ${where} from the start` : ''}${near}`;
+    return `${said} ${change.from} gives way to ${said} ${change.to}${where ? ` about ${where} from the start` : ''}${near}`;
   });
   return `On the mapped route, ${sentences.join('; ')}. ${READ_FROM_MAP}`;
 }
@@ -91,12 +107,15 @@ function switchesValue(switches, sequence){
 function routeGuidanceFromMap(guidance, relations, options = {}){
   const sources = mapSources(relations, options.at);
   if(!sources.length) return {};
-  const sequence = sequenceValue(guidance?.sequence);
+  const along = Boolean(guidance?.alongOtherRoutes);
+  const sequence = sequenceValue(guidance?.sequence, along);
   if(!sequence) return {};
   const claim = (id, value) => ({
     id, category: 'route', finding: 'supported-proposal', proposedValue: value,
     confidence: 0.75,
-    rationale: 'Measured from the OpenStreetMap route relations the walk is built from: which route carries each stretch of the line, and where one gives way to the next. Not a published route description.',
+    rationale: along
+      ? 'Measured from the OpenStreetMap route relations that run along the walk, which carries no number of its own: which waymarked walking route covers each stretch of the line, and where one gives way to the next. Cycle routes and road numbers are excluded. Not a published route description.'
+      : 'Measured from the OpenStreetMap route relations the walk is built from: which route carries each stretch of the line, and where one gives way to the next. Not a published route description.',
     sources,
     blockers: [],
     // So nothing downstream has to read the wording to know what this is.
@@ -104,7 +123,7 @@ function routeGuidanceFromMap(guidance, relations, options = {}){
   });
   return {
     'route-number-sequence': claim('route-number-sequence', sequence),
-    'route-number-switches': claim('route-number-switches', switchesValue(guidance?.switches, guidance?.sequence)),
+    'route-number-switches': claim('route-number-switches', switchesValue(guidance?.switches, guidance?.sequence, along)),
   };
 }
 

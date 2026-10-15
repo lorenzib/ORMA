@@ -8,6 +8,7 @@ const { reconstructRelation } = require('../services/relation-geometry');
 const { singleRelationGuidance } = require('./route-guidance-from-map');
 const { reconstructComposite } = require('../services/composite-geometry');
 const { discoverRouteComposite } = require('./discover-route-composite');
+const { numbersAlongTheWalk } = require('./numbers-along-the-walk');
 const { VERSION, validateCartographerResult } = require('../contracts/cartographer-result-v1');
 
 function compareMetrics(sampled, reconstructed, reference){
@@ -77,6 +78,30 @@ async function measureComposite(candidate, options = {}){
   try{
     const { payload } = await (options.fetchRoutesNearPath || fetchRoutesNearPath)(candidate.path, options);
     return discoverRouteComposite({ id:candidate.id, path:candidate.path }, payload, options);
+  }catch(error){
+    // Unmeasured, not degraded. An Overpass outage is not evidence about a trail.
+    return null;
+  }
+}
+
+/**
+ * The numbered walking routes a walk runs along, for a walk that carries no
+ * number of its own.
+ *
+ * Seven trails were refused for want of route guidance after ORMA read `ref`
+ * on their own relation and found nothing. That tag says whether the walk is
+ * *itself* a numbered route; it says nothing about the waymarks a walker
+ * actually follows. Four of the six that could be read run along numbered
+ * paths.
+ *
+ * Same corridor fetch and same measurement the composite search uses, so no
+ * second idea of what "along the walk" means, and no model call.
+ */
+async function measureNumbersAlong(path, options = {}){
+  if(!Array.isArray(path) || path.length < 2) return null;
+  try{
+    const { payload } = await (options.fetchRoutesNearPath || fetchRoutesNearPath)(path, options);
+    return numbersAlongTheWalk(path, payload, options);
   }catch(error){
     // Unmeasured, not degraded. An Overpass outage is not evidence about a trail.
     return null;
@@ -168,6 +193,11 @@ async function runCartographer(candidate, dossier, options = {}){
   const comparison = compareMetrics(candidate.geometryAssessment, reconstructed, dossier && dossier.referenceMetrics);
   const routeConformance = await measureRouteConformance(reconstructed.geometry.coordinates,
     reconstructed.relation, options);
+  // Its own number where it has one, and otherwise the numbered walking routes
+  // it runs along -- which is what a walker reads off a signpost either way.
+  const routeGuidance = singleRelationGuidance(reconstructed.relation)
+    || await measureNumbersAlong(reconstructed.geometry.coordinates
+      .map(([lng, lat]) => [lat, lng]), options);
   const rawBlockers = [...reconstructed.assessment.issues, ...((routeConformance && routeConformance.issues) || [])];
   if(comparison.withinOfficialDistanceTolerance === false) rawBlockers.push('official-distance-conflict');
   // Missing official distance stays unknown; contradiction still blocks.
@@ -225,9 +255,7 @@ async function runCartographer(candidate, dossier, options = {}){
     //
     // 150 of 162 trails are built this way, so leaving it to the composite
     // path covered twelve of them.
-    ...(singleRelationGuidance(reconstructed.relation)
-      ? { routeGuidance: singleRelationGuidance(reconstructed.relation) }
-      : {}),
+    ...(routeGuidance ? { routeGuidance } : {}),
     ...(candidate.trailRecord ? { trailRecord: candidate.trailRecord } : {}),
     routeConformance,
     comparison,

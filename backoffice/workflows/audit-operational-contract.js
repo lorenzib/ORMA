@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -31,6 +31,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/start-live-trail-campaign.js'),
     read(root,'backoffice/workflows/run-cartographer.js'),
     read(root,'backoffice/workflows/gate-dry-run.js'),
+    read(root,'backoffice/workflows/numbers-along-the-walk.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -188,6 +189,30 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&dossier.includes('const sourced=supportedLogisticsClaim(review,id);')
     &&standard.includes('Read off the map, and said to be read off the map'),
     'The order of a walk\'s numbers and where they change may be read from the route relations it is built from, and every such value says so in its own words and cites the relation; the start point and whether the route is numbered stay the agent\'s to establish from an authority, and a cited authority always wins over the measurement');
+
+  // The numbers a walker follows, for a walk that is not itself numbered.
+  //
+  // The risk is what gets offered as a waymark. A cycle route runs along Le
+  // Mont d'Arbois and a départementale road number sits on the member ways of
+  // these very walks, so the filter is a safety rule and not a tidiness one.
+  // And the wording must never promote running along a route into being it.
+  add('numbers-along-an-unnumbered-walk',
+    numbersAlong.includes("WALKING_ROUTES = Object.freeze(['hiking', 'foot', 'walking'])")
+    &&numbersAlong.includes("tags?.type === 'route'")
+    // Never a way's own ref, which is where the road numbers are.
+    &&!numbersAlong.includes('way.tags.ref')
+    &&!numbersAlong.includes("element.tags?.ref")
+    // A stretch with no number on it is not an answer.
+    &&numbersAlong.includes('if(!guidance.sequence.filter(Boolean).length) return null;')
+    // Measured with the same functions the composite search uses.
+    &&numbersAlong.includes("require('./discover-route-composite')")
+    &&numbersAlong.includes("require('./route-ref-segments')")
+    &&cartographer.includes('singleRelationGuidance(reconstructed.relation)\n    || await measureNumbersAlong(')
+    // Said to be running along them, not being them.
+    &&mapGuidance.includes('This walk carries no route number of its own. The mapped route runs along')
+    &&dossier.includes('if(result?.routeGuidance?.relations?.length)return result.routeGuidance.relations;')
+    &&standard.includes('A walk with no number of its own still has numbers along it'),
+    'A walk carrying no route number of its own has the numbered walking routes running along it measured with the same functions the composite search uses: footpath route relations only -- never a cycle route, and never a way\'s own ref, which is where the road numbers are -- a crossing route folded away, a numberless stretch refused as an answer, the value saying it runs along those waymarks rather than being them, and the citation naming them rather than the unnumbered walk');
 
   // One derivation for the pass that writes an audit and the gate that reads
   // one.

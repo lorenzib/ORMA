@@ -309,5 +309,5 @@ function rejectComposite(composite, options = {}){
     rejectedBy:options.approvedBy || 'human-moderator' } };
 }
 
-module.exports = { MAX_RELATIONS, MINIMUM_WALK_SHARE, RIDE_SAMPLE_M, RIDE_LENGTH_TOLERANCE, lineKilometres, discoverRouteComposite, relationsFromPayload, metresBetween,
+module.exports = { MAX_RELATIONS, MINIMUM_WALK_SHARE, RIDE_SAMPLE_M, RIDE_LENGTH_TOLERANCE, lineKilometres, discoverRouteComposite, relationsFromPayload, coveredIndices, metresBetween,
   densify, riddenStretch, ridesALift, ruleOnComposite, rejectComposite };
