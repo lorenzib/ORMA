@@ -178,6 +178,10 @@ function cartographerOutput(outputs){return (outputs||[]).find(output=>output.ag
  * the first left 150 of 162 trails unable to cite the map they came from.
  */
 function citableRelations(result){
+  // The numbers of a walk that carries none of its own come from other routes
+  // running along it, and those are what the claim must cite -- not the walk's
+  // own relation, which is precisely the thing with no number on it.
+  if(result?.routeGuidance?.relations?.length)return result.routeGuidance.relations;
   if(result?.source?.relations?.length)return result.source.relations;
   const externalId=result?.source?.externalId;
   const ref=result?.relation?.tags?.ref;

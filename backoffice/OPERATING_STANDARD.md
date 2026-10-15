@@ -904,6 +904,49 @@ A reader is therefore always told which of the two they have, and the
 difference between a walk whose directions an operator published and one whose
 directions were read off the map is visible rather than blurred.
 
+### A walk with no number of its own still has numbers along it
+
+`ref` on a relation says whether the walk **is** a numbered route. It says
+nothing about the waymarks a walker actually follows.
+
+Seven trails were refused for want of route guidance on 15 October 2026 after
+ORMA read that one tag and concluded they had no numbers. Asking the looser
+question — which numbered walking routes share any way with the walk — found
+candidates on four of the six that could be read: 9 and 56 on La Croix des
+Salles, 23, 25 and 22 on Le Marais de Pré Lombard, 2, 44, 54 and 56 on Le Mont
+d'Arbois, GR 96 on Itinéraire de découverte historique.
+
+**Sharing a way is not carrying the walk, and the measurement is the stricter
+question.** A route counts only where it runs within the corridor along a
+stretch of at least 150 metres, so one that brushes the walk for twenty is not
+guidance. Measured that way, Le Mont d'Arbois has nothing qualifying despite
+four numbers appearing beside it — which is the right answer, and the reason the
+measurement decides rather than the tag search that found the candidates.
+
+The measurement already existed and was pointed at one case only. The composite
+search works out which of several routes carries each stretch of a walk, and
+`routeRefSegments` turns that into an order and the places one number gives way
+to the next — for a walk **assembled** from several relations. A single
+unnumbered relation never got measured, though the code sat beside it. So where
+a walk carries no number of its own, the same measurement now reads the numbered
+walking routes running along it.
+
+**Walking routes only, and never a road.** Le Mont d'Arbois has `VAE 9`,
+`VAE 11` and `VAE 69` along it — *vélo à assistance électrique*, e-bike routes.
+And the member ways of these walks carry `D 8`, `D 55` and `D 309a`, which are
+French départementale **roads**. Following a cycle waymark is the wrong way;
+following a road number could be a dangerous one. Only the `ref` of a route
+relation that is a footpath is ever read, never a way's own tag.
+
+**And it says it runs along them, never that it is one of them.** "Follow 23" of
+a walk that shares one stretch with 23 sends a walker down 23 at the point the
+walk leaves it. The value opens by saying the walk carries no number of its own
+and then names the waymarks it runs along, and it cites those routes rather than
+the walk's own relation — which is precisely the thing with no number on it. A
+route that merely crosses the walk is folded away by the 150-metre minimum, and
+a stretch with no number left on it is not an answer: an empty list of waymarks
+is not guidance.
+
 ### The audit on the shelf is read, not re-taken
 
 The measurement is derived where the audit is read, not stored by whichever
