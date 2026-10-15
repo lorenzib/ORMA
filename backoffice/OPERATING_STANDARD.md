@@ -998,8 +998,16 @@ and found none. Each landed, and each applied only to trails surveyed
 afterwards. Five of the eight trails still blocked had moved past the survey and
 could never benefit from a better one.
 
-`npm run backoffice:resurvey -- --trails <id>,<id>` queues a fresh survey for
-named trails, dry run until `--apply`. It costs no model credits.
+The pipeline's state lives in Firestore and the credential stays in Actions, so
+this runs where the credential is: the **ORMA requeue fixed jobs** workflow
+takes `resurvey_trail_ids`, alongside the inputs for releasing a blocked job and
+reconsidering a rejection, because all three are the same act — running
+something again once its cause has been fixed. Nothing is queued without
+`apply`, and it costs no model credits.
+
+A checkout cannot run it. `npm run backoffice:resurvey` is the command the
+workflow runs, not one to run from a machine, and shipping the npm script alone
+left the standard describing something unrunnable.
 
 **It changes nothing else.** The trail stays exactly where it is; only its
 survey is taken again. It does not have to move, because every reader already

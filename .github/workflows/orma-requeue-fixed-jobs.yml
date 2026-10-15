@@ -25,6 +25,10 @@ on:
         description: 'Instead of releasing jobs, look again at trails REJECTED for this reason (blank lists them)'
         required: false
         default: ''
+      resurvey_trail_ids:
+        description: 'Take the geometry survey again for these trails, comma separated. Free: the surveyor reads the map and measures.'
+        required: false
+        default: ''
       apply:
         description: 'Actually release them. Leave unchecked for a dry run.'
         type: boolean
@@ -103,3 +107,28 @@ jobs:
           # Only a named reason may change anything; a blank one lists.
           [ -n "$REASON" ] && [ "$APPLY" = "true" ] && args+=(--apply)
           npm run backoffice:reconsider -- "${args[@]}"
+
+      # The geometry survey is deterministic and free, and it is where the map
+      # reading lives -- so every improvement to it reaches only trails not yet
+      # past it, and nothing in the pipeline goes backwards. Three improvements
+      # landed on 15 October 2026 and five of the eight trails they were for had
+      # already moved beyond the survey.
+      #
+      # It belongs here rather than in a workflow of its own: this is the place
+      # for running something again once its cause has been fixed, and the
+      # credential it needs is already in this job. Nothing is queued without
+      # 'apply', and the trail does not move -- only its survey is retaken.
+      - name: Survey named trails again
+        if: inputs.resurvey_trail_ids != ''
+        env:
+          TRAIL_IDS: ${{ inputs.resurvey_trail_ids }}
+          APPLY: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          args=(--trails "$TRAIL_IDS")
+          if [ "$APPLY" = "true" ]; then
+            args+=(--apply)
+          else
+            echo "[resurvey] Dry run. Tick 'apply' to queue the surveys."
+          fi
+          npm run backoffice:resurvey -- "${args[@]}"
