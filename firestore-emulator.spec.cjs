@@ -128,6 +128,32 @@ function validOutcome(overrides = {}){
   };
 }
 
+// Built by the code that writes the real document, so the rule is tested
+// against what the client actually sends rather than a copy that can go stale.
+const journalStore = require('./journal-store.js');
+const walkRecorder = require('./walk-recorder.js');
+
+function recordedWalkEntry(){
+  const r = walkRecorder.createRecorder();
+  r.start(1770000000000);
+  for(let i = 0; i < 8; i++){
+    r.addFix({ lat:46.5 + i * 0.0002, lng:11.6, accuracy:10, timestamp:1770000000000 + i * 2000 });
+  }
+  // A stretch the phone could not follow, so the stored track carries a break.
+  r.addFix({ lat:46.52, lng:11.62, accuracy:10, timestamp:1770000000000 + 13 * 60e3 });
+  return walkRecorder.buildJournalEntry(r.finish(1770000000000 + 20 * 60e3), {
+    now: 1770000000000 + 20 * 60e3,
+    id: 'w1770000000000-aa11bb',
+  });
+}
+
+function validJournalEntry(overrides = {}){
+  return {
+    ...journalStore.toRemote(recordedWalkEntry(), { now: 1770000000000 }),
+    ...overrides,
+  };
+}
+
 function validModerationAudit(overrides = {}){
   return {
     contentType: 'review',
@@ -274,6 +300,42 @@ describe('anonymous hike counter', () => {
       collection(guest, 'hikeEvents/lago-carezza/events'),
       where('startedAt', '>', Timestamp.fromMillis(Date.now() - 604800000))
     )));
+  });
+});
+
+describe('the walk journal belongs to its account', () => {
+  const path = 'users/owner-1/journal/w1770000000000-aa11bb';
+
+  test('only the owner may read, write, list and remove their walks', async () => {
+    const owner = ordinaryDb('owner-1');
+    const other = ordinaryDb('other-1');
+    const guest = testEnv.unauthenticatedContext().firestore();
+    const ref = doc(owner, path);
+
+    await assertSucceeds(setDoc(ref, validJournalEntry()));
+    await assertSucceeds(getDoc(ref));
+    await assertSucceeds(getDocs(collection(owner, 'users/owner-1/journal')));
+    // An edit on another phone replaces the account's copy.
+    await assertSucceeds(setDoc(ref, validJournalEntry({ note:'Muddy by the lake.' })));
+
+    await assertFails(getDoc(doc(other, path)));
+    await assertFails(getDocs(collection(other, 'users/owner-1/journal')));
+    await assertFails(getDoc(doc(guest, path)));
+    await assertFails(setDoc(doc(other, path), validJournalEntry()));
+    await assertFails(deleteDoc(doc(other, path)));
+    await assertSucceeds(deleteDoc(ref));
+  });
+
+  test('rejects a spoofed id, an unbounded track, a stray field and a fake photo', async () => {
+    const owner = ordinaryDb('owner-1');
+    const base = 'users/owner-1/journal';
+
+    await assertFails(setDoc(doc(owner, `${base}/someone-elses-id`), validJournalEntry()));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ track:'4'.repeat(60001) })));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ homeAddress:'Via Roma 1' })));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ photo:'https://example.com/dog.jpg' })));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ rating:9 })));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ schemaVersion:2 })));
   });
 });
 

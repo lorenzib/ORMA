@@ -33,6 +33,7 @@ describe('SEC-01 Firestore configuration contract', () => {
     const clientCollections = [
       'users',
       'outcomes',
+      'journal',
       'hikeEvents',
       'trailWalks',
       'flags',
@@ -207,6 +208,23 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain("request.resource.data.keys().hasOnly(['startedAt'])");
     expect(rules).toContain('request.resource.data.startedAt == request.time');
     expect(rules).toContain('allow update: if false;');
+  });
+
+  test('the walk journal is private owner data with a closed field list', () => {
+    expect(rules).toContain('match /users/{uid}/journal/{entryId}');
+    expect(rules).toContain('function validJournalEntry(data, entryId)');
+    // The owner alone, and only through the validator.
+    const block = rules.slice(
+      rules.indexOf('match /users/{uid}/journal/{entryId}'),
+      rules.indexOf('match /contributionBlocks')
+    );
+    expect(block).toContain('allow get, list, delete: if isOwner(uid);');
+    expect(block).toContain('allow create, update: if isOwner(uid)');
+    expect(block).not.toMatch(/allow .*: if true/);
+    // Bounds exist for everything a walk can carry a lot of.
+    expect(rules).toContain("data.track is string && data.track.size() <= 60000");
+    expect(rules).toContain('data.photo.size() <= 700000');
+    expect(rules).toContain("data.note is string && data.note.size() <= 2000");
   });
 
   test('post-hike outcomes are private, structured, and immutable', () => {

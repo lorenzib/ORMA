@@ -20,8 +20,14 @@
   .wr-map{flex:1;position:relative;border-radius:22px 22px 0 0;overflow:hidden;background:#26352B;}
   #wrMap{position:absolute;inset:0;}
   .wr-gps{position:absolute;top:12px;left:12px;z-index:5;background:rgba(20,28,22,.82);border-radius:999px;padding:6px 12px;font:600 11.5px 'Inter',sans-serif;color:#CBD6C8;}
+  /* A reading fits on one line; a sentence about a lost stretch has to be read
+     in full, so it is allowed to wrap. */
+  .wr-gps--note{border-radius:14px;max-width:calc(100% - 76px);line-height:1.45;}
   #wrMap .wr-layers-btn{top:50px;left:12px;bottom:auto;}
   #wrMap .wr-map-panel{top:90px;left:12px;bottom:auto;max-height:calc(100% - 150px);overflow:auto;}
+  /* A two-line note needs the room the one-line reading did not. */
+  #wrMap.wr-map--note .wr-layers-btn{top:82px;}
+  #wrMap.wr-map--note .wr-map-panel{top:122px;max-height:calc(100% - 182px);}
   #wrMap .wr-map-panel[hidden]{display:none;}
   #wrMap .wr-map-panel:not([hidden]){display:flex;}
   #wrMap .wr-style-switch{left:12px;bottom:12px;gap:5px;}
@@ -43,6 +49,7 @@
   .wr-gate-card a,.wr-gate-card button{display:inline-block;background:#4A7856;color:#fff;border:none;border-radius:12px;padding:13px 24px;font:800 14px 'Inter',sans-serif;text-decoration:none;cursor:pointer;}
   @media(max-width:430px){
     .wr-gps{max-width:calc(100% - 76px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .wr-gps--note{white-space:normal;overflow:visible;}
     #wrMap .wr-style-switch button{padding:8px 9px;font-size:11px;}
   }
 </style>
@@ -80,6 +87,7 @@
 
 <script src="device-handoff.js?v=20260904-1"></script>
 <script type="module" src="firebase-init.js?v=20260917-1"></script>
+<script src="journal-store.js?v=20261016-1"></script>
 <script src="walk-recorder.js?v=20260815-4"></script>
 <script src="regions-runtime-manifest.js?v=20261007-1"></script>
 <script src="map-runtime.js?v=20260826-1"></script>
