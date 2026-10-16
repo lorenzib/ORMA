@@ -60,6 +60,26 @@ function overriddenName(overrides, trailId){
 }
 
 /**
+ * What this trail's name means in English, for a reader who does not speak the
+ * language it is signed in.
+ *
+ * 109 of the 162 trails are named in German, French or Italian, and "Gsieser
+ * Talblickweg" tells a British customer nothing. Translating the name instead
+ * would be worse than useless: that name is what is painted on the signpost,
+ * and ORMA's whole promise is directions a walker can follow on the ground.
+ *
+ * So the name stays and this sits under it. It says what the name means --
+ * nothing more. "The Gsies valley-view path" is in the words themselves; "an
+ * easy hour above the village" is a claim about the walk, and would need the
+ * same evidence as any other.
+ */
+function overriddenGloss(overrides, trailId){
+  const entry = overrides?.trails?.[String(trailId)];
+  const gloss = typeof entry?.gloss === 'string' ? entry.gloss.trim() : '';
+  return gloss || null;
+}
+
+/**
  * The trails with their published names applied.
  *
  * Nothing else is touched, and an id the catalogue does not carry is ignored
@@ -69,7 +89,9 @@ function applyTrailNameOverrides(trails, overrides){
   if(!Object.keys(overrides?.trails || {}).length) return trails;
   return (trails || []).map(trail => {
     const name = overriddenName(overrides, trail?.id);
-    return name ? { ...trail, name } : trail;
+    const nameGloss = overriddenGloss(overrides, trail?.id);
+    if(!name && !nameGloss) return trail;
+    return { ...trail, ...(name ? { name } : {}), ...(nameGloss ? { nameGloss } : {}) };
   });
 }
 
@@ -103,7 +125,24 @@ function allRetiredSlugs(overrides){
  * retired slug equal to its own trail's live slug would redirect a page to
  * itself.
  */
-function validateSlugOverrides(overrides, trailIds){
+// The words that carry meaning, with articles, prepositions and accents gone,
+// so two spellings of the same word count as one.
+const EMPTY_WORDS = new Set(['the','a','an','of','and','to','by','on','at','in','way','le','la','les',
+  'du','de','des','der','die','das','dei','del','della','di','e','il','als','am','par','sur']);
+
+function significantWords(value){
+  return String(value || '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().split(/[^a-z0-9]+/)
+    .filter(word => word && !EMPTY_WORDS.has(word));
+}
+
+/** The name a gloss sits under: the override's, else the catalogue's. */
+function nameOf(overrides, trailId, names){
+  return overriddenName(overrides, trailId) || (names && names[String(trailId)]) || '';
+}
+
+function validateSlugOverrides(overrides, trailIds, names){
   const errors = [];
   const known = new Set((trailIds || []).map(String));
   const entries = Object.entries(overrides?.trails || {});
@@ -120,6 +159,23 @@ function validateSlugOverrides(overrides, trailIds){
     }
     if(entry && entry.name !== undefined && !overriddenName(overrides, trailId)){
       errors.push(`${trailId}: name is empty`);
+    }
+    if(entry && entry.gloss !== undefined && typeof entry.gloss !== 'string'){
+      errors.push(`${trailId}: gloss must be a string`);
+    }
+    if(entry && entry.gloss !== undefined && !overriddenGloss(overrides, trailId)){
+      errors.push(`${trailId}: gloss is empty`);
+    }
+    // A gloss that only reshuffles the name's own words tells a reader nothing.
+    // "Circuit Béatrice de Savoie" glossed as "the Béatrice de Savoie circuit"
+    // is noise under a title; "Boucle du Lac Vert" as "the Lac Vert loop"
+    // carries one new word -- loop -- and that word is the whole point.
+    const gloss = overriddenGloss(overrides, trailId);
+    if(gloss){
+      const known = new Set(significantWords(nameOf(overrides, trailId, names)));
+      if(!significantWords(gloss).some(word => !known.has(word))){
+        errors.push(`${trailId}: gloss "${gloss}" adds no word the name does not already have`);
+      }
     }
     const slug = pinnedSlug(overrides, trailId);
     if(slug && !/^[a-z0-9][a-z0-9-]*$/.test(slug)){
@@ -145,5 +201,5 @@ function validateSlugOverrides(overrides, trailIds){
   return errors;
 }
 
-module.exports = { OVERRIDES_PATH, overridesPath, loadSlugOverrides, pinnedSlug,
-  overriddenName, applyTrailNameOverrides, retiredSlugs, allRetiredSlugs, validateSlugOverrides };
+module.exports = { OVERRIDES_PATH, significantWords, overridesPath, loadSlugOverrides, pinnedSlug,
+  overriddenName, overriddenGloss, applyTrailNameOverrides, retiredSlugs, allRetiredSlugs, validateSlugOverrides };

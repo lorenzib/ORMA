@@ -4,66 +4,232 @@
     "osm-12121798": {
       "name": "Le terroir de Serpolière",
       "slug": "le-terroir-de-serpoliere",
-      "retired": ["en02-le-terroir-de-serpoliere"]
+      "retired": [
+        "en02-le-terroir-de-serpoliere"
+      ],
+      "gloss": "the Serpolière countryside"
     },
     "osm-12127424": {
       "name": "Au fil de l'Arvan",
       "slug": "au-fil-de-l-arvan",
-      "retired": ["en04-au-fil-de-l-arvan"]
+      "retired": [
+        "en04-au-fil-de-l-arvan"
+      ],
+      "gloss": "along the Arvan"
     },
     "osm-12118490": {
       "name": "Le Balcon des Plagnes",
       "slug": "le-balcon-des-plagnes",
-      "retired": ["b05-le-balcon-des-plagnes"]
+      "retired": [
+        "b05-le-balcon-des-plagnes"
+      ],
+      "gloss": "the Plagnes balcony"
     },
     "osm-12121548": {
       "name": "Le tour de l'Armélaz",
       "slug": "le-tour-de-l-armelaz",
-      "retired": ["b02-le-tour-de-l-armelaz"]
+      "retired": [
+        "b02-le-tour-de-l-armelaz"
+      ],
+      "gloss": "the Armélaz circuit"
     },
     "osm-12121346": {
       "name": "Le tour des hameaux de Montandré, Champessuit et Grenis",
       "slug": "le-tour-des-hameaux-de-montandre-champessuit-et-grenis",
-      "retired": ["b08-le-tour-des-hameaux-de-montandre-champessuit-et-grenis"]
+      "retired": [
+        "b08-le-tour-des-hameaux-de-montandre-champessuit-et-grenis"
+      ],
+      "gloss": "the hamlets circuit: Montandré, Champessuit and Grenis"
     },
     "osm-11774783": {
       "name": "Rafeil-Rundweg",
       "slug": "rafeil-rundweg",
-      "retired": ["1-rafeil-rundweg"]
+      "retired": [
+        "1-rafeil-rundweg"
+      ],
+      "gloss": "the Rafeil circular walk"
     },
     "osm-11795251": {
       "name": "Dörferrundweg (Vintl)",
       "slug": "dorferrundweg-vintl",
-      "retired": ["1-dorferrundweg-vintl"]
+      "retired": [
+        "1-dorferrundweg-vintl"
+      ],
+      "gloss": "the villages circular walk, Vintl"
     },
     "osm-11764094": {
       "name": "Dörferrunde: Natz, Raas, Schabs and Viums",
-      "slug": "dorferrunde-natz-raas-schabs-viums"
+      "slug": "dorferrunde-natz-raas-schabs-viums",
+      "gloss": "the villages round"
     },
     "osm-21021130": {
       "name": "Lacs du Chardonnet",
       "slug": "lacs-du-chardonnet",
-      "retired": ["parcours-n-11-lacs-du-chardonnet"]
+      "retired": [
+        "parcours-n-11-lacs-du-chardonnet"
+      ],
+      "gloss": "the Chardonnet lakes"
     },
     "osm-12363235": {
       "name": "Panoramaweg, Oltradige – Bassa Atesina",
       "slug": "panoramaweg-oltradige-bassa-atesina",
-      "retired": ["panoramaweg"]
+      "retired": [
+        "panoramaweg"
+      ],
+      "gloss": "the panorama path"
     },
     "osm-19697977": {
       "name": "Panoramaweg, Burgraviato – Merano",
       "slug": "panoramaweg-burgraviato-merano",
-      "retired": ["panoramaweg-osm-19697977"]
+      "retired": [
+        "panoramaweg-osm-19697977"
+      ],
+      "gloss": "the panorama path"
     },
     "osm-3885162": {
       "name": "Seeweg, Val d'Ultimo",
       "slug": "seeweg-val-d-ultimo",
-      "retired": ["seeweg"]
+      "retired": [
+        "seeweg"
+      ],
+      "gloss": "the lake path"
     },
     "osm-12173984": {
       "name": "Große Schlossrunde",
       "slug": "grosse-schlossrunde",
-      "retired": ["gro-e-schlossrunde"]
+      "retired": [
+        "gro-e-schlossrunde"
+      ],
+      "gloss": "the great castle round"
+    },
+    "santa-maddalena": {
+      "gloss": "the St Magdalena circular walk"
+    },
+    "giro-del-bulacia": {
+      "gloss": "the Bullaccia circuit"
+    },
+    "sentiero-del-trenino": {
+      "gloss": "the little-train path"
+    },
+    "giro-del-sasso-lungo": {
+      "gloss": "the Sassolungo circuit"
+    },
+    "osm-6250300": {
+      "gloss": "the Lac Vert loop"
+    },
+    "osm-9933643": {
+      "gloss": "the green lake"
+    },
+    "osm-20347406": {
+      "gloss": "the partisans’ path"
+    },
+    "osm-14987412": {
+      "gloss": "the oven path"
+    },
+    "osm-14864704": {
+      "gloss": "the Taillefer loop"
+    },
+    "osm-16322228": {
+      "gloss": "the Chassettes marsh loop"
+    },
+    "osm-16363583": {
+      "gloss": "the Pré Lombard marsh"
+    },
+    "osm-16395076": {
+      "gloss": "the Lac de la Thuile loop"
+    },
+    "osm-19153189": {
+      "gloss": "the viewpoint"
+    },
+    "osm-15591346": {
+      "gloss": "the boxwood path"
+    },
+    "osm-1116675": {
+      "gloss": "the family circular walk"
+    },
+    "osm-1116680": {
+      "gloss": "the Sexten circular walk"
+    },
+    "osm-1780768": {
+      "gloss": "the Gsies valley-view path"
+    },
+    "osm-3202880": {
+      "gloss": "the Montiggl lakes circular walk"
+    },
+    "osm-5512443": {
+      "gloss": "the hill-fort path"
+    },
+    "osm-6244965": {
+      "gloss": "the “stones tell stories” trail"
+    },
+    "osm-6404258": {
+      "gloss": "the Salla circular walk"
+    },
+    "osm-6404633": {
+      "gloss": "the meadows ring"
+    },
+    "osm-6404634": {
+      "gloss": "the woodland ring"
+    },
+    "osm-6410700": {
+      "gloss": "the Dolomite-view circular walk"
+    },
+    "osm-6823031": {
+      "gloss": "the nature trail"
+    },
+    "osm-7045225": {
+      "gloss": "the Fausior circuit"
+    },
+    "osm-7086961": {
+      "gloss": "the Zimon circuit"
+    },
+    "osm-7388748": {
+      "gloss": "the hills ring"
+    },
+    "osm-7446701": {
+      "gloss": "the Walten circular walk 18"
+    },
+    "osm-7546708": {
+      "gloss": "the Soracrode ring"
+    },
+    "osm-7547653": {
+      "gloss": "the forts ring"
+    },
+    "osm-7547983": {
+      "gloss": "the Valzalina ring"
+    },
+    "osm-7548201": {
+      "gloss": "the Ciampeviei ring"
+    },
+    "osm-7548344": {
+      "gloss": "the sun ring"
+    },
+    "osm-7548489": {
+      "gloss": "the beech-wood ring"
+    },
+    "osm-7549783": {
+      "gloss": "the Troi de le Ciaure ring"
+    },
+    "osm-8510456": {
+      "gloss": "the St Sigmund village circular walk"
+    },
+    "osm-9492594": {
+      "gloss": "the Vogelweid circular walk"
+    },
+    "osm-9675994": {
+      "gloss": "the St Agatha circular walk"
+    },
+    "osm-11790553": {
+      "gloss": "the Steger Bühel round"
+    },
+    "osm-11792795": {
+      "gloss": "the Mount of Olives circular walk"
+    },
+    "osm-11814895": {
+      "gloss": "the Kofel round"
+    },
+    "osm-11816373": {
+      "gloss": "the bunker path"
     }
   }
 }

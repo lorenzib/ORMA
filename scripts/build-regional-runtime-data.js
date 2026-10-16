@@ -188,7 +188,8 @@ const manifest = {
 {
   const canonical = loadProductionTrails(root);
   const overrides = loadSlugOverrides(root);
-  const problems = validateSlugOverrides(overrides, canonical.map(trail => trail.id));
+  const problems = validateSlugOverrides(overrides, canonical.map(trail => trail.id),
+    Object.fromEntries(canonical.map(trail => [trail.id, trail.name])));
   if (problems.length) throw new Error(`Trail slug overrides are unusable:\n  ${problems.join('\n  ')}`);
   const slugs = assignSlugs(canonical, overrides);
   canonical.forEach((trail, index) => {
