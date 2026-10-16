@@ -163,6 +163,7 @@ function say(report){
   if(report.missingAgents.length){
     console.log(`[dry-run] Not yet reporting: ${report.missingAgents.join(', ')} — advancement waits for one completed job from each.`);
   }
+  if(report.surveyRecorded)console.log(`[dry-run] What the survey recorded about numbers: ${report.surveyRecorded}`);
   console.log('[dry-run] The four directions, and where each answer comes from:');
   for(const claim of report.routeGuidance){
     const name=claim.claimId.padEnd(22);
