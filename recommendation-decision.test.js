@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const { requireAll } = require('./test-support/page-runtime');
 
 // The homepage loads the vocabulary before this view, and so does the test:
@@ -121,16 +123,24 @@ describe('canonical recommendation decision presentation', () => {
         .toBe('Was 78% for a medium dog · now 61% for Nina. See why below.');
     });
 
-    test('a move of two points or less is not a move', () => {
-      // Anything else invents drama the score does not support.
-      expect(decision.firstRunCallout(guest, { score:76, forName:'Nina' }))
-        .toBe('Same score for Nina as for a medium dog on this trail.');
-      expect(decision.firstRunCallout(guest, { score:80, forName:'Nina' }))
-        .toBe('Same score for Nina as for a medium dog on this trail.');
-      // Three points is a move.
+    test('a move of two points or less says nothing at all', () => {
+      // Anything else invents drama the score does not support, and a banner
+      // reading "same score" says only that nothing happened. The caller drops
+      // the whole paragraph on null, so no empty box is left behind.
+      expect(decision.firstRunCallout(guest, { score:76, forName:'Nina' })).toBeNull();
+      expect(decision.firstRunCallout(guest, { score:80, forName:'Nina' })).toBeNull();
+      expect(decision.firstRunCallout(guest, { score:78, forName:'Nina' })).toBeNull();
+      // Three points is a move, and still gets said.
       expect(decision.firstRunCallout(guest, { score:81, forName:'Nina' }))
         .toMatch(/^Was 78% /);
       expect(decision.SAME_SCORE_TOLERANCE).toBe(2);
+    });
+
+    test('nothing anywhere still says "same score"', () => {
+      // The string is gone, not merely unreachable from one branch.
+      const source = fs.readFileSync(path.join(__dirname, 'recommendation-decision.js'), 'utf8');
+      expect(source).not.toContain('Same score for');
+      expect(source).not.toContain('recommendation.firstRun.same');
     });
 
     test('says nothing when there is nothing to compare', () => {

@@ -903,6 +903,7 @@ function liRenderLocationContext(profile){
   liRenderLocationNudge();
 }
 
+
 /**
  * Where you are looking, changed by looking. Deliberately does less than
  * liSetLocationContext: moving the map is not a new search, so the text in
@@ -3762,7 +3763,16 @@ async function renderReturningHomepage(profile, options = {}){
   const toolbarHeading = document.getElementById('liToolbarGreeting');
   if(toolbarHeading) toolbarHeading.textContent = answerTitle;
   const toolbarContext = document.getElementById('liToolbarDogContext');
-  if(toolbarContext) toolbarContext.textContent = 'Your top matches first, with the reasons and cautions that matter.';
+  // The scope belongs here, not in a pill. The headline is assembled from the
+  // dog, the place and the day -- but liRecommendationLocationPhrase returns ''
+  // for the whole catalogue, so a reader scoped to everything would be told
+  // nowhere what "everything" means. Said once, in the line already under the
+  // headline, and left unsaid when the headline has already named the place.
+  if(toolbarContext){
+    toolbarContext.textContent = locationPhrase
+      ? 'Your top matches first, with the reasons and cautions that matter.'
+      : 'Every ORMA trail, your top matches first, with the reasons and cautions that matter.';
+  }
   // The old copy ("Pick a province or valley below... Edit profile") duplicated
   // what the sidebar now already shows (filters + the dog card's edit link),
   // so this line is now just the one thing the sidebar can't say: whether
