@@ -119,17 +119,37 @@ function widestGapMeters(pts) {
  * attach whichever remaining piece has an end closest to either free end of
  * the chain, reversing it when that is the closer way round.
  *
- * This reorders and reorients. It never merges, drops or invents a point, so
- * `segments` still counts the pieces the relation really has and a genuine
- * hole in the data still reads as a gap of its true size.
+ * This reorders and reorients, and drops a piece that is not worth reaching.
+ * It never merges or invents a point, so a genuine hole in the data still
+ * reads as a gap of its true size.
+ *
+ * NOT WORTH REACHING: a piece whose gap to the chain is longer than the piece
+ * itself. Gsieser Talblickweg lists 160 ways that fall into eighteen groups --
+ * the walk, and then thirteen fragments of ten to a hundred and fifty metres
+ * scattered up to ten kilometres down the valley. Chaining those drew 8.8 km
+ * of line across open ground to collect about half a kilometre of path. No
+ * walker gains anything from a stretch that costs more to reach than it is
+ * long, and the drawn line stops describing the walk.
+ *
+ * Conservative on purpose, in two ways. A 200 m spur reached across 50 m is
+ * kept, because the gap is the smaller of the two. And nothing longer than
+ * DROPPABLE_PIECE_M goes at all, whatever the gap: the chain starts from the
+ * piece with the most points rather than the most ground, so without that
+ * ceiling a long sparse line could take the lead and see the real walk
+ * discarded behind it. Across the twenty discontinuous catalogue trails the
+ * largest piece this drops is 638 m and thirty-three of the thirty-four are
+ * under 250 m, so the ceiling costs nothing real and forecloses the bad case.
+ *
+ * `dropped` reports them rather than losing them silently.
  */
 function chainLines(lines) {
   const remaining = lines
     .map(line => line.map(([lng, lat]) => [lat, lng]))
     .filter(piece => piece.length)
     .sort((a, b) => b.length - a.length);
-  if (!remaining.length) return [];
+  if (!remaining.length) return { path: [], dropped: [] };
   let chained = remaining.shift();
+  const dropped = [];
   while (remaining.length) {
     let best = null;
     for (let i = 0; i < remaining.length; i += 1) {
@@ -144,11 +164,43 @@ function chainLines(lines) {
       ];
       for (const option of options) if (!best || option.gap < best.gap) best = option;
     }
-    const piece = best.reverse ? remaining[best.i].slice().reverse() : remaining[best.i];
-    chained = best.append ? chained.concat(piece) : piece.concat(chained);
+    const piece = remaining[best.i];
+    const pieceMeters = lineMeters(piece);
+    const chainMeters = lineMeters(chained);
+    if (best.gap > pieceMeters
+      && pieceMeters <= DROPPABLE_PIECE_M
+      && pieceMeters < chainMeters * DROPPABLE_SHARE_OF_WALK) {
+      dropped.push({ meters: Math.round(pieceMeters), gap: Math.round(best.gap), points: piece.length });
+      remaining.splice(best.i, 1);
+      continue;
+    }
+    const oriented = best.reverse ? piece.slice().reverse() : piece;
+    chained = best.append ? chained.concat(oriented) : oriented.concat(chained);
     remaining.splice(best.i, 1);
   }
-  return chained;
+  return { path: chained, dropped };
+}
+
+// The most ground a piece may cover and still be discardable. Above this it is
+// kept whatever it costs to reach, because a piece that long is a part of the
+// walk that someone mapped badly, not litter.
+const DROPPABLE_PIECE_M = 1000;
+
+// And it must be small against the walk it is being dropped from. Two 400 m
+// fragments fifteen kilometres apart are not a walk with litter on it, they
+// are a relation with nothing usable in it -- dropping one would publish a
+// tidy-looking 400 m route where the honest outcome is a visible hole and a
+// draft. A fragment only goes when there is plainly a walk for it to be litter
+// beside.
+const DROPPABLE_SHARE_OF_WALK = 0.1;
+
+/** Walked length of a [lat, lng] line, in metres. */
+function lineMeters(points) {
+  let total = 0;
+  for (let i = 1; i < points.length; i += 1) {
+    total += haversineMeters(points[i - 1][0], points[i - 1][1], points[i][0], points[i][1]);
+  }
+  return total;
 }
 
 // Flatten a (Multi)LineString into one [lat, lng] path, plus cumulative km.
@@ -161,13 +213,20 @@ function toPath(geometry) {
   // compared and the better kept: this step can narrow a route's widest gap
   // and can never widen it, which is the property that makes it safe to run
   // over the whole catalogue rather than the trails known to be broken.
-  const chained = lines.length > 1 ? chainLines(lines) : asListed;
-  const pts = widestGapMeters(chained) < widestGapMeters(asListed) ? chained : asListed;
+  const chaining = lines.length > 1 ? chainLines(lines) : { path: asListed, dropped: [] };
+  const chained = chaining.path;
+  // The as-listed order is still the fallback when chaining cannot better it,
+  // but it carries every fragment, so preferring it would put back the pieces
+  // chaining has just refused. Chaining wins on a tie for that reason.
+  const useChained = chained.length > 0
+    && (chaining.dropped.length > 0 || widestGapMeters(chained) <= widestGapMeters(asListed));
+  const pts = useChained ? chained : asListed;
   const cumKm = [0];
   for (let i = 1; i < pts.length; i += 1) {
     cumKm.push(cumKm[i - 1] + haversineMeters(pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1]) / 1000);
   }
-  return { pts, cumKm, segments: lines.length };
+  return { pts, cumKm, segments: lines.length,
+    droppedPieces: useChained ? chaining.dropped : [] };
 }
 
 function sampleAlong(pts, cumKm, count) {
@@ -619,4 +678,4 @@ if (require.main === module) {
   main().catch((err) => { console.error(err); process.exit(1); });
 }
 
-module.exports = { chainLines, toPath, widestGapMeters, haversineMeters };
+module.exports = { chainLines, toPath, widestGapMeters, haversineMeters, lineMeters, DROPPABLE_PIECE_M, DROPPABLE_SHARE_OF_WALK };
