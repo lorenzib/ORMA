@@ -2965,10 +2965,43 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-toolbar-greet .li-greet-avatar{width:40px;height:40px;}
 .li-toolbar-greet-copy{display:flex;flex-direction:column;min-width:0;flex:1 1 auto;}
 /* The heading carries the dog + location + day, which can run long ("Best walk
-   for Teo in Alta Pusteria - Tre Cime di Lavaredo"). It must wrap inside its own
-   column rather than run nowrap under the right-hand controls. */
+   for Teo in Alta Pusteria - Tre Cime di Lavaredo"). It now gets the whole
+   width to do that in, and still wraps rather than overflowing when even that
+   is not enough. */
 .li-toolbar-greet-copy strong{font:700 21px/1.12 'Bricolage Grotesque',sans-serif;white-space:normal;overflow-wrap:anywhere;}
 .li-toolbar-greet-copy small{margin-top:2px;font:600 10.5px/1.2 'Inter',sans-serif;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:none;}
+/* The title owns the top line; where and when sit together underneath.
+   Before this, the headline and the controls shared a row, so the controls took
+   the width they needed and the headline wrapped in what was left -- "Best walk
+   for Teo in Alta / Pusteria today" over two lines beside a half-empty strip,
+   and at 760px that headline wrapped to 33 lines. The four control shapes also
+   sat loose on the background with nothing to say which belonged together.
+
+   So: the copy takes the rest of the row after the avatar, which pushes the
+   strip onto its own line, and one border groups the strip.
+
+   Below 701px .li-greet-bar is display:contents, handing its children straight
+   back to the mobile grid in homepage-editorial.css that places each of them. */
+@media (min-width:701px){
+  .li-toolbar-greet{flex-wrap:wrap;row-gap:12px;}
+  /* 40px avatar + the 12px column gap. */
+  .li-toolbar-greet-copy{flex:1 1 calc(100% - 52px);}
+  .li-greet-bar{
+    display:flex;align-items:center;gap:10px;flex:0 1 auto;margin-left:52px;min-width:0;
+    padding:7px 9px;border:1.5px solid var(--paper-line);border-radius:var(--radius-pill);background:#fff;
+  }
+  /* The auto margin existed to shove this to the far end of a shared row; in a
+     box of its own it would only open a gap. */
+  .li-greet-bar .li-location-summary{margin-left:0;border:0;background:transparent;padding:0 0 0 2px;}
+  .li-greet-bar .li-date-summary{border:0;background:transparent;padding:0 2px;}
+  .li-greet-bar .li-greet-sep{width:1px;align-self:stretch;margin:2px 2px;background:var(--paper-line);flex:none;}
+  .li-greet-bar .li-adjust-recommendation{min-height:36px;}
+}
+@media (max-width:700px){
+  /* Hand the children back to the mobile grid that positions them. */
+  .li-greet-bar{display:contents;}
+  .li-greet-sep{display:none;}
+}
 .li-toolbar-breed{color:inherit;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
 .li-toolbar-breed:hover{color:var(--accent);text-decoration-color:currentColor;}
 

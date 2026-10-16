@@ -235,18 +235,25 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <strong id="liToolbarGreeting">Where are we going today?</strong>
         <small id="liToolbarDogContext">Trails ranked for your dog’s needs and your current choices.</small>
       </span>
-      <span class="li-location-summary" id="liLocationSummary" hidden>
-        <span class="li-location-summary-pin" aria-hidden="true">⌖</span>
-        <span><small id="liLocationSummaryKick">Looking near</small><strong id="liLocationSummaryLabel"></strong></span>
-        <button type="button" id="liChangeLocationBtn">Change</button>
-        <!-- Near me sits with the other scope controls now. It used to live in
-             the Explore menu, which was also the only way back after dismissing
-             the location band for the session. -->
-        <button type="button" id="liNearMeBtn">Near me</button>
-        <button type="button" id="liShowAllBtn" hidden>Show all</button>
-      </span>
-      <label class="li-date-summary"><small>Walking</small><input id="liRecommendationDate" type="date" aria-label="Recommendation date"></label>
-      <button type="button" class="li-adjust-recommendation" id="liAdjustRecommendationBtn" aria-expanded="false">Adjust recommendation</button>
+      <!-- Where, when, and the way in to change either: one strip, read left to
+           right, so the four control shapes stop competing for the eye. Below
+           701px this box is display:contents, which hands its children back to
+           the mobile grid that places them individually. -->
+      <div class="li-greet-bar">
+        <span class="li-location-summary" id="liLocationSummary" hidden>
+          <span class="li-location-summary-pin" aria-hidden="true">⌖</span>
+          <span><small id="liLocationSummaryKick">Looking near</small><strong id="liLocationSummaryLabel"></strong></span>
+          <button type="button" id="liChangeLocationBtn">Change</button>
+          <!-- Near me sits with the other scope controls now. It used to live in
+               the Explore menu, which was also the only way back after dismissing
+               the location band for the session. -->
+          <button type="button" id="liNearMeBtn">Near me</button>
+          <button type="button" id="liShowAllBtn" hidden>Show all</button>
+        </span>
+        <span class="li-greet-sep" aria-hidden="true"></span>
+        <label class="li-date-summary"><small>Walking</small><input id="liRecommendationDate" type="date" aria-label="Recommendation date"></label>
+        <button type="button" class="li-adjust-recommendation" id="liAdjustRecommendationBtn" aria-expanded="false">Adjust recommendation</button>
+      </div>
     </div>
     <!-- Today, for this area. Hidden until a forecast actually arrives: an
          empty band is better than a confident one with nothing behind it. -->
