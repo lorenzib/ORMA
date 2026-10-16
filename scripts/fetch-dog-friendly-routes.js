@@ -252,6 +252,40 @@ function haversineMeters(a, b) {
 // Douglas-Peucker simplification (tolerance in degrees; ~0.00005 ≈ 5 m)
 function simplify(points, tolerance = 0.00005) {
   if (points.length <= 2) return points;
+
+  // A closed ring has no baseline to measure against. With the first and last
+  // point equal, every point in between measures zero distance from the line
+  // through them, so the whole ring collapses to two identical points: length
+  // zero, and the walk is dropped downstream as degenerate geometry.
+  //
+  // Not a theoretical case. It is exactly what a correctly tagged roundtrip
+  // looks like once its approach and excursion members are left out -- the last
+  // way's final node IS the first way's first node, so the coordinates are
+  // bit-identical. Appending a spur used to leave the ends apart and hide this:
+  // refreshing 41 relations after the member-role fix turned 18 of them into
+  // 0 km, Toblacher Höhenweg from 27.3 km and Rundweg Peitlerkofel from 11.8.
+  //
+  // Split at the point furthest from the start and simplify each half, which is
+  // the standard treatment. Both halves have distinct ends, so this recurses
+  // once and terminates.
+  const [fx, fy] = points[0];
+  const [lx, ly] = points[points.length - 1];
+  if (fx === lx && fy === ly) {
+    let far = 0;
+    let farDist = 0;
+    for (let i = 1; i < points.length - 1; i += 1) {
+      const d = Math.hypot(points[i][0] - fx, points[i][1] - fy);
+      if (d > farDist) { farDist = d; far = i; }
+    }
+    // farDist 0 means every point is the same point: genuinely degenerate, and
+    // the ordinary path below reduces it to two, which is correct.
+    if (farDist > 0) {
+      const head = simplify(points.slice(0, far + 1), tolerance);
+      const tail = simplify(points.slice(far), tolerance);
+      return head.slice(0, -1).concat(tail);
+    }
+  }
+
   let maxDist = 0;
   let index = 0;
   const [x1, y1] = points[0];
@@ -356,6 +390,134 @@ function pathLengthKm(lines) {
   return Math.round((meters / 1000) * 10) / 10;
 }
 
+/* ------------------------------------------ Geometry, in one definition */
+
+const GEOMETRY_BATCH = 25;
+
+/**
+ * Everything one relation's geometry decides, from its members.
+ *
+ * One definition, used by the full pass that rebuilds the whole file and by the
+ * targeted refresh below, so a refreshed feature and a freshly discovered one
+ * cannot disagree. Returns null where there is no line to draw, which is what
+ * the full pass already treats as nothing to publish.
+ *
+ * `distance_km` keeps the relation's own `distance` tag ahead of the measured
+ * length, exactly as the full pass does: the operator's published figure is
+ * better evidence than a sum over a simplified line, and only fills in from the
+ * geometry where no tag exists.
+ */
+function geometryOf(members, tags, waySurface) {
+  const lines = stitchMembers(members).map((l) => simplify(l));
+  if (!lines.length) return null;
+
+  const surfaces = {};
+  for (const m of members || []) {
+    if (!isRouteMember(m) || !Array.isArray(m.geometry) || m.geometry.length < 2) continue;
+    const s = waySurface?.get(m.ref);
+    if (!s) continue;
+    let meters = 0;
+    for (let j = 1; j < m.geometry.length; j += 1) {
+      meters += haversineMeters(
+        [m.geometry[j - 1].lon, m.geometry[j - 1].lat],
+        [m.geometry[j].lon, m.geometry[j].lat]
+      );
+    }
+    surfaces[s] = Math.round(((surfaces[s] || 0) + meters / 1000) * 10) / 10;
+  }
+
+  const lengthKm = pathLengthKm(lines);
+  return {
+    lines,
+    lengthKm,
+    // The properties geometry decides. Everything else on a feature comes from
+    // the relation's tags and is not this function's business.
+    properties: {
+      distance_km: parseDistanceKm(tags?.distance) || lengthKm,
+      surfaces: Object.keys(surfaces).length ? surfaces : null,
+      // Loop = what the GEOMETRY says, not what tags or names claim.
+      loop: lengthKm >= 1 && isClosedLoop(lines),
+    },
+    geometry: lines.length === 1
+      ? { type: 'LineString', coordinates: lines[0] }
+      : { type: 'MultiLineString', coordinates: lines },
+  };
+}
+
+/**
+ * Re-read the geometry of named relations, and change nothing else.
+ *
+ * The full pass rediscovers the area -- 2,826 named routes and 2,197 candidates
+ * against the 92 features on file the day this was written -- so running it to
+ * correct geometry also adds and retires trails on the strength of whatever
+ * OpenStreetMap looks like that morning. Those are product decisions, and
+ * burying them in a geometry correction makes the change unreviewable. It is
+ * also 88 batches against an Overpass that answers some of them with a 504.
+ *
+ * So this takes the relations asked for, keeps the feature list exactly as it
+ * is, and replaces only what `geometryOf` decides. A relation that is not
+ * already on file is reported and skipped rather than added: putting a walk in
+ * the catalogue is not a refresh.
+ */
+async function refreshGeometry(relationIds, options = {}) {
+  const runQuery = options.fetchQuery || fetchWithRetries;
+  const file = options.outputPath || OUTPUT_PATH;
+  const collection = JSON.parse(await fs.readFile(file, 'utf8'));
+  const onFile = new Map(collection.features
+    .map((feature) => [Number(feature.properties?.osm_relation), feature]));
+
+  const wanted = [...new Set((relationIds || []).map(Number).filter(Number.isFinite))];
+  const absent = wanted.filter((id) => !onFile.has(id));
+  const present = wanted.filter((id) => onFile.has(id));
+  const changed = [], identical = [], failed = [];
+
+  for (let i = 0; i < present.length; i += GEOMETRY_BATCH) {
+    const batch = present.slice(i, i + GEOMETRY_BATCH);
+    console.log(`[refresh] Geometry batch ${i / GEOMETRY_BATCH + 1}/${Math.ceil(present.length / GEOMETRY_BATCH)}…`);
+    const data = await runQuery(buildPhase2Query(batch));
+
+    const waySurface = new Map();
+    try {
+      const tagged = await runQuery(buildWayTagsQuery(batch));
+      for (const w of tagged.elements || []) {
+        if (w.tags?.surface) waySurface.set(w.id, w.tags.surface);
+      }
+    } catch (err) {
+      // The full pass warns and carries on here too; a missing surface
+      // breakdown is thinner data, not wrong data.
+      console.warn(`[refresh] Surface-tag query failed for this batch: ${err.message}`);
+    }
+
+    const returned = new Set();
+    for (const el of data.elements || []) {
+      if (el.type !== 'relation') continue;
+      returned.add(el.id);
+      const feature = onFile.get(el.id);
+      if (!feature) continue;
+      const built = geometryOf(el.members || [], el.tags || {}, waySurface);
+      if (!built) { failed.push({ id: el.id, why: 'no route members left a line' }); continue; }
+      const before = JSON.stringify(feature.geometry);
+      const record = { id: el.id, name: feature.properties?.name,
+        wasKm: feature.properties?.distance_km, nowKm: built.properties.distance_km };
+      feature.geometry = built.geometry;
+      Object.assign(feature.properties, built.properties);
+      if (before === JSON.stringify(feature.geometry)) identical.push(record);
+      else changed.push(record);
+    }
+    for (const id of batch) {
+      if (!returned.has(id)) failed.push({ id, why: 'not returned by the query' });
+    }
+    if (i + GEOMETRY_BATCH < present.length) await new Promise((r) => setTimeout(r, 3000));
+  }
+
+  if (!options.dryRun) {
+    collection.generatedAt = new Date().toISOString();
+    await fs.writeFile(file, JSON.stringify(collection));
+  }
+  return { file, changed, identical, failed, absent,
+    total: collection.features.length, written: !options.dryRun };
+}
+
 /* -------------------------------------------------------------------- Main */
 
 async function loadOverrides() {
@@ -375,7 +537,35 @@ async function loadOverrides() {
   }
 }
 
+/** `--relations 123,456` -- the ids to refresh, or null for a full pass. */
+function relationsArg() {
+  const i = ARGS.indexOf('--relations');
+  if (i === -1) return null;
+  const ids = String(ARGS[i + 1] || '').split(/[,\s]+/).map(Number).filter(Number.isFinite);
+  return ids.length ? ids : null;
+}
+
 async function main() {
+  const only = relationsArg();
+  if (only) {
+    console.log(`[refresh] Re-reading the geometry of ${only.length} relation(s); the feature list is left alone.`);
+    const result = await refreshGeometry(only, { dryRun: ARGS.includes('--dry-run') });
+    console.log(`[refresh] ${result.total} feature(s) on file.`);
+    for (const entry of result.changed) {
+      const moved = entry.wasKm !== entry.nowKm ? `  ${entry.wasKm} -> ${entry.nowKm} km` : '';
+      console.log(`[refresh]   CHANGED  ${entry.id} · ${entry.name || ''}${moved}`);
+    }
+    if (result.identical.length) console.log(`[refresh]   ${result.identical.length} unchanged.`);
+    for (const entry of result.absent) {
+      console.log(`[refresh]   not on file, skipped: ${entry} (adding a walk is not a refresh)`);
+    }
+    for (const entry of result.failed) console.log(`[refresh]   FAILED   ${entry.id} · ${entry.why}`);
+    console.log(result.written
+      ? `[refresh] Wrote ${result.file}. Re-run promote-osm-trails.js for the region, then the quality gate.`
+      : '[refresh] Dry run. Nothing written.');
+    return;
+  }
+
   const overrides = await loadOverrides();
 
   console.log('[phase1] Fetching route relation tags + hard-way exclusion list…');
@@ -431,37 +621,19 @@ async function main() {
       const match = batch.find((k) => k.tags.__id === el.id);
       if (!match) continue;
 
-      const lines = stitchMembers(el.members).map((l) => simplify(l));
-      if (!lines.length) continue;
-
-      // Aggregate surface breakdown (km per surface value) from member ways.
-      // The same members as the line itself, or an approach road's asphalt is
-      // counted as surface the walk is made of.
-      const surfaces = {};
-      for (const m of el.members) {
-        if (!isRouteMember(m) || !Array.isArray(m.geometry) || m.geometry.length < 2) continue;
-        const s = waySurface.get(m.ref);
-        if (!s) continue;
-        let meters = 0;
-        for (let j = 1; j < m.geometry.length; j += 1) {
-          meters += haversineMeters(
-            [m.geometry[j - 1].lon, m.geometry[j - 1].lat],
-            [m.geometry[j].lon, m.geometry[j].lat]
-          );
-        }
-        surfaces[s] = Math.round(((surfaces[s] || 0) + meters / 1000) * 10) / 10;
-      }
-
-      const lengthKm = pathLengthKm(lines);
+      // The geometry and what it decides, from the one definition the targeted
+      // refresh also uses, so a refreshed feature and a freshly discovered one
+      // cannot disagree.
+      const built = geometryOf(el.members, el.tags || match.tags, waySurface);
+      if (!built) continue;
+      const { lengthKm } = built;
       // Drop degenerate/broken geometries (e.g. two identical points).
       if (lengthKm < 0.3) {
         console.warn(`[phase2] Dropped relation ${el.id} (${match.tags.name}): degenerate geometry (${lengthKm} km).`);
         continue;
       }
 
-      // Loop = what the GEOMETRY says, not what tags/names claim:
-      // one continuous line, >= 1 km, ends meeting within LOOP_CLOSE_METERS.
-      const loop = lengthKm >= 1 && isClosedLoop(lines);
+      const loop = built.properties.loop;
       if (LOOPS_ONLY && !loop && !match.verdict.loop) continue;
 
       const t = match.tags;
@@ -475,8 +647,8 @@ async function main() {
           'name:de': t['name:de'] || null,
           ref: t.ref || null,
           network: t.network || null,
-          distance_km: match.verdict.km || lengthKm,
-          surfaces: Object.keys(surfaces).length ? surfaces : null,
+          distance_km: built.properties.distance_km,
+          surfaces: built.properties.surfaces,
           sac_scale: t.sac_scale || null,
           loop,
           symbol: t['osmc:symbol'] || null,
@@ -488,9 +660,7 @@ async function main() {
           dogFriendlyNotes: ov.dogFriendlyNotes || null,
           waymarkedtrails: `https://hiking.waymarkedtrails.org/#route?id=${el.id}`
         },
-        geometry: lines.length === 1
-          ? { type: 'LineString', coordinates: lines[0] }
-          : { type: 'MultiLineString', coordinates: lines }
+        geometry: built.geometry
       });
     }
     await new Promise((r) => setTimeout(r, 3000)); // be polite between batches
@@ -564,4 +734,5 @@ if (require.main === module) {
 // a second copy is how one of them learns about a dead mirror and the other
 // does not.
 module.exports = { fetchWithRetries, OVERPASS_URLS, USER_AGENT,
-  OFF_ROUTE_ROLES, isRouteMember, stitchMembers };
+  OFF_ROUTE_ROLES, isRouteMember, stitchMembers,
+  geometryOf, refreshGeometry, simplify, pathLengthKm, isClosedLoop, parseDistanceKm };

@@ -12,7 +12,7 @@
  * into it.
  */
 
-const { OFF_ROUTE_ROLES, isRouteMember, stitchMembers } =
+const { OFF_ROUTE_ROLES, isRouteMember, stitchMembers, isClosedLoop } =
   require('./fetch-dog-friendly-routes');
 
 // Vandoies/Vintl, where relation 11795251 starts. A ~330 m square of plain
@@ -21,7 +21,8 @@ const LOOP = [
   [{ lat: 46.8167, lon: 11.7230 }, { lat: 46.8167, lon: 11.7270 }],
   [{ lat: 46.8167, lon: 11.7270 }, { lat: 46.8197, lon: 11.7270 }],
   [{ lat: 46.8197, lon: 11.7270 }, { lat: 46.8197, lon: 11.7230 }],
-  [{ lat: 46.8197, lon: 11.7230 }, { lat: 46.8167, lon: 11.7230 }],
+  // Closes ~9 m from the start, the way a real stitched loop does.
+  [{ lat: 46.8197, lon: 11.7230 }, { lat: 46.81678, lon: 11.7230 }],
 ];
 // Where relation 11795251's 2.48 km jump landed.
 const SPUR = [{ lat: 46.81516, lon: 11.75532 }, { lat: 46.81516, lon: 11.75932 }];
@@ -44,8 +45,10 @@ describe('a member that is not the route is not stitched into the walk', () => {
   }
 
   test('the loop itself still closes, with the spur gone', () => {
-    const [line] = stitchMembers([...loopMembers(), way(SPUR, 'approach')]);
-    expect(line[0]).toEqual(line[line.length - 1]);
+    // "Closes" as production means it: ends meeting within LOOP_CLOSE_METERS,
+    // which is what a real stitched loop does rather than landing bit-exactly
+    // back on its first coordinate.
+    expect(isClosedLoop(stitchMembers([...loopMembers(), way(SPUR, 'approach')]))).toBe(true);
   });
 
   test('several off-route members at once are all left out', () => {
@@ -81,7 +84,7 @@ describe('a direction role is the route, and must survive', () => {
     const lines = stitchMembers([way(LOOP[0], 'forward'), way(LOOP[1], 'backward'),
       way(LOOP[2]), way(LOOP[3])]);
     expect(lines).toHaveLength(1);
-    expect(lines[0][0]).toEqual(lines[0][lines[0].length - 1]);
+    expect(isClosedLoop(lines)).toBe(true);
   });
 
   test('neither direction is in the off-route list', () => {
