@@ -1116,6 +1116,25 @@ to make and the research to commission. A walk whose own relation carries a
 number needed no corridor query at all, so it is not marked unmeasured; nothing
 was missed.
 
+### A composite survey says which of the three cases it is too
+
+A composite recorded the numbers it measured and **nothing at all otherwise**,
+so a composite whose routes carry no number could not be told from one surveyed
+before those marks existed. From the gate those two read alike, and only one of
+them is a walk somebody has to research.
+
+Cinque Torri was the last trail in the catalogue blocked on route guidance on 16
+October 2026, for exactly that reason. Twelve trails are on this path, Tre Cime
+and Lago di Braies among them.
+
+A composite now records the same three outcomes as any other survey: the numbers
+it measured, that it looked and found none, or that it could not look. Its own
+measurement already works out which numbered routes carry each stretch — a
+composite is defined by the routes it runs along, so those are its own numbers —
+and where it finds none, the corridor is searched for numbered walking routes
+along the walk before anything is concluded, which is the same ladder the
+single-relation path climbs. The mark therefore means one thing in both.
+
 ### A named trail can be surveyed again
 
 The geometry audit is deterministic — it reads OpenStreetMap and measures, with
