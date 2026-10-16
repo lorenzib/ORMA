@@ -16880,7 +16880,9 @@ if(document.querySelector('.td2')){
 
   // P0-3: what changed when the reader added their own dog. A move of two
   // points or less is not a move, claiming one would be inventing drama the
-  // score does not support.
+  // score does not support -- and saying "same score" out loud is a banner
+  // whose whole content is that nothing happened. Below the tolerance the
+  // callout says nothing at all.
   const SAME_SCORE_TOLERANCE = 2;
 
   function firstRunCallout(before, after, translate){
@@ -16898,11 +16900,7 @@ if(document.querySelector('.td2')){
       return output;
     };
 
-    if(Math.abs(after.score - before.score) <= SAME_SCORE_TOLERANCE){
-      return tr('recommendation.firstRun.same',
-        'Same score for {name} as for {before} on this trail.',
-        { name:after.forName, before:before.forName });
-    }
+    if(Math.abs(after.score - before.score) <= SAME_SCORE_TOLERANCE) return null;
     return tr('recommendation.firstRun.moved',
       'Was {beforeScore}% for {before} · now {afterScore}% for {name}. See why below.',
       { beforeScore:before.score, before:before.forName, afterScore:after.score, name:after.forName });

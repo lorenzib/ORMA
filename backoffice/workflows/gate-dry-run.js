@@ -24,6 +24,7 @@
 const {dossierBlockingReasons,routeGuidanceBlockingReasons,supportedRouteGuidance,
   currentBlockingReasons,waivableBlocker,blockerId,ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
 const {gateDecision}=require('./automate-existing-trail-verification');
+const {timeValue}=require('./advance-trail-orchestration');
 const {MAX_AUTOMATED_ATTEMPTS}=require('../contracts/resolution-policy-v1');
 
 // What answered a claim, in the words the standard uses for it. A claim with
@@ -74,8 +75,24 @@ function latestOutputsByAgent(jobs,candidateId,outputFor){
   const newest=new Map();
   for(const job of completed){
     const held=newest.get(job.agentId);
-    const at=job.completedAt||job.createdAt||'';
-    if(!held||String(at)>String(held.completedAt||held.createdAt||''))newest.set(job.agentId,job);
+    // `timeValue`, not a string comparison. A Firestore timestamp is an object,
+    // so `String(at)` is "[object Object]" for every job: the comparison was
+    // always false and the FIRST job won, whichever that happened to be.
+    //
+    // This tool exists to say what the gate would decide, and it was reading an
+    // arbitrary survey. Boucle du Taillefer has eleven, and the one it showed on
+    // 16 October 2026 predated the marks that say whether a walk carries a
+    // number -- so a fresh survey looked like no survey, and an afternoon went
+    // on why the landmark answer would not fire for a trail that had already
+    // been measured.
+    //
+    // The orchestration has always handled this, because a timestamp that
+    // arrives as an object is exactly what it reads. One definition now serves
+    // both, so the preview and the gate cannot disagree about which survey is
+    // the newest one.
+    if(!held||timeValue(job.completedAt||job.createdAt)>timeValue(held.completedAt||held.createdAt)){
+      newest.set(job.agentId,job);
+    }
   }
   return [...newest.values()]
     .map(job=>({agentId:job.agentId,jobId:job.id,result:outputFor(job.id)}))
@@ -184,8 +201,25 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
   // A measurement that was attempted and could not be taken. It is not a
   // verdict and not research to commission: it is a survey to run again, and
   // without it a trail reads as refused for want of evidence nobody could get.
-  const unmeasured=latestOutputsByAgent(jobs,trail.candidateId,outputFor||(()=>null))
-    .find(output=>output.agentId==='cartographer')?.result?.routeNumbersUnmeasured||null;
+  const survey=latestOutputsByAgent(jobs,trail.candidateId,outputFor||(()=>null))
+    .find(output=>output.agentId==='cartographer')?.result||null;
+  const unmeasured=survey?.routeNumbersUnmeasured||null;
+  // What the survey on the shelf actually recorded about numbers.
+  //
+  // Every branch of the survey records exactly one of three things: the numbers
+  // it found, that it looked and found none, or that it could not look. So a
+  // survey carrying none of them is a survey older than those marks -- and that
+  // is indistinguishable, from the gate, from a walk nobody can supply
+  // directions for.
+  //
+  // Seven trails read that way on 16 October 2026 after a fresh survey, and
+  // working out why took reading commit timestamps against workflow run times
+  // because the report would not say. It says now.
+  const surveyRecorded=!survey?'no survey on the shelf'
+    :survey.routeGuidance?`numbers: ${(survey.routeGuidance.sequence||[]).join(', ')||'none listed'}`
+    :survey.routeNumbersAbsent?'looked along the walk and found no number'
+    :survey.routeNumbersUnmeasured?`could not look: ${survey.routeNumbersUnmeasured}`
+    :'nothing — this survey predates the marks, so it cannot say either way';
   const decided=[...new Set(currentBlockingReasons(review)
     .filter(reason=>!waivableBlocker(reason)).map(blockerId))];
   const disagreement=reportVersusDecision(unwaivable,decided);
@@ -209,6 +243,9 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
     // Why the numbers along this walk were never measured, where somebody
     // tried. A survey to run again, not a walk to research.
     routeNumbersUnmeasured:unmeasured,
+    // One of: the numbers found, looked-and-none, could-not-look, or a survey
+    // too old to say. The fourth reads like a refusal and is a survey to retake.
+    surveyRecorded,
     routeGuidanceBlockers:routeGuidanceBlockingReasons(specialistOutputs).map(blockerId),
     blockerCount:blockingReasons.length,
     unwaivable,
