@@ -3,6 +3,7 @@
 const { validateTrailRecord, REVIEW_CATEGORIES } = require('./trail-schema');
 const { normalizeLiftAccess } = require('./lift-access');
 const evidence = require('../trust/evidence-v1.js');
+const { pinnedSlug } = require('./trail-slug-overrides');
 
 const ADAPTER_VERSION = '1.1.0';
 const UNKNOWN_ROOTS = new Set([
@@ -17,8 +18,18 @@ const GRADUATION_CATEGORIES = new Set([
   'photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', ...REVIEW_CATEGORIES,
 ]);
 
+// Letters that carry no combining accent, so NFD leaves them whole and the
+// a-z filter below turns them into a separator. "Gro\u00dfe Schlossrunde" became
+// `gro-e-schlossrunde`, which is the URL a reader sees and reads as a title.
+// Spelled out the way each language writes them when it cannot use the letter.
+const UNDECOMPOSABLE = [[/\u00df/g, 'ss'], [/\u00e6/g, 'ae'], [/\u0153/g, 'oe'], [/\u00f8/g, 'o']];
+
 function slugify(value){
-  return String(value || '')
+  // Lowercased first, so one lowercase entry per letter covers its capital too
+  // -- and the capital sharp s lowercases into the entry below.
+  let text = String(value || '').toLowerCase();
+  for(const [letter, spelled] of UNDECOMPOSABLE) text = text.replace(letter, spelled);
+  return text
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
@@ -488,9 +499,24 @@ function adaptLegacyTrail(legacy, options = {}){
   return { record, exclusionReasons, stats, inputErrors };
 }
 
-function assignSlugs(trails){
+/**
+ * Each trail's slug: the one the overrides pin, else one read off its name.
+ *
+ * A derived slug ties the URL to the name, so renaming a trail moved its page
+ * and the old address stopped working -- which is why seven pages still carry a
+ * tourist-office code nobody outside the local office has seen. A pinned slug
+ * breaks that tie: the name is for the reader, the slug is for the link, and
+ * either can change without the other.
+ *
+ * A pinned slug is taken as given, including past a collision: the overrides
+ * are validated for that separately, where the clash can be reported by trail
+ * id rather than silently suffixed here.
+ */
+function assignSlugs(trails, overrides){
   const seen = new Set();
   return trails.map(trail => {
+    const pinned = pinnedSlug(overrides, trail.id);
+    if(pinned){ seen.add(pinned); return pinned; }
     let slug = slugify(trail.name) || slugify(trail.id);
     if(seen.has(slug)) slug = `${slug}-${slugify(trail.id)}`.slice(0, 99);
     seen.add(slug);
@@ -514,8 +540,8 @@ function validateCatalog(records){
   return errors;
 }
 
-function buildCanonicalCatalog(trails){
-  const slugs = assignSlugs(trails);
+function buildCanonicalCatalog(trails, options = {}){
+  const slugs = assignSlugs(trails, options.slugOverrides);
   const adapted = trails.map((trail, index) =>
     adaptLegacyTrail(trail, { slug: slugs[index] }));
   const records = adapted.map(entry => entry.record);

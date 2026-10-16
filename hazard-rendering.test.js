@@ -96,8 +96,15 @@ describe('official area warnings reach the page', () => {
   });
 
   // The generated pages use their badge strip as the anchor instead.
+  //
+  // The page is the one HAZARD actually names. It used to be read as the first
+  // entry in trails/, which was the same file only by coincidence -- the two
+  // parted company the moment the catalogue grew and 1-dorferrundweg-vintl
+  // sorted ahead of it, and the test failed for naming a page the hazard does
+  // not apply to rather than for anything being wrong.
   test('a generated trail page renders a matching hazard', async () => {
-    const page = fs.readdirSync(path.join(root, 'trails')).filter(f => f.endsWith('.html'))[0];
+    const page = `${HAZARD.trailSlugs[0]}.html`;
+    expect(fs.existsSync(path.join(root, 'trails', page))).toBe(true);
     const stack = await render(`trails/${page}`, `/trails/${page}`);
     expect(stack).not.toBeNull();
     expect(document.body.contains(stack)).toBe(true);

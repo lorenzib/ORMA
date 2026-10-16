@@ -10,7 +10,7 @@ describe('PERF-02 asset and regional loading contract', () => {
     const detail = read('trail.html');
     [homepage, detail].forEach(html => expect(html).not.toContain('unpkg.com/maplibre-gl@5.24.0'));
     expect(homepage).toContain('map-runtime.js?v=20260826-1');
-    expect(detail).toContain('trail-app.bundle.js?v=20261007-5');
+    expect(detail).toContain('trail-app.bundle.js?v=20261016-1');
     const runtime = read('map-runtime.js');
     expect(runtime).toContain('IntersectionObserver');
     expect(runtime).toContain("rootMargin: opts.rootMargin || '320px 0px'");
@@ -30,7 +30,10 @@ describe('PERF-02 asset and regional loading contract', () => {
     // source that costs nothing until the map draws it, which is why it can be
     // on by default where the POI datasets cannot.
     expect(homepage).toContain('const overlayStates = { routes: true, lifts: false');
-    expect(homepage).toContain("addWaymarkedHiking(trailMapInstance, { beforeId: firstLabelLayer.id, visible: true })");
+    // On by default, and from zoom 12.5 up: a raster tile source costs nothing
+    // until the map draws it, and below that zoom it draws a mesh of route
+    // shields over the walks a reader is choosing between.
+    expect(homepage).toContain('visible: true, minzoom: BROWSE_NETWORK_MIN_ZOOM');
     expect(homepage).toContain('onIdle(loadSecondaryMapData, 5000)');
     const secondaryMapData = homepage.slice(
       homepage.indexOf('const loadSecondaryMapData = () =>'),
@@ -126,7 +129,7 @@ describe('PERF-02 asset and regional loading contract', () => {
 
   test('trail application code ships as one ordered, reproducible request', () => {
     const page = read('trail.html');
-    expect(page).toContain('<script src="trail-app.bundle.js?v=20261007-5" defer>');
+    expect(page).toContain('<script src="trail-app.bundle.js?v=20261016-1" defer>');
     expect(page).not.toContain('<script src="map-runtime.js');
     expect(page).not.toContain('<script src="trail.js');
     expect(trailBundle.SOURCES.length).toBeGreaterThan(40);

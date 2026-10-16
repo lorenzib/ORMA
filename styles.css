@@ -2965,10 +2965,41 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-toolbar-greet .li-greet-avatar{width:40px;height:40px;}
 .li-toolbar-greet-copy{display:flex;flex-direction:column;min-width:0;flex:1 1 auto;}
 /* The heading carries the dog + location + day, which can run long ("Best walk
-   for Teo in Alta Pusteria - Tre Cime di Lavaredo"). It must wrap inside its own
-   column rather than run nowrap under the right-hand controls. */
+   for Teo in Alta Pusteria - Tre Cime di Lavaredo"). It now gets the whole
+   width to do that in, and still wraps rather than overflowing when even that
+   is not enough. */
 .li-toolbar-greet-copy strong{font:700 21px/1.12 'Bricolage Grotesque',sans-serif;white-space:normal;overflow-wrap:anywhere;}
 .li-toolbar-greet-copy small{margin-top:2px;font:600 10.5px/1.2 'Inter',sans-serif;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:none;}
+/* The answer, then the way to change it -- and nothing else until asked.
+   The headline and the scope controls used to share a row, so the controls
+   took the width they needed and the headline wrapped in what was left:
+   "Best walk for Teo in Alta / Pusteria today" over two lines beside a
+   half-empty strip, and 33 lines at 760px.
+
+   The controls were also saying what the headline already says. The headline
+   is assembled from the dog, the place and the day, so a pill reading
+   "Looking in Alta Pusteria" and a date box reading today's date were the
+   same sentence twice, in a different typeface. They are the machinery, not
+   the answer, so they wait behind "Adjust recommendation" and come back
+   untouched when it is pressed.
+
+   Below 701px the greeting is its own grid (body.mhome-active) which places
+   these individually, so none of this applies there. */
+@media (min-width:701px){
+  .li-toolbar-greet{flex-wrap:wrap;row-gap:10px;}
+  /* 40px avatar + the 12px column gap. */
+  .li-toolbar-greet-copy{flex:1 1 calc(100% - 52px);}
+  .li-toolbar-greet .li-adjust-recommendation{margin-left:52px;}
+  /* Secondary: the answer is the list below, not this. Filled again once the
+     adjustment panel is open, where it is the way back out. */
+  .li-toolbar:not(.li-refine-open) .li-adjust-recommendation{background:transparent;color:var(--accent);}
+  /* Quiet until asked. */
+  .li-toolbar:not(.li-refine-open) .li-location-summary,
+  .li-toolbar:not(.li-refine-open) .li-date-summary{display:none;}
+  /* Asked: the controls return, indented to line up with the headline. */
+  .li-toolbar.li-refine-open .li-location-summary{margin-left:52px;}
+  .li-toolbar.li-refine-open .li-adjust-recommendation{margin-left:0;}
+}
 .li-toolbar-breed{color:inherit;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
 .li-toolbar-breed:hover{color:var(--accent);text-decoration-color:currentColor;}
 
