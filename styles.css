@@ -2987,9 +2987,15 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
    these individually, so none of this applies there. */
 @media (min-width:701px){
   .li-toolbar-greet{flex-wrap:wrap;row-gap:10px;}
-  /* 40px avatar + the 12px column gap. */
-  .li-toolbar-greet-copy{flex:1 1 calc(100% - 52px);}
-  .li-toolbar-greet .li-adjust-recommendation{margin-left:52px;}
+  /* One left edge. The avatar used to sit before the copy, so the headline and
+     everything under it started 52px in while the search row, the map and the
+     results list started at the toolbar edge -- two margins down the same
+     page. The dog is already named in the headline ("for Teo") and again in
+     the nav, so the third marker goes, and the column lines up.
+     Mobile already hid it, for the same reason. */
+  .li-toolbar-greet .li-greet-avatar{display:none;}
+  .li-toolbar-greet-copy{flex:1 1 100%;}
+  .li-toolbar-greet .li-adjust-recommendation{margin-left:0;}
   /* Secondary: the answer is the list below, not this. Filled again once the
      adjustment panel is open, where it is the way back out. */
   .li-toolbar:not(.li-refine-open) .li-adjust-recommendation{background:transparent;color:var(--accent);}
@@ -2997,8 +3003,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   .li-toolbar:not(.li-refine-open) .li-location-summary,
   .li-toolbar:not(.li-refine-open) .li-date-summary{display:none;}
   /* Asked: the controls return, indented to line up with the headline. */
-  .li-toolbar.li-refine-open .li-location-summary{margin-left:52px;}
-  .li-toolbar.li-refine-open .li-adjust-recommendation{margin-left:0;}
+  .li-toolbar.li-refine-open .li-location-summary{margin-left:0;}
 }
 .li-toolbar-breed{color:inherit;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
 .li-toolbar-breed:hover{color:var(--accent);text-decoration-color:currentColor;}
@@ -3129,6 +3134,18 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-new:hover{filter:brightness(1.05);}
 .li-new-plus{font-size:17px;line-height:1;font-weight:700;}
 .li-new .li-caret{opacity:.85;font-size:11px;}
+/* One pill, split: the half you press to start walking, and the half that
+   offers the other thing you can make. A hairline, not a gap, so it still
+   reads as a single control. */
+.li-new-wrap{display:inline-flex;}
+.li-new-main{text-decoration:none;border-radius:var(--radius-pill) 0 0 var(--radius-pill);padding-right:12px;}
+/* The record dot, not the brand start-flag: that glyph is a two-colour
+   drawing (dark pole, red flag) whose colours are baked into its paths, so on
+   a filled teal button it clashed and could not be recoloured. A dot is the
+   one mark everyone already reads as "record". */
+.li-rec-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex:none;}
+.li-new-more{border-radius:0 var(--radius-pill) var(--radius-pill) 0;padding:0 13px;box-shadow:none;}
+.li-new-more::before{content:'';width:1px;height:18px;margin-right:9px;background:rgba(255,255,255,.34);}
 .li-new-menu{left:auto;right:0;top:calc(100% + 8px);width:250px;}
 /* The two create links keep their identity as menu rows, not their old toolbar
    pills, so reset the inherited plan/record button styling. */

@@ -126,6 +126,28 @@ async function runCompositeCartographer(candidate, dossier, options = {}){
   // Many valid local routes publish a line but no distance. Missing comparison
   // data is recorded in `comparison`; it is not evidence that the geometry is
   // wrong. A contradictory published distance still blocks above.
+
+  // A composite says which of the three cases it is, like any other survey.
+  //
+  // It recorded the numbers it measured and nothing at all otherwise, so a
+  // composite whose routes carry no number could not be told from one surveyed
+  // before the marks existed. From the gate those read alike, and only one of
+  // them is a walk to research. Cinque Torri was the last trail in the
+  // catalogue blocked on route guidance on 16 October 2026, for exactly that
+  // reason, and twelve trails are on this path -- Tre Cime and Lago di Braies
+  // among them.
+  //
+  // Its own routes' numbers first, then the numbered walking routes running
+  // along the walk, which is the same ladder the single-relation path climbs
+  // and makes the mark mean one thing in both. A composite whose members are
+  // unnumbered is not a walk with no numbers near it.
+  const along = reconstructed.routeGuidance
+    ? { measured: true, guidance: reconstructed.routeGuidance }
+    : await measureNumbersAlong(reconstructed.geometry.coordinates
+      .map(([lng, lat]) => [lat, lng]), options);
+  const routeGuidance = along.guidance || null;
+  const routeNumbersAbsent = along.measured && !along.guidance;
+  const routeNumbersUnmeasured = along.measured ? null : (along.why || 'the measurement could not be taken');
   return {
     contractVersion: VERSION,
     candidateId: candidate.id,
@@ -158,7 +180,9 @@ async function runCompositeCartographer(candidate, dossier, options = {}){
     // the next, read off the relations this walk is built from. Travels beside
     // routeConformance because it is the same kind of thing: a measurement the
     // cartographer made, which the dossier reads rather than researches.
-    ...(reconstructed.routeGuidance ? { routeGuidance: reconstructed.routeGuidance } : {}),
+    ...(routeGuidance ? { routeGuidance } : {}),
+    ...(routeNumbersAbsent ? { routeNumbersAbsent: true } : {}),
+    ...(routeNumbersUnmeasured ? { routeNumbersUnmeasured } : {}),
     // What ORMA already recorded about this walk, travelling with everything
     // else the audit measured so the dossier can read it rather than send an
     // agent to rediscover it.

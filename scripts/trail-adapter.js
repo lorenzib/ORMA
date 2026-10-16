@@ -18,8 +18,18 @@ const GRADUATION_CATEGORIES = new Set([
   'photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', ...REVIEW_CATEGORIES,
 ]);
 
+// Letters that carry no combining accent, so NFD leaves them whole and the
+// a-z filter below turns them into a separator. "Gro\u00dfe Schlossrunde" became
+// `gro-e-schlossrunde`, which is the URL a reader sees and reads as a title.
+// Spelled out the way each language writes them when it cannot use the letter.
+const UNDECOMPOSABLE = [[/\u00df/g, 'ss'], [/\u00e6/g, 'ae'], [/\u0153/g, 'oe'], [/\u00f8/g, 'o']];
+
 function slugify(value){
-  return String(value || '')
+  // Lowercased first, so one lowercase entry per letter covers its capital too
+  // -- and the capital sharp s lowercases into the entry below.
+  let text = String(value || '').toLowerCase();
+  for(const [letter, spelled] of UNDECOMPOSABLE) text = text.replace(letter, spelled);
+  return text
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()

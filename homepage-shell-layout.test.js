@@ -36,7 +36,7 @@ describe('logged-in discovery workspace layout', () => {
     expect(css).not.toContain('.li-location-gate');
   });
 
-  test('replaces the geo dropdowns with unified search and moves create behind "+ New"', () => {
+  test('replaces the geo dropdowns with unified search and names the create actions', () => {
     expect(html).toContain('class="li-quick-filters"');
     expect(html).not.toContain('id="liQuickLeash"');
     expect(html).toContain('id="liQuickShade"');
@@ -46,9 +46,22 @@ describe('logged-in discovery workspace layout', () => {
     expect(html).not.toContain('id="liRegionWrap"');
     expect(html).not.toContain('id="liValleyWrap"');
     expect(html).not.toContain('id="liSavedOnlyBtn"');
-    // Both create actions live inside the "+ New" menu, plan before record.
+    // Create actions used to sit behind a button labelled "+ New", which named
+    // neither of them: nothing on the page said a walk could be recorded at
+    // all. Recording is the one you do standing on the trail, so it is now the
+    // button itself -- a real link to walk.html, which is also what
+    // device-handoff listens for -- and drafting a loop is the thing left in
+    // the menu rather than a second copy of the same action.
     expect(html.indexOf('id="liSearchSuggest"')).toBeLessThan(html.indexOf('id="liNewBtn"'));
-    expect(html.indexOf('class="li-menu-item li-plan-route"')).toBeLessThan(html.indexOf('id="liRecordBtn"'));
+    expect(html).toContain('id="liRecordBtn" href="walk.html"');
+    expect(html).toContain('>Record a walk<');
+    expect(html.indexOf('id="liRecordBtn"')).toBeLessThan(html.indexOf('id="liNewBtn"'));
+    // The menu holds the other thing you can make, not a second copy of the
+    // button. (The footer's own "Record a walk" link is a different control
+    // and stays.)
+    const createMenu = html.slice(html.indexOf('id="liNewMenu"'), html.indexOf('id="liNewMenu"') + 500);
+    expect(createMenu).toContain('li-plan-route');
+    expect(createMenu).not.toContain('Record a walk');
     // Saved becomes a view tab beside Sort in the list head.
     expect(html.indexOf('id="liViewSaved"')).toBeLessThan(html.indexOf('id="companionSortGroup"'));
     expect(html).toContain('class="li-list-options"');
