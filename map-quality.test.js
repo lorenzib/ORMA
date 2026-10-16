@@ -30,7 +30,7 @@ describe('shared map quality profile', () => {
     pages.forEach(([page, mapScript]) => {
       const html = read(page);
       if(page === 'trail.html'){
-        expect(html).toContain('trail-app.bundle.js?v=20261007-5');
+        expect(html).toContain('trail-app.bundle.js?v=20261016-1');
         expect(html).not.toContain('<script src="map-runtime.js');
         return;
       }
@@ -239,9 +239,15 @@ describe('shared map quality profile', () => {
     // choosing between. Reversed deliberately on 2026-10-14 after seeing it on
     // the real map: the lines give the valley its shape, and a reader who
     // wants them should not have to know the Layers panel exists.
+    //
+    // The chip default stands. What changed on 2026-10-16 is WHEN: at region
+    // zoom the network is a mesh of lines and route shields over the six walks
+    // a reader is choosing between, so it now draws from zoom 12.5 up, where
+    // the shape it gives a valley is the shape of a walk.
     const homepage = read('script.js');
     expect(homepage).toContain('const overlayStates = { routes: true, lifts: false');
-    expect(homepage).toContain('visible: true });');
+    expect(homepage).toContain('visible: true, minzoom: BROWSE_NETWORK_MIN_ZOOM');
+    expect(homepage).toContain('const BROWSE_NETWORK_MIN_ZOOM = 12.5');
     // Still one tap to turn off: the Layers chip drives the layer either way.
     expect(homepage).toContain("routes:   ['waymarked-hiking-layer']");
 
@@ -258,6 +264,61 @@ describe('shared map quality profile', () => {
     const trail = read('trail.js');
     expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId })');
     expect(trail).not.toContain('minzoom: NETWORK_MIN_ZOOM');
+  });
+
+  test('the base style is drained of colour, not just of labels', () => {
+    // openfreemap liberty is a street map: 24 road layers in #e9ac77 casing,
+    // #fea fill and #fc8 motorway, saturated greens, and water at
+    // rgb(158,189,255). None of that is what a reader is choosing between on a
+    // dog-walking map, and all of it competed with the two things that are:
+    // the marked network and the match-coloured rails.
+    const style = read('map-style.js');
+    expect(style).toContain('function calmBasemap(map)');
+    // Roads keep their widths and lose their hue, so the hierarchy survives.
+    expect(style).toContain("casing: { colour: '#CFC8BE'");
+    expect(style).toContain("through: { colour: '#FFFFFF'");
+    expect(style).toContain("'road_motorway_casing'");
+    // Woods, parks and water keep a real but soft hue. Draining them to the
+    // background was tried and rejected on a render: the map became a grey
+    // relief sheet with no valleys, settlements or water, which reads worse
+    // than the loud version.
+    expect(style).toContain("{ id: 'landcover_wood', colour: '#C6D6B8'");
+    expect(style).toContain("{ id: 'water', colour: '#AFC9DD'");
+    // Quietening the labels brings the drained colours with it, so the five
+    // surfaces that call it cannot drift apart.
+    expect(style).toMatch(/function quietBasemap[\s\S]*?calmBasemap\(map\);/);
+  });
+
+  test('only a numbered match gets a corridor on the browse map', () => {
+    // Every catalogue trail used to get an 8px white casing, a 5px grey line
+    // and a 14px white halo at zoom 10, whatever its rank, with the colour on
+    // top dropped to 0.12 for the rest -- so an unmatched walk was a wide
+    // white smear with nothing inside it.
+    const homepage = read('script.js');
+    expect(homepage).toContain('function rankWidth(top, other)');
+    expect(homepage).toContain('rankWidth([8, 14, 20, 26], [2.5, 4, 5.5, 6.5])');
+    expect(homepage).toContain('rankWidth([5, 10, 15, 20], [1.2, 1.8, 2.4, 3])');
+    // The zoom ramp has to stay at the top of the paint property. An
+    // `interpolate` on ["zoom"] nested inside a `case` is not evaluated per
+    // zoom: it silently cost the matched trails their corridor at trail zoom
+    // when this was first written, and only a render caught it.
+    expect(homepage).toMatch(/function rankWidth[\s\S]*?'interpolate', \['linear'\], \['zoom'\]/);
+    expect(homepage).not.toMatch(/'line-width': \['case', TOP_MATCH_TEST, \['interpolate'/);
+  });
+
+  test('the relief fades at browse zoom, in both copies', () => {
+    // #468 set a flat 0.45 so the map would not read as flat. On a drained
+    // base that strength is the loudest thing left at region zoom and it greys
+    // out the roads and villages under it. Ramped, not weakened: it reaches
+    // the same 0.45 by zoom 13, where the detail maps open.
+    const ramp = "'interpolate', ['linear'], ['zoom'], 8, 0.16, 11, 0.3, 13, 0.45";
+    expect(read('script.js')).toContain(ramp);
+    // addBaseHillshade is duplicated in trail.js and script.js; the two have
+    // to say the same thing.
+    expect(read('trail.js')).toContain(ramp);
+    ['script.js', 'trail.js'].forEach(file => {
+      expect(read(file)).not.toContain("'hillshade-exaggeration': 0.45");
+    });
   });
 
   test('every map draws the shared Waymarked treatment', () => {
