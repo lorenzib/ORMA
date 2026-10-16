@@ -574,6 +574,30 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('returningHeading').textContent).not.toContain('Tre Cime');
   });
 
+  // The scope used to be a pill beside the headline. The headline is assembled
+  // from the dog, the place and the day, so that pill was the same sentence
+  // twice -- except for the whole catalogue, where the place phrase is empty
+  // and nothing named the scope at all. It is said once now, in the line under
+  // the headline, and only when the headline has not already said it.
+  test('the subtitle names the scope only when the headline does not', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('liEnsureAreaChoices(); liLocationContext = { kind:"area", country:"IT", region:"dolomites", valley:"Alta Pusteria – Tre Cime", label:"Alta Pusteria – Tre Cime" };', context);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    const scoped = document.getElementById('liToolbarDogContext').textContent;
+    expect(document.getElementById('returningHeading').textContent).toContain('Alta Pusteria');
+    expect(scoped).not.toMatch(/Every ORMA trail/);
+    expect(scoped).toMatch(/top matches first/);
+
+    vm.runInContext('liLocationContext = liDefaultLocationContext();', context);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    const everywhere = document.getElementById('liToolbarDogContext').textContent;
+    // The headline cannot say it here: the place phrase is empty for the whole
+    // catalogue, which is exactly why the line has to.
+    expect(vm.runInContext('liRecommendationLocationPhrase()', context)).toBe('');
+    expect(everywhere).toMatch(/^Every ORMA trail,/);
+    expect(everywhere).toMatch(/top matches first/);
+  });
+
   test('searching for a destination sets a complete recommendation scope', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography(); initLoggedInShell();', context);
