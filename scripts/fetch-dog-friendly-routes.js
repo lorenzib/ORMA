@@ -249,9 +249,50 @@ function haversineMeters(a, b) {
   return 2 * R * Math.asin(Math.sqrt(s));
 }
 
+/**
+ * A ring has no baseline, so it is simplified as two halves.
+ *
+ * Douglas-Peucker measures every point against the line from the first point
+ * to the last. When a walk closes exactly on its start -- the two coordinates
+ * bit-identical, which a relation whose members meet at one shared node
+ * produces -- that line is a point, every distance from it is zero, and the
+ * whole ring returns as `[first, last]`: two identical coordinates, 0 km, and
+ * `loop` false, because the length test fails even though the ends meet. The
+ * walk is then dropped as "degenerate geometry (0 km)" and nothing says why.
+ *
+ * The standard treatment is to cut the ring at the point furthest from the
+ * start, which gives two halves with real baselines, simplify each, and rejoin
+ * them. The cut point is kept, so a ring keeps at least three corners.
+ *
+ * Measured 16 October 2026: no catalogue geometry closes exactly -- the
+ * stitcher joins endpoints within 30 m, which leaves a baseline -- so this
+ * changes no trail today. It is one OSM edit away from mattering.
+ */
+const RING_CLOSE_METERS = 1;
+
+function isRing(points) {
+  return points.length >= 3
+    && haversineMeters(points[0], points[points.length - 1]) < RING_CLOSE_METERS;
+}
+
 // Douglas-Peucker simplification (tolerance in degrees; ~0.00005 ≈ 5 m)
 function simplify(points, tolerance = 0.00005) {
   if (points.length <= 2) return points;
+  if (isRing(points)) {
+    let furthest = 0;
+    let cut = 0;
+    for (let i = 1; i < points.length - 1; i += 1) {
+      const d = haversineMeters(points[0], points[i]);
+      if (d > furthest) { furthest = d; cut = i; }
+    }
+    // A ring of one repeated coordinate has no furthest point and no second
+    // half; let it fall through and be dropped downstream as degenerate.
+    if (cut > 0) {
+      const head = simplify(points.slice(0, cut + 1), tolerance);
+      const tail = simplify(points.slice(cut), tolerance);
+      return head.slice(0, -1).concat(tail);
+    }
+  }
   let maxDist = 0;
   let index = 0;
   const [x1, y1] = points[0];
@@ -564,4 +605,5 @@ if (require.main === module) {
 // a second copy is how one of them learns about a dead mirror and the other
 // does not.
 module.exports = { fetchWithRetries, OVERPASS_URLS, USER_AGENT,
-  OFF_ROUTE_ROLES, isRouteMember, stitchMembers };
+  OFF_ROUTE_ROLES, isRouteMember, stitchMembers,
+  simplify, pathLengthKm, isClosedLoop };
