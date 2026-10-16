@@ -1,4 +1,69 @@
 {
   "schemaVersion": 1,
-  "trails": {}
+  "trails": {
+    "osm-12121798": {
+      "name": "Le terroir de Serpolière",
+      "slug": "le-terroir-de-serpoliere",
+      "retired": ["en02-le-terroir-de-serpoliere"]
+    },
+    "osm-12127424": {
+      "name": "Au fil de l'Arvan",
+      "slug": "au-fil-de-l-arvan",
+      "retired": ["en04-au-fil-de-l-arvan"]
+    },
+    "osm-12118490": {
+      "name": "Le Balcon des Plagnes",
+      "slug": "le-balcon-des-plagnes",
+      "retired": ["b05-le-balcon-des-plagnes"]
+    },
+    "osm-12121548": {
+      "name": "Le tour de l'Armélaz",
+      "slug": "le-tour-de-l-armelaz",
+      "retired": ["b02-le-tour-de-l-armelaz"]
+    },
+    "osm-12121346": {
+      "name": "Le tour des hameaux de Montandré, Champessuit et Grenis",
+      "slug": "le-tour-des-hameaux-de-montandre-champessuit-et-grenis",
+      "retired": ["b08-le-tour-des-hameaux-de-montandre-champessuit-et-grenis"]
+    },
+    "osm-11774783": {
+      "name": "Rafeil-Rundweg",
+      "slug": "rafeil-rundweg",
+      "retired": ["1-rafeil-rundweg"]
+    },
+    "osm-11795251": {
+      "name": "Dörferrundweg (Vintl)",
+      "slug": "dorferrundweg-vintl",
+      "retired": ["1-dorferrundweg-vintl"]
+    },
+    "osm-11764094": {
+      "name": "Dörferrunde: Natz, Raas, Schabs and Viums",
+      "slug": "dorferrunde-natz-raas-schabs-viums"
+    },
+    "osm-21021130": {
+      "name": "Lacs du Chardonnet",
+      "slug": "lacs-du-chardonnet",
+      "retired": ["parcours-n-11-lacs-du-chardonnet"]
+    },
+    "osm-12363235": {
+      "name": "Panoramaweg, Oltradige – Bassa Atesina",
+      "slug": "panoramaweg-oltradige-bassa-atesina",
+      "retired": ["panoramaweg"]
+    },
+    "osm-19697977": {
+      "name": "Panoramaweg, Burgraviato – Merano",
+      "slug": "panoramaweg-burgraviato-merano",
+      "retired": ["panoramaweg-osm-19697977"]
+    },
+    "osm-3885162": {
+      "name": "Seeweg, Val d'Ultimo",
+      "slug": "seeweg-val-d-ultimo",
+      "retired": ["seeweg"]
+    },
+    "osm-12173984": {
+      "name": "Große Schlossrunde",
+      "slug": "grosse-schlossrunde",
+      "retired": ["gro-e-schlossrunde"]
+    }
+  }
 }

@@ -38,7 +38,7 @@
     },
     {
       "id": "osm-3885162",
-      "slug": "seeweg",
+      "slug": "seeweg-val-d-ultimo",
       "reasons": [
         "geometry jump 3.42 km before point 2"
       ]
@@ -80,14 +80,14 @@
     },
     {
       "id": "osm-11764094",
-      "slug": "dorferrunde-natz-raas-schabs-viums",
+      "slug": "dorferrunde-natz-raas-schabs-and-viums",
       "reasons": [
         "geometry jump 2.43 km before point 8"
       ]
     },
     {
       "id": "osm-11795251",
-      "slug": "1-dorferrundweg-vintl",
+      "slug": "dorferrundweg-vintl",
       "reasons": [
         "geometry jump 2.48 km before point 107"
       ]
@@ -178,7 +178,7 @@
     },
     {
       "id": "osm-21021130",
-      "slug": "parcours-n-11-lacs-du-chardonnet",
+      "slug": "lacs-du-chardonnet",
       "reasons": [
         "geometry jump 1.44 km before point 95"
       ]
