@@ -5,6 +5,7 @@ const path = require('path');
 const vm = require('vm');
 const { loadProductionTrails } = require('./scripts/load-production-trails');
 const { assignSlugs } = require('./scripts/trail-adapter');
+const { loadSlugOverrides } = require('./scripts/trail-slug-overrides');
 
 const root = __dirname;
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'data/regions-manifest.json'), 'utf8'));
@@ -12,7 +13,11 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root, 'data/regions-manife
 // Values come from the producers -- loadProductionTrails and assignSlugs -- not
 // from hand-typed copies, so these cannot pass against a slug nothing emits.
 const trails = loadProductionTrails(root);
-const slugs = assignSlugs(trails);
+// With the overrides, because that is what the manifest builder uses: a
+// derived slug ties the URL to the name, and a pinned one is how a name was
+// fixed without moving the page.
+const slugOverrides = loadSlugOverrides(root);
+const slugs = assignSlugs(trails, slugOverrides);
 
 /** The loader's public API, run against the real manifest in a bare sandbox. */
 function loadRegionalApi(search) {
@@ -58,14 +63,21 @@ describe('a trail URL reads as the trail, and the id stays the key', () => {
   // The collision rule: two trails are both called "Panoramaweg", so one of
   // them carries its id as a suffix. Taken from the data, not asserted by name.
   test('a duplicated trail name still gets its own slug', () => {
-    const byName = new Map();
-    for (const trail of trails) byName.set(trail.name, (byName.get(trail.name) || []).concat(trail.id));
-    const shared = [...byName.values()].filter(ids => ids.length > 1);
-    expect(shared.length).toBeGreaterThan(0);
-    for (const ids of shared) {
-      const slugged = ids.map(id => manifest.trailSlug[id]);
-      expect(new Set(slugged).size).toBe(ids.length);
-    }
+    // Constructed rather than found. The catalogue had two trails both called
+    // Panoramaweg and this test rested on that, so disambiguating them by
+    // valley -- which is the fix a customer needed -- left it asserting that a
+    // problem still existed. A collision is a property of the function, not of
+    // whatever the catalogue happens to contain today.
+    const pair = [{ id: 'osm-1', name: 'Panoramaweg' }, { id: 'osm-2', name: 'Panoramaweg' }];
+    const slugged = assignSlugs(pair);
+    expect(new Set(slugged).size).toBe(2);
+    expect(slugged[0]).toBe('panoramaweg');
+    expect(slugged[1]).toContain('osm-2');
+  });
+
+  test('and no two trails in the catalogue share a slug', () => {
+    const slugged = trails.map(trail => manifest.trailSlug[trail.id]);
+    expect(new Set(slugged).size).toBe(slugged.length);
   });
 
   // The whole point of keeping the id: trailWalks, hikeEvents, reviews and the

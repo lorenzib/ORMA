@@ -1622,6 +1622,14 @@ function renderTrail(t){
   document.title = `${t.name} | ORMA`;
   document.getElementById('pageTitle').textContent = `${t.name} | ORMA`;
   document.getElementById('trailName').textContent = t.name;
+  // What the name means, under the name. 109 of the 162 trails are signed in
+  // German, French or Italian; the name stays as the signpost has it, and this
+  // says what it means for a reader who does not.
+  const gloss = document.getElementById('trailNameGloss');
+  if(gloss){
+    gloss.textContent = t.nameGloss || '';
+    gloss.hidden = !t.nameGloss;
+  }
   document.getElementById('trailName').removeAttribute('aria-busy');
   // The homepage's Explore menu lists the last trails opened. Kept in this
   // browser only, never sent anywhere, and capped so it stays a shortlist.

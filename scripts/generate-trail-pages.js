@@ -486,6 +486,9 @@ function trailPage(t, slug, all) {
   .sp-hero{padding-top:28px;}
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
   .sp-breadcrumb a{color:inherit;}
+  /* What the name means, for a reader who does not speak the language it is
+     signed in. Quieter than the title: the name is the thing on the signpost. */
+  .sp-gloss{margin:6px 0 0;font-size:1rem;color:var(--ink-soft,#666);max-width:60ch;}
   .sp-badges{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 18px;}
   .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
@@ -544,6 +547,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
 <div class="wrap sp-hero">
   <div class="sp-breadcrumb"><a href="../browse-trails.html">All trails</a> › ${escapeHtml(regionLabel)} › ${escapeHtml(t.valley || t.area)}</div>
   <h1>${escapeHtml(t.name)}</h1>
+  ${t.nameGloss ? `<p class="sp-gloss">${escapeHtml(t.nameGloss)}</p>` : ''}
   <div class="sp-badges">
     <span class="dp-badge dp-badge--${t.safetyLevel}"><span data-dp-icon="${t.safetyLevel === 'low-risk' ? 'verified' : 'warning'}" data-dp-icon-size="13" aria-hidden="true"></span><span>${displaySafetyLabel(t)}</span></span>
     ${badge}
@@ -752,7 +756,8 @@ function main() {
       .map(record => record.id)
   );
   const canonicalSlug = new Map(catalog.records.map(record => [record.id, record.slug]));
-  const slugProblems = validateSlugOverrides(slugOverrides, sourceTrails.map(trail => trail.id));
+  const slugProblems = validateSlugOverrides(slugOverrides, sourceTrails.map(trail => trail.id),
+    Object.fromEntries(sourceTrails.map(trail => [trail.id, trail.name])));
   if (slugProblems.length) {
     throw new Error(`Trail slug overrides are unusable:\n  ${slugProblems.join('\n  ')}`);
   }
