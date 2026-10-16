@@ -46,9 +46,14 @@ describe('DATA-02 production trail validation', () => {
 
   test('broken or unrealistic routes are held as drafts with field-level reasons', () => {
     const broken = catalog.excluded.find(entry => entry.id === 'osm-1780768');
+    // The figures themselves are geometry-derived and move whenever the
+    // geometry is corrected -- this trail read 6.19 km and 77.4 km until the
+    // member-role fix, and 4.18 km and 53.4 km after it. What the test is
+    // about is that both kinds of reason are reported against the field, so it
+    // asserts the shape and the published limit rather than the digits.
     expect(broken.reasons).toEqual(expect.arrayContaining([
-      expect.stringMatching(/geometry jump 6\.\d+ km before point/),
-      expect.stringMatching(/distance 77\.4 km exceeds/),
+      expect.stringMatching(/geometry jump \d+(\.\d+)? km before point \d+/),
+      expect.stringMatching(/distance \d+(\.\d+)? km exceeds the 50 km publication limit/),
     ]));
     expect(catalog.records.find(record => record.id === broken.id).lifecycle).toBe('draft');
   });
