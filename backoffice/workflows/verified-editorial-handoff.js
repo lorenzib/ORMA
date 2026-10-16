@@ -25,6 +25,10 @@ function editorialItem(dossier,record,at,options={}){
     verifiedAt:record?.verifiedAt||dossier.ormaVerification.verifiedAt,
     verificationConditions:record?.conditions||dossier.ormaVerification.conditions||[],
     acceptedUnknowns:dossier.ormaVerification.acceptedBlockers||[],
+    // Carried so publication can say which categories the badge may call
+    // reviewed. Dropping it here would put the question back where it was: a
+    // page claiming six checks on a verification that made two.
+    researchedCategories:dossier.ormaVerification.researchedCategories||[],
     // A locked fact keeps everything the claim was made of, not only its prose.
     // An entity policy is a rifugio or lift name, a rule and the date its source
     // was read; dropping those here left the operational facts table unreachable.

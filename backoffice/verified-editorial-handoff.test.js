@@ -6,6 +6,17 @@ const {ingestDossierReviews,processEditorialFirstPassJobs}=require('./workflows/
 const {assertVerifiedTrailReviewDecisions}=require('./workflows/apply-content-review');
 const {buildPublicationStaging}=require('./workflows/build-publication-staging');
 
+// A badge may call a safety category reviewed only where a specialist asked
+// about it. A fixture meaning to represent a finished verification has to have
+// asked; before the badge was derived, these published asserting all six
+// researched while asking about none.
+const SAFETY_CLAIMS=['water','heat','exposure','livestock','surfaceHazards','access']
+  .map(id=>({id,category:'terrain',proposedValue:'Established from the operator description',
+    finding:'supported-proposal',confidence:.85,rationale:'Operator page.',
+    sources:[{label:'Park authority',url:'https://example.test/trail',authority:'Park',accessedAt:'2026-09-05T09:00:00.000Z'}],
+    blockers:[]}));
+
+
 const at='2026-08-20T01:00:00.000Z';
 const dossier={contractVersion:'1.0.0',candidateId:'trail-a',trailId:'trail-a',trailName:'Trail A',reviewState:'accepted',
   sources:[{id:'source-1',label:'Park authority',url:'https://example.test/trail',authority:'Park',accessedAt:at}],
@@ -16,7 +27,10 @@ const dossier={contractVersion:'1.0.0',candidateId:'trail-a',trailId:'trail-a',t
     {id:'logistics-route-number-sequence',label:'route: route-number-sequence',state:'supported',proposedValue:'Start on the signed Trail A circuit; no numbered sequence applies.',sourceIds:['source-1']},
     {id:'logistics-route-number-switches',label:'route: route-number-switches',state:'supported',proposedValue:'No numbered switch is required.',sourceIds:['source-1']}],
   routeGeometry:{type:'LineString',coordinates:[[11,46],[11.01,46.01],[11,46]]},
-  ormaVerification:{status:'verified',verifiedAt:at,verifiedBy:'moderator',conditions:['Recheck seasonal access.']},
+  // A finished verification: a specialist asked about all six safety
+  // categories, which is what lets the published badge call them reviewed.
+  ormaVerification:{status:'verified',verifiedAt:at,verifiedBy:'moderator',conditions:['Recheck seasonal access.'],
+    researchedCategories:['water','heat','exposure','livestock','surfaceHazards','access']},
   publicMutationAllowed:false,publicationAuthorized:false};
 const record={candidateId:'trail-a',trailName:'Trail A',verifiedAt:at,conditions:['Recheck seasonal access.']};
 
@@ -108,6 +122,7 @@ describe('automatic ORMA Verified editorial handoff',()=>{
       sourceTrail:{externalRelationId:'relation/1'},specialistOutputs:[
         {agentId:'cartographer',jobId:'cart-a',result:{source:{provider:'OSM',url:'https://www.openstreetmap.org/relation/1',endpoint:'https://api.openstreetmap.org/api/0.6/relation/1/full',externalId:'relation/1',relationVersion:1,relationTimestamp:at,licence:'ODbL-1.0'},relation:{tags:{name:'Trail A'}},geometry:dossier.routeGeometry,assessment:{pointCount:3,distanceKm:2}}},
         {agentId:'logistics',jobId:'log-a',result:{claims:[{id:'parking',category:'parking',proposedValue:'Use official P1.',finding:'supported-proposal',confidence:.9,rationale:'Official.',sources:[{label:'Park authority',url:'https://example.test/trail',authority:'Park',accessedAt:at}],blockers:[]},...routeGuidance] }},
+        {agentId:'terrainPoi',jobId:'poi-a',result:{claims:SAFETY_CLAIMS}},
       ]};
     const artifacts={'trail-orchestration':{contractVersion:'1.0.0',publicMutationAllowed:false,summary:{},trails:[{trailId:'trail-a',candidateId:'trail-a',trailName:'Trail A',state:'dossier-human-gate',stage:'complete-evidence-dossier',attempts:{},resolutionAttempts:{},jobIds:['cart-a','log-a'],gate:{id:'dossier-approval',status:'awaiting-human'},sourceTrail:{externalRelationId:'relation/1'},publicMutationAllowed:false}]},
       'dossier-review-queue':{contractVersion:'1.0.0',items:[reviewItem],publicMutationAllowed:false}};

@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,orchestrationAdvance]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,orchestrationAdvance,handoff,staging,specialist]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -36,6 +36,9 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/cli/resurvey-trails.js'),
     read(root,'backoffice/cli/dry-run-gate.js'),
     read(root,'backoffice/workflows/advance-trail-orchestration.js'),
+    read(root,'backoffice/workflows/verified-editorial-handoff.js'),
+    read(root,'backoffice/workflows/build-publication-staging.js'),
+    read(root,'backoffice/workflows/run-trail-specialist.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -258,6 +261,49 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&dryRunCli.includes('resurvey_trail_ids')
     &&standard.includes('A measurement that could not be taken says so'),
     'A geometry survey records what went wrong when the corridor query could not be taken, so an outage never reads as a walk nobody can supply directions for; the gate dry run names it as a survey to run again rather than a refusal, and a walk whose own relation carries a number is not marked unmeasured because no query was needed');
+
+  // A badge claims only what a specialist was asked.
+  //
+  // The risk is a published page telling a walker ORMA checked the water and
+  // the livestock on a walk nobody looked at -- which is what publication
+  // asserted of every trail, safely, right up until a free survey could verify
+  // one on its own. A dossier recorded findings and never whether anybody
+  // looked, so absence of a finding and absence of a look were one shape.
+  add('a-badge-claims-only-what-was-researched',
+    dossier.includes('function researchedSafetyCategories(review)')
+    // Whatever the finding: looking and not settling it is a real check.
+    &&dossier.includes('if(SAFETY_CATEGORIES.includes(id))asked.add(id);')
+    // The survey is not a specialist.
+    &&dossier.includes("if(output.agentId==='cartographer')continue;")
+    &&dossier.includes('researchedCategories:researchedSafetyCategories(review)')
+    // Carried to publication, and the badge derived from it rather than asserted.
+    &&handoff.includes('researchedCategories:dossier.ormaVerification.researchedCategories||[]')
+    &&staging.includes('function graduationFor(researched, hasPhoto, hasFields)')
+    &&staging.includes("ormaVerified: graduation.status==='verified'")
+    &&staging.includes('verified:{ categories:SAFETY_CHECKS.filter(check=>researched.includes(check))')
+    &&!staging.includes("categories:['water','heat','exposure','livestock','surfaceHazards','access']")
+    // And a trail short of the seal is held rather than published.
+    &&staging.includes('safety-categories-not-researched')
+    &&standard.includes('A badge claims only what a specialist was asked'),
+    'A dossier records which of the six safety categories a specialist was asked about -- any finding counts, since looking and failing to settle it is a real check, and the geometry survey is not a specialist -- and publication derives the badge from that mark instead of asserting all six: the earned seal needs all eleven, a trail short of it shows as reviewed and is held at the mapping gate rather than published, and it upgrades by itself as research lands');
+
+  // Work that costs nothing is not ordered by a rule about money.
+  //
+  // The risk is the circle it closed: a trail with no published source ranks
+  // last, its free survey is what would answer its directions from the map, and
+  // the survey sat behind every paid job in a queue a pass takes ten from. Six
+  // queued by hand on 16 October ran only when each trail was scoped alone.
+  add('free-work-goes-first',
+    specialist.includes("FREE_AGENTS=Object.freeze(['cartographer'])")
+    &&specialist.includes('function costsNoModelCall(job)')
+    // One list, read by the ordering and by the branch that runs a job.
+    &&specialist.includes('if(costsNoModelCall(job)){')
+    &&!specialist.includes("if(job.agentId==='cartographer'){")
+    &&specialist.includes('const rank=job=>costsNoModelCall(job)?0:(ready(job)?1:2);')
+    // The verifiable-first rule still applies among the rest.
+    &&specialist.includes('function routeSourceReady(trail)')
+    &&standard.includes('Free work goes first'),
+    'A job that spends no model credit is ordered ahead of every paid job, because the rule that puts verifiable trails first exists to protect the model budget and has no business ordering work that costs nothing -- which left a trail\'s free survey queued behind the paid research it would have made possible; one list names the free agents and the branch that runs a job reads it, and the verifiable-first rule still orders the paid work');
 
   // The seal waits for the four unwaivable claims and for nothing else.
   //

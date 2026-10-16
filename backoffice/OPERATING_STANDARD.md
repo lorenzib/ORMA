@@ -634,6 +634,76 @@ validation and retired the job, while answering `unresolved` instead blocked the
 dossier gate. A contract that no honest answer satisfies stops the pipeline just
 as surely as a missing agent.
 
+## A badge claims only what a specialist was asked
+
+The published record asserted all eleven checks complete and all six safety
+categories reviewed, unconditionally, on every trail. `water`, `heat`,
+`exposure`, `livestock`, `surfaceHazards`, `access` — cited to the locked
+dossier.
+
+That was safe for exactly as long as nothing could be verified without five
+specialists having researched it. It stopped being safe the moment a free
+geometry survey could settle a trail's directions on its own: such a trail is
+verified having asked none of those six, and the old record would have told a
+walker ORMA had checked its water and its livestock. Somebody could take a dog
+up a shadeless ridge in August on a badge that meant nothing.
+
+**A dossier now records which of the six a specialist was asked about.** It
+recorded findings and never recorded whether anybody looked, so absence of a
+finding and absence of a look were the same shape — in the one place that
+decides what a live trail page claims.
+
+A category counts as researched where an agent returned a claim for it,
+**whatever the finding**. Looking and failing to settle it is a real check, and
+the page shows the reader `unknown` unchanged, exactly as SCORING.md requires.
+The geometry survey is not a specialist: its claims are route guidance and
+geometry, and it never asks about water.
+
+The badge is derived from that mark rather than asserted. `verified.categories`
+lists the researched ones; the graduation completes only those; and
+`status: 'verified'` — the earned seal — needs all eleven. Short of that the
+trail shows as **reviewed**, which is the honest thing for a walk whose route is
+confirmed and whose safety facts nobody has asked about, and more than the rest
+of the catalogue can show. It upgrades by itself: the next publication after
+research lands derives a fuller list, so nothing has to remember to promote a
+trail.
+
+**A trail short of the full seal is held, not published.** The override
+contract takes either a full verification or one of its named scopes, and the
+scope that would carry a route-only publication requires cited sources with a
+`reviewedAt` — which a trail answered by the map and ORMA's own record does not
+have. Until that scope can carry it, such a trail waits at the publication
+mapping gate and names what it is waiting for, rather than publishing a badge it
+has not earned or failing in the materializer.
+
+## Free work goes first
+
+A pass orders its queue so the trails that can actually be verified are
+researched first. That rule exists to stop the model budget going on trails
+that cannot pass, and it is right about paid work.
+
+**It has no business ordering work that costs nothing.** The geometry survey is
+deterministic — it reads OpenStreetMap and measures, no model call — and it was
+being ranked by the same rule, because a free survey job carries the same
+unverifiable trail as a paid research job for it.
+
+That produced a circle. A trail with no published source ranks last. Its survey
+is the free job that would answer its directions from the map and make it
+verifiable. And the survey never ran, because it sat behind every paid job in the
+queue and a pass takes ten. Six surveys were queued by hand on 16 October 2026
+and not one of them ran until each trail was scoped to its own pass. We would not
+survey it because it had no directions, and it had no directions because we
+would not survey it.
+
+Free first, then the verifiable-first rule among the rest, then the queue's own
+order. One list says which agents are free, and the branch that runs a job reads
+the same list, so the two cannot disagree about what is free.
+
+A pass can therefore spend itself entirely on free work. That is the right way
+round: every such job makes a trail verifiable for nothing, and there is at most
+one survey per trail, so the group drains. Research already in flight waits
+behind it for a pass or two rather than for ever.
+
 ## A seal does not wait for optional detail
 
 The four route claims are the only unwaivable ones, and since the map and
