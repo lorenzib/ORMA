@@ -199,3 +199,32 @@ describe('the static pages and the app agree on the slug', () => {
     expect(offenders).toEqual([]);
   });
 });
+
+describe('a slug is a URL a reader reads as a title', () => {
+  const { slugify } = require('./scripts/trail-adapter');
+
+  // ss-ligature, ae, oe and o-slash carry no combining accent, so NFD leaves
+  // them whole and the a-z filter turns them into a separator. "Grosse
+  // Schlossrunde" (with the ligature) slugified to `gro-e-schlossrunde`, which
+  // was about to ship as a new page's URL.
+  test('a letter with no accent to strip is spelled out, not cut', () => {
+    expect(slugify('Gro\u00dfe Schlossrunde')).toBe('grosse-schlossrunde');
+    expect(slugify('Wei\u00dfsee')).toBe('weisssee');
+    expect(slugify('\u00c6bleskiven')).toBe('aebleskiven');
+    expect(slugify('C\u0153ur de Savoie')).toBe('coeur-de-savoie');
+    expect(slugify('M\u00f8rkdalen')).toBe('morkdalen');
+  });
+
+  test('an accent that NFD can strip still is', () => {
+    expect(slugify('Toblacher H\u00f6henweg')).toBe('toblacher-hohenweg');
+    expect(slugify('Steine erz\u00e4hlen')).toBe('steine-erzahlen');
+    expect(slugify('Tru di L\u00ebc')).toBe('tru-di-lec');
+  });
+
+  test('no trail in the catalogue slugifies to an empty segment', () => {
+    const { loadProductionTrails } = require('./scripts/load-production-trails');
+    for (const trail of loadProductionTrails(__dirname)) {
+      expect(slugify(trail.name)).not.toMatch(/(^-)|(-$)|(--)/);
+    }
+  });
+});
