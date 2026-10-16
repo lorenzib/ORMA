@@ -574,6 +574,47 @@ service cloud.firestore {
         );
     }
 
+    // JOURNAL-02 — a walk journal entry as it is kept for the account. The
+    // track is one string because Firestore cannot nest arrays; its "|" marks
+    // are the breaks in a recording the phone could not follow all the way.
+    // Keys are closed: a field nobody validates is a field nobody bounds.
+    function validJournalEntry(data, entryId) {
+      return data.keys().hasAll([
+          'schemaVersion', 'entryId', 'date', 'trail', 'trailId', 'region',
+          'dist', 'dur', 'cond', 'rating', 'note', 'photo', 'photos',
+          'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'schemaVersion', 'entryId', 'date', 'trail', 'trailId', 'region',
+          'dist', 'dur', 'cond', 'rating', 'note', 'photo', 'photos',
+          'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt'
+        ])
+        && data.schemaVersion == 1
+        && isShortString(data.entryId, 120)
+        && data.entryId == entryId
+        && isShortString(data.date, 40)
+        && data.trail is string && data.trail.size() <= 120
+        && (data.trailId == null || isTrailId(data.trailId))
+        && data.region is string && data.region.size() <= 80
+        && data.dist is string && data.dist.size() <= 12
+        && data.dur is string && data.dur.size() <= 12
+        && data.cond is string && data.cond.size() <= 40
+        && (data.rating == null || (data.rating is number && data.rating >= 0 && data.rating <= 5))
+        && data.note is string && data.note.size() <= 2000
+        && (data.photo == null
+          || (data.photo is string
+            && data.photo.size() <= 700000
+            && data.photo.matches('^data:image/(jpeg|jpg|png|webp);base64,.*')))
+        && data.photos is number && data.photos >= 0 && data.photos <= 20
+        && data.shareToTrail is bool
+        && data.recorded is bool
+        && data.track is string && data.track.size() <= 60000
+        && data.gaps is number && data.gaps >= 0 && data.gaps <= 500
+        && data.tale is map
+        && data.tale.keys().hasOnly(['paws', 'energy', 'moment'])
+        && data.updatedAt is number && data.updatedAt >= 0;
+    }
+
     // One private document per account. Public contribution privileges are
     // deliberately absent from this schema and cannot be self-assigned here.
     match /users/{uid} {
@@ -635,6 +676,15 @@ service cloud.firestore {
         && validPrivateOutcome(request.resource.data, outcomeId)
         && request.resource.data.createdAt == request.time;
       allow update: if false;
+    }
+
+    // The walk journal. Private owner data: routes, dates, notes and dog
+    // health context. Nobody but the owner may read, write or list it, and
+    // nothing here is projected onto a public profile.
+    match /users/{uid}/journal/{entryId} {
+      allow get, list, delete: if isOwner(uid);
+      allow create, update: if isOwner(uid)
+        && validJournalEntry(request.resource.data, entryId);
     }
 
     // Operators create and remove block records in the Firebase console.

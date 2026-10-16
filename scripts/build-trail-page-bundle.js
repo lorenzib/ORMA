@@ -37,6 +37,8 @@ const SOURCES = [
   'footpath-router.js',
   'pre-hike-readiness.js',
   'hike-session.js',
+  // The journal's own storage shape. hike-mode.js saves a walk through it.
+  'journal-store.js',
   'hike-completions.js',
   'post-hike-outcomes.js',
   'hike-mode.js',

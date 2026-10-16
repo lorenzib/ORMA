@@ -62,9 +62,11 @@ describe('shareable walk card helpers', () => {
     expect(masked[0][0]).toBeGreaterThan(route[0][0]);
     expect(masked[masked.length - 1][0]).toBeLessThan(route[route.length - 1][0]);
     expect(route).toEqual(original);
-    expect(card.routeForShare({ route }, {})).toEqual(masked);
+    // A share route is now a list of tracked stretches, so a walk the phone
+    // lost the middle of is drawn with that middle missing.
+    expect(card.routeForShare({ route }, {})).toEqual([masked]);
     expect(card.routeForShare({ route }, { hideRoute: true })).toEqual([]);
-    expect(card.routeForShare({ route }, { hideEnds: false })).toEqual(route);
+    expect(card.routeForShare({ route }, { hideEnds: false })).toEqual([route]);
   });
 
   test('a route too short to mask safely is hidden', () => {

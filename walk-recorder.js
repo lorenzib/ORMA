@@ -9,6 +9,14 @@
   var MAX_ACCURACY_M = 50;    // reject fuzzy fixes (indoors, cold start)
   var MAX_SPEED_MPS = 30;     // reject GPS teleports
   var MIN_STEP_M = 2;         // ignore standing-still jitter
+  // A phone that pockets or locks stops delivering fixes: the browser freezes
+  // the page and the next fix arrives minutes later, somewhere else entirely.
+  // Joining those two points draws a walk that never happened and counts its
+  // straight line as distance. A healthy watch reports every second or two and
+  // retries a lost fix after the 15s timeout, so this threshold sits well clear
+  // of both. Past it the recording is broken in two instead, so the map shows a
+  // gap and the total counts only ground the phone actually followed.
+  var MAX_FIX_GAP_MS = 45000;
 
   function haversineM(a, b){
     var R = 6371000;
@@ -36,14 +44,28 @@
   function createRecorder(){
     var state = {
       status: 'idle',            // idle | recording | paused | finished
-      points: [],
+      segments: [],              // tracked stretches, one per unbroken run of fixes
       distanceM: 0,
       startedAt: null,
       segmentStartedAt: null,    // wall clock of the current recording segment
       elapsedBeforeMs: 0,        // accumulated across pauses
       lastFix: null,
+      pendingBreak: true,        // the next fix opens a new tracked stretch
       rejected: 0,
+      gaps: 0,                   // times the phone went quiet mid-walk
     };
+
+    function pointCount(){
+      return state.segments.reduce(function(total, segment){ return total + segment.length; }, 0);
+    }
+
+    function appendPoint(point){
+      if(state.pendingBreak || !state.segments.length){
+        state.segments.push([]);
+        state.pendingBreak = false;
+      }
+      state.segments[state.segments.length - 1].push(point);
+    }
 
     function start(now){
       if(state.status !== 'idle') return false;
@@ -58,7 +80,9 @@
       state.elapsedBeforeMs += now - state.segmentStartedAt;
       state.segmentStartedAt = null;
       state.status = 'paused';
-      state.lastFix = null; // never bridge a pause with a straight line
+      // Never bridge a pause, in the total or on the map.
+      state.lastFix = null;
+      state.pendingBreak = true;
       return true;
     }
 
@@ -85,19 +109,30 @@
         return { accepted: false, reason: 'accuracy' };
       }
       var point = { lat: fix.lat, lng: fix.lng, t: fix.timestamp || 0 };
+      var gapped = false;
       if(state.lastFix){
         var meters = haversineM(state.lastFix, point);
+        var silenceMs = point.t && state.lastFix.t ? point.t - state.lastFix.t : 0;
         var seconds = Math.max(0.001, (point.t - state.lastFix.t) / 1000);
         if(point.t && state.lastFix.t && meters / seconds > MAX_SPEED_MPS){
           state.rejected++;
           return { accepted: false, reason: 'jump' };
         }
-        if(meters < MIN_STEP_M) return { accepted: false, reason: 'jitter' };
-        state.distanceM += meters;
+        if(silenceMs > MAX_FIX_GAP_MS){
+          // Whatever happened between these two fixes was not recorded, so it
+          // is neither drawn nor counted.
+          state.gaps++;
+          state.pendingBreak = true;
+          state.lastFix = null;
+          gapped = true;
+        } else {
+          if(meters < MIN_STEP_M) return { accepted: false, reason: 'jitter' };
+          state.distanceM += meters;
+        }
       }
       state.lastFix = point;
-      state.points.push(point);
-      return { accepted: true };
+      appendPoint(point);
+      return gapped ? { accepted: true, gap: true } : { accepted: true };
     }
 
     function finish(now){
@@ -107,16 +142,25 @@
     }
 
     function summary(now){
+      var segments = state.segments.map(function(segment){
+        return simplifyPath(
+          segment.map(function(p){ return { lat: p.lat, lng: p.lng }; })
+        ).map(function(p){
+          return [Math.round(p.lat * 1e5) / 1e5, Math.round(p.lng * 1e5) / 1e5];
+        });
+      }).filter(function(segment){ return segment.length > 0; });
+      var route = segments.reduce(function(all, segment){ return all.concat(segment); }, []);
       return {
         distanceM: Math.round(state.distanceM),
         durationMs: elapsedMs(now),
         startedAt: state.startedAt,
-        points: state.points.length,
-        route: simplifyPath(
-          state.points.map(function(p){ return { lat: p.lat, lng: p.lng }; })
-        ).map(function(p){
-          return [Math.round(p.lat * 1e5) / 1e5, Math.round(p.lng * 1e5) / 1e5];
-        }),
+        points: pointCount(),
+        // One entry per tracked stretch. More than one means the phone stopped
+        // reporting mid-walk and the stretches must not be joined up.
+        segments: segments,
+        // Flat path, kept for readers that predate segments.
+        route: route,
+        gaps: Math.max(0, segments.length - 1),
       };
     }
 
@@ -124,24 +168,38 @@
     // rebuild a recorder mid-walk after a reload.
     function snapshot(){
       return {
-        status: state.status, points: state.points, distanceM: state.distanceM,
+        status: state.status, segments: state.segments, points: flatPoints(),
+        distanceM: state.distanceM,
         startedAt: state.startedAt, segmentStartedAt: state.segmentStartedAt,
         elapsedBeforeMs: state.elapsedBeforeMs, lastFix: state.lastFix,
+        gaps: state.gaps,
       };
     }
 
+    function flatPoints(){
+      return state.segments.reduce(function(all, segment){ return all.concat(segment); }, []);
+    }
+
     function restore(snap, now){
-      if(!snap || !Array.isArray(snap.points)) return false;
-      state.points = snap.points;
+      if(!snap) return false;
+      // A draft written before walks were kept in segments carries one flat
+      // list. Restore it as a single stretch rather than discarding the walk.
+      var segments = Array.isArray(snap.segments) && snap.segments.length
+        ? snap.segments.filter(Array.isArray)
+        : (Array.isArray(snap.points) ? [snap.points] : null);
+      if(!segments) return false;
+      state.segments = segments;
       state.distanceM = Number(snap.distanceM) || 0;
       state.startedAt = snap.startedAt || now;
       state.elapsedBeforeMs = Number(snap.elapsedBeforeMs) || 0;
+      state.gaps = Number(snap.gaps) || 0;
       // A recording that died mid-segment can't know how long the gap was, // resume paused so the timer stays honest.
       if(snap.status === 'recording' && snap.segmentStartedAt != null){
         state.elapsedBeforeMs += Math.max(0, (snap.savedAt || snap.segmentStartedAt) - snap.segmentStartedAt);
       }
       state.segmentStartedAt = null;
       state.lastFix = null;
+      state.pendingBreak = true;
       state.status = 'paused';
       return true;
     }
@@ -152,7 +210,8 @@
       snapshot: snapshot, restore: restore,
       get status(){ return state.status; },
       get distanceM(){ return state.distanceM; },
-      get pointCount(){ return state.points.length; },
+      get pointCount(){ return pointCount(); },
+      get gaps(){ return state.gaps; },
     };
   }
 
@@ -163,8 +222,11 @@
     var now = options.now || 0;
     var km = walkSummary.distanceM / 1000;
     var minutes = Math.max(1, Math.round(walkSummary.durationMs / 60000));
+    var segments = Array.isArray(walkSummary.segments)
+      ? walkSummary.segments
+      : (walkSummary.route && walkSummary.route.length ? [walkSummary.route] : []);
     return {
-      id: 'w' + now,
+      id: options.id || ('w' + now),
       date: new Date(walkSummary.startedAt || now).toISOString(),
       trailId: null,
       trail: options.name || 'Recorded walk',
@@ -178,6 +240,8 @@
       shareToTrail: false,
       recorded: true,
       route: walkSummary.route,
+      segments: segments,
+      gaps: Number(walkSummary.gaps) || 0,
     };
   }
 
@@ -186,6 +250,7 @@
     haversineM: haversineM,
     simplifyPath: simplifyPath,
     buildJournalEntry: buildJournalEntry,
+    MAX_FIX_GAP_MS: MAX_FIX_GAP_MS,
   };
   global.DoloPawsWalkRecorder = api;
   if(typeof module !== 'undefined' && module.exports){ module.exports = api; }

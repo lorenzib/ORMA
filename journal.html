@@ -96,6 +96,9 @@
   .jn-kicker{margin:0 0 9px;color:#C7D6C8;font:800 10.5px 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.14em;}
   .jn-feature h2{margin:0;font:700 clamp(28px,3vw,42px)/1.02 'Bricolage Grotesque',sans-serif;color:#fff;}
   .jn-feature-meta{margin:10px 0 0;color:#C7D1C8;font-size:12px;}
+  /* A caveat, not a headline: it explains the blank on the map above. */
+  .jn-feature-gap{margin:8px 0 0;padding-left:11px;border-left:2px solid rgba(196,101,47,.75);color:#C7D1C8;font:500 12px/1.5 'Inter',sans-serif;max-width:40ch;}
+  .jn-feature-gap[hidden]{display:none;}
   .jn-feature-stats{display:flex;gap:24px;margin:25px 0 19px;padding:18px 0;border-top:1px solid rgba(255,255,255,.13);border-bottom:1px solid rgba(255,255,255,.13);}
   .jn-feature-stat b{display:block;color:#fff;font:800 20px 'Inter',sans-serif;}
   .jn-feature-stat span{display:block;margin-top:3px;color:#AEBCAF;font:700 9.5px 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.08em;}
@@ -185,12 +188,13 @@
       <div id="jnFeatureMap" class="jn-feature-map" aria-label="Route map for the latest Trail Tale"></div>
       <div id="jnFeatureMapFallback" class="jn-feature-map-fallback" data-i18n="journal.tale.fallback">A good walk leaves a mark.</div>
       <img id="jnFeaturePhoto" class="jn-feature-photo" alt="Walk photo" hidden>
-      <span class="jn-private-chip" data-i18n="journal.tale.private">Private in this browser</span>
+      <span class="jn-private-chip" data-i18n="journal.tale.private">Private, saved to your account</span>
     </div>
     <div class="jn-feature-copy">
       <p class="jn-kicker" id="jnFeatureKicker" data-i18n="journal.tale.latest">Latest Trail Tale</p>
       <h2 id="jnFeatureTitle"></h2>
       <p class="jn-feature-meta" id="jnFeatureMeta"></p>
+      <p class="jn-feature-gap" id="jnFeatureGap" hidden></p>
       <div class="jn-feature-stats" id="jnFeatureStats"></div>
       <p class="jn-verdict" id="jnFeatureVerdict"></p>
       <div class="jn-tale-chips" id="jnFeatureChips"></div>
@@ -227,7 +231,7 @@
     <p class="empty-state__copy" data-i18n="journal.signedOut.copy">Log in to build a private journal of the trails you and your dog have walked.</p>
     <div class="empty-state__actions"><button type="button" id="jnLoginBtn" class="empty-state__action" data-i18n="journal.signedOut.action">Log in</button></div>
   </div>
-  <p id="jnStorageNote" style="margin-top:18px;font-size:11.5px;color:var(--ink-soft);" hidden data-i18n="journal.storage">Journal entries are stored in this browser for your account.</p>
+  <p id="jnStorageNote" style="margin-top:18px;font-size:11.5px;color:var(--ink-soft);" hidden data-i18n="journal.storage">Journal entries are saved to your ORMA account and kept on this device, so they follow you to another phone.</p>
 </div>
 
 <!-- Log a walk modal -->
@@ -434,6 +438,7 @@
 <script src="regional-trails-loader.js?v=20261007-2" data-default-region="all"></script>
 <script src="trail-audits.js?v=20260815-4" defer></script>
 <script src="regions-config.js" defer></script>
+<script src="journal-store.js?v=20261016-1"></script>
 <script src="walk-card.js?v=20260825-1"></script>
 <script>
 // My Journal. Entries are private, per-account records stored only in this
@@ -476,6 +481,71 @@ document.addEventListener('DOMContentLoaded', function(){
     try { localStorage.setItem(key(), JSON.stringify(state.entries)); return true; }
     catch(e){ return false; }
   }
+
+  // ---- JOURNAL-02 account copy ---------------------------------------
+  // The browser holds the working copy, so the journal opens and accepts a
+  // walk with no network. The account holds the copy that survives this
+  // browser and reaches the next phone. remoteEntries is what the account was
+  // last known to hold, which is how an unsent walk is recognised later.
+  var remoteEntries = [];
+
+  function journalStore(){ return window.DoloPawsJournalStore || null; }
+
+  // Mark an entry as changed here, so the account takes this version.
+  function touch(entry){
+    if(entry) entry.updatedAt = Date.now();
+    return entry;
+  }
+
+  function storageNote(state){
+    var note = document.getElementById('jnStorageNote');
+    if(!note) return;
+    note.textContent = state === 'unsent'
+      ? translate('journal.storageUnsent',
+        'Saved on this device. Your walks reach your ORMA account the next time you are online.', {})
+      : translate('journal.storage',
+        'Journal entries are saved to your ORMA account and kept on this device, so they follow you to another phone.', {});
+  }
+
+  function pushUnsentEntries(){
+    var store = journalStore();
+    var auth = window.DoloPawsAuth;
+    if(!store || !auth || typeof auth.saveJournalEntries !== 'function') return Promise.resolve(false);
+    var pending = store.entriesToPush(state.entries, remoteEntries);
+    if(!pending.length) return Promise.resolve(true);
+    return auth.saveJournalEntries(pending).then(function(result){
+      if(result && result.ok){
+        remoteEntries = store.mergeEntries(pending, remoteEntries);
+        storageNote('synced');
+        return true;
+      }
+      storageNote('unsent');
+      return false;
+    }).catch(function(){ storageNote('unsent'); return false; });
+  }
+
+  // Pull the account's copy, fold it into this browser's, then send up
+  // anything this browser has that the account does not.
+  function syncJournal(){
+    var store = journalStore();
+    var auth = window.DoloPawsAuth;
+    if(!store || !auth || !auth.currentUser || typeof auth.getJournalEntries !== 'function'){
+      return Promise.resolve(false);
+    }
+    return auth.getJournalEntries().then(function(result){
+      // A failed read is not an empty account. Keeping the local copy and
+      // trying again later is what stops a signal drop wiping the journal.
+      if(!result || !result.ok){ storageNote('unsent'); return false; }
+      remoteEntries = result.entries;
+      var merged = store.mergeEntries(state.entries, result.entries);
+      if(JSON.stringify(merged) !== JSON.stringify(state.entries)){
+        state.entries = merged;
+        persist();
+        renderAll();
+      }
+      return pushUnsentEntries();
+    }).catch(function(){ storageNote('unsent'); return false; });
+  }
   function showStatus(message){
     var status = document.getElementById('jnActionStatus');
     if(!status){
@@ -517,15 +587,26 @@ document.addEventListener('DOMContentLoaded', function(){
     return iso.slice(0, 7) === now.toISOString().slice(0, 7);
   }
 
-  function activeRoute(entry){
-    var route = Array.isArray(entry && entry.route) ? entry.route : [];
-    if(route.length > 1) return route;
+  // A recorded walk is kept as one stretch per unbroken run of GPS fixes. A
+  // walk logged against a catalogue trail borrows that trail's line instead.
+  function activeSegments(entry){
+    var store = window.DoloPawsJournalStore;
+    var segments = store ? store.entrySegments(entry) : [];
+    if(segments.length) return segments;
     var trail = entry && entry.trailId ? trailById(entry.trailId) : null;
-    return trail && Array.isArray(trail.path) ? trail.path : [];
+    return trail && Array.isArray(trail.path) && trail.path.length > 1 ? [trail.path] : [];
+  }
+
+  function activeRoute(entry){
+    var store = window.DoloPawsJournalStore;
+    return store ? store.flatten(activeSegments(entry)) : [];
   }
 
   function shareableEntry(entry){
-    return Object.assign({}, entry, { route:activeRoute(entry) });
+    return Object.assign({}, entry, {
+      route:activeRoute(entry),
+      segments:activeSegments(entry),
+    });
   }
 
   function featuredEntry(){ return entryById(state.featuredId) || state.entries[0] || null; }
@@ -543,17 +624,28 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // Route-only map: rendered locally so a private recorded route never leaves
   // this browser to request geographically revealing third-party tiles.
-  function renderFeatureRoute(route){
+  function renderFeatureRoute(segments){
     var map = document.getElementById('jnFeatureMap');
     var fallback = document.getElementById('jnFeatureMapFallback');
-    var points = window.DoloPawsWalkCard ? window.DoloPawsWalkCard.projectRoute(route, 1000, 600, 55) : [];
+    var drawn = window.DoloPawsWalkCard
+      ? window.DoloPawsWalkCard.projectSegments(segments, 1000, 600, 55) : [];
+    var points = drawn.reduce(function(all, part){ return all.concat(part); }, []);
     fallback.hidden = points.length > 1;
     if(points.length < 2){ map.innerHTML = ''; return; }
-    var path = points.map(function(point){ return point.map(function(value){ return Math.round(value * 10) / 10; }).join(','); }).join(' ');
+    function polyline(part, stroke, width){
+      if(part.length < 2) return '';
+      var path = part.map(function(point){
+        return point.map(function(value){ return Math.round(value * 10) / 10; }).join(',');
+      }).join(' ');
+      return '<polyline points="' + path + '" fill="none" stroke="' + stroke + '" stroke-width="' + width +
+        '" stroke-linecap="round" stroke-linejoin="round"/>';
+    }
     var first = points[0], last = points[points.length - 1];
+    // One line per stretch. Where the phone stopped reporting the line stops
+    // too: an empty space is the truth, a straight line across it is not.
     map.innerHTML = '<svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Route trace">' +
-      '<polyline points="' + path + '" fill="none" stroke="rgba(255,255,255,.94)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<polyline points="' + path + '" fill="none" stroke="#C4652F" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>' +
+      drawn.map(function(part){ return polyline(part, 'rgba(255,255,255,.94)', 22); }).join('') +
+      drawn.map(function(part){ return polyline(part, '#C4652F', 11); }).join('') +
       '<circle cx="' + first[0] + '" cy="' + first[1] + '" r="16" fill="#4A7856" stroke="#fff" stroke-width="8"/>' +
       '<circle cx="' + last[0] + '" cy="' + last[1] + '" r="16" fill="#C4652F" stroke="#fff" stroke-width="8"/>' +
       '</svg>';
@@ -591,7 +683,15 @@ document.addEventListener('DOMContentLoaded', function(){
     var photo = document.getElementById('jnFeaturePhoto');
     photo.hidden = !entry.photo;
     if(entry.photo) photo.src = entry.photo;
-    renderFeatureRoute(activeRoute(entry));
+    var gapNote = document.getElementById('jnFeatureGap');
+    var gaps = Number(entry.gaps) || 0;
+    gapNote.hidden = gaps < 1;
+    gapNote.textContent = gaps < 1 ? '' : translate(
+      'journal.tale.gapNote',
+      'The phone stopped reporting during this walk, so part of the route is missing and is not counted in the distance.',
+      {}
+    );
+    renderFeatureRoute(activeSegments(entry));
   }
 
   function renderStats(){
@@ -731,6 +831,7 @@ document.addEventListener('DOMContentLoaded', function(){
     entry.photo = editPhoto || undefined;
     if(!entry.photo) delete entry.photo;
     entry.photos = entry.photo ? 1 : 0;
+    touch(entry);
     if(!persist()){
       Object.keys(entry).forEach(function(key){ delete entry[key]; });
       Object.assign(entry, previousEntry);
@@ -740,6 +841,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('jnEditOverlay').hidden = true;
     editingId = null;
     renderAll();
+    pushUnsentEntries();
     showStatus(window.t('journal.updated'));
   });
 
@@ -780,6 +882,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(!entry) return;
     var previous = entry.tale;
     if(Object.keys(taleDraft).length) entry.tale = Object.assign({}, taleDraft); else delete entry.tale;
+    touch(entry);
     if(!persist()){
       if(previous) entry.tale = previous; else delete entry.tale;
       showStatus(window.t('journal.saveError'));
@@ -787,6 +890,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     document.getElementById('jnTaleOverlay').hidden = true;
     renderAll();
+    pushUnsentEntries();
     showStatus(translate('journal.tale.saved', 'Trail Tale saved.', {}));
   });
 
@@ -1209,8 +1313,10 @@ document.addEventListener('DOMContentLoaded', function(){
     var pickedDate = document.getElementById('jnDate').value;
     var when = pickedDate ? new Date(pickedDate + 'T12:00:00') : new Date();
     if(isNaN(when.getTime()) || when.getTime() > Date.now()) when = new Date();
+    var store = journalStore();
     var entry = {
-      id: 'w' + Date.now(),
+      id: store ? store.newId(Date.now()) : ('w' + Date.now()),
+      updatedAt: Date.now(),
       date: when.toISOString(),
       trailId: tr ? tr.id : null,
       trail: tr ? tr.name : window.t('journal.defaultName'),
@@ -1249,6 +1355,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     state.featuredId = entry.id;
     renderAll();
+    pushUnsentEntries();
     showStatus(window.t('journal.saved'));
     setTimeout(function(){ openTale(entry); }, 160);
   });
@@ -1307,6 +1414,8 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     }
     document.getElementById('jnStorageNote').hidden = false;
+    storageNote('synced');
+    syncJournal();
     window.DoloPawsAuth.getDogProfile().then(function(p){
       if(p && p.name){
         dogDisplayName = p.name;
@@ -1316,11 +1425,11 @@ document.addEventListener('DOMContentLoaded', function(){
         renderFeature();
       }
     }).catch(function(){});
-    window.DoloPawsAuth.getPublicProfile(user.uid).then(function(profile){
+    window.DoloPawsAuth.getPublicProfile(uid).then(function(profile){
       publicHumanName = profile && profile.displayName || '';
       if(profile){
         var publicDog = (profile.dogs || []).find(function(item){ return item.public; });
-        publicProfileUrl = 'https://www.app-orma.com/profile.html?uid=' + encodeURIComponent(user.uid) + (publicDog ? '&dog=' + encodeURIComponent(publicDog.id) : '');
+        publicProfileUrl = 'https://www.app-orma.com/profile.html?uid=' + encodeURIComponent(uid) + (publicDog ? '&dog=' + encodeURIComponent(publicDog.id) : '');
       }
     }).catch(function(){});
   }
