@@ -11,6 +11,9 @@ exclude:
   # and nothing on the site ever linked to it. The finished posts live on
   # Instagram itself.
   - images/social/instagram
+  # Marketing logo files, drawn by scripts/render-brand-logos.js. Nothing on
+  # the site uses them; they are kept here to be handed to print and partners.
+  - images/brand
   # Operator surface. These pages and their scripts are built and served from
   # backoffice.app-orma.com by scripts/build-backoffice-hosting.js, which reads
   # them straight from the repo root and is unaffected by this list. Keeping
