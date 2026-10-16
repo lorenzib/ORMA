@@ -24,6 +24,7 @@
 const {dossierBlockingReasons,routeGuidanceBlockingReasons,supportedRouteGuidance,
   currentBlockingReasons,waivableBlocker,blockerId,ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
 const {gateDecision}=require('./automate-existing-trail-verification');
+const {timeValue}=require('./advance-trail-orchestration');
 const {MAX_AUTOMATED_ATTEMPTS}=require('../contracts/resolution-policy-v1');
 
 // What answered a claim, in the words the standard uses for it. A claim with
@@ -74,8 +75,24 @@ function latestOutputsByAgent(jobs,candidateId,outputFor){
   const newest=new Map();
   for(const job of completed){
     const held=newest.get(job.agentId);
-    const at=job.completedAt||job.createdAt||'';
-    if(!held||String(at)>String(held.completedAt||held.createdAt||''))newest.set(job.agentId,job);
+    // `timeValue`, not a string comparison. A Firestore timestamp is an object,
+    // so `String(at)` is "[object Object]" for every job: the comparison was
+    // always false and the FIRST job won, whichever that happened to be.
+    //
+    // This tool exists to say what the gate would decide, and it was reading an
+    // arbitrary survey. Boucle du Taillefer has eleven, and the one it showed on
+    // 16 October 2026 predated the marks that say whether a walk carries a
+    // number -- so a fresh survey looked like no survey, and an afternoon went
+    // on why the landmark answer would not fire for a trail that had already
+    // been measured.
+    //
+    // The orchestration has always handled this, because a timestamp that
+    // arrives as an object is exactly what it reads. One definition now serves
+    // both, so the preview and the gate cannot disagree about which survey is
+    // the newest one.
+    if(!held||timeValue(job.completedAt||job.createdAt)>timeValue(held.completedAt||held.createdAt)){
+      newest.set(job.agentId,job);
+    }
   }
   return [...newest.values()]
     .map(job=>({agentId:job.agentId,jobId:job.id,result:outputFor(job.id)}))
