@@ -148,6 +148,32 @@ function chainLines(lines) {
     .filter(piece => piece.length)
     .sort((a, b) => b.length - a.length);
   if (!remaining.length) return { path: [], dropped: [] };
+
+  // A walk that returns to where it started is already whole.
+  //
+  // Where the biggest piece closes on itself, the relation is describing that
+  // loop, and whatever else it lists is somewhere else: Seeweg is an 8.4 km
+  // circuit plus a separate 3.3 km stretch of the same named path three
+  // kilometres away, and Colombier is a forest-road loop plus two unnamed ways
+  // 1.6 km off. Chaining those in drew a line across open country and called
+  // the result one walk. Nothing needs adding to a closed loop to make it a
+  // route, so the rest is set aside rather than joined.
+  //
+  // Judged on the piece covering the most ground, not the most points: a
+  // sparse long line and a dense short one are easy to confuse by point count.
+  const byGround = remaining.slice().sort((a, b) => lineMeters(b) - lineMeters(a));
+  const biggest = byGround[0];
+  if (remaining.length > 1 && lineMeters(biggest) > 0
+    && haversineMeters(biggest[0][0], biggest[0][1],
+      biggest[biggest.length - 1][0], biggest[biggest.length - 1][1]) <= LOOP_CLOSE_M) {
+    return {
+      path: biggest,
+      dropped: byGround.slice(1).map((piece) => ({
+        meters: Math.round(lineMeters(piece)), points: piece.length, reason: 'detached from a closed loop',
+      })),
+    };
+  }
+
   let chained = remaining.shift();
   const dropped = [];
   while (remaining.length) {
@@ -185,6 +211,11 @@ function chainLines(lines) {
 // kept whatever it costs to reach, because a piece that long is a part of the
 // walk that someone mapped badly, not litter.
 const DROPPABLE_PIECE_M = 1000;
+
+// How near a piece's two ends must be before it counts as returning to its
+// start. The same figure stitching uses: if the ends are close enough that two
+// separate ways would have been joined there, the line has closed.
+const LOOP_CLOSE_M = 100;
 
 // And it must be small against the walk it is being dropped from. Two 400 m
 // fragments fifteen kilometres apart are not a walk with litter on it, they
@@ -678,4 +709,4 @@ if (require.main === module) {
   main().catch((err) => { console.error(err); process.exit(1); });
 }
 
-module.exports = { chainLines, toPath, widestGapMeters, haversineMeters, lineMeters, DROPPABLE_PIECE_M, DROPPABLE_SHARE_OF_WALK };
+module.exports = { chainLines, toPath, widestGapMeters, haversineMeters, lineMeters, DROPPABLE_PIECE_M, DROPPABLE_SHARE_OF_WALK, LOOP_CLOSE_M };
