@@ -184,8 +184,25 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
   // A measurement that was attempted and could not be taken. It is not a
   // verdict and not research to commission: it is a survey to run again, and
   // without it a trail reads as refused for want of evidence nobody could get.
-  const unmeasured=latestOutputsByAgent(jobs,trail.candidateId,outputFor||(()=>null))
-    .find(output=>output.agentId==='cartographer')?.result?.routeNumbersUnmeasured||null;
+  const survey=latestOutputsByAgent(jobs,trail.candidateId,outputFor||(()=>null))
+    .find(output=>output.agentId==='cartographer')?.result||null;
+  const unmeasured=survey?.routeNumbersUnmeasured||null;
+  // What the survey on the shelf actually recorded about numbers.
+  //
+  // Every branch of the survey records exactly one of three things: the numbers
+  // it found, that it looked and found none, or that it could not look. So a
+  // survey carrying none of them is a survey older than those marks -- and that
+  // is indistinguishable, from the gate, from a walk nobody can supply
+  // directions for.
+  //
+  // Seven trails read that way on 16 October 2026 after a fresh survey, and
+  // working out why took reading commit timestamps against workflow run times
+  // because the report would not say. It says now.
+  const surveyRecorded=!survey?'no survey on the shelf'
+    :survey.routeGuidance?`numbers: ${(survey.routeGuidance.sequence||[]).join(', ')||'none listed'}`
+    :survey.routeNumbersAbsent?'looked along the walk and found no number'
+    :survey.routeNumbersUnmeasured?`could not look: ${survey.routeNumbersUnmeasured}`
+    :'nothing — this survey predates the marks, so it cannot say either way';
   const decided=[...new Set(currentBlockingReasons(review)
     .filter(reason=>!waivableBlocker(reason)).map(blockerId))];
   const disagreement=reportVersusDecision(unwaivable,decided);
@@ -209,6 +226,9 @@ function gateDryRun({orchestration,jobs,outputFor,trailId,at,trail:catalogueTrai
     // Why the numbers along this walk were never measured, where somebody
     // tried. A survey to run again, not a walk to research.
     routeNumbersUnmeasured:unmeasured,
+    // One of: the numbers found, looked-and-none, could-not-look, or a survey
+    // too old to say. The fourth reads like a refusal and is a survey to retake.
+    surveyRecorded,
     routeGuidanceBlockers:routeGuidanceBlockingReasons(specialistOutputs).map(blockerId),
     blockerCount:blockingReasons.length,
     unwaivable,
