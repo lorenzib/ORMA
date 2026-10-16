@@ -96,8 +96,15 @@ describe('official area warnings reach the page', () => {
   });
 
   // The generated pages use their badge strip as the anchor instead.
+  //
+  // The page is the one HAZARD names in trailSlugs, not whichever sorts first
+  // in the directory. Those were the same file until a geometry fix published
+  // a trail that sorts ahead of it, and the test then rendered a page the
+  // fixture's hazard does not apply to and read the empty result as a broken
+  // renderer. Named, so the two cannot drift apart again.
   test('a generated trail page renders a matching hazard', async () => {
-    const page = fs.readdirSync(path.join(root, 'trails')).filter(f => f.endsWith('.html'))[0];
+    const page = `${HAZARD.trailSlugs[0]}.html`;
+    expect(fs.existsSync(path.join(root, 'trails', page))).toBe(true);
     const stack = await render(`trails/${page}`, `/trails/${page}`);
     expect(stack).not.toBeNull();
     expect(document.body.contains(stack)).toBe(true);

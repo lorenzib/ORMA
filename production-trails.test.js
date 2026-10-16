@@ -46,9 +46,14 @@ describe('DATA-02 production trail validation', () => {
 
   test('broken or unrealistic routes are held as drafts with field-level reasons', () => {
     const broken = catalog.excluded.find(entry => entry.id === 'osm-1780768');
+    // The shape of the reason, not the measurement in it. Both figures move
+    // whenever the geometry is refreshed -- this trail went 77.4 -> 53.4 km and
+    // its worst jump 6.6 -> 4.2 km when off-route members stopped being stitched
+    // into the walking line -- and a test that pins the number fails on the data
+    // getting better while saying nothing about whether the rule still holds.
     expect(broken.reasons).toEqual(expect.arrayContaining([
-      expect.stringMatching(/geometry jump 6\.\d+ km before point/),
-      expect.stringMatching(/distance 77\.4 km exceeds/),
+      expect.stringMatching(/geometry jump \d+(\.\d+)? km before point \d+/),
+      expect.stringMatching(/distance \d+(\.\d+)? km exceeds the 50 km publication limit/),
     ]));
     expect(catalog.records.find(record => record.id === broken.id).lifecycle).toBe('draft');
   });
