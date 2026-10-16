@@ -507,21 +507,50 @@ function routeSourceReady(trail){
 }
 
 /**
- * Claimable work with the trails that can actually be verified first.
+ * The agents that cost nothing to run.
  *
- * Within each group the queue's own order is kept, so this changes which trail
- * a pass spends its budget on and nothing else. A trail awaiting a source is
- * not dropped -- it is simply not researched ahead of one that can finish.
+ * The cartographer reads OpenStreetMap and measures: no model call, no credit.
+ * Named here because the pass that orders work and the branch that runs it must
+ * agree about which jobs are free, and a second list would drift from this one.
+ */
+const FREE_AGENTS=Object.freeze(['cartographer']);
+
+/** Whether running this job spends anything. */
+function costsNoModelCall(job){return FREE_AGENTS.includes(job?.agentId);}
+
+/**
+ * Claimable work with the free jobs first, then the trails that can actually be
+ * verified.
+ *
+ * The verifiable-first rule exists to stop the model budget going on trails
+ * that cannot pass. **It has no business ordering work that costs nothing** --
+ * and it was, because a free survey job carries the same unverifiable trail as
+ * a paid research job for it.
+ *
+ * That produced a circle. A trail with no published source ranks last; its
+ * survey is the free job that would answer its directions from the map and make
+ * it verifiable; and the survey never ran, because it was behind every paid job
+ * in the queue and a pass takes ten. Six surveys were queued by hand on 16
+ * October 2026 and not one of them ran until each trail was scoped on its own.
+ * We would not survey it because it had no directions, and it had no directions
+ * because we would not survey it.
+ *
+ * Free first, then the existing rule among the rest, then the queue's own order.
+ * A pass can therefore spend itself entirely on free work, which is the right
+ * way round: every such job makes a trail verifiable for nothing, and there is
+ * at most one survey per trail, so the group drains. Research already in flight
+ * waits behind it for a pass or two rather than for ever.
  */
 function verifiableFirst(jobs,trailById){
   const ready=job=>routeSourceReady(trailById?.get?.(job?.candidateId));
-  return [...(jobs||[]).map((job,index)=>({job,index,ready:ready(job)}))]
-    .sort((a,b)=>(a.ready===b.ready?a.index-b.index:(a.ready?-1:1)))
+  const rank=job=>costsNoModelCall(job)?0:(ready(job)?1:2);
+  return [...(jobs||[]).map((job,index)=>({job,index,rank:rank(job)}))]
+    .sort((a,b)=>(a.rank===b.rank?a.index-b.index:a.rank-b.rank))
     .map(entry=>entry.job);
 }
 
 async function runTrailSpecialist({job,trail,context},options={}){
-  if(job.agentId==='cartographer'){
+  if(costsNoModelCall(job)){
     // Six curated trails have no relation of their own and an approved
     // composite instead. Without this the candidate builder throws
     // route-source-identity-unresolved on every one of them.
@@ -570,4 +599,4 @@ async function runTrailSpecialist({job,trail,context},options={}){
   return {responseId:response.responseId,model:response.model,result};
 }
 
-module.exports={demoteClaimsTheGateCannotUse,mappedPlacesFor,loadMappedFeatures,PLACE_FILES,MANDATORY_CLAIMS,MANDATORY_CLAIM_CATEGORY,fillOmittedClaims,dropUnretrievableSources,MAP_DATA_SOURCE,routeSourceReady,verifiableFirst,CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
+module.exports={FREE_AGENTS,costsNoModelCall,demoteClaimsTheGateCannotUse,mappedPlacesFor,loadMappedFeatures,PLACE_FILES,MANDATORY_CLAIMS,MANDATORY_CLAIM_CATEGORY,fillOmittedClaims,dropUnretrievableSources,MAP_DATA_SOURCE,routeSourceReady,verifiableFirst,CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};

@@ -676,6 +676,34 @@ have. Until that scope can carry it, such a trail waits at the publication
 mapping gate and names what it is waiting for, rather than publishing a badge it
 has not earned or failing in the materializer.
 
+## Free work goes first
+
+A pass orders its queue so the trails that can actually be verified are
+researched first. That rule exists to stop the model budget going on trails
+that cannot pass, and it is right about paid work.
+
+**It has no business ordering work that costs nothing.** The geometry survey is
+deterministic — it reads OpenStreetMap and measures, no model call — and it was
+being ranked by the same rule, because a free survey job carries the same
+unverifiable trail as a paid research job for it.
+
+That produced a circle. A trail with no published source ranks last. Its survey
+is the free job that would answer its directions from the map and make it
+verifiable. And the survey never ran, because it sat behind every paid job in the
+queue and a pass takes ten. Six surveys were queued by hand on 16 October 2026
+and not one of them ran until each trail was scoped to its own pass. We would not
+survey it because it had no directions, and it had no directions because we
+would not survey it.
+
+Free first, then the verifiable-first rule among the rest, then the queue's own
+order. One list says which agents are free, and the branch that runs a job reads
+the same list, so the two cannot disagree about what is free.
+
+A pass can therefore spend itself entirely on free work. That is the right way
+round: every such job makes a trail verifiable for nothing, and there is at most
+one survey per trail, so the group drains. Research already in flight waits
+behind it for a pass or two rather than for ever.
+
 ## A seal does not wait for optional detail
 
 The four route claims are the only unwaivable ones, and since the map and
