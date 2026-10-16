@@ -556,6 +556,52 @@ function unacceptedBlockers(review,acceptedBlockers){
   return currentBlockingReasons(review).filter(reason=>!accepted.has(String(reason).trim()));
 }
 
+/**
+ * The six safety categories a walker acts on with a dog, and who establishes
+ * them.
+ *
+ * These are the ones the published badge calls reviewed, and they are the ones
+ * that decide whether somebody takes a dog up a shadeless ridge in August.
+ */
+const SAFETY_CATEGORIES=Object.freeze(['water','heat','exposure','livestock','surfaceHazards','access']);
+
+/**
+ * Which of them this verification actually looked at.
+ *
+ * A dossier recorded findings and never recorded whether anybody looked, so
+ * absence of a finding and absence of a look were the same shape -- the fault
+ * this whole repair ran on, in the one place that decides what a live trail page
+ * claims.
+ *
+ * It did not matter while nothing could be verified without five specialists
+ * having researched it. It started to matter on 16 October 2026, when a trail
+ * whose directions the free survey had settled was verified with no specialist
+ * having spoken. Publication asserts all eleven checks complete and all six
+ * categories reviewed, unconditionally, so such a trail would have told a walker
+ * ORMA had checked its water and its livestock.
+ *
+ * A category counts as researched where an agent returned a claim for it,
+ * whatever the finding. "Looked and could not settle it" is a real check, and
+ * the page shows the reader `unknown` unchanged, exactly as SCORING.md requires.
+ * What does not count is nobody having asked -- and that is the distinction
+ * nothing could previously make.
+ *
+ * Taken from the specialist outputs rather than from the compiled claims,
+ * because a claim the moderator accepted as unknown may not survive into them,
+ * and the fact that somebody looked must survive either way.
+ */
+function researchedSafetyCategories(review){
+  const asked=new Set();
+  for(const output of review?.specialistOutputs||[]){
+    if(output.agentId==='cartographer')continue;
+    for(const claim of output.result?.claims||[]){
+      const id=String(claim?.id||'');
+      if(SAFETY_CATEGORIES.includes(id))asked.add(id);
+    }
+  }
+  return SAFETY_CATEGORIES.filter(category=>asked.has(category));
+}
+
 function compileVerifiedDossier(review,trail,options={}){
   // Defence in depth: applyDossierReview checks this too, but nothing may compile
   // a dossier whose blockers a human never addressed.
@@ -617,6 +663,9 @@ function compileVerifiedDossier(review,trail,options={}){
       acceptedBlockers:[...acceptedBlockerMap(options.acceptedBlockers)]
         .map(([blocker,reason])=>({blocker,reason,acceptedBy:options.verifiedBy||'orma-evidence-policy-v1',acceptedAt:at})),
       conditions:['Recheck time-sensitive access, restriction, parking and water claims on their scheduled maintenance cadence.'],
+      // Which of the six a specialist actually asked about. The published badge
+      // calls a category reviewed, and it may only call the ones in here that.
+      researchedCategories:researchedSafetyCategories(review),
       officialRoute:officialRouteConfirmation(review)},
     specialistOutputRefs:(review.specialistOutputs||[]).map(output=>`firestore:trail-specialist-output-${output.jobId}`),
     publicMutationAllowed:false,publicationAuthorized:false};
@@ -632,4 +681,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={answerStandingFor,trailRecordFor,citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={SAFETY_CATEGORIES,researchedSafetyCategories,answerStandingFor,trailRecordFor,citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};

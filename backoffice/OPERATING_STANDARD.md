@@ -634,6 +634,48 @@ validation and retired the job, while answering `unresolved` instead blocked the
 dossier gate. A contract that no honest answer satisfies stops the pipeline just
 as surely as a missing agent.
 
+## A badge claims only what a specialist was asked
+
+The published record asserted all eleven checks complete and all six safety
+categories reviewed, unconditionally, on every trail. `water`, `heat`,
+`exposure`, `livestock`, `surfaceHazards`, `access` — cited to the locked
+dossier.
+
+That was safe for exactly as long as nothing could be verified without five
+specialists having researched it. It stopped being safe the moment a free
+geometry survey could settle a trail's directions on its own: such a trail is
+verified having asked none of those six, and the old record would have told a
+walker ORMA had checked its water and its livestock. Somebody could take a dog
+up a shadeless ridge in August on a badge that meant nothing.
+
+**A dossier now records which of the six a specialist was asked about.** It
+recorded findings and never recorded whether anybody looked, so absence of a
+finding and absence of a look were the same shape — in the one place that
+decides what a live trail page claims.
+
+A category counts as researched where an agent returned a claim for it,
+**whatever the finding**. Looking and failing to settle it is a real check, and
+the page shows the reader `unknown` unchanged, exactly as SCORING.md requires.
+The geometry survey is not a specialist: its claims are route guidance and
+geometry, and it never asks about water.
+
+The badge is derived from that mark rather than asserted. `verified.categories`
+lists the researched ones; the graduation completes only those; and
+`status: 'verified'` — the earned seal — needs all eleven. Short of that the
+trail shows as **reviewed**, which is the honest thing for a walk whose route is
+confirmed and whose safety facts nobody has asked about, and more than the rest
+of the catalogue can show. It upgrades by itself: the next publication after
+research lands derives a fuller list, so nothing has to remember to promote a
+trail.
+
+**A trail short of the full seal is held, not published.** The override
+contract takes either a full verification or one of its named scopes, and the
+scope that would carry a route-only publication requires cited sources with a
+`reviewedAt` — which a trail answered by the map and ORMA's own record does not
+have. Until that scope can carry it, such a trail waits at the publication
+mapping gate and names what it is waiting for, rather than publishing a badge it
+has not earned or failing in the materializer.
+
 ## A seal does not wait for optional detail
 
 The four route claims are the only unwaivable ones, and since the map and

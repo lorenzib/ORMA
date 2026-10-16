@@ -28,6 +28,16 @@ const LOGISTICS = ['recommended-start','route-number-status','route-number-seque
     finding:'supported-proposal', confidence:0.9, rationale:'Operator map.', sources:[source()], blockers:[],
     entityName:null, rule:'not-applicable', observedAt:null }));
 
+// Publication may call a safety category reviewed only where a specialist asked
+// about it, so a fixture that means to represent a finished verification has to
+// have asked. These tests are about the Ranger reaching the facts table, and
+// before the badge was derived they published asserting all six researched
+// while asking about none of them.
+const SAFETY = ['water','heat','exposure','livestock','surfaceHazards','access']
+  .map(id => ({ id, category:'terrain', proposedValue:'Established from the operator description',
+    finding:'supported-proposal', confidence:0.8, rationale:'Operator page.', sources:[source()], blockers:[],
+    entityName:null, rule:'not-applicable', observedAt:null }));
+
 async function specialist(agentId, claims, trail){
   const runAgent = async () => ({ data:{ summary:'', claims, openQuestions:[], recommendation:'advance' },
     responseId:'test', model:'test' });
@@ -139,7 +149,8 @@ describe('the whole chain, from Ranger claim to published fact', () => {
   async function publish(rangerClaims){
     const trail = { candidateId:CANDIDATE, trailId:'tre-cime', trailName:'Tre Cime di Lavaredo Loop', sourceTrail:{} };
     const review = { reviewId:'rev-tre-cime', approvalAllowed:true, specialistOutputs:[
-      await specialist('logistics', LOGISTICS, trail), await specialist('regulatoryRanger', rangerClaims, trail)] };
+      await specialist('logistics', LOGISTICS, trail), await specialist('regulatoryRanger', rangerClaims, trail),
+      await specialist('terrainPoi', SAFETY, trail)] };
     const dossier = compileVerifiedDossier(review, trail, { at:AT });
     const handoff = buildVerifiedEditorialHandoff(dossier,
       { candidateId:CANDIDATE, trailName:trail.trailName, verifiedAt:AT, conditions:[] }, null, { at:AT });

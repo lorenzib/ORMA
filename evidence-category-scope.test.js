@@ -28,18 +28,29 @@ describe('what a source review can establish', () => {
     expect(doctrine).toMatch(/`verified\.categories` records the six safety checks/);
   });
 
-  test('publication writes the six, and graduation the fuller set', () => {
-    const staging=fs.readFileSync('backoffice/workflows/build-publication-staging.js','utf8');
-    const verified=/verified:\{ categories:\[([^\]]+)\]/.exec(staging)[1];
-    const graduation=/graduation:\{ status:'verified', required:\[([^\]]+)\]/.exec(staging)[1];
-    const names=text=>text.split(',').map(part=>part.trim().replace(/'/g,''));
-    expect(names(verified)).toEqual([...evidence.REVIEWABLE_CATEGORIES]);
+  test('publication may write the six, and graduation the fuller set', () => {
+    // Asserted against the values publication uses, not the spelling of a
+    // literal. It read the hardcoded lists out of the source by regex, which
+    // stopped applying when the badge was derived from what a specialist
+    // actually asked about rather than asserted of every trail.
+    const {SAFETY_CHECKS,GRADUATION_CHECKS,graduationFor}=
+      require('./backoffice/workflows/build-publication-staging');
+    expect([...SAFETY_CHECKS]).toEqual([...evidence.REVIEWABLE_CATEGORIES]);
     // Everything a review covers, plus the presentation and data checks.
     for(const category of evidence.REVIEWABLE_CATEGORIES){
-      expect(names(graduation)).toContain(category);
+      expect(GRADUATION_CHECKS).toContain(category);
     }
-    expect(names(graduation)).toContain('route');
-    expect(names(graduation).length).toBeGreaterThan(evidence.REVIEWABLE_CATEGORIES.length);
+    expect(GRADUATION_CHECKS).toContain('route');
+    expect(GRADUATION_CHECKS.length).toBeGreaterThan(evidence.REVIEWABLE_CATEGORIES.length);
+
+    // The earned seal needs all of them; a trail nobody asked the safety
+    // questions of shows as reviewed instead.
+    expect(graduationFor([...SAFETY_CHECKS],true,true).status).toBe('verified');
+    expect(graduationFor([],true,true).status).toBe('in-progress');
+    expect(graduationFor([],true,true).completed).toContain('route');
+    for(const category of SAFETY_CHECKS){
+      expect(graduationFor([],true,true).completed).not.toContain(category);
+    }
   });
 
   test('so a verified trail reports route evidence as unknown, by contract', () => {
