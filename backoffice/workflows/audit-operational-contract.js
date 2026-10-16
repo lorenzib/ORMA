@@ -259,6 +259,12 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&dryRun.includes('routeNumbersUnmeasured:unmeasured')
     &&dryRunCli.includes('SURVEY AGAIN (the numbers were never measured)')
     &&dryRunCli.includes('resurvey_trail_ids')
+    // And a composite says it too, or a composite of unnumbered routes reads
+    // like a survey too old to answer -- which is what blocked Cinque Torri.
+    &&cartographer.includes('const along = reconstructed.routeGuidance')
+    &&cartographer.includes('const routeNumbersAbsent = along.measured && !along.guidance;')
+    &&(cartographer.match(/routeNumbersUnmeasured \? \{ routeNumbersUnmeasured \}/g)||[]).length===2
+    &&standard.includes('A composite survey says which of the three cases it is too')
     &&standard.includes('A measurement that could not be taken says so'),
     'A geometry survey records what went wrong when the corridor query could not be taken, so an outage never reads as a walk nobody can supply directions for; the gate dry run names it as a survey to run again rather than a refusal, and a walk whose own relation carries a number is not marked unmeasured because no query was needed');
 

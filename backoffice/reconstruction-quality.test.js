@@ -58,9 +58,15 @@ describe('telling a short rebuild from a broken route',()=>{
 
   // Derived from the catalogue, with the rebuilt figures read from the trails'
   // own stored audits rather than retyped as a target.
-  test('the three real trails are all recognised',()=>{
+  //
+  // osm-11795251 was the third of these and is no longer one: its 9.66 km
+  // rebuild was never incomplete. The held line measured 13.2 km only because
+  // approach and excursion members were stitched into it, so a correct rebuild
+  // looked like a 27% loss. With the geometry fixed the held line is 9.6 km,
+  // the rebuild agrees with it, and the finding correctly disappears.
+  test('the real trails are recognised',()=>{
     const trails=loadProductionTrails(path.resolve(__dirname,'..'));
-    for(const [id,rebuiltKm] of [['osm-3982382',4.23],['osm-14095296',5.35],['osm-11795251',9.66]]){
+    for(const [id,rebuiltKm] of [['osm-3982382',4.23],['osm-14095296',5.35]]){
       const trail=trails.find(t=>t.id===id);
       const r=rebuildLostTheRoute({rebuiltKm,heldPath:trail.path,officialKm:trail.distance});
       expect([id,r.incomplete]).toEqual([id,true]);

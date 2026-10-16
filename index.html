@@ -295,16 +295,24 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span>High shade</span></button>
       <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
     </div>
-    <!-- Create actions are not filters, so they live behind one "+ New"
-         control out of the refine zone: draft a route, or record a walk. -->
+    <!-- Create actions are not filters, so they sit out of the refine zone.
+         "+ New" hid the two things you can make behind a word that names
+         neither: nothing on the page said a walk could be recorded at all.
+         Recording is the one you do standing on the trail, so it is the
+         button; drafting a loop is still one press away under the caret. -->
     <div class="li-menuwrap li-new-wrap" id="liNewWrap">
-      <button type="button" id="liNewBtn" class="li-new" aria-haspopup="true" aria-expanded="false">
-        <span class="li-new-plus" aria-hidden="true">+</span><span class="li-new-label">New</span><span class="li-caret">▾</span>
+      <a class="li-new li-new-main" id="liRecordBtn" href="walk.html">
+        <span class="li-rec-dot" aria-hidden="true"></span>
+        <span class="li-new-label">Record a walk</span>
+      </a>
+      <button type="button" id="liNewBtn" class="li-new li-new-more" aria-haspopup="true" aria-expanded="false" aria-label="More ways to create">
+        <span class="li-caret" aria-hidden="true">▾</span>
       </button>
+      <!-- Recording is the button, so the menu holds the other thing you can
+           make rather than repeating it. -->
       <div class="li-menu li-new-menu" id="liNewMenu" hidden>
         <div class="li-menu-kick">Create</div>
         <a class="li-menu-item li-plan-route" href="route-planner.html">Draft a loop<small>Plan your own route on the map</small></a>
-        <a class="li-menu-item li-record" id="liRecordBtn" href="walk.html">Record a walk<small>Track a walk as you do it</small></a>
       </div>
     </div>
     </div>

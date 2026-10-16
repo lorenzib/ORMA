@@ -153,18 +153,49 @@ function buildAccessPointsQuery() {
   ].join('\n');
 }
 
+/**
+ * Failures this host will give every time, so asking it again is lost minutes.
+ *
+ * An expired certificate is the case that prompted this. `overpass.osm.jp`'s
+ * lapsed, and because the loop treated it like a busy server the run spent
+ * three attempts and their backoff on a handshake that could never succeed --
+ * and then reported its TLS error as the reason the whole fetch failed, with
+ * the three mirrors that had actually been tried nowhere in the message. A
+ * mirror in this state is skipped at once and the next one tried.
+ *
+ * Not removed from the list: a certificate gets renewed, a name starts
+ * resolving again. Skipping fast is right, forgetting the mirror is not.
+ */
+const PERMANENT_FOR_THIS_HOST = new Set([
+  'CERT_HAS_EXPIRED', 'DEPTH_ZERO_SELF_SIGNED_CERT', 'SELF_SIGNED_CERT_IN_CHAIN',
+  'UNABLE_TO_VERIFY_LEAF_SIGNATURE', 'ERR_TLS_CERT_ALTNAME_INVALID',
+  'ENOTFOUND', 'ECONNREFUSED',
+]);
+
+/** The code, when this is a failure retrying cannot cure; otherwise null. */
+function permanentForThisHost(error) {
+  // Node's fetch wraps a transport failure, so the code is on `cause`.
+  const code = error?.cause?.code || error?.code;
+  return PERMANENT_FOR_THIS_HOST.has(code) ? code : null;
+}
+
 async function fetchWithRetries(body, options = {}) {
   const attempts = options.attempts || 3;
   const timeoutMs = options.timeoutMs || 120000;
-  let lastError = null;
+  const fetchImpl = options.fetchImpl || fetch;
+  const sleep = options.sleep || (ms => new Promise((r) => setTimeout(r, ms)));
+  const urls = options.urls || OVERPASS_URLS;
+  // The last reason each mirror gave, so a total failure can say what every
+  // mirror did rather than only what the last one happened to do.
+  const reasons = new Map();
 
-  for (const url of OVERPASS_URLS) {
+  for (const [index, url] of urls.entries()) {
     for (let attempt = 1; attempt <= attempts; attempt += 1) {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), timeoutMs);
       try {
         console.log(`[fetch] Attempt ${attempt}/${attempts} -> ${url}`);
-        const response = await fetch(url, {
+        const response = await fetchImpl(url, {
           method: 'POST',
           headers: {
             'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -180,19 +211,26 @@ async function fetchWithRetries(body, options = {}) {
         }
         return await response.json();
       } catch (error) {
-        lastError = error;
-        console.warn(`[fetch] ${url} failed: ${error.message}`);
+        const permanent = permanentForThisHost(error);
+        reasons.set(url, permanent ? `${permanent}, which a retry cannot change` : error.message);
+        console.warn(`[fetch] ${url} failed: ${reasons.get(url)}`);
+        if (permanent) break;
+        // Nothing left to wait for: this was the last attempt at the last
+        // mirror, and the only thing after it is the throw below.
+        const lastChance = attempt === attempts && index === urls.length - 1;
+        if (lastChance) break;
         // 429/406 = rate limited or blocked: waiting longer is the only cure.
         const rateLimited = error.status === 429 || error.status === 406;
         const waitMs = rateLimited ? 45000 * attempt : 2000 * attempt;
         console.log(`[fetch] Waiting ${Math.round(waitMs / 1000)}s before next attempt…`);
-        await new Promise((r) => setTimeout(r, waitMs));
+        await sleep(waitMs);
       } finally {
         clearTimeout(timeout);
       }
     }
   }
-  throw lastError || new Error('All Overpass mirrors failed');
+  const summary = [...reasons].map(([url, reason]) => `  ${url}: ${reason}`).join('\n');
+  throw new Error(`All ${urls.length} Overpass mirror(s) failed:\n${summary}`);
 }
 
 /* --------------------------------------------------------------- Filtering */
@@ -813,7 +851,8 @@ async function readPreviousCatalogue(file) {
   }
 }
 
-module.exports = { fetchWithRetries, OVERPASS_URLS, USER_AGENT,
+module.exports = { fetchWithRetries, permanentForThisHost, PERMANENT_FOR_THIS_HOST,
+  OVERPASS_URLS, USER_AGENT,
   OFF_ROUTE_ROLES, isRouteMember, stitchMembers,
   geometryOf, refreshGeometry, simplify, pathLengthKm, isClosedLoop, parseDistanceKm,
   MINIMUM_GEOMETRY_SHARE, MAXIMUM_CATALOGUE_LOSS, readPreviousCatalogue };
