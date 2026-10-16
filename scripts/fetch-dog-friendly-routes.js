@@ -295,6 +295,16 @@ function simplify(points, tolerance = 0.00005) {
  * Wrongly keeping one repeats a jump this already catches; wrongly dropping one
  * deletes a walk's geometry, which is far worse.
  */
+// How much of a relation's own way members must come back with a line before
+// its geometry is treated as the truth about the walk. Overpass answering
+// thinly is common; a hiking relation genuinely losing most of its ways is not.
+const MINIMUM_GEOMETRY_SHARE = 0.8;
+
+// How much of the previous catalogue a regeneration may lose before it refuses
+// to publish. OSM does change and a trail can legitimately go, but a tenth of
+// the catalogue disappearing in one run is a failed fetch, not a changed map.
+const MAXIMUM_CATALOGUE_LOSS = 0.1;
+
 const OFF_ROUTE_ROLES = new Set([
   'approach', 'excursion', 'alternative', 'alternate', 'link', 'connection',
 ]);
@@ -404,6 +414,10 @@ async function main() {
 
   // Geometry in small batches to keep responses light (504s = server strain).
   const features = [];
+  // Relations whose geometry did not arrive, as against trails that are
+  // genuinely unusable. Collected so the run can refuse to publish a
+  // catalogue that a flaky fetch has quietly shrunk.
+  const incomplete = [];
   const BATCH = 25;
   for (let i = 0; i < kept.length; i += BATCH) {
     const batch = kept.slice(i, i + BATCH);
@@ -426,10 +440,35 @@ async function main() {
       if (el.type !== 'relation') continue;
       if (!el.members || !el.members.length) {
         console.warn(`[phase2] WARNING: relation ${el.id} returned no member geometry, skipped.`);
+        incomplete.push({ id: el.id, name: '(no members returned)', ways: 0, withGeometry: 0 });
         continue;
       }
       const match = batch.find((k) => k.tags.__id === el.id);
       if (!match) continue;
+
+      // A thin response is not a broken trail.
+      //
+      // Overpass can return a relation with its members listed but their
+      // geometry missing or partial. Stitching that gives a stub, and the
+      // degenerate check below then reads it as a trail too short to publish
+      // and drops it -- so a bad minute at Overpass silently deletes walks
+      // that are perfectly fine. Replaying one such batch by hand returned
+      // 36 of 36 member ways with geometry for a relation this had just
+      // called 0 km.
+      //
+      // Counted rather than guessed: how many of the relation's own way
+      // members came back with a usable line. Below the floor the response is
+      // the problem, so the run says so and the trail is left alone instead of
+      // being dropped on the strength of data that never arrived.
+      const wayMembers = el.members.filter((m) => m.type === 'way');
+      const withGeometry = wayMembers
+        .filter((m) => Array.isArray(m.geometry) && m.geometry.length > 1).length;
+      if (wayMembers.length && withGeometry / wayMembers.length < MINIMUM_GEOMETRY_SHARE) {
+        console.warn(`[phase2] INCOMPLETE: relation ${el.id} (${match.tags.name}) returned geometry for `
+          + `${withGeometry}/${wayMembers.length} ways; not dropping it on a partial answer.`);
+        incomplete.push({ id: el.id, name: match.tags.name, ways: wayMembers.length, withGeometry });
+        continue;
+      }
 
       const lines = stitchMembers(el.members).map((l) => simplify(l));
       if (!lines.length) continue;
@@ -503,6 +542,35 @@ async function main() {
     attribution: '© OpenStreetMap contributors (ODbL)',
     features
   };
+  // Never publish a catalogue a bad fetch has emptied.
+  //
+  // Phase 2 drops a relation it cannot measure, so a run that half-fails ends
+  // with a smaller file and nothing to say it went wrong -- the website then
+  // loses the trail pages. Compare against what is already on disk, and treat
+  // a large loss as the run failing rather than the map changing.
+  const previous = await readPreviousCatalogue(OUTPUT_PATH);
+  if (previous !== null) {
+    const gone = previous.filter((id) => !features.some((f) => f.properties.osm_relation === id));
+    const share = previous.length ? gone.length / previous.length : 0;
+    if (incomplete.length) {
+      console.warn(`[guard] ${incomplete.length} relation(s) returned incomplete geometry this run.`);
+    }
+    if (share > MAXIMUM_CATALOGUE_LOSS && !ARGS.includes('--allow-shrink')) {
+      console.error(`[guard] Refusing to write: ${gone.length} of ${previous.length} routes `
+        + `(${Math.round(share * 100)}%) would disappear from ${path.basename(OUTPUT_PATH)}.`);
+      if (incomplete.length) {
+        console.error('[guard] Incomplete geometry this run, which is the usual cause:');
+        for (const entry of incomplete.slice(0, 10)) {
+          console.error(`[guard]   relation ${entry.id} (${entry.name}): ${entry.withGeometry}/${entry.ways} ways`);
+        }
+      }
+      console.error('[guard] Re-run when Overpass is healthy, or pass --allow-shrink if the loss is real.');
+      process.exitCode = 1;
+      return;
+    }
+    if (gone.length) console.log(`[guard] ${gone.length} route(s) no longer present; within tolerance.`);
+  }
+
   await fs.writeFile(OUTPUT_PATH, JSON.stringify(collection));
   console.log(`[done] Wrote ${features.length} routes -> ${OUTPUT_PATH}`);
 
@@ -563,5 +631,18 @@ if (require.main === module) {
 // The mirror list, the user agent and the backoff are the part worth sharing:
 // a second copy is how one of them learns about a dead mirror and the other
 // does not.
+/** The relation ids already published, or null when there is no file yet. */
+async function readPreviousCatalogue(file) {
+  try {
+    const existing = JSON.parse(await fs.readFile(file, 'utf8'));
+    return (existing.features || [])
+      .map((f) => f && f.properties && f.properties.osm_relation)
+      .filter((id) => id !== undefined && id !== null);
+  } catch {
+    return null;
+  }
+}
+
 module.exports = { fetchWithRetries, OVERPASS_URLS, USER_AGENT,
-  OFF_ROUTE_ROLES, isRouteMember, stitchMembers };
+  OFF_ROUTE_ROLES, isRouteMember, stitchMembers,
+  MINIMUM_GEOMETRY_SHARE, MAXIMUM_CATALOGUE_LOSS, readPreviousCatalogue };
