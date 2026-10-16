@@ -68,6 +68,46 @@ function seasonalSuitabilityFrom(item){
   return {livestockPresence:'seasonal'};
 }
 
+/**
+ * The eleven checks a badge can claim.
+ *
+ * `route`, `routeNumbers` and `mapPoints` rest on the geometry survey and the
+ * route guidance -- the unwaivable part, which is what verification
+ * establishes. `photo` and `elevation` come from the record the trail already
+ * carries. The other six are safety facts a specialist has to ask about, and
+ * they are the ones a walker acts on with a dog.
+ */
+const SAFETY_CHECKS=Object.freeze(['water','heat','exposure','livestock','surfaceHazards','access']);
+const GRADUATION_CHECKS=Object.freeze(['photo','route','routeNumbers','mapPoints','elevation',...SAFETY_CHECKS]);
+
+/**
+ * The graduation a badge may show, derived from what was researched rather than
+ * asserted of every trail.
+ *
+ * It used to hardcode all eleven complete and all six categories reviewed. That
+ * was true while nothing could be verified without five specialists having
+ * spoken, and it stopped being true the moment a free survey could settle a
+ * trail's directions on its own.
+ *
+ * `status: 'verified'` is the earned seal and `hasFullGraduation` grants it only
+ * on all eleven. Short of that the trail shows as reviewed -- honest for a walk
+ * whose route is confirmed and whose safety facts nobody has asked about, and
+ * more than the rest of the catalogue can show.
+ *
+ * It upgrades by itself: the next publication after research lands derives a
+ * fuller list, so nothing has to remember to promote a trail.
+ */
+function graduationFor(researched, hasPhoto, hasFields){
+  const completed=[
+    ...(hasPhoto?['photo']:[]),
+    'route','routeNumbers',
+    ...(hasFields?['mapPoints','elevation']:[]),
+    ...SAFETY_CHECKS.filter(check=>researched.includes(check)),
+  ];
+  const status=GRADUATION_CHECKS.every(check=>completed.includes(check))?'verified':'in-progress';
+  return {status,required:[...GRADUATION_CHECKS],completed};
+}
+
 function operationalClaims(item){
   return (item?.lockedFacts||[])
     .filter(fact=>typeof fact.claimId==='string'&&Object.hasOwn(CLAIM_ENTITY_TYPE,fact.claimId))
@@ -167,7 +207,24 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
     const dog = section(copyOutput?.result, 'Why it suits dogs');
     const practical = section(copyOutput?.result, 'Important practical notes');
     const routeGuidance=routeNumberGuidance(item);
-    const publicationMappingBlockers=[!target&&'website-target-mapping',!verifiedFields&&'structured-website-fields',!routeGuidance&&'route-number-guidance'].filter(Boolean);
+    // What a specialist actually asked about, carried from the dossier. Absent
+    // on a handoff written before the mark existed, and absence is read as
+    // nobody having asked -- the safe direction: such a trail is held rather
+    // than published claiming six checks it cannot show.
+    const researched=Array.isArray(item?.researchedCategories)?item.researchedCategories:[];
+    const graduation=graduationFor(researched,Boolean(retainedImage||hero),Boolean(verifiedFields));
+    // A trail short of the full seal is held, not published.
+    //
+    // The override contract takes either a full verification or one of its
+    // named scopes, and the scope that would carry a route-only publication
+    // needs cited sources with a `reviewedAt` -- which a trail answered by the
+    // map and ORMA's own record does not have. Until that scope can carry it,
+    // such a trail waits here and says exactly what it is waiting for, rather
+    // than publishing a badge it has not earned or failing in the materializer.
+    const unresearched=SAFETY_CHECKS.filter(check=>!researched.includes(check));
+    const safetyBlocker=graduation.status!=='verified'&&unresearched.length
+      &&`safety-categories-not-researched:${unresearched.join(',')}`;
+    const publicationMappingBlockers=[!target&&'website-target-mapping',!verifiedFields&&'structured-website-fields',!routeGuidance&&'route-number-guidance',safetyBlocker].filter(Boolean);
     const state=missingApprovals.length?'waiting-content-approvals':publicationMappingBlockers.length?'waiting-publication-mapping':'ready-for-publication-preview';
     return {
       candidateId: item.candidateId, targetTrailId: target?.trailId||item.candidateId, operation: target?.operation||'mapping-required',
@@ -190,7 +247,9 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
           imageCreditText: hero.credit,
           imageAlt: hero.altText,
         }),
-        ormaVerified: true,
+        // The public seal, only on all eleven. A trail whose route is confirmed
+        // and whose safety facts nobody asked about shows as reviewed.
+        ormaVerified: graduation.status==='verified',
         routeNumberGuidance:routeGuidance,
         ...verifiedFields,
         ...verifiedPoiFields(item),
@@ -198,8 +257,8 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
         // dossier established outranks what the trail used to say.
         ...(seasonalSuitabilityFrom(item)||{}),
         reviewedAt: item.verifiedAt.slice(0,10), reviewedBy:'ORMA verified-trail workflow',
-        verified:{ categories:['water','heat','exposure','livestock','surfaceHazards','access'], sources:['Locked ORMA evidence dossier'], date:item.verifiedAt.slice(0,10) },
-        graduation:{ status:'verified', required:['photo','route','routeNumbers','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'], completed:['photo','route','routeNumbers','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'] },
+        verified:{ categories:SAFETY_CHECKS.filter(check=>researched.includes(check)), sources:['Locked ORMA evidence dossier'], date:item.verifiedAt.slice(0,10) },
+        graduation,
         verifiedAt: item.verifiedAt,
       },
       lockedEvidence: { dossierRef: item.dossierRef, facts: item.lockedFacts, verificationConditions: item.verificationConditions,
@@ -227,4 +286,4 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
   };
 }
 
-module.exports = {seasonalSuitabilityFrom,verifiedPoiFields, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS,EXISTING_IMAGE_FIELDS,existingImageFields, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };
+module.exports = {SAFETY_CHECKS,GRADUATION_CHECKS,graduationFor,seasonalSuitabilityFrom,verifiedPoiFields, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS,EXISTING_IMAGE_FIELDS,existingImageFields, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };

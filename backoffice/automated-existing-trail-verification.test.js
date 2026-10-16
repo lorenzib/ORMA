@@ -94,7 +94,10 @@ describe('existing asset and publication policy',()=>{
   const dossier={contractVersion:'1.0.0',candidateId:'trail-a',trailId:'trail-a',trailName:'Trail A',reviewState:'accepted',
     sources:[source],claims:[{id:'route-identity',label:'Route',state:'supported',proposedValue:'Trail A',sourceIds:['s1']},...claims],
     routeGeometry:{type:'LineString',coordinates:[[11,46],[11.01,46.01]]},
-    ormaVerification:{status:'verified',verifiedAt:at,verifiedBy:'orma-existing-trail-verifier-v1',conditions:[]}};
+    // A finished verification: a specialist asked about all six safety
+    // categories, which is what lets the published badge call them reviewed.
+    ormaVerification:{status:'verified',verifiedAt:at,verifiedBy:'orma-existing-trail-verifier-v1',conditions:[],
+      researchedCategories:['water','heat','exposure','livestock','surfaceHazards','access']}};
   const trail={id:'trail-a',area:'Area',distance:2,elevation:50,hours:'1',paid:false,terrainType:'Path',terrainRank:1,
     shadeCoverage:30,heatRisk:'moderate',safetyLevel:'moderate',exposure:false,waterSources:[],startPoint:{lat:46,lng:11,label:'Start'},
     imageIcon:'images/trails/a.jpg',heroImage:'images/trails/a.jpg',imageAlt:'Trail A',imageCreditText:'Photo by ORMA',
