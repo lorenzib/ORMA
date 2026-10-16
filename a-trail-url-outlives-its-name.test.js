@@ -14,27 +14,38 @@ const { pinnedSlug, retiredSlugs, allRetiredSlugs,
 const root = __dirname;
 // From the producer, so these cannot pass against a trail that does not exist.
 const trails = loadProductionTrails(root);
-const coded = trails.find(trail => /^EN02\b/.test(trail.name));
+// By id, not by name: the name is now overridden to the readable one, so a
+// test looking for the old code would find nothing -- which is the point.
+const coded = trails.find(trail => trail.id === 'osm-12121798');
 
 const overridesFor = (id, entry) => ({ schemaVersion: 1, trails: { [id]: entry } });
 
 describe('a trail URL outlives its name', () => {
-  test('without an override a slug still comes from the name, as before', () => {
-    const slugs = assignSlugs(trails);
-    expect(slugs[trails.indexOf(coded)]).toBe('en02-le-terroir-de-serpoliere');
-    // And the live file carries no overrides yet, so nothing has moved.
-    expect(Object.keys(loadSlugOverrides(root).trails)).toEqual([]);
+  test('without an override a slug comes from whatever the name is', () => {
+    // Derived, as it always was. The name it derives from is now the readable
+    // one, which is exactly why the address had to be pinned.
+    expect(assignSlugs(trails)[trails.indexOf(coded)]).toBe('le-terroir-de-serpoliere');
+    expect(coded.name).toBe('Le terroir de Serpolière');
+  });
+
+  test('the live overrides carry the renames, and the old addresses with them', () => {
+    const live = loadSlugOverrides(root);
+    expect(pinnedSlug(live, 'osm-12121798')).toBe('le-terroir-de-serpoliere');
+    expect(retiredSlugs(live, 'osm-12121798')).toEqual(['en02-le-terroir-de-serpoliere']);
+    // Every rename keeps the address it was published at, or a shared link dies.
+    const renamed = Object.entries(live.trails).filter(([, entry]) => entry.name);
+    expect(renamed.length).toBeGreaterThanOrEqual(13);
   });
 
   test('a pinned slug is where the page lives, whatever the name says', () => {
     const renamed = trails.map(trail => trail === coded
-      ? { ...trail, name: 'Le terroir de Serpolière' } : trail);
-    const overrides = overridesFor(coded.id, { slug: 'en02-le-terroir-de-serpoliere' });
-    // The name is fixed for the reader; the address does not move.
+      ? { ...trail, name: 'Something else entirely' } : trail);
+    const overrides = overridesFor(coded.id, { slug: 'le-terroir-de-serpoliere' });
+    // The name is the reader's; the address does not move with it.
     expect(assignSlugs(renamed, overrides)[trails.indexOf(coded)])
-      .toBe('en02-le-terroir-de-serpoliere');
+      .toBe('le-terroir-de-serpoliere');
     // And without the pin, renaming does move it -- which is the whole problem.
-    expect(assignSlugs(renamed)[trails.indexOf(coded)]).toBe('le-terroir-de-serpoliere');
+    expect(assignSlugs(renamed)[trails.indexOf(coded)]).toBe('something-else-entirely');
   });
 
   test('a retired slug is carried so the old address can still answer', () => {
@@ -86,5 +97,11 @@ describe('a trail URL outlives its name', () => {
   test('the live overrides file is valid, whatever is in it', () => {
     // So a bad entry fails here rather than in a page build.
     expect(validateSlugOverrides(loadSlugOverrides(root), trails.map(t => t.id))).toEqual([]);
+  });
+
+  test('no published name still carries an import code or a scraper artefact', () => {
+    const bad = trails.filter(trail => /^\s*[A-Z]{0,3}\s?\d+[a-z]?\s*[-–—:.]\s/.test(trail.name)
+      || /=>|\|/.test(trail.name) || /^[A-Z\s'’-]{8,}$/.test(trail.name));
+    expect(bad.map(trail => `${trail.id}: ${trail.name}`)).toEqual([]);
   });
 });
