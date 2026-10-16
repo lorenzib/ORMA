@@ -18,6 +18,7 @@ const { normaliseRouteRef, applyRouteNumberEvidence } = require('./route-number-
 // in step. A test asserts every published slug equals its page filename.
 const { assignSlugs } = require('./trail-adapter');
 const { loadProductionTrails } = require('./load-production-trails');
+const { loadSlugOverrides, allRetiredSlugs, validateSlugOverrides } = require('./trail-slug-overrides');
 
 const root = path.resolve(__dirname, '..');
 const outDir = path.join(root, 'data', 'regions');
@@ -186,7 +187,10 @@ const manifest = {
 
 {
   const canonical = loadProductionTrails(root);
-  const slugs = assignSlugs(canonical);
+  const overrides = loadSlugOverrides(root);
+  const problems = validateSlugOverrides(overrides, canonical.map(trail => trail.id));
+  if (problems.length) throw new Error(`Trail slug overrides are unusable:\n  ${problems.join('\n  ')}`);
+  const slugs = assignSlugs(canonical, overrides);
   canonical.forEach((trail, index) => {
     const slug = slugs[index];
     if (!slug) return;
@@ -194,6 +198,13 @@ const manifest = {
     // An id is also accepted as a slug, so resolution needs no special case.
     if (!manifest.slugToId[slug]) manifest.slugToId[slug] = trail.id;
   });
+  // A retired slug keeps answering. The loader resolves any key through
+  // slugToId, so an address somebody shared or Google indexed before a rename
+  // still reaches the trail -- without claiming a slug that is somebody's live
+  // one, which validateSlugOverrides refuses outright.
+  for (const [slug, trailId] of allRetiredSlugs(overrides)) {
+    if (!manifest.slugToId[slug]) manifest.slugToId[slug] = trailId;
+  }
 }
 
 for (const [region, regionTrails] of Object.entries(byRegion)) {

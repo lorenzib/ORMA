@@ -23,9 +23,34 @@ const recommendationContract = require('../scoring/recommendation-v1.js');
 const photoProvenance = require('../trail-photo-provenance.js');
 const { loadProductionTrails } = require('./load-production-trails');
 const { buildCanonicalCatalog } = require('./trail-adapter');
+const { loadSlugOverrides, allRetiredSlugs, validateSlugOverrides } = require('./trail-slug-overrides');
 
 const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'trails');
+
+/**
+ * The page a retired address serves: a redirect a browser follows and a search
+ * engine understands, with a link for anyone who lands on it without either.
+ */
+function retiredSlugPage(from, to, name){
+  const safeName = String(name).replace(/[&<>"]/g, ch =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[ch]);
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${safeName} &middot; ORMA</title>
+<link rel="canonical" href="${BASE_URL}/trails/${to}.html">
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="refresh" content="0; url=./${to}.html">
+</head>
+<body style="font:16px/1.5 system-ui,sans-serif;margin:3rem auto;max-width:34rem;padding:0 1rem">
+<p>This walk is now at <a href="./${to}.html">${safeName}</a>.</p>
+</body>
+</html>
+`;
+}
 const BASE_URL = 'https://www.app-orma.com';
 
 // ---------------------------------------------------------------
@@ -714,7 +739,8 @@ function updateBrowseIndex(entries) {
 // ---------------------------------------------------------------
 function main() {
   const sourceTrails = loadTrails();
-  const catalog = buildCanonicalCatalog(sourceTrails);
+  const slugOverrides = loadSlugOverrides(ROOT);
+  const catalog = buildCanonicalCatalog(sourceTrails, { slugOverrides });
   if (catalog.errors.length) {
     throw new Error(
       `Production trail validation failed:\n${catalog.errors.map(error => `- ${error}`).join('\n')}`
@@ -726,6 +752,10 @@ function main() {
       .map(record => record.id)
   );
   const canonicalSlug = new Map(catalog.records.map(record => [record.id, record.slug]));
+  const slugProblems = validateSlugOverrides(slugOverrides, sourceTrails.map(trail => trail.id));
+  if (slugProblems.length) {
+    throw new Error(`Trail slug overrides are unusable:\n  ${slugProblems.join('\n  ')}`);
+  }
   const trails = sourceTrails.filter(trail => publishedIds.has(trail.id));
   console.log(
     `Loaded ${sourceTrails.length} trails; ${trails.length} pass publication validation `
@@ -775,6 +805,29 @@ function main() {
     indexEntries.push({ id: t.id, slug, name: t.name, region: t.region });
     written++;
   }
+
+  // A retired address keeps answering.
+  //
+  // A slug used to be read off the trail's name, so renaming a trail moved its
+  // page and left the old URL dead -- which is why seven pages still carried a
+  // tourist-office code. The override pins where a page lives; this keeps every
+  // address it used to live at pointing there.
+  //
+  // Deliberately not in the sitemap and not in the browse index: a redirect is
+  // not a page to crawl or to list, and `canonical` on the stub tells a search
+  // engine which URL is the real one. It carries no stylesheet or script, so it
+  // has no local asset to go stale.
+  let redirects = 0;
+  for (const [from, trailId] of allRetiredSlugs(slugOverrides)) {
+    const to = canonicalSlug.get(trailId);
+    if (!to || !seen.has(to)) continue;
+    const name = (all.find(entry => entry.id === trailId) || {}).name || to;
+    fs.writeFileSync(path.join(OUT_DIR, `${from}.html`), retiredSlugPage(from, to, name), 'utf8');
+    // So the stale-page sweep below keeps it rather than treating it as an orphan.
+    seen.add(from);
+    redirects++;
+  }
+  if (redirects) console.log(`Wrote ${redirects} retired-address redirect(s).`);
 
   fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap(urls), 'utf8');
   updateBrowseIndex(indexEntries);
