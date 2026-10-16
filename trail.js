@@ -1065,7 +1065,14 @@ function addBaseHillshade(map, beforeId){
       // was so faint the map looked flat beside AllTrails/Strava. A cool
       // shadow and warm highlight model the ridges like a shaded-relief map
       // without shouting over the calm base.
-      'hillshade-exaggeration': 0.45,
+      //
+      // Ramped, as the homepage's copy is, so the two cannot drift. It reaches
+      // the same 0.45 by zoom 13 and a detail map opens no lower than that on
+      // all but a handful of trails, so this map is unchanged in practice; the
+      // ramp only spares the few that open at region zoom.
+      'hillshade-exaggeration': [
+        'interpolate', ['linear'], ['zoom'], 8, 0.16, 11, 0.3, 13, 0.45,
+      ],
       'hillshade-shadow-color': '#4A5347',
       'hillshade-highlight-color': '#FBF7EC',
       'hillshade-method': 'igor',

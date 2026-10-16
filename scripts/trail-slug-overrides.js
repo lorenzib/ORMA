@@ -1,0 +1,113 @@
+'use strict';
+
+/**
+ * What a trail's URL is, said rather than derived.
+ *
+ * A slug came from the trail's name, so renaming a trail moved its web address
+ * and the old one stopped working. 141 trail pages are committed and crawlable,
+ * and seven of them carry a tourist-office code a customer has never seen --
+ * `en02-le-terroir-de-serpoliere`, `b02-le-tour-de-l-armelaz`. Fixing the name
+ * meant breaking the link, so neither got fixed.
+ *
+ * An override says two things: the slug this trail's page lives at, and the
+ * slugs it used to live at. The first lets a name change without moving the
+ * page; the second keeps every address anyone has already shared or indexed
+ * answering, which is the part a derived slug cannot do at all.
+ *
+ * The id stays the key. It addresses the detail files, the Firestore
+ * collections and the dossiers, and nothing here touches it.
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+const OVERRIDES_PATH = 'data/trail-slug-overrides.json';
+
+function overridesPath(root){
+  return path.join(root, OVERRIDES_PATH);
+}
+
+/**
+ * The file, or an empty set where it is absent or unreadable.
+ *
+ * Absent is not an error: a catalogue with no renamed trail needs no overrides,
+ * and a malformed file must not take the whole build down with it -- it reports
+ * through `validateSlugOverrides` instead, where a person can read it.
+ */
+function loadSlugOverrides(root){
+  try{
+    const parsed = JSON.parse(fs.readFileSync(overridesPath(root), 'utf8'));
+    return parsed && typeof parsed.trails === 'object' && parsed.trails ? parsed : { trails: {} };
+  }catch{
+    return { trails: {} };
+  }
+}
+
+/** The slug this trail's page must live at, or null to derive it from the name. */
+function pinnedSlug(overrides, trailId){
+  const entry = overrides?.trails?.[String(trailId)];
+  const slug = typeof entry?.slug === 'string' ? entry.slug.trim() : '';
+  return slug || null;
+}
+
+/** Every slug this trail used to live at, newest first is not required. */
+function retiredSlugs(overrides, trailId){
+  const entry = overrides?.trails?.[String(trailId)];
+  return Array.isArray(entry?.retired)
+    ? [...new Set(entry.retired.map(slug => String(slug).trim()).filter(Boolean))]
+    : [];
+}
+
+/** Every retired slug in the file, as [slug, trailId] pairs. */
+function allRetiredSlugs(overrides){
+  return Object.keys(overrides?.trails || {})
+    .flatMap(trailId => retiredSlugs(overrides, trailId).map(slug => [slug, trailId]));
+}
+
+/**
+ * What would make this file lie.
+ *
+ * A pinned slug two trails share sends one of them to the other's page. A
+ * retired slug that is also somebody's live slug is worse: the redirect and the
+ * page both claim it, and which one answers depends on build order. And a
+ * retired slug equal to its own trail's live slug would redirect a page to
+ * itself.
+ */
+function validateSlugOverrides(overrides, trailIds){
+  const errors = [];
+  const known = new Set((trailIds || []).map(String));
+  const entries = Object.entries(overrides?.trails || {});
+  const live = new Map();
+  for(const [trailId, entry] of entries){
+    if(known.size && !known.has(String(trailId))){
+      errors.push(`${trailId}: not a trail in the catalogue`);
+    }
+    if(entry && entry.slug !== undefined && typeof entry.slug !== 'string'){
+      errors.push(`${trailId}: slug must be a string`);
+    }
+    const slug = pinnedSlug(overrides, trailId);
+    if(slug && !/^[a-z0-9][a-z0-9-]*$/.test(slug)){
+      errors.push(`${trailId}: "${slug}" is not a usable slug`);
+    }
+    if(slug){
+      if(live.has(slug)) errors.push(`${trailId}: slug "${slug}" is already pinned to ${live.get(slug)}`);
+      else live.set(slug, trailId);
+    }
+    if(entry && entry.retired !== undefined && !Array.isArray(entry.retired)){
+      errors.push(`${trailId}: retired must be a list`);
+    }
+    if(slug && retiredSlugs(overrides, trailId).includes(slug)){
+      errors.push(`${trailId}: "${slug}" is both its slug and a retired one`);
+    }
+  }
+  const seenRetired = new Map();
+  for(const [slug, trailId] of allRetiredSlugs(overrides)){
+    if(live.has(slug)) errors.push(`${trailId}: retired slug "${slug}" is ${live.get(slug)}'s live slug`);
+    if(seenRetired.has(slug)) errors.push(`${trailId}: retired slug "${slug}" is also retired by ${seenRetired.get(slug)}`);
+    else seenRetired.set(slug, trailId);
+  }
+  return errors;
+}
+
+module.exports = { OVERRIDES_PATH, overridesPath, loadSlugOverrides, pinnedSlug,
+  retiredSlugs, allRetiredSlugs, validateSlugOverrides };
