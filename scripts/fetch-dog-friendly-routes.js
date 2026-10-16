@@ -250,8 +250,50 @@ function haversineMeters(a, b) {
 }
 
 // Douglas-Peucker simplification (tolerance in degrees; ~0.00005 ≈ 5 m)
+/** First and last point the same, within a metre or so. */
+function isClosedRing(points) {
+  if (points.length < 4) return false;
+  const [x1, y1] = points[0];
+  const [x2, y2] = points[points.length - 1];
+  return Math.hypot(x2 - x1, y2 - y1) < 1e-5;
+}
+
+/** The point farthest from `origin`, which is where a ring is safe to cut. */
+function farthestIndex(points, origin) {
+  let best = 0;
+  let bestDist = -1;
+  for (let i = 1; i < points.length - 1; i += 1) {
+    const d = Math.hypot(points[i][0] - origin[0], points[i][1] - origin[1]);
+    if (d > bestDist) { bestDist = d; best = i; }
+  }
+  return best;
+}
+
 function simplify(points, tolerance = 0.00005) {
   if (points.length <= 2) return points;
+
+  // Douglas-Peucker measures every point against the line from the first to
+  // the last. On a closed ring those are the same point, so that baseline has
+  // no length, every distance divides by an epsilon and comes out at zero, and
+  // the whole loop collapses to its two identical endpoints -- a 0 km line the
+  // degenerate check downstream then deletes.
+  //
+  // That is why the catalogue is mostly routes with gaps in them: a walk whose
+  // geometry closes cleanly was dropped, and only the ones that failed to meet
+  // their own start survived to be published. #820 made more of them close,
+  // which deleted 23 more.
+  //
+  // Cut the ring at the point farthest from the start and simplify each half,
+  // so both halves have a baseline with real length.
+  if (isClosedRing(points)) {
+    const cut = farthestIndex(points, points[0]);
+    if (cut > 0 && cut < points.length - 1) {
+      const head = simplify(points.slice(0, cut + 1), tolerance);
+      const tail = simplify(points.slice(cut), tolerance);
+      return head.slice(0, -1).concat(tail);
+    }
+  }
+
   let maxDist = 0;
   let index = 0;
   const [x1, y1] = points[0];
@@ -643,6 +685,6 @@ async function readPreviousCatalogue(file) {
   }
 }
 
-module.exports = { fetchWithRetries, OVERPASS_URLS, USER_AGENT,
+module.exports = { fetchWithRetries, OVERPASS_URLS, USER_AGENT, simplify, isClosedRing,
   OFF_ROUTE_ROLES, isRouteMember, stitchMembers,
   MINIMUM_GEOMETRY_SHARE, MAXIMUM_CATALOGUE_LOSS, readPreviousCatalogue };
