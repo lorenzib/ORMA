@@ -1065,10 +1065,15 @@ describe('map-first returning homepage layout contract', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     const trailScript = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
     expect(script).toMatch(/id: 'trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 8[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': rankWidth\(\[3\.5, 8, 10, 10\][\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     // Halo is a white casing beneath the raster now, not a cream halo above it.
     expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFFFF'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-opacity': \[[\s\S]*?0\.5, 0\.12[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    // The corridor is the shortlist's, not every trail's. An unmatched walk
+    // used to get the same 14px white halo and 10px band with its colour
+    // dropped to 0.12 -- a wide white smear with nothing inside it. It is a
+    // hairline now, and a hairline can afford to be seen at 0.5.
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': rankWidth\(\[5, 10, 15, 20\], \[1\.2, 1\.8, 2\.4, 3\]\)[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(script).not.toContain('0.5, 0.12');
     expect(script).not.toContain("id: 'trail-paths-match-outline'");
     // The guest map is coloured by match score against the medium-dog profile,
     // not by the trail's safety level, green/amber/red has one meaning now.
@@ -1081,7 +1086,6 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
     expect(script).not.toContain("'raster-saturation': -1");
     expect(script).not.toContain("'raster-contrast': 0.20");
-    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': \['interpolate'[\s\S]*?13, 15, 16, 20/);
     expect(script).not.toContain("id: 'trail-paths-mapped-line'");
     expect(script).not.toContain("id: 'trail-clusters'");
     expect(script).not.toContain("id: 'trail-cluster-count'");

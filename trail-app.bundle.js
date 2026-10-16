@@ -352,6 +352,111 @@
         map.setLayoutProperty(layer.id, 'visibility', 'none');
       } catch (error) { /* style variant without this layer */ }
     });
+    // One treatment for every ORMA map: a caller that quietens the labels gets
+    // the drained colours too, so the five surfaces cannot drift apart.
+    calmBasemap(map);
+  }
+
+  /**
+   * Take the colour out of the base style's roads, landcover and water.
+   *
+   * `quietBasemap` hides noisy *labels*. This is the other half: the free
+   * openfreemap `liberty` style is a general street map, and it paints 24 road
+   * layers in `#e9ac77` casing, `#fea` fill and `#fc8` motorway, woods and
+   * grass in saturated greens, and water at `rgb(158,189,255)`. On a street
+   * map that colour is the information. On a dog-walking map nothing a reader
+   * is deciding between is a motorway, so all of it competes with the two
+   * things that do carry meaning here: the marked hiking network and the
+   * match-coloured rails.
+   *
+   * The roads are not removed, they are drained: every class becomes white
+   * with a grey casing, so the hierarchy is carried by width alone. Draining
+   * them further -- to the background colour -- was tried and rejected on a
+   * render: the map turned into a grey relief sheet with no settlements, no
+   * valleys and no water, which is less legible than the loud version. Woods,
+   * water and parks keep a real (soft) hue for the same reason.
+   *
+   * AllTrails reads calmer over this same ground because its base is grey,
+   * white and one sage green, with the road hierarchy carried by width rather
+   * than hue. These replacements do the same thing to liberty: same layers,
+   * same widths, the hue drained out.
+   *
+   * Idempotent, and every write is guarded -- a style variant that lacks a
+   * layer, or renames one, simply keeps its own colour.
+   */
+  const CALM_BASE_COLOURS = Object.freeze({
+    // Roads. The casings go to a warm grey, the fills to near-white, so the
+    // hierarchy survives as width and the orange/yellow ladder disappears.
+    casing: { colour: '#CFC8BE', layers: [
+      'road_motorway_casing', 'road_motorway_link_casing', 'road_trunk_primary_casing',
+      'road_secondary_tertiary_casing', 'road_link_casing',
+      'tunnel_motorway_casing', 'tunnel_motorway_link_casing', 'tunnel_trunk_primary_casing',
+      'tunnel_secondary_tertiary_casing', 'tunnel_link_casing',
+      'bridge_motorway_casing', 'bridge_motorway_link_casing', 'bridge_trunk_primary_casing',
+      'bridge_secondary_tertiary_casing', 'bridge_link_casing',
+    ] },
+    minorCasing: { colour: '#DBD5CC', layers: [
+      'road_minor_casing', 'road_service_track_casing', 'tunnel_street_casing',
+      'tunnel_service_track_casing', 'bridge_street_casing', 'bridge_service_track_casing',
+      'bridge_path_pedestrian_casing',
+    ] },
+    major: { colour: '#FDFBF7', layers: [
+      'road_motorway', 'road_motorway_link', 'tunnel_motorway', 'tunnel_motorway_link',
+      'bridge_motorway', 'bridge_motorway_link',
+    ] },
+    through: { colour: '#FFFFFF', layers: [
+      'road_trunk_primary', 'road_secondary_tertiary', 'road_link',
+      'tunnel_trunk_primary', 'tunnel_secondary_tertiary', 'tunnel_link',
+      'bridge_trunk_primary', 'bridge_secondary_tertiary', 'bridge_link',
+    ] },
+    rail: { colour: '#CDC7BF', layers: [
+      'road_major_rail', 'road_major_rail_hatching', 'road_transit_rail',
+      'road_transit_rail_hatching', 'tunnel_major_rail', 'tunnel_major_rail_hatching',
+      'tunnel_transit_rail', 'tunnel_transit_rail_hatching', 'bridge_major_rail',
+      'bridge_major_rail_hatching', 'bridge_transit_rail', 'bridge_transit_rail_hatching',
+    ] },
+    waterway: { colour: '#A8C4DA', layers: [
+      'waterway_river', 'waterway_other', 'waterway_tunnel',
+    ] },
+  });
+
+  // Fills, which need the opacity pulled down as well as the hue: a wood at
+  // 0.7 alpha over a hillshade is what makes the valleys read as solid green.
+  const CALM_BASE_FILLS = Object.freeze([
+    { id: 'landcover_wood', colour: '#C6D6B8', opacity: 0.72 },
+    { id: 'landcover_grass', colour: '#D3E0C4', opacity: 0.7 },
+    { id: 'park', colour: '#CFDEBE', opacity: 0.7 },
+    { id: 'landuse_pitch', colour: '#E6E8DD', opacity: 0.5 },
+    { id: 'landuse_track', colour: '#E6E8DD', opacity: 0.5 },
+    { id: 'landuse_cemetery', colour: '#E6E8DD', opacity: 0.5 },
+    { id: 'landuse_hospital', colour: '#EFE7E7', opacity: 0.5 },
+    { id: 'landuse_school', colour: '#EBEAE0', opacity: 0.5 },
+    { id: 'water', colour: '#AFC9DD', opacity: 1 },
+    { id: 'landcover_ice', colour: '#E8EFEF', opacity: 0.9 },
+  ]);
+
+  function setPaint(map, id, property, value) {
+    if (!map.getLayer(id)) return;
+    try {
+      map.setPaintProperty(id, property, value);
+    } catch (error) { /* style variant paints this layer differently */ }
+  }
+
+  function calmBasemap(map) {
+    if (!isStyleReady(map)) return;
+    Object.keys(CALM_BASE_COLOURS).forEach(group => {
+      const { colour, layers } = CALM_BASE_COLOURS[group];
+      layers.forEach(id => setPaint(map, id, 'line-color', colour));
+    });
+    CALM_BASE_FILLS.forEach(({ id, colour, opacity }) => {
+      setPaint(map, id, 'fill-color', colour);
+      setPaint(map, id, 'fill-opacity', opacity);
+    });
+    // The residential tint is a zoom expression in liberty, and a flat grey
+    // reads better under a hillshade than its warm beige does.
+    setPaint(map, 'landuse_residential', 'fill-color', '#EDE9E2');
+    setPaint(map, 'landuse_residential', 'fill-opacity', 0.6);
+    setPaint(map, 'park_outline', 'line-color', 'rgba(220, 228, 208, 0.8)');
   }
 
   // ── Match colour ────────────────────────────────────────────────────────
@@ -583,6 +688,7 @@
     addWaymarkedHiking,
     setWaymarkedVisible,
     quietBasemap,
+    calmBasemap,
     routeLinePaint,
     addRouteLine,
     addContours,
@@ -13618,7 +13724,14 @@ function addBaseHillshade(map, beforeId){
       // was so faint the map looked flat beside AllTrails/Strava. A cool
       // shadow and warm highlight model the ridges like a shaded-relief map
       // without shouting over the calm base.
-      'hillshade-exaggeration': 0.45,
+      //
+      // Ramped, as the homepage's copy is, so the two cannot drift. It reaches
+      // the same 0.45 by zoom 13 and a detail map opens no lower than that on
+      // all but a handful of trails, so this map is unchanged in practice; the
+      // ramp only spares the few that open at region zoom.
+      'hillshade-exaggeration': [
+        'interpolate', ['linear'], ['zoom'], 8, 0.16, 11, 0.3, 13, 0.45,
+      ],
       'hillshade-shadow-color': '#4A5347',
       'hillshade-highlight-color': '#FBF7EC',
       'hillshade-method': 'igor',

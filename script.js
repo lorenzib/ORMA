@@ -109,6 +109,44 @@ const NEW_MATCH_THRESHOLD = 70; // trails scoring at/above this count as "a matc
 let adjustOverride = null; // session-only override, never saved to the profile
 let showFullList = false;  // homepage: top matches first, full catalog on demand
 const TOP_MATCHES = 6;
+
+// ---- Browse-map cartography -------------------------------------------
+// A browse map answers "which of these walks?", and only the six numbered
+// matches are candidates for that answer. Everything else -- the other 51
+// catalogue trails, the full marked network, the relief -- is context, and it
+// was all drawn at the weight of an answer.
+//
+// `rank` is 1..TOP_MATCHES on a match and absent on the rest.
+const TOP_MATCH_TEST = ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES];
+
+/**
+ * One line width for a match and another for the rest, across the zoom ramp.
+ *
+ * The zoom interpolation has to stay at the TOP of the paint property. An
+ * `interpolate` on `["zoom"]` nested inside a `case` is not evaluated per
+ * zoom, so the rank test goes inside each stop, never the other way round.
+ */
+function rankWidth(top, other) {
+  return ['interpolate', ['linear'], ['zoom'],
+    7, ['case', TOP_MATCH_TEST, top[0], other[0]],
+    10, ['case', TOP_MATCH_TEST, top[1], other[1]],
+    13, ['case', TOP_MATCH_TEST, top[2], other[2]],
+    16, ['case', TOP_MATCH_TEST, top[3], other[3]],
+  ];
+}
+
+// The marked network is drawn from here up. Below it a reader is choosing a
+// valley, and the route numbers are not yet the question.
+const BROWSE_NETWORK_MIN_ZOOM = 12.5;
+
+// The relief was a flat 0.45 (#468), set so the map would not read as flat.
+// At region zoom that strength is the loudest thing on a calm base and it
+// greys out the roads, woods and villages beneath it. Ramped rather than
+// weakened: faint while choosing a valley, unchanged from zoom 13 up, which
+// is where every trail-detail map opens.
+const BASE_HILLSHADE_EXAGGERATION = [
+  'interpolate', ['linear'], ['zoom'], 8, 0.16, 11, 0.3, 13, 0.45,
+];
 // The top few recommendations each receive the full explanation and primary
 // action, presented as co-equal picks; the remaining ranked trails stay compact
 // alternatives below them.
@@ -1580,7 +1618,15 @@ function initTrailMap(){
     // than washed to grey. See map-style.js.
     const firstLabelLayer = { id: window.ORMAMapStyle.firstLabelLayerId(trailMapInstance) };
     window.ORMAMapStyle.quietBasemap(trailMapInstance);
-    window.ORMAMapStyle.addWaymarkedHiking(trailMapInstance, { beforeId: firstLabelLayer.id, visible: true });
+    // `minzoom` is the density lever, not opacity: at region zoom the full
+    // network and its route shields are a mesh over the six walks a reader is
+    // actually choosing between, and dimming it would only make the shields
+    // unreadable. The chip still turns the network off; this decides when it
+    // is worth drawing at all. The trail detail map keeps no threshold -- that
+    // was measured and rejected there.
+    window.ORMAMapStyle.addWaymarkedHiking(trailMapInstance, {
+      beforeId: firstLabelLayer.id, visible: true, minzoom: BROWSE_NETWORK_MIN_ZOOM,
+    });
     addBaseHillshade(trailMapInstance, 'waymarked-hiking-layer');
     
     trailMapInstance.addSource('trail-paths', {
@@ -1595,8 +1641,8 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#F8F6F0',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 3.5, 10, 8, 13, 10],
-        'line-opacity': 0.96,
+        'line-width': rankWidth([3.5, 8, 10, 10], [1.6, 3, 5, 7]),
+        'line-opacity': 0.9,
       },
     }, 'waymarked-hiking-layer');
     trailMapInstance.addLayer({
@@ -1607,7 +1653,7 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#858D88',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 5, 13, 6],
+        'line-width': rankWidth([2, 5, 6, 6], [0.8, 1.6, 2.8, 3.6]),
       },
     }, 'waymarked-hiking-layer');
     // Catalogue rails, same treatment as the detail map: a white casing and a
@@ -1628,8 +1674,8 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#FFFFFF',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 8, 10, 14, 13, 20, 16, 26],
-        'line-opacity': 0.9,
+        'line-width': rankWidth([8, 14, 20, 26], [2.5, 4, 5.5, 6.5]),
+        'line-opacity': ['case', TOP_MATCH_TEST, 0.9, 0.5],
       },
     }, 'waymarked-hiking-layer');
     trailMapInstance.addLayer({
@@ -1639,14 +1685,11 @@ function initTrailMap(){
       minzoom: 7,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': [
-          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES],
-          catalogueMatchColour, '#9AA19C',
-        ],
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 5, 10, 10, 13, 15, 16, 20],
-        'line-opacity': [
-          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 0.5, 0.12,
-        ],
+        'line-color': ['case', TOP_MATCH_TEST, catalogueMatchColour, '#9AA19C'],
+        'line-width': rankWidth([5, 10, 15, 20], [1.2, 1.8, 2.4, 3]),
+        // A hairline can afford to be seen; it was 0.12 because a 10px band of
+        // it could not.
+        'line-opacity': 0.5,
       },
     }, 'waymarked-hiking-layer');
     // Once a visitor chooses a trail, give it the same clear, route-first
@@ -2012,7 +2055,7 @@ function addBaseHillshade(map, beforeId){
       // was so faint the map looked flat beside AllTrails/Strava. A cool
       // shadow and warm highlight model the ridges like a shaded-relief map
       // without shouting over the calm base.
-      'hillshade-exaggeration': 0.45,
+      'hillshade-exaggeration': BASE_HILLSHADE_EXAGGERATION,
       'hillshade-shadow-color': '#4A5347',
       'hillshade-highlight-color': '#FBF7EC',
       'hillshade-method': 'igor',
