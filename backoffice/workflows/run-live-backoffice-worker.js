@@ -589,7 +589,7 @@ async function adjudicateStandingGates(store,options={}){
   return outcomes;
 }
 
-async function ingestNewTrailReviews(store){
+async function ingestNewTrailReviews(store,options={}){
   if(typeof store.listNewTrailReviews!=='function')return [];
   const reviews=await store.listNewTrailReviews('queued');const outcomes=[];const effectiveByCandidate=new Map();
   for(const review of reviews){const current=effectiveByCandidate.get(review.candidateId);const key=`${iso(review.submittedAt)}:${review.id}`;const currentKey=current?`${iso(current.submittedAt)}:${current.id}`:'';if(!current||key>currentKey)effectiveByCandidate.set(review.candidateId,review);}
@@ -600,10 +600,22 @@ async function ingestNewTrailReviews(store){
       const packet=await store.getArtifact('new-trail-scouting');if(!packet)throw new Error('New Trail scouting packet is not available');
       ledger=applyNewTrailReview(packet,ledger,review,{at:iso(review.submittedAt),reviewedBy:review.submittedBy||'moderator'});
       let intake={jobIds:[],summary:{selected:0,admitted:0,waiting:0}};
-      if(review.action==='send-to-verification')intake=await admitNewTrailIntake(store,packet,ledger,{at:iso(review.submittedAt),capacity:DEFAULT_TRAIL_CAPACITY});
+      // The catalogue, so a candidate with no record in it is held back rather
+      // than admitted and paid for. Without this argument the intake cannot
+      // tell, and admits everything as it always did.
+      if(review.action==='send-to-verification')intake=await admitNewTrailIntake(store,packet,ledger,
+        {at:iso(review.submittedAt),capacity:DEFAULT_TRAIL_CAPACITY,
+          productionTrails:options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'))});
       await Promise.all([store.setArtifact('new-trail-scouting-review',ledger,{lastDecisionId:review.id}),
         store.markNewTrailReview(review.id,'processed',{outcome:{action:review.action,jobIds:intake.jobIds||[],summary:intake.summary}})]);
-      outcomes.push({reviewId:review.id,candidateId:review.candidateId,status:'processed',action:review.action,jobIds:intake.jobIds||[]});
+      // The summary travels with the outcome. A review processed having queued
+      // nothing and a review processed having queued work read identically as
+      // `status: processed`, and a candidate kept back for want of a catalogue
+      // record would have disappeared into that.
+      outcomes.push({reviewId:review.id,candidateId:review.candidateId,status:'processed',
+        action:review.action,jobIds:intake.jobIds||[],
+        ...(intake.summary?{summary:intake.summary}:{}),
+        ...(intake.held?.length?{heldForImport:intake.held}:{})});
     }catch(error){await store.markNewTrailReview(review.id,'blocked',{error:String(error.message||error).slice(0,2000)});outcomes.push({reviewId:review.id,candidateId:review.candidateId,status:'blocked',error:error.message});}
   }
   return outcomes;

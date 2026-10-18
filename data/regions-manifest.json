@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-18T18:09:22.955Z",
+  "generatedAt": "2026-10-18T18:27:52.020Z",
   "regions": {
     "dolomites": {
       "trailCount": 110,
-      "trails": "data/regions/dolomites-trails.js?v=5943f7e5c620",
+      "trails": "data/regions/dolomites-trails.js?v=c94f1f1bd80f",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=26654e90f48e",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -30,7 +30,7 @@
         "osm-1780768": "data/trail-details/osm-1780768.js?v=aac03dc7d1ae",
         "osm-2179746": "data/trail-details/osm-2179746.js?v=77b1dd1156ed",
         "osm-3202880": "data/trail-details/osm-3202880.js?v=3bb01b9e5597",
-        "osm-3885162": "data/trail-details/osm-3885162.js?v=778b48be211b",
+        "osm-3885162": "data/trail-details/osm-3885162.js?v=c8613111a02a",
         "osm-5512443": "data/trail-details/osm-5512443.js?v=2a91fdf4d7d8",
         "osm-6244965": "data/trail-details/osm-6244965.js?v=4f458f5b1a8b",
         "osm-6404258": "data/trail-details/osm-6404258.js?v=4fcfb7179be7",
@@ -124,7 +124,7 @@
     },
     "savoy": {
       "trailCount": 53,
-      "trails": "data/regions/savoy-trails.js?v=e7bbbd8ffec9",
+      "trails": "data/regions/savoy-trails.js?v=392c495b7ada",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=eb3735f6498d",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=194b0ba277c2",
@@ -159,7 +159,7 @@
         "osm-14377007": "data/trail-details/osm-14377007.js?v=42f1bb203f9d",
         "osm-14378946": "data/trail-details/osm-14378946.js?v=2932b9ae6f5a",
         "osm-14379010": "data/trail-details/osm-14379010.js?v=c4981dc90fec",
-        "osm-14379937": "data/trail-details/osm-14379937.js?v=c9680b7e758c",
+        "osm-14379937": "data/trail-details/osm-14379937.js?v=3011958177fd",
         "osm-14381570": "data/trail-details/osm-14381570.js?v=774884dfe2bf",
         "osm-14381584": "data/trail-details/osm-14381584.js?v=15d0555c1534",
         "osm-14381788": "data/trail-details/osm-14381788.js?v=ddd6facf6fb4",
