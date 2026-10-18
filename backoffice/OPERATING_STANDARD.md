@@ -480,6 +480,40 @@ confirmed against, and a source that contradicts the record wins and says so.
 Parking and the route are separate questions, and an unresolved parking picture
 is never a reason to omit the directions.
 
+## Nothing is searched for that the map says is not there
+
+An optional claim gets three materially different web searches. Measured across
+the catalogue on 14 October 2026, **111 of 225 such claims spent that ladder and
+came back having found nothing** — roughly half the money spent on optional
+detail bought the word "unknown".
+
+Some of those were never answerable. ORMA measures the mapped water, huts and
+bars along each walk from its own line, and a walk with no mapped water is one
+the web is unlikely to find a fountain on. Paying three searches to confirm that
+is three searches for nothing.
+
+So a category the map was read for and found nothing of is recorded as settled
+before any job is queued. Measured 17 October 2026: **281 of 489 category claims
+across 163 trails, and 41 walks with nothing of any kind on them** — up to 843
+searches that will not be made.
+
+The record says what was done. "The mapped features along this walk were
+measured and none of this kind is on it" is the same sentence shape an exhausted
+ladder writes, so every consumer that recognises an exhausted claim recognises
+this one, and a reader is told the map was read rather than left with silence.
+
+**Only where the map was actually read.** A walk with no line, or a run with no
+mapped features to read, settles nothing — not looking is not a finding, and
+that distinction is the whole reason the measurement reports whether it ran.
+
+**And only for what is optional.** The four route claims keep their full ladder
+whatever the map holds: they decide whether a trail can be verified at all.
+
+A mapped place is still not current availability. Where the map *does* show
+water or a hut, the claim is researched exactly as before, because whether the
+water is drinkable now and whether the hut is open this season still need a
+source.
+
 ## Optional evidence is exhausted, not merely absent
 
 An optional detail is non-blocking at the final evidence-policy gate; it is not optional

@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,orchestrationAdvance,handoff,staging,specialist]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -35,6 +35,8 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/resurvey-named-trails.js'),
     read(root,'backoffice/cli/resurvey-trails.js'),
     read(root,'backoffice/cli/dry-run-gate.js'),
+    read(root,'backoffice/workflows/places-on-route.js'),
+    read(root,'backoffice/workflows/claim-resolution.js'),
     read(root,'backoffice/workflows/advance-trail-orchestration.js'),
     read(root,'backoffice/workflows/verified-editorial-handoff.js'),
     read(root,'backoffice/workflows/build-publication-staging.js'),
@@ -347,6 +349,26 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&worker.includes('advanceTrailOrchestration(store,{...options,productionTrails})')
     &&standard.includes('A seal does not wait for optional detail'),
     'Where a free geometry survey has settled all four unwaivable route claims and no agent has spoken, the trail goes to the dossier gate on what it has and its optional detail is recorded unknown -- so a seal is never queued behind model calls that cannot change the verdict; a trail part-way through research keeps it, and one whose directions are unsettled waits for the agents as before');
+
+  // Nothing is searched for that the map says is not there.
+  //
+  // The risk is both ways. Paying three web searches to confirm a walk has no
+  // drinking fountain is three searches for nothing -- 281 of 489 category
+  // claims are in that position. And concluding "nothing is there" from a
+  // measurement that never ran would publish an absence nobody established.
+  add('nothing-is-searched-for-that-the-map-says-is-not-there',
+    places.includes('function categoriesTheMapFoundNothingFor(found)')
+    // Not looking is not a finding: the measurement says whether it ran.
+    &&places.includes('if(!found || !found.measured) return [];')
+    &&places.includes('return { measured: false, water: [], places: [] };')
+    // Settled before a job is queued, and queueClaimResolution only takes a
+    // researchable entry.
+    &&claimResolution.includes("state:settled?'source-exhausted':'researchable'")
+    &&claimResolution.includes("settledBy:'mapped-features'")
+    // In the words every consumer already recognises.
+    &&claimResolution.includes('automated research strategies were exhausted')
+    &&standard.includes('Nothing is searched for that the map says is not there'),
+    'A category the mapped features along a walk were measured for and found none of is recorded as settled before any research job is queued, in the sentence an exhausted ladder already writes; a walk whose features were never measured settles nothing, because not looking is not a finding, and the four route claims keep their full ladder whatever the map holds');
 
   // A free, deterministic survey can be taken again for a named trail.
   //

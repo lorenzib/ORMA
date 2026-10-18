@@ -80,8 +80,12 @@ describe('what the map already says is on a walk',()=>{
     expect(wide.water.every(point=>point.metresOffRoute<=60)).toBe(true);
   });
 
-  test('a walk too short to measure says nothing',()=>{
-    expect(placesOnRoute([[46,11]],catalogue('dolomites'))).toEqual({water:[],places:[]});
+  test('a walk too short to measure says it did not measure',()=>{
+    // `measured` is the difference between "nothing is on this walk" and "we
+    // never looked". The first lets a claim be settled without paying for
+    // three web searches; the second must never be read as the first.
+    expect(placesOnRoute([[46,11]],catalogue('dolomites')))
+      .toEqual({measured:false,water:[],places:[]});
   });
 });
 
