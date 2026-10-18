@@ -17,7 +17,7 @@ describe('verified trail overrides', () => {
   test('rejects an unscoped partial override', () => {
     expect(() => applyVerifiedTrailOverrides([{ id:'trail-a' }], {
       trails:[{ id:'trail-a', fields:{ routeRefs:['15A'] } }],
-    })).toThrow(/full-trail, route-reference, route-guidance, route-shape or start-point verification/);
+    })).toThrow(/full-trail, route-reference, route-guidance, route-reviewed, route-shape or start-point verification/);
   });
 
   test('accepts scoped landmark guidance without marking the whole trail verified', () => {
@@ -54,5 +54,76 @@ describe('verified trail overrides', () => {
     expect(() => applyVerifiedTrailOverrides([{ id:'trail-a' }], {
       trails:[{ id:'trail-a', verificationScope:'startPoint', fields:{ startPoint:{ lat:1, lng:2, label:'Somewhere' } } }],
     })).toThrow(/start-point verification/);
+  });
+
+  // A walk whose directions came from the map, or from ORMA's own record, has
+  // no operator's page to cite and never will. Requiring a dated external
+  // source of every scoped entry would exclude exactly those walks -- which is
+  // most of the catalogue. What it may not do is cite nothing and say nothing
+  // about why, so the rung each answer came from has to be named.
+  const GUIDANCE = Object.freeze({mode:'numbered',start:'Start at the car park.',
+    status:'The mapped route carries trail number 20.',sequence:'Follows route 20 end to end.',
+    switches:'Stays on route 20 throughout.'});
+  const OSM_SOURCE = Object.freeze([{label:'OpenStreetMap relation 11839597',
+    url:'https://www.openstreetmap.org/relation/11839597',accessedAt:'2026-09-01T00:00:00Z'}]);
+  const RUNGS = (start,status,sequence,switches) => ({start,status,sequence,switches});
+  const scoped = (scope,fields) => ({trails:[{id:'trail-a',verificationScope:scope,fields}]});
+  const apply = artifact => applyVerifiedTrailOverrides([{id:'trail-a',curated:false}],artifact);
+
+  test('takes a map answer dated by the relation it was read from', () => {
+    const [trail] = apply(scoped('routeGuidance',{routeNumberGuidance:{...GUIDANCE,
+      establishedBy:RUNGS('route-relations','route-relations','route-relations','route-relations'),
+      sources:OSM_SOURCE}}));
+    expect(trail.routeNumberGuidance.sources[0].accessedAt).toBe('2026-09-01T00:00:00Z');
+  });
+
+  test("takes an answer that is entirely ORMA's own record, citing nothing outside", () => {
+    const [trail] = apply(scoped('routeGuidance',{routeNumberGuidance:{...GUIDANCE,
+      establishedBy:RUNGS('orma-record','orma-record','orma-record','orma-record'),sources:[]}}));
+    expect(trail.routeNumberGuidance.start).toBe(GUIDANCE.start);
+  });
+
+  test('refuses an answer that rests on the map and cites nothing', () => {
+    expect(() => apply(scoped('routeGuidance',{routeNumberGuidance:{...GUIDANCE,
+      establishedBy:RUNGS('orma-record','orma-record','route-relations','route-relations'),sources:[]}})))
+      .toThrow(/route-guidance/);
+  });
+
+  test('refuses a rung it does not recognise', () => {
+    expect(() => apply(scoped('routeGuidance',{routeNumberGuidance:{...GUIDANCE,
+      establishedBy:RUNGS('somebody-said-so','orma-record','orma-record','orma-record'),sources:[]}})))
+      .toThrow(/route-guidance/);
+  });
+
+  test('a reviewed publication states what it is short of', () => {
+    const required=['photo','route','routeNumbers','mapPoints','elevation',
+      'water','heat','exposure','livestock','surfaceHazards','access'];
+    const fields={ormaVerified:false,desc:'A gentle promenade.',
+      routeNumberGuidance:{...GUIDANCE,
+        establishedBy:RUNGS('orma-record','orma-record','route-relations','route-relations'),
+        sources:OSM_SOURCE},
+      graduation:{status:'in-progress',required,
+        completed:['photo','route','routeNumbers','mapPoints','elevation']}};
+    const [trail] = apply(scoped('routeReviewed',fields));
+    expect(trail.ormaVerified).toBe(false);
+    expect(trail.desc).toBe('A gentle promenade.');
+
+    // Nothing to say what it is short of, and it is refused.
+    const {graduation,...noGraduation}=fields;
+    expect(() => apply(scoped('routeReviewed',noGraduation))).toThrow(/route-reviewed/);
+    // Claiming the eleven through the reviewed door is refused too.
+    expect(() => apply(scoped('routeReviewed',{...fields,
+      graduation:{status:'in-progress',required,completed:required}}))).toThrow(/route-reviewed/);
+  });
+
+  test('the seal comes through one door only', () => {
+    // `ormaVerified: true` used to be waved through whatever scope an entry
+    // declared, so an entry could read as the narrow thing its label said while
+    // granting the whole seal.
+    expect(() => apply(scoped('routeReviewed',{ormaVerified:true}))).toThrow(/route-reviewed/);
+    expect(() => apply(scoped('routeShape',{ormaVerified:true}))).toThrow(/route-shape/);
+    const [trail] = applyVerifiedTrailOverrides([{id:'trail-a'}],
+      {trails:[{id:'trail-a',fields:{ormaVerified:true}}]});
+    expect(trail.ormaVerified).toBe(true);
   });
 });

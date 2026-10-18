@@ -35,6 +35,11 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  /* The waymark shield, as the app draws it in trail.html: a number a reader
+     can match against the paint on a rock without reading a sentence first. */
+  .sp-route-refs{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 4px;}
+  .sp-route-ref{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;box-sizing:border-box;padding:5px 10px;border:3px solid #B54835;border-radius:8px;background:#fff;color:#202821;font:800 15px/1 'Inter',sans-serif;box-shadow:0 1px 2px rgba(32,40,33,.08);}
+  .sp-route-ref-arrow{color:#657369;font-size:17px;font-weight:800;}
   /* The photo is lazy-loaded and the credit toggle is pinned to the figure's
      corner, so the figure reserves its height up front; otherwise the toggle
      floats over whatever sits above until the image arrives. */
@@ -137,9 +142,8 @@
       <div class="sp-photo-credit__body">Photo: ORMA original <span aria-hidden="true">·</span> Cropped for display.</div>
     </details></figure>
   
-  <p>A demanding 9.528 km circuit from Rifugio Auronzo around the Tre Cime, following trails 101 and 105. The official itinerary gives 468 m of ascent, about 3 hours 30 minutes and a high point of 2,454 m. This is a hard, open high-alpine walk rather than a casual sightseeing loop.
-
-Dogs are accepted on the route but must stay on lead throughout. Seasonal livestock may be present beside the Lavaredo pasture segment, so keep your dog close and pass animals conservatively. The route has very little dependable shade and includes a narrower section, although no ferrata equipment is required.</p>
+  <p>A demanding 9.528 km circuit from Rifugio Auronzo around the Tre Cime, following trails 101 and 105. The official itinerary gives 468 m of ascent, about 3 hours 30 minutes and a high point of 2,454 m. This is a hard, open high-alpine walk rather than a casual sightseeing loop.</p>
+  <p>Dogs are accepted on the route but must stay on lead throughout. Seasonal livestock may be present beside the Lavaredo pasture segment, so keep your dog close and pass animals conservatively. The route has very little dependable shade and includes a narrower section, although no ferrata equipment is required.</p>
 
   <div class="sp-facts">
       <div class="sp-fact"><div class="sp-fact-k">Distance</div><div class="sp-fact-v">9.528 km</div></div>
@@ -167,6 +171,11 @@ Dogs are accepted on the route but must stay on lead throughout. Seasonal livest
   </figure>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> Where to start</h2>
     <p>Parcheggio Rifugio Auronzo (P1), approved parking pin</p>
+    <h2>How to follow this route</h2>
+    <div class="sp-route-refs" aria-label="Trail numbers in order"><span class="sp-route-ref">101</span><span class="sp-route-ref-arrow" aria-hidden="true">→</span><span class="sp-route-ref">105</span></div>
+    <p><b>Start:</b> Start at Rifugio Auronzo.</p>
+    <p><b>Trail numbers and route:</b> Follow trail 101 from Rifugio Auronzo to Rifugio Lavaredo, then climb to Forcella Lavaredo and continue to Rifugio Locatelli. From Rifugio Locatelli, follow trail 105 across the northern side of the Tre Cime and via Forcella Col di Mezzo back to Rifugio Auronzo.</p>
+    <p><b>Where to switch:</b> At Rifugio Locatelli, leave trail 101 and take trail 105 towards Forcella Col di Mezzo and Rifugio Auronzo.</p>
     
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M4 11l8-7 8 7" fill="none" stroke="#8A5A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 10v9h12v-9" fill="#D6A038" stroke="#8A5A16" stroke-width="1.6" stroke-linejoin="round"></path><path d="M10 19v-5h4v5" fill="#8A5A16"></path></svg> Rifugi &amp; refreshment</h2>
     <ul><li>km 0 · Rifugio Auronzo</li><li>km 2.1 · Rifugio Lavaredo</li><li>km 5.3 · Rifugio Locatelli</li></ul>

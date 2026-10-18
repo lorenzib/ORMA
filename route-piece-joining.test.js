@@ -75,7 +75,13 @@ describe('putting a route\'s pieces in walking order', () => {
     // The 1 km publication limit exists to catch a line that teleports. This
     // must narrow a gap that was an ordering artifact and leave one that is
     // missing data, or it would publish a route with a hole in it.
+    //
+    // Dropping unreachable fragments must not quietly defeat that. These two
+    // pieces are 380 m each and fifteen kilometres apart: neither is litter
+    // beside a walk, they are the whole relation, so both are kept and the
+    // hole stays visible. See DROPPABLE_SHARE_OF_WALK.
     const far = multi([[[11.000, 46.50], [11.005, 46.50]], [[11.200, 46.50], [11.205, 46.50]]]);
+    expect(chainLines(far.coordinates).dropped).toEqual([]);
     expect(widestGapMeters(toPath(far).pts)).toBeGreaterThan(10000);
   });
 
@@ -87,7 +93,10 @@ describe('putting a route\'s pieces in walking order', () => {
   });
 
   test('chainLines copes with an empty piece rather than throwing', () => {
-    expect(chainLines([[], [[11.000, 46.50], [11.005, 46.50]]])).toEqual([[46.50, 11.000], [46.50, 11.005]]);
-    expect(chainLines([])).toEqual([]);
+    // It reports what it refused alongside the path, so a dropped fragment is
+    // visible to the caller rather than gone.
+    expect(chainLines([[], [[11.000, 46.50], [11.005, 46.50]]]))
+      .toEqual({ path: [[46.50, 11.000], [46.50, 11.005]], dropped: [] });
+    expect(chainLines([])).toEqual({ path: [], dropped: [] });
   });
 });

@@ -1,7 +1,10 @@
 'use strict';
 
-const { VERIFIED_FIELDS, STRUCTURED_FIELDS, structuredFieldsFromTrail, verifiedFieldsFor }
+const { VERIFIED_FIELDS, STRUCTURED_FIELDS, REQUIRED_STRUCTURED_FIELDS,
+  OPTIONAL_STRUCTURED_FIELDS, structuredFieldsFromTrail, verifiedFieldsFor }
   = require('./workflows/build-publication-staging');
+const { loadProductionTrails } = require('../scripts/load-production-trails');
+const path = require('path');
 
 // The structured fields a published trail carries were typed in by hand, one
 // hardcoded entry per candidate. Three existed, so the fourth trail to clear
@@ -36,11 +39,47 @@ describe('a trail supplies its own structured fields', () => {
     expect(fields.shadeCoverage).toBeNull();
   });
 
-  test('a field nobody has established yet still blocks', () => {
+  // This asserted that deleting heatRisk blocks publication. All thirteen were
+  // required together, and heatRisk, shadeCoverage, exposure and paid only
+  // exist once the matching safety category was researched -- so the rule it
+  // pinned held 134 of 163 trails at the mapping gate for not having had their
+  // heat researched, which is the safety gate again under another name. The
+  // nine that describe the walk are still required.
+  test('a safety attribute nobody has researched is carried as absent, not as a block', () => {
     const missing = trail();
     delete missing.heatRisk;
+    delete missing.shadeCoverage;
 
-    expect(structuredFieldsFromTrail(missing)).toBeNull();
+    const fields = structuredFieldsFromTrail(missing);
+    expect(fields).not.toBeNull();
+    expect('heatRisk' in fields).toBe(false);
+    expect('shadeCoverage' in fields).toBe(false);
+    expect(fields.distance).toBe(10.8);
+  });
+
+  test('a field the walk cannot be described without still blocks', () => {
+    for(const field of REQUIRED_STRUCTURED_FIELDS){
+      const missing = trail();
+      delete missing[field];
+      expect({ field, fields:structuredFieldsFromTrail(missing) }).toEqual({ field, fields:null });
+    }
+  });
+
+  // Measured against the catalogue, not asserted from a fixture: the point of
+  // the split is how many real trails can publish, and the one that cannot is
+  // the known trail with no usable start point.
+  test('every catalogue trail but one can supply its publication fields', () => {
+    const trails = loadProductionTrails(path.resolve(__dirname, '..'));
+    const blocked = trails.filter(record => !structuredFieldsFromTrail(record)).map(record => record.id);
+
+    expect(trails.length).toBeGreaterThan(150);
+    expect(blocked).toEqual(['valley-view']);
+  });
+
+  test('the two groups make up the whole list and do not overlap', () => {
+    expect([...STRUCTURED_FIELDS].sort())
+      .toEqual([...REQUIRED_STRUCTURED_FIELDS, ...OPTIONAL_STRUCTURED_FIELDS].sort());
+    expect(REQUIRED_STRUCTURED_FIELDS.filter(field => OPTIONAL_STRUCTURED_FIELDS.includes(field))).toEqual([]);
   });
 
   test('a new trail has no record to carry forward and stays blocked', () => {

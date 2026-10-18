@@ -480,6 +480,40 @@ confirmed against, and a source that contradicts the record wins and says so.
 Parking and the route are separate questions, and an unresolved parking picture
 is never a reason to omit the directions.
 
+## Nothing is searched for that the map says is not there
+
+An optional claim gets three materially different web searches. Measured across
+the catalogue on 14 October 2026, **111 of 225 such claims spent that ladder and
+came back having found nothing** — roughly half the money spent on optional
+detail bought the word "unknown".
+
+Some of those were never answerable. ORMA measures the mapped water, huts and
+bars along each walk from its own line, and a walk with no mapped water is one
+the web is unlikely to find a fountain on. Paying three searches to confirm that
+is three searches for nothing.
+
+So a category the map was read for and found nothing of is recorded as settled
+before any job is queued. Measured 17 October 2026: **281 of 489 category claims
+across 163 trails, and 41 walks with nothing of any kind on them** — up to 843
+searches that will not be made.
+
+The record says what was done. "The mapped features along this walk were
+measured and none of this kind is on it" is the same sentence shape an exhausted
+ladder writes, so every consumer that recognises an exhausted claim recognises
+this one, and a reader is told the map was read rather than left with silence.
+
+**Only where the map was actually read.** A walk with no line, or a run with no
+mapped features to read, settles nothing — not looking is not a finding, and
+that distinction is the whole reason the measurement reports whether it ran.
+
+**And only for what is optional.** The four route claims keep their full ladder
+whatever the map holds: they decide whether a trail can be verified at all.
+
+A mapped place is still not current availability. Where the map *does* show
+water or a hut, the claim is researched exactly as before, because whether the
+water is drinkable now and whether the hut is open this season still need a
+source.
+
 ## Optional evidence is exhausted, not merely absent
 
 An optional detail is non-blocking at the final evidence-policy gate; it is not optional
@@ -668,13 +702,114 @@ of the catalogue can show. It upgrades by itself: the next publication after
 research lands derives a fuller list, so nothing has to remember to promote a
 trail.
 
-**A trail short of the full seal is held, not published.** The override
-contract takes either a full verification or one of its named scopes, and the
-scope that would carry a route-only publication requires cited sources with a
-`reviewedAt` — which a trail answered by the map and ORMA's own record does not
-have. Until that scope can carry it, such a trail waits at the publication
-mapping gate and names what it is waiting for, rather than publishing a badge it
-has not earned or failing in the materializer.
+**A trail short of the full seal publishes as a reviewed one.** It was held
+instead, because the override contract had no door for it: a full verification
+carries the seal, and the scope that would carry a route-only publication
+demanded cited sources with a `reviewedAt`, which a walk answered by the map and
+by ORMA's own record does not have.
+
+Holding it bought nothing. The badge already says reviewed, no safety category
+is recorded so every caveat on the page stands, and the walk is already in the
+catalogue — what was being withheld was its directions, its copy, its start
+point and its photograph, which is the work the reader wanted.
+
+So the `routeReviewed` scope carries it, under three conditions:
+
+- it declares `ormaVerified: false`, so an unearned seal cannot reach the record
+  through this door even by accident — and the full-trail door now refuses any
+  entry that declares a scope at all, which it used to wave through;
+- it carries the graduation, stating what it completed of the eleven, so the
+  entry says what it is short of rather than being silently partial;
+- its four directions name the rung that established each one.
+
+That last condition is what the scope was missing. A walk whose start and
+sequence ORMA established from the line it recorded and published has no
+operator's page to cite and never will, so demanding a dated external source of
+every scoped publication permanently excluded exactly the walks the record rung
+exists for. What cannot be allowed is an empty source list meaning nothing in
+particular — so an entry citing nothing has to state that every answer is
+ORMA's own, and an entry whose answers rest on the map or on an agent's reading
+still has to cite them, dated by `reviewedAt` or, for an OpenStreetMap relation,
+by the relation's own timestamp.
+
+**No publication may take a seal away.** The graduation upgrades itself as
+research lands, so the only way a trail loses one is a republication from a
+thinner dossier than the one that earned it — which would quietly unverify a
+verified walk and leave nothing behind saying when or why. The materializer
+refuses it.
+
+**What still holds a publication is a missing answer**, not unpaid-for detail:
+no mapping target, no structured fields, no route guidance. And the structured
+fields are two groups, not thirteen requirements. The nine that describe the
+walk — area, distance, elevation, hours, terrain type and rank, safety level,
+water sources, start point — are required, and every catalogue record carries
+all nine bar one trail with no usable start point. The other four — `paid`,
+`shadeCoverage`, `heatRisk`, `exposure` — are safety and access attributes a
+record only has once the matching category was researched, so between 33 and 39
+trails of 163 have them. Requiring all thirteen together held 134 trails at the
+mapping gate for not having had their heat researched: the safety gate again,
+wearing a different name, one layer further down where the blocker did not say
+so. A field the record does not have is now carried as absent, which is what it
+is.
+
+## One badge rule for the page and the app
+
+The crawlable trail page and the app both answer "how well is this trail
+established?", and they answered it differently.
+
+`scripts/generate-trail-pages.js` granted **Verified by ORMA** once six safety
+categories were reviewed, and had no label between that and *Imported trail*.
+`trail-trust.js` has, since #616, granted the seal only on the full eleven-check
+graduation. Measured across the catalogue on 18 October 2026 the two disagreed
+about **22 live pages**: each showed a green Verified seal for a trail every
+card in the app called *Reviewed*. With the publication lane open the
+disagreement also ran the other way — a trail published through the reviewed
+scope read *Imported trail* on its own page.
+
+**Both now derive the badge from the evidence contract tier**, in the words
+trail-trust.js prints, so the seal appears in both places or in neither, and a
+reviewed trail is called reviewed. A reviewed trail takes the muted pill and no
+icon, because the green tick is the seal. The page's footer line says the same
+as its badge; it said "Verified by ORMA on <date>" for any curated trail
+carrying a date.
+
+The same rule holds for the caveats. The water and start-point sentences keyed
+off **curation**, and curation is not a review: a trail published with its
+directions established and its water never researched would have had its mapped
+points titled *Water on trail* with the "availability can change" line removed,
+and its start point printed with the raw "(OSM-verified access point)" wording
+and no "check current access" line. They key off the category review now. The
+prefix that strips "Start here" also lists the colon, which it did not, so a
+start point that was not reviewed printed *Suggested start, Start here: parking
+du lac* on seven pages.
+
+These are two copies of one rule in two languages, and second copies drift. A
+test compares them for every trail in the catalogue, label and pill and both
+sentences, and checks the published pages for a seal the record has not earned.
+
+## The directions reach the page, not only the app
+
+ORMA establishes four answers about following a walk — where to start, what the
+numbers are, the order they come in, and where they change — and they reached
+only the app. The crawlable page, the one a search engine indexes and a reader
+arrives on, said how far the walk was and nothing about how to walk it, while
+the answers sat in the same record the page was built from.
+
+**The page carries the same card now**, under the same heading, with the same
+labels and the same sentences, and the same waymark shields in the same order
+from the same module. It is the same card in a second renderer, and two
+renderers of one card is how a page and an app come to say different things
+about the same walk, so a test compares them for every trail that has guidance.
+
+Three sentences or none. Half a set of directions is worse than none, because
+the reader cannot tell which part is missing.
+
+**The signage caveat is printed.** The `status` sentence says whether ORMA
+confirmed how the numbers appear on local signs — the sentence a reader
+standing at a junction needs — and the app was dropping it, so the card stated
+a number sequence as though the signage were settled. Both print it when the
+record carries one; the five walks published before the pipeline wrote that
+field have none.
 
 ## Free work goes first
 
@@ -1260,6 +1395,33 @@ decide.
 A held contradiction is therefore a judgement somebody can make, not a bug and
 not missing research, and the gate dry run names it as its own category. Calling
 it a fault sent a reader looking for code that was behaving exactly as written.
+
+### A dossier can exist for a walk the map and the record answered
+
+The gate approved it and the compiler threw. Five trails stood at the dossier
+gate on 18 October 2026 and not one could produce a dossier, so nothing could
+reach publication — which is why no trail has ever carried a badge.
+
+Two rules written before the ladder existed did it.
+
+**The numbered-route rule asked for an authority.** A walk with a number had to
+carry a recommended start citing a published page, in words written when nothing
+else could answer anything. It now asks the question the contract asks
+everywhere else: is the start established, and is the reader told by whom. An
+authority still wins where one exists, and a record answer says in its own words
+that it is ORMA's suggestion from the walk it recorded and tells the reader to
+check access. Refusing it outright published nothing at all, which serves a
+walker worse than an honestly-labelled start. A numbered route with no start
+from any rung is still refused.
+
+**And the guidance assertion was handed the trail and did not pass it on**, so
+the bottom rung was deaf in the one place that decides whether a dossier exists.
+That is the third time the same shape has appeared: an answer computed in one
+place, and the place that needed it not given what it takes to compute it.
+
+What a fast-lane dossier contains is the line, its identity, and the sources
+they rest on. It carries no safety category as reviewed, because no specialist
+spoke — which the badge already derives rather than asserts.
 
 ## Three kinds of answer, and the reader is told which
 

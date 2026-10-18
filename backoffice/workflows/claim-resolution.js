@@ -85,13 +85,46 @@ function resolutionCandidates(outputs){
   return candidates;
 }
 
-function ensureResolutionEntries(trail,candidates){
+// What the record says when the map was read along the walk and the category
+// is not there. It is the same sentence shape an exhausted ladder writes, so
+// every consumer that already recognises an exhausted claim recognises this.
+const NOTHING_MAPPED='The mapped features along this walk were measured and none of this kind is on it; automated research strategies were exhausted.';
+
+/**
+ * The claims to research, and the ones there is no point researching.
+ *
+ * An optional claim gets three materially different web searches. Measured
+ * across the catalogue on 14 October 2026, 111 of 225 such claims spent that
+ * ladder and came back having found nothing -- roughly half the money spent on
+ * optional detail bought the word "unknown".
+ *
+ * Some of those were never answerable. ORMA already measures the mapped water,
+ * huts and bars along each walk from its own line, and a walk with no mapped
+ * water on it is a walk the web is unlikely to find a fountain on. Paying three
+ * searches to confirm that is three searches for nothing.
+ *
+ * So a category the map was read for and found nothing of is recorded settled
+ * here, before any job is queued -- `queueClaimResolution` only ever queues a
+ * `researchable` entry. The reader is told what was done: the map was measured
+ * and the category is not on this walk, which is a better answer than silence
+ * and the same answer the ladder would have reached three calls later.
+ *
+ * Only where the map was actually read. `categoriesTheMapFoundNothingFor`
+ * returns nothing for a walk with no line or a run with no mapped features,
+ * because not looking is not a finding.
+ */
+function ensureResolutionEntries(trail,candidates,unmapped){
   trail.claimResolution=trail.claimResolution||{};
+  const nothingThere=new Set(unmapped||[]);
   for(const candidate of candidates){
     const key=keyFor(candidate.agentId,candidate.claimId);
     if(trail.claimResolution[key])continue;
+    const settled=nothingThere.has(String(candidate.claimId));
     trail.claimResolution[key]={key,agentId:candidate.agentId,claimId:candidate.claimId,category:candidate.category,
-      originalFinding:candidate.finding,state:'researchable',latestOutputRef:candidate.outputRef,attempts:[]};
+      originalFinding:candidate.finding,
+      state:settled?'source-exhausted':'researchable',
+      ...(settled?{settledBy:'mapped-features',note:NOTHING_MAPPED}:{}),
+      latestOutputRef:candidate.outputRef,attempts:[]};
   }
   return trail.claimResolution;
 }
@@ -194,6 +227,6 @@ function mergeClaimResolutionResult(previous,next,job,at){
     strategy:job.resolutionStrategy,strategyLabel:job.resolutionStrategyLabel,completedAt:at}};
 }
 
-module.exports={MAX_AUTOMATED_ATTEMPTS,MAX_WAIVABLE_ATTEMPTS,EXHAUSTED_PHRASE,ceilingFor,RESOLVABLE_FINDINGS,STRATEGIES,strategyById,attemptStrategyText,keyFor,strategyFor,notBeforeFor,
+module.exports={NOTHING_MAPPED,MAX_AUTOMATED_ATTEMPTS,MAX_WAIVABLE_ATTEMPTS,EXHAUSTED_PHRASE,ceilingFor,RESOLVABLE_FINDINGS,STRATEGIES,strategyById,attemptStrategyText,keyFor,strategyFor,notBeforeFor,
   resolutionCandidates,ensureResolutionEntries,pendingAttempt,completedAttempts,resolutionStateFor,
   reconcileCompletedAttempt,addQueuedAttempt,annotateResolvedClaim,mergeClaimResolutionResult};
