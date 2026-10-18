@@ -114,8 +114,16 @@ describe('what the reader is actually shown now',()=>{
     expect(verifiedStart.length).toBeGreaterThan(50);
   });
 
-  test('and a "Start here," label is the common shape, not an edge case',()=>{
-    const prefixed=trails.filter(trail=>/^Start here\s*,/i.test(String(trail.startPoint&&trail.startPoint.label||'')));
+  // The separator is not the point, and pinning one was a trap: the promoter
+  // writes "Start here \u2014 X" while the curated entries write "Start here, X",
+  // so an assertion about the comma counted 13 and read as the prefix having
+  // become rare. What matters is that the prefix is common, whatever follows
+  // it, because that is what the stripping rule is for.
+  test('and a "Start here" label is the common shape, not an edge case',()=>{
+    const prefixed=trails.filter(trail=>/^Start here\b/i.test(String(trail.startPoint&&trail.startPoint.label||'')));
     expect(prefixed.length).toBeGreaterThan(20);
+    // Both separators are in the catalogue, and both must strip.
+    expect(prefixed.some(trail=>/^Start here\s*,/i.test(trail.startPoint.label))).toBe(true);
+    expect(prefixed.some(trail=>/^Start here\s*\u2014/i.test(trail.startPoint.label))).toBe(true);
   });
 });

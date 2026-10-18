@@ -69,6 +69,9 @@ const ACCESS_MATCH_METERS = 400;      // access point must be this close to the 
 const ELEVATION_BATCH = 100;          // Open-Meteo max per request
 const ELEVATION_SAMPLES = 80;         // sampled points per route
 const ACCESS_PATH = path.join(ROOT, REGION.accessFile);
+// Set by the generated-artifact check, which regenerates this file to compare
+// it with the committed one and must not depend on somebody else's server.
+const OFFLINE = process.env.ORMA_PROMOTE_OFFLINE === 'true';
 
 // The locality table lives in regions-config.js and is loaded from there. It
 // used to be duplicated here; the two copies drifted, so a trail could take its
@@ -347,6 +350,16 @@ async function saveElevationCache(file, used) {
  * with holes in it would be worse than no profile, and the caller already
  * treats null as "keep the trail, drop the elevation".
  */
+/**
+ * Ground height, from the cache, and from Open-Meteo for anything new.
+ *
+ * `offline` says the cache is all there is. The staleness check regenerates
+ * this file in CI to compare it with the committed one, and a check that
+ * reaches the internet is a check that fails when somebody else's server is
+ * down. With every point on file it needs nothing; when a point is missing,
+ * saying so beats quietly fetching it on a machine that may have no network
+ * and then reporting the file as stale.
+ */
 async function fetchElevations(samples, options = {}) {
   const cache = options.cache || new Map();
   const found = options.found || new Map();
@@ -366,6 +379,10 @@ async function fetchElevations(samples, options = {}) {
     if (cache.has(key)) { heights.set(key, cache.get(key)); continue; }
     if (queued.has(key)) continue;
     queued.add(key);
+    if (options.offline) {
+      throw new Error(`No height on file for ${key} and ORMA_PROMOTE_OFFLINE is set. `
+        + 'Run `npm run promote:trails` locally and commit data/elevation-cache-*.json.');
+    }
     missing.push(sample);
   }
 
@@ -484,6 +501,28 @@ function rateSafety(maxGrade) {
   if (maxGrade < 0.10) return { safetyLevel: 'low-risk', terrainRank: 0 };
   if (maxGrade < 0.18) return { safetyLevel: 'moderate', terrainRank: 1 };
   return { safetyLevel: 'caution', terrainRank: 2 };
+}
+
+/**
+ * "A" or "an", decided by how the number is said.
+ *
+ * This keyed off whether the walk was a loop -- "A 2.2 km loop", "An 1.5 km
+ * route" -- which has nothing to do with the article, and 42 of the 124
+ * imported descriptions read wrongly on live pages: "An 3 km route", "An 0.7
+ * km route", "A 11.1 km loop".
+ *
+ * Said aloud, only eight, eleven, eighteen and the eighties begin with a vowel
+ * sound, and the decimals do not change it -- "an eight point four km loop" --
+ * so the whole-kilometre part decides. A leading-digit rule is not enough: 110
+ * is "a hundred and ten", not "an eleven".
+ *
+ * Stated over the range this field can hold: the longest walk in the catalogue
+ * is 71 km and the publication limit is 50, so above 99 this answers "a",
+ * which is right for every hundred except the eight hundreds.
+ */
+function articleFor(km) {
+  const whole = Math.floor(Math.abs(Number(km) || 0));
+  return whole === 8 || whole === 11 || whole === 18 || (whole >= 80 && whole <= 89) ? 'An' : 'A';
 }
 
 function naismithHours(km, gainM) {
@@ -739,7 +778,8 @@ async function main() {
     const samples = sampleAlong(pts, cumKm, ELEVATION_SAMPLES);
 
     console.log(`[promote] ${n + 1}/${routes.features.length} ${p.name} (${totalKm} km)…`);
-    const elevations = await fetchElevations(samples, { cache: elevationCache, found: elevationUsed });
+    const elevations = await fetchElevations(samples,
+      { cache: elevationCache, found: elevationUsed, offline: OFFLINE });
 
     let elevationProfile = null;
     let gain = null;
@@ -801,7 +841,7 @@ async function main() {
       waterSources,
       rifugi,
       startPoint: { lat: pts[0][0], lng: pts[0][1], label: startLabel },
-      desc: `${isLoop ? 'A' : 'An'} ${totalKm} km ${isLoop ? 'loop' : 'route'} near ${nearestLocality(pts[0][0], pts[0][1])}, imported from the OpenStreetMap hiking network${p.ref ? ` (trail ${p.ref})` : ''}. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.${directionNote ? ' ' + directionNote : ''}`,
+      desc: `${articleFor(totalKm)} ${totalKm} km ${isLoop ? 'loop' : 'route'} near ${nearestLocality(pts[0][0], pts[0][1])}, imported from the OpenStreetMap hiking network${p.ref ? ` (trail ${p.ref})` : ''}. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.${directionNote ? ' ' + directionNote : ''}`,
       tips: 'Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.',
       ...(segments > 1 ? { osmGeometryGaps: segments - 1 } : {})
     };
@@ -839,6 +879,6 @@ if (require.main === module) {
   main().catch((err) => { console.error(err); process.exit(1); });
 }
 
-module.exports = { chainLines, toPath, widestGapMeters, haversineMeters,
+module.exports = { articleFor, chainLines, toPath, widestGapMeters, haversineMeters,
   lineMeters, DROPPABLE_PIECE_M, DROPPABLE_SHARE_OF_WALK, LOOP_CLOSE_M,
   elevationKey, loadElevationCache, saveElevationCache, fetchElevations };

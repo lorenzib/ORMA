@@ -120,6 +120,10 @@ function sourcedRoutePages(root) {
   }
 }
 
+// What promote-osm-trails.js writes for every imported trail, from the
+// relation's tags. Not a declaration: the same question asked of the map.
+const PROMOTER_DERIVED_STATUS = new Set(['mapped-relation-ref', 'not-listed-in-mapped-source']);
+
 function applyRouteNumberEvidence(trails, root, evidence = mappedRouteEvidence(root), sourced = sourcedRoutePages(root)) {
   return trails.map(trail => {
     // A confirmed official page is the best route evidence there is, so it is
@@ -134,11 +138,32 @@ function applyRouteNumberEvidence(trails, root, evidence = mappedRouteEvidence(r
       routeNumberSource: { provider: page.publisher || hostOf(page.url),
         name: page.name || trail.name || null, url: page.url },
     };
-    if (trail.routeNumberStatus) return trail;
-    if (Array.isArray(trail.routeRefs) && trail.routeRefs.length) {
+    // A status somebody declared stands; one the promoter derived does not.
+    //
+    // promote-osm-trails.js writes `mapped-relation-ref` or
+    // `not-listed-in-mapped-source` on every imported trail, straight off the
+    // relation's own tags. That is the map restating itself, not a person
+    // saying what kind of route this is, and this return treated the two
+    // alike -- so the moment the catalogue was regenerated the evidence below
+    // stopped being attached. Measured 18 October 2026: 29 trails lost a real
+    // authority, the SAT and the Comune di Lozzo di Cadore among them, and
+    // fell back to citing the Waymarked Trails relation, which the route
+    // claims cannot be made from. It is why the generated file had been left
+    // stale: regenerating it quietly switched the sourcing off.
+    if (trail.routeNumberStatus && !PROMOTER_DERIVED_STATUS.has(trail.routeNumberStatus)) return trail;
+    const mapped = evidence.get(String(trail.osmRelation));
+    // Having a number is not a reason to be denied the page.
+    //
+    // This returned before the mapped evidence below, so a trail that already
+    // carried `routeRefs` never got the official page -- the exact fault the
+    // comment under it describes and was written to fix, one line too late to
+    // catch its own case. It did not show while the promoted file was stale
+    // and most imported trails had no refs on record; regenerating gave 32 of
+    // them their numbers and would have taken their pages away in the same
+    // step. The number is kept either way; what this decides is the source.
+    if (Array.isArray(trail.routeRefs) && trail.routeRefs.length && !(mapped && mapped.ref)) {
       return { ...trail, routeNumberStatus: 'documented' };
     }
-    const mapped = evidence.get(String(trail.osmRelation));
     // A number and an official page are not alternatives, and taking the number
     // first threw the page away: 23 trails were filed as `mapped-relation-ref`
     // with their cited source pointing at Waymarked Trails while the snapshot
@@ -198,5 +223,5 @@ function applyRouteNumberEvidence(trails, root, evidence = mappedRouteEvidence(r
   });
 }
 
-module.exports = {
+module.exports = {PROMOTER_DERIVED_STATUS,
   SOURCED_ROUTE_PAGES, sourcedRoutePages, hostOf, ROUTE_SOURCE_FILES, normaliseRouteRef, officialRoutePage, waymarkDescription, mappedRouteEvidence, applyRouteNumberEvidence };
