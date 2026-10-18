@@ -429,6 +429,23 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&standard.includes('An existing trail keeps the description it already has'),
     'A trail already on the site keeps its own name, description and practical notes instead of a copywriter being paid to write them again -- the rule its photograph has had all along -- so no model call is spent on words that are already on the live page; all three fields or none, only for a trail the site already has, and a copywriter that did run still wins. The policy is recorded where the job is queued and read where the fields are published, so the two cannot disagree');
 
+  // A gate may not wait on a decision nothing can make.
+  //
+  // The risk is a deadlock that reports as patience. `asset-and-licensing-
+  // approval` can only come from a visualDirector job, which is never queued
+  // for a trail already on the site, so 23 of 163 trails with an incomplete
+  // image record waited for ever -- their directions off the page for want of
+  // a photograph nobody was looking for, and nothing saying so.
+  add('a-photograph-nobody-is-sourcing-is-not-a-pending-approval',
+    staging.includes("const visualApproved = item.assetPolicy==='preserve-existing'?true:visualDecision?.action === 'approve';")
+    // No image either way writes no image fields, so the trail keeps what it shows.
+    &&staging.includes('...(retainedImage||(hero?{')
+    &&staging.includes('}:{})),')
+    // And the badge is told there is no photograph.
+    &&staging.includes('graduationFor(researched,Boolean(retainedImage||hero),Boolean(verifiedFields))')
+    &&standard.includes('A photograph nobody is sourcing is not a pending approval'),
+    'Publication of a trail already on the site does not wait on an approval for a photograph nobody is sourcing: the asset approval covers a newly sourced image, no such job is queued for an existing trail, and 23 of 163 trails with an incomplete image record waited for ever on a decision nothing could make. Such a trail publishes with no image fields, keeps whatever it already shows, and its badge counts one check fewer rather than claiming a photograph it has not got');
+
   // Work that costs nothing is not ordered by a rule about money.
   //
   // The risk is the circle it closed: a trail with no published source ranks
