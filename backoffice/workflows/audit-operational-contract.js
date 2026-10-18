@@ -405,6 +405,30 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&standard.includes('Compaction may drop what is bulky, not what decides'),
     'The review-queue summary keeps every field the gate decides on -- the map measurement, the relation, the measured-and-none marks, ORMA\'s own record of the walk, the conformance and the claim contracts -- and keeps the two deciding lists bounded rather than dropping them, because dropping an open question read as a trail with none; the bulky parts are still fetched through the pointer, and when that pointer cannot be followed the gate says the evidence could not be read back instead of reporting it as research nobody has done');
 
+  // Words that already exist are not bought again.
+  //
+  // The risk is a saving that reverts in silence. The worker is the only
+  // caller that hands the handoff the trail as the site has it, and without
+  // that argument every verification queues a copywriter again -- 163 model
+  // calls to rewrite descriptions that are already on the live page -- with
+  // nothing failing and nothing saying so.
+  add('an-existing-trail-keeps-its-description',
+    handoff.includes('function existingCopyFields(trail)')
+    &&handoff.includes("const RETAINED_COPY_FIELDS=Object.freeze(['name','desc','tips'])")
+    // All three or none: a record short of one of them still gets a copywriter.
+    &&handoff.includes('if(!value)return null;')
+    // Only for a trail already on the site, and only the job that is needed.
+    &&handoff.includes('options.preserveExistingAssets?existingCopyFields(options.existingTrail):null')
+    &&handoff.includes("...(item.copyPolicy==='preserve-existing'?[]:['copywriter']),")
+    // The worker is what supplies it.
+    &&worker.includes('buildVerifiedEditorialHandoff(result.verifiedDossier,result.verifiedRecord,editorialQueue,')
+    &&worker.includes('preserveExistingAssets,existingTrail}')
+    // Decided once, at the handoff, and read at publication.
+    &&staging.includes("item.copyPolicy==='preserve-existing'")
+    &&staging.includes('copyOutput?.result?.title ?? retainedCopy.name')
+    &&standard.includes('An existing trail keeps the description it already has'),
+    'A trail already on the site keeps its own name, description and practical notes instead of a copywriter being paid to write them again -- the rule its photograph has had all along -- so no model call is spent on words that are already on the live page; all three fields or none, only for a trail the site already has, and a copywriter that did run still wins. The policy is recorded where the job is queued and read where the fields are published, so the two cannot disagree');
+
   // Work that costs nothing is not ordered by a rule about money.
   //
   // The risk is the circle it closed: a trail with no published source ranks

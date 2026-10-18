@@ -498,9 +498,12 @@ async function ingestDossierReviews(store,options={}){
         const registry=registryValue||{contractVersion:'1.0.0',status:'active',verified:[],publicMutationAllowed:false,publicationAuthorized:false};
         registry.generatedAt=iso(review.submittedAt);registry.verified=[...(registry.verified||[]).filter(item=>item.candidateId!==result.verifiedRecord.candidateId),result.verifiedRecord];
         const production=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
-        const preserveExistingAssets=production.some(trail=>trail.id===result.verifiedDossier.trailId&&isCurrentSiteTrail(trail));
+        // The trail as the site has it, so the handoff can keep what it
+        // already says rather than paying to have it written again.
+        const existingTrail=production.find(trail=>trail.id===result.verifiedDossier.trailId&&isCurrentSiteTrail(trail))||null;
+        const preserveExistingAssets=Boolean(existingTrail);
         const handoff=buildVerifiedEditorialHandoff(result.verifiedDossier,result.verifiedRecord,editorialQueue,
-          {at:iso(review.submittedAt),preserveExistingAssets});
+          {at:iso(review.submittedAt),preserveExistingAssets,existingTrail});
         for(const job of handoff.jobs){const created=typeof store.putJobIfAbsent==='function'?await store.putJobIfAbsent(job):(await store.putJob(job),true);if(created)result.jobs.push(job);}
         writes.push(store.setArtifact(`verified-dossier-${result.verifiedDossier.candidateId}`,result.verifiedDossier),
           store.setArtifact(`route-proposal-${result.verifiedDossier.candidateId}`,{contractVersion:'1.0.0',candidateId:result.verifiedDossier.candidateId,geometry:result.verifiedDossier.routeGeometry,approvedAt:iso(review.submittedAt),publicMutationAllowed:false}),
