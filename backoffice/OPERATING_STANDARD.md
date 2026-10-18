@@ -787,10 +787,29 @@ These are two copies of one rule in two languages, and second copies drift. A
 test compares them for every trail in the catalogue, label and pill and both
 sentences, and checks the published pages for a seal the record has not earned.
 
-The directions themselves still reach only the app. The static page has no
-"How to follow this route" section, so a reader arriving from a search engine
-cannot see the four answers ORMA establishes. That is the next piece of this
-lane.
+## The directions reach the page, not only the app
+
+ORMA establishes four answers about following a walk — where to start, what the
+numbers are, the order they come in, and where they change — and they reached
+only the app. The crawlable page, the one a search engine indexes and a reader
+arrives on, said how far the walk was and nothing about how to walk it, while
+the answers sat in the same record the page was built from.
+
+**The page carries the same card now**, under the same heading, with the same
+labels and the same sentences, and the same waymark shields in the same order
+from the same module. It is the same card in a second renderer, and two
+renderers of one card is how a page and an app come to say different things
+about the same walk, so a test compares them for every trail that has guidance.
+
+Three sentences or none. Half a set of directions is worse than none, because
+the reader cannot tell which part is missing.
+
+**The signage caveat is printed.** The `status` sentence says whether ORMA
+confirmed how the numbers appear on local signs — the sentence a reader
+standing at a junction needs — and the app was dropping it, so the card stated
+a number sequence as though the signage were settled. Both print it when the
+record carries one; the five walks published before the pipeline wrote that
+field have none.
 
 ## Free work goes first
 

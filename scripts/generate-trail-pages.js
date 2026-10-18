@@ -24,6 +24,9 @@ const photoProvenance = require('../trail-photo-provenance.js');
 const { loadProductionTrails } = require('./load-production-trails');
 const { buildCanonicalCatalog } = require('./trail-adapter');
 const { loadSlugOverrides, allRetiredSlugs, validateSlugOverrides } = require('./trail-slug-overrides');
+// The same module the app reads its trail numbers from, so a page and a card
+// show the same numbers in the same order for the same walk.
+const routeRefs = require('../trail-route-refs.js');
 
 const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'trails');
@@ -224,6 +227,55 @@ function categoryVerified(t, category) {
 
 function formatReviewDate(value) {
   return evidenceContract.dateText(value);
+}
+
+/**
+ * The directions, on the page a search engine can read.
+ *
+ * ORMA establishes four answers about following a walk -- where to start, what
+ * the numbers are, the order they come in, and where they change -- and they
+ * reached only the app. A reader arriving from a search engine got a page that
+ * said how far the walk was and nothing about how to walk it, while the answers
+ * sat in the same record the page was built from.
+ *
+ * The title, the labels and the sentences are the app's, from
+ * trail-blueprint.js, because this is the same card in a second renderer and
+ * two renderers of one card is how a page and an app come to say different
+ * things about the same walk. A test compares them for every trail that has
+ * guidance.
+ *
+ * `status` is printed when the record carries one. The five walks published
+ * before the pipeline wrote that field have none, and it is the sentence saying
+ * whether ORMA confirmed how the numbers appear on local signs -- what a reader
+ * standing at a junction needs, and not a thing to drop in silence.
+ */
+function directionsSection(t) {
+  const guidance = t && t.routeNumberGuidance && typeof t.routeNumberGuidance === 'object'
+    ? t.routeNumberGuidance : null;
+  if (!guidance) return '';
+  const [start, sequence, switches] = ['start', 'sequence', 'switches']
+    .map(field => String(guidance[field] || '').trim());
+  // All three or none: half a set of directions is worse than none, because the
+  // reader cannot tell which part is missing.
+  if (!start || !sequence || !switches) return '';
+  const landmarkLed = guidance.mode === 'landmarks';
+  const status = String(guidance.status || '').trim();
+  const numbers = routeRefs.forTrail(t);
+  const shields = numbers.length
+    ? `<div class="sp-route-refs" aria-label="Trail numbers in order">${numbers.map((ref, index) =>
+      `${index ? '<span class="sp-route-ref-arrow" aria-hidden="true">\u2192</span>' : ''}`
+      + `<span class="sp-route-ref">${escapeHtml(ref)}</span>`).join('')}</div>`
+    : '';
+  const lines = [
+    ['Start', start],
+    ...(status ? [['Trail numbers', status]] : []),
+    [landmarkLed ? 'Route' : 'Trail numbers and route', sequence],
+    [landmarkLed ? 'Key turns' : 'Where to switch', switches],
+  ];
+  return `<h2>How to follow this route</h2>
+    ${shields}
+    ${lines.map(([label, text]) =>
+    `<p><b>${escapeHtml(label)}:</b> ${escapeHtml(text)}</p>`).join('\n    ')}`;
 }
 
 // Valley hub guides (add here as new area guides are published)
@@ -530,6 +582,7 @@ function trailPage(t, slug, all) {
   };
 
   const glanceHtml = !verified ? atAGlance(t) : '';
+  const directionsHtml = directionsSection(t);
   const routeHtml = routeSvg(t);
   const elevHtml = elevSvg(t);
   const nearbyHtml = nearbySection(t, slug, all);
@@ -571,6 +624,11 @@ function trailPage(t, slug, all) {
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  /* The waymark shield, as the app draws it in trail.html: a number a reader
+     can match against the paint on a rock without reading a sentence first. */
+  .sp-route-refs{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 4px;}
+  .sp-route-ref{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;box-sizing:border-box;padding:5px 10px;border:3px solid #B54835;border-radius:8px;background:#fff;color:#202821;font:800 15px/1 'Inter',sans-serif;box-shadow:0 1px 2px rgba(32,40,33,.08);}
+  .sp-route-ref-arrow{color:#657369;font-size:17px;font-weight:800;}
   /* The photo is lazy-loaded and the credit toggle is pinned to the figure's
      corner, so the figure reserves its height up front; otherwise the toggle
      floats over whatever sits above until the image arrives. */
@@ -643,6 +701,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     ${glanceHtml}
     ${elevHtml}
     ${startHtml}
+    ${directionsHtml}
     ${waterHtml}
     ${rifugiHtml}
     ${tipsHtml}
@@ -929,4 +988,4 @@ function main() {
 
 if(require.main === module) main();
 
-module.exports = { TIER_BADGE, badgeForTrail, displayStartLabel, displayWaterLabel, photoHtml, photoCreditHtml, publicAssetUrl, trailPageAssetUrl, trailPage };
+module.exports = { TIER_BADGE, badgeForTrail, directionsSection, displayStartLabel, displayWaterLabel, photoHtml, photoCreditHtml, publicAssetUrl, trailPageAssetUrl, trailPage };

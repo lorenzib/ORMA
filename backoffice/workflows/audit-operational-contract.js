@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -45,6 +45,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/materialize-approved-publications.js'),
     read(root,'scripts/generate-trail-pages.js'),
     read(root,'trail-trust.js'),
+    read(root,'trail-blueprint.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -355,6 +356,30 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&appTrust.includes("/^Start here\\s*[,.:;\u2014\u2013-]*\\s*/i")
     &&standard.includes('One badge rule for the page and the app'),
     'The crawlable page and the app derive the badge from one rule -- the evidence contract tier -- so the seal appears in both places or neither, and a reviewed trail is called reviewed rather than imported; the water and access caveats rest on whether that category was researched rather than on whether the listing is curated, and the machine wording and "Start here" prefix are stripped before either sentence is built');
+
+  // What ORMA establishes has to reach the reader who arrives from a search.
+  //
+  // The risk is work that is done and never seen. The four directions are the
+  // whole output of verification, and they rendered only in the app: the
+  // crawlable page said how far the walk was and nothing about how to walk it,
+  // from the same record. And the signage caveat was dropped in the app, so a
+  // card stated a number sequence as though the signs were confirmed.
+  add('the-directions-reach-the-page',
+    pageGenerator.includes('function directionsSection(t)')
+    &&pageGenerator.includes('<h2>How to follow this route</h2>')
+    // Three sentences or none: half a set is worse than none.
+    &&pageGenerator.includes('if (!start || !sequence || !switches) return \'\';')
+    // The same numbers the app shows, from the same module.
+    &&pageGenerator.includes("require('../trail-route-refs.js')")
+    &&blueprint.includes('window.DoloPawsTrailRouteRefs')
+    // The same labels, chosen on the same condition.
+    &&pageGenerator.includes("guidance.mode === 'landmarks'")
+    &&blueprint.includes("verifiedRouteGuidance.mode === 'landmarks'")
+    // And the signage caveat printed by both, when there is one.
+    &&pageGenerator.includes("String(guidance.status || '').trim()")
+    &&blueprint.includes("String(verifiedRouteGuidance.status || '').trim()")
+    &&standard.includes('The directions reach the page, not only the app'),
+    'The four directions a verification establishes render on the crawlable page as well as in the app, under one heading with one set of labels, the same waymark numbers from the same module, and three sentences or none; both print the signage caveat when the record carries one, which the app had been dropping so that a card stated a number sequence as though the signs were confirmed');
 
   // Work that costs nothing is not ordered by a rule about money.
   //
