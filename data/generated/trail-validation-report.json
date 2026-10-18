@@ -11,8 +11,8 @@
   "totals": {
     "sourceRecords": 163,
     "canonicalRecords": 163,
-    "published": 160,
-    "draft": 3,
+    "published": 159,
+    "draft": 4,
     "errors": 0
   },
   "byOrigin": {
@@ -23,8 +23,8 @@
     },
     "osm": {
       "total": 138,
-      "published": 135,
-      "draft": 3
+      "published": 134,
+      "draft": 4
     }
   },
   "excludedFromGeneration": [
@@ -32,7 +32,7 @@
       "id": "osm-3885162",
       "slug": "seeweg-val-d-ultimo",
       "reasons": [
-        "geometry jump 3.42 km before point 2"
+        "geometry jump 3.12 km before point 111"
       ]
     },
     {
@@ -47,6 +47,13 @@
       "slug": "au-pied-du-roc-d-enfer",
       "reasons": [
         "geometry jump 1.60 km before point 13"
+      ]
+    },
+    {
+      "id": "osm-14379937",
+      "slug": "albannette-petite-boucle",
+      "reasons": [
+        "geometry jump 1.06 km before point 12"
       ]
     }
   ],
