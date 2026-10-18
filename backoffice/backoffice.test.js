@@ -983,6 +983,9 @@ describe('ORMA backoffice MVP', () => {
     expect(routeNumberGuidance({lockedFacts,evidenceSources:[source]})).toEqual({
       mode:'numbered',start:'Start at Rifugio Auronzo.',status:'Numbered route.',
       sequence:'Start on 101, then follow 105.',switches:'At km 5.3, switch from 101 to 105.',
+      // No `derivedFrom` is a specialist's own answer, cited to a publisher.
+      establishedBy:{start:'agent-evidence',status:'agent-evidence',
+        sequence:'agent-evidence',switches:'agent-evidence'},
       sources:[{label:source.label,url:source.url,authority:source.authority,accessedAt:source.accessedAt}],
     });
   });

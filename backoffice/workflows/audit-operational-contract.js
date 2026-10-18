@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -41,6 +41,10 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/verified-editorial-handoff.js'),
     read(root,'backoffice/workflows/build-publication-staging.js'),
     read(root,'backoffice/workflows/run-trail-specialist.js'),
+    read(root,'scripts/verified-trail-overrides.js'),
+    read(root,'backoffice/workflows/materialize-approved-publications.js'),
+    read(root,'scripts/generate-trail-pages.js'),
+    read(root,'trail-trust.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -308,10 +312,49 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&staging.includes("ormaVerified: graduation.status==='verified'")
     &&staging.includes('verified:{ categories:SAFETY_CHECKS.filter(check=>researched.includes(check))')
     &&!staging.includes("categories:['water','heat','exposure','livestock','surfaceHazards','access']")
-    // And a trail short of the seal is held rather than published.
-    &&staging.includes('safety-categories-not-researched')
+    // And a trail short of the seal publishes as reviewed, through its own door,
+    // rather than being held: the override contract takes it, it has to declare
+    // what it is short of, and the seal cannot come through that door.
+    &&!staging.includes('safety-categories-not-researched')
+    &&overrides.includes("entry.verificationScope === 'routeReviewed'")
+    &&overrides.includes('entry.fields.ormaVerified === false')
+    &&overrides.includes("graduation.status === 'in-progress'")
+    &&overrides.includes('graduation.completed.length < graduation.required.length')
+    &&overrides.includes('&& !entry.verificationScope')
+    &&materialize.includes("...(fullSeal?{}:{verificationScope:'routeReviewed'}),")
+    &&materialize.includes('would remove the ORMA Verified seal it already carries')
     &&standard.includes('A badge claims only what a specialist was asked'),
-    'A dossier records which of the six safety categories a specialist was asked about -- any finding counts, since looking and failing to settle it is a real check, and the geometry survey is not a specialist -- and publication derives the badge from that mark instead of asserting all six: the earned seal needs all eleven, a trail short of it shows as reviewed and is held at the mapping gate rather than published, and it upgrades by itself as research lands');
+    'A dossier records which of the six safety categories a specialist was asked about -- any finding counts, since looking and failing to settle it is a real check, and the geometry survey is not a specialist -- and publication derives the badge from that mark instead of asserting all six: the earned seal needs all eleven, a trail short of it publishes as reviewed through a scope that must state what it is short of and cannot carry the seal, no publication may take a seal away, and it upgrades by itself as research lands');
+
+  // One badge rule, for the page and for the app.
+  //
+  // The risk is two renderers answering the same question differently. The page
+  // granted the seal on six reviewed categories and the app, since #616, on the
+  // eleven-check graduation: 22 live pages showed a green Verified seal for a
+  // trail every card called Reviewed. With publication open it ran the other way
+  // too, a trail published as reviewed reading "Imported trail" on its own page.
+  // The same held for the caveats, which keyed off curation rather than off the
+  // category review -- so mapped water would have been titled as reviewed water
+  // on a trail whose water nobody researched.
+  add('one-badge-rule-for-the-page-and-the-app',
+    pageGenerator.includes('function badgeForTrail(t)')
+    &&pageGenerator.includes('evidenceContract.tierOf(t)')
+    // Three labels, including the middle one the page did not have.
+    &&pageGenerator.includes("reviewed: { label: 'Reviewed by ORMA', style: 'neutral', icon: null }")
+    &&!pageGenerator.includes("const reviewLabel = fullyReviewed ? 'Verified by ORMA' : 'Imported trail';")
+    // The footer says the same as the badge.
+    &&pageGenerator.includes('${badgeTier.label} on ${escapeHtml(formatReviewDate(reviewDate))}')
+    // The caveats rest on the category review, in both copies.
+    &&pageGenerator.includes("categoryVerified(t, 'water')")
+    &&pageGenerator.includes("categoryVerified(t, 'access')")
+    &&appTrust.includes("categoryVerified(trail, 'water')")
+    &&appTrust.includes("categoryVerified(trail, 'access')")
+    // And the prefix class that strips "Start here:" lists the colon, which it
+    // did not, so seven pages read "Suggested start, Start here: parking".
+    &&pageGenerator.includes("/^Start here\\s*[,.:;\u2014\u2013-]*\\s*/i")
+    &&appTrust.includes("/^Start here\\s*[,.:;\u2014\u2013-]*\\s*/i")
+    &&standard.includes('One badge rule for the page and the app'),
+    'The crawlable page and the app derive the badge from one rule -- the evidence contract tier -- so the seal appears in both places or neither, and a reviewed trail is called reviewed rather than imported; the water and access caveats rest on whether that category was researched rather than on whether the listing is curated, and the machine wording and "Start here" prefix are stripped before either sentence is built');
 
   // Work that costs nothing is not ordered by a rule about money.
   //

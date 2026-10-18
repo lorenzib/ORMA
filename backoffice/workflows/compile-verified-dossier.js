@@ -145,6 +145,31 @@ const ROUTE_GUIDANCE_CLAIM_IDS=Object.freeze(['recommended-start',...OFFICIAL_RO
 const ROUTE_GUIDANCE_CONTRACT=`rg-${createHash('sha256')
   .update([...ROUTE_GUIDANCE_CLAIM_IDS].sort().join(',')).digest('hex').slice(0,8)}`;
 
+/**
+ * The recorded answer for each route claim, whichever rung established it.
+ *
+ * A dossier records an agent's answer under its agent and a measurement under
+ * its rung -- `logistics-recommended-start`, `map-route-number-sequence`,
+ * `orma-recommended-start` -- because naming a measurement after an agent that
+ * did not make it would be a lie about who established the walk.
+ *
+ * Everything downstream looked these up as `logistics-<claim>`, so a walk the
+ * map and the record answered looked like a walk with no directions at the
+ * handoff and again at publication. One lookup now serves both, keyed on the
+ * claim rather than on who answered it, so the two cannot drift.
+ *
+ * An agent's answer wins where there is one, as it does everywhere else.
+ */
+function routeGuidanceByClaim(claims){
+  const found=new Map();
+  for(const claim of claims||[]){
+    const key=claim?.claimId||String(claim?.id||'').replace(/^[a-zA-Z]+-/,'');
+    if(!VERIFICATION_ROUTE_CLAIMS.includes(key))continue;
+    if(!found.has(key)||claim.agentId)found.set(key,claim);
+  }
+  return found;
+}
+
 function logisticsOutput(outputs){return (outputs||[]).find(output=>output.agentId==='logistics');}
 
 /** The routes an approved composite is made of, empty for a single relation. */
@@ -687,6 +712,35 @@ function compileVerifiedDossier(review,trail,options={}){
       // the reader with "unknown" for something the agent actually established.
       variesWith:claim.variesWith||null});}
   }
+  // The four directions, written down with the rung that answered them.
+  //
+  // They were computed at every gate and recorded nowhere. A trail answered by
+  // an agent kept its claim, because the agent's claim *is* the answer; a trail
+  // answered by the map or by ORMA's own record kept nothing at all -- so its
+  // dossier held a line and an identity and not one word about how to walk it,
+  // and publication, which reads the dossier, had nothing to publish.
+  //
+  // Recorded under the rung that answered, never under an agent that did not.
+  // "map-route-number-sequence" says a measurement established it;
+  // "orma-recommended-start" says ORMA did. Calling either one a logistics
+  // claim would make the dossier lie about who established the walk.
+  const RUNG_PREFIX={'route-relations':'map','orma-record':'orma'};
+  for(const claimId of VERIFICATION_ROUTE_CLAIMS){
+    const answer=supportedRouteGuidance(review,claimId,options.trail?{trail:options.trail}:{});
+    if(!answer)continue;
+    // An agent's own claim is already in `claims` above, under its agent.
+    const found=answer.claim||answer;
+    const prefix=RUNG_PREFIX[found.derivedFrom];
+    if(!prefix)continue;
+    const value=String(found.proposedValue||'').trim();
+    if(!value)continue;
+    claims.push({id:`${prefix}-${claimId}`,label:`route: ${claimId}`,state:'supported',
+      proposedValue:value,
+      sourceIds:(found.sources||[]).map(addSource).filter(Boolean),
+      claimId,agentId:null,derivedFrom:found.derivedFrom,
+      humanAcceptedFinding:'supported-proposal',
+      entityName:null,rule:null,observedAt:null,location:null,variesWith:null});
+  }
   const dossier={contractVersion:'1.0.0',candidateId:trail.candidateId,trailId:trail.trailId,trailName:trail.trailName,
     reviewState:'accepted',sources:[...sourceMap.values()],claims,routeGeometry:geometry,
     ormaVerification:{status:'verified',verifiedAt:at,verifiedBy:options.verifiedBy||'orma-evidence-policy-v1',reviewId:review.reviewId,
@@ -713,4 +767,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={SAFETY_CATEGORIES,researchedSafetyCategories,answerStandingFor,trailRecordFor,citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,establishedRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={routeGuidanceByClaim,SAFETY_CATEGORIES,researchedSafetyCategories,answerStandingFor,trailRecordFor,citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,establishedRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
