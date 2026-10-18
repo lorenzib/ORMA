@@ -859,6 +859,53 @@ a number sequence as though the signage were settled. Both print it when the
 record carries one; the five walks published before the pipeline wrote that
 field have none.
 
+## An existing trail keeps the description it already has
+
+A trail already on the site keeps its photograph. `preserve-existing` has said
+so for a long time: no new image is sourced, no new licence is checked, the one
+already credited on the page is carried forward.
+
+Its words had no such rule. Every verification queued a copywriter, so
+**establishing a walk's directions cost a model call to rewrite a description
+that already existed, was already approved, and is on the live page as you read
+this.** All 163 catalogue trails have a name, a description and practical
+notes. Across the catalogue that is 163 model calls to produce what is already
+there.
+
+The description is not what a verification establishes. The directions are, and
+since they have their own section on the page they are not in the description
+at all. So an existing trail's copy is **carried unchanged**, and the item says
+`copyPolicy: 'preserve-existing'` rather than claiming the words were newly
+written or newly reviewed.
+
+Three conditions, each of them a line that must not be crossed:
+
+- **All three fields or none.** A record missing a name, a description or its
+  practical notes cannot supply the copy, and that trail gets a copywriter as
+  before. Not having the copy and not asking for it must not look the same.
+- **Only a trail already on the site.** A new trail has nothing to keep, and
+  the asset policy already draws that same line.
+- **A copywriter that did run still wins.** This is about not paying for words
+  nobody needed, not about refusing words somebody wrote.
+
+No human gate is lost. The `editorial-evidence-policy` gate checks that new
+copy matches the locked facts, keeps its caveats and sounds like ORMA — and
+where no copy is written there is nothing for it to check, so the gate is not
+raised. For a trail on the site that gate was in any case being approved
+automatically by policy, so what this removes is a model call and the rubber
+stamp on its output, not a judgement anybody was making. The publication itself
+still goes through `automated-existing-trail-publication-policy`, unchanged.
+
+The decision is recorded where the job is queued and read where the fields are
+published, rather than worked out twice, so the copywriter that ran and the
+description that reaches the page cannot disagree about which is which.
+
+**With this, the whole lane runs on no model calls at all** for a trail already
+in the catalogue: a free survey establishes the directions, the gate answers
+from the map and from ORMA's own record, the photograph and the words are the
+ones already there, and what reaches the page is the directions and a badge
+that says reviewed.
+
 ## Free work goes first
 
 A pass orders its queue so the trails that can actually be verified are

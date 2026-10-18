@@ -2,6 +2,7 @@
 
 const {CLAIM_ENTITY_TYPE}=require('./compile-operational-facts');
 const {routeGuidanceByClaim}=require('./compile-verified-dossier');
+const {existingCopyFields}=require('./verified-editorial-handoff');
 
 const TARGETS = Object.freeze({
   'osm-relation-1484751': { trailId: 'tre-cime', operation: 'update-existing', routeRef: 'backoffice-data/route-proposals/tre-cime-classic.geojson' },
@@ -238,9 +239,15 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
     const visualJobId = `verified-${item.candidateId}-visual`;
     const copyDecision = decisions.get(copyJobId) || null;
     const visualDecision = decisions.get(visualJobId) || null;
-    const copyApproved = copyDecision?.action === 'approve';
     const existingTrail=target?trailsById.get(target.trailId):null;
     const retainedImage=item.assetPolicy==='preserve-existing'?existingImageFields(existingTrail):null;
+    // The description the trail already has, carried the way its photograph
+    // already is. Decided at the handoff, where the copywriter job is or is
+    // not queued, and read here -- not worked out a second time, or the job
+    // that was queued and the fields that get published could disagree.
+    const retainedCopy=item.copyPolicy==='preserve-existing'
+      ?(item.retainedCopy||existingCopyFields(existingTrail)):null;
+    const copyApproved = retainedCopy?true:copyDecision?.action === 'approve';
     const visualApproved = item.assetPolicy==='preserve-existing'?Boolean(retainedImage):visualDecision?.action === 'approve';
     const missingApprovals = [!copyApproved && 'editorial-approval', !visualApproved && 'asset-and-licensing-approval'].filter(Boolean);
     const copyOutput = outputs.get(copyJobId);
@@ -277,9 +284,9 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
       proposedOperationalClaims: operationalClaims(item),
       sourceApprovals: { copy: copyDecision, visual: visualDecision },
       proposedWebsiteFields: state!=='ready-for-publication-preview' ? null : {
-        name: copyOutput.result.title,
-        desc: `${about}\n\n${dog}`,
-        tips: practical,
+        name: copyOutput?.result?.title ?? retainedCopy.name,
+        desc: copyOutput ? `${about}\n\n${dog}` : retainedCopy.desc,
+        tips: copyOutput ? practical : retainedCopy.tips,
         routeRef: target.routeRef,
         ...(retainedImage||{
           imageIcon: hero.assetUrl,

@@ -22,6 +22,9 @@ function assertVerifiedDossier(dossier){
 
 function editorialItem(dossier,record,at,options={}){
   assertVerifiedDossier(dossier);
+  // Only for a trail already on the site. A new trail has no description to
+  // keep, and the asset policy already draws that same line.
+  const retainedCopy=options.preserveExistingAssets?existingCopyFields(options.existingTrail):null;
   const requiredStartFact=routeGuidanceByClaim(dossier.claims).get('recommended-start');
   return {
     candidateId:dossier.candidateId,trailName:dossier.trailName,targetTrailId:dossier.trailId,
@@ -59,8 +62,14 @@ function editorialItem(dossier,record,at,options={}){
       requiredChecks:['direct preview','source page','creator','licence','licence URL','credit','location-safe alt text'],
       prohibited:['infer trail conditions from a photograph','mark an incompletely licensed asset ready']},
     assetPolicy:options.preserveExistingAssets?'preserve-existing':'source-new-asset',
+    // What the description will be: the one the trail already has, or one
+    // somebody is paid to write. Stated on the item rather than worked out
+    // again downstream, so the job that is queued and the fields that are
+    // published cannot disagree about which it is.
+    copyPolicy:retainedCopy?'preserve-existing':'draft-new',
+    ...(retainedCopy?{retainedCopy}:{}),
     gates:[
-      {id:'editorial-evidence-policy',status:'pending',checks:['copy matches locked facts','mandatory caveats remain prominent','tone matches ORMA']},
+      ...(retainedCopy?[]:[{id:'editorial-evidence-policy',status:'pending',checks:['copy matches locked facts','mandatory caveats remain prominent','tone matches ORMA']}]),
       ...(options.preserveExistingAssets?[]:[{id:'asset-and-licensing-approval',status:'pending',checks:['preview and source verified','creator, credit and licence verified','alt text approved','image is not condition evidence']}]),
       {id:'publication-quality-gate',status:'locked',checks:['content policy passed','website field mapping complete','repository quality gate passes']},
     ],
@@ -68,8 +77,44 @@ function editorialItem(dossier,record,at,options={}){
   };
 }
 
+/**
+ * The copy a trail in the catalogue already has.
+ *
+ * The parallel to `existingImageFields`, which has long said that a trail
+ * already on the site keeps its photograph rather than having a new one
+ * sourced and licensed. Its description had no such rule: every verification
+ * queued a copywriter to write one, so establishing a walk's directions cost a
+ * model call to rewrite a description that already existed, was already
+ * approved, and is on the live page as you read this. All 163 catalogue trails
+ * have a name, a description and practical notes.
+ *
+ * Nothing here claims the copy was newly written or newly reviewed. It is
+ * carried unchanged, and the item says so, because the thing this publication
+ * established is the walk's directions -- which have their own section on the
+ * page and are not in the description at all.
+ *
+ * All three or nothing. A record missing any of them cannot supply the copy,
+ * and that trail gets a copywriter as before: not having the copy and not
+ * asking for it must not look the same.
+ */
+const RETAINED_COPY_FIELDS=Object.freeze(['name','desc','tips']);
+
+function existingCopyFields(trail){
+  if(!trail)return null;
+  const copy={};
+  for(const field of RETAINED_COPY_FIELDS){
+    const value=String(trail[field]||'').trim();
+    if(!value)return null;
+    copy[field]=trail[field];
+  }
+  return copy;
+}
+
 function editorialJobs(item,at){
-  const agents=item.assetPolicy==='preserve-existing'?['copywriter']:['copywriter','visualDirector'];
+  const agents=[
+    ...(item.copyPolicy==='preserve-existing'?[]:['copywriter']),
+    ...(item.assetPolicy==='preserve-existing'?[]:['visualDirector']),
+  ];
   return agents.map(agentId=>{
     const suffix=agentId==='copywriter'?'copy':'visual';
     const jobId=`verified-${item.candidateId}-${suffix}`;const verificationKey=String(item.verifiedAt||at).replace(/[:.]/g,'-');
@@ -89,10 +134,12 @@ function buildVerifiedEditorialHandoff(dossier,record,existingQueue,options={}){
   const queue={contractVersion:'1.0.0',generatedAt:at,mode:'draft-only',stage:'verified-trail-editorial-readiness',
     sourceRegistry:'firestore:orma-verified-registry-live',publicMutationAllowed:false,publicationAuthorized:false,
     lockedFactFields:LOCKED_FACT_FIELDS,items,jobs:[...knownJobs.values()],summary:{verifiedTrails:items.length,
-      copywriterJobs:items.length,visualDirectorJobs:items.filter(candidate=>candidate.assetPolicy!=='preserve-existing').length,
+      copywriterJobs:items.filter(candidate=>candidate.copyPolicy!=='preserve-existing').length,
+      retainedCopy:items.filter(candidate=>candidate.copyPolicy==='preserve-existing').length,
+      visualDirectorJobs:items.filter(candidate=>candidate.assetPolicy!=='preserve-existing').length,
       automatedPolicyGatesPending:items.filter(candidate=>candidate.assetPolicy==='preserve-existing').length,
       humanGatesPending:items.filter(candidate=>candidate.assetPolicy!=='preserve-existing').length*2,publicationGatesLocked:items.length}};
   return {item,jobs,queue};
 }
 
-module.exports={assertVerifiedDossier,editorialItem,editorialJobs,buildVerifiedEditorialHandoff};
+module.exports={RETAINED_COPY_FIELDS,existingCopyFields,assertVerifiedDossier,editorialItem,editorialJobs,buildVerifiedEditorialHandoff};
