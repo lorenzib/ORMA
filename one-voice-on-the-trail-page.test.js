@@ -57,8 +57,24 @@ describe('the card speaks to a walker, not about the pipeline',()=>{
     expect(strip('Starting meadow')).toBe('Starting meadow');
   });
 
-  test('and it matches the rule trail-trust already used for the same prefix',()=>{
-    expect(read('trail-trust.js')).toMatch(/\^Start here\\s\*\[,—-\]/);
+  // This pinned trail-trust's spelling of the rule -- `[,—-]`, which did not
+  // list the colon -- as the thing the blueprint had to match. trail-trust was
+  // the one that was wrong: every start label in the catalogue writes
+  // "Start here: parking du lac", so seven pages read "Suggested start, Start
+  // here: parking du lac". Asserting a spelling protected the narrower rule.
+  // Both are asserted by behaviour now, against the same inputs.
+  test('and every copy of the rule strips the same prefixes',()=>{
+    const sources=['trail-trust.js','scripts/generate-trail-pages.js','trail-blueprint.js'];
+    const cases=['Start here, Lift station Vinouve','Start here: Rifugio Auronzo',
+      'Start here — Passo Giau','Start here Prato Piazza','Starting meadow'];
+    for(const file of sources){
+      const rule=read(file).match(/\.replace\((\/\^Start here[^/]*\/i), *''\)/);
+      expect({file,found:Boolean(rule)}).toEqual({file,found:true});
+      // eslint-disable-next-line no-new-func
+      const strip=new Function('s',`return String(s).replace(${rule[1]},'');`);
+      expect({file,stripped:cases.map(strip)}).toEqual({file,stripped:[
+        'Lift station Vinouve','Rifugio Auronzo','Passo Giau','Prato Piazza','Starting meadow']});
+    }
   });
 });
 

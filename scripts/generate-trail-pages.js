@@ -83,9 +83,29 @@ function slugify(name) {
 }
 
 function truncate(s, n) {
-  s = String(s || '').trim();
+  // One line. A published description is two paragraphs joined by a blank line,
+  // and a meta tag carrying a literal newline is a meta tag with a line break
+  // in the middle of the search snippet.
+  s = String(s || '').replace(/\s+/g, ' ').trim();
   if (s.length <= n) return s;
   return s.slice(0, n - 1).replace(/\s+\S*$/, '') + '…';
+}
+
+/**
+ * A description as paragraphs.
+ *
+ * The published copy is "About the trail" and "Why it suits dogs" joined by a
+ * blank line. Printed into one `<p>` it ran the two together with a raw newline
+ * in the middle, which a browser renders as a single space: two paragraphs of
+ * editorial copy arriving as one run-on block.
+ */
+function paragraphs(text) {
+  return String(text || '')
+    .split(/\n\s*\n+/)
+    .map(part => part.replace(/\s+/g, ' ').trim())
+    .filter(Boolean)
+    .map(part => `<p>${escapeHtml(part)}</p>`)
+    .join('\n  ');
 }
 
 function safetyClass(level) {
@@ -104,24 +124,76 @@ function displaySafetyLabel(t) {
   return safetyLabel(t.safetyLevel);
 }
 
+// These two mirror `waterPointLabel` and `startPointLabel` in trail-trust.js,
+// which the app renders with. They keyed off curation instead of off the
+// category review, and curation is not a review: a trail published with its
+// directions established and its water never researched would have had its
+// mapped points titled as reviewed water and the caveat taken off, and its
+// start point printed with the raw "(OSM-verified access point)" wording and
+// no "check current access" line. A test asserts the two agree for every trail
+// in the catalogue, because this is a second copy and second copies drift.
+const trailImported = t => !!t && t.curated === false;
+
+const plainStartLabel = label => String(label || 'route start')
+  .replace(/^Start here\s*[,.:;—–-]*\s*/i, '')
+  .replace(/^Route start per OpenStreetMap\s*[,.:;—–-]*\s*/i, '')
+  .replace(/\s*\(OSM-verified access point\)/gi, '')
+  .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
+
 function displayWaterLabel(t, label) {
-  if (t.curated !== false) return label;
-  return String(label || 'Water point')
+  const base = String(label || 'Water point')
     .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
     .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
+  if (!categoryVerified(t, 'water')) return `${base}, availability can change`;
+  return trailImported(t) ? base : label;
 }
 
 function displayStartLabel(t, label) {
-  if (t.curated !== false) return label;
-  const cleaned = String(label || 'Route start')
-    .replace(/^Start here\s*[,—-]\s*/i, '')
-    .replace(/^Route start per OpenStreetMap\s*[,—-]\s*/i, '')
-    .replace(/\s*\(OSM-verified access point\)/gi, '')
-    .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
-  return `Mapped start suggestion, ${cleaned}. Check current access before travelling.`;
+  if (!categoryVerified(t, 'access') && !trailImported(t)) {
+    return `Suggested start, ${plainStartLabel(label)}. Check current access before travelling.`;
+  }
+  if (!trailImported(t)) return label;
+  return `Mapped start suggestion, ${plainStartLabel(label)}. Check current access before travelling.`;
 }
 
 const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France' };
+
+/**
+ * One rule for the badge, shared with the app.
+ *
+ * This file had its own: "Verified by ORMA" once six categories were reviewed,
+ * "Imported trail" otherwise, and no label in between. The app's rule has, since
+ * #616, granted the seal only on the full eleven-check graduation. Measured
+ * across the catalogue on 18 October 2026, the two disagreed about 22 live
+ * pages: each showed a green Verified seal for a trail the app called Reviewed.
+ * With the publication lane open the disagreement also ran the other way -- a
+ * trail just published would read "Imported trail" on its own page.
+ *
+ * `evidenceContract.tierOf` is the rule both read now, and these are the words
+ * trail-trust.js prints, so a card and a page say the same thing about the same
+ * trail. A reviewed trail takes the muted pill and no icon, as it does in the
+ * app, because the green tick is the seal.
+ */
+const TIER_BADGE = Object.freeze({
+  verified: { label: 'Verified by ORMA', style: 'verified', icon: 'verified' },
+  reviewed: { label: 'Reviewed by ORMA', style: 'neutral', icon: null },
+  imported: { label: 'Imported trail', style: 'imported', icon: 'imported' },
+});
+
+/**
+ * The badge for a trail, by the same route trail-trust.js takes.
+ *
+ * `mapped` means "route reviewed", which reads as Reviewed by ORMA on a curated
+ * listing and as an imported trail on one nobody has prepared -- two trails in
+ * the catalogue are in that state, an uncurated record carrying a route audit,
+ * and a table keyed on the contract tier alone called them reviewed.
+ */
+function badgeForTrail(t) {
+  const tier = evidenceContract.tierOf(t);
+  if (tier === 'field-verified' || tier === 'route-audited') return TIER_BADGE.verified;
+  if (tier === 'mapped' && t && t.curated !== false) return TIER_BADGE.reviewed;
+  return TIER_BADGE.imported;
+}
 const REVIEW_CATEGORIES = ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'];
 const GRADUATION_CATEGORIES = ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', ...REVIEW_CATEGORIES];
 
@@ -346,17 +418,16 @@ function trailPage(t, slug, all) {
   const canonical = `${BASE_URL}/trails/${slug}.html`;
   const regionLabel = REGION_LABEL[t.region] || 'Dolomites, Italy';
   const verified = t.curated !== false; // curated file entries have no `curated` flag
-  const graduation = graduationProgress(t);
-  const progress = reviewProgress(t);
-  const fullyReviewed = graduation
-    ? graduation.verified
-    : progress
-      ? progress.length === REVIEW_CATEGORIES.length
-      : verified;
-  const reviewLabel = fullyReviewed ? 'Verified by ORMA' : 'Imported trail';
-  const reviewStyle = fullyReviewed ? 'verified' : 'imported';
+  const badgeTier = badgeForTrail(t);
+  // Whether anybody checked the water, not whether the listing is curated.
+  // Curation was standing in for it, so a published trail whose water nobody
+  // researched would have had its mapped points titled "Water on trail" with
+  // the "availability can change" line removed.
+  const waterReviewed = categoryVerified(t, 'water');
   const openChairlift = !!(t.liftAccess && t.liftAccess.dependency === 'required' && ['chairlift', 'mixed', 'unknown'].includes(t.liftAccess.type));
-  const badge = `<span class="dp-badge dp-badge--${reviewStyle}"><span data-dp-icon="${reviewStyle}" data-dp-icon-size="13" aria-hidden="true"></span><span>${reviewLabel}</span></span>`;
+  const badge = `<span class="dp-badge dp-badge--${badgeTier.style}">${badgeTier.icon
+    ? `<span data-dp-icon="${badgeTier.icon}" data-dp-icon-size="13" aria-hidden="true"></span>`
+    : ''}<span>${badgeTier.label}</span></span>`;
 
   const ogImage = t.imageIcon ? publicAssetUrl(t.imageIcon) : `${BASE_URL}/icon-512.png`;
 
@@ -388,10 +459,10 @@ function trailPage(t, slug, all) {
     ? `<h2>Bring your own water</h2><p>Do not rely on potential water locations being available or drinkable. Carry enough for the full walk.</p>`
     :
     Array.isArray(t.waterSources) && t.waterSources.length
-      ? `<h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"></path></svg> ${verified ? 'Water on trail' : 'Potential water points'}</h2>
+      ? `<h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"></path></svg> ${waterReviewed ? 'Water on trail' : 'Potential water points'}</h2>
     <ul>${t.waterSources
           .map((w) => `<li>km ${escapeHtml(w.km)} · ${escapeHtml(displayWaterLabel(t, w.label))}</li>`)
-          .join('')}</ul>${verified ? '' : '<p class="sp-src">Availability can change. Carry a full supply.</p>'}`
+          .join('')}</ul>${waterReviewed ? '' : '<p class="sp-src">Availability can change. Carry a full supply.</p>'}`
       : '';
 
   const rifugiHtml =
@@ -430,8 +501,11 @@ function trailPage(t, slug, all) {
       : '';
 
   const reviewDate = t.reviewedAt || (t.verified && t.verified.date);
-  const reviewRecord = verified && reviewDate
-    ? `<p class="sp-review-meta">Verified by ORMA on ${escapeHtml(formatReviewDate(reviewDate))}. Check current conditions before setting out.</p>`
+  // The same words as the badge. This said "Verified by ORMA on <date>" for
+  // any curated trail carrying a date, which is how a trail the app calls
+  // reviewed signed its own page as verified.
+  const reviewRecord = badgeTier.style !== 'imported' && reviewDate
+    ? `<p class="sp-review-meta">${badgeTier.label} on ${escapeHtml(formatReviewDate(reviewDate))}. Check current conditions before setting out.</p>`
     : '';
 
   const jsonLd = {
@@ -557,7 +631,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
   ${openChairlift ? `<p class="sp-lift-warning"><strong>This route depends on an open chairlift${t.liftAccess.name ? ` (${escapeHtml(t.liftAccess.name)})` : ''}.</strong> A dog that is not used to one can panic and fall, which can be fatal. ORMA recommends it only for a dog of 8 kg or under that rides calmly held on a lap, harnessed and leashed; for every other dog it is graded as not recommended.</p>` : ''}
   ${t.imageIcon ? `<figure class="sp-photo">${photoHtml(t)}${photoCreditHtml(t)}</figure>` : routeHtml}
   ${!t.imageIcon && t.imagePlaceholder ? `<p class="sp-src" style="display:flex;align-items:center;gap:8px;margin:-6px 0 14px;"><img src="../logo.svg" alt="" width="22" height="22" style="flex:none;"> We're working on adding photos of this trail.</p>` : ''}
-  <p>${escapeHtml(t.desc || '')}</p>
+  ${paragraphs(t.desc)}
 
   <div class="sp-facts">
       ${facts}
@@ -855,4 +929,4 @@ function main() {
 
 if(require.main === module) main();
 
-module.exports = { photoHtml, photoCreditHtml, publicAssetUrl, trailPageAssetUrl, trailPage };
+module.exports = { TIER_BADGE, badgeForTrail, displayStartLabel, displayWaterLabel, photoHtml, photoCreditHtml, publicAssetUrl, trailPageAssetUrl, trailPage };

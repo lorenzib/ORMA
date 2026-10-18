@@ -702,13 +702,95 @@ of the catalogue can show. It upgrades by itself: the next publication after
 research lands derives a fuller list, so nothing has to remember to promote a
 trail.
 
-**A trail short of the full seal is held, not published.** The override
-contract takes either a full verification or one of its named scopes, and the
-scope that would carry a route-only publication requires cited sources with a
-`reviewedAt` — which a trail answered by the map and ORMA's own record does not
-have. Until that scope can carry it, such a trail waits at the publication
-mapping gate and names what it is waiting for, rather than publishing a badge it
-has not earned or failing in the materializer.
+**A trail short of the full seal publishes as a reviewed one.** It was held
+instead, because the override contract had no door for it: a full verification
+carries the seal, and the scope that would carry a route-only publication
+demanded cited sources with a `reviewedAt`, which a walk answered by the map and
+by ORMA's own record does not have.
+
+Holding it bought nothing. The badge already says reviewed, no safety category
+is recorded so every caveat on the page stands, and the walk is already in the
+catalogue — what was being withheld was its directions, its copy, its start
+point and its photograph, which is the work the reader wanted.
+
+So the `routeReviewed` scope carries it, under three conditions:
+
+- it declares `ormaVerified: false`, so an unearned seal cannot reach the record
+  through this door even by accident — and the full-trail door now refuses any
+  entry that declares a scope at all, which it used to wave through;
+- it carries the graduation, stating what it completed of the eleven, so the
+  entry says what it is short of rather than being silently partial;
+- its four directions name the rung that established each one.
+
+That last condition is what the scope was missing. A walk whose start and
+sequence ORMA established from the line it recorded and published has no
+operator's page to cite and never will, so demanding a dated external source of
+every scoped publication permanently excluded exactly the walks the record rung
+exists for. What cannot be allowed is an empty source list meaning nothing in
+particular — so an entry citing nothing has to state that every answer is
+ORMA's own, and an entry whose answers rest on the map or on an agent's reading
+still has to cite them, dated by `reviewedAt` or, for an OpenStreetMap relation,
+by the relation's own timestamp.
+
+**No publication may take a seal away.** The graduation upgrades itself as
+research lands, so the only way a trail loses one is a republication from a
+thinner dossier than the one that earned it — which would quietly unverify a
+verified walk and leave nothing behind saying when or why. The materializer
+refuses it.
+
+**What still holds a publication is a missing answer**, not unpaid-for detail:
+no mapping target, no structured fields, no route guidance. And the structured
+fields are two groups, not thirteen requirements. The nine that describe the
+walk — area, distance, elevation, hours, terrain type and rank, safety level,
+water sources, start point — are required, and every catalogue record carries
+all nine bar one trail with no usable start point. The other four — `paid`,
+`shadeCoverage`, `heatRisk`, `exposure` — are safety and access attributes a
+record only has once the matching category was researched, so between 33 and 39
+trails of 163 have them. Requiring all thirteen together held 134 trails at the
+mapping gate for not having had their heat researched: the safety gate again,
+wearing a different name, one layer further down where the blocker did not say
+so. A field the record does not have is now carried as absent, which is what it
+is.
+
+## One badge rule for the page and the app
+
+The crawlable trail page and the app both answer "how well is this trail
+established?", and they answered it differently.
+
+`scripts/generate-trail-pages.js` granted **Verified by ORMA** once six safety
+categories were reviewed, and had no label between that and *Imported trail*.
+`trail-trust.js` has, since #616, granted the seal only on the full eleven-check
+graduation. Measured across the catalogue on 18 October 2026 the two disagreed
+about **22 live pages**: each showed a green Verified seal for a trail every
+card in the app called *Reviewed*. With the publication lane open the
+disagreement also ran the other way — a trail published through the reviewed
+scope read *Imported trail* on its own page.
+
+**Both now derive the badge from the evidence contract tier**, in the words
+trail-trust.js prints, so the seal appears in both places or in neither, and a
+reviewed trail is called reviewed. A reviewed trail takes the muted pill and no
+icon, because the green tick is the seal. The page's footer line says the same
+as its badge; it said "Verified by ORMA on <date>" for any curated trail
+carrying a date.
+
+The same rule holds for the caveats. The water and start-point sentences keyed
+off **curation**, and curation is not a review: a trail published with its
+directions established and its water never researched would have had its mapped
+points titled *Water on trail* with the "availability can change" line removed,
+and its start point printed with the raw "(OSM-verified access point)" wording
+and no "check current access" line. They key off the category review now. The
+prefix that strips "Start here" also lists the colon, which it did not, so a
+start point that was not reviewed printed *Suggested start, Start here: parking
+du lac* on seven pages.
+
+These are two copies of one rule in two languages, and second copies drift. A
+test compares them for every trail in the catalogue, label and pill and both
+sentences, and checks the published pages for a seal the record has not earned.
+
+The directions themselves still reach only the app. The static page has no
+"How to follow this route" section, so a reader arriving from a search engine
+cannot see the four answers ORMA establishes. That is the next piece of this
+lane.
 
 ## Free work goes first
 
