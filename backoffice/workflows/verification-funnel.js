@@ -89,7 +89,9 @@ function describeTrail(trail, jobsByTrail, nowMs){
   };
 }
 
-function buildFunnel({orchestration, jobs = [], reviewQueue, nowMs = Date.now()}){
+function buildFunnel({orchestration, jobs = [], reviewQueue,
+  editorialQueue, publicationStaging, publicationRequests, overrides,
+  nowMs = Date.now()}){
   const trails = orchestration?.trails || [];
   const jobsByTrail = new Map();
   for(const job of jobs){
@@ -98,6 +100,8 @@ function buildFunnel({orchestration, jobs = [], reviewQueue, nowMs = Date.now()}
   }
 
   const described = trails.map(trail => describeTrail(trail, jobsByTrail, nowMs));
+  const publication = [editorialQueue, publicationStaging, publicationRequests, overrides]
+    .some(Boolean) ? publicationLeg({editorialQueue, publicationStaging, publicationRequests, overrides}) : null;
   const byState = new Map(described.map(trail => [trail.state, []]));
   for(const trail of described) byState.get(trail.state).push(trail);
 
@@ -163,7 +167,120 @@ function buildFunnel({orchestration, jobs = [], reviewQueue, nowMs = Date.now()}
     // High attempt counts with no progress mean the loop is spending money
     // without converging, which reads as healthy work from every other angle.
     mostAttempts: [...described].sort((a, b) => b.attempts - a.attempts).slice(0, 8),
+    // Past the gate. Absent rather than empty when the caller passed none of
+    // the publication artifacts, because a leg reporting zero of everything
+    // and a leg nobody asked for must not read the same.
+    ...(publication ? {publication} : {}),
   };
 }
 
-module.exports = {FUNNEL, TERMINAL, REAL_GATE_STAGE, FAILURE_STAGE, attemptCount, buildFunnel, describeTrail, pendingJobs, stalled};
+/**
+ * The half of the lane the funnel could not see.
+ *
+ * `ready-for-editorial` was the last stage it knew, and for a long time that
+ * was honest: no trail had ever gone further, and everything past it was
+ * theory. It is not theory now. A verified walk goes on to an editorial queue,
+ * to publication staging, to an approved publication request, and into the
+ * override file the site is built from -- four more places a trail can stop,
+ * none of them reported.
+ *
+ * That matters most where it is quietest. A run that produces nothing reports
+ * success, and the deadlock this leg exists to surface was exactly that shape:
+ * 23 trails waiting on an approval nothing could ever give, in a state whose
+ * name reads as patience. Nothing anywhere said so, because nothing looked.
+ *
+ * Read-only, from artifacts the system already writes, so it costs nothing.
+ */
+const PUBLICATION_LEG = Object.freeze([
+  'editorial-queue', 'publication-staging', 'publication-requested', 'published',
+]);
+
+/** Everything holding this staging item, said as the item says it. */
+function publicationHolds(item) {
+  return [...(item?.missingApprovals || []), ...(item?.publicationMappingBlockers || [])];
+}
+
+/**
+ * Where each trail past the gate has got to, and what is holding it.
+ *
+ * A trail is reported at the furthest place it has reached, because that is
+ * the question being asked -- "how far did it get" -- and counting it in every
+ * artifact it still appears in would make the leg add up to more trails than
+ * exist.
+ */
+function publicationLeg({editorialQueue, publicationStaging, publicationRequests, overrides} = {}) {
+  // Only the entries this pipeline wrote. The override file also holds
+  // hand-written corrections -- a route shape somebody declared, a start point
+  // sourced by hand -- and counting those as trails the lane published
+  // overstated it by eight on the day this was written: eleven entries, three
+  // publications. The materializer stamps every entry it writes with the
+  // approval it came from, and nothing else has one.
+  const published = new Map((overrides?.trails || [])
+    .filter(entry => entry && typeof entry.id === 'string' && entry.approvalId)
+    .map(entry => [String(entry.candidateId || entry.id), entry]));
+  // Directions on a page, however they got there: the lane puts them there now,
+  // and two walks were given them by hand before it could.
+  const directionsOnThePage = (overrides?.trails || [])
+    .filter(entry => entry?.fields?.routeNumberGuidance).length;
+  const requested = new Map((publicationRequests?.requests || [])
+    .filter(request => request && request.candidateId)
+    .map(request => [String(request.candidateId), request]));
+  const staged = new Map((publicationStaging?.items || [])
+    .filter(item => item && item.candidateId)
+    .map(item => [String(item.candidateId), item]));
+
+  const where = new Map();
+  for(const item of editorialQueue?.items || []){
+    const id = String(item.candidateId);
+    where.set(id, {candidateId: id, trailName: item.trailName || id, at: 'editorial-queue',
+      holds: [
+        ...(item.copyPolicy === 'preserve-existing' ? [] : ['copy not drafted']),
+        ...(item.assetPolicy === 'preserve-existing' ? [] : ['image not sourced']),
+      ]});
+  }
+  for(const [id, item] of staged){
+    const holds = publicationHolds(item);
+    where.set(id, {candidateId: id, trailName: where.get(id)?.trailName || id,
+      at: 'publication-staging', state: item.state, holds});
+  }
+  for(const [id, request] of requested){
+    where.set(id, {candidateId: id, trailName: where.get(id)?.trailName || id,
+      at: 'publication-requested', state: request.status,
+      holds: request.status === 'publication-failed' ? [request.failure?.message || 'publication failed'] : []});
+  }
+  for(const [id, entry] of published){
+    const graduation = entry.fields?.graduation;
+    where.set(id, {candidateId: id, trailName: where.get(id)?.trailName || entry.id,
+      at: 'published', holds: [],
+      // What the page it reached actually says, which is the only claim that
+      // matters once a trail is out: the seal, or reviewed and how far along.
+      seal: entry.fields?.ormaVerified === true ? 'verified' : 'reviewed',
+      checks: graduation ? `${(graduation.completed || []).length} of ${(graduation.required || []).length}` : null,
+      directions: Boolean(entry.fields?.routeNumberGuidance)});
+  }
+
+  const rows = [...where.values()];
+  const stages = PUBLICATION_LEG.map(stage => {
+    const here = rows.filter(row => row.at === stage);
+    return {stage, trails: here.length, held: here.filter(row => row.holds.length).length};
+  });
+  const held = rows.filter(row => row.holds.length)
+    .sort((a, b) => b.holds.length - a.holds.length);
+  return {
+    stages,
+    // Published by this lane, which is the question being asked of it.
+    reachedThePage: rows.filter(row => row.at === 'published').length,
+    sealed: rows.filter(row => row.seal === 'verified').length,
+    // Every walk in the override file whose page carries directions, by any
+    // route -- a wider number than the one above, and said separately rather
+    // than folded into it.
+    directionsOnThePage,
+    // Named, not counted: a held trail needs somebody to read the reason.
+    held: held.slice(0, 20),
+    // One line per distinct reason, because twenty trails held by one cause
+    // and twenty held by twenty causes are different problems.
+    heldBy: tally(held.flatMap(row => row.holds), reason => reason),
+  };
+}
+
+module.exports = {FUNNEL, TERMINAL, PUBLICATION_LEG, REAL_GATE_STAGE, FAILURE_STAGE, attemptCount, buildFunnel, describeTrail, pendingJobs, publicationHolds, publicationLeg, stalled};
