@@ -752,6 +752,54 @@ wearing a different name, one layer further down where the blocker did not say
 so. A field the record does not have is now carried as absent, which is what it
 is.
 
+## Compaction may drop what is bulky, not what decides
+
+`dossier-review-queue` is one Firestore property with a 1,024 KB ceiling, and a
+waiting review keeps a summary of each specialist output rather than the record.
+That is a size measure. It was also deciding verdicts.
+
+Seven of the fourteen fields the gate reads off a specialist result were being
+dropped: `routeGuidance`, `relation`, `routeNumbersAbsent`,
+`routeNumbersUnmeasured`, `trailRecord`, `routeConformance` and
+`claimContracts`. So a walk whose directions the map and ORMA's own record had
+already answered was refused the moment its queue item was summarised — for
+evidence that was never research in the first place, but a measurement the
+cartographer had made and written down. Worse, a walk **measured and found to
+carry no number** and a walk **nobody could measure** read identically once the
+marks were gone, and those are the two cases the record rung exists to tell
+apart.
+
+Every one of those fields is small. `routeGuidance` is 47 bytes for an ordinary
+walk, and its segments are written without their point lists for exactly this
+reason. None of them is why the artifact once reached 960 KB; geometry and claim
+evidence are, and those are still trimmed and still fetched from the output's own
+document.
+
+**Two lists both decide and can be long**: `openQuestions` and `blockers`. An
+open question blocks a trail, so dropping it read as a trail with none — a
+verdict changed in the permissive direction, which is the worse way for a gate
+to be wrong. They are kept bounded: twelve entries, three hundred characters
+each, and a tail saying how many more are in the full output.
+
+Measured on the Tre Cime survey, the largest in the catalogue: the full output
+is 20 KB, the summary was 2.4 KB and is now 3.4 KB. That is 308 waiting reviews
+inside the ceiling instead of 442, against a catalogue of 163 trails — every
+trail could wait at the gate at once and the artifact would still be under a
+third full. A test holds that headroom, and another reads the gate's own source
+for every field it takes off a result and fails on any that is neither kept nor
+named as fetched through the pointer.
+
+**A refusal says which problem it is.** A queue item keeps a summary and a
+pointer to the full output, and `rehydrateReviewQueue` follows the pointer
+before an approval. When it cannot — no pointer, or no artifact at the name —
+the claims arrive without their sources and every one of them reports as
+unsourced, which is indistinguishable from research nobody has done and points
+at the wrong fix: send an agent out again, a model call, for evidence that may
+be sitting in an artifact under a name that moved. The output now carries why
+the detail is unreadable and the gate reports that as its own blocker. Not
+finding an answer and not being able to read the answer back are different
+problems, and they looked identical in the one place that decides a trail.
+
 ## One badge rule for the page and the app
 
 The crawlable trail page and the app both answer "how well is this trail

@@ -65,9 +65,69 @@ function simplifyCoordinates(coordinates, max = MAX_PREVIEW_POINTS) {
 }
 
 /**
- * What the desk draws from an output without being asked. Everything else is
- * behind "Show the evidence", so it can live in the output's own document and
- * be fetched when that is opened.
+ * What a summarised output keeps, beyond what the desk draws.
+ *
+ * Compaction is a size measure and it was deciding verdicts. Seven of the
+ * fourteen fields the gate reads off a specialist result were being dropped --
+ * `routeGuidance`, `relation`, `routeNumbersAbsent`, `routeNumbersUnmeasured`,
+ * `trailRecord`, `routeConformance`, `claimContracts` -- so a walk whose
+ * directions the map and ORMA's own record had answered was refused once its
+ * queue item had been summarised, for evidence that was never research in the
+ * first place but a measurement the cartographer had already made.
+ *
+ * Every one of them is small. `routeGuidance` is 47 bytes for an ordinary
+ * walk, and its segments are written without their point lists for this very
+ * reason; `routeConformance` is rounded numbers; `trailRecord` is an id, a
+ * name, a start point and a list of refs. None of them is why the artifact
+ * reached 960 KB of a 1,024 KB ceiling. Geometry and claim evidence are, and
+ * those are still trimmed and still fetched from the output's own document.
+ *
+ * The rule this encodes: compaction may drop what is bulky; it may not drop
+ * what decides. A test reads the gate's own source for every field it takes
+ * off a result and fails on any that is neither kept here nor named below.
+ *
+ * Measured on the Tre Cime survey, the largest in the catalogue: the full
+ * output is 20 KB, the summary was 2.4 KB and is now 3.4 KB -- 12% of the
+ * record to 17%. That is 308 waiting reviews inside the 1,024 KB ceiling
+ * instead of 442, against a catalogue of 163 trails, so every trail in it
+ * could wait at the gate at once and the artifact would still be under a
+ * third full. A test holds that headroom.
+ */
+const DECIDING_FIELDS = Object.freeze([
+  'summary', 'recommendation', 'comparison', 'assessment', 'source',
+  'relation', 'routeGuidance', 'routeNumbersAbsent', 'routeNumbersUnmeasured',
+  'trailRecord', 'routeConformance', 'claimContracts',
+]);
+
+/**
+ * Two lists that decide and can also be long: an open question blocks a trail,
+ * and so does a geometry blocker, but both are free text and one dossier
+ * reached the gate with 110 of them.
+ *
+ * Dropping them changed a verdict in the permissive direction -- a trail with
+ * an open question read as a trail with none -- which is the worse way for a
+ * gate to be wrong. Keeping them whole is what the byte ceiling forbids. So
+ * they are kept, bounded, and visibly so: the count that matters survives, the
+ * text is cut at a length that still identifies the question, and the tail
+ * says how many more are in the output's own document.
+ */
+const BUDGET_LIST = 12;
+const BUDGET_ENTRY = 300;
+function boundedList(values) {
+  if (!Array.isArray(values)) return values;
+  const cut = values.slice(0, BUDGET_LIST).map(value => {
+    const text = String(value);
+    return text.length > BUDGET_ENTRY ? `${text.slice(0, BUDGET_ENTRY - 1)}…` : text;
+  });
+  if (values.length > BUDGET_LIST) cut.push(`…and ${values.length - BUDGET_LIST} more, in the full agent output`);
+  return cut;
+}
+const BOUNDED_FIELDS = Object.freeze(['openQuestions', 'blockers']);
+
+/**
+ * What the desk draws from an output without being asked, and what the gate
+ * decides on. Everything else is behind "Show the evidence", so it can live in
+ * the output's own document and be fetched when that is opened.
  */
 function summariseOutput(output) {
   if (!output || typeof output !== 'object') return output;
@@ -86,11 +146,12 @@ function summariseOutput(output) {
     // and this is data loss rather than compaction.
     resultRef: output.jobId ? `firestore:trail-specialist-output-${output.jobId}` : undefined,
     result: {
-      summary: result.summary,
-      recommendation: result.recommendation,
-      comparison: result.comparison,
-      assessment: result.assessment,
-      source: result.source,
+      ...Object.fromEntries(DECIDING_FIELDS
+        .filter(field => result[field] !== undefined)
+        .map(field => [field, result[field]])),
+      ...Object.fromEntries(BOUNDED_FIELDS
+        .filter(field => result[field] !== undefined)
+        .map(field => [field, boundedList(result[field])])),
       // The checklist reads category and value; a claim's sources and evidence
       // are the part that is large, and the part behind the disclosure.
       claims: Array.isArray(result.claims)
@@ -346,7 +407,7 @@ function fitReviewQueue(queue, options = {}) {
   };
 }
 
-module.exports = {
+module.exports = {DECIDING_FIELDS,BOUNDED_FIELDS,BUDGET_LIST,BUDGET_ENTRY,boundedList,
   MAX_PREVIEW_POINTS,
   QUEUE_BUDGET,
   summariseOutput,
