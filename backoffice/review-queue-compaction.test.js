@@ -127,8 +127,13 @@ describe('review queue compaction', () => {
     expect(output.result.geometry.coordinates).toHaveLength(MAX_PREVIEW_POINTS);
     // Dropped: the bulk, which lives in the output's own document.
     expect(output.result.internalTrace).toBeUndefined();
-    expect(output.result.openQuestions).toBeUndefined();
     expect(output.result.claims[0].sources).toBeUndefined();
+    // Kept, bounded: an open question blocks a trail, so dropping it read as a
+    // trail with no open questions -- a verdict changed the permissive way.
+    // The 4,000-character one is cut to something that still identifies it.
+    expect(output.result.openQuestions).toHaveLength(1);
+    expect(output.result.openQuestions[0]).toHaveLength(300);
+    expect(output.result.openQuestions[0].endsWith('…')).toBe(true);
     // And the pointer, without which this is data loss rather than compaction.
     expect(output.resultRef).toBe('firestore:trail-specialist-output-j1');
     expect(output.result.detailWithheld).toBe(true);

@@ -443,6 +443,13 @@ function dossierBlockingReasons(outputs,options={}){
   const reasons=routeGuidanceBlockingReasons(outputs,options);
   for(const output of outputs){
     const result=output.result||{};
+    // Evidence that exists and could not be read back, said as that.
+    //
+    // A queue item keeps a summary and a pointer to the full output. When the
+    // pointer cannot be followed the claims arrive without their sources, and
+    // every claim then reports as unsourced -- indistinguishable from research
+    // nobody has done, and pointing at the wrong fix. This names the real one.
+    if(output.detailUnreadable) reasons.push(`${output.agentId}: evidence could not be read back — ${output.detailUnreadable}`);
     if(result.recommendation&&result.recommendation!=='advance') reasons.push(`${output.agentId}: recommendation is ${result.recommendation}`);
     for(const question of result.openQuestions||[]) reasons.push(`${output.agentId}: open question — ${question}`);
     for(const claim of result.claims||[]){

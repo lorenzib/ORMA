@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -46,6 +46,8 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'scripts/generate-trail-pages.js'),
     read(root,'trail-trust.js'),
     read(root,'trail-blueprint.js'),
+    read(root,'backoffice/workflows/review-queue-compaction.js'),
+    read(root,'backoffice/workflows/rehydrate-review-detail.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -380,6 +382,28 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&blueprint.includes("String(verifiedRouteGuidance.status || '').trim()")
     &&standard.includes('The directions reach the page, not only the app'),
     'The four directions a verification establishes render on the crawlable page as well as in the app, under one heading with one set of labels, the same waymark numbers from the same module, and three sentences or none; both print the signage caveat when the record carries one, which the app had been dropping so that a card stated a number sequence as though the signs were confirmed');
+
+  // A size measure may not decide a verdict.
+  //
+  // The risk: the queue summary dropped seven of the fourteen fields the gate
+  // reads, so a walk the map and ORMA's record had answered was refused once
+  // its item was summarised -- and a walk measured and carrying no number read
+  // the same as a walk nobody measured, which are the two cases the record rung
+  // exists to tell apart. And when the pointer to the full output could not be
+  // followed, the refusal said the research was missing rather than unreadable.
+  add('compaction-may-not-decide-a-verdict',
+    compaction.includes('const DECIDING_FIELDS = Object.freeze([')
+    &&['routeGuidance','routeNumbersAbsent','routeNumbersUnmeasured','relation',
+      'trailRecord','routeConformance','claimContracts']
+      .every(field=>compaction.includes(`'${field}',`)||compaction.includes(`'${field}'`))
+    // The two that decide and can be long are kept, bounded rather than dropped.
+    &&compaction.includes("const BOUNDED_FIELDS = Object.freeze(['openQuestions', 'blockers'])")
+    &&compaction.includes('function boundedList(values)')
+    // And a refusal names the real cause when the evidence cannot be read back.
+    &&rehydrate.includes('detailUnreadable')
+    &&dossier.includes('if(output.detailUnreadable) reasons.push(')
+    &&standard.includes('Compaction may drop what is bulky, not what decides'),
+    'The review-queue summary keeps every field the gate decides on -- the map measurement, the relation, the measured-and-none marks, ORMA\'s own record of the walk, the conformance and the claim contracts -- and keeps the two deciding lists bounded rather than dropping them, because dropping an open question read as a trail with none; the bulky parts are still fetched through the pointer, and when that pointer cannot be followed the gate says the evidence could not be read back instead of reporting it as research nobody has done');
 
   // Work that costs nothing is not ordered by a rule about money.
   //

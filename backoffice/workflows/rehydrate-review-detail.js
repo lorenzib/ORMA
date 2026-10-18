@@ -30,12 +30,19 @@ async function rehydrateOutput(store, output){
   if(!withheld(output)) return output;
   const id = artifactIdFrom(output.resultRef);
   // A summary with no pointer, or one naming an artifact that is gone, is as far
-  // as this can get. Returning the summary leaves the gate to refuse on evidence
-  // it cannot see, which is the honest outcome: a refusal beats a verification
-  // resting on claims nobody could read back.
-  if(!id) return output;
+  // as this can get. Refusing on evidence nobody can read back is the honest
+  // outcome -- a refusal beats a verification resting on claims that cannot be
+  // produced -- but the refusal has to say which of the two happened.
+  //
+  // It did not. The gate saw a claim with no sources and reported "requires a
+  // sourced recommended start", which reads as research nobody has done, and
+  // the fix for that is to send an agent out again: a model call, for evidence
+  // that may be sitting in an artifact under a name that moved. Not finding an
+  // answer and not being able to read the answer back are different problems,
+  // and they looked identical in the one place that decides a trail.
+  if(!id) return { ...output, detailUnreadable: 'the summary carries no pointer to its evidence' };
   const full = await store.getArtifact(id);
-  if(!full) return output;
+  if(!full) return { ...output, detailUnreadable: `no artifact at ${id}` };
   return { ...output, result: full, rehydratedFrom: output.resultRef };
 }
 
