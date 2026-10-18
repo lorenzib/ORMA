@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -48,6 +48,8 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'trail-blueprint.js'),
     read(root,'backoffice/workflows/review-queue-compaction.js'),
     read(root,'backoffice/workflows/rehydrate-review-detail.js'),
+    read(root,'backoffice/workflows/verification-funnel.js'),
+    read(root,'backoffice/cli/report-verification-funnel.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -428,6 +430,48 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&staging.includes('copyOutput?.result?.title ?? retainedCopy.name')
     &&standard.includes('An existing trail keeps the description it already has'),
     'A trail already on the site keeps its own name, description and practical notes instead of a copywriter being paid to write them again -- the rule its photograph has had all along -- so no model call is spent on words that are already on the live page; all three fields or none, only for a trail the site already has, and a copywriter that did run still wins. The policy is recorded where the job is queued and read where the fields are published, so the two cannot disagree');
+
+  // A gate may not wait on a decision nothing can make.
+  //
+  // The risk is a deadlock that reports as patience. `asset-and-licensing-
+  // approval` can only come from a visualDirector job, which is never queued
+  // for a trail already on the site, so 23 of 163 trails with an incomplete
+  // image record waited for ever -- their directions off the page for want of
+  // a photograph nobody was looking for, and nothing saying so.
+  add('a-photograph-nobody-is-sourcing-is-not-a-pending-approval',
+    staging.includes("const visualApproved = item.assetPolicy==='preserve-existing'?true:visualDecision?.action === 'approve';")
+    // No image either way writes no image fields, so the trail keeps what it shows.
+    &&staging.includes('...(retainedImage||(hero?{')
+    &&staging.includes('}:{})),')
+    // And the badge is told there is no photograph.
+    &&staging.includes('graduationFor(researched,Boolean(retainedImage||hero),Boolean(verifiedFields))')
+    &&standard.includes('A photograph nobody is sourcing is not a pending approval'),
+    'Publication of a trail already on the site does not wait on an approval for a photograph nobody is sourcing: the asset approval covers a newly sourced image, no such job is queued for an existing trail, and 23 of 163 trails with an incomplete image record waited for ever on a decision nothing could make. Such a trail publishes with no image fields, keeps whatever it already shows, and its badge counts one check fewer rather than claiming a photograph it has not got');
+
+  // A report that stops before the work does.
+  //
+  // The risk is the one this repository keeps meeting: a stage nobody looks at
+  // is a stage nothing is reported about, and silence reads as success. The
+  // funnel ended at ready-for-editorial while four further stages had opened
+  // behind it, and the deadlock that held 23 trails off the page sat in one of
+  // them for as long as it took somebody to run the chain by hand.
+  add('the-funnel-reaches-the-page',
+    funnel.includes("const PUBLICATION_LEG = Object.freeze([")
+    &&funnel.includes("'editorial-queue', 'publication-staging', 'publication-requested', 'published',")
+    &&funnel.includes('function publicationLeg(')
+    // Only what this lane wrote counts as published; the hand-written
+    // corrections in the same file are not publications.
+    &&funnel.includes("&& entry.approvalId")
+    &&funnel.includes('directionsOnThePage')
+    // What holds a trail is named, not counted.
+    &&funnel.includes('heldBy: tally(held.flatMap(row => row.holds), reason => reason),')
+    // And the report reads the artifacts and says when it did not.
+    &&funnelCli.includes("store.getArtifact('verified-trail-editorial-queue')")
+    &&funnelCli.includes("store.getArtifact('publication-staging')")
+    &&funnelCli.includes("store.getArtifact('publication-requests')")
+    &&funnelCli.includes('no trail has entered this half of the lane')
+    &&standard.includes('The funnel reaches the page'),
+    'The verification funnel follows a trail past the dossier gate through the editorial queue, publication staging, the publication request and the override file the site is built from, naming what holds each one rather than counting it; what this lane published and what merely carries directions are counted separately, because the override file also holds hand-written corrections and folding them together reported a pipeline that had run when it had not; and nothing published with nothing held is said in those words, because a lane that never ran and a lane with nothing to do are the same silence');
 
   // Work that costs nothing is not ordered by a rule about money.
   //

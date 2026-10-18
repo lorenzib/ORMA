@@ -248,7 +248,23 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
     const retainedCopy=item.copyPolicy==='preserve-existing'
       ?(item.retainedCopy||existingCopyFields(existingTrail)):null;
     const copyApproved = retainedCopy?true:copyDecision?.action === 'approve';
-    const visualApproved = item.assetPolicy==='preserve-existing'?Boolean(retainedImage):visualDecision?.action === 'approve';
+    // An approval is for a photograph somebody sourced. Where none is being
+    // sourced there is nothing to approve.
+    //
+    // This waited on `asset-and-licensing-approval` for a trail already on the
+    // site whose image record is incomplete -- and that approval can only come
+    // from a visualDirector job, which is never queued for such a trail, and
+    // the photo lane was removed in September because images are sourced by
+    // hand and committed directly. So 23 of the 163 catalogue trails waited on
+    // a decision nothing could ever make, and their directions never reached
+    // the page for want of a photograph nobody was looking for.
+    //
+    // They are published without image fields: the trail keeps whatever it
+    // already shows, nothing new is claimed, and `graduationFor` is told there
+    // is no photograph, so the badge counts four of the eleven rather than
+    // five. Understating is the safe direction. A trail that is not on the
+    // site still needs an image sourced, licensed and approved.
+    const visualApproved = item.assetPolicy==='preserve-existing'?true:visualDecision?.action === 'approve';
     const missingApprovals = [!copyApproved && 'editorial-approval', !visualApproved && 'asset-and-licensing-approval'].filter(Boolean);
     const copyOutput = outputs.get(copyJobId);
     const visualOutput = outputs.get(visualJobId);
@@ -288,7 +304,10 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
         desc: copyOutput ? `${about}\n\n${dog}` : retainedCopy.desc,
         tips: copyOutput ? practical : retainedCopy.tips,
         routeRef: target.routeRef,
-        ...(retainedImage||{
+        // The image already credited on the page, or a newly sourced one, or
+        // neither -- and neither writes no image fields at all, so the trail
+        // keeps what it shows and the publication claims nothing about it.
+        ...(retainedImage||(hero?{
           imageIcon: hero.assetUrl,
           imageCredit: { text:hero.credit, url:hero.sourcePageUrl },
           heroImage: hero.assetUrl,
@@ -298,7 +317,7 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
           imageLicenceUrl: hero.licenseUrl,
           imageCreditText: hero.credit,
           imageAlt: hero.altText,
-        }),
+        }:{})),
         // The public seal, only on all eleven. A trail whose route is confirmed
         // and whose safety facts nobody asked about shows as reviewed.
         ormaVerified: graduation.status==='verified',

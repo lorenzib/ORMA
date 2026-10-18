@@ -906,6 +906,79 @@ from the map and from ORMA's own record, the photograph and the words are the
 ones already there, and what reaches the page is the directions and a badge
 that says reviewed.
 
+## A photograph nobody is sourcing is not a pending approval
+
+`asset-and-licensing-approval` exists to check a photograph somebody sourced:
+its preview, its creator, its licence, its credit, its alt text. A trail
+already on the site keeps the one it has instead, and no visualDirector job is
+queued for it — the backoffice photo lane was removed in September 2026 because
+images are sourced by hand and committed directly.
+
+Those two rules met in a deadlock. A trail on the site whose image record is
+**incomplete** — a thumbnail but no hero image, or no alt text — retained
+nothing, so publication waited on an approval that only a job nobody queues
+could ever give. Measured across the catalogue: **23 of 163 trails**, their
+directions held off the page for want of a photograph nobody was looking for,
+and no report anywhere saying so.
+
+A trail with no complete photograph **publishes without image fields**. It
+keeps whatever it already shows, because an override writes only the fields it
+names; the publication claims nothing about the image; and `graduationFor` is
+told there is no photograph, so the badge counts four of the eleven instead of
+five. Understating is the safe direction — a bare thumbnail with no alt text
+and no credit is not the check the seal means.
+
+A trail that is **not** on the site still needs an image sourced, licensed and
+approved. Nothing here changes that.
+
+With this and the retained description, **162 of the catalogue's 163 trails run
+the whole lane on no model calls**: survey, gate, publication, page. The one
+that does not is Val di Funes Panorama Trail, which has no recommended start —
+the import anchors a start to a mapped access point within 400 m of the line
+and that walk has none, so there is nothing to recommend. It needs a sourced
+start point through the `startPoint` override scope, which is the one piece of
+human research the catalogue still owes.
+
+A test runs every trail in the catalogue through the whole chain and holds all
+of it: the count, that nothing queued a job, that every entry comes through the
+reviewed door unsealed, that each carries its own words and its directions, and
+that a trail without a photograph neither claims one nor writes image fields.
+It is what found the deadlock.
+
+## The funnel reaches the page
+
+The verification funnel stopped at `ready-for-editorial`. That was honest for a
+long time: no trail had ever gone further, and everything past it was theory.
+
+It is not theory now. A verified walk goes on to an editorial queue, to
+publication staging, to an approved publication request, and into the override
+file the site is built from — **four more places a trail can stop, none of them
+reported.** The deadlock found on 18 October was exactly that shape: 23 trails
+waiting on an approval nothing could ever give, in a state whose name reads as
+patience, with nothing anywhere saying so.
+
+The funnel now follows a trail past the gate and reports, for each stage, how
+many are there and how many are held — and **names what holds them**, because a
+trail held here has already been verified and whatever stops it is standing
+between finished work and a reader.
+
+Two counts, kept apart on purpose:
+
+- **what this lane published** — an override entry carrying the `approvalId`
+  the materializer stamps on everything it writes;
+- **what carries directions on its page** — any entry whose fields hold route
+  guidance, including the two walks given it by hand before the lane existed.
+
+Folding those together overstated the lane by eight on the day this was
+written: eleven entries in the override file, three publications. The rest are
+hand-written corrections — a declared route shape, a sourced start point — and
+calling them publications would have reported a pipeline that had run when it
+had not.
+
+And when nothing is published and nothing is held, the report says so in those
+words. A lane that never ran and a lane with nothing to do produce the same
+silence, and both read as success.
+
 ## Free work goes first
 
 A pass orders its queue so the trails that can actually be verified are

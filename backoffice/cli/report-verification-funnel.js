@@ -6,6 +6,20 @@
 
 const {FirestoreBackofficeStore}=require('../services/firestore-backoffice-store');
 const {buildFunnel}=require('../workflows/verification-funnel');
+const fs=require('fs');
+const path=require('path');
+
+function readOverrides(){
+  try{
+    return JSON.parse(fs.readFileSync(path.resolve(__dirname,'../../data/verified-trail-overrides.json'),'utf8'));
+  }catch(error){
+    // Reported rather than swallowed: an unreadable override file would make
+    // every published trail vanish from this report, which reads as nothing
+    // having been published.
+    console.warn(`[funnel] could not read the override file: ${error.message}`);
+    return null;
+  }
+}
 
 function bar(count,width=28){
   return count?'#'.repeat(Math.max(1,Math.min(width,count))):'';
@@ -13,12 +27,22 @@ function bar(count,width=28){
 
 async function main(options={}){
   const store=options.store||new FirestoreBackofficeStore();
-  const [orchestration,reviewQueue,jobs]=await Promise.all([
+  const [orchestration,reviewQueue,jobs,editorialQueue,publicationStaging,publicationRequests]=await Promise.all([
     store.getArtifact('trail-orchestration'),
     store.getArtifact('dossier-review-queue'),
     store.listJobs(['queued','running','ready-for-review','blocked']),
+    // The half of the lane past the gate. A verified walk goes on through
+    // these before it is on the page, and every one of them is a place it can
+    // stop -- in states whose names read as patience.
+    store.getArtifact('verified-trail-editorial-queue'),
+    store.getArtifact('publication-staging'),
+    store.getArtifact('publication-requests'),
   ]);
-  const report=buildFunnel({orchestration,jobs,reviewQueue,nowMs:options.nowMs});
+  // The end of the lane is a file in this repository, not an artifact: the
+  // site is built from it, so it is the only thing that says a trail is out.
+  const overrides=options.overrides||readOverrides();
+  const report=buildFunnel({orchestration,jobs,reviewQueue,
+    editorialQueue,publicationStaging,publicationRequests,overrides,nowMs:options.nowMs});
   console.log(JSON.stringify(report,null,2));
 
   console.log(`\n[funnel] ${report.totalTrails} trail(s) in the pipeline.`);
@@ -59,6 +83,33 @@ async function main(options={}){
       if(!trail.blockers.length) console.log('[funnel]       (no blocker recorded)');
     }
   }
+  const publication=report.publication;
+  if(publication){
+    console.log(`\n[funnel] Past the gate: this lane has published ${publication.reachedThePage} trail(s)`
+      +`, ${publication.sealed} of them carrying the seal.`);
+    console.log(`[funnel] ${publication.directionsOnThePage} trail page(s) carry directions, counting the ones written by hand.`);
+    for(const stage of publication.stages){
+      const held=stage.held?` · ${stage.held} held`:'';
+      console.log(`[funnel] ${stage.stage.padEnd(22)} ${String(stage.trails).padStart(3)} ${bar(stage.trails)}${held}`);
+    }
+    if(publication.heldBy.length){
+      // A trail held past the gate has already been verified. Whatever stops
+      // it here is standing between finished work and a reader, so the reason
+      // is printed, not the count.
+      console.log(`\n[funnel] What is holding a verified trail off the page:`);
+      for(const [reason,count] of publication.heldBy) console.log(`[funnel]   ${String(count).padStart(3)} × ${reason}`);
+      for(const row of publication.held.slice(0,8)){
+        console.log(`[funnel]   ${row.candidateId} at ${row.at}${row.state?` (${row.state})`:''}: ${row.holds.join('; ')}`);
+      }
+    } else if(!publication.reachedThePage){
+      // Zero published and nothing held is the shape a lane that never ran
+      // takes, and it reads identically to a lane with nothing to do.
+      console.log('[funnel] Nothing is held and nothing is published: no trail has entered this half of the lane.');
+    }
+  } else {
+    console.log('\n[funnel] The publication artifacts were not read, so nothing is said about what reached the page.');
+  }
+
   console.log('\n[funnel] Nothing was changed.');
   return report;
 }
