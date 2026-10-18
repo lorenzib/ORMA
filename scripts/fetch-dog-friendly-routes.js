@@ -437,10 +437,32 @@ function stitchMembers(members) {
   return lines;
 }
 
+/**
+ * Does this walk come back to where it started?
+ *
+ * Asked of the piece covering the most ground, not of the relation as a whole.
+ * It used to refuse outright whenever the relation held more than one piece,
+ * and never reached the question it is named for -- so a circuit that closes
+ * to the metre was recorded as not a loop because the relation also listed a
+ * stray fragment somewhere else in the valley. Twelve catalogue walks are
+ * labelled that way today, Roda dles Viles among them, whose ends meet at 0 m.
+ *
+ * The stray piece is a fact about the relation. Whether the walk returns to
+ * its start is a fact about the walk, and that is what a reader is asking.
+ *
+ * Measured by ground covered rather than by point count, so a dense short
+ * fragment cannot be mistaken for the walk.
+ */
 function isClosedLoop(lines) {
-  if (lines.length !== 1) return false;
-  const line = lines[0];
-  return haversineMeters(line[0], line[line.length - 1]) < LOOP_CLOSE_METERS;
+  const pieces = (lines || []).filter((line) => Array.isArray(line) && line.length > 1);
+  if (!pieces.length) return false;
+  let main = pieces[0];
+  let mainKm = pathLengthKm([main]);
+  for (const line of pieces.slice(1)) {
+    const km = pathLengthKm([line]);
+    if (km > mainKm) { main = line; mainKm = km; }
+  }
+  return haversineMeters(main[0], main[main.length - 1]) < LOOP_CLOSE_METERS;
 }
 
 function pathLengthKm(lines) {
