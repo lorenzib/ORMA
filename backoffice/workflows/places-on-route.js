@@ -100,7 +100,10 @@ function cumulativeKm(path){
 function placesOnRoute(path, features, options = {}){
   const line = (Array.isArray(path) ? path : []).filter(point =>
     Array.isArray(point) && Number.isFinite(point[0]) && Number.isFinite(point[1]));
-  if(line.length < 2) return { water: [], places: [] };
+  // `measured` says the line was read, so an empty result is a fact about the
+  // walk rather than a fact about this run. Without it, "no water along here"
+  // and "we never looked" are the same empty list.
+  if(line.length < 2) return { measured: false, water: [], places: [] };
   const radius = Number.isFinite(options.radiusMetres) ? options.radiusMetres : ON_ROUTE_METRES;
   const km = cumulativeKm(line);
   // A box round the walk, widened by the radius, so the catalogue's 32,000
@@ -139,8 +142,40 @@ function placesOnRoute(path, features, options = {}){
     if(kind) places.push({ ...entry, kind, tag: properties.amenity || properties.tourism });
   }
   const byKm = (a, b) => a.km - b.km;
-  return { water: water.sort(byKm), places: places.sort(byKm) };
+  return { measured: true, water: water.sort(byKm), places: places.sort(byKm) };
 }
 
-module.exports = { ON_ROUTE_METRES, DRINKABLE, FOOD_AND_SHELTER, metresBetween,
-  isDrinkable, placeKind, pointOf, nearestOnPath, cumulativeKm, placesOnRoute };
+/**
+ * Which claim a mapped place answers.
+ *
+ * The categories a specialist is asked to research, and the kinds of place on
+ * the map that would answer each. A category with nothing of its kind along the
+ * walk is one the web is unlikely to answer either.
+ */
+const CLAIM_PLACE_KINDS = Object.freeze({
+  'water': ['__water__'],
+  'mountain-huts': ['mountain hut', 'shelter'],
+  'food-drink': ['restaurant', 'café', 'bar', 'pub', 'takeaway', 'beer garden', 'ice cream'],
+});
+
+/**
+ * The categories the map was read for along this walk and found nothing of.
+ *
+ * Not the same as "we did not look", which is why this takes the measurement
+ * rather than deciding from an empty result: a walk with no line, or a run with
+ * no mapped features to read, has not been measured and nothing may be
+ * concluded from it.
+ */
+function categoriesTheMapFoundNothingFor(found){
+  if(!found || !found.measured) return [];
+  const kinds = new Set((found.places || []).map(place => place.kind));
+  return Object.entries(CLAIM_PLACE_KINDS)
+    .filter(([claimId, wanted]) => claimId === 'water'
+      ? !(found.water || []).length
+      : !wanted.some(kind => kinds.has(kind)))
+    .map(([claimId]) => claimId);
+}
+
+module.exports = { ON_ROUTE_METRES, DRINKABLE, FOOD_AND_SHELTER, CLAIM_PLACE_KINDS, metresBetween,
+  isDrinkable, placeKind, pointOf, nearestOnPath, cumulativeKm, placesOnRoute,
+  categoriesTheMapFoundNothingFor };
