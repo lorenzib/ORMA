@@ -151,7 +151,25 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     'A blocker only a moderator can decide arrives with a cited recommendation in the reason field, after the dispatch and apply steps; the recommendation cites a retrieved source, is never offered for an unwaivable blocker, and nothing is ticked or accepted without a person');
   add('hazard-snapshot-publication',workflows['orma-hazard-watch.yml']?.includes('orma-bot/hazard-snapshot')&&workflows['orma-hazard-watch.yml']?.includes('gh pr merge')&&workflows['orma-hazard-watch.yml']?.includes('--auto')&&workflows['orma-hazard-watch.yml']?.includes('/actions/runs/${run}/approve')&&workflows['orma-hazard-watch.yml']?.includes('gh workflow run deploy-pages.yml --ref main')&&workflows['orma-hazard-watch.yml']?.includes('gh pr update-branch')&&standard.includes('automatic pull request whenever the warning set changes'),'The public warning snapshot reaches the website through a pull request whenever the warning set changes: the run approves the PR\'s own quality-gate run (a bot never graduates from the first-time-contributor policy), merges once it passes, and dispatches the website deploy, which nothing done with the workflow token starts by itself');
   add('hazard-cadence',workflows['orma-hazard-watch.yml']?.includes("cron: '7 */3 * * *'")&&workflows['orma-hazard-watch.yml']?.includes('timezone: Europe/Rome'),'Groundskeeper targets minute 7 of every third hour in Europe/Rome, clear of the queue worker and within the Firestore daily quota');
-  add('daily-orma-verified-intake',workflows['orma-trail-campaign.yml']?.includes("cron: '30 9 * * *'")&&workflows['orma-trail-campaign.yml']?.includes('timezone: Europe/Rome')&&workflows['orma-trail-campaign.yml']?.includes('ORMA_CAMPAIGN_AUTOMATION_ENABLED'),'ORMA Verified candidate intake targets 09:30 Europe/Rome every day, after the Firestore quota reset window');
+  // The intake budget is read by whichever job admits, and both read the same
+  // variable.
+  //
+  // #847 raised the capacity to 60 in the worker and nothing changed: the job
+  // that admits runs in the campaign workflow, which set no capacity at all and
+  // fell back to the built-in 15. `available` stayed at zero, and the campaign
+  // ran successfully on 17 October admitting nobody. A number raised in one
+  // workflow and left behind in the other reads exactly like a number that did
+  // not work.
+  const campaignWorkflow=workflows['orma-trail-campaign.yml']||'';
+  const capacityVariable='vars.ORMA_CAMPAIGN_CAPACITY';
+  add('daily-orma-verified-intake',
+    campaignWorkflow.includes("cron: '30 9 * * *'")
+    &&campaignWorkflow.includes('timezone: Europe/Rome')
+    &&campaignWorkflow.includes('ORMA_CAMPAIGN_AUTOMATION_ENABLED')
+    // Set where admission happens, and from the same variable as the worker.
+    &&campaignWorkflow.includes(capacityVariable)
+    &&publicationWorkflow.includes(capacityVariable),
+    'ORMA Verified candidate intake targets 09:30 Europe/Rome every day, after the Firestore quota reset window, and the job that admits reads its capacity from the same repository variable as the worker -- so the budget cannot be raised in one workflow and left at the built-in default in the other');
   add('dolomites-first-scouting-cadence',workflows['orma-new-trail-intake.yml']?.includes("cron: '0 10 * * 1-6'")&&workflows['orma-new-trail-intake.yml']?.includes('timezone: Europe/Rome')&&workflows['orma-new-trail-intake.yml']?.includes('ORMA_NEW_TRAIL_INTAKE_RESUMED')&&standard.includes('Dolomites-first')&&standard.includes('Scouting is paused during the'),'New Trail scouting is paused during the backfills and keeps its Dolomites-first Monday-to-Saturday cadence for resumption');
   add('trail-photos-removed-from-backoffice',!worker.includes('refreshTrailPhotoBackfill')&&!worker.includes('ingestImageReviews')&&!rules.includes('/backofficeImageUploads/{')&&!client.includes('uploadTrailImage')&&!client.includes("collection(db,'backofficeImageReviews')")&&!builder.includes("'image-coverage-hosted.js'")&&standard.includes('Trail photos are sourced by hand, outside the backoffice')&&dashboard.includes('sourced by hand outside the backoffice'),'Trail-photo gathering is removed from the backoffice: no worker lane, no owner-upload staging, no image-review client or desk; photos are committed by hand and only rendered by the publication pipeline');
   const setupNodeCount=(workflowText.match(/actions\/setup-node@v7/g)||[]).length;const node24Count=(workflowText.match(/node-version:\s*24/g)||[]).length;
