@@ -151,26 +151,44 @@ function chainLines(lines) {
     .sort((a, b) => b.length - a.length);
   if (!remaining.length) return { path: [], dropped: [] };
 
-  // A walk that returns to where it started is already whole.
+  // A walk that returns to where it started is already whole -- but only when
+  // what that leaves out is debris.
   //
-  // Where the biggest piece closes on itself, the relation is describing that
-  // loop, and whatever else it lists is somewhere else: Seeweg is an 8.4 km
-  // circuit plus a separate 3.3 km stretch of the same named path three
-  // kilometres away, and Colombier is a forest-road loop plus two unnamed ways
-  // 1.6 km off. Chaining those in drew a line across open country and called
-  // the result one walk. Nothing needs adding to a closed loop to make it a
-  // route, so the rest is set aside rather than joined.
+  // Where the biggest piece closes on itself, the rest of the relation is
+  // usually a few stray metres: a kerb, a spur into a car park, a duplicated
+  // node. Chaining those in drew a line across open country and called the
+  // result one walk, so they are set aside instead.
+  //
+  // What this must not do is set aside the walk. The first version of this
+  // rule dropped whatever was left however big it was, and measured against
+  // the relations' own member ways in OSM it was shortening real routes:
+  // Albannette petite boucle is 5.01 km by its distance tag and by its ways
+  // and came out 2.98 km; Colombier is 10.16 km and came out 6.76 km; Seeweg
+  // is 11.75 km and came out 8.39 km. In each the discarded stretch was part
+  // of the route, not somewhere else -- Seeweg's touches the loop.
+  //
+  // So the shortcut is taken only when every piece left out would already be
+  // droppable while chaining: small in itself, and small against the loop. A
+  // walk that leaves out more than that is chained as normal, and the widest
+  // gap it ends up with is then judged by the publication rules like any
+  // other -- which is how a route whose line is genuinely missing ends up
+  // held back rather than published short.
   //
   // Judged on the piece covering the most ground, not the most points: a
   // sparse long line and a dense short one are easy to confuse by point count.
   const byGround = remaining.slice().sort((a, b) => lineMeters(b) - lineMeters(a));
   const biggest = byGround[0];
-  if (remaining.length > 1 && lineMeters(biggest) > 0
+  const loopMeters = lineMeters(biggest);
+  const setAside = byGround.slice(1);
+  const setAsideMeters = setAside.reduce((total, piece) => total + lineMeters(piece), 0);
+  const onlyDebrisLeftOut = setAside.every((piece) => lineMeters(piece) <= DROPPABLE_PIECE_M)
+    && setAsideMeters < loopMeters * DROPPABLE_SHARE_OF_WALK;
+  if (remaining.length > 1 && loopMeters > 0 && onlyDebrisLeftOut
     && haversineMeters(biggest[0][0], biggest[0][1],
       biggest[biggest.length - 1][0], biggest[biggest.length - 1][1]) <= LOOP_CLOSE_M) {
     return {
       path: biggest,
-      dropped: byGround.slice(1).map((piece) => ({
+      dropped: setAside.map((piece) => ({
         meters: Math.round(lineMeters(piece)), points: piece.length, reason: 'detached from a closed loop',
       })),
     };
