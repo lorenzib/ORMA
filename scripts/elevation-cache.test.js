@@ -15,7 +15,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-const { elevationKey, loadElevationCache, saveElevationCache, fetchElevations } =
+const { elevationKey, loadElevationCache, saveElevationCache, cachePointsToSave, fetchElevations } =
   require('./promote-osm-trails');
 
 // Two points on the Vandoies loop, at the precision the request uses.
@@ -184,5 +184,35 @@ describe('the file on disk', () => {
       ['46.81970,11.72700', 886], ['46.81670,11.72300', 767]]));
     const keys = Object.keys(JSON.parse(fs.readFileSync(file, 'utf8')).points);
     expect(keys).toEqual(['46.81670,11.72300', '46.81970,11.72700']);
+  });
+});
+
+describe('a run that dies part-way does not shrink the cache', () => {
+  // A full pass is 93 routes against an API that answers some requests with
+  // 429, and one was killed at route 81. Writing only at the end meant it
+  // saved nothing and the next run started cold, which is the opposite of
+  // what a cache is for.
+  const loaded = new Map([['a', 1], ['b', 2], ['c', 3]]);
+
+  test('a save part-way keeps the points this run has not reached yet', () => {
+    // The routes covering b and c have not been processed, so their heights
+    // are not in `used` -- and must survive anyway.
+    const used = new Map([['a', 1]]);
+    expect([...cachePointsToSave(loaded, used)].sort()).toEqual([['a', 1], ['b', 2], ['c', 3]]);
+  });
+
+  test('a fresh height wins over the one on file', () => {
+    expect(cachePointsToSave(loaded, new Map([['a', 999]])).get('a')).toBe(999);
+  });
+
+  test('the save at the end prunes to what the run actually used', () => {
+    // Only then is the used set the live set, so a corrected line's old
+    // samples stop being carried.
+    const used = new Map([['a', 1], ['d', 4]]);
+    expect([...cachePointsToSave(loaded, used, { prune: true })].sort()).toEqual([['a', 1], ['d', 4]]);
+  });
+
+  test('a run that used nothing writes nothing over what is there', () => {
+    expect([...cachePointsToSave(loaded, new Map())].sort()).toEqual([['a', 1], ['b', 2], ['c', 3]]);
   });
 });

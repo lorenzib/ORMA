@@ -312,6 +312,18 @@ function loadElevationCache(file) {
   }
 }
 
+/**
+ * Which points a save should write.
+ *
+ * A save part-way through a run must MERGE, or it deletes the heights of the
+ * routes this run has not reached yet and an interrupted run leaves a smaller
+ * cache than it started with. Only the save at the end prunes, because only
+ * then is the used set the whole live set and stale points should go.
+ */
+function cachePointsToSave(loaded, used, { prune = false } = {}) {
+  return prune ? new Map(used) : new Map([...(loaded || []), ...(used || [])]);
+}
+
 async function saveElevationCache(file, used) {
   const points = Object.fromEntries([...used].sort(([a], [b]) => a.localeCompare(b)));
   await fs.mkdir(path.dirname(file), { recursive: true });
@@ -647,6 +659,34 @@ async function main() {
   // Ground height does not change, so last run's answers are this run's.
   const elevationCache = loadElevationCache(ELEVATION_CACHE_PATH);
   const elevationUsed = new Map();
+  // Saved as the run goes, not only at the end.
+  //
+  // A full pass is 93 routes and several minutes against an API that answers
+  // some requests with 429. Writing once at the end means a run killed at
+  // route 81 saves nothing and the next one starts from cold -- which is
+  // exactly what happened, and it defeats the point of a cache that is
+  // supposed to converge across runs.
+  //
+  // A part-way save MERGES with what was already on file: pruning to the
+  // points used so far would delete the heights belonging to routes this run
+  // has not reached yet, so an interrupted run would shrink the cache. Only
+  // the save at the end prunes, because only then is the used set the live one.
+  const bank = async ({ prune = false } = {}) => {
+    if(!elevationUsed.size) return;
+    const points = cachePointsToSave(elevationCache, elevationUsed, { prune });
+    await saveElevationCache(ELEVATION_CACHE_PATH, points);
+    return points.size;
+  };
+  let interrupted = false;
+  for(const signal of ['SIGINT', 'SIGTERM']){
+    process.once(signal, async () => {
+      if(interrupted) return;
+      interrupted = true;
+      const size = await bank();
+      console.log(`\n[elev] Interrupted by ${signal}; kept ${size || 0} point(s) -> ${ELEVATION_CACHE_PATH}`);
+      process.exit(130);
+    });
+  }
   console.log(elevationCache.size
     ? `[elev] ${elevationCache.size} point(s) already on file; only new ones are fetched.`
     : '[elev] No heights on file yet; this run fills the cache.');
@@ -722,6 +762,7 @@ async function main() {
 
     console.log(`[promote] ${n + 1}/${routes.features.length} ${p.name} (${totalKm} km)…`);
     const elevations = await fetchElevations(samples, { cache: elevationCache, found: elevationUsed });
+    if((n + 1) % 20 === 0) await bank();
 
     let elevationProfile = null;
     let gain = null;
@@ -808,7 +849,7 @@ async function main() {
   await fs.writeFile(OUTPUT_PATH, js);
   // Only the points this run used, so the file stays the live set.
   if(elevationUsed.size){
-    await saveElevationCache(ELEVATION_CACHE_PATH, elevationUsed);
+    await bank({ prune: true });
     const fetched = elevationUsed.size - [...elevationUsed.keys()].filter(k => elevationCache.has(k)).length;
     console.log(`[elev] ${elevationUsed.size} point(s) on file (${fetched} newly fetched) -> ${ELEVATION_CACHE_PATH}`);
   }
@@ -823,4 +864,4 @@ if (require.main === module) {
 
 module.exports = { chainLines, toPath, widestGapMeters, haversineMeters,
   lineMeters, DROPPABLE_PIECE_M, DROPPABLE_SHARE_OF_WALK, LOOP_CLOSE_M,
-  elevationKey, loadElevationCache, saveElevationCache, fetchElevations };
+  elevationKey, loadElevationCache, saveElevationCache, cachePointsToSave, fetchElevations };
