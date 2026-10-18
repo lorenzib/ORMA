@@ -945,6 +945,40 @@ reviewed door unsealed, that each carries its own words and its directions, and
 that a trail without a photograph neither claims one nor writes image fields.
 It is what found the deadlock.
 
+## The funnel reaches the page
+
+The verification funnel stopped at `ready-for-editorial`. That was honest for a
+long time: no trail had ever gone further, and everything past it was theory.
+
+It is not theory now. A verified walk goes on to an editorial queue, to
+publication staging, to an approved publication request, and into the override
+file the site is built from — **four more places a trail can stop, none of them
+reported.** The deadlock found on 18 October was exactly that shape: 23 trails
+waiting on an approval nothing could ever give, in a state whose name reads as
+patience, with nothing anywhere saying so.
+
+The funnel now follows a trail past the gate and reports, for each stage, how
+many are there and how many are held — and **names what holds them**, because a
+trail held here has already been verified and whatever stops it is standing
+between finished work and a reader.
+
+Two counts, kept apart on purpose:
+
+- **what this lane published** — an override entry carrying the `approvalId`
+  the materializer stamps on everything it writes;
+- **what carries directions on its page** — any entry whose fields hold route
+  guidance, including the two walks given it by hand before the lane existed.
+
+Folding those together overstated the lane by eight on the day this was
+written: eleven entries in the override file, three publications. The rest are
+hand-written corrections — a declared route shape, a sourced start point — and
+calling them publications would have reported a pipeline that had run when it
+had not.
+
+And when nothing is published and nothing is held, the report says so in those
+words. A lane that never ran and a lane with nothing to do produce the same
+silence, and both read as success.
+
 ## Free work goes first
 
 A pass orders its queue so the trails that can actually be verified are
