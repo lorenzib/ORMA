@@ -13,12 +13,15 @@ describe('Trail Tales journal experience', () => {
     expect(journal).toContain('id="jnFeatureShare"');
     expect(journal).toContain('id="jnFeatureRecap"');
     expect(journal).toContain('data-jn-feature=');
-    expect(journal).toContain('trail && Array.isArray(trail.path) ? trail.path');
+    expect(journal).toContain('trail && Array.isArray(trail.path) && trail.path.length > 1');
   });
 
   test('renders private routes locally instead of sending their location to a tile service', () => {
     expect(journal).toContain('private recorded route never leaves');
-    expect(journal).toContain('window.DoloPawsWalkCard.projectRoute');
+    // Stretch-aware: a walk the phone stopped following is drawn with the
+    // unrecorded part left blank, still without asking a tile server where
+    // the owner was.
+    expect(journal).toContain('window.DoloPawsWalkCard.projectSegments');
     expect(journal).not.toContain('map-runtime.js');
     expect(journal).not.toContain('openfreemap');
     expect(journal).not.toContain('waymarkedtrails');

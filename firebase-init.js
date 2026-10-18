@@ -565,6 +565,64 @@ async function saveHikeOutcome(record) {
   }
 }
 
+// JOURNAL-02 — the walk journal is account data. The browser keeps the working
+// copy so recording and reading work offline; this is the durable copy that
+// follows the account onto another phone. Shape and bounds live in
+// journal-store.js, which the Firestore rule mirrors.
+function journalStore() {
+  return window.DoloPawsJournalStore || null;
+}
+
+function journalEntryId(id) {
+  const clean = String(id || "").slice(0, 120);
+  // A Firestore document ID cannot contain a slash or be a relative path.
+  return /^[A-Za-z0-9._:-]+$/.test(clean) && clean !== "." && clean !== ".." ? clean : "";
+}
+
+async function getJournalEntries() {
+  const store = journalStore();
+  if (!currentUser || !store) return { ok: false, entries: [] };
+  try {
+    const snap = await getDocs(collection(db, "users", currentUser.uid, "journal"));
+    return { ok: true, entries: snap.docs.map(item => store.fromRemote(item.data())) };
+  } catch (e) {
+    // An offline or rule-blocked read must not look like an empty journal, or
+    // the merge would conclude the account has no walks and push nothing.
+    console.error("Failed to load the journal:", e);
+    return { ok: false, entries: [] };
+  }
+}
+
+async function saveJournalEntries(entries) {
+  const store = journalStore();
+  if (!currentUser || !store) return { ok: false, saved: 0 };
+  const list = (Array.isArray(entries) ? entries : []).filter(entry => journalEntryId(entry && entry.id));
+  let saved = 0;
+  try {
+    for (const entry of list) {
+      const id = journalEntryId(entry.id);
+      await setDoc(doc(db, "users", currentUser.uid, "journal", id), store.toRemote(entry, { now: Date.now() }));
+      saved += 1;
+    }
+    return { ok: true, saved };
+  } catch (e) {
+    console.error("Failed to save journal entries:", e);
+    return { ok: false, saved };
+  }
+}
+
+async function deleteJournalEntry(id) {
+  const entryId = journalEntryId(id);
+  if (!currentUser || !entryId) return false;
+  try {
+    await deleteDoc(doc(db, "users", currentUser.uid, "journal", entryId));
+    return true;
+  } catch (e) {
+    console.error("Failed to remove a journal entry:", e);
+    return false;
+  }
+}
+
 function friendlyError(code) {
   const map = {
     "auth/email-already-in-use": "That email already has an account, try logging in instead.",
@@ -585,6 +643,7 @@ async function deleteAccount(password) {
   const providerId = currentUser.providerData[0] && currentUser.providerData[0].providerId;
   const uid = currentUser.uid;
   let removedOutcomes = 0;
+  let removedJournalEntries = 0;
   let removedProfile = false;
   let removedPublicProfile = false;
   try {
@@ -605,6 +664,13 @@ async function deleteAccount(password) {
       await deleteDoc(outcome.ref);
       removedOutcomes += 1;
     }
+    // JOURNAL-02 put the walk journal on the server, so deleting an account
+    // has to take it away again. Local copies are cleared by local-data.js.
+    const journalEntries = await getDocs(collection(db, "users", uid, "journal"));
+    for (const entry of journalEntries.docs) {
+      await deleteDoc(entry.ref);
+      removedJournalEntries += 1;
+    }
     const outgoingFollows = await getDocs(query(collection(db, "follows"), where("followerUid", "==", uid)));
     const incomingFollows = await getDocs(query(collection(db, "follows"), where("ownerUid", "==", uid)));
     const followRefs = new Map();
@@ -618,13 +684,13 @@ async function deleteAccount(password) {
     return {
       ok: false,
       stage: "private-data",
-      partial: removedOutcomes > 0,
-      server: { removedOutcomes, removedProfile, removedPublicProfile },
-      messageKey: removedOutcomes > 0
+      partial: removedOutcomes > 0 || removedJournalEntries > 0,
+      server: { removedOutcomes, removedJournalEntries, removedProfile, removedPublicProfile },
+      messageKey: removedOutcomes > 0 || removedJournalEntries > 0
         ? "account.delete.partialPrivateData"
         : "account.delete.privateDataError",
-      message: removedOutcomes > 0
-        ? "Some private hike outcomes were removed, but server cleanup did not finish. Your sign-in has not been deleted. Please try again."
+      message: removedOutcomes > 0 || removedJournalEntries > 0
+        ? "Some private hike records were removed, but server cleanup did not finish. Your sign-in has not been deleted. Please try again."
         : "Your private server data could not be removed, so your sign-in was not deleted. Please try again.",
     };
   }
@@ -636,7 +702,7 @@ async function deleteAccount(password) {
       ok: false,
       stage: "authentication",
       partial: true,
-      server: { removedOutcomes, removedProfile, removedPublicProfile },
+      server: { removedOutcomes, removedJournalEntries, removedProfile, removedPublicProfile },
       messageKey: "account.delete.authenticationError",
       message: "Your private profile was removed, but the sign-in could not be deleted. Sign in again and retry account deletion, or contact support.",
     };
@@ -865,6 +931,9 @@ window.DoloPawsAuth = {
   removeDogProfile,
   getLastMatches,
   setLastMatches,
+  getJournalEntries,
+  saveJournalEntries,
+  deleteJournalEntry,
   deleteAccount,
   getContributionEligibility,
   sendContributionVerificationEmail,

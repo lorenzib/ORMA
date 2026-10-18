@@ -13,9 +13,10 @@ remain on the current device.
 Server deletion removes, in order:
 
 1. private post-hike outcomes under `users/{uid}/outcomes`;
-2. the private `users/{uid}` profile, including dog profiles, saved trails, and
+2. the private walk journal under `users/{uid}/journal` (JOURNAL-02);
+3. the private `users/{uid}` profile, including dog profiles, saved trails, and
    match history; and
-3. the Firebase Authentication identity.
+4. the Firebase Authentication identity.
 
 Community reviews, trail photos, hazard reports, abuse reports, and immutable
 moderation audit records may remain for community safety or legal obligations.
