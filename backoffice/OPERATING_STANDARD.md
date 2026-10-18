@@ -979,6 +979,45 @@ And when nothing is published and nothing is held, the report says so in those
 words. A lane that never ran and a lane with nothing to do produce the same
 silence, and both read as success.
 
+## A walk the catalogue does not hold cannot be published
+
+A scouted walk exists only in Firestore. `candidateToTrail` builds it from the
+scouting packet — an id, a name, an OSM relation, `path: []` — writes it to the
+`new-trail-intake` artifact, and nothing ever writes it into `data/`.
+
+Publication restates nine fields from the catalogue record: how far, how long,
+what ground, where it starts, what water is on it. Such a walk has no record,
+so there is nothing to restate and it stops at the mapping gate. For ever: the
+hand-typed table that could supply those fields has three entries, all of them
+trails already published.
+
+**It stopped there having been paid for.** The cartographer is free, but the
+research agents, the copywriter and the visual director are not, and every one
+of them runs before anything notices the walk can never reach a page. That is
+the wall the scouting lane would hit on trail 164, once for every trail it
+found.
+
+Two things follow, and neither of them is the missing import — that is a
+separate piece of work, and the right one.
+
+**The blocker says which problem it is.** `structured-website-fields` reads as
+a record missing some of its fields, and sends somebody to look for fields on a
+record that does not exist. A walk the catalogue does not hold now reports
+`trail-not-in-the-catalogue`. And a target is only called `update-existing`
+where something exists to update; calling a walk that is not in the catalogue
+an update was a claim about the site that was simply untrue, and it travelled
+on the staging item.
+
+**A candidate the catalogue does not hold is kept back, not admitted.** It is
+named on the intake artifact with its reason, and the reason travels on the
+review outcome, so a review that queued nothing does not read like a review
+that queued work. Nothing is dropped and nothing is charged; it waits for the
+import that would give it a record.
+
+A caller that passes no catalogue is not saying the catalogue is empty, so the
+intake admits as it always did — a missing argument must not become a silent
+stop.
+
 ## Free work goes first
 
 A pass orders its queue so the trails that can actually be verified are

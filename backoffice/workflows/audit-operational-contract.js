@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -50,6 +50,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/rehydrate-review-detail.js'),
     read(root,'backoffice/workflows/verification-funnel.js'),
     read(root,'backoffice/cli/report-verification-funnel.js'),
+    read(root,'backoffice/workflows/new-trail-intake.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -472,6 +473,28 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&funnelCli.includes('no trail has entered this half of the lane')
     &&standard.includes('The funnel reaches the page'),
     'The verification funnel follows a trail past the dossier gate through the editorial queue, publication staging, the publication request and the override file the site is built from, naming what holds each one rather than counting it; what this lane published and what merely carries directions are counted separately, because the override file also holds hand-written corrections and folding them together reported a pipeline that had run when it had not; and nothing published with nothing held is said in those words, because a lane that never ran and a lane with nothing to do are the same silence');
+
+  // Nothing is paid for a walk that cannot be published.
+  //
+  // The risk is the scouting lane's own wall. A scouted walk lives only in
+  // Firestore and publication restates nine fields from a catalogue record it
+  // has not got, so it stops at the mapping gate for ever -- after the
+  // research agents, the copywriter and the visual director have all run.
+  add('a-walk-the-catalogue-does-not-hold-is-not-paid-for',
+    intake.includes('function heldForImport(trails, catalogue)')
+    // A missing catalogue is not an empty one.
+    &&intake.includes('if(!catalogue)return {admit:trails,held:[]};')
+    &&intake.includes("reason:'not in the catalogue: publication restates a record this walk has not got'")
+    &&worker.includes('productionTrails:options.productionTrails||loadProductionTrails(path.resolve(__dirname,')
+    // The reason travels, so a review that queued nothing does not read like
+    // a review that queued work.
+    &&worker.includes('...(intake.held?.length?{heldForImport:intake.held}:{})')
+    // And the blocker names the real problem rather than missing fields.
+    &&staging.includes('function inTheCatalogue(item, target, trailsById)')
+    &&staging.includes("!known&&'trail-not-in-the-catalogue',")
+    &&staging.includes("operation:trailsById.has(item.targetTrailId)?'update-existing':'create-new'")
+    &&standard.includes('A walk the catalogue does not hold cannot be published'),
+    'A scouted walk exists only in Firestore and publication restates nine fields from a catalogue record it has not got, so it stops at the mapping gate for ever -- after the paid agents have run. Such a candidate is kept back at intake and named with its reason rather than admitted, the reason travels on the review outcome, and at publication the blocker says the trail is not in the catalogue rather than reporting fields missing from a record that does not exist. A caller passing no catalogue is not saying the catalogue is empty');
 
   // Work that costs nothing is not ordered by a rule about money.
   //
