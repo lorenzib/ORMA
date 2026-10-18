@@ -97,7 +97,10 @@ describe('automatic ORMA Verified editorial handoff',()=>{
     const handoff=buildVerifiedEditorialHandoff(dossier,record,null,{at});const copy=copyPayload(handoff.item).result;
     const visual={searchSummary:'Licensed.',coverageGaps:[],candidates:[{title:'Trail A',sourcePageUrl:'https://example.test/photo',assetUrl:'https://example.test/photo.jpg',creator:'Creator',license:'CC BY-SA 4.0',licenseUrl:'https://creativecommons.org/licenses/by-sa/4.0/',credit:'Creator',matchEvidence:'Location.',altText:'Trail A.',status:'ready'}]};
     const staging=buildPublicationStaging(handoff.queue,{outputs:[{jobId:'verified-trail-a-copy',candidateId:'trail-a',agentId:'copywriter',result:copy},{jobId:'verified-trail-a-visual',candidateId:'trail-a',agentId:'visualDirector',result:visual}]},{submissions:[{submissionId:'review-a',decisions:[{jobId:'verified-trail-a-copy',action:'approve'},{jobId:'verified-trail-a-visual',action:'approve'}]}]},{at});
-    expect(staging.items[0]).toEqual(expect.objectContaining({state:'waiting-publication-mapping',missingApprovals:[],publicationMappingBlockers:['structured-website-fields'],proposedWebsiteFields:null}));
+    // `structured-website-fields` reads as a record missing some of its
+    // fields. This walk is not in the catalogue at all, which is a different
+    // problem with a different fix, and the blocker says which.
+    expect(staging.items[0]).toEqual(expect.objectContaining({state:'waiting-publication-mapping',missingApprovals:[],publicationMappingBlockers:['trail-not-in-the-catalogue'],proposedWebsiteFields:null}));
   });
 
   test('live worker writes a first-pass proposal into protected execution and returns it for human review',async()=>{
