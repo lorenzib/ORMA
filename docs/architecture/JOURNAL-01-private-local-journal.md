@@ -1,6 +1,9 @@
 # JOURNAL-01 — Private local walk journal
 
-Status: complete for beta (2026-08-11)
+Status: superseded by JOURNAL-02 (2026-10-16). Kept as the record of why the
+journal was local-only for beta, and of the gate the sync had to pass. The
+journal is now saved to the account; see
+`JOURNAL-02-account-synced-journal.md`.
 
 ## Decision
 

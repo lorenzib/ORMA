@@ -377,6 +377,19 @@ const MINIMUM_GEOMETRY_SHARE = 0.8;
 // the catalogue disappearing in one run is a failed fetch, not a changed map.
 const MAXIMUM_CATALOGUE_LOSS = 0.1;
 
+// How far apart two member ways' ends may be and still be the same walk.
+//
+// It was 30 m, and that is tighter than the mapping. Gsieser Talblickweg lists
+// its route in three groups separated by 44 m and 85 m -- one continuous walk
+// on the ground, three disconnected pieces here, which the promoter then
+// chained back together across those same gaps and reported as broken
+// geometry. Twelve catalogue trails have a break of this size.
+//
+// 100 m is still well under the shortest gap that has turned out to be real
+// (134 m), so nothing that is genuinely two separate stretches is welded
+// together by it.
+const STITCH_TOLERANCE_M = 100;
+
 const OFF_ROUTE_ROLES = new Set([
   'approach', 'excursion', 'alternative', 'alternate', 'link', 'connection',
 ]);
@@ -396,7 +409,7 @@ function stitchMembers(members) {
 
   const lines = [];
   const pool = segments.slice();
-  const close = (a, b) => haversineMeters(a, b) < 30;
+  const close = (a, b) => haversineMeters(a, b) < STITCH_TOLERANCE_M;
 
   while (pool.length) {
     let line = pool.shift();
@@ -424,10 +437,32 @@ function stitchMembers(members) {
   return lines;
 }
 
+/**
+ * Does this walk come back to where it started?
+ *
+ * Asked of the piece covering the most ground, not of the relation as a whole.
+ * It used to refuse outright whenever the relation held more than one piece,
+ * and never reached the question it is named for -- so a circuit that closes
+ * to the metre was recorded as not a loop because the relation also listed a
+ * stray fragment somewhere else in the valley. Twelve catalogue walks are
+ * labelled that way today, Roda dles Viles among them, whose ends meet at 0 m.
+ *
+ * The stray piece is a fact about the relation. Whether the walk returns to
+ * its start is a fact about the walk, and that is what a reader is asking.
+ *
+ * Measured by ground covered rather than by point count, so a dense short
+ * fragment cannot be mistaken for the walk.
+ */
 function isClosedLoop(lines) {
-  if (lines.length !== 1) return false;
-  const line = lines[0];
-  return haversineMeters(line[0], line[line.length - 1]) < LOOP_CLOSE_METERS;
+  const pieces = (lines || []).filter((line) => Array.isArray(line) && line.length > 1);
+  if (!pieces.length) return false;
+  let main = pieces[0];
+  let mainKm = pathLengthKm([main]);
+  for (const line of pieces.slice(1)) {
+    const km = pathLengthKm([line]);
+    if (km > mainKm) { main = line; mainKm = km; }
+  }
+  return haversineMeters(main[0], main[main.length - 1]) < LOOP_CLOSE_METERS;
 }
 
 function pathLengthKm(lines) {
@@ -853,6 +888,6 @@ async function readPreviousCatalogue(file) {
 
 module.exports = { fetchWithRetries, permanentForThisHost, PERMANENT_FOR_THIS_HOST,
   OVERPASS_URLS, USER_AGENT,
-  OFF_ROUTE_ROLES, isRouteMember, stitchMembers,
+  OFF_ROUTE_ROLES, STITCH_TOLERANCE_M, isRouteMember, stitchMembers,
   geometryOf, refreshGeometry, simplify, pathLengthKm, isClosedLoop, parseDistanceKm,
   MINIMUM_GEOMETRY_SHARE, MAXIMUM_CATALOGUE_LOSS, readPreviousCatalogue };

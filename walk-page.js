@@ -43,6 +43,14 @@
     return (h ? h + ':' : '') + mm + ':' + String(sec).padStart(2, '0');
   }
 
+  // A GPS reading is a chip; a sentence the walker has to read is a note.
+  function setGpsText(message, isNote){
+    els.gps.textContent = message;
+    els.gps.classList.toggle('wr-gps--note', isNote === true);
+    var host = document.getElementById('wrMap');
+    if(host) host.classList.toggle('wr-map--note', isNote === true);
+  }
+
   function paint(){
     els.time.textContent = fmtTime(recorder.elapsedMs(Date.now()));
     els.dist.textContent = (recorder.distanceM / 1000).toFixed(2);
@@ -108,9 +116,13 @@
   }
 
   function routeGeo(){
+    // One line per tracked stretch. A stretch the phone could not follow is a
+    // gap on the map, not a straight line across country nobody walked.
     return { type: 'Feature', geometry: {
-      type: 'LineString',
-      coordinates: recorder.summary(Date.now()).route.map(function(p){ return [p[1], p[0]]; }),
+      type: 'MultiLineString',
+      coordinates: recorder.summary(Date.now()).segments.map(function(segment){
+        return segment.map(function(p){ return [p[1], p[0]]; });
+      }),
     } };
   }
 
@@ -403,17 +415,17 @@
   // ---- Geolocation ---------------------------------------------------
   function requestCurrentPosition(){
     if(!navigator.geolocation){
-      els.gps.textContent = 'Location is not available in this browser';
+      setGpsText('Location is not available in this browser');
       initMap({ lat:46.54, lng:11.80 }, true);
       return;
     }
-    els.gps.textContent = 'Finding your position…';
+    setGpsText('Finding your position…');
     navigator.geolocation.getCurrentPosition(function(pos){
       var fix = { lat:pos.coords.latitude, lng:pos.coords.longitude, accuracy:pos.coords.accuracy, timestamp:pos.timestamp };
-      els.gps.textContent = 'GPS ±' + Math.round(pos.coords.accuracy) + ' m';
+      setGpsText('GPS ±' + Math.round(pos.coords.accuracy) + ' m');
       traceUpdate(fix);
     }, function(){
-      els.gps.textContent = 'Location unavailable, tap ◎ after allowing access';
+      setGpsText('Location unavailable, tap ◎ after allowing access');
       initMap({ lat:46.54, lng:11.80 }, true);
     }, { enableHighAccuracy:true, maximumAge:5000, timeout:12000 });
   }
@@ -426,13 +438,19 @@
         accuracy: pos.coords.accuracy, timestamp: pos.timestamp,
       };
       var result = recorder.addFix(fix);
-      els.gps.textContent = result.accepted || result.reason === 'jitter'
-        ? 'GPS ±' + Math.round(pos.coords.accuracy) + ' m'
-        : 'GPS signal is weak, walk on, it will catch up';
+      if(result.gap){
+        // The phone stopped reporting: a locked screen or another app. Say so,
+        // because the stretch in between is missing from the walk.
+        setGpsText('Recording stopped while the phone was away. That stretch is missing from this walk.', true);
+      } else {
+        setGpsText(result.accepted || result.reason === 'jitter'
+          ? 'GPS ±' + Math.round(pos.coords.accuracy) + ' m'
+          : 'GPS signal is weak, walk on, it will catch up');
+      }
       traceUpdate(fix);
       paint();
     }, function(){
-      els.gps.textContent = 'Location unavailable, check permissions';
+      setGpsText('Location unavailable, check permissions');
     }, { enableHighAccuracy: true, maximumAge: 2000, timeout: 15000 });
   }
 
@@ -461,38 +479,37 @@
   function startWithLocation(){
     if(startPending) return;
     if(!navigator.geolocation){
-      els.gps.textContent = 'Location is required to record a walk';
+      setGpsText('Location is required to record a walk');
       return;
     }
     startPending = true;
     els.start.disabled = true;
     els.start.textContent = 'Finding location…';
-    els.gps.textContent = 'Finding your position before starting…';
+    setGpsText('Finding your position before starting…');
     navigator.geolocation.getCurrentPosition(function(pos){
       var fix = fixFromPosition(pos);
       if(!fix){
-        els.gps.textContent = 'Location unavailable, try again';
+        setGpsText('Location unavailable, try again');
         resetStartButton();
         return;
       }
       if(fix.accuracy > MAX_START_ACCURACY_M){
-        els.gps.textContent = 'GPS signal is too weak, move outdoors and try again';
+        setGpsText('GPS signal is too weak, move outdoors and try again');
         resetStartButton();
         return;
       }
       if(recorder.status === 'idle') recorder.start(Date.now());
       else recorder.resume(Date.now());
       recorder.addFix(fix);
-      els.gps.textContent = 'GPS ±' + Math.round(fix.accuracy) + ' m';
+      setGpsText('GPS ±' + Math.round(fix.accuracy) + ' m');
       traceUpdate(fix);
       startWatch();
-      requestWakeLock();
       if(!tickTimer) tickTimer = setInterval(paint, 1000);
       if(!draftTimer) draftTimer = setInterval(saveDraft, 10000);
       resetStartButton();
       paint();
     }, function(error){
-      els.gps.textContent = locationErrorText(error);
+      setGpsText(locationErrorText(error));
       resetStartButton();
     }, { enableHighAccuracy:true, maximumAge:5000, timeout:15000 });
   }
@@ -532,8 +549,17 @@
 
   // ---- Journal hand-off ----------------------------------------------
   function saveToJournal(){
-    var summary = recorder.finish(Date.now());
-    var entry = window.DoloPawsWalkRecorder.buildJournalEntry(summary, { now: Date.now() });
+    var now = Date.now();
+    var store = window.DoloPawsJournalStore;
+    var summary = recorder.finish(now);
+    var entry = window.DoloPawsWalkRecorder.buildJournalEntry(summary, {
+      now: now,
+      id: store ? store.newId(now) : undefined,
+    });
+    // updatedAt is what tells the account's copy of this journal that the walk
+    // is new. The journal page pushes it up on its next sync, which is also
+    // how a walk recorded offline or on a restored session reaches the account.
+    entry.updatedAt = now;
     try {
       var entries = [];
       try { entries = JSON.parse(localStorage.getItem(journalKey())) || []; } catch(e){}
@@ -548,6 +574,11 @@
   // ---- Controls ------------------------------------------------------
   els.start.addEventListener('click', function(){
     if(!uid){ els.gate.hidden = false; return; }
+    // Ask for the screen lock here, in the tap itself. Asked later, from the
+    // geolocation callback, the request has lost its user gesture; a browser
+    // that refuses it lets the screen sleep, the page freeze, and the walk
+    // stop being recorded without a word.
+    requestWakeLock();
     startWithLocation();
   });
 

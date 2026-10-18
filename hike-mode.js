@@ -1262,8 +1262,13 @@ function initHikeMode(map, trail, options){
         window.location.href = `journal.html?trail=${encodeURIComponent(trail.id)}&duration=${elapsedMinutes}&completion=${encodeURIComponent(completion.completionId)}&from=${encodeURIComponent(returnToTrail)}`;
         return;
       }
+      const journalStore = window.DoloPawsJournalStore;
+      const savedAt = Date.now();
       const entry = {
-        id: 'w' + Date.now(),
+        // A unique id per walk: journal entries now sync to the account, where
+        // two devices sharing an id would mean one walk overwriting the other.
+        id: journalStore ? journalStore.newId(savedAt) : ('w' + savedAt),
+        updatedAt: savedAt,
         date: new Date().toISOString(),
         trailId: trail.id,
         trail: trail.name,

@@ -1,6 +1,7 @@
 'use strict';
 
 const {CLAIM_ENTITY_TYPE}=require('./compile-operational-facts');
+const {routeGuidanceByClaim}=require('./compile-verified-dossier');
 
 const TARGETS = Object.freeze({
   'osm-relation-1484751': { trailId: 'tre-cime', operation: 'update-existing', routeRef: 'backoffice-data/route-proposals/tre-cime-classic.geojson' },
@@ -34,18 +35,38 @@ function latestDecisions(reviewQueue){
 function section(result, name){ return result?.changes?.find(change => change.section === name)?.after || null; }
 
 function routeNumberGuidance(item){
-  const facts=new Map((item?.lockedFacts||[]).map(fact=>[fact.id,fact]));
-  const start=facts.get('logistics-recommended-start');
-  const status=facts.get('logistics-route-number-status');
-  const sequence=facts.get('logistics-route-number-sequence');
-  const switches=facts.get('logistics-route-number-switches');
+  // By claim, not by the agent that happened to answer it.
+  //
+  // These were looked up as `logistics-recommended-start` and the like, which
+  // finds an answer only where a specialist gave one. A walk whose number the
+  // map read and whose start ORMA published records those answers under the
+  // rung that established them -- `map-route-number-sequence`,
+  // `orma-recommended-start` -- because calling a measurement a logistics claim
+  // would make the dossier lie about who established the walk. Looked up this
+  // way, every rung is found and none has to be mislabelled to be publishable.
+  // One lookup, shared with the editorial handoff, because these two read the
+  // same four answers and the last time they each had their own copy one of
+  // them was still looking for a prefix the dossier had stopped writing.
+  const facts=routeGuidanceByClaim(item?.lockedFacts);
+  const start=facts.get('recommended-start');
+  const status=facts.get('route-number-status');
+  const sequence=facts.get('route-number-sequence');
+  const switches=facts.get('route-number-switches');
   if(!start||!status||!sequence||!switches)return null;
   const sourceIds=[...new Set([start,status,sequence,switches].flatMap(fact=>fact.sourceIds||[]))];
   const sources=(item.evidenceSources||[]).filter(source=>sourceIds.includes(source.id)).map(source=>({
     label:source.label,url:source.url,authority:source.authority||null,accessedAt:source.accessedAt||null,
   }));
   const landmarkLed=/(?:unnumbered|named-only|landmark|no (?:usable )?(?:trail )?number)/i.test(status.value||'');
-  return {mode:landmarkLed?'landmarks':'numbered',start:start.value,status:status.value,sequence:sequence.value,switches:switches.value,sources};
+  // Which rung established each answer, carried so the published record can be
+  // checked rather than taken on trust. `agent-evidence` is a specialist's own
+  // answer cited to a publisher; the other two are the map and ORMA's own
+  // record, and a walk answered entirely by the record cites nothing outside
+  // ORMA -- which has to be stated, not inferred from an empty source list.
+  const establishedBy=Object.fromEntries(Object.entries(
+    {start,status,sequence,switches}).map(([field,fact])=>[field,fact.derivedFrom||'agent-evidence']));
+  return {mode:landmarkLed?'landmarks':'numbered',start:start.value,status:status.value,
+    sequence:sequence.value,switches:switches.value,establishedBy,sources};
 }
 
 // The locked facts that name one rifugio, lift or protected area. These ride the
@@ -129,17 +150,39 @@ function operationalClaims(item){
 // publishes copy, photograph and verification status; the measurements carry
 // forward from the record unless the table overrides them, and the operator sees
 // the whole field set in the preview before approving it.
-const STRUCTURED_FIELDS = Object.freeze([
-  'area', 'distance', 'elevation', 'hours', 'paid', 'terrainType', 'terrainRank',
-  'shadeCoverage', 'heatRisk', 'safetyLevel', 'exposure', 'waterSources', 'startPoint',
+/**
+ * What publication restates from the record, and what it only carries forward.
+ *
+ * `REQUIRED_STRUCTURED_FIELDS` is the walk's shape and its mapped points: how
+ * far, how long, what ground, where it starts, what water is on it. Every one of
+ * the 163 catalogue records carries all nine, bar one trail with no usable start
+ * point, and without them a publication cannot restate the trail at all. That
+ * is a real "not ready".
+ *
+ * `OPTIONAL_STRUCTURED_FIELDS` are safety and access attributes -- shade, heat
+ * risk, exposure, whether access is paid -- and a record only has them once the
+ * matching category was researched. Between 33 and 39 trails of 163 do.
+ *
+ * All thirteen were required together, and a single `undefined` returned null
+ * for the whole record, so 134 trails were held at `structured-website-fields`
+ * for not having had their heat researched. That is the safety gate again,
+ * wearing a different name: the same six categories, blocking the same walks,
+ * one layer further down where the blocker does not say so. A field the record
+ * does not have is carried as absent, which is what it is.
+ */
+const REQUIRED_STRUCTURED_FIELDS = Object.freeze([
+  'area', 'distance', 'elevation', 'hours', 'terrainType', 'terrainRank',
+  'safetyLevel', 'waterSources', 'startPoint',
 ]);
+const OPTIONAL_STRUCTURED_FIELDS = Object.freeze(['paid', 'shadeCoverage', 'heatRisk', 'exposure']);
+const STRUCTURED_FIELDS = Object.freeze([...REQUIRED_STRUCTURED_FIELDS, ...OPTIONAL_STRUCTURED_FIELDS]);
 
 function structuredFieldsFromTrail(trail){
   if(!trail) return null;
+  if(REQUIRED_STRUCTURED_FIELDS.some(key => trail[key] === undefined)) return null;
   const fields = {};
   for(const key of STRUCTURED_FIELDS){
-    if(trail[key] === undefined) return null;
-    fields[key] = trail[key];
+    if(trail[key] !== undefined) fields[key] = trail[key];
   }
   return fields;
 }
@@ -213,18 +256,20 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
     // than published claiming six checks it cannot show.
     const researched=Array.isArray(item?.researchedCategories)?item.researchedCategories:[];
     const graduation=graduationFor(researched,Boolean(retainedImage||hero),Boolean(verifiedFields));
-    // A trail short of the full seal is held, not published.
+    // A trail short of the full seal publishes as a reviewed one.
     //
-    // The override contract takes either a full verification or one of its
-    // named scopes, and the scope that would carry a route-only publication
-    // needs cited sources with a `reviewedAt` -- which a trail answered by the
-    // map and ORMA's own record does not have. Until that scope can carry it,
-    // such a trail waits here and says exactly what it is waiting for, rather
-    // than publishing a badge it has not earned or failing in the materializer.
-    const unresearched=SAFETY_CHECKS.filter(check=>!researched.includes(check));
-    const safetyBlocker=graduation.status!=='verified'&&unresearched.length
-      &&`safety-categories-not-researched:${unresearched.join(',')}`;
-    const publicationMappingBlockers=[!target&&'website-target-mapping',!verifiedFields&&'structured-website-fields',!routeGuidance&&'route-number-guidance',safetyBlocker].filter(Boolean);
+    // It was held here instead, because the override contract had no door for
+    // it: a full verification carries the seal, and the scope that would carry
+    // a route-only publication demanded cited sources with a `reviewedAt`,
+    // which a walk answered by the map and ORMA's own record does not have.
+    // Both are now true of the `routeReviewed` scope, so the walk's directions,
+    // copy and start point reach the reader and the badge says reviewed -- and
+    // because no safety category is recorded, every caveat on the page stands.
+    //
+    // What still holds a publication is a missing *answer*: no mapping target,
+    // no structured fields, no route guidance. Not having paid for the optional
+    // six is not a missing answer.
+    const publicationMappingBlockers=[!target&&'website-target-mapping',!verifiedFields&&'structured-website-fields',!routeGuidance&&'route-number-guidance'].filter(Boolean);
     const state=missingApprovals.length?'waiting-content-approvals':publicationMappingBlockers.length?'waiting-publication-mapping':'ready-for-publication-preview';
     return {
       candidateId: item.candidateId, targetTrailId: target?.trailId||item.candidateId, operation: target?.operation||'mapping-required',
@@ -286,4 +331,4 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
   };
 }
 
-module.exports = {SAFETY_CHECKS,GRADUATION_CHECKS,graduationFor,seasonalSuitabilityFrom,verifiedPoiFields, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS,EXISTING_IMAGE_FIELDS,existingImageFields, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };
+module.exports = {SAFETY_CHECKS,REQUIRED_STRUCTURED_FIELDS,OPTIONAL_STRUCTURED_FIELDS,GRADUATION_CHECKS,graduationFor,seasonalSuitabilityFrom,verifiedPoiFields, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS,EXISTING_IMAGE_FIELDS,existingImageFields, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };

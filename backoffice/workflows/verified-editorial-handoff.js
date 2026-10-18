@@ -2,6 +2,7 @@
 
 const {createAgentJob}=require('../contracts/agent-job-v1');
 const {LOCKED_FACT_FIELDS}=require('./plan-verified-trail-editorial');
+const {VERIFICATION_ROUTE_CLAIMS,routeGuidanceByClaim}=require('./compile-verified-dossier');
 
 function assertVerifiedDossier(dossier){
   if(!dossier||dossier.reviewState!=='accepted'||dossier.ormaVerification?.status!=='verified'){
@@ -9,15 +10,19 @@ function assertVerifiedDossier(dossier){
   }
   const unsupported=(dossier.claims||[]).filter(claim=>claim.state!=='supported');
   if(unsupported.length)throw new Error(`Verified editorial handoff found unsupported claims: ${unsupported.map(claim=>claim.id).join(', ')}`);
-  const ids=new Set((dossier.claims||[]).map(claim=>claim.id));
-  const required=['logistics-recommended-start','logistics-route-number-status','logistics-route-number-sequence','logistics-route-number-switches'];
-  const missing=required.filter(id=>!ids.has(id));
+  // Keyed on the claim, not on the agent that answered it. A walk whose
+  // directions came from the map or from ORMA's own record records them under
+  // that rung -- `map-route-number-sequence`, `orma-recommended-start` -- and
+  // this check, which only ever looked for `logistics-<claim>`, read such a
+  // walk as having no directions at all and refused to hand it over.
+  const recorded=routeGuidanceByClaim(dossier.claims);
+  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>!recorded.has(id));
   if(missing.length)throw new Error(`Verified editorial handoff requires route guidance: ${missing.join(', ')}`);
 }
 
 function editorialItem(dossier,record,at,options={}){
   assertVerifiedDossier(dossier);
-  const requiredStartFact=(dossier.claims||[]).find(claim=>claim.id==='logistics-recommended-start');
+  const requiredStartFact=routeGuidanceByClaim(dossier.claims).get('recommended-start');
   return {
     candidateId:dossier.candidateId,trailName:dossier.trailName,targetTrailId:dossier.trailId,
     dossierRef:`trail-verify-desk.html#verified-${dossier.candidateId}`,
@@ -35,6 +40,12 @@ function editorialItem(dossier,record,at,options={}){
     lockedFacts:(dossier.claims||[]).map(claim=>({id:claim.id,label:claim.label,value:claim.proposedValue,
       sourceIds:claim.sourceIds||[],state:claim.state,claimId:claim.claimId||null,agentId:claim.agentId||null,
       humanAcceptedFinding:claim.humanAcceptedFinding||null,
+      // Which rung established this: the map, ORMA's own record, or absent for
+      // an agent's answer cited to somebody who published it. Publication has
+      // to say which, because a walk whose directions came from ORMA's record
+      // has no outside source to cite and an empty source list would otherwise
+      // be indistinguishable from having forgotten to cite one.
+      derivedFrom:claim.derivedFrom||null,
       entityName:claim.entityName||null,rule:claim.rule||null,observedAt:claim.observedAt||null,
       location:claim.location||null,
       variesWith:claim.variesWith||null})),

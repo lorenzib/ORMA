@@ -26,8 +26,21 @@
     });
   }
 
-  function projectRoute(route, w, h, pad){
-    var pts = validRoute(route);
+  // A walk is one or more tracked stretches. Where the phone stopped reporting
+  // there is a break between them, and the drawing has to leave it empty: a
+  // line joining two stretches claims ground the walk never covered. Every
+  // stretch is fitted in the same frame so the gaps stay where they happened.
+  function validSegments(segments){
+    if(!Array.isArray(segments)) return [];
+    if(segments.length && Array.isArray(segments[0]) && !Array.isArray(segments[0][0])){
+      return [validRoute(segments)];   // a flat route from an older entry
+    }
+    return segments.map(validRoute).filter(function(part){ return part.length > 0; });
+  }
+
+  function projectSegments(segments, w, h, pad){
+    var parts = validSegments(segments);
+    var pts = parts.reduce(function(all, part){ return all.concat(part); }, []);
     if(pts.length < 2) return [];
     var latMid = pts.reduce(function(s, p){ return s + p[0]; }, 0) / pts.length;
     var kx = Math.cos(latMid * Math.PI / 180);
@@ -38,9 +51,16 @@
     var spanX = Math.max(maxX - minX, 1e-9), spanY = Math.max(maxY - minY, 1e-9);
     var scale = Math.min((w - 2 * pad) / spanX, (h - 2 * pad) / spanY);
     var offX = (w - spanX * scale) / 2, offY = (h - spanY * scale) / 2;
-    return pts.map(function(p){
-      return [offX + (p[1] * kx - minX) * scale, h - (offY + (p[0] - minY) * scale)];
+    return parts.map(function(part){
+      return part.map(function(p){
+        return [offX + (p[1] * kx - minX) * scale, h - (offY + (p[0] - minY) * scale)];
+      });
     });
+  }
+
+  function projectRoute(route, w, h, pad){
+    var drawn = projectSegments([validRoute(route)], w, h, pad);
+    return drawn.length ? drawn[0] : [];
   }
 
   function metresBetween(a, b){
@@ -52,41 +72,74 @@
     return earth * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
   }
 
+  function pathLength(pts){
+    var total = 0;
+    for(var i = 1; i < pts.length; i++) total += metresBetween(pts[i - 1], pts[i]);
+    return total;
+  }
+
+  // The point `target` metres along the path, with the index of the segment
+  // it falls in.
+  function pointAlong(pts, target){
+    var covered = 0;
+    for(var index = 1; index < pts.length; index++){
+      var span = metresBetween(pts[index - 1], pts[index]);
+      if(covered + span >= target){
+        var ratio = span ? (target - covered) / span : 0;
+        return { index:index - 1, point:[
+          pts[index - 1][0] + (pts[index][0] - pts[index - 1][0]) * ratio,
+          pts[index - 1][1] + (pts[index][1] - pts[index - 1][1]) * ratio
+        ] };
+      }
+      covered += span;
+    }
+    return { index:pts.length - 2, point:pts[pts.length - 1].slice() };
+  }
+
+  function trimFront(pts, mask){
+    if(pts.length < 2 || pathLength(pts) <= mask) return [];
+    var cut = pointAlong(pts, mask);
+    return [cut.point].concat(pts.slice(cut.index + 1).map(function(p){ return p.slice(); }));
+  }
+
+  function trimBack(pts, mask){
+    if(pts.length < 2) return [];
+    var total = pathLength(pts);
+    if(total <= mask) return [];
+    var cut = pointAlong(pts, total - mask);
+    return pts.slice(0, cut.index + 1).map(function(p){ return p.slice(); }).concat([cut.point]);
+  }
+
   // Conceals roughly `distanceM` from both ends without mutating the route.
   function maskRouteEnds(route, distanceM){
     var pts = validRoute(route).map(function(p){ return [p[0], p[1]]; });
     var mask = Number.isFinite(distanceM) ? Math.max(distanceM, 0) : 200;
     if(pts.length < 2 || mask === 0) return pts;
-    var segments = [], total = 0;
-    for(var i = 1; i < pts.length; i++){
-      var segment = metresBetween(pts[i - 1], pts[i]); segments.push(segment); total += segment;
-    }
-    if(total <= mask * 2) return [];
-    function pointAt(target){
-      var covered = 0;
-      for(var index = 0; index < segments.length; index++){
-        if(covered + segments[index] >= target){
-          var ratio = segments[index] ? (target - covered) / segments[index] : 0;
-          return { index:index, point:[
-            pts[index][0] + (pts[index + 1][0] - pts[index][0]) * ratio,
-            pts[index][1] + (pts[index + 1][1] - pts[index][1]) * ratio
-          ] };
-        }
-        covered += segments[index];
-      }
-      return { index:pts.length - 2, point:pts[pts.length - 1].slice() };
-    }
-    var start = pointAt(mask), end = pointAt(total - mask);
-    var output = [start.point];
-    for(var pointIndex = start.index + 1; pointIndex <= end.index; pointIndex++) output.push(pts[pointIndex].slice());
-    output.push(end.point);
-    return output;
+    if(pathLength(pts) <= mask * 2) return [];
+    return trimBack(trimFront(pts, mask), mask);
+  }
+
+  // Conceals the start and the end of the whole walk: the first stretch loses
+  // its beginning, the last loses its end, and the stretches between are left
+  // as they are.
+  function maskTrackEnds(segments, distanceM){
+    var parts = validSegments(segments);
+    var mask = Number.isFinite(distanceM) ? Math.max(distanceM, 0) : 200;
+    if(!parts.length) return [];
+    if(parts.length === 1) return [maskRouteEnds(parts[0], mask)].filter(function(part){ return part.length > 1; });
+    var masked = parts.map(function(part, index){
+      if(index === 0) return trimFront(part, mask);
+      if(index === parts.length - 1) return trimBack(part, mask);
+      return part;
+    });
+    return masked.filter(function(part){ return part.length > 1; });
   }
 
   function routeForShare(entry, options){
     options = options || {};
     if(options.hideRoute) return [];
-    return options.hideEnds === false ? validRoute(entry.route) : maskRouteEnds(entry.route, 200);
+    var segments = validSegments(entry.segments && entry.segments.length ? entry.segments : [entry.route]);
+    return options.hideEnds === false ? segments : maskTrackEnds(segments, 200);
   }
 
   function formatSize(format){
@@ -131,12 +184,20 @@
   }
 
   function drawRouteOn(ctx, route, x, y, w, h, styleOverPhoto){
-    var pts = projectRoute(route, w, h, Math.min(64, w * .08));
-    if(pts.length < 2) return false;
+    var parts = projectSegments(route, w, h, Math.min(64, w * .08))
+      .filter(function(part){ return part.length > 1; });
+    if(!parts.length) return false;
+    var first = parts[0][0];
+    var lastPart = parts[parts.length - 1];
+    var last = lastPart[lastPart.length - 1];
     ctx.save(); ctx.translate(x, y); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-    if(styleOverPhoto){ ctx.strokeStyle = 'rgba(255,255,255,.92)'; ctx.lineWidth = 15; strokePath(ctx, pts); }
-    ctx.strokeStyle = TERRA; ctx.lineWidth = 8; strokePath(ctx, pts);
-    dot(ctx, pts[0], '#4A7856'); dot(ctx, pts[pts.length - 1], TERRA); ctx.restore();
+    if(styleOverPhoto){
+      ctx.strokeStyle = 'rgba(255,255,255,.92)'; ctx.lineWidth = 15;
+      parts.forEach(function(part){ strokePath(ctx, part); });
+    }
+    ctx.strokeStyle = TERRA; ctx.lineWidth = 8;
+    parts.forEach(function(part){ strokePath(ctx, part); });
+    dot(ctx, first, '#4A7856'); dot(ctx, last, TERRA); ctx.restore();
     return true;
   }
 
@@ -171,7 +232,7 @@
       drawRouteOn(ctx, options.route, x, y, w, h, false);
     }
     ctx.restore();
-    if(visual === 'map' && options.route.length < 2){
+    if(visual === 'map' && !validSegments(options.route).some(function(part){ return part.length > 1; })){
       ctx.fillStyle = SOFT; ctx.font = '600 42px Inter, sans-serif'; ctx.textAlign = 'center';
       ctx.fillText('A good walk leaves a mark 🐾', x + w / 2, y + h / 2); ctx.textAlign = 'left';
     }
@@ -301,7 +362,9 @@
 
   var api = {
     FORMATS:FORMATS, SOCIAL_PLATFORMS:SOCIAL_PLATFORMS, TALE_LABELS:TALE_LABELS, projectRoute:projectRoute,
-    maskRouteEnds:maskRouteEnds, routeForShare:routeForShare, formatSize:formatSize,
+    projectSegments:projectSegments, validSegments:validSegments,
+    maskRouteEnds:maskRouteEnds, maskTrackEnds:maskTrackEnds,
+    routeForShare:routeForShare, formatSize:formatSize,
     platformOptions:platformOptions,
     shareText:shareText, taleSentence:taleSentence, fmtDuration:fmtDuration,
     renderWalkCard:renderWalkCard, createWalkCard:createWalkCard,

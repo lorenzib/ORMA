@@ -72,7 +72,25 @@ jobs:
       ORMA_CLOSURE_SCOUT_ENABLED: ${{ vars.ORMA_CLOSURE_SCOUT_ENABLED || 'false' }}
       ORMA_CLOSURE_SCOUT_LIMIT: ${{ vars.ORMA_CLOSURE_SCOUT_LIMIT || '1' }}
       ORMA_CAMPAIGN_LIMIT: '10'
-      ORMA_CAMPAIGN_CAPACITY: '15'
+      # How many trails may be under research at once.
+      #
+      # Fifteen was sized when every trail cost about eight model calls to
+      # verify, and it was protecting the credit budget from exactly that. Since
+      # a geometry survey can settle all four unwaivable claims on its own, a
+      # trail needs no model call at all to earn a seal, and 153 of the 163 in
+      # the catalogue are in that position -- so the budget was throttling
+      # against a cost that mostly no longer exists.
+      #
+      # It was also doing nothing but harm. `available` is
+      # `min(capacity - active, queueCapacity - parked)`, and with 27 active
+      # against 15 it was zero: **131 trails could not enter at all**, however
+      # ready they were.
+      #
+      # Sixty rather than unlimited, so the first large batch is observable
+      # before the whole catalogue is committed to it. Optional-detail research
+      # still costs credits per trail, and the Firestore read budget is still
+      # the ceiling on a pass.
+      ORMA_CAMPAIGN_CAPACITY: ${{ vars.ORMA_CAMPAIGN_CAPACITY || '60' }}
     steps:
       - uses: actions/checkout@v7
 

@@ -35,11 +35,21 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
       publicationApprovalId:request.id,
     };
     delete fields.routeRef;
+    // Which door this publication comes through.
+    //
+    // A full verification -- all eleven checks -- carries the seal and declares
+    // no scope. Short of that the publication is a reviewed one: the walk's
+    // directions, copy, start point and photograph reach the page, the badge
+    // reads "Reviewed by ORMA", and the entry says so in its own scope rather
+    // than looking like a full verification that happens to have `ormaVerified`
+    // set to false.
+    const fullSeal = fields.ormaVerified === true;
     const entry = {
       id:item.targetTrailId,
       candidateId:item.candidateId,
       approvalId:request.id,
       generatedAt:at,
+      ...(fullSeal?{}:{verificationScope:'routeReviewed'}),
       fields,
     };
     approvedFacts.push(...operationalFactsFromClaims(item.proposedOperationalClaims, {
@@ -49,6 +59,14 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
     }));
 
     const index = next.trails.findIndex(trail => trail.id === entry.id);
+    // A publication may add to what a trail has established; it may not take a
+    // seal away. The graduation upgrades itself as research lands, so the only
+    // way this fires is a trail being republished from a thinner dossier than
+    // the one that earned it -- which would quietly unverify a verified walk
+    // and leave nothing behind saying when or why.
+    if(index >= 0 && !fullSeal && next.trails[index]?.fields?.ormaVerified === true){
+      throw new Error(`Publication for ${entry.id} would remove the ORMA Verified seal it already carries`);
+    }
     if(index >= 0) next.trails[index] = entry;
     else next.trails.push(entry);
     entries.push(entry);

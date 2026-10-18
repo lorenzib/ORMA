@@ -9,6 +9,8 @@ const {
   MAX_AUTOMATED_ATTEMPTS,ceilingFor,resolutionCandidates,ensureResolutionEntries,pendingAttempt,
   completedAttempts,reconcileCompletedAttempt,addQueuedAttempt,attemptStrategyText,
 }=require('./claim-resolution');
+const {placesOnRoute,categoriesTheMapFoundNothingFor}=require('./places-on-route');
+const {loadMappedFeatures}=require('./run-trail-specialist');
 
 const BASE_AGENTS=Object.freeze(['logistics','regulatoryRanger','terrainPoi']);
 
@@ -413,7 +415,15 @@ async function advanceTrailOrchestration(store,options={}){
       const outputs=[];for(const job of base){const result=await store.getArtifact(`trail-specialist-output-${job.id}`);if(result)outputs.push({agentId:job.agentId,jobId:job.id,result});}
       const candidates=resolutionCandidates(outputs);
       if(candidates.length){
-        const entries=ensureResolutionEntries(trail,candidates);
+        // The categories ORMA already measured along this walk and found
+        // nothing of. Those claims are settled here rather than sent round a
+        // three-search ladder that would reach the same answer and charge for
+        // it. Absent a catalogue line there is no measurement and nothing is
+        // skipped.
+        const unmapped=categoriesTheMapFoundNothingFor(
+          placesOnRoute(catalogue.get(String(trail.trailId))?.path
+            ||catalogue.get(String(trail.candidateId))?.path||[], loadMappedFeatures()));
+        const entries=ensureResolutionEntries(trail,candidates,unmapped);
         for(const entry of Object.values(entries))if(entry.state==='researchable'&&!pendingAttempt(entry,jobs))queueClaimResolution(trail,entry,jobs,queued,at);
         trail.state='evidence-resolution';trail.stage='autonomous-claim-resolution';trail.updatedAt=at;advanced.push(trail.trailId);continue;
       }
