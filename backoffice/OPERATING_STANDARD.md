@@ -1295,6 +1295,33 @@ A held contradiction is therefore a judgement somebody can make, not a bug and
 not missing research, and the gate dry run names it as its own category. Calling
 it a fault sent a reader looking for code that was behaving exactly as written.
 
+### A dossier can exist for a walk the map and the record answered
+
+The gate approved it and the compiler threw. Five trails stood at the dossier
+gate on 18 October 2026 and not one could produce a dossier, so nothing could
+reach publication — which is why no trail has ever carried a badge.
+
+Two rules written before the ladder existed did it.
+
+**The numbered-route rule asked for an authority.** A walk with a number had to
+carry a recommended start citing a published page, in words written when nothing
+else could answer anything. It now asks the question the contract asks
+everywhere else: is the start established, and is the reader told by whom. An
+authority still wins where one exists, and a record answer says in its own words
+that it is ORMA's suggestion from the walk it recorded and tells the reader to
+check access. Refusing it outright published nothing at all, which serves a
+walker worse than an honestly-labelled start. A numbered route with no start
+from any rung is still refused.
+
+**And the guidance assertion was handed the trail and did not pass it on**, so
+the bottom rung was deaf in the one place that decides whether a dossier exists.
+That is the third time the same shape has appeared: an answer computed in one
+place, and the place that needed it not given what it takes to compute it.
+
+What a fast-lane dossier contains is the line, its identity, and the sources
+they rest on. It carries no safety category as reviewed, because no specialist
+spoke — which the badge already derives rather than asserts.
+
 ## Three kinds of answer, and the reader is told which
 
 A route-guidance claim may be answered three ways, and they are not equal. The
