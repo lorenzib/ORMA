@@ -3,7 +3,10 @@ const path = require('path');
 
 const read = name => fs.readFileSync(path.join(__dirname, name), 'utf8');
 
-describe('JOURNAL-01 private local journal contract', () => {
+// JOURNAL-02 replaced JOURNAL-01: the journal is account data now, kept on the
+// device as the working copy. What has not changed is that it is private — only
+// its owner may read it, and nothing in it reaches a public profile.
+describe('JOURNAL-02 account walk journal contract', () => {
   const journal = read('journal.html');
   const hikeMode = read('hike-mode.js');
   const walkPage = read('walk-page.js');
@@ -27,10 +30,45 @@ describe('JOURNAL-01 private local journal contract', () => {
     expect(localData).toContain('PRIVATE_PREFIXES');
   });
 
-  test('the product tells users that journal records stay in this browser', () => {
-    expect(journal).toContain('Journal entries are stored in this browser for your account.');
-    expect(privacy).toContain('ORMA does not sync the journal to the server.');
+  test('the walk journal has its own owner-only collection', () => {
+    expect(rules).toContain('match /users/{uid}/journal/{entryId}');
+    expect(rules).toContain('allow get, list, delete: if isOwner(uid);');
+    expect(rules).toContain('validJournalEntry(request.resource.data, entryId)');
+    expect(firebaseClient).toContain('collection(db, "users", currentUser.uid, "journal")');
+    expect(firebaseClient).toContain('getJournalEntries');
+    expect(firebaseClient).toContain('saveJournalEntries');
+  });
+
+  test('the journal is local-first: a failed read never replaces the local copy', () => {
+    // A dropped signal must not look like an account with no walks in it.
+    expect(journal).toContain("if(!result || !result.ok){ storageNote('unsent'); return false; }");
+    expect(firebaseClient).toContain('return { ok: false, entries: [] };');
+    expect(journal).toContain('pushUnsentEntries');
+    expect(journal).toContain('syncJournal()');
+  });
+
+  test('deleting an account takes the server journal with it', () => {
+    expect(firebaseClient).toContain('getDocs(collection(db, "users", uid, "journal"))');
+    expect(firebaseClient).toContain('removedJournalEntries');
+  });
+
+  test('no journal field is projected onto a public profile', () => {
+    // validPublicProfile is an allowlist; these must never appear in it.
+    const publicProfile = rules.slice(
+      rules.indexOf('function validPublicProfile'),
+      rules.indexOf('function validFollow')
+    );
+    ['track', 'note', 'journal', 'dist', 'cond'].forEach(field => {
+      expect(publicProfile).not.toContain(`'${field}'`);
+    });
+  });
+
+  test('the product tells users where their journal is kept', () => {
+    expect(journal).toContain('Journal entries are saved to your ORMA account and kept on this device');
+    expect(journal).toContain('Private, saved to your account');
+    expect(privacy).toContain('saved to your account so your walks follow you to another phone');
     expect(privacy).toContain('Completed hikes and journal entries:');
+    expect(privacy).not.toContain('ORMA does not sync the journal to the server.');
   });
 
   test('journal storage failures do not report a successful save', () => {
@@ -39,10 +77,5 @@ describe('JOURNAL-01 private local journal contract', () => {
     expect(journal).toContain("showStatus(window.t('journal.saveError'))");
     expect(journal).toContain('state.entries = previousEntries');
     expect(journal).toContain('Object.assign(entry, previousEntry)');
-  });
-
-  test('the Firebase client and rules expose no journal collection', () => {
-    expect(firebaseClient).not.toMatch(/collection\(db,\s*["'](?:journal|walkJournal|walks)["']/);
-    expect(rules).not.toMatch(/match \/(?:journal|walkJournal|walks)\//);
   });
 });

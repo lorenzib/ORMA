@@ -60,6 +60,8 @@ const ROUTES_PATH = path.join(ROOT, REGION.routesFile);
 const WATER_PATH = path.join(ROOT, 'water-sources-all-regions.geojson');
 const HUTS_PATH = path.join(ROOT, 'huts-bars-all-regions.geojson');
 const OUTPUT_PATH = path.join(ROOT, REGION.outputFile);
+// Per region, so a run of one region cannot prune the other's heights.
+const ELEVATION_CACHE_PATH = path.join(ROOT, 'data', `elevation-cache-${REGION_KEY}.json`);
 
 const WATER_MATCH_METERS = 150;
 const HUT_MATCH_METERS = 250;
@@ -273,28 +275,125 @@ function sampleAlong(pts, cumKm, count) {
   return out;
 }
 
-async function fetchElevations(samples) {
-  const elevations = [];
-  for (let i = 0; i < samples.length; i += ELEVATION_BATCH) {
-    const batch = samples.slice(i, i + ELEVATION_BATCH);
+/**
+ * The ground height at one sampled point, keyed the way it is asked for.
+ *
+ * The request already rounds to five decimals -- about a metre -- so that
+ * string is the natural key, and the same point in two routes is one lookup.
+ */
+function elevationKey(sample) {
+  return `${sample.lat.toFixed(5)},${sample.lng.toFixed(5)}`;
+}
+
+/**
+ * Ground height does not change, so it is asked for once and kept.
+ *
+ * Every run queried Open-Meteo for all 80 samples of all 163 routes, which is
+ * about 150 requests a region, and the free tier answers some of them with 429.
+ * A failed fetch silently leaves the route with no profile, so a rate-limited
+ * run quietly produces worse data than the one before it: regenerating the
+ * catalogue on 16 October took two full passes and a merge of the two to end up
+ * with no profile lost, because each pass dropped a different handful.
+ *
+ * With the heights on disk a second run asks for nothing, which makes a
+ * regeneration cheap, repeatable and immune to the rate limit. The cache is
+ * per region and holds exactly the points that region's run asked for, so it
+ * cannot grow stale behind a geometry change -- a corrected line's old samples
+ * simply stop being requested and stop being written.
+ */
+function loadElevationCache(file) {
+  try {
+    const stored = JSON.parse(nodeFs.readFileSync(file, 'utf8'));
+    const points = stored && typeof stored.points === 'object' ? stored.points : {};
+    // A height is a finite number of metres or it is not a height.
+    return new Map(Object.entries(points).filter(([, value]) => Number.isFinite(value)));
+  } catch {
+    return new Map();
+  }
+}
+
+async function saveElevationCache(file, used) {
+  const points = Object.fromEntries([...used].sort(([a], [b]) => a.localeCompare(b)));
+  await fs.mkdir(path.dirname(file), { recursive: true });
+  await fs.writeFile(file, `${JSON.stringify({
+    contractVersion: '1.0.0', generatedAt: new Date().toISOString(),
+    note: 'Ground height per sampled point, from Open-Meteo. Keyed lat,lng to five decimals.',
+    points,
+  }, null, 0)}\n`);
+}
+
+/**
+ * Heights for every sample, from the cache where possible.
+ *
+ * Returns null if any height could not be had, exactly as before: a profile
+ * with holes in it would be worse than no profile, and the caller already
+ * treats null as "keep the trail, drop the elevation".
+ */
+async function fetchElevations(samples, options = {}) {
+  const cache = options.cache || new Map();
+  const found = options.found || new Map();
+  const fetchImpl = options.fetchImpl || fetch;
+  const sleep = options.sleep || (ms => new Promise((r) => setTimeout(r, ms)));
+  // Open-Meteo's maximum per request, lowered only by a test that needs more
+  // than one batch out of a handful of points.
+  const batchSize = options.batchSize || ELEVATION_BATCH;
+
+  const heights = new Map();
+  const missing = [];
+  // A loop's first and last sample are the same place, so the same point can
+  // appear more than once in one route and must still be asked for once.
+  const queued = new Set();
+  for (const sample of samples) {
+    const key = elevationKey(sample);
+    if (cache.has(key)) { heights.set(key, cache.get(key)); continue; }
+    if (queued.has(key)) continue;
+    queued.add(key);
+    missing.push(sample);
+  }
+
+  for (let i = 0; i < missing.length; i += batchSize) {
+    const batch = missing.slice(i, i + batchSize);
     const url = 'https://api.open-meteo.com/v1/elevation'
       + `?latitude=${batch.map((p) => p.lat.toFixed(5)).join(',')}`
       + `&longitude=${batch.map((p) => p.lng.toFixed(5)).join(',')}`;
     let ok = false;
     for (let attempt = 1; attempt <= 3 && !ok; attempt += 1) {
       try {
-        const res = await fetch(url, { headers: { 'user-agent': 'ORMA-trail-builder/1.0 (+https://www.app-orma.com)' } });
+        const res = await fetchImpl(url, { headers: { 'user-agent': 'ORMA-trail-builder/1.0 (+https://www.app-orma.com)' } });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        elevations.push(...data.elevation);
+        const values = data?.elevation;
+        // One height per point asked for, or the two lists cannot be lined up
+        // and every height after the gap would belong to the wrong place.
+        if (!Array.isArray(values) || values.length !== batch.length) {
+          throw new Error(`asked for ${batch.length} heights and got ${Array.isArray(values) ? values.length : 'none'}`);
+        }
+        batch.forEach((sample, index) => {
+          heights.set(elevationKey(sample), values[index]);
+          // Kept the moment it arrives, not when the route finishes. A height
+          // is true whether or not the rest of the route could be fetched, and
+          // discarding it would make a rate-limited run contribute nothing --
+          // the whole point is that repeated runs converge on a full cache
+          // instead of each starting over.
+          if(Number.isFinite(values[index])) found.set(elevationKey(sample), values[index]);
+        });
         ok = true;
       } catch (err) {
         console.warn(`[elev] attempt ${attempt} failed: ${err.message}`);
-        await new Promise((r) => setTimeout(r, 3000 * attempt));
+        if (attempt < 3) await sleep(3000 * attempt);
       }
     }
-    if (!ok) return null; // give up on this route's elevation, keep the trail
-    await new Promise((r) => setTimeout(r, 250));
+    if (!ok) break; // nothing more to ask for; the route gives up below
+    if (i + batchSize < missing.length) await sleep(250);
+  }
+
+  const elevations = samples.map((sample) => heights.get(elevationKey(sample)));
+  if (elevations.some((value) => !Number.isFinite(value))) return null;
+  // The heights read from the cache count as used too, or the next run would
+  // refetch whatever this one did not have to ask for.
+  for (const sample of samples) {
+    const key = elevationKey(sample);
+    found.set(key, heights.get(key));
   }
   return elevations;
 }
@@ -545,6 +644,13 @@ async function main() {
     console.warn('[promote] No access-points.geojson, start points fall back to route geometry.');
   }
 
+  // Ground height does not change, so last run's answers are this run's.
+  const elevationCache = loadElevationCache(ELEVATION_CACHE_PATH);
+  const elevationUsed = new Map();
+  console.log(elevationCache.size
+    ? `[elev] ${elevationCache.size} point(s) already on file; only new ones are fetched.`
+    : '[elev] No heights on file yet; this run fills the cache.');
+
   const waterIndex = buildIndex(water.features);
   const hutIndex = buildIndex(huts.features.filter((f) =>
     (f.properties || {}).name && /alpine_hut|wilderness_hut|restaurant|cafe|bar/.test(
@@ -615,7 +721,7 @@ async function main() {
     const samples = sampleAlong(pts, cumKm, ELEVATION_SAMPLES);
 
     console.log(`[promote] ${n + 1}/${routes.features.length} ${p.name} (${totalKm} km)…`);
-    const elevations = await fetchElevations(samples);
+    const elevations = await fetchElevations(samples, { cache: elevationCache, found: elevationUsed });
 
     let elevationProfile = null;
     let gain = null;
@@ -700,6 +806,12 @@ async function main() {
     + `  }\n`
     + `})();\n`;
   await fs.writeFile(OUTPUT_PATH, js);
+  // Only the points this run used, so the file stays the live set.
+  if(elevationUsed.size){
+    await saveElevationCache(ELEVATION_CACHE_PATH, elevationUsed);
+    const fetched = elevationUsed.size - [...elevationUsed.keys()].filter(k => elevationCache.has(k)).length;
+    console.log(`[elev] ${elevationUsed.size} point(s) on file (${fetched} newly fetched) -> ${ELEVATION_CACHE_PATH}`);
+  }
   console.log(`[done] Wrote ${entries.length} promoted trails -> ${OUTPUT_PATH}`);
 }
 
@@ -709,4 +821,6 @@ if (require.main === module) {
   main().catch((err) => { console.error(err); process.exit(1); });
 }
 
-module.exports = { chainLines, toPath, widestGapMeters, haversineMeters, lineMeters, DROPPABLE_PIECE_M, DROPPABLE_SHARE_OF_WALK, LOOP_CLOSE_M };
+module.exports = { chainLines, toPath, widestGapMeters, haversineMeters,
+  lineMeters, DROPPABLE_PIECE_M, DROPPABLE_SHARE_OF_WALK, LOOP_CLOSE_M,
+  elevationKey, loadElevationCache, saveElevationCache, fetchElevations };
