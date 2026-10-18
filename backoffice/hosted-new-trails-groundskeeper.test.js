@@ -31,13 +31,38 @@ describe('hosted New Trails and Groundskeeper operations',()=>{
     expect(store.jobs).toEqual([]);expect(store.artifacts['new-trail-scouting-review'].decisions).toEqual([expect.objectContaining({candidateId:'osm-relation-20',action:'park'})]);
   });
 
+  function selection(id){
+    return {packet:{candidates:[{id,osmRelation:21,name:'Candidate 21',region:'dolomites',
+      center:[11,46],distanceKm:4,sourceUrl:`https://www.openstreetmap.org/relation/21`}]},
+      review:{id:'selection',candidateId:id,action:'send-to-verification',
+        note:'Audit geometry.',submittedAt:at,submittedBy:'moderator'}};
+  }
+
   test('a selected candidate enters the same stable, five-cap Cartographer fleet without publication',async()=>{
-    const packet={candidates:[{id:'osm-relation-21',osmRelation:21,name:'Candidate 21',region:'dolomites',center:[11,46],distanceKm:4,sourceUrl:'https://www.openstreetmap.org/relation/21'}]};
-    const store=memoryStore({'new-trail-scouting':packet,'trail-orchestration':{contractVersion:'1.0.0',publicMutationAllowed:false,trails:[]}});store.listNewTrailReviews=async()=>[{id:'selection',candidateId:'osm-relation-21',action:'send-to-verification',note:'Audit geometry.',submittedAt:at,submittedBy:'moderator'}];
-    const outcomes=await ingestNewTrailReviews(store);
+    const {packet,review}=selection('osm-relation-21');
+    const store=memoryStore({'new-trail-scouting':packet,'trail-orchestration':{contractVersion:'1.0.0',publicMutationAllowed:false,trails:[]}});store.listNewTrailReviews=async()=>[review];
+    // The catalogue holds this walk, so there is a record for a publication to
+    // restate and admitting it can lead somewhere.
+    const outcomes=await ingestNewTrailReviews(store,{productionTrails:[{id:'osm-relation-21',name:'Candidate 21'}]});
     expect(outcomes).toEqual([expect.objectContaining({status:'processed',jobIds:['trail-verification-osm-relation-21-cartographer-1']})]);
     expect(store.jobs[0]).toEqual(expect.objectContaining({agentId:'cartographer',publicMutationAllowed:false,humanGate:'geometry-approval'}));
     expect(store.artifacts['trail-orchestration'].trails[0]).toEqual(expect.objectContaining({candidateId:'osm-relation-21',state:'geometry-audit',publicMutationAllowed:false}));
+  });
+
+  // A scouted walk lives only in Firestore -- an id, a name, a relation and an
+  // empty path -- and publication restates nine fields from a catalogue record
+  // it has not got. Admitting it spends the research agents, the copywriter
+  // and the visual director on a walk that stops at the mapping gate for ever.
+  test('a candidate the catalogue does not hold is kept back rather than paid for',async()=>{
+    const {packet,review}=selection('osm-relation-21');
+    const store=memoryStore({'new-trail-scouting':packet,'trail-orchestration':{contractVersion:'1.0.0',publicMutationAllowed:false,trails:[]}});store.listNewTrailReviews=async()=>[review];
+    const outcomes=await ingestNewTrailReviews(store,{productionTrails:[]});
+    expect(store.jobs).toEqual([]);
+    expect(store.artifacts['trail-orchestration'].trails).toEqual([]);
+    // Held, not dropped: the reason is on the artifact and in the outcome.
+    expect(outcomes[0].summary).toEqual({selected:1,heldForImport:1});
+    expect(store.artifacts['new-trail-intake'].heldForImport[0])
+      .toEqual(expect.objectContaining({id:'osm-relation-21',reason:expect.stringMatching(/not in the catalogue/)}));
   });
 
   test('Groundskeeper removal approval updates protected state and leaves a truthful publication-pending receipt',async()=>{

@@ -197,6 +197,26 @@ function verifiedFieldsFor(item, target, trailsById){
   return structuredFieldsFromTrail(trailsById.get(target.trailId));
 }
 
+/**
+ * Whether this walk is in the catalogue at all.
+ *
+ * `structured-website-fields` reads as a record missing some of its fields,
+ * and for a scouted trail it is not that: there is no record. The scouting
+ * intake builds a candidate in Firestore -- an id, a name, an OSM relation,
+ * `path: []` -- and nothing ever writes it into `data/`, so the nine fields a
+ * publication restates have nowhere to come from and the hand-typed table that
+ * could supply them has three entries, all of them trails already published.
+ *
+ * Such a trail is verified, has a copywriter and a visual director paid for,
+ * reaches staging and stops there for ever. The blocker it stops on should say
+ * which problem it is, because "fields missing" sends somebody to look for
+ * fields on a record that does not exist.
+ */
+function inTheCatalogue(item, target, trailsById){
+  if(VERIFIED_FIELDS[item.candidateId]) return true;
+  return Boolean(target && trailsById.get(target.trailId));
+}
+
 const EXISTING_IMAGE_FIELDS=Object.freeze(['imageIcon','imageCredit','heroImage','imageSourcePage','imageCreator',
   'imageLicence','imageLicenceUrl','imageCreditText','imageAlt','imageSourceType']);
 
@@ -233,7 +253,14 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
   const trailsById = new Map((options.productionTrails || []).map(trail => [trail.id, trail]));
   const outputs = new Map((execution?.outputs || []).map(output => [output.jobId, output]));
   const items = editorialQueue.items.map(item => {
-    const target = TARGETS[item.candidateId]||(item.targetTrailId?{trailId:item.targetTrailId,operation:'update-existing',routeRef:null}:null);
+    // `update-existing` only where something exists to update. Calling a walk
+    // that is not in the catalogue an update was a claim about the site that
+    // was simply untrue, and it travelled on the staging item.
+    const fallbackTarget=item.targetTrailId
+      ?{trailId:item.targetTrailId,
+        operation:trailsById.has(item.targetTrailId)?'update-existing':'create-new',routeRef:null}
+      :null;
+    const target = TARGETS[item.candidateId]||fallbackTarget;
     const verifiedFields=verifiedFieldsFor(item, target, trailsById);
     const copyJobId = `verified-${item.candidateId}-copy`;
     const visualJobId = `verified-${item.candidateId}-visual`;
@@ -292,7 +319,13 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
     // What still holds a publication is a missing *answer*: no mapping target,
     // no structured fields, no route guidance. Not having paid for the optional
     // six is not a missing answer.
-    const publicationMappingBlockers=[!target&&'website-target-mapping',!verifiedFields&&'structured-website-fields',!routeGuidance&&'route-number-guidance'].filter(Boolean);
+    const known=inTheCatalogue(item,target,trailsById);
+    const publicationMappingBlockers=[!target&&'website-target-mapping',
+      // Not in the catalogue, and missing a field of a record that is, are
+      // different problems with different fixes. They were one blocker.
+      !known&&'trail-not-in-the-catalogue',
+      known&&!verifiedFields&&'structured-website-fields',
+      !routeGuidance&&'route-number-guidance'].filter(Boolean);
     const state=missingApprovals.length?'waiting-content-approvals':publicationMappingBlockers.length?'waiting-publication-mapping':'ready-for-publication-preview';
     return {
       candidateId: item.candidateId, targetTrailId: target?.trailId||item.candidateId, operation: target?.operation||'mapping-required',
@@ -357,4 +390,4 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
   };
 }
 
-module.exports = {SAFETY_CHECKS,REQUIRED_STRUCTURED_FIELDS,OPTIONAL_STRUCTURED_FIELDS,GRADUATION_CHECKS,graduationFor,seasonalSuitabilityFrom,verifiedPoiFields, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS,EXISTING_IMAGE_FIELDS,existingImageFields, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };
+module.exports = {SAFETY_CHECKS,inTheCatalogue,REQUIRED_STRUCTURED_FIELDS,OPTIONAL_STRUCTURED_FIELDS,GRADUATION_CHECKS,graduationFor,seasonalSuitabilityFrom,verifiedPoiFields, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS,EXISTING_IMAGE_FIELDS,existingImageFields, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };
