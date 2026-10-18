@@ -42,6 +42,9 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;}
 .td-risk{display:flex;align-items:center;gap:6px;font-size:13px;color:#6b6f64;white-space:nowrap;}
 .td-risk .dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
 #trailName{margin:0;font:500 42px/1.03 'Bricolage Grotesque',sans-serif;color:#1b1f19;}
+/* What the name means, for a reader who does not speak the language the walk is
+   signed in. Quieter than the title on purpose: the name is what is on the post. */
+.trail-name-gloss{margin:6px 0 0;font:400 16px/1.45 'Inter',sans-serif;color:#5c6055;max-width:60ch;}
 .trail-hero-verdict{margin:12px 0 0;font-size:15px;color:#5c6055;max-width:60ch;line-height:1.55;font-family:'Inter',sans-serif;}
 .th-facts{display:flex;flex-wrap:wrap;gap:20px 30px;margin-top:22px;}
 .th-facts .f b{display:block;font:500 19px 'Bricolage Grotesque',sans-serif;color:#1b1f19;}
@@ -1085,6 +1088,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
         </div>
         <h1 id="trailName" aria-busy="true"><span class="skeleton" style="width:min(260px,60vw);height:36px;display:inline-block;" aria-label="Loading trail"></span></h1>
         <p id="heroVerdict" class="td2-hero-sub" hidden></p>
+        <p id="trailNameGloss" class="trail-name-gloss" hidden></p>
 
         <!-- Compact route facts sit directly below the title. -->
         <div id="trailFacts" class="td2-stat"></div>

@@ -6153,27 +6153,34 @@ function effectiveOverrides(profile, adjustOverride){
     return tierLabel(trail);
   }
 
+  // Machine wording a reader should never see, and the prefixes a sentence has
+  // to lose before another one is put in front of it.
+  //
+  // The separator class lists the colon. It did not, and every label in the
+  // catalogue writes "Start here: parking du lac", so a start point that was
+  // not reviewed printed "Suggested start, Start here: parking du lac" on seven
+  // pages. The cleanup also runs on the reviewed-but-unresearched branch now;
+  // before, "(OSM-verified access point)" reached the page whole.
+  const plainStartLabel = label => String(label || 'route start')
+    .replace(/^Start here\s*[,.:;—–-]*\s*/i, '')
+    .replace(/^Route start per OpenStreetMap\s*[,.:;—–-]*\s*/i, '')
+    .replace(/\s*\(OSM-verified access point\)/gi, '')
+    .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
+
   function waterPointLabel(trail, label) {
-    const base = imported(trail)
-      ? String(label || 'Water point')
-        .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
-        .replace(/OSM-verified/gi, 'mapped in OpenStreetMap')
-      : label;
-    if (!categoryVerified(trail, 'water')) return `${String(base || 'Potential water location')}, availability can change`;
-    return base;
+    const base = String(label || 'Water point')
+      .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
+      .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
+    if (!categoryVerified(trail, 'water')) return `${base}, availability can change`;
+    return imported(trail) ? base : label;
   }
 
   function startPointLabel(trail, label) {
     if (!categoryVerified(trail, 'access') && !imported(trail)) {
-      return `Suggested start, ${String(label || 'route start').replace(/^Start here\s*[,—-]\s*/i, '')}. Check current access before travelling.`;
+      return `Suggested start, ${plainStartLabel(label)}. Check current access before travelling.`;
     }
     if (!imported(trail)) return label;
-    const cleaned = String(label || 'Route start')
-      .replace(/^Start here\s*[,—-]\s*/i, '')
-      .replace(/^Route start per OpenStreetMap\s*[,—-]\s*/i, '')
-      .replace(/\s*\(OSM-verified access point\)/gi, '')
-      .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
-    return `Mapped start suggestion, ${cleaned}. Check current access before travelling.`;
+    return `Mapped start suggestion, ${plainStartLabel(label)}. Check current access before travelling.`;
   }
 
   function waterAssessment(trail) {
@@ -14281,6 +14288,14 @@ function renderTrail(t){
   document.title = `${t.name} | ORMA`;
   document.getElementById('pageTitle').textContent = `${t.name} | ORMA`;
   document.getElementById('trailName').textContent = t.name;
+  // What the name means, under the name. 109 of the 162 trails are signed in
+  // German, French or Italian; the name stays as the signpost has it, and this
+  // says what it means for a reader who does not.
+  const gloss = document.getElementById('trailNameGloss');
+  if(gloss){
+    gloss.textContent = t.nameGloss || '';
+    gloss.hidden = !t.nameGloss;
+  }
   document.getElementById('trailName').removeAttribute('aria-busy');
   // The homepage's Explore menu lists the last trails opened. Kept in this
   // browser only, never sent anywhere, and capped so it stays a shortlist.
@@ -16116,8 +16131,16 @@ if(document.querySelector('.td2')){
         </ol>`
       : '';
     const noRouteNumbers = '<div class="s"><p><b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.</p></div>';
+    // The status sentence says whether ORMA confirmed how the numbers appear on
+    // local signs -- what a reader standing at a junction needs. It was being
+    // dropped, so the card stated a number sequence as though the signage were
+    // settled. Printed when the record carries one: the five walks published
+    // before the pipeline wrote that field have none.
+    const guidanceStatus = verifiedRouteGuidance && String(verifiedRouteGuidance.status || '').trim();
     const routeRefMarkup = verifiedRouteGuidance
-      ? `${routeBadges}<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p><p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
+      ? `${routeBadges}<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p>${
+        guidanceStatus ? `<p><b>Trail numbers:</b> ${esc(guidanceStatus)}</p>` : ''
+      }<p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
       : routeRefs.length
       ? `${routeBadges}${switchGuidance || `<div class="s">${hasSectionOnlyRefs
           ? `${routeRefs.length === 1 ? 'Trail' : 'Trails'} ${esc(routeSequence)} ${routeRefs.length === 1 ? 'is' : 'are'} marked only on the verified section${routeRefs.length === 1 ? '' : 's'} shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.`
