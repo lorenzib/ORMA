@@ -6153,27 +6153,34 @@ function effectiveOverrides(profile, adjustOverride){
     return tierLabel(trail);
   }
 
+  // Machine wording a reader should never see, and the prefixes a sentence has
+  // to lose before another one is put in front of it.
+  //
+  // The separator class lists the colon. It did not, and every label in the
+  // catalogue writes "Start here: parking du lac", so a start point that was
+  // not reviewed printed "Suggested start, Start here: parking du lac" on seven
+  // pages. The cleanup also runs on the reviewed-but-unresearched branch now;
+  // before, "(OSM-verified access point)" reached the page whole.
+  const plainStartLabel = label => String(label || 'route start')
+    .replace(/^Start here\s*[,.:;—–-]*\s*/i, '')
+    .replace(/^Route start per OpenStreetMap\s*[,.:;—–-]*\s*/i, '')
+    .replace(/\s*\(OSM-verified access point\)/gi, '')
+    .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
+
   function waterPointLabel(trail, label) {
-    const base = imported(trail)
-      ? String(label || 'Water point')
-        .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
-        .replace(/OSM-verified/gi, 'mapped in OpenStreetMap')
-      : label;
-    if (!categoryVerified(trail, 'water')) return `${String(base || 'Potential water location')}, availability can change`;
-    return base;
+    const base = String(label || 'Water point')
+      .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
+      .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
+    if (!categoryVerified(trail, 'water')) return `${base}, availability can change`;
+    return imported(trail) ? base : label;
   }
 
   function startPointLabel(trail, label) {
     if (!categoryVerified(trail, 'access') && !imported(trail)) {
-      return `Suggested start, ${String(label || 'route start').replace(/^Start here\s*[,—-]\s*/i, '')}. Check current access before travelling.`;
+      return `Suggested start, ${plainStartLabel(label)}. Check current access before travelling.`;
     }
     if (!imported(trail)) return label;
-    const cleaned = String(label || 'Route start')
-      .replace(/^Start here\s*[,—-]\s*/i, '')
-      .replace(/^Route start per OpenStreetMap\s*[,—-]\s*/i, '')
-      .replace(/\s*\(OSM-verified access point\)/gi, '')
-      .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
-    return `Mapped start suggestion, ${cleaned}. Check current access before travelling.`;
+    return `Mapped start suggestion, ${plainStartLabel(label)}. Check current access before travelling.`;
   }
 
   function waterAssessment(trail) {
