@@ -11,10 +11,29 @@ function numberedRouteReference(review,trail){
   return String(value||'').trim()||null;
 }
 
-function authoritativeRecommendedStart(review){
-  return (review.specialistOutputs||[]).flatMap(output=>(output.result?.claims||[]).map(claim=>({agentId:output.agentId,claim})))
-    .find(({agentId,claim})=>agentId==='logistics'&&claim.id==='recommended-start'&&claim.finding==='supported-proposal'
-      &&(claim.sources||[]).some(source=>/^https:\/\//.test(source.url||'')&&String(source.authority||'').trim()));
+/**
+ * Whether a numbered route's start is established, by any rung of the ladder.
+ *
+ * This asked only for a logistics claim citing a published authority, and it
+ * was written before the map and ORMA's own record could answer anything. So a
+ * trail the gate was willing to approve could not be compiled at all: a walk
+ * whose number the map reads and whose start ORMA has always published was
+ * refused with "requires an authoritative recommended-start claim", and the
+ * five trails standing at the dossier gate on 18 October 2026 were all in that
+ * position.
+ *
+ * It now asks the question the contract asks everywhere else: is the start
+ * established, and is the reader told by whom. An authority still wins where
+ * one exists, and every value says in its own words which rung it came from --
+ * a record answer carries "ORMA's own suggestion from the walk it recorded, not
+ * an operator's recommendation" and tells the reader to check access. Refusing
+ * it outright published nothing at all, which serves a walker worse than an
+ * honestly-labelled start.
+ *
+ * What it still refuses is a numbered route with no start from anywhere.
+ */
+function establishedRecommendedStart(review,options={}){
+  return supportedRouteGuidance(review,'recommended-start',options)||null;
 }
 
 const {routeConformanceBlockingReasons,OFF_DECLARED_ROUTE_BLOCKER_ID}=require('../services/route-conformance');
@@ -80,8 +99,21 @@ function assertRouteConformance(review,trail){
   }
 }
 
+/**
+ * Every direction established, by any rung, before a dossier exists.
+ *
+ * The trail was handed in and not passed on, so the ladder's bottom rung could
+ * not answer here: a walk whose start ORMA has always published was refused for
+ * "sourced route guidance", in the one place that decides whether a dossier can
+ * be compiled at all. The gate approved it, the compiler threw, and nothing
+ * reached publication.
+ *
+ * Third time this exact shape: the answer was computed in one place and the
+ * place that needed it was not given what it takes to compute it.
+ */
 function assertRouteGuidance(review,trail){
-  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>!supportedRouteGuidance(review,id));
+  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>
+    !supportedRouteGuidance(review,id,trail?{trail}:{}));
   if(missing.length)throw new Error(`${trail?.trailName||trail?.trailId||'Trail'} requires sourced route guidance before verification: ${missing.join(', ')}`);
 }
 
@@ -610,8 +642,8 @@ function compileVerifiedDossier(review,trail,options={}){
     throw new Error(`A blocked dossier cannot be compiled as verified: ${standing.join('; ')}`);
   }
   const routeReference=numberedRouteReference(review,trail);
-  if(routeReference&&!authoritativeRecommendedStart(review)){
-    throw new Error(`Numbered route ${routeReference} requires an authoritative recommended-start claim before verification`);
+  if(routeReference&&!establishedRecommendedStart(review,options.trail?{trail:options.trail}:{})){
+    throw new Error(`Numbered route ${routeReference} requires an established recommended-start before verification`);
   }
   assertRouteGuidance(review,trail);
   assertRouteConformance(review,trail);
@@ -681,4 +713,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={SAFETY_CATEGORIES,researchedSafetyCategories,answerStandingFor,trailRecordFor,citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={SAFETY_CATEGORIES,researchedSafetyCategories,answerStandingFor,trailRecordFor,citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,establishedRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};

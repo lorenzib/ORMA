@@ -486,6 +486,23 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&standard.includes('own suggestion is not overruled by a disagreement between others'),
     'Where ORMA\'s own record answers a direction, an agent reporting that published sources contradict each other no longer suppresses it: the value says in its own words that it is ORMA\'s suggestion and tells the reader to check access, the conflict is still recorded as optional detail, and only a conflict over a record-answered claim moves -- counter-evidence and a contradiction over an authority\'s own answer still decide');
 
+  // A dossier can exist for a walk the map and the record answered.
+  //
+  // The risk is a gate that approves and a compiler that throws, which is what
+  // kept every trail off the site: two rules written before the ladder asked
+  // for a cited authority, and one was handed the trail record and did not pass
+  // it on. Both directions are pinned -- any rung answers, and a numbered route
+  // with no start from anywhere is still refused.
+  add('a-dossier-exists-for-what-the-ladder-answered',
+    dossier.includes('function establishedRecommendedStart(review,options={})')
+    &&dossier.includes("supportedRouteGuidance(review,'recommended-start',options)")
+    &&!dossier.includes('an authoritative recommended-start claim before verification')
+    &&dossier.includes('requires an established recommended-start before verification')
+    // The assertion is given the trail, so the bottom rung can answer.
+    &&dossier.includes('!supportedRouteGuidance(review,id,trail?{trail}:{})')
+    &&standard.includes('A dossier can exist for a walk the map and the record answered'),
+    'A dossier compiles for a walk whose directions any rung of the ladder answered: the numbered-route rule asks whether the start is established rather than whether an authority published it, and the guidance assertion passes on the trail record it is handed so ORMA\'s own record can answer there; a numbered route with no start from any rung is refused as before');
+
   // ORMA may answer from its own record, and must always say that it did.
   //
   // The risk is not that the start is wrong -- it is one ORMA already published
