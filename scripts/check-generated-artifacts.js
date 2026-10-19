@@ -8,6 +8,14 @@ const { spawnSync } = require('child_process');
 
 const root = path.resolve(__dirname, '..');
 const generatedTargets = [
+  // The promoted catalogue, upstream of everything below it. It was not
+  // checked, so it went stale: 44 Dolomites trails and 31 Savoy ones differed
+  // from what their own generator produces from the committed inputs, 32 of
+  // them missing route numbers the map had, and one wrong about its distance
+  // by 1.6 km. Everything downstream regenerated faithfully from the stale
+  // file and this check passed, because it started below it.
+  'osm-trails-data.js',
+  'osm-trails-savoy-data.js',
   'browse-trails.html',
   'sitemap.xml',
   'trails',
@@ -23,6 +31,7 @@ function run(command, args, cwd, options = {}){
     cwd,
     encoding:'utf8',
     stdio:options.capture ? 'pipe' : 'inherit',
+    ...(options.env ? { env:options.env } : {}),
   });
   if(result.error) throw result.error;
   if(result.status !== 0){
@@ -82,6 +91,12 @@ function main(){
   const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'dolopaws-generated-'));
   try{
     copyTrackedTree(temporaryRoot);
+    // Ground height does not change, so the committed cache answers every
+    // point and nothing is fetched. A point it has not got is an error naming
+    // the fix, rather than a request to a server this check should not need.
+    const offline = { env: { ...process.env, ORMA_PROMOTE_OFFLINE: 'true' } };
+    run(process.execPath, ['scripts/promote-osm-trails.js'], temporaryRoot, offline);
+    run(process.execPath, ['scripts/promote-osm-trails.js', '--region', 'savoy'], temporaryRoot, offline);
     run(process.execPath, ['scripts/validate-production-trails.js', '--report', 'data/generated/trail-validation-report.json'], temporaryRoot);
     run(process.execPath, ['scripts/generate-trail-pages.js'], temporaryRoot);
     run(process.execPath, ['scripts/build-regional-runtime-data.js'], temporaryRoot);
