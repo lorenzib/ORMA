@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-18T18:27:52.020Z",
+  "generatedAt": "2026-10-19T08:32:24.961Z",
   "regions": {
     "dolomites": {
       "trailCount": 110,
-      "trails": "data/regions/dolomites-trails.js?v=c94f1f1bd80f",
+      "trails": "data/regions/dolomites-trails.js?v=2bcb44efb8aa",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=26654e90f48e",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -24,7 +24,7 @@
         "sentiero-hans-e-paula-steger": "data/trail-details/sentiero-hans-e-paula-steger.js?v=528a743b999c",
         "sentiero-del-trenino": "data/trail-details/sentiero-del-trenino.js?v=626592b158ca",
         "giro-del-sasso-lungo": "data/trail-details/giro-del-sasso-lungo.js?v=85c33b773475",
-        "osm-123162": "data/trail-details/osm-123162.js?v=878280675616",
+        "osm-123162": "data/trail-details/osm-123162.js?v=fb1a33017d26",
         "osm-1116675": "data/trail-details/osm-1116675.js?v=001d57aff6a0",
         "osm-1116680": "data/trail-details/osm-1116680.js?v=0e4e81a97143",
         "osm-1780768": "data/trail-details/osm-1780768.js?v=aac03dc7d1ae",
@@ -54,7 +54,7 @@
         "osm-9487078": "data/trail-details/osm-9487078.js?v=eec8fba7dcd4",
         "osm-9492594": "data/trail-details/osm-9492594.js?v=28439315e3d7",
         "osm-9493733": "data/trail-details/osm-9493733.js?v=779b24c6786b",
-        "osm-9511973": "data/trail-details/osm-9511973.js?v=37ffccbfcc6d",
+        "osm-9511973": "data/trail-details/osm-9511973.js?v=292d7ad7c8aa",
         "osm-9511999": "data/trail-details/osm-9511999.js?v=977a9c61c036",
         "osm-9651462": "data/trail-details/osm-9651462.js?v=9f9b7772f0a1",
         "osm-9675994": "data/trail-details/osm-9675994.js?v=5ca07c74081c",
@@ -124,7 +124,7 @@
     },
     "savoy": {
       "trailCount": 53,
-      "trails": "data/regions/savoy-trails.js?v=392c495b7ada",
+      "trails": "data/regions/savoy-trails.js?v=b11555c4bae0",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=eb3735f6498d",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=194b0ba277c2",
@@ -152,7 +152,7 @@
         "osm-12121798": "data/trail-details/osm-12121798.js?v=1fcccfe2bc39",
         "osm-12127424": "data/trail-details/osm-12127424.js?v=5818c0f2cda5",
         "osm-12745924": "data/trail-details/osm-12745924.js?v=d52ef1a78c58",
-        "osm-13337921": "data/trail-details/osm-13337921.js?v=15dec078f759",
+        "osm-13337921": "data/trail-details/osm-13337921.js?v=f245b41b2953",
         "osm-13338113": "data/trail-details/osm-13338113.js?v=12a46b69c118",
         "osm-14375158": "data/trail-details/osm-14375158.js?v=3fd9c0e63520",
         "osm-14376573": "data/trail-details/osm-14376573.js?v=58146f8b8586",
@@ -177,7 +177,7 @@
         "osm-19541366": "data/trail-details/osm-19541366.js?v=44adb55122b5",
         "osm-19661726": "data/trail-details/osm-19661726.js?v=a5d0b31262db",
         "osm-19760372": "data/trail-details/osm-19760372.js?v=c1be7e9e184a",
-        "osm-19855818": "data/trail-details/osm-19855818.js?v=89ffc28a09c0",
+        "osm-19855818": "data/trail-details/osm-19855818.js?v=91db79b31ec0",
         "osm-21021130": "data/trail-details/osm-21021130.js?v=4843a2537c0b"
       },
       "water": "data/regions/savoy-water.geojson",
