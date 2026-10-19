@@ -1,5 +1,6 @@
 'use strict';
 
+const fs=require('fs');
 const {applyRouteNumberEvidence,officialRoutePage}=require('./scripts/route-number-evidence');
 const planner=require('./backoffice/workflows/plan-catalogue-campaign');
 
@@ -41,15 +42,29 @@ describe('a route with no number is not a route with no identity',()=>{
   });
 
   // The measurable consequence, derived from the catalogue rather than retyped.
-  test('more of the catalogue can now cite something other than a map',()=>{
-    const {routeSourceReady}=require('./backoffice/workflows/run-trail-specialist');
+  //
+  // This used to filter `routeSourceReady` trails and require that none cited a
+  // map. It passed because `routeNumberSource` was absent from the catalogue
+  // altogether -- the filter had nothing to find, so the assertion was empty on
+  // both sides. Once a regeneration filled the field the invariant was tested
+  // for the first time and failed on three trails, none of which has a page on
+  // file: `routeSourceReady` means "some citable non-OSM source among its
+  // guidance leads", which is not the same as "has a confirmed route page", and
+  // citing the relation where no page exists is what the case above this one
+  // asks for.
+  //
+  // So it now states the invariant that is actually the contract: where a page
+  // has been confirmed, that page is what the route number cites.
+  test('a confirmed page, not the map, is what a route number cites',()=>{
     const {loadProductionTrails}=require('./scripts/load-production-trails');
+    const {SOURCED_ROUTE_PAGES}=require('./scripts/route-number-evidence');
+    const pages=JSON.parse(fs.readFileSync(SOURCED_ROUTE_PAGES,'utf8')).sources||{};
     const trails=loadProductionTrails(require('path').resolve(__dirname));
-    const ready=trails.filter(routeSourceReady);
-    const citingRelation=ready.filter(item=>
-      /waymarkedtrails|openstreetmap/i.test(String(item.routeNumberSource?.url||'')));
-    expect(ready.length).toBeGreaterThan(40);
-    expect(citingRelation).toEqual([]);
+    const withPage=trails.filter(trail=>pages[trail.id]);
+    expect(withPage.length).toBeGreaterThan(20);
+    const notCitingItsPage=withPage.filter(trail=>
+      String(trail.routeNumberSource?.url||'')!==pages[trail.id].url);
+    expect(notCitingItsPage.map(trail=>trail.id)).toEqual([]);
   });
 
   test('no number and no page is still a finding, not a gap',()=>{

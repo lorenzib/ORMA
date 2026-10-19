@@ -114,8 +114,14 @@ describe('what the reader is actually shown now',()=>{
     expect(verifiedStart.length).toBeGreaterThan(50);
   });
 
-  test('and a "Start here," label is the common shape, not an edge case',()=>{
-    const prefixed=trails.filter(trail=>/^Start here\s*,/i.test(String(trail.startPoint&&trail.startPoint.label||'')));
+  // Separator-agnostic on purpose. The generator writes "Start here — Lift
+  // station ...", and the catalogue held "Start here, Lift station ..." from
+  // before that wording changed, so this read the old copy for as long as the
+  // data stayed stale and broke the moment it was regenerated. What the case is
+  // about is that most imported walks tell a reader where to begin, not which
+  // punctuation mark separates the two halves of the sentence.
+  test('and a "Start here" label is the common shape, not an edge case',()=>{
+    const prefixed=trails.filter(trail=>/^Start here\b/i.test(String(trail.startPoint&&trail.startPoint.label||'')));
     expect(prefixed.length).toBeGreaterThan(20);
   });
 });
