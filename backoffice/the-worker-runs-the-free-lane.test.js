@@ -1,8 +1,9 @@
 'use strict';
 
 const path=require('path');
-const {refreshPublicationStaging,ingestTrailReviews,processEditorialFirstPassJobs}
+const {refreshPublicationStaging,ingestTrailReviews,processEditorialFirstPassJobs,ingestPublicationReviews}
   =require('./workflows/run-live-backoffice-worker');
+const {materializeApprovedPublications}=require('./workflows/materialize-approved-publications');
 const {automateEditorialReviews,automatePublicationReviews}
   =require('./workflows/automate-existing-trail-verification');
 const {compileVerifiedDossier}=require('./workflows/compile-verified-dossier');
@@ -34,7 +35,7 @@ function catalogueTrail(){
   return record;
 }
 
-function verifiedHandoff(record){
+function verifiedDossier(record){
   const trail={candidateId:record.id,trailId:record.id,trailName:record.name,...record};
   const survey={routeGuidance:singleRelationGuidance({tags:{ref:'20'}}),
     relation:{tags:{ref:'20',name:record.name}},
@@ -45,8 +46,13 @@ function verifiedHandoff(record){
     assessment:{issues:[],pointCount:record.path.length,distanceKm:record.distance},claims:[]};
   const dossier=compileVerifiedDossier({reviewId:'r',approvalAllowed:true,blockingReasons:[],
     specialistOutputs:[{agentId:'cartographer',jobId:'c1',result:survey}]},trail,{at:AT,trail});
+  return dossier;
+}
+
+function verifiedHandoff(record){
+  const dossier=verifiedDossier(record);
   return buildVerifiedEditorialHandoff(dossier,
-    {candidateId:trail.candidateId,trailName:trail.trailName,verifiedAt:AT,conditions:[]},
+    {candidateId:record.id,trailName:record.name,verifiedAt:AT,conditions:[]},
     null,{at:AT,preserveExistingAssets:true,existingTrail:record});
 }
 
@@ -54,11 +60,16 @@ function verifiedHandoff(record){
 function store(seed){
   const artifacts={...seed};
   const submitted=[];
-  return {artifacts,submitted,
+  const marked=[];
+  return {artifacts,submitted,marked,
+    async listPublicationReviewsQueued(){return submitted.filter(entry=>entry.kind==='publication');},
+    async markPublicationReview(id,status,fields){marked.push({id,status,fields});},
     async getArtifact(id){return artifacts[id]||null;},
     async setArtifact(id,value){artifacts[id]=value;},
     async listReviews(){return [];},
-    async listPublicationReviews(){return [];},
+    async listPublicationReviews(){return submitted.filter(entry=>entry.kind==='publication')
+      .map((entry,index)=>({id:`pr-${index}`,candidateId:entry.review.candidateId,action:entry.review.action,
+        note:entry.review.note,submittedBy:entry.review.submittedBy,submittedAt:AT}));},
     async listJobs(){return [];},
     async submitContentReview(review){submitted.push({kind:'content',review});return {reviewId:'cr'};},
     async submitPublicationReview(review){submitted.push({kind:'publication',review});return {reviewId:'pr'};},
@@ -118,5 +129,59 @@ describe('the worker carries a free-lane trail to publication',()=>{
     const s=store({'verified-trail-editorial-queue':{items:[]}});
     expect(await refreshPublicationStaging(s,options)).toEqual({status:'nothing-to-stage',items:0});
     expect(s.artifacts['publication-staging']).toBeUndefined();
+  });
+});
+
+/**
+ * The last mile, from the approval the policy queued to the entry the site is
+ * built from -- through the worker's own steps rather than around them.
+ */
+describe('and on to the entry the site is built from',()=>{
+  const record=catalogueTrail();
+  const handoff=verifiedHandoff(record);
+  const options={now:AT,at:AT,productionTrails:[record]};
+
+  test('the approval becomes a publication request the materializer accepts',async()=>{
+    const s=store({'verified-trail-editorial-queue':handoff.queue,
+      'verified-trail-editorial-execution':{contractVersion:'1.0.0',outputs:[]},
+      'content-review-queue':{submissions:[]}});
+    await refreshPublicationStaging(s,options);
+    await automatePublicationReviews(s,options);
+    await ingestPublicationReviews(s);
+
+    const requests=s.artifacts['publication-requests'];
+    expect(requests.requests).toHaveLength(1);
+    expect(requests.requests[0]).toMatchObject({candidateId:record.id,
+      status:'approved-for-pr-creation',targetTrailId:record.id});
+    expect(s.marked.map(entry=>entry.status)).toEqual(['processed']);
+
+    // The route proposal is what the dossier approval stores, so the
+    // materializer is given the dossier's own line rather than one made up here.
+    const geometry=verifiedDossier(record).routeGeometry;
+    expect(geometry.coordinates.length).toBeGreaterThan(1);
+
+    const materialized=materializeApprovedPublications({
+      requests,staging:s.artifacts['publication-staging'],
+      routesByCandidate:{[record.id]:{geometry}},
+      overrides:{contractVersion:'1.0.0',trails:[]},operationalFacts:{trails:[]},at:AT});
+    const entry=materialized.overrides.trails[0];
+    expect(entry.verificationScope).toBe('routeReviewed');
+    expect(entry.fields.ormaVerified).toBe(false);
+    // Its own words, and the directions it did establish.
+    expect(entry.fields.desc).toBe(record.desc);
+    expect(entry.fields.routeNumberGuidance.mode).toBe('numbered');
+  });
+
+  test('and a second ingest does not queue the publication twice',async()=>{
+    const s=store({'verified-trail-editorial-queue':handoff.queue,
+      'verified-trail-editorial-execution':{contractVersion:'1.0.0',outputs:[]},
+      'content-review-queue':{submissions:[]}});
+    await refreshPublicationStaging(s,options);
+    await automatePublicationReviews(s,options);
+    await ingestPublicationReviews(s);
+    // The policy skips a candidate that already has a request.
+    expect(await automatePublicationReviews(s,options)).toEqual([]);
+    await ingestPublicationReviews(s);
+    expect(s.artifacts['publication-requests'].requests).toHaveLength(1);
   });
 });
