@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-10T13:35:48.322Z",
+  "updatedAt": "2026-10-19T14:27:29.334Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -85,6 +85,15 @@
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Saslong_udu_da_Sacun_ora.jpg",
         "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lago-carezza",
+      "approvedAt": "2026-10-19T14:27:29.317Z",
+      "fields": {
+        "imageIcon": "images/lago-di-carezza.webp",
+        "heroImage": "images/lago-di-carezza.webp",
+        "imageAlt": "Fireweed in flower on the shore of Lago di Carezza, the turquoise water reflecting spruce forest below the Latemar ridge"
       }
     },
     {
