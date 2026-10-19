@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake,promoter,generatedCheck,routeEvidence]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -51,6 +51,9 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/workflows/verification-funnel.js'),
     read(root,'backoffice/cli/report-verification-funnel.js'),
     read(root,'backoffice/workflows/new-trail-intake.js'),
+    read(root,'scripts/promote-osm-trails.js'),
+    read(root,'scripts/check-generated-artifacts.js'),
+    read(root,'scripts/route-number-evidence.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -495,6 +498,32 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&staging.includes("operation:trailsById.has(item.targetTrailId)?'update-existing':'create-new'")
     &&standard.includes('A walk the catalogue does not hold cannot be published'),
     'A scouted walk exists only in Firestore and publication restates nine fields from a catalogue record it has not got, so it stops at the mapping gate for ever -- after the paid agents have run. Such a candidate is kept back at intake and named with its reason rather than admitted, the reason travels on the review outcome, and at publication the blocker says the trail is not in the catalogue rather than reporting fields missing from a record that does not exist. A caller passing no catalogue is not saying the catalogue is empty');
+
+  // A generated file nobody checks goes stale, and everything below it
+  // regenerates faithfully from the stale copy.
+  //
+  // osm-trails-data.js was outside the generated set, and 32 trails were
+  // missing route numbers the map had -- which is what answers two of the four
+  // unwaivable route claims. It stayed stale because regenerating it switched
+  // the route sourcing off: a status the promoter derives was treated as one
+  // somebody declared, and 29 trails fell back to citing the relation instead
+  // of a real authority.
+  add('the-promoted-catalogue-is-checked',
+    generatedCheck.includes("'osm-trails-data.js',")
+    &&generatedCheck.includes("'osm-trails-savoy-data.js',")
+    &&generatedCheck.includes("ORMA_PROMOTE_OFFLINE: 'true'")
+    // Offline, so the check cannot depend on somebody else's server.
+    &&promoter.includes("const OFFLINE = process.env.ORMA_PROMOTE_OFFLINE === 'true';")
+    &&promoter.includes('if (options.offline) {')
+    // A derived status does not stand in front of the evidence, and a number
+    // does not deny the page.
+    &&routeEvidence.includes("const PROMOTER_DERIVED_STATUS = new Set(['mapped-relation-ref', 'not-listed-in-mapped-source']);")
+    &&routeEvidence.includes('if (trail.routeNumberStatus && !PROMOTER_DERIVED_STATUS.has(trail.routeNumberStatus)) return trail;')
+    &&routeEvidence.includes('if (Array.isArray(trail.routeRefs) && trail.routeRefs.length && !(mapped && mapped.ref)) {')
+    &&packageManifest.includes('"promote:trails"')
+    &&packageManifest.includes('npm run promote:trails && npm run validate:production-trails')
+    &&standard.includes('The promoted catalogue is checked like every other generated file'),
+    'The promoted trail files are regenerated and compared like every other generated artifact, with the promoter reading the committed elevation cache and refusing to reach the network; and regenerating them no longer switches the route sourcing off -- a status the promoter derived from the relation does not stand in front of the mapped evidence, and a number the trail already carries does not deny it the official page');
 
   // Work that costs nothing is not ordered by a rule about money.
   //
