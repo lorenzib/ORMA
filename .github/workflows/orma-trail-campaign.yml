@@ -38,10 +38,15 @@ jobs:
       #
       # Read from the same repository variable as the worker, so the number
       # cannot be raised in one place and left behind in the other.
+      # Passed on the command line below. There were two more variables here,
+      # CAMPAIGN_CAPACITY: '15' and a CAMPAIGN_LIMIT, and those were the ones
+      # the command actually used -- so the capacity this file had already been
+      # corrected twice to read from the repository variable was set, logged,
+      # and ignored. The run on 19 October printed `ORMA_CAMPAIGN_CAPACITY: 60`
+      # and `CAMPAIGN_CAPACITY: 15` one line apart and admitted nobody, for the
+      # third morning running. One name, used where it is read.
       ORMA_CAMPAIGN_CAPACITY: ${{ vars.ORMA_CAMPAIGN_CAPACITY || '60' }}
       ORMA_CAMPAIGN_LIMIT: ${{ vars.ORMA_CAMPAIGN_LIMIT || github.event.inputs.limit || '10' }}
-      CAMPAIGN_LIMIT: ${{ github.event.inputs.limit || '10' }}
-      CAMPAIGN_CAPACITY: '15'
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -56,9 +61,9 @@ jobs:
       - name: Admit the post-reset daily ORMA Verified candidate batch
         run: |
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            npm run backoffice:campaign:live -- --limit "$CAMPAIGN_LIMIT" --capacity "$CAMPAIGN_CAPACITY" --scheduled
+            npm run backoffice:campaign:live -- --limit "$ORMA_CAMPAIGN_LIMIT" --capacity "$ORMA_CAMPAIGN_CAPACITY" --scheduled
           else
-            npm run backoffice:campaign:live -- --limit "$CAMPAIGN_LIMIT" --capacity "$CAMPAIGN_CAPACITY" --force
+            npm run backoffice:campaign:live -- --limit "$ORMA_CAMPAIGN_LIMIT" --capacity "$ORMA_CAMPAIGN_CAPACITY" --force
           fi
       - name: Start the first agent pass
         run: npm run backoffice:worker:live

@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake,promoter,generatedCheck,routeEvidence]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake,promoter,generatedCheck,routeEvidence,campaignCli]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -54,6 +54,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'scripts/promote-osm-trails.js'),
     read(root,'scripts/check-generated-artifacts.js'),
     read(root,'scripts/route-number-evidence.js'),
+    read(root,'backoffice/cli/start-live-trail-campaign.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -181,8 +182,23 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&campaignWorkflow.includes('ORMA_CAMPAIGN_AUTOMATION_ENABLED')
     // Set where admission happens, and from the same variable as the worker.
     &&campaignWorkflow.includes(capacityVariable)
-    &&publicationWorkflow.includes(capacityVariable),
-    'ORMA Verified candidate intake targets 09:30 Europe/Rome every day, after the Firestore quota reset window, and the job that admits reads its capacity from the same repository variable as the worker -- so the budget cannot be raised in one workflow and left at the built-in default in the other');
+    &&publicationWorkflow.includes(capacityVariable)
+    // And passed. Setting it was all this used to check, and the step beside
+    // it passed a hardcoded 15 from a second variable of its own: the run on
+    // 19 October logged `ORMA_CAMPAIGN_CAPACITY: 60` and `CAMPAIGN_CAPACITY:
+    // 15` one line apart and admitted nobody, for the third morning running.
+    // A name that is set and not used reads exactly like a number that does
+    // not work, which is what this invariant exists to prevent and did not.
+    &&campaignWorkflow.includes('--capacity "$ORMA_CAMPAIGN_CAPACITY"')
+    &&campaignWorkflow.includes('--limit "$ORMA_CAMPAIGN_LIMIT"')
+    &&!/^\s*CAMPAIGN_CAPACITY:/m.test(campaignWorkflow)
+    &&!/^\s*CAMPAIGN_LIMIT:/m.test(campaignWorkflow)
+    // And the command accepts it. The fleet budget shared the per-pass batch
+    // ceiling of 25, so 60 would have thrown even once it was passed.
+    &&campaignCli.includes('const MAX_CAPACITY=200;')
+    &&campaignCli.includes('capacity>MAX_CAPACITY')
+    &&standard.includes('The capacity has to reach the command that admits'),
+    'ORMA Verified candidate intake targets 09:30 Europe/Rome every day, after the Firestore quota reset window; the job that admits reads its capacity from the same repository variable as the worker AND passes that variable on its command line -- no second hardcoded copy beside it -- and the command accepts a fleet budget larger than the per-pass batch ceiling, which it did not: 60 would have been refused by the argument check even after the workflow was corrected');
   add('dolomites-first-scouting-cadence',workflows['orma-new-trail-intake.yml']?.includes("cron: '0 10 * * 1-6'")&&workflows['orma-new-trail-intake.yml']?.includes('timezone: Europe/Rome')&&workflows['orma-new-trail-intake.yml']?.includes('ORMA_NEW_TRAIL_INTAKE_RESUMED')&&standard.includes('Dolomites-first')&&standard.includes('Scouting is paused during the'),'New Trail scouting is paused during the backfills and keeps its Dolomites-first Monday-to-Saturday cadence for resumption');
   add('trail-photos-removed-from-backoffice',!worker.includes('refreshTrailPhotoBackfill')&&!worker.includes('ingestImageReviews')&&!rules.includes('/backofficeImageUploads/{')&&!client.includes('uploadTrailImage')&&!client.includes("collection(db,'backofficeImageReviews')")&&!builder.includes("'image-coverage-hosted.js'")&&standard.includes('Trail photos are sourced by hand, outside the backoffice')&&dashboard.includes('sourced by hand outside the backoffice'),'Trail-photo gathering is removed from the backoffice: no worker lane, no owner-upload staging, no image-review client or desk; photos are committed by hand and only rendered by the publication pipeline');
   const setupNodeCount=(workflowText.match(/actions\/setup-node@v7/g)||[]).length;const node24Count=(workflowText.match(/node-version:\s*24/g)||[]).length;
