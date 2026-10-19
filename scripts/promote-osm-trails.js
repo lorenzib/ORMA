@@ -870,16 +870,26 @@ async function main() {
       continue;
     }
     const isLoop = p.loop === true || p.loop === 'true';
-    let { pts, segments, connectors } = toPath(feature.geometry);
+    let { pts, segments, connectors, droppedPieces } = toPath(feature.geometry);
     let cumKm = recomputeCumKm(pts, connectors);
 
     // --- Verified start point: anchor to the nearest real access point ---
     let startLabel = 'Route start per OpenStreetMap — best parking/access not yet verified';
     // Rotating a loop or turning a line round would scramble the connector
-    // indices, and neither helper keeps them. A one-piece geometry has no
-    // connectors, which is why this is safe -- stated as a condition rather
-    // than left as an assumption, so relaxing the one does not break the other.
-    if (accessIndex && segments === 1 && !connectors.length) {
+    // indices, and neither helper keeps them, so this runs on a connector-free
+    // line and only on one.
+    //
+    // It used to ask for a one-piece source geometry as well, which is a
+    // different question and the wrong one. A relation can arrive in fifteen
+    // pieces and still be drawn as one unbroken line, because chaining leaves
+    // out the fragments that cost more to reach than they are long. Seven
+    // walks were denied a start point they could have had: Planetenweg, Roda
+    // de Armentara, Roda dles Viles, Dorfrundweg Rasen, Langer Rundweg am
+    // Karer See, Au pied du Roc d'Enfer and Balade du Plateau d'Assy au Lac
+    // Vert. Measured on 19 Oct 2026, not one of their widest gaps moves when
+    // the line is rotated or reversed, and no trail that was anchored stops
+    // being anchored.
+    if (accessIndex && !connectors.length) {
       const best = findBestAccess(pts, accessIndex);
       if (best) {
         if (isLoop) {
@@ -896,6 +906,18 @@ async function main() {
     const samples = sampleAlong(pts, cumKm, ELEVATION_SAMPLES);
 
     console.log(`[promote] ${n + 1}/${routes.features.length} ${p.name} (${totalKm} km)…`);
+    // A relation whose ways fall into fragments too far to reach is a fact
+    // about the source, not a hole in what this publishes -- the line is drawn
+    // without them and reads as one walk. So it is said here, where whoever
+    // runs the promoter sees it, rather than written into a record that
+    // describes the walk as drawn.
+    if (droppedPieces.length) {
+      const leftOut = droppedPieces.reduce((total, piece) => total + piece.meters, 0);
+      console.log(`[promote]   relation ${p.osm_relation} arrived in ${segments} pieces; `
+        + `${droppedPieces.length} left out (${leftOut} m in all, each further to reach `
+        + `than it is long), ${connectors.length} hole${connectors.length === 1 ? '' : 's'} `
+        + `in the line published`);
+    }
     const elevations = await fetchElevations(samples,
       { cache: elevationCache, found: elevationUsed, offline: OFFLINE });
     if((n + 1) % 20 === 0) await bank();
@@ -963,7 +985,14 @@ async function main() {
       startPoint: { lat: pts[0][0], lng: pts[0][1], label: startLabel },
       desc: `${articleFor(totalKm)} ${totalKm} km ${isLoop ? 'loop' : 'route'} near ${nearestLocality(pts[0][0], pts[0][1])}, imported from the OpenStreetMap hiking network${p.ref ? ` (trail ${p.ref})` : ''}. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.${directionNote ? ' ' + directionNote : ''}`,
       tips: 'Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.',
-      ...(segments > 1 ? { osmGeometryGaps: segments - 1 } : {})
+      // The holes a reader would see in this line, which is not the number
+      // of pieces the relation arrived in. Chaining leaves out the fragments
+      // too far to reach and can take a closed loop whole, so of the twelve
+      // trails that declared a gap on 19 Oct 2026 only five had one: Gsieser
+      // Talblickweg declared fourteen and has a single hole, its other
+      // thirteen pieces being metres of path up to ten kilometres down the
+      // valley. Overstating this says a nearly continuous walk is broken.
+      ...(connectors.length ? { osmGeometryGaps: connectors.length } : {})
     };
     if (p.leash) entry.leash = p.leash;
     if (p.dogFriendlyNotes) entry.dogNotes = p.dogFriendlyNotes;
