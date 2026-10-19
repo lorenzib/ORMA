@@ -43,6 +43,25 @@ describe('a route’s shape is declared, not guessed from its geometry', () => {
     }
   });
 
+  // Seeweg's line is drawn across a 3.12 km hole in the OSM mapping. That
+  // straight line is not ground anyone walks, so it is not in the distance --
+  // which is a third thing the disagreement can mean, alongside a wrong number
+  // and an unfinished line, and the only one that is already right. It is
+  // asserted here rather than listed as unknown below.
+  test('Seeweg is short of its own line by exactly the hole in it', () => {
+    const trail=byId('osm-3885162');
+    expect(trail.osmGeometryGaps).toBe(1);
+    const line=lineKm(trail.path);
+    const longest=Math.max(...trail.path.slice(1).map((point,i) => km(trail.path[i],point)));
+    // One segment of three kilometres, where every other is under half a
+    // kilometre: the connector, not a stretch of walk that happens to be
+    // straight.
+    expect(longest).toBeGreaterThan(3);
+    expect(line-trail.distance).toBeCloseTo(longest, 1);
+    // And the line still carries the hole, which is what keeps it a draft.
+    expect(trail.distance).toBeLessThan(line);
+  });
+
   // The remaining disagreements are known and unexplained rather than fixed, so
   // the count is pinned: a new one should be looked at, not absorbed.
   test('no trail outside the known set disagrees with its own line by 20%', () => {
@@ -51,6 +70,8 @@ describe('a route’s shape is declared, not guessed from its geometry', () => {
       const line=lineKm(trail.path);
       if(!line || !Number.isFinite(trail.distance)) return false;
       if(trail.routeShape==='out-and-back') return false;
+      // Explained above, and explained is not unknown.
+      if(trail.id==='osm-3885162') return false;
       return Math.abs(trail.distance/line-1) >= 0.2;
     }).map(trail => trail.id).sort();
     // Alpe di Siusi left this list on 2026-10-06: its catalogue distance was a
