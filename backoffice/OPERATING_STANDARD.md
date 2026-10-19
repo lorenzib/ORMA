@@ -1063,6 +1063,38 @@ keyed off whether the walk was a loop — "A 2.2 km loop", "An 1.5 km route" —
 which has nothing to do with it, and 43 of the imported descriptions read
 wrongly on live pages.
 
+## The capacity has to reach the command that admits
+
+The intake budget was raised to 60 on 18 October. The campaign admitted nobody
+on the 18th, and nobody on the 19th. Three layers, each of which alone was
+enough:
+
+```
+ORMA_CAMPAIGN_CAPACITY: 60      set, logged, read by nothing in this workflow
+CAMPAIGN_CAPACITY: '15'         what the command actually passed
+--capacity must be 1..25        what the command would have refused
+```
+
+The run printed the first two one line apart and reported success. "Queued 0
+new Cartographer job(s)" is what a closed queue looks like, and it is also what
+a working queue with nothing to admit looks like.
+
+The invariant written after the first failure checked that
+`vars.ORMA_CAMPAIGN_CAPACITY` appeared in both workflows. It did. **A name that
+is set and not used reads exactly like a number that does not work**, and
+checking that a name is present is not checking that it is used.
+
+So: one name, passed where it is read, with no second copy beside it to be
+passed instead. The invariant asserts the command line, asserts the absence of
+the duplicates, and asserts that every capacity the workflow can hand over is
+one the command would accept.
+
+And the two numbers are separated. `--limit` is how many trails one pass may
+admit — a batch, deliberately small. `--capacity` is how many trails may be in
+flight at once — the fleet, and a much larger number. They shared a ceiling of
+25, so 60 could not have been accepted even after the workflow passed it. The
+guard remains, set above anything the catalogue can hold.
+
 ## Free work goes first
 
 A pass orders its queue so the trails that can actually be verified are
