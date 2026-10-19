@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-19T10:24:27.066Z",
+  "generatedAt": "2026-10-19T13:28:10.849Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-10-20T18:00:00+00:00",
       "expiresAt": "2026-10-20T23:59:00+00:00",
       "firstPublishedAt": "2026-10-18T22:19:35.615Z",
-      "lastSeenAt": "2026-10-19T10:24:27.066Z",
+      "lastSeenAt": "2026-10-19T13:28:10.849Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -42,7 +42,7 @@
       "effectiveAt": "2026-10-20T18:00:00+00:00",
       "expiresAt": "2026-10-20T23:59:00+00:00",
       "firstPublishedAt": "2026-10-18T22:19:35.615Z",
-      "lastSeenAt": "2026-10-19T10:24:27.066Z",
+      "lastSeenAt": "2026-10-19T13:28:10.849Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
