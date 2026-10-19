@@ -1063,6 +1063,42 @@ keyed off whether the walk was a loop — "A 2.2 km loop", "An 1.5 km route" —
 which has nothing to do with it, and 43 of the imported descriptions read
 wrongly on live pages.
 
+## A re-survey can be asked for by the record, not by hand
+
+The geometry survey is free: the surveyor reads OpenStreetMap and measures, and
+spends no model credit. That makes it the one thing that can move a trail while
+the credits are out — and on 19 October 2026 they were, with every job the
+campaign attempted refused for no credits remaining.
+
+It could only be asked for by naming trails. A list typed out of a report is
+wrong the next morning, and the trails that need one are not the ones a person
+remembers: they are the ones whose survey was taken before the surveyor learned
+to record what it found.
+
+A survey taken since 15 October carries one of three marks, and **which one it
+carries is the answer**: `routeGuidance` names the numbered routes along the
+walk and their order, `routeNumbersAbsent` says somebody measured and there are
+none, `routeNumbersUnmeasured` says the measurement could not be taken. An
+older survey carries none of them — and a walk with none cannot be told from a
+walk measured and found to carry nothing, which is the one distinction that
+answers `route-number-sequence` and `route-number-switches` from ORMA's own
+record without paying an agent.
+
+So `--stale` asks the record. It lists what it found before queueing anything,
+it is a dry run until `--apply`, and the same question is a checkbox on the
+requeue workflow for anybody without a terminal.
+
+Three rules it keeps:
+
+- **A mark that is present and false still says somebody looked.** Measured and
+  found none is recorded as a value; absent is not the same thing, and a falsy
+  check would read them alike.
+- **A walk nobody has surveyed is not called stale.** It has never been past
+  the cartographer, so a survey is already owed and a second would be two
+  audits of one line.
+- **The trail does not move.** Only its survey is taken again, and every reader
+  already takes the newest; research already paid for is untouched.
+
 ## The capacity has to reach the command that admits
 
 The intake budget was raised to 60 on 18 October. The campaign admitted nobody
