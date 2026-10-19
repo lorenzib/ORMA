@@ -29,6 +29,11 @@ on:
         description: 'Take the geometry survey again for these trails, comma separated. Free: the surveyor reads the map and measures.'
         required: false
         default: ''
+      resurvey_stale:
+        description: 'Re-survey every walk whose survey predates the route-number marks. Free, and lists them before queueing.'
+        type: boolean
+        required: false
+        default: false
       apply:
         description: 'Actually release them. Leave unchecked for a dry run.'
         type: boolean
@@ -119,13 +124,24 @@ jobs:
       # credential it needs is already in this job. Nothing is queued without
       # 'apply', and the trail does not move -- only its survey is retaken.
       - name: Survey named trails again
-        if: inputs.resurvey_trail_ids != ''
+        if: inputs.resurvey_trail_ids != '' || inputs.resurvey_stale
         env:
           TRAIL_IDS: ${{ inputs.resurvey_trail_ids }}
+          STALE: ${{ inputs.resurvey_stale }}
           APPLY: ${{ inputs.apply }}
         run: |
           set -euo pipefail
-          args=(--trails "$TRAIL_IDS")
+          args=()
+          if [ -n "$TRAIL_IDS" ]; then
+            args+=(--trails "$TRAIL_IDS")
+          fi
+          # Ask the record rather than naming them. A survey taken before the
+          # surveyor recorded what it found cannot be told from one that
+          # looked and found nothing, and that distinction is what answers two
+          # of the four route claims without paying an agent.
+          if [ "$STALE" = "true" ]; then
+            args+=(--stale)
+          fi
           if [ "$APPLY" = "true" ]; then
             args+=(--apply)
           else
