@@ -11,8 +11,8 @@
   "totals": {
     "sourceRecords": 163,
     "canonicalRecords": 163,
-    "published": 160,
-    "draft": 3,
+    "published": 161,
+    "draft": 2,
     "errors": 0
   },
   "byOrigin": {
@@ -23,8 +23,8 @@
     },
     "osm": {
       "total": 138,
-      "published": 135,
-      "draft": 3
+      "published": 136,
+      "draft": 2
     }
   },
   "excludedFromGeneration": [
@@ -40,13 +40,6 @@
       "slug": "sentiero-alpago-natura",
       "reasons": [
         "distance 71.2 km exceeds the 50 km publication limit"
-      ]
-    },
-    {
-      "id": "osm-14379937",
-      "slug": "albannette-petite-boucle",
-      "reasons": [
-        "geometry jump 1.06 km before point 12"
       ]
     }
   ],
