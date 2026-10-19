@@ -1063,6 +1063,33 @@ keyed off whether the walk was a loop — "A 2.2 km loop", "An 1.5 km route" —
 which has nothing to do with it, and 43 of the imported descriptions read
 wrongly on live pages.
 
+## The pass builds publication staging, not the decision loop
+
+`publication-staging` was written in one place: inside the loop that applies an
+editorial decision. That held for as long as every verified trail queued a
+copywriter, because there was always a decision to apply and staging was
+rebuilt as a side effect of applying it.
+
+A trail already on the site keeps its own description now. So no copywriter is
+queued, so there is no decision, so nothing rebuilt its staging — and
+`automatePublicationReviews`, which reads that artifact, never saw the trail.
+**The walk was verified, its handoff was written, and it stopped there: nothing
+queued, nothing failing, and nothing saying so.**
+
+Every test of this chain called `buildPublicationStaging` directly, so none of
+them could see it. The break was in the wiring, not in any of the parts.
+
+The pass builds it now, from the three artifacts that describe the lane, before
+the publication policy reads it. Three reads and, when the items have changed,
+one write; unchanged, it writes nothing, because the pass runs every half hour
+against a free-tier quota. `generatedAt` moves on every build, so the
+comparison is on the items rather than the whole artifact — otherwise it would
+write every pass and report a change each time.
+
+The decision loop still writes its own, with the values it has just computed,
+atomically with the decision. What changed is that it is no longer the only
+thing that does.
+
 ## A re-survey can be asked for by the record, not by hand
 
 The geometry survey is free: the surveyor reads OpenStreetMap and measures, and
