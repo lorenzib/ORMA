@@ -562,6 +562,26 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&standard.includes('A re-survey can be asked for by the record, not by hand'),
     'A geometry re-survey, which costs no model credit and is the only work that moves a trail while the credits are out, can be asked for by the record rather than by naming trails: the walks whose survey predates the three route-number marks are found and listed before anything is queued, a mark present and false still counts as having looked, a walk nobody has surveyed is owed one rather than called stale, and the same question is a checkbox on the requeue workflow');
 
+  // The last link of the free lane, which nothing was joining.
+  //
+  // publication-staging was rebuilt only inside the loop that applies an
+  // editorial decision. A trail that keeps its own description queues no
+  // copywriter, so there is no decision, so nothing rebuilt its staging and
+  // the publication policy never saw it: verified, handed off, and stopped,
+  // with nothing queued and nothing saying so.
+  add('the-pass-builds-publication-staging',
+    worker.includes('async function refreshPublicationStaging(store, options = {})')
+    // Before the policy that reads it.
+    &&worker.includes('const publicationStaging=await refreshPublicationStaging(store,{...options,productionTrails:siteTrails});')
+    &&worker.indexOf('const publicationStaging=await refreshPublicationStaging')
+      <worker.indexOf('const automatedPublications=await automatePublicationReviews')
+    // Unchanged items cost no write, on a pass that runs every half hour
+    // against a free-tier quota.
+    &&worker.includes("JSON.stringify(current?.items || null) === JSON.stringify(staging.items || null)")
+    &&worker.includes("return { status:'unchanged', items:(staging.items||[]).length };")
+    &&standard.includes('The pass builds publication staging, not the decision loop'),
+    'The worker pass rebuilds publication staging from the editorial queue, the execution and the content review queue before the publication policy reads it, rather than leaving it to the loop that applies an editorial decision -- which a trail keeping its own description never reaches, so such a trail was verified, handed off and stopped with nothing queued and nothing saying so; an unchanged set of items costs no write');
+
   // Work that costs nothing is not ordered by a rule about money.
   //
   // The risk is the circle it closed: a trail with no published source ranks
