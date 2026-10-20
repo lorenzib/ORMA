@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake,promoter,generatedCheck,routeEvidence,campaignCli]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake,promoter,generatedCheck,routeEvidence,campaignCli,requeueWorkflow]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -55,6 +55,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'scripts/check-generated-artifacts.js'),
     read(root,'scripts/route-number-evidence.js'),
     read(root,'backoffice/cli/start-live-trail-campaign.js'),
+    read(root,'.github/workflows/orma-requeue-fixed-jobs.yml'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -540,6 +541,46 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&packageManifest.includes('npm run promote:trails && npm run validate:production-trails')
     &&standard.includes('The promoted catalogue is checked like every other generated file'),
     'The promoted trail files are regenerated and compared like every other generated artifact, with the promoter reading the committed elevation cache and refusing to reach the network; and regenerating them no longer switches the route sourcing off -- a status the promoter derived from the relation does not stand in front of the mapped evidence, and a number the trail already carries does not deny it the official page');
+
+  // The free work can be asked for without knowing which trails need it.
+  //
+  // The risk is work that is available and unreachable. A re-survey costs no
+  // model credit and is the only thing that moves a trail while the credits
+  // are out -- and it could only be asked for by naming trails, which means
+  // knowing which ones were surveyed before the surveyor recorded what it
+  // found. That is a question for the record, not for a person.
+  add('a-re-survey-can-be-asked-for-by-the-record',
+    resurvey.includes("const SURVEY_MARKS = Object.freeze(['routeGuidance', 'routeNumbersAbsent', 'routeNumbersUnmeasured']);")
+    &&resurvey.includes('function surveyedBeforeTheMarks(orchestration, outputsByTrail)')
+    // Present-and-false still says somebody looked.
+    &&resurvey.includes('result[mark] !== undefined && result[mark] !== null')
+    // A walk nobody surveyed is owed one, not stale.
+    &&resurvey.includes('neverSurveyed.push(entry); continue;')
+    &&resurveyCli.includes("if(arg === '--stale'){ out.stale = true; continue; }")
+    &&requeueWorkflow.includes('resurvey_stale:')
+    &&requeueWorkflow.includes('args+=(--stale)')
+    &&standard.includes('A re-survey can be asked for by the record, not by hand'),
+    'A geometry re-survey, which costs no model credit and is the only work that moves a trail while the credits are out, can be asked for by the record rather than by naming trails: the walks whose survey predates the three route-number marks are found and listed before anything is queued, a mark present and false still counts as having looked, a walk nobody has surveyed is owed one rather than called stale, and the same question is a checkbox on the requeue workflow');
+
+  // The last link of the free lane, which nothing was joining.
+  //
+  // publication-staging was rebuilt only inside the loop that applies an
+  // editorial decision. A trail that keeps its own description queues no
+  // copywriter, so there is no decision, so nothing rebuilt its staging and
+  // the publication policy never saw it: verified, handed off, and stopped,
+  // with nothing queued and nothing saying so.
+  add('the-pass-builds-publication-staging',
+    worker.includes('async function refreshPublicationStaging(store, options = {})')
+    // Before the policy that reads it.
+    &&worker.includes('const publicationStaging=await refreshPublicationStaging(store,{...options,productionTrails:siteTrails});')
+    &&worker.indexOf('const publicationStaging=await refreshPublicationStaging')
+      <worker.indexOf('const automatedPublications=await automatePublicationReviews')
+    // Unchanged items cost no write, on a pass that runs every half hour
+    // against a free-tier quota.
+    &&worker.includes("JSON.stringify(current?.items || null) === JSON.stringify(staging.items || null)")
+    &&worker.includes("return { status:'unchanged', items:(staging.items||[]).length };")
+    &&standard.includes('The pass builds publication staging, not the decision loop'),
+    'The worker pass rebuilds publication staging from the editorial queue, the execution and the content review queue before the publication policy reads it, rather than leaving it to the loop that applies an editorial decision -- which a trail keeping its own description never reaches, so such a trail was verified, handed off and stopped with nothing queued and nothing saying so; an unchanged set of items costs no write');
 
   // Work that costs nothing is not ordered by a rule about money.
   //

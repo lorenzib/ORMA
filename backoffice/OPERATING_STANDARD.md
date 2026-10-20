@@ -1063,6 +1063,69 @@ keyed off whether the walk was a loop — "A 2.2 km loop", "An 1.5 km route" —
 which has nothing to do with it, and 43 of the imported descriptions read
 wrongly on live pages.
 
+## The pass builds publication staging, not the decision loop
+
+`publication-staging` was written in one place: inside the loop that applies an
+editorial decision. That held for as long as every verified trail queued a
+copywriter, because there was always a decision to apply and staging was
+rebuilt as a side effect of applying it.
+
+A trail already on the site keeps its own description now. So no copywriter is
+queued, so there is no decision, so nothing rebuilt its staging — and
+`automatePublicationReviews`, which reads that artifact, never saw the trail.
+**The walk was verified, its handoff was written, and it stopped there: nothing
+queued, nothing failing, and nothing saying so.**
+
+Every test of this chain called `buildPublicationStaging` directly, so none of
+them could see it. The break was in the wiring, not in any of the parts.
+
+The pass builds it now, from the three artifacts that describe the lane, before
+the publication policy reads it. Three reads and, when the items have changed,
+one write; unchanged, it writes nothing, because the pass runs every half hour
+against a free-tier quota. `generatedAt` moves on every build, so the
+comparison is on the items rather than the whole artifact — otherwise it would
+write every pass and report a change each time.
+
+The decision loop still writes its own, with the values it has just computed,
+atomically with the decision. What changed is that it is no longer the only
+thing that does.
+
+## A re-survey can be asked for by the record, not by hand
+
+The geometry survey is free: the surveyor reads OpenStreetMap and measures, and
+spends no model credit. That makes it the one thing that can move a trail while
+the credits are out — and on 19 October 2026 they were, with every job the
+campaign attempted refused for no credits remaining.
+
+It could only be asked for by naming trails. A list typed out of a report is
+wrong the next morning, and the trails that need one are not the ones a person
+remembers: they are the ones whose survey was taken before the surveyor learned
+to record what it found.
+
+A survey taken since 15 October carries one of three marks, and **which one it
+carries is the answer**: `routeGuidance` names the numbered routes along the
+walk and their order, `routeNumbersAbsent` says somebody measured and there are
+none, `routeNumbersUnmeasured` says the measurement could not be taken. An
+older survey carries none of them — and a walk with none cannot be told from a
+walk measured and found to carry nothing, which is the one distinction that
+answers `route-number-sequence` and `route-number-switches` from ORMA's own
+record without paying an agent.
+
+So `--stale` asks the record. It lists what it found before queueing anything,
+it is a dry run until `--apply`, and the same question is a checkbox on the
+requeue workflow for anybody without a terminal.
+
+Three rules it keeps:
+
+- **A mark that is present and false still says somebody looked.** Measured and
+  found none is recorded as a value; absent is not the same thing, and a falsy
+  check would read them alike.
+- **A walk nobody has surveyed is not called stale.** It has never been past
+  the cartographer, so a survey is already owed and a second would be two
+  audits of one line.
+- **The trail does not move.** Only its survey is taken again, and every reader
+  already takes the newest; research already paid for is untouched.
+
 ## The capacity has to reach the command that admits
 
 The intake budget was raised to 60 on 18 October. The campaign admitted nobody
