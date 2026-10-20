@@ -70,7 +70,8 @@ function run(record){
     requests:{requests:[{id:'pub',candidateId:trail.candidateId,
       status:'approved-for-pr-creation',approvedBy:'policy',approvedAt:AT}]},
     staging,routesByCandidate:{[trail.candidateId]:{geometry:result.geometry}},
-    overrides:{contractVersion:'1.0.0',trails:[]},operationalFacts:{trails:[]},at:AT});
+    overrides:{contractVersion:'1.0.0',trails:[]},operationalFacts:{trails:[]},at:AT,
+    productionTrails:[record]});
   const entry=materialized.overrides.trails[0];
   applyVerifiedTrailOverrides([record],materialized.overrides);
   return {id:record.id,entry,queued:handoff.jobs.length};

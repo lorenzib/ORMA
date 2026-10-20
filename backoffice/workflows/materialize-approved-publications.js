@@ -3,7 +3,65 @@
 const { operationalFactsFromClaims, mergeOperationalFacts } = require('./compile-operational-facts');
 const { publicationRequestIsRetryable } = require('./publication-failure-receipts');
 
-function materializeApprovedPublications({ requests, staging, routesByCandidate, overrides, operationalFacts, at, forceRetry=false }){
+// Savoy and the Dolomites are geographically disjoint, and the website splits
+// its runtime bundles on `trail.region`. The longitude test is the one
+// scripts/build-regional-runtime-data.js already uses: well east of Savoy and
+// well west of the Dolomites, so there is no ambiguous walk in either package.
+// It reads the line being published, so a publication cannot land a trail in a
+// region it is nowhere near -- which is what a hardcoded region did to the
+// first Savoy walks to reach publication.
+const SAVOY_EAST_LIMIT = 9;
+function regionForLongitude(lng){
+  return Number(lng) < SAVOY_EAST_LIMIT ? 'savoy' : 'dolomites';
+}
+
+// A published distance and the line drawn for it are two measurements of one
+// walk, and they arrive here from different places: the distance from the
+// dossier's website fields, the line from the approved route proposal. A
+// publication swapping in a line that measures differently from the distance it
+// keeps puts a contradiction on the page, and route-shape-geometry.test.js
+// rejects it -- which is how the first five publications surfaced, as an opaque
+// generated-artifact failure after the approvals had already been written.
+//
+// What is refused is a publication that *introduces* a disagreement. Four walks
+// in the catalogue already disagree with their own lines, knowingly and on the
+// record; re-publishing one of those is not this fault, and refusing it would
+// stop a trail the repository already accepts. The threshold and the formula are
+// the pinned test's, so the two cannot drift apart.
+const DISTANCE_DISAGREEMENT = 0.2;
+const km=(a,b)=>Math.hypot((a[0]-b[0])*111.2,(a[1]-b[1])*Math.cos(a[0]*Math.PI/180)*111.2);
+const lineKm=path=>path.reduce((total,point,i)=>i?total+km(path[i-1],point):0,0);
+
+function measure(distance,path){
+  if(!Array.isArray(path) || path.length<2) return null;
+  const line=lineKm(path);
+  const value=Number(distance);
+  if(!line || !Number.isFinite(value) || value<=0) return null;
+  return { distance:value, lineKm:Math.round(line*1000)/1000, ratio:Math.round((value/line)*1000)/1000 };
+}
+
+const disagrees=measured => measured && Math.abs(measured.ratio-1) >= DISTANCE_DISAGREEMENT;
+
+// An out-and-back is declared, and its line is traced one way on purpose, so a
+// 2x disagreement is its expected shape rather than a fault. The same carve-out
+// the pinned test makes -- read from the declarations the overrides carry,
+// because a publication's own fields never include a route shape.
+function declaredOutAndBack(overrides,trailId){
+  return (overrides?.trails||[]).some(entry =>
+    entry?.id===trailId && entry?.fields?.routeShape==='out-and-back');
+}
+
+function introducedDisagreement(fields,{priorTrail,outAndBack}){
+  if(outAndBack) return null;
+  const published=measure(fields.distance,fields.path);
+  if(!disagrees(published)) return null;
+  // Already on the record as a disagreement: not this publication's doing.
+  if(disagrees(measure(priorTrail?.distance,priorTrail?.path))) return null;
+  return published;
+}
+
+function materializeApprovedPublications({ requests, staging, routesByCandidate, overrides, operationalFacts, at, forceRetry=false, productionTrails=[] }){
+  const priorById = new Map((productionTrails||[]).map(trail => [trail?.id, trail]));
   const next = JSON.parse(JSON.stringify(overrides || { contractVersion:'1.0.0', trails:[] }));
   next.contractVersion ||= '1.0.0';
   next.trails ||= [];
@@ -14,6 +72,7 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
   // Rifugio and lift policies ride the same evidence-policy decision as the
   // publication that carries them, so no fact bypasses the audited release.
   const approvedFacts = [];
+  const refused = [];
 
   for(const request of approved){
     const item = staging?.items?.find(candidate => candidate.candidateId === request.candidateId);
@@ -30,11 +89,29 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
       path:route.geometry.coordinates.map(point => [point[1], point[0]]),
       lat:route.geometry.coordinates[0][1],
       lng:route.geometry.coordinates[0][0],
-      region:'dolomites',
+      region:regionForLongitude(route.geometry.coordinates[0][0]),
       curated:true,
       publicationApprovalId:request.id,
     };
     delete fields.routeRef;
+    const disagreement = introducedDisagreement(fields,{
+      priorTrail:priorById.get(item.targetTrailId),
+      outAndBack:declaredOutAndBack(overrides,item.targetTrailId),
+    });
+    if(disagreement){
+      // Refused, not thrown: the other approved publications in this batch are
+      // sound and should still reach the website. The request keeps its retry
+      // receipt so the pipeline says which walk is stuck and by how much.
+      refused.push({
+        candidateId:request.candidateId,
+        trailId:item.targetTrailId,
+        requestId:request.id,
+        reason:'distance-disagrees-with-its-line',
+        ...disagreement,
+        message:`Published distance ${disagreement.distance} km disagrees with the approved line (${disagreement.lineKm} km, ratio ${disagreement.ratio}) by 20% or more`,
+      });
+      continue;
+    }
     // Which door this publication comes through.
     //
     // A full verification -- all eleven checks -- carries the seal and declares
@@ -78,6 +155,7 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
     overrides:next,
     entries,
     materialized:entries.length,
+    refused,
     operationalFacts:facts.table,
     operationalFactsChanged:facts.changed,
   };
