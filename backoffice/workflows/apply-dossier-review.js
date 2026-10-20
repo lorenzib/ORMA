@@ -3,7 +3,7 @@
 const { createAgentJob }=require('../contracts/agent-job-v1');
 const { summarize }=require('./build-live-orchestration');
 const {fitReviewQueue}=require('./review-queue-compaction');
-const {compileVerifiedDossier,verificationRecord,unacceptedBlockers,waivableBlocker,
+const {trailRecordFor,compileVerifiedDossier,verificationRecord,unacceptedBlockers,waivableBlocker,
   blockerId,ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
 
 /**
@@ -107,7 +107,12 @@ function applyDossierReview(orchestration,reviewQueue,decision,options={}){
     nextTrail.state='ready-for-editorial'; nextTrail.stage='verified-dossier-approved';
     nextTrail.gate={...nextTrail.gate,status:'approved',reviewedAt:at};
     nextTrail.verificationStatus='orma-verified';nextTrail.verifiedAt=at;
+    // nextTrail is the orchestration entry and holds no start point; the
+    // recorded walk stamped on the survey does. Hand the compiler the record
+    // the gate judged on rather than letting the entry stand in for it.
+    const guidanceRecord=trailRecordFor(review)||nextTrail;
     verifiedDossier=compileVerifiedDossier(review,nextTrail,{at,acceptedBlockers:decision.acceptedBlockers,
+      guidanceRecord,
       verifiedBy:decision.submittedBy||decision.reviewedBy||'human-moderator'});
     verifiedRecord=verificationRecord(verifiedDossier);
   }else{
