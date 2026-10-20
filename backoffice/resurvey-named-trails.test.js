@@ -86,8 +86,8 @@ describe('surveying a named trail again',()=>{
   });
 
   test('it is a dry run until told otherwise',()=>{
-    expect(parseArgs(['--trails','a,b'])).toEqual({trails:['a','b'],apply:false});
-    expect(parseArgs(['--trails=a, b','--apply'])).toEqual({trails:['a','b'],apply:true});
-    expect(parseArgs([])).toEqual({trails:[],apply:false});
+    expect(parseArgs(['--trails','a,b'])).toEqual({trails:['a','b'],apply:false,stale:false});
+    expect(parseArgs(['--trails=a, b','--apply'])).toEqual({trails:['a','b'],apply:true,stale:false});
+    expect(parseArgs([])).toEqual({trails:[],apply:false,stale:false});
   });
 });
