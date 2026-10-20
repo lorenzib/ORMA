@@ -35,11 +35,30 @@ async function main() {
 
   const store = new FirestoreBackofficeStore();
   const queue = await store.getArtifact('dossier-review-queue') || { items: [] };
-  const item = (queue.items || []).find(i => String(i.candidateId) === trail || String(i.trailId) === trail);
+  // A trail can hold several queue items -- an old processed geometry gate and
+  // the live dossier gate it is actually standing at. Taking the first match
+  // printed "gate geometry-approval · state processed · 0 specialist output(s)"
+  // for a trail whose live gate was full of evidence, which reads as an empty
+  // dossier rather than as the wrong item. Prefer the one still waiting.
+  const mine = (queue.items || []).filter(i => String(i.candidateId) === trail || String(i.trailId) === trail);
+  const item = mine.find(i => i.state === 'awaiting-human' && i.gateType === 'dossier-approval')
+    || mine.find(i => i.state === 'awaiting-human')
+    || mine[0];
+  if (mine.length > 1) {
+    console.log(`[dump] ${mine.length} queue items for ${trail}; showing the ${item.state} ${item.gateType}.`);
+  }
   if (!item) { console.error(`[dump] No dossier-review-queue item for ${trail}.`); process.exit(1); }
 
   console.log(`[dump] ${item.trailName || item.candidateId} (${item.candidateId}) · gate ${item.gateType} · state ${item.state}`);
   const outputs = item.specialistOutputs || [];
+  // Whether the detail is actually here, or behind a pointer. A compacted
+  // output keeps a claim's id and value and drops its sources, so a claim can
+  // read as unsourced when the sources exist one fetch away.
+  const withheld = outputs.filter(output => output && output.result && output.result.detailWithheld);
+  if (withheld.length) {
+    console.log(`[dump] ${withheld.length} of ${outputs.length} output(s) are compacted: claims keep id, finding and value, and their sources sit behind resultRef.`);
+    for (const output of withheld) console.log(`         ${output.agentId || '?'} -> ${output.resultRef || 'NO POINTER (detail unreachable)'}`);
+  }
   console.log(`[dump] ${outputs.length} specialist output(s). Showing ${showAll ? 'all' : 'non-supported'} claims${agentFilter ? ` · agent~${agentFilter}` : ''}${claimFilter ? ` · claim~${claimFilter}` : ''}.\n`);
 
   for (const output of outputs) {
