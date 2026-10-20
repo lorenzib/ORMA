@@ -14,7 +14,14 @@
  * and five had one. Gsieser Talblickweg declared fourteen -- its relation
  * lists 160 ways falling into eighteen groups, the walk and then thirteen
  * fragments of ten to a hundred and fifty metres scattered up to ten
- * kilometres down the valley -- and its published line has a single hole.
+ * kilometres down the valley -- and its published line had a single hole.
+ *
+ * Re-measured 20 Oct 2026, once route assembly traversed the relation as a
+ * graph: none of the five holes was OpenStreetMap missing a path. Every one
+ * was the nose-to-tail stitcher orphaning a branch at a junction and the
+ * promoter drawing a straight line to collect it. The catalogue now has no
+ * hole at all, so the checks that need one are made against geometry built
+ * for the purpose rather than against a trail that happens to be broken.
  *
  * The same question gated the verified start point, which is why this is worth
  * more than a tidier number. Anchoring rotates a loop to begin at a mapped car
@@ -120,17 +127,32 @@ describe('every promoted trail declares the holes its own line has', () => {
     for (const { record } of promoted) {
       if (record.osmGeometryGaps !== undefined) expect(record.osmGeometryGaps).toBeGreaterThan(0);
     }
-    // Not a vacuous check: some trail still has a hole.
-    expect(promoted.some(({ record }) => record.osmGeometryGaps > 0)).toBe(true);
   });
 
-  test('Gsieser Talblickweg declares the one hole it has, not fourteen pieces', () => {
+  test('no catalogue trail has a hole left, and the count is still wired up', () => {
+    // The five that had one were all the nose-to-tail stitcher orphaning a
+    // branch at a junction, not OpenStreetMap missing a path -- so graph
+    // assembly left the catalogue with none. That makes the check above
+    // vacuous against real data, which is the right outcome and a poor test.
+    // So the field is proved live on geometry that does have a hole instead,
+    // in `what the gap count counts` above.
+    expect(promoted.filter(({ record }) => record.osmGeometryGaps > 0)).toEqual([]);
+    expect(toPath(multi([run(11.40, 46.36, 60), run(11.42, 46.36, 60)])).connectors).toHaveLength(1);
+  });
+
+  test('Gsieser Talblickweg is one line now, with nothing left out', () => {
+    // It used to arrive in fifteen pieces -- the walk plus thirteen fragments
+    // chaining threw away, and one hole it drew across. Traversed as a graph
+    // the same 147 members are a single line, so there is no fragment to drop
+    // and no hole to declare. Its 37.1 km is the 37.23 km its own member ways
+    // cover, checked against relation 1780768 on 20 Oct 2026.
     const { record, feature } = promoted.find(({ record: r }) => r.id === 'osm-1780768');
     const { segments, connectors, droppedPieces } = toPath(feature.geometry);
-    expect(segments).toBe(15);            // the relation's own pieces
-    expect(droppedPieces).toHaveLength(13);
-    expect(connectors).toHaveLength(1);
-    expect(record.osmGeometryGaps).toBe(1);
+    expect(segments).toBe(1);
+    expect(droppedPieces).toEqual([]);
+    expect(connectors).toEqual([]);
+    expect(record.osmGeometryGaps).toBeUndefined();
+    expect(record.distance).toBeCloseTo(37.1, 1);
   });
 });
 
@@ -146,16 +168,28 @@ describe('a verified start point is anchored only to a line with no holes in it'
       .map(({ record }) => record.id)).toEqual([]);
   });
 
-  test('a continuous line in several pieces is anchored all the same', () => {
-    // The seven the old gate turned away. Each has a mapped car park, bus stop
-    // or lift within 400 m of a line that has no hole in it.
+  test('the seven the old gate turned away are still anchored', () => {
+    // They were turned away for arriving in pieces, and each still has a
+    // mapped car park, bus stop or lift within 400 m of a line with no hole in
+    // it. Graph assembly has since made all seven a single piece, so the
+    // several-pieces case they were chosen to demonstrate is now only
+    // reachable synthetically -- the test below it does that. What has to keep
+    // holding for them is that they are anchored and carry no connector.
     for (const id of NEWLY_ANCHORED) {
       const entry = promoted.find(({ record }) => record.id === id);
-      const { segments, connectors } = toPath(entry.feature.geometry);
-      expect(segments).toBeGreaterThan(1);
-      expect(connectors).toEqual([]);
+      expect(toPath(entry.feature.geometry).connectors).toEqual([]);
       expect(entry.record.startPoint.label).toMatch(ANCHORED);
     }
+  });
+
+  test('a line in several pieces with no hole in it is anchorable', () => {
+    // The condition the gate was relaxed to: pieces in the source geometry are
+    // not a reason to refuse, a connector in the drawn line is. A walk and two
+    // scraps too far to be worth reaching draws one unbroken line.
+    const geometry = multi([run(11.41, 46.36, 60), run(11.48, 46.41, 2), run(11.49, 46.42, 2)]);
+    const { segments, connectors } = toPath(geometry);
+    expect(segments).toBeGreaterThan(1);
+    expect(connectors).toEqual([]);
   });
 
   test('and anchoring it opens no gap the drawn line did not have', () => {
