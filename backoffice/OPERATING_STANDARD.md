@@ -979,6 +979,49 @@ And when nothing is published and nothing is held, the report says so in those
 words. A lane that never ran and a lane with nothing to do produce the same
 silence, and both read as success.
 
+## A scouted walk becomes a record the catalogue holds
+
+The scouting lane had no exit. A selected candidate lived only in Firestore —
+an id, a name, an OSM relation and an empty path — and publication restates
+nine fields from a catalogue record it had not got, so the walk was verified,
+had its research and its copy paid for, reached the mapping gate and stopped
+there for ever. The section below holds such a candidate at intake rather than
+admitting it. This is the step that lets it in.
+
+`scripts/import-scouted-trail.js` adds **one feature** to the region's route
+file and changes nothing else. `npm run promote:trails` then derives the record
+the way it does for every other trail — distance and gain from the line,
+terrain from the surface tags, water and rifugi from the mapped points, the
+start from the nearest access point within 400 m — so an imported walk is the
+same kind of record as the 163 already there, and the generated-artifact check
+holds it to that.
+
+Proved on a copy of the whole tree: a relation imported this way promoted to a
+record with all nine fields — area, 6 km, 431 m of gain, Naismith hours, the
+terrain from its surface tags, a rating from the computed grade, a mapped water
+point, and a start anchored to a parking 9 m from the route — passed
+publication validation, and got a page.
+
+**The discovery pass's screening runs first.** A walk reached this way has not
+been through phase 1, and importing one the region sweep would have refused is
+how a via ferrata ends up on a dog-walking site. The relation's own tags go
+through `evaluateRelation`; its member ways go through `hardWayForDogs`, which
+is the same rule the sweep asks Overpass for as six set expressions. Two
+readings of one rule, so a test reads the query out of the source and puts
+every condition in it to the predicate. Dogs are the reason the rule exists.
+
+Three things it will not do:
+
+- **Re-import a walk already on file.** That would rewrite a line the
+  catalogue rests on, which is what the targeted geometry refresh is for.
+- **Write anything on a refusal**, or on a relation OpenStreetMap does not
+  return.
+- **Insert.** The feature is appended, because the promoter reads the file in
+  order and writes the catalogue in that order, so inserting would move every
+  trail after it in a file the generated-artifact check compares byte for byte.
+
+Dry run by default, and the intake hold now names the command that clears it.
+
 ## A walk the catalogue does not hold cannot be published
 
 A scouted walk exists only in Firestore. `candidateToTrail` builds it from the

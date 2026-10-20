@@ -43,7 +43,8 @@ function heldForImport(trails, catalogue){
     admit:trails.filter(trail=>known.has(String(trail.id))),
     held:trails.filter(trail=>!known.has(String(trail.id)))
       .map(trail=>({id:trail.id,name:trail.name,
-        reason:'not in the catalogue: publication restates a record this walk has not got'})),
+        reason:'not in the catalogue: publication restates a record this walk has not got. '
+          +`Import it first: node scripts/import-scouted-trail.js --relation ${trail.osmRelation||'<id>'} --apply`})),
   };
 }
 

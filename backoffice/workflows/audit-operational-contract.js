@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake,promoter,generatedCheck,routeEvidence,campaignCli,requeueWorkflow]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake,promoter,generatedCheck,routeEvidence,campaignCli,requeueWorkflow,scoutImport,discovery]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -56,6 +56,8 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'scripts/route-number-evidence.js'),
     read(root,'backoffice/cli/start-live-trail-campaign.js'),
     read(root,'.github/workflows/orma-requeue-fixed-jobs.yml'),
+    read(root,'scripts/import-scouted-trail.js'),
+    read(root,'scripts/fetch-dog-friendly-routes.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -504,7 +506,9 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     intake.includes('function heldForImport(trails, catalogue)')
     // A missing catalogue is not an empty one.
     &&intake.includes('if(!catalogue)return {admit:trails,held:[]};')
-    &&intake.includes("reason:'not in the catalogue: publication restates a record this walk has not got'")
+    // The sentence, not its whole line: it now carries the command that
+    // clears the hold, which did not exist when this was written.
+    &&intake.includes('not in the catalogue: publication restates a record this walk has not got')
     &&worker.includes('productionTrails:options.productionTrails||loadProductionTrails(path.resolve(__dirname,')
     // The reason travels, so a review that queued nothing does not read like
     // a review that queued work.
@@ -581,6 +585,27 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&worker.includes("return { status:'unchanged', items:(staging.items||[]).length };")
     &&standard.includes('The pass builds publication staging, not the decision loop'),
     'The worker pass rebuilds publication staging from the editorial queue, the execution and the content review queue before the publication policy reads it, rather than leaving it to the loop that applies an editorial decision -- which a trail keeping its own description never reaches, so such a trail was verified, handed off and stopped with nothing queued and nothing saying so; an unchanged set of items costs no write');
+
+  // The scouting lane has an exit, and it is screened.
+  //
+  // The risk is a side door. A walk imported one at a time has not been
+  // through the region sweep's phase 1, and the rule that keeps a via ferrata
+  // off a dog-walking site lives in an Overpass query it never runs.
+  add('a-scouted-walk-becomes-a-screened-record',
+    scoutImport.includes('function screen(relation, memberWays, overrides)')
+    &&scoutImport.includes('evaluateRelation(tags, hard.length > 0, overrides)')
+    &&scoutImport.includes('memberWays.filter(way => hardWayForDogs(way.tags))')
+    // One definition of a way that makes a route unsuitable for a dog.
+    &&discovery.includes('function hardWayForDogs(tags)')
+    &&discovery.includes('hardWayForDogs, evaluateRelation, buildPhase1Query,')
+    // One feature, appended, and never over a walk already on file.
+    &&scoutImport.includes('collection.features.push(feature);')
+    &&scoutImport.includes("return { status: 'already-present', name: already.properties.name };")
+    // The promoter is what gives it the nine fields, as it does every trail.
+    &&packageManifest.includes('"import:scouted-trail"')
+    &&intake.includes('import-scouted-trail.js --relation')
+    &&standard.includes('A scouted walk becomes a record the catalogue holds'),
+    'A scouted walk can be imported into the catalogue one relation at a time, screened first by the discovery pass\'s own rules -- the relation through evaluateRelation and its member ways through the single definition of a way that makes a route unsuitable for a dog, which the region sweep asks Overpass for -- adding one feature and never rewriting a walk already on file; the promoter then derives the nine fields it does for every other trail, and the intake hold names the command that clears it');
 
   // Work that costs nothing is not ordered by a rule about money.
   //
