@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-20T13:08:51.570Z",
+  "generatedAt": "2026-10-20T13:53:46.417Z",
   "regions": {
     "dolomites": {
       "trailCount": 110,
@@ -124,20 +124,20 @@
     },
     "savoy": {
       "trailCount": 53,
-      "trails": "data/regions/savoy-trails.js?v=cf88e08037fe",
+      "trails": "data/regions/savoy-trails.js?v=687ead237779",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=eb3735f6498d",
-        "osm-6250300": "data/trail-details/osm-6250300.js?v=194b0ba277c2",
+        "osm-6250300": "data/trail-details/osm-6250300.js?v=f49be96518f0",
         "osm-9933643": "data/trail-details/osm-9933643.js?v=bca6c5716d4d",
-        "osm-10116283": "data/trail-details/osm-10116283.js?v=2998ef5ab80b",
-        "osm-10116380": "data/trail-details/osm-10116380.js?v=81dd9d1ed4e3",
-        "osm-20347406": "data/trail-details/osm-20347406.js?v=4e94aa709c7f",
-        "osm-11517208": "data/trail-details/osm-11517208.js?v=be0b8d2084a1",
-        "osm-14987412": "data/trail-details/osm-14987412.js?v=d5c69f6e5420",
+        "osm-10116283": "data/trail-details/osm-10116283.js?v=78fe4b05c278",
+        "osm-10116380": "data/trail-details/osm-10116380.js?v=75023a026a33",
+        "osm-20347406": "data/trail-details/osm-20347406.js?v=d91ad911a11c",
+        "osm-11517208": "data/trail-details/osm-11517208.js?v=e46dfa5b05de",
+        "osm-14987412": "data/trail-details/osm-14987412.js?v=acd3288814f2",
         "osm-18055492": "data/trail-details/osm-18055492.js?v=f14618733309",
         "osm-14864704": "data/trail-details/osm-14864704.js?v=698d1172f03f",
         "osm-14095296": "data/trail-details/osm-14095296.js?v=3ca5154fa4e7",
-        "osm-16322228": "data/trail-details/osm-16322228.js?v=32e594914a1f",
+        "osm-16322228": "data/trail-details/osm-16322228.js?v=33432d60fdde",
         "osm-16363583": "data/trail-details/osm-16363583.js?v=d4548b69680c",
         "osm-16395076": "data/trail-details/osm-16395076.js?v=afe945f9faae",
         "osm-19153189": "data/trail-details/osm-19153189.js?v=6cc932662b4b",
