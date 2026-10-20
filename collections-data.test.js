@@ -97,3 +97,53 @@ describe('editorial trail collections', () => {
     expect(page).toContain('href="collections.html"');
   });
 });
+
+// A cover photograph is somebody's work, and a licence that asks for
+// attribution asks for it wherever the work appears. The collections page
+// rendered covers as a bare CSS background with no credit anywhere, while two
+// of them were CC BY-SA: Mangatome's Lac Vert and Anthony Levrot's Marais des
+// Chassettes. The credit is now derived from the trail that owns the image,
+// so this guards the link that makes that possible.
+describe('every collection cover can be credited', () => {
+  const { loadProductionTrails } = require('./scripts/load-production-trails');
+  const catalogue = loadProductionTrails(__dirname);
+
+  // The one cover no trail uses. It sits in images/ with no recorded rights,
+  // like the Lago di Carezza photograph did before its owner confirmed it, so
+  // it is named here rather than quietly passing.
+  const UNRESOLVED = new Set(['images/lago-di-braies.webp']);
+
+  const creditOf = cover => {
+    const owner = catalogue.find(trail => trail.imageIcon === cover || trail.heroImage === cover);
+    if(!owner) return null;
+    // Mirrors coverCredit() in collections-page.js, so a trail that would
+    // render a blank line here cannot pass by carrying fields the page's own
+    // condition rejects.
+    if(owner.imageSourcePage && owner.imageCreator && owner.imageLicence){
+      return `${owner.imageCreator} · ${owner.imageLicence}`;
+    }
+    const credit = owner.imageCredit;
+    return (typeof credit === 'string' ? credit : credit && credit.text) || null;
+  };
+
+  test.each(collections.all().map(item => [item.id, item]))(
+    '%s names whoever took its cover', (id, item) => {
+      if(UNRESOLVED.has(item.coverImage)){
+        expect(creditOf(item.coverImage)).toBeNull();
+        return;
+      }
+      expect(creditOf(item.coverImage)).toBeTruthy();
+    });
+
+  test('no cover points at an image the catalogue has stopped using', () => {
+    // A collection names its own image path, so replacing a trail's cover
+    // leaves the collection on the old file -- which is how savoy-hot-day went
+    // on showing a photograph the trail page had already dropped.
+    const orphans = collections.all()
+      .filter(item => !UNRESOLVED.has(item.coverImage))
+      .filter(item => !catalogue.some(trail =>
+        trail.imageIcon === item.coverImage || trail.heroImage === item.coverImage))
+      .map(item => `${item.id} -> ${item.coverImage}`);
+    expect(orphans).toEqual([]);
+  });
+});

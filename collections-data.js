@@ -75,7 +75,7 @@
     {
       id:'savoy-hot-day', title:'Warmer Savoy days', subtitle:'Four alternatives with selected shade and mapped water',
       description:'A Savoy shortlist with recorded shade and at least one mapped water point. This is a planning aid, not a heat-safety guarantee: carry water and adjust every day for the forecast and your dog.',
-      coverImage:'images/boucle-du-taillefer.webp', chips:['Recorded shade','Mapped water','Early starts still recommended'],
+      coverImage:'images/trails/osm-14864704-lac-annecy-taillefer.jpg', chips:['Recorded shade','Mapped water','Early starts still recommended'],
       countryCode:'FR', country:'France', region:'savoy', regionLabel:'Savoy', tripLength:'3–4 days',
       trailIds:['osm-3982382','osm-6250300','osm-11517208','osm-14864704'],
     },
