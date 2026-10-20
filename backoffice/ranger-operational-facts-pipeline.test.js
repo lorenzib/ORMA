@@ -123,6 +123,14 @@ describe('a Ranger claim reaches the operational facts table', () => {
 const { buildVerifiedEditorialHandoff } = require('./workflows/verified-editorial-handoff');
 const { buildPublicationStaging } = require('./workflows/build-publication-staging');
 const { materializeApprovedPublications } = require('./workflows/materialize-approved-publications');
+const { loadProductionTrails } = require('../scripts/load-production-trails');
+
+// The route this publication writes is Tre Cime's own line, not a placeholder.
+// Publication refuses a line that measures differently from the distance it
+// publishes, so a three-point stand-in against a 9.5 km walk would be rejected
+// for a geometry fault this test is not about.
+const TRE_CIME = loadProductionTrails(require('path').resolve(__dirname, '..'))
+  .find(trail => trail.id === 'tre-cime');
 
 // The chain from an approved Ranger claim to a published row runs through five
 // modules. Each one passed its own tests while the chain produced nothing,
@@ -166,9 +174,11 @@ describe('the whole chain, from Ranger claim to published fact', () => {
       requests:{ requests:[{ id:'approval-1', candidateId:CANDIDATE, status:'approved-for-pr-creation',
         approvedBy:'ORMA Regulatory Ranger' }] },
       staging,
-      routesByCandidate:{ [CANDIDATE]:{ geometry:{ type:'LineString', coordinates:[[12.29,46.61],[12.30,46.62],[12.29,46.61]] } } },
+      routesByCandidate:{ [CANDIDATE]:{ geometry:{ type:'LineString',
+        coordinates:TRE_CIME.path.map(point => [point[1], point[0]]) } } },
       overrides:{ contractVersion:'1.0.0', trails:[] },
       operationalFacts:{ contractVersion:'1.0.0', updatedAt:null, facts:[] },
+      productionTrails:[TRE_CIME],
       at:AT }) };
   }
 

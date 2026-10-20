@@ -152,7 +152,15 @@ function reconcileCompletedAttempt(entry,job,result,at){
   attempt.finding=claim.finding;
   attempt.confidence=claim.confidence;
   attempt.sourceCount=(claim.sources||[]).length;
-  attempt.blockers=claim.blockers||[];
+  // The count, not the sentences. Every completed attempt used to keep the
+  // claim's whole blocker list -- long strings, copied onto every attempt of
+  // every claim of every trail, and nothing ever read them back. They were
+  // most of trail-orchestration by the time it reached 1020.6 KB of a 1023.9
+  // KB ceiling and the worker began failing every write. The same shape as the
+  // strategy label and instruction above: a constant duplicated hundreds of
+  // times. What the record is for is how many things stood in the way, and
+  // that is a number. The blockers themselves are on the claim.
+  attempt.blockerCount=(claim.blockers||[]).length;
   entry.latestFinding=claim.finding;
   entry.latestOutputRef=`firestore:trail-specialist-output-${job.id}`;
   entry.state=resolutionStateFor(claim,entry);

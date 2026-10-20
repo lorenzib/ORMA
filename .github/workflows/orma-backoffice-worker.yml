@@ -173,6 +173,14 @@ jobs:
             git config user.email "orma-backoffice@users.noreply.github.com"
             git checkout -b "$branch"
             git add data/verified-trail-overrides.json data/route-operational-facts.json data/generated/trail-validation-report.json data/trail-details data/regions data/regions-manifest.json regions-runtime-manifest.js trails sitemap.xml browse-trails.html
+            # The elevation caches are the promoter's fetch memos, not website
+            # output: scripts/promote-osm-trails.js says to regenerate and commit
+            # them with `npm run promote:trails`, and they are the only tracked
+            # files regeneration touches that a publication does not publish.
+            # Carrying them here would put promoter data in a publication PR;
+            # leaving them dirty trips the guard below, which is what stopped the
+            # first five approved publications from opening one at all.
+            git checkout -- data/elevation-cache-dolomites.json data/elevation-cache-savoy.json
             git diff --quiet || {
               echo "Publication generation left tracked files unstaged:"
               git diff --name-only

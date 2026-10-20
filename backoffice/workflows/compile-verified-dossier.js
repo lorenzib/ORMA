@@ -677,7 +677,18 @@ function compileVerifiedDossier(review,trail,options={}){
   if(routeReference&&!establishedRecommendedStart(review,options.trail?{trail:options.trail}:{})){
     throw new Error(`Numbered route ${routeReference} requires an established recommended-start before verification`);
   }
-  assertRouteGuidance(review,trail);
+  // The record to judge guidance on, which is not always the object this was
+  // handed. applyDossierReview passes the *orchestration* entry -- state,
+  // blockers, jobIds, attempts -- and recordReadRouteGuidance resolves
+  // `options.trail || review.trail || result.trailRecord`, so that entry won
+  // on truthiness and shadowed the recorded walk the catalogue batch stamps
+  // onto the survey. recordedStart looked for a startPoint on an object that
+  // has never had one, and five walks whose start ORMA publishes were refused
+  // for "recommended-start" -- while the gate that let them through, and
+  // currentBlockingReasons one check earlier, both read the stamped record and
+  // found it able to answer. Fourth time this shape; this time threading the
+  // trail was the fault rather than the fix.
+  assertRouteGuidance(review,options.guidanceRecord||trail);
   assertRouteConformance(review,trail);
   const at=options.at||new Date().toISOString();const sourceMap=new Map();
   function addSource(source){const url=source?.url;if(!/^https:\/\//.test(url||''))return null;if(sourceMap.has(url))return sourceMap.get(url).id;

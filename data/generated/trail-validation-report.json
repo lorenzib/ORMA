@@ -11,8 +11,8 @@
   "totals": {
     "sourceRecords": 163,
     "canonicalRecords": 163,
-    "published": 161,
-    "draft": 2,
+    "published": 162,
+    "draft": 1,
     "errors": 0
   },
   "byOrigin": {
@@ -23,23 +23,16 @@
     },
     "osm": {
       "total": 138,
-      "published": 136,
-      "draft": 2
+      "published": 137,
+      "draft": 1
     }
   },
   "excludedFromGeneration": [
     {
-      "id": "osm-3885162",
-      "slug": "seeweg-val-d-ultimo",
-      "reasons": [
-        "geometry jump 3.12 km before point 111"
-      ]
-    },
-    {
       "id": "osm-11891581",
       "slug": "sentiero-alpago-natura",
       "reasons": [
-        "distance 71.2 km exceeds the 50 km publication limit"
+        "distance 71.1 km exceeds the 50 km publication limit"
       ]
     }
   ],
