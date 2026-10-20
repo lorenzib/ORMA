@@ -86,8 +86,10 @@ describe('putting a route\'s pieces in walking order', () => {
   });
 
   test('segments still counts the pieces the relation really has', () => {
-    // Access-point anchoring runs only on a single-piece route and
-    // osmGeometryGaps is derived from this, so reordering must not make a
+    // Nothing published is derived from this any more -- the gap count and the
+    // access-point gate both ask the drawn line how many holes it has. It is
+    // the promoter's log that reports how many pieces a relation arrived in,
+    // and that is a fact about the source, so reordering must not make a
     // three-piece relation look like one continuous way.
     expect(toPath(multi([EAST, WEST, MIDDLE])).segments).toBe(3);
   });

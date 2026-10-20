@@ -5,7 +5,8 @@ const fs = require('fs/promises');
 const path = require('path');
 const { FirestoreBackofficeStore } = require('../services/firestore-backoffice-store');
 const { materializeApprovedPublications } = require('../workflows/materialize-approved-publications');
-const { publicationRequestIsRetryable } = require('../workflows/publication-failure-receipts');
+const { publicationRequestIsRetryable, recordPublicationFailure } = require('../workflows/publication-failure-receipts');
+const { loadProductionTrails } = require('../../scripts/load-production-trails');
 
 async function main(){
   const root = path.resolve(__dirname,'../..'); const store = new FirestoreBackofficeStore();
@@ -22,7 +23,24 @@ async function main(){
   }
   const result = materializeApprovedPublications({
     requests, staging, routesByCandidate, overrides, operationalFacts, at, forceRetry,
+    // What each walk already measures, so a disagreement the catalogue already
+    // carries is not mistaken for one this publication introduced.
+    productionTrails: loadProductionTrails(root),
   });
+  // A refusal is a durable receipt, not a dropped request. Without one the walk
+  // would be re-approved and refused on every pass with nothing saying why, and
+  // the only visible symptom would be a publication that never arrives.
+  if(result.refused?.length){
+    for(const refusal of result.refused){
+      console.log(`[orma-publication] Refused ${refusal.trailId}: ${refusal.message}.`);
+    }
+    const failed = recordPublicationFailure(requests, {
+      stage:'publication-materialization',
+      message:result.refused.map(refusal => `${refusal.trailId}: ${refusal.message}`).join('\n'),
+      candidateIds:result.refused.map(refusal => refusal.candidateId),
+    }, { at });
+    if(failed.recorded) await store.setArtifact('publication-requests', failed.artifact, { lastFailureStage:'publication-materialization' });
+  }
   if(!result.materialized){
     console.log('[orma-publication] No new approved publication requests.');
     return;
