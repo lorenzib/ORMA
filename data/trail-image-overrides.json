@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-19T14:27:29.334Z",
+  "updatedAt": "2026-10-20T11:58:22.618Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1175,6 +1175,22 @@
       }
     },
     {
+      "id": "osm-14095296",
+      "approvedAt": "2026-10-20T11:58:17.598Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14095296-etang-de-crosagny.jpg",
+        "heroImage": "images/trails/osm-14095296-etang-de-crosagny.jpg",
+        "imageAlt": "Water lilies and still water at the Étang de Crosagny, reed beds and summer trees reflected along the edge of the Albens marshes",
+        "imageCredit": "Étang de Crosagny at Albens",
+        "imageCreditText": "Étang de Crosagny at Albens by Guilhem Vellut",
+        "imageCreator": "Guilhem Vellut",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:%C3%89tang_de_Crosagny_@_Albens_(50866354972).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-14375158",
       "approvedReviewId": "commons-osm-14375158",
       "approvedAt": "2026-09-08T13:56:49.168Z",
@@ -1311,6 +1327,22 @@
       }
     },
     {
+      "id": "osm-14864704",
+      "approvedAt": "2026-10-20T11:58:14.431Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14864704-lac-annecy-taillefer.jpg",
+        "heroImage": "images/trails/osm-14864704-lac-annecy-taillefer.jpg",
+        "imageAlt": "Lac d'Annecy seen from the wooded slope of the Taillefer above Duingt, the turquoise water running north between the Bauges and the Dents de Lanfon",
+        "imageCredit": "Lac d'Annecy from the Taillefer de Duingt",
+        "imageCreditText": "Lac d'Annecy from the Taillefer de Duingt by Guilhem Vellut",
+        "imageCreator": "Guilhem Vellut",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lac_d%27Annecy_@_Taillefer_de_Duingt_(51245192150).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-15321049",
       "approvedReviewId": "commons-osm-15321049",
       "approvedAt": "2026-09-07T19:55:05.873Z",
@@ -1341,6 +1373,22 @@
         "imageLicence": "CC BY 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bourg-Saint-Maurice_(Ao%C3%BBt_2025)_-_Vue_depuis_la_descente_du_col_du_Petit-Saint-Bernard.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-15591346",
+      "approvedAt": "2026-10-20T11:58:21.991Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-15591346-vignoble-savoyarde.jpg",
+        "heroImage": "images/trails/osm-15591346-vignoble-savoyarde.jpg",
+        "imageAlt": "Steep green vineyard rows above Montmélian running up to the limestone cliffs of La Savoyarde under a clear sky",
+        "imageCredit": "Vineyard below La Savoyarde at Montmélian",
+        "imageCreditText": "Vineyard below La Savoyarde at Montmélian by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vignoble_de_Montm%C3%A9lian_sous_La_Savoyarde_(octobre_2021).JPG",
         "imageSourceType": "licensed-source"
       }
     },
