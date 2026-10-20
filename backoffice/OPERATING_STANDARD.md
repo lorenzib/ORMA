@@ -906,6 +906,43 @@ from the map and from ORMA's own record, the photograph and the words are the
 ones already there, and what reaches the page is the directions and a badge
 that says reviewed.
 
+## A photograph says who took it and under what terms
+
+A credit line says where a picture came from. It does not say that anyone may
+use it.
+
+`existingImageFields` asked for a picture, a hero image, alt text and a credit
+line. On 20 October 2026, sixteen Savoy walks were found showing a photograph
+credited to a tourism board or a commercial site — "Decathlon Outdoor
+(edited)", "Lac Annecy Tourisme fiche (Apidae)", "altituderando.com (edited)" —
+with **no licence, creator or terms recorded anywhere**: not on the trail, not
+in the image overrides, not in the provenance module.
+
+They had been uploaded by hand in July with a credit and a source link, and
+nothing since had asked the next question. The gap only surfaced because 23
+trails could not reach the full badge for want of a photograph, and seventeen
+of them turned out to have one already.
+
+**The record now has to say who took the picture and under what licence.**
+Every one of the 140 trails that already had a complete record carried both, so
+this refuses nothing that was passing; what it stops is a photograph being
+promoted to the trail's own on the strength of a credit line.
+
+**An AI illustration is not a photograph.** Two walks carry one, labelled as
+such on the page, and they must not satisfy a check that says this trail has a
+photograph of it. They are recorded as ORMA's own, `ai-illustration`, and
+excluded.
+
+Five of the seventeen turned out to carry their licence in the credit text all
+along — Wikimedia Commons, CC BY 2.0 and CC BY-SA. Each was **verified against
+its source page** before being recorded, which corrected one of them: the
+credit said "CC BY-SA" with no version and the file is CC BY-SA 4.0. Their alt
+text was written from looking at the cropped image, not from the trail's name.
+
+Ten are still unestablished. `npm run audit:trail-photos` lists every trail's
+picture by what the record can say about it, so this is a question anybody can
+ask again rather than one that had to be stumbled on.
+
 ## A photograph nobody is sourcing is not a pending approval
 
 `asset-and-licensing-approval` exists to check a photograph somebody sourced:

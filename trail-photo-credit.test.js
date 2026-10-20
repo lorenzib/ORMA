@@ -63,10 +63,17 @@ describe('every licensed trail photo is credited on its page',()=>{
     expect(script).toContain("rel='license noopener'".replace(/'/g,'"').replace(/"/g,"'"));
   });
 
+  // The rule is that the file is ours and on disk. `images/trails/` is where
+  // the backoffice put the ones it sourced, and asserting the directory read
+  // as the rule -- so five photographs uploaded by hand into `images/` in July,
+  // committed and not hot-linked, failed a check about hot-linking. The
+  // condition is stated directly now: not a URL, and really there.
   test('a licensed photo is committed to the repository, never hot-linked',()=>{
     for(const entry of licensed){
-      expect(entry.fields.imageIcon).toMatch(/^images\/trails\//);
-      expect(fs.existsSync(path.join(root,entry.fields.imageIcon))).toBe(true);
+      expect({id:entry.id,hotLinked:/^[a-z]+:\/\//i.test(entry.fields.imageIcon)})
+        .toEqual({id:entry.id,hotLinked:false});
+      expect({id:entry.id,onDisk:fs.existsSync(path.join(root,entry.fields.imageIcon))})
+        .toEqual({id:entry.id,onDisk:true});
     }
   });
 

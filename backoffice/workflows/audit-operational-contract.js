@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake,promoter,generatedCheck,routeEvidence,campaignCli,requeueWorkflow,scoutImport,discovery]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake,promoter,generatedCheck,routeEvidence,campaignCli,requeueWorkflow,scoutImport,discovery,photoAudit]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -58,6 +58,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'.github/workflows/orma-requeue-fixed-jobs.yml'),
     read(root,'scripts/import-scouted-trail.js'),
     read(root,'scripts/fetch-dog-friendly-routes.js'),
+    read(root,'scripts/audit-trail-photos.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -606,6 +607,25 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&intake.includes('import-scouted-trail.js --relation')
     &&standard.includes('A scouted walk becomes a record the catalogue holds'),
     'A scouted walk can be imported into the catalogue one relation at a time, screened first by the discovery pass\'s own rules -- the relation through evaluateRelation and its member ways through the single definition of a way that makes a route unsuitable for a dog, which the region sweep asks Overpass for -- adding one feature and never rewriting a walk already on file; the promoter then derives the nine fields it does for every other trail, and the intake hold names the command that clears it');
+
+  // A credit line is not a licence.
+  //
+  // The risk is a rights one, on live pages. Sixteen walks were showing a
+  // photograph credited to a tourism board or a commercial site with no
+  // licence, creator or terms recorded anywhere, and the check that decides
+  // whether ORMA may carry a picture as the trail's own asked only for a
+  // credit. An AI illustration was also able to satisfy a check that says
+  // this trail has a photograph of it.
+  add('a-photograph-says-under-what-terms',
+    staging.includes("if(!String(trail.imageLicence||'').trim()||!String(trail.imageCreator||'').trim())return null;")
+    &&staging.includes("const NOT_A_PHOTOGRAPH=Object.freeze(['ai-illustration']);")
+    &&staging.includes("if(NOT_A_PHOTOGRAPH.includes(String(trail.imageSourceType||'')))return null;")
+    // And the question can be asked again without stumbling on it.
+    &&photoAudit.includes('function standingOf(trail)')
+    &&photoAudit.includes("return 'terms-not-established';")
+    &&packageManifest.includes('"audit:trail-photos"')
+    &&standard.includes('A photograph says who took it and under what terms'),
+    'A photograph may only be carried as a trail\'s own when the record says who took it and under what licence -- a credit line says where a picture came from, not that anyone may use it -- and an AI illustration, however well credited, does not satisfy a check that the trail has a photograph of it; `npm run audit:trail-photos` lists every picture by what the record can say about it');
 
   // Work that costs nothing is not ordered by a rule about money.
   //

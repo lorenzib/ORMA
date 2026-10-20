@@ -220,9 +220,32 @@ function inTheCatalogue(item, target, trailsById){
 const EXISTING_IMAGE_FIELDS=Object.freeze(['imageIcon','imageCredit','heroImage','imageSourcePage','imageCreator',
   'imageLicence','imageLicenceUrl','imageCreditText','imageAlt','imageSourceType']);
 
+/**
+ * A photograph ORMA may carry forward as this trail's own.
+ *
+ * It asked for a picture, a hero, alt text and a credit line, and a credit
+ * line is not a licence. Sixteen Savoy walks were found on 20 October 2026
+ * showing a photograph credited to a tourism board or a commercial site --
+ * "Decathlon Outdoor (edited)", "Lac Annecy Tourisme fiche" -- with no
+ * licence, creator or terms recorded anywhere: not on the trail, not in the
+ * image overrides, not in the provenance module. None of them could be
+ * published as the trail's own without asserting terms nobody had written
+ * down, so the record now has to say who took the picture and under what
+ * licence. Every one of the 140 trails that already had a complete record
+ * carried both, so this refuses nothing that was passing.
+ *
+ * An AI illustration is not a photograph. Two walks carry one, honestly
+ * labelled as such on the page, and they must not satisfy a check that says
+ * this trail has a photograph of it.
+ */
+const NOT_A_PHOTOGRAPH=Object.freeze(['ai-illustration']);
+
 function existingImageFields(trail){
   if(!trail||!String(trail.imageIcon||'').trim()||!String(trail.heroImage||'').trim()
     ||!String(trail.imageAlt||'').trim()||!String(trail.imageCreditText||trail.imageCredit||'').trim())return null;
+  // Who took it, and under what terms. A credit says where it came from.
+  if(!String(trail.imageLicence||'').trim()||!String(trail.imageCreator||'').trim())return null;
+  if(NOT_A_PHOTOGRAPH.includes(String(trail.imageSourceType||'')))return null;
   return Object.fromEntries(EXISTING_IMAGE_FIELDS.filter(key=>trail[key]!==undefined).map(key=>[key,trail[key]]));
 }
 
@@ -390,4 +413,4 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
   };
 }
 
-module.exports = {SAFETY_CHECKS,inTheCatalogue,REQUIRED_STRUCTURED_FIELDS,OPTIONAL_STRUCTURED_FIELDS,GRADUATION_CHECKS,graduationFor,seasonalSuitabilityFrom,verifiedPoiFields, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS,EXISTING_IMAGE_FIELDS,existingImageFields, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };
+module.exports = {SAFETY_CHECKS,NOT_A_PHOTOGRAPH,inTheCatalogue,REQUIRED_STRUCTURED_FIELDS,OPTIONAL_STRUCTURED_FIELDS,GRADUATION_CHECKS,graduationFor,seasonalSuitabilityFrom,verifiedPoiFields, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS,EXISTING_IMAGE_FIELDS,existingImageFields, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };
