@@ -57,8 +57,12 @@ describe('and is not admitted to be paid for',()=>{
     const {admit,held}=heldForImport(
       [{id:'osm-99999',name:'Scouted'},{id:catalogue[0].id,name:catalogue[0].name}],catalogue);
     expect(admit.map(trail=>trail.id)).toEqual([catalogue[0].id]);
-    expect(held).toEqual([{id:'osm-99999',name:'Scouted',
-      reason:'not in the catalogue: publication restates a record this walk has not got'}]);
+    // The reason now carries the command that clears the hold, which did not
+    // exist when this was written: a candidate was held with nowhere to go.
+    expect(held).toHaveLength(1);
+    expect(held[0]).toMatchObject({id:'osm-99999',name:'Scouted'});
+    expect(held[0].reason).toMatch(/^not in the catalogue: publication restates a record this walk has not got\./);
+    expect(held[0].reason).toMatch(/import-scouted-trail\.js --relation/);
   });
 
   // A missing argument must not become a silent stop.
