@@ -97,6 +97,30 @@ function strArg(flag, fallback) {
 
 /* ---------------------------------------------------------------- Overpass */
 
+/**
+ * A way that makes a route unsuitable for a dog.
+ *
+ * The discovery pass asks Overpass for these as six set expressions and keeps
+ * the relations that contain none. A single relation imported on its own is
+ * read from the OSM API instead -- one request that returns every member with
+ * its tags, rather than three Overpass mirrors that answer some requests with
+ * a 504 -- so the same question has to be askable of a way's tags here.
+ *
+ * Two readings of one rule, so a test reads the query out of this file and
+ * asserts this predicate answers yes to each line of it. Dogs are the reason
+ * the rule exists; it is not one to let drift.
+ */
+function hardWayForDogs(tags) {
+  if (!tags) return false;
+  if (tags.sac_scale && new RegExp(HARD_SAC).test(tags.sac_scale)) return true;
+  if (tags.highway === 'via_ferrata') return true;
+  if (tags.via_ferrata_scale) return true;
+  if (tags.ladder === 'yes') return true;
+  if (tags.safety_rope === 'yes') return true;
+  if (tags.dog === 'no') return true;
+  return false;
+}
+
 function buildPhase1Query() {
   const bbox = BBOX_ONLY ? `(${REGION.bbox})` : '';
   return [
@@ -128,6 +152,24 @@ function buildPhase2Query(relationIds) {
 
 // Companion query: surface/path tags of the member ways, so terrain can be
 // described from real OSM data instead of guessed.
+/**
+ * Every member way of these relations, with its tags.
+ *
+ * `buildWayTagsQuery` asks only for the ways that carry a surface, because
+ * that is all the promoter needs. Importing one relation on its own also has
+ * to ask whether any of its ways makes the route unsuitable for a dog, which
+ * the discovery pass answers for a whole region at once with six set
+ * expressions. For one relation it is cheaper and plainer to read the tags.
+ */
+function buildMemberWayQuery(relationIds) {
+  return [
+    '[out:json][timeout:180];',
+    `relation(id:${relationIds.join(',')})->.r;`,
+    'way(r.r);',
+    'out ids tags;'
+  ].join('\n');
+}
+
 function buildWayTagsQuery(relationIds) {
   return [
     '[out:json][timeout:180];',
@@ -1068,7 +1110,8 @@ async function readPreviousCatalogue(file) {
 }
 
 module.exports = { fetchWithRetries, permanentForThisHost, PERMANENT_FOR_THIS_HOST,
-  OVERPASS_URLS, USER_AGENT,
+  OVERPASS_URLS, USER_AGENT, HARD_SAC, MAX_KM, hardWayForDogs, evaluateRelation, buildPhase1Query,
+  buildPhase2Query, buildMemberWayQuery,
   OFF_ROUTE_ROLES, STITCH_TOLERANCE_M, isRouteMember, stitchMembers,
   geometryOf, refreshGeometry, simplify, pathLengthKm, isClosedLoop, parseDistanceKm,
   MINIMUM_GEOMETRY_SHARE, MAXIMUM_CATALOGUE_LOSS, readPreviousCatalogue,
