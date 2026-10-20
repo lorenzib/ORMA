@@ -255,12 +255,23 @@ function compactOrchestration(state){
     const entries=Object.entries(ledger).map(([key,entry])=>{
       if(!entry||!Array.isArray(entry.attempts))return [key,entry];
       const attempts=entry.attempts.map(attempt=>{
-        if(!attempt||(attempt.instruction===undefined&&attempt.strategyLabel===undefined))return attempt;
+        if(!attempt)return attempt;
+        let next=attempt;
+        // Written until 2026-10-20 and never read: the claim's whole blocker
+        // list on every attempt. Dropped here as well as at the source, so an
+        // artifact already carrying them shrinks on its next write rather than
+        // waiting to be rewritten claim by claim. The count is kept.
+        if(next.blockers!==undefined){
+          changed=true;
+          const {blockers,...rest}=next;
+          next={...rest,...(next.blockerCount===undefined?{blockerCount:(blockers||[]).length}:{})};
+        }
+        if(next.instruction===undefined&&next.strategyLabel===undefined)return next;
         // Only where the table can supply it again: an attempt whose strategy
         // is no longer in STRATEGIES keeps its own words.
-        if(!attemptStrategyText({strategy:attempt.strategy}).instruction)return attempt;
+        if(!attemptStrategyText({strategy:next.strategy}).instruction)return next;
         changed=true;
-        const {instruction,strategyLabel,...kept}=attempt;
+        const {instruction,strategyLabel,...kept}=next;
         return kept;
       });
       const withTrimmed=trimSettledAttempts(changed?{...entry,attempts}:entry);
