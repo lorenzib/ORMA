@@ -391,6 +391,58 @@
       <span class="collection-inline-trail__arrow" aria-hidden="true">→</span>
     </a>`;
   }
+  // A cover photograph is the work of whoever took it, and a licence that asks
+  // for attribution asks for it wherever the work appears -- not only on the
+  // trail page that happens to use the same file. Two of these covers are
+  // CC BY-SA and were being shown with no credit at all.
+  //
+  // Derived from the trail that owns the image rather than restated in
+  // collections-data, so changing a trail's cover carries its credit across
+  // instead of leaving a stale name behind.
+  function coverCredit(collection){
+    const cover = collection && collection.coverImage;
+    if(!cover) return null;
+    const owner = trails.find(trail => trail.imageIcon === cover || trail.heroImage === cover);
+    if(!owner) return null;
+    // The same condition the trail page uses: spell out photographer and
+    // licence only for work that came from somewhere, which is the work whose
+    // licence asks to be named. Our own photographs have no source page, and
+    // spelling them out reads "ORMA original by ORMA - ORMA-owned".
+    if(owner.imageSourcePage && owner.imageCreator && owner.imageLicence) return {
+      title: typeof owner.imageCredit === 'string' ? owner.imageCredit : owner.name,
+      creator: owner.imageCreator,
+      licence: owner.imageLicence,
+      licenceUrl: owner.imageLicenceUrl || '',
+      sourcePage: owner.imageSourcePage,
+    };
+    // Everything else shows its credit text as written, which is what the trail
+    // page shows too. Older entries keep the whole attribution in that one
+    // string -- "Mangatome, CC BY-SA 3.0, via Wikimedia Commons" -- and two of
+    // these covers are CC BY-SA, so the text is the attribution, not a label.
+    const credit = owner.imageCredit;
+    const text = typeof credit === 'string' ? credit : (credit && credit.text);
+    if(!text) return null;
+    return { text, sourcePage: (credit && credit.url) || owner.imageSourcePage || '' };
+  }
+
+  function coverCreditHtml(collection){
+    const credit = coverCredit(collection);
+    if(!credit) return '';
+    if(credit.text){
+      const whole = credit.sourcePage
+        ? `<a href="${esc(credit.sourcePage)}" rel="noopener nofollow">${esc(credit.text)}</a>`
+        : esc(credit.text);
+      return `<p class="collection-list-card__credit">Cover: ${whole}</p>`;
+    }
+    const title = credit.sourcePage
+      ? `<a href="${esc(credit.sourcePage)}" rel="noopener nofollow">${esc(credit.title)}</a>`
+      : esc(credit.title);
+    const licence = credit.licenceUrl
+      ? `<a href="${esc(credit.licenceUrl)}" rel="license noopener">${esc(credit.licence)}</a>`
+      : esc(credit.licence);
+    return `<p class="collection-list-card__credit">Cover: ${title} by ${esc(credit.creator)} · ${licence}</p>`;
+  }
+
   function card(collection){
     const collectionTrails = trailsFor(collection);
     const count = collectionTrails.length;
@@ -403,6 +455,7 @@
         <div class="simple-card__meta">${esc(collection.regionLabel)} · ${esc(collection.country)} · ${count} ${count === 1 ? 'trail' : 'trails'}</div>
       </div>
       <p class="collection-list-card__summary">${esc(collection.subtitle)}</p>
+      ${coverCreditHtml(collection)}
       <div class="simple-card__match collection-list-card__scope">
         <button type="button" class="collection-list-card__expand" data-collection-expand="${esc(collection.id)}" aria-expanded="${isOpen}" aria-controls="${detailsId}">
           <span>${isOpen && expandedCollectionView === 'trails' ? 'Hide trails' : 'Show trails'}</span>

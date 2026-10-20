@@ -4,7 +4,7 @@
   "regions": {
     "dolomites": {
       "trailCount": 110,
-      "trails": "data/regions/dolomites-trails.js?v=ac2a46e745af",
+      "trails": "data/regions/dolomites-trails.js?v=23a854a6172a",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=26654e90f48e",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -15,7 +15,7 @@
         "nuvolau": "data/trail-details/nuvolau.js?v=0cd8d0678bcc",
         "sassolungo": "data/trail-details/sassolungo.js?v=1e1af5c14a1f",
         "lago-braies": "data/trail-details/lago-braies.js?v=8de4cf962fd4",
-        "lago-carezza": "data/trail-details/lago-carezza.js?v=0cb14ee0f4a7",
+        "lago-carezza": "data/trail-details/lago-carezza.js?v=9ddb2be7c358",
         "lago-sorapis": "data/trail-details/lago-sorapis.js?v=873824962623",
         "valley-view": "data/trail-details/valley-view.js?v=26e0289b51cd",
         "piancavallo": "data/trail-details/piancavallo.js?v=d6875e7a1bdb",
@@ -124,7 +124,7 @@
     },
     "savoy": {
       "trailCount": 53,
-      "trails": "data/regions/savoy-trails.js?v=687ead237779",
+      "trails": "data/regions/savoy-trails.js?v=367ab949e686",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=eb3735f6498d",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=f49be96518f0",
@@ -135,13 +135,13 @@
         "osm-11517208": "data/trail-details/osm-11517208.js?v=e46dfa5b05de",
         "osm-14987412": "data/trail-details/osm-14987412.js?v=acd3288814f2",
         "osm-18055492": "data/trail-details/osm-18055492.js?v=f14618733309",
-        "osm-14864704": "data/trail-details/osm-14864704.js?v=698d1172f03f",
-        "osm-14095296": "data/trail-details/osm-14095296.js?v=3ca5154fa4e7",
+        "osm-14864704": "data/trail-details/osm-14864704.js?v=5a1507a795fb",
+        "osm-14095296": "data/trail-details/osm-14095296.js?v=d23dcd0075a5",
         "osm-16322228": "data/trail-details/osm-16322228.js?v=33432d60fdde",
         "osm-16363583": "data/trail-details/osm-16363583.js?v=d4548b69680c",
         "osm-16395076": "data/trail-details/osm-16395076.js?v=afe945f9faae",
         "osm-19153189": "data/trail-details/osm-19153189.js?v=6cc932662b4b",
-        "osm-15591346": "data/trail-details/osm-15591346.js?v=6c7149610fd3",
+        "osm-15591346": "data/trail-details/osm-15591346.js?v=a5512c5fc1cf",
         "osm-16365005": "data/trail-details/osm-16365005.js?v=06bcce9f7228",
         "osm-5479112": "data/trail-details/osm-5479112.js?v=3694ae0eb8ce",
         "osm-9937537": "data/trail-details/osm-9937537.js?v=17e53b58c2b0",
