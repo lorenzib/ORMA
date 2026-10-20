@@ -11,8 +11,8 @@
   "totals": {
     "sourceRecords": 163,
     "canonicalRecords": 163,
-    "published": 159,
-    "draft": 4,
+    "published": 160,
+    "draft": 3,
     "errors": 0
   },
   "byOrigin": {
@@ -23,8 +23,8 @@
     },
     "osm": {
       "total": 138,
-      "published": 134,
-      "draft": 4
+      "published": 135,
+      "draft": 3
     }
   },
   "excludedFromGeneration": [
@@ -40,13 +40,6 @@
       "slug": "sentiero-alpago-natura",
       "reasons": [
         "distance 71.2 km exceeds the 50 km publication limit"
-      ]
-    },
-    {
-      "id": "osm-13337921",
-      "slug": "au-pied-du-roc-d-enfer",
-      "reasons": [
-        "geometry jump 1.07 km before point 11"
       ]
     },
     {

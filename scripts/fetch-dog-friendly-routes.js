@@ -372,6 +372,27 @@ function simplify(points, tolerance = 0.00005) {
 // thinly is common; a hiking relation genuinely losing most of its ways is not.
 const MINIMUM_GEOMETRY_SHARE = 0.8;
 
+// How much of the ground its own members cover a drawn line must still show.
+//
+// The share above counts how many members arrived carrying a line. It cannot
+// see a member that arrives and then does not reach the output, because it is
+// taken before anything is built. Three Savoy walks passed it with every
+// member present and were written short anyway: Au pied du Roc d'Enfer at
+// 0.75 km of a 12.74 km relation, Albannette petite boucle at 3.62 of 5.01,
+// Boucle des cascades at 7.06 of 8.56. Their exactly closed rings had
+// collapsed inside `simplify`, which #831 has since fixed -- but nothing
+// measured the loss, so the three sat in the published catalogue from
+// 1 October until 18 October, and the 1.06 km hole in Albannette's line is
+// why #867 held the walk back and deleted a page that was live.
+//
+// So the line is measured against its own members before it is believed.
+// Stitching only concatenates member geometry, so a line can fall short of
+// them only through simplification -- 1-2% at a 5 m tolerance, measured on the
+// catalogue's longest walks -- while welds between member ends add length
+// rather than remove it. A tenth of the walk missing is not simplification; it
+// is geometry that did not survive the build.
+const MINIMUM_DRAWN_SHARE = 0.9;
+
 // How much of the previous catalogue a regeneration may lose before it refuses
 // to publish. OSM does change and a trail can legitimately go, but a tenth of
 // the catalogue disappearing in one run is a failed fetch, not a changed map.
@@ -397,6 +418,33 @@ const OFF_ROUTE_ROLES = new Set([
 function isRouteMember(member) {
   return member?.type === 'way'
     && !OFF_ROUTE_ROLES.has(String(member.role || '').trim().toLowerCase());
+}
+
+/** How many of a relation's way members came back carrying a line. */
+function memberGeometryShare(members) {
+  const ways = (members || []).filter((m) => m?.type === 'way');
+  if (!ways.length) return null;
+  const withGeometry = ways
+    .filter((m) => Array.isArray(m.geometry) && m.geometry.length > 1).length;
+  return { ways: ways.length, withGeometry, share: withGeometry / ways.length };
+}
+
+/**
+ * The ground this relation's own on-route members cover, before anything is
+ * stitched or simplified. The yardstick the drawn line is held against.
+ */
+function memberLengthKm(members) {
+  let meters = 0;
+  for (const m of members || []) {
+    if (!isRouteMember(m) || !Array.isArray(m.geometry) || m.geometry.length < 2) continue;
+    for (let i = 1; i < m.geometry.length; i += 1) {
+      meters += haversineMeters(
+        [m.geometry[i - 1].lon, m.geometry[i - 1].lat],
+        [m.geometry[i].lon, m.geometry[i].lat]
+      );
+    }
+  }
+  return meters / 1000;
 }
 
 // Stitch relation member ways into as few continuous lines as possible,
@@ -510,9 +558,22 @@ function geometryOf(members, tags, waySurface) {
   }
 
   const lengthKm = pathLengthKm(lines);
+  // Unrounded, because the share below is a ratio and `pathLengthKm` rounds to
+  // a tenth -- which on a short walk is a tenth of the answer.
+  let drawnKm = 0;
+  for (const line of lines) {
+    for (let i = 1; i < line.length; i += 1) drawnKm += haversineMeters(line[i - 1], line[i]);
+  }
+  drawnKm /= 1000;
+  const memberKm = memberLengthKm(members);
   return {
     lines,
     lengthKm,
+    // What the members cover, and how much of it the drawn line shows. The
+    // caller decides what to do about a shortfall; measuring it is this
+    // function's business, because it is the only place that holds both.
+    memberKm,
+    drawnShare: memberKm > 0 ? drawnKm / memberKm : null,
     // The properties geometry decides. Everything else on a feature comes from
     // the relation's tags and is not this function's business.
     properties: {
@@ -525,6 +586,104 @@ function geometryOf(members, tags, waySurface) {
       ? { type: 'LineString', coordinates: lines[0] }
       : { type: 'MultiLineString', coordinates: lines },
   };
+}
+
+/* ------------------------------------- Reading one relation without Overpass */
+
+const OSM_API = 'https://api.openstreetmap.org/api/0.6';
+
+/**
+ * The same answer as `relation(id:…); out geom;`, read from the OSM API.
+ *
+ * Overpass is the right tool for discovering an area and the wrong one for
+ * re-reading a handful of known relations: on 18 October 2026 all four mirrors
+ * were down at once -- two 502, one 500, and osm.jp's expired certificate --
+ * so the one path whose job is repairing geometry could not run at all. The
+ * OSM API serves a single relation and everything under it in one request, and
+ * it is the canonical source Overpass itself is built from.
+ *
+ * `relation/<id>/full.json` returns the relation, its member ways and their
+ * nodes as a flat list. Reassembled here into the member shape `out geom`
+ * produces, so `geometryOf` and every guard above it are the same code on
+ * either transport. Like `out geom`, it does not descend into a member
+ * relation; no catalogue relation has one.
+ *
+ * Exposed as a `fetchQuery`, so it answers the surface query from the way tags
+ * the same document already carries, and costs no second round trip.
+ */
+function osmApiFetchQuery(options = {}) {
+  const get = options.fetch || ((url) => fetch(url, { headers: { 'User-Agent': USER_AGENT } }));
+  const pause = options.sleep || ((ms) => new Promise((r) => setTimeout(r, ms)));
+  const cache = new Map();
+
+  async function relationDocument(id) {
+    if (cache.has(id)) return cache.get(id);
+    const response = await get(`${OSM_API}/relation/${id}/full.json`);
+    if (!response.ok) throw new Error(`OSM API returned HTTP ${response.status} for relation ${id}`);
+    const doc = await response.json();
+    cache.set(id, doc);
+    await pause(400); // The API asks for one request at a time, politely paced.
+    return doc;
+  }
+
+  return async function fetchQuery(query) {
+    // Only the relation clause. Reading every number in the query instead
+    // picks up `[out:json][timeout:180]` and asks the API for relation 180.
+    const clause = String(query).match(/relation\(\s*(?:id:)?\s*([\d,\s]+?)\s*\)/);
+    const ids = clause ? clause[1].split(/[,\s]+/).map(Number).filter(Number.isFinite) : [];
+    const wantsSurface = /\["surface"\]/.test(query);
+    const elements = [];
+    for (const id of [...new Set(ids)]) {
+      const doc = await relationDocument(id);
+      const nodes = new Map(), ways = new Map();
+      let relation = null;
+      for (const el of doc.elements || []) {
+        if (el.type === 'node') nodes.set(el.id, { lat: el.lat, lon: el.lon });
+        else if (el.type === 'way') ways.set(el.id, el);
+        else if (el.type === 'relation' && el.id === id) relation = el;
+      }
+      if (!relation) continue;
+      if (wantsSurface) {
+        for (const way of ways.values()) {
+          if (way.tags?.surface) elements.push({ type: 'way', id: way.id, tags: way.tags });
+        }
+        continue;
+      }
+      elements.push({
+        type: 'relation', id, tags: relation.tags || {},
+        members: (relation.members || []).map((m) => {
+          if (m.type !== 'way') return { type: m.type, ref: m.ref, role: m.role };
+          const way = ways.get(m.ref);
+          return { type: 'way', ref: m.ref, role: m.role,
+            geometry: (way?.nodes || []).map((n) => nodes.get(n)).filter(Boolean) };
+        }),
+      });
+    }
+    return { elements };
+  };
+}
+
+/**
+ * Why this answer cannot be believed as the walk's geometry, or null.
+ *
+ * Two questions, both of which have cost the catalogue trails, asked in one
+ * place so the full pass and the targeted refresh cannot answer them
+ * differently. The refresh used to ask neither, which left the one path whose
+ * whole job is repairing geometry free to overwrite a good line with a thin
+ * Overpass answer.
+ *
+ * `built` is optional: the full pass asks the first question before it builds.
+ */
+function incompleteGeometryReason(members, built) {
+  const counted = memberGeometryShare(members);
+  if (counted && counted.share < MINIMUM_GEOMETRY_SHARE) {
+    return `returned geometry for ${counted.withGeometry}/${counted.ways} ways`;
+  }
+  if (built && built.drawnShare !== null && built.drawnShare < MINIMUM_DRAWN_SHARE) {
+    return `drew ${built.lengthKm} km of the ${Math.round(built.memberKm * 10) / 10} km `
+      + `its own members cover (${Math.round(built.drawnShare * 100)}%)`;
+  }
+  return null;
 }
 
 /**
@@ -579,6 +738,11 @@ async function refreshGeometry(relationIds, options = {}) {
       if (!feature) continue;
       const built = geometryOf(el.members || [], el.tags || {}, waySurface);
       if (!built) { failed.push({ id: el.id, why: 'no route members left a line' }); continue; }
+      // A refresh may only improve a line. An answer that cannot account for
+      // its own members leaves the feature exactly as it was -- replacing good
+      // geometry with a short one is the fault this path exists to repair.
+      const why = incompleteGeometryReason(el.members || [], built);
+      if (why) { failed.push({ id: el.id, why }); continue; }
       const before = JSON.stringify(feature.geometry);
       const record = { id: el.id, name: feature.properties?.name,
         wasKm: feature.properties?.distance_km, nowKm: built.properties.distance_km };
@@ -631,8 +795,11 @@ function relationsArg() {
 async function main() {
   const only = relationsArg();
   if (only) {
+    const viaOsmApi = ARGS.includes('--via-osm-api');
     console.log(`[refresh] Re-reading the geometry of ${only.length} relation(s); the feature list is left alone.`);
-    const result = await refreshGeometry(only, { dryRun: ARGS.includes('--dry-run') });
+    if (viaOsmApi) console.log('[refresh] Reading from the OSM API rather than Overpass.');
+    const result = await refreshGeometry(only, { dryRun: ARGS.includes('--dry-run'),
+      ...(viaOsmApi ? { fetchQuery: osmApiFetchQuery() } : {}) });
     console.log(`[refresh] ${result.total} feature(s) on file.`);
     for (const entry of result.changed) {
       const moved = entry.wasKm !== entry.nowKm ? `  ${entry.wasKm} -> ${entry.nowKm} km` : '';
@@ -723,13 +890,12 @@ async function main() {
       // members came back with a usable line. Below the floor the response is
       // the problem, so the run says so and the trail is left alone instead of
       // being dropped on the strength of data that never arrived.
-      const wayMembers = el.members.filter((m) => m.type === 'way');
-      const withGeometry = wayMembers
-        .filter((m) => Array.isArray(m.geometry) && m.geometry.length > 1).length;
-      if (wayMembers.length && withGeometry / wayMembers.length < MINIMUM_GEOMETRY_SHARE) {
+      const counted = memberGeometryShare(el.members);
+      if (counted && counted.share < MINIMUM_GEOMETRY_SHARE) {
         console.warn(`[phase2] INCOMPLETE: relation ${el.id} (${match.tags.name}) returned geometry for `
-          + `${withGeometry}/${wayMembers.length} ways; not dropping it on a partial answer.`);
-        incomplete.push({ id: el.id, name: match.tags.name, ways: wayMembers.length, withGeometry });
+          + `${counted.withGeometry}/${counted.ways} ways; not dropping it on a partial answer.`);
+        incomplete.push({ id: el.id, name: match.tags.name,
+          ways: counted.ways, withGeometry: counted.withGeometry });
         continue;
       }
 
@@ -738,6 +904,21 @@ async function main() {
       // cannot disagree.
       const built = geometryOf(el.members, el.tags || match.tags, waySurface);
       if (!built) continue;
+
+      // And the same question again of the line itself. Every member can
+      // arrive and the walk still be written short, which is how three Savoy
+      // walks were published missing between a fifth and fifteen sixteenths of
+      // their length. A line that cannot account for its own members is a
+      // failed build, not a shorter walk.
+      const shortfall = incompleteGeometryReason(el.members, built);
+      if (shortfall) {
+        console.warn(`[phase2] INCOMPLETE: relation ${el.id} (${match.tags.name}) ${shortfall};`
+          + ' keeping the trail rather than publishing a short line.');
+        incomplete.push({ id: el.id, name: match.tags.name,
+          ways: counted ? counted.ways : 0, withGeometry: counted ? counted.withGeometry : 0,
+          drawnShare: built.drawnShare });
+        continue;
+      }
       const { lengthKm } = built;
       // Drop degenerate/broken geometries (e.g. two identical points).
       if (lengthKm < 0.3) {
@@ -890,4 +1071,6 @@ module.exports = { fetchWithRetries, permanentForThisHost, PERMANENT_FOR_THIS_HO
   OVERPASS_URLS, USER_AGENT,
   OFF_ROUTE_ROLES, STITCH_TOLERANCE_M, isRouteMember, stitchMembers,
   geometryOf, refreshGeometry, simplify, pathLengthKm, isClosedLoop, parseDistanceKm,
-  MINIMUM_GEOMETRY_SHARE, MAXIMUM_CATALOGUE_LOSS, readPreviousCatalogue };
+  MINIMUM_GEOMETRY_SHARE, MAXIMUM_CATALOGUE_LOSS, readPreviousCatalogue,
+  MINIMUM_DRAWN_SHARE, memberGeometryShare, memberLengthKm, incompleteGeometryReason,
+  osmApiFetchQuery, OSM_API };
