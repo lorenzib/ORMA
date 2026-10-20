@@ -60,7 +60,7 @@ describe('a piece that costs more to reach than it is long', () => {
   });
 
   test('no pieces at all is not an error', () => {
-    expect(chainLines([])).toEqual({ path: [], dropped: [] });
+    expect(chainLines([])).toEqual({ path: [], dropped: [], connectors: [] });
   });
 });
 

@@ -267,6 +267,44 @@ async function processTrailSpecialistJobs(store,options={}){
   return outcomes;
 }
 
+/**
+ * Publication staging, rebuilt from where the lane actually is.
+ *
+ * It was written in one place only: inside the loop that applies an editorial
+ * decision. That held while every verified trail queued a copywriter, because
+ * there was always a decision to apply and staging was rebuilt as a side
+ * effect of applying it.
+ *
+ * A trail already on the site keeps its own description now, so no copywriter
+ * is queued, so there is no decision, so nothing rebuilt its staging and
+ * `automatePublicationReviews` -- which reads that artifact -- never saw it.
+ * The walk was verified, its handoff was written, and it stopped there with
+ * nothing queued, nothing failing and nothing saying so.
+ *
+ * So the pass builds it, from the three artifacts that describe the lane. Three
+ * reads and, when it has changed, one write; unchanged, it writes nothing, so a
+ * pass with nothing to publish costs a comparison.
+ */
+async function refreshPublicationStaging(store, options = {}){
+  const [editorialQueue, execution, reviewQueue, current] = await Promise.all([
+    store.getArtifact('verified-trail-editorial-queue'),
+    store.getArtifact('verified-trail-editorial-execution'),
+    store.getArtifact('content-review-queue'),
+    store.getArtifact('publication-staging'),
+  ]);
+  if(!editorialQueue?.items?.length) return { status:'nothing-to-stage', items:0 };
+  const staging = buildPublicationStaging(editorialQueue, execution || { outputs:[] }, reviewQueue || { submissions:[] },
+    { at: iso(options.now || new Date()),
+      productionTrails: options.productionTrails || loadProductionTrails(path.resolve(__dirname,'../..')) });
+  // `generatedAt` moves every pass, so comparing the whole artifact would write
+  // on every pass and say it had changed each time.
+  const unchanged = JSON.stringify(current?.items || null) === JSON.stringify(staging.items || null);
+  if(unchanged) return { status:'unchanged', items:(staging.items||[]).length };
+  await store.setArtifact('publication-staging', staging, { lastWorkerId:'publication-staging-refresh' });
+  return { status:'written', items:(staging.items||[]).length,
+    ready:(staging.items||[]).filter(item => item.state === 'ready-for-publication-preview').length };
+}
+
 async function ingestPublicationReviews(store){
   const reviews = await store.listPublicationReviews('queued'); const outcomes = [];
   const effectiveByCandidate = new Map();
@@ -811,6 +849,10 @@ async function runLiveBackofficeWorker(store, options = {}){
   const jobs = await processRevisionJobs(store, options);
   const automatedEditorial=await automateEditorialReviews(store,{...options,productionTrails:siteTrails});
   reviews.push(...await ingestTrailReviews(store,{...options,productionTrails}));
+  // Before the publication policy reads it. A trail that needed no editorial
+  // decision has nothing to rebuild its staging otherwise, and the policy
+  // would find an artifact that does not mention it.
+  const publicationStaging=await refreshPublicationStaging(store,{...options,productionTrails:siteTrails});
   const automatedPublications=await automatePublicationReviews(store,{...options,productionTrails:siteTrails});
   const publications = await ingestPublicationReviews(store);
   // Last, so it describes the pipeline as this pass leaves it. The desk cannot
@@ -829,7 +871,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   // so the pass that has the checkout is the one that can write them down for a
   // desk that does not.
   const coverage = await recordRegionalCoverage(store,{...options,productionTrails:siteTrails});
-  return { workerId:options.workerId || null,campaign,pipeline,programme,coverage,usageDay,newTrailReviews,hazardReviews,closureScouting,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,pipeline,programme,coverage,usageDay,publicationStaging,newTrailReviews,hazardReviews,closureScouting,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
 }
 
 /**
@@ -939,4 +981,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore,scoutClosureNotices, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES,refreshPublicationStaging,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore,scoutClosureNotices, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
