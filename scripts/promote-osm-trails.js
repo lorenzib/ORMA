@@ -145,14 +145,17 @@ function widestGapMeters(pts) {
  * largest piece this drops is 638 m and thirty-three of the thirty-four are
  * under 250 m, so the ceiling costs nothing real and forecloses the bad case.
  *
- * `dropped` reports them rather than losing them silently.
+ * `dropped` reports them rather than losing them silently, and `connectors`
+ * reports each straight line this drew between two pieces -- where it lands in
+ * the path, and how long it is. Those are holes in the map rather than ground
+ * anybody walks, which is why the length a trail publishes leaves them out.
  */
 function chainLines(lines) {
   const remaining = lines
     .map(line => line.map(([lng, lat]) => [lat, lng]))
     .filter(piece => piece.length)
     .sort((a, b) => b.length - a.length);
-  if (!remaining.length) return { path: [], dropped: [] };
+  if (!remaining.length) return { path: [], dropped: [], connectors: [] };
 
   // A walk that returns to where it started is already whole -- but only when
   // what that leaves out is debris.
@@ -194,11 +197,13 @@ function chainLines(lines) {
       dropped: setAside.map((piece) => ({
         meters: Math.round(lineMeters(piece)), points: piece.length, reason: 'detached from a closed loop',
       })),
+      connectors: [],   // the loop is one piece, so nothing was drawn across
     };
   }
 
   let chained = remaining.shift();
   const dropped = [];
+  const connectors = [];
   while (remaining.length) {
     let best = null;
     for (let i = 0; i < remaining.length; i += 1) {
@@ -224,10 +229,21 @@ function chainLines(lines) {
       continue;
     }
     const oriented = best.reverse ? piece.slice().reverse() : piece;
-    chained = best.append ? chained.concat(oriented) : oriented.concat(chained);
+    // Record the join as well as making it. `best.gap` is the distance between
+    // the two points that are about to become neighbours, so the connector is
+    // the segment ending at the first point of whichever side was added.
+    if (best.append) {
+      connectors.push({ index: chained.length, meters: best.gap });
+      chained = chained.concat(oriented);
+    } else {
+      // Prepending slides everything already chained further along the path.
+      for (const connector of connectors) connector.index += oriented.length;
+      connectors.push({ index: oriented.length, meters: best.gap });
+      chained = oriented.concat(chained);
+    }
     remaining.splice(best.i, 1);
   }
-  return { path: chained, dropped };
+  return { path: chained, dropped, connectors };
 }
 
 // The most ground a piece may cover and still be discardable. Above this it is
@@ -261,13 +277,26 @@ function lineMeters(points) {
 function toPath(geometry) {
   const lines = geometry.type === 'LineString' ? [geometry.coordinates] : geometry.coordinates;
   const asListed = [];
-  for (const line of lines) for (const [lng, lat] of line) asListed.push([lat, lng]);
+  // The file's own order has connectors too: it lays the pieces nose to tail,
+  // so wherever one ends and the next begins there is a straight line across
+  // whatever lies between them.
+  const asListedConnectors = [];
+  for (const line of lines) {
+    if (asListed.length && line.length) {
+      const from = asListed[asListed.length - 1];
+      const [lng, lat] = line[0];
+      asListedConnectors.push({ index: asListed.length,
+        meters: haversineMeters(from[0], from[1], lat, lng) });
+    }
+    for (const [lng, lat] of line) asListed.push([lat, lng]);
+  }
   // Greedy chaining is a heuristic, and on one catalogue relation it picked an
   // order fractionally worse than the one the file already had. So the two are
   // compared and the better kept: this step can narrow a route's widest gap
   // and can never widen it, which is the property that makes it safe to run
   // over the whole catalogue rather than the trails known to be broken.
-  const chaining = lines.length > 1 ? chainLines(lines) : { path: asListed, dropped: [] };
+  const chaining = lines.length > 1 ? chainLines(lines)
+    : { path: asListed, dropped: [], connectors: [] };
   const chained = chaining.path;
   // The as-listed order is still the fallback when chaining cannot better it,
   // but it carries every fragment, so preferring it would put back the pieces
@@ -275,11 +304,8 @@ function toPath(geometry) {
   const useChained = chained.length > 0
     && (chaining.dropped.length > 0 || widestGapMeters(chained) <= widestGapMeters(asListed));
   const pts = useChained ? chained : asListed;
-  const cumKm = [0];
-  for (let i = 1; i < pts.length; i += 1) {
-    cumKm.push(cumKm[i - 1] + haversineMeters(pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1]) / 1000);
-  }
-  return { pts, cumKm, segments: lines.length,
+  const connectors = useChained ? chaining.connectors : asListedConnectors;
+  return { pts, cumKm: recomputeCumKm(pts, connectors), connectors, segments: lines.length,
     droppedPieces: useChained ? chaining.dropped : [] };
 }
 
@@ -624,12 +650,60 @@ function rotateLoop(pts, startIndex) {
   return rotated;
 }
 
-function recomputeCumKm(pts) {
+/**
+ * Distance along the walk, with the straight lines chaining drew counting as
+ * nothing.
+ *
+ * A connector is a hole in the OSM mapping that `chainLines` bridged so the
+ * route reads as one line. Nobody walks it, so it is not distance. Counting it
+ * published Seeweg at 14.8 km against 11.75 km of member ways, and would have
+ * published Albannette petite boucle at 6.2 km against 5.01 km.
+ *
+ * This is the one km axis in the script, so correcting it here corrects every
+ * reader of it at once: the length the page shows, the km axis of the elevation
+ * profile, where a fountain or a rifugio is said to be, and the Naismith
+ * estimate. They stay in step because they are all the same number, and the
+ * profile's last point is the distance the page publishes by construction.
+ *
+ * What stays geometric is everything about the drawn line rather than the walk:
+ * `widestGapMeters`, and so the publication gate that holds back a route whose
+ * line visibly jumps.
+ */
+function recomputeCumKm(pts, connectors = []) {
+  // The index arithmetic in `chainLines` is the only thing between a hole in
+  // the map and a wrong published length, so it is checked rather than
+  // trusted: each connector must still be the segment it claims to be.
+  const drawn = new Set();
+  for (const connector of connectors) {
+    const from = pts[connector.index - 1];
+    const to = pts[connector.index];
+    if (!from || !to) {
+      throw new Error(`connector ${connector.index} is not a segment of a ${pts.length}-point path`);
+    }
+    const measured = haversineMeters(from[0], from[1], to[0], to[1]);
+    if (Math.abs(measured - connector.meters) > 1) {
+      throw new Error(`connector ${connector.index} measures ${Math.round(measured)} m `
+        + `but was recorded as ${Math.round(connector.meters)} m`);
+    }
+    drawn.add(connector.index);
+  }
   const cumKm = [0];
   for (let i = 1; i < pts.length; i += 1) {
-    cumKm.push(cumKm[i - 1] + haversineMeters(pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1]) / 1000);
+    const segmentKm = drawn.has(i) ? 0
+      : haversineMeters(pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1]) / 1000;
+    cumKm.push(cumKm[i - 1] + segmentKm);
   }
   return cumKm;
+}
+
+/**
+ * Where the connectors are once the whole path has been turned round.
+ *
+ * Reversing moves the point at `i` to `pts.length - 1 - i`, so the segment
+ * ending at `index` ends at `pts.length - index` instead.
+ */
+function reverseConnectors(connectors, pointCount) {
+  return connectors.map((connector) => ({ ...connector, index: pointCount - connector.index }));
 }
 
 function accessLabel(best, isLoop) {
@@ -796,12 +870,16 @@ async function main() {
       continue;
     }
     const isLoop = p.loop === true || p.loop === 'true';
-    let { pts, segments } = toPath(feature.geometry);
-    let cumKm = recomputeCumKm(pts);
+    let { pts, segments, connectors } = toPath(feature.geometry);
+    let cumKm = recomputeCumKm(pts, connectors);
 
     // --- Verified start point: anchor to the nearest real access point ---
     let startLabel = 'Route start per OpenStreetMap — best parking/access not yet verified';
-    if (accessIndex && segments === 1) {
+    // Rotating a loop or turning a line round would scramble the connector
+    // indices, and neither helper keeps them. A one-piece geometry has no
+    // connectors, which is why this is safe -- stated as a condition rather
+    // than left as an assumption, so relaxing the one does not break the other.
+    if (accessIndex && segments === 1 && !connectors.length) {
       const best = findBestAccess(pts, accessIndex);
       if (best) {
         if (isLoop) {
@@ -809,7 +887,7 @@ async function main() {
         } else if (best.vertexIndex > pts.length / 2) {
           pts = pts.slice().reverse();                     // start the line from the accessible end
         }
-        cumKm = recomputeCumKm(pts);
+        cumKm = recomputeCumKm(pts, connectors);
         startLabel = accessLabel(best, isLoop);
       }
     }
@@ -832,7 +910,8 @@ async function main() {
         const dir = pickGentlerDirection(samples, elevations);
         if (dir.reverse) {
           pts = pts.slice().reverse();
-          cumKm = recomputeCumKm(pts);
+          connectors = reverseConnectors(connectors, pts.length);
+          cumKm = recomputeCumKm(pts, connectors);
           // Even sampling is symmetric, so reversed elevations line up with
           // freshly sampled points on the reversed path.
           const fresh = sampleAlong(pts, cumKm, ELEVATION_SAMPLES);
@@ -921,5 +1000,6 @@ if (require.main === module) {
 }
 
 module.exports = { articleFor, chainLines, toPath, widestGapMeters, haversineMeters,
-  lineMeters, DROPPABLE_PIECE_M, DROPPABLE_SHARE_OF_WALK, LOOP_CLOSE_M,
+  lineMeters, recomputeCumKm, reverseConnectors,
+  DROPPABLE_PIECE_M, DROPPABLE_SHARE_OF_WALK, LOOP_CLOSE_M,
   elevationKey, loadElevationCache, saveElevationCache, cachePointsToSave, fetchElevations };

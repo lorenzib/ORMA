@@ -96,7 +96,7 @@ describe('putting a route\'s pieces in walking order', () => {
     // It reports what it refused alongside the path, so a dropped fragment is
     // visible to the caller rather than gone.
     expect(chainLines([[], [[11.000, 46.50], [11.005, 46.50]]]))
-      .toEqual({ path: [[46.50, 11.000], [46.50, 11.005]], dropped: [] });
-    expect(chainLines([])).toEqual({ path: [], dropped: [] });
+      .toEqual({ path: [[46.50, 11.000], [46.50, 11.005]], dropped: [], connectors: [] });
+    expect(chainLines([])).toEqual({ path: [], dropped: [], connectors: [] });
   });
 });
