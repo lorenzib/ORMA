@@ -1184,6 +1184,8 @@ img,svg{max-width:100%;height:auto;}
 .collection-list-card__scope{min-width:138px;gap:8px;}
 .collection-list-card{scroll-margin-top:92px;}
 .collection-list-card__summary{grid-column:2;grid-row:2;align-self:start;margin:0;color:var(--ink-soft);font-size:12px;line-height:1.45;}
+.collection-list-card__credit{grid-column:2;grid-row:3;align-self:start;margin:0;color:var(--ink-soft);font-size:10.5px;line-height:1.4;opacity:.85;}
+.collection-list-card__credit a{color:inherit;text-underline-offset:2px;}
 .collection-list-card.is-open{border-color:#9FC4B0;transform:none;box-shadow:0 12px 30px rgba(46,76,57,.1);}
 .collection-list-card__expand,.collection-list-card__map-action{width:100%;display:inline-flex;align-items:center;justify-content:space-between;gap:7px;min-height:36px;padding:7px 11px;border:1px solid var(--paper-line);border-radius:var(--radius-pill);background:#fff;color:var(--accent);font:800 11px var(--font-sans);white-space:nowrap;cursor:pointer;transition:border-color .16s ease,background .16s ease;}
 .collection-list-card__expand:hover,.collection-list-card__map-action:hover{border-color:#9FC4B0;background:#F7FAF8;}
