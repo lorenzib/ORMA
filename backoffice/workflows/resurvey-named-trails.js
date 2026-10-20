@@ -29,6 +29,76 @@
  * moment it lands, and the research already paid for is untouched.
  */
 
+/**
+ * The walks surveyed before the surveyor learned to record what it found.
+ *
+ * Naming them by hand was the only way to ask for a re-survey, and a list
+ * typed from a report is a list that is wrong the next morning. This asks the
+ * record instead.
+ *
+ * A survey taken since 15 October carries one of three marks, and which one it
+ * carries is the answer: `routeGuidance` says the numbered routes along this
+ * walk and their order, `routeNumbersAbsent` says somebody measured and there
+ * are none, `routeNumbersUnmeasured` says the measurement could not be taken.
+ * An older survey carries none of them, and a walk with none of them cannot be
+ * told from a walk measured and found to carry nothing -- which is the one
+ * distinction the record rung needs to answer `route-number-sequence` and
+ * `route-number-switches` without paying an agent.
+ *
+ * Only the cartographer's own output is read, because only the cartographer
+ * writes these. And only its newest: a trail re-surveyed once is current even
+ * if the audit before it was not.
+ */
+const SURVEY_MARKS = Object.freeze(['routeGuidance', 'routeNumbersAbsent', 'routeNumbersUnmeasured']);
+
+function timeOf(value){
+  const parsed = Date.parse(typeof value === 'string' ? value : (value?.toDate?.().toISOString?.() || ''));
+  return Number.isNaN(parsed) ? 0 : parsed;
+}
+
+/** The newest cartographer output for this trail, or null. */
+function newestSurvey(outputs){
+  let newest = null;
+  for(const output of outputs || []){
+    if(output?.agentId !== 'cartographer') continue;
+    if(!newest || timeOf(output.completedAt || output.createdAt) >= timeOf(newest.completedAt || newest.createdAt)){
+      newest = output;
+    }
+  }
+  return newest;
+}
+
+/** Whether this survey says what it found when it looked for route numbers. */
+function surveyRecordsWhatItFound(survey){
+  const result = survey?.result;
+  if(!result) return false;
+  return SURVEY_MARKS.some(mark => result[mark] !== undefined && result[mark] !== null);
+}
+
+/**
+ * Which trails a re-survey would be worth taking, asked of the record.
+ *
+ * A trail with no survey at all is not included: it has never been past the
+ * cartographer, so there is nothing stale about it and a queued audit is
+ * already owed. Saying "stale" of a walk nobody has surveyed would send a
+ * second audit after the first.
+ */
+function surveyedBeforeTheMarks(orchestration, outputsByTrail){
+  const stale = [];
+  const current = [];
+  const neverSurveyed = [];
+  for(const trail of orchestration?.trails || []){
+    if(RESTING.includes(String(trail.state))) continue;
+    const key = String(trail.trailId || trail.candidateId);
+    const survey = newestSurvey(outputsByTrail?.get?.(key) || outputsByTrail?.[key] || []);
+    const entry = { trailId: trail.trailId, candidateId: trail.candidateId,
+      trailName: trail.trailName || trail.trailId, state: trail.state };
+    if(!survey){ neverSurveyed.push(entry); continue; }
+    (surveyRecordsWhatItFound(survey) ? current : stale).push(entry);
+  }
+  return { stale, current, neverSurveyed };
+}
+
 /** A trail named by either of its two ids, which are not always the same. */
 function named(orchestration, ids){
   const wanted = new Set((ids || []).map(id => String(id).trim()).filter(Boolean));
@@ -84,4 +154,4 @@ function surveyAttempt(trail){
   return Number((trail.attempts || {}).cartographer || 0) + 1;
 }
 
-module.exports = { RESTING, named, planResurvey, withAnotherSurvey, surveyAttempt };
+module.exports = { RESTING, SURVEY_MARKS, newestSurvey, surveyRecordsWhatItFound, surveyedBeforeTheMarks, named, planResurvey, withAnotherSurvey, surveyAttempt };
