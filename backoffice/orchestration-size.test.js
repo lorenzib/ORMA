@@ -35,8 +35,15 @@ describe('orchestration size', () => {
     expect(kept.strategy).toBe(STRATEGIES[0].id);
     expect(kept.attemptNumber).toBe(1);
     expect(kept.jobId).toBe('job-0');
-    expect(kept.blockers).toEqual(['b']);
     expect(kept.status).toBe('completed');
+    // The blocker sentences were the next duplicate to grow: the claim's whole
+    // list, on every attempt, of every claim, of every trail, and nothing read
+    // them back. They were most of trail-orchestration when it reached
+    // 1020.6 KB of a 1023.9 KB ceiling on 2026-10-20 and every worker write
+    // began failing. How many stood in the way is kept; the sentences live on
+    // the claim.
+    expect(kept.blockers).toBeUndefined();
+    expect(kept.blockerCount).toBe(1);
   });
 
   test('an attempt whose strategy the table no longer knows keeps its own words', () => {

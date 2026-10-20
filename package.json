@@ -31,6 +31,7 @@
     "build:trail-routing": "node scripts/build-trail-routing-coverage.js",
     "fetch:trail-routing:funes": "node scripts/build-mapped-trail-routing.js --funes",
     "fetch:trail-routing:all": "node scripts/build-mapped-trail-routing.js --all --resume",
+    "import:scouted-trail": "node scripts/import-scouted-trail.js",
     "promote:trails": "node scripts/promote-osm-trails.js && node scripts/promote-osm-trails.js --region savoy",
     "generate:artifacts": "npm run promote:trails && npm run validate:production-trails && node scripts/generate-trail-pages.js && npm run build:regional-data && npm run build:trail-routing",
     "check:generated": "node scripts/check-generated-artifacts.js",
