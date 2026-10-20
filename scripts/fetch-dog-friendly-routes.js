@@ -453,6 +453,16 @@ const MAXIMUM_CATALOGUE_LOSS = 0.1;
 // together by it.
 const STITCH_TOLERANCE_M = 100;
 
+// How far apart two way ends may be and still be the SAME place rather than
+// two places close together.
+//
+// Members that share an OSM node arrive carrying identical coordinates on both
+// transports, so this is a guard against a rounding difference, not a
+// tolerance for sloppy mapping -- that is what STITCH_TOLERANCE_M is for, and
+// spending it here instead costs the catalogue real accuracy (see
+// `junctionGraph`).
+const COINCIDENT_END_M = 1;
+
 const OFF_ROUTE_ROLES = new Set([
   'approach', 'excursion', 'alternative', 'alternate', 'link', 'connection',
 ]);
@@ -489,42 +499,390 @@ function memberLengthKm(members) {
   return meters / 1000;
 }
 
-// Stitch relation member ways into as few continuous lines as possible,
-// so loop detection and rendering are cleaner than raw fragments.
+/**
+ * Join a relation's member ways into as few continuous lines as possible, by
+ * traversing them as a graph rather than laying them end to end.
+ *
+ * A route relation is not a list of ways to be concatenated; it is a network.
+ * OSM splits a route's members at its junctions, so the members are edges and
+ * the places their ends meet are nodes, and drawing the walk means finding a
+ * run through that network that uses every edge.
+ *
+ * The old stitcher only ever extended a line at its two free ends, and that
+ * cannot pass through a junction at all: at a place where three ways meet it
+ * takes one continuation and orphans the third. Seeweg (relation 3885162) is
+ * the shape that shows it. Its 48 members are a single connected network of
+ * 11.75 km -- a closed western loop with an eastern lobe hanging off two
+ * three-way junctions. Stitched nose to tail the loop closed first, both
+ * junctions were then interior to a finished line, and the lobe could never be
+ * attached: three pieces, which the promoter then joined with 3.12 km of
+ * straight line across the valley, and the publication gate held the walk back
+ * for the jump. The hole was ours, not OpenStreetMap's.
+ *
+ * Traversed as a graph the same 48 members are one line of 11.76 km whose
+ * widest step is 374 m -- and that step is a straight run of mapped path
+ * inside one way, not a hole, because the lines are simplified.
+ *
+ * One line per connected group of members. Where a relation's members really
+ * are detached from one another -- three catalogue relations are, by 1 to
+ * 10 km -- they stay separate lines, because that gap is a hole in the map and
+ * drawing over it is the fault this exists to stop.
+ *
+ * `STITCH_TOLERANCE_M` still decides what "meet" means. Node ids would be the
+ * exact answer and neither transport carries them this far: Overpass
+ * `out geom` and the OSM API reader both flatten a member to a list of
+ * lat/lon, so ends that coincide are recognised by where they are, as they
+ * were before.
+ */
 function stitchMembers(members) {
-  const segments = (members || [])
+  const ways = (members || [])
     .filter((m) => isRouteMember(m) && Array.isArray(m.geometry) && m.geometry.length > 1)
     .map((m) => m.geometry.map((p) => [p.lon, p.lat]));
-  if (!segments.length) return [];
+  if (!ways.length) return [];
 
-  const lines = [];
-  const pool = segments.slice();
-  const close = (a, b) => haversineMeters(a, b) < STITCH_TOLERANCE_M;
+  const graph = junctionGraph(ways);
+  return componentsOf(graph).map((component) => lineThrough(graph, component));
+}
 
-  while (pool.length) {
-    let line = pool.shift();
-    let extended = true;
-    while (extended) {
-      extended = false;
-      for (let i = 0; i < pool.length; i += 1) {
-        const seg = pool[i];
-        if (close(line[line.length - 1], seg[0])) {
-          line = line.concat(seg.slice(1)); pool.splice(i, 1); extended = true; break;
-        }
-        if (close(line[line.length - 1], seg[seg.length - 1])) {
-          line = line.concat(seg.slice(0, -1).reverse()); pool.splice(i, 1); extended = true; break;
-        }
-        if (close(line[0], seg[seg.length - 1])) {
-          line = seg.slice(0, -1).concat(line); pool.splice(i, 1); extended = true; break;
-        }
-        if (close(line[0], seg[0])) {
-          line = seg.slice(1).reverse().concat(line); pool.splice(i, 1); extended = true; break;
+/**
+ * The network a relation's member ways form: its junctions, and the ways
+ * between them.
+ *
+ * Built in three steps, and the order matters.
+ *
+ * Ends that COINCIDE are one junction. That is the relation's real topology,
+ * and two members sharing an OSM node arrive carrying identical coordinates on
+ * either transport, so it costs no tolerance to see.
+ *
+ * A member that runs THROUGH another member's end is then cut there, because
+ * that is a junction too. OSM only has to split a way where it needs to, so a
+ * loop hanging off the middle of a longer way is mapped as exactly that: three
+ * catalogue relations have a 80-210 m ring attached to a walk that was never
+ * split to meet it, and without the cut the ring is a piece of its own that
+ * nothing can reach. Cutting a line at one of its own vertices moves no point
+ * and changes no length.
+ *
+ * Only then is `STITCH_TOLERANCE_M` spent, and only on dead ends, where a line
+ * that has run out has another line's loose end within reach.
+ *
+ * Doing the first step with the loose tolerance instead was measurably wrong:
+ * lumping every end within a hundred metres into one junction forgets which
+ * ends actually touch, so the trail welds across the slack rather than through
+ * the join. It drew 1.05 km of invented line into Lang-Erl-Weg's 2.86 km walk
+ * and 3.47 km into Gsieser's, and left 33 relations with a junction whose own
+ * ends lay further apart than the tolerance that had merged them.
+ *
+ * `degree` counts ends meeting at a junction, so a way that closes on itself
+ * contributes two and stays even, while `at` lists it once because walking it
+ * once returns you there.
+ */
+function junctionGraph(ways) {
+  const places = [];
+  const placeAt = (point) => {
+    for (let i = 0; i < places.length; i += 1) {
+      if (haversineMeters(places[i], point) <= COINCIDENT_END_M) return i;
+    }
+    places.push(point);
+    return places.length - 1;
+  };
+  for (const coords of ways) { placeAt(coords[0]); placeAt(coords[coords.length - 1]); }
+
+  const ends = placeIndex(places);
+  const cut = [];
+  for (const coords of ways) {
+    const at = [0];
+    for (let v = 1; v < coords.length - 1; v += 1) if (ends(coords[v]) !== null) at.push(v);
+    at.push(coords.length - 1);
+    for (let i = 1; i < at.length; i += 1) {
+      const piece = coords.slice(at[i - 1], at[i] + 1);
+      if (piece.length > 1) cut.push(piece);
+    }
+  }
+
+  const drawn = cut.map((coords) => {
+    let meters = 0;
+    for (let i = 1; i < coords.length; i += 1) meters += haversineMeters(coords[i - 1], coords[i]);
+    return { coords, meters, from: placeAt(coords[0]), to: placeAt(coords[coords.length - 1]) };
+  });
+
+  const junctionOf = bridgeDeadEnds(places, drawn);
+  const nodes = [];
+  const numbered = new Map();
+  const number = (place) => {
+    const junction = junctionOf(place);
+    if (!numbered.has(junction)) { numbered.set(junction, nodes.length); nodes.push(places[junction]); }
+    return numbered.get(junction);
+  };
+  const edges = drawn.map((edge) => ({ ...edge, from: number(edge.from), to: number(edge.to) }));
+
+  const at = nodes.map(() => []);
+  const degree = nodes.map(() => 0);
+  edges.forEach((edge, index) => {
+    at[edge.from].push(index);
+    degree[edge.from] += 1;
+    degree[edge.to] += 1;
+    if (edge.to !== edge.from) at[edge.to].push(index);
+  });
+  return { nodes, edges, at, degree };
+}
+
+/**
+ * Look up whether a point is already one of these places.
+ *
+ * Over a grid, because the caller asks it of every vertex of every member --
+ * tens of thousands of questions against hundreds of places on the longer
+ * relations. Cells are about 11 m across and the answer has to be within
+ * COINCIDENT_END_M, so the nine cells around a point are all it can be in.
+ */
+function placeIndex(places) {
+  const CELL = 1e4;
+  const key = (point) => `${Math.round(point[0] * CELL)}:${Math.round(point[1] * CELL)}`;
+  const grid = new Map();
+  places.forEach((point, index) => {
+    const cell = key(point);
+    if (!grid.has(cell)) grid.set(cell, []);
+    grid.get(cell).push(index);
+  });
+  return (point) => {
+    const x = Math.round(point[0] * CELL);
+    const y = Math.round(point[1] * CELL);
+    for (let dx = -1; dx <= 1; dx += 1) {
+      for (let dy = -1; dy <= 1; dy += 1) {
+        for (const index of grid.get(`${x + dx}:${y + dy}`) || []) {
+          if (haversineMeters(places[index], point) <= COINCIDENT_END_M) return index;
         }
       }
     }
-    lines.push(line);
+    return null;
+  };
+}
+
+/**
+ * Join up the loose ends a relation's mapping leaves, closest pair first.
+ *
+ * A dead end is where the drawn line runs out. Where two of them are within
+ * `STITCH_TOLERANCE_M` the walk continues across, which is the judgement that
+ * tolerance was widened to 100 m to make: Gsieser Talblickweg's route is
+ * mapped in groups separated by 44 m and 85 m, and Seeweg's eastern tip fails
+ * to close by 13 m. Nothing else is merged -- a dead end beside the MIDDLE of
+ * another way is a walk that genuinely stops there, and so is one with no
+ * neighbour inside the tolerance.
+ *
+ * Closest pair first, so a 13 m join is never passed over for a 90 m one that
+ * happened to be looked at earlier. Returns the junction each place belongs to.
+ */
+function bridgeDeadEnds(places, edges) {
+  const parent = places.map((_, index) => index);
+  const find = (index) => {
+    let root = index;
+    while (parent[root] !== root) root = parent[root];
+    while (parent[index] !== root) { const up = parent[index]; parent[index] = root; index = up; }
+    return root;
+  };
+  for (;;) {
+    const degree = new Map();
+    for (const edge of edges) {
+      for (const place of [find(edge.from), find(edge.to)]) {
+        degree.set(place, (degree.get(place) || 0) + 1);
+      }
+    }
+    const loose = [...degree.keys()].filter((place) => degree.get(place) === 1);
+    let best = null;
+    for (let i = 0; i < loose.length; i += 1) {
+      for (let j = i + 1; j < loose.length; j += 1) {
+        const gap = haversineMeters(places[loose[i]], places[loose[j]]);
+        if (gap < STITCH_TOLERANCE_M && (!best || gap < best.gap)) {
+          best = { gap, keep: loose[i], join: loose[j] };
+        }
+      }
+    }
+    if (!best) return find;
+    parent[find(best.join)] = find(best.keep);
   }
-  return lines;
+}
+
+/** Groups of members that are joined to each other, each as its own walk. */
+function componentsOf(graph) {
+  const seen = graph.nodes.map(() => false);
+  const groups = [];
+  for (let start = 0; start < graph.nodes.length; start += 1) {
+    if (seen[start] || !graph.at[start].length) continue;
+    const nodes = [];
+    const edges = new Set();
+    const queue = [start];
+    seen[start] = true;
+    while (queue.length) {
+      const node = queue.shift();
+      nodes.push(node);
+      for (const index of graph.at[node]) {
+        edges.add(index);
+        for (const next of [graph.edges[index].from, graph.edges[index].to]) {
+          if (!seen[next]) { seen[next] = true; queue.push(next); }
+        }
+      }
+    }
+    groups.push({ nodes: nodes.sort((a, b) => a - b), edges: [...edges].sort((a, b) => a - b) });
+  }
+  return groups;
+}
+
+/**
+ * One continuous line covering every member in a connected group.
+ *
+ * A single line can use every edge exactly once only where at most two nodes
+ * have an odd number of ends meeting at them -- and those two are then where
+ * it begins and finishes. 145 of the 149 catalogue relations are already like
+ * that: 95 groups close into a circuit and 52 run between two ends.
+ *
+ * Above two, some stretch has to be covered twice, which is exactly what a
+ * walker does at a dead end. Four catalogue relations are shaped that way, all
+ * of them with four such ends. The stretch walked twice is chosen as the
+ * shortest run of mapped path between two of them, so the line doubles back
+ * along the route instead of jumping across country -- and because it is real
+ * ground it counts towards the distance, unlike a connector drawn over a hole
+ * in the map, which does not.
+ */
+function lineThrough(graph, component) {
+  const legs = component.edges.map((index) => graph.edges[index]);
+  const odd = component.nodes.filter((node) => graph.degree[node] % 2 === 1);
+  const retraced = retraceOddEnds(graph, component, odd);
+  const walked = legs.concat(retraced.legs);
+  // Start where the line has to: at an end if it has any, otherwise anywhere
+  // on a circuit, and the lowest node is the first one the members introduced.
+  const start = retraced.ends.length ? retraced.ends[0] : component.nodes[0];
+  return drawTrail(walked, trailFrom(walked, graph.nodes.length, start));
+}
+
+/**
+ * Which stretches to cover twice so one line can reach everything, and which
+ * two ends the line is then left running between.
+ *
+ * Pairs up the surplus odd ends cheapest-first. With four ends -- every case
+ * the catalogue has -- exactly one pair is doubled back along, so taking the
+ * cheapest pair is the shortest answer there is. With more it is a good one
+ * rather than a proven best, which is the right trade for a shape no relation
+ * currently has.
+ */
+function retraceOddEnds(graph, component, odd) {
+  if (odd.length <= 2) return { legs: [], ends: odd };
+  const remaining = odd.slice();
+  const legs = [];
+  while (remaining.length > 2) {
+    let best = null;
+    for (let i = 0; i < remaining.length; i += 1) {
+      for (let j = i + 1; j < remaining.length; j += 1) {
+        const run = shortestRun(graph, component, remaining[i], remaining[j]);
+        if (run && (!best || run.meters < best.run.meters)) best = { i, j, run };
+      }
+    }
+    // Two ends with no path between them cannot be in one group, so this is
+    // unreachable -- but leaving the pair odd would make the trail undrawable,
+    // so stop rather than loop.
+    if (!best) break;
+    for (const index of best.run.edges) legs.push(graph.edges[index]);
+    remaining.splice(best.j, 1);
+    remaining.splice(best.i, 1);
+  }
+  return { legs, ends: remaining };
+}
+
+/** The shortest run of mapped path between two junctions, by ground covered. */
+function shortestRun(graph, component, from, to) {
+  const meters = new Map([[from, 0]]);
+  const arrival = new Map();
+  const settled = new Set();
+  for (;;) {
+    let node = null;
+    for (const [candidate, covered] of meters) {
+      if (settled.has(candidate)) continue;
+      if (node === null || covered < meters.get(node)) node = candidate;
+    }
+    if (node === null) return null;
+    if (node === to) break;
+    settled.add(node);
+    for (const index of graph.at[node]) {
+      const edge = graph.edges[index];
+      const next = edge.from === node ? edge.to : edge.from;
+      if (next === node) continue;
+      const covered = meters.get(node) + edge.meters;
+      if (!meters.has(next) || covered < meters.get(next)) {
+        meters.set(next, covered);
+        arrival.set(next, { index, from: node });
+      }
+    }
+  }
+  const edges = [];
+  for (let node = to; node !== from; node = arrival.get(node).from) {
+    edges.push(arrival.get(node).index);
+  }
+  return { edges: edges.reverse(), meters: meters.get(to) };
+}
+
+/**
+ * The order one line walks a group's legs in: Hierholzer's algorithm.
+ *
+ * Returns the junctions in the order they are reached, each carrying the leg
+ * that was walked to reach it. The first carries none, being where the line
+ * starts.
+ */
+function trailFrom(legs, nodeCount, start) {
+  const at = Array.from({ length: nodeCount }, () => []);
+  legs.forEach((leg, index) => {
+    at[leg.from].push(index);
+    if (leg.to !== leg.from) at[leg.to].push(index);
+  });
+  const walked = legs.map(() => false);
+  const next = new Array(nodeCount).fill(0);
+  const stack = [{ node: start, leg: null }];
+  const reached = [];
+  while (stack.length) {
+    const here = stack[stack.length - 1];
+    let take = -1;
+    while (next[here.node] < at[here.node].length) {
+      const index = at[here.node][next[here.node]];
+      if (!walked[index]) { take = index; break; }
+      next[here.node] += 1;
+    }
+    if (take === -1) { reached.push(stack.pop()); continue; }
+    walked[take] = true;
+    const leg = legs[take];
+    stack.push({ node: leg.from === here.node ? leg.to : leg.from, leg: take });
+  }
+  return reached.reverse();
+}
+
+/**
+ * The trail's legs as one line of coordinates.
+ *
+ * Every leg is turned to run from the junction the line is at to the one it
+ * reaches next, and that is asserted rather than assumed: a sketch of this
+ * measured Seeweg at 30.5 km before the check was added, because a leg drawn
+ * the other way round was being walked backwards and the line doubled over
+ * itself. A silent 2.6x is the fault worth refusing to ship.
+ *
+ * The weld between two legs drops the second's first point, as end-to-end
+ * stitching did, so where two ends coincide the line has one point and where
+ * they sit a few metres apart it has one short step.
+ */
+function drawTrail(legs, reached) {
+  const line = [];
+  for (let i = 1; i < reached.length; i += 1) {
+    const leg = legs[reached[i].leg];
+    const was = reached[i - 1].node;
+    const forward = leg.from === was;
+    if (!forward && leg.to !== was) {
+      throw new Error(`route assembly: a member running ${leg.from}-${leg.to} `
+        + `cannot be walked from junction ${was}`);
+    }
+    const coords = forward ? leg.coords : leg.coords.slice().reverse();
+    const ends = forward ? leg.to : leg.from;
+    if (ends !== reached[i].node) {
+      throw new Error(`route assembly: a member walked from junction ${was} `
+        + `arrives at ${ends}, not ${reached[i].node}`);
+    }
+    for (const point of (line.length ? coords.slice(1) : coords)) line.push(point);
+  }
+  return line;
 }
 
 /**
@@ -1112,7 +1470,8 @@ async function readPreviousCatalogue(file) {
 module.exports = { fetchWithRetries, permanentForThisHost, PERMANENT_FOR_THIS_HOST,
   OVERPASS_URLS, USER_AGENT, HARD_SAC, MAX_KM, hardWayForDogs, evaluateRelation, buildPhase1Query,
   buildPhase2Query, buildMemberWayQuery,
-  OFF_ROUTE_ROLES, STITCH_TOLERANCE_M, isRouteMember, stitchMembers,
+  OFF_ROUTE_ROLES, STITCH_TOLERANCE_M, COINCIDENT_END_M, isRouteMember, stitchMembers,
+  junctionGraph, componentsOf,
   geometryOf, refreshGeometry, simplify, pathLengthKm, isClosedLoop, parseDistanceKm,
   MINIMUM_GEOMETRY_SHARE, MAXIMUM_CATALOGUE_LOSS, readPreviousCatalogue,
   MINIMUM_DRAWN_SHARE, memberGeometryShare, memberLengthKm, incompleteGeometryReason,
