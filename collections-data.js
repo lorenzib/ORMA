@@ -54,7 +54,7 @@
     {
       id:'shady-woodland', title:'Shady Savoy weekend', subtitle:'Two woodland options for a short French Alps stay',
       description:'A two-day Savoy pairing for times when exposed ground is less appealing. Shade changes with season and time of day, so check each trail and the forecast before setting out.',
-      coverImage:'images/circuit-beatrice-de-savoie.webp', chips:['Recorded shade','Woodland character','Weekend pairing'],
+      coverImage:'images/trails/osm-3982382-guiers-les-echelles.jpg', chips:['Recorded shade','Woodland character','Weekend pairing'],
       countryCode:'FR', country:'France', region:'savoy', regionLabel:'Savoy', tripLength:'2 days',
       trailIds:['osm-3982382','osm-6250300'],
     },

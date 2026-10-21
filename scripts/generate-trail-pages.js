@@ -314,7 +314,6 @@ const RESPONSIVE_PHOTOS = {
   'images/lago-di-braies.webp': { widths:[480, 900], fallback:'images/lago-di-braies.jpg' },
   'images/lago-di-carezza.webp': { widths:[480, 900], fallback:'images/lago-di-carezza.jpg' },
   'images/boucle-du-marais-des-chassettes.webp': { widths:[480, 960, 1280], fallback:'images/boucle-du-marais-des-chassettes.jpg' },
-  'images/circuit-beatrice-de-savoie.webp': { widths:[480, 960, 1280], fallback:'images/circuit-beatrice-de-savoie.jpg' },
   'images/itineraire-decouverte-de-la-nature.webp': { widths:[480, 960, 1280], fallback:'images/itineraire-decouverte-de-la-nature.jpg' },
 };
 

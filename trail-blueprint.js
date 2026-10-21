@@ -206,7 +206,6 @@
       'images/lago-di-braies.webp':'images/lago-di-braies-480.webp',
       'images/lago-di-carezza.webp':'images/lago-di-carezza-480.webp',
       'images/boucle-du-marais-des-chassettes.webp':'images/boucle-du-marais-des-chassettes-480.webp',
-      'images/circuit-beatrice-de-savoie.webp':'images/circuit-beatrice-de-savoie-480.webp',
       'images/itineraire-decouverte-de-la-nature.webp':'images/itineraire-decouverte-de-la-nature-480.webp',
     }[source] || source);
     grid.innerHTML = picks.map(o => `
@@ -259,7 +258,6 @@
       const stem = String(t.imageIcon).replace(/\.webp$/, '');
       const wideSources = [
         'images/boucle-du-marais-des-chassettes.webp',
-        'images/circuit-beatrice-de-savoie.webp',
         'images/itineraire-decouverte-de-la-nature.webp',
       ];
       const background = wideSources.includes(t.imageIcon)

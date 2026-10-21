@@ -167,7 +167,6 @@ describe('PERF-02 asset and regional loading contract', () => {
       'lago-di-braies',
       'lago-di-carezza',
       'boucle-du-marais-des-chassettes',
-      'circuit-beatrice-de-savoie',
       'itineraire-decouverte-de-la-nature',
     ];
     stems.forEach(stem => {

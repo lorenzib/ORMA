@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-20T12:00:00.000Z",
+  "updatedAt": "2026-10-21T09:31:02.761Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1522,6 +1522,22 @@
       }
     },
     {
+      "id": "osm-16395076",
+      "approvedAt": "2026-10-21T09:31:02.761Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-16395076-lac-de-la-thuile.jpg",
+        "heroImage": "images/trails/osm-16395076-lac-de-la-thuile.jpg",
+        "imageAlt": "Lac de la Thuile in early summer, the village and its church on the far shore beneath a forested limestone peak, long meadow grass in the foreground",
+        "imageCredit": "Lac de la Thuile and the village",
+        "imageCreditText": "Lac de la Thuile and the village by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:La_Thuile_(Savoie).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-16490407",
       "approvedReviewId": "commons-osm-16490407",
       "approvedAt": "2026-09-07T19:39:19.761Z",
@@ -1603,6 +1619,22 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2018-06_R%C3%A9serve_naturelle_nationale_de_Sixt-Passy_32.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19153189",
+      "approvedAt": "2026-10-21T09:31:02.761Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19153189-combe-de-savoie.jpg",
+        "heroImage": "images/trails/osm-19153189-combe-de-savoie.jpg",
+        "imageAlt": "The Combe de Savoie from the heights above Saint-Pierre-d'Albigny, vineyards in neat blocks on the valley floor and mountains across the valley",
+        "imageCredit": "The Combe de Savoie from above Saint-Pierre-d'Albigny",
+        "imageCreditText": "The Combe de Savoie from above Saint-Pierre-d'Albigny by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Combe_de_Savoie_vue_des_hauteurs_de_St-Pierre-d%27Albigny_(%C3%A9t%C3%A9_2021).JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1840,6 +1872,22 @@
         "imageLicence": "CC BY 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Zoggler_Stausee.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-3982382",
+      "approvedAt": "2026-10-21T09:31:02.761Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-3982382-guiers-les-echelles.jpg",
+        "heroImage": "images/trails/osm-3982382-guiers-les-echelles.jpg",
+        "imageAlt": "The Guiers from the bridge at Les Échelles, clear water running over pale limestone slabs between wooded banks, with a forested summit behind",
+        "imageCredit": "The Guiers from the bridge at Les Échelles",
+        "imageCreditText": "The Guiers from the bridge at Les Échelles by TomdeSavoie738",
+        "imageCreator": "TomdeSavoie738",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Le_Guiers_depuis_le_pont_des_Echelles.jpg",
         "imageSourceType": "licensed-source"
       }
     },

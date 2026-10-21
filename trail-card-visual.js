@@ -63,7 +63,6 @@
     'images/lago-di-braies.webp': [480, 900],
     'images/lago-di-carezza.webp': [480, 900],
     'images/boucle-du-marais-des-chassettes.webp': [480, 960, 1280],
-    'images/circuit-beatrice-de-savoie.webp': [480, 960, 1280],
     'images/itineraire-decouverte-de-la-nature.webp': [480, 960, 1280],
   };
 
@@ -71,7 +70,6 @@
     'lago-braies': 'images/lago-di-braies.webp',
     'lago-carezza': 'images/lago-di-carezza.webp',
     'osm-16322228': 'images/boucle-du-marais-des-chassettes.webp',
-    'osm-3982382': 'images/circuit-beatrice-de-savoie.webp',
     'osm-10116380': 'images/itineraire-decouverte-de-la-nature.webp',
   };
 
