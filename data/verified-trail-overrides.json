@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-20T13:08:49.602Z",
+  "updatedAt": "2026-10-21T09:42:03.521Z",
   "trails": [
     {
       "id": "cinque-torri-assisted",
@@ -10727,6 +10727,348 @@
         "region": "dolomites",
         "curated": true,
         "publicationApprovalId": "w2xLrVQyUYkC6Uf88sM1"
+      }
+    },
+    {
+      "id": "osm-12039246",
+      "candidateId": "osm-12039246",
+      "approvalId": "HWzE1ePGxv7BLHZbpQSr",
+      "generatedAt": "2026-10-21T09:42:03.521Z",
+      "verificationScope": "routeReviewed",
+      "fields": {
+        "name": "Rundweg Rotwand",
+        "desc": "A 0.9 km route near Cavalese, imported from the OpenStreetMap hiking network (trail 8A). Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.",
+        "tips": "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.",
+        "imageIcon": "images/trails/osm-12039246-lago-di-stramentizzo.jpg",
+        "imageCredit": "Lago di Stramentizzo",
+        "heroImage": "images/trails/osm-12039246-lago-di-stramentizzo.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Stramentizzo_03.jpg",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageCreditText": "Lago di Stramentizzo by Syrio",
+        "imageAlt": "The turquoise water of the Lago di Stramentizzo between wooded slopes, willows and flowering elder on the near bank.",
+        "imageSourceType": "licensed-source",
+        "ormaVerified": false,
+        "routeNumberGuidance": {
+          "mode": "numbered",
+          "start": "Start at Route start per OpenStreetMap — best parking/access not yet verified (46.27243, 11.39126). ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation. Check current access before travelling.",
+          "status": "The mapped route carries trail number 8A; look for it at junctions. ORMA has not confirmed how they appear on local signs. ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.",
+          "sequence": "The mapped route follows route 8A from end to end. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
+          "switches": "The mapped route stays on route 8A throughout, with no change of number recorded along it. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
+          "establishedBy": {
+            "start": "orma-record",
+            "status": "orma-record",
+            "sequence": "route-relations",
+            "switches": "route-relations"
+          },
+          "sources": [
+            {
+              "label": "OpenStreetMap route 8A",
+              "url": "https://www.openstreetmap.org/relation/12039246",
+              "authority": "OpenStreetMap",
+              "accessedAt": "2026-10-21T07:54:09.817Z"
+            }
+          ]
+        },
+        "area": "Cavalese",
+        "distance": 0.9,
+        "elevation": 0,
+        "hours": "0.5",
+        "terrainType": "unpaved (100%), from OSM surface data",
+        "terrainRank": 2,
+        "safetyLevel": "caution",
+        "waterSources": [
+          {
+            "km": 0.8,
+            "lat": 46.2694371,
+            "lng": 11.3818082,
+            "osmId": "node/7042190016",
+            "label": "Drinking water (OSM-verified location)"
+          }
+        ],
+        "startPoint": {
+          "lat": 46.2724337,
+          "lng": 11.3912629,
+          "label": "Route start per OpenStreetMap — best parking/access not yet verified"
+        },
+        "reviewedAt": "2026-10-21",
+        "reviewedBy": "ORMA verified-trail workflow",
+        "verified": {
+          "categories": [],
+          "sources": [
+            "Locked ORMA evidence dossier"
+          ],
+          "date": "2026-10-21"
+        },
+        "graduation": {
+          "status": "in-progress",
+          "required": [
+            "photo",
+            "route",
+            "routeNumbers",
+            "mapPoints",
+            "elevation",
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
+          ],
+          "completed": [
+            "photo",
+            "route",
+            "routeNumbers",
+            "mapPoints",
+            "elevation"
+          ]
+        },
+        "verifiedAt": "2026-10-21T07:54:09.817Z",
+        "id": "osm-12039246",
+        "path": [
+          [
+            46.2724337,
+            11.3912629
+          ],
+          [
+            46.2722249,
+            11.3913015
+          ],
+          [
+            46.2720776,
+            11.3913538
+          ],
+          [
+            46.2719117,
+            11.3914832
+          ],
+          [
+            46.2718064,
+            11.3915415
+          ],
+          [
+            46.2716108,
+            11.3915657
+          ],
+          [
+            46.2714973,
+            11.3915348
+          ],
+          [
+            46.2713703,
+            11.391459
+          ],
+          [
+            46.2712804,
+            11.3913142
+          ],
+          [
+            46.271259,
+            11.3911808
+          ],
+          [
+            46.2712349,
+            11.3910956
+          ],
+          [
+            46.2711316,
+            11.3909903
+          ],
+          [
+            46.2710824,
+            11.3909273
+          ],
+          [
+            46.2710583,
+            11.3908683
+          ],
+          [
+            46.2710277,
+            11.3904492
+          ],
+          [
+            46.2709624,
+            11.3902085
+          ],
+          [
+            46.2707909,
+            11.3898497
+          ],
+          [
+            46.2707705,
+            11.389778
+          ],
+          [
+            46.27072,
+            11.3894474
+          ],
+          [
+            46.2705517,
+            11.3890363
+          ],
+          [
+            46.2704984,
+            11.3888539
+          ],
+          [
+            46.2705021,
+            11.3887869
+          ],
+          [
+            46.2705253,
+            11.3887091
+          ],
+          [
+            46.2705392,
+            11.3886239
+          ],
+          [
+            46.2705397,
+            11.3885234
+          ],
+          [
+            46.2705225,
+            11.3884094
+          ],
+          [
+            46.2704553,
+            11.3882404
+          ],
+          [
+            46.2704479,
+            11.3881894
+          ],
+          [
+            46.2704548,
+            11.387779
+          ],
+          [
+            46.2704395,
+            11.3874236
+          ],
+          [
+            46.2704094,
+            11.3871527
+          ],
+          [
+            46.2703821,
+            11.3868088
+          ],
+          [
+            46.2703301,
+            11.3865788
+          ],
+          [
+            46.2703325,
+            11.3864835
+          ],
+          [
+            46.2703519,
+            11.3863769
+          ],
+          [
+            46.2703454,
+            11.3860329
+          ],
+          [
+            46.2703301,
+            11.3858049
+          ],
+          [
+            46.2703046,
+            11.3856849
+          ],
+          [
+            46.2702574,
+            11.3855629
+          ],
+          [
+            46.2702328,
+            11.3854395
+          ],
+          [
+            46.2702258,
+            11.3853081
+          ],
+          [
+            46.2702356,
+            11.3851089
+          ],
+          [
+            46.2702592,
+            11.3849211
+          ],
+          [
+            46.2703283,
+            11.3844839
+          ],
+          [
+            46.2703454,
+            11.3843022
+          ],
+          [
+            46.2703454,
+            11.3842164
+          ],
+          [
+            46.2703264,
+            11.3841547
+          ],
+          [
+            46.2702815,
+            11.3840763
+          ],
+          [
+            46.2701943,
+            11.3839649
+          ],
+          [
+            46.2701341,
+            11.383855
+          ],
+          [
+            46.2701025,
+            11.3837142
+          ],
+          [
+            46.2700845,
+            11.3834956
+          ],
+          [
+            46.2698889,
+            11.3830396
+          ],
+          [
+            46.2697466,
+            11.3827506
+          ],
+          [
+            46.2696372,
+            11.3825923
+          ],
+          [
+            46.2694851,
+            11.3820961
+          ],
+          [
+            46.2694156,
+            11.3819157
+          ],
+          [
+            46.2693892,
+            11.3818789
+          ],
+          [
+            46.2693549,
+            11.3818782
+          ]
+        ],
+        "lat": 46.2724337,
+        "lng": 11.3912629,
+        "region": "dolomites",
+        "curated": true,
+        "publicationApprovalId": "HWzE1ePGxv7BLHZbpQSr"
       }
     }
   ],
