@@ -18,6 +18,7 @@ const COLLECTIONS = Object.freeze({
   hazardReports:'trailHazardReports',
   newsletterReviews:'backofficeNewsletterReviews',
   analystReviews:'backofficeAnalystReviews',
+  trailRequests:'backofficeTrailRequests',
 });
 const configuredDatabases = new WeakSet();
 const ARTIFACT_DATA_ENCODING = 'json-v1';
@@ -488,6 +489,16 @@ class FirestoreBackofficeStore {
 
   async markDossierReview(id,status,fields={}){
     return this.markReviewCollection(COLLECTIONS.dossierReviews,id,status,fields);
+  }
+
+  // Requests from the trail board. The same queued-then-marked lifecycle as
+  // every review collection; see workflows/trail-requests.js.
+  async listTrailRequests(status='queued'){
+    return this.listReviewCollection(COLLECTIONS.trailRequests,status);
+  }
+
+  async markTrailRequest(id,status,fields={}){
+    return this.markReviewCollection(COLLECTIONS.trailRequests,id,status,fields);
   }
 
   async listRouteReviews(status='queued'){

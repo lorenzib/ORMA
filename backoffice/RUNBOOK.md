@@ -25,14 +25,19 @@ or append a CEO decision.
 | Queue worker | Every fifteen minutes | Geometry, final dossier, trail content and release decisions |
 | Publication receipt reconciler | Every fifteen minutes, inside the queue worker | No new gate; records only a commit already proven live by GitHub Pages |
 | Groundskeeper | Hourly at minute 7, Europe/Rome, clear of the quarter-hour queue worker | Automatic removal only when a successfully fetched authoritative active-warning feed affirmatively resolves the warning; expiry-only cases remain human-gated |
+| Trail requests | Every fifteen minutes (minutes 7, 22, 37, 52) | None: carries out trail-board requests by dispatching the worker or the requeue job; two Firestore reads when nothing is asked |
 | ORMA Verified intake | Daily at 09:30 Europe/Rome, after the Firestore quota reset window, plus due-only worker catch-up | New admissions still enter the normal trail gates |
 | Strategy cycle | Parked during the MVP catalogue-and-coverage phase | Existing artifacts remain available for manual recovery |
 | New Trail scouting | Monday–Saturday at 10:00 Europe/Rome, after the Firestore quota reset window, Dolomites first | Select, park or reject a candidate |
 | Newsletter | Parked until content readiness is explicitly confirmed | Existing drafts are preserved read-only; no generation, revision or handoff runs |
 | Analyst | Parked during the MVP catalogue-and-coverage phase | Existing work is preserved; no new opportunity or mock-up work is generated |
 
-GitHub cron is a target rather than proof of execution. Backoffice Home reads
+GitHub cron is a target rather than proof of execution. The System page reads
 the saved worker and campaign health receipts and links the exact workflow run.
+Backoffice Home is the trail board: every catalogue trail, its stage and its
+next step, written by the worker each pass. A board button saves a request; the
+trail requests workflow picks it up within fifteen minutes and the row shows
+Requested, Running, then Done, Failed or Refused with the reason and run link.
 
 ## What happens after a click
 

@@ -25,6 +25,10 @@ on:
         description: 'Instead of releasing jobs, look again at trails REJECTED for this reason (blank lists them)'
         required: false
         default: ''
+      reconsider_trail_ids:
+        description: 'Look again at these REJECTED trails by name, comma separated. The trail board asks with this.'
+        required: false
+        default: ''
       resurvey_trail_ids:
         description: 'Take the geometry survey again for these trails, comma separated. Free: the surveyor reads the map and measures.'
         required: false
@@ -104,13 +108,15 @@ jobs:
       - name: Look again at rejected trails
         env:
           REASON: ${{ inputs.reconsider_rejected }}
+          TRAIL_IDS: ${{ inputs.reconsider_trail_ids }}
           APPLY: ${{ inputs.apply }}
         run: |
           set -euo pipefail
           args=()
           [ -n "$REASON" ] && args+=(--reason "$REASON")
-          # Only a named reason may change anything; a blank one lists.
-          [ -n "$REASON" ] && [ "$APPLY" = "true" ] && args+=(--apply)
+          [ -n "$TRAIL_IDS" ] && args+=(--trails "$TRAIL_IDS")
+          # Only a named reason or named trails may change anything; a blank one lists.
+          { [ -n "$REASON" ] || [ -n "$TRAIL_IDS" ]; } && [ "$APPLY" = "true" ] && args+=(--apply)
           npm run backoffice:reconsider -- "${args[@]}"
 
       # The geometry survey is deterministic and free, and it is where the map

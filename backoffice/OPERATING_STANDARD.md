@@ -1918,6 +1918,71 @@ Resting is terminal. A rested trail is not agent work, holds no place in the
 intake budget, and waits for no decision. Nothing re-opens it but somebody
 finding a source that did not exist before.
 
+## Backoffice Home is the trail board, and it asks rather than decides
+
+On 21 October 2026 the operator could not tell where any single trail was.
+Backoffice Home led with counts, programme cards and receipts; the one table
+of trails was built in the browser from the orchestration, so it held only
+the 61 trails already admitted and none of the 101 waiting to start. The
+first question anybody asks of the backoffice -- where is this trail? -- had
+no page that answered it.
+
+**Home is now the trail board.** Every catalogue trail is one row: the stage
+it is at, how many of the eleven checks it has, the badge the public page
+shows, and what happens next in words. The eleven orchestration states fold
+into six stages a person can follow -- Not started, Route check, Research,
+Publishing, Passed, Stopped -- and the raw state stays on the row for anyone
+who needs it. Automation health, programme health, the decision queue and the
+receipts moved unchanged to a **System** page; principle 7 still holds, with
+the overview split across the two.
+
+The worker writes the board (`trail-board`) at the end of every pass, from the
+checkout's catalogue and the orchestration, because the hosted backoffice is
+served without `data/` and could never have joined the two itself. The page
+reads that one document, the worker heartbeat and the newest requests; it
+never lists jobs or reads the orchestration.
+
+Two kinds of row are called out rather than counted: a trail **stuck** where no
+automation will move it (blocked, or a publication failure that needs a fix),
+and a trail where the **record and the site disagree** -- a seal earned by the
+route audit that a later pipeline pass rejected. The seal stays, because no
+publication may take one away; the board is how anybody finds out.
+
+**The board's buttons ask the automation to do something for one trail. They
+never decide a verification.** There is still no human verification gate:
+every geometry and dossier gate is settled by the evidence policy. What a
+moderator can now choose is *what is worked on, and when* -- which had only
+been possible by typing trail ids into a GitHub Actions form.
+
+| Button | When it is offered | What it runs |
+|---|---|---|
+| Start verification | not started | the worker, `reverify_trail_ids` (named admission) |
+| Work on this next | route check or research, with an agent job waiting | the worker, `candidate_id` |
+| Re-measure the route | admitted, not at the survey, not resting | the requeue job, `resurvey_trail_ids` (free) |
+| Retry publishing | a retryable publication failure | the worker, `force_publication_retry` |
+| Look at it again | rejected | the requeue job, `reconsider_trail_ids` |
+
+Every button is an input those workflows already had, with one addition:
+`reconsider_trail_ids` names rejected trails one by one, because nine of the
+seventeen rejected on 21 October carried no blocker a `--reason` could match.
+Naming a trail is a deliberate act, the same discipline as naming a reason.
+
+A press saves a request to `backofficeTrailRequests`; the browser holds no
+GitHub token and starts nothing itself. The **ORMA trail requests** workflow
+runs every fifteen minutes, re-checks each request against the current board
+(a stale page cannot ask for what the trail can no longer do), and dispatches
+at most one run per workflow per pass, because GitHub cancels an older pending
+run in a concurrency group for a newer one. It never writes the orchestration:
+the worker and the requeue job keep their own concurrency rules. A request is
+`queued`, then `dispatched` with its run, then `done`, `failed` or `refused`
+with the reason; a run that was replaced goes back to `queued`. Requests are
+receipts: the Firestore rule lets a moderator create one in a fixed shape and
+nobody edit or delete one.
+
+With nothing asked for, a pass costs two Firestore reads. Buttons change order
+and scope, not cost: research still spends model credits, and only
+re-measuring the route is free.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:

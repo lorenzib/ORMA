@@ -32,6 +32,7 @@ const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
 const {currentSiteTrails,isCurrentSiteTrail}=require('../services/public-site-trails');
 const fs=require('fs');
+const {buildTrailBoard}=require('./build-trail-board');
 const path=require('path');
 
 function iso(value){
@@ -871,7 +872,9 @@ async function runLiveBackofficeWorker(store, options = {}){
   // so the pass that has the checkout is the one that can write them down for a
   // desk that does not.
   const coverage = await recordRegionalCoverage(store,{...options,productionTrails:siteTrails});
-  return { workerId:options.workerId || null,campaign,pipeline,programme,coverage,usageDay,publicationStaging,newTrailReviews,hazardReviews,closureScouting,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
+  // Last of all, so Backoffice Home shows each trail as this pass leaves it.
+  const trailBoard = await recordTrailBoard(store,{...options,productionTrails});
+  return { workerId:options.workerId || null,campaign,pipeline,programme,coverage,trailBoard,usageDay,publicationStaging,newTrailReviews,hazardReviews,closureScouting,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
 }
 
 /**
@@ -894,6 +897,35 @@ async function recordDayUsage(store, options = {}){
     const next=accumulateUsage(previous,spent,options.at?new Date(options.at).valueOf():Date.now());
     await store.setArtifact(USAGE_DAY_ARTIFACT,next,{day:next.day,reads:next.reads});
     return next;
+  }catch(error){
+    return {error:String(error?.message||error).slice(0,200)};
+  }
+}
+
+/**
+ * Every catalogue trail and where it is in verification, for Backoffice Home.
+ *
+ * The desk can read the orchestration but not the catalogue, and the
+ * orchestration only holds the trails already admitted, so the trails nobody
+ * has started on were invisible. This pass has both. The jobs list is the one
+ * recordPipelineHealth already read, so it comes from the query cache.
+ *
+ * Never fatal, for the same reason the other summaries are not.
+ */
+async function recordTrailBoard(store, options = {}){
+  try{
+    if(typeof store.getArtifact!=='function'||typeof store.setArtifact!=='function')return null;
+    const [orchestration,publicationRequests,jobs]=await Promise.all([
+      store.getArtifact('trail-orchestration'),
+      store.getArtifact('publication-requests'),
+      typeof store.listJobs==='function'?store.listJobs(['queued','running','ready-for-review','blocked']):[],
+    ]);
+    const board=buildTrailBoard({
+      trails:options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..')),
+      orchestration,publicationRequests,jobs,at:options.at||new Date().toISOString(),
+    });
+    await store.setArtifact('trail-board',board,{trails:board.summary.trails,stuck:board.summary.stuck});
+    return board.summary;
   }catch(error){
     return {error:String(error?.message||error).slice(0,200)};
   }
@@ -981,4 +1013,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES,refreshPublicationStaging,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore,scoutClosureNotices, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES,refreshPublicationStaging,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore,scoutClosureNotices, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordTrailBoard,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

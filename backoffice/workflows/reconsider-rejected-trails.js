@@ -67,15 +67,22 @@ function planReconsideration(orchestration,options={}){
   const pattern=String(options.reason||'').trim();
   const limit=Number.isInteger(options.limit)&&options.limit>0?options.limit:10;
   const rejected=rejectedTrails(orchestration);
-  if(!pattern)return {rejected:rejected.length,reasons:rejectionReasons(orchestration),returning:[],held:0};
-  const matcher=new RegExp(pattern.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i');
-  const matched=rejected.filter(trail=>(trail.blockers||[]).some(blocker=>matcher.test(String(blocker))));
+  // Or named one by one. A reason is how to send back a pattern; a name is how
+  // to send back one trail somebody has looked at -- the trail board's "Look
+  // at it again". Nine of the seventeen rejected on 21 October 2026 carried no
+  // blocker at all, so no reason could ever have matched them.
+  const named=new Set((options.trailIds||[]).map(id=>String(id).trim()).filter(Boolean));
+  if(!pattern&&!named.size)return {rejected:rejected.length,reasons:rejectionReasons(orchestration),returning:[],held:0};
+  const matcher=pattern?new RegExp(pattern.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i'):null;
+  const matched=named.size
+    ?rejected.filter(trail=>named.has(String(trail.candidateId))||named.has(String(trail.trailId)))
+    :rejected.filter(trail=>(trail.blockers||[]).some(blocker=>matcher.test(String(blocker))));
   const returning=matched.slice(0,limit).map(trail=>{
     const agentId=reviewerFor(trail.blockers);
     const target=RETURN_STATE[agentId]||EVIDENCE_RETURN;
     return {trailId:trail.trailId,candidateId:trail.candidateId,trailName:trail.trailName||trail.trailId,
       agentId,state:target.state,stage:target.stage,action:target.action,
-      matched:(trail.blockers||[]).filter(blocker=>matcher.test(String(blocker))).slice(0,4),
+      matched:matcher?(trail.blockers||[]).filter(blocker=>matcher.test(String(blocker))).slice(0,4):['named'],
       otherBlockers:blockersForAgent(trail.blockers||[],agentId).length};
   });
   return {rejected:rejected.length,reasons:[],returning,held:matched.length-returning.length};
