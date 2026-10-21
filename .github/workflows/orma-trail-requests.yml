@@ -1,0 +1,50 @@
+name: ORMA trail requests
+
+# Carries out what a moderator asked for on the trail board: start a trail,
+# work on it next, re-measure its route, retry its publication, or look again
+# at a rejection.
+#
+# The backoffice page cannot start a workflow itself -- that would put a
+# GitHub token in a browser -- so it saves the request in Firestore and this
+# picks it up. It only ever dispatches the worker and the requeue workflow with
+# the inputs a person would have typed into their forms; it never writes the
+# orchestration, so their concurrency rules still decide what runs when.
+#
+# A workflow_dispatch made with GITHUB_TOKEN does start a run (it is the
+# documented exception to the rule that GITHUB_TOKEN events trigger nothing).
+#
+# Every fifteen minutes. With nothing asked for, a pass is two Firestore reads.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: orma-trail-requests
+  cancel-in-progress: false
+
+jobs:
+  requests:
+    if: github.event_name == 'workflow_dispatch' || vars.ORMA_WORKER_AUTOMATION_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check worker credentials
+        run: test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+      - run: npm ci
+      - name: Carry out trail board requests
+        run: npm run backoffice:trail-requests

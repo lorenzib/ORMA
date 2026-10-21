@@ -8,6 +8,7 @@
  *   npm run backoffice:reconsider                                   (lists why trails were rejected)
  *   npm run backoffice:reconsider -- --reason not-closed-loop
  *   npm run backoffice:reconsider -- --reason not-closed-loop --apply
+ *   npm run backoffice:reconsider -- --trails osm-1,osm-2 --apply   (named, from the trail board)
  *
  * Dry run by default. The reason must be named: most rejected trails were
  * rejected correctly, and sending those back spends the model budget to reach
@@ -23,11 +24,13 @@ const { compactOrchestration } = require('../workflows/advance-trail-orchestrati
 const { specialistJob } = require('../workflows/apply-dossier-review');
 
 function parseArgs(argv){
-  const out = { reason:'', limit:10, apply:false };
+  const out = { reason:'', trailIds:[], limit:10, apply:false };
   for(let i = 0; i < argv.length; i += 1){
     const arg = String(argv[i]);
     if(arg === '--reason'){ out.reason = argv[i += 1]; continue; }
     if(arg.startsWith('--reason=')){ out.reason = arg.slice('--reason='.length); continue; }
+    if(arg === '--trails'){ out.trailIds = String(argv[i += 1] || '').split(',').map(id => id.trim()).filter(Boolean); continue; }
+    if(arg.startsWith('--trails=')){ out.trailIds = arg.slice('--trails='.length).split(',').map(id => id.trim()).filter(Boolean); continue; }
     if(arg === '--limit'){ out.limit = Number.parseInt(argv[i += 1], 10) || 10; continue; }
     if(arg === '--apply'){ out.apply = true; continue; }
   }
@@ -43,7 +46,7 @@ async function main(options = {}){
   if(!orchestration){ console.log('[reconsider] No orchestration artifact.'); return null; }
   const plan = planReconsideration(orchestration, args);
 
-  if(!args.reason){
+  if(!args.reason && !args.trailIds.length){
     console.log(`[reconsider] ${plan.rejected} rejected trail(s). Name one of these with --reason:`);
     for(const row of plan.reasons) console.log(`[reconsider]   ${row.count}x ${row.reason}`);
     console.log('[reconsider] Nothing was changed.');

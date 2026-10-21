@@ -31,8 +31,25 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(script).toContain('submitTrailReview');
   });
 
-  test('hosted dashboard keeps the MVP trail lanes prominent and parks the rest',()=>{
+  test('Backoffice Home is the trail board, and asks the automation rather than deciding',()=>{
+    // Home answers "where is each trail?" for the whole catalogue. The worker
+    // writes the board; the page reads it and saves requests, never decisions.
     const html=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
+    const script=fs.readFileSync(path.join(output,'backoffice-trail-board.js'),'utf8');
+    const client=fs.readFileSync(path.join(output,'backoffice-firebase.js'),'utf8');
+    expect(html).toContain('<h1>Trails</h1>');
+    expect(html).toContain('id="tbJourney"');
+    expect(html).toContain('id="tbRows"');
+    expect(html).toMatch(/backoffice-trail-board\.js\?v=[\w-]+/);
+    expect(script).toContain("remote.getArtifact('trail-board')");
+    expect(script).toContain('remote.submitTrailRequest(');
+    expect(client).toContain("collection(db,'backofficeTrailRequests')");
+    // A request changes what is worked on, never whether a trail is verified.
+    expect(script).not.toMatch(/submit(?:Dossier|Publication|Route)Review/);
+  });
+
+  test('the System page keeps the MVP trail lanes prominent and parks the rest',()=>{
+    const html=fs.readFileSync(path.join(output,'backoffice-system.html'),'utf8');
     expect(html).toContain('Needs your decision');
     expect(html).toContain('MVP workstreams');
     expect(html).toContain('Trail coverage');
@@ -71,9 +88,10 @@ describe('separate Firebase backoffice Hosting package',()=>{
   test('dashboard primary navigation contains only active MVP desks',()=>{
     const html=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
     const nav=html.match(/<nav class="bo-primary-nav"[\s\S]*?<\/nav>/)?.[0]||'';
-    expect(nav).toContain('>Home</a>');
-    expect(nav).toContain('>Existing Trails</a>');
+    expect(nav).toContain('aria-current="page">Trails</a>');
+    expect(nav).toContain('>Trail desk</a>');
     expect(nav).toContain('>Community</a>');
+    expect(nav).toContain('href="backoffice-system.html">System</a>');
     // Hazards and New Trails have no human gate any more: hazards are fully
     // automatic and intake is paused, so neither keeps a desk. Trail photos are
     // sourced by hand, so that desk is gone too.
@@ -100,8 +118,9 @@ describe('separate Firebase backoffice Hosting package',()=>{
   });
 
   test.each([
-    ['trail-verify-desk.html','Existing Trails'],
+    ['trail-verify-desk.html','Trail desk'],
     ['community-moderation-desk.html','Community'],
+    ['backoffice-system.html','System'],
   ])('%s has persistent navigation and a clear current location',(page,current)=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toContain('aria-label="Backoffice navigation"');
@@ -174,7 +193,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
   });
 
   test('hosts community submissions as a distinct protected human gate',()=>{
-    const home=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
+    const home=fs.readFileSync(path.join(output,'backoffice-system.html'),'utf8');
     const html=fs.readFileSync(path.join(output,'community-moderation-desk.html'),'utf8');
     const client=fs.readFileSync(path.join(output,'backoffice-firebase.js'),'utf8');
     const dashboard=fs.readFileSync(path.join(output,'backoffice-hosted-dashboard.js'),'utf8');
