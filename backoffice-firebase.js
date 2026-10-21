@@ -243,6 +243,34 @@ async function submitPublicationReview(input){
   }catch(error){console.error('submitPublicationReview failed:',error);return writeFailure('publication-review-submit-failed',error);}
 }
 
+// Requests from the trail board. Saved here, carried out by the ORMA trail
+// requests workflow, which dispatches the worker or the requeue job.
+const TRAIL_REQUEST_ACTIONS=['start','prioritise','resurvey','retry-publication','reconsider'];
+async function submitTrailRequest(input){
+  const moderator=await moderatorIdentity();
+  if(!moderator)return {ok:false,error:'moderator-required'};
+  const action=String(input?.action||'');
+  if(!TRAIL_REQUEST_ACTIONS.includes(action))return {ok:false,error:'unknown-action'};
+  try{
+    const ref=await addDoc(collection(db,'backofficeTrailRequests'),{
+      contractVersion:'1.0.0',type:'trail-request',status:'queued',
+      trailId:String(input.trailId||''),trailName:String(input.trailName||input.trailId||'').slice(0,160),
+      action,submittedAt:serverTimestamp(),submittedBy:moderator.uid,
+      submittedByEmail:String(currentUser?.email||'moderator').slice(0,200),publicMutationAllowed:false,
+    });
+    return {ok:true,requestId:ref.id,status:'queued'};
+  }catch(error){console.error('submitTrailRequest failed:',error);return writeFailure('trail-request-submit-failed',error);}
+}
+
+// The newest requests, for the board's status chips. One read per request.
+async function getTrailRequests(count=40){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',requests:[]};
+  try{
+    const snapshot=await getDocs(query(collection(db,'backofficeTrailRequests'),orderBy('submittedAt','desc'),limit(count)));
+    return {ok:true,requests:snapshot.docs.map(item=>({id:item.id,...item.data()}))};
+  }catch(error){console.error('getTrailRequests failed:',error);return {ok:false,error:'trail-requests-read-failed',requests:[]};}
+}
+
 async function submitDossierReview(input){
   const moderator=await moderatorIdentity();
   if(!moderator)return {ok:false,error:'moderator-required'};
@@ -400,7 +428,7 @@ window.DoloPawsAuth={
   async logOut(){await signOut(auth);currentUser=null;},
 };
 window.DoloPawsModeration={getModeratorStatus:moderatorCheck,getQueue:getModerationQueue,decide:moderateContent,getSiteNotices,addSiteNotice,deleteSiteNotice};
-window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getNewsletterReviews,getAnalystReviews,getModerationQueue,moderateContent,submitTrailReview,submitPublicationReview,submitDossierReview,getRouteReviews,submitRouteReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitNewsletterReview,submitAnalystReview};
+window.ORMABackoffice={getArtifact,getTrailRequests,submitTrailRequest,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getNewsletterReviews,getAnalystReviews,getModerationQueue,moderateContent,submitTrailReview,submitPublicationReview,submitDossierReview,getRouteReviews,submitRouteReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitNewsletterReview,submitAnalystReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;

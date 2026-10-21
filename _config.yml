@@ -31,7 +31,9 @@ exclude:
   - backoffice-firebase.js
   - backoffice-hosted-login.html
   - backoffice-hosted-review.html
+  - backoffice-hosted-system.html
   - backoffice-hosted-dashboard.js
+  - backoffice-trail-board.js
   - newsletter-desk.js
   - social-desk.js
   - trail-verify-desk.html
