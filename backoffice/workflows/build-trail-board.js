@@ -171,7 +171,10 @@ function entryFor(trail, flow, publication, jobOwed, slug){
     // by the route audit and later rejected by a pipeline re-check keeps its
     // seal (no publication may take one away), and nobody would know unless
     // the board said so.
-    if(state !== 'imported' && badge !== 'imported') entry.flag = 'disagree';
+    // Stuck wins: a blocked trail needs somebody whatever its badge says, and
+    // letting the disagreement overwrite it counted Sentier des Patriotes --
+    // blocked 61 days -- as zero stuck trails on the first live board.
+    if(state !== 'imported' && badge !== 'imported' && entry.flag !== 'stuck') entry.flag = 'disagree';
   }else{
     entry.stage = 'research';
     entry.next = state ? state.replace(/-/g, ' ') : 'In verification';
