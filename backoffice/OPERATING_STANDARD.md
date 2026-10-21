@@ -1305,11 +1305,11 @@ Research is deferred, not cancelled. A sealed trail's page is filled in by the
 agents afterwards, at whatever rate credits allow, by the safety-research lane
 below.
 
-## PROPOSED — A reviewed trail is sent back for its safety research
+## A reviewed trail is sent back for its safety research
 
-> **Status: proposal, 21 October 2026. Not built.** Merging this section is the
-> approval to build it; until then the lane above is still unbuilt and nothing
-> in this section is in force.
+> **Status: approved 22 October 2026, with all three decisions below as
+> drafted.** In force from the release that builds the lane; until it ships,
+> the lane above is still unbuilt.
 
 The fast lane takes a trail to the gate on its geometry survey alone, and
 nothing ever sends it to the specialists afterwards. Measured 21 October 2026:
@@ -1366,7 +1366,7 @@ A trail is researched only by a specialist that answered.
 measurement: model calls and Firestore reads per trail, from the drain ledger
 and job records, recorded here before the per-pass limit is raised.
 
-### Decisions this proposal needs
+### Decisions, approved 22 October 2026
 
 1. **Does "looked, could not settle it" earn the seal for access?** Under the
    rule in *A badge claims only what a specialist was asked*, a category counts
