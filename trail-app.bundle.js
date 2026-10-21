@@ -6427,8 +6427,11 @@ function effectiveOverrides(profile, adjustOverride){
     'osm-12731853': {
       // Route audit: 26 July 2026. The district overview board and route page
       // were checked against OSM relation 12731853. Official figures replace
-      // the importer elevation estimate; dog rules for the Laugen protected
-      // biotope remain unresolved, so this trail stays under review.
+      // the importer elevation estimate. Access: 21 October 2026. The Natz-Schabs
+      // landscape plan (Durchfuehrungsbestimmungen in force since 4 April 2025,
+      // Art. 3) protects Biotop 12/1 Laugen and lists what is forbidden inside
+      // it: leaving the marked paths, disturbing wild animals, bathing. It
+      // neither bans dogs nor sets a leash rule, which settles the access check.
       distance: 4.2,
       elevation: 100,
       hours: '1.5',
@@ -6449,7 +6452,9 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 4.2, elev: 815 }
       ],
       imagePlaceholder: true,
-      reviewedAt: '2026-07-26',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-21',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'No reusable trail photograph is used; the official board image is retained only as a source, not copied.',
@@ -6459,22 +6464,21 @@ function effectiveOverrides(profile, adjustOverride){
         elevation: 'Profile present and scaled to 4.2 km; headline ascent corrected from the sampled 181 m to the official 100 m.'
       },
       graduation: {
-        status: 'in-progress',
+        status: 'verified',
         required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards'],
-        blockers: {
-          access: 'The official route crosses the protected Laugen biotope but the available route material does not state the dog-access or leash rule for this specific reserve.'
-        }
+        completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        blockers: {}
       },
       verified: {
-        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards'],
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Bezirksgemeinschaft Eisacktal, Rundweg Laugen Elvas',
           'Official Laugen–Elvas overview board',
           'South Tyrol nature portal, protected biotopes',
+          'Landscape plan of Natz-Schabs, implementing provisions, Art. 3 (Biotop 12/1 Laugen)',
           'OpenStreetMap relation 12731853 and mapped water nodes'
         ],
-        date: '2026-07-26'
+        date: '2026-10-21'
       },
       shadeCoverage: 20,
       heatRisk: 'moderate',
@@ -6483,8 +6487,8 @@ function effectiveOverrides(profile, adjustOverride){
       shadeDescription: 'The official description places most of the route in an intensively cultivated landscape, with a smaller reed-fringed pond and riparian-woodland section.',
       terrainDescription: 'The mapped circuit mixes paved, unpaved, gravel and natural-ground sections; neither the official board nor OSM records an alpine-grade or equipped section.',
       waterDescription: 'Two drinking-water points are mapped near Elvas at exact coordinates; one is marked seasonal. Availability can change, so carry a backup supply.',
-      dogNotes: 'Dog access for the protected Laugen biotope is not yet confirmed. Keep your dog leashed, stay on the marked route and check the posted reserve rules before entering.',
-      tips: 'The official circuit starts in Elvas and visits the Laugen wetland and its information stations. The route is 4.2 km with about 100 m ascent and takes roughly 1½ hours.',
+      dogNotes: 'Dogs are not banned from the protected Laugen biotope, and its rules set no leash requirement. They do forbid leaving the marked paths, disturbing wild animals and bathing, so keep your dog on the path, out of the pond and under close control; a short lead through the wetland is the simple way to do that.',
+      tips: 'The official circuit starts in Elvas and visits the Laugen wetland and its information stations. The route is 4.2 km with about 100 m ascent and takes roughly 1½ hours. Dogs are allowed through the Laugen biotope, but its protection rules forbid leaving the marked path, disturbing wildlife and bathing, so keep your dog on the path, out of the pond and under close control.',
       sourceLinks: [
         {
           label: 'Bezirksgemeinschaft Eisacktal, Rundweg Laugen Elvas',
@@ -6497,6 +6501,10 @@ function effectiveOverrides(profile, adjustOverride){
         {
           label: 'South Tyrol nature portal, protected biotopes',
           url: 'https://natur-raum.provinz.bz.it/de/biotope'
+        },
+        {
+          label: 'Landscape plan of Natz-Schabs, implementing provisions (newPlan)',
+          url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/10974'
         },
         {
           label: 'Waymarked Trails, OSM relation 12731853',

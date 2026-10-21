@@ -48,12 +48,30 @@ describe('trail presentation audits', () => {
     });
   });
 
+  test('Laugen Elvas graduates on the biotope rule, not on an assumption about dogs', () => {
+    // Its last open check was access. The Natz-Schabs landscape plan protects
+    // Biotop 12/1 Laugen and forbids leaving the marked paths, disturbing wild
+    // animals and bathing; it neither bans dogs nor sets a leash rule. The
+    // page has to say exactly that, and cite where it comes from.
+    const trail = loadTrails().find((candidate) => candidate.id === 'osm-12731853');
+    expect(trail.curated).toBe(true);
+    expect(trail.tier).toBe('route-audited');
+    expect(trail.graduation.status).toBe('verified');
+    expect(trail.graduation.completed).toEqual(trail.graduation.required);
+    expect(trail.tips).toMatch(/marked path/);
+    expect(trail.graduation.blockers).toEqual({});
+    expect(trail.verified.categories).toContain('access');
+    expect(trail.verified.sources.some((source) => /Natz-Schabs/.test(source))).toBe(true);
+    expect(trail.sourceLinks.some((link) => /newplan\.civis\.bz\.it/.test(link.url))).toBe(true);
+    expect(trail.dogNotes).toMatch(/not banned/);
+    expect(trail.dogNotes).toMatch(/marked paths/);
+    expect(trail.dogNotes).not.toMatch(/not yet confirmed/);
+  });
+
   test.each([
-    // Laugen Elvas is documented by name only with no numbered waymark, which
-    // is the named-only alternative the requirement allows. Anello del Sole
-    // stays open: its municipal listing shows "5 - Anello del Sole" and no
-    // official source settles whether that 5 is a waymark or a list index.
-    ['osm-12731853', 4.2, 100, ['access']],
+    // Anello del Sole stays open: its municipal listing shows "5 - Anello del
+    // Sole" and no official source settles whether that 5 is a waymark or a
+    // list index.
     ['osm-7548344', 3, 250, ['routeNumbers', 'livestock', 'access']],
   ])('%s records official figures and precise remaining blockers', (id, distance, elevation, blockers) => {
     const trail = loadTrails().find((candidate) => candidate.id === id);
