@@ -948,6 +948,29 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // Requests from the trail board: start, work on next, re-measure, retry
+    // publishing, look again. The worker-side processor marks them; nobody
+    // edits or deletes one from the browser, so the history is a receipt.
+    match /backofficeTrailRequests/{requestId} {
+      allow get, list: if isModerator();
+      allow create: if isModerator()
+        && request.resource.data.keys().hasOnly([
+          'contractVersion', 'type', 'status', 'trailId', 'trailName', 'action',
+          'submittedAt', 'submittedBy', 'submittedByEmail', 'publicMutationAllowed'
+        ])
+        && request.resource.data.contractVersion == '1.0.0'
+        && request.resource.data.type == 'trail-request'
+        && request.resource.data.status == 'queued'
+        && isTrailId(request.resource.data.trailId)
+        && isShortString(request.resource.data.trailName, 160)
+        && request.resource.data.action in ['start', 'prioritise', 'resurvey', 'retry-publication', 'reconsider']
+        && isShortString(request.resource.data.submittedByEmail, 200)
+        && request.resource.data.submittedAt == request.time
+        && request.resource.data.submittedBy == request.auth.uid
+        && request.resource.data.publicMutationAllowed == false;
+      allow update, delete: if false;
+    }
+
     match /backofficeDossierReviews/{reviewId} {
       allow get, list: if isModerator();
       allow create: if isModerator()
