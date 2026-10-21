@@ -1,7 +1,9 @@
 'use strict';
 
-const {researchedSafetyCategories,SAFETY_CATEGORIES}=require('./workflows/compile-verified-dossier');
+const {researchedSafetyCategories,SAFETY_CATEGORIES,SAFETY_CATEGORY_OF_CLAIM}=require('./workflows/compile-verified-dossier');
 const {graduationFor,SAFETY_CHECKS,GRADUATION_CHECKS}=require('./workflows/build-publication-staging');
+const {BASE_SPECIALISTS}=require('./workflows/apply-dossier-review');
+const {CATEGORIES}=require('./workflows/run-trail-specialist');
 
 // Publication asserted all eleven checks complete and all six safety
 // categories reviewed, unconditionally, on every trail.
@@ -47,6 +49,58 @@ describe('a badge claims only what a specialist was asked',()=>{
     // Its claim ids are route guidance and geometry; it never asks about water.
     expect(researchedSafetyCategories({specialistOutputs:[output('cartographer',['water','access'])]}))
       .toEqual([]);
+  });
+
+  test('a claim counts by the category it answers, not by its id',()=>{
+    // The ids the specialists are actually asked for, taken from the job spec
+    // rather than retyped: none of dog-access, leash-rules, shade or surface is
+    // a category name. Matching on the id recorded at most water, exposure and
+    // livestock, so no trail could ever reach all eleven checks.
+    const asked=Object.fromEntries(BASE_SPECIALISTS.map(spec=>[spec.agentId,spec.claimIds]));
+    expect(asked.regulatoryRanger).toEqual(expect.arrayContaining(['dog-access','leash-rules']));
+    expect(asked.regulatoryRanger).not.toContain('access');
+    expect(asked.terrainPoi).toEqual(expect.arrayContaining(['shade','surface']));
+    expect(asked.terrainPoi).not.toEqual(expect.arrayContaining(['heat']));
+    expect(asked.terrainPoi).not.toEqual(expect.arrayContaining(['surfaceHazards']));
+
+    const claim=(id,category,finding='supported-proposal')=>({id,category,finding});
+    const review={specialistOutputs:[
+      {agentId:'regulatoryRanger',result:{claims:[claim('dog-access','access'),claim('leash-rules','access','unresolved')]}},
+      {agentId:'terrainPoi',result:{claims:[claim('water','water'),claim('shade','heat'),claim('surface','surfaceHazards'),
+        claim('exposure','exposure'),claim('livestock','livestock','varies')]}},
+    ]};
+    expect(researchedSafetyCategories(review)).toEqual([...SAFETY_CATEGORIES]);
+  });
+
+  test('an assigned claim answers its safety question whatever the model labelled it',()=>{
+    // The category is the model's label; a shade claim filed under `route`
+    // still answers the heat question it was asked.
+    const review={specialistOutputs:[
+      {agentId:'regulatoryRanger',result:{claims:[{id:'leash-rules',category:'route',finding:'unresolved'}]}},
+      {agentId:'terrainPoi',result:{claims:[{id:'shade',category:'route'},{id:'surface'}]}},
+    ]};
+    expect(researchedSafetyCategories(review)).toEqual(['heat','surfaceHazards','access']);
+  });
+
+  test('every id that stands for a safety question is one a specialist is asked',()=>{
+    const assigned=BASE_SPECIALISTS.flatMap(spec=>spec.claimIds);
+    for(const [id,category] of Object.entries(SAFETY_CATEGORY_OF_CLAIM)){
+      expect(assigned).toContain(id);
+      expect(SAFETY_CATEGORIES).toContain(category);
+    }
+  });
+
+  test('every safety category is one a claim can declare',()=>{
+    // The schema's category enum is what a specialist may answer with, so a
+    // category outside it could never be researched at all.
+    for(const category of SAFETY_CATEGORIES)expect(CATEGORIES).toContain(category);
+  });
+
+  test('a claim in another category does not count for a safety one',()=>{
+    const review={specialistOutputs:[{agentId:'regulatoryRanger',result:{claims:[
+      {id:'seasonal-restrictions',category:'route',finding:'supported-proposal'},
+    ]}}]};
+    expect(researchedSafetyCategories(review)).toEqual([]);
   });
 
   test('the two halves agree on which six they are',()=>{

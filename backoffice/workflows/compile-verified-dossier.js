@@ -654,13 +654,31 @@ const SAFETY_CATEGORIES=Object.freeze(['water','heat','exposure','livestock','su
  * because a claim the moderator accepted as unknown may not survive into them,
  * and the fact that somebody looked must survive either way.
  */
+// The assigned claim ids that answer a safety question under another name.
+// Shade is what the heat check rests on (shadeCoverage, heatRisk); surface is
+// the surface-hazard check; the Ranger's dog-access and leash rules are access.
+const SAFETY_CATEGORY_OF_CLAIM=Object.freeze({
+  shade:'heat',surface:'surfaceHazards','dog-access':'access','leash-rules':'access',
+});
+
 function researchedSafetyCategories(review){
   const asked=new Set();
   for(const output of review?.specialistOutputs||[]){
     if(output.agentId==='cartographer')continue;
     for(const claim of output.result?.claims||[]){
+      // By the claim's category, not its id. The Ranger is asked for
+      // `dog-access` and `leash-rules`, the terrain analyst for `shade` and
+      // `surface`: none of those ids is a category name, so matching on the id
+      // could record water, exposure and livestock and never the other three,
+      // and no trail could reach the eleventh check through the pipeline. Every
+      // claim carries the category it answers -- the schema requires it.
+      const category=String(claim?.category||'');
       const id=String(claim?.id||'');
+      if(SAFETY_CATEGORIES.includes(category))asked.add(category);
       if(SAFETY_CATEGORIES.includes(id))asked.add(id);
+      // The category is the model's label; the id is what it was asked. A
+      // shade claim labelled `route` still answers the heat question.
+      if(SAFETY_CATEGORY_OF_CLAIM[id])asked.add(SAFETY_CATEGORY_OF_CLAIM[id]);
     }
   }
   return SAFETY_CATEGORIES.filter(category=>asked.has(category));
@@ -785,4 +803,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={routeGuidanceByClaim,SAFETY_CATEGORIES,researchedSafetyCategories,answerStandingFor,trailRecordFor,citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,establishedRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={routeGuidanceByClaim,SAFETY_CATEGORIES,SAFETY_CATEGORY_OF_CLAIM,researchedSafetyCategories,answerStandingFor,trailRecordFor,citableRelations,RECORD_ANSWERABLE_CLAIMS,recordReadRouteGuidance,MAP_ANSWERABLE_CLAIMS,mapReadRouteGuidance,supportedRouteGuidance,MIN_ACCEPTANCE_REASON,UNWAIVABLE_BLOCKER_IDS,blockerId,compositeRelations,routeIdentityValue,dossierBlockingReasons,currentBlockingReasons,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,establishedRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
