@@ -264,7 +264,10 @@
     'osm-7548344': {
       // Route audit: 26 July 2026. The CAI Lozzo route description and map
       // were checked against OSM relation 7548344. Official distance/ascent
-      // replace noisy terrain-sampling figures. Dog rules remain unresolved.
+      // replace noisy terrain-sampling figures. 21 October 2026: the CAI sheet
+      // defines "sv." as the waymark and lists this loop as sv. 5; both
+      // municipalities the loop crosses require a leash on trails; no pasture
+      // is described or mapped along the line.
       distance: 3,
       elevation: 250,
       hours: '1.5–2',
@@ -284,32 +287,34 @@
         { km: 3, elev: 945 }
       ],
       imagePlaceholder: true,
-      reviewedAt: '2026-07-26',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-21',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'No reusable trail photograph is used; source-page images are not copied.',
         route: 'Closed OSM relation checked against CAI Lozzo route 5 and its published map; the official description lists a 3 km loop.',
+        routeNumbers: 'The CAI Lozzo sheet defines sv. as the waymark (Anelli e Vie are marked green-and-white on the ground) and lists this loop as "Anello del sole (sv. 5)"; OSM records the same mark, a 5 on a green-and-white flag. Follow waymark 5 from Niante Aze round the loop. The official description names no other number, so no numbered switch applies.',
         mapPoints: 'No water, hut or food point is mapped on the loop; the mapped route start retains exact coordinates.',
         elevation: 'Profile present and scaled to 3 km; headline ascent corrected from the sampled 422 m to the official 250 m.'
       },
       graduation: {
-        status: 'in-progress',
+        status: 'verified',
         required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'surfaceHazards'],
-        blockers: {
-          routeNumbers: 'Verify the ordered trail-number guidance and every numbered switch, or an authoritative named-only/no-switch statement.',
-          livestock: 'The available official route material does not address current livestock or guardian-dog conditions.',
-          access: 'The available official route material does not state a route-specific dog-access or leash rule.'
-        }
+        completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        blockers: {}
       },
       verified: {
-        categories: ['water', 'heat', 'exposure', 'surfaceHazards'],
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'CAI Lozzo di Cadore, Anelli e Vie route descriptions',
           'Lozzo di Cadore, Anello del Sole route page and map',
-          'OpenStreetMap relation 7548344'
+          'OpenStreetMap relation 7548344',
+          'Comune di Lozzo di Cadore, Regolamento di Polizia Urbana (2018), Art. 39',
+          'Comune di Domegge di Cadore, Regolamento di Polizia Urbana (1998, amended 2023), dogs in public places',
+          'OpenStreetMap land cover and farm buildings along the loop'
         ],
-        date: '2026-07-26'
+        date: '2026-10-21'
       },
       shadeCoverage: 40,
       heatRisk: 'moderate',
@@ -318,8 +323,8 @@
       shadeDescription: 'The official description records pine, juniper, larch and spruce along the first climb, followed by a more open view beyond Lago d’Aosto.',
       terrainDescription: 'The marked loop climbs gently toward Lago d’Aosto on mostly natural ground. The official description rates the wider route collection E and names no equipped or alpine-grade section on route 5.',
       waterDescription: 'No drinking-water point is mapped on the loop. Carry a full supply; the marsh at Lago d’Aosto is not a drinking source.',
-      dogNotes: 'Route-specific dog access and livestock conditions are not yet confirmed. Keep your dog leashed, stay on the green-and-white route 5 markings and check local signs.',
-      tips: 'Start at Niante Aze outside Lozzo and follow route 5 toward Lago d’Aosto. The official route is about 3 km with 250 m ascent; carry all water you need.',
+      dogNotes: 'Dogs must be on a leash: Lozzo di Cadore requires one on all public places, trails included, and the western end of the loop lies in Domegge di Cadore, which requires a leash of at most 1.3 m or a muzzle. No pasture is described or mapped along the loop, but two farm buildings stand beside the path, so animals may be kept close by.',
+      tips: 'Start at Niante Aze outside Lozzo and follow route 5 toward Lago d’Aosto. The official route is about 3 km with 250 m ascent; carry all water you need. Keep your dog on a leash throughout: Lozzo di Cadore requires one on its trails, Domegge di Cadore (the western end of the loop) a leash of at most 1.3 m or a muzzle, and the path passes two farm buildings where animals may be kept.',
       sourceLinks: [
         {
           label: 'Lozzo di Cadore, Anello del Sole',
@@ -332,6 +337,14 @@
         {
           label: 'Lozzo di Cadore, route map',
           url: 'https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-carta-25000.pdf'
+        },
+        {
+          label: 'Comune di Lozzo di Cadore, Regolamento di Polizia Urbana (Art. 39, dogs)',
+          url: 'https://lozzo-di-cadore-api.municipiumapp.it/s3/3676/allegati/regolamento-polizia-urbana-2018.pdf'
+        },
+        {
+          label: 'Comune di Domegge di Cadore, Regolamento di Polizia Urbana',
+          url: 'https://comune.domeggedicadore.bl.it/documenti/2556047/regolamento-polizia-urbana'
         },
         {
           label: 'Waymarked Trails, OSM relation 7548344',

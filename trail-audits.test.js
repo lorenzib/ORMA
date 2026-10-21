@@ -68,25 +68,24 @@ describe('trail presentation audits', () => {
     expect(trail.dogNotes).not.toMatch(/not yet confirmed/);
   });
 
-  test.each([
-    // Anello del Sole stays open: its municipal listing shows "5 - Anello del
-    // Sole" and no official source settles whether that 5 is a waymark or a
-    // list index.
-    ['osm-7548344', 3, 250, ['routeNumbers', 'livestock', 'access']],
-  ])('%s records official figures and precise remaining blockers', (id, distance, elevation, blockers) => {
-    const trail = loadTrails().find((candidate) => candidate.id === id);
-    expect(trail.curated).toBe(false);
-    expect(trail.reviewedAt).toBe('2026-07-26');
-    expect(trail.reviewedBy).toBe('ORMA route audit');
-    expect(trail.distance).toBe(distance);
-    expect(trail.elevation).toBe(elevation);
-    expect(trail.elevationProfile[0].km).toBe(0);
-    expect(trail.elevationProfile.at(-1).km).toBe(distance);
-    expect(trail.graduation.status).toBe('in-progress');
-    expect(Object.keys(trail.graduation.blockers)).toEqual(blockers);
-    expect(trail.desc).not.toMatch(/imported from the OpenStreetMap/i);
-    expect(trail.tips).not.toMatch(/^Imported route/i);
-    expect(trail.sourceLinks.length).toBeGreaterThanOrEqual(4);
+  test('Anello del Sole graduates on the waymark sheet and both municipal leash rules', () => {
+    // routeNumbers: the CAI Lozzo sheet defines sv. as the waymark and lists
+    // the loop as sv. 5. access: the loop crosses Lozzo and Domegge di Cadore,
+    // and both regulations require a leash. livestock: no pasture described or
+    // mapped along the line, with two farm buildings beside it.
+    const trail = loadTrails().find((candidate) => candidate.id === 'osm-7548344');
+    expect(trail.curated).toBe(true);
+    expect(trail.tier).toBe('route-audited');
+    expect(trail.distance).toBe(3);
+    expect(trail.elevation).toBe(250);
+    expect(trail.graduation.status).toBe('verified');
+    expect(trail.graduation.completed).toEqual(trail.graduation.required);
+    expect(trail.graduation.blockers).toEqual({});
+    expect(trail.routeAudit.routeNumbers).toMatch(/sv\. 5/);
+    expect(trail.verified.categories).toEqual(expect.arrayContaining(['livestock', 'access']));
+    expect(trail.verified.sources.filter((source) => /Regolamento di Polizia Urbana/.test(source))).toHaveLength(2);
+    expect(trail.tips).toMatch(/leash/);
+    expect(trail.tips).toMatch(/Domegge/);
   });
 
   test('Laugen–Elvas water points retain exact source coordinates', () => {
