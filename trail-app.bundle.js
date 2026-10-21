@@ -14551,7 +14551,6 @@ function renderTrail(t){
         'lago-braies':'images/lago-di-braies.webp',
         'lago-carezza':'images/lago-di-carezza.webp',
         'osm-16322228':'images/boucle-du-marais-des-chassettes.webp',
-        'osm-3982382':'images/circuit-beatrice-de-savoie.webp',
         'osm-10116380':'images/itineraire-decouverte-de-la-nature.webp',
       };
       const responsiveSource = responsivePhotoByTrailId[t.id] || t.imageIcon;
@@ -14559,7 +14558,6 @@ function renderTrail(t){
         'images/lago-di-braies.webp':[480,900],
         'images/lago-di-carezza.webp':[480,900],
         'images/boucle-du-marais-des-chassettes.webp':[480,960,1280],
-        'images/circuit-beatrice-de-savoie.webp':[480,960,1280],
         'images/itineraire-decouverte-de-la-nature.webp':[480,960,1280],
       }[responsiveSource];
       if(responsiveWidths){
@@ -15874,7 +15872,6 @@ if(document.querySelector('.td2')){
       'images/lago-di-braies.webp':'images/lago-di-braies-480.webp',
       'images/lago-di-carezza.webp':'images/lago-di-carezza-480.webp',
       'images/boucle-du-marais-des-chassettes.webp':'images/boucle-du-marais-des-chassettes-480.webp',
-      'images/circuit-beatrice-de-savoie.webp':'images/circuit-beatrice-de-savoie-480.webp',
       'images/itineraire-decouverte-de-la-nature.webp':'images/itineraire-decouverte-de-la-nature-480.webp',
     }[source] || source);
     grid.innerHTML = picks.map(o => `
@@ -15927,7 +15924,6 @@ if(document.querySelector('.td2')){
       const stem = String(t.imageIcon).replace(/\.webp$/, '');
       const wideSources = [
         'images/boucle-du-marais-des-chassettes.webp',
-        'images/circuit-beatrice-de-savoie.webp',
         'images/itineraire-decouverte-de-la-nature.webp',
       ];
       const background = wideSources.includes(t.imageIcon)
