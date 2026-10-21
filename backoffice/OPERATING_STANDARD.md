@@ -1302,9 +1302,89 @@ for. And a trail whose directions are not settled waits for the agents exactly
 as it always did.
 
 Research is deferred, not cancelled. A sealed trail's page is filled in by the
-agents afterwards, at whatever rate credits allow, and that lane is not built
-yet — until it is, a trail sealed this way carries unknowns a later pass would
-have answered.
+agents afterwards, at whatever rate credits allow, by the safety-research lane
+below.
+
+## A reviewed trail is sent back for its safety research
+
+> **Status: approved 22 October 2026, with all three decisions below as
+> drafted.** In force from the release that builds the lane; until it ships,
+> the lane above is still unbuilt.
+
+The fast lane takes a trail to the gate on its geometry survey alone, and
+nothing ever sends it to the specialists afterwards. Measured 21 October 2026:
+**eleven trails** stand at ready-for-editorial on the survey alone, seven of
+them already published as *Reviewed by ORMA*, every one at **5 of 11** checks —
+route, numbers, map points, elevation, photo — and **none of the six safety
+checks**. Nothing in the pipeline can move them further. The seal they cannot
+reach is the one that tells a walker ORMA has looked at water, heat, exposure,
+livestock, surface hazards and access.
+
+The first two trails to graduate (Rundweg Laugen Elvas, Anello del Sole, both
+21 October) got there by hand, through `trail-audits.js`, outside the pipeline.
+That does not scale; this lane is the pipeline doing the same work.
+
+**Who enters.** A catalogue trail whose directions are settled and published —
+`verificationScope: routeReviewed`, `ormaVerified: false` — and whose dossier
+records fewer than six researched safety categories. Trails with a live page
+first, then the oldest-sealed. A trail still in the route pipeline never enters:
+it gets its specialists there.
+
+**What is asked.** Only the two specialists the fast lane skipped, and only the
+safety questions:
+
+- `regulatoryRanger` — `dog-access`, `leash-rules`, `seasonal-restrictions`
+  (plus `rifugio-dog-policy` / `lift-dog-policy` only where the record names a
+  rifugio or a lift on the route);
+- `terrainPoi` — `water`, `shade`, `surface`, `exposure`, `livestock`, `animals`.
+
+Logistics and the cartographer are not asked again: the directions are settled
+and this lane must never reopen them. Every source ladder and evidence rule the
+specialists already follow applies unchanged — current official authorities
+first, every jurisdiction the line crosses, never silence as absence.
+
+**What it may change.** Only the six safety categories and the page detail
+derived from them. The research recompiles the dossier; `researchedSafetyCategories`
+records what was asked (by claim category, PR #916); `graduationFor` derives the
+graduation; publication goes through the existing `routeReviewed` →
+full-verification path and its pull request. When all six are researched the
+trail earns the seal; short of that it stays reviewed with a fuller page. **No
+publication may take a seal away** applies unchanged, and this lane cannot touch
+route guidance, geometry or the directions on the page.
+
+**Budget.** Its own budget, separate from the agent budget for trails under
+route research, so it can never starve the route lane and the route lane never
+starves it: **at most two trails a pass** (two specialist calls each, plus any
+resolution attempts the ladder already allows), switched by
+`ORMA_SAFETY_RESEARCH_ENABLED` with the same kill-switch shape as gate dispatch.
+Free work still goes first. A job refused for no credits is a provider outage
+(`provider-outage.js`): it is requeued, as in every lane, never counted as
+research, and `worker-productivity.js` reports the run as having done no work.
+A trail is researched only by a specialist that answered.
+
+**Measured, not estimated.** The first ten trails through the lane are the
+measurement: model calls and Firestore reads per trail, from the drain ledger
+and job records, recorded here before the per-pass limit is raised.
+
+### Decisions, approved 22 October 2026
+
+1. **Does "looked, could not settle it" earn the seal for access?** Under the
+   rule in *A badge claims only what a specialist was asked*, a category counts
+   as researched whatever the finding — so a trail whose Ranger found no dog
+   rule anywhere would be sealed with access shown as unknown. Proposed:
+   **access and livestock need a settled finding** (supported, or `varies` with
+   what it varies with) for the seal; the other four keep the
+   whatever-the-finding rule. Both hand-graduated trails had settled answers.
+2. **A finding that dogs are not allowed.** Research may establish that dogs
+   are banned on part of a published walk. Proposed: such a trail **does not
+   earn the seal and is taken off the published catalogue** pending review,
+   rather than sealed with a ban on its page.
+3. **Reading documents.** The binding rules for both hand-graduated trails sat
+   in documents a web search does not read well: a landscape plan behind a map
+   viewer, and a scanned municipal regulation. Proposed: the lane may cite a
+   document the specialist names but cannot read as `unresolved` with the
+   document's address, and those trails surface on the trail board for a hand
+   audit, rather than being guessed.
 
 ## Approval means every blocker was addressed, not that there were none
 
