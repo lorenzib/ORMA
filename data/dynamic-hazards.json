@@ -1,7 +1,32 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-21T07:29:42.858Z",
+  "generatedAt": "2026-10-21T10:24:12.349Z",
   "hazards": [
+    {
+      "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
+      "state": "active",
+      "severity": "severe",
+      "event": "Orange Rain Warning",
+      "area": "Friuli Venezia Giulia",
+      "title": "rain warning for Friuli Venezia Giulia",
+      "message": "An official severe rain warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-italy",
+      "sourceLabel": "MeteoAlarm Italy",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/41b28890-1fd4-4096-b182-4a785e254982",
+      "identifier": "2.49.0.0.380.3.IT.261021112735.215",
+      "effectiveAt": "2026-10-20T18:00:00+00:00",
+      "expiresAt": "2026-10-22T05:59:00+00:00",
+      "firstPublishedAt": "2026-10-19T22:21:40.478Z",
+      "lastSeenAt": "2026-10-21T10:24:12.349Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "piancavallo"
+      ],
+      "trailNames": [
+        "Piancavallo Malghe Loop"
+      ],
+      "sourceStatus": "available"
+    },
     {
       "id": "meteoalarm-italy:rain:veneto",
       "state": "active",
@@ -12,12 +37,12 @@
       "message": "An official severe rain warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-italy",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/6b8c0598-4a34-4927-87c4-3db14e4f1ae6",
-      "identifier": "2.49.0.0.380.3.IT.261020142810.036",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/f4454332-581c-4330-9615-a7861f0cc397",
+      "identifier": "2.49.0.0.380.3.IT.261021112735.180",
       "effectiveAt": "2026-10-20T18:00:00+00:00",
       "expiresAt": "2026-10-21T23:59:00+00:00",
       "firstPublishedAt": "2026-10-19T22:21:40.478Z",
-      "lastSeenAt": "2026-10-21T07:29:42.858Z",
+      "lastSeenAt": "2026-10-21T10:24:12.349Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -52,6 +77,31 @@
       "sourceStatus": "available"
     },
     {
+      "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
+      "state": "active",
+      "severity": "severe",
+      "event": "Orange Thunderstorm Warning",
+      "area": "Friuli Venezia Giulia",
+      "title": "thunderstorm warning for Friuli Venezia Giulia",
+      "message": "An official severe thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-italy",
+      "sourceLabel": "MeteoAlarm Italy",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/8bdcea3b-3b0e-4ceb-a21d-c9eb16275f17",
+      "identifier": "2.49.0.0.380.3.IT.261021112735.214",
+      "effectiveAt": "2026-10-20T18:00:00+00:00",
+      "expiresAt": "2026-10-22T05:59:00+00:00",
+      "firstPublishedAt": "2026-10-18T22:19:35.615Z",
+      "lastSeenAt": "2026-10-21T10:24:12.349Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "piancavallo"
+      ],
+      "trailNames": [
+        "Piancavallo Malghe Loop"
+      ],
+      "sourceStatus": "available"
+    },
+    {
       "id": "meteoalarm-italy:thunderstorm:veneto",
       "state": "active",
       "severity": "severe",
@@ -61,12 +111,12 @@
       "message": "An official severe thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-italy",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/84fa98f7-5c08-42ec-bf84-f41504e9e9ce",
-      "identifier": "2.49.0.0.380.3.IT.261020142810.037",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/4d40ed30-12df-4bb9-8f08-1105fa29c911",
+      "identifier": "2.49.0.0.380.3.IT.261021112735.179",
       "effectiveAt": "2026-10-20T18:00:00+00:00",
       "expiresAt": "2026-10-21T23:59:00+00:00",
       "firstPublishedAt": "2026-10-18T22:19:35.615Z",
-      "lastSeenAt": "2026-10-21T07:29:42.858Z",
+      "lastSeenAt": "2026-10-21T10:24:12.349Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -110,12 +160,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-italy",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/bd8d9b55-2ff8-4c5d-b8b2-6aa0706b0af8",
-      "identifier": "2.49.0.0.380.3.IT.261020142810.038",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/e2e2996d-8569-414c-86d5-c55d8719c950",
+      "identifier": "2.49.0.0.380.3.IT.261021112735.181",
       "effectiveAt": "2026-10-21T00:00:00+00:00",
       "expiresAt": "2026-10-21T23:59:00+00:00",
       "firstPublishedAt": "2026-10-19T22:21:40.478Z",
-      "lastSeenAt": "2026-10-21T07:29:42.858Z",
+      "lastSeenAt": "2026-10-21T10:24:12.349Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -310,56 +360,6 @@
         "Mittlerer Rundweg am Karer See",
         "Langer Rundweg am Karer See",
         "Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12"
-      ],
-      "sourceStatus": "available"
-    },
-    {
-      "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
-      "state": "active",
-      "severity": "extreme",
-      "event": "Red Rain Warning",
-      "area": "Friuli Venezia Giulia",
-      "title": "rain warning for Friuli Venezia Giulia",
-      "message": "An official extreme rain warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/0b61bdaf-a8db-4478-87e5-3f0162f9152f",
-      "identifier": "2.49.0.0.380.3.IT.261020142810.089",
-      "effectiveAt": "2026-10-20T18:00:00+00:00",
-      "expiresAt": "2026-10-22T11:59:00+00:00",
-      "firstPublishedAt": "2026-10-19T22:21:40.478Z",
-      "lastSeenAt": "2026-10-21T07:29:42.858Z",
-      "removalRequiresHumanReview": true,
-      "trailIds": [
-        "piancavallo"
-      ],
-      "trailNames": [
-        "Piancavallo Malghe Loop"
-      ],
-      "sourceStatus": "available"
-    },
-    {
-      "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
-      "state": "active",
-      "severity": "extreme",
-      "event": "Red Thunderstorm Warning",
-      "area": "Friuli Venezia Giulia",
-      "title": "thunderstorm warning for Friuli Venezia Giulia",
-      "message": "An official extreme thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/c101a3e2-74c5-48ef-9d0b-bb9270dc6f28",
-      "identifier": "2.49.0.0.380.3.IT.261020142810.088",
-      "effectiveAt": "2026-10-20T18:00:00+00:00",
-      "expiresAt": "2026-10-22T11:59:00+00:00",
-      "firstPublishedAt": "2026-10-18T22:19:35.615Z",
-      "lastSeenAt": "2026-10-21T07:29:42.858Z",
-      "removalRequiresHumanReview": true,
-      "trailIds": [
-        "piancavallo"
-      ],
-      "trailNames": [
-        "Piancavallo Malghe Loop"
       ],
       "sourceStatus": "available"
     }
