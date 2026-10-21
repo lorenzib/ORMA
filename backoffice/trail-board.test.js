@@ -67,6 +67,15 @@ describe('the trail board', () => {
     expect(f.detail).toContain('the line leaves the declared route');
   });
 
+  test('a blocked trail with a badge counts as stuck, not as a disagreement', () => {
+    const b = buildTrailBoard({ trails: [trail('h', { curated: true })],
+      orchestration: { trails: [flow('h', 'blocked', { blockers: ['not-closed-loop'] })] } });
+    expect(b.trails[0].badge).toBe('reviewed');
+    expect(b.trails[0].flag).toBe('stuck');
+    expect(b.summary.stuck).toBe(1);
+    expect(b.summary.disagree).toBe(0);
+  });
+
   test('a publication failure says when it retries rather than claiming it never will', () => {
     const d = byId(board()).get('d');
     expect(d.next).toBe('Publication failed');
