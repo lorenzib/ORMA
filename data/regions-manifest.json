@@ -1,23 +1,23 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-22T16:52:28.520Z",
+  "generatedAt": "2026-10-22T17:26:10.786Z",
   "regions": {
     "dolomites": {
       "trailCount": 110,
-      "trails": "data/regions/dolomites-trails.js?v=11a6d69a874a",
+      "trails": "data/regions/dolomites-trails.js?v=52ba6134567b",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=26654e90f48e",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
         "santa-maddalena": "data/trail-details/santa-maddalena.js?v=9d2293a78dd1",
         "tre-cime": "data/trail-details/tre-cime.js?v=9e1afb53eb79",
         "cadini": "data/trail-details/cadini.js?v=518feab8276d",
-        "prato-piazza": "data/trail-details/prato-piazza.js?v=d9bb4cbc8749",
+        "prato-piazza": "data/trail-details/prato-piazza.js?v=3a525e6fbada",
         "nuvolau": "data/trail-details/nuvolau.js?v=0cd8d0678bcc",
         "sassolungo": "data/trail-details/sassolungo.js?v=1e1af5c14a1f",
         "lago-braies": "data/trail-details/lago-braies.js?v=8de4cf962fd4",
-        "lago-carezza": "data/trail-details/lago-carezza.js?v=9ddb2be7c358",
+        "lago-carezza": "data/trail-details/lago-carezza.js?v=0dec405e1f12",
         "lago-sorapis": "data/trail-details/lago-sorapis.js?v=873824962623",
-        "valley-view": "data/trail-details/valley-view.js?v=26e0289b51cd",
+        "valley-view": "data/trail-details/valley-view.js?v=9611d5921a8e",
         "piancavallo": "data/trail-details/piancavallo.js?v=d6875e7a1bdb",
         "geotrail-bulla": "data/trail-details/geotrail-bulla.js?v=238f58e5c54a",
         "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=d61340fd3f92",

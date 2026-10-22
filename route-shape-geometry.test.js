@@ -25,12 +25,17 @@ describe('a route’s shape is declared, not guessed from its geometry', () => {
     expect(trail.distance/line).toBeLessThan(2.2);
   });
 
-  test('prato-piazza is left alone, because it is a loop with an unfinished line', () => {
+  // prato-piazza was held out of this list because its old description called
+  // it a loop returning on the Alta Via 3. That description had no source. The
+  // tourism board's own route, checked by hand on 22 October 2026, is the
+  // Plätzwiese to the Strudelkopf and back the same way, so it is declared an
+  // out-and-back on that evidence, with the official line drawn one way.
+  test('prato-piazza is an out-and-back because its official route says so', () => {
     const trail=byId('prato-piazza');
-    expect(trail.desc).toMatch(/^A loop/);
-    // Declaring it out-and-back to make the arithmetic work would assert a
-    // walk its own description contradicts.
-    expect(trail.routeShape).not.toBe('out-and-back');
+    expect(trail.routeShape).toBe('out-and-back');
+    expect(trail.routeShapeNote).toMatch(/Strudelkopf/);
+    expect(trail.distance/lineKm(trail.path)).toBeGreaterThan(1.9);
+    expect(trail.distance/lineKm(trail.path)).toBeLessThan(2.2);
   });
 
   test('every declared out-and-back has a note saying why', () => {
@@ -75,8 +80,10 @@ describe('a route’s shape is declared, not guessed from its geometry', () => {
     }).map(trail => trail.id).sort();
     // Alpe di Siusi left this list on 2026-10-06: its catalogue distance was a
     // 7.5 km hand estimate; the composite the geometry gate measured is 5.5 km.
+    // Lago di Carezza and Prato Piazza left it on 2026-10-22, when their
+    // lines were rebuilt on OSM ways along the official routes.
     expect(unexplained).toEqual([
-      'cinque-torri-assisted','geotrail-bulla','lago-carezza','prato-piazza',
+      'cinque-torri-assisted','geotrail-bulla',
     ]);
   });
 });

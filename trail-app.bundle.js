@@ -6751,6 +6751,150 @@ function effectiveOverrides(profile, adjustOverride){
       },
       waterSources: [],
       desc: 'A shaded loop round both Montiggl lakes in the Montiggl forest above Eppan: woodland paths along the small lake and the larger lake with its lido, joined by a short connector walked twice. The official route lists about 4 km and 112 m of ascent.'
+    },
+    'prato-piazza': {
+      // Hand audit: 22 October 2026. The stored line was a different walk
+      // (path 37 towards the Dürrensteinhütte); it is now the official route
+      // to the Strudelkopf, routed on OpenStreetMap ways through the tourism
+      // board's GPX (97.8% of its points within 25 m). Two municipalities,
+      // Prags and Toblach, and the Fanes-Sennes-Prags nature park: a lead
+      // everywhere.
+      area: 'Plätzwiese / Prato Piazza – Prags and Toblach',
+      hours: '2.5–3',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-22',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'ORMA-owned photo of the gravel military road across the Plätzwiese plateau with the Cristallo group behind, in summer.',
+        route: 'Official route: Plätzwiese to the Strudelkopf summit cross, 4.1 km one way; rebuilt on OSM ways through the board GPX at 4.03 km, and walked back the same way (8.2 km).',
+        routeNumbers: 'The board’s text sends walkers along the 37 road towards the Dürrensteinhütte and left onto 34; its GPX, which the drawn line follows, takes the parallel footpath 40A across the plateau to the same junction. Then 34 to the saddle (about 2,200 m) and right for the summit; return the same way.',
+        mapPoints: 'Start at the Berggasthof Plätzwiese; a drinking-water point (OSM node 14024034408) and a spring (node 5754395008) traced to exact coordinates; the saddle turn by the war memorial is a decision point.',
+        elevation: 'Official 359 m up and 42 m down one way (1,991–2,305 m), so about 400 m of climbing for the round trip; profile sampled along the rebuilt line.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          '3 Zinnen Dolomites, Sommerwanderung Parkplatz Plätzwiese – Strudelkopf',
+          'Gemeinde Prags, Verordnung über die Haltung von Hunden, Art. 2',
+          'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden, Art. 4',
+          'Province of Bolzano, code of conduct for the nature parks',
+          'Naturpark Fanes-Sennes-Prags decree (DLH 72/V/LS of 4 March 1980), Art. 5 and 7',
+          'OpenStreetMap ways along paths 37 and 34'
+        ],
+        date: '2026-10-22'
+      },
+      shadeCoverage: 5,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Loose gravel on the summit path', 'Rough gravel tracks', 'Mountain bikes on the tracks', 'Hotel guests\' cars near the start'],
+      shadeDescription: 'Almost no shade: open high pasture and dwarf pine between 2,000 and 2,300 m.',
+      terrainDescription: 'Gravel tracks and grassy footpaths across the plateau, then a gravel path to a rounded summit; rated easy by the tourism board.',
+      waterDescription: 'The Berggasthof at the start, a drinking-water point near km 1.4 and a spring at km 2.3; nothing on the last 1.7 km to the summit, so carry water.',
+      dogNotes: 'Dogs must be on a lead for the whole walk: Prags and Toblach require it on all public ground (at most 1.5 m in Toblach), and so does the nature park. Grazing is permitted on the plateau, so expect cattle in summer.',
+      tips: 'From the Berggasthof Plätzwiese cross the plateau on footpath 40A (or the parallel 37 road), turn onto 34 and climb to the Strudelkopf summit cross, then come back the same way: about 8.2 km and 400 m of climbing. Keep your dog on a short lead the whole way, as Prags, Toblach and the nature park all require, and give grazing cattle a wide berth. The summit section has no water or shade, so carry enough for your dog.',
+      sourceLinks: [
+        { label: '3 Zinnen Dolomites, Plätzwiese – Strudelkopf', url: 'https://www.dreizinnen.com/de/activity/sommerwanderung-parkplatz-pl-tzwiese-strudelkopf_50065' },
+        { label: 'Gemeinde Prags, dog regulation', url: 'https://www.comune.braies.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Gemeinde Toblach, dog regulation', url: 'https://www.gemeinde.toblach.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Province of Bolzano, nature parks code of conduct', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Waymarked Trails, path 34 (OSM relation 1185346)', url: 'https://hiking.waymarkedtrails.org/#route?id=1185346' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/1185346' }
+      ],
+      desc: 'An easy climb across the open Plätzwiese plateau to the Strudelkopf summit cross, with wide views of the Cristallo and the Drei Zinnen: path 40A or the 37 road across the plateau, then 34 to the top and back the same way. The official route lists 4.1 km and 359 m of ascent each way up.'
+    },
+    'valley-view': {
+      // Hand audit: 22 October 2026. The stored line was a 2.7 km one-way
+      // fragment; it is now the official 6.6 km loop from St. Peter
+      // (Sonnseitenweg, Panoramaweg, No. 11), rebuilt from OSM ways at
+      // 6.60 km. Villnöss: lead of at most 1.5 m, no dogs on meadows.
+      area: 'St. Peter, Villnöss / Funes',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-22',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Howwi, CC BY-SA 3.0: the Villnöss sunny-side slope looking west in September, the meadows the walk crosses.',
+        route: 'Official 6.6 km loop (Südtirol.info, Tourismusgenossenschaft Odles); rebuilt on OSM relations 11817202, 11817269 and 948853 at 6.60 km, closed.',
+        routeNumbers: 'From St. Peter centre follow the road towards Coll/Würzjoch to the first hairpin, take the Sonnseitenweg (sun symbol) east past the Pestbildstock to the Bühlerhof, climb on No. 32 to the Panoramaweg (mountain symbol) and follow it west to No. 11, then descend on No. 11 past the Gsoihof to the start.',
+        mapPoints: 'Start at the official point in St. Peter; the village fountain (OSM node 9668988276) and three streams traced to exact coordinates.',
+        elevation: 'Official 322 m up and down, highest point 1,395 m; profile sampled along the rebuilt line.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Südtirol.info (Tourismusgenossenschaft Odles), Sonnseitenweg–Panoramaweg',
+          'Gemeinde Villnöss, Verordnung über die Haltung und Führung von Hunden, Art. 4 and 8',
+          'Villnöss landscape plan, implementing provisions (newPlan doc 9783)',
+          'OpenStreetMap relations 11817202, 11817269 and 948853, farmyard and land-use tags'
+        ],
+        date: '2026-10-22'
+      },
+      shadeCoverage: 30,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 1.9 km of asphalt, including the road towards Coll/Würzjoch', 'Crossing of the Coller Straße', 'Short flights of steps', 'Rough gravel on the Panoramaweg', 'Ice in winter: the Panoramaweg is not always cleared'],
+      shadeDescription: 'A south-facing sunny-side walk at 1,135–1,395 m: about a third in woodland, the rest across open meadows and farmyards.',
+      terrainDescription: 'Farm roads and field paths on the Sonnseitenweg, a narrow gravel path on the Panoramaweg, and a compacted path and road back down on No. 11.',
+      waterDescription: 'The fountain in St. Peter at the start and finish and three small streams on the way; nothing else, so carry water.',
+      dogNotes: 'Villnöss requires a lead of at most 1.5 m on all public ground and a muzzle carried, bans dogs from meadows and fields, and forbids bathing in public fountains. The loop passes seven farmyards, so animals may be close by.',
+      tips: 'A 6.6 km loop from St. Peter with views of the Odle/Geisler peaks: east on the Sonnseitenweg, back west on the Panoramaweg and down on No. 11, about 2 hours with 322 m of climbing. Keep your dog on a short lead (1.5 m at most) and off the hay meadows, as Villnöss requires, and out of the village fountains. Most of it is in sun, so start early in summer and carry water.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Sonnseitenweg–Panoramaweg', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi4d53fc3760a30cad25696849c7669dd5.sonnseitenweg-panoramaweg.st--peter---villnoess' },
+        { label: 'Gemeinde Villnöss, dog regulation', url: 'https://www.gemeinde.villnoess.bz.it/system/web/GetDocument.ashx?fileId=1048678' },
+        { label: 'Villnöss landscape plan, implementing provisions (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/9783' },
+        { label: 'Waymarked Trails, Panoramaweg (OSM relation 11817269)', url: 'https://hiking.waymarkedtrails.org/#route?id=11817269' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11817269' }
+      ],
+      desc: 'A sunny loop above St. Peter in Villnöss: out east on the Sonnseitenweg past farms and the Pestbildstock, back west on the higher Panoramaweg with the Odle/Geisler peaks ahead, and down on path 11. The official route lists 6.6 km and 322 m of ascent.'
+    },
+    'lago-carezza': {
+      // Hand audit: 22 October 2026. The stored line was the lake circuit
+      // only, drawn anticlockwise; it is now the official walk from the car
+      // park through the underpass and clockwise round the lake, routed on
+      // OSM ways through the tourism board's GPX (all points within 25 m),
+      // plus the way back to the car. Welschnofen: lead of at most 1.5 m and
+      // a muzzle carried; the lake is a natural monument fenced off.
+      area: 'Carezza, Welschnofen / Nova Levante',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-22',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'ORMA-owned photo of Lago di Carezza and the Latemar spires in summer.',
+        route: 'Official walk 1.2 km from the car park to the viewing platform (Val d’Ega Turismo GPX); rebuilt on OSM ways at 1.5 km including the 180 m back to the car.',
+        routeNumbers: 'No route number: from the car park follow the yellow signs through the underpass to the viewing platform, then walk round the lake clockwise.',
+        mapPoints: 'Start at the car park (GPX first point); drinking water at OSM node 7468241992 just past the underpass.',
+        elevation: 'Official 21 m up, high point 1,554 m, low point 1,539 m; profile drawn from the official high and low points because the terrain model is too coarse for the lakeshore.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Val d’Ega Turismo, Breve giro del Lago di Carezza',
+          'Gemeinde Welschnofen, Hundeverordnung (2023), Art. 4 and 8',
+          'Welschnofen landscape plan, implementing provisions, Art. 3(4) (newPlan doc 8298)',
+          'OpenStreetMap forest, footway and drinking-water tags'
+        ],
+        date: '2026-10-22'
+      },
+      shadeCoverage: 60,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Busy car park at the start', 'Main road beside the lake, passed through an underpass', 'Gravel and pebble paths with a short muddy patch', 'Very crowded in summer'],
+      shadeDescription: 'Spruce forest wraps most of the lake circuit; the shore-side edge and the car park are open.',
+      terrainDescription: 'Flat, wide gravel and pebble footways suitable for pushchairs, with an asphalt approach from the car park through an underpass.',
+      waterDescription: 'One drinking fountain just past the underpass (spring to autumn). The lake is fenced off, so dogs cannot drink from it.',
+      dogNotes: 'Welschnofen requires a lead of at most 1.5 m on all public ground and a muzzle carried, and forbids dogs bathing in fountains and troughs. The lake is a protected natural monument: nobody may go past the fence.',
+      tips: 'From the car park follow the yellow signs through the underpass and walk round the lake clockwise: about 1.5 km back to the car, 20 to 30 minutes. Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Welschnofen requires; the lake is a protected monument, so neither you nor your dog may go past the fence. Top up at the fountain just after the underpass, and come early, because the path is very crowded in summer.',
+      sourceLinks: [
+        { label: 'Val d’Ega Turismo, Breve giro del Lago di Carezza', url: 'https://eggental.com/it/activity/breve-giro-del-lago-di-carezza_5712' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/system/web/GetDocument.ashx?cts=1724066701&fileId=1354988' },
+        { label: 'Welschnofen landscape plan, implementing provisions (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/8298' },
+        { label: 'OpenStreetMap drinking water node 7468241992', url: 'https://www.openstreetmap.org/node/7468241992' }
+      ]
     }
   };
 

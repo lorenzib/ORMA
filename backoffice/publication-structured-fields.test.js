@@ -68,12 +68,14 @@ describe('a trail supplies its own structured fields', () => {
   // Measured against the catalogue, not asserted from a fixture: the point of
   // the split is how many real trails can publish, and the one that cannot is
   // the known trail with no usable start point.
-  test('every catalogue trail but one can supply its publication fields', () => {
+  // Val di Funes was the one exception until 2026-10-22, when it gained a
+  // sourced start point with its rebuilt official loop.
+  test('every catalogue trail can supply its publication fields', () => {
     const trails = loadProductionTrails(path.resolve(__dirname, '..'));
     const blocked = trails.filter(record => !structuredFieldsFromTrail(record)).map(record => record.id);
 
     expect(trails.length).toBeGreaterThan(150);
-    expect(blocked).toEqual(['valley-view']);
+    expect(blocked).toEqual([]);
   });
 
   test('the two groups make up the whole list and do not overlap', () => {
