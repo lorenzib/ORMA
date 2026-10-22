@@ -1769,6 +1769,312 @@
           "url": "https://www.openstreetmap.org/relation/9937537"
         }
       ]
+    },
+    'osm-16180587': {
+      // Hand audit 22 October 2026: route, start and dog answer from the Haute-Savoie Mont-Blanc fiche (Apidae 5668895) and its
+      // GPX (91% of points within 60 m of the line); the lake's own rules from the Lac Vert route page. Outside the Passy nature
+      // reserve (630 m away, dogs banned inside) and any Natura 2000 site (Géoportail, EEA). Passy publishes no dog order.
+      "area": "Plateau d'Assy, Passy",
+      "distance": 8.5,
+      "elevation": 393,
+      "hours": "2.5–3",
+      "startPoint": {
+        "lat": 45.93911,
+        "lng": 6.710876,
+        "label": "Place Tobé, Plateau d'Assy (official start)"
+      },
+      "terrainType": "Old lane, forest paths and the Nant Bordon suspension footbridge",
+      "desc": "An out-and-back walk from the Plateau d'Assy to the Lac Vert, by the Promenade Marie Curie past the old Sancellemoz sanatorium and the old Lac Vert road, crossing the Nant Bordon on a 143 m suspension footbridge, with an optional lap of the lake. You come back the same way. The official fiche gives 10 km there and back (its GPX measures 7.5 km) and calls it easy.\n\nDogs are accepted, according to the official fiche. At the lake they must be on a lead and may not go into the water, by the lake's own rules. Passy publishes no dog order, so the national rule applies elsewhere: a lead in woods and fields off the paths from 15 April to 30 June. Most of the way, about 85%, runs through woods.",
+      "tips": "The Nant Bordon footbridge has a metal grating floor and some sway; nervous dogs may need a slow first crossing. At the Lac Vert, keep the lead on and your dog out of the water, which is a protected site. Do not carry on uphill beyond the lake: the Passy nature reserve, where dogs are banned even on a lead, starts about 600 m away. A tap is mapped by the lake. About 500 m follows lanes open to cars near the start.",
+      "shadeCoverage": 80,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "The Nant Bordon suspension footbridge (metal grating)",
+        "About 500 m on lanes open to cars near the start"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de Tourisme de Passy (Apidae)",
+        "name": "Balade du Plateau d'Assy au Lac Vert par la passerelle du Nant Bordon",
+        "url": "https://hautesavoiemontblanc-tourisme.com/offres/balade-du-plateau-dassy-au-lac-vert-par-la-passerelle-du-nant-bordon-passy-fr-5866028/"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Mangatome, CC BY-SA 3.0, the Lac Vert that the walk reaches.",
+        "route": "Published line 8.5 km out and back; official fiche 10 km, its GPX 7.5 km; 91% of GPX points within 60 m of the line.",
+        "routeNumbers": "No number; the official text routes by landmark (Promenade Marie Curie, Sancellemoz, old Lac Vert road, Nant Bordon footbridge), back the same way, with no switch.",
+        "mapPoints": "Start at the official Place Tobé point (50 m from the old one); tap at the lake traced to OSM.",
+        "elevation": "393 m on the line; the GPX gives 407 m, the fiche 300 m."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Haute-Savoie Mont-Blanc, Balade du Plateau d'Assy au Lac Vert par la passerelle du Nant Bordon (Apidae 5668895) and official GPX: animals accepted",
+          "Boucle du Lac Vert route page: at the lake, dogs on a lead and banned from the water",
+          "Réserve naturelle de Passy 630 m from the line (dogs banned inside); no Natura 2000 site on the line (Géoportail, EEA); Passy publishes no dog order",
+          "OpenStreetMap relation 16180587: road classes, footbridge, land cover and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Haute-Savoie Mont-Blanc, Plateau d'Assy au Lac Vert",
+          "url": "https://hautesavoiemontblanc-tourisme.com/offres/balade-du-plateau-dassy-au-lac-vert-par-la-passerelle-du-nant-bordon-passy-fr-5866028/"
+        },
+        {
+          "label": "Official GPX",
+          "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/38/47/13774630/Mon_parcours+1.gpx"
+        },
+        {
+          "label": "Lac Vert rules (official route page)",
+          "url": "https://www.combloux.com/itineraires/boucle-du-lac-vert/"
+        },
+        {
+          "label": "OpenStreetMap relation 16180587",
+          "url": "https://www.openstreetmap.org/relation/16180587"
+        }
+      ]
+    },
+    'osm-14376573': {
+      // Hand audit 22 October 2026: route, figures, season, start and dog answer from the Office de Tourisme Les Karellis
+      // (Cirkwi, route N°23, updated 8 Sep 2026). Commune Montricher-Albanne publishes no dog order; no Natura 2000 site, park
+      // or reserve on the line (EEA). New photo from Panoramax, 48 m from the line.
+      "area": "Les Karellis, Montricher-Albanne",
+      "distance": 4.1,
+      "elevation": 291,
+      "hours": "3",
+      "startPoint": {
+        "lat": 45.212541,
+        "lng": 6.402186,
+        "label": "Top of the Vinouve chairlift, Les Karellis (official start)"
+      },
+      "terrainType": "Stony tracks and paths on open alpine ground, 2,130 to 2,420 m",
+      "desc": "A high loop from the top of the Vinouve chairlift above Les Karellis, waymarked as route 23 (blue round marker), with a plunging view over the resort, cairns along the ridge and Mont Blanc on a clear day. Officially 4.1 km and 291 m of climb, about 3 hours, rated medium and advised for regular walkers. The ground is rock and stones.\n\nDogs are accepted, according to the Karellis tourist office. Montricher-Albanne publishes no dog order, so the national rule applies: a lead in fields off the paths from 15 April to 30 June. The whole loop is open ground above 2,100 m, with no shade and no water.",
+      "tips": "The loop starts at the top of the Vinouve chairlift, which the office lists as running from early July to late August on Monday, Tuesday, Wednesday and Friday only, snow permitting. Ask at the lift whether your dog may ride; otherwise it is a long climb up the ski tracks from the resort. Carry all the water you both need, as there is none on the loop, and avoid the hottest hours. Watch your dog's paws on the sharp stones. Alpine pastures may hold livestock in summer, though none is mapped beside the path.",
+      "shadeCoverage": 0,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "Rock and loose stones underfoot"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de Tourisme Les Karellis (Cirkwi)",
+        "name": "N°23 - Crêt de Talière",
+        "url": "https://www.cirkwi.com/fr/circuit/252709-itineraire-de-randonnee-23-cret-de-taliere"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Panoramax, AlexandreModesto73, CC BY-SA 4.0, the stony track on the loop with a chairlift pylon, 48 m from the line (replaces a photo taken 2 km away).",
+        "route": "Published line 4.05 km, closed; official 4.1 km.",
+        "routeNumbers": "Route 23, blue round marker (Station des Karellis); the official page names no switch.",
+        "mapPoints": "Start at the official top of the Vinouve chairlift (24 m from the line).",
+        "elevation": "Official 291 m of climb (was 387)."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Office de Tourisme Les Karellis, N°23 - Crêt de Talière (Cirkwi, updated 8 September 2026): animals accepted",
+          "Montricher-Albanne publishes no dog order; arrêté du 16 mars 1955 (national baseline)",
+          "No Natura 2000 site, park or reserve on the line (EEA)",
+          "OpenStreetMap relation 14376573: waymark 23, tracks, land cover and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Office de Tourisme Les Karellis, N°23 - Crêt de Talière",
+          "url": "https://www.cirkwi.com/fr/circuit/252709-itineraire-de-randonnee-23-cret-de-taliere"
+        },
+        {
+          "label": "Arrêté du 16 mars 1955 (national baseline)",
+          "url": "https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens"
+        },
+        {
+          "label": "OpenStreetMap relation 14376573",
+          "url": "https://www.openstreetmap.org/relation/14376573"
+        }
+      ]
+    },
+    'osm-14375158': {
+      // Hand audit 22 October 2026: route, figures, waymark and the grazed meadow from the Station des Karellis page for its
+      // trail-running course n°1, which follows hiking route n°10. The page states no dog rule; Montricher-Albanne publishes no dog
+      // order, so the national rule applies. No Natura 2000 site or reserve on the line (EEA, INPN). New photo from Panoramax (IGN), 54 m.
+      "area": "Les Karellis, Montricher-Albanne",
+      "distance": 9,
+      "elevation": 220,
+      "startPoint": {
+        "lat": 45.2271183,
+        "lng": 6.404797,
+        "label": "Les Karellis resort, by the Vinouve chairlift"
+      },
+      "terrainType": "Wide forest tracks (about three quarters) and paths, two short road stretches",
+      "desc": "A rolling loop from Les Karellis, waymarked as hiking route 10 (green round marker) and also used as the resort's beginner trail-running course. It heads towards Albanne on the Nordic ski area, follows wide forest tracks to the Suiffet, climbs through a summer pasture to the orientation table and the Col d'Albanne, with views to the Grand Galibier and the Fort du Télégraphe, and returns by Bellecombe. Officially 9 km and 220 m of climb, without major technical difficulty.\n\nThe official page sets no dog rule, and Montricher-Albanne publishes no dog order, so the national rule applies: a lead in woods and fields off the paths from 15 April to 30 June. About three quarters of the loop runs on forest tracks.",
+      "tips": "The way to the orientation table crosses a meadow grazed in summer, under an electric fence: put the lead on, and lift your dog's lead clear of the wire. Some forest tracks cross scree, so watch paws on the sharp stones. The loop uses two short road stretches of about 150 m each and crosses another road near the Col d'Albanne: keep your dog close there. A tap is mapped at the start.",
+      "shadeCoverage": 60,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "Scree crossings on forest tracks",
+        "Two road stretches of about 150 m and one road crossing",
+        "Electric fence at the summer pasture"
+      ],
+      "routeNumberSource": {
+        "provider": "Station des Karellis",
+        "name": "Crêt de la Parenche n°10 (trail course n°1)",
+        "url": "https://www.karellis.com/activites-ete/parcours-de-trail/"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Panoramax (IGN), Licence Ouverte 2.0, a forest lane through larches on the loop, 54 m from the line (replaces a photo taken 1.1 km away).",
+        "route": "Published line 9 km, closed; official 9 km loop.",
+        "routeNumbers": "Hiking route 10, green round marker (Station des Karellis); the official text routes by landmark (Nordic area, Suiffet, orientation table, Col d'Albanne, Bellecombe) with no switch.",
+        "mapPoints": "Start at the Karellis resort centre named by the official text; tap at the start traced to OSM.",
+        "elevation": "Official 220 m of climb (was 266)."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Station des Karellis, Parcours de trail: Crêt de la Parenche n°10, 9 km, 220 m, loop, hiking waymark n°10, summer pasture under an electric fence",
+          "Montricher-Albanne publishes no dog order; arrêté du 16 mars 1955 (national baseline)",
+          "No Natura 2000 site or national reserve on the line (EEA, INPN)",
+          "OpenStreetMap relation 14375158: waymark 10, road classes, land cover and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Station des Karellis, Parcours de trail (Crêt de la Parenche n°10)",
+          "url": "https://www.karellis.com/activites-ete/parcours-de-trail/"
+        },
+        {
+          "label": "Arrêté du 16 mars 1955 (national baseline)",
+          "url": "https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens"
+        },
+        {
+          "label": "OpenStreetMap relation 14375158",
+          "url": "https://www.openstreetmap.org/relation/14375158"
+        }
+      ]
     }
   };
 

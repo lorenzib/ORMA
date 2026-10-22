@@ -98,6 +98,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T16:00:00.000Z"
     },
+    "osm-14375158": {
+      "url": "https://www.karellis.com/activites-ete/parcours-de-trail/",
+      "publisher": "Station des Karellis",
+      "name": "Crêt de la Parenche n°10",
+      "quote": "– 9km – 220m D+/- – Itinéraire en boucle – 3/4 pistes forestières – 1/4 sentiers – Suivre le balisage randonnée n°10 « CRÊT DE LA PARENCHE »",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-14376573": {
+      "url": "https://www.cirkwi.com/fr/circuit/252709-itineraire-de-randonnee-23-cret-de-taliere",
+      "publisher": "Office de Tourisme Les Karellis (Cirkwi)",
+      "name": "N°23 - Crêt de Talière",
+      "quote": "Point de départ : sommet du Télésiège du Vinouve · Dist. 4.1 km · Déniv. pos. 291 m · Durée 3h · Animaux : Oui",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
     "osm-14378946": {
       "url": "https://www.cirkwi.com/fr/circuit/137780-itineraire-de-randonnee-05-lac-de-pramol",
       "publisher": "Office de Tourisme Les Karellis (Cirkwi)",
@@ -135,6 +151,14 @@
       "publisher": "Office de Tourisme Cœur de Savoie (Apidae)",
       "name": "Le sentier des Buis",
       "quote": "Dénivelé cumulé 780 m · Durée 4h30 · Distance 9.5km · Départ du circuit : du parking proche du cimetière-parc, chemin de Beauvoir",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-16180587": {
+      "url": "https://hautesavoiemontblanc-tourisme.com/offres/balade-du-plateau-dassy-au-lac-vert-par-la-passerelle-du-nant-bordon-passy-fr-5866028/",
+      "publisher": "Office de Tourisme de Passy (Apidae)",
+      "name": "Balade du Plateau d'Assy au Lac Vert par la passerelle du Nant Bordon",
+      "quote": "Place Tobé, Plateau d'Assy, 74190 Passy · Aller / Retour · Distance 10.0 km · Animaux acceptés",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
