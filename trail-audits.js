@@ -944,6 +944,422 @@
           "url": "https://www.openstreetmap.org/relation/14864704"
         }
       ]
+    },
+    'osm-15591346': {
+      // Hand audit 22 October 2026: route, figures and dog note from Office de Tourisme Cœur de Savoie (Apidae 114550); the official
+      // GPX lies within 40 m of the line, which is stored the other way round (stated in the text). Communes: Montmélian and
+      // Arbin publish no dog order; Cruet bans straying only. Natura 2000 FR8201775/FR8212013 and the CEN site La Générale carry no dog rule.
+      "area": "Montmélian / Arbin / Cruet",
+      "distance": 9.7,
+      "elevation": 780,
+      "decisionPoints": [
+        {
+          "km": 5.2,
+          "lat": 45.51896,
+          "lng": 6.05815,
+          "instruction": "Roc de Manettaz belvedere and orientation table: wide view over the Combe de Savoie and Belledonne, with an unprotected edge, so keep your dog close here"
+        }
+      ],
+      "desc": "A proper half-day loop above Montmélian through the sunny side of the Combe de Savoie: the Arbin vineyards, pine and boxwood woods, the ridge with the Roc de Manettaz belvedere, and the protected dry meadow of La Générale. As drawn here it climbs first above Arbin and Cruet to the Col du Mont picnic table, follows the ridge to the belvedere, and comes down through La Générale. The official sheet describes the same loop the other way round. Officially 9.5 km and 780 m of climb, about 4h30, rated difficult. Waymarked in yellow.\n\nDogs are accepted, according to the official route page. Montmélian and Arbin publish no dog order, and Cruet bans only letting dogs stray, so the national rule applies: a lead in woods and fields off the paths from 15 April to 30 June. About 60% of the loop is wooded, and part of it lies in a Natura 2000 site with no dog rule.",
+      "tips": "The belvedere at the Roc de Manettaz has an unprotected edge, signed as a danger: keep your dog close there. A lead is wise in the protected meadow of La Générale. The official sheet mentions alpine pasture, so cattle may graze on the ridge meadows in summer; no guardian-dog notice is posted. There is no water on the loop: carry enough for over four hours, and start early, because the south-facing vineyard slopes bake in summer. The first 500 m follow the chemin de Beauvoir, which has a pavement; cross the road after 100 m. At the Col du Mont a path branches off to the Lac de la Thuile (1.5 km).",
+      "shadeCoverage": 60,
+      "heatRisk": "moderate",
+      "exposure": true,
+      "surfaceHazards": [
+        "Unprotected drop at the Roc de Manettaz belvedere (signed danger)",
+        "Sustained climbing on mountain paths (T2)",
+        "About 500 m along the chemin de Beauvoir at the start, with a pavement"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de Tourisme Cœur de Savoie (Apidae)",
+        "name": "Le sentier des Buis",
+        "url": "https://tourisme.coeurdesavoie.fr/fiches/le-sentier-des-buis-114550/"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Florian Pépellin, CC BY-SA 4.0, the vineyard below La Savoyarde, about 6 m from the line.",
+        "route": "Published line 9.67 km; official 9.5 km; official GPX (9.39 km) within 40 m of the line throughout. Line stored in the reverse direction, stated in the text.",
+        "routeNumbers": "No number: yellow waymarks (Cœur de Savoie); one switch, the branch to the Lac de la Thuile at the Col du Mont, as the official text describes.",
+        "mapPoints": "Start at the cemetery car park on the chemin de Beauvoir named by the official text (11 m from the GPX start); belvedere moved to the Roc de Manettaz.",
+        "elevation": "Official 780 m of climb."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Office de Tourisme Cœur de Savoie, Le sentier des Buis (Apidae 114550) and official GPX: dogs accepted",
+          "Commune de Cruet, Savoir vivre: straying banned (arrêté préfectoral du 4 septembre 2001); Montmélian and Arbin publish no dog order",
+          "Arrêté du 16 mars 1955 on dogs straying (national baseline)",
+          "Natura 2000 FR8201775 and FR8212013 and the CEN site La Générale on the line, without dog rules; no reserve, national park or biotope order (EEA, INPN)",
+          "OpenStreetMap relation 15591346: road classes, land cover, cliffs and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Office de Tourisme Cœur de Savoie, Le sentier des Buis",
+          "url": "https://tourisme.coeurdesavoie.fr/fiches/le-sentier-des-buis-114550/"
+        },
+        {
+          "label": "Official GPX",
+          "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/94/168/20031582/SentierdesBuis.gpx"
+        },
+        {
+          "label": "Commune de Cruet, Savoir vivre",
+          "url": "https://www.cruet.fr/?page_id=45"
+        },
+        {
+          "label": "Arrêté du 16 mars 1955 (national baseline)",
+          "url": "https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens"
+        },
+        {
+          "label": "OpenStreetMap relation 15591346",
+          "url": "https://www.openstreetmap.org/relation/15591346"
+        }
+      ]
+    },
+    'osm-14378946': {
+      // Hand audit 22 October 2026: route, figures and dog rule from the Office de Tourisme des Karellis (Cirkwi, route N°05,
+      // updated 22 May 2026). Commune Montricher-Albanne (Les Karellis); no Natura 2000 site or reserve on the line (EEA, Géoportail).
+      // An ONF 'parc communal protégé' sign stands on the line; the office's lead rule covers the whole route through it.
+      "area": "Les Karellis, Montricher-Albanne",
+      "distance": 5.3,
+      "elevation": 181,
+      "hours": "3",
+      "startPoint": {
+        "lat": 45.227544,
+        "lng": 6.404557,
+        "label": "Les Karellis resort, by the Vinouve chairlift (official start)"
+      },
+      "desc": "An easy loop from the Les Karellis resort above the Maurienne, waymarked as route 05 (green round marker). It follows the Blanchon discovery trail to the small Lac de Pramol, past a peat bog and a gypsum sinkhole, with views to the Croix des Têtes. Officially 5.5 km and 181 m of climb, about 3 hours at an easy pace, and rated easy.\n\nDogs must be kept on a lead, according to the Karellis tourist office. Most of the loop runs through woods, at 1,600 to 1,770 m. Cattle graze the meadows right beside the path in summer, and about 400 m is on tarmac, including the lake road, which is open to cars.",
+      "tips": "Keep the lead on: that is the official rule here, and cattle graze beside the path in summer. Keep your dog out of the peat bog, which is signed as a danger, and on the path through the protected communal woodland. Taps and fountains are mapped at the start and along the first 2 km. The lake road is open to cars in summer, so keep your dog close there.",
+      "shadeCoverage": 75,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "Peat bog beside the path (signed danger)",
+        "About 400 m on tarmac, including the lake road open to cars"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de Tourisme Les Karellis (Cirkwi)",
+        "name": "N°05 - Lac de Pramol",
+        "url": "https://www.cirkwi.com/fr/circuit/137780-itineraire-de-randonnee-05-lac-de-pramol"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Patrick OTER, CC0, Lac de Pramol, 17 m from the line.",
+        "route": "Published line 5.32 km, closed; official 5.5 km.",
+        "routeNumbers": "Route 05, green round marker, operated by the Karellis resort; the official page names the Blanchon discovery trail as the way out and no other switch.",
+        "mapPoints": "Start at the official Les Karellis point (40 m from the old one); taps traced to OSM.",
+        "elevation": "Official 181 m of climb."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Office de Tourisme Les Karellis, N°05 - Lac de Pramol (Cirkwi, updated 22 May 2026): dogs on a lead",
+          "No Natura 2000 site, reserve or regional park on the line (EEA, Géoportail); Vanoise core zone about 40 km away",
+          "OpenStreetMap relation 14378946: waymark 05, grazing land, road classes, land cover and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Office de Tourisme Les Karellis, N°05 - Lac de Pramol",
+          "url": "https://www.cirkwi.com/fr/circuit/137780-itineraire-de-randonnee-05-lac-de-pramol"
+        },
+        {
+          "label": "OpenStreetMap relation 14378946",
+          "url": "https://www.openstreetmap.org/relation/14378946"
+        }
+      ]
+    },
+    'osm-19541366': {
+      // Hand audit 22 October 2026: route, figures, season and dog rule from Office de Tourisme Val Thorens; the official GPX
+      // lies within 45 m of the line for 95% of its points. Commune Les Belleville, Vanoise national park adhesion area (outside
+      // the core, 753 m away, where dogs are banned). Les Belleville publishes no lead order.
+      "area": "Val Thorens, Les Belleville",
+      "distance": 6.4,
+      "elevation": 510,
+      "hours": "2.5",
+      "startPoint": {
+        "lat": 45.29711,
+        "lng": 6.58594,
+        "label": "Rue de Gébroulaz, Val Thorens (official start; free street parking in summer)"
+      },
+      "desc": "A high loop from Val Thorens to the Lac Blanc, below the Péclet glacier, waymarked as route 18 (red). It climbs from the resort on stony tracks and paths to a top of about 2,750 m and returns to the rue du Slalom. Officially 6.0 km and 510 m of climb, about 2h30, rated difficult for the altitude and the climb. Open from 1 June to 30 September, snow permitting.\n\nDogs must be kept on a lead, according to the Val Thorens tourist office. The loop lies in the outer area of the Vanoise national park; dogs are banned only in the park's core, which this route does not enter. There is no shade and no water on the way, and no grazing land is mapped beside the path.",
+      "tips": "Keep the lead on: that is the official rule here. Stay on this route: the Vanoise national park core, where dogs are banned, lies less than a kilometre away. Carry water for both of you, since there is no tap or spring on the loop, and go early on hot days, as there is no shade above 2,300 m. The tracks are shared with the summer ski area, so watch for service vehicles. Snow can linger near the lake into early summer.",
+      "shadeCoverage": 0,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "Stony ground at up to 2,750 m",
+        "Tracks shared with ski-area service vehicles"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de Tourisme Val Thorens (Apidae)",
+        "name": "Randonnée pédestre - Le Lac Blanc",
+        "url": "https://www.valthorens.com/randonnee/randonnee-pedestre-le-lac-blanc/"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Rémih, CC BY-SA 4.0, the Lac Blanc that the loop reaches.",
+        "route": "Published line 6.37 km, closed; official 6.0 km; official GPX within 45 m for 95% of its points, 105 m at most.",
+        "routeNumbers": "Route 18, red waymark; the official page names start rue de Gébroulaz and finish rue du Slalom, no switch.",
+        "mapPoints": "Start at the first point of the official GPX, on the rue de Gébroulaz.",
+        "elevation": "Official 510 m of climb; top 2,749 m."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Office de Tourisme Val Thorens, Randonnée pédestre - Le Lac Blanc, and official GPX: dogs on a lead, open 1 June to 30 September",
+          "Parc national de la Vanoise: the line lies in the adhesion area, outside the core where dogs are banned (Géoportail; FFRandonnée, 24 March 2026)",
+          "Commune des Belleville, published acts: no lead or straying order; no Natura 2000 site, reserve or biotope order on the line (EEA, Géoportail)",
+          "OpenStreetMap relation 19541366: waymark 18, road classes, land cover and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Office de Tourisme Val Thorens, Le Lac Blanc",
+          "url": "https://www.valthorens.com/randonnee/randonnee-pedestre-le-lac-blanc/"
+        },
+        {
+          "label": "Official GPX",
+          "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/237/59/32259053/Randonnee+pedestre+du+Lac+Blanc+-+Val+Thorens.gpx"
+        },
+        {
+          "label": "FFRandonnée, walking with a dog in the Vanoise",
+          "url": "https://www.ffrandonnee.fr/s-informer/actualites/randonner-avec-son-chien-dans-le-parc-de-la-vanoise"
+        },
+        {
+          "label": "OpenStreetMap relation 19541366",
+          "url": "https://www.openstreetmap.org/relation/19541366"
+        }
+      ]
+    },
+    'osm-12118490': {
+      // Hand audit 22 October 2026: route, step-by-step topo, figures and dog rule from the Office de Tourisme Intercommunal
+      // Cœur de Maurienne (Apidae 'Sentier botanique des Plagnes', updated 31 Dec 2025). The line is stored the other way round to
+      // the topo (stated in the text). No Natura 2000, park, reserve or biotope order on the line (EEA, Géoportail).
+      "area": "Le Châtel, La Tour-en-Maurienne",
+      "distance": 4.7,
+      "elevation": 320,
+      "hours": "2",
+      "startPoint": {
+        "lat": 45.30711,
+        "lng": 6.358698,
+        "label": "Car park in front of the mairie, Le Châtel (official start)"
+      },
+      "terrainType": "Forest paths and tracks, about 500 m on village lanes",
+      "waterSources": [
+        {
+          "km": 0,
+          "lat": 45.3077851,
+          "lng": 6.3573001,
+          "osmId": "node/2432060443",
+          "label": "Village fountain by the start (not marked as drinking water)"
+        }
+      ],
+      "desc": "The botanical trail above Le Châtel in the Maurienne, waymarked B05 in yellow, through woods with open views over the valley and towards Montvernier. As drawn here it leaves the mairie along the D77 through the hamlet of Ventour, climbs about 1.7 km on B05 to the Plan de la Croix signpost, follows the balcony path past Beauchamp, where a short detour leads to the ruins, and comes back down by the Rieu Salomon lane. The official topo walks the same loop the other way round. Officially 4.75 km and 320 m of climb, about 2 hours, rated moderate.\n\nDogs are accepted on a lead only, according to the official route page. About two thirds of the loop is wooded. Roughly 500 m follows village lanes and the D77, part of it at 30 km/h: keep your dog close there.",
+      "tips": "Keep the lead on: that is the official rule here. The meadows beside the path may be grazed in summer, and the commune has a large pastoral area above the village; no guardian-dog notice is posted. The fountain by the start is not marked as drinking water, so bring your own. Several small streams cross the path. At the S04 junction stay on B05, and in Ventour stay on the D77 where the L02 path joins.",
+      "shadeCoverage": 65,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 500 m on village lanes and the D77",
+        "Small stream crossings without bridges"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de Tourisme Intercommunal Cœur de Maurienne (Apidae)",
+        "name": "Sentier botanique des Plagnes",
+        "url": "https://www.explore-savoie.com/randonnees-et-balades/sentier-botanique-des-plagnes-7628788/"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Florian Pépellin, CC BY-SA 3.0, panorama of Montvernier taken from Le Châtel, 27 m from the line.",
+        "route": "Published line 4.7 km, member ways 4.75 km; official 4.75 km. Line stored in the reverse direction to the topo, stated in the text.",
+        "routeNumbers": "B05, yellow waymark (3CMA); switches from the topo: the Beauchamp ruins detour, the S04 junction (stay on B05) and the L02 junction in Ventour (stay on the D77).",
+        "mapPoints": "Start at the official coordinate in front of the mairie; fountain relabelled as not marked drinkable.",
+        "elevation": "Official 320 m of climb."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Office de Tourisme Intercommunal Cœur de Maurienne, Sentier botanique des Plagnes (Apidae, updated 31 December 2025): topo, figures, dogs on a lead only",
+          "No Natura 2000 site, national or regional park, reserve or biotope order on the line (EEA, Géoportail); La Tour-en-Maurienne publishes no dog order",
+          "OpenStreetMap relation 12118490: waymark B05, road classes, land cover and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Savoie Mont Blanc, Sentier botanique des Plagnes",
+          "url": "https://www.explore-savoie.com/randonnees-et-balades/sentier-botanique-des-plagnes-7628788/"
+        },
+        {
+          "label": "OpenStreetMap relation 12118490",
+          "url": "https://www.openstreetmap.org/relation/12118490"
+        }
+      ]
     }
   };
 
