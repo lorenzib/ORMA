@@ -74,6 +74,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-12118490": {
+      "url": "https://www.explore-savoie.com/randonnees-et-balades/sentier-botanique-des-plagnes-7628788/",
+      "publisher": "Office de Tourisme Intercommunal Cœur de Maurienne (Apidae)",
+      "name": "Sentier botanique des Plagnes",
+      "quote": "Durée moyenne 2H5 · Dénivelé cumulé positif 320m · Distance 4.75Km · Itinéraire balisé · Animaux acceptés en laisse uniquement.",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
     "osm-12121798": {
       "url": "https://www.explore-maurienne.com/itineraire/le-terroir-de-serpoliere/",
       "publisher": "Office de tourisme intercommunal Cœur de Maurienne Arvan (Apidae)",
@@ -90,6 +98,46 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T16:00:00.000Z"
     },
+    "osm-14378946": {
+      "url": "https://www.cirkwi.com/fr/circuit/137780-itineraire-de-randonnee-05-lac-de-pramol",
+      "publisher": "Office de Tourisme Les Karellis (Cirkwi)",
+      "name": "N°05 - Lac de Pramol",
+      "quote": "Point de départ : station des Karellis · Dist. 5.5 km · Déniv. pos. 181 m · Animaux : Oui. Les chiens doivent être tenus en laisse.",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-14864704": {
+      "url": "https://www.lac-annecy.com/itineraire-de-randonnee-pedestre/la-boucle-du-taillefer-duingt/",
+      "publisher": "Office de Tourisme du Lac d'Annecy (Apidae)",
+      "name": "La boucle du Taillefer",
+      "quote": "Distance 6.8km · Dénivelé positif 382m · Durée 03h00 · Difficulté Modéré · Parking de l'église",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-15591346": {
+      "url": "https://tourisme.coeurdesavoie.fr/fiches/le-sentier-des-buis-114550/",
+      "publisher": "Office de Tourisme Cœur de Savoie (Apidae)",
+      "name": "Le sentier des Buis",
+      "quote": "Dénivelé cumulé 780 m · Durée 4h30 · Distance 9.5km · Départ du circuit : du parking proche du cimetière-parc, chemin de Beauvoir",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-16322228": {
+      "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/160/129/13533600/13-La-boucle-du-marais-des-chassettes.pdf",
+      "publisher": "Grand Chambéry Alpes Tourisme (Apidae)",
+      "name": "La boucle du marais des Chassettes",
+      "quote": "1h00 · 3.509 km · 16 m · Boucle · Départ : Parking du plan d'eau",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-16395076": {
+      "url": "https://explore.chamberymontagnes.com/fr/itineraires/la-boucle-du-lac-de-la-thuile",
+      "publisher": "Grand Chambéry Alpes Tourisme (Apidae)",
+      "name": "La boucle du lac de la Thuile",
+      "quote": "Balade Facile · 45 minutes · 2km · Boucle · +20m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
     "osm-1780768": {
       "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoiedf6cb529c8a7bd40bd3a49332d95f0a.the--talblickweg--path-in-the-val-casies-valley.tesido-taisten",
       "publisher": "South Tyrol Tourism / Tourism Association Gsiesertal Valley-Welsberg-Taisten",
@@ -97,6 +145,22 @@
       "quote": "Following partly the valley road, partly farm access roads and other paths, from the area of Welsberg-Taisten the trail leads along one side of the Gsiesertal Valley to the end of the valley near St. Magdalena and back out of the valley on the other side.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-19153189": {
+      "url": "https://ap-arclusaz.fr/fr/rb/324820/circuit-du-belvedere",
+      "publisher": "Amicale Pédestre de l'Arclusaz",
+      "name": "Circuit trail du belvédère",
+      "quote": "Circuit trail du belvédère (4,1 km- 270 m D+) Balisage ROSE",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-19541366": {
+      "url": "https://www.valthorens.com/randonnee/randonnee-pedestre-le-lac-blanc/",
+      "publisher": "Office de Tourisme Val Thorens (Apidae)",
+      "name": "Randonnée pédestre - Le Lac Blanc",
+      "quote": "Les animaux doivent être tenus en laisse · Départ : rue de Gébroulaz · Durée 02h30 · Dénivelé 510 D+ · Distance 6,0 km",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
     "osm-19697977": {
       "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425926",
@@ -121,6 +185,14 @@
       "quote": "Der Neue Seeweg Ultental ist eine barrierefreie und flach angelegte Uferpromenade, die direkt am landschaftlich reizvollen Zoggler Stausee entlangführt.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-3982382": {
+      "url": "https://www.chartreuse-tourisme.com/offres/sur-les-pas-de-beatrice-de-savoie-les-echelles-fr-2777404/",
+      "publisher": "Chartreuse Tourisme (Apidae)",
+      "name": "Sur les pas de Béatrice de Savoie",
+      "quote": "Boucle · Distance 4.9 km · Dénivelé 173 m · Animaux acceptés: Chiens tenus en laisse.",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
     "osm-6404258": {
       "url": "https://www.olang.com/de/activity/spaziergang-oberolang-salla-oberolang_5019",
