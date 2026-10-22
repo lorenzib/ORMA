@@ -98,6 +98,9 @@ function workerOptions(env=process.env,{workerId}={}){
     // A gate standing on findings only an agent can supply is dispatched to
     // that agent without waiting for a moderator who cannot supply them.
     // Bounded because each dispatch costs a model call on a metered account.
+    // Verification research that calls the model. Off unless the repository
+    // variable says 'true': the free geometry survey keeps running either way.
+    paidResearchEnabled:env.ORMA_PAID_RESEARCH_ENABLED==='true',
     gateDispatchEnabled:env.ORMA_GATE_DISPATCH_ENABLED!=='false',
     gateDispatchLimit:positiveInteger(env.ORMA_GATE_DISPATCH_LIMIT,3),
     // Published reviewed trails sent back for the safety questions the fast

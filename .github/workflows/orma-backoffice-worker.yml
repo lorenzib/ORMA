@@ -60,6 +60,11 @@ jobs:
       # code change; the limit is per pass.
       ORMA_GATE_DISPATCH_ENABLED: ${{ vars.ORMA_GATE_DISPATCH_ENABLED || 'true' }}
       ORMA_GATE_DISPATCH_LIMIT: '3'
+      # Verification research that calls the model (the specialists and the
+      # evidence ladder). Off unless the repository variable is 'true': the
+      # free geometry survey keeps running either way, and paid jobs wait
+      # queued rather than failing. Research is done by hand for now.
+      ORMA_PAID_RESEARCH_ENABLED: ${{ vars.ORMA_PAID_RESEARCH_ENABLED || 'false' }}
       # Published reviewed trails sent back for their safety research (water,
       # heat, exposure, livestock, surface, access). Two model calls a trail.
       # Set the repository variable to 'false' to stop it without a code change.
