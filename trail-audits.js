@@ -474,6 +474,476 @@
       },
       waterSources: [],
       desc: 'A shaded loop round both Montiggl lakes in the Montiggl forest above Eppan: woodland paths along the small lake and the larger lake with its lido, joined by a short connector walked twice. The official route lists about 4 km and 112 m of ascent.'
+    },
+    'osm-16395076': {
+      // Hand audit 22 October 2026: route, start and ascent from the official page (Grand Chambéry Alpes Tourisme,
+      // Apidae 108809); dogs on a lead at all times per that page and the commune's lake rules.
+      "area": "La Thuile – Bauges",
+      "elevation": 20,
+      "hours": "0.75",
+      "desc": "A gentle 2 km loop round the Lac de la Thuile, the only natural lake in the Bauges, below the village of La Thuile at about 874 m: a dirt path along the south shore, the quiet lake road along the east shore past the inn and the town hall, and back past the cemetery. \n\nThe lake is a protected natural area and private ground: the commune allows dogs on a lead, forbids letting them off, and asks you to pick up after them. Just over half the loop is on quiet tarmac where cars can come at any moment, the dirt sections can be wet, and there is little shade. Keep your dog off the meadows and the reed beds.",
+      "tips": "Start at the village-hall car park (salle des fêtes) in La Thuile, the official start. A tap is mapped by the lake car park and public toilets stand near the town hall; carry water on hot days.",
+      "startPoint": {
+        "lat": 45.530335,
+        "lng": 6.053048,
+        "label": "Village-hall car park (salle des fêtes), La Thuile (official start)"
+      },
+      "shadeCoverage": 15,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [],
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Florian Pépellin, CC BY-SA 3.0, taken 19 m from the line.",
+        "route": "Closed line within 2% and 15 m of the official GPX (2.0 km).",
+        "routeNumbers": "The official page names the loop without a number and marks its turns by landmarks (inn, town hall, cemetery); no numbered switch applies.",
+        "mapPoints": "Start moved to the official car park; tap and toilets traced to OSM.",
+        "elevation": "Headline ascent corrected to the official 20 m."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Grand Chambéry Alpes Tourisme, La boucle du lac de la Thuile (Apidae 108809)",
+          "Commune de La Thuile, Le lac de La Thuile (rules for the site)",
+          "Natura 2000, nature reserves and biotope orders: none on the line (EEA, INPN)",
+          "OpenStreetMap relation 16395076, road classes and land cover along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Grand Chambéry Alpes Tourisme, La boucle du lac de la Thuile",
+          "url": "https://explore.chamberymontagnes.com/fr/itineraires/la-boucle-du-lac-de-la-thuile"
+        },
+        {
+          "label": "Commune de La Thuile, Le lac de La Thuile",
+          "url": "https://www.la-thuile.com/la-commune/le-lac-de-la-thuile"
+        },
+        {
+          "label": "OpenStreetMap relation 16395076",
+          "url": "https://www.openstreetmap.org/relation/16395076"
+        }
+      ]
+    },
+    'osm-19153189': {
+      // Hand audit 22 October 2026: route, start, distance and climb from the Amicale Pédestre de l'Arclusaz
+      // (operator) pages and topo; no commune, park or reserve dog rule on the line, so the national baseline applies.
+      "area": "Saint-Pierre-d'Albigny – Combe de Savoie",
+      "distance": 4,
+      "elevation": 270,
+      "hours": "1.25–1.5",
+      "desc": "A 4.1 km loop above Saint-Pierre-d'Albigny, one of the Amicale Pédestre de l'Arclusaz trail circuits, waymarked with pink plates showing a trail-shoe print and an arrow. From the gym car park it climbs through the village and across about 700 m of meadows to the Mont-Benoît path and the belvedere (IGN marker 655) over the Combe de Savoie, then returns by Mont-Benoît, Mollard and the col du Taccon with a steep descent to La Noiriat. \n\nNo commune, park or reserve rule restricts dogs here, so the national rules apply: do not let your dog stray, and keep it on a lead in woods and fields off the paths from 15 April to 30 June. The loop crosses the D101 and the D911 twice each, and a stretch runs through the Natura 2000 site of the eastern Bauges. About half of it is wooded; the open, south-facing stretches get hot in summer.",
+      "tips": "Start at the gym car park in Saint-Pierre-d'Albigny, by the Frontailles schools, and follow the pink trail-shoe plates in the direction of the arrows. A drinking-water point is mapped about 1 km in, and the stone basin at Mont-Benoît (about km 2.1) is a place for your dog to cool off. Keep your dog on the path through the meadows.",
+      "startPoint": {
+        "lat": 45.57186,
+        "lng": 6.15893,
+        "label": "Gym car park, Saint-Pierre-d'Albigny (official start)"
+      },
+      "shadeCoverage": 47,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [],
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Florian Pépellin, CC BY-SA 4.0, taken 10 m from the line at the belvedere.",
+        "route": "Closed line, 4.01 km against the official 4.1 km, same direction as the topo.",
+        "routeNumbers": "No number: the circuit is waymarked by colour (pink) with direction arrows; the topo names no junction with another circuit, so no switch applies.",
+        "mapPoints": "Start at the official gym car park; water point and Mont-Benoît basin traced to OSM.",
+        "elevation": "Official climb 270 m."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Amicale Pédestre de l'Arclusaz, Circuit du belvédère (page and topo)",
+          "Arrêté du 16 mars 1955 on dogs straying (national baseline)",
+          "Commune of Saint-Pierre-d'Albigny, published municipal orders: none on dogs",
+          "Natura 2000 FR8202002 on about 630 m; no reserve, national park or biotope order on the line (EEA, INPN)",
+          "OpenStreetMap relation 19153189, road classes, land cover and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Amicale Pédestre de l'Arclusaz, Circuit du belvédère",
+          "url": "https://ap-arclusaz.fr/fr/rb/324820/circuit-du-belvedere"
+        },
+        {
+          "label": "Amicale Pédestre de l'Arclusaz, the trail circuits",
+          "url": "https://ap-arclusaz.fr/fr/rb/335220/lassociation-et-les-parcours-trail"
+        },
+        {
+          "label": "Arrêté du 16 mars 1955 (dogs straying)",
+          "url": "https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens"
+        },
+        {
+          "label": "OpenStreetMap relation 19153189",
+          "url": "https://www.openstreetmap.org/relation/19153189"
+        }
+      ]
+    },
+    'osm-3982382': {
+      // Hand audit 22 October 2026: route, figures and dog rule from Chartreuse Tourisme (Apidae) and its official
+      // topo; the published line is the official GPX. Road stretches measured on OSM.
+      "area": "Les Échelles / Saint-Pierre-de-Genebroz – Chartreuse",
+      "distance": 4.9,
+      "elevation": 173,
+      "desc": "A loop of about 4.9 km from Les Échelles on the north-western edge of the Chartreuse regional park, following the GR9 from the Croix des Carriers past the Chapelle de la Madeleine viewpoint and returning on a yellow-waymarked path through the valley. \n\nDogs are accepted on a lead, according to Chartreuse Tourisme, and the official topo records no livestock guardian dogs. About half the walk is wooded. The way back runs about 430 m along the D921, part of it at 80 km/h with no pavement, then short stretches of the D1006 and D920 through the village at 30 km/h: keep your dog close there.",
+      "tips": "Start at the Place de la Corderie car park (Rivièr'Alp, by the Maison du Guiers) or the church car park in Les Échelles. A tap is mapped by the Maison du Guiers picnic area at the start; there is no water on the hill. The route is described for 1 May to 30 November.",
+      "startPoint": {
+        "lat": 45.43596,
+        "lng": 5.75551,
+        "label": "Place de la Corderie car park (Rivièr'Alp / Maison du Guiers), Les Échelles"
+      },
+      "shadeCoverage": 55,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [],
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, TomdeSavoie738, CC BY-SA 4.0, the Guiers from the bridge at Les Échelles by the start.",
+        "route": "Published line is the official GPX (4.88 km); official page 4.9 km.",
+        "routeNumbers": "No number: GR9 (white-red) from the Croix des Carriers past the Chapelle de la Madeleine, then the yellow-waymarked path back, as the official text describes.",
+        "mapPoints": "Start at the Place de la Corderie car park named by the official page; tap at the Maison du Guiers traced to OSM.",
+        "elevation": "Official 173 m of climb (the topo PDF gives 145 m)."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Chartreuse Tourisme, Sur les pas de Béatrice de Savoie (Apidae) and official topo (17 June 2024)",
+          "Parc naturel régional de Chartreuse: no dog restriction on the line; no reserve, biotope order or Natura 2000 site (EEA, INPN)",
+          "OpenStreetMap relation 3982382, road classes and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Chartreuse Tourisme, Sur les pas de Béatrice de Savoie",
+          "url": "https://www.chartreuse-tourisme.com/offres/sur-les-pas-de-beatrice-de-savoie-les-echelles-fr-2777404/"
+        },
+        {
+          "label": "Official topo (PDF)",
+          "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/18/151/23369490/topos-randos-beatrice-de-savoie-les-echelles-17juin24.pdf"
+        },
+        {
+          "label": "OpenStreetMap relation 3982382",
+          "url": "https://www.openstreetmap.org/relation/3982382"
+        }
+      ]
+    },
+    'osm-16322228': {
+      // Hand audit 22 October 2026: route and figures from the Grand Chambéry route sheet (Apidae PDF), dog rule
+      // from the Challes-les-Eaux commune page. No reserve, biotope order or Natura 2000 site on the line (EEA, INPN).
+      "area": "Challes-les-Eaux / La Ravoire",
+      "distance": 3.5,
+      "elevation": 16,
+      "terrainType": "Paved and gravel paths, flat",
+      "startPoint": {
+        "lat": 45.55609,
+        "lng": 5.97849,
+        "label": "Parking du plan d'eau, avenue de Chambéry, Challes-les-Eaux; bus 2 and 3 stop Plan d'Eau"
+      },
+      "desc": "An easy hour around the Chassettes, a 22 hectare former peat bog between Challes-les-Eaux and La Ravoire at the foot of the Bauges. Woods and marsh alternate along the way, with information panels on the birdlife, and the Challes leisure lake sits right by the start. The official route sheet gives 3.5 km and 16 m of climb.\n\nDogs must be on a lead: Challes-les-Eaux requires it on public roads and in the commune's parks. About 40% of the loop is shaded. The loop crosses the D1006 once, where traffic runs at 70 km/h, and shares about 900 m with a cycle path: keep your dog close there.",
+      "tips": "Start at the plan d'eau car park on avenue de Chambéry, opposite the Plan d'Eau bus stop. Two fenced dog parks sit by the leisure lake at the start, one for training and one for free running. There is no water on the loop, so bring some on warm days. Flat and short, a good pick for older dogs, puppies or a quick evening lap.",
+      "shadeCoverage": 40,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [],
+      "routeNumberSource": {
+        "provider": "Grand Chambéry Alpes Tourisme (Apidae)",
+        "name": "La boucle du marais des Chassettes",
+        "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/160/129/13533600/13-La-boucle-du-marais-des-chassettes.pdf"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Anthony Levrot, CC BY-SA 4.0, the marsh woods about 3 m from the line.",
+        "route": "Published line 3.35 km; official sheet 3.509 km, loop.",
+        "routeNumbers": "No number: the official sheet describes the loop by landmark from the plan d'eau car park, with no switch to another route.",
+        "mapPoints": "Start at the plan d'eau car park named by the official sheet; no water on the line.",
+        "elevation": "Official 16 m of climb."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Grand Chambéry Alpes Tourisme, La boucle du marais des Chassettes, route sheet (Apidae PDF)",
+          "Commune de Challes-les-Eaux: dogs on a lead on public roads and in the commune's parks",
+          "No reserve, biotope order or Natura 2000 site on the line (EEA, INPN); ZNIEFF only, an inventory without rules",
+          "OpenStreetMap relation 16322228: road classes, land cover and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Official route sheet (PDF)",
+          "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/160/129/13533600/13-La-boucle-du-marais-des-chassettes.pdf"
+        },
+        {
+          "label": "Challes-les-Eaux, dogs in the commune",
+          "url": "https://www.ville-challesleseaux.fr/decouvrir-et-bouger-au-quotidien/cadre-de-vie-mobilite-et-environnement/parc-canin"
+        },
+        {
+          "label": "OpenStreetMap relation 16322228",
+          "url": "https://www.openstreetmap.org/relation/16322228"
+        }
+      ]
+    },
+    'osm-14864704': {
+      // Hand audit 22 October 2026: route and figures from the Office de Tourisme du Lac d'Annecy (Apidae 5632895), dog rule
+      // and season from the Haute-Savoie departmental fiche (Apidae 151941); both official GPX tracks lie within 50 m of the line.
+      // The stored line runs the opposite way to the official sheets, and the text says so. No Natura 2000, reserve or biotope order.
+      "area": "Duingt",
+      "distance": 6.7,
+      "elevation": 382,
+      "startPoint": {
+        "lat": 45.8271246,
+        "lng": 6.2025044,
+        "label": "Parking de l'église, Duingt (paid in July and August); free car park on route des Prés Bernard"
+      },
+      "desc": "The rocky spine that juts into Lake Annecy, walked as a loop from Duingt's old village on the quiet west shore. As drawn here it heads out first: along the Route des Viviers and a short stretch of the D8 to the hamlet of Les Maisons, then up past the edge of the old quarry to the crest of the Taillefer and its viewpoints, with the lake on both sides, before dropping back to the village by the Chemin de la Grotte. The official sheets describe the same loop the other way round; either direction works. Officially 6.8 km and 382 m of climb.\n\nDogs are accepted on a lead only, according to the Haute-Savoie departmental route fiche. The loop lies inside the Bauges regional park, with no extra dog rule there. About 1.4 km is on tarmac, including some 230 m of the D8: keep your dog close there. The crest is wooded, so about 60% of the walk is in shade.",
+      "tips": "Keep the lead on: that is the official condition for dogs. The viewpoints on the crest stand at the rim of the old quarry, with a sheer drop a few metres from the path, so keep your dog close there. Livestock may graze in the meadows on the first half; no pasture or guardian-dog notice is posted. Taps at the start and at km 2.4 are the only water. Avoid the loop after heavy rain and wear proper shoes: the crest has a few rocky passages. The departmental fiche gives the season as 15 January to 1 November.",
+      "shadeCoverage": 60,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "A few rocky, uneven passages along the Taillefer crest",
+        "About 1.4 km on tarmac, including some 230 m of the D8 road"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de Tourisme du Lac d'Annecy (Apidae)",
+        "name": "La boucle du Taillefer",
+        "url": "https://www.lac-annecy.com/itineraire-de-randonnee-pedestre/la-boucle-du-taillefer-duingt/"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Guilhem Vellut, CC BY 2.0, Lac d'Annecy from the Taillefer, about 5 m from the line.",
+        "route": "Published line 6.69 km; official 6.8 km (tourist office) and 7.0 km (department); both official GPX tracks within 50 m. Line stored in the reverse direction, stated in the text.",
+        "routeNumbers": "No number: waymarked with yellow arrows and signposts; switches are the short loop to Mont Gerbet at the plateau and the optional detour to Dhéré, as the commune page describes.",
+        "mapPoints": "Start at the church car park named by the official fiche (17 m from its point); taps traced to OSM.",
+        "elevation": "Official 382 m of climb."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Office de Tourisme du Lac d'Annecy, La boucle du Taillefer (Apidae 5632895, updated 27 May 2024)",
+          "Haute-Savoie departmental fiche, La boucle pédestre du Taillefer (Apidae 151941): dogs on a lead only, season 15 January to 1 November",
+          "Parc naturel régional du Massif des Bauges: no dog restriction on the line; no reserve, biotope order or Natura 2000 site (EEA, INPN)",
+          "OpenStreetMap relation 14864704: road classes, land cover, cliffs and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Office de Tourisme du Lac d'Annecy, La boucle du Taillefer",
+          "url": "https://www.lac-annecy.com/itineraire-de-randonnee-pedestre/la-boucle-du-taillefer-duingt/"
+        },
+        {
+          "label": "Haute-Savoie Mont Blanc, La boucle pédestre du Taillefer",
+          "url": "https://hautesavoiemontblanc-tourisme.com/offres/la-boucle-pedestre-du-taillefer-duingt-fr-5867298/"
+        },
+        {
+          "label": "OpenStreetMap relation 14864704",
+          "url": "https://www.openstreetmap.org/relation/14864704"
+        }
+      ]
     }
   };
 
