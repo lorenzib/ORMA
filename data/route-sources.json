@@ -42,6 +42,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "osm-10539302": {
+      "url": "https://www.valloire.net/sit/le-sentier-ecosylve-de-valloire-5841280/",
+      "publisher": "Valloire Tourisme (Apidae)",
+      "name": "Le sentier écosylve de Valloire",
+      "quote": "Partir en direction du hameau de Poingt Ravier... Prendre ensuite le sentier Ecosylve... panneaux d'interprétation et de balisage · Animaux acceptés",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
     "osm-1116680": {
       "url": "https://www.sesto.it/it/attivita/escursioni/tour-escursionistici/AC5A47FCF7F0609BF66F8357787C1DB7-sentiero-tematico-percorso-intorno-a-sesto.html",
       "publisher": "Associazione Turistica di Sesto",
@@ -97,6 +105,14 @@
       "quote": "Number '4', code_name '4  Dörferrundweg' (provincial hiking-trail register, feature routes-hikingtrails.11428752)",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T16:00:00.000Z"
+    },
+    "osm-12745924": {
+      "url": "https://www.la-norma.fr/en/equipement/les-escaliers-walking-trail-la-norma/",
+      "publisher": "Haute Maurienne Vanoise Tourisme (La Norma)",
+      "name": "Les Escaliers walking trail",
+      "quote": "Distance 3.1km · Elevation 180m · Daily duration 00:45 · Mixed signposting (PR and GR) · Out of respect for wildlife, please keep your dog on a lead.",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
     "osm-14375158": {
       "url": "https://www.karellis.com/activites-ete/parcours-de-trail/",
@@ -186,6 +202,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "osm-19064561": {
+      "url": "https://hautesavoiemontblanc-tourisme.com/offres/ombres-sur-lalpage-parcours-de-decouverte-lullin-fr-5867320/",
+      "publisher": "Alpes du Léman tourist office (Apidae)",
+      "name": "Ombres sur l'Alpage, parcours de découverte",
+      "quote": "Animaux acceptés · Les chiens doivent être tenus en laisse. · Départ de Très le Mont l'été, du Col du Feu en hiver · Boucle · Distance 5.0 km",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
     "osm-19153189": {
       "url": "https://ap-arclusaz.fr/fr/rb/324820/circuit-du-belvedere",
       "publisher": "Amicale Pédestre de l'Arclusaz",
@@ -233,6 +257,14 @@
       "quote": "Boucle · Distance 4.9 km · Dénivelé 173 m · Animaux acceptés: Chiens tenus en laisse.",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-5479112": {
+      "url": "https://hautesavoiemontblanc-tourisme.com/offres/le-chemin-des-diligences-vallorcine-fr-5868893/",
+      "publisher": "Office de Tourisme de la Vallée de Chamonix-Mont-Blanc (Apidae)",
+      "name": "Le chemin des Diligences",
+      "quote": "Pédestre 3h 30min Facile · Aller / Retour · Distance 8.6 km · Animaux acceptés · Retour: par le même itinéraire",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
     "osm-6250300": {
       "url": "https://www.combloux.com/itineraires/boucle-du-lac-vert/",
