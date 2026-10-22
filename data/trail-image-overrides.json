@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-22T12:00:00.000Z",
+  "updatedAt": "2026-10-22T16:00:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -764,18 +764,18 @@
     },
     {
       "id": "osm-12164395",
-      "approvedReviewId": "commons-osm-12164395",
-      "approvedAt": "2026-09-08T12:41:30.241Z",
+      "approvedReviewId": "hand-audit-osm-12164395-2026-10-22",
+      "approvedAt": "2026-10-22T16:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-12164395-muehlbacher-klause.jpg",
-        "heroImage": "images/trails/osm-12164395-muehlbacher-klause.jpg",
-        "imageAlt": "The Muehlbacher Klause, the medieval barrier wall and tower thrown across the valley, wooded slopes rising behind it under storm cloud.",
-        "imageCredit": "Mühlbacher Klause",
-        "imageCreditText": "Mühlbacher Klause by Michielverbeek",
-        "imageCreator": "Michielverbeek",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:M%C3%BChlbacher_Klause_2019.jpg",
+        "imageIcon": "images/trails/osm-12164395-ansitz-troyenbach.jpg",
+        "heroImage": "images/trails/osm-12164395-ansitz-troyenbach.jpg",
+        "imageAlt": "Ansitz Troyenbach, the white Kreithner house in Priel near the start in Niedervintl, with the village church tower and its baroque chapel behind",
+        "imageCredit": "Ansitz Troyenbach in Niedervintl",
+        "imageCreditText": "Ansitz Troyenbach in Niedervintl by Alletto",
+        "imageCreator": "Alletto",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Troyenbach_01.JPG",
         "imageSourceType": "licensed-source"
       }
     },

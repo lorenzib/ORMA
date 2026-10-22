@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-22T12:00:00.000Z",
+  "updatedAt": "2026-10-22T16:00:00.000Z",
   "trails": [
     {
       "id": "cinque-torri-assisted",
@@ -9134,50 +9134,50 @@
     {
       "id": "osm-12164395",
       "candidateId": "osm-12164395",
-      "approvalId": "w2xLrVQyUYkC6Uf88sM1",
-      "generatedAt": "2026-10-20T13:08:49.602Z",
-      "verificationScope": "routeReviewed",
+      "approvalId": "hand-audit-osm-12164395-2026-10-22",
+      "generatedAt": "2026-10-22T16:00:00.000Z",
       "fields": {
         "name": "Dörferrundweg",
-        "desc": "A 6.3 km loop near Terento / Terenten, imported from the OpenStreetMap hiking network (trail 4). Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).",
-        "tips": "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.",
-        "imageIcon": "images/trails/osm-12164395-muehlbacher-klause.jpg",
-        "imageCredit": "Mühlbacher Klause",
-        "heroImage": "images/trails/osm-12164395-muehlbacher-klause.jpg",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:M%C3%BChlbacher_Klause_2019.jpg",
-        "imageCreator": "Michielverbeek",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageCreditText": "Mühlbacher Klause by Michielverbeek",
-        "imageAlt": "The Muehlbacher Klause, the medieval barrier wall and tower thrown across the valley, wooded slopes rising behind it under storm cloud.",
+        "desc": "A loop of about 6.3 km from Niedervintl up through the hamlets of Vorderdrittel and Außerdrittel towards Weitental, returning along the valley floor, signed throughout as route 4, the Dörferrundweg, in the province of Bolzano's hiking-trail register. Roughly half of it is woodland path and track; the rest is farm lanes and village roads.\n\nVintl requires dogs to be on a lead on busy paths and car parks, does not allow them to roam free, and bans them from farmed land except on hard-frozen ground in winter, signs or no signs. The route runs through two working farmyards and past farmland, with a small patch of grazing land just off it, so animals may be close by. About 270 m follow the main road between Niedervintl and Weitental without a pavement; keep your dog close there.",
+        "tips": "Start at Raiffeisenplatz in Niedervintl, by the route 4 signpost, and follow waymark 4 all the way round: routes 16 and 11, the Talweg and the Munich–Venice Traumpfad share stretches of it, but 4 stays with the loop. A drinking fountain stands at the start (summer only); there is none further round, so carry water. About half the walk is shaded.",
+        "imageIcon": "images/trails/osm-12164395-ansitz-troyenbach.jpg",
+        "imageCredit": "Ansitz Troyenbach in Niedervintl",
+        "heroImage": "images/trails/osm-12164395-ansitz-troyenbach.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Troyenbach_01.JPG",
+        "imageCreator": "Alletto",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageCreditText": "Ansitz Troyenbach in Niedervintl by Alletto",
+        "imageAlt": "Ansitz Troyenbach, the white Kreithner house in Priel near the start in Niedervintl, with the village church tower and its baroque chapel behind",
         "imageSourceType": "licensed-source",
-        "ormaVerified": false,
+        "ormaVerified": true,
         "routeNumberGuidance": {
           "mode": "numbered",
-          "start": "Start at Route start per OpenStreetMap, best parking/access not yet verified (46.81741, 11.72283). ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation. Check current access before travelling.",
-          "status": "The mapped route carries trail number 4; look for it at junctions. ORMA has not confirmed how they appear on local signs. ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.",
-          "sequence": "The mapped route follows route 4 from end to end. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
-          "switches": "The mapped route stays on route 4 throughout, with no change of number recorded along it. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
+          "start": "Start at Raiffeisenplatz in Niedervintl, at the route 4 signpost, the register's point for the route.",
+          "status": "Signed as route 4, Dörferrundweg, in the province of Bolzano hiking-trail register.",
+          "sequence": "Follow route 4 out of Niedervintl past the Troyenbach track junction, up through Vorderdrittel and Außerdrittel to the Stollweg bridge near Weitental, and back along the valley floor through Priel to the start.",
+          "switches": "None: routes 16 and 11, the Talweg and the Traumpfad share stretches, but route 4 is followed throughout.",
           "establishedBy": {
-            "start": "orma-record",
-            "status": "orma-record",
-            "sequence": "route-relations",
-            "switches": "route-relations"
+            "start": "agent-evidence",
+            "status": "agent-evidence",
+            "sequence": "agent-evidence",
+            "switches": "agent-evidence"
           },
           "sources": [
             {
-              "label": "OpenStreetMap route 4",
-              "url": "https://www.openstreetmap.org/relation/12164395",
-              "authority": "OpenStreetMap",
-              "accessedAt": "2026-10-20T12:31:01.652Z"
+              "label": "Province of Bolzano hiking-trail register: 4 Dörferrundweg (via Open Data Hub)",
+              "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428752",
+              "authority": "Autonome Provinz Bozen – Südtirol",
+              "accessedAt": "2026-10-22T16:00:00.000Z",
+              "reviewedAt": "2026-10-22"
             }
           ]
         },
-        "area": "Terento / Terenten",
+        "area": "Vintl / Vandoies – Pustertal",
         "distance": 6.3,
         "elevation": 205,
         "hours": "1.5–2.5",
-        "terrainType": "Partially mapped: fine gravel (55%), paved (31%), compacted gravel (14%), from OSM surface data",
+        "terrainType": "Woodland paths and gravel tracks, with farm lanes and village roads; about 270 m on a main road without a pavement",
         "terrainRank": 1,
         "safetyLevel": "moderate",
         "waterSources": [
@@ -9197,21 +9197,32 @@
           }
         ],
         "startPoint": {
-          "lat": 46.8170713,
-          "lng": 11.7231919,
-          "label": "Start here — Bus stop Vintl, Dorf - Vintl,Paese, 5 m from the route (OSM-verified access point)"
+          "lat": 46.81716,
+          "lng": 11.72288,
+          "label": "Raiffeisenplatz, Niedervintl (route 4 signpost)"
         },
-        "reviewedAt": "2026-10-20",
-        "reviewedBy": "ORMA verified-trail workflow",
+        "reviewedAt": "2026-10-22",
+        "reviewedBy": "ORMA route audit",
         "verified": {
-          "categories": [],
-          "sources": [
-            "Locked ORMA evidence dossier"
+          "categories": [
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
           ],
-          "date": "2026-10-20"
+          "sources": [
+            "Autonome Provinz Bozen, hiking-trail register: route 4 Dörferrundweg",
+            "Gemeinde Vintl, Verordnung über die Haltung von Hunden und anderen Tieren (2008), Art. 3 and 5",
+            "IDM Südtirol / Refill Südtirol drinking-water points (Open Data Hub)",
+            "Landschaftsplan Vintl (newPlan): land cover, grazing land and natural monuments near the line; Natura 2000: none",
+            "OpenStreetMap relation 12164395, road classes and farms along the line"
+          ],
+          "date": "2026-10-22"
         },
         "graduation": {
-          "status": "in-progress",
+          "status": "verified",
           "required": [
             "photo",
             "route",
@@ -9230,10 +9241,16 @@
             "route",
             "routeNumbers",
             "mapPoints",
-            "elevation"
+            "elevation",
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
           ]
         },
-        "verifiedAt": "2026-10-20T12:31:01.652Z",
+        "verifiedAt": "2026-10-22T16:00:00.000Z",
         "id": "osm-12164395",
         "path": [
           [
@@ -10773,7 +10790,14 @@
         "lng": 11.7231236,
         "region": "dolomites",
         "curated": true,
-        "publicationApprovalId": "w2xLrVQyUYkC6Uf88sM1"
+        "publicationApprovalId": "w2xLrVQyUYkC6Uf88sM1",
+        "exposure": false,
+        "shadeCoverage": 50,
+        "heatRisk": "moderate",
+        "routeRefs": [
+          "4"
+        ],
+        "routeNumberStatus": "official-numbered-route"
       }
     },
     {
