@@ -6639,6 +6639,30 @@ function effectiveOverrides(profile, adjustOverride){
       },
       waterSources: [],
       desc: 'A compact woodland loop from Niante Aze toward the marshy Lago d’Aosto, passing gypsum outcrops and mixed conifers before opening to a view toward the Spalti di Toro. The official route lists about 3 km and 250 m ascent.'
+    },
+    // Corrections only, 22 October 2026: place, start and what a walker needs
+    // to know, from the official source where one exists. These trails are not
+    // audited; nothing here claims a check was done.
+    'osm-12127424': {
+      area: 'La Combe, Saint-Jean-de-Maurienne',
+      desc: 'A short woodland loop of about 2.8 km on footpaths at La Combe, just outside Saint-Jean-de-Maurienne, waymarked EN04 on the Cœur de Maurienne Arvan network; a short stem from the car park is walked out and back. It is all path, with no road stretches, and part of it is a running circuit, so expect runners. Toilets with drinking water stand by the sports ground 55 m from the route.',
+      startPoint: { lat: 45.265509, lng: 6.336686, label: 'La Combe 1 car park, Saint-Jean-de-Maurienne' }
+    },
+    'osm-14377007': {
+      area: 'Les Karellis, Montricher-Albanne',
+      desc: 'An out-and-back walk of about 3.9 km from Les Karellis to the Lac de Pramol at Albanne, with a short loop round the lake; it is not a circuit, so the way back is the way out. Almost all of it follows the wide Route du Lac track, which is also a green ski piste in winter and is not closed to cars, plus about 100 m on the asphalt lake road. Drinking water is mapped at the start and by the lake, and the Vinouve chairlift runs alongside in summer.',
+      startPoint: { lat: 45.227201, lng: 6.40469, label: 'Vinouve chairlift lower station, Les Karellis' }
+    },
+    'osm-9487078': {
+      area: 'Seis am Schlern / Siusi allo Sciliar – Kastelruth',
+      desc: 'A forest loop of about 3.4 km on route 3 above Seis am Schlern, past the ruins of Hauenstein and Salegg castles, linked with the poet Oswald von Wolkenstein; the official route from the Seiser Alm cable-car valley station is about 5.7 km with 280 m of climbing. Mostly path and gravel track, with steps and a stream crossing, and not suitable for pushchairs. The approach from the valley station is on the asphalt Salegg road. No water is mapped on the loop.',
+      startPoint: { lat: 46.540206, lng: 11.5637402, label: 'Seiser Alm cable-car valley station, Seis (official start)' }
+    },
+    'osm-13528390': {
+      area: 'Pianon, Tambre (Alpago)',
+      elevation: 212,
+      desc: 'A loop of about 4.8 km from the square at Pianon in Tambre, down the old Sabbadalt path to the Puos–Tambre road and back up through the hamlet of Sabbadalt and the beech wood of the Bosco delle Fratte, waymarked 7. Much of it is surfaced: a steep descent on cement then asphalt, two crossings of the main road with a short stretch along it (cross with care and keep your dog close), and a paved road back to Pianon. Fountains are on the way, including the Fontana delle Lavine on the main-road bend.',
+      startPoint: { lat: 46.141607, lng: 12.430358, label: 'Piazza 11 gennaio 1945, Pianon (official start)' }
     }
   };
 

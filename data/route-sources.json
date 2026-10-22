@@ -44,11 +44,11 @@
     },
     "osm-1116680": {
       "url": "https://www.sesto.it/it/attivita/escursioni/tour-escursionistici/AC5A47FCF7F0609BF66F8357787C1DB7-sentiero-tematico-percorso-intorno-a-sesto.html",
-      "publisher": "Ass. Turistica di Sesto",
-      "name": "Sentiero tematico: Percorso intorno a Sesto",
-      "quote": "Al parcheggio presso il ristorante Hennstoll (1450 m), si gira a destra alla sbarra verso Gilte e si prosegue fino all'Hotel Rainer.",
-      "foundBy": "orma-route-source-scout",
-      "verifiedAt": "2026-10-12T20:14:56.229Z"
+      "publisher": "Associazione Turistica di Sesto",
+      "name": "Percorso intorno a Sesto (Sextner Rundweg)",
+      "quote": "Il sentiero parte dai masi Kiniger (1375 m) sopra Sesto e conduce inizialmente lungo il bordo del prato verso Moso fino a \"Palmstatt\" (sentiero n. 1).",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T19:00:00.000Z"
     },
     "osm-11775760": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-sudtirol/pdp-erlebnisse.smgpoided61cbccffcce945596496bc2cdf7da.carl-toldt-weg-in-vahrn-bei-brixen.vahrn",
@@ -74,6 +74,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-12121798": {
+      "url": "https://www.explore-maurienne.com/itineraire/le-terroir-de-serpoliere/",
+      "publisher": "Office de tourisme intercommunal Cœur de Maurienne Arvan (Apidae)",
+      "name": "EN02 Le Terroir de Serpolière",
+      "quote": "Type : Boucle // Distance : 2,1 km / Durée : 0h50 // Dénivelé : 70 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T18:00:00.000Z"
+    },
     "osm-12164395": {
       "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428752",
       "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
@@ -89,6 +97,14 @@
       "quote": "Following partly the valley road, partly farm access roads and other paths, from the area of Welsberg-Taisten the trail leads along one side of the Gsiesertal Valley to the end of the valley near St. Magdalena and back out of the valley on the other side.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-19697977": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425926",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "14 Panoramaweg",
+      "quote": "Number '14', code_name '14  Panoramaweg' (provincial hiking-trail register)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T18:00:00.000Z"
     },
     "osm-3202880": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi78f78b7fec7706efe8118a3e4e471486.montiggler-seen-runde.montiggl",
