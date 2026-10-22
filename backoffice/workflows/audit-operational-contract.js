@@ -680,7 +680,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&safetyLane.includes("if(trail.safetyResearch?.contract===SAFETY_RESEARCH_CONTRACT)continue;")
     &&orchestrationAdvance.includes('async function openSafetyGate(store,trail,jobs,nextQueue,catalogueTrail,at)')
     &&orchestrationAdvance.includes("const survey=latest(jobs,trail.candidateId,'cartographer');")
-    &&worker.includes('const safetyResearch=await sendReviewedTrailsForSafetyResearch(store,options);')
+    &&worker.includes('const safetyResearch=await sendReviewedTrailsForSafetyResearch(store,{...options,productionTrails});')
     &&staging.includes("const SETTLED_FOR_SEAL=Object.freeze(['access','livestock']);")
     &&staging.includes("...(banned.length?{withdrawal:{reason:'dogs-not-accepted'")
     &&standard.includes('A reviewed trail is sent back for its safety research'),

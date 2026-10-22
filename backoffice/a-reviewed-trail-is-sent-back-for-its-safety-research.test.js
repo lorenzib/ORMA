@@ -218,3 +218,39 @@ describe('the three decisions',()=>{
     expect(board.summary).toMatchObject({audit:1,withdrawn:1});
   });
 });
+
+describe('a trail verified by hand while the lane had it out',()=>{
+  const {planStandDown,standDown}=require('./workflows/safety-research-lane');
+  const {sendReviewedTrailsForSafetyResearch}=require('./workflows/run-live-backoffice-worker');
+  const out=(id,extra={})=>({trailId:id,candidateId:id,state:'evidence-research',stage:'safety-research',
+    jobIds:[`survey-${id}`,`${id}-ranger`,`${id}-terrain`],attempts:{},
+    safetyResearch:{contract:SAFETY_RESEARCH_CONTRACT,requestedAt:'2026-10-22T09:35:00Z',returnTo:'ready-for-editorial',handAudit:[]},...extra});
+
+  test('stands down: back where it was, and only a sealed trail',()=>{
+    const orchestration={trails:[out('sealed'),out('open')]};
+    const plan=planStandDown(orchestration,['sealed']);
+    expect(plan.map(item=>item.trailId)).toEqual(['sealed']);
+    const next=standDown(orchestration,plan,AT);
+    expect(next.trails[0]).toMatchObject({state:'ready-for-editorial',stage:'safety-research-superseded-by-hand-audit'});
+    expect(next.trails[0].safetyResearch.supersededAt).toBe(AT);
+    expect(next.trails[1].state).toBe('evidence-research');
+  });
+
+  test('its queued lane jobs are retired before they spend anything, even with the lane switched off',async()=>{
+    const jobs=new Map([
+      ['sealed-ranger',{id:'sealed-ranger',status:'queued',lane:'safety-research'}],
+      ['sealed-terrain',{id:'sealed-terrain',status:'running',lane:'safety-research'}],
+      ['survey-sealed',{id:'survey-sealed',status:'completed'}],
+    ]);
+    const retired=[];const artifacts=new Map([['trail-orchestration',{trails:[out('sealed')]}]]);
+    const store={getArtifact:async id=>artifacts.get(id)||null,setArtifact:async(id,value)=>{artifacts.set(id,value);},
+      getJobsByIds:async ids=>ids.map(id=>jobs.get(id)).filter(Boolean),
+      completeSystemJob:async(id,fields)=>{retired.push({id,...fields});},putJob:async()=>{}};
+    const outcomes=await sendReviewedTrailsForSafetyResearch(store,{safetyResearchEnabled:false,now:new Date(AT),
+      productionTrails:[{id:'sealed',ormaVerified:true}],verifiedOverrides:{trails:[]}});
+    expect(outcomes).toEqual([{trailId:'sealed',candidateId:'sealed',status:'stood-down'}]);
+    expect(retired.map(item=>item.id)).toEqual(['sealed-ranger']);
+    expect(retired[0].retiredFrom).toBe('queued');
+    expect(artifacts.get('trail-orchestration').trails[0].state).toBe('ready-for-editorial');
+  });
+});
