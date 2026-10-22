@@ -141,6 +141,35 @@ function dogsNotAccepted(item){
     &&fact.rule==='not-accepted');
 }
 
-module.exports={SAFETY_RESEARCH_CONTRACT,SAFETY_RESEARCH_STAGE,SAFETY_SPECIALISTS,SAFETY_AGENTS,
+/**
+ * A trail verified by hand while the lane had it out stands down.
+ *
+ * The lane's research would come back to a trail that already carries the
+ * seal, and a publication from a thinner dossier is refused outright -- it may
+ * not take a seal away -- which fails the publishing batch it is in. So its
+ * queued jobs are retired before they spend anything, and the trail returns to
+ * where it was. Applied whether or not the lane is switched on: switching it
+ * off stops new trails, not the ones already sent.
+ */
+function planStandDown(orchestration,sealedTrailIds){
+  const sealed=new Set([...sealedTrailIds].map(String));
+  return (orchestration?.trails||[]).filter(trail=>inSafetyResearch(trail)&&sealed.has(String(trail.trailId)))
+    .map(trail=>({trailId:trail.trailId,candidateId:trail.candidateId,jobIds:[...(trail.jobIds||[])]}));
+}
+
+function standDown(orchestration,plan,at){
+  const next=JSON.parse(JSON.stringify(orchestration));
+  const wanted=new Set(plan.map(item=>String(item.trailId)));
+  for(const trail of next.trails||[]){
+    if(!wanted.has(String(trail.trailId)))continue;
+    trail.state=trail.safetyResearch.returnTo||'ready-for-editorial';
+    trail.stage='safety-research-superseded-by-hand-audit';
+    trail.safetyResearch={...trail.safetyResearch,supersededAt:at};
+    trail.gate=null;trail.blockers=[];trail.updatedAt=at;
+  }
+  return next;
+}
+
+module.exports={planStandDown,standDown,SAFETY_RESEARCH_CONTRACT,SAFETY_RESEARCH_STAGE,SAFETY_SPECIALISTS,SAFETY_AGENTS,
   UNREAD_DOCUMENT_MARK,safetyResearchPrompt,planSafetyResearch,dispatchSafetyResearch,inSafetyResearch,
   unreadDocuments,dogsNotAccepted};

@@ -33,7 +33,8 @@ const { loadProductionTrails } = require('../../scripts/load-production-trails')
 const {currentSiteTrails,isCurrentSiteTrail}=require('../services/public-site-trails');
 const fs=require('fs');
 const {buildTrailBoard}=require('./build-trail-board');
-const {planSafetyResearch,dispatchSafetyResearch}=require('./safety-research-lane');
+const {planSafetyResearch,dispatchSafetyResearch,planStandDown,standDown}=require('./safety-research-lane');
+const {retirementFields}=require('./retire-blocked-jobs');
 const path=require('path');
 
 function iso(value){
@@ -519,19 +520,35 @@ async function dispatchUnansweredGates(store,options={}){
  * safety research".
  */
 async function sendReviewedTrailsForSafetyResearch(store,options={}){
-  if(options.safetyResearchEnabled===false)return [];
-  const orchestration=await store.getArtifact('trail-orchestration');
+  let orchestration=await store.getArtifact('trail-orchestration');
   if(!orchestration)return [];
+  const at=iso(options.now||new Date());
+  const outcomes=[];
+  // Before the switch: a trail verified by hand stands down whether or not
+  // the lane is on.
+  const production=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
+  const sealed=production.filter(trail=>trail.ormaVerified===true).map(trail=>trail.id);
+  const stepDown=planStandDown(orchestration,sealed);
+  if(stepDown.length){
+    const queuedJobs=await store.getJobsByIds(stepDown.flatMap(item=>item.jobIds));
+    for(const job of queuedJobs){
+      if(!job||job.status!=='queued'||job.lane!=='safety-research')continue;
+      await store.completeSystemJob(job.id,retirementFields('trail verified by hand while the safety lane had it',at,'queued'));
+    }
+    orchestration=standDown(orchestration,stepDown,at);
+    await store.setArtifact('trail-orchestration',compactOrchestration(orchestration));
+    outcomes.push(...stepDown.map(item=>({trailId:item.trailId,candidateId:item.candidateId,status:'stood-down'})));
+  }
+  if(options.safetyResearchEnabled===false)return outcomes;
   const overrides=options.verifiedOverrides
     ||JSON.parse(fs.readFileSync(path.resolve(__dirname,'../../data/verified-trail-overrides.json'),'utf8'));
   const plan=planSafetyResearch(orchestration,overrides,{limit:options.safetyResearchLimit});
-  if(!plan.length)return [];
-  const at=iso(options.now||new Date());
+  if(!plan.length)return outcomes;
   const {orchestration:next,jobs}=dispatchSafetyResearch(orchestration,plan,at);
   for(const job of jobs)await store.putJob(job);
   await store.setArtifact('trail-orchestration',compactOrchestration(next));
-  return plan.map(item=>({trailId:item.trailId,candidateId:item.candidateId,missing:item.missing,
-    jobIds:jobs.filter(job=>job.candidateId===item.candidateId).map(job=>job.id),status:'dispatched'}));
+  return [...outcomes,...plan.map(item=>({trailId:item.trailId,candidateId:item.candidateId,missing:item.missing,
+    jobIds:jobs.filter(job=>job.candidateId===item.candidateId).map(job=>job.id),status:'dispatched'}))];
 }
 
 async function ingestDossierReviews(store,options={}){
@@ -856,7 +873,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   const gateDispatches=await dispatchUnansweredGates(store,options);
   // Before advancement and the specialist batch, so a trail sent back here is
   // researched in this same pass.
-  const safetyResearch=await sendReviewedTrailsForSafetyResearch(store,options);
+  const safetyResearch=await sendReviewedTrailsForSafetyResearch(store,{...options,productionTrails});
   const automatedGates=[];const dossierReviews=[];
   automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:catalogueTrails}));
   dossierReviews.push(...await ingestDossierReviews(store,{...options,productionTrails}));

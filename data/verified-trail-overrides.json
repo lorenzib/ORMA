@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-22T09:47:43.341Z",
+  "updatedAt": "2026-10-22T12:00:00.000Z",
   "trails": [
     {
       "id": "cinque-torri-assisted",
@@ -5308,50 +5308,50 @@
     {
       "id": "osm-11795251",
       "candidateId": "osm-11795251",
-      "approvalId": "9uuSWG6aKZr8BVTUuUIU",
-      "generatedAt": "2026-10-20T13:08:49.602Z",
-      "verificationScope": "routeReviewed",
+      "approvalId": "hand-audit-osm-11795251-2026-10-22",
+      "generatedAt": "2026-10-22T12:00:00.000Z",
       "fields": {
         "name": "Dörferrundweg (Vintl)",
-        "desc": "A 9.6 km loop near Terento / Terenten, imported from the OpenStreetMap hiking network (trail 1). Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).",
-        "tips": "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.",
-        "imageIcon": "images/trails/osm-11795251-commons.jpg",
-        "imageCredit": "Talkessel von Pfunders",
-        "heroImage": "images/trails/osm-11795251-commons.jpg",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Talkessel_von_Pfunders.JPG",
-        "imageCreator": "Hegedex",
-        "imageLicence": "Public domain",
-        "imageLicenceUrl": null,
-        "imageCreditText": "Talkessel von Pfunders by Hegedex",
-        "imageAlt": "The Pfunders valley basin in the Vintl municipality",
+        "desc": "A loop of just under 10 km linking the villages of Vintl on the Pustertal floor (Niedervintl, Obervintl, Dörfl and Priel), signed throughout as route 1, the Dörferrundweg, in the province of Bolzano's hiking-trail register. It runs mostly on quiet village lanes and farm roads with stretches of woodland, past working farms, with the Obervintl waterfall a short detour away.\n\nVintl requires dogs to be on a lead on busy paths and car parks, does not allow them to roam free, and bans them from farmed land except on hard-frozen ground in winter, signs or no signs. The route passes about nine farmyards and a short stretch of designated grazing land, so cattle may be close by in season. About 1.2 km follows main roads without a pavement, and the loop crosses the Pustertal railway at a barriered level crossing at Dörfl: keep your dog close there.",
+        "tips": "Follow waymark 1 all the way round: other routes share sections, but 1 never leaves the loop. No official start is published, so ORMA suggests the point below; check parking locally. Drinking-water fountains (Refill Südtirol points) are on the way at Guggenbergstraße, Raiffeisenplatz and the Obervintl recreation area. Only about two fifths of the walk is shaded and much of the rest is asphalt that heats up in summer, so walk early on hot days.",
+        "imageIcon": "images/trails/osm-11795251-obervintl-waterfall.jpg",
+        "imageCredit": "The Obervintl waterfall",
+        "heroImage": "images/trails/osm-11795251-obervintl-waterfall.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Obervintler_Wasserfall.jpg",
+        "imageCreator": "Linie29",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageCreditText": "The Obervintl waterfall by Linie29",
+        "imageAlt": "The Obervintl waterfall dropping into a mossy wooded gorge above Obervintl, a short detour off the village loop",
         "imageSourceType": "licensed-source",
-        "ormaVerified": false,
+        "ormaVerified": true,
         "routeNumberGuidance": {
           "mode": "numbered",
-          "start": "Start at Route start per OpenStreetMap, best parking/access not yet verified (46.81674, 11.72302). ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation. Check current access before travelling.",
-          "status": "The mapped route carries trail number 1; look for it at junctions. ORMA has not confirmed how they appear on local signs. ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.",
-          "sequence": "The mapped route follows route 1 from end to end. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
-          "switches": "The mapped route stays on route 1 throughout, with no change of number recorded along it. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
+          "start": "No official start is published; ORMA suggests starting at the mapped route start near Obervintl (46.81674, 11.72302). Check parking locally.",
+          "status": "Signed as route 1, Dörferrundweg, in the province of Bolzano hiking-trail register.",
+          "sequence": "Follow route 1 all the way round through Niedervintl, Obervintl, Dörfl and Priel.",
+          "switches": "None: other routes share sections, but route 1 is followed throughout.",
           "establishedBy": {
             "start": "orma-record",
-            "status": "orma-record",
-            "sequence": "route-relations",
-            "switches": "route-relations"
+            "status": "agent-evidence",
+            "sequence": "agent-evidence",
+            "switches": "agent-evidence"
           },
           "sources": [
             {
-              "label": "OpenStreetMap route 1",
-              "url": "https://www.openstreetmap.org/relation/11795251",
-              "authority": "OpenStreetMap",
-              "accessedAt": "2026-10-20T12:31:01.326Z"
+              "label": "Province of Bolzano hiking-trail register: 1 Dörferrundweg (via Open Data Hub)",
+              "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425300",
+              "authority": "Autonome Provinz Bozen – Südtirol",
+              "accessedAt": "2026-10-22T12:00:00.000Z",
+              "reviewedAt": "2026-10-22"
             }
           ]
         },
-        "area": "Terento / Terenten",
+        "area": "Vintl / Vandoies – Pustertal",
         "distance": 9.6,
         "elevation": 170,
         "hours": "2.5–3",
-        "terrainType": "Partially mapped: paved (91%), natural ground (8%), pebblestone (2%), from OSM surface data",
+        "terrainType": "Mostly paved village lanes and farm roads, with woodland paths; about 1.2 km on main roads without a pavement",
         "terrainRank": 2,
         "safetyLevel": "caution",
         "waterSources": [
@@ -5417,17 +5417,28 @@
           "lng": 11.7555065,
           "label": "Start here — Parking, 10 m from the route (OSM-verified access point)"
         },
-        "reviewedAt": "2026-10-20",
-        "reviewedBy": "ORMA verified-trail workflow",
+        "reviewedAt": "2026-10-22",
+        "reviewedBy": "ORMA route audit",
         "verified": {
-          "categories": [],
-          "sources": [
-            "Locked ORMA evidence dossier"
+          "categories": [
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
           ],
-          "date": "2026-10-20"
+          "sources": [
+            "Autonome Provinz Bozen, hiking-trail register: route 1 Dörferrundweg",
+            "Gemeinde Vintl, Verordnung über die Haltung von Hunden und anderen Tieren (2008), Art. 3 and 5",
+            "IDM Südtirol / Refill Südtirol drinking-water points (Open Data Hub)",
+            "Landschaftsplan Vintl (newPlan): land cover, grazing land, biotopes and natural monuments near the line; Natura 2000: none",
+            "OpenStreetMap relation 11795251, road classes, farms and the railway crossing along the line"
+          ],
+          "date": "2026-10-22"
         },
         "graduation": {
-          "status": "in-progress",
+          "status": "verified",
           "required": [
             "photo",
             "route",
@@ -5446,10 +5457,16 @@
             "route",
             "routeNumbers",
             "mapPoints",
-            "elevation"
+            "elevation",
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
           ]
         },
-        "verifiedAt": "2026-10-20T12:31:01.326Z",
+        "verifiedAt": "2026-10-22T12:00:00.000Z",
         "id": "osm-11795251",
         "path": [
           [
@@ -8153,75 +8170,92 @@
         "lng": 11.7227502,
         "region": "dolomites",
         "curated": true,
-        "publicationApprovalId": "9uuSWG6aKZr8BVTUuUIU"
+        "publicationApprovalId": "9uuSWG6aKZr8BVTUuUIU",
+        "exposure": false,
+        "shadeCoverage": 40,
+        "heatRisk": "moderate",
+        "routeRefs": [
+          "1"
+        ],
+        "routeNumberStatus": "official-numbered-route"
       }
     },
     {
       "id": "osm-11839597",
       "candidateId": "osm-11839597",
-      "approvalId": "H0jm8jA8GiGNhl6ZLhlu",
-      "generatedAt": "2026-10-20T13:08:49.602Z",
-      "verificationScope": "routeReviewed",
+      "approvalId": "hand-audit-osm-11839597-2026-10-22",
+      "generatedAt": "2026-10-22T12:00:00.000Z",
       "fields": {
         "name": "Fenn Promenade",
-        "desc": "A 2.2 km loop near Castelrotto / Kastelruth, imported from the OpenStreetMap hiking network (trail 20). Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).",
-        "tips": "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.",
-        "imageIcon": "images/trails/osm-11839597-commons.jpg",
-        "imageCredit": "Prossliner Schwaige mit Schlern Seiser Alm",
-        "heroImage": "images/trails/osm-11839597-commons.jpg",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Prossliner_Schwaige_mit_Schlern_Seiser_Alm.jpg",
-        "imageCreator": "Wolfgang Moroder",
+        "desc": "A gentle loop of about 2.1 km around the Fennbühel above Klobenstein on the Ritten plateau, a promenade since 1898. Waymark 20 climbs from the village through half-shaded mixed and beech woodland to a viewing platform and a lookout towards the earth pyramids, then drops to the Amtmann pond at Lengmoos, where the broad promenade path leads back into Klobenstein. It is gravel almost all the way and easy enough for a pushchair.\n\nRitten requires dogs to be on a lead of at most 1.5 m on all public and publicly accessible ground, and bans them from farmed meadows and fields during the growing season. The open stretches pass mown meadows rather than pasture: no grazing land, farmyard or alm is recorded along the loop, so keep your dog on the path. About four fifths of the walk is under trees.",
+        "tips": "Start at the Dorf bus stop beside the free village car park in Klobenstein (1,150 m). At the Festplatz keep right on waymark 20 and follow it all the way round; nothing changes number on the loop. There is no drinking fountain on the loop: fill up at the Klobenstein village fountain on the street below the start. Keep your dog on a short lead and off the meadows.",
+        "imageIcon": "images/trails/osm-11839597-amtmann-pond-lengmoos.jpg",
+        "imageCredit": "The Amtmann pond at Lengmoos",
+        "heroImage": "images/trails/osm-11839597-amtmann-pond-lengmoos.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Reflecting_on_Collalbo_Kolbenstein_-_panoramio.jpg",
+        "imageCreator": "Art Anderson",
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-        "imageCreditText": "Prossliner Schwaige mit Schlern Seiser Alm by Wolfgang Moroder",
-        "imageAlt": "An alpine hut on the Alpe di Siusi below the Sciliar",
+        "imageCreditText": "The Amtmann pond at Lengmoos by Art Anderson",
+        "imageAlt": "The Amtmann pond at Lengmoos on the Ritten, Gasthof Amtmann reflected in the still water beside a wooden-fenced village lane, where the promenade joins the village",
         "imageSourceType": "licensed-source",
-        "ormaVerified": false,
+        "ormaVerified": true,
         "routeNumberGuidance": {
           "mode": "numbered",
-          "start": "Start at Route start per OpenStreetMap, best parking/access not yet verified (46.54102, 11.46747). ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation. Check current access before travelling.",
-          "status": "The mapped route carries trail number 20; look for it at junctions. ORMA has not confirmed how they appear on local signs. ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.",
-          "sequence": "The mapped route follows route 20 from end to end. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
-          "switches": "The mapped route stays on route 20 throughout, with no change of number recorded along it. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
+          "start": "Start at the Dorf bus stop and village car park in Klobenstein (1,150 m), the start the official route description gives.",
+          "status": "Waymarked 20 on the loop. The walk in from the Rittner Bahn station follows 24.",
+          "sequence": "From the Festplatz keep right on 20 up to the viewing platform, through the mixed and beech woodland past the lookout towards the earth pyramids, down to the Amtmann pond at Lengmoos, then left along the broad promenade path back to Klobenstein.",
+          "switches": "None on the loop: 20 is followed all the way round.",
           "establishedBy": {
-            "start": "orma-record",
-            "status": "orma-record",
-            "sequence": "route-relations",
-            "switches": "route-relations"
+            "start": "agent-evidence",
+            "status": "agent-evidence",
+            "sequence": "agent-evidence",
+            "switches": "agent-evidence"
           },
           "sources": [
             {
-              "label": "OpenStreetMap route 20",
-              "url": "https://www.openstreetmap.org/relation/11839597",
-              "authority": "OpenStreetMap",
-              "accessedAt": "2026-10-20T12:31:00.950Z"
+              "label": "Fenn Promenade, official route description",
+              "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoie48a748b7f4497eb984622ba50b6823a.fenn-promenade.sill",
+              "authority": "IDM Südtirol / Tourismusgenossenschaft Ritten",
+              "accessedAt": "2026-10-22T12:00:00.000Z",
+              "reviewedAt": "2026-10-22"
             }
           ]
         },
-        "area": "Castelrotto / Kastelruth",
+        "area": "Klobenstein / Collalbo – Ritten / Renon",
         "distance": 2.2,
-        "elevation": 136,
+        "elevation": 100,
         "hours": "0.5–1",
-        "terrainType": "gravel (100%), paved (0%), from OSM surface data",
+        "terrainType": "Gravel woodland promenade, with a short stretch of quiet village road",
         "terrainRank": 1,
-        "safetyLevel": "moderate",
+        "safetyLevel": "low-risk",
         "waterSources": [],
         "startPoint": {
-          "lat": 46.5416706,
-          "lng": 11.4677624,
-          "label": "Start here — Parking, 79 m from the route (OSM-verified access point)"
+          "lat": 46.538587,
+          "lng": 11.465236,
+          "label": "Dorf bus stop and village car park, Klobenstein (official start)"
         },
-        "reviewedAt": "2026-10-20",
-        "reviewedBy": "ORMA verified-trail workflow",
+        "reviewedAt": "2026-10-22",
+        "reviewedBy": "ORMA route audit",
         "verified": {
-          "categories": [],
-          "sources": [
-            "Locked ORMA evidence dossier"
+          "categories": [
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
           ],
-          "date": "2026-10-20"
+          "sources": [
+            "IDM Südtirol / Tourismusgenossenschaft Ritten, Fenn Promenade route description",
+            "Gemeinde Ritten, Gemeindeverordnung über die Haltung und das Führen von Tieren (2010), Art. 4 and 8",
+            "Landschaftsplan Ritten (newPlan): no biotope or protected area on the loop; Natura 2000: none",
+            "OpenStreetMap relation 11839597, land cover and road classes along the line"
+          ],
+          "date": "2026-10-22"
         },
         "graduation": {
-          "status": "in-progress",
+          "status": "verified",
           "required": [
             "photo",
             "route",
@@ -8240,10 +8274,16 @@
             "route",
             "routeNumbers",
             "mapPoints",
-            "elevation"
+            "elevation",
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
           ]
         },
-        "verifiedAt": "2026-10-20T12:31:00.950Z",
+        "verifiedAt": "2026-10-22T12:00:00.000Z",
         "id": "osm-11839597",
         "path": [
           [
@@ -8671,7 +8711,14 @@
         "lng": 11.4674651,
         "region": "dolomites",
         "curated": true,
-        "publicationApprovalId": "H0jm8jA8GiGNhl6ZLhlu"
+        "publicationApprovalId": "H0jm8jA8GiGNhl6ZLhlu",
+        "exposure": false,
+        "shadeCoverage": 80,
+        "heatRisk": "low",
+        "routeRefs": [
+          "20"
+        ],
+        "routeNumberStatus": "official-numbered-route"
       }
     },
     {

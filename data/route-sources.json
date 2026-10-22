@@ -58,6 +58,22 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
+    "osm-11795251": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425300",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "1 Dörferrundweg",
+      "quote": "CODE '1', CODE_NAME '1  Dörferrundweg' (provincial hiking-trail register, feature 12163061)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-11839597": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoie48a748b7f4497eb984622ba50b6823a.fenn-promenade.sill",
+      "publisher": "Tourismusgenossenschaft Ritten (via Südtirol.info / IDM Südtirol)",
+      "name": "Fenn Promenade",
+      "quote": "Beim Festplatz hält man sich rechts (Mark. Nr. 20) und folgt dem Weg bis zur Aussichtsplattform, die zum Verweilen einlädt.",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
     "osm-1780768": {
       "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoiedf6cb529c8a7bd40bd3a49332d95f0a.the--talblickweg--path-in-the-val-casies-valley.tesido-taisten",
       "publisher": "South Tyrol Tourism / Tourism Association Gsiesertal Valley-Welsberg-Taisten",
