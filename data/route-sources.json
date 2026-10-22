@@ -106,6 +106,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-14379010": {
+      "url": "https://www.cirkwi.com/fr/circuit/252706-itineraire-de-randonnee-08-croix-de-pralognan",
+      "publisher": "Office de Tourisme Les Karellis (Cirkwi)",
+      "name": "N°08 - Croix de Pralognan",
+      "quote": "Point de départ : station les Karellis · Dist. 8.4 km · Déniv. pos. 203 m · Durée 3h · Animaux : Oui",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-14381584": {
+      "url": "https://www.karellis.com/activites-ete/balades-et-randonnees/randonnee-beaumollard/",
+      "publisher": "Station des Karellis",
+      "name": "Randonnée Beaumollard (sentier n°11)",
+      "quote": "Sentier balisé n°11 – boucle forestière autour des Karellis · Départ depuis l'Office du Tourisme · D 216m en 6.9km",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
     "osm-14864704": {
       "url": "https://www.lac-annecy.com/itineraire-de-randonnee-pedestre/la-boucle-du-taillefer-duingt/",
       "publisher": "Office de Tourisme du Lac d'Annecy (Apidae)",
@@ -191,6 +207,14 @@
       "publisher": "Chartreuse Tourisme (Apidae)",
       "name": "Sur les pas de Béatrice de Savoie",
       "quote": "Boucle · Distance 4.9 km · Dénivelé 173 m · Animaux acceptés: Chiens tenus en laisse.",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-6250300": {
+      "url": "https://www.combloux.com/itineraires/boucle-du-lac-vert/",
+      "publisher": "Office de Tourisme de Combloux / Passy (Apidae)",
+      "name": "Boucle du Lac Vert",
+      "quote": "Durée 01h00 · Dénivelé 100 D+ · Distance 3,1 km · Les animaux doivent être impérativement tenus en laisse … et sont interdits dans le Lac.",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
@@ -297,6 +321,14 @@
       "quote": "Il punto di partenza è l'ufficio informazioni.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
+    "osm-9937537": {
+      "url": "https://www.la-plagne.com/savourez-une-multitude-d-activites/la-plagne-l-ete/randonnee-pedestre-en-vanoise-et-en-tarentaise/itineraires-de-marche-et-randonnee/randonnee-vers-le-mont-jovet",
+      "publisher": "Office de Tourisme de la Grande Plagne",
+      "name": "Randonnée vers le Mont Jovet",
+      "quote": "Niveau rouge - Difficile · Durée 6h00 · Distance 12 km · Dénivelé positif 870 m · Type itinéraire Boucle · Passage escarpé au niveau du Pas des Brebis.",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
     "piancavallo": {
       "url": "https://www.mypiancavallo.com/info/il-territorio/cartina-sentieri.html",

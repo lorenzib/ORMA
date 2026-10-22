@@ -1360,6 +1360,415 @@
           "url": "https://www.openstreetmap.org/relation/12118490"
         }
       ]
+    },
+    'osm-14379010': {
+      // Hand audit 22 October 2026: route, figures and dog answer from the Office de Tourisme Les Karellis (Cirkwi, route N°08,
+      // updated 22 May 2026); the official trace lies within 38 m of the line. Commune Montricher-Albanne publishes no dog order;
+      // no Natura 2000 site, reserve or regional park on the line (EEA, Géoportail).
+      "area": "Les Karellis, Montricher-Albanne",
+      "distance": 8.1,
+      "elevation": 203,
+      "hours": "3",
+      "startPoint": {
+        "lat": 45.227544,
+        "lng": 6.404557,
+        "label": "Les Karellis resort, by the Vinouve chairlift (official start)"
+      },
+      "desc": "An easy, open loop from the Les Karellis resort towards the Col d'Albanne, waymarked as route 08 (green round marker), with the Croix de Pralognan, an orientation table and plenty of butterflies along the way. The signposts on the loop name Pignerol, Les Combes, Les Martères, Le Suiffet, Le Pin, Les Fraches, Pralognan and La Roche. Officially 8.4 km and 203 m of climb, about 3 hours, rated easy.\n\nDogs are accepted, according to the Karellis tourist office. Montricher-Albanne publishes no dog order, so the national rule applies: a lead in woods and fields off the paths from 15 April to 30 June. The loop runs through open meadow at 1,560 to 1,720 m, with almost no shade. About 1.2 km follows roads, including some 650 m of the resort's access road: keep your dog close there.",
+      "tips": "The meadows beside the path may be grazed in summer, so keep your dog close near any animals. There is no shade on the loop: go early on hot days and bring water, though taps are mapped at the start and near the resort. Chairlifts and ski pistes cross the area but stand still in summer. A lead is sensible on the resort road stretches.",
+      "shadeCoverage": 5,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 1.2 km on roads, including some 650 m of the resort access road"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de Tourisme Les Karellis (Cirkwi)",
+        "name": "N°08 - Croix de Pralognan",
+        "url": "https://www.cirkwi.com/fr/circuit/252706-itineraire-de-randonnee-08-croix-de-pralognan"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Panoramax (IGN), Licence Ouverte 2.0, a lane on the loop, 6.5 m from the line.",
+        "route": "Published line 8.06 km; official 8.4 km; every point of the official trace within 38 m of the line.",
+        "routeNumbers": "Route 08, green round marker (Station des Karellis); guideposts named along the loop; the official page names no switch.",
+        "mapPoints": "Start at the official Les Karellis point; taps traced to OSM.",
+        "elevation": "Official 203 m of climb."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Office de Tourisme Les Karellis, N°08 - Croix de Pralognan (Cirkwi, updated 22 May 2026): animals accepted",
+          "Montricher-Albanne publishes no dog order; arrêté du 16 mars 1955 (national baseline)",
+          "No Natura 2000 site, reserve or regional park on the line (EEA, Géoportail)",
+          "OpenStreetMap relation 14379010: waymark 08, guideposts, road classes, land cover and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Office de Tourisme Les Karellis, N°08 - Croix de Pralognan",
+          "url": "https://www.cirkwi.com/fr/circuit/252706-itineraire-de-randonnee-08-croix-de-pralognan"
+        },
+        {
+          "label": "Arrêté du 16 mars 1955 (national baseline)",
+          "url": "https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens"
+        },
+        {
+          "label": "OpenStreetMap relation 14379010",
+          "url": "https://www.openstreetmap.org/relation/14379010"
+        }
+      ]
+    },
+    'osm-6250300': {
+      // Hand audit 22 October 2026: route, figures and dog rule from the Apidae route page (Combloux / Passy tourist offices).
+      // The lake circuit matches the official GPX within about 20 m; the official route adds a 400 m approach on the paved road from
+      // the Plaine-Joux car park, stated in the text. No Natura 2000 site or national reserve on the line (EEA, Géoportail).
+      "area": "Passy, Plaine-Joux",
+      "distance": 3.6,
+      "elevation": 100,
+      "hours": "1",
+      "startPoint": {
+        "lat": 45.94953,
+        "lng": 6.74153,
+        "label": "Lakeside path below the Lac Vert car park; the official start is the Plaine-Joux car park, 321 chemin des Parchets, 400 m up the road"
+      },
+      "desc": "An easy loop at about 1,300 m around Passy's emerald Lac Vert, a protected natural site where Mont Blanc reflects in water so clear you can see sunken trunks. The path circles the lake on its balcony and passes the lakeside restaurant, in a conifer forest below the Fiz cliffs. The official route starts at the Plaine-Joux car park and walks 400 m down the paved road to the lake; officially 3.1 km and 100 m of climb, about an hour, suitable for beginners.\n\nDogs must be kept on a lead, and they are not allowed in the lake, according to the official route page. Sled dogs live here in summer and winter. Most of the walk is shaded by conifers.",
+      "tips": "Keep the lead on: it is the official rule, and sled dogs are kept nearby all year. Dogs may not go into the lake, and swimming is banned for people too, so use the taps by the lake (mapped) for water. The approach from the Plaine-Joux car park follows a paved road, and the loop crosses it once: keep your dog close there. The lake is busy in summer, so come early for a quiet lap.",
+      "shadeCoverage": 60,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "The paved access road from the Plaine-Joux car park, crossed once on the loop"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de Tourisme de Combloux / Passy (Apidae)",
+        "name": "Boucle du Lac Vert",
+        "url": "https://www.combloux.com/itineraires/boucle-du-lac-vert/"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Mangatome, CC BY-SA 3.0, the Lac Vert itself, which the loop circles.",
+        "route": "Published line 3.61 km; official 3.1 km. The lake circuit matches the official GPX within about 20 m; the line leaves out the 400 m road approach from Plaine-Joux and takes a slightly different link path. Stated in the text.",
+        "routeNumbers": "No number; the official topo describes the loop by landmark (Cabanes du Mont-Blanc, balcony path, lakeside restaurant) with no switch to another route.",
+        "mapPoints": "Start on the lakeside path; the official Plaine-Joux car park named in the text; taps traced to OSM.",
+        "elevation": "Official 100 m of climb."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Office de Tourisme de Combloux, Boucle du Lac Vert (Apidae route page and official GPX): dogs on a lead, banned from the lake",
+          "No Natura 2000 site, national reserve or regional park on the line (EEA, Géoportail)",
+          "OpenStreetMap relation 6250300: paths, road classes, land cover and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Boucle du Lac Vert, official route page",
+          "url": "https://www.combloux.com/itineraires/boucle-du-lac-vert/"
+        },
+        {
+          "label": "Official GPX",
+          "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/128/177/16822656/Boucle+du+lac+Vert.gpx"
+        },
+        {
+          "label": "OpenStreetMap relation 6250300",
+          "url": "https://www.openstreetmap.org/relation/6250300"
+        }
+      ]
+    },
+    'osm-14381584': {
+      // Hand audit 22 October 2026: route, start and figures from the Station des Karellis page and its GPX (every point within
+      // 39 m of the line). The page states no dog rule; Montricher-Albanne publishes no dog order, so the national 1955 rule applies.
+      // No Natura 2000 site, reserve or park on the line (EEA, Géoportail); Vanoise is about 40 km away.
+      "area": "Les Karellis, Montricher-Albanne",
+      "distance": 6.8,
+      "elevation": 266,
+      "startPoint": {
+        "lat": 45.22798,
+        "lng": 6.405,
+        "label": "Les Karellis tourist office (official start)"
+      },
+      "desc": "A forest loop around the Les Karellis resort, waymarked as route 11 (green round marker). It sets off from the tourist office through larch and fir woods, rises to open viewpoints over the surrounding mountains and comes back to the start without retracing its steps. Officially 6.9 km and about 266 m of climb (216 m on the official GPX), an easy half-day.\n\nThe official page sets no dog rule, and Montricher-Albanne publishes no dog order, so the national rule applies: a lead in woods and fields off the paths from 15 April to 30 June. About 700 m follows resort lanes, mostly the Route du Lac, and the loop crosses the forest road: keep your dog close there.",
+      "tips": "The meadows beside the path may be grazed in summer, so keep your dog close near any animals. Taps are mapped at the start in the resort; take water for the loop. Most of the way is shaded by larch and fir. Ski lifts and pistes cross the area but stand still in summer. A paper map of all the resort walks is sold at the tourist office.",
+      "shadeCoverage": 60,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 700 m on resort lanes, mostly the Route du Lac",
+        "One crossing of the forest road"
+      ],
+      "routeNumberSource": {
+        "provider": "Station des Karellis",
+        "name": "Randonnée Beaumollard (sentier n°11)",
+        "url": "https://www.karellis.com/activites-ete/balades-et-randonnees/randonnee-beaumollard/"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Panoramax (IGN), Licence Ouverte 2.0, a lane through larch woods on the loop, 17 m from the line.",
+        "route": "Published line 6.84 km; official 6.9 km; every official GPX point within 39 m of the line.",
+        "routeNumbers": "Route 11, green round marker (Station des Karellis); the official page describes a full loop with no switch to another route.",
+        "mapPoints": "Start at the Les Karellis tourist office named by the official page (5 m from the GPX start); taps traced to OSM.",
+        "elevation": "Official ~266 m of climb in the page text, 216 m in its GPX summary."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Station des Karellis, Randonnée Beaumollard, sentier balisé n°11, and official GPX",
+          "Montricher-Albanne publishes no dog order; arrêté du 16 mars 1955 (national baseline)",
+          "No Natura 2000 site, reserve or park on the line (EEA, Géoportail)",
+          "OpenStreetMap relation 14381584: waymark 11, road classes, land cover and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "Station des Karellis, Randonnée Beaumollard",
+          "url": "https://www.karellis.com/activites-ete/balades-et-randonnees/randonnee-beaumollard/"
+        },
+        {
+          "label": "Official GPX",
+          "url": "https://www.karellis.com/wp-content/uploads/11-Rando-Karellis-Beaumollard.gpx"
+        },
+        {
+          "label": "Arrêté du 16 mars 1955 (national baseline)",
+          "url": "https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens"
+        },
+        {
+          "label": "OpenStreetMap relation 14381584",
+          "url": "https://www.openstreetmap.org/relation/14381584"
+        }
+      ]
+    },
+    'osm-9937537': {
+      // Hand audit 22 October 2026: route, figures and the exposed passage from the La Plagne tourist office route page;
+      // the dog rule from the same office's Mont Jovet refuge circuit, which shares this ground. Outside the Vanoise national park
+      // (core 10 km, adhesion area 6 km away) and any Natura 2000 site (Géoportail, EEA). Aime-la-Plagne publishes no dog order.
+      "area": "Plagne Aime 2000, Aime-la-Plagne",
+      "distance": 11,
+      "elevation": 870,
+      "hours": "6",
+      "startPoint": {
+        "lat": 45.510959,
+        "lng": 6.664795,
+        "label": "Plagne Aime 2000 (official start)"
+      },
+      "decisionPoints": [
+        {
+          "km": 6.8,
+          "lat": 45.492767,
+          "lng": 6.6462628,
+          "instruction": "Pas des Brebis (2,440 m): the official page flags a steep, exposed passage here; keep your dog close on a short lead"
+        }
+      ],
+      "desc": "A big alpine loop from Plagne Aime 2000 to the Mont Jovet (2,558 m), waymarked with an orange bar on white. It climbs past the Chalet des Envers and the Lac Bovet to the summit, with its panorama from Mont Blanc to the Vanoise glaciers, then follows the steep ridge to the Pas des Brebis and returns over the Martinet and the 4x4 track from the top of the Bécoin chairlift. Officially 12 km and 870 m of climb, about 6 hours, rated difficult.\n\nDogs must be kept on a lead because herds graze here, according to the La Plagne tourist office. The official page flags a steep, exposed passage at the Pas des Brebis. Almost the whole loop is open ground above 1,900 m, with no shade and no water.",
+      "tips": "Keep the lead on: cattle and other herds graze these pastures in summer, and that is the reason the tourist office gives for the rule. Take the ridge to the Pas des Brebis slowly with your dog close beside you. Carry all the water you both need: there is no tap on the loop, and the Mont Jovet refuge, staffed in summer, is a 600 m detour. Start early on hot days. Dogs are welcome at the refuge by day on a lead, but not overnight.",
+      "shadeCoverage": 3,
+      "heatRisk": "high",
+      "exposure": true,
+      "surfaceHazards": [
+        "Steep, exposed passage at the Pas des Brebis (official)",
+        "Stony ground on the summit ridge",
+        "Small stream crossings without bridges"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de Tourisme de la Grande Plagne",
+        "name": "Randonnée vers le Mont Jovet",
+        "url": "https://www.la-plagne.com/savourez-une-multitude-d-activites/la-plagne-l-ete/randonnee-pedestre-en-vanoise-et-en-tarentaise/itineraires-de-marche-et-randonnee/randonnee-vers-le-mont-jovet"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-22",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Jan Stępień, CC BY 3.0, panorama from the Mont Jovet summit, 13 m from the line.",
+        "route": "Published line 11.04 km, closed; official 12 km; every landmark of the official text (Col du Lac, Lac Bovet, summit, Pas des Brebis, Martinet) lies within 50 m of the line.",
+        "routeNumbers": "Orange bar on white (Office de Tourisme de la Plagne); the official text routes by landmark: left fork to the Col du Lac before Prajourdan, summit from the west, back by the Pas des Brebis, the Martinet and the Bécoin 4x4 track.",
+        "mapPoints": "Start at the official Plagne Aime 2000 point (4 m from the line); Pas des Brebis guidepost from OSM.",
+        "elevation": "Official 870 m of climb."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Office de Tourisme de la Grande Plagne, Randonnée vers le Mont Jovet: 12 km, 870 m, 6h00, Passage escarpé au niveau du Pas des Brebis",
+          "Office de Tourisme de la Grande Plagne, Découverte de La Plagne avec nuit au refuge du Mont Jovet (Cirkwi): dogs on a lead because of herds",
+          "Outside the Vanoise national park and any Natura 2000 site (Géoportail, EEA); Aime-la-Plagne publishes no dog order",
+          "OpenStreetMap relation 9937537: waymark, guideposts, sac_scale, land cover and water along the line"
+        ],
+        "date": "2026-10-22"
+      },
+      "sourceLinks": [
+        {
+          "label": "La Plagne, Randonnée vers le Mont Jovet",
+          "url": "https://www.la-plagne.com/savourez-une-multitude-d-activites/la-plagne-l-ete/randonnee-pedestre-en-vanoise-et-en-tarentaise/itineraires-de-marche-et-randonnee/randonnee-vers-le-mont-jovet"
+        },
+        {
+          "label": "Mont Jovet refuge circuit (Cirkwi)",
+          "url": "https://www.cirkwi.com/fr/circuit/381630-decouverte-de-la-plagne-avec-nuit-au-refuge-du-mont-jovet"
+        },
+        {
+          "label": "OpenStreetMap relation 9937537",
+          "url": "https://www.openstreetmap.org/relation/9937537"
+        }
+      ]
     }
   };
 
