@@ -144,6 +144,12 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
     if(index >= 0 && !fullSeal && next.trails[index]?.fields?.ormaVerified === true){
       throw new Error(`Publication for ${entry.id} would remove the ORMA Verified seal it already carries`);
     }
+    // A withdrawal is a human decision -- dogs found not allowed, or a line
+    // that is not a walk -- and lifting it is a human edit. A republication
+    // replaces the entry wholesale, so without this it would silently put a
+    // withdrawn walk back on the site.
+    const withdrawal = index >= 0 ? next.trails[index]?.fields?.withdrawal : null;
+    if(withdrawal && !entry.fields.withdrawal) entry.fields = { ...entry.fields, withdrawal };
     if(index >= 0) next.trails[index] = entry;
     else next.trails.push(entry);
     entries.push(entry);
