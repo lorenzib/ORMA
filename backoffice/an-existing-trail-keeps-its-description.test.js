@@ -121,6 +121,19 @@ describe('the lane runs end to end without a model call',()=>{
     expect(entry.fields.desc).toBe(record.desc);
   });
 
+  test('a republication keeps a withdrawal a person made',()=>{
+    // Taking a walk off the site is a human decision; a later publication
+    // replaces the entry wholesale and must not quietly put it back.
+    const withdrawal={reason:'not-a-walk',at:'2026-10-22'};
+    const result=materializeApprovedPublications({
+      requests:{requests:[{id:'pub-2',candidateId:trail.candidateId,
+        status:'approved-for-pr-creation',approvedBy:'benedetta',approvedAt:AT}]},
+      staging:{items:[item]},routesByCandidate:{[trail.candidateId]:{geometry:survey.geometry}},
+      overrides:{contractVersion:'1.0.0',trails:[{id:item.targetTrailId,verificationScope:'routeReviewed',
+        fields:{ormaVerified:false,withdrawal}}]},operationalFacts:{trails:[]},at:AT});
+    expect(result.overrides.trails[0].fields.withdrawal).toEqual(withdrawal);
+  });
+
   // A copywriter that did run still wins: this is about not paying for words
   // nobody needed, not about refusing words somebody wrote.
   test('a copywriter that did run is still what gets published',()=>{
