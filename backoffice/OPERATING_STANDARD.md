@@ -2093,6 +2093,44 @@ With nothing asked for, a pass costs two Firestore reads. Buttons change order
 and scope, not cost: research still spends model credits, and only
 re-measuring the route is free.
 
+## Paid research is off; verification is done by hand
+
+> Decided 22 October 2026.
+
+A credit top-up lasted **31 hours** (20 October 11:00 to 21 October 18:36 UTC).
+Measured across every worker run in that window, the backoffice made about
+**101 model calls, and 95 of them were the fourth attempt or later** of an
+agent on the same trail -- the evidence ladder retrying optional detail one
+claim at a time, each attempt a full web search. One trail had the terrain
+analyst asked 23 times. Only two calls were a trail's first research.
+
+At the same time, verification done by hand in Claude, against official
+sources, graduated four trails in two days with no model credit spent, and
+found what the automated route checks had published wrong: the municipality
+on every trail researched, and photographs taken 0.4 to 10 km from the walk.
+
+So the split is:
+
+- **The backoffice keeps everything that is free or bounded**: the hazard
+  watch (official MeteoAlarm feeds, every three hours, no model), the
+  geometry survey, the fast lane, publication, the trail board and trail
+  requests, the daily intake, and vetting of walker-reported hazards (a model
+  call per report, at most three a pass). Weather on a trail page is fetched
+  live from Open-Meteo by the page itself and costs the backoffice nothing.
+- **Paid verification research is off** (`ORMA_PAID_RESEARCH_ENABLED`, off
+  unless the repository variable is `'true'`). The specialists and the
+  evidence ladder are not run; their jobs stay queued, untouched, and the
+  free survey keeps running in the same pass.
+- **Parked, switched off**: the safety-research lane, the closure scout and
+  gate adjudication (`ORMA_SAFETY_RESEARCH_ENABLED`,
+  `ORMA_CLOSURE_SCOUT_ENABLED`, `ORMA_GATE_ADJUDICATION_ENABLED`).
+- **Verification research is done by hand** and recorded in the published
+  entry, the route-source ledger and the photo ledger, through a pull request
+  reviewed before merge.
+
+Before paid research is switched back on, the evidence ladder's retries on
+optional detail need a cap, or the next top-up goes the same way.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:

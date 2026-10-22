@@ -11,7 +11,7 @@ const { adjudicateGateBlockers, adjudicableBlockers, contestedCount, mergeAdjudi
 const { rehydrateReviewQueue } = require('./rehydrate-review-detail');
 const { applyRouteReview,promotableFeature,unpromotedChoices } = require('./apply-route-review');
 const { admitChosenRoutes } = require('./admit-chosen-routes');
-const { runTrailSpecialist, routeSourceReady, verifiableFirst } = require('./run-trail-specialist');
+const { runTrailSpecialist, routeSourceReady, verifiableFirst, costsNoModelCall } = require('./run-trail-specialist');
 const { advanceTrailOrchestration, compactOrchestration } = require('./advance-trail-orchestration');
 const {buildVerifiedEditorialHandoff}=require('./verified-editorial-handoff');
 const {runVerifiedEditorialFirstPass}=require('./run-verified-editorial-first-pass');
@@ -235,6 +235,16 @@ async function processTrailSpecialistJobs(store,options={}){
   // the end of the ladder. Measured 12 October, 126 of 162 catalogue trails are
   // in that position, so queue order was spending most of the model budget on
   // trails that cannot pass. Order inside each group is unchanged.
+  // Paid research can be switched off while the free work carries on. The
+  // geometry survey is free and keeps running; every job that would call the
+  // model stays queued, untouched, until paid research is switched back on.
+  // Measured 20-21 October 2026: a credit top-up lasted 31 hours, and 95 of
+  // the 101 calls were retries on optional detail. Verification research now
+  // happens by hand, so the backoffice must not spend on its own.
+  const paidAllowed=options.paidResearchEnabled!==false;
+  const heldPaid=paidAllowed?0:queued.filter(job=>!costsNoModelCall(job)).length;
+  if(!paidAllowed)queued=queued.filter(job=>costsNoModelCall(job));
+  if(heldPaid)outcomes.push({status:'paid-research-off',held:heldPaid});
   const claimable=verifiableFirst(queued.filter(job=>!claimNotBefore(job,options.now)),trailById);
   // The size of that group is a sourcing backlog rather than a job outcome, so
   // it is not pushed in here -- `npm run backoffice:route-source-backlog`
