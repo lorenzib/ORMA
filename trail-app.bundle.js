@@ -15100,6 +15100,110 @@ function effectiveOverrides(profile, adjustOverride){
           "url": "https://www.openstreetmap.org/relation/5479112"
         }
       ]
+    },
+    'osm-14095296': {
+      // Hand audit 23 October 2026: the line matches the official Apidae GPX (6.8 km) 100% within 60 m both ways; the office's
+      // 5.5 km is the loop without the two out-and-back spurs its own text describes. Route, start and dog answer from the Aix-les-Bains
+      // Riviera des Alpes office. The north part lies in Natura 2000 FR8201772, whose designation order and DOCOB set no dog rule; no
+      // reserve or regional park on the line. Entrelacs publishes no dog order. The whole line is in Entrelacs (geo.api.gouv.fr).
+      "area": "Albens, Entrelacs",
+      "distance": 6.6,
+      "elevation": 22,
+      "hours": "2.5",
+      "shadeCoverage": 15,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "One railway level crossing",
+        "About 1 km on quiet country lanes"
+      ],
+      "desc": "A flat wander through the old marshes of the Albens plain, fifteen minutes from Aix-les-Bains. The waymarked loop leaves the cemetery car park through the state forest of the Deysse, follows the river and its poplar grove, passes the Crosagny mill and ponds with their wooden pontoons and birdlife, and comes back through the village of Braille. The official loop is 5.5 km with 22 m of climb, about 2h30; with the two short out-and-back spurs the walk describes, to the forest pond and along the Crosagny ponds, it is about 6.6 km.\n\nDogs are accepted, according to the tourist office. Entrelacs publishes no dog order, so the national rule applies: a lead in woods and fields off the paths from 15 April to 30 June. The north of the walk lies in a Natura 2000 wetland site, where a lead keeps dogs out of the reeds and away from nesting birds. There is little shade and no tap on the way.",
+      "tips": "Keep the lead on around the ponds and in the reed beds: the wetland is a protected bird site, and dogs should stay out of the water. Farms and meadows border the path in places, so keep your dog close there too. The route crosses the railway once, at a level crossing, and uses about a kilometre of quiet country lanes. Bring water, as there is none on the way, and avoid the hottest hours: there is little shade. Park at the cemetery car park, not at the D1201 trail entrance, where parking is prohibited.",
+      "routeNumberSource": {
+        "provider": "Aix-les-Bains Riviera des Alpes (Apidae)",
+        "name": "Randonnée pédestre : les Marais d'Albens",
+        "url": "https://www.aixlesbains-rivieradesalpes.com/equipement/randonnee-pedestre-les-marais-dalbens-entrelacs/"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Guilhem Vellut, CC BY 2.0, the Crosagny pond, about 115 m from the line and in view of it.",
+        "route": "Published line 6.61 km, closed; official GPX 6.8 km, matching the line 100% within 60 m both ways; the office's 5.5 km leaves out the two out-and-back spurs.",
+        "routeNumbers": "No number: waymarked ('Itinéraire balisé : Oui'); the official step-by-step names the forest pond detour and the Crosagny pond spur as the only options.",
+        "mapPoints": "Start at the cemetery car park named by the official page; no tap within 450 m of the line.",
+        "elevation": "Official 22 m of climb."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Aix-les-Bains Riviera des Alpes tourist office, Les Marais d'Albens (Apidae) and official GPX: animals accepted",
+          "Natura 2000 FR8201772, Réseau de zones humides de l'Albanais: designation order (2016) and DOCOB (2004) set no dog rule",
+          "Entrelacs publishes no dog order; arrêté du 16 mars 1955 (national baseline); no reserve or regional park on the line (INPN)",
+          "OpenStreetMap relation 14095296: road classes, land cover, farms and water along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "Aix-les-Bains Riviera des Alpes, Les Marais d'Albens",
+          "url": "https://www.aixlesbains-rivieradesalpes.com/equipement/randonnee-pedestre-les-marais-dalbens-entrelacs/"
+        },
+        {
+          "label": "Official GPX",
+          "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/47/208/11587631/Sentier_Marais_Albens.gpx"
+        },
+        {
+          "label": "Natura 2000 FR8201772, DOCOB",
+          "url": "https://www.auvergne-rhone-alpes.developpement-durable.gouv.fr/IMG/pdf/fr8201772_reseau_de_zones_humides_de_l_albanais_docob_2004.pdf"
+        },
+        {
+          "label": "Arrêté du 16 mars 1955 (national baseline)",
+          "url": "https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens"
+        },
+        {
+          "label": "OpenStreetMap relation 14095296",
+          "url": "https://www.openstreetmap.org/relation/14095296"
+        }
+      ]
     }
   };
 
