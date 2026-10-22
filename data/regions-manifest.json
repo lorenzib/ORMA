@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-22T16:52:28.520Z",
+  "generatedAt": "2026-10-22T17:09:48.705Z",
   "regions": {
     "dolomites": {
       "trailCount": 110,
@@ -124,9 +124,9 @@
     },
     "savoy": {
       "trailCount": 53,
-      "trails": "data/regions/savoy-trails.js?v=c3f5489896ba",
+      "trails": "data/regions/savoy-trails.js?v=b12b412f09b5",
       "details": {
-        "osm-3982382": "data/trail-details/osm-3982382.js?v=229a068d9af6",
+        "osm-3982382": "data/trail-details/osm-3982382.js?v=07be5ff5d5e1",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=f49be96518f0",
         "osm-9933643": "data/trail-details/osm-9933643.js?v=bca6c5716d4d",
         "osm-10116283": "data/trail-details/osm-10116283.js?v=78fe4b05c278",
@@ -135,12 +135,12 @@
         "osm-11517208": "data/trail-details/osm-11517208.js?v=e46dfa5b05de",
         "osm-14987412": "data/trail-details/osm-14987412.js?v=acd3288814f2",
         "osm-18055492": "data/trail-details/osm-18055492.js?v=f14618733309",
-        "osm-14864704": "data/trail-details/osm-14864704.js?v=5a1507a795fb",
+        "osm-14864704": "data/trail-details/osm-14864704.js?v=e0176f02fa8d",
         "osm-14095296": "data/trail-details/osm-14095296.js?v=d23dcd0075a5",
-        "osm-16322228": "data/trail-details/osm-16322228.js?v=33432d60fdde",
+        "osm-16322228": "data/trail-details/osm-16322228.js?v=3174868a0e19",
         "osm-16363583": "data/trail-details/osm-16363583.js?v=d4548b69680c",
-        "osm-16395076": "data/trail-details/osm-16395076.js?v=0a5f4de4b374",
-        "osm-19153189": "data/trail-details/osm-19153189.js?v=90d34870dbe0",
+        "osm-16395076": "data/trail-details/osm-16395076.js?v=a0eca5598932",
+        "osm-19153189": "data/trail-details/osm-19153189.js?v=0a5c9f97316e",
         "osm-15591346": "data/trail-details/osm-15591346.js?v=a5512c5fc1cf",
         "osm-16365005": "data/trail-details/osm-16365005.js?v=06bcce9f7228",
         "osm-5479112": "data/trail-details/osm-5479112.js?v=3694ae0eb8ce",
