@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-22T20:00:00.000Z",
+  "updatedAt": "2026-10-23T09:00:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1087,18 +1087,18 @@
     },
     {
       "id": "osm-12745924",
-      "approvedReviewId": "commons-osm-12745924",
-      "approvedAt": "2026-09-08T12:41:30.241Z",
+      "approvedReviewId": "hand-audit-osm-12745924",
+      "approvedAt": "2026-10-23T09:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-12745924-villarodin.jpg",
-        "heroImage": "images/trails/osm-12745924-villarodin.jpg",
-        "imageAlt": "Villarodin in late afternoon, slate roofs and a church tower among kitchen gardens, a paved lane climbing between them and the Maurienne slopes behind.",
-        "imageCredit": "Villarodin en fin d’après-midi",
-        "imageCreditText": "Villarodin en fin d’après-midi by Florian Pépellin",
-        "imageCreator": "Florian Pépellin",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villarodin_en_fin_d%27apr%C3%A8s-midi_en_Maurienne_(ao%C3%BBt_2026).JPG",
+        "imageIcon": "images/trails/osm-12745924-avenieres-pond.jpg",
+        "heroImage": "images/trails/osm-12745924-avenieres-pond.jpg",
+        "imageAlt": "The turquoise snow-making pond of the Avenières leisure base at La Norma, ringed by spruce and larch, where the Escaliers loop starts and ends",
+        "imageCredit": "The Avenières pond at La Norma",
+        "imageCreditText": "The Avenières pond at La Norma by phase3",
+        "imageCreator": "phase3",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:La_r%C3%A9serve_d%27eau_pour_les_canons_%C3%A0_neige_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1573,18 +1573,18 @@
     },
     {
       "id": "osm-19064561",
-      "approvedReviewId": "flickr-osm-19064561",
-      "approvedAt": "2026-09-09T08:41:33.795Z",
+      "approvedReviewId": "hand-audit-osm-19064561",
+      "approvedAt": "2026-10-23T09:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-19064561-forchat.jpg",
-        "heroImage": "images/trails/osm-19064561-forchat.jpg",
-        "imageAlt": "Two walkers on the grass path along the Mont Forchat ridge above the Chablais foothills with Lake Geneva beyond",
-        "imageCredit": "The ridge path on Mont Forchat above Lullin",
-        "imageCreditText": "The ridge path on Mont Forchat above Lullin by Guilhem Vellut",
+        "imageIcon": "images/trails/osm-19064561-tres-le-mont-alpage.jpg",
+        "heroImage": "images/trails/osm-19064561-tres-le-mont-alpage.jpg",
+        "imageAlt": "A grass track crossing the green alpage of Très-le-Mont above Lullin, a wooded knoll on the right and the valley opening on the left",
+        "imageCredit": "Grass track across the Très-le-Mont alpage",
+        "imageCreditText": "Grass track across the Très-le-Mont alpage by Guilhem Vellut",
         "imageCreator": "Guilhem Vellut",
         "imageLicence": "CC BY 2.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0/",
-        "imageSourcePage": "https://www.flickr.com/photos/22539273@N00/52084525416",
+        "imageSourcePage": "https://www.flickr.com/photos/22539273@N00/52084687638/",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1893,18 +1893,18 @@
     },
     {
       "id": "osm-5479112",
-      "approvedReviewId": "commons-osm-5479112",
-      "approvedAt": "2026-09-07T19:47:04.641Z",
+      "approvedReviewId": "hand-audit-osm-5479112",
+      "approvedAt": "2026-10-23T09:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-5479112-col-des-montets.jpg",
-        "heroImage": "images/trails/osm-5479112-col-des-montets.jpg",
-        "imageAlt": "The stony footpath at the Col des Montets above Vallorcine, alpine scrub and larch on either side and a rock ridge across the valley.",
-        "imageCredit": "Sentier au col des Montets",
-        "imageCreditText": "Sentier au col des Montets by Rémih",
+        "imageIcon": "images/trails/osm-5479112-les-montets-lane.jpg",
+        "heroImage": "images/trails/osm-5479112-les-montets-lane.jpg",
+        "imageAlt": "A grassy lane between old stone and timber chalets in the hamlet of Les Montets, Vallorcine, with a wooded slope behind",
+        "imageCredit": "Lane between the chalets of Les Montets",
+        "imageCreditText": "Lane between the chalets of Les Montets by Rémih",
         "imageCreator": "Rémih",
         "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sentier_%40_Col_des_Montets_02.jpg",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Les_Montets_Vallorcine_03.jpg",
         "imageSourceType": "licensed-source"
       }
     },
