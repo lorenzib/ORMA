@@ -8729,8 +8729,8 @@
       "verificationScope": "routeReviewed",
       "fields": {
         "name": "Le terroir de Serpolière",
-        "desc": "A 1.5 km route near Saint-Jean-de-Maurienne, imported from the OpenStreetMap hiking network (trail EN02). Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.",
-        "tips": "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.",
+        "desc": "A short family loop, waymarked EN02 and officially 2.1 km, on the south-facing slope above the Maurienne at Saint-Julien-Mont-Denis: from the Les Féards car park through the hamlet of Serpolière, down a farm track to the Chapelle Sainte-Anne and back up through the Babylone vineyards. The map line shows only part of it: the final climb from Babylone back to Les Féards is not yet drawn.\n\nThere is no shade at all (vineyard, scrub and village lanes on a south-facing slope), so avoid hot afternoons. About 400 m follows the Route de Serpolière. Part of the vineyard stretch lies in the Natura 2000 site Perron des Encombres, and French law forbids letting dogs stray, so keep yours under control and out of the vines.",
+        "tips": "Park at Les Féards by the pétanque ground (Le Claret, 778 m) and follow the EN02 waymarks round. One drinking-water point is mapped at the start; there is none further round.",
         "imageIcon": "images/trails/osm-12121798-serpoliere-track.jpg",
         "imageCredit": "The track at Serpolière above the Maurienne",
         "heroImage": "images/trails/osm-12121798-serpoliere-track.jpg",
@@ -8744,29 +8744,30 @@
         "ormaVerified": false,
         "routeNumberGuidance": {
           "mode": "numbered",
-          "start": "Start at Parking, 111 m from the route (OSM-verified access point) (45.25423, 6.42310). ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation. Check current access before travelling.",
-          "status": "The mapped route carries trail number EN02; look for it at junctions. ORMA has not confirmed how they appear on local signs. ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.",
-          "sequence": "The mapped route follows route EN02 from end to end. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
-          "switches": "The mapped route stays on route EN02 throughout, with no change of number recorded along it. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
+          "start": "Start at the Les Féards car park by the pétanque ground, Le Claret (778 m), as the official route sheet gives.",
+          "status": "Waymarked EN02 on the Cœur de Maurienne Arvan walking network.",
+          "sequence": "From Les Féards follow the road to Le Crozat and the lanes through Serpolière, take the track down to the Chapelle Sainte-Anne, turn right through the Babylone vineyard, and at Babylone turn right to climb back to the Les Féards car park.",
+          "switches": "None: EN02 is followed all the way round. Trail S15 to Saint-Martin-de-la-Porte is an optional extension.",
           "establishedBy": {
-            "start": "orma-record",
-            "status": "orma-record",
-            "sequence": "route-relations",
-            "switches": "route-relations"
+            "start": "agent-evidence",
+            "status": "agent-evidence",
+            "sequence": "agent-evidence",
+            "switches": "agent-evidence"
           },
           "sources": [
             {
-              "label": "OpenStreetMap route EN02",
-              "url": "https://www.openstreetmap.org/relation/12121798",
-              "authority": "OpenStreetMap",
-              "accessedAt": "2026-10-20T12:31:01.963Z"
+              "label": "Le Terroir de Serpolière, official route sheet (Apidae 5836887)",
+              "url": "https://www.explore-maurienne.com/itineraire/le-terroir-de-serpoliere/",
+              "authority": "Office de tourisme intercommunal Cœur de Maurienne Arvan",
+              "accessedAt": "2026-10-22T18:00:00.000Z",
+              "reviewedAt": "2026-10-22"
             }
           ]
         },
-        "area": "Saint-Jean-de-Maurienne",
+        "area": "Saint-Julien-Mont-Denis – Maurienne",
         "distance": 1.5,
-        "elevation": 0,
-        "hours": "0.5",
+        "elevation": 70,
+        "hours": "0.5–1",
         "terrainType": "Surface not yet field-verified",
         "terrainRank": 1,
         "safetyLevel": "moderate",
@@ -8780,9 +8781,9 @@
           }
         ],
         "startPoint": {
-          "lat": 45.2542292,
-          "lng": 6.4230962,
-          "label": "Start here — Parking, 111 m from the route (OSM-verified access point)"
+          "lat": 45.254255,
+          "lng": 6.423081,
+          "label": "Les Féards car park by the pétanque ground, Le Claret (official start)"
         },
         "reviewedAt": "2026-10-20",
         "reviewedBy": "ORMA verified-trail workflow",
@@ -11139,7 +11140,15 @@
         "lng": 11.3912629,
         "region": "dolomites",
         "curated": true,
-        "publicationApprovalId": "HWzE1ePGxv7BLHZbpQSr"
+        "publicationApprovalId": "HWzE1ePGxv7BLHZbpQSr",
+        "withdrawal": {
+          "reason": "not-a-walk",
+          "at": "2026-10-22",
+          "note": "Not a walk: a 930 m one-way connecting path (route 8A) between two tracks in Altrei, inside Naturpark Trudner Horn. Taken off the site on 22 October 2026.",
+          "sources": [
+            "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11429713"
+          ]
+        }
       }
     },
     {
@@ -11150,8 +11159,8 @@
       "verificationScope": "routeReviewed",
       "fields": {
         "name": "Panoramaweg, Burgraviato – Merano",
-        "desc": "A 9.8 km route near Avelengo / Hafling, imported from the OpenStreetMap hiking network (trail 14). Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.",
-        "tips": "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.",
+        "desc": "A high loop of about 10.5 km on route 14 across the open alpine pastures above Meran 2000, between about 1,930 and 2,260 m: out along the track from the Kirchsteiger Alm, round by the Mittagerhütte and the Kesselberg saddle, and back on the Panoramaweg path. The start is in Hafling, but most of the loop lies in Sarntal.\n\nThere is no shade and no water on the route, only the huts (Kirchsteiger Alm, Mittagerhütte, Kesselberghütte), so carry plenty for your dog. Almost the whole walk crosses summer pasture for cattle and horses, with gates along the way: keep your dog close. Mountain bikes use the tracks, and two chairlifts run beside the line.",
+        "tips": "Start by the Kirchsteiger Alm at the top of the Meran 2000 access and follow waymark 14 round; routes 10 and 13 share some signposts. The first 0.6 km out to the loop is walked again on the way back.",
         "imageIcon": "images/trails/osm-19697977-htq57tvg3snv1e5d6tkv.jpg",
         "imageCredit": "ORMA original",
         "heroImage": "images/trails/osm-19697977-htq57tvg3snv1e5d6tkv.jpg",
@@ -11165,27 +11174,28 @@
         "ormaVerified": false,
         "routeNumberGuidance": {
           "mode": "numbered",
-          "start": "Start at Lift station Kesselberg, 128 m from the route (OSM-verified access point) (46.68709, 11.28221). ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation. Check current access before travelling.",
-          "status": "The mapped route carries trail number 14; look for it at junctions. ORMA has not confirmed how they appear on local signs. ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.",
-          "sequence": "The mapped route follows route 14 from end to end. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
-          "switches": "The mapped route stays on route 14 throughout, with no change of number recorded along it. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
+          "start": "Start at the route 14 point by the Kirchsteiger Alm, Meran 2000, as the province register gives.",
+          "status": "Signed as route 14, Panoramaweg, in the province of Bolzano hiking-trail register.",
+          "sequence": "Follow route 14 out along the Kirchsteiger Alm track to the loop, round by Falkenau, the Mittagerhütte and the Kesselberg saddle, back along the Panoramaweg path past the Hötzl Schupfe, and out the same track to the start.",
+          "switches": "None away from 14: routes 10 and 13 share some sections and signposts.",
           "establishedBy": {
-            "start": "orma-record",
-            "status": "orma-record",
-            "sequence": "route-relations",
-            "switches": "route-relations"
+            "start": "agent-evidence",
+            "status": "agent-evidence",
+            "sequence": "agent-evidence",
+            "switches": "agent-evidence"
           },
           "sources": [
             {
-              "label": "OpenStreetMap route 14",
-              "url": "https://www.openstreetmap.org/relation/19697977",
-              "authority": "OpenStreetMap",
-              "accessedAt": "2026-10-21T12:43:36.078Z"
+              "label": "Province of Bolzano hiking-trail register: 14 Panoramaweg (via Open Data Hub)",
+              "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425926",
+              "authority": "Autonome Provinz Bozen – Südtirol",
+              "accessedAt": "2026-10-22T18:00:00.000Z",
+              "reviewedAt": "2026-10-22"
             }
           ]
         },
-        "area": "Avelengo / Hafling",
-        "distance": 9.8,
+        "area": "Meran 2000 – Hafling / Sarntal",
+        "distance": 10.5,
         "elevation": 634,
         "hours": "3–4",
         "terrainType": "Sparsely mapped: gravel (82%), rock (13%), natural ground (5%), from OSM surface data",
@@ -11193,9 +11203,9 @@
         "safetyLevel": "caution",
         "waterSources": [],
         "startPoint": {
-          "lat": 46.6870892,
-          "lng": 11.2822121,
-          "label": "Start here — Lift station Kesselberg, 128 m from the route (OSM-verified access point)"
+          "lat": 46.68709,
+          "lng": 11.28221,
+          "label": "Route 14 start by the Kirchsteiger Alm, Meran 2000"
         },
         "reviewedAt": "2026-10-21",
         "reviewedBy": "ORMA verified-trail workflow",
@@ -13872,41 +13882,42 @@
       "verificationScope": "routeReviewed",
       "fields": {
         "name": "Sextener Rundweg",
-        "desc": "An 11.1 km loop near Sesto / Sexten, imported from the OpenStreetMap hiking network (trail 1). Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.",
-        "tips": "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.",
-        "imageIcon": "images/trails/osm-1116680-sexten.jpg",
-        "imageCredit": "Sexten/Sesto",
-        "heroImage": "images/trails/osm-1116680-sexten.jpg",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sexten-Sesto.JPG",
-        "imageCreator": "Fantasy",
-        "imageLicence": "CC BY-SA 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-        "imageCreditText": "Sexten/Sesto by Fantasy",
-        "imageAlt": "Mown meadows and hay barns below the village of Sexten, with cloud drifting across forested slopes.",
+        "desc": "A village loop round Sexten on route 1, the Sextner Rundweg, with views to the Sexten Dolomites: from the Kiniger farms along the meadows towards Moos, past the ski lifts and back through the village. The official circuit is 15 km with 352 m of climbing; the map line here shows about 11 km of it, without the western lobe by the Haideck fort and Waldheim.\n\nThe tourist office currently reports the forest path between theme stations 3 (Spitzköfele) and 4 closed: descend from station 3 to Palmstatt instead. About 2.8 km is on village streets and minor roads, with two main-road crossings. Three seasonal fountains are on the way.",
+        "tips": "Start at the Kiniger farms above Sexten (bus stop Sexten Helm) and follow waymark 1. Check the closure notice on the tourist office page before setting out.",
+        "imageIcon": "images/trails/osm-1116680-kiniger-meadow.jpg",
+        "imageCredit": "Meadows below the Kiniger farms, Sexten",
+        "heroImage": "images/trails/osm-1116680-kiniger-meadow.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pohled_na_%C3%BAdol%C3%AD_Val_Fiscalina_od_pevnosti_Mitterberg.jpg",
+        "imageCreator": "Petr1888",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageCreditText": "Meadows below the Kiniger farms, Sexten by Petr1888",
+        "imageAlt": "Green meadows and grazing cattle below the Kiniger farms above Sexten, looking up the Fischleintal to the Sexten Dolomites",
         "imageSourceType": "licensed-source",
         "ormaVerified": false,
         "routeNumberGuidance": {
           "mode": "numbered",
-          "start": "Start at Bus stop Gilte, 6 m from the route (OSM-verified access point) (46.68541, 12.36997). ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation. Check current access before travelling.",
-          "status": "The mapped route carries trail number 1; look for it at junctions. ORMA has not confirmed how they appear on local signs. ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.",
-          "sequence": "The mapped route follows route 1 from end to end. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
-          "switches": "The mapped route stays on route 1 throughout, with no change of number recorded along it. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
+          "start": "Start at the Kiniger farms (1,375 m) above Sexten, as the tourist office gives; bus stop Sexten Helm.",
+          "status": "Waymarked 1, the Sextner Rundweg.",
+          "sequence": "From the Kiniger farms follow route 1 along the meadow edge towards Moos to Palmstatt, past the top of the Brugger lift, round by the Rotwand gondola valley station and back through the village to the Kiniger farms.",
+          "switches": "None: route 1 is followed round. The forest path between stations 3 and 4 is currently closed; the tourist office gives a detour via Palmstatt.",
           "establishedBy": {
-            "start": "orma-record",
-            "status": "orma-record",
-            "sequence": "route-relations",
-            "switches": "route-relations"
+            "start": "agent-evidence",
+            "status": "agent-evidence",
+            "sequence": "agent-evidence",
+            "switches": "agent-evidence"
           },
           "sources": [
             {
-              "label": "OpenStreetMap route 1",
-              "url": "https://www.openstreetmap.org/relation/1116680",
-              "authority": "OpenStreetMap",
-              "accessedAt": "2026-10-21T12:43:36.193Z"
+              "label": "Percorso intorno a Sesto, official route page",
+              "url": "https://www.sesto.it/it/attivita/escursioni/tour-escursionistici/AC5A47FCF7F0609BF66F8357787C1DB7-sentiero-tematico-percorso-intorno-a-sesto.html",
+              "authority": "Associazione Turistica di Sesto",
+              "accessedAt": "2026-10-22T19:00:00.000Z",
+              "reviewedAt": "2026-10-22"
             }
           ]
         },
-        "area": "Sesto / Sexten",
+        "area": "Sexten / Sesto – Moos / Moso",
         "distance": 11.1,
         "elevation": 293,
         "hours": "3–4",
@@ -13958,9 +13969,9 @@
           }
         ],
         "startPoint": {
-          "lat": 46.6854113,
-          "lng": 12.3699733,
-          "label": "Start here — Bus stop Gilte, 6 m from the route (OSM-verified access point)"
+          "lat": 46.6996642,
+          "lng": 12.3576003,
+          "label": "Kiniger farms on Kinigerweg above Sexten (official start); bus stop Sexten Helm nearby"
         },
         "reviewedAt": "2026-10-21",
         "reviewedBy": "ORMA verified-trail workflow",
@@ -15928,7 +15939,7 @@
           },
           "sources": []
         },
-        "area": "Samoëns",
+        "area": "Sixt-Fer-à-Cheval – Haut-Giffre",
         "distance": 5.5,
         "elevation": 97,
         "hours": "1.5–2",
@@ -18892,7 +18903,16 @@
         "lng": 6.7798301,
         "region": "savoy",
         "curated": true,
-        "publicationApprovalId": "Lln7swtIkKuUSgHQQ8Gb"
+        "publicationApprovalId": "Lln7swtIkKuUSgHQQ8Gb",
+        "withdrawal": {
+          "reason": "dogs-not-accepted",
+          "at": "2026-10-22",
+          "note": "Dogs are banned in the Sixt-Passy national nature reserve, even on a lead, and this walk runs inside it for 2.7 km of the 5.6 km line, including the Praz de Commune alpage. Taken off the site on 22 October 2026.",
+          "sources": [
+            "https://www.cen-haute-savoie.org/wp-content/uploads/2025/12/decret_rnn_sixt-fer-a-cheval-passy_20191121.pdf",
+            "https://www.haut-giffre.fr/equipements/randonnee-a-lalpage-de-commune/"
+          ]
+        }
       }
     },
     {
@@ -18930,7 +18950,7 @@
           },
           "sources": []
         },
-        "area": "Samoëns",
+        "area": "Sixt-Fer-à-Cheval – Haut-Giffre",
         "distance": 5.4,
         "elevation": 841,
         "hours": "2.5–3.5",
@@ -20569,7 +20589,16 @@
         "lng": 6.7858345,
         "region": "savoy",
         "curated": true,
-        "publicationApprovalId": "lo8u0cyvfuhYTZWzWG7y"
+        "publicationApprovalId": "lo8u0cyvfuhYTZWzWG7y",
+        "withdrawal": {
+          "reason": "dogs-not-accepted",
+          "at": "2026-10-22",
+          "note": "Dogs are banned in the Sixt-Passy national nature reserve, even on a lead, and this walk runs inside it for 1.6 km of the 5.5 km line, including the Chalets de Salvadon themselves. Taken off the site on 22 October 2026.",
+          "sources": [
+            "https://www.cen-haute-savoie.org/wp-content/uploads/2025/12/decret_rnn_sixt-fer-a-cheval-passy_20191121.pdf",
+            "https://www.haut-giffre.fr/equipements/randonnee-pedestre-a-lalpage-et-chalets-de-salvadon/"
+          ]
+        }
       }
     }
   ],

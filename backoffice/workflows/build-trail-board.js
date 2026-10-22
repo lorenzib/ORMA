@@ -197,9 +197,10 @@ function entryFor(trail, flow, publication, jobOwed, slug){
   if(trail.withdrawal && trail.withdrawal.reason){
     entry.flag = 'withdrawn';
     entry.next = 'Taken off the site pending review';
-    entry.detail = trail.withdrawal.reason === 'dogs-not-accepted'
-      ? 'Research found dogs are not allowed on this walk'
-      : `Withdrawn: ${trail.withdrawal.reason}`;
+    entry.detail = trail.withdrawal.note
+      || (trail.withdrawal.reason === 'dogs-not-accepted'
+        ? 'Research found dogs are not allowed on this walk'
+        : `Withdrawn: ${trail.withdrawal.reason}`);
   }
   entry.stageLabel = STAGE_LABELS[entry.stage];
   entry.actions = actionsFor(entry);
