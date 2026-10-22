@@ -6708,6 +6708,7 @@ function effectiveOverrides(profile, adjustOverride){
     // enough to be the nearest entry for a wide area, they handed that wrong
     // valley to every trail that fell through to them.
     ['Bolzano / Bozen', 46.4983, 11.3548, 'Conca di Bolzano', 'dolomites', 'alto-adige'],
+    ['Collalbo / Klobenstein (Renon / Ritten)', 46.5397, 11.4597, 'Conca di Bolzano', 'dolomites', 'alto-adige'],
     ['Brunico / Bruneck', 46.7966, 11.9376, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
     ['Vipiteno / Sterzing', 46.8977, 11.4331, 'Valle Isarco – Eisacktal', 'dolomites', 'alto-adige'],
     ['Madonna di Campiglio', 46.2295, 10.8269, 'Brenta', 'dolomites', 'trentino'],

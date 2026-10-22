@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-21T09:31:02.761Z",
+  "updatedAt": "2026-10-22T12:00:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -356,18 +356,18 @@
     },
     {
       "id": "osm-11795251",
-      "approvedReviewId": "commons-osm-11795251",
-      "approvedAt": "2026-09-06T12:22:30.979Z",
+      "approvedReviewId": "hand-audit-osm-11795251-2026-10-22",
+      "approvedAt": "2026-10-22T12:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-11795251-commons.jpg",
-        "heroImage": "images/trails/osm-11795251-commons.jpg",
-        "imageAlt": "The Pfunders valley basin in the Vintl municipality",
-        "imageCredit": "Talkessel von Pfunders",
-        "imageCreditText": "Talkessel von Pfunders by Hegedex",
-        "imageCreator": "Hegedex",
-        "imageLicence": "Public domain",
-        "imageLicenceUrl": null,
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Talkessel_von_Pfunders.JPG",
+        "imageIcon": "images/trails/osm-11795251-obervintl-waterfall.jpg",
+        "heroImage": "images/trails/osm-11795251-obervintl-waterfall.jpg",
+        "imageAlt": "The Obervintl waterfall dropping into a mossy wooded gorge above Obervintl, a short detour off the village loop",
+        "imageCredit": "The Obervintl waterfall",
+        "imageCreditText": "The Obervintl waterfall by Linie29",
+        "imageCreator": "Linie29",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Obervintler_Wasserfall.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -475,18 +475,18 @@
     },
     {
       "id": "osm-11839597",
-      "approvedReviewId": "commons-osm-11839597",
-      "approvedAt": "2026-09-06T09:58:55.741Z",
+      "approvedReviewId": "hand-audit-osm-11839597-2026-10-22",
+      "approvedAt": "2026-10-22T12:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-11839597-commons.jpg",
-        "heroImage": "images/trails/osm-11839597-commons.jpg",
-        "imageAlt": "An alpine hut on the Alpe di Siusi below the Sciliar",
-        "imageCredit": "Prossliner Schwaige mit Schlern Seiser Alm",
-        "imageCreditText": "Prossliner Schwaige mit Schlern Seiser Alm by Wolfgang Moroder",
-        "imageCreator": "Wolfgang Moroder",
+        "imageIcon": "images/trails/osm-11839597-amtmann-pond-lengmoos.jpg",
+        "heroImage": "images/trails/osm-11839597-amtmann-pond-lengmoos.jpg",
+        "imageAlt": "The Amtmann pond at Lengmoos on the Ritten, Gasthof Amtmann reflected in the still water beside a wooden-fenced village lane, where the promenade joins the village",
+        "imageCredit": "The Amtmann pond at Lengmoos",
+        "imageCreditText": "The Amtmann pond at Lengmoos by Art Anderson",
+        "imageCreator": "Art Anderson",
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Prossliner_Schwaige_mit_Schlern_Seiser_Alm.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Reflecting_on_Collalbo_Kolbenstein_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },

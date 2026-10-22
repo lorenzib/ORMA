@@ -126,7 +126,9 @@ describe('DATA-03 regional runtime boundaries', () => {
       expect(trail.routeNumberGuidance).toEqual(expect.objectContaining({
         mode:expect.stringMatching(/^(numbered|landmarks)$/),
         start:expect.any(String),sequence:expect.any(String),switches:expect.any(String),
-        sources:expect.arrayContaining([expect.objectContaining({url:expect.stringMatching(/^https:\/\//),reviewedAt:'2026-09-04'})]),
+        // Dated by whoever read it: the August batch on 2026-09-04, later hand
+        // audits on their own day. Any read date will do; none will not.
+        sources:expect.arrayContaining([expect.objectContaining({url:expect.stringMatching(/^https:\/\//),reviewedAt:expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/)})]),
       }));
     });
   });
