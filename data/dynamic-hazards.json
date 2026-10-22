@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-22T13:27:11.700Z",
+  "generatedAt": "2026-10-22T19:19:10.902Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-10-20T18:00:00+00:00",
       "expiresAt": "2026-10-22T05:59:00+00:00",
       "firstPublishedAt": "2026-10-19T22:21:40.478Z",
-      "lastSeenAt": "2026-10-22T13:27:11.700Z",
+      "lastSeenAt": "2026-10-22T19:19:10.902Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -42,7 +42,7 @@
       "effectiveAt": "2026-10-20T18:00:00+00:00",
       "expiresAt": "2026-10-21T23:59:00+00:00",
       "firstPublishedAt": "2026-10-19T22:21:40.478Z",
-      "lastSeenAt": "2026-10-22T13:27:11.700Z",
+      "lastSeenAt": "2026-10-22T19:19:10.902Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -91,7 +91,7 @@
       "effectiveAt": "2026-10-20T18:00:00+00:00",
       "expiresAt": "2026-10-23T23:59:00+00:00",
       "firstPublishedAt": "2026-10-18T22:19:35.615Z",
-      "lastSeenAt": "2026-10-22T13:27:11.700Z",
+      "lastSeenAt": "2026-10-22T19:19:10.902Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -116,7 +116,7 @@
       "effectiveAt": "2026-10-20T18:00:00+00:00",
       "expiresAt": "2026-10-21T23:59:00+00:00",
       "firstPublishedAt": "2026-10-18T22:19:35.615Z",
-      "lastSeenAt": "2026-10-22T13:27:11.700Z",
+      "lastSeenAt": "2026-10-22T19:19:10.902Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -151,6 +151,61 @@
       "sourceStatus": "available"
     },
     {
+      "id": "meteoalarm-france:thunderstorm:haute-savoie",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Moderate thunderstorm warning",
+      "area": "Haute-Savoie",
+      "title": "thunderstorm warning for Haute-Savoie",
+      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-france",
+      "sourceLabel": "MeteoAlarm France",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/c3b157ee-ff38-43a5-8fd2-03c70c1b2779",
+      "identifier": "2.49.0.0.250.0.FR.20261022160104.479023",
+      "effectiveAt": "2026-10-22T22:00:00+00:00",
+      "expiresAt": "2026-10-23T22:00:00+00:00",
+      "firstPublishedAt": "2026-10-22T16:28:04.812Z",
+      "lastSeenAt": "2026-10-22T19:19:10.902Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "osm-6250300",
+        "osm-10116283",
+        "osm-10116380",
+        "osm-20347406",
+        "osm-11517208",
+        "osm-14987412",
+        "osm-18055492",
+        "osm-14864704",
+        "osm-5479112",
+        "osm-13337921",
+        "osm-13338113",
+        "osm-16180587",
+        "osm-19064561",
+        "osm-19095412",
+        "osm-19095413",
+        "osm-19661726"
+      ],
+      "trailNames": [
+        "Boucle du Lac Vert",
+        "Itinéraire de découverte historique",
+        "Itinéraire découverte de la nature",
+        "Sentier des Patriotes",
+        "La Croix des Salles",
+        "Sentier du Four",
+        "Le Mont d'Arbois - Mont Joux",
+        "Boucle du Taillefer",
+        "Chemin des Diligences",
+        "Au pied du Roc d'Enfer",
+        "Lac de Darbon",
+        "Balade du Plateau d'Assy au Lac Vert",
+        "Ombres sur l'Alpage",
+        "Chalets de Salvadon",
+        "Alpage de Commune",
+        "Sentier pédestre des Graniteurs"
+      ],
+      "sourceStatus": "available"
+    },
+    {
       "id": "meteoalarm-italy:thunderstorm:trentino-alto-adige",
       "state": "active",
       "severity": "moderate",
@@ -165,7 +220,7 @@
       "effectiveAt": "2026-10-21T00:00:00+00:00",
       "expiresAt": "2026-10-21T23:59:00+00:00",
       "firstPublishedAt": "2026-10-19T22:21:40.478Z",
-      "lastSeenAt": "2026-10-22T13:27:11.700Z",
+      "lastSeenAt": "2026-10-22T19:19:10.902Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
