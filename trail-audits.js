@@ -386,6 +386,94 @@
       elevation: 212,
       desc: 'A loop of about 4.8 km from the square at Pianon in Tambre, down the old Sabbadalt path to the Puos–Tambre road and back up through the hamlet of Sabbadalt and the beech wood of the Bosco delle Fratte, waymarked 7. Much of it is surfaced: a steep descent on cement then asphalt, two crossings of the main road with a short stretch along it (cross with care and keep your dog close), and a paved road back to Pianon. Fountains are on the way, including the Fontana delle Lavine on the main-road bend.',
       startPoint: { lat: 46.141607, lng: 12.430358, label: 'Piazza 11 gennaio 1945, Pianon (official start)' }
+    },
+    'osm-3202880': {
+      // Hand audit: 22 October 2026. The province hiking-trail register line
+      // is covered 100% by the stored line, which is longer because the two
+      // lakes form a figure-of-eight and the connector between them is walked
+      // twice. Every sampled point is in Eppan, not Kaltern. Dog access rests
+      // on Eppan's dog regulation (Art. 4, 8) and the Montiggler Wald area
+      // plan (Art. 7(5) k, l): a lead of at most 1.5 m, no running free in the
+      // biotope, no bathing at the lidos in summer.
+      area: 'Eppan / Appiano – Montiggl',
+      distance: 4.6,
+      elevation: 110,
+      hours: '1–1.5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-22',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Giovanni Ussi, CC BY-SA 4.0 on Wikimedia Commons: the larger lake from the wooded shore path, 129 m from the line.',
+        route: 'The province trail-register line (4.0 km, open-ended) lies entirely on the stored 4.6 km closed line; the difference is the 250 m connector between the lakes, walked twice.',
+        routeNumbers: 'The register gives the loop no number and IDM describes it by name: from Parkplatz Montiggl follow 1/A to the small lake, go round it clockwise, then on to the big lake and back.',
+        mapPoints: 'No drinking-water node lies within 150 m of the line; the start is where path 1/A meets the loop at the small lake (the car park beside it is private).',
+        elevation: 'Headline ascent corrected from the sampled 156 m to the official 112 m (rounded to 110 m).'
+      },
+      graduation: {
+        status: 'verified',
+        required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        blockers: {}
+      },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Südtirol.info (IDM Südtirol), Montiggler Seen Runde',
+          'Autonomous Province of Bolzano hiking-trail register, Rundweg Montiggler Seen',
+          'Gemeinde Eppan, Verordnung über die Haltung und Führung von Hunden, Art. 4 and 8',
+          'Gebietsplan Montiggler Wald–Mitterberg, Durchführungsbestimmungen, Art. 7(5)',
+          'OpenStreetMap relation 3202880, Montiggler Wald forest and surface tags'
+        ],
+        date: '2026-10-22'
+      },
+      shadeCoverage: 90,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'About 0.6 km on asphalt access roads with lido and hotel traffic',
+        'Short stretch on the Montiggler Straße',
+        'Roots and stones, slippery when wet',
+        'Wooden boardwalk'
+      ],
+      shadeDescription: 'Almost entirely in the deciduous Montiggl forest at about 500 m; only short lakeside stretches are open. Low and warm in summer.',
+      terrainDescription: 'Easy woodland paths and gravel tracks round both lakes, with short climbs, roots and stones, and about 0.6 km on asphalt access roads near the lido.',
+      waterDescription: 'No mapped fountain on the loop. Both lakes are on the route, but dogs may not bathe at the lidos or the signed bathing spots from 15 May to 15 September.',
+      dogNotes: 'Eppan requires a lead of at most 1.5 m on all public ground and a muzzle carried. Both lakes are a protected biotope where dogs may not run free and nobody may leave the paths. From 15 May to 15 September dogs may not bathe at the lidos or the signed bathing spots, and they are banned from farmland, including the orchards and vineyards beside the path.',
+      tips: 'The loop circles both Montiggl lakes in the shade of the Montiggl forest: 4.6 km with about 110 m of climbing, roughly an hour and a half. Keep your dog on a short lead (1.5 m at most) the whole way: Eppan requires it, and the lakes are a protected biotope where dogs may not run free and you must stay on the path. From mid-May to mid-September dogs may not swim at the lidos or the signed bathing spots, and there is no fountain, so bring water.',
+      sourceLinks: [
+        {
+          label: 'Südtirol.info, Montiggler Seen Runde',
+          url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi78f78b7fec7706efe8118a3e4e471486.montiggler-seen-runde.montiggl'
+        },
+        {
+          label: 'Province hiking-trail register, Rundweg Montiggler Seen (Open Data Hub)',
+          url: 'https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428008'
+        },
+        {
+          label: 'Gemeinde Eppan, Verordnung über die Haltung und Führung von Hunden',
+          url: 'https://www.gemeinde.eppan.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden'
+        },
+        {
+          label: 'Gebietsplan Montiggler Wald–Mitterberg, Durchführungsbestimmungen (newPlan)',
+          url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/11069'
+        },
+        {
+          label: 'Waymarked Trails, OSM relation 3202880',
+          url: 'https://hiking.waymarkedtrails.org/#route?id=3202880'
+        },
+        {
+          label: 'OpenStreetMap contributors',
+          url: 'https://www.openstreetmap.org/relation/3202880'
+        }
+      ],
+      startPoint: {
+        lat: 46.42908,
+        lng: 11.29422,
+        label: 'North shore of the small Montiggl lake, where path 1/A arrives from Parkplatz Montiggl (1.2 km); the car park beside it is private'
+      },
+      waterSources: [],
+      desc: 'A shaded loop round both Montiggl lakes in the Montiggl forest above Eppan: woodland paths along the small lake and the larger lake with its lido, joined by a short connector walked twice. The official route lists about 4 km and 112 m of ascent.'
     }
   };
 
