@@ -60,6 +60,11 @@ jobs:
       # code change; the limit is per pass.
       ORMA_GATE_DISPATCH_ENABLED: ${{ vars.ORMA_GATE_DISPATCH_ENABLED || 'true' }}
       ORMA_GATE_DISPATCH_LIMIT: '3'
+      # Published reviewed trails sent back for their safety research (water,
+      # heat, exposure, livestock, surface, access). Two model calls a trail.
+      # Set the repository variable to 'false' to stop it without a code change.
+      ORMA_SAFETY_RESEARCH_ENABLED: ${{ vars.ORMA_SAFETY_RESEARCH_ENABLED || 'true' }}
+      ORMA_SAFETY_RESEARCH_LIMIT: '2'
       # The adjudicator that writes a cited recommendation onto a gate only she
       # can decide. Same kill switch shape as the dispatch above.
       ORMA_GATE_ADJUDICATION_ENABLED: ${{ vars.ORMA_GATE_ADJUDICATION_ENABLED || 'true' }}

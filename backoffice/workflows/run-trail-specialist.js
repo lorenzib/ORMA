@@ -8,6 +8,9 @@ const {mergeClaimResolutionResult}=require('./claim-resolution');
 const {ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
 const {placesOnRoute}=require('./places-on-route');
 const {auditSources,hasFindings}=require('./source-audit');
+// Required lazily: the lane builds jobs through apply-dossier-review, and
+// loading it at the top would make this module part of that graph.
+const safetyResearchPrompt=job=>require('./safety-research-lane').safetyResearchPrompt(job);
 const fs=require('fs');
 const path=require('path');
 const {CLAIM_ENTITY_TYPE,POLICY_BY_RULE}=require('./compile-operational-facts');
@@ -576,7 +579,7 @@ async function runTrailSpecialist({job,trail,context},options={}){
     : `\n\nDo not return finding "varies" on this pass, for any claim. It is reserved for automated resolution attempt ${MIN_VARIES_RESOLUTION_ATTEMPT} and later, so that it is always a conclusion drawn from repeated looking rather than a first impression. Where you cannot establish ${VARIABLE_CLAIM_IDS.join(' or ')} on this pass, return finding "unresolved" and say in blockers what you would need; a later attempt will be allowed to conclude that it varies.`;
   const resolutionPrompt=job.resolutionAttempt?`\n\nThis is automated evidence-resolution attempt ${job.resolutionAttempt} of ${job.maximumResolutionAttempts||5} for claim(s) ${(job.claimIds||[]).join(', ')}. Use this materially different strategy: ${job.resolutionStrategyLabel} (${job.resolutionStrategy}). ${job.resolutionInstruction} Return a complete updated specialist result: preserve unrelated prior claims, include every targeted claim, and list only questions that remain open after this attempt. Never claim success merely because a source was not found.`:'';
   const response=await runAgent({schemaName:`orma_${job.agentId}_trail_findings`,schema:SPECIALIST_SCHEMA,webSearch:true,
-    messages:[{role:'developer',content:prompt+resolutionPrompt+variesPrompt},
+    messages:[{role:'developer',content:prompt+resolutionPrompt+variesPrompt+safetyResearchPrompt(job)},
       {role:'user',content:JSON.stringify({job,trail,ormaRecord:routeGuidanceLeads(trail),
         // Only the agent that is asked about places gets them; the others would
         // be paying tokens to read a list they have no claim for.

@@ -1,7 +1,7 @@
 'use strict';
 
 const {researchedSafetyCategories,SAFETY_CATEGORIES,SAFETY_CATEGORY_OF_CLAIM}=require('./workflows/compile-verified-dossier');
-const {graduationFor,SAFETY_CHECKS,GRADUATION_CHECKS}=require('./workflows/build-publication-staging');
+const {graduationFor,SAFETY_CHECKS,GRADUATION_CHECKS,SETTLED_FOR_SEAL,settledSafetyCategories}=require('./workflows/build-publication-staging');
 const {BASE_SPECIALISTS}=require('./workflows/apply-dossier-review');
 const {CATEGORIES}=require('./workflows/run-trail-specialist');
 
@@ -109,7 +109,7 @@ describe('a badge claims only what a specialist was asked',()=>{
   });
 
   test('all six researched earns the seal; none of them does not',()=>{
-    expect(graduationFor([...SAFETY_CHECKS],true,true).status).toBe('verified');
+    expect(graduationFor([...SAFETY_CHECKS],true,true,[...SETTLED_FOR_SEAL]).status).toBe('verified');
     const reviewed=graduationFor([],true,true);
     expect(reviewed.status).toBe('in-progress');
     // What it did earn: the line is real and the directions are sourced.
@@ -120,9 +120,35 @@ describe('a badge claims only what a specialist was asked',()=>{
     // Nothing has to remember to promote a trail: the next publication derives
     // a fuller list from a fuller dossier.
     const statuses=SAFETY_CHECKS.map((_,index)=>
-      graduationFor(SAFETY_CHECKS.slice(0,index+1),true,true).status);
+      graduationFor(SAFETY_CHECKS.slice(0,index+1),true,true,[...SETTLED_FOR_SEAL]).status);
     expect(statuses).toEqual(['in-progress','in-progress','in-progress',
       'in-progress','in-progress','verified']);
+  });
+
+  test('access and livestock need an answer for the seal, not only a look',()=>{
+    // Approved 22 October 2026. Looked-and-unknown still completes the check,
+    // so the page shows unknown, but the seal waits for an answer.
+    const all=[...SAFETY_CHECKS];
+    expect(graduationFor(all,true,true,[]).status).toBe('in-progress');
+    expect(graduationFor(all,true,true,['access']).status).toBe('in-progress');
+    expect(graduationFor(all,true,true,['livestock']).status).toBe('in-progress');
+    expect(graduationFor(all,true,true,['access','livestock']).status).toBe('verified');
+    expect(graduationFor(all,true,true,[]).completed).toEqual(expect.arrayContaining(all));
+    expect([...SETTLED_FOR_SEAL]).toEqual(['access','livestock']);
+  });
+
+  test('an answer is read from the dossier as compile-verified-dossier writes it',()=>{
+    // The dossier keeps supported and "varies" findings, labelled
+    // `${category}: ${id}`, with the asked-for id beside it.
+    const fact=(category,claimId,finding)=>({label:`${category}: ${claimId}`,claimId,humanAcceptedFinding:finding});
+    expect(settledSafetyCategories({lockedFacts:[
+      fact('access','dog-access','supported-proposal'),
+      fact('livestock','livestock','varies'),
+      fact('route','shade','supported-proposal'),
+      fact('water','water','unresolved'),
+    ]})).toEqual(['heat','livestock','access']);
+    expect(settledSafetyCategories({lockedFacts:[]})).toEqual([]);
+    expect(settledSafetyCategories(null)).toEqual([]);
   });
 
   test('a missing photo or missing structured fields also hold the seal back',()=>{

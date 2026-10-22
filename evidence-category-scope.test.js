@@ -45,7 +45,7 @@ describe('what a source review can establish', () => {
 
     // The earned seal needs all of them; a trail nobody asked the safety
     // questions of shows as reviewed instead.
-    expect(graduationFor([...SAFETY_CHECKS],true,true).status).toBe('verified');
+    expect(graduationFor([...SAFETY_CHECKS],true,true,['access','livestock']).status).toBe('verified');
     expect(graduationFor([],true,true).status).toBe('in-progress');
     expect(graduationFor([],true,true).completed).toContain('route');
     for(const category of SAFETY_CHECKS){

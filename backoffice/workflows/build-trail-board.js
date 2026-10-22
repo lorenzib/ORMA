@@ -179,6 +179,28 @@ function entryFor(trail, flow, publication, jobOwed, slug){
     entry.stage = 'research';
     entry.next = state ? state.replace(/-/g, ' ') : 'In verification';
   }
+  // The safety-research lane (OPERATING_STANDARD.md, "A reviewed trail is
+  // sent back for its safety research"). A trail it sent back is research, not
+  // a route problem, and says what it is being asked.
+  const safety = flow?.safetyResearch;
+  if(safety && flow?.stage === 'safety-research') entry.detail = `Safety research: ${list(entry.missing)}`;
+  // A specialist met a document it could not read and marked the claim rather
+  // than guessing (decision 3). Somebody has to read it.
+  const audit = Array.isArray(safety?.handAudit) ? safety.handAudit : [];
+  if(audit.length){
+    entry.audit = audit.map(item => ({ claimId: item.claimId, sources: item.sources || [] }));
+    if(!entry.flag) entry.flag = 'audit';
+    entry.detail = [entry.detail, `Hand audit: ${list(audit.map(item => item.claimId))} rest on a document the agent could not read`].filter(Boolean).join('. ');
+  }
+  // Research found dogs are not allowed, so the walk was taken off the site
+  // pending review (decision 2). Nothing a pass does lifts it.
+  if(trail.withdrawal && trail.withdrawal.reason){
+    entry.flag = 'withdrawn';
+    entry.next = 'Taken off the site pending review';
+    entry.detail = trail.withdrawal.reason === 'dogs-not-accepted'
+      ? 'Research found dogs are not allowed on this walk'
+      : `Withdrawn: ${trail.withdrawal.reason}`;
+  }
   entry.stageLabel = STAGE_LABELS[entry.stage];
   entry.actions = actionsFor(entry);
   return entry;
@@ -225,6 +247,8 @@ function buildTrailBoard({ trails = [], orchestration = null, publicationRequest
       reviewed: count(entry => entry.badge === 'reviewed'),
       stuck: count(entry => entry.flag === 'stuck'),
       disagree: count(entry => entry.flag === 'disagree'),
+      audit: count(entry => entry.flag === 'audit'),
+      withdrawn: count(entry => entry.flag === 'withdrawn'),
       stopped: {
         resting: count(entry => entry.stopKind === 'resting'),
         rejected: count(entry => entry.stopKind === 'rejected'),

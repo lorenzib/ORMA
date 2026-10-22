@@ -92,6 +92,8 @@
       ['all','All',null,''],
       ['stuck','stuck, nothing will move them',board.summary.stuck,'tb-chip-bad'],
       ['disagree','record and site disagree',board.summary.disagree,'tb-chip-warn'],
+      ['withdrawn','taken off the site pending review',board.summary.withdrawn||0,'tb-chip-bad'],
+      ['audit','need a document read by hand',board.summary.audit||0,'tb-chip-warn'],
       ['near','close to Verified',near,''],
       ['requested','with a request in progress',open,''],
     ];
@@ -125,6 +127,8 @@
   function flagChip(entry){
     if(entry.flag==='stuck')return '<span class="tb-flag tb-f-bad">Stuck</span>';
     if(entry.flag==='disagree')return '<span class="tb-flag tb-f-warn">Record and site disagree</span>';
+    if(entry.flag==='withdrawn')return '<span class="tb-flag tb-f-bad">Off the site</span>';
+    if(entry.flag==='audit')return '<span class="tb-flag tb-f-warn">Hand audit</span>';
     if(entry.stopKind==='resting')return '<span class="tb-flag tb-f-rest">Resting</span>';
     if(entry.stopKind==='rejected')return '<span class="tb-flag tb-f-bad">Rejected</span>';
     return '';
@@ -149,6 +153,7 @@
       ['Now',entry.next],['Detail',entry.detail],
       ['Pipeline state',entry.state?entry.state.replace(/-/g,' '):'not in the pipeline'],
       ['Since',entry.since||'—'],
+      ...((entry.audit||[]).map(item=>['Read by hand',`${item.claimId}: ${(item.sources||[]).join(' ')||'no address given'}`])),
     ];
     return `<tr class="tb-detail"><td colspan="5"><div class="tb-det">
       <div><h3>Where it is</h3><dl class="tb-facts">${facts.map(([key,value])=>`<dt>${key}</dt><dd>${esc(value)}</dd>`).join('')}</dl>
@@ -161,6 +166,8 @@
     if(stage&&entry.stage!==stage)return false;
     if(flag==='stuck'&&entry.flag!=='stuck')return false;
     if(flag==='disagree'&&entry.flag!=='disagree')return false;
+    if(flag==='withdrawn'&&entry.flag!=='withdrawn')return false;
+    if(flag==='audit'&&entry.flag!=='audit')return false;
     if(flag==='near'&&!(entry.stage==='passed'&&entry.badge!=='verified'&&entry.checks>=8))return false;
     if(flag==='requested'&&!(requests.has(entry.id)&&['queued','dispatched'].includes(requests.get(entry.id).status)))return false;
     if(search&&!`${entry.name} ${entry.area} ${entry.id}`.toLowerCase().includes(search))return false;

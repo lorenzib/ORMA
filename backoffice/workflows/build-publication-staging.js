@@ -1,7 +1,8 @@
 'use strict';
 
 const {CLAIM_ENTITY_TYPE}=require('./compile-operational-facts');
-const {routeGuidanceByClaim}=require('./compile-verified-dossier');
+const {routeGuidanceByClaim,SAFETY_CATEGORY_OF_CLAIM}=require('./compile-verified-dossier');
+const {dogsNotAccepted}=require('./safety-research-lane');
 const {existingCopyFields}=require('./verified-editorial-handoff');
 
 const TARGETS = Object.freeze({
@@ -119,15 +120,51 @@ const GRADUATION_CHECKS=Object.freeze(['photo','route','routeNumbers','mapPoints
  * It upgrades by itself: the next publication after research lands derives a
  * fuller list, so nothing has to remember to promote a trail.
  */
-function graduationFor(researched, hasPhoto, hasFields){
+function graduationFor(researched, hasPhoto, hasFields, settled=[], options={}){
   const completed=[
     ...(hasPhoto?['photo']:[]),
     'route','routeNumbers',
     ...(hasFields?['mapPoints','elevation']:[]),
     ...SAFETY_CHECKS.filter(check=>researched.includes(check)),
   ];
-  const status=GRADUATION_CHECKS.every(check=>completed.includes(check))?'verified':'in-progress';
-  return {status,required:[...GRADUATION_CHECKS],completed};
+  // Access and livestock need an answer, not only a look (approved 22 October
+  // 2026): a walker acts on whether a dog may be there and whether cattle or a
+  // guardian dog will be. Looked-and-unknown still completes the check -- the
+  // page shows unknown -- but it does not earn the seal.
+  //
+  // And a walk where dogs are not allowed is never sealed (decision 2): the
+  // research is complete, and what it found is that ORMA should not be
+  // recommending the walk at all.
+  const heldFor=[
+    ...SETTLED_FOR_SEAL.filter(check=>completed.includes(check)&&!settled.includes(check)).map(check=>`${check}-unanswered`),
+    ...(options.dogsNotAccepted?['dogs-not-accepted']:[]),
+  ];
+  const status=GRADUATION_CHECKS.every(check=>completed.includes(check))&&!heldFor.length
+    &&SETTLED_FOR_SEAL.every(check=>settled.includes(check))?'verified':'in-progress';
+  return {status,required:[...GRADUATION_CHECKS],completed,...(heldFor.length?{heldFor}:{})};
+}
+
+const SETTLED_FOR_SEAL=Object.freeze(['access','livestock']);
+
+/**
+ * The safety categories the dossier holds an answer for.
+ *
+ * A dossier keeps only supported or "varies" findings (compile-verified-dossier),
+ * each with the category the agent filed it under in its label and the id it
+ * was asked for. Either names the category; the id map catches a claim the
+ * model filed under another heading.
+ */
+function settledSafetyCategories(item){
+  const settled=new Set();
+  for(const fact of item?.lockedFacts||[]){
+    if(!['supported-proposal','varies'].includes(fact.humanAcceptedFinding))continue;
+    const labelled=String(fact.label||'').split(':')[0].trim();
+    if(SAFETY_CHECKS.includes(labelled))settled.add(labelled);
+    const id=String(fact.claimId||'');
+    if(SAFETY_CHECKS.includes(id))settled.add(id);
+    if(SAFETY_CATEGORY_OF_CLAIM[id])settled.add(SAFETY_CATEGORY_OF_CLAIM[id]);
+  }
+  return SAFETY_CHECKS.filter(check=>settled.has(check));
 }
 
 function operationalClaims(item){
@@ -328,7 +365,9 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
     // nobody having asked -- the safe direction: such a trail is held rather
     // than published claiming six checks it cannot show.
     const researched=Array.isArray(item?.researchedCategories)?item.researchedCategories:[];
-    const graduation=graduationFor(researched,Boolean(retainedImage||hero),Boolean(verifiedFields));
+    const banned=dogsNotAccepted(item);
+    const graduation=graduationFor(researched,Boolean(retainedImage||hero),Boolean(verifiedFields),settledSafetyCategories(item),
+      {dogsNotAccepted:banned.length>0});
     // A trail short of the full seal publishes as a reviewed one.
     //
     // It was held here instead, because the override contract had no door for
@@ -387,6 +426,12 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
         verified:{ categories:SAFETY_CHECKS.filter(check=>researched.includes(check)), sources:['Locked ORMA evidence dossier'], date:item.verifiedAt.slice(0,10) },
         graduation,
         verifiedAt: item.verifiedAt,
+        // Taken off the published catalogue pending review (decision 2). The
+        // adapter reads this as an exclusion reason, so the walk becomes a
+        // draft through the same path every held trail takes.
+        ...(banned.length?{withdrawal:{reason:'dogs-not-accepted',at:item.verifiedAt,
+          findings:banned.map(fact=>({claimId:fact.claimId,entityName:fact.entityName||null,value:fact.value||null,
+            sourceIds:fact.sourceIds||[]}))}}:{}),
       },
       lockedEvidence: { dossierRef: item.dossierRef, facts: item.lockedFacts, verificationConditions: item.verificationConditions,
         acceptedUnknowns:item.acceptedUnknowns||[] },
@@ -413,4 +458,4 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
   };
 }
 
-module.exports = {SAFETY_CHECKS,NOT_A_PHOTOGRAPH,inTheCatalogue,REQUIRED_STRUCTURED_FIELDS,OPTIONAL_STRUCTURED_FIELDS,GRADUATION_CHECKS,graduationFor,seasonalSuitabilityFrom,verifiedPoiFields, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS,EXISTING_IMAGE_FIELDS,existingImageFields, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };
+module.exports = {SAFETY_CHECKS,SETTLED_FOR_SEAL,settledSafetyCategories,NOT_A_PHOTOGRAPH,inTheCatalogue,REQUIRED_STRUCTURED_FIELDS,OPTIONAL_STRUCTURED_FIELDS,GRADUATION_CHECKS,graduationFor,seasonalSuitabilityFrom,verifiedPoiFields, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS,EXISTING_IMAGE_FIELDS,existingImageFields, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };
