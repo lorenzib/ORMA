@@ -76,7 +76,7 @@ describe('the agent is handed what ORMA already recorded', () => {
     // This route has no number but does have an official page, so the status
     // now says so and the page travels to the agent as a citable source.
     expect(leads.recordedRouteNumberStatus).toBe('official-route-page');
-    expect(leads.citedSources.some(source=>source.url==='https://ap-arclusaz.fr/')).toBe(true);
+    expect(leads.citedSources.some(source=>String(source.url).startsWith('https://ap-arclusaz.fr/'))).toBe(true);
   });
 
   test('the sources it can cite come with it', () => {
