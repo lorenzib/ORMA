@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-22T16:00:00.000Z",
+  "updatedAt": "2026-10-22T20:00:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1239,35 +1239,35 @@
     },
     {
       "id": "osm-14375158",
-      "approvedReviewId": "commons-osm-14375158",
-      "approvedAt": "2026-09-08T13:56:49.168Z",
+      "approvedReviewId": "panoramax-ign-osm-14375158",
+      "approvedAt": "2026-10-22T20:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-14375158-croix-des-tetes.jpg",
-        "heroImage": "images/trails/osm-14375158-croix-des-tetes.jpg",
-        "imageAlt": "The Croix des Têtes across the Maurienne under a June storm sky, wooded crests in the foreground and the valley floor with its town far below.",
-        "imageCredit": "Vallée Valloirette et Maurienne depuis Télégraphe",
-        "imageCreditText": "Vallée Valloirette et Maurienne depuis Télégraphe by Florian Pépellin",
-        "imageCreator": "Florian Pépellin",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vall%C3%A9e_Valloirette_et_Maurienne_depuis_T%C3%A9l%C3%A9graphe_(juin_2026).JPG",
+        "imageIcon": "images/trails/osm-14375158-parenche-lane.jpg",
+        "heroImage": "images/trails/osm-14375158-parenche-lane.jpg",
+        "imageAlt": "A quiet forest lane bending through larches on the Crêt de la Parenche loop, with flowering verges under a clear sky",
+        "imageCredit": "Forest lane on the Crêt de la Parenche loop",
+        "imageCreditText": "Forest lane on the Crêt de la Parenche loop by IGN",
+        "imageCreator": "IGN",
+        "imageLicence": "Licence Ouverte 2.0",
+        "imageLicenceUrl": "https://alliance.numerique.gouv.fr/licence-ouverte-open-licence/",
+        "imageSourcePage": "https://panoramax.ign.fr/api/collections/fe6debbe-c86e-4a0b-b204-82e4530c6952/items/b4e3c422-5f0a-4fff-9b5c-6839ddbe3787",
         "imageSourceType": "licensed-source"
       }
     },
     {
       "id": "osm-14376573",
-      "approvedReviewId": "commons-osm-14376573",
-      "approvedAt": "2026-09-07T19:55:05.873Z",
+      "approvedReviewId": "panoramax-osm-14376573",
+      "approvedAt": "2026-10-22T20:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-14376573-cairn-pointe-emy.jpg",
-        "heroImage": "images/trails/osm-14376573-cairn-pointe-emy.jpg",
-        "imageAlt": "The dry-stone cairn on the pointe d’Émy, built up on a stony ridge above a sea of cloud filling the Maurienne.",
-        "imageCredit": "Cairn de la pointe d’Émy",
-        "imageCreditText": "Cairn de la pointe d’Émy by Patrick OTER",
-        "imageCreator": "Patrick OTER",
-        "imageLicence": "CC0",
-        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cairn_de_la_pointe_d%27%C3%89my_02.jpg",
+        "imageIcon": "images/trails/osm-14376573-taliere-track.jpg",
+        "heroImage": "images/trails/osm-14376573-taliere-track.jpg",
+        "imageAlt": "A stony alpine track on the Crêt de Talière loop above Les Karellis, a scree slope on the right, a chairlift pylon and snow-capped peaks across the valley",
+        "imageCredit": "Stony track on the Crêt de Talière loop",
+        "imageCreditText": "Stony track on the Crêt de Talière loop by AlexandreModesto73",
+        "imageCreator": "AlexandreModesto73",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://api.panoramax.xyz/api/collections/0c88ad6a-d92a-4446-bf8e-611bdb09488e/items/06a63b9c-7b58-4cc9-a145-2d4e5b42e411",
         "imageSourceType": "licensed-source"
       }
     },
