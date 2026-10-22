@@ -74,6 +74,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-12118490": {
+      "url": "https://www.explore-savoie.com/randonnees-et-balades/sentier-botanique-des-plagnes-7628788/",
+      "publisher": "Office de Tourisme Intercommunal Cœur de Maurienne (Apidae)",
+      "name": "Sentier botanique des Plagnes",
+      "quote": "Durée moyenne 2H5 · Dénivelé cumulé positif 320m · Distance 4.75Km · Itinéraire balisé · Animaux acceptés en laisse uniquement.",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
     "osm-12121798": {
       "url": "https://www.explore-maurienne.com/itineraire/le-terroir-de-serpoliere/",
       "publisher": "Office de tourisme intercommunal Cœur de Maurienne Arvan (Apidae)",
@@ -90,11 +98,27 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T16:00:00.000Z"
     },
+    "osm-14378946": {
+      "url": "https://www.cirkwi.com/fr/circuit/137780-itineraire-de-randonnee-05-lac-de-pramol",
+      "publisher": "Office de Tourisme Les Karellis (Cirkwi)",
+      "name": "N°05 - Lac de Pramol",
+      "quote": "Point de départ : station des Karellis · Dist. 5.5 km · Déniv. pos. 181 m · Animaux : Oui. Les chiens doivent être tenus en laisse.",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
     "osm-14864704": {
       "url": "https://www.lac-annecy.com/itineraire-de-randonnee-pedestre/la-boucle-du-taillefer-duingt/",
       "publisher": "Office de Tourisme du Lac d'Annecy (Apidae)",
       "name": "La boucle du Taillefer",
       "quote": "Distance 6.8km · Dénivelé positif 382m · Durée 03h00 · Difficulté Modéré · Parking de l'église",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-15591346": {
+      "url": "https://tourisme.coeurdesavoie.fr/fiches/le-sentier-des-buis-114550/",
+      "publisher": "Office de Tourisme Cœur de Savoie (Apidae)",
+      "name": "Le sentier des Buis",
+      "quote": "Dénivelé cumulé 780 m · Durée 4h30 · Distance 9.5km · Départ du circuit : du parking proche du cimetière-parc, chemin de Beauvoir",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
@@ -127,6 +151,14 @@
       "publisher": "Amicale Pédestre de l'Arclusaz",
       "name": "Circuit trail du belvédère",
       "quote": "Circuit trail du belvédère (4,1 km- 270 m D+) Balisage ROSE",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-19541366": {
+      "url": "https://www.valthorens.com/randonnee/randonnee-pedestre-le-lac-blanc/",
+      "publisher": "Office de Tourisme Val Thorens (Apidae)",
+      "name": "Randonnée pédestre - Le Lac Blanc",
+      "quote": "Les animaux doivent être tenus en laisse · Départ : rue de Gébroulaz · Durée 02h30 · Dénivelé 510 D+ · Distance 6,0 km",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
