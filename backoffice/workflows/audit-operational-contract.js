@@ -13,7 +13,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake,promoter,generatedCheck,routeEvidence,campaignCli,requeueWorkflow,scoutImport,discovery,photoAudit]=await Promise.all([
+  const [builder,rules,client,worker,hazards,vetting,standard,hosting,dashboard,packageManifest,gateDispatch,adjudicator,desk,closureScout,healthCli,gatePolicy,dossier,mapGuidance,recordGuidance,dossierReview,orchestrationStates,campaign,cartographer,dryRun,numbersAlong,resurvey,resurveyCli,dryRunCli,places,claimResolution,orchestrationAdvance,handoff,staging,specialist,overrides,materialize,pageGenerator,appTrust,blueprint,compaction,rehydrate,funnel,funnelCli,intake,promoter,generatedCheck,routeEvidence,campaignCli,requeueWorkflow,scoutImport,discovery,photoAudit,safetyLane]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),
     read(root,'backoffice/workflows/dynamic-hazards.js'),read(root,'backoffice/workflows/community-hazard-vetting.js'),
@@ -59,6 +59,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'scripts/import-scouted-trail.js'),
     read(root,'scripts/fetch-dog-friendly-routes.js'),
     read(root,'scripts/audit-trail-photos.js'),
+    read(root,'backoffice/workflows/safety-research-lane.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-verify-desk.html','community-moderation-desk.html'];
@@ -337,7 +338,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&dossier.includes('researchedCategories:researchedSafetyCategories(review)')
     // Carried to publication, and the badge derived from it rather than asserted.
     &&handoff.includes('researchedCategories:dossier.ormaVerification.researchedCategories||[]')
-    &&staging.includes('function graduationFor(researched, hasPhoto, hasFields)')
+    &&staging.includes('function graduationFor(researched, hasPhoto, hasFields, settled=[], options={})')
     &&staging.includes("ormaVerified: graduation.status==='verified'")
     &&staging.includes('verified:{ categories:SAFETY_CHECKS.filter(check=>researched.includes(check))')
     &&!staging.includes("categories:['water','heat','exposure','livestock','surfaceHazards','access']")
@@ -468,7 +469,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&staging.includes('...(retainedImage||(hero?{')
     &&staging.includes('}:{})),')
     // And the badge is told there is no photograph.
-    &&staging.includes('graduationFor(researched,Boolean(retainedImage||hero),Boolean(verifiedFields))')
+    &&staging.includes('graduationFor(researched,Boolean(retainedImage||hero),Boolean(verifiedFields),settledSafetyCategories(item),')
     &&standard.includes('A photograph nobody is sourcing is not a pending approval'),
     'Publication of a trail already on the site does not wait on an approval for a photograph nobody is sourcing: the asset approval covers a newly sourced image, no such job is queued for an existing trail, and 23 of 163 trails with an incomplete image record waited for ever on a decision nothing could make. Such a trail publishes with no image fields, keeps whatever it already shows, and its badge counts one check fewer rather than claiming a photograph it has not got');
 
@@ -657,12 +658,33 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     // Asked of the four, through the function the gate itself uses.
     &&orchestrationAdvance.includes('return !routeGuidanceBlockingReasons(outputs,catalogueTrail?{trail:catalogueTrail}:{}).length;')
     // Only on a survey, and only where no agent has spoken.
-    &&orchestrationAdvance.includes("if(base.every(job=>!job)){")
+    // Not for a trail the safety lane sent back: its directions are settled
+    // and what it is waiting for is the specialists it was sent to.
+    &&orchestrationAdvance.includes("if(!safety&&base.every(job=>!job)){")
     &&orchestrationAdvance.includes("trail.stage='directions-settled-by-survey'")
     // The catalogue reaches the decision, read live.
     &&worker.includes('advanceTrailOrchestration(store,{...options,productionTrails})')
     &&standard.includes('A seal does not wait for optional detail'),
     'Where a free geometry survey has settled all four unwaivable route claims and no agent has spoken, the trail goes to the dossier gate on what it has and its optional detail is recorded unknown -- so a seal is never queued behind model calls that cannot change the verdict; a trail part-way through research keeps it, and one whose directions are unsettled waits for the agents as before');
+
+  // A reviewed trail is sent back for its safety research (approved 22
+  // October 2026). The fast lane seals directions on the survey alone; this
+  // is the deferred research it promised, safety questions only, never
+  // reopening the directions, its own budget and kill switch, and the three
+  // decisions: an answer for access and livestock, a ban withdraws the walk,
+  // an unread document goes to a hand audit.
+  add('a-reviewed-trail-is-sent-back-for-its-safety-research',
+    safetyLane.includes("const SAFETY_AGENTS=Object.freeze(SAFETY_SPECIALISTS.map(spec=>spec.agentId));")
+    &&!safetyLane.includes("agentId:'logistics'")
+    &&safetyLane.includes("if(entry?.verificationScope!=='routeReviewed'||entry?.fields?.ormaVerified!==false)continue;")
+    &&safetyLane.includes("if(trail.safetyResearch?.contract===SAFETY_RESEARCH_CONTRACT)continue;")
+    &&orchestrationAdvance.includes('async function openSafetyGate(store,trail,jobs,nextQueue,catalogueTrail,at)')
+    &&orchestrationAdvance.includes("const survey=latest(jobs,trail.candidateId,'cartographer');")
+    &&worker.includes('const safetyResearch=await sendReviewedTrailsForSafetyResearch(store,options);')
+    &&staging.includes("const SETTLED_FOR_SEAL=Object.freeze(['access','livestock']);")
+    &&staging.includes("...(banned.length?{withdrawal:{reason:'dogs-not-accepted'")
+    &&standard.includes('A reviewed trail is sent back for its safety research'),
+    'Published reviewed trails are sent back to the Ranger and the terrain analyst for the six safety questions only, two a pass behind ORMA_SAFETY_RESEARCH_ENABLED, and return to the dossier gate with the survey that settled their directions; the seal needs an answer for access and livestock, a settled finding that dogs are not allowed withdraws the walk pending review, and a claim resting on an unread document is listed for a hand audit');
 
   // Nothing is searched for that the map says is not there.
   //

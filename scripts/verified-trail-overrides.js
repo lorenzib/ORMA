@@ -67,7 +67,11 @@ function applyVerifiedTrailOverrides(trails, artifact){
       && graduation && graduation.status === 'in-progress'
       && Array.isArray(graduation.required) && Array.isArray(graduation.completed)
       && graduation.completed.length > 0
-      && graduation.completed.length < graduation.required.length;
+      // Short of a check, or complete and held back from the seal for a stated
+      // reason: an unanswered access or livestock question, or dogs found not
+      // to be allowed.
+      && (graduation.completed.length < graduation.required.length
+        || (Array.isArray(graduation.heldFor) && graduation.heldFor.length > 0));
     // A walk that does not return to its start is not broken, it is a different
     // shape. Declaring that is a human statement about the trail, recorded the
     // same way as any other verified fact, so the geometry check stops faulting

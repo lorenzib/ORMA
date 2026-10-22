@@ -1308,8 +1308,7 @@ below.
 ## A reviewed trail is sent back for its safety research
 
 > **Status: approved 22 October 2026, with all three decisions below as
-> drafted.** In force from the release that builds the lane; until it ships,
-> the lane above is still unbuilt.
+> drafted, and built in `backoffice/workflows/safety-research-lane.js`.**
 
 The fast lane takes a trail to the gate on its geometry survey alone, and
 nothing ever sends it to the specialists afterwards. Measured 21 October 2026:
@@ -1365,6 +1364,37 @@ A trail is researched only by a specialist that answered.
 **Measured, not estimated.** The first ten trails through the lane are the
 measurement: model calls and Firestore reads per trail, from the drain ledger
 and job records, recorded here before the per-pass limit is raised.
+
+### How it is built
+
+- **Finding the work costs no read.** The lane reads the published overrides the
+  checkout already holds: a `routeReviewed` entry whose graduation is short of a
+  safety check names a trail; the orchestration record says whether it is
+  settled (`ready-for-editorial`, ORMA-verified) and whether this contract has
+  already sent it (`safetyResearch.contract`), so a trail is sent once per
+  contract and never loops.
+- **Sending it back** puts the trail in `evidence-research` at stage
+  `safety-research` with two jobs marked `lane: safety-research`. The runner
+  adds the lane's instruction to the specialist's developer prompt.
+- **Returning it** waits for both specialists to answer *since it was sent
+  back* — an older Ranger answer never stands in — passes through the existing
+  resolution ladder if a claim is open, and then opens the dossier gate with
+  the survey and the new answers (stage `safety-research-dossier`). The
+  Librarian and the red team are not asked. The evidence policy decides the
+  gate as it decides every other.
+- **Held from the seal, saying why.** A graduation that completes all eleven
+  but is held back carries `heldFor` (`access-unanswered`,
+  `livestock-unanswered`, `dogs-not-accepted`), and the override contract
+  accepts a reviewed publication that is complete only when it says what holds
+  it.
+- **A withdrawn walk is a draft.** The publication carries `withdrawal`; the
+  trail adapter reads it as an exclusion reason, so the walk leaves the site by
+  the path every held trail takes. Lifting it is a human edit to the override.
+- **The trail board** flags *Off the site* and *Hand audit*, and lists the
+  address of each document nobody could read.
+- **Switch:** `ORMA_SAFETY_RESEARCH_ENABLED` (repository variable, on unless
+  `'false'`), `ORMA_SAFETY_RESEARCH_LIMIT` two a pass, in the worker and the
+  drain alike.
 
 ### Decisions, approved 22 October 2026
 

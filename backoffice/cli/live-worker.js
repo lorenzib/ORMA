@@ -100,6 +100,10 @@ function workerOptions(env=process.env,{workerId}={}){
     // Bounded because each dispatch costs a model call on a metered account.
     gateDispatchEnabled:env.ORMA_GATE_DISPATCH_ENABLED!=='false',
     gateDispatchLimit:positiveInteger(env.ORMA_GATE_DISPATCH_LIMIT,3),
+    // Published reviewed trails sent back for the safety questions the fast
+    // lane skipped. Two model calls a trail, so bounded per pass.
+    safetyResearchEnabled:env.ORMA_SAFETY_RESEARCH_ENABLED!=='false',
+    safetyResearchLimit:positiveInteger(env.ORMA_SAFETY_RESEARCH_LIMIT,2),
     // What is left at a gate after the dispatch gets a cited recommendation
     // beside each blocker. Smaller budget than the dispatch: an adjudication is
     // a web-search call, and it recommends rather than moving anything.

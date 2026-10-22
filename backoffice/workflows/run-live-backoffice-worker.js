@@ -33,6 +33,7 @@ const { loadProductionTrails } = require('../../scripts/load-production-trails')
 const {currentSiteTrails,isCurrentSiteTrail}=require('../services/public-site-trails');
 const fs=require('fs');
 const {buildTrailBoard}=require('./build-trail-board');
+const {planSafetyResearch,dispatchSafetyResearch}=require('./safety-research-lane');
 const path=require('path');
 
 function iso(value){
@@ -507,6 +508,32 @@ async function dispatchUnansweredGates(store,options={}){
   return outcomes;
 }
 
+/**
+ * Send published reviewed trails back for their safety research.
+ *
+ * The work is found in the published overrides, which the checkout already
+ * holds, so finding it costs no Firestore read; dispatching writes the jobs and
+ * the orchestration once. Bounded per pass because each trail costs two model
+ * calls, and switched off by ORMA_SAFETY_RESEARCH_ENABLED=false without a code
+ * change. See OPERATING_STANDARD.md, "A reviewed trail is sent back for its
+ * safety research".
+ */
+async function sendReviewedTrailsForSafetyResearch(store,options={}){
+  if(options.safetyResearchEnabled===false)return [];
+  const orchestration=await store.getArtifact('trail-orchestration');
+  if(!orchestration)return [];
+  const overrides=options.verifiedOverrides
+    ||JSON.parse(fs.readFileSync(path.resolve(__dirname,'../../data/verified-trail-overrides.json'),'utf8'));
+  const plan=planSafetyResearch(orchestration,overrides,{limit:options.safetyResearchLimit});
+  if(!plan.length)return [];
+  const at=iso(options.now||new Date());
+  const {orchestration:next,jobs}=dispatchSafetyResearch(orchestration,plan,at);
+  for(const job of jobs)await store.putJob(job);
+  await store.setArtifact('trail-orchestration',compactOrchestration(next));
+  return plan.map(item=>({trailId:item.trailId,candidateId:item.candidateId,missing:item.missing,
+    jobIds:jobs.filter(job=>job.candidateId===item.candidateId).map(job=>job.id),status:'dispatched'}));
+}
+
 async function ingestDossierReviews(store,options={}){
   const reviews=await store.listDossierReviews('queued'); const outcomes=[];
   // Before anything else: a rejected trail owns no queued work. Catches what
@@ -827,6 +854,9 @@ async function runLiveBackofficeWorker(store, options = {}){
   // Before the apply step, so a gate dispatched here becomes a queued agent
   // job in this same pass rather than waiting three hours for the next one.
   const gateDispatches=await dispatchUnansweredGates(store,options);
+  // Before advancement and the specialist batch, so a trail sent back here is
+  // researched in this same pass.
+  const safetyResearch=await sendReviewedTrailsForSafetyResearch(store,options);
   const automatedGates=[];const dossierReviews=[];
   automatedGates.push(...await automateEvidenceGates(store,{...options,productionTrails:catalogueTrails}));
   dossierReviews.push(...await ingestDossierReviews(store,{...options,productionTrails}));
@@ -874,7 +904,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   const coverage = await recordRegionalCoverage(store,{...options,productionTrails:siteTrails});
   // Last of all, so Backoffice Home shows each trail as this pass leaves it.
   const trailBoard = await recordTrailBoard(store,{...options,productionTrails});
-  return { workerId:options.workerId || null,campaign,pipeline,programme,coverage,trailBoard,usageDay,publicationStaging,newTrailReviews,hazardReviews,closureScouting,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,pipeline,programme,coverage,trailBoard,usageDay,publicationStaging,newTrailReviews,hazardReviews,closureScouting,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,safetyResearch,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
 }
 
 /**
@@ -1013,4 +1043,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES,refreshPublicationStaging,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore,scoutClosureNotices, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordTrailBoard,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { sendReviewedTrailsForSafetyResearch,PROCESSABLE_JOB_TYPES,refreshPublicationStaging,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore,scoutClosureNotices, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordTrailBoard,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

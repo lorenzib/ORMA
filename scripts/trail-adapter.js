@@ -366,6 +366,12 @@ function publicationDiagnostics(legacy, stats, metrics){
   if(finite(metrics.durationMinutes) !== null && metrics.durationMinutes > 1440){
     reasons.push(`duration ${metrics.durationMinutes} minutes exceeds the 24-hour publication limit`);
   }
+  // Research established that ORMA should not be recommending this walk -- dogs
+  // are not allowed on it -- so it is taken off the site pending review, by the
+  // same path every held trail takes. Lifting it is a human edit.
+  if(legacy.withdrawal && typeof legacy.withdrawal.reason === 'string' && legacy.withdrawal.reason.trim()){
+    reasons.push(`withdrawn pending review: ${legacy.withdrawal.reason.trim()}`);
+  }
   return reasons;
 }
 

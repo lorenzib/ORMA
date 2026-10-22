@@ -11,6 +11,7 @@ const {
 }=require('./claim-resolution');
 const {placesOnRoute,categoriesTheMapFoundNothingFor}=require('./places-on-route');
 const {loadMappedFeatures}=require('./run-trail-specialist');
+const {SAFETY_AGENTS,inSafetyResearch,unreadDocuments}=require('./safety-research-lane');
 
 const BASE_AGENTS=Object.freeze(['logistics','regulatoryRanger','terrainPoi']);
 
@@ -76,6 +77,49 @@ function queueProvenanceAudit(trail,jobs,queued,at){
   const job=specialistJob(trail,{agentId:'evidenceLibrarian',action:'audit-specialist-evidence',claimIds:['provenance']},attempt,at);
   job.inputRefs=base.map(item=>`firestore:trail-specialist-output-${item.id}`);
   queued.push(job);trail.jobIds.push(job.id);trail.state='provenance-audit';trail.stage='source-provenance-audit';trail.updatedAt=at;
+  return true;
+}
+
+// The latest completed job by an agent since a moment. A safety-lane trail may
+// carry a ranger answer from before it was sent back; the gate it returns to
+// must be built from the answer it was sent back for.
+function latestSince(jobs,candidateId,agentId,since){
+  const after=timeValue(since);
+  return jobs.filter(job=>job.candidateId===candidateId&&job.agentId===agentId&&job.status==='completed'
+      &&timeValue(job.createdAt)>=after)
+    .sort((a,b)=>timeValue(b.completedAt||b.createdAt)-timeValue(a.completedAt||a.createdAt))[0]||null;
+}
+
+/**
+ * Return a safety-lane trail to the dossier gate.
+ *
+ * The survey that settled its directions goes back with the new research, so
+ * the gate judges route guidance on exactly what it was approved on before,
+ * and the dossier compiled from it keeps the directions while gaining the
+ * safety categories. The Librarian and the red team are not asked: they audit
+ * a route dossier, and this pass changes nothing they would read.
+ */
+async function openSafetyGate(store,trail,jobs,nextQueue,catalogueTrail,at){
+  const since=trail.safetyResearch.requestedAt;
+  const survey=latest(jobs,trail.candidateId,'cartographer');
+  const answered=SAFETY_AGENTS.map(agent=>latestSince(jobs,trail.candidateId,agent,since));
+  if(!survey||answered.some(job=>!job))return false;
+  const outputs=[];
+  for(const job of [survey,...answered]){
+    const result=await store.getArtifact(`trail-specialist-output-${job.id}`);
+    if(result)outputs.push({agentId:job.agentId,jobId:job.id,result});
+  }
+  if(outputs.length!==answered.length+1)return false;
+  const blockingReasons=dossierBlockingReasons(outputs,catalogueTrail?{trail:catalogueTrail}:{});
+  const last=answered.sort((a,b)=>timeValue(b.completedAt||b.createdAt)-timeValue(a.completedAt||a.createdAt))[0];
+  trail.safetyResearch.handAudit=unreadDocuments(outputs);
+  trail.state='dossier-human-gate';trail.stage='safety-research-dossier';trail.currentJobId=last.id;
+  trail.gate={id:'dossier-approval',status:'awaiting-human',openedAt:at};trail.updatedAt=at;
+  nextQueue.items.push({reviewId:`dossier-approval-${trail.candidateId}-${last.id}`,candidateId:trail.candidateId,
+    trailId:trail.trailId,trailName:trail.trailName,gateType:'dossier-approval',state:'awaiting-human',openedAt:at,
+    approvalAllowed:!blockingReasons.length,blockingReasons,sourceTrail:trail.sourceTrail,specialistOutputs:outputs,
+    claimResolution:resolutionLedger(trail),
+    allowedActions:['approve','request-revision','reject'],publicMutationAllowed:false});
   return true;
 }
 
@@ -390,7 +434,10 @@ async function advanceTrailOrchestration(store,options={}){
         allowedActions:['approve','request-revision','reject'],publicMutationAllowed:false}); advanced.push(trail.trailId); continue;
     }
     if(trail.state==='evidence-research'){
-      const base=BASE_AGENTS.map(agent=>latest(jobs,trail.candidateId,agent));
+      const safety=inSafetyResearch(trail);
+      const base=safety
+        ? SAFETY_AGENTS.map(agent=>latestSince(jobs,trail.candidateId,agent,trail.safetyResearch.requestedAt))
+        : BASE_AGENTS.map(agent=>latest(jobs,trail.candidateId,agent));
       // The seal does not wait for optional detail.
       //
       // Where the survey has already settled all four directions, nothing an
@@ -402,7 +449,7 @@ async function advanceTrailOrchestration(store,options={}){
       // Only when no agent has spoken at all. A trail already part-way through
       // research keeps its research: overtaking it would throw away work
       // already paid for.
-      if(base.every(job=>!job)){
+      if(!safety&&base.every(job=>!job)){
         const survey=latest(jobs,trail.candidateId,'cartographer');
         const result=survey&&await store.getArtifact(`trail-specialist-output-${survey.id}`);
         const outputs=result?[{agentId:'cartographer',jobId:survey.id,result}]:[];
@@ -438,6 +485,11 @@ async function advanceTrailOrchestration(store,options={}){
         for(const entry of Object.values(entries))if(entry.state==='researchable'&&!pendingAttempt(entry,jobs))queueClaimResolution(trail,entry,jobs,queued,at);
         trail.state='evidence-resolution';trail.stage='autonomous-claim-resolution';trail.updatedAt=at;advanced.push(trail.trailId);continue;
       }
+      if(safety){
+        const catalogueTrail=catalogue.get(String(trail.trailId))||catalogue.get(String(trail.candidateId))||null;
+        if(await openSafetyGate(store,trail,jobs,nextQueue,catalogueTrail,at))advanced.push(trail.trailId);
+        continue;
+      }
       if(queueProvenanceAudit(trail,jobs,queued,at))advanced.push(trail.trailId);
       continue;
     }
@@ -450,6 +502,11 @@ async function advanceTrailOrchestration(store,options={}){
       }
       const pending=resolutionLedger(trail).some(entry=>pendingAttempt(entry,[...jobs,...queued]));
       if(scheduled||pending){if(changed||scheduled)advanced.push(trail.trailId);continue;}
+      if(inSafetyResearch(trail)){
+        const catalogueTrail=catalogue.get(String(trail.trailId))||catalogue.get(String(trail.candidateId))||null;
+        if(await openSafetyGate(store,trail,jobs,nextQueue,catalogueTrail,at))advanced.push(trail.trailId);
+        continue;
+      }
       if(queueProvenanceAudit(trail,jobs,queued,at))advanced.push(trail.trailId);
       continue;
     }
@@ -484,4 +541,4 @@ async function advanceTrailOrchestration(store,options={}){
   return {advanced,restored,releasedGates,queued:queued.map(job=>job.id)};
 }
 
-module.exports={directionsSettledWithoutAgents, afterReconsideration,SETTLED_STATES,trimSettledAttempts,compactOrchestration,GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
+module.exports={openSafetyGate,latestSince,directionsSettledWithoutAgents, afterReconsideration,SETTLED_STATES,trimSettledAttempts,compactOrchestration,GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
