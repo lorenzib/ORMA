@@ -74,6 +74,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-12164395": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428752",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "4 Dörferrundweg",
+      "quote": "Number '4', code_name '4  Dörferrundweg' (provincial hiking-trail register, feature routes-hikingtrails.11428752)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-22T16:00:00.000Z"
+    },
     "osm-1780768": {
       "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoiedf6cb529c8a7bd40bd3a49332d95f0a.the--talblickweg--path-in-the-val-casies-valley.tesido-taisten",
       "publisher": "South Tyrol Tourism / Tourism Association Gsiesertal Valley-Welsberg-Taisten",
