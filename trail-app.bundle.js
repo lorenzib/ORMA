@@ -15517,6 +15517,64 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 2.3, lat: 46.7406533, lng: 11.6295873, osmId: 'node/4394596723', label: 'Drinking fountain at the Kneipp park' }
       ],
       desc: 'A short family loop above Vahrn near Brixen: up beside the Schalderer Bach to the Kneipp park, along the sunny Vernaggenweg to the Salern castle ruin, and back down through the chestnut grove beside the Spilucker Bach. The official route lists 3.1 km and 172 m of ascent.'
+    },
+    'sentiero-hans-e-paula-steger': {
+      // Hand audit: 23 October 2026. One-way, Compatsch to Saltria, back by
+      // Almbus; the stored line (8.74 km) matches the official 8.7 km within 1%.
+      // Dog access read through every binding text: the national dog ordinance
+      // (lead of at most 1.5 m, muzzle carried, in places open to the public),
+      // Kastelruth's Ortspolizeiordnung (2024) Art. 13 (never unattended, clean
+      // up), and the Seiser Alm landscape plan (DLH 269/1992) Art. 12(4) (no
+      // disturbing wildlife); neither the park decree nor the plans ban dogs.
+      area: 'Seiser Alm / Alpe di Siusi, Compatsch to Saltria – Kastelruth',
+      elevation: 301,
+      hours: '2–2.5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'ORMA-owned photo of the summer Alm meadows with spruce, larch and an Alm hut near Compatsch.',
+        route: 'Official route 8.7 km one way, Compatsch to Saltria (Seiser Alm Marketing); OSM relation 10399914 (8.83 km) and the stored line (8.74 km) match within 1%, with no gaps.',
+        routeNumbers: 'From the Compatsch church follow route 30 past Hotel Steger Dellai; at the Saltria road turn right onto the wide Alm track (12A) down to the Laranz hut; shortly after, turn left onto route 12 down into the Saltria valley and walk up-valley to Saltria; return by Almbus.',
+        mapPoints: 'Start at the Seiser Alm Bahn mountain station (OSM node 102561714); drinking water at OSM node 8949692865 near km 2.6 and the Laranzer Schwaige near km 5.4.',
+        elevation: 'Official 301 m up and 475 m down, highest point 1,957 m, 2 h 10 min, in place of the recorded 233 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Seiser Alm Marketing, Hans-und-Paula-Steger-Weg and Urlaub mit dem Hund',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
+          'Gemeinde Kastelruth, Ortspolizeiordnung (Gemeinderat Nr. 57 of 4 September 2024), Art. 13',
+          'Landschaftlicher Gebietsplan Seiser Alm (DLH 10 February 1992 Nr. 269), Art. 2, 9, 12',
+          'Autonomous Province of Bolzano, ten rules for alpine pastures',
+          'OpenStreetMap relation 10399914, forest and surface tags'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 29,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 1.2 km on asphalt in Compatsch and Saltria and near Hotel Steger Dellai', 'Crosses the Seiser Alm access road and joins the Saltria road', 'Narrower, rougher path on route 12 down into the Saltria valley', 'Grazing cattle on open pasture'],
+      shadeDescription: 'Mostly open alpine meadow at 1,700–1,960 m; roughly a third runs along or through spruce and larch woods, mainly on the descent towards Saltria.',
+      terrainDescription: 'Gravel Alm tracks and meadow paths, short asphalt stretches at both ends and a narrower path on route 12, with about 300 m of climbing and 475 m of descent.',
+      waterDescription: 'A drinking-water point near km 2.6, several small streams on the first half and the Laranz hut (seasonal) at km 5.4; carry water for the dog.',
+      dogNotes: 'Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Italian rules require on public paths; on the Seiser Alm Bahn and Almbus dogs need a muzzle and the lift a dog ticket. Kastelruth forbids leaving dogs unattended and requires bags to clean up, and the Seiser Alm plan forbids disturbing wild animals. Cows with calves graze the Alm in summer.',
+      tips: 'This is one-way: walk from Compatsch to Saltria, about 8.7 km and 2 hours, and take the Almbus back. Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Italian rules require on public paths; on the cable car and buses dogs also need a muzzle and the lift a dog ticket. Cows with calves graze here in summer, so keep your dog close and give the herd a wide berth.',
+      sourceLinks: [
+        { label: 'Seiser Alm Marketing, Hans-und-Paula-Steger-Weg', url: 'https://www.seiseralm.it/de/dev/55D58E3813D89C8E78904CFB37673D85-hans-und-paula-steger-weg.html' },
+        { label: 'Seiser Alm Marketing, Urlaub mit dem Hund', url: 'https://www.seiseralm.it/de/info-service/aktuelle-infos/urlaub-mit-dem-hund.html' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Kastelruth, Ortspolizeiordnung (2024)', url: 'https://www.gemeinde.kastelruth.bz.it/de/Verwaltung/Dokumente/Ortspolizeiordnung' },
+        { label: 'Landschaftlicher Gebietsplan Seiser Alm, Durchführungsbestimmungen', url: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Landschaftlicher_Gebietsplan_Seiser_Alm_%E2%80%93_Piano_Paesaggistico_Dell'Alpe_di_Susi.pdf" },
+        { label: 'Waymarked Trails, OSM relation 10399914', url: 'https://hiking.waymarkedtrails.org/#route?id=10399914' }
+      ],
+      startPoint: { lat: 46.5423625, lng: 11.6170037, label: 'Seiser Alm Bahn mountain station, Compatsch' },
+      waterSources: [
+        { km: 2.6, lat: 46.5367508, lng: 11.6431649, osmId: 'node/8949692865', label: 'Drinking-water point' },
+        { km: 5.4, lat: 46.5268297, lng: 11.6504229, osmId: 'node/1387720796', label: 'Laranzer Schwaige (Alm hut)', seasonal: true }
+      ]
     }
   };
 
