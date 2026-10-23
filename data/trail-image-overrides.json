@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-23T23:00:00.000Z",
+  "updatedAt": "2026-10-24T00:30:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -441,18 +441,18 @@
     },
     {
       "id": "osm-11828233",
-      "approvedReviewId": "commons-osm-11828233",
-      "approvedAt": "2026-09-07T20:09:33.359Z",
+      "approvedReviewId": "commons-osm-11828233-on-route",
+      "approvedAt": "2026-10-24T00:30:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-11828233-wurmaulspitze.jpg",
-        "heroImage": "images/trails/osm-11828233-wurmaulspitze.jpg",
-        "imageAlt": "The footpath crossing a broad alpine basin of turf and scattered boulders below the Wurmaulspitze, a waymark painted on a rock beside it.",
-        "imageCredit": "Wurmaulspitze",
-        "imageCreditText": "Wurmaulspitze by Plentn",
-        "imageCreator": "Plentn",
-        "imageLicence": "CC0",
-        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Wurmaulspitze_2.jpg",
+        "imageIcon": "images/trails/osm-11828233-vals-summer.jpg",
+        "heroImage": "images/trails/osm-11828233-vals-summer.jpg",
+        "imageAlt": "Vals village and its green meadows on the valley floor in summer, wooded slopes and peaks of the Valser Tal behind.",
+        "imageCredit": "Vals Sommer 2011",
+        "imageCreditText": "Vals Sommer 2011 by Franz Aschenbrenner",
+        "imageCreator": "Franz Aschenbrenner",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vals_Sommer_2011.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1155,18 +1155,18 @@
     },
     {
       "id": "osm-13491868",
-      "approvedReviewId": "commons-osm-13491868",
-      "approvedAt": "2026-09-06T08:52:09.690Z",
+      "approvedReviewId": "commons-osm-13491868-on-route",
+      "approvedAt": "2026-10-24T00:30:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-13491868-commons.jpg",
-        "heroImage": "images/trails/osm-13491868-commons.jpg",
-        "imageAlt": "Val di Funes looking west across the valley",
-        "imageCredit": "Villnöß looking west",
-        "imageCreditText": "Villnöß looking west by Howwi",
-        "imageCreator": "Howwi",
+        "imageIcon": "images/trails/osm-13491868-verdings.jpg",
+        "heroImage": "images/trails/osm-13491868-verdings.jpg",
+        "imageAlt": "Verdings in autumn, houses among meadows and a red-leaved tree, the church tower above the village and the Eisack valley beyond.",
+        "imageCredit": "Verdings",
+        "imageCreditText": "Verdings by Cactus26",
+        "imageCreator": "Cactus26",
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villn%C3%B6%C3%9F_looking_west.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Verdings.jpg",
         "imageSourceType": "licensed-source"
       }
     },
