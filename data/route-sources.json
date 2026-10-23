@@ -2,6 +2,14 @@
   "contractVersion": "1.0.0",
   "generatedAt": "2026-10-12T20:14:56.229Z",
   "sources": {
+    "alpe-siusi": {
+      "url": "https://www.seiseralm.it/de/dev/FDAD02E1415D2D0656981F3B3C105F24-compatsch-wiedner-eck.html",
+      "publisher": "Tourismusverband Seiser Alm (seiseralm.it)",
+      "name": "Compatsch - Wiedner Eck",
+      "quote": "Wir begeben uns von Compatsch auf den Weg Nr. 30, der gleich hinter der Franziskus Kirche startet.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
     "geotrail-bulla": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi989d38877e70605be1a85f34d9ce0f7c.geotrail-pufels.st--michael---kastelruth",
       "publisher": "Seiser Alm Marketing (via Südtirol.info / IDM Südtirol)",
@@ -9,6 +17,14 @@
       "quote": "Die Wanderung startet beim Panider Sattel und führt der Beschilderung „Geotrail“ folgend über die alte Gemeindestraße nach Pufels und wieder zurück zum Ausgangspunkt.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
+    "giro-del-bulacia": {
+      "url": "https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoi6af98cb6de2e22ce1ffbb5b17b729a38.giro-della-bullaccia.alpe-di-siusi",
+      "publisher": "Alpe di Siusi Marketing via IDM Suedtirol (suedtirol.info)",
+      "name": "Giro della Bullaccia / Puflatschumrundung",
+      "quote": "Con la Cabinovia Alpe di Siusi raggiungete la stazione a monte di Compatsch. A sinistra, un ampio sentiero sale ripido in direzione della Bullaccia",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
     "giro-del-sasso-lungo": {
       "url": "https://www.valdifassa.it/escursioni-e-passeggiate-in-val-di-fassa/gruppo-sassolungo/il-giro-del-sassolungo/",
@@ -50,6 +66,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-1116675": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425373",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "Familienrundweg",
+      "quote": "CODE '19', CODE_NAME '19  Familienrundweg' (provincial hiking-trail register, routes-hikingtrails.11425373, 2,205 m)",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
     "osm-1116680": {
       "url": "https://www.sesto.it/it/attivita/escursioni/tour-escursionistici/AC5A47FCF7F0609BF66F8357787C1DB7-sentiero-tematico-percorso-intorno-a-sesto.html",
       "publisher": "Associazione Turistica di Sesto",
@@ -58,6 +82,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T19:00:00.000Z"
     },
+    "osm-11764094": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi16e4208993e3b597de62e5c389b65d33.doerferrunde-natz-schabs.natz",
+      "publisher": "IDM Südtirol (LTS record of Tourismusverein Natz-Schabs / Brixen und Umgebung)",
+      "name": "Dörferrunde Natz-Schabs",
+      "quote": "Über Viums vorbei am Viummer Kreuz führt der Weg hauptsächlich auf Waldsteigen nach Schabs.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-11774783": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425838",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "Rafeil-Rundweg",
+      "quote": "CODE '1', CODE_NAME '1  Rafeil-Rundweg' (provincial hiking-trail register, routes-hikingtrails.11425838, 1,444 m)",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
     "osm-11775760": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-sudtirol/pdp-erlebnisse.smgpoided61cbccffcce945596496bc2cdf7da.carl-toldt-weg-in-vahrn-bei-brixen.vahrn",
       "publisher": "Südtirol.info (provincial tourism portal); route contact: Brixen Tourismus Genossenschaft",
@@ -65,6 +105,30 @@
       "quote": "Vom Dorfparkplatz in Vahrn (677 m) folgt man der Beschilderung des Themenweges „Naturdenkmal Schalderer Bach“ und steigt links vom Bach mäßig steil bis zur Kneippanlage auf.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
+    "osm-11780502": {
+      "url": "https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoi17c55fc383bcaf2bebb595bceebe0ab5.sentiero-natura-zannes.s--maddalena---funes",
+      "publisher": "Societa Cooperativa Turistica Odles (odlesdolomites.com) via IDM suedtirol.info",
+      "name": "Sentiero natura Zannes / Naturerlebnisweg Zans",
+      "quote": "Il Sentiero Natura è un percorso circolare che è adatto anche alle persone disabili con sedia a rotelle.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-11790553": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoib2e4e57685f8da41bdef41395321fcde.rundwanderung-stegerbuehel.schabs",
+      "publisher": "IDM Südtirol (LTS record of Tourismusverein Natz-Schabs)",
+      "name": "Rundwanderung Stegerbühel",
+      "quote": "Bei der Kapelle Viummer Kreuz links abbiegen und Richtung Norden dem Hinweisschild Stegerbühelrunde im Uhrzeigersinn folgen.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-11795103": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425666",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "Kranterrunde",
+      "quote": "CODE_NAME 'Kranterrunde' (provincial hiking-trail register, routes-hikingtrails.11425666, 5,173 m)",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
     "osm-11795251": {
       "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425300",
@@ -81,6 +145,30 @@
       "quote": "Die Wanderung startet beim Panider Sattel und führt der Beschilderung „Geotrail“ folgend über die alte Gemeindestraße nach Pufels und wieder zurück zum Ausgangspunkt.",
       "foundBy": "orma-route-audit",
       "verifiedAt": "2026-10-23T18:00:00.000Z"
+    },
+    "osm-11815025": {
+      "url": "https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoi556b26e932b1a2896dbf0bb2ab55d7db.escursione-ad-anello-kasserol.novale",
+      "publisher": "Ufficio turistico Laion / Tourismusverein Lajen (lajen.info) via IDM suedtirol.info",
+      "name": "Escursione ad anello Kasserol / Rundwanderung Kasserol",
+      "quote": "Il punto di partenza per il sentiero Kasserol è la piazza centrale a Laion.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-11816373": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427150",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "Bunkerweg",
+      "quote": "CODE_NAME 'Bunkerweg' (provincial hiking-trail register, routes-hikingtrails.11427150, 3,346 m)",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-11828233": {
+      "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoi21f910493232aae4d07d3e71b8b32bda.valser-loop-trail-scenic-walking-through-nature-and-village-life.vals-valles",
+      "publisher": "IDM Südtirol (LTS record of Tourismusverein Gitschberg Jochtal)",
+      "name": "Valser Rundweg: Genusswanderung durch Natur, Dorfidylle und Bergblick",
+      "quote": "The route is ideal if you want to combine nature and gentle exercise.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
     "osm-11832013": {
       "url": "https://www.sarntal.com/fileadmin/user_upload/Wanderbus_2025_dt.pdf",
@@ -106,6 +194,22 @@
       "foundBy": "orma-route-audit",
       "verifiedAt": "2026-10-23T18:00:00.000Z"
     },
+    "osm-12044077": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428494",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "Rundweg Schmieden",
+      "quote": "CODE_NAME 'Rundweg Schmieden' (provincial hiking-trail register, routes-hikingtrails.11428494, 1,334 m)",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-12047303": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11429497",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "Lang-Erl-Weg",
+      "quote": "CODE_NAME 'Lang-Erl-Weg' (provincial hiking-trail register, routes-hikingtrails.11429497, 3,768 m)",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
     "osm-12118490": {
       "url": "https://www.explore-savoie.com/randonnees-et-balades/sentier-botanique-des-plagnes-7628788/",
       "publisher": "Office de Tourisme Intercommunal Cœur de Maurienne (Apidae)",
@@ -122,6 +226,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T18:00:00.000Z"
     },
+    "osm-12132169": {
+      "url": "https://www.dreizinnen.com/de/activity/toblacher-h-henweg-_543",
+      "publisher": "Tourismusgenossenschaft Drei Zinnen Dolomiten (TV Toblach)",
+      "name": "Toblacher Höhenweg",
+      "quote": "Die Wanderung startet nach der Fraktion Wahlen bei der Abzweigung Kandellen/Frondeigen/Silvestertal.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-12142337": {
+      "url": "https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoid9422b2e9bfe1791aa78eb8baccbe50f.giro-intorno-al-puetia.longiaru",
+      "publisher": "Cooperativa Turistica San Vigilio/San Martin via IDM suedtirol.info",
+      "name": "Giro intorno al Sas de Pütia / Rund um den Peitlerkofel",
+      "quote": "Dal Passo delle Erbe il sentiero n. 8A attraversa un magnifico prato alpino.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
     "osm-12150790": {
       "url": "https://www.castelfeder.info/de/castelfeder/touren/rid-64923703-.html",
       "publisher": "Tourismusverein Castelfeder / Südtirols Süden",
@@ -137,6 +257,46 @@
       "quote": "Number '4', code_name '4  Dörferrundweg' (provincial hiking-trail register, feature routes-hikingtrails.11428752)",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T16:00:00.000Z"
+    },
+    "osm-12165590": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11429218",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "Schwalbenwandrunde",
+      "quote": "CODE_NAME 'Schwalbenwandrunde' (provincial hiking-trail register, routes-hikingtrails.11429218, 8,692 m)",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-12172440": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiac50eca494c2c950d7694272d7642b11.natur--und-kulturweg-in-terenten.terenten",
+      "publisher": "IDM Südtirol / Tourismusverein Gitschberg Jochtal (smgpoiac50eca494c2c950d7694272d7642b11)",
+      "name": "Natur- und Kulturweg in Terenten",
+      "quote": "Startpunkt der Wanderung ist das Dorfzentrum von Terenten.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-12173965": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoidec32d98620a0ae45230deb3a04391bb.die-kleine-schlossrunde-in-welsberg.welsberg",
+      "publisher": "IDM Südtirol / Tourismusgenossenschaft Gsiesertal-Welsberg-Taisten",
+      "name": "Die Kleine Schlossrunde in Welsberg",
+      "quote": "Vom Tourismusbüro in Welsberg (1087 m) wandert man zum Hauptplatz und von dort zunächst nordöstlich zwischen den Häusern hinauf zum Schulzentrum.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-12173984": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi5566d3b1cb790bc6c703b9917b09ab33.die-grosse-schlossrunde-in-welsberg.welsberg",
+      "publisher": "IDM Südtirol / Tourismusgenossenschaft Gsiesertal-Welsberg-Taisten",
+      "name": "Die Große Schlossrunde in Welsberg",
+      "quote": "Dort folgt man der Beschilderung „Große Schlossrunde“ auf der alten Gsiesertal Straße in östlicher Richtung.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-12174210": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425635",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "Rundweg Reischach",
+      "quote": "CODE_NAME 'Rundweg Reischach' (provincial hiking-trail register, routes-hikingtrails.11425635, 10,138 m)",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
     "osm-12182895": {
       "url": "https://www.sarntal.com/fileadmin/user_upload/Wanderbus_2025_dt.pdf",
@@ -162,6 +322,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-12302191": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi40a4c9071317de8b470217dd3e65515c.dorfrunde-rasen.neunhaeusern",
+      "publisher": "IDM Südtirol / Tourismusverein Antholzertal",
+      "name": "Dorfrundweg Rasen: Rundwanderung zwischen Nieder- und Oberrasen",
+      "quote": "Startpunkt ist entweder Niederrasen oder Oberrasen. Von dort folgt man zunächst der Forststraße entlang des Antholzer Bachs in Richtung Antholz.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-12736753": {
+      "url": "https://www.bzgeisacktal.it/de/Rundweg_Albeins-Klerant-Milland-Albeins",
+      "publisher": "Bezirksgemeinschaft Eisacktal (district community, public body)",
+      "name": "Rundweg Albeins - Klerant - Milland - Albeins",
+      "quote": "Dieser leichte Rundwanderweg führt durch abwechslungsreiche Landschaften und bietet dem Natur- und Kulturliebhaber sowie dem geschichtsinteressierten Wanderer gleichermaßen Genuss.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
     "osm-12745924": {
       "url": "https://www.la-norma.fr/en/equipement/les-escaliers-walking-trail-la-norma/",
       "publisher": "Haute Maurienne Vanoise Tourisme (La Norma)",
@@ -169,6 +345,22 @@
       "quote": "Distance 3.1km · Elevation 180m · Daily duration 00:45 · Mixed signposting (PR and GR) · Out of respect for wildlife, please keep your dog on a lead.",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-12953352": {
+      "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoie0d07cf23912f40c86e965fc4ac99149.the-archeopfad-archaeological-trail-in-brixen.bressanone-citta-brixen-stadt",
+      "publisher": "IDM Südtirol (LTS record of Brixen Tourismus, brixen.org)",
+      "name": "Der Archeopfad in Brixen",
+      "quote": "The Archeopfad Trail leads to the old Roman tower in Stufels/Stufles, the historical quarter in Brixen/Bressanone.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-13491868": {
+      "url": "https://www.klausen.it/en/nature-experiences/hiking/theme-based-trails-and-gastronomic-trails/-birmehl-trail.html",
+      "publisher": "Tourismusgenossenschaft Klausen, Barbian, Feldthurns und Villanders",
+      "name": "Birmehlweg",
+      "quote": "The \"Birmehlweg\" starts at the village square in Verdings",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
     "osm-14095296": {
       "url": "https://www.aixlesbains-rivieradesalpes.com/equipement/randonnee-pedestre-les-marais-dalbens-entrelacs/",
@@ -362,6 +554,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-6244965": {
+      "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoi432cc269cc7e3628df3ccfeb7ab84799.the-story-of-stones.plata-platten---falzes-pfalzen",
+      "publisher": "IDM Südtirol / Tourismusverband Bruneck Kronplatz – Tourist Office Pfalzen",
+      "name": "Steine erzählen / The story of stones",
+      "quote": "From the school follow the trail \"Panoramasteig\" to the farm \"Tiefentaler\", then walk uphill to the bend in the road and into the forest.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
     "osm-6250300": {
       "url": "https://www.combloux.com/itineraires/boucle-du-lac-vert/",
       "publisher": "Office de Tourisme de Combloux / Passy (Apidae)",
@@ -402,6 +602,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
+    "osm-6823031": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425672",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "Naturlehrpfad",
+      "quote": "CODE_NAME 'Naturlehrpfad' (provincial hiking-trail register, routes-hikingtrails.11425672, 5,127 m)",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
     "osm-7277805": {
       "url": "https://www.merano-suedtirol.it/it/val-passiria/vacanze-in-montagna/camminate-escursioni/sentieri-escursionistici/121154995-sentiero-waltner-rundweg-a-valtina.html",
       "publisher": "Associazione turistica Val Passiria (Tourismusverein Passeiertal)",
@@ -441,6 +649,14 @@
       "quote": "Dislivello in salita: 380 m; lunghezza: circa 4 km; tempo medio di percorrenza: 2h 30'; difficoltà: percorso di tipo E (escursionistico) con un breve passaggio su roccia affiorante",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-8510456": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11429378",
+      "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+      "name": "Dorfrundweg",
+      "quote": "CODE_NAME 'Dorfrundweg' (provincial hiking-trail register, routes-hikingtrails.11429378, 3,868 m)",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
     "osm-9487078": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif3fcc4ba68834cc3f669758ebd680dd0.oswald-von-wolkenstein-weg.seis",
@@ -521,6 +737,14 @@
       "quote": "From the central square, a path leads in the direction to Fallerhof.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "sentiero-del-trenino": {
+      "url": "https://www.valgardena.it/de/outdoor/base/outdoor/groedner-bahnweg-la-ferata-de-gherdeeina/810054758/",
+      "publisher": "Val Gardena Marketing / St. Christina - DOLOMITES Val Gardena (valgardena.it, Outdooractive project api-val-gardena-groeden)",
+      "name": "Grödner Bahnweg - La ferata de Gherdëina",
+      "quote": "Der Grödner Bahnweg erstreckt sich über 12 km entlang der ehemaligen Bahntrasse von Runggaditsch über St. Ulrich und St. Christina bis nach Wolkenstein.",
+      "foundBy": "orma-route-source-sweep",
+      "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
     "sentiero-hans-e-paula-steger": {
       "url": "https://www.seiseralm.it/it/info-e-service/info-aggiornate/informazioni-a-z/1FD50CBCFA16C0C65CC6F7A178B6416D-escursione-sul-sentiero-hans-e-paula-steger.html",
