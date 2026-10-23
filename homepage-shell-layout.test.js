@@ -90,6 +90,24 @@ describe('logged-in discovery workspace layout', () => {
     expect(html).toContain('<span class="li-filt-label">Filters</span>');
   });
 
+  test('announces Draw your own route once, under Record a walk', () => {
+    const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
+    const source = fs.readFileSync('script.js', 'utf8');
+    // Hidden until the script decides it has not been seen.
+    const wrap = html.slice(html.indexOf('id="liNewWrap"'), html.indexOf('id="liAreaMenu"'));
+    expect(wrap).toContain('<div class="li-new-callout" id="liNewCallout" role="status" hidden>');
+    expect(wrap).toContain('id="liNewCalloutTry" href="route-planner.html"');
+    expect(wrap).toContain('id="liNewCalloutClose" aria-label="Dismiss"');
+    // Seen for good once closed, tried, or once either way in is used.
+    expect(source).toContain("const LI_NEW_CALLOUT_KEY = 'orma-new-draw-route-callout-v1';");
+    expect(source).toContain("['liNewBtn', 'homeMapDrawBtn'].forEach(id => {");
+    // Wider screens give it room instead of laying it over Filters.
+    expect(editorialCss).toContain('#returningCustomerHomepage #liToolbar .li-new-callout{position:relative;');
+    // The menu entry is a plain row with the tag on its title line.
+    expect(html).toContain('<span class="li-menu-title">Draw your own route <span class="li-menu-badge">New</span></span>');
+    expect(editorialCss).toContain('.li-new-menu .li-menu-item.li-plan-route{display:flex;height:auto;margin:0;border:0;');
+  });
+
   test('lays the toolbar out the same way at every width', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
     expect(editorialCss).toContain('grid-template-areas:"greet greet" "today today" "nudge nudge" "search filters";');
