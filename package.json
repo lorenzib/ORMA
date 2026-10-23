@@ -42,6 +42,7 @@
     "backoffice:discover": "node backoffice/cli/discover.js",
     "backoffice:logistics": "node backoffice/cli/logistics.js",
     "backoffice:cartographer": "node backoffice/cli/cartographer.js",
+    "backoffice:free-checks": "node backoffice/cli/free-seal-checks.js",
     "backoffice:campaign": "node backoffice/cli/campaign.js",
     "backoffice:run-campaign": "node backoffice/cli/run-campaign.js",
     "backoffice:content-flow": "node backoffice/cli/content-flow.js",

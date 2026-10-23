@@ -209,6 +209,12 @@ function sourcesOf(fact,evidenceSources){
  */
 function researchMethodHolds(item,trail,options={}){
   const facts=item?.lockedFacts||[];
+  // What the free checks measured for this walk (free-seal-checks.js), used
+  // where no agent answered: the municipalities under the line, the Natura
+  // 2000 sites it touches, where its photograph was taken, and the distance
+  // on the official page ORMA recorded. An agent's answer, where there is one,
+  // is the one that stands.
+  const free=options.freeChecks||null;
   const evidence=item?.evidenceSources||[];
   const holds=[],detail=[];
   const hold=(id,sentence)=>{if(!holds.includes(id))holds.push(id);detail.push(`${id}: ${sentence}`);};
@@ -224,7 +230,9 @@ function researchMethodHolds(item,trail,options={}){
   if(!time)hold('official-time-unpublished','no authority publishes this walk’s walking time; an estimated time does not verify it');
 
   // 4. The line is as long as the walk its authority describes.
-  const distance=figure('official-distance');
+  const recordedOfficial=['matches','differs'].includes(free?.line?.status)&&Number.isFinite(free.line.officialKm)
+    ?{figure:free.line.officialKm}:null;
+  const distance=figure('official-distance')||recordedOfficial;
   const lineKm=Number.isFinite(options.lineKm)?options.lineKm:lineLengthKm(trail?.path);
   if(!distance){
     hold('official-distance-unpublished','no authority-published distance to check the line against');
@@ -243,9 +251,11 @@ function researchMethodHolds(item,trail,options={}){
   }
 
   // 2. Every municipality the line crosses, and a dog rule for each.
-  const communes=factsBy(facts,id=>id.startsWith(COMMUNE_CLAIM_PREFIX))
+  const answered=factsBy(facts,id=>id.startsWith(COMMUNE_CLAIM_PREFIX))
     .filter(fact=>supported(fact)&&String(fact.entityName||'').trim())
     .map(fact=>fact.entityName);
+  const measured=free?.communes?.status==='checked'?(free.communes.communes||[]).map(commune=>commune.name):[];
+  const communes=answered.length?answered:measured;
   if(!communes.length){
     hold('communes-unchecked','the municipalities along the whole line were not established');
   }
@@ -260,15 +270,18 @@ function researchMethodHolds(item,trail,options={}){
 
   // Every protected area the line touches, from the EEA Natura 2000 data.
   const protectedAreas=factsBy(facts,id=>id===PROTECTED_AREAS_CLAIM)[0];
-  if(!protectedAreas||!supported(protectedAreas)
-    ||!sourcesOf(protectedAreas,evidence).some(source=>EEA_SOURCE.test(String(source.url||'')))){
+  const answeredOnEea=protectedAreas&&supported(protectedAreas)
+    &&sourcesOf(protectedAreas,evidence).some(source=>EEA_SOURCE.test(String(source.url||'')));
+  // Measured, and the control site came back on the same run.
+  const measuredOnEea=free?.protectedAreas?.status==='checked'&&free.protectedAreas.control?.found===true;
+  if(!answeredOnEea&&!measuredOnEea){
     hold('protected-areas-unchecked','the line was not checked against the EEA Natura 2000 sites');
   }
 
   // 5. The photograph is of this walk, at this place.
   const photo=trail&&(trail.heroImage||trail.imageIcon);
   if(photo){
-    const geotag=trail.imageGeotag;
+    const geotag=trail.imageGeotag||(free?.photo?.status==='located'?free.photo.geotag:null);
     const place=trail.imagePlace;
     const off=geotag?metresFromLine(geotag,trail.path):null;
     if(Number.isFinite(off)&&off>PHOTO_MAX_OFF_LINE_M){
