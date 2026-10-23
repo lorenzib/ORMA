@@ -10278,6 +10278,231 @@
           "url": "https://www.openstreetmap.org/relation/12182895"
         }
       ]
+    },
+    'osm-9493733': {
+      // Hand audit: 23 October 2026. In Badia (Pedraces), not San Cassiano. The
+      // official GPX takes path 10A and the spur to Lech Dlà Lunch; its line
+      // comes from the routeLine override. Badia's dog regulation applies; no
+      // park is crossed and Lech Dlà Lunch is a natural monument with no dog rule.
+      area: 'Badia / Abtei (Pedraces)',
+      distance: 7.5,
+      elevation: 278,
+      hours: '2.5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Piz Lavarela in autumn, taken at Lech da Sompunt on the walk (2015 Michael 2015, CC BY-SA 4.0).',
+        route: 'Official GPX 7.62 km, closed; rebuilt on OSM ways along it: 7.49 km, closed at the Pedraces bus stop.',
+        routeNumbers: 'Follow the “Tru di lec” signs from the Pedraces bus stop up past Hotel Gran Ander and the Runch farm (paths 5 and 5B), take the short spur to Lech Dlà Lunch and back, continue to the junction with path 1, descend on path 10A to Lech da Sompunt and return on path 5 via Paracia and Ciaminades.',
+        mapPoints: 'Start at the Pedraces bus stop (official GPX start); drinking water at the start (OSM nodes 7777367653, 12966592504) and at Lech da Sompunt (node 1352468995, 51 m from the line).',
+        elevation: 'Official 7.6 km, 278 m up and down, 2:30 h, high point 1,601 m, low point 1,327 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Alta Badia, Lakes path – Tru di lec (official page and GPX)',
+          'Gemeinde Abtei / Comune di Badia, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 7, 22.02.2010), Art. 4 and 8',
+          'Landschaftsplan Abtei, Durchführungsbestimmungen (newPlan doc 12639), Art. 4',
+          'OpenStreetMap land cover, road and protected-area data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 65,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['60 m along the SS244 main road at the start, with a zebra crossing', 'About 2.5 km on village roads with cars, partly asphalt', 'Roots and ruts on the forest tracks'],
+      terrainType: 'Village lanes, gravel forest roads and woodland paths (official description and OSM)',
+      shadeDescription: 'Mostly spruce forest between the two lakes; open meadows and hamlet roads at the start and end.',
+      terrainDescription: 'Village lanes, then gravel forest roads and woodland paths, with one short steep pitch above Lech Dlà Lunch. Officially easy.',
+      waterDescription: 'Fountains at the Pedraces start and at Lech da Sompunt, and two forest lakes on the way. Dogs may not bathe in fountains.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried. Dogs are not allowed onto farmed meadows in the growing season, and may not bathe in fountains. Animals may be close by around the Runch, Paracia and Ciaminades farms. Lech Dlà Lunch is a protected natural monument.',
+      tips: 'Start at the Pedraces bus stop and follow the “Tru di lec” signs: 7.6 km and 278 m of climbing, about two and a half hours, mostly in the woods. In Badia your dog must be on a lead of at most 1.5 m on the whole walk and you must carry a muzzle; keep off the hay meadows around the farms. The Lech da Sompunt restaurant and Maso Runch serve food.',
+      sourceLinks: [
+        { label: 'Alta Badia, Lakes path – Tru di lec', url: 'https://www.altabadia.org/en/dolomites/hiking-alta-badia/detail/oa/lakes-path-tru-di-lec' },
+        { label: 'Gemeinde Abtei, dog regulation', url: 'https://www.gemeinde.abtei.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Landschaftsplan Abtei, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/12639' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/9493733' }
+      ],
+      startPoint: { lat: 46.610127, lng: 11.893679, label: 'Pedraces bus stop (Pidrô), Strada Pedraces' },
+      waterSources: [
+        { km: 0, lat: 46.6104883, lng: 11.8935745, osmId: 'node/7777367653', label: 'Fountain at the Pedraces bus stop' },
+        { km: 0, lat: 46.6099454, lng: 11.8935583, osmId: 'node/12966592504', label: 'Drinking water at the start' },
+        { km: 5.7, lat: 46.5960439, lng: 11.8941968, osmId: 'node/1352468995', label: 'Drinking water at Lech da Sompunt' }
+      ],
+      desc: 'A woodland loop above Pedraces in Badia linking two small lakes: up past the Runch farm to the forest lake Lech Dlà Lunch, down path 10A to Lech da Sompunt below the Sasso di Santa Croce, and back through the hamlets of Paracia and Ciaminades. The official route lists 7.6 km and 278 m of ascent.'
+    },
+    'osm-9511999': {
+      // Hand audit: 23 October 2026. A loop from La Villa to San Leonardo, in
+      // Badia, not San Cassiano. The stored line was a one-way to Pedraces; the
+      // official loop comes from the routeLine override. Badia's dog regulation
+      // applies; no park is crossed and the landscape plan says nothing on dogs.
+      area: 'Badia / Abtei (La Villa – San Leonardo)',
+      distance: 9.1,
+      elevation: 282,
+      hours: '2.5–3',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'An old Ladin farmhouse and barn at Cianacei in June, 87 m from the line (Tiia Monto, CC BY-SA 3.0).',
+        route: 'Official GPX 9.26 km, closed; rebuilt on OSM ways along it: 9.14 km, closed at La Villa.',
+        routeNumbers: 'No route number: follow the name signs “Tru dles viles – Badia” from La Villa to San Leonardo, then “Tru dles viles – La Villa” from behind San Leonardo church back via Anví and Adan.',
+        mapPoints: 'Start at the La Villa bus stop in front of the tourist office (official coordinates); drinking fountain Mür dl Giat (OSM node 4319958092) at the start and drinking water in San Leonardo (node 14136654019) at km 5.4.',
+        elevation: 'Official 9.3 km, 282 m up and down, 2:40 h, high point 1,533 m, low point 1,363 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Alta Badia, Sentiero dei masi – Tru dles viles (official page and GPX)',
+          'Comune di Badia, Regolamento comunale per la detenzione e conduzione dei cani (2010), Art. 4 and 8',
+          'Landschaftsplan Abtei, Durchführungsbestimmungen (newPlan doc 12639)',
+          'OpenStreetMap land cover, road and crossing data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 10,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Crossing of the main road at the La Villa start', 'Short stretch on the Punt de Altin road bridge', 'Strada San Linert and two road crossings in San Leonardo', 'Long asphalt farm lanes with no pavement (light traffic)', 'Rough track sections'],
+      terrainType: 'Asphalt farm lanes (about two thirds) and farm tracks',
+      shadeDescription: 'Mostly open hay meadows and farm hamlets on the sunny valley side, with only short wooded stretches. Little shade.',
+      terrainDescription: 'Quiet asphalt farm lanes linking the old Ladin hamlets, with farm tracks for about a third. Gentle ups and downs between 1,363 and 1,533 m. Officially easy.',
+      waterDescription: 'A drinking fountain at the start in La Villa and drinking water in San Leonardo halfway round. Small streams cross the route and the Gran Ega runs near both ends. Dogs may not bathe in fountains.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m at all times, in villages and in open country, and a muzzle carried. Dogs are not allowed on the hay meadows during the growing season or in the San Leonardo churchyard, which the path passes. Expect cows and farm dogs around the hamlets.',
+      tips: 'A gentle loop through the old Ladin farm hamlets (viles) between La Villa and San Leonardo, mostly on quiet farm lanes: 9.3 km and 282 m of climbing, under three hours. In Badia your dog must stay on a lead of at most 1.5 m everywhere, including the countryside; carry a muzzle, keep off the hay meadows and stay out of the churchyard. There is little shade, so carry water in summer.',
+      sourceLinks: [
+        { label: 'Alta Badia, Sentiero dei masi – Tru dles viles', url: 'https://www.altabadia.org/it/tour/detail/oa/sentiero-dei-masi-tru-dles-viles' },
+        { label: 'Comune di Badia, dog regulation', url: 'https://www.comune.badia.bz.it/it/Amministrazione/Documenti_e_dati/Regolamento_comunale_per_la_detenzione_e_conduzione_dei_cani' },
+        { label: 'Landschaftsplan Abtei, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/12639' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/9511999' }
+      ],
+      startPoint: { lat: 46.582981, lng: 11.90378, label: 'La Villa, bus stop in front of the tourist office (Casa de Cultura)' },
+      waterSources: [
+        { km: 0, lat: 46.5829542, lng: 11.9036343, osmId: 'node/4319958092', label: 'Mür dl Giat drinking fountain, La Villa' },
+        { km: 0.3, lat: 46.5826353, lng: 11.9074893, osmId: 'node/12843897166', label: 'Drinking-water tap near Altin (about 100 m off the path)' },
+        { km: 5.4, lat: 46.6105407, lng: 11.9001034, osmId: 'node/14136654019', label: 'Drinking water, San Leonardo' }
+      ],
+      desc: 'A gentle loop through the old Ladin farm hamlets of Badia: from La Villa out through Sotrú, Oies and Frëinademez to San Leonardo, and back via Anví and Adan on quiet lanes and farm tracks. The official route lists 9.3 km and 282 m of ascent.'
+    },
+    'osm-11860429': {
+      // Hand audit: 23 October 2026. The walk is in La Val / Wengen, not San
+      // Martin de Tor. The tourism board's loop from the church comes from the
+      // routeLine override. La Val publishes no dog regulation; the landscape plan
+      // (newPlan doc 12959) says nothing on dogs and no park is crossed, so the
+      // national ordinance settles access under ORMA's Italian dog standard.
+      area: 'La Val / Wengen (Alta Badia)',
+      distance: 5.5,
+      elevation: 267,
+      hours: '2',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'La Val village and church from the meadows on the walk, June 2015, 23 m from the line (Europas Wanderdörfer, CC BY-SA 4.0).',
+        route: 'Official GPX 5.58 km, closed at La Val church; rebuilt on OSM ways along it: 5.51 km.',
+        routeNumbers: 'Follow the hamlets in order: path 4 up from the church to Cians, the meadow track to the Santa Barbara chapel, path 6 up to Ciablun, the lanes through Runch and Biei, then route 5 down the tracks back to Cians and path 4 to the church.',
+        mapPoints: 'Start at La Val church, by the tourist office and bus stop (official GPX start); fountain OSM node 8264695632, 16 m from the line at the start and finish.',
+        elevation: 'Official 5.6 km, 267 m up and down, 2 h, high point 1,617 m, low point 1,350 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Alta Badia, Weilerrundgang in La Val (official page and GPX)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (La Val publishes no dog regulation)',
+          'Landschaftsplan La Val, Durchführungsbestimmungen (newPlan doc 12959)',
+          'OpenStreetMap land cover, farm and road data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 10,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Asphalt village road with traffic at the start and finish', 'About 400 m of narrow Cians access road shared with cars, each way', 'Residential lanes through the hamlets', 'Short flight of steps near the village', 'Gravel tracks'],
+      terrainType: 'Quiet lanes, farm tracks and a short meadow path',
+      shadeDescription: 'Almost entirely open meadow and hamlets at 1,350–1,620 m; little shade on a sunny afternoon.',
+      terrainDescription: 'Quiet lanes, farm tracks and one short meadow path through the old Ladin hamlets. Officially easy.',
+      waterDescription: 'Only the fountain by La Val church, at the start and finish. Carry water; the restaurant at Cians and the village bars can help.',
+      dogNotes: 'La Val publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. Working farms in every hamlet, so livestock and farm dogs may be close by; keep your dog close through the farmyards.',
+      tips: 'An easy two-hour circuit of La Val’s old hamlets and the Santa Barbara chapel, starting at the church: 5.6 km and 267 m of climbing. There is little shade, so start early in summer, and fill up at the church fountain because there is no other water on the way. Keep your dog on a lead of up to 1.5 m and carry a muzzle, as Italian rules require.',
+      sourceLinks: [
+        { label: 'Alta Badia, Weilerrundgang in La Val', url: 'https://www.altabadia.org/de/tour/oadetail/oa/weilerrundgang-in-la-val' },
+        { label: 'Südtirol.info, Weilerrundgang in La Val', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi054417a521e205452346b04059d044c8.weilerrundgang-in-la-val.la-val' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Landschaftsplan La Val, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/12959' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11860429' }
+      ],
+      startPoint: { lat: 46.657528, lng: 11.92432, label: 'La Val church, by the tourist office and bus stop' },
+      waterSources: [
+        { km: 0, lat: 46.657633, lng: 11.9245469, osmId: 'node/8264695632', label: 'Fountain by La Val church (start and finish)' }
+      ],
+      desc: 'An easy circuit of the old Ladin hamlets above La Val (Wengen): up to Cians, across the meadows to the Santa Barbara chapel, through Ciablun, Runch and Biei, and back down to the church. The official route lists 5.6 km and 267 m of ascent.'
+    },
+    'osm-11814834': {
+      // Hand audit: 23 October 2026. Wholly in Kastelruth (Pufels), not Ortisei:
+      // the line stays at least 871 m from the St. Ulrich boundary. The stored
+      // line matches the province register within 8 m. Kastelruth's
+      // Ortspolizeiordnung Art. 13 sets no leash rule, the Seiser Alm and
+      // Kastelruth landscape plans say nothing on dogs, and no park is crossed,
+      // so the national ordinance supplies the lead rule. Same walk as the
+      // curated geotrail-bulla entry.
+      area: 'Kastelruth / Castelrotto (Pufels / Bulla)',
+      distance: 7,
+      elevation: 345,
+      hours: '2–2.5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Pufels in June, taken 22 m from the line (Asia, CC BY-SA 4.0).',
+        route: 'Stored line 7.02 km, closed, within 8 m of the province register line; official 6.9 km.',
+        routeNumbers: 'From Panider Sattel follow path 3A across the meadows into the forest, then the brown “Geotrail” signs along the old municipal road down to Pufels; return on path 24 through the Pufels farms past Col da Locia and rejoin 3A back to the pass. The map line is drawn the other way round; either direction works.',
+        mapPoints: 'Start at Panider Sattel, the Pas Pinëi bus stop (OSM relation start node); seasonal drinking fountain by Pufels church (OSM node 4988589237), about 115 m off the path at halfway.',
+        elevation: 'Official 6.9 km, 345 m up and down, 2:09 h, high point 1,599 m, low point 1,435 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Seiser Alm Marketing, Geotrail Pufels (Südtirol.info and seiseralm.it)',
+          'Province hiking-trail register, GEOTRAIL Bula-Pufels-Bulla (Open Data Hub)',
+          'Gemeinde Kastelruth, Ortspolizeiordnung (Gemeinderat Nr. 57, 4 Sep 2024), Art. 13 and 19',
+          'Landschaftsplan Seiser Alm (DLH 269/V/81, 1992) and Landschaftsplan Kastelruth (1997)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
+          'OpenStreetMap land cover, farm and road data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Start beside the Panider Sattel pass road (SP64)', 'About 1.2 km on tarmac: access lane and Pufels farm and village roads with local traffic', 'Short flight of steps on the upper path'],
+      terrainType: 'Meadow and forest paths, a gravel old road and quiet tarmac through Pufels',
+      shadeDescription: 'Spruce forest below the Puflatsch covers just over half the loop. The meadows at the pass and around Pufels are open and sunny.',
+      terrainDescription: 'Meadow path and forest path, a 1.3 km gravel old road, and about 1 km of quiet tarmac through Pufels. The official page calls it suitable for small children.',
+      waterDescription: 'No streams on the way. A seasonal fountain by Pufels church at halfway, a short detour, plus the restaurants in Pufels. The trough on the meadow near the start is for livestock.',
+      dogNotes: 'Kastelruth forbids leaving dogs unattended in public places, requires you to pick up after your dog, and bans dogs from public playgrounds. The Italian national rule adds a lead of at most 1.5 m and a muzzle carried in villages and public places. Mown meadows and working farms in Pufels, so animals may be close by.',
+      tips: 'Bus 172 stops at the Panider Sattel start. A 6.9 km loop with 345 m of climbing, about two hours, half of it in the forest. Bring water: the only fountain is at Pufels church, a short detour at halfway. Keep your dog on a lead of at most 1.5 m and carry a muzzle in the village and other public places, and pick up after it.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Geotrail Pufels', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi989d38877e70605be1a85f34d9ce0f7c.geotrail-pufels.st--michael---kastelruth' },
+        { label: 'Seiser Alm, Geotrail Pufels', url: 'https://www.seiseralm.it/de/dev/989D38877E70605BE1A85F34D9CE0F7C-geotrail-pufels.html' },
+        { label: 'Province hiking-trail register (Open Data Hub)', url: 'https://tourism.api.opendatahub.com/v1/GeoShape/routes-hikingtrails.11428430' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11814834' }
+      ],
+      startPoint: { lat: 46.58021, lng: 11.62267, label: 'Panider Sattel / Passo Pinei, Pas Pinëi bus stop (line 172)' },
+      waterSources: [
+        { km: 3, lat: 46.564405, lng: 11.636588, osmId: 'node/4988589237', label: 'Drinking fountain by Pufels church (about 115 m off the path)', seasonal: true },
+        { km: 3, lat: 46.5643693, lng: 11.6365965, osmId: 'node/4281669177', label: 'Fountain, Pufels village centre' }
+      ],
+      desc: 'A loop from Panider Sattel on the Geotrail: across the meadows and into the forest below the Puflatsch, down the old municipal road to the hamlet of Pufels (Bulla), and back past Col da Locia. The official route lists 6.9 km and 345 m of ascent.'
     }
   };
 

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-23T14:00:00.000Z",
+  "updatedAt": "2026-10-23T18:00:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -509,18 +509,18 @@
     },
     {
       "id": "osm-11860429",
-      "approvedReviewId": "commons-osm-11860429",
-      "approvedAt": "2026-09-06T15:21:27.825Z",
+      "approvedReviewId": "commons-osm-11860429-on-route",
+      "approvedAt": "2026-10-23T18:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-11860429-armentara.jpg",
-        "heroImage": "images/trails/osm-11860429-armentara.jpg",
-        "imageAlt": "A wooden fence along the Armentara meadows, with spruce and the pale walls of the Dolomites beyond.",
-        "imageCredit": "Prati dell Armentara",
-        "imageCreditText": "Prati dell Armentara by MartiSorg",
-        "imageCreator": "MartiSorg",
+        "imageIcon": "images/trails/osm-11860429-la-val-village.jpg",
+        "heroImage": "images/trails/osm-11860429-la-val-village.jpg",
+        "imageAlt": "La Val village and its church seen from the meadows above, with wooded slopes and pale cliffs beyond, in early summer.",
+        "imageCredit": "La Val - Dorf",
+        "imageCreditText": "La Val - Dorf by Europas Wanderdörfer (European Hiking Villages)",
+        "imageCreator": "Europas Wanderdörfer (European Hiking Villages)",
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Escursioni_nei_prati.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:La_Val_-_Dorf_(c)_TVB.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -2334,18 +2334,18 @@
     },
     {
       "id": "osm-9511999",
-      "approvedReviewId": "commons-osm-9511999",
-      "approvedAt": "2026-09-08T10:31:29.934Z",
+      "approvedReviewId": "commons-osm-9511999-on-route",
+      "approvedAt": "2026-10-23T18:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-9511999-santa-crusc-pescol.jpg",
-        "heroImage": "images/trails/osm-9511999-santa-crusc-pescol.jpg",
-        "imageAlt": "A flowering hay meadow at Pescol with an old Ladin farmhouse and timber fences, green terraces and scattered farms beyond, and the wall of the Sas dla Crusc behind.",
-        "imageCredit": "Santa Crusc da Pescol",
-        "imageCreditText": "Santa Crusc da Pescol by Wolfgang Moroder",
-        "imageCreator": "Wolfgang Moroder",
+        "imageIcon": "images/trails/osm-9511999-cianacei-farms.jpg",
+        "heroImage": "images/trails/osm-9511999-cianacei-farms.jpg",
+        "imageAlt": "An old whitewashed Ladin farmhouse, a wooden barn and a newer house in green summer meadows at Cianacei above Badia, larch wood on the slope behind.",
+        "imageCredit": "Cianacei, Badia",
+        "imageCreditText": "Cianacei, Badia by Tiia Monto",
+        "imageCreator": "Tiia Monto",
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Santa_Crusc_da_Pescol.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cianacei,_Badia.jpg",
         "imageSourceType": "licensed-source"
       }
     },
