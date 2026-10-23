@@ -88,7 +88,7 @@
     if(artifact.status==='running'){
       const ageMinutes=minutesSince(artifact.startedAt,nowMs);
       if(ageMinutes!==null&&ageMinutes>=staleAfter)return {state:'stale',label:'Run appears stuck',title:'ORMA automation has exceeded its run window',message:`Run ${artifact.runId||'unknown'} started ${ageMinutes} minutes ago and has not recorded completion. Inspect the run before submitting anything again.`,runUrl,ageMinutes,expectedIntervalMinutes:expected};
-      return {state:'running',label:'Agents working',title:'ORMA automation is running now',message:`Run ${artifact.runId||'unknown'} started ${ageMinutes??0} minute${ageMinutes===1?'':'s'} ago. This page will refresh when it completes.`,runUrl,ageMinutes,expectedIntervalMinutes:expected};
+      return {state:'running',label:'Automation running',title:'ORMA automation is running now',message:`Run ${artifact.runId||'unknown'} started ${ageMinutes??0} minute${ageMinutes===1?'':'s'} ago. This page will refresh when it completes.`,runUrl,ageMinutes,expectedIntervalMinutes:expected};
     }
     if(artifact.status==='failed'){
       const failure=artifact.lastFailure||{};const ageMinutes=minutesSince(artifact.completedAt||failure.failedAt,nowMs);
@@ -117,10 +117,13 @@
     if(ageMinutes>=delayedAfter)return {state:'delayed',label:'Scheduler delayed',title:'The next worker run is late',message:`The last success was ${ageMinutes} minutes ago. GitHub has exceeded ORMA’s ${expected}-minute schedule target; no decision needs to be submitted again.`,runUrl,ageMinutes,expectedIntervalMinutes:expected};
     return {state:'healthy',label:'Healthy',title:'ORMA automation is responding',message:`The last successful run completed ${ageMinutes} minute${ageMinutes===1?'':'s'} ago. Schedule target: every ${expected} minutes.`,runUrl,ageMinutes,expectedIntervalMinutes:expected};
   }
+  // The capacity is whatever the run was given (60 since #847), so it is read
+  // from the receipt rather than typed here.
+  function capacityText(artifact){const n=Number(artifact?.lastResult?.capacity);return n>0?`${n}-trail`:'configured';}
   function deriveCampaignHealth(artifact,options={}){
     const nowMs=options.nowMs??Date.now();const runUrl=artifact?.workflowRunUrl||artifact?.lastFailure?.workflowRunUrl||null;
-    if(!artifact||!artifact.status)return {state:'unknown',label:'No campaign receipt',title:'Catalogue intake has not run yet',message:'No protected intake receipt exists yet. Enabling the campaign will create one without publishing any trail.',meta:'Capacity remains limited to 15 trails in verification',runUrl:null};
-    if(artifact.status==='running')return {state:'running',label:'Checking catalogue',title:'ORMA is admitting the next eligible trails',message:'A due-only campaign pass is running now. It cannot exceed the 15-trail verification capacity.',meta:`Started ${minutesSince(artifact.startedAt,nowMs)??0} minute(s) ago · protected Firestore receipt`,runUrl};
+    if(!artifact||!artifact.status)return {state:'unknown',label:'No campaign receipt',title:'Catalogue intake has not run yet',message:'No protected intake receipt exists yet. Enabling the campaign will create one without publishing any trail.',meta:'Capacity is set by the campaign run',runUrl:null};
+    if(artifact.status==='running')return {state:'running',label:'Checking catalogue',title:'ORMA is admitting the next eligible trails',message:`A due-only campaign pass is running now. It cannot exceed the ${capacityText(artifact)} verification capacity.`,meta:`Started ${minutesSince(artifact.startedAt,nowMs)??0} minute(s) ago · protected Firestore receipt`,runUrl};
     if(artifact.status==='failed'){const failure=artifact.lastFailure||{};return {state:'failed',label:'Intake failed',title:'The catalogue campaign needs attention',message:failure.message||'The latest campaign failed without a captured diagnostic.',meta:`Retry eligible ${artifact.nextEligibleAt?new Date(artifact.nextEligibleAt).toLocaleString():'after the next worker pass'} · no trail was published`,runUrl};}
     const result=artifact.lastResult||{};const next=artifact.nextEligibleAt?new Date(artifact.nextEligibleAt).toLocaleString():'not recorded';
     const routeProgress=Number.isFinite(Number(result.routeNumberGuidanceOutstanding))
@@ -397,6 +400,9 @@
   // Photos are sourced by hand outside the backoffice, so they are not tracked.
   function buildCoverageGrid({hazards,verifiedRegistry,orchestration}={}){
     const verified=new Set((verifiedRegistry?.verified||[]).map(item=>item.trailId||item.candidateId).filter(Boolean));
+    // The registry holds only what the pipeline approved; a walk verified by
+    // hand is verified too, not "in progress".
+    for(const trail of orchestration?.trails||[])if(trail.state==='verified-by-hand'&&trail.trailId)verified.add(trail.trailId);
     const meta=new Map();
     const remember=(id,source)=>{
       if(!id)return;const existing=meta.get(id)||{};
@@ -555,7 +561,7 @@
         // The number the programme exists to move, stated even at zero -- which
         // is the whole point of putting it on the wall.
         headline:Number(t.verified||0)
-          ?`${t.verified} trail${t.verified===1?'':'s'} verified`
+          ?`${t.verified} trail${t.verified===1?'':'s'} verified${Number(t.verifiedByHand||0)?`, ${t.verifiedByHand} of them by hand`:''}`
           :'No trail has finished yet',
         settled:Number(t.verified||0)>0,
         // Four, not six. A tile for every field turns the two numbers that

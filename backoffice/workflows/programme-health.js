@@ -17,6 +17,7 @@
  */
 
 const {buildFunnel}=require('./verification-funnel');
+const FINISHED_STATES=new Set(['ready-for-editorial','verified-by-hand']);
 const {UNWAIVABLE_BLOCKER_IDS}=require('./compile-verified-dossier');
 const {MAX_AUTOMATED_ATTEMPTS,STRATEGIES}=require('./claim-resolution');
 const {describeDayUsage}=require('./firestore-usage-day');
@@ -156,6 +157,11 @@ function summariseProgrammeHealth(options={}){
     throughput:{
       inPipeline:funnel.totalTrails??(orchestration?.trails||[]).length,
       stages,
+      // The board's "Finished" tile read this field and nothing wrote it, so
+      // it said 0 with 72 walks verified by hand. A trail is finished when the
+      // evidence policy approved it or it was verified by hand.
+      verified:(orchestration?.trails||[]).filter(trail=>FINISHED_STATES.has(trail.state)).length,
+      verifiedByHand:(orchestration?.trails||[]).filter(trail=>trail.state==='verified-by-hand').length,
       // The two ends of the lane, stated even when they are 0 -- which is the
       // whole point: "ready for editorial: 0" is the programme's headline and no
       // existing tile showed it.
