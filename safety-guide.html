@@ -48,7 +48,7 @@
 .sg-guide-title{display:block;font:700 18px/1.16 'Bricolage Grotesque',sans-serif;color:var(--ink);transition:color .16s ease;}
 .sg-guide-card p{margin:5px 0 0;color:var(--ink-soft);font-size:12.5px;line-height:1.45;}
 .sg-guide-arrow{color:var(--sg-tone);font-size:21px;line-height:1;}
-.sg-side{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(300px,.72fr);gap:18px;margin-top:36px;align-items:stretch;}
+.sg-side{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(300px,.72fr);gap:18px;margin:0 0 36px;align-items:stretch;}
 .sg-rules{border-radius:var(--radius-panel);padding:20px 24px;background:var(--success);color:var(--card);box-shadow:var(--shadow);}
 .sg-rules .sg-kicker{margin-bottom:14px;color:var(--card);font-size:10.5px;}
 .sg-rules ol{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));list-style:none;margin:0;padding:0;}
@@ -104,7 +104,7 @@
 @media(max-width:760px){
   .sg-hero.section-page-head--actions{align-items:flex-start;}
   .sg-readiness-fab{margin-top:0;}
-  .sg-side{grid-template-columns:1fr;gap:12px;margin-top:28px;}
+  .sg-side{grid-template-columns:1fr;gap:12px;margin:0 0 28px;}
   .sg-emergency{order:-1;}
   .sg-rules ol{grid-template-columns:1fr 1fr;}
   .sg-rules li:nth-child(odd){border-left:0;padding-left:0;}
@@ -154,6 +154,27 @@
 </header>
 
 <main class="sg-wrap section-page-wrap content-canvas browse-canvas-wrap">
+  <!-- The rules and the emergency number come first: they are what to know
+       before choosing a guide, and 112 should not sit below the fold. -->
+  <aside class="sg-side" aria-label="Mountain-safety overview">
+    <section class="sg-rules" aria-labelledby="rulesHeading">
+      <span class="sg-kicker" id="rulesHeading">The five mountain rules</span>
+      <ol>
+        <li><span>1</span><div><b>Check conditions</b><small>Forecast, trail status and heat exposure.</small></div></li>
+        <li><span>2</span><div><b>Carry essentials</b><small>Water, leash, muzzle and first aid.</small></div></li>
+        <li><span>3</span><div><b>Watch your dog</b><small>Behaviour changes come before collapse.</small></div></li>
+        <li><span>4</span><div><b>Protect wildlife</b><small>Use distance and keep control.</small></div></li>
+        <li><span>5</span><div><b>Leave a margin</b><small>Turning back is part of good planning.</small></div></li>
+      </ol>
+    </section>
+
+    <section class="sg-emergency" aria-labelledby="emergencyHeading">
+      <span class="sg-kicker" id="emergencyHeading">Emergency reference</span>
+      <a class="sg-emergency-entry" href="tel:112"><span>European emergency</span><strong>112</strong><small>Police, ambulance, fire or mountain rescue across the EU.</small></a>
+      <div class="sg-emergency-entry"><span>Veterinary ambulance</span><b>Varies by region</b><small>Nearest regional help and directions belong on each trail map.</small></div>
+    </section>
+  </aside>
+
   <div class="sg-layout">
     <div class="sg-library" aria-label="Safety guides">
       <section class="sg-category" data-tone="info" aria-labelledby="beforeHeading">
@@ -184,25 +205,6 @@
     </div>
 
   </div>
-
-  <aside class="sg-side" aria-label="Mountain-safety overview">
-    <section class="sg-rules" aria-labelledby="rulesHeading">
-      <span class="sg-kicker" id="rulesHeading">The five mountain rules</span>
-      <ol>
-        <li><span>1</span><div><b>Check conditions</b><small>Forecast, trail status and heat exposure.</small></div></li>
-        <li><span>2</span><div><b>Carry essentials</b><small>Water, leash, muzzle and first aid.</small></div></li>
-        <li><span>3</span><div><b>Watch your dog</b><small>Behaviour changes come before collapse.</small></div></li>
-        <li><span>4</span><div><b>Protect wildlife</b><small>Use distance and keep control.</small></div></li>
-        <li><span>5</span><div><b>Leave a margin</b><small>Turning back is part of good planning.</small></div></li>
-      </ol>
-    </section>
-
-    <section class="sg-emergency" aria-labelledby="emergencyHeading">
-      <span class="sg-kicker" id="emergencyHeading">Emergency reference</span>
-      <a class="sg-emergency-entry" href="tel:112"><span>European emergency</span><strong>112</strong><small>Police, ambulance, fire or mountain rescue across the EU.</small></a>
-      <div class="sg-emergency-entry"><span>Veterinary ambulance</span><b>Varies by region</b><small>Nearest regional help and directions belong on each trail map.</small></div>
-    </section>
-  </aside>
 
   <p class="sg-disclaimer">This library provides general information, not veterinary advice. If your dog shows signs of heat stress, injury or exhaustion, stop early and seek professional help when symptoms do not resolve promptly.</p>
 </main>

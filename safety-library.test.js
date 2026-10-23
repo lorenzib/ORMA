@@ -43,7 +43,8 @@ describe('Safety library', () => {
 
   test('keeps a compact five-rule overview and prominent emergency reference', () => {
     const overview = document.querySelector('.sg-side');
-    expect(overview.previousElementSibling.classList.contains('sg-layout')).toBe(true);
+    // The rules and the emergency number come before the guide cards.
+    expect(overview.nextElementSibling.classList.contains('sg-layout')).toBe(true);
     expect(document.querySelectorAll('.sg-rules li')).toHaveLength(5);
     expect(document.querySelector('#rulesHeading').textContent).toMatch(/The five mountain rules/i);
     expect(document.body.textContent).not.toMatch(/Every mountain day/i);
