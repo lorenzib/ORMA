@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-23T10:06:45.482Z",
+  "generatedAt": "2026-10-23T10:10:40.148Z",
   "regions": {
     "dolomites": {
       "trailCount": 110,
-      "trails": "data/regions/dolomites-trails.js?v=39b8bbad98d2",
+      "trails": "data/regions/dolomites-trails.js?v=b648a6c01673",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=26654e90f48e",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
-        "santa-maddalena": "data/trail-details/santa-maddalena.js?v=9d2293a78dd1",
+        "santa-maddalena": "data/trail-details/santa-maddalena.js?v=333dae56d9e7",
         "tre-cime": "data/trail-details/tre-cime.js?v=9e1afb53eb79",
         "cadini": "data/trail-details/cadini.js?v=518feab8276d",
         "prato-piazza": "data/trail-details/prato-piazza.js?v=3a525e6fbada",
@@ -33,10 +33,10 @@
         "osm-3885162": "data/trail-details/osm-3885162.js?v=cbc1ecc5c85e",
         "osm-5512443": "data/trail-details/osm-5512443.js?v=96c0aee8035e",
         "osm-6244965": "data/trail-details/osm-6244965.js?v=463918c5b6fa",
-        "osm-6404258": "data/trail-details/osm-6404258.js?v=bae2e3eef6fd",
+        "osm-6404258": "data/trail-details/osm-6404258.js?v=9c32e46dc05d",
         "osm-6404633": "data/trail-details/osm-6404633.js?v=739c68766f2a",
         "osm-6404634": "data/trail-details/osm-6404634.js?v=f86fea1476d6",
-        "osm-6410700": "data/trail-details/osm-6410700.js?v=c5a5fee71695",
+        "osm-6410700": "data/trail-details/osm-6410700.js?v=fd0ee9339a22",
         "osm-6529356": "data/trail-details/osm-6529356.js?v=2350c18d9a20",
         "osm-6823031": "data/trail-details/osm-6823031.js?v=e6112f190e92",
         "osm-7045225": "data/trail-details/osm-7045225.js?v=1a1c100aaa5e",

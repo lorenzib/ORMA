@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-23T09:00:00.000Z",
+  "updatedAt": "2026-10-23T14:00:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1960,18 +1960,18 @@
     },
     {
       "id": "osm-6404258",
-      "approvedReviewId": "commons-osm-6404258",
-      "approvedAt": "2026-09-07T20:09:33.359Z",
+      "approvedReviewId": "commons-osm-6404258-on-route",
+      "approvedAt": "2026-10-23T14:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-6404258-lago-di-valdaora.jpg",
-        "heroImage": "images/trails/osm-6404258-lago-di-valdaora.jpg",
-        "imageAlt": "The Olang lake held between wooded slopes, meadows and farms above the far shore and distant peaks beyond.",
-        "imageCredit": "Lago di Valdaora",
-        "imageCreditText": "Lago di Valdaora by corinasdavide",
+        "imageIcon": "images/trails/osm-6404258-oberolang-meadows.jpg",
+        "heroImage": "images/trails/osm-6404258-oberolang-meadows.jpg",
+        "imageAlt": "Rolling mown meadows above Oberolang in evening light, a small walled church on the hill and wooded slopes beyond.",
+        "imageCredit": "Giochi di luci",
+        "imageCreditText": "Giochi di luci by corinasdavide",
         "imageCreator": "corinasdavide",
         "imageLicence": "CC BY 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_valdaora_(DC)_-_panoramio.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Giochi_di_luci_(DC)_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -2011,18 +2011,18 @@
     },
     {
       "id": "osm-6410700",
-      "approvedReviewId": "commons-osm-6410700",
-      "approvedAt": "2026-09-06T14:42:29.290Z",
+      "approvedReviewId": "commons-osm-6410700-on-route",
+      "approvedAt": "2026-10-23T14:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-6410700-olang.jpg",
-        "heroImage": "images/trails/osm-6410700-olang.jpg",
-        "imageAlt": "Fields and villages on the floor of the Puster valley at Olang, below wooded slopes and a rocky summit.",
-        "imageCredit": "Olang, Valdaora in the Pustertal",
-        "imageCreditText": "Olang, Valdaora in the Pustertal by TVOlang",
-        "imageCreator": "TVOlang",
-        "imageLicence": "CC BY 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Olang_von_goste.jpg",
+        "imageIcon": "images/trails/osm-6410700-niederrasen-church.jpg",
+        "heroImage": "images/trails/osm-6410700-niederrasen-church.jpg",
+        "imageAlt": "The white baroque parish church of Niederrasen with its dark red spire, where the walk starts, below a wooded slope in summer.",
+        "imageCredit": "Pfarrkirche von Niederrasen",
+        "imageCreditText": "Pfarrkirche von Niederrasen by Harald Schneider",
+        "imageCreator": "Harald Schneider",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pfarrkirche_von_Niederrasen.JPG",
         "imageSourceType": "licensed-source"
       }
     },
