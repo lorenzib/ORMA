@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-23T15:42:39.674Z",
+  "generatedAt": "2026-10-23T16:04:57.259Z",
   "regions": {
     "dolomites": {
-      "trailCount": 112,
-      "trails": "data/regions/dolomites-trails.js?v=624b34332b90",
+      "trailCount": 114,
+      "trails": "data/regions/dolomites-trails.js?v=05a7c220c647",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -117,6 +117,8 @@
         "osm-7277805": "data/trail-details/osm-7277805.js?v=c9d7093f5a3a",
         "osm-1506470": "data/trail-details/osm-1506470.js?v=42e5210115cd",
         "osm-7655311": "data/trail-details/osm-7655311.js?v=d378877be0b5",
+        "osm-7426648": "data/trail-details/osm-7426648.js?v=c55b31b28447",
+        "osm-7426666": "data/trail-details/osm-7426666.js?v=3326850ca4fb",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -300,6 +302,8 @@
     "osm-7277805": "dolomites",
     "osm-1506470": "dolomites",
     "osm-7655311": "dolomites",
+    "osm-7426648": "dolomites",
+    "osm-7426666": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -484,6 +488,8 @@
     "osm-7277805": "waltner-rundweg-12-sentiero-circolare-di-valtina-12",
     "osm-1506470": "sissiweg-sentiero-sissi",
     "osm-7655311": "sonnenberger-panoramaweg-sentiero",
+    "osm-7426648": "algunder-waalweg",
+    "osm-7426666": "maiser-waalweg",
     "osm-5479112": "chemin-des-diligences",
     "osm-9937537": "le-mont-jovet",
     "osm-10539302": "sentier-eco-sylve-de-poingt-ravier",
@@ -651,6 +657,8 @@
     "waltner-rundweg-12-sentiero-circolare-di-valtina-12": "osm-7277805",
     "sissiweg-sentiero-sissi": "osm-1506470",
     "sonnenberger-panoramaweg-sentiero": "osm-7655311",
+    "algunder-waalweg": "osm-7426648",
+    "maiser-waalweg": "osm-7426666",
     "chemin-des-diligences": "osm-5479112",
     "le-mont-jovet": "osm-9937537",
     "sentier-eco-sylve-de-poingt-ravier": "osm-10539302",

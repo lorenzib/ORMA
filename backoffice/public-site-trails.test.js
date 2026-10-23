@@ -5,7 +5,7 @@ const {loadProductionTrails}=require('../scripts/load-production-trails');
 const {isCurrentSiteTrail,currentSiteTrails}=require('./services/public-site-trails');
 
 describe('the existing-site verification boundary',()=>{
-  test('includes the 154 trail pages that have artwork, whatever the catalogue holds',()=>{
+  test('includes the 156 trail pages that have artwork, whatever the catalogue holds',()=>{
     // The boundary is artwork, and it is not publication: the catalogue grew
     // from 162 to 163 and the drafts fell from 22 to 2 without either moving
     // this number. The two were equal only while the drafts and the
@@ -22,10 +22,11 @@ describe('the existing-site verification boundary',()=>{
     // Thuile took licensed photographs in place of ones whose sources grant no
     // reuse. Five more still have an icon and no hero. Then 165 and 154 when
     // the Sissiweg and the Sonnenberger Panoramaweg arrived verified, each with
-    // a licensed photograph.
+    // a licensed photograph, then 167 and 156 with the Algunder and Maiser
+    // Waalwege.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(165);
-    expect(currentSiteTrails(catalogue)).toHaveLength(154);
+    expect(catalogue).toHaveLength(167);
+    expect(currentSiteTrails(catalogue)).toHaveLength(156);
   });
 
   test('requires the artwork the public trail page needs',()=>{
