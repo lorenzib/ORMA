@@ -93,8 +93,10 @@ describe('a route’s shape is declared, not guessed from its geometry', () => {
     // 7.5 km hand estimate; the composite the geometry gate measured is 5.5 km.
     // Lago di Carezza and Prato Piazza left it on 2026-10-22, when their
     // lines were rebuilt on OSM ways along the official routes.
+    // Geotrail Bulla left it on 2026-10-23, when its distance was corrected
+    // from 8.8 km to the 7 km its own line and the official 6.9 km agree on.
     expect(unexplained).toEqual([
-      'cinque-torri-assisted','geotrail-bulla',
+      'cinque-torri-assisted',
     ]);
   });
 });

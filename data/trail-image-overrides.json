@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-23T18:00:00.000Z",
+  "updatedAt": "2026-10-23T20:00:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -38,18 +38,18 @@
     },
     {
       "id": "geotrail-bulla",
-      "approvedReviewId": "commons-geotrail-bulla",
-      "approvedAt": "2026-09-06T10:50:15.084Z",
+      "approvedReviewId": "commons-geotrail-bulla-on-route",
+      "approvedAt": "2026-10-23T20:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/geotrail-bulla-commons.jpg",
-        "heroImage": "images/trails/geotrail-bulla-commons.jpg",
-        "imageAlt": "The Bulacia mountain above the village of Bula in Val Gardena",
-        "imageCredit": "Bula y Bulacia te Gherdëina",
-        "imageCreditText": "Bula y Bulacia te Gherdëina by Wolfgang Moroder",
-        "imageCreator": "Wolfgang Moroder",
-        "imageLicence": "CC BY-SA 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bula_y_Bulacia_te_Gherd%C3%ABina.jpg",
+        "imageIcon": "images/trails/geotrail-bulla-pufels-church.jpg",
+        "heroImage": "images/trails/geotrail-bulla-pufels-church.jpg",
+        "imageAlt": "The small parish church of Pufels with its pointed spire and walled churchyard, wooded slopes and a pale limestone peak behind, in early summer.",
+        "imageCredit": "Pfarrkirche von Pufels",
+        "imageCreditText": "Pfarrkirche von Pufels by Asia",
+        "imageCreator": "Asia",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pfarrkirche_von_Pufels02.jpg",
         "imageSourceType": "licensed-source"
       }
     },
