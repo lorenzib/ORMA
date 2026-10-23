@@ -102,6 +102,7 @@
     "backoffice:reconsider": "node backoffice/cli/reconsider-rejected-trails.js",
     "backoffice:resurvey": "node backoffice/cli/resurvey-trails.js",
     "backoffice:trail-requests": "node backoffice/cli/process-trail-requests.js",
+    "backoffice:hand-verifications": "node backoffice/cli/record-hand-verifications.js",
     "backoffice:closest": "node backoffice/cli/report-closest-to-verified.js",
     "backoffice:trail-progress": "node backoffice/cli/show-trail-progress.js",
     "backoffice:state": "node scripts/show-verification-state.js",

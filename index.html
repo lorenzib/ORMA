@@ -253,7 +253,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         </button>
         <div class="li-menu li-new-menu" id="liNewMenu" hidden>
           <div class="li-menu-kick">Create</div>
-          <a class="li-menu-item li-plan-route" href="route-planner.html">Draft a loop<small>Plan your own route on the map</small></a>
+          <a class="li-menu-item li-plan-route" href="route-planner.html">Draw your own route <span class="li-menu-badge">Experimental</span><small>Loop, one-way or out and back</small></a>
         </div>
       </div>
       <!-- Opened from "in Alta Pusteria" in the headline. -->
@@ -334,6 +334,10 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <!-- The map doubles as the geography control: pan/zoom, then refilter the
            list to the visible area. Hidden until the view actually moves. -->
       <button id="liSearchThisArea" type="button" class="li-search-area" hidden>Search this area</button>
+      <!-- The route planner, opened on the area on screen. It sits on the map
+           because the map is where a route is drawn; the link follows the
+           view as it moves. -->
+      <a id="homeMapDrawBtn" class="li-map-draw" href="route-planner.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8.5a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7H16"/></svg><span>Draw a route here</span></a>
       <button id="homeMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
       <div class="li-rank-map-key" aria-label="Map key">
         <span><i class="is-ranked">1</i>Matches list</span>

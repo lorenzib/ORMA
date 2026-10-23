@@ -112,8 +112,9 @@ function named(orchestration, ids){
 // A trail that has left the pipeline is not re-surveyed by this: `imported` and
 // `rejected` are resting states, and a trail resting is not waiting for
 // anything. `reconsider-rejected-trails` is the way back from a rejection,
-// because that needs the stage reset this deliberately avoids.
-const RESTING = Object.freeze(['imported', 'rejected']);
+// because that needs the stage reset this deliberately avoids. A walk verified
+// by hand is changed by hand, so a pass does not re-measure it either.
+const RESTING = Object.freeze(['imported', 'rejected', 'verified-by-hand']);
 
 /**
  * What a re-survey would do, named trail by named trail, before it does it.

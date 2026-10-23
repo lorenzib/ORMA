@@ -1022,6 +1022,48 @@ hand (`tier: 'route-audited'`, graduation `verified`) or that carries a
 Like a disagreeing distance it is refused, not thrown: the rest of the batch
 still publishes. Changing such a trail is a human edit.
 
+## A walk verified by hand is recorded in the backoffice
+
+> Proposed 24 October 2026; takes effect when merged.
+
+Verification is done by hand in Claude while paid research is off, and it
+lands in the published record (`trail-audits.js`, the verified-trail ledger).
+Until now nothing told the orchestration. On 23 October the site showed 71
+Verified while the trail board filed sixteen of them as "record and site
+disagree" and dozens more under Research or Rejected: the board follows the
+orchestration, and the orchestration still held whatever the pipeline last
+thought.
+
+So the record is copied across, honestly:
+
+- A trail whose published record is verified by hand (`tier: 'route-audited'`,
+  graduation `verified` -- the same test the publisher refuses on) moves to its
+  own orchestration state, **`verified-by-hand`**. Never to
+  `ready-for-editorial`: the evidence policy did not pass it, and saying it did
+  would make the pipeline's own pass rate a lie.
+- The state keeps who verified it, when, on which sources, and where the
+  pipeline had got to (`handVerification.previousState`). A walk verified by
+  hand before the pipeline ever admitted it gets a record too, so the intake
+  never admits it to be researched again.
+- A trail the evidence policy had already passed is left as it is.
+- Queued work the trail still owns is retired, with the reason "the trail was
+  verified by hand". A running job finishes; the pipeline never advances a
+  `verified-by-hand` trail, so its result opens no gate. The state is terminal
+  for the intake budget, and a re-survey holds it.
+- A seal later taken off by hand sends the trail to `imported`, resting, with
+  stage `hand-verification-withdrawn`: it reopens only when a source appears.
+- **When**: the moment a change to `trail-audits.js` or
+  `data/verified-trail-overrides.json` merges to main, the **ORMA hand
+  verifications** workflow records it and redraws the board. It shares the
+  worker's concurrency group and makes no model call. The worker also runs the
+  same step first in every pass, so a missed push is caught up within three
+  hours.
+- **The board** shows these trails in their own stage, **Verified by hand**,
+  beside Passed rather than inside it, with the sources on the row. Passed
+  keeps meaning what the evidence policy approved. "Record and site disagree"
+  is kept for a real disagreement: a record that says verified by hand while
+  the site does not.
+
 ## The funnel reaches the page
 
 The verification funnel stopped at `ready-for-editorial`. That was honest for a

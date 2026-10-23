@@ -3133,7 +3133,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-new:hover{filter:brightness(1.05);}
 .li-new-plus{font-size:17px;line-height:1;font-weight:700;}
-.li-new .li-caret{opacity:.85;font-size:11px;}
+.li-new .li-caret{color:#fff;opacity:.85;font-size:11px;}
 /* One pill, split: the half you press to start walking, and the half that
    offers the other thing you can make. A hairline, not a gap, so it still
    reads as a single control. */
