@@ -229,24 +229,48 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         </span>
       </div>
     </div>
+    <!-- The headline is the control. It is assembled from the dog, the place
+         and the day, and the place and the day in it are buttons: pressing
+         "in Alta Pusteria" or "today" is how you change them. Search, Filters
+         and Record a walk are always on screen; shade and water live inside
+         Filters with the rest of the narrowing. -->
     <div class="li-toolbar-greet">
       <span class="li-avatar li-greet-avatar" id="liGreetAvatar" aria-hidden="true">🐾</span>
       <span class="li-toolbar-greet-copy">
         <strong id="liToolbarGreeting">Where are we going today?</strong>
         <small id="liToolbarDogContext">Trails ranked for your dog’s needs and your current choices.</small>
       </span>
-      <span class="li-location-summary" id="liLocationSummary" hidden>
-        <span class="li-location-summary-pin" aria-hidden="true">⌖</span>
-        <span><small id="liLocationSummaryKick">Looking near</small><strong id="liLocationSummaryLabel"></strong></span>
-        <button type="button" id="liChangeLocationBtn">Change</button>
-        <!-- Near me sits with the other scope controls now. It used to live in
-             the Explore menu, which was also the only way back after dismissing
-             the location band for the session. -->
-        <button type="button" id="liNearMeBtn">Near me</button>
-        <button type="button" id="liShowAllBtn" hidden>Show all</button>
-      </span>
-      <label class="li-date-summary"><small>Walking</small><input id="liRecommendationDate" type="date" aria-label="Recommendation date"></label>
-      <button type="button" class="li-adjust-recommendation" id="liAdjustRecommendationBtn" aria-expanded="false">Adjust recommendation</button>
+      <!-- Create actions are not filters, so they sit out of the refine zone.
+           Recording is the one you do standing on the trail, so it is the
+           button; drafting a loop is still one press away under the caret. -->
+      <div class="li-menuwrap li-new-wrap" id="liNewWrap">
+        <a class="li-new li-new-main" id="liRecordBtn" href="walk.html">
+          <span class="li-rec-dot" aria-hidden="true"></span>
+          <span class="li-new-label">Record<span class="li-new-label-rest"> a walk</span></span>
+        </a>
+        <button type="button" id="liNewBtn" class="li-new li-new-more" aria-haspopup="true" aria-expanded="false" aria-label="More ways to create">
+          <span class="li-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="li-menu li-new-menu" id="liNewMenu" hidden>
+          <div class="li-menu-kick">Create</div>
+          <a class="li-menu-item li-plan-route" href="route-planner.html">Draft a loop<small>Plan your own route on the map</small></a>
+        </div>
+      </div>
+      <!-- Opened from "in Alta Pusteria" in the headline. -->
+      <div class="li-menu li-head-menu" id="liAreaMenu" role="dialog" aria-label="Where to look" hidden>
+        <span class="li-location-summary" id="liLocationSummary" hidden>
+          <span><small id="liLocationSummaryKick">Looking near</small><strong id="liLocationSummaryLabel"></strong></span>
+        </span>
+        <button type="button" class="li-head-option" id="liChangeLocationBtn">Search a valley or town</button>
+        <button type="button" class="li-head-option" id="liNearMeBtn">Near me</button>
+        <button type="button" class="li-head-option" id="liShowAllBtn" hidden>All ORMA trails</button>
+      </div>
+      <!-- Opened from "today" in the headline. -->
+      <div class="li-menu li-head-menu" id="liDayMenu" role="dialog" aria-label="When you are walking" hidden>
+        <button type="button" class="li-head-option" data-li-day="0">Today</button>
+        <button type="button" class="li-head-option" data-li-day="1">Tomorrow</button>
+        <label class="li-date-summary"><small>Another day</small><input id="liRecommendationDate" type="date" aria-label="Recommendation date"></label>
+      </div>
     </div>
     <!-- Today, for this area. Hidden until a forecast actually arrives: an
          empty band is better than a confident one with nothing behind it. -->
@@ -256,7 +280,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     </div>
     <!-- Location, asked in place instead of by a gate: the list is already
          there. Hidden once the list follows the owner's position, and for the
-         session once dismissed; Explore › Near me still works either way. -->
+         session once dismissed; Near me in the headline still works either way. -->
     <div class="li-location-nudge" id="liLocationNudge" hidden>
       <span class="li-location-nudge-pin" aria-hidden="true">⌖</span>
       <span class="li-location-nudge-copy"><strong id="liLocationNudgeTitle">See trails near you</strong><small id="liLocationNudgeDetail">Your position stays in this browser session and is not added to your profile.</small></span>
@@ -273,12 +297,17 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     <div class="li-menuwrap" id="liFiltersWrap">
       <button type="button" id="liFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
-        Refine<span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
+        <span class="li-filt-label">Filters</span><span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
       </button>
       <div class="li-menu li-filters-menu discovery-filter-panel" id="liFiltersMenu" hidden>
         <div class="li-fhead">
           <span>Filter trails</span>
           <button type="button" id="liFiltersReset">Reset all</button>
+        </div>
+        <div class="li-fsec">Conditions</div>
+        <div class="li-quick-filters" aria-label="Quick dog filters">
+          <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span>High shade</span></button>
+          <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
         </div>
         <div class="li-fsec">Distance</div>
         <div class="li-seg" id="liDistSeg"></div>
@@ -289,30 +318,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <div class="li-fsec" id="liMatchSecLabel">Minimum match</div>
         <div class="li-seg" id="liMatchSeg"></div>
         <button type="button" class="li-apply" id="liFiltersApply">Show trails</button>
-      </div>
-    </div>
-    <div class="li-quick-filters" aria-label="Quick dog filters">
-      <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span>High shade</span></button>
-      <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
-    </div>
-    <!-- Create actions are not filters, so they sit out of the refine zone.
-         "+ New" hid the two things you can make behind a word that names
-         neither: nothing on the page said a walk could be recorded at all.
-         Recording is the one you do standing on the trail, so it is the
-         button; drafting a loop is still one press away under the caret. -->
-    <div class="li-menuwrap li-new-wrap" id="liNewWrap">
-      <a class="li-new li-new-main" id="liRecordBtn" href="walk.html">
-        <span class="li-rec-dot" aria-hidden="true"></span>
-        <span class="li-new-label">Record a walk</span>
-      </a>
-      <button type="button" id="liNewBtn" class="li-new li-new-more" aria-haspopup="true" aria-expanded="false" aria-label="More ways to create">
-        <span class="li-caret" aria-hidden="true">▾</span>
-      </button>
-      <!-- Recording is the button, so the menu holds the other thing you can
-           make rather than repeating it. -->
-      <div class="li-menu li-new-menu" id="liNewMenu" hidden>
-        <div class="li-menu-kick">Create</div>
-        <a class="li-menu-item li-plan-route" href="route-planner.html">Draft a loop<small>Plan your own route on the map</small></a>
       </div>
     </div>
     </div>
