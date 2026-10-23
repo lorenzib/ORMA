@@ -69,11 +69,30 @@
   function minPoints(){ return shapeConfig().minPoints; }
   function wantsLoop(){ return shape === 'loop'; }
 
+  // Opened from another map ("Draw a route here" on the homepage), the
+  // planner starts where the reader was looking: ?lat=&lng=&z=. Anything
+  // missing or out of range falls back to the Dolomites overview.
+  function requestedView(){
+    const params = new URLSearchParams(location.search);
+    // Number('') is 0, so a blank value has to count as missing, not as the
+    // equator.
+    const read = name => {
+      const raw = (params.get(name) || '').trim();
+      return raw ? Number(raw) : NaN;
+    };
+    const lat = read('lat');
+    const lng = read('lng');
+    if(!Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 85 || Math.abs(lng) > 180) return null;
+    const zoom = read('z');
+    return { center:[lng, lat], zoom:Number.isFinite(zoom) ? Math.min(16, Math.max(5, zoom)) : 12 };
+  }
+
   const baseOptions = {
     container:mapElement,
     style:'https://tiles.openfreemap.org/styles/liberty',
     center:[11.85, 46.55],
     zoom:8.4,
+    ...requestedView(),
     attributionControl:{ compact:true },
   };
   const map = new maplibregl.Map(window.DoloPawsMapRuntime

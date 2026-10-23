@@ -1511,6 +1511,17 @@ function initTrailMap(){
   };
   trailMapInstance = new maplibregl.Map(window.DoloPawsMapRuntime
     ? window.DoloPawsMapRuntime.mapOptions(trailMapOptions) : trailMapOptions);
+  // "Draw a route here" opens the planner on the area on screen, so its
+  // link follows the map rather than being worked out on click: a link
+  // opened in a new tab gets the same place.
+  const drawLink = document.getElementById('homeMapDrawBtn');
+  const syncDrawLink = () => {
+    if(!drawLink) return;
+    const centre = trailMapInstance.getCenter();
+    drawLink.href = `route-planner.html?lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}`;
+  };
+  trailMapInstance.on('load', syncDrawLink);
+  trailMapInstance.on('moveend', syncDrawLink);
   trailMapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
   trailMapInstance.addControl(new maplibregl.GeolocateControl({
     positionOptions: { enableHighAccuracy: true },
