@@ -26066,6 +26066,178 @@
       },
       "desc": "The Anello del Bosc, the Ecomuseo del Vanoi's 7.6 km forest loop in the Valzanca above Caoria. From Pian de la Siega it follows the Anello dei Pradi up to the 1,285 m junction, turns right up the Val Redòs past Prà dei Paolini to the rebuilt timber slide of Valsorda at about 1,500 m, and comes down the Valsorda forest road and past the Tognola meadows to the start. The Ecomuseo's map gives 7.6 km, 513 m of climb and about 4 hours, for good walkers. This walk is not yet verified by ORMA.\n\nThe whole loop lies in the Paneveggio – Pale di San Martino nature park, where dogs must always be kept on a lead; Canal San Bovo and Mezzano also require a lead of at most 1.5 m in public places.",
       "tips": "Keep your dog on a lead the whole way: the nature park requires it. Most of the loop is shaded forest, with water at the start and fountains along the way. Expect two fords near the start and several small streams, and watch for mountain bikes on the forest-road descent. Park in Caoria: the Ecomuseo's shuttle to the start is suspended for summer 2026."
+    },
+    'osm-12173549': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 4).
+      // The official family loop of the Ski- und Almregion Gitschberg Jochtal
+      // in Terenten. Wholly in Terenten: its dog regulation (Gemeinderat
+      // 8/R/2008) and the council's lead notice of 26 February 2026 apply. The
+      // line passes 12 m from the earth-pyramid natural monument but enters no
+      // biotope, Natura 2000 site or park (landscape-plan layers).
+      area: 'Terenten / Terento',
+      distance: 4.5,
+      elevation: 235,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Terenten village centre up the Terner Bach past the old mills and the earth pyramids, and back over the meadows by the village ski lift.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A corn mill beside the path on the Mühlenweg, in September (Rainerhaufe, CC BY-SA 4.0), filed as the mill trail in Terenten.',
+        route: 'Official loop 4.5 km from Terenten village centre; the stored OSM line (relation 12173549, Mühlenweg) is the same loop, 4.2 km, within 3 m of the official start.',
+        routeNumbers: 'No route number: from the village centre walk about 100 m north-west to the Terner Bach and follow the “Mühlenweg” signs up past the information boards, the earth pyramids and the five main mills, over the bridge by the Hansleitner mill and back over the meadow path past the village ski lift.',
+        mapPoints: 'Start in Terenten village centre by the car park and the bus stop Terenten Dorf (official start); drinking fountains on the village square and by St. Georg church (OSM nodes 7318188985, 2328513538).',
+        elevation: 'Official 4.5 km, 235 m up and down, 1 h 30 min, 1,210–1,436 m (Ski- und Almregion Gitschberg Jochtal, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Ski- und Almregion Gitschberg Jochtal, Mühlenweg und Erdpyramiden (Südtirol.info)',
+          'Gemeinde Terenten, Verordnung über die Haltung von Hunden und anderen Tieren (Gemeinderat Nr. 8/R/2008), Art. 3 and 5, and the council’s lead notice of 26 Feb 2026',
+          'Province landscape-plan layers: earth-pyramid natural monument beside the line; no biotope, Natura 2000 site or park',
+          'OpenStreetMap relation 12173549, surface, steps, woodland and road data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 18,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 400 m on the Pustertaler Sonnenstraße (SP40) through the village, with no pavement', 'Short steps with a handrail and an eroded gully by the earth pyramids', 'Meadow paths and farm tracks past a working farm'],
+      terrainType: 'Farm tracks, a streamside path and meadow paths, with short village roads',
+      shadeDescription: 'Mostly open: only about a fifth runs under trees, in the Terner Bach gully; the meadows above the village are sunny.',
+      terrainDescription: 'An easy family loop at 1,210–1,440 m on tracks and paths beside the Terner Bach, past restored mills and the earth pyramids, with a short climb and steps near the pyramids.',
+      waterDescription: 'Drinking fountains on the village square and by the church at the start and finish; the path then runs beside the Terner Bach.',
+      dogNotes: 'Terenten does not allow dogs to roam free, requires a lead on busy paths and car parks and, since its 2026 notice, on meadows and in woods too; dogs may not go onto farmland. Keep your dog close past the farm and the mills.',
+      tips: 'Start in Terenten village centre (bus 421 to Terenten Dorf) and follow the Mühlenweg signs up the Terner Bach past the mills and the earth pyramids and back over the meadows: 4.5 km, about 235 m of climbing, an hour and a half. Keep your dog on a lead the whole way, as Terenten requires, and off the meadows. Watch for traffic on the short stretch along the main road through the village.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Mühlenweg und Erdpyramiden (Gitschberg Jochtal)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif49540ba52c904c9b1d49dd2d0b55f34.muehlenweg---erdpyramiden.terenten' },
+        { label: 'Terenten, dog regulation', url: 'https://www.gemeinde.terenten.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden_und_anderen_Tieren' },
+        { label: 'Terenten, lead notice (26 Feb 2026)', url: 'https://www.gemeinde.terenten.bz.it/de/Neuigkeiten/News/Aufruf_zur_Einhaltung_der_Leinenpflicht' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12173549' }
+      ],
+      startPoint: { lat: 46.82996, lng: 11.7759119, label: 'Terenten village centre, bus stop Terenten Dorf (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.828989, lng: 11.776196, osmId: 'node/7318188985', label: 'Dorfbrunnen on the village square' },
+        { km: 0, lat: 46.8286789, lng: 11.7758987, osmId: 'node/2328513538', label: 'Fountain by St. Georg church' }
+      ],
+      desc: 'A family walk in Terenten above the Pustertal: up the Terner Bach past five restored mills and the earth pyramids, with information boards on the old milling trade, and back over the meadows to the village. The official route lists 4.5 km and 235 m of ascent.'
+    },
+    'osm-2376630': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 4).
+      // The official loop of the Tourismusgenossenschaft Schnalstal, in
+      // Schnals (not Naturns). Schnals publishes no dog rule, so the national
+      // dog ordinance (6 August 2013, extended to September 2027) applies; for
+      // about 100 m (km 6.0–6.1) the line runs inside the Texelgruppe nature
+      // park, where the nature parks' code of conduct requires a lead.
+      area: 'Katharinaberg, Schnals / Senales',
+      distance: 8.2,
+      elevation: 514,
+      hours: '2.5–3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Katharinaberg by Durst and the Versanthöfe, a stretch of the Sonnenberg road, Kopfron, Wand and Unterperfl, back to the village.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Katharinaberg, the start and end of the loop, from below, in September (Syrio, CC BY-SA 4.0).',
+        route: 'Official loop 8.2 km from Katharinaberg; the stored OSM line (relation 2376630, Rundweg Katharinaberg) is the same loop, 7.8 km, starting 135 m from the official start in the village centre.',
+        routeNumbers: 'From Katharinaberg follow the “Katharinaberg Rundweg” signs by Durst and the Versanthöfe, along the Sonnenberg road (route 10A) to Kopfron, then down by Wand and Unterperfl back to the village.',
+        mapPoints: 'Start in Katharinaberg village centre by the free car park, bus 261 stop Katharinaberg (official start); the Refill fountain on the village square is about 100 m from the line.',
+        elevation: 'Official 8.2 km, 514 m up and down, 2 h 40 min, 1,180–1,470 m (Tourismusgenossenschaft Schnalstal, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Schnalstal, Große Rundwanderung Katharinaberg (Südtirol.info)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
+          'South Tyrol nature parks, code of conduct (dogs on a lead at all times)',
+          'Province landscape-plan layers: Texelgruppe nature park and Natura 2000 site Pfossental for about 100 m; no biotope',
+          'IDM Südtirol drinking-water points (Open Data Hub)',
+          'OpenStreetMap relation 2376630, surface, path grade, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 62,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 3.8 km on the narrow Sonnenberg mountain road (route 10A), open to cars', 'Two short steep, narrow path stretches (about 0.5 m wide) at km 1.6–2.0 and 6.1–6.3', 'A wooden footbridge at km 6.1', 'Working farms at Kopfron, Wand and Unterperfl'],
+      terrainType: 'Forest and meadow paths with about 3.8 km of narrow mountain road',
+      shadeDescription: 'About three fifths runs through forest; the farm meadows round Kopfron and the road stretches are open.',
+      terrainDescription: 'A moderate loop at 1,180–1,470 m over meadows, through woods and along part of the Sonnenberg road, with two short steep and narrow path sections.',
+      waterDescription: 'A Refill drinking fountain on the Katharinaberg village square, about 100 m from the start; none on the loop itself, so carry water.',
+      dogNotes: 'Schnals has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. For about 100 m the loop runs through the Texelgruppe nature park, where dogs must be on a lead. It passes the working farms of Kopfron, Wand and Unterperfl, so keep your dog close there.',
+      tips: 'Start in Katharinaberg (bus 261 or the free car park in the village centre) and follow the Katharinaberg Rundweg signs round by Durst, the Sonnenberg road, Kopfron, Wand and Unterperfl: 8.2 km and about 510 m of climbing, two and a half to three hours. Keep your dog on a short lead (1.5 m at most) on the road stretches, through the farms and in the nature park, and take care on the two short steep, narrow sections. Fill up at the fountain on the village square before you go.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Große Rundwanderung Katharinaberg (Tourismusgenossenschaft Schnalstal)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoia639e0b463e7f3aecca1a877758bab3b.grosse-rundwanderung-katharinaberg.katharinaberg' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'South Tyrol nature parks, code of conduct', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/2376630' }
+      ],
+      startPoint: { lat: 46.6887577, lng: 10.9359442, label: 'Katharinaberg village centre, free car park, bus 261 stop Katharinaberg (official start)' },
+      waterSources: [],
+      desc: 'A loop round the hill village of Katharinaberg in the Schnalstal: over farm meadows and through woods past old farms such as Kopfron, Wand and Unterperfl, with views down the valley. The official route lists 8.2 km and 514 m of ascent.'
+    },
+    'osm-11270309': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 4).
+      // The official walk of the Tourismusgenossenschaft Südtirols Süden in
+      // Salurn. Salurn publishes no dog rule, so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies. No biotope,
+      // Natura 2000 site or park on the line.
+      area: 'Salurn / Salorno',
+      distance: 1.2,
+      elevation: 115,
+      hours: '0.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the edge of Salurn village centre up the Titschenbach to the waterfall and the spring-water boards, and back down the Kapellenweg.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'St. Andreas church in Salurn village centre, where the walk starts, in September (HaSt, CC BY-SA 4.0); no licensed photo of the promenade itself was found.',
+        route: 'Official loop 1.2 km from Salurn village centre; the stored OSM line (relation 11270309, Quellenpromenade) is the same loop, 1.16 km, within 1 m of the official start.',
+        routeNumbers: 'No route number: follow the “Quellenpromenade / Passeggiata delle Sorgenti” signs from the village centre up beside the Titschenbach to the waterfall, briefly on paths 409B and 1B, and back down the Kapellenweg.',
+        mapPoints: 'Start at the Quellenpromenade by the car park at the edge of Salurn village centre (official start); drinking fountains at km 0.1, 0.3 and 1.1 (OSM nodes 447945723, 1380842711, way 884832961).',
+        elevation: 'Official 1.2 km, 115 m up and down, 30 min, 218–301 m (Tourismusgenossenschaft Südtirols Süden, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Südtirols Süden, Quellenpromenade Salurn (Südtirol.info)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 11270309, surface, steps and woodland data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 71,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Paths beside the springs and the waterfall that the board warns can be slippery when wet', 'Short steps near the waterfall (km 1.0)', 'A short stretch on the Kapellenweg lane'],
+      terrainType: 'Woodland paths and tracks with a short stretch of lane and steps',
+      shadeDescription: 'About seven tenths runs through woodland beside the Titschenbach; only the stretch by the village is open.',
+      terrainDescription: 'A short, easy loop of about half an hour at 220–300 m, beside the Titschenbach to its waterfall, with boards on Salurn’s spring water.',
+      waterDescription: 'Three drinking fountains on the short loop (km 0.1, 0.3 and 1.1), and the Titschenbach beside the path. Dogs may not bathe in public fountains.',
+      dogNotes: 'Salurn has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. No grazing land is crossed.',
+      tips: 'A short half-hour loop from the edge of Salurn village centre up to the Titschenbach waterfall and back: 1.2 km and about 115 m of climbing. Keep your dog on a short lead (1.5 m at most) and carry a muzzle. Take care on the paths by the springs and the waterfall after rain, when they are slippery.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Quellenpromenade Salurn (Südtirols Süden)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif8faa07b611ad03ce3e44df4a2668b3e.quellenpromenade-salurn.salurn' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11270309' }
+      ],
+      startPoint: { lat: 46.2375562, lng: 11.2148555, label: 'Start of the Quellenpromenade by the car park at the edge of Salurn village centre (official start)' },
+      waterSources: [
+        { km: 0.1, lat: 46.2389682, lng: 11.2156826, osmId: 'node/447945723', label: 'Drinking fountain on the promenade' },
+        { km: 0.3, lat: 46.2397618, lng: 11.2189027, osmId: 'node/1380842711', label: 'Drinking fountain by the Titschenbach' },
+        { km: 1.1, lat: 46.2379204, lng: 11.2129251, osmId: 'way/884832961', label: 'Drinking fountain near the end' }
+      ],
+      desc: 'A short loop in Salurn, the southernmost village of South Tyrol: up beside the Titschenbach to its waterfall and back, with boards on the spring water that supplies the village. The official route lists 1.2 km and 115 m of ascent.'
     }
   };
 
