@@ -17,7 +17,7 @@ describe('verified trail overrides', () => {
   test('rejects an unscoped partial override', () => {
     expect(() => applyVerifiedTrailOverrides([{ id:'trail-a' }], {
       trails:[{ id:'trail-a', fields:{ routeRefs:['15A'] } }],
-    })).toThrow(/full-trail, route-reference, route-guidance, route-reviewed, route-shape or start-point verification/);
+    })).toThrow(/full-trail, route-reference, route-guidance, route-reviewed, route-shape, start-point or route-line verification/);
   });
 
   test('accepts scoped landmark guidance without marking the whole trail verified', () => {
@@ -47,13 +47,36 @@ describe('verified trail overrides', () => {
     expect(trail.startPoint).toEqual({ lat:46.52004, lng:11.87393, label:'Passo Campolongo, parking beside the Cherz I base' });
   });
 
+  test('replaces an imported line with a sourced official line and nothing else', () => {
+    const line = [[46.54204, 10.99034], [46.53658, 10.99066], [46.54204, 10.99034]];
+    const [trail] = applyVerifiedTrailOverrides([{ id:'osm-1', curated:false, path:[[1, 1], [2, 2]], distance:11.7 }], {
+      trails:[{
+        id:'osm-1', verificationScope:'routeLine',
+        sources:[{ label:'Official page and GPX', url:'https://example.test/walk', reviewedAt:'2026-10-23' }],
+        fields:{ path:line, distance:7.7, routeLineNote:'Rebuilt on OSM ways along the official GPX.' },
+      }],
+    });
+    expect(trail.path).toEqual(line);
+    expect(trail.distance).toBe(7.7);
+    expect(trail.ormaVerified).not.toBe(true);
+    expect(trail.curated).toBe(false);
+  });
+
+  test('rejects a route line without a note, without a source, or carrying other fields', () => {
+    const fields = { path:[[1, 1], [2, 2]], distance:3, routeLineNote:'Rebuilt.' };
+    const sources = [{ url:'https://x.test', reviewedAt:'2026-10-23' }];
+    expect(() => applyVerifiedTrailOverrides([{ id:'a' }], { trails:[{ id:'a', verificationScope:'routeLine', sources, fields:{ ...fields, routeLineNote:'' } }] })).toThrow(/route-line verification/);
+    expect(() => applyVerifiedTrailOverrides([{ id:'a' }], { trails:[{ id:'a', verificationScope:'routeLine', fields }] })).toThrow(/route-line verification/);
+    expect(() => applyVerifiedTrailOverrides([{ id:'a' }], { trails:[{ id:'a', verificationScope:'routeLine', sources, fields:{ ...fields, ormaVerified:true } }] })).toThrow(/route-line verification/);
+  });
+
   test('rejects a start point without a label or without a source', () => {
     expect(() => applyVerifiedTrailOverrides([{ id:'trail-a' }], {
       trails:[{ id:'trail-a', verificationScope:'startPoint', sources:[{ url:'https://x.test', reviewedAt:'2026-10-06' }], fields:{ startPoint:{ lat:1, lng:2 } } }],
-    })).toThrow(/start-point verification/);
+    })).toThrow(/start-point/);
     expect(() => applyVerifiedTrailOverrides([{ id:'trail-a' }], {
       trails:[{ id:'trail-a', verificationScope:'startPoint', fields:{ startPoint:{ lat:1, lng:2, label:'Somewhere' } } }],
-    })).toThrow(/start-point verification/);
+    })).toThrow(/start-point/);
   });
 
   // A walk whose directions came from the map, or from ORMA's own record, has
