@@ -242,13 +242,21 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-12121346": {
+      "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/0/225/36757760/B08_De+Montandr++Champessuit.pdf",
+      "publisher": "Office de tourisme Cœur de Maurienne",
+      "name": "B08 – De Montandré à Champessuit",
+      "quote": "Type : Boucle // Distance : 5,1 km Durée : 2h35 // Dénivelé : 410 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-12121798": {
-      "url": "https://www.explore-maurienne.com/itineraire/le-terroir-de-serpoliere/",
-      "publisher": "Office de tourisme intercommunal Cœur de Maurienne Arvan (Apidae)",
-      "name": "EN02 Le Terroir de Serpolière",
+      "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/68/115/13202244/EN02_Terroir+de+Serpolire.pdf",
+      "publisher": "Office de tourisme Cœur de Maurienne Arvan",
+      "name": "EN02 – Le terroir de Serpolière",
       "quote": "Type : Boucle // Distance : 2,1 km / Durée : 0h50 // Dénivelé : 70 m",
       "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-22T18:00:00.000Z"
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-12132169": {
       "url": "https://www.dreizinnen.com/de/activity/toblacher-h-henweg-_543",
@@ -401,6 +409,14 @@
       "quote": "The Archeopfad Trail leads to the old Roman tower in Stufels/Stufles, the historical quarter in Brixen/Bressanone.",
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-13338113": {
+      "url": "https://hautesavoiemontblanc-tourisme.com/offres/itineraire-pedestre-lac-de-darbon-par-les-3-cols-vacheresse-fr-5866094/",
+      "publisher": "Conseil départemental de la Haute-Savoie",
+      "name": "Lac de Darbon par les 3 cols",
+      "quote": "Durée 3h30mn · Dist. 6.7 km · Déniv. pos. 640 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-13491868": {
       "url": "https://www.klausen.it/en/nature-experiences/hiking/theme-based-trails-and-gastronomic-trails/-birmehl-trail.html",
