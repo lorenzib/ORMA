@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-23T13:23:59.650Z",
+  "generatedAt": "2026-10-23T16:27:33.123Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-10-20T18:00:00+00:00",
       "expiresAt": "2026-10-22T05:59:00+00:00",
       "firstPublishedAt": "2026-10-19T22:21:40.478Z",
-      "lastSeenAt": "2026-10-23T13:23:59.650Z",
+      "lastSeenAt": "2026-10-23T16:27:33.123Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -42,7 +42,7 @@
       "effectiveAt": "2026-10-20T18:00:00+00:00",
       "expiresAt": "2026-10-21T23:59:00+00:00",
       "firstPublishedAt": "2026-10-19T22:21:40.478Z",
-      "lastSeenAt": "2026-10-23T13:23:59.650Z",
+      "lastSeenAt": "2026-10-23T16:27:33.123Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -91,7 +91,7 @@
       "effectiveAt": "2026-10-22T00:00:00+00:00",
       "expiresAt": "2026-10-22T05:59:00+00:00",
       "firstPublishedAt": "2026-10-18T22:19:35.615Z",
-      "lastSeenAt": "2026-10-23T13:23:59.650Z",
+      "lastSeenAt": "2026-10-23T16:27:33.123Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -116,7 +116,7 @@
       "effectiveAt": "2026-10-21T00:00:00+00:00",
       "expiresAt": "2026-10-21T23:59:00+00:00",
       "firstPublishedAt": "2026-10-18T22:19:35.615Z",
-      "lastSeenAt": "2026-10-23T13:23:59.650Z",
+      "lastSeenAt": "2026-10-23T16:27:33.123Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -160,12 +160,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/b92d272d-5712-403d-a6fe-c4fad87c6c6d",
-      "identifier": "2.49.0.0.250.0.FR.20261023140142.611023",
-      "effectiveAt": "2026-10-23T12:00:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
+      "identifier": "2.49.0.0.250.0.FR.20261023180130.426023",
+      "effectiveAt": "2026-10-23T16:00:00+00:00",
       "expiresAt": "2026-10-23T22:00:00+00:00",
       "firstPublishedAt": "2026-10-22T16:28:04.812Z",
-      "lastSeenAt": "2026-10-23T13:23:59.650Z",
+      "lastSeenAt": "2026-10-23T16:27:33.123Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -215,12 +215,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/b92d272d-5712-403d-a6fe-c4fad87c6c6d",
-      "identifier": "2.49.0.0.250.0.FR.20261023140142.611023",
-      "effectiveAt": "2026-10-23T12:00:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
+      "identifier": "2.49.0.0.250.0.FR.20261023180130.426023",
+      "effectiveAt": "2026-10-23T16:00:00+00:00",
       "expiresAt": "2026-10-23T22:00:00+00:00",
       "firstPublishedAt": "2026-10-23T04:27:13.872Z",
-      "lastSeenAt": "2026-10-23T13:23:59.650Z",
+      "lastSeenAt": "2026-10-23T16:27:33.123Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -317,7 +317,7 @@
       "effectiveAt": "2026-10-21T00:00:00+00:00",
       "expiresAt": "2026-10-21T23:59:00+00:00",
       "firstPublishedAt": "2026-10-19T22:21:40.478Z",
-      "lastSeenAt": "2026-10-23T13:23:59.650Z",
+      "lastSeenAt": "2026-10-23T16:27:33.123Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -414,7 +414,9 @@
         "osm-19703479",
         "osm-19974724",
         "osm-19974725",
-        "osm-7277805"
+        "osm-7277805",
+        "osm-1506470",
+        "osm-7655311"
       ],
       "trailNames": [
         "Alpe di Siusi Meadow Loop",
@@ -501,7 +503,7 @@
         "Kirchensteig",
         "Rundweg Laugen Elvas",
         "Albeins-Klerant-Milland - Albes-Cleran-Millan",
-        "archeo",
+        "Archeopfad Brixen",
         "Birmehlweg - Sentiero Birmehl",
         "Herrnsteig",
         "Nössingbühel",
@@ -511,7 +513,9 @@
         "Rundweg Beimsteinkogel",
         "Mittlerer Rundweg am Karer See",
         "Langer Rundweg am Karer See",
-        "Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12"
+        "Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12",
+        "Sissiweg - Sentiero Sissi",
+        "Sonnenberger Panoramaweg - Sentiero"
       ],
       "sourceStatus": "available"
     }
