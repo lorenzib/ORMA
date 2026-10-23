@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-24T10:00:00.000Z",
+  "updatedAt": "2026-10-24T12:00:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -2062,18 +2062,18 @@
     },
     {
       "id": "osm-7045225",
-      "approvedReviewId": "commons-osm-7045225",
-      "approvedAt": "2026-09-07T20:33:09.392Z",
+      "approvedReviewId": "hand-audit-osm-7045225",
+      "approvedAt": "2026-10-24T12:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-7045225-paganella.jpg",
-        "heroImage": "images/trails/osm-7045225-paganella.jpg",
-        "imageAlt": "A meadow and track on the wooded terrace at Fai della Paganella, the limestone escarpment of the Paganella rising to the right under cumulus.",
-        "imageCredit": "Paganella",
-        "imageCreditText": "Paganella by Anil Öztas",
-        "imageCreator": "Anil Öztas",
-        "imageLicence": "CC BY 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Fai_della_Paganella_(IT)%2C_Paganella_--_2024_--_0140.jpg",
+        "imageIcon": "images/trails/osm-7045225-bocca-scalace.jpg",
+        "heroImage": "images/trails/osm-7045225-bocca-scalace.jpg",
+        "imageAlt": "The red-and-white SAT signpost for path 603 at Bocca delle Scalace, 1260 m, with a no-bikes sign and a bear-area warning beside log steps in the forest",
+        "imageCredit": "SAT path 603 at Bocca delle Scalace",
+        "imageCreditText": "SAT path 603 at Bocca delle Scalace by Marco Tam",
+        "imageCreator": "Marco Tam",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Guidepost_(86979).jpg",
         "imageSourceType": "licensed-source"
       }
     },
