@@ -1405,6 +1405,23 @@
       }
     },
     {
+      "id": "osm-1506470",
+      "approvedReviewId": "commons-osm-1506470-on-route",
+      "approvedAt": "2026-10-23T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-1506470-steinerner-steg.jpg",
+        "heroImage": "images/trails/osm-1506470-steinerner-steg.jpg",
+        "imageAlt": "Two walkers crossing the stone Steinerner Steg bridge in Meran, with yellow villas, cedars and the Pulverturm above",
+        "imageCredit": "The Steinerner Steg in Meran",
+        "imageCreditText": "The Steinerner Steg in Meran by Gerd Eichmann",
+        "imageCreator": "Gerd Eichmann",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Meran-06-Steinerner_Steg-Villa_Iolanda-2023-gje.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-15321049",
       "approvedReviewId": "commons-osm-15321049",
       "approvedAt": "2026-09-07T19:55:05.873Z",
@@ -2113,18 +2130,18 @@
     },
     {
       "id": "osm-7446701",
-      "approvedReviewId": "commons-osm-7446701",
-      "approvedAt": "2026-09-07T16:56:37.540Z",
+      "approvedReviewId": "hand-audit-osm-7446701",
+      "approvedAt": "2026-10-24T10:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-7446701-fleckner.jpg",
-        "heroImage": "images/trails/osm-7446701-fleckner.jpg",
-        "imageAlt": "The shingled Fleckner hut on flowering alpine grass at 2100 m, with the Passeier valley falling away behind it.",
-        "imageCredit": "The Fleckner hut on the Passeier high route",
-        "imageCreditText": "The Fleckner hut on the Passeier high route by Uwelino",
-        "imageCreator": "Uwelino",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Die_Fleckner_H%C3%BCtte.jpg",
+        "imageIcon": "images/trails/osm-7446701-walten.jpg",
+        "heroImage": "images/trails/osm-7446701-walten.jpg",
+        "imageAlt": "Spruce forest and steep meadows with farmsteads above Walten, looking down the Passeier valley to snow-capped peaks",
+        "imageCredit": "Walten, looking down the Passeier valley",
+        "imageCreditText": "Walten, looking down the Passeier valley by Dguendel",
+        "imageCreator": "Dguendel",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Walten_(St._Leonhard_in_Passeier),_Blick_ins_Passeiertal.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -2244,6 +2261,23 @@
         "imageLicence": "CC BY 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lozzo_chiesa_loreto.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7655311",
+      "approvedReviewId": "flickr-osm-7655311-on-route",
+      "approvedAt": "2026-10-23T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7655311-sonnenberg-terraces.jpg",
+        "heroImage": "images/trails/osm-7655311-sonnenberg-terraces.jpg",
+        "imageAlt": "Terraced green meadows and a white farmhouse on the Sonnenberg above the Vinschgau valley, with vines in the foreground",
+        "imageCredit": "Sonnenberger Panoramaweg between Naturns and Rabland",
+        "imageCreditText": "Sonnenberger Panoramaweg between Naturns and Rabland by uwelino",
+        "imageCreator": "uwelino",
+        "imageLicence": "CC BY-SA 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "imageSourcePage": "https://www.flickr.com/photos/84143066@N00/54041926001/",
         "imageSourceType": "licensed-source"
       }
     },

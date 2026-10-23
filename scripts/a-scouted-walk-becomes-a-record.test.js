@@ -135,6 +135,17 @@ describe('it adds one walk and nothing else',()=>{
     expect(JSON.parse(fs.readFileSync(file,'utf8')).features).toEqual([]);
   });
 
+  test('--apply keeps the file in its own shape, so the diff is the walk',async()=>{
+    const file=emptyRoutes();
+    const before=fs.readFileSync(file,'utf8');
+    expect(before).not.toMatch(/\n/);
+    await run(['--relation','987654321','--apply'],
+      {routesPath:file,fetchQuery:answering(relation(),PATH_WAY)});
+    const after=fs.readFileSync(file,'utf8');
+    expect(after).not.toMatch(/\n/);
+    expect(after.startsWith(before.slice(0,-2))).toBe(true);
+  });
+
   test('--apply appends exactly one feature',async()=>{
     const file=emptyRoutes();
     await run(['--relation','987654321','--apply'],
