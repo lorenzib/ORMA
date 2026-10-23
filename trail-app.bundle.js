@@ -15948,6 +15948,178 @@ function effectiveOverrides(profile, adjustOverride){
           "url": "https://www.openstreetmap.org/relation/19974725"
         }
       ]
+    },
+    'osm-6410700': {
+      // Hand audit: 23 October 2026. Starts in Niederrasen (Rasen-Antholz), not
+      // Bruneck, and crosses Welsberg-Taisten and Olang. Relation 6410700 lacked
+      // the final 1.6 km descent; the official loop comes from the routeLine
+      // override in data/verified-trail-overrides.json. Olang publishes no dog
+      // rule, so the national ordinance covers its 0.6 km of lane.
+      area: 'Rasen-Antholz / Rasun-Anterselva',
+      distance: 9.3,
+      elevation: 532,
+      hours: '3–3.5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Niederrasen parish church, the official start, in July (Harald Schneider, CC BY-SA 3.0).',
+        route: 'Official GPX 9.29 km, closed loop; rebuilt on OSM ways along it: 9.29 km, closed at Niederrasen church.',
+        routeNumbers: 'From Niederrasen church walk up through the village to the Oberstall farms, follow path 20 up to Kirmlehof, then the “Dolomitenblickrunde” signs (no number) to the Moarhof at Obergoste, and path 21 back down to Niederrasen.',
+        mapPoints: 'Start at Niederrasen parish church (official GPX start); refill fountain at the primary school, OSM node 13232510593, 26 m from the line at the start and finish.',
+        elevation: 'Official 9.3 km, 532 m up and down, 3 h 20, high point 1,517 m, low point 1,028 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Antholzertal, Dolomitenblickrunde (official page and GPX)',
+          'Gemeinde Rasen-Antholz, Verordnung über die Haltung von Hunden (Gemeinderat 10/2010), Art. 4 and 8',
+          'Gemeinde Welsberg-Taisten, Verordnung über die Haltung und das Führen von Hunden (2008/2015), Art. 4 and 8, and Mayor’s ordinance 03/2023',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Olang)',
+          'OpenStreetMap land-use, road and protected-area data along the loop'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 80,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 3 km on quiet asphalt farm lanes without pavement', 'Steep, rough forest track on the climb to Kirmlehof', 'Locked forestry barrier near Obergoste (walkers pass)'],
+      terrainType: 'Asphalt village and farm lanes, a steep forest track, then forest paths (official description and OSM)',
+      shadeDescription: 'Mostly spruce forest; the first 2 km of the climb and short stretches by the farms are open meadow.',
+      terrainDescription: 'Asphalt village and farm lanes, a steep forest track up to Kirmlehof, then forest paths and a lane along the panoramic return.',
+      waterDescription: 'The only tap is the refill fountain at Niederrasen school, at the start and finish. There are no streams on the way, so carry water for your dog.',
+      dogNotes: 'Rasen-Antholz and Welsberg-Taisten require a lead no longer than 1.5 m on all public land and a muzzle carried. Dogs must stay off farmed meadows from March to October and may not bathe in village fountains. Working farms at Oberstall, Kirmlehof and Obergoste: keep your dog close.',
+      tips: 'A medium walk with a steady 530 m climb, most of it in the first 4 km, then a long panoramic return facing the Dolomites. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Rasen-Antholz and Welsberg-Taisten require, and keep off the meadows from March to October. Fill up at the school fountain by the church: there is no water on the way.',
+      sourceLinks: [
+        { label: 'Antholzertal tourism board, Dolomitenblickrunde', url: 'https://www.antholzertal.com/de/activity/dolomitenblickrunde_211086' },
+        { label: 'Gemeinde Rasen-Antholz, dog regulation', url: 'https://www.gemeinde.rasenantholz.bz.it/it/Argomenti/Animale_domestico/Segreteria-_Ordinanza_sul_regolamento_della_tenuta_dei_cani_1' },
+        { label: 'Gemeinde Welsberg-Taisten, dog regulation', url: 'https://www.comune.monguelfo-tesido.bz.it/it/Amministrazione/Documenti_e_dati/Regolamento_-_detenzione_e_conduzione_dei_cani' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/6410700' }
+      ],
+      startPoint: { lat: 46.778215, lng: 12.050051, label: 'Niederrasen parish church (official start; parking by the church)' },
+      waterSources: [
+        { km: 0, lat: 46.778343, lng: 12.0503263, osmId: 'node/13232510593', label: 'Refill fountain at Niederrasen primary school' }
+      ],
+      desc: 'A forest loop above Niederrasen in the Antholz valley: up through the Oberstall farms and the woods on path 20 to Kirmlehof, along the panoramic “Dolomitenblickrunde” to Obergoste, and back down on path 21. The official route lists 9.3 km and 532 m of ascent.'
+    },
+    'osm-6404258': {
+      // Hand audit: 23 October 2026. Wholly in Olang, not Prags. The official
+      // walk is the tourism board’s 7.7 km Oberolang – Salla loop, not relation
+      // 6404258; its line comes from the routeLine override. Olang publishes no
+      // dog regulation: the board’s leash rule and the national ordinance apply,
+      // and the landscape plan (newPlan doc 4803) says nothing about dogs.
+      area: 'Olang / Valdaora',
+      distance: 7.7,
+      elevation: 332,
+      hours: '3',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Mown meadows above Oberolang with a hilltop church, August evening, 56 m from the line (corinasdavide, CC BY 3.0).',
+        route: 'Official GPX 7.66 km loop (start and end 47 m apart in Oberolang); rebuilt on OSM ways along it: 7.72 km.',
+        routeNumbers: 'From Oberolang follow path 39 east through the fields to the Sallahöfe, then return on the Bödenstraße forest road (no number) and path 20, as the official GPX and its figures do. The board’s text also allows returning the same way on path 39 (about 6.6 km).',
+        mapPoints: 'Start in the Oberolang village centre (official start 46.757554, 12.040268); drinking fountains OSM node 2206612489 at the start and node 7740656585 on the return into the village.',
+        elevation: 'Official 7.7 km, 332 m up and 335 m down, 2:55 h, high point 1,337 m, low point 1,071 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Olang, Spaziergang Oberolang – Salla – Oberolang (official page and GPX)',
+          'Tourismusverein Olang, Urlaub mit Hund (leash rule on hiking paths)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
+          'Landschaftsplan Olang, Durchführungsbestimmungen (newPlan doc 4803)',
+          'Province real land-use map and OpenStreetMap data along the loop'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['3.3 km of asphalt, mostly on the public Via Salla without a pavement', 'Rough forest track on the Bödenstraße', 'Extraction area beside the track near the end'],
+      terrainType: 'Asphalt lanes, farm tracks and a rough forest road (official surface statistics: 43% asphalt)',
+      shadeDescription: 'Open fields for the first 2 km on the way out, then mostly woodland on the higher Bödenstraße return. About half the walk is shaded.',
+      terrainDescription: 'Village lanes and the asphalt Via Salla, farm tracks and a short path on route 39, then a rough forest road back down. Nothing exposed or equipped.',
+      waterDescription: 'Fountains only in Oberolang at the start and finish; the route runs near the Brunstbach towards the end. Carry water for your dog.',
+      dogNotes: 'The Olang tourism board asks for dogs on a lead at all times on hiking paths and for walkers to stay on signed paths; Italian rules require a lead of at most 1.5 m and a muzzle carried in public places. Farms line route 39, so keep your dog close there.',
+      tips: 'Start in Oberolang and leave on path 39 through the fields to the Sallahöfe, coming back through the forest on the Bödenstraße: 7.7 km and 332 m of climbing, about three hours. The fields are open and sunny, so go early in summer. Keep your dog on a lead throughout and carry a muzzle; the only water is at the Oberolang fountains.',
+      sourceLinks: [
+        { label: 'Olang tourism board, Spaziergang Oberolang – Salla – Oberolang', url: 'https://www.olang.com/de/activity/spaziergang-oberolang-salla-oberolang_5019' },
+        { label: 'Outdooractive, official GPX (tour 16570427)', url: 'https://www.outdooractive.com/de/r/16570427' },
+        { label: 'Olang tourism board, Urlaub mit Hund', url: 'https://www.olang.com/de/planen-buchen/urlaub-mit-hund' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Landschaftsplan Olang, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/4803' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/6402570' }
+      ],
+      startPoint: { lat: 46.757554, lng: 12.040268, label: 'Oberolang village centre (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.7573827, lng: 12.0403817, osmId: 'node/2206612489', label: 'Drinking fountain at the Oberolang start' },
+        { km: 7.6, lat: 46.756784, lng: 12.04049, osmId: 'node/7740656585', label: 'Drinking fountain on the return into Oberolang' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.75787, lng: 12.04073, osmId: 'node/2206620034', name: 'Messnerwirt' },
+        { km: 0, lat: 46.75793, lng: 12.03947, osmId: 'node/1949475116', name: 'Picknick' },
+        { km: 0.1, lat: 46.75833, lng: 12.04059, osmId: 'node/13069305452', name: 'Pizza Point' }
+      ],
+      desc: 'A loop from Oberolang: out on path 39 across open fields to the Salla farms, and back through the forest on the Bödenstraße and path 20. The official route lists 7.7 km and 332 m of ascent.'
+    },
+    'santa-maddalena': {
+      // Hand audit: 23 October 2026. The official ODLES loop (3.2 km) replaces
+      // the 1.6 km OSM loop through the routeLine override. Guideposts surveyed
+      // in 2025 may also sign a shorter loop; the official page describes this
+      // one. Wholly in Villnöss, outside the Puez-Geisler park.
+      distance: 3.2,
+      elevation: 134,
+      hours: '1',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'St. Magdalena and its meadows from the Zanser Straße, early summer (Falk2, CC BY-SA 4.0).',
+        route: 'Official GPX 3.22 km, closed; rebuilt on OSM ways along it: 3.15 km, closed at Bergerplatz.',
+        routeNumbers: 'No number: follow the “Rundweg St. Magdalena” signs from Bergerplatz via Fallerhof and Kaserotthof to the church, take the road to Bühlerhof, then turn left onto the Sunnseitenweg across the meadows.',
+        mapPoints: 'Start on Bergerplatz (official GPX start); municipal drinking fountain OSM node 2429287832 on the square (seasonal).',
+        elevation: 'Official 3.21 km, 134 m up and down, 0:58 h, high point 1,348 m, low point 1,233 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'ODLES Dolomites, Circular hike St. Magdalena (official page and GPX)',
+          'Gemeinde Villnöss, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 16/2010), Art. 4 and 8',
+          'Landschaftsplan Villnöss, Durchführungsbestimmungen (newPlan doc 9783)',
+          'Province park boundaries (Puez-Geisler, not crossed) and OpenStreetMap farm and road data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 5,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 2 km on asphalt farm roads, hot in summer', 'Shared access roads without pavement (residents’ traffic, 30 km/h)', 'Short dirt steps on the meadow path', 'Paths can be icy in winter'],
+      terrainType: 'Asphalt farm roads (about 60%) and meadow paths',
+      shadeDescription: 'Almost entirely open meadow and village road at 1,230–1,350 m, with only a few trees near the church.',
+      terrainDescription: 'Easy loop on asphalt farm roads (about 60%) and compacted or dirt meadow paths with a few short steps; no exposed or equipped section.',
+      waterDescription: 'A municipal drinking fountain on Bergerplatz (spring to autumn) and a tap at the Naturparkhaus near the end; nothing in between, so carry water.',
+      dogNotes: 'Villnöss requires dogs on a lead of at most 1.5 m on all public paths, and bans them from cemeteries and from farmed meadows and fields: keep your dog on the path, out of the churchyard, and close through the Faller, Bühler and Profant farmyards, where animals may be near. Dogs may not bathe in the village fountains.',
+      tips: 'The official loop starts on Bergerplatz and climbs gently past the Faller and Kaserott farms to the church of St. Magdalena, then returns along the Sunnseitenweg: 3.2 km with about 134 m of ascent, about an hour. Dogs must be on a short lead (1.5 m at most) throughout and may not go onto the meadows or into the churchyard. There is almost no shade and much of it is tarmac, so avoid hot afternoons.',
+      sourceLinks: [
+        { label: 'ODLES Dolomites, Circular hike St. Magdalena', url: 'https://www.odlesdolomites.com/en/activities/48ACC63FE1421483734B750F6788CED9' },
+        { label: 'Gemeinde Villnöss, dog regulation', url: 'https://www.gemeinde.villnoess.bz.it/system/web/GetDocument.ashx?cts=1789663369&fileId=1048678' },
+        { label: 'Landschaftsplan Villnöss, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/9783' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11817704' }
+      ],
+      startPoint: { lat: 46.641264, lng: 11.715363, label: 'Bergerplatz, the central square of St. Magdalena (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.641471, lng: 11.714791, osmId: 'node/2429287832', label: 'Municipal drinking fountain on Bergerplatz', seasonal: true },
+        { km: 2.9, lat: 46.642557, lng: 11.710932, osmId: 'node/7612305685', label: 'Drinking-water tap at the Naturparkhaus, 116 m off the route' }
+      ],
+      desc: 'An easy village loop in St. Magdalena, Villnöss: past the Faller and Kaserott farms up to the church, along the road to Bühlerhof, and back across the meadows on the Sunnseitenweg below the Odle peaks. The official route lists 3.2 km and 134 m of ascent.'
     }
   };
 
