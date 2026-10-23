@@ -18683,12 +18683,14 @@
         ],
         date: '2026-10-23'
       },
-      shadeCoverage: 23,
-      heatRisk: 'high',
+      // Shade re-measured 24 October with the wood areas fetched whole (the
+      // first count, 23%, missed woods that reach beyond the map extract).
+      shadeCoverage: 47,
+      heatRisk: 'moderate',
       exposure: false,
       surfaceHazards: ['The open irrigation channel runs right beside the path', 'A suspension footbridge at the Gratsch end (km 4.3)', 'Orchards and vineyards on both sides, where dogs are not allowed in the growing season', 'Short stretches on farm lanes'],
       terrainType: 'A level earth and gravel path beside the irrigation channel, with a few short farm lanes',
-      shadeDescription: 'About a quarter is under trees or vine pergolas; the rest crosses open orchards and vineyards on a sunny south-facing slope.',
+      shadeDescription: 'About half is under trees, in patches of woodland and chestnut along the channel and under the vine pergolas; the rest crosses open orchards and vineyards on a sunny south-facing slope.',
       terrainDescription: 'An easy, almost level family walk on an earth and gravel path along the channel, through orchards and vineyards above Algund, with wide views over Meran.',
       waterDescription: 'A drinking fountain at the Kneipp station at the start and two near Gratsch at the end; the channel itself carries water in the irrigation season. Carry water on hot days.',
       dogNotes: 'Algund requires a lead of at most 1.5 m and a muzzle carried on all public paths, and dogs may not go into orchards, vineyards or meadows in the growing season. The national rule (lead of at most 1.5 m, muzzle carried) covers the last stretch in Tirol. No grazing animals are mapped on the route.',
@@ -23743,6 +23745,255 @@
       ],
       "desc": "A striking turquoise glacial lake below the Sorapiss, reached on path 215 from Passo Tre Croci and back the same way: officially 10.5 km and 4 hours, with 434 m of climb, rated for expert hikers. After a flat first section through the forest, the path crosses a more demanding stretch with metal ladders and exposed sections along a ledge protected by wire ropes, about 4 km in, before the lake and Rifugio Vandelli.\n\nCortina's police regulation requires dogs to be kept on a lead in all public areas, and most of the walk lies in the Natura 2000 site of the Antelao, Marmarole and Sorapiss, where the national rule applies: a lead of at most 1.5 m and a muzzle carried.",
       "tips": "The official route is for expert hikers and includes metal ladders and exposed ledges protected by wire ropes: only consider it with a small or very sure-footed dog you can lift or guide safely, and turn back if your dog is unsure. Keep your dog on a short lead (1.5 m at most) and carry a muzzle. Carry all the water you need: there is no reliable water on the way, and Rifugio Vandelli is closed out of season (it reopens on 20 June 2027). Parking at Passo Tre Croci fills early in summer, so the tourist board recommends the bus and an early start."
+    },
+    'osm-7424683': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 3).
+      // The official tour of the Tourismusverein Lana, Lana to Töll. The line
+      // crosses Lana (km 0–0.5), Tscherms (to km 2.1), Marling (to km 7.3),
+      // Algund and the last metres of Partschins. Lana (2010), Tscherms
+      // (Gemeinderat 18/2019) and Marling (44/2010) all require a lead of at
+      // most 1.5 m and a muzzle carried on public ground and keep dogs off
+      // farmland (Tscherms all year, signs or no signs; Lana and Marling in
+      // the growing season); Algund likewise (11/2010). Partschins publishes
+      // no rule, so the national dog ordinance covers its few metres. No
+      // biotope, Natura 2000 site or park on the line (landscape plan layers).
+      area: 'Lana – Marling / Lana – Marlengo',
+      distance: 10.5,
+      elevation: 150,
+      hours: '3.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A one-way walk along the Marlinger Waal from Lana above Tscherms and Marling to Töll; buses 213 and 211 bring walkers back to Lana by way of Meran.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path beside the channel above the orchards, in April (Benreis, CC BY-SA 4.0), filed as the Marlinger Waalweg.',
+        route: 'Official 10.5 km, Lana to Töll; the stored OSM line (relation 7424683) runs 9.6 km, from 40 m of the official start at the top of the Raffeinweg to 27 m of the official end at Töll (the official figure includes the climb up from Lana centre).',
+        routeNumbers: 'From the Ultnerstraße in Lana follow the “Marlinger Waalweg” signs (MW) up the Villenerweg and the Raffeingasse to the channel, then follow the Waalweg all the way above Tscherms and Marling to its end at Töll.',
+        mapPoints: 'Start at the top of the Raffeinweg above Lana, by the Waalheim car park (official start); drinking water at km 0.5 and km 4.7 (OSM nodes 10770850207, 4416462238).',
+        elevation: 'Official 10.5 km, 150 m up and down, 3 h 30 min, high point 550 m (Tourismusverein Lana und Umgebung, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Lana und Umgebung, Marlinger Waalweg ab Lana (Südtirol.info)',
+          'Gemeinde Lana, Verordnung über die Haltung von Hunden (2010), Art. 4 and 8',
+          'Gemeinde Tscherms, Verordnung über die Hundehaltung im Gemeindegebiet (Gemeinderat 18/2019), Art. 5 and 9',
+          'Gemeinde Marling, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat 44/2010), Art. 4 and 8',
+          'Gemeinde Algund, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 11/2010), Art. 4 and 8',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 7424683, surface, bridge, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 60,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The open irrigation channel runs right beside the path', 'A steep tarmac climb of about 200 m up the Raffeinweg to the channel, then steps near the start', 'Several small footbridges', 'Orchards and vineyards on both sides, where dogs are not allowed (in Tscherms at any time of year)', 'Not suitable for prams or wheelchairs'],
+      terrainType: 'A level earth and gravel path beside the irrigation channel, after a short steep climb from Lana',
+      shadeDescription: 'About three fifths runs through woodland and chestnut groves. The path faces east: the sun reaches it in the morning and many stretches are in shade by the afternoon, so on hot days walk it later in the day.',
+      terrainDescription: 'After a short, steep climb from Lana, an almost level walk of over 9 km along the historic irrigation channel at about 450–550 m, through orchards, vineyards, chestnut groves and woods above the Meran basin.',
+      waterDescription: 'Drinking fountains near the start (km 0.5) and above Marling (km 4.7), and plenty of inns along the way; the channel itself carries water in the irrigation season. Dogs may not bathe in public fountains.',
+      dogNotes: 'Lana, Tscherms, Marling and Algund all require a lead of at most 1.5 m and a muzzle carried on public paths, and keep dogs out of orchards, vineyards and meadows; in Tscherms that holds all year, signs or no signs. The national rule covers the last few metres in Partschins. The path passes farms such as the Greiterhof, so animals may be close.',
+      tips: 'From Lana centre follow the Marlinger Waalweg signs up the Raffeinweg to the channel, then walk the Waalweg to Töll: 10.5 km, almost level once you are up, about 3½ hours, and the bus back via Meran. Keep your dog on a short lead (1.5 m at most) and out of the orchards and vineyards. The path faces east, so in summer start in the afternoon, when much of it is in shade; there are fountains at km 0.5 and 4.7 and many inns on the way.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Marlinger Waalweg ab Lana (Tourismusverein Lana)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi5a86cc6e2f57ca04fa0c686433aee148.marlinger-waalweg-ab-lana.tscherms' },
+        { label: 'Gemeinde Lana, Haltung von Hunden', url: 'https://www.gemeinde.lana.bz.it/de/Verwaltung/Dokumente/Haltung_von_Hunden' },
+        { label: 'Gemeinde Tscherms, Verordnung über die Hundehaltung', url: 'https://www.gemeinde.tscherms.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Hundehaltung_im_Gemeindegebiet' },
+        { label: 'Gemeinde Marling, Verordnung über die Führung und Haltung von Hunden', url: 'https://www.gemeinde.marling.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Fuehrung_und_Haltung_von_Hunden' },
+        { label: 'Gemeinde Algund, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.algund.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/7424683' }
+      ],
+      startPoint: { lat: 46.6263504, lng: 11.1383758, label: 'Top of the Raffeinweg above Lana, by the Waalheim car park (official start; signed from the Ultnerstraße)' },
+      waterSources: [
+        { km: 0.5, lat: 46.630741, lng: 11.14033, osmId: 'node/10770850207', label: 'Drinking fountain above Lana' },
+        { km: 4.7, lat: 46.6600171, lng: 11.1352349, osmId: 'node/4416462238', label: 'Drinking fountain above Marling' }
+      ],
+      desc: 'The longest irrigation-channel walk around Meran: after a short climb from Lana, almost level along the Marlinger Waal above Tscherms and Marling to Töll, through orchards, vineyards, chestnut groves and woods with views over the Meran basin. The official route lists 10.5 km and 150 m of ascent.'
+    },
+    'osm-6453504': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 3).
+      // The official family loop of the Tourismusverein Algund at Aschbach
+      // (Algund, not Naturns), from the cable car top station. Algund's dog
+      // regulation (11/2010) requires a lead of at most 1.5 m and a muzzle
+      // carried (Art. 4), keeps dogs off farmland in the growing season and
+      // requires a lead and muzzle on public transport (Art. 7, 8). No
+      // biotope, Natura 2000 site or park on the line.
+      area: 'Aschbach, Algund / Lagundo',
+      distance: 3.2,
+      elevation: 152,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Aschbach cable car top station along path 27A towards the Egger farms and round the forest nature trail.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Aschbach village by the start, in July (Plentn, CC0), 105 m from the line.',
+        route: 'Official loop 3.2 km from the Aschbach cable car top station; the stored OSM line (relation 6453504) is the same loop, 3.3 km, closed within 1 m of the official start.',
+        routeNumbers: 'From the cable car top station follow path 27A towards the Eggerhöfe for about five minutes, then the “Walderlebnispfad Aschbach” signs round the loop and back to the station.',
+        mapPoints: 'Start at the Aschbach cable car top station (official start and end); drinking fountains at the start (OSM nodes 4881672757, 6442027816).',
+        elevation: 'Official 3.2 km, 152 m up and down, 1 h, 1,339–1,429 m (Tourismusverein Algund, Südtirol.info); a second board record of the same loop gives 3.4 km and 1 h 10.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Algund, Walderlebnispfad Aschbach (Südtirol.info)',
+          'Gemeinde Algund, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 11/2010), Art. 4, 7 and 8',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 6453504, surface, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 69,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Forest tracks and paths with some roots and stones', 'Short stretches on the Aschbach village road at the start', 'Hunting stands and a game-feeding place by the path'],
+      terrainType: 'Gravel forest tracks and woodland paths, with a short stretch of village road',
+      shadeDescription: 'About two thirds is in open woodland; the rest crosses clearings with views over Partschins and the Texelgruppe.',
+      terrainDescription: 'An easy family loop at about 1,300–1,430 m on forest tracks and paths, with nature stations and information boards about the forest.',
+      waterDescription: 'Drinking fountains at the cable car station and in Aschbach village at the start; none on the loop itself, so carry water.',
+      dogNotes: 'Algund requires a lead of at most 1.5 m and a muzzle carried on all public paths, and dogs may not go onto meadows in the growing season. On the cable car, as on all public transport, dogs must be on a lead and muzzled. The loop starts past the Oberhauser, Tholer and Thaler farms, so farm animals may be close.',
+      tips: 'Take the cable car from Rabland up to Aschbach (or drive up), follow path 27A for five minutes and then the Walderlebnispfad signs round the loop: 3.2 km, about 150 m of climbing, an hour. Keep your dog on a short lead (1.5 m at most), and on the lead and muzzled in the cable car. It is cool and shady at 1,300 m, a good summer walk; fill up at the fountain by the station.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Walderlebnispfad Aschbach (Tourismusverein Algund)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiaf7e4d49bf25ed03c13cb80e7a7cf28c.walderlebnispfad-aschbach.aschbach' },
+        { label: 'Gemeinde Algund, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.algund.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/6453504' }
+      ],
+      startPoint: { lat: 46.6447379, lng: 11.075215, label: 'Aschbach cable car top station (official start and end)' },
+      waterSources: [
+        { km: 0, lat: 46.644894, lng: 11.0755645, osmId: 'node/4881672757', label: 'Drinking fountain by the cable car station' },
+        { km: 0.1, lat: 46.6434548, lng: 11.0730271, osmId: 'node/6442027816', label: 'Drinking fountain in Aschbach' }
+      ],
+      desc: 'A family forest trail at Aschbach, high above Algund and Rabland: a short loop from the cable car through open woods and clearings, with nature stations and views over Partschins and the Texelgruppe. The official route lists 3.2 km and 152 m of ascent.'
+    },
+    'osm-1671736': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 3).
+      // The official walk of the Tourismusverein Schenna, Verdins to St.
+      // Georgen; the line is turned to run that way by the routeLine override.
+      // Wholly in Schenna: its dog regulation (33/2010) requires a lead of at
+      // most 1.5 m and a muzzle carried (Art. 4) and keeps dogs off farmland
+      // in the growing season (Art. 8). No biotope, Natura 2000 site or park
+      // on the line.
+      area: 'Schennaberg, Schenna / Scena',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'St. Georgen church at the end of the walk, in July (Ymblanter, CC BY-SA 4.0), 24 m from the line.',
+        route: 'Official 8 km, Verdins to St. Georgen; the stored OSM line (relation 1671736) runs 7.9 km between the same two points (within 10 m of each), turned to run the official way.',
+        routeNumbers: 'From Verdins church take the Wiesersteig (path 16) to the farm road, turn right and climb past the Gasthof Hasenegg to the Hoferhof, up the meadow to Vallplatz and the Holznerhof, then follow the Höfeweg past the Zmailerhof, Rastlhof and Salfgut down to St. Georgen.',
+        mapPoints: 'Start in Verdins behind the parish church, bus stop Verdins (official start); drinking water in Verdins (OSM node 7318188908, km 0.3), at the Kleebrunnen (node 12192996889, km 5.6) and in St. Georgen (node 7318189189, km 7.9).',
+        elevation: 'Official 8 km, 450 m up and 550 m down, 2 h 30 min, high point 1,100 m (Tourismusverein Schenna, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Schenna, Der Höfeweg am Schennaberg (Südtirol.info)',
+          'Gemeinde Schenna, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 33/2010), Art. 4 and 8',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 1671736, surface, farm, woodland and road data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 44,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steep climb up through a meadow to the Hoferhof (the board warns of it)', 'About 3.5 km on farm roads and lanes open to cars', 'Narrow paths (about 0.8 m) on the Höfeweg itself', 'Working farmyards all along the route'],
+      terrainType: 'Farm roads, tracks and narrow paths between hill farms, about two fifths tarmac',
+      shadeDescription: 'Just under half is wooded; the farm meadows and the roads round the hill farms are open and sunny.',
+      terrainDescription: 'A hill-farm walk on the Schennaberg at 710–1,100 m: a steady climb from Verdins, including a steep stretch through a meadow, then farm tracks and paths past historic farms and down to St. Georgen.',
+      waterDescription: 'Drinking water in Verdins at the start, at the Kleebrunnen near the Zmailerhof (km 5.6) and in St. Georgen at the end, and many farm inns on the way.',
+      dogNotes: 'Schenna requires a lead of at most 1.5 m and a muzzle carried on all public paths, and dogs may not go onto meadows, fields or orchards in the growing season, so keep your dog on the path where it crosses the meadow to Vallplatz. The route runs through a string of working farms (the Hasenegg, Hoferhof, Vallplatzer, Holznerhof, Zmailerhof, Rastlhof and Salfgut), so farm animals and farm dogs may be close.',
+      tips: 'Take bus 231 to Verdins and start behind the church on the Wiesersteig (path 16), climb past the Hasenegg and the Hoferhof and follow the Höfeweg past the farms down to St. Georgen: 8 km, 450 m up and 550 m down, about 2½ hours. Keep your dog on a short lead (1.5 m at most), especially through the farmyards and across the meadow. Walk down to Schenna or take the bus back from St. Georgen.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Der Höfeweg am Schennaberg (Tourismusverein Schenna)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoic641c56811b44009cd5195bd1a4c2a1c.der-hoefeweg-am-schennaberg.schennaberg' },
+        { label: 'Gemeinde Schenna, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.schenna.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/1671736' }
+      ],
+      startPoint: { lat: 46.71199, lng: 11.20477, label: 'Verdins, behind the parish church, bus stop Verdins (official start)' },
+      waterSources: [
+        { km: 0.3, lat: 46.712454, lng: 11.20496, osmId: 'node/7318188908', label: 'Drinking fountain on the Verdins village square' },
+        { km: 5.6, lat: 46.6833207, lng: 11.2082948, osmId: 'node/12192996889', label: 'Kleebrunnen' },
+        { km: 7.9, lat: 46.6837128, lng: 11.1979388, osmId: 'node/7318189189', label: 'Drinking fountain in St. Georgen' }
+      ],
+      rifugi: [
+        { km: 0.4, lat: 46.71251, lng: 11.20469, osmId: 'node/4419224555', name: 'Gasthaus Dorfstub’m' },
+        { km: 0.5, lat: 46.7129, lng: 11.20513, osmId: 'node/12209161960', name: 'Wirtshaus St. Urban' },
+        { km: 1.3, lat: 46.70979, lng: 11.20902, osmId: 'node/528747722', name: 'Gasthof Hasenegg' },
+        { km: 2.1, lat: 46.70825, lng: 11.21361, osmId: 'way/123141926', name: 'Jausenstation Bachlerhof' },
+        { km: 2.6, lat: 46.70633, lng: 11.2097, osmId: 'node/1383440261', name: 'Vallplatzerhof' },
+        { km: 5, lat: 46.68805, lng: 11.20927, osmId: 'node/1370440487', name: 'Zmailer Hof' },
+        { km: 6.4, lat: 46.6848, lng: 11.20491, osmId: 'node/1370491067', name: 'Gasthof Rastlhof' },
+        { km: 7.1, lat: 46.68083, lng: 11.20483, osmId: 'way/351043931', name: 'Buschenschank Salfgut' },
+        { km: 7.9, lat: 46.68383, lng: 11.19831, osmId: 'node/528765366', name: 'Restaurant - Cafe Georgenhof' }
+      ],
+      desc: 'A walk past the historic hill farms of the Schennaberg above Meran: from Verdins up past the Hasenegg and the Hoferhof to Vallplatz, then along the Höfeweg past the Holznerhof, Zmailerhof, Rastlhof and Salfgut and down to St. Georgen, with wide views over the Meran basin. The official route lists 8 km, 450 m of ascent and 550 m of descent.'
+    },
+    'osm-5597577': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 3).
+      // The official nature trail of the Tourismusgenossenschaft Naturns,
+      // from Tschirland. Naturns publishes no dog rule, so the national dog
+      // ordinance (6 August 2013, extended to September 2027) applies. The
+      // loop crosses the Tschirlander Hoad natural monument (NDM 057_G05, a
+      // wooded pasture) at km 2.9–3.4; the Naturns landscape plan only
+      // forbids damaging it (Art. 3). No biotope, Natura 2000 site or park.
+      area: 'Tschirland, Naturns / Naturno',
+      distance: 4.6,
+      elevation: 216,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Tschirland past the Restaurant Ramilia, up through the woods to the Gsindboden viewpoint and back down by the Tschirlander Heide.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Tschirland, the start village, from the hillside above, in September (Whgler, CC BY-SA 4.0); no licensed photo of the trail itself was found.',
+        route: 'Official loop 4.6 km from Tschirland; the stored OSM line (relation 5597577, Rundweg Gsindboden) is the same loop, 4.3 km, starting 140 m from the official start in the village centre.',
+        routeNumbers: 'No route number: from Tschirland follow the signs along the farm road to the Restaurant Ramilia, then the nature-trail signs up through the woods past the quarry adit and the rest area to the Gsindboden platform, and down by the Tschirlander Heide back to the village.',
+        mapPoints: 'Start in Tschirland village centre by the Tschirlander Hof, Citybus 264 stop Tschirlander Hof (official start); drinking water at the start (OSM node 4881698545).',
+        elevation: 'Official 4.6 km, 216 m up and down, 1 h 25 min, 579–776 m (Tourismusgenossenschaft Naturns, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Naturns, Naturlehrpfad Gsindboden (Südtirol.info)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
+          'Landschaftsplan Naturns, Schutzbestimmungen, Art. 3 and 5 (newPlan doc 6310)',
+          'Province landscape-plan layers: Tschirlander Hoad natural monument; no biotope, Natura 2000 site or park',
+          'OpenStreetMap relation 5597577, surface, barrier and woodland data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 36,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 1 km on the farm road out of Tschirland, open to cars', 'A gate into the wooded pasture of the Tschirlander Hoad (km 2.9), where animals may graze', 'A steeper woodland path between km 2 and 2.7'],
+      terrainType: 'Farm road, forest tracks and woodland paths',
+      shadeDescription: 'The climb to the Gsindboden is through shady woods; the farm road out of Tschirland and the Tschirlander Heide are open, about a third of the loop in all under trees.',
+      terrainDescription: 'A moderate nature-trail loop at 580–780 m: out along a farm road between meadows and orchards, up through mixed woodland to the Gsindboden viewpoint, and down across the open Tschirlander Heide.',
+      waterDescription: 'A drinking fountain in Tschirland at the start; none on the loop, so carry water.',
+      dogNotes: 'Naturns has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. The loop crosses the Tschirlander Hoad, a protected wooded pasture behind a gate, where grazing animals may be about; keep your dog on the lead there and close the gate behind you.',
+      tips: 'Take Citybus 264 from Naturns to Tschirlander Hof, follow the farm road to the Restaurant Ramilia and then the nature-trail signs up to the Gsindboden viewpoint and back: 4.6 km, about 220 m of climbing, an hour and a half. Keep your dog on a short lead (1.5 m at most) and carry a muzzle; take particular care in the wooded pasture of the Tschirlander Hoad. Bring water: the only fountain is at the start.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Naturlehrpfad Gsindboden (Tourismusgenossenschaft Naturns)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoid182a311dc9225339ed6333778e0dda1.naturlehrpfad-gsindboden.naturns' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Landschaftsplan Naturns, Schutzbestimmungen und Nutzungsvorschriften (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/6310' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/5597577' }
+      ],
+      startPoint: { lat: 46.64337, lng: 10.99014, label: 'Tschirland village centre by the Tschirlander Hof, Citybus 264 stop Tschirlander Hof (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.6435392, lng: 10.990281, osmId: 'node/4881698545', label: 'Drinking fountain in Tschirland' }
+      ],
+      desc: 'A nature trail above Tschirland near Naturns: out through meadows and orchards, up through the woods past an old quartz quarry to the Gsindboden viewpoint over the Vinschgau, the Sonnenberg farms and the Schnalstal glaciers, and back across the Tschirlander Heide. The official route lists 4.6 km and 216 m of ascent.'
     }
   };
 
