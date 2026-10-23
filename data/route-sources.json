@@ -74,6 +74,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-11814834": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi989d38877e70605be1a85f34d9ce0f7c.geotrail-pufels.st--michael---kastelruth",
+      "publisher": "Seiser Alm Marketing (via Südtirol.info / IDM Südtirol)",
+      "name": "Geotrail Pufels",
+      "quote": "Die Wanderung startet beim Panider Sattel und führt der Beschilderung „Geotrail“ folgend über die alte Gemeindestraße nach Pufels und wieder zurück zum Ausgangspunkt.",
+      "foundBy": "orma-route-audit",
+      "verifiedAt": "2026-10-23T18:00:00.000Z"
+    },
     "osm-11839597": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoie48a748b7f4497eb984622ba50b6823a.fenn-promenade.sill",
       "publisher": "Tourismusgenossenschaft Ritten (via Südtirol.info / IDM Südtirol)",
@@ -81,6 +89,14 @@
       "quote": "Beim Festplatz hält man sich rechts (Mark. Nr. 20) und folgt dem Weg bis zur Aussichtsplattform, die zum Verweilen einlädt.",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-11860429": {
+      "url": "https://www.altabadia.org/de/tour/oadetail/oa/weilerrundgang-in-la-val",
+      "publisher": "Società Cooperativa Turistica Alta Badia",
+      "name": "Weilerrundgang in La Val",
+      "quote": "Ausgehend von der Kirche von La Val geht es entlang der Straße in Richtung Cians hinauf.",
+      "foundBy": "orma-route-audit",
+      "verifiedAt": "2026-10-23T18:00:00.000Z"
     },
     "osm-12118490": {
       "url": "https://www.explore-savoie.com/randonnees-et-balades/sentier-botanique-des-plagnes-7628788/",
