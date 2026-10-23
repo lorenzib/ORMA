@@ -6,8 +6,8 @@ const {pullRequestNumber,recordPublicationPullRequestStates}=require('../workflo
 
 async function fetchPullRequestState(url,env,fetchImpl){
   const number=pullRequestNumber(url);
-  if(!number)return null;
-  const repository=env.GITHUB_REPOSITORY||'benedettalorenzi/dolopaws';
+  const repository=/github\.com\/([^/]+\/[^/]+)\/pull\//.exec(String(url))?.[1]||env.GITHUB_REPOSITORY;
+  if(!number||!repository)return null;
   const response=await fetchImpl(`https://api.github.com/repos/${repository}/pulls/${number}`,{
     headers:{accept:'application/vnd.github+json',...(env.GH_TOKEN?{authorization:`Bearer ${env.GH_TOKEN}`}:{})},
   });

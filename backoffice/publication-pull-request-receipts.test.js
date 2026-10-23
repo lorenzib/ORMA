@@ -4,9 +4,9 @@ const {pullRequestNumber,recordPublicationPullRequestStates}=require('./workflow
 const {main}=require('./cli/reconcile-publication-pull-requests');
 const {buildDashboardModel}=require('./dashboard-model');
 
-const OPEN='https://github.com/benedettalorenzi/dolopaws/pull/950';
-const CLOSED='https://github.com/benedettalorenzi/dolopaws/pull/949';
-const MERGED='https://github.com/benedettalorenzi/dolopaws/pull/925';
+const OPEN='https://github.com/lorenzib/ORMA/pull/950';
+const CLOSED='https://github.com/lorenzib/ORMA/pull/949';
+const MERGED='https://github.com/lorenzib/ORMA/pull/925';
 
 function artifact(){
   return {contractVersion:'1.0.0',requests:[
@@ -50,9 +50,9 @@ describe('publication pull request receipts',()=>{
     let stored=artifact();const writes=[];const asked=[];
     const store={getArtifact:async()=>stored,setArtifact:async(id,data)=>{writes.push(id);stored=data;}};
     const answers={949:{state:'closed',merged_at:null,closed_at:'2026-10-23T12:57:52Z'},925:{state:'closed',merged_at:'2026-10-22T09:50:54Z'},950:{state:'open',merged_at:null}};
-    const fetch=async url=>{const n=Number(url.split('/').pop());asked.push(n);return {ok:true,json:async()=>answers[n]};};
+    const fetch=async url=>{expect(url).toContain('/repos/lorenzib/ORMA/pulls/');const n=Number(url.split('/').pop());asked.push(n);return {ok:true,json:async()=>answers[n]};};
     const log=jest.spyOn(console,'log').mockImplementation(()=>{});
-    await main({env:{GITHUB_REPOSITORY:'benedettalorenzi/dolopaws'},store,fetch});
+    await main({env:{GITHUB_REPOSITORY:'lorenzib/ORMA'},store,fetch});
     expect(asked.sort()).toEqual([925,949,950]);
     expect(writes).toEqual(['publication-requests']);
     asked.length=0;writes.length=0;
