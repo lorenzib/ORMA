@@ -506,6 +506,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-1671736": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoic641c56811b44009cd5195bd1a4c2a1c.der-hoefeweg-am-schennaberg.schennaberg",
+      "publisher": "Tourismusverein Schenna via IDM suedtirol.info",
+      "name": "Der Höfeweg am Schennaberg",
+      "quote": "Strecke 8 Km Dauer 2h:30 min Aufstieg 450 m Abstieg 550 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-1780768": {
       "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoiedf6cb529c8a7bd40bd3a49332d95f0a.the--talblickweg--path-in-the-val-casies-valley.tesido-taisten",
       "publisher": "South Tyrol Tourism / Tourism Association Gsiesertal Valley-Welsberg-Taisten",
@@ -626,6 +634,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
+    "osm-5597577": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoid182a311dc9225339ed6333778e0dda1.naturlehrpfad-gsindboden.naturns",
+      "publisher": "Tourismusgenossenschaft Naturns via IDM suedtirol.info",
+      "name": "Naturlehrpfad Gsindboden",
+      "quote": "Strecke 4.6 Km Dauer 1h:25 min Aufstieg 216 m Abstieg 216 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-6244965": {
       "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoi432cc269cc7e3628df3ccfeb7ab84799.the-story-of-stones.plata-platten---falzes-pfalzen",
       "publisher": "IDM Südtirol / Tourismusverband Bruneck Kronplatz – Tourist Office Pfalzen",
@@ -674,6 +690,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "osm-6453504": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiaf7e4d49bf25ed03c13cb80e7a7cf28c.walderlebnispfad-aschbach.aschbach",
+      "publisher": "Tourismusverein Algund via IDM suedtirol.info",
+      "name": "Walderlebnispfad Aschbach",
+      "quote": "Strecke 3.2 Km Dauer 1h:00 min Aufstieg 152 m Abstieg 152 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-6529356": {
       "url": "https://www.muntdarina.com/aktiv/wandern/",
       "publisher": "Munt da Rina / Welschellener Alm (Bernadetta Winkler)",
@@ -713,6 +737,14 @@
       "quote": "L’escursione lungo L’Anello dei Colli (segnavia n. 33, colori bianco-verde) inizia presso il Bivio Pellegrini (m 1820) e si sviluppa inizialmente in direzione sud sulla vecchia strada militare di Val da Porte, cui segue, dopo un centinaio di metri, una netta deviazione verso est (variante anello 33)",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
+    "osm-7424683": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi5a86cc6e2f57ca04fa0c686433aee148.marlinger-waalweg-ab-lana.tscherms",
+      "publisher": "Tourismusverein Lana und Umgebung via IDM suedtirol.info",
+      "name": "Marlinger Waalweg ab Lana",
+      "quote": "Strecke 10.5 Km Dauer 3h:30 min Aufstieg 150 m Abstieg 150 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-7426648": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi828d222799944e938274714fea8aea0a.algunder-waalweg.algund",
