@@ -13,13 +13,38 @@ const savedHtml = fs.readFileSync(path.join(root, 'saved.html'), 'utf8');
 
 describe('standalone draft route planner', () => {
   test('is entered from Explore and absent from trail detail', () => {
-    // "Draft a loop" now lives inside the "+ New" create menu in the toolbar.
-    expect(homeHtml).toContain('href="route-planner.html">Draft a loop');
+    // Named for what it does -- loops, one-way and out and back -- and marked
+    // as experimental, in the menu under Record a walk.
+    expect(homeHtml).toContain('href="route-planner.html">Draw your own route <span class="li-menu-badge">Experimental</span><small>Loop, one-way or out and back</small>');
+    expect(homeHtml).not.toContain('Draft a loop');
     expect(homeHtml).toContain('li-plan-route');
     expect(homeHtml.indexOf('li-plan-route')).toBeLessThan(homeHtml.indexOf('class="li-body"'));
     expect(detailHtml).not.toContain('id="mapLoopComposerBtn"');
     expect(detailHtml).not.toContain('id="mapLoopComposerPanel"');
     expect(detailSource).not.toContain('    initLoopComposer(map, t);');
+  });
+
+  test('the homepage map opens the planner on the area on screen', () => {
+    // A link, not a click handler, so a new tab gets the same place; its
+    // address follows the map.
+    expect(homeHtml).toContain('<a id="homeMapDrawBtn" class="li-map-draw" href="route-planner.html">');
+    expect(homeHtml.indexOf('id="homeMapDrawBtn"')).toBeGreaterThan(homeHtml.indexOf('id="trailMapWrap"'));
+    const homeSource = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
+    expect(homeSource).toContain("trailMapInstance.on('moveend', syncDrawLink);");
+    expect(homeSource).toContain('route-planner.html?lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}');
+  });
+
+  test('starts at the view it is given, and ignores one it cannot use', () => {
+    const body = plannerSource.match(/  function requestedView\(\)\{[\s\S]*?\n  \}\n/)[0];
+    const view = search => new Function('location', `${body}; return requestedView();`)({ search });
+    expect(view('?lat=46.69900&lng=12.08530&z=13.50')).toEqual({ center:[12.0853, 46.699], zoom:13.5 });
+    expect(view('?lat=46.7&lng=12.1')).toEqual({ center:[12.1, 46.7], zoom:12 });
+    expect(view('?lat=46.7&lng=12.1&z=30').zoom).toBe(16);
+    expect(view('')).toBeNull();
+    expect(view('?lat=&lng=12')).toBeNull();
+    expect(view('?lat=95&lng=12')).toBeNull();
+    expect(view('?route=abc')).toBeNull();
+    expect(plannerSource).toContain('...requestedView(),');
   });
 
   test('uses geographic coverage only for the bundled fallback graph', () => {
