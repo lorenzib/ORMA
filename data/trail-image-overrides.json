@@ -747,18 +747,18 @@
     },
     {
       "id": "osm-12150790",
-      "approvedReviewId": "commons-osm-12150790",
-      "approvedAt": "2026-09-07T10:08:30.618Z",
+      "approvedReviewId": "hand-audit-osm-12150790",
+      "approvedAt": "2026-10-23T17:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-12150790-buchholz.jpg",
-        "heroImage": "images/trails/osm-12150790-buchholz.jpg",
-        "imageAlt": "The village of Buchholz among vineyards and orchards on a wooded slope, its church tower standing above the terraces.",
-        "imageCredit": "Buchholz, Salurn",
-        "imageCreditText": "Buchholz, Salurn by Syrio",
+        "imageIcon": "images/trails/osm-12150790-via-crucis.jpg",
+        "heroImage": "images/trails/osm-12150790-via-crucis.jpg",
+        "imageAlt": "A cobbled path climbing through woodland past a small whitewashed Stations of the Cross chapel above Salurn",
+        "imageCredit": "The Stations of the Cross path above Salurn",
+        "imageCreditText": "The Stations of the Cross path above Salurn by Syrio",
         "imageCreator": "Syrio",
         "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pochi.jpg",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Salorno_-_Via_Crucis_01.jpg",
         "imageSourceType": "licensed-source"
       }
     },

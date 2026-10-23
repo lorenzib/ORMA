@@ -98,6 +98,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T18:00:00.000Z"
     },
+    "osm-12150790": {
+      "url": "https://www.castelfeder.info/de/castelfeder/touren/rid-64923703-.html",
+      "publisher": "Tourismusverein Castelfeder / Südtirols Süden",
+      "name": "Kapellenrunde Salurn",
+      "quote": "Leicht · Strecke 2,7 km · Dauer 1:00 h · Aufstieg 194 hm · Nach Regen können einzelne Abschnitte, insbesondere im Bereich des Wasserfalls, rutschig sein.",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
     "osm-12164395": {
       "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428752",
       "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
