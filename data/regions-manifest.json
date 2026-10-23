@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-23T09:09:40.244Z",
+  "generatedAt": "2026-10-23T09:36:39.035Z",
   "regions": {
     "dolomites": {
       "trailCount": 110,
-      "trails": "data/regions/dolomites-trails.js?v=81e5b6052935",
+      "trails": "data/regions/dolomites-trails.js?v=f5e0c0d7ed84",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=26654e90f48e",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
-        "santa-maddalena": "data/trail-details/santa-maddalena.js?v=9d2293a78dd1",
+        "santa-maddalena": "data/trail-details/santa-maddalena.js?v=f63a5a0fedde",
         "tre-cime": "data/trail-details/tre-cime.js?v=9e1afb53eb79",
         "cadini": "data/trail-details/cadini.js?v=518feab8276d",
         "prato-piazza": "data/trail-details/prato-piazza.js?v=3a525e6fbada",
@@ -18,7 +18,7 @@
         "lago-carezza": "data/trail-details/lago-carezza.js?v=0dec405e1f12",
         "lago-sorapis": "data/trail-details/lago-sorapis.js?v=873824962623",
         "valley-view": "data/trail-details/valley-view.js?v=9611d5921a8e",
-        "piancavallo": "data/trail-details/piancavallo.js?v=d6875e7a1bdb",
+        "piancavallo": "data/trail-details/piancavallo.js?v=a7638476af84",
         "geotrail-bulla": "data/trail-details/geotrail-bulla.js?v=238f58e5c54a",
         "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=d61340fd3f92",
         "sentiero-hans-e-paula-steger": "data/trail-details/sentiero-hans-e-paula-steger.js?v=528a743b999c",
@@ -124,7 +124,7 @@
     },
     "savoy": {
       "trailCount": 53,
-      "trails": "data/regions/savoy-trails.js?v=4873542e91b4",
+      "trails": "data/regions/savoy-trails.js?v=e83aae3fb449",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=07be5ff5d5e1",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=6206ef4046f2",
@@ -164,21 +164,21 @@
         "osm-14381584": "data/trail-details/osm-14381584.js?v=0eaa726651e1",
         "osm-14381788": "data/trail-details/osm-14381788.js?v=97d639406bd4",
         "osm-14381930": "data/trail-details/osm-14381930.js?v=3108aafe5615",
-        "osm-15321049": "data/trail-details/osm-15321049.js?v=317653540173",
+        "osm-15321049": "data/trail-details/osm-15321049.js?v=e9ecfad6b6e3",
         "osm-15321786": "data/trail-details/osm-15321786.js?v=a31faec4329e",
         "osm-15535697": "data/trail-details/osm-15535697.js?v=6bdf595a9fe0",
         "osm-16180587": "data/trail-details/osm-16180587.js?v=9568d97192d9",
-        "osm-16218739": "data/trail-details/osm-16218739.js?v=fd94792d3432",
+        "osm-16218739": "data/trail-details/osm-16218739.js?v=da3187ddaebb",
         "osm-16490407": "data/trail-details/osm-16490407.js?v=41562742c742",
         "osm-19064561": "data/trail-details/osm-19064561.js?v=beaaff928c3e",
         "osm-19095412": "data/trail-details/osm-19095412.js?v=34cf9244744f",
         "osm-19095413": "data/trail-details/osm-19095413.js?v=f57e02cc2435",
         "osm-19531872": "data/trail-details/osm-19531872.js?v=a3c92dd6619e",
         "osm-19541366": "data/trail-details/osm-19541366.js?v=c8b0626c3bf0",
-        "osm-19661726": "data/trail-details/osm-19661726.js?v=171461310c0e",
+        "osm-19661726": "data/trail-details/osm-19661726.js?v=c375e1b51dc8",
         "osm-19760372": "data/trail-details/osm-19760372.js?v=454187791767",
         "osm-19855818": "data/trail-details/osm-19855818.js?v=ff63e8b20f84",
-        "osm-21021130": "data/trail-details/osm-21021130.js?v=d99a8f2a0adb"
+        "osm-21021130": "data/trail-details/osm-21021130.js?v=5b7726fef80c"
       },
       "water": "data/regions/savoy-water.geojson",
       "hutsBars": "data/regions/savoy-huts-bars.geojson",
