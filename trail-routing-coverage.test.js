@@ -34,10 +34,12 @@ describe('trail walking-route coverage', () => {
     );
     expect(expected.every(id => publishedIds.has(id))).toBe(true);
     expect(coverage.maxWalkingRouteM).toBe(5000);
+    // The five-kilometre graph reaches more starting points than a package's
+    // map corridor, so it wins where a trail has both.
     Object.entries(coverage.trails).forEach(([id, entry]) => {
-      expect(entry.graphUrl).toBe(packaged.includes(id)
-        ? `offline/packages/${id}/footpath-network.json`
-        : `routing-graphs/${id}.json`);
+      expect(entry.graphUrl).toBe(online.includes(id)
+        ? `routing-graphs/${id}.json`
+        : `offline/packages/${id}/footpath-network.json`);
       expect(entry.networkStatus).toBe('mapped');
       expect(entry.nodeCount).toBeGreaterThan(1);
     });

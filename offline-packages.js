@@ -1,20 +1,21 @@
 (function(){
   'use strict';
 
-  const PACKAGES = {
-    'lago-carezza': {
-      name: 'Lago di Carezza Loop',
-      manifestUrl: '/offline/packages/lago-carezza/manifest.json',
-      trailUrl: '/trail.html?id=lago-carezza',
-      offlineUrl: '/offline/trail.html?id=lago-carezza',
-    },
-    'alpe-siusi': {
-      name: 'Alpe di Siusi Meadow Loop',
-      manifestUrl: '/offline/packages/alpe-siusi/manifest.json',
-      trailUrl: '/trail.html?id=alpe-siusi',
-      offlineUrl: '/offline/trail.html?id=alpe-siusi',
-    },
+  // Every trail with a package under offline/packages/: the two pilots and
+  // each Verified trail. Written by scripts/build-offline-packages.js from the
+  // manifests; do not edit the block by hand.
+  // <offline-package-registry>
+  const PACKAGE_NAMES = {
+    'alpe-siusi': "Alpe di Siusi Meadow Loop",
+    'lago-carezza': "Lago di Carezza Loop",
   };
+  // </offline-package-registry>
+  const PACKAGES = Object.freeze(Object.fromEntries(Object.keys(PACKAGE_NAMES).map(trailId => [trailId, Object.freeze({
+    name: PACKAGE_NAMES[trailId],
+    manifestUrl: `/offline/packages/${trailId}/manifest.json`,
+    trailUrl: `/trail.html?id=${trailId}`,
+    offlineUrl: `/offline/trail.html?id=${trailId}`,
+  })])));
   const CACHE_PREFIX = 'dolopaws-trail-';
   const METADATA_PREFIX = 'dolopaws-offline:';
   const OWNER_SALT_KEY = 'dolopaws-offline-owner-salt';
@@ -575,7 +576,14 @@
 
   async function listPackageStates(user){
     const records = [];
-    for(const trailId of Object.keys(PACKAGES)){
+    // A trail with no cache under its prefix is 'not-downloaded', which is
+    // never listed. With every Verified trail registered, asking each one in
+    // turn cost the page one metadata read per trail to list a handful.
+    // Without Cache Storage nothing can have been downloaded at all.
+    const cacheNames = 'caches' in window ? await caches.keys() : [];
+    const stored = Object.keys(PACKAGES).filter(trailId =>
+      cacheNames.some(name => name.startsWith(`${CACHE_PREFIX}${trailId}-`)));
+    for(const trailId of stored){
       const config = PACKAGES[trailId];
       const inspection = await inspectPackage(trailId);
       if(inspection.state === 'not-downloaded') continue;
@@ -859,7 +867,12 @@
     refresh();
   }
 
+  function hasPackage(trailId){
+    return Object.prototype.hasOwnProperty.call(PACKAGES, trailId);
+  }
+
   window.DoloPawsOffline = {
+    hasPackage,
     installPackage,
     installedPackage,
     installedPackageRecord,
