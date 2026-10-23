@@ -186,6 +186,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-11855879": {
+      "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427015",
+      "publisher": "Autonome Provinz Bozen (hiking-trail register)",
+      "name": "Roda de Cherz",
+      "quote": "Roda de Cherz — length 2768 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
     "osm-11860429": {
       "url": "https://www.altabadia.org/de/tour/oadetail/oa/weilerrundgang-in-la-val",
       "publisher": "Società Cooperativa Turistica Alta Badia",
@@ -193,6 +201,14 @@
       "quote": "Ausgehend von der Kirche von La Val geht es entlang der Straße in Richtung Cians hinauf.",
       "foundBy": "orma-route-audit",
       "verifiedAt": "2026-10-23T18:00:00.000Z"
+    },
+    "osm-12018939": {
+      "url": "https://eggental.com/de/activity/steinegger-h-henweg_5655",
+      "publisher": "Eggental Tourismus",
+      "name": "Steinegger Höhenweg",
+      "quote": "bei der Bushaltestelle oder beim Parkplatz in der Handwerkerzone 'Egger Moos'",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
     "osm-12044077": {
       "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428494",
