@@ -156,8 +156,9 @@
       // it: leaving the marked paths, disturbing wild animals, bathing.
       // Corrected 23 October 2026: the whole line is in Brixen, not Natz-Schabs.
       // Brixen's animal ordinance (2011) Art. 5 requires a lead of at most 1.5 m
-      // in built-up areas and places open to the public, and its landscape plan
-      // Art. 3 forbids letting dogs run free inside biotopes, including 12/1 Laugen.
+      // in built-up areas; Art. 11 allows dogs off the lead outside them (lead
+      // carried); its landscape plan Art. 3 forbids letting dogs run free inside
+      // biotopes, including 12/1 Laugen, which the walk circles.
       distance: 4.2,
       elevation: 100,
       hours: '1.5',
@@ -187,7 +188,7 @@
         route: 'Closed OSM relation checked against the official Laugen–Elvas overview board; the official board lists a 4.2 km circuit.',
         routeNumbers: 'Bezirksgemeinschaft Eisacktal describes this circuit by name only, with no numbered waymark and no numbered switch, so the named-only statement stands in place of trail-number guidance.',
         mapPoints: 'Two water points and the suggested start were traced to exact source coordinates.',
-        elevation: 'Profile present and scaled to 4.2 km; headline ascent corrected from the sampled 181 m to the official 100 m.'
+        elevation: 'Profile present and scaled to 4.2 km; headline ascent corrected from the sampled 181 m to the official 100 m. Official time 1:30 h, 4.2 km, 100 m (Bezirksgemeinschaft Eisacktal overview board).'
       },
       graduation: {
         status: 'verified',
@@ -203,7 +204,7 @@
           'South Tyrol nature portal, protected biotopes',
           'Landscape plan of Natz-Schabs, implementing provisions, Art. 3 (Biotop 12/1 Laugen)',
           'Landschaftsplan Brixen, Durchführungsbestimmungen, Art. 3 (Biotop 12/1 Laugen: no free-running dogs)',
-          'Stadtgemeinde Brixen, Verordnung über die Haltung und Führung von Tieren (Gemeinderat Nr. 5, 27.01.2011), Art. 5 and 6',
+          'Stadtgemeinde Brixen, Verordnung über die Haltung und Führung von Tieren (Gemeinderat Nr. 5, 27.01.2011), Art. 5, 6 and 11',
           'OpenStreetMap relation 12731853 and mapped water nodes'
         ],
         date: '2026-10-21'
@@ -215,8 +216,8 @@
       shadeDescription: 'The official description places most of the route in an intensively cultivated landscape, with a smaller reed-fringed pond and riparian-woodland section.',
       terrainDescription: 'The mapped circuit mixes paved, unpaved, gravel and natural-ground sections; neither the official board nor OSM records an alpine-grade or equipped section.',
       waterDescription: 'Two drinking-water points are mapped near Elvas at exact coordinates; one is marked seasonal. Availability can change, so carry a backup supply.',
-      dogNotes: 'Dogs are not banned from the Laugen biotope. The walk is in Brixen, which requires dogs on a lead of at most 1.5 m in villages and places open to the public, a muzzle carried, and keeps dogs off farmed land. Inside the Laugen biotope dogs may not run free, and its rules forbid leaving the marked paths, disturbing wild animals and bathing, so keep your dog on a short lead, on the path and out of the pond.',
-      tips: 'The official circuit starts in Elvas and visits the Laugen wetland and its information stations. The route is 4.2 km with about 100 m ascent and takes roughly 1½ hours. Brixen’s rules require a lead of at most 1.5 m and a muzzle carried, and dogs may not run free in the Laugen biotope: keep your dog on a short lead, on the marked path and out of the pond.',
+      dogNotes: 'Dogs are not banned from the Laugen biotope. The walk is in Brixen, which requires a lead of at most 1.5 m in villages and a muzzle carried, and keeps dogs off farmed land; outside villages dogs may be off the lead if you carry one, but inside the Laugen biotope they may not run free, and its rules forbid leaving the marked paths, disturbing wild animals and bathing, so keep your dog on a short lead, on the path and out of the pond.',
+      tips: 'The official circuit starts in Elvas and visits the Laugen wetland and its information stations. The route is 4.2 km with about 100 m ascent and takes roughly 1½ hours. Brixen requires a lead in Elvas and a muzzle carried, and dogs may not run free in the Laugen biotope: keep your dog on a short lead, on the marked path and out of the pond.',
       sourceLinks: [
         {
           label: 'Bezirksgemeinschaft Eisacktal, Rundweg Laugen Elvas',
@@ -413,7 +414,7 @@
         route: 'The province trail-register line (4.0 km, open-ended) lies entirely on the stored 4.6 km closed line; the difference is the 250 m connector between the lakes, walked twice.',
         routeNumbers: 'The register gives the loop no number and IDM describes it by name: from Parkplatz Montiggl follow 1/A to the small lake, go round it clockwise, then on to the big lake and back.',
         mapPoints: 'No drinking-water node lies within 150 m of the line; the start is where path 1/A meets the loop at the small lake (the car park beside it is private).',
-        elevation: 'Headline ascent corrected from the sampled 156 m to the official 112 m (rounded to 110 m).'
+        elevation: 'Headline ascent corrected from the sampled 156 m to the official 112 m (rounded to 110 m). Official time 1 h 01 min, 112 m up (Südtirol.info).'
       },
       graduation: {
         status: 'verified',
@@ -8951,7 +8952,7 @@
         route: 'Official route: Plätzwiese to the Strudelkopf summit cross, 4.1 km one way; rebuilt on OSM ways through the board GPX at 4.03 km, and walked back the same way (8.2 km).',
         routeNumbers: 'The board’s text sends walkers along the 37 road towards the Dürrensteinhütte and left onto 34; its GPX, which the drawn line follows, takes the parallel footpath 40A across the plateau to the same junction. Then 34 to the saddle (about 2,200 m) and right for the summit; return the same way.',
         mapPoints: 'Start at the Berggasthof Plätzwiese; a drinking-water point (OSM node 14024034408) and a spring (node 5754395008) traced to exact coordinates; the saddle turn by the war memorial is a decision point.',
-        elevation: 'Official 359 m up and 42 m down one way (1,991–2,305 m), so about 400 m of climbing for the round trip; profile sampled along the rebuilt line.'
+        elevation: 'Official 359 m up and 42 m down one way (1,991–2,305 m), so about 400 m of climbing for the round trip; profile sampled along the rebuilt line. Official time 1 h 28 min one way (Tourismusgenossenschaft Drei Zinnen).'
       },
       graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
@@ -9000,7 +9001,7 @@
         route: 'Official 6.6 km loop (Südtirol.info, Tourismusgenossenschaft Odles); rebuilt on OSM relations 11817202, 11817269 and 948853 at 6.60 km, closed.',
         routeNumbers: 'From St. Peter centre follow the road towards Coll/Würzjoch to the first hairpin, take the Sonnseitenweg (sun symbol) east past the Pestbildstock to the Bühlerhof, climb on No. 32 to the Panoramaweg (mountain symbol) and follow it west to No. 11, then descend on No. 11 past the Gsoihof to the start.',
         mapPoints: 'Start at the official point in St. Peter; the village fountain (OSM node 9668988276) and three streams traced to exact coordinates.',
-        elevation: 'Official 322 m up and down, highest point 1,395 m; profile sampled along the rebuilt line.'
+        elevation: 'Official 322 m up and down, highest point 1,395 m; profile sampled along the rebuilt line. Official time 2 h 01 min (Südtirol.info, Tourismusgenossenschaft Odles).'
       },
       graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
@@ -9048,7 +9049,7 @@
         route: 'Official walk 1.2 km from the car park to the viewing platform (Val d’Ega Turismo GPX); rebuilt on OSM ways at 1.5 km including the 180 m back to the car.',
         routeNumbers: 'No route number: from the car park follow the yellow signs through the underpass to the viewing platform, then walk round the lake clockwise.',
         mapPoints: 'Start at the car park (GPX first point); drinking water at OSM node 7468241992 just past the underpass.',
-        elevation: 'Official 21 m up, high point 1,554 m, low point 1,539 m; profile drawn from the official high and low points because the terrain model is too coarse for the lakeshore.'
+        elevation: 'Official 21 m up, high point 1,554 m, low point 1,539 m; profile drawn from the official high and low points because the terrain model is too coarse for the lakeshore. Official time 20 min (Val d’Ega Turismo).'
       },
       graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
@@ -9084,12 +9085,15 @@
       // figure; the relation measures 5.3 km and that is what is published.
       // Wholly in Lozzo di Cadore, not Auronzo. Lozzo police regulation Art. 39:
       // dogs on a lead in every public place, trails included.
+      // Seal withdrawn 24 October 2026: no authority publishes a walking time for
+      // the loop alone, and ORMA verifies only on an official climb and time.
+      // The corrections stand; the walk reads Reviewed until a time is found.
       area: 'Pian dei Buoi, Lozzo di Cadore',
       distance: 5.3,
       elevation: 100,
       hours: '1.5–2',
       curated: true,
-      tier: 'route-audited',
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -9097,9 +9101,9 @@
         route: 'OSM relation 7388748 (5.33 km) passes every landmark of the official waymark-33 description within about 60 m and matches the official map; the leaflet’s 4.5 km is given as “circa”.',
         routeNumbers: 'Waymark 33, white and green, from Bivio Pellegrini round the whole loop; the only branch is the short “variante anello 33” spur to a gun post, after which walkers return to 33.',
         mapPoints: 'Start at Bivio dei Pellegrini (route node 420511537) beside the small car park; drinking water at OSM node 9261740471, 18 m from the start.',
-        elevation: 'Official ascent 100 m (CAI Lozzo leaflet), in place of the sampled 252 m; no official time exists for the loop alone.'
+        elevation: 'Official ascent 100 m (CAI Lozzo leaflet), in place of the sampled 252 m. Held: no authority publishes a walking time for the loop alone.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { elevation: 'No authority publishes a walking time for the loop alone (the CAI leaflet gives the climb only).' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -15774,7 +15778,7 @@
           'Province hiking-trail register, Dörferrunde (routes-hikingtrails.11425309)',
           'Landschaftsplan Natz-Schabs, Durchführungsbestimmungen, Art. 3 (newPlan doc 10974)',
           'Landschaftsplan Brixen, Durchführungsbestimmungen, Art. 3 (newPlan doc 3358)',
-          'Stadtgemeinde Brixen, Verordnung über die Haltung und Führung von Tieren (Gemeinderat Nr. 5, 27.01.2011), Art. 5 and 6',
+          'Stadtgemeinde Brixen, Verordnung über die Haltung und Führung von Tieren (Gemeinderat Nr. 5, 27.01.2011), Art. 5, 6 and 11',
           'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Natz-Schabs publishes no dog regulation)',
           'OpenStreetMap land cover, farm and road data'
         ],
@@ -15788,7 +15792,7 @@
       shadeDescription: 'About a third is woodland, between Viums and Schabs and between Raas and Flötsch; the rest is open orchards and meadows on the plateau at 810–900 m.',
       terrainDescription: 'Mostly forest paths and gravel farm tracks, with about 1.5 km of asphalt through Natz and short road stretches. No equipped or alpine-grade sections; listed as a family walk.',
       waterDescription: 'Fountains in Natz at the start, near Viums and in Schabs (a short detour). The ponds are protected wetlands or a hotel pond, so not for dogs.',
-      dogNotes: 'Natz-Schabs publishes no dog rule, so the Italian national rule applies there: a lead of at most 1.5 m and a muzzle carried in villages and public places. The Laugen stretch is in Brixen, which requires a lead of at most 1.5 m on public land, bans dogs from farmed land, and forbids letting dogs run free in its biotopes. Both wetlands (Raier Moos and Laugen) forbid leaving the path and bathing.',
+      dogNotes: 'Natz-Schabs publishes no dog rule, so the Italian national rule applies there: a lead of at most 1.5 m and a muzzle carried in villages and public places. The Laugen stretch is in Brixen, which bans dogs from farmed land and forbids letting them run free in its biotopes, including Laugen. Both wetlands (Raier Moos and Laugen) forbid leaving the path and bathing.',
       tips: 'The official loop starts in Natz centre and links Viums, Schabs and Raas on “Dörferrunde” signs: about 11–12 km, 380 m of ascent, three and a half hours. Keep your dog on a short lead in the villages and through the Raier Moos and Laugen wetlands, where dogs may not run free, swim or leave the path. Carry water between Viums and Schabs, and watch traffic at the Hotel Seehof crossing and on Laugenstraße.',
       sourceLinks: [
         { label: 'Südtirol.info, Dörferrunde Natz-Schabs', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi16e4208993e3b597de62e5c389b65d33.doerferrunde-natz-schabs.natz' },
@@ -15832,7 +15836,7 @@
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Bezirksgemeinschaft Eisacktal, Rundweg Albeins-Klerant-Milland-Albeins (route page and overview board)',
-          'Stadtgemeinde Brixen, Verordnung über die Haltung und Führung von Tieren (Gemeinderat Nr. 5, 27.01.2011), Art. 5 and 6',
+          'Stadtgemeinde Brixen, Verordnung über die Haltung und Führung von Tieren (Gemeinderat Nr. 5, 27.01.2011), Art. 5, 6 and 11',
           'Landschaftsplan Brixen, Durchführungsbestimmungen, Art. 3 (newPlan doc 3358)',
           'OpenStreetMap land cover, road and water data'
         ],
@@ -15846,8 +15850,8 @@
       shadeDescription: 'The climb from Albeins to Klerant runs through mixed and pine forest, and the return along the Eisack dam is largely tree-lined; Klerant’s meadows and Milland’s streets are open.',
       terrainDescription: 'Forest paths and farm tracks on the climb, asphalt lanes through Klerant and Milland, then a compacted dam path along the river; easy, about 360 m up and down.',
       waterDescription: 'Village fountains at Albeins, Klerant and Milland (seasonal at the church) and a Stadtwerke tap on the dam. The Eisack is fast and dammed, and bathing is banned in the Millander Au biotope.',
-      dogNotes: 'In Brixen dogs must be on a lead of at most 1.5 m on all public and publicly accessible land, with a muzzle carried, and may not go onto farmland. Letting dogs run free is also banned in the Millander Au biotope beside the dam. Animals may graze parts of the Millander Au.',
-      tips: 'A 12 km loop from Albeins up through the woods to Klerant, down into Milland and back along the Eisack: 360 m of climbing, about three and a quarter hours. Keep your dog on a lead of at most 1.5 m the whole way and carry a muzzle, as Brixen requires, and keep it off the meadows, orchards and vineyards. There are drinking fountains in Albeins, Klerant, Milland and on the dam, but the river is too fast for a dip; take care at the two road crossings in Milland.',
+      dogNotes: 'Brixen requires a lead of at most 1.5 m in built-up areas and carrying a muzzle; outside them dogs may be off the lead if you carry one and keep the dog under control (animal ordinance Art. 11), but they may not run free in biotopes or go onto farmland. The dam path runs along the Millander Au biotope, where dogs may not run free, and animals may graze parts of it.',
+      tips: 'A 12 km loop from Albeins up through the woods to Klerant, down into Milland and back along the Eisack: 360 m of climbing, about three and a quarter hours. In Brixen a lead of at most 1.5 m is required through Albeins, Klerant and Milland and a muzzle must be carried; outside the villages your dog may be off the lead if you carry one, but keep it on the path, off the meadows, orchards and vineyards, and on the lead beside the Millander Au biotope. There are drinking fountains in Albeins, Klerant, Milland and on the dam, but the river is too fast for a dip; take care at the two road crossings in Milland.',
       sourceLinks: [
         { label: 'Bezirksgemeinschaft Eisacktal, Rundweg Albeins-Klerant-Milland-Albeins', url: 'https://www.bzgeisacktal.it/de/Rundweg_Albeins-Klerant-Milland-Albeins' },
         { label: 'Overview board (PDF)', url: 'https://www.bzgeisacktal.it/system/web/GetDocument.ashx?cts=1537201484&fileid=1030836' },
