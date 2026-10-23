@@ -16240,6 +16240,112 @@ function effectiveOverrides(profile, adjustOverride){
           "url": "https://www.openstreetmap.org/relation/3197403"
         }
       ]
+    },
+    'osm-12150790': {
+      // Hand audit 23 October 2026: route and figures from Tourismusverein Castelfeder / Südtirols Süden (Kapellenrunde Salurn);
+      // its Outdooractive GPX lies within 34 m of the line. Salurn publishes no findable dog rule, so the national ordinance of 6 Aug
+      // 2013 applies (owner-approved standard). The Salurn landscape plan (valid 2 Jul 2026) lists the Titschenbach waterfall as a natural
+      // monument with no dog rule; no Natura 2000 site on the line; Trudner Horn nature park 312 m away.
+      "area": "Salurn / Salorno",
+      "elevation": 194,
+      "hours": "1",
+      "startPoint": {
+        "lat": 46.23895,
+        "lng": 11.21701,
+        "label": "Salurn village centre, near the town hall car park (official start area)"
+      },
+      "desc": "A short loop above Salurn along the old Stations of the Cross, a cobbled path past whitewashed wayside chapels, to the Salurn waterfall on the Titschenbach and back with views over the Adige valley. The tourism association gives 2.7 km and 194 m of climb, about an hour, easy, on well-built paths and paved tracks.\n\nSalurn publishes no dog rule of its own, so the national rule applies: a lead of at most 1.5 m, with a muzzle carried. The waterfall is a protected natural monument; stay on the marked paths. About half the loop is in woodland, the rest among vineyards and orchards.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle. Near the waterfall the path can be slippery after rain, and one short stretch runs close to a drop above the gorge: keep your dog right beside you there. Part of the loop follows paved lanes, including a short stretch of the Pochi road (SP129), where cars pass. Taps are mapped in the village near the start.",
+      "shadeCoverage": 55,
+      "heatRisk": "moderate",
+      "exposure": true,
+      "surfaceHazards": [
+        "Slippery near the waterfall after rain (official)",
+        "A short stretch close to a drop above the gorge",
+        "Paved lanes and a short stretch of the Pochi road (SP129)",
+        "Cobbled path and a few steps"
+      ],
+      "routeNumberSource": {
+        "provider": "Tourismusverein Castelfeder / Südtirols Süden",
+        "name": "Kapellenrunde Salurn",
+        "url": "https://www.castelfeder.info/de/castelfeder/touren/rid-64923703-.html"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Syrio, CC BY-SA 4.0: a cobbled path past a Stations of the Cross chapel above Salurn, on the loop (replaces a view of Buchholz 1.7 km away).",
+        "route": "Published line 2.80 km; official 2.7 km; the official GPX lies within 34 m of the line throughout.",
+        "routeNumbers": "No number of its own: the loop shares the Dürerweg (1) and path 409B for a stretch; the official page routes by the chapels and the waterfall.",
+        "mapPoints": "Start in Salurn village centre as the official page states; taps traced to OSM.",
+        "elevation": "Official 194 m of climb (was 259)."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Tourismusverein Castelfeder / Südtirols Süden, Kapellenrunde Salurn: 2,7 km, 1:00 h, 194 hm, leicht; slippery near the waterfall after rain",
+          "Salurn publishes no dog rule; national Ministry of Health ordinance of 6 August 2013, Art. 1(3) (renewed to 2027): lead of at most 1.5 m, muzzle carried",
+          "Salurn landscape plan (newPlan, valid 2 July 2026) Art. 3: Titschenbach waterfall natural monument, no dog rule; no Natura 2000 site on the line (EEA)",
+          "OpenStreetMap relation 12150790 and the official GPX: road classes, cliffs, forest share and water along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "Castelfeder, Kapellenrunde Salurn",
+          "url": "https://www.castelfeder.info/de/castelfeder/touren/rid-64923703-.html"
+        },
+        {
+          "label": "Ministry of Health ordinance, 6 August 2013 (text)",
+          "url": "https://www.certifico.com/id/26170"
+        },
+        {
+          "label": "Salurn landscape plan, implementing rules (newPlan)",
+          "url": "https://newplan.civis.bz.it/newplan/api/newp/api/document/12835"
+        },
+        {
+          "label": "OpenStreetMap relation 12150790",
+          "url": "https://www.openstreetmap.org/relation/12150790"
+        }
+      ]
     }
   };
 
