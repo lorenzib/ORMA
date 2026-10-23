@@ -15948,6 +15948,21 @@ function effectiveOverrides(profile, adjustOverride){
           "url": "https://www.openstreetmap.org/relation/19974725"
         }
       ]
+    },
+    'osm-12027153': {
+      // Correction, 23 October 2026 (not a verification). The imported text
+      // said the walk had no ladders; the Bletterbach park operator warns of
+      // several iron-stair sections where the injury risk for dogs is very
+      // high, and requires a helmet against rockfall. Start, place and the
+      // official figures from the GEOPARC Bletterbach pages and flyer.
+      area: 'Aldein / Aldino – Bletterbach',
+      hours: '2.5–3.5',
+      exposure: true,
+      safetyLevel: 'caution',
+      surfaceHazards: ['Several iron-stair sections in the gorge (operator: very high injury risk for dogs)', 'Rockfall: helmet compulsory in the gorge', 'Boulder and stream bed on the gorge floor'],
+      startPoint: { lat: 46.3662149, lng: 11.4071866, label: 'Bletterbach visitor centre, Lerch 40, Aldein (official start)' },
+      desc: 'The geological trail through the Bletterbach gorge, part of the UNESCO Dolomites GEOPARC, from the visitor centre at Aldein down into the gorge and up to the Gorz, past rock walls that show some 40 million years of Earth history. The park sets a ticket, a season, and a compulsory helmet against rockfall, and closes the gorge in bad weather. Officially about 4.6 km to the Butterloch from Aldein, and 6.3 to 9 km for the Gorz walk, with 200 to 300 m of climb. This walk is not verified by ORMA.\n\nThe park operator warns dog owners that the GEOWeg has several sections of iron stairs where the risk of injury to dogs is very high; if you take your dog anyway, it must stay on a lead.',
+      tips: 'Think twice before bringing your dog: the park itself warns that the iron-stair sections are very dangerous for dogs. If you go, keep your dog on a lead, as the park requires, and turn back at the first iron stairs if your dog is unsure. Everyone in the gorge must wear a helmet (free to borrow at the visitor centre), and the park advises strongly against the gorge in rain, storms or cold because of rockfall. Check opening dates, tickets and any path closures at the visitor centre before you start.'
     }
   };
 
