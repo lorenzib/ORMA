@@ -58,11 +58,11 @@ function trustedStartLabel(trail, label){
 }
 
 // ---- On this route --------------------------------------------------------
-// Operational facts (rifugio dog policy, lift muzzle rules) come from the
-// route_operational_fact table, which starts empty and is filled by the
-// editorial process. Until a fact exists the block still names the places on
-// the route and says plainly that nobody has checked, which is the difference
-// between "we have not asked" and "there is nothing here".
+// Only what has been checked: operational facts (rifugi dog policy, lift
+// muzzle rules) from the route_operational_fact table, and water points on a
+// trail whose water has been reviewed. The table is filled by the editorial
+// process; until it holds a fact for this trail there is nothing to list, and
+// the card stays hidden rather than naming places nobody has checked.
 function renderOnThisRoute(t, table){
   const api = window.DoloPawsOperationalFacts;
   if(!api) return '';
@@ -91,72 +91,55 @@ function renderOnThisRoute(t, table){
     </div>`;
 }
 
-// The table is small and rarely changes, so it is fetched once and the block
-// is re-rendered in place if any fact applies. A failed fetch leaves the
-// honest unverified block exactly as it is.
+// The table is small and rarely changes, so it is fetched once per page and
+// the card is painted again if a checked fact applies to this trail. A failed
+// fetch leaves the card as it was.
 function hydrateOnThisRoute(t){
   const api = window.DoloPawsOperationalFacts;
-  if(!api || !document.getElementById('td2OnRoute')) return;
+  if(!api) return;
   const prefix = location.pathname.includes('/trails/') ? '../' : '';
   fetch(`${prefix}data/route-operational-facts.json`, { cache:'no-store' })
     .then(response => response.ok ? response.json() : null)
     .then(table => {
-      if(!table || !api.factsFor(t.id, table).length) return;
-      const host = document.getElementById('td2OnRoute');
-      if(!host) return;
-      const replacement = document.createElement('div');
-      replacement.innerHTML = renderOnThisRoute(t, table);
-      const next = replacement.firstElementChild;
-      if(next) host.replaceWith(next);
+      if(!table || !api.rowsFor(t, table).length) return;
+      paintOnRouteCard(t, table);
     })
     .catch(() => {});
 }
 
-// The body of the "On this route" card: the places the walk passes, then the
-// water on it.
+// The body of the "On this route" card: the checked places on the walk, then
+// the water on it.
 //
-// The old version of this also printed a plain "Rifugi on the way" list under
-// the places list. The two listed the same huts at the same kilometres, so it
-// is gone: the places list says everything it said and adds the dog policy.
-//
-// An absence is not printed here. The dog-safety column already says whether
-// water is mapped on the route, and repeating it as "No drinking water
-// sources recorded" would put the same fact on the page twice.
-function renderTrailDetailContent(t){
-  const water = Array.isArray(t.waterSources) ? t.waterSources : [];
-  const places = renderOnThisRoute(t, null);
+// Water is listed only where it has been reviewed. An unreviewed point carries
+// ", availability can change", which is the same "nobody has checked" the
+// places used to say, and the dog-safety column already tells the reader to
+// bring their own water in that case.
+function renderTrailDetailContent(t, table){
+  const reviewed = window.DoloPawsTrailTrust
+    && window.DoloPawsTrailTrust.categoryVerified(t, 'water');
+  const water = reviewed && Array.isArray(t.waterSources) ? t.waterSources : [];
+  const places = renderOnThisRoute(t, table || null);
 
-  // Water reads in the same list as the places above it. It used to be a
-  // bare bulleted list with its own inline styling inside the same card,
-  // which looked like two different pages stitched together.
-  //
-  // The label is printed whole: trail-trust owns the ", availability can
-  // change" qualifier and splitting it back off here is the kind of copy of
-  // another module's rule that has gone stale before.
+  // Water reads in the same list as the places above it.
   const waterHtml = water.length > 0
     ? `<div style="margin-bottom:4px;">
       <div class="dp-inline-status" style="font-weight:700;color:var(--ink);margin-bottom:4px;">${trailProductIcon('water')}<span>${withoutLeadingSymbol(window.t('trail.waterHead'))}</span></div>
       <ul class="td2-onroute">${water.map(w =>
         `<li><span class="td2-onroute-name">Km ${w.km}, ${trustedWaterLabel(t, w.label)}</span></li>`).join('')}</ul>`
-      // Only the part the per-point labels do not already carry. trail-trust
-      // appends ", availability can change" to every unverified water point,
-      // so the old footnote made the reader meet the same caveat twice in
-      // consecutive lines -- four times on a route with three water points.
-      + (t.curated === false ? '<p style="margin:0;font-size:12px;color:var(--ink-soft);">Carry a backup supply.</p>' : '')
       + '</div>'
     : '';
 
-  if(places) setTimeout(() => hydrateOnThisRoute(t), 0);
   return `${places}${waterHtml}`;
 }
 
-// Writes the card and reveals it only when the route has something to name.
-// Falls back to the retired hidden node for a visitor whose browser still has
-// the previous trail.html, which has no card to write into.
-function paintOnRouteCard(t){
+// Writes the card and reveals it only when the route has something checked to
+// name. Falls back to the retired hidden node for a visitor whose browser
+// still has the previous trail.html, which has no card to write into.
+function paintOnRouteCard(t, table){
   const body = document.getElementById('td2OnRouteBody');
   const card = document.getElementById('td2OnRouteCard');
-  const markup = renderTrailDetailContent(t);
+  const markup = renderTrailDetailContent(t, table);
+  if(!table) setTimeout(() => hydrateOnThisRoute(t), 0);
   if(!body || !card){
     const legacy = document.getElementById('trailDetailContent');
     if(legacy) legacy.innerHTML = markup;

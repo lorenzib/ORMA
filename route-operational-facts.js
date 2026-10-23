@@ -124,44 +124,25 @@
     return facts.filter(fact => fact && fact.trail_id === trailId);
   }
 
-  // Render-ready rows for one trail. Entities ORMA already knows about (the
-  // km-tagged rifugi on the route) appear even with no fact recorded, so the
-  // page can name them and say plainly that nobody has checked yet. That is
-  // the difference between "we have not asked" and "there is nothing here".
+  // Render-ready rows for one trail: only facts somebody has checked. The
+  // places ORMA merely knows about (the km-tagged rifugi, most of them bars
+  // and restaurants from OpenStreetMap) used to be listed too, each stamped
+  // "not yet verified". 473 such rows across 110 trails, none of them
+  // checked, said nothing a reader could act on, so they are no longer rows.
+  // An undated fact is also left out: it has nothing standing behind it.
   function rowsFor(trail, table, asOfDate){
     if(!trail || typeof trail.id !== 'string') return [];
-    const facts = factsFor(trail.id, table);
-    const byName = new Map();
-    for(const fact of facts){
-      byName.set(String(fact.entity_name).trim().toLowerCase(), fact);
-    }
-
-    const rows = facts.map(fact => ({
-      entityType: fact.entity_type,
-      entityName: fact.entity_name,
-      policy: fact.dog_policy,
-      policyLabel: POLICY_LABEL[fact.dog_policy],
-      notes: fact.policy_notes || null,
-      km: null,
-      ...verification(fact, asOfDate),
-    }));
-
-    const rifugi = Array.isArray(trail.rifugi) ? trail.rifugi : [];
-    for(const place of rifugi){
-      const name = place && typeof place.name === 'string' ? place.name.trim() : '';
-      if(!name || byName.has(name.toLowerCase())) continue;
-      rows.push({
-        entityType:'rifugio',
-        entityName:name,
-        // No fact means no policy. Never a default, never an empty string.
-        policy:null,
-        policyLabel:null,
-        notes:null,
-        km:Number.isFinite(place.km) ? place.km : null,
-        state:'unverified',
-        label:UNVERIFIED_NOTE,
-      });
-    }
+    const rows = factsFor(trail.id, table)
+      .map(fact => ({
+        entityType: fact.entity_type,
+        entityName: fact.entity_name,
+        policy: fact.dog_policy,
+        policyLabel: POLICY_LABEL[fact.dog_policy],
+        notes: fact.policy_notes || null,
+        km: null,
+        ...verification(fact, asOfDate),
+      }))
+      .filter(row => row.state !== 'unverified');
 
     return rows.sort((a, b) => {
       if(a.km !== null && b.km !== null) return a.km - b.km;

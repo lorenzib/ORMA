@@ -42,15 +42,21 @@ describe('P0-2 route operational facts', () => {
   });
 
   // Scenario: trail without verified data
-  test('an unchecked place is named and labelled, never given a policy', () => {
-    const [row] = facts.rowsFor(trail, shipped, '2026-09-05');
+  test('an unchecked place is not listed at all', () => {
+    // 473 such places across 110 trails were each stamped "not yet verified";
+    // a list of things nobody has checked is not something to act on.
+    expect(facts.rowsFor(trail, shipped, '2026-09-05')).toEqual([]);
+    // A checked fact on the same trail is still listed, and only that.
+    expect(facts.rowsFor(trail, table([verifiedRifugio]), '2026-09-05').map(row => row.entityName))
+      .toEqual(['Rifugio Fuciade']);
+  });
 
-    expect(row.entityName).toBe('Baita Troier');
-    expect(row.km).toBe(6.5);
-    // The acceptance criterion is explicit: never a guessed or empty policy.
-    expect(row.policy).toBeNull();
-    expect(row.policyLabel).toBeNull();
-    expect(row.label).toBe('Not yet verified, check before you go');
+  test('an undated fact is not listed either', () => {
+    const undated = {
+      ...verifiedRifugio, dog_policy:'unknown', verified_at:null, verified_source:null, verified_by:null,
+    };
+    expect(facts.validateFact(undated, 0)).toEqual([]);
+    expect(facts.rowsFor({ id:'tre-cime' }, table([undated]), '2026-09-05')).toEqual([]);
   });
 
   // Scenario: verification age is visible
@@ -97,10 +103,10 @@ describe('P0-2 route operational facts', () => {
     expect(row.state).toBe('verified');
   });
 
-  test('rows read in walking order', () => {
-    const withKm = { id:'tre-cime', rifugi:[{ km:6.5, name:'Baita Troier' }, { km:2.1, name:'Rifugio Lavaredo' }] };
-    expect(facts.rowsFor(withKm, shipped, '2026-09-05').map(row => row.entityName))
-      .toEqual(['Rifugio Lavaredo', 'Baita Troier']);
+  test('rows read in name order', () => {
+    const second = { ...verifiedRifugio, id:'lavaredo-dogs', entity_name:'Rifugio Auronzo' };
+    expect(facts.rowsFor({ id:'tre-cime' }, table([verifiedRifugio, second]), '2026-09-05').map(row => row.entityName))
+      .toEqual(['Rifugio Auronzo', 'Rifugio Fuciade']);
   });
 
   test('duplicate ids are refused so the table stays a plain key-addressable table', () => {
