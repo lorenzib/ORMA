@@ -179,7 +179,13 @@ async function main(options = {}) {
   // writes the catalogue in that order, so inserting would move every trail
   // after it in a file the generated-artifact check compares byte for byte.
   collection.features.push(feature);
-  await fs.writeFile(target, `${JSON.stringify(collection, null, 2)}\n`, 'utf8');
+  // Written in the file's own shape. The route files are one line of JSON,
+  // and writing them back indented tripled the file and buried the one added
+  // feature under a diff of every line (dog-friendly-routes.geojson: 292 KB
+  // to 858 KB, +46,646 lines, for four walks).
+  const raw = await fs.readFile(target, 'utf8');
+  const indented = /^\{\s*\n/.test(raw);
+  await fs.writeFile(target, indented ? `${JSON.stringify(collection, null, 2)}\n` : JSON.stringify(collection), 'utf8');
   console.log(`[import] Added to ${routesFile}. Run \`npm run promote:trails\` to give it a record,`);
   console.log('[import] then `npm run generate:artifacts` for the page. Both are free.');
   return { status: 'added', feature };

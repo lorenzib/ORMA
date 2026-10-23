@@ -458,6 +458,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-1506470": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif2a95dde634657f7c39401eb08f491ed.sissiweg-meran.meran",
+      "publisher": "Kurverwaltung Meran via IDM suedtirol.info",
+      "name": "Sissiweg Meran",
+      "quote": "Strecke 3.2 Km Dauer 0h:55 min Aufstieg 109 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T18:00:00.000Z"
+    },
     "osm-15591346": {
       "url": "https://tourisme.coeurdesavoie.fr/fiches/le-sentier-des-buis-114550/",
       "publisher": "Office de Tourisme Cœur de Savoie (Apidae)",
@@ -697,6 +705,14 @@
       "quote": "Dislivello in salita: 380 m; lunghezza: circa 4 km; tempo medio di percorrenza: 2h 30'; difficoltà: percorso di tipo E (escursionistico) con un breve passaggio su roccia affiorante",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-7655311": {
+      "url": "https://www.merano-suedtirol.it/de/partschins-rabland-und-toell/natur-kultur/wasserwelten/gsund-bleibm-salute-take-care/die-klimatische-terrainkur-gesundheit-und-fitness-fuer-herz-und-kreislauf/121155122-partschins-sonnenberger-panoramaweg-naturns-terrainkurweg-nr-5.html",
+      "publisher": "Tourismusverein Partschins, Rabland und Töll",
+      "name": "Partschins – Sonnenberger Panoramaweg – Naturns (Terrainkurweg Nr. 5)",
+      "quote": "Dauer 2:30 h Länge 7,7 km Schwierigkeit leicht Höhenmeter bergauf 186 hm",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T18:00:00.000Z"
     },
     "osm-8510456": {
       "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11429378",
