@@ -338,6 +338,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "osm-7547983": {
+      "url": "https://www.lozzodicadore.eu/sito/node/186",
+      "publisher": "Comune di Lozzo di Cadore / CAI",
+      "name": "13 - Anello di Valzalina",
+      "quote": "Dislivello in salita: 580 m; lunghezza: circa 3,8 km; tempo medio di percorrenza: 3h 30'; difficoltà: percorso di tipo E (escursionistico).",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
     "osm-9487078": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif3fcc4ba68834cc3f669758ebd680dd0.oswald-von-wolkenstein-weg.seis",
       "publisher": "Seiser Alm Marketing",

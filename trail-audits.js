@@ -9358,6 +9358,117 @@
         { km: 4.8, lat: 46.53016, lng: 10.95819, osmId: 'node/478636891', name: 'Kuppelwies' }
       ],
       desc: 'A flat loop round the Zoggler reservoir in the Ultental: from the St. Walburg dam through larch wood along the south shore to Kuppelwies, and back on the new lakeside promenade. The official route lists 7.7 km and 38 m of ascent.'
+    },
+    'osm-7547983': {
+      // Hand audit 23 October 2026: route, figures and start from the Lozzo di Cadore / CAI ring sheet no. 13 and the official
+      // 1:25,000 ring map. The line crosses Lozzo di Cadore and Domegge di Cadore (Nominatim); both police regulations require a lead on
+      // paths (Lozzo Art. 39; Domegge Art. 42, lead of at most 130 cm or a muzzle). No Natura 2000 site on the line (EEA).
+      "area": "Lozzo di Cadore",
+      "elevation": 580,
+      "hours": "3.5",
+      "startPoint": {
+        "lat": 46.4896644,
+        "lng": 12.4162341,
+        "label": "Val Longiarìn road at the mouth of the Valzalina, just before the Vialona footbridge over the Rio Rin (official start)"
+      },
+      "desc": "Ring 13 of the Lozzo di Cadore network, waymarked green-white-green: a loop up the wild, north-facing Valzalina above Lozzo, cool even in summer under red and silver fir, and back down by the forest track. A third of the way up, a short detour leads to the 'ciampanì de Valzalina', a viewpoint over the Spalti di Toro and Montanel; near the top stands an old lime kiln beside a stone barn. The official sheet gives about 3.8 km, 580 m of climb and 3h30, graded E (hiking), with a short but rather steep climb.\n\nDogs must be on a lead: Lozzo di Cadore requires one on all public places, paths included, and the short stretch in Domegge di Cadore requires a lead of at most 130 cm or a muzzle. Almost the whole loop is in forest. There is no water on the way.",
+      "tips": "Keep your dog on a lead throughout, as both communes require. The climb is short but steep, so take it slowly with your dog. There is no fountain or spring on the loop: carry water for both of you. A few farm buildings stand near the western end, so animals may be kept close by. The loop starts on the Val Longiarìn road, where cars can pass.",
+      "shadeCoverage": 85,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "A short, rather steep climb (official sheet)",
+        "Start on the Val Longiarìn road"
+      ],
+      "routeNumberSource": {
+        "provider": "Comune di Lozzo di Cadore / CAI",
+        "name": "13 - Anello di Valzalina",
+        "url": "https://www.lozzodicadore.eu/sito/node/186"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons (Panoramio), ildirettore, CC BY 3.0, the Montanel and Spalti di Toro seen over the Valzalina forest, 64 m from the line.",
+        "route": "Published line 4.25 km; official sheet 'circa 3,8 km' (+12%); the ring's shape on the official 1:25,000 map matches the line.",
+        "routeNumbers": "Ring 13, green-white-green (Lozzo di Cadore / CAI); the only switch is the short detour to the 'ciampanì de Valzalina' viewpoint.",
+        "mapPoints": "Start described as on the official sheet (Val Longiarìn road at the Valzalina, before the Vialona footbridge); no water on the line.",
+        "elevation": "Official 580 m of climb (was 651)."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Comune di Lozzo di Cadore / CAI, ring sheet no. 13 Anello di Valzalina and the 1:25,000 ring map",
+          "Lozzo di Cadore police regulation (2018) Art. 39: dogs on a lead on all public places, paths included",
+          "Domegge di Cadore police regulation Art. 42: dogs on a lead of at most 130 cm or muzzled",
+          "No Natura 2000 site on the line (EEA); OpenStreetMap relation 7547983: tracks, forest, water and farm buildings"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "Lozzo di Cadore, Anello di Valzalina (ring 13)",
+          "url": "https://www.lozzodicadore.eu/sito/node/186"
+        },
+        {
+          "label": "Official route sheet (image)",
+          "url": "https://www.lozzodicadore.eu/sito/sites/fotoanelli/001_an13.jpg"
+        },
+        {
+          "label": "Official ring map, 1:25,000 (PDF)",
+          "url": "https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-carta-25000.pdf"
+        },
+        {
+          "label": "Lozzo di Cadore police regulation (PDF)",
+          "url": "https://lozzo-di-cadore-api.municipiumapp.it/s3/3676/allegati/regolamento-polizia-urbana-2018.pdf"
+        },
+        {
+          "label": "Domegge di Cadore police regulation",
+          "url": "https://comune.domeggedicadore.bl.it/documenti/2556047/regolamento-polizia-urbana"
+        },
+        {
+          "label": "OpenStreetMap relation 7547983",
+          "url": "https://www.openstreetmap.org/relation/7547983"
+        }
+      ]
     }
   };
 
