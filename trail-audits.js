@@ -18520,6 +18520,130 @@
         { km: 10.5, lat: 46.812775, lng: 11.84968, osmId: 'node/5853793656', label: 'Fountain west of the Issinger Weiher' }
       ],
       desc: 'A long loop over the sunny terrace of Pfalzen above Bruneck, following stories told by stones: past old farms, the Bachstöckl chapel and St. Valentin to the Issinger Weiher, then through Mühlen to the church of Hasenried and back to the school. The official route lists 14.1 km and 321 m of ascent.'
+    },
+    'osm-1506470': {
+      // Hand audit: 23 October 2026, verified on arrival (new-trail batch 1).
+      // Wholly in Meran: the Stadtpolizeiordnung, Art. 19, requires a lead of
+      // at most 1.5 m in every public area and bans dogs from playgrounds and
+      // sports grounds. No protected area and no grazing on the line.
+      area: 'Meran / Merano',
+      distance: 3.2,
+      elevation: 109,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A one-way walk from the Kurhaus along the Passer promenades and up through Obermais to the Trauttmansdorff gardens; city buses link the gardens and the centre.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Walkers crossing the Steinerner Steg on the walk, in October (Gerd Eichmann, CC BY 4.0), 25 m from the line.',
+        route: 'Official 3.2 km, Kurhaus to Trauttmansdorff; the stored OSM line runs 2.97 km between the same two points.',
+        routeNumbers: 'No route number: from the Kurhaus follow the “Sissiweg / Sentiero di Sissi” signs along the Winterpromenade, over the Steinerner Steg and up through Obermais to the Trauttmansdorff gardens.',
+        mapPoints: 'Start at the Kurhaus on the Passer promenade (official start point); fountains at the Kurpromenade, the Wandelhalle, the Moritzbrunnen and near Trauttmansdorff (OSM nodes 7318188885, 2386375747, 2908798745, 6637131450).',
+        elevation: 'Official 3.2 km, 109 m of ascent, 55 minutes (Südtirol.info, Kurverwaltung Meran).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Kurverwaltung Meran, Sissiweg (Südtirol.info)',
+          'Stadtgemeinde Meran, Stadtpolizeiordnung, Art. 19',
+          'IDM Südtirol drinking fountains in Meran (Open Data Hub)',
+          'OpenStreetMap relation 1506470, road, surface and tree data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 10,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About half the walk is on town streets and lanes open to cars, mostly quiet residential lanes in Obermais', 'Two zebra crossings, and short stretches shared with cyclists on the promenades', 'Stone setts on the Winterpromenade and the Passer promenade', 'Hot tarmac in summer'],
+      terrainType: 'Town promenades on setts and fine gravel, then lanes and streets, about half tarmac',
+      shadeDescription: 'Mostly open. Only about a tenth of the line runs under mapped trees, along the promenades; the Winterpromenade faces the sun and the Obermais lanes are open.',
+      terrainDescription: 'An easy town walk: level promenades beside the Passer, then a steady climb of about 110 m on lanes and the old Kirchsteig to the gardens.',
+      waterDescription: 'Plenty of public fountains, at the Kurpromenade, the Wandelhalle, by St. Georgen, at the Moritzbrunnen and near Trauttmansdorff. Some are turned off in winter.',
+      dogNotes: 'Meran requires a lead of at most 1.5 m in all public areas, so the whole walk is on the lead; dogs are not allowed on playgrounds or sports grounds. No farm animals on the route. The promenades get busy, so keep your dog close.',
+      tips: 'Start at the Kurhaus and follow the Sissiweg signs along the Passer and up to the Trauttmansdorff gardens: 3.2 km and about 110 m of climbing, under an hour. Keep your dog on a short lead (1.5 m at most) all the way, as Meran requires. The walk is sunny and low, so go early or late in summer, and take the city bus back from the gardens or walk down the same way.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Sissiweg in Meran', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif2a95dde634657f7c39401eb08f491ed.sissiweg-meran.meran' },
+        { label: 'Stadtgemeinde Meran, Stadtpolizeiordnung', url: 'https://www.gemeinde.meran.bz.it/de/Verwaltung/Dokumente/Stadtpolizeiordnung' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/1506470' }
+      ],
+      startPoint: { lat: 46.67025, lng: 11.16164, label: 'Kurhaus on the Passer promenade, Meran (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.6704718, lng: 11.1611311, osmId: 'node/7318188885', label: 'Fountain on the Kurpromenade', seasonal: true },
+        { km: 0.3, lat: 46.6686353, lng: 11.1656392, osmId: 'node/2386375747', label: 'Fountain at the Wandelhalle', seasonal: true },
+        { km: 1.7, lat: 46.6677931, lng: 11.1764308, osmId: 'node/2908798745', label: 'Moritzbrunnen', seasonal: true },
+        { km: 2.8, lat: 46.6602878, lng: 11.1818473, osmId: 'node/6637131450', label: 'Fountain near Trauttmansdorff', seasonal: true }
+      ],
+      // The import listed 70 cafés round the centre; these are the ones on the walk.
+      rifugi: [
+        { km: 0.2, lat: 46.66951, lng: 11.16695, osmId: 'node/2755802537', name: 'Caffè Wandelhalle' },
+        { km: 1.2, lat: 46.66878, lng: 11.17379, osmId: 'node/12736619807', name: 'Restaurant Café Brunnenplatz' },
+        { km: 2.8, lat: 46.66015, lng: 11.18491, osmId: 'way/235586192', name: 'Palmencafe' }
+      ],
+      desc: 'The walk named after Empress Elisabeth, who stayed at Trauttmansdorff Castle: from the Kurhaus along the Passer promenades, over the Steinerner Steg and up through the villas of Obermais to the Trauttmansdorff gardens. The official route lists 3.2 km and 109 m of ascent.'
+    },
+    'osm-7655311': {
+      // Hand audit: 23 October 2026, verified on arrival (new-trail batch 1).
+      // Terrain-cure path no. 5 of the Partschins tourist board, signed route
+      // 91 in the province register, Partschins to Naturns. Outside the
+      // Texelgruppe nature park. Neither Partschins nor Naturns publishes a
+      // dog rule, so the national dog ordinance (6 August 2013, extended to
+      // September 2027) applies: a lead of at most 1.5 m and a muzzle carried
+      // in towns and public places.
+      area: 'Partschins – Naturns / Parcines – Naturno',
+      distance: 7.7,
+      elevation: 186,
+      hours: '2.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A one-way walk along the Sonnenberg from Partschins to Naturns (186 m up, 295 m down); the Vinschgau train and buses bring walkers back to Partschins and Rabland.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Terraced meadows and a farm on the Sonnenberg, in July (uwelino, CC BY-SA 2.0), 16 m from the line.',
+        route: 'Official 7.7 km, Partschins to Naturns; the stored OSM line runs 7.36 km and ends at St. Prokulus, about 300 m short of Naturns centre.',
+        routeNumbers: 'Signed as route 91 in the province hiking-trail register and as terrain-cure path no. 5: from Partschins follow 91 and the yellow-white “SP” Sonnenberger Panoramaweg waymark all the way to St. Prokulus and Naturns.',
+        mapPoints: 'Start in Partschins village centre; fountains in Partschins at the start (OSM nodes 10963532210, 5170518350) and at St. Prokulus at the end (node 1871798860).',
+        elevation: 'Official 7.7 km, 186 m up and 295 m down, 2 h 30 min, high point 718 m (Tourismusverein Partschins, Rabland und Töll).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Partschins, Rabland und Töll, Partschins – Sonnenberger Panoramaweg – Naturns (Terrainkurweg Nr. 5)',
+          'Province hiking-trail register, route 91 Sonnenberger Panoramaweg',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
+          'IDM Südtirol / Refill Südtirol drinking-water points (Open Data Hub)',
+          'OpenStreetMap relation 7655311, surface, barrier and farm data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 10,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['A short suspension footbridge near the Winklerhof (km 0.7)', 'About 70 m of steps, then about 450 m of rocky path with rails (km 2.5–2.9)', 'A cattle grid and gates near km 4.5 and 5.3', 'About 1.3 km of tarmac farm roads, hot in summer'],
+      terrainType: 'Narrow hillside paths, gravel tracks and farm roads, with a short rocky section on steps and rails',
+      shadeDescription: 'Almost entirely open: the board gives the route as 90% open ground on a south-facing slope, rated thermally strong. Very hot in summer.',
+      terrainDescription: 'An easy panoramic path along the sunny Sonnenberg above the Vinschgau, through vineyards, orchards and farmyards, with one short demanding stretch of steps and rocky path with rails.',
+      waterDescription: 'Fountains in Partschins at the start and at St. Prokulus at the end, and none in between for about 7 km. Carry plenty of water for your dog.',
+      dogNotes: 'Partschins and Naturns publish no dog rule of their own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. The path crosses several working farmyards and a cattle grid, so animals may be close; keep your dog on the lead there and carry a smaller dog over the grid.',
+      tips: 'Start in Partschins and follow route 91 and the yellow “SP” waymark along the Sonnenberg to Naturns: 7.7 km, 186 m up and 295 m down, about 2½ hours, and take the train or bus back. The slope is fully open and very hot, so walk it in spring or autumn or very early, and carry water: there is none between the villages. Keep your dog on the lead through the farmyards, on the steps and rocky stretch with rails, and over the short suspension bridge.',
+      sourceLinks: [
+        { label: 'Tourismusverein Partschins, Sonnenberger Panoramaweg (Terrainkurweg Nr. 5)', url: 'https://www.merano-suedtirol.it/de/partschins-rabland-und-toell/natur-kultur/wasserwelten/gsund-bleibm-salute-take-care/die-klimatische-terrainkur-gesundheit-und-fitness-fuer-herz-und-kreislauf/121155122-partschins-sonnenberger-panoramaweg-naturns-terrainkurweg-nr-5.html' },
+        { label: 'Province hiking-trail register, route 91 (Open Data Hub)', url: 'https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427766' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/7655311' }
+      ],
+      startPoint: { lat: 46.6831679, lng: 11.0747314, label: 'Partschins village centre, by the church square (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.683054, lng: 11.073833, osmId: 'node/10963532210', label: 'Fountain in Partschins village' },
+        { km: 0.2, lat: 46.683696, lng: 11.071516, osmId: 'node/5170518350', label: 'Fountain in Partschins village' },
+        { km: 7.2, lat: 46.6519982, lng: 11.0090466, osmId: 'node/1871798860', label: 'Fountain at St. Prokulus, Naturns' }
+      ],
+      desc: 'A panoramic walk along the sunny Sonnenberg high above the Vinschgau, from Partschins past old farms, vineyards and terraced meadows to the early-medieval church of St. Prokulus in Naturns. The official route lists 7.7 km, 186 m of ascent and 295 m of descent.'
     }
   };
 
