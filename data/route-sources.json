@@ -610,6 +610,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-5512443": {
+      "url": "https://www.merano-suedtirol.it/de/naturns/aktiv-entspannen/wandern-bergsteigen/wanderwege/121154118-kult-und-kraftplatz-wallburgboden.html",
+      "publisher": "Tourismusgenossenschaft Naturns",
+      "name": "Kult- und Kraftplatz Wallburgboden",
+      "quote": "Dauer 2:30 h · Länge 8,3 km · Höhenmeter bergauf 349 hm",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-6244965": {
       "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoi432cc269cc7e3628df3ccfeb7ab84799.the-story-of-stones.plata-platten---falzes-pfalzen",
       "publisher": "IDM Südtirol / Tourismusverband Bruneck Kronplatz – Tourist Office Pfalzen",
@@ -686,9 +694,9 @@
       "url": "https://www.merano-suedtirol.it/de/passeiertal/aktivurlaub/wandern-bergsteigen/wanderwege/121154995-circular-path-waltner-rundweg-in-walten-valtina.html",
       "publisher": "Tourismusverein Passeiertal",
       "name": "Waltner Rundweg in Walten",
-      "quote": "Vom Gasthof Alpenrose führt der Weg in Richtung Kirche.",
-      "foundBy": "orma-route-source-scout",
-      "verifiedAt": "2026-10-12T20:04:08.598Z"
+      "quote": "Dauer 2:30 h · Länge 8,4 km · Höhenmeter bergauf 368 hm",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-7547983": {
       "url": "https://www.lozzodicadore.eu/sito/node/186",
