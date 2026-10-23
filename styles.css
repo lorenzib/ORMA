@@ -1824,8 +1824,6 @@ body.map-fs-open{overflow:hidden;}
 /* ---- Map popups: soft edges + card-style match ---- */
 .maplibregl-popup-content{border-radius:14px !important;padding:14px 16px !important;}
 .popup-match{display:flex;align-items:baseline;gap:6px;margin:6px 0 8px;}
-.locate-btn{background:none;border:1.5px solid var(--paper-line);border-radius:999px;padding:5px 13px;font-size:11.5px;font-weight:700;color:var(--ink-soft);cursor:pointer;font-family:'Inter',sans-serif;}
-.locate-btn:hover{border-color:var(--accent);color:var(--accent);}
 
 /* ============================================================
    DOG PROFILE WIZARD (dog-wizard.js) — guest-first onboarding
