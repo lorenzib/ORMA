@@ -230,6 +230,14 @@
     },
     "osm-11816373": {
       "gloss": "the bunker path"
+    },
+    "osm-12953352": {
+      "name": "Archeopfad Brixen",
+      "slug": "archeopfad-brixen",
+      "retired": [
+        "archeo"
+      ],
+      "gloss": "the archaeology trail"
     }
   }
 }

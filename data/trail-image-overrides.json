@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-24T00:30:00.000Z",
+  "updatedAt": "2026-10-24T10:00:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -288,18 +288,18 @@
     },
     {
       "id": "osm-11780502",
-      "approvedReviewId": "commons-osm-11780502",
-      "approvedAt": "2026-09-06T14:27:06.592Z",
+      "approvedReviewId": "commons-osm-11780502-on-route",
+      "approvedAt": "2026-10-24T10:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-11780502-villnoess.jpg",
-        "heroImage": "images/trails/osm-11780502-villnoess.jpg",
-        "imageAlt": "The Villnoess valley seen from the Zans road, with scattered farmsteads on green pasture and snow on the far ridge.",
-        "imageCredit": "Villnoesser Tal from the Zanser Strasse",
-        "imageCreditText": "Villnoesser Tal from the Zanser Strasse by Falk2",
+        "imageIcon": "images/trails/osm-11780502-zanser-alm.jpg",
+        "heroImage": "images/trails/osm-11780502-zanser-alm.jpg",
+        "imageAlt": "The wooden Zanser Alm hut by the start of the trail, with spruce forest and the jagged Geisler peaks behind, in early summer.",
+        "imageCredit": "Hütte Zanseralm, Geislerspitzen",
+        "imageCreditText": "Hütte Zanseralm, Geislerspitzen by Falk2",
         "imageCreator": "Falk2",
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:I11_269_Villn%C3%B6%C3%9Fer_Tal.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:I11_271_H%C3%BCtte_Zanseralm,_Geislerspitzen.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -730,18 +730,18 @@
     },
     {
       "id": "osm-12142337",
-      "approvedReviewId": "commons-osm-12142337",
-      "approvedAt": "2026-09-07T09:38:00.461Z",
+      "approvedReviewId": "commons-osm-12142337-on-route",
+      "approvedAt": "2026-10-24T10:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-12142337-peitlerkofel.jpg",
-        "heroImage": "images/trails/osm-12142337-peitlerkofel.jpg",
-        "imageAlt": "The rock tower of the Peitlerkofel above wooded ridges, seen across a hand-harvested corn field with stooks drying on the slope.",
-        "imageCredit": "The Peitlerkofel seen from La Valle",
-        "imageCreditText": "The Peitlerkofel seen from La Valle by Alex1011",
-        "imageCreator": "Alex1011",
+        "imageIcon": "images/trails/osm-12142337-sass-de-putia.jpg",
+        "heroImage": "images/trails/osm-12142337-sass-de-putia.jpg",
+        "imageAlt": "A gravel track and a wooden waymark post on summer pasture below the rocky Peitlerkofel peak.",
+        "imageCredit": "Sass de Putia SE",
+        "imageCreditText": "Sass de Putia SE by Francesco Zanardini",
+        "imageCreator": "Francesco Zanardini",
         "imageLicence": "CC BY-SA 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:PeitlerKorn.jpg",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sass_de_Putia_SE_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1927,18 +1927,18 @@
     },
     {
       "id": "osm-6244965",
-      "approvedReviewId": "commons-osm-6244965",
-      "approvedAt": "2026-09-07T16:47:37.527Z",
+      "approvedReviewId": "commons-osm-6244965-on-route",
+      "approvedAt": "2026-10-24T10:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-6244965-plattner.jpg",
-        "heroImage": "images/trails/osm-6244965-plattner.jpg",
-        "imageAlt": "A small tarn among lichen-covered boulders and alpine grass above the Plattner Alm, with a rocky ridge behind it.",
-        "imageCredit": "A lake above the Plattner Alm",
-        "imageCreditText": "A lake above the Plattner Alm by Alletto",
-        "imageCreator": "Alletto",
+        "imageIcon": "images/trails/osm-6244965-hasenried.jpg",
+        "heroImage": "images/trails/osm-6244965-hasenried.jpg",
+        "imageAlt": "The church of St. Johann in Hasenried and its small fountain chapel on a green hillside under a cloudy spring sky.",
+        "imageCredit": "Hasenried, Pfalzen",
+        "imageCreditText": "Hasenried, Pfalzen by Clude02",
+        "imageCreator": "Clude02",
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:See_oberhalb_der_Plattner_Alm_01.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Hasenried._Pfalzen,_South_Tyrol,_Italy.jpg",
         "imageSourceType": "licensed-source"
       }
     },

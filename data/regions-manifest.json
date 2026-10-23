@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-23T14:03:14.216Z",
+  "generatedAt": "2026-10-23T15:20:53.371Z",
   "regions": {
     "dolomites": {
       "trailCount": 110,
-      "trails": "data/regions/dolomites-trails.js?v=6e72be0d62cf",
+      "trails": "data/regions/dolomites-trails.js?v=281ca4020851",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -32,7 +32,7 @@
         "osm-3202880": "data/trail-details/osm-3202880.js?v=6b11c795feed",
         "osm-3885162": "data/trail-details/osm-3885162.js?v=cbc1ecc5c85e",
         "osm-5512443": "data/trail-details/osm-5512443.js?v=96c0aee8035e",
-        "osm-6244965": "data/trail-details/osm-6244965.js?v=5c54eacf0280",
+        "osm-6244965": "data/trail-details/osm-6244965.js?v=4a89e81e62b8",
         "osm-6404258": "data/trail-details/osm-6404258.js?v=9c32e46dc05d",
         "osm-6404633": "data/trail-details/osm-6404633.js?v=739c68766f2a",
         "osm-6404634": "data/trail-details/osm-6404634.js?v=f86fea1476d6",
@@ -61,7 +61,7 @@
         "osm-11764094": "data/trail-details/osm-11764094.js?v=9ec36ed843b5",
         "osm-11774783": "data/trail-details/osm-11774783.js?v=c71e19dea8ed",
         "osm-11775760": "data/trail-details/osm-11775760.js?v=b83ccdb52d70",
-        "osm-11780502": "data/trail-details/osm-11780502.js?v=062db7da376c",
+        "osm-11780502": "data/trail-details/osm-11780502.js?v=2bd636409296",
         "osm-11790553": "data/trail-details/osm-11790553.js?v=d3ec95455c3c",
         "osm-11792795": "data/trail-details/osm-11792795.js?v=524c475fa487",
         "osm-11795103": "data/trail-details/osm-11795103.js?v=9a21b83c886e",
@@ -83,7 +83,7 @@
         "osm-12044077": "data/trail-details/osm-12044077.js?v=959ba1966a97",
         "osm-12047303": "data/trail-details/osm-12047303.js?v=b99197307e31",
         "osm-12132169": "data/trail-details/osm-12132169.js?v=47ad422fe733",
-        "osm-12142337": "data/trail-details/osm-12142337.js?v=f4c12f90747b",
+        "osm-12142337": "data/trail-details/osm-12142337.js?v=bfb6e68b847b",
         "osm-12150790": "data/trail-details/osm-12150790.js?v=28a7f166a025",
         "osm-12164395": "data/trail-details/osm-12164395.js?v=118076a1c89a",
         "osm-12165590": "data/trail-details/osm-12165590.js?v=f950a41aadae",
@@ -103,7 +103,7 @@
         "osm-12371689": "data/trail-details/osm-12371689.js?v=c3efddcbda5e",
         "osm-12731853": "data/trail-details/osm-12731853.js?v=951a3e71ff4c",
         "osm-12736753": "data/trail-details/osm-12736753.js?v=c2fffee348c4",
-        "osm-12953352": "data/trail-details/osm-12953352.js?v=c31d2efb268c",
+        "osm-12953352": "data/trail-details/osm-12953352.js?v=f7f49eab3131",
         "osm-13491868": "data/trail-details/osm-13491868.js?v=64d139ac8845",
         "osm-13528390": "data/trail-details/osm-13528390.js?v=92c51d276fc7",
         "osm-14058492": "data/trail-details/osm-14058492.js?v=1f5c4baeb290",
@@ -466,7 +466,7 @@
     "osm-12371689": "kirchensteig",
     "osm-12731853": "rundweg-laugen-elvas",
     "osm-12736753": "albeins-klerant-milland-albes-cleran-millan",
-    "osm-12953352": "archeo",
+    "osm-12953352": "archeopfad-brixen",
     "osm-13491868": "birmehlweg-sentiero-birmehl",
     "osm-13528390": "sentiero-del-sabadalt",
     "osm-14058492": "herrnsteig",
@@ -631,7 +631,7 @@
     "kirchensteig": "osm-12371689",
     "rundweg-laugen-elvas": "osm-12731853",
     "albeins-klerant-milland-albes-cleran-millan": "osm-12736753",
-    "archeo": "osm-12953352",
+    "archeopfad-brixen": "osm-12953352",
     "birmehlweg-sentiero-birmehl": "osm-13491868",
     "sentiero-del-sabadalt": "osm-13528390",
     "herrnsteig": "osm-14058492",
@@ -691,6 +691,7 @@
     "panoramaweg": "osm-12363235",
     "panoramaweg-osm-19697977": "osm-19697977",
     "seeweg": "osm-3885162",
-    "gro-e-schlossrunde": "osm-12173984"
+    "gro-e-schlossrunde": "osm-12173984",
+    "archeo": "osm-12953352"
   }
 }

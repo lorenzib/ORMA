@@ -18280,6 +18280,246 @@
       },
       "desc": "A 13 km loop over the sunny plateau around Steinegg, waymarked with a yellow shoe: from the Egger Moos craft zone on path 5 to the Kaserer Bild chapel, past the Lerchhof to Oberölgart, down the forest road (path 6) and back past the sports zone and Hotel Wiesl on path 3. Officially about 5 hours with 292 m of climb, between 1,200 and 1,360 m, much of it in forest. This walk is not yet verified by ORMA.\n\nKarneid's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle; dogs are not allowed on farmed meadows and fields.",
       "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Karneid requires, and stay off the meadows. There is a fountain at the Kaserer Bild chapel and places to eat at Oberölgart and the Wieslhof. About 4 km follows public roads, including a short stretch of the Rosengartenstraße, so keep your dog close there."
+    },
+    'osm-11780502': {
+      // Hand audit: 24 October 2026. At Zans in Villnöss, not Val Badia; partly
+      // inside the Puez-Geisler nature park. The official loop is rebuilt on OSM
+      // ways along the board's GPX through the routeLine override (the stored
+      // line was open and 21% long). Villnöss's dog regulation and the nature
+      // parks' code of conduct both require a lead at all times.
+      area: 'Zans, Villnöss / Funes',
+      distance: 2.9,
+      elevation: 90,
+      hours: '1',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Zanser Alm hut by the start, with the Geisler peaks behind, in June (Falk2, CC BY-SA 4.0).',
+        route: 'Official GPX 2.99 km, closed; rebuilt on OSM ways along it: 2.94 km, closed at the Zans car park, every GPX point within 7 m.',
+        routeNumbers: 'From the car park follow path 6 towards the Zanser Schwaige, then the “Naturerlebnisweg Zans / Sentiero natura Zannes” signs all the way round; the loop has no number of its own.',
+        mapPoints: 'Start at the Zans car park by Treffpunkt Zans (official start, bus stop Zanser Alm); three fountains on the loop (OSM nodes 7782927585, 7614513085, 7612516685).',
+        elevation: 'Official 3.0 km, 90 m up and down, 1 h (Südtirol.info, Cooperativa Turistica Odles).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Cooperativa Turistica Odles, Sentiero natura Zannes (Südtirol.info) and the Villnöss Outdooractive tour 810055071',
+          'Gemeinde Villnöss, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 16/2010), Art. 4 and 8',
+          'South Tyrol nature parks, code of conduct (dogs on a lead at all times)',
+          'Landschaftsplan Villnöss (newPlan doc 9783)',
+          'OpenStreetMap land cover, road and enclosure data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 58,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Crossing of the Zanser Straße (SP27)', 'The last 65 m on the SP27 over a wooden bridge into the car park', 'Ice on the paths in winter'],
+      terrainType: 'Wide, wheelchair-friendly footpaths and gravel forest tracks with wooden bridges',
+      shadeDescription: 'About half the loop is in spruce forest; the Piuswiese meadows and the car-park end are open.',
+      terrainDescription: 'Wide, wheelchair-friendly footpaths and gravel forest tracks with wooden bridges; easy, at 1,665–1,742 m.',
+      waterDescription: 'Three fountains on the loop (the one at the AVS hut may be off in winter) and two streams crossed on bridges. Dogs may not bathe in public fountains.',
+      dogNotes: 'A lead of at most 1.5 m at all times, under both Villnöss’s regulation and the nature parks’ code of conduct, and a muzzle carried. Dogs may not go onto the meadows or bathe in fountains. The trail passes the fenced Zans deer enclosure and the Zanser Schwaige farm.',
+      tips: 'Park at the paid Zans car park (or take bus 330 to Zanser Alm) and follow the Naturerlebnisweg signs past 14 nature stations: 3 km and 90 m of climbing, about an hour. Keep your dog on a short lead the whole time, as Villnöss and the nature park require, and especially past the deer enclosure. Watch for cars where the loop crosses and briefly follows the Zanser Straße at the end.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Sentiero natura Zannes', url: 'https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoi17c55fc383bcaf2bebb595bceebe0ab5.sentiero-natura-zannes.s--maddalena---funes' },
+        { label: 'Outdooractive, Naturerlebnisweg Zans (Villnöss)', url: 'https://www.outdooractive.com/de/route/810055071/' },
+        { label: 'Gemeinde Villnöss, dog regulation', url: 'https://www.gemeinde.villnoess.bz.it/system/web/GetDocument.ashx?cts=1789663369&fileId=1048678' },
+        { label: 'South Tyrol nature parks, code of conduct', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11780502' }
+      ],
+      startPoint: { lat: 46.635766, lng: 11.765652, label: 'Zans car park (paid) by Treffpunkt Zans, bus stop Zanser Alm' },
+      waterSources: [
+        { km: 0.6, lat: 46.634295, lng: 11.77111, osmId: 'node/7782927585', label: 'Fountain near the picnic area' },
+        { km: 2.5, lat: 46.636531, lng: 11.759598, osmId: 'node/7614513085', label: 'Nature-park fountain on the trail' },
+        { km: 2.7, lat: 46.6364941, lng: 11.7631223, osmId: 'node/7612516685', label: 'AVS hut fountain', seasonal: true }
+      ],
+      desc: 'An easy nature trail at Zans in the Villnöss valley, below the Geisler peaks: past the Zanser Schwaige and the deer enclosure, through spruce forest and over the Piuswiese meadows, with 14 stations on the way. The official route lists 3 km and 90 m of ascent.'
+    },
+    'osm-12953352': {
+      // Hand audit: 24 October 2026. The official Archeopfad of Brixen
+      // Tourismus, rebuilt on OSM ways along its GPX through the routeLine
+      // override; relation 12953352 follows a hotel's longer version (8.1 km).
+      // Wholly in Brixen: the animal ordinance requires a lead in built-up
+      // areas (Art. 5), allows dogs off the lead outside them with a lead
+      // carried (Art. 11), and bans dogs from farmland (Art. 6).
+      area: 'Brixen / Bressanone (Stufels – Elvas)',
+      distance: 5.4,
+      elevation: 286,
+      hours: '1.5–2',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Eisack from the Adlerbrücke, the official start, in October (Uoaei1, CC BY-SA 3.0).',
+        route: 'Official GPX 5.14 km, closed; rebuilt on OSM ways along it: 5.38 km, closed at the Adlerbrücke, 97% of GPX points within 25 m.',
+        routeNumbers: 'From the Adlerbrücke climb through the Stufels lanes and vineyards to the Guggerhof car park, follow path 1 up to Elvas with a short side trip to the Pinazbühel lookout (path 10), then from Elvas church follow path 2 down, cross the Elvaser Straße and take the farm road south through the vineyards back to Brixen.',
+        mapPoints: 'Start at the Adlerbrücke on the Stufels side (official start); drinking fountains at the start (OSM node 7559202719) and by Elvas church (node 7559966242).',
+        elevation: 'Official 5.1 km, 286 m up and down, 1 h 37 min, 559–845 m (Südtirol.info, Brixen Tourismus).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Brixen Tourismus, Der Archeopfad in Brixen (Südtirol.info, Outdooractive tour 16421019)',
+          'Stadtgemeinde Brixen, Verordnung über die Haltung und Führung von Tieren (Gemeinderat Nr. 5, 27.01.2011), Art. 5, 6 and 11',
+          'Landschaftsplan Brixen, Durchführungsbestimmungen, Art. 3 (newPlan doc 3358)',
+          'OpenStreetMap land cover, road and water data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 15,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Stone setts in the Stufels lanes', 'Quiet 30 km/h lanes with no pavement (about a fifth of the walk)', 'Crossings of the Laugenstraße in Elvas and of the Elvaser Straße on the way down', 'Hot tarmac and open vineyards in summer'],
+      terrainType: 'Old-town lanes on setts, farm tracks and easy footpaths, about a third tarmac',
+      shadeDescription: 'Mostly open: vineyards, orchards and meadows on a sunny slope above Brixen, with only short wooded stretches and the shade of Stufels at the start.',
+      terrainDescription: 'Old-town lanes on setts, then farm tracks and easy footpaths up to Elvas and the Pinazbühel, returning on a farm road through the vineyards. Officially easy, a family walk.',
+      waterDescription: 'Public drinking fountains at the Adlerbrücke start and by Elvas church at the halfway point; nothing in between, so carry water in warm weather.',
+      dogNotes: 'Brixen requires a lead of at most 1.5 m in built-up areas such as Stufels and Elvas, and a muzzle carried; outside them dogs may be off the lead if you carry one and keep the dog under control. Dogs may not go into vineyards, orchards or fields. Farm animals may be near the Guggerhof.',
+      tips: 'A 5 km loop from the Adlerbrücke through Stufels and the vineyards to Elvas and the Pinazbühel lookout, with history boards on the way: 286 m of climbing, about an hour and a half. Keep your dog on a short lead in Stufels and Elvas, and on the track through the vineyards, where dogs are not allowed. The slope is very sunny: go early or late in summer and fill up at the fountain by Elvas church.',
+      sourceLinks: [
+        { label: 'Südtirol.info, The Archeopfad in Brixen', url: 'https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoie0d07cf23912f40c86e965fc4ac99149.the-archeopfad-archaeological-trail-in-brixen.bressanone-citta-brixen-stadt' },
+        { label: 'Outdooractive, Archeopfad (Brixen Tourismus)', url: 'https://regio.outdooractive.com/oar-suedtirol-alto-adige/r/16421019' },
+        { label: 'Brixen, Verordnung über die Haltung und Führung von Tieren', url: 'https://asmb.it/export/sites/asmb2/.downloads/de/umweltdienste/verordnung_haltung-20und-20fuehrung-20tiere.pdf' },
+        { label: 'Landschaftsplan Brixen, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/3358' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12953352' }
+      ],
+      startPoint: { lat: 46.717031, lng: 11.659173, label: 'Adlerbrücke (Ponte Aquila), Stufels side, Adlerbrücke bus stop' },
+      waterSources: [
+        { km: 0, lat: 46.717144, lng: 11.6591401, osmId: 'node/7559202719', label: 'Drinking fountain at the Adlerbrücke', seasonal: true },
+        { km: 0, lat: 46.7167804, lng: 11.6587512, osmId: 'node/1475234912', label: 'Nepomukbrunnen, 44 m off the route' },
+        { km: 3, lat: 46.732186, lng: 11.66711, osmId: 'node/7559966242', label: 'Kirchbrunnen by Elvas church', seasonal: true }
+      ],
+      desc: 'An archaeology trail above Brixen: from the Adlerbrücke up through the old Stufels quarter and the vineyards to Elvas and the Pinazbühel lookout, past the sites of prehistoric and Roman finds, and back down through the vineyards. The official route lists 5.1 km and 286 m of ascent.'
+    },
+    'osm-12142337': {
+      // Hand audit: 24 October 2026. The official loop starts at the Würzjoch;
+      // the import dropped the 8A approach (tagged as such in the relation), so
+      // the line is rebuilt on current OSM ways along the board's GPX through the
+      // routeLine override, following the 2025 reroute below the Peitlerscharte.
+      // Wholly in San Martin de Tor; about 61% inside the Puez-Geisler park, whose
+      // code of conduct requires a lead at all times. No via ferrata or cables;
+      // T2 at most, but a steep, loose climb and descent at the Scharte.
+      area: 'Würzjoch / Passo delle Erbe, San Martin de Tor',
+      distance: 13,
+      elevation: 642,
+      hours: '4–5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The gravel track and a waymark post below the Peitlerkofel in summer, on the line at the Vaciara side (Francesco Zanardini, CC BY-SA 3.0).',
+        route: 'Official GPX 12.88 km, closed at the Würzjoch; rebuilt on current OSM ways along it: 13.05 km, closed, 96.5% of GPX points within 25 m; no way graded above mountain hiking (T2).',
+        routeNumbers: 'From the Würzjoch take 8A south across the meadows; at the fork go right under the north face and climb on path 4 to the Peitlerscharte (2,357 m); descend steeply on 4B, follow 35 past the Vaciara hut to the Gömajoch, then take 8B west past the Göma and Fornella huts and 8A back to the pass.',
+        mapPoints: 'Start at the Würzjoch / Passo delle Erbe car park (official start); drinking-water points at km 8.0 (OSM node 11385735871) and at Fornella (node 13007206242), a spring at km 1.7 (node 1430150379).',
+        elevation: 'Official 12.9 km, 642 m up and down, 4 h 01, between 1,966 and 2,359 m (Südtirol.info, Cooperativa Turistica San Vigilio/San Martin).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Cooperativa Turistica San Vigilio/San Martin, Giro intorno al Sas de Pütia (Südtirol.info, Outdooractive tour 16570300)',
+          'Tourismusverein St. Martin in Thurn, Rund um den Peitlerkofel (Open Data Hub smgpoi1182)',
+          'Gemeinde St. Martin in Thurn, Verordnung 01/2005 on dogs',
+          'South Tyrol nature parks, code of conduct (dogs on a lead at all times); Naturpark Puez-Geisler decree, Art. 5 (grazing)',
+          'Landschaftsplan St. Martin in Thurn, Art. 8',
+          'OpenStreetMap path grades, scree, hut and water data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 15,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Steep, loose rock and gravel up to and down from the Peitlerscharte (up to about 35%)', 'Scree slopes below the Scharte', 'Gravel tracks shared with mountain bikes', 'Grazing cattle on the Alm in summer', 'Car park and pass road at the start'],
+      terrainType: 'Gravel farm tracks and meadow paths, with a steep rocky path over the Peitlerscharte',
+      shadeDescription: 'Mostly open high meadow, scree and dwarf pine between 1,970 and 2,360 m, with a little woodland on the north-side return.',
+      terrainDescription: 'Gravel farm tracks and meadow paths, then a rocky path climbing steeply to the Peitlerscharte across scree, and a short, steep, loose descent. The tourism board rates it easy to medium, with no exposed or protected sections.',
+      waterDescription: 'Huts at the start, at the Peitler Hütte, Vaciara, Göma and Fornella; drinking-water points at about km 8 and at Fornella, a spring early on and several streams. The climb to the Scharte is dry, so carry water.',
+      dogNotes: 'Keep your dog on a lead the whole way: most of the walk is in the Puez-Geisler nature park, where a lead is required at all times, and San Martin’s ordinance also requires a lead in public places. Carry a muzzle. Cattle graze the Alm in summer. The steep, loose climb and descent at the Scharte need a fit, sure-footed dog.',
+      tips: 'Park at the Würzjoch and walk the loop clockwise on 8A, 4, 4B, 35 and 8B: 12.9 km and 642 m of climbing, four to five hours. Keep your dog on a short lead throughout and give grazing cows a wide berth. The climb to the Peitlerscharte and the descent beyond it are steep and loose, and there is little shade, so start early, take water, and leave it for another day with a small or older dog.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Giro intorno al Sas de Pütia', url: 'https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoid9422b2e9bfe1791aa78eb8baccbe50f.giro-intorno-al-puetia.longiaru' },
+        { label: 'Outdooractive, Rund um den Peitlerkofel', url: 'https://www.outdooractive.com/de/r/16570300' },
+        { label: 'Gemeinde St. Martin in Thurn, Verordnungen', url: 'https://www.gemeinde.stmartininthurn.bz.it/de/Verwaltung/Organisation/Verordnungen' },
+        { label: 'South Tyrol nature parks, code of conduct', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12142337' }
+      ],
+      startPoint: { lat: 46.67482, lng: 11.81381, label: 'Würzjoch / Passo delle Erbe car park (paid June–October; bus 469 in summer)' },
+      waterSources: [
+        { km: 1.7, lat: 46.6634504, lng: 11.8082824, osmId: 'node/1430150379', label: 'Spring' },
+        { km: 8, lat: 46.6596756, lng: 11.8451064, osmId: 'node/11385735871', label: 'Drinking-water point on the path' },
+        { km: 10.3, lat: 46.6687384, lng: 11.8329002, osmId: 'node/13007206232', label: 'Drinking water by the Göma hut, 130 m off the path', seasonal: true },
+        { km: 11.9, lat: 46.6669731, lng: 11.8144716, osmId: 'node/13007206242', label: 'Drinking water at Fornella' }
+      ],
+      desc: 'A high loop round the Peitlerkofel (Sas de Pütia) from the Würzjoch: across alpine meadows under the north face, up to the Peitlerscharte at 2,357 m, down past the Vaciara and Göma huts, and back along the north side. The official route lists 12.9 km and 642 m of ascent.'
+    },
+    'osm-6244965': {
+      // Hand audit: 24 October 2026. In Pfalzen, not Bruneck. The import dropped
+      // the school link path (relation role "approach"); the official loop is
+      // rebuilt on OSM ways along the board's GPX, in the official direction,
+      // through the routeLine override. Two board pages disagree on the climb
+      // (321 m on the Outdooractive tour the GPX comes from, 382 m on
+      // Südtirol.info); the record uses the tour's figures. Pfalzen publishes no
+      // dog regulation; its landscape plan has one biotope, not entered, so the
+      // national ordinance applies.
+      area: 'Pfalzen / Falzes',
+      distance: 14.1,
+      elevation: 321,
+      hours: '4',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'St. Johann church and its fountain chapel in Hasenried, a waypoint on the walk, in June (Clude02, CC BY-SA 4.0).',
+        route: 'Official GPX 14.12 km, closed at the school; rebuilt on OSM ways along it: 14.14 km, closed, 95% of GPX points within 25 m.',
+        routeNumbers: 'Follow the “Steine erzählen” signs. From the school take the Panoramasteig to the Tiefentaler farm, cross to the Bachstöckl chapel and climb to the Lechner farms; go 200 m down the Kofler road, then follow 18 and briefly 17A to St. Valentin; cross the main road and take E10 to the sports area, then 5/5A to the Issinger Weiher; go up to Mühlen on 1 and along the Hasenried road on 7 to Hasenried church, and return to the school on the Pfaffensteig.',
+        mapPoints: 'Start at the Schulhausplatz in Pfalzen (official start); fountains at the sports area (OSM node 10770868015) and the Issinger Weiher (nodes 2961150856, 3112867974, 5853793656).',
+        elevation: 'Official 14.1 km, 321 m up and down, 3:55 h (Bruneck Kronplatz Tourismus, Outdooractive tour 810055605); Südtirol.info lists 382 m and 3 h 58.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Bruneck Kronplatz Tourismus, Steine erzählen (Outdooractive tour 810055605 and Südtirol.info)',
+          'Province hiking-trail register, Steine erzählen (routes-hikingtrails.11426748)',
+          'Landschaftsplan Pfalzen, Durchführungsbestimmungen, Art. 4 (newPlan doc 3422)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Pfalzen publishes no dog regulation)',
+          'OpenStreetMap land cover, road and water data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 44,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 3 km on tarmac, mostly quiet farm roads', 'About 200 m on the SP89 provincial road (90 km/h, no pavement) before the Issinger Weiher', 'Two crossings of the SP40 provincial road', 'Icy paths in winter'],
+      terrainType: 'Gravel farm tracks, field and forest paths and some quiet asphalt roads',
+      shadeDescription: 'Woodland and open meadow alternate, a little under half in forest; sunny meadow stretches at 900–1,200 m can be warm on summer afternoons.',
+      terrainDescription: 'Gravel farm tracks, field and forest paths and some quiet asphalt roads across the Pfalzen–Issing terrace. Rated medium by the board for its length, not for difficulty.',
+      waterDescription: 'No water on the first 7.7 km. Fountains at the Pfalzen sports area (km 7.8) and at the Issinger Weiher (km 10.2–10.5). Carry water for your dog.',
+      dogNotes: 'Pfalzen has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. Farms and hay meadows line the whole walk, so keep your dog close near farmyards and grazing animals, and on the lead on the road stretches and at the busy lake.',
+      tips: 'A long, easy walk of 14 km and about 320 m of climbing, close to four hours; the board notes it can be shortened in several places. Bring water: the first fountain is at the sports area after about 7.7 km. Keep your dog on a lead of at most 1.5 m in the villages, on the road stretches and past the Issinger Weiher, and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Südtirol.info, The story of stones', url: 'https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoi432cc269cc7e3628df3ccfeb7ab84799.the-story-of-stones.plata-platten---falzes-pfalzen' },
+        { label: 'Outdooractive, Steine erzählen (Bruneck Kronplatz Tourismus)', url: 'https://www.outdooractive.com/oar-suedtirol-alto-adige/r/810055605' },
+        { label: 'Province hiking-trail register (Open Data Hub)', url: 'https://tourism.api.opendatahub.com/v1/GeoShape/routes-hikingtrails.11426748' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/6244965' }
+      ],
+      startPoint: { lat: 46.813469, lng: 11.877671, label: 'Schulhausplatz, Pfalzen: the stone gate at the school (official start), free parking on the school square' },
+      waterSources: [
+        { km: 7.8, lat: 46.80672, lng: 11.881612, osmId: 'node/10770868015', label: 'Fountain at the Pfalzen sports area' },
+        { km: 10.2, lat: 46.812245, lng: 11.853565, osmId: 'node/2961150856', label: 'Fountain at the Issinger Weiher' },
+        { km: 10.2, lat: 46.812103, lng: 11.853626, osmId: 'node/3112867974', label: 'Fountain at the Issinger Weiher' },
+        { km: 10.5, lat: 46.812775, lng: 11.84968, osmId: 'node/5853793656', label: 'Fountain west of the Issinger Weiher' }
+      ],
+      desc: 'A long loop over the sunny terrace of Pfalzen above Bruneck, following stories told by stones: past old farms, the Bachstöckl chapel and St. Valentin to the Issinger Weiher, then through Mühlen to the church of Hasenried and back to the school. The official route lists 14.1 km and 321 m of ascent.'
     }
   };
 
