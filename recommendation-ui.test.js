@@ -65,6 +65,9 @@ describe('UX-04 canonical recommendation journey', () => {
 
     // The score change is visible, once, and respects reduced motion.
     expect(controller).toContain("classList.add('is-rescored')");
+    // The move is shown by the card itself, not by a banner restating it.
+    expect(controller).not.toContain('recommendation-firstrun');
+    expect(html).not.toContain('.recommendation-firstrun');
     expect(html).toContain('@keyframes recommendation-rescore');
     expect(html).toContain('prefers-reduced-motion:reduce');
   });

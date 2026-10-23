@@ -33467,7 +33467,7 @@ if(document.querySelector('.td2')){
   }
 
   // P0-3: what the reader saw before they added their dog, so the change can
-  // be stated rather than explained.
+  // be shown rather than explained.
   let previousRender = null;
   let pendingCallout = null;
 
@@ -33546,9 +33546,6 @@ if(document.querySelector('.td2')){
       // A heading over a line explaining that there is nothing to say is the
       // opposite of crisp. A section with nothing behind it is dropped; what
       // ORMA has not established stays in the unknowns disclosure below.
-      (pendingCallout
-        ? `<p class="recommendation-firstrun" role="status">${esc(pendingCallout)}</p>`
-        : '') +
       breakdown(view, tr) +
       // The breakdown already carries every reason and caution with its
       // points; repeating them as two more lists doubled the card. The lists
