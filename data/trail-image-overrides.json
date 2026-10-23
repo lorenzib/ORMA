@@ -458,18 +458,18 @@
     },
     {
       "id": "osm-11832013",
-      "approvedReviewId": "commons-osm-11832013",
-      "approvedAt": "2026-09-06T19:13:57.327Z",
+      "approvedReviewId": "hand-audit-osm-11832013",
+      "approvedAt": "2026-10-23T20:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-11832013-durnholzer-hoehenweg.jpg",
-        "heroImage": "images/trails/osm-11832013-durnholzer-hoehenweg.jpg",
-        "imageAlt": "A stony path crossing open alpine grass and dwarf pine on the Durnholz high route, under a clear sky.",
-        "imageCredit": "Durnholzer Hoehenweg towards the Tellerjoch",
-        "imageCreditText": "Durnholzer Hoehenweg towards the Tellerjoch by Jkue",
-        "imageCreator": "Jkue",
+        "imageIcon": "images/trails/osm-11832013-durnholzer-see.jpg",
+        "heroImage": "images/trails/osm-11832013-durnholzer-see.jpg",
+        "imageAlt": "The Durnholzer See in the upper Sarntal with Durnholz church and its slender spire on the far shore, wooded slopes and meadows around",
+        "imageCredit": "The Durnholzer See and Durnholz church",
+        "imageCreditText": "The Durnholzer See and Durnholz church by Hubert Berberich (HubiB)",
+        "imageCreator": "Hubert Berberich (HubiB)",
         "imageLicence": "CC BY-SA 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Durnholzer_H%C3%B6henweg_1.jpg",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:DurnholzerSee2009.jpg",
         "imageSourceType": "licensed-source"
       }
     },
