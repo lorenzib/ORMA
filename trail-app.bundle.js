@@ -18572,6 +18572,8 @@ function effectiveOverrides(profile, adjustOverride){
       ]
     },
     'osm-12182936': {
+      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
+      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
       // Hand audit 23 October 2026: line rebuilt on OSM ways along the province trail register's line for route 24 'Schörgaurunde'
       // (routes-hikingtrails.11429423, 4.51 km): a loop through Sarnthein and along the Talfer promenade, with a short link at its south
       // end to route 24A. Dogs: Sarntal dog regulation Art. 4 and 8. No Natura 2000 site or biotope on the line.
@@ -19919,79 +19921,7 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11429423"
       },
       "desc": "Route 24, a flat loop on the floor of the Sarntal between Bad Schörgau and Sarnthein. From the junction at Steg it runs north through meadows and farmsteads to the village, crosses the Talfer and comes back south along the lit riverside promenade. The loop is about 4.1 km; the province's line for route 24 adds a short 0.4 km link at the south end, where route 24A begins. Allow about an hour and a quarter.\n\nSarntal's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows, fields and orchards, so keep to the path where it crosses the meadows.",
-      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Sarntal requires, and stay off the meadows. About 130 m runs on the main valley road with no pavement, and the walk crosses it again further on: hold your dog close there. The valley floor is mostly open, with only about 15% shade, so go early on hot days. There is no water on the line itself; the village fountain on the Kirchplatz is just across the covered bridge.",
-      "curated": true,
-      "tier": "route-audited",
-      "reviewedAt": "2026-10-23",
-      "reviewedBy": "ORMA route audit",
-      "routeAudit": {
-        "photo": "Commons, Hubert Berberich (HubiB), CC BY-SA 3.0: the Talfer from the covered footbridge in Sarnthein, which the loop crosses (kept).",
-        "route": "Line rebuilt on OSM ways along the province register's line for route 24 (4.51 km): 4.54 km, every register point within 15 m. The old line (3.9 km) cut corners and missed a seventh of the route.",
-        "routeNumbers": "Route 24 in the province register and on the ground; route 24A begins at the south end.",
-        "mapPoints": "Start at the register's start at Steg; no water on the line, the Kirchplatz fountain is 156 m off it.",
-        "elevation": "About 70 m of climb; the register gives none, so it is measured on the line."
-      },
-      "graduation": {
-        "status": "verified",
-        "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
-      "verified": {
-        "categories": [
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "sources": [
-          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): '24 Schörgaurunde', route number 24, line routes-hikingtrails.11429423, 4,507 m; every register point within 15 m of the rebuilt line",
-          "Gemeinde Sarntal, dog regulation (GR 61/2015): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on meadows, fields and orchards), Art. 12 (applies outside built-up areas)",
-          "Sarntal landscape plan (newPlan PPC-21086, valid 2025): no biotope on the line and no dog rule; no Natura 2000 site on the line (EEA)",
-          "OpenStreetMap: road classes, surfaces, forest and water along the line; waymark red-white-red 24"
-        ],
-        "date": "2026-10-23"
-      },
-      "sourceLinks": [
-        {
-          "label": "South Tyrol trail register, 24 Schörgaurunde (Open Data Hub)",
-          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11429423"
-        },
-        {
-          "label": "Gemeinde Sarntal, dog regulation",
-          "url": "https://www.gemeinde.sarntal.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden"
-        },
-        {
-          "label": "OpenStreetMap relation 12182936",
-          "url": "https://www.openstreetmap.org/relation/12182936"
-        }
-      ]
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Sarntal requires, and stay off the meadows. About 130 m runs on the main valley road with no pavement, and the walk crosses it again further on: hold your dog close there. The valley floor is mostly open, with only about 15% shade, so go early on hot days. There is no water on the line itself; the village fountain on the Kirchplatz is just across the covered bridge."
     },
     'osm-19330972': {
       // Hand audit 23 October 2026: line rebuilt on OSM ways along the official 'Dorfwanderung Altrei' track of the Südtirols Süden
@@ -20653,6 +20583,8 @@ function effectiveOverrides(profile, adjustOverride){
       ]
     },
     'osm-9675994': {
+      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
+      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
       // Hand audit 23 October 2026: the line matches the province trail register's 'St. Agatha Rundweg' (routes-hikingtrails.11426959,
       // 1.51 km) within 22 m everywhere; waymark A. Dogs: Deutschnofen dog regulation Art. 4 and 8. No Natura 2000 site on the line.
       // Place corrected from Nova Levante to Deutschnofen.
@@ -20676,86 +20608,11 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426959"
       },
       "desc": "A short loop on waymark A over the wooded hilltop above Deutschnofen, past the small, remote St. Agatha chapel and the Unterkofl and Oberkofl farms. It is about 1.5 km and a little over half an hour, with some 60 m of up and down, mostly in forest.\n\nDeutschnofen's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows, so keep to the track where it runs beside the meadows.",
-      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Deutschnofen requires, and stay off the meadows. The loop passes through two working farmyards and uses about 500 m of the farm road, where cars come and go. There is no water on the way, so bring some. Two thirds of the loop is in forest, so it stays fairly cool.",
-      "curated": true,
-      "tier": "route-audited",
-      "reviewedAt": "2026-10-23",
-      "reviewedBy": "ORMA route audit",
-      "routeAudit": {
-        "photo": "Commons, Plentn, CC0: the Unterkofl farm on the loop with Dolomite peaks behind, 13 m from the line (replaces a Rosengarten view 2.2 km away).",
-        "route": "Published line 1.50 km, within 22 m of the province register's St. Agatha Rundweg (1.51 km) everywhere.",
-        "routeNumbers": "Waymark A, as Eggental Tourismus names it at the Oberkoflhof and as OSM records it.",
-        "mapPoints": "Start where the loop meets the Unterkofl farm road; there is no water on the loop.",
-        "elevation": "About 57 m of up and down, measured on the line; the register gives none."
-      },
-      "graduation": {
-        "status": "verified",
-        "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
-      "verified": {
-        "categories": [
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "sources": [
-          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'St. Agatha Rundweg', line routes-hikingtrails.11426959, 1,509 m; every register point within 10 m of the line",
-          "Eggental Tourismus, 'Wanderung zum Kirchlein St. Agatha': 'Am Oberkoflhof biegt man rechts auf den Weg [A] ab, der direkt zum kleinen, abgelegenen Kirchlein St. Agata führt' (waymark A on this loop)",
-          "Gemeinde Deutschnofen, Verordnung über die Haltung und Führung von Hunden (GR 6/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows and fields), Art. 12 (applies outside built-up areas)",
-          "No Natura 2000 site on the line (EEA); the Deutschnofen landscape plan's rules (2026) set no dog rule",
-          "OpenStreetMap: road classes, surfaces, forest and farmyards along the line"
-        ],
-        "date": "2026-10-23"
-      },
-      "sourceLinks": [
-        {
-          "label": "South Tyrol trail register, St. Agatha Rundweg (Open Data Hub)",
-          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426959"
-        },
-        {
-          "label": "Eggental Tourismus, Wanderung zum Kirchlein St. Agatha",
-          "url": "https://eggental.com/de/activity/wanderung-zum-kirchlein-st-agatha_45778"
-        },
-        {
-          "label": "Gemeinde Deutschnofen, dog regulation (PDF)",
-          "url": "https://www.gemeinde.deutschnofen.bz.it/system/web/GetDocument.ashx?cts=1708335105&fileId=1001871"
-        },
-        {
-          "label": "OpenStreetMap relation 9675994",
-          "url": "https://www.openstreetmap.org/relation/9675994"
-        }
-      ]
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Deutschnofen requires, and stay off the meadows. The loop passes through two working farmyards and uses about 500 m of the farm road, where cars come and go. There is no water on the way, so bring some. Two thirds of the loop is in forest, so it stays fairly cool."
     },
     'osm-12190538': {
+      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
+      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
       // Hand audit 23 October 2026: the line matches the province trail register's 'Flaaser Rundweg' (routes-hikingtrails.11425436,
       // 4.98 km): every register point within 39 m, one 70 m dog-leg past the Leitlkeller. Dogs: Jenesien dog regulation Art. 4 and 8.
       // No Natura 2000 site, park or biotope on the line.
@@ -20773,81 +20630,11 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425436"
       },
       "desc": "A 5 km loop round the hamlet of Flaas on the Tschögglberg above Jenesien, through fenced meadows, past farmsteads and the Leitlkeller inn, and back through spruce forest. About 180 m of up and down, between 1,350 and 1,530 m, in an hour and a half to two hours.\n\nJenesien's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows during the growing season, so keep to the path where it crosses them.",
-      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Jenesien requires, and keep off the meadows; horses graze in the fenced pastures. About 1.2 km follows quiet public roads. The only tap is by Flaas church, about 160 m off the loop. The first stretch over the meadows is open; most of the second half is in forest.",
-      "curated": true,
-      "tier": "route-audited",
-      "reviewedAt": "2026-10-23",
-      "reviewedBy": "ORMA route audit",
-      "routeAudit": {
-        "photo": "Commons (kept): Flaas and its church seen from the meadow slope above the village, which the loop crosses.",
-        "route": "Published line 5.05 km against the province register's Flaaser Rundweg (4.98 km): every register point within 39 m; one 70 m dog-leg past the Leitlkeller.",
-        "routeNumbers": "The register names the loop without a number; about 300 m shares path 8.",
-        "mapPoints": "Start at the car park on the loop; the only tap is by Flaas church, 160 m off the line.",
-        "elevation": "About 180 m of up and down, measured on the line; the register gives none."
-      },
-      "graduation": {
-        "status": "verified",
-        "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
-      "verified": {
-        "categories": [
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "sources": [
-          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Flaaser Rundweg', line routes-hikingtrails.11425436, 4,978 m; every register point within 39 m of the line",
-          "Gemeinde Jenesien, Verordnung über die Haltung und Führung von Hunden (GR 8/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows and fields in the growing season), Art. 12 (applies outside built-up areas)",
-          "Jenesien landscape plan (newPlan PPC-21079): dogs may not run free in biotopes; no biotope on the line; no Natura 2000 site on the line (EEA)",
-          "OpenStreetMap: road classes, surfaces, forest, farmyards and water along the line"
-        ],
-        "date": "2026-10-23"
-      },
-      "sourceLinks": [
-        {
-          "label": "South Tyrol trail register, Flaaser Rundweg (Open Data Hub)",
-          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425436"
-        },
-        {
-          "label": "Gemeinde Jenesien, dog regulation",
-          "url": "https://www.gemeinde.jenesien.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden"
-        },
-        {
-          "label": "OpenStreetMap relation 12190538",
-          "url": "https://www.openstreetmap.org/relation/12190538"
-        }
-      ]
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Jenesien requires, and keep off the meadows; horses graze in the fenced pastures. About 1.2 km follows quiet public roads. The only tap is by Flaas church, about 160 m off the loop. The first stretch over the meadows is open; most of the second half is in forest."
     },
     'osm-12371666': {
+      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
+      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
       // Hand audit 23 October 2026: the line matches the province trail register's 'Kastelaz Promenade' (routes-hikingtrails.11425908,
       // 1.27 km) within 15 m everywhere. Dogs: Tramin dog regulation Art. 4 and 8. No Natura 2000 site, park or biotope on the line.
       "shadeCoverage": 5,
@@ -20862,79 +20649,7 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425908"
       },
       "desc": "A short promenade of about 1.3 km above Tramin, up the lane towards the hill of Kastelaz and its St. Jakob church and back on footpaths between the vineyards, with views over the village spire and the Etsch valley. Allow half an hour.\n\nTramin's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed land during the growing season, so keep your dog out of the vineyards.",
-      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Tramin requires, and keep it out of the vineyards. About half the walk is on asphalt lanes where cars pass. There is almost no shade on this low, sunny vineyard slope, so avoid summer middays. Fountains are mapped in the village, 45 to 120 m off the route.",
-      "curated": true,
-      "tier": "route-audited",
-      "reviewedAt": "2026-10-23",
-      "reviewedBy": "ORMA route audit",
-      "routeAudit": {
-        "photo": "Commons, Plentn, CC BY-SA 4.0 (cropped): the Tramin parish spire and the Etsch valley from the St. Jakob lane, 26 m from the line (replaces a Kalterer See view 610 m away).",
-        "route": "Published line 1.28 km, within 15 m of the province register's Kastelaz Promenade (1.27 km) everywhere.",
-        "routeNumbers": "The register names the promenade without a number.",
-        "mapPoints": "Start at the Altersheim bus stop on the route; the fountains are in the village just off it.",
-        "elevation": "About 74 m of up and down, measured on the line; the register gives none."
-      },
-      "graduation": {
-        "status": "verified",
-        "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
-      "verified": {
-        "categories": [
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "sources": [
-          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Kastelaz Promenade', line routes-hikingtrails.11425908, 1,270 m; every register point within 10 m of the line",
-          "Gemeinde Tramin, Gemeindeverordnung über die Haltung und Führung von Hunden (GR 7/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed land in the growing season), Art. 12 (applies outside built-up areas)",
-          "Tramin landscape plan (newPlan PPC-21098): no biotope or natural monument on the line and no dog rule; no Natura 2000 site on the line (EEA)",
-          "OpenStreetMap: road classes, surfaces, vineyards and water along the line"
-        ],
-        "date": "2026-10-23"
-      },
-      "sourceLinks": [
-        {
-          "label": "South Tyrol trail register, Kastelaz Promenade (Open Data Hub)",
-          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425908"
-        },
-        {
-          "label": "Gemeinde Tramin, dog regulation",
-          "url": "https://www.gemeinde.tramin.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden"
-        },
-        {
-          "label": "OpenStreetMap relation 12371666",
-          "url": "https://www.openstreetmap.org/relation/12371666"
-        }
-      ]
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Tramin requires, and keep it out of the vineyards. About half the walk is on asphalt lanes where cars pass. There is almost no shade on this low, sunny vineyard slope, so avoid summer middays. Fountains are mapped in the village, 45 to 120 m off the route."
     },
     'osm-123162': {
       // Hand audit 23 October 2026: route, waymarks and figures from the official Planetenweg description (suedtirol.info / Eggental
@@ -21044,6 +20759,8 @@ function effectiveOverrides(profile, adjustOverride){
       ]
     },
     'osm-2179746': {
+      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
+      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
       // Hand audit 23 October 2026: line rebuilt on OSM ways along the province trail register's 'Naturlehrpfad Castelfeder'
       // (routes-hikingtrails.11426625, 1.71 km), signed on the ground as the Naturerlebnisweg Castelfeder; the old 2.3 km line matched
       // no official route. Dogs: Montan dog regulation Art. 4 and 8; the hill is the Castelfeder biotope (Natura 2000 IT3110035), whose
@@ -21950,80 +21667,7 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426625"
       },
       "desc": "The nature trail over Castelfeder, the low porphyry hill between Montan and Auer, signed on the ground as the Naturerlebnisweg Castelfeder. It climbs from the sports-zone car park through woodland onto the open, rocky hilltop with its ruins and the 'Heidenrutsche' rock, and comes down on the far side by the youth hostel, about 1.7 km and 65 m of climb in three quarters of an hour.\n\nThe whole hill is the Castelfeder biotope, a Natura 2000 site, where dogs may not run free. Montan's dog regulation requires a lead of at most 1.5 m on all public ground, and owners must carry a muzzle; dogs are not allowed on farmed meadows during the growing season. The hill is grazed, so expect livestock and a cattle grid on the path.",
-      "tips": "Keep your dog on a short lead (1.5 m at most) the whole way and carry a muzzle: this is a protected biotope, and Montan requires it. Stay on the path, as the hill is grazed and the meadows are off limits to dogs. Lift or guide your dog over the cattle grid. It is low, rocky and sunny, so avoid hot middays; taps are mapped near the start and by the ruins.",
-      "curated": true,
-      "tier": "route-audited",
-      "reviewedAt": "2026-10-23",
-      "reviewedBy": "ORMA route audit",
-      "routeAudit": {
-        "photo": "Commons, DKrieger, CC BY-SA 3.0 (kept): the open porphyry hilltop of Castelfeder by the Heidenrutsche rock, about 110 m from the line.",
-        "route": "Line rebuilt on OSM ways along the province register's Naturlehrpfad Castelfeder (1.71 km): 1.70 km, every register point within 14 m. The old 2.3 km line matched no official route.",
-        "routeNumbers": "The register names the nature trail without a number; it is signed Naturerlebnisweg Castelfeder.",
-        "mapPoints": "Start by the Castelfeder sports-zone car park; taps traced to OSM.",
-        "elevation": "About 65 m of climb between 338 and 401 m, measured on the line; the register gives none."
-      },
-      "graduation": {
-        "status": "verified",
-        "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
-      "verified": {
-        "categories": [
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "sources": [
-          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Naturlehrpfad Castelfeder', line routes-hikingtrails.11426625, 1,706 m; every register point within 14 m of the rebuilt line",
-          "IDM Südtirol (suedtirol.info), Biotop Castelfeder: 'Auf dem Naturerlebniswanderweg kann die Pflanzen- und Tierwelt des Biotops erkundet werden'; OSM survey (2025): guidepost 'Naturerlebnisweg Castelfeder'",
-          "Gemeinde Montan, Verordnung über die Haltung und Führung von Hunden (GR 6/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows in the growing season), Art. 12 (applies outside built-up areas)",
-          "Montan landscape plan (newPlan PPC-21053, 2021), Biotop Castelfeder: Art. 6(4)(h) forbids 'Hunde frei laufen zu lassen'; Art. 6(5)(a) allows grazing; Natura 2000 site IT3110035 (EEA)",
-          "OpenStreetMap: path surfaces, cattle grid, gates and water along the line"
-        ],
-        "date": "2026-10-23"
-      },
-      "sourceLinks": [
-        {
-          "label": "South Tyrol trail register, Naturlehrpfad Castelfeder (Open Data Hub)",
-          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426625"
-        },
-        {
-          "label": "Gemeinde Montan, dog regulation",
-          "url": "https://www.gemeinde.montan.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden"
-        },
-        {
-          "label": "OpenStreetMap relation 2179746",
-          "url": "https://www.openstreetmap.org/relation/2179746"
-        }
-      ]
+      "tips": "Keep your dog on a short lead (1.5 m at most) the whole way and carry a muzzle: this is a protected biotope, and Montan requires it. Stay on the path, as the hill is grazed and the meadows are off limits to dogs. Lift or guide your dog over the cattle grid. It is low, rocky and sunny, so avoid hot middays; taps are mapped near the start and by the ruins."
     },
     'osm-11764094': {
       // Hand audit: 23 October 2026. In Natz-Schabs (the Laugen stretch is in
@@ -22615,6 +22259,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A loop round the sunny terrace of Terenten: west along the village, up past the Pillinghof and the Pirchner Moos wetland, over the meadows to Margen and the Jakobihof, and back through the Mühlental past the earth pyramids. The official route lists 7.2 km, with the detour to St. Margareth, and 329 m of ascent.'
     },
     'osm-11855879': {
+      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
+      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
       // Hand audit 23 October 2026: the line matches the province trail register's 'Roda de Cherz' (routes-hikingtrails.11427015,
       // 2.77 km) within 6 m everywhere. Dogs: Livinallongo del Col di Lana publishes no dog rule, so the national rule applies
       // (Ministry of Health ordinance of 6 August 2013, Art. 1(3)); Arabba Fodom Turismo asks for a lead on all paths because of grazing
@@ -22634,84 +22280,7 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427015"
       },
       "desc": "A gentle 2.8 km loop over the open Cherz plateau above Arabba, at about 2,050 m, through grassland and alpenrose with wide views of the surrounding Dolomites. It shares its tracks with CAI paths 22 and 45, and passes close to the Ütia Cherz hut and the ski lifts. About 90 m of up and down.\n\nLivinallongo publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Arabba's tourist office asks for dogs to be kept on a lead on all paths, because grazing animals are common.",
-      "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle: the national rule requires it and the tourist office asks for a lead on every path, as animals graze on the plateau. Watch for mountain bikes and the occasional ski-area vehicle on the tracks. There is no shade and no water on the loop, so bring water and avoid hot middays; the Ütia Cherz is about 150 m off the route. If you take the Cherz chairlift up, dogs ride on a lead and muzzled, for a small fee.",
-      "curated": true,
-      "tier": "route-audited",
-      "reviewedAt": "2026-10-23",
-      "reviewedBy": "ORMA route audit",
-      "routeAudit": {
-        "photo": "iNaturalist, Mike Noren, CC BY-SA (kept): alpenrose on the Cherz grassland with the Dolomites behind, 18 m from the line.",
-        "route": "Published line 2.74 km, within 6 m of the register's Roda de Cherz (2.77 km) everywhere.",
-        "routeNumbers": "The register names the loop without a number; it shares its tracks with CAI paths 22 and 45.",
-        "mapPoints": "Start from Passo Campolongo, as before; no water on the loop.",
-        "elevation": "About 90 m of up and down, measured on the line; the register gives none."
-      },
-      "graduation": {
-        "status": "verified",
-        "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
-      "verified": {
-        "categories": [
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "sources": [
-          "Autonome Provinz Bozen, hiking-trail register (geoservices1.civis.bz.it, Open Data Hub): 'Roda de Cherz', line routes-hikingtrails.11427015, 2,768 m; every register point within 6 m of the line",
-          "National rule: Ministry of Health, Ordinanza 6 agosto 2013, Art. 1(3), renewed to 5 Sep 2027: 'utilizzare sempre il guinzaglio a una misura non superiore a mt 1,50' and a muzzle carried. The commune of Livinallongo del Col di Lana publishes no dog or police regulation (checked its list of 18 regulations, site search and web searches)",
-          "Arabba Fodom Turismo, travelling with a dog: 'Il cane deve essere necessariamente accompagnato al guinzaglio, anche all'aperto e sui sentieri, è infatti facile trovare animali al pascolo'",
-          "No Natura 2000 site or park on the line (EEA)",
-          "OpenStreetMap: surfaces, mountain-bike tags, CAI paths 22 and 45, and huts along the line"
-        ],
-        "date": "2026-10-23"
-      },
-      "sourceLinks": [
-        {
-          "label": "South Tyrol trail register, Roda de Cherz (Open Data Hub)",
-          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427015"
-        },
-        {
-          "label": "Arabba Fodom Turismo, on holiday with your dog",
-          "url": "https://www.arabba.it/it/info-eventi/servizi-informazioni-utili/in-vacanza-con-l-amico-a-quattro-zampe/175-0.html"
-        },
-        {
-          "label": "Ministry of Health ordinance of 6 August 2013 (text)",
-          "url": "https://www.certifico.com/id/26170"
-        },
-        {
-          "label": "OpenStreetMap relation 11855879",
-          "url": "https://www.openstreetmap.org/relation/11855879"
-        }
-      ]
+      "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle: the national rule requires it and the tourist office asks for a lead on every path, as animals graze on the plateau. Watch for mountain bikes and the occasional ski-area vehicle on the tracks. There is no shade and no water on the loop, so bring water and avoid hot middays; the Ütia Cherz is about 150 m off the route. If you take the Cherz chairlift up, dogs ride on a lead and muzzled, for a small fee."
     },
     'osm-12018939': {
       // Correction, 23 October 2026 (not a verification: no usable photo of the walk exists yet). Line rebuilt on OSM ways along
