@@ -10069,6 +10069,215 @@
           "url": "https://www.openstreetmap.org/relation/12150790"
         }
       ]
+    },
+    'osm-7549783': {
+      // Hand audit 23 October 2026: route, figures and start from the Lozzo di Cadore / CAI ring sheet no. 14 and its 1:25,000
+      // map; the line follows the OSM relation (3.69 km), which leaves out the official return on the forest road. Whole line in Lozzo
+      // di Cadore; its police regulation Art. 39 requires a lead on paths. No Natura 2000 site on the line (EEA).
+      "area": "Lozzo di Cadore",
+      "elevation": 380,
+      "hours": "2.5",
+      "startPoint": {
+        "lat": 46.49153,
+        "lng": 12.44934,
+        "label": "Pianizole, first hairpin of the Strada del Genio, at the Tita Poa botanical trail board (official start)"
+      },
+      "desc": "Ring 14 of the Lozzo di Cadore network, waymarked 14 on a white-and-green flag: the old path that took goats up to the pastures of Cornon, through a changing forest of spruce by the Loreto chapel, Scots pine with heather, a strip of hornbeam, beech and finally silver fir at 'Cucagna'. It crosses one short passage over outcropping rock with natural steps on the flank of the Croda della Cengia, and returns on a wide forestry road. The official sheet gives about 4 km, 380 m of climb and 2h30, grade E (hiking).\n\nDogs must be on a lead: Lozzo di Cadore requires one on all public places, paths included. Most of the loop is in shady, damp woodland. The line on the map stops where the official return joins the forestry road back to the start.",
+      "tips": "Keep your dog on a lead throughout, as Lozzo requires. Take the short rocky passage on the Croda della Cengia slowly and keep your dog close. There is no tap on the loop itself; a fountain and a spring are mapped near the start, and small streams run beside the path. The only farm buildings on the way, on the descent to Cornon, are abandoned. Return to the start on the forestry road.",
+      "shadeCoverage": 80,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "A short passage over outcropping rock with natural steps (official)",
+        "Small stream crossings"
+      ],
+      "routeNumberSource": {
+        "provider": "Comune di Lozzo di Cadore / CAI",
+        "name": "14 - Anello del Troi de le Ciaure",
+        "url": "https://www.lozzodicadore.eu/sito/node/187"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Kufoleto, CC BY 3.0: the Loreto chapel beside the gravel path at Vizza di Loreto, on the ring, 115 m from the line (replaces a photo taken 7 km away).",
+        "route": "Published line 3.66 km, following the OSM relation (3.69 km); official sheet 'circa 4 km', the difference being the forestry-road return the relation leaves out.",
+        "routeNumbers": "Ring 14, '14' on a white-and-green flag (Lozzo di Cadore / CAI); the official sheet names no switch.",
+        "mapPoints": "Start at the first hairpin of the Strada del Genio, at the Tita Poa board, as the official sheet states; fountain and spring near the start traced to OSM.",
+        "elevation": "Official 380 m of climb (was 495)."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Comune di Lozzo di Cadore / CAI, ring sheet no. 14 Anello del 'Troi dele Ciaure' and the 1:25,000 ring map",
+          "Lozzo di Cadore police regulation (2018) Art. 39: dogs on a lead on all public places, paths included",
+          "No Natura 2000 site on the line (EEA); OpenStreetMap relation 7549783: paths, forestry road, water and buildings"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "Lozzo di Cadore, Anello del Troi de le Ciaure (ring 14)",
+          "url": "https://www.lozzodicadore.eu/sito/node/187"
+        },
+        {
+          "label": "Official route sheet (image)",
+          "url": "https://www.lozzodicadore.eu/sito/sites/fotoanelli/001_an14.jpg"
+        },
+        {
+          "label": "Official ring map, 1:25,000 (PDF)",
+          "url": "https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-carta-25000.pdf"
+        },
+        {
+          "label": "Lozzo di Cadore police regulation (PDF)",
+          "url": "https://lozzo-di-cadore-api.municipiumapp.it/s3/3676/allegati/regolamento-polizia-urbana-2018.pdf"
+        },
+        {
+          "label": "OpenStreetMap relation 7549783",
+          "url": "https://www.openstreetmap.org/relation/7549783"
+        }
+      ]
+    },
+    'osm-12182895': {
+      // Hand audit 23 October 2026: the line lies entirely on the province's own hiking-trail register line for path 18
+      // 'Talrundweg' (Open Data Hub / CIVIS, 17.2 km; closed licence, cited not copied), leaving out a 1.2 km spur at the north end;
+      // Tourismusverein Sarntal names it the new valley circuit. Dogs: Sarntal's dog regulation (GR 61/2015, updated 2025) Art. 4, 8.
+      // No Natura 2000 site on the line; the Sarntal landscape plan sets no dog rule; its biotopes are 1.6 km or more away where located.
+      "area": "Sarnthein / Sarentino",
+      "startPoint": {
+        "lat": 46.6251183,
+        "lng": 11.3666139,
+        "label": "Bad Schörgau bus stop, on the loop; the loop can equally be started at the church square in Sarnthein"
+      },
+      "desc": "Path 18, the valley circuit around Sarnthein, Nordheim and Astfeld in the Sarntal, which the Sarntal tourism association recommends as an easy walk. It follows the Talfer and the valley floor past Bad Schörgau, below Reinegg castle and through the hamlets, on paths, farm tracks and quiet lanes. The province's trail register gives path 18 as 17.2 km; the line here is 15.6 km because it leaves out a 1.2 km spur at the north end. No official climb or time is published: the figures shown are measured on the line.\n\nDogs must be on a lead of at most 1.5 m on all public ground, and owners must carry a muzzle, under the Sarntal dog regulation, which also bars dogs from farmed meadows, fields and orchards. Much of the loop crosses farmland, so keep to the path. About 5 km follows village lanes and minor roads, and the loop meets the main valley road briefly.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Sarntal requires, and keep to the path: dogs are not allowed on the meadows and fields beside it. Cars use the village lanes and minor roads for about 5 km, and the loop touches the main valley road for a few hundred metres: keep your dog close there. Taps are mapped along the way, and there are inns in Sarnthein and Astfeld.",
+      "shadeCoverage": 35,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 5 km on village lanes and minor roads with traffic",
+        "A few hundred metres beside or across the main valley road"
+      ],
+      "routeNumberSource": {
+        "provider": "Tourismusverein Sarntal",
+        "name": "Talrundweg (18)",
+        "url": "https://www.sarntal.com/fileadmin/user_upload/Wanderbus_2025_dt.pdf"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Plentn, CC0: Reinegg castle above the Sarn valley, 87 m from the line.",
+        "route": "Published line 15.6 km, every point within 60 m of the province's register line for path 18 (17.2 km); the difference is a 1.2 km spur at the north end.",
+        "routeNumbers": "Path 18, red-white-red with 18 (province register); 18A branches off to the Waldrasthütte.",
+        "mapPoints": "Start at the Bad Schörgau bus stop on the loop; taps traced to OSM.",
+        "elevation": "No official climb published; the figure is measured on the line."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub / CIVIS): path 18 'Talrundweg', 17.2 km — closed licence, used for comparison only",
+          "Tourismusverein Sarntal, Wanderbus 2025 brochure: the new valley circuit around Sarnthein-Nordheim-Astfeld, an easy walk",
+          "Gemeinde Sarntal, Gemeindeverordnung über die Haltung und Führung von Hunden (GR 61/2015, updated 14 May 2025) Art. 4 (lead of at most 1.5 m, muzzle carried, also outside built-up areas) and Art. 8 (no dogs on meadows, fields and orchards)",
+          "No Natura 2000 site on the line (EEA); Sarntal landscape plan (valid 2025) sets no dog rule",
+          "OpenStreetMap relation 12182895: road classes, land cover and water along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, path 18 Talrundweg (Open Data Hub)",
+          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428133"
+        },
+        {
+          "label": "Tourismusverein Sarntal, Wanderbus 2025 (PDF)",
+          "url": "https://www.sarntal.com/fileadmin/user_upload/Wanderbus_2025_dt.pdf"
+        },
+        {
+          "label": "Gemeinde Sarntal, dog regulation",
+          "url": "https://www.gemeinde.sarntal.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden"
+        },
+        {
+          "label": "OpenStreetMap relation 12182895",
+          "url": "https://www.openstreetmap.org/relation/12182895"
+        }
+      ]
     }
   };
 
