@@ -59,6 +59,10 @@ describe('trail presentation audits', () => {
     expect(trail.graduation.status).toBe('verified');
     expect(trail.graduation.completed).toEqual(trail.graduation.required);
     expect(trail.tips).toMatch(/marked path/);
+    // Corrected 23 October 2026: the walk is in Brixen, whose ordinance sets
+    // the lead rule and whose landscape plan bars free-running dogs in Laugen.
+    expect(trail.dogNotes).toMatch(/Brixen/);
+    expect(trail.verified.sources.some((source) => /Brixen/.test(source))).toBe(true);
     expect(trail.graduation.blockers).toEqual({});
     expect(trail.verified.categories).toContain('access');
     expect(trail.verified.sources.some((source) => /Natz-Schabs/.test(source))).toBe(true);
