@@ -654,6 +654,10 @@ describe('returning homepage region + valley filters', () => {
     // repeat it.
     expect(document.querySelector('.li-answer-map')).toBeNull();
     expect(document.querySelectorAll('#returningTrailList .li-row-bar')).toHaveLength(5);
+    // .locate-btn is only the click hook now. Its old pill style rounded the
+    // middle button to 999px, so the bar's divider bent into an arc.
+    const styles = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+    expect(styles).not.toMatch(/\.locate-btn[{:]/);
 
     // Opening one card's reasons moves that card only.
     toggles[3].click();
