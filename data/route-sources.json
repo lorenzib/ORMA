@@ -706,6 +706,22 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
+    "osm-7426648": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi828d222799944e938274714fea8aea0a.algunder-waalweg.algund",
+      "publisher": "Tourismusbüro Algund via IDM suedtirol.info",
+      "name": "Algunder Waalweg",
+      "quote": "Strecke 4.5 Km Dauer 1h:08 min Aufstieg 29 m Abstieg 158 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T20:00:00.000Z"
+    },
+    "osm-7426666": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi18ca160215336c697a4ed595b6e5084b.wanderung-maiser-waalweg.saltaus",
+      "publisher": "Tourismusverein Passeiertal via IDM suedtirol.info",
+      "name": "Wanderung Maiser Waalweg",
+      "quote": "Strecke 9.4 Km Dauer 2h:30 min Aufstieg 46 m Abstieg 215 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T20:00:00.000Z"
+    },
     "osm-7446701": {
       "url": "https://www.merano-suedtirol.it/de/passeiertal/aktivurlaub/wandern-bergsteigen/wanderwege/121154995-circular-path-waltner-rundweg-in-walten-valtina.html",
       "publisher": "Tourismusverein Passeiertal",
