@@ -5227,15 +5227,6 @@
       }
     },
     {
-      "id": "nuvolau",
-      "verificationScope": "routeShape",
-      "reviewedAt": "2026-09-30",
-      "fields": {
-        "routeShape": "out-and-back",
-        "routeShapeNote": "Passo Giau to Rifugio Nuvolau by path 452. The drawn line is open, ending 1,262 m from the start, and the published 5.5 km is 2.08x its 2.65 km length. Route descriptions have path 452 leading back to Passo Giau the way it came. Reviewed as there-and-back."
-      }
-    },
-    {
       "id": "alpe-siusi",
       "verificationScope": "routeGuidance",
       "reviewedAt": "2026-09-30",
