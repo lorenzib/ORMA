@@ -4,7 +4,7 @@
   "regions": {
     "dolomites": {
       "trailCount": 121,
-      "trails": "data/regions/dolomites-trails.js?v=edb811ddae27",
+      "trails": "data/regions/dolomites-trails.js?v=1af0f8964966",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -123,7 +123,7 @@
         "osm-6453504": "data/trail-details/osm-6453504.js?v=0fed0ba26429",
         "osm-1671736": "data/trail-details/osm-1671736.js?v=7b1f8dd70b26",
         "osm-5597577": "data/trail-details/osm-5597577.js?v=60908ad76a6d",
-        "osm-12173549": "data/trail-details/osm-12173549.js?v=a0904f03d3ef",
+        "osm-12173549": "data/trail-details/osm-12173549.js?v=ebf060d981f2",
         "osm-2376630": "data/trail-details/osm-2376630.js?v=2c21bfb68d68",
         "osm-11270309": "data/trail-details/osm-11270309.js?v=ae20a0397dc8",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
