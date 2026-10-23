@@ -2129,6 +2129,40 @@
       }
     },
     {
+      "id": "osm-7426648",
+      "approvedReviewId": "flickr-osm-7426648-on-route",
+      "approvedAt": "2026-10-23T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7426648-waalweg-pergola.jpg",
+        "heroImage": "images/trails/osm-7426648-waalweg-pergola.jpg",
+        "imageAlt": "Two walkers on the Algunder Waalweg, a narrow path beside a concrete irrigation channel under green vine pergolas heavy with grapes",
+        "imageCredit": "The Algunder Waalweg under the vine pergolas",
+        "imageCreditText": "The Algunder Waalweg under the vine pergolas by Allie_Caulfield",
+        "imageCreator": "Allie_Caulfield",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "imageSourcePage": "https://www.flickr.com/photos/28577026@N02/5067147359/",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7426666",
+      "approvedReviewId": "commons-osm-7426666-on-route",
+      "approvedAt": "2026-10-23T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7426666-waal-channel.jpg",
+        "heroImage": "images/trails/osm-7426666-waal-channel.jpg",
+        "imageAlt": "The Maiser Waalweg, a stony path strewn with autumn leaves, running beside a water-filled irrigation channel on a wooded slope with ferns and ivy",
+        "imageCredit": "The Maiser Waalweg beside its channel",
+        "imageCreditText": "The Maiser Waalweg beside its channel by NorbertNagel",
+        "imageCreator": "NorbertNagel",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Waalweg_beside_an_irrigation_channel_on_a_wooded_slope_near_Merano_-_2026-09-16_-_DSC09899.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-7446701",
       "approvedReviewId": "commons-osm-7446701",
       "approvedAt": "2026-09-07T16:56:37.540Z",

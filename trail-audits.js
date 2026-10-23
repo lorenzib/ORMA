@@ -18644,6 +18644,134 @@
         { km: 7.2, lat: 46.6519982, lng: 11.0090466, osmId: 'node/1871798860', label: 'Fountain at St. Prokulus, Naturns' }
       ],
       desc: 'A panoramic walk along the sunny Sonnenberg high above the Vinschgau, from Partschins past old farms, vineyards and terraced meadows to the early-medieval church of St. Prokulus in Naturns. The official route lists 7.7 km, 186 m of ascent and 295 m of descent.'
+    },
+    'osm-7426648': {
+      // Hand audit: 23 October 2026, verified on arrival (new-trail batch 2).
+      // The official tour of the Tourismusbüro Algund, Oberplars to Gratsch.
+      // Algund's dog regulation (Gemeinderat 11/2010) requires a lead of at
+      // most 1.5 m and a muzzle carried on all public ground (Art. 4) and
+      // bans dogs from farmland in the growing season (Art. 8). The last
+      // 0.7 km are in Tirol, which publishes no dog rule, so the national dog
+      // ordinance (6 August 2013, extended to September 2027) applies there.
+      // Outside the Texelgruppe nature park (900 m away at the nearest).
+      area: 'Algund / Lagundo',
+      distance: 4.5,
+      elevation: 29,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A one-way walk along the irrigation channel from Oberplars to Gratsch, almost level and mostly downhill (29 m up, 158 m down); buses 213, 235 and 237 bring walkers back to Algund.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Walkers on the path beside the channel under the vine pergolas, in October (Allie_Caulfield, CC BY 2.0); titled Algund Waalweg by the photographer, whose geotag is only approximate.',
+        route: 'Official 4.5 km, Oberplars to Gratsch; the stored OSM line (relation 7426648) runs 4.3 km from the official start, ending 140 m short of the official end.',
+        routeNumbers: 'No route number: from the Kneipp station at Oberplars follow the “Algunder Waalweg” signs (AW) along the channel through Mitterplars and Algund-Dorf to Gratsch.',
+        mapPoints: 'Start at the Waalweg entrance at Oberplars by the Kneipp station, bus stop Abzweigung Oberplars (official start); drinking fountains at the start (OSM node 14060882982) and near Gratsch (nodes 2908895966, 2908895965).',
+        elevation: 'Official 4.5 km, 29 m up and 158 m down, 1 h 08 min, high point 498 m (Tourismusbüro Algund, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusbüro Algund, Algunder Waalweg (Südtirol.info)',
+          'Gemeinde Algund, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 11/2010), Art. 4 and 8',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Tirol)',
+          'IDM Südtirol drinking fountains in Algund (Open Data Hub)',
+          'OpenStreetMap relation 7426648, surface, bridge, woodland and land-use data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 23,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['The open irrigation channel runs right beside the path', 'A suspension footbridge at the Gratsch end (km 4.3)', 'Orchards and vineyards on both sides, where dogs are not allowed in the growing season', 'Short stretches on farm lanes'],
+      terrainType: 'A level earth and gravel path beside the irrigation channel, with a few short farm lanes',
+      shadeDescription: 'About a quarter is under trees or vine pergolas; the rest crosses open orchards and vineyards on a sunny south-facing slope.',
+      terrainDescription: 'An easy, almost level family walk on an earth and gravel path along the channel, through orchards and vineyards above Algund, with wide views over Meran.',
+      waterDescription: 'A drinking fountain at the Kneipp station at the start and two near Gratsch at the end; the channel itself carries water in the irrigation season. Carry water on hot days.',
+      dogNotes: 'Algund requires a lead of at most 1.5 m and a muzzle carried on all public paths, and dogs may not go into orchards, vineyards or meadows in the growing season. The national rule (lead of at most 1.5 m, muzzle carried) covers the last stretch in Tirol. No grazing animals are mapped on the route.',
+      tips: 'Start at the Kneipp station at Oberplars (bus 213 or 235 to Abzweigung Oberplars) and follow the Algunder Waalweg signs along the channel to Gratsch: 4.5 km, almost level, about an hour. Keep your dog on a short lead (1.5 m at most) and out of the orchards and vineyards. The slope is sunny, so go early or late in summer; there is water at the start and near the end. Some dogs need coaxing over the suspension bridge at Gratsch.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Algunder Waalweg (Tourismusbüro Algund)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi828d222799944e938274714fea8aea0a.algunder-waalweg.algund' },
+        { label: 'Gemeinde Algund, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.algund.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/7426648' }
+      ],
+      startPoint: { lat: 46.6829649, lng: 11.0953707, label: 'Waalweg entrance at Oberplars by the Kneipp station, bus stop Abzweigung Oberplars (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.6832152, lng: 11.0954803, osmId: 'node/14060882982', label: 'Drinking fountain at the Kneipp station' },
+        { km: 3.5, lat: 46.6918919, lng: 11.1342673, osmId: 'node/2908895966', label: 'Drinking fountain near Gratsch' },
+        { km: 4, lat: 46.6909902, lng: 11.1371361, osmId: 'node/2908895965', label: 'Drinking fountain near Gratsch' }
+      ],
+      desc: 'One of South Tyrol’s best-known irrigation-channel walks: almost level along the Algunder Waal from Oberplars through orchards, vineyards and vine pergolas above Algund to Gratsch, with views over the whole Meran basin. The official route lists 4.5 km, 29 m of ascent and 158 m of descent.'
+    },
+    'osm-7426666': {
+      // Hand audit: 23 October 2026, verified on arrival (new-trail batch 2).
+      // The official tour of the Tourismusverein Passeiertal, Saltaus to
+      // Meran. The line crosses St. Leonhard in Passeier (km 0–0.9), Riffian
+      // (to km 1.3), Schenna (to km 7.2) and Meran. St. Leonhard (Gemeinderat
+      // 21/2011) and Schenna (Gemeinderat 33/2010) require a lead of at most
+      // 1.5 m and a muzzle carried on all public ground and ban dogs from
+      // farmland in the growing season (St. Leonhard: 1 April to 31 October,
+      // signs or no signs); Meran's Stadtpolizeiordnung, Art. 19, requires the
+      // same lead; Riffian publishes no dog rule, so the national dog ordinance
+      // applies on its 0.4 km. No nature park on the line.
+      area: 'Saltaus – Schenna – Meran / Saltusio – Scena – Merano',
+      distance: 9.4,
+      elevation: 46,
+      hours: '2.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A one-way walk down the Passeier valley along the Maiser Waal from Saltaus to Meran (46 m up, 215 m down); bus 240 brings walkers back to Saltaus.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path beside the water-filled channel on a wooded slope, in September (NorbertNagel, CC BY-SA 4.0), filed under the Maiser Waal.',
+        route: 'Official 9.4 km, Saltaus to Meran centre; the stored OSM line (relation 7426666) runs 8.7 km, starting about 300 m from the official start below Saltaus and ending in Obermais, about 0.6 km short of the centre.',
+        routeNumbers: 'From the Hirzer cable car car park in Saltaus take path 1 down to the Passerdammweg, then follow the “Maiser Waalweg” signs past the Torgglerhof and along the channel all the way to Meran.',
+        mapPoints: 'Start below Saltaus on the way down from the Hirzer cable car car park (official start); drinking water at km 2.7 and in Obermais at km 7.7 (OSM nodes 2434584523, 11080586884).',
+        elevation: 'Official 9.4 km, 46 m up and 215 m down, 2 h 30 min, high point 487 m (Tourismusverein Passeiertal, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Passeiertal, Wanderung Maiser Waalweg (Südtirol.info)',
+          'Marktgemeinde St. Leonhard in Passeier, Verordnung über die Haltung und das Führen von Hunden (Gemeinderat 21/2011), Art. 4 and 8',
+          'Gemeinde Schenna, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 33/2010), Art. 4 and 8',
+          'Stadtgemeinde Meran, Stadtpolizeiordnung, Art. 19',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Riffian)',
+          'OpenStreetMap relation 7426666, surface, bridge, woodland, farm and road data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 47,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The open irrigation channel runs right beside the path (water from early April to late October)', 'Rocky steps near km 1.1 and several small footbridges', 'Slippery when wet, and not suitable for prams or wheelchairs', 'About 1.5 km of tarmac lanes, including two short stretches on the Schennastraße (km 7.8–8.0)'],
+      terrainType: 'Gravel and earth paths beside the irrigation channel, with farm tracks and about 1.5 km of tarmac lanes towards Meran',
+      shadeDescription: 'About half the walk is wooded, mostly on the slopes above the Passer; the stretches through orchards and towards Obermais are open.',
+      terrainDescription: 'An easy, gently descending walk along the Maiser Waal down the Passeier valley, through woods, orchards and farmland above the Passer, ending on quiet lanes in Obermais.',
+      waterDescription: 'Drinking water at km 2.7 and in Obermais at km 7.7. The channel carries water from the first week of April to the last week of October.',
+      dogNotes: 'St. Leonhard, Schenna and Meran all require a lead of at most 1.5 m and a muzzle carried on public paths, and St. Leonhard and Schenna ban dogs from meadows, orchards and fields in the growing season; St. Leonhard says so even where there is no sign. The national rule applies on the short stretch in Riffian. The path passes working farms (the Torgglerhof near the start, the Sonnwendhof and Ausserleiterhof near km 6.6–6.8), and sheep have been photographed grazing beside it, so keep your dog close.',
+      tips: 'Park at the Hirzer cable car in Saltaus (or take bus 240), take path 1 down to the Passer and follow the Maiser Waalweg signs to Meran: 9.4 km, gently downhill, about 2½ hours, and the bus back. Keep your dog on a short lead (1.5 m at most) and off the meadows and orchards. The rocky steps and footbridges are easy but can be slippery when wet. Watch for cars on the lanes and the short road stretch into Obermais.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Wanderung Maiser Waalweg (Tourismusverein Passeiertal)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi18ca160215336c697a4ed595b6e5084b.wanderung-maiser-waalweg.saltaus' },
+        { label: 'St. Leonhard in Passeier, Hundeverordnung', url: 'https://www.gemeinde.stleonhardinpasseier.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Gemeinde Schenna, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.schenna.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Stadtgemeinde Meran, Stadtpolizeiordnung', url: 'https://www.gemeinde.meran.bz.it/de/Verwaltung/Dokumente/Stadtpolizeiordnung' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/7426666' }
+      ],
+      startPoint: { lat: 46.7266416, lng: 11.2027436, label: 'Below Saltaus on path 1, about 300 m from the Hirzer cable car car park (official start)' },
+      waterSources: [
+        { km: 2.7, lat: 46.7076501, lng: 11.189521, osmId: 'node/2434584523', label: 'Drinking water by the Waalweg' },
+        { km: 7.7, lat: 46.6708144, lng: 11.1815148, osmId: 'node/11080586884', label: 'Drinking water in Obermais' }
+      ],
+      desc: 'A long, gently descending walk along the Maiser Waal, the irrigation channel that runs down the Passeier valley: from Saltaus through woods, orchards and farmland above the Passer to Obermais and Meran. The official route lists 9.4 km, 46 m of ascent and 215 m of descent.'
     }
   };
 
