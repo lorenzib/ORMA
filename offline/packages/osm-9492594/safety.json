@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-9492594",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.7,
+    "ascentM": 422,
+    "highestPointM": 1091,
+    "expectedDuration": "3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 25
+  },
+  "trailhead": {
+    "lat": 46.6092,
+    "lng": 11.5642,
+    "label": "Lajen Dorfplatz, on the loop (parking at the sports ground, 270 m east)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.609325,
+      "lng": 11.56429,
+      "label": "Dorfbrunnen Lajen (Refill Südtirol)",
+      "reliability": "Seasonal; not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6030151,
+      "lng": 11.5477166,
+      "label": "Drinking water, Ried",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6230824,
+      "lng": 11.5597304,
+      "label": "Drinking water, Albions",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "79 m on the SP139 Lajen road without a pavement.",
+    "Two crossings of the busy Grödner Straße (SS242dir) in Ried, no pavement.",
+    "Crossing of the SP139 above Ried.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

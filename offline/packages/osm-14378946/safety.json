@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-14378946",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.3,
+    "ascentM": 181,
+    "highestPointM": 1770,
+    "expectedDuration": "3 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 75
+  },
+  "trailhead": {
+    "lat": 45.227544,
+    "lng": 6.404557,
+    "label": "Les Karellis resort, by the Vinouve chairlift (official start)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.2278921,
+      "lng": 6.4048539,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.2231275,
+      "lng": 6.4045236,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.2229978,
+      "lng": 6.4045513,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.2220273,
+      "lng": 6.406229,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.216167,
+      "lng": 6.416304,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Peat bog beside the path (signed danger).",
+    "About 400 m on tarmac, including the lake road open to cars.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

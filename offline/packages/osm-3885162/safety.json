@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-3885162",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.8,
+    "ascentM": 38,
+    "highestPointM": 1186,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 45
+  },
+  "trailhead": {
+    "lat": 46.54204,
+    "lng": 10.99034,
+    "label": "Zoggler dam, St. Walburg: bus stop Ulten, Zoggler Staudamm; free car park on the south side of the dam"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5365827,
+      "lng": 10.9906591,
+      "label": "Drinking fountain on the south-shore road",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.52432,
+      "lng": 10.95651,
+      "label": "Falschauer stream where it flows into the lake",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.54227,
+      "lng": 10.98686,
+      "label": "Marschnellbach stream",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Promenade beside the LS/SP9 valley road for about 2 km.",
+    "Road crossings at Kuppelwies and at the dam.",
+    "Asphalt access road to the dam car park, with cars.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

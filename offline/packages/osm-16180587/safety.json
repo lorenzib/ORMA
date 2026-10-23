@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-16180587",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8.5,
+    "ascentM": 393,
+    "highestPointM": 1288,
+    "expectedDuration": "2.5–3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 80
+  },
+  "trailhead": {
+    "lat": 45.93911,
+    "lng": 6.710876,
+    "label": "Place Tobé, Plateau d'Assy (official start)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.9488931,
+      "lng": 6.7534731,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "The Nant Bordon suspension footbridge (metal grating).",
+    "About 500 m on lanes open to cars near the start.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}
