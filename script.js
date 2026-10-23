@@ -307,10 +307,13 @@ function liLoadWalkDate(){
 
 let liWalkDate = liLoadWalkDate();
 
+// Read as the end of the headline: "...in Alta Pusteria tomorrow",
+// "...on Saturday 25 Oct".
 function liWalkDateLabel(){
   if(liWalkDate === liDateOffsetIso(0)) return 'today';
+  if(liWalkDate === liDateOffsetIso(1)) return 'tomorrow';
   const value = new Date(`${liWalkDate}T12:00:00`);
-  return value.toLocaleDateString(undefined, { weekday:'long', month:'short', day:'numeric' });
+  return `on ${value.toLocaleDateString(undefined, { weekday:'long', month:'short', day:'numeric' })}`;
 }
 
 function liStoredJson(storage, key){
@@ -716,17 +719,6 @@ function liFocusSearchForPlace(){
   const search = document.getElementById('liSearch');
   if(!search) return;
   liCloseMenus();
-  // The editorial toolbar keeps the search behind "Adjust recommendation";
-  // asking for a place opens it, so the field is there to type into.
-  const toolbar = document.getElementById('liToolbar');
-  const adjust = document.getElementById('liAdjustRecommendationBtn');
-  if(toolbar && !toolbar.classList.contains('li-refine-open')){
-    toolbar.classList.add('li-refine-open');
-    if(adjust){
-      adjust.setAttribute('aria-expanded', 'true');
-      adjust.textContent = 'Hide adjustments';
-    }
-  }
   search.focus();
   search.select();
   // Rendered here rather than left to the focus handler: "Change" must open
@@ -822,11 +814,11 @@ function liRenderLocationNudge(){
   const copy = liLocationRequestPending
     ? { title:'Finding you…', detail:'Your position stays in this browser session and is not added to your profile.', button:'Finding you…', disabled:true }
     : liLocationPermission === 'denied'
-      ? { title:'Location is off for ORMA in this browser', detail:'Turn it on in your browser’s site settings, or pick a town or valley with Change.', button:null }
+      ? { title:'Location is off for ORMA in this browser', detail:'Turn it on in your browser’s site settings, or search for a town or valley.', button:null }
       : liLocationPermission === 'unavailable'
-        ? { title:'Location is not available in this browser', detail:'Pick a town or valley with Change to look somewhere specific.', button:null }
+        ? { title:'Location is not available in this browser', detail:'Search for a town or valley to look somewhere specific.', button:null }
         : liLocationPermission === 'error'
-          ? { title:'We could not find your location', detail:'Try again, or pick a town or valley with Change.', button:'Try again' }
+          ? { title:'We could not find your location', detail:'Try again, or search for a town or valley.', button:'Try again' }
           : { title:'See trails near you', detail:'Your position stays in this browser session and is not added to your profile.', button:'Turn on location' };
   if(title) title.textContent = copy.title;
   if(detail) detail.textContent = copy.detail;
@@ -2524,8 +2516,49 @@ function liResetAllFilters(){
   renderReturningHomepage(currentProfileForAdjust);
 }
 
+// The headline is the control: "Best walk for Teo in Alta Pusteria today",
+// where the place and the day are buttons that open their own small menus.
+// The whole catalogue has no place phrase, so its button says so instead of
+// leaving a blank to press.
+function liRenderHeadline(profile, locationPhrase, dayLabel){
+  const host = document.getElementById('liToolbarGreeting');
+  if(!host) return;
+  const token = (kind, text) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'li-head-tok';
+    button.dataset.liHead = kind;
+    button.setAttribute('aria-haspopup', 'dialog');
+    button.setAttribute('aria-expanded', 'false');
+    button.textContent = text;
+    return button;
+  };
+  host.textContent = `Best walk${profile && profile.name ? ` for ${profile.name}` : ''} `;
+  host.append(
+    token('area', locationPhrase || 'across all trails'),
+    ' ',
+    token('day', dayLabel),
+  );
+}
+
+function liToggleHeadMenu(button){
+  const menu = document.getElementById(button.dataset.liHead === 'day' ? 'liDayMenu' : 'liAreaMenu');
+  if(!menu) return;
+  const willOpen = menu.hidden;
+  liCloseMenus();
+  if(!willOpen) return;
+  // Opened under the word that was pressed, kept inside the toolbar.
+  const greet = menu.offsetParent || menu.parentElement;
+  const left = greet
+    ? button.getBoundingClientRect().left - greet.getBoundingClientRect().left
+    : 0;
+  menu.style.left = `${Math.max(0, Math.round(left))}px`;
+  menu.hidden = false;
+  button.setAttribute('aria-expanded', 'true');
+}
+
 function liCloseMenus(){
-  ['liFiltersMenu', 'liNewMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
+  ['liFiltersMenu', 'liNewMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu', 'liAreaMenu', 'liDayMenu'].forEach(id => {
     const menu = document.getElementById(id);
     if(menu) menu.hidden = true;
   });
@@ -2533,6 +2566,7 @@ function liCloseMenus(){
     const btn = document.getElementById(id);
     if(btn) btn.setAttribute('aria-expanded', 'false');
   });
+  document.querySelectorAll('[data-li-head]').forEach(btn => btn.setAttribute('aria-expanded', 'false'));
 }
 
 // Put the map-view button back to its idle state, without triggering a
@@ -3038,23 +3072,39 @@ function initLoggedInShell(){
   liShellWired = true;
 
   const recommendationDate = document.getElementById('liRecommendationDate');
-  const adjustRecommendation = document.getElementById('liAdjustRecommendationBtn');
-  if(recommendationDate) recommendationDate.addEventListener('change', () => liSetWalkDate(recommendationDate.value));
-  if(adjustRecommendation) adjustRecommendation.addEventListener('click', () => {
-    const toolbar = document.getElementById('liToolbar');
-    const open = toolbar ? !toolbar.classList.contains('li-refine-open') : false;
-    if(toolbar) toolbar.classList.toggle('li-refine-open', open);
-    adjustRecommendation.setAttribute('aria-expanded', String(open));
-    adjustRecommendation.textContent = open ? 'Hide adjustments' : 'Adjust recommendation';
-    if(open){
-      const search = document.getElementById('liSearch');
-      if(search) search.focus();
+  if(recommendationDate) recommendationDate.addEventListener('change', () => {
+    liCloseMenus();
+    liSetWalkDate(recommendationDate.value);
+  });
+  // The place and the day in the headline are rebuilt on every render, so
+  // they are wired once here rather than on each button.
+  const toolbarEl = document.getElementById('liToolbar');
+  if(toolbarEl) toolbarEl.addEventListener('click', (e) => {
+    const head = e.target.closest('[data-li-head]');
+    if(head){
+      e.stopPropagation();
+      liToggleHeadMenu(head);
+      return;
     }
+    const day = e.target.closest('[data-li-day]');
+    if(day){
+      liCloseMenus();
+      liSetWalkDate(liDateOffsetIso(Number(day.dataset.liDay)));
+    }
+  });
+  ['liAreaMenu', 'liDayMenu'].forEach(id => {
+    const menu = document.getElementById(id);
+    if(menu) menu.addEventListener('click', e => {
+      if(!e.target.closest('[data-li-day]')) e.stopPropagation();
+    });
   });
   const changeLocation = document.getElementById('liChangeLocationBtn');
   if(changeLocation) changeLocation.addEventListener('click', liFocusSearchForPlace);
   const showAll = document.getElementById('liShowAllBtn');
-  if(showAll) showAll.addEventListener('click', () => liSetLocationContext(liDefaultLocationContext()));
+  if(showAll) showAll.addEventListener('click', () => {
+    liCloseMenus();
+    liSetLocationContext(liDefaultLocationContext());
+  });
   const nudgeButton = document.getElementById('liLocationNudgeBtn');
   if(nudgeButton) nudgeButton.addEventListener('click', liRequestCurrentLocation);
   const nudgeDismiss = document.getElementById('liLocationNudgeDismiss');
@@ -3760,8 +3810,7 @@ async function renderReturningHomepage(profile, options = {}){
   const answerTitle = ['Best walk', profile && profile.name ? `for ${profile.name}` : '', locationPhrase, dayLabel]
     .filter(Boolean).join(' ');
   heading.textContent = answerTitle;
-  const toolbarHeading = document.getElementById('liToolbarGreeting');
-  if(toolbarHeading) toolbarHeading.textContent = answerTitle;
+  liRenderHeadline(profile, locationPhrase, dayLabel);
   const toolbarContext = document.getElementById('liToolbarDogContext');
   // The scope belongs here, not in a pill. The headline is assembled from the
   // dog, the place and the day -- but liRecommendationLocationPhrase returns ''
