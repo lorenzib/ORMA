@@ -18346,7 +18346,6 @@
       // Wholly in Brixen: the animal ordinance requires a lead in built-up
       // areas (Art. 5), allows dogs off the lead outside them with a lead
       // carried (Art. 11), and bans dogs from farmland (Art. 6).
-      name: 'Archeopfad Brixen',
       area: 'Brixen / Bressanone (Stufels – Elvas)',
       distance: 5.4,
       elevation: 286,
