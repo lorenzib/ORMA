@@ -143,3 +143,31 @@ describe('a publication does not write a distance its own line contradicts',()=>
     expect(result.refused[0].reason).toBe('distance-disagrees-with-its-line');
   });
 });
+
+// On 23 October a policy-approved publication would have put St. Magdalena
+// back on its old 1.6 km line and taken its Verified badge away: its seal
+// lives in trail-audits.js and its official line in a routeLine entry, and
+// the seal check only looked at the ledger's own fields.
+describe('a walk verified or re-lined by hand is not republished by the pipeline',()=>{
+  test('a hand-verified walk is refused and its record left alone',()=>{
+    // Tru di Lëc: verified by hand on 23 October, like St. Magdalena, and an
+    // imported walk the lane's fixtures can build.
+    const trail=record('osm-9493733');
+    expect(trail.tier).toBe('route-audited');
+    const result=publish(trail);
+    expect(result.entries).toEqual([]);
+    expect(result.overrides.trails).toEqual([]);
+    expect(result.refused.map(r=>[r.trailId,r.reason])).toEqual([['osm-9493733','verified-by-hand']]);
+  });
+
+  test('an official line set by hand is not replaced, verified or not',()=>{
+    const trail=record('osm-12174210');
+    expect(trail.graduation?.status).not.toBe('verified');
+    const line={id:trail.id,verificationScope:'routeLine',
+      sources:[{url:'https://example.test/official',reviewedAt:'2026-10-23'}],
+      fields:{path:trail.path,distance:trail.distance,routeLineNote:'Rebuilt on OSM ways along the official GPX.'}};
+    const result=publish(trail,{declared:[line]});
+    expect(result.overrides.trails).toEqual([line]);
+    expect(result.refused.map(r=>r.reason)).toEqual(['line-set-by-hand']);
+  });
+});

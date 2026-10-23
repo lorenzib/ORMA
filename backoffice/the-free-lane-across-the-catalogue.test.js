@@ -72,6 +72,9 @@ function run(record){
     staging,routesByCandidate:{[trail.candidateId]:{geometry:result.geometry}},
     overrides:{contractVersion:'1.0.0',trails:[]},operationalFacts:{trails:[]},at:AT,
     productionTrails:[record]});
+  // A walk verified by hand is changed by hand: the lane refuses to publish
+  // over it rather than replace its record with a thinner one.
+  if(materialized.refused.length)return {id:record.id,refused:materialized.refused[0].reason};
   const entry=materialized.overrides.trails[0];
   applyVerifiedTrailOverrides([record],materialized.overrides);
   return {id:record.id,entry,queued:handoff.jobs.length};
@@ -85,6 +88,7 @@ describe('the free lane, across the whole catalogue',()=>{
   });
   const published=outcomes.filter(outcome=>outcome.entry);
   const blocked=outcomes.filter(outcome=>outcome.blocked);
+  const handVerified=trails.filter(record=>record.tier==='route-audited'&&record.graduation?.status==='verified');
 
   test('the catalogue is the real one',()=>{
     expect(trails.length).toBeGreaterThan(150);
@@ -98,7 +102,13 @@ describe('the free lane, across the whole catalogue',()=>{
   // the official loop and it now has a sourced start point in St. Peter.
   test('every trail reaches a published entry',()=>{
     expect(blocked.map(outcome=>`${outcome.id}: ${outcome.blocked}`)).toEqual([]);
-    expect(published.length).toBe(trails.length);
+    expect(published.length).toBe(trails.length-handVerified.length);
+  });
+
+  test('and every trail verified by hand is refused, not republished',()=>{
+    const refused=outcomes.filter(outcome=>outcome.refused);
+    expect(refused.map(outcome=>outcome.id).sort()).toEqual(handVerified.map(record=>record.id).sort());
+    expect(new Set(refused.map(outcome=>outcome.refused))).toEqual(new Set(['verified-by-hand']));
   });
 
   test('and not one of them queued a job',()=>{
