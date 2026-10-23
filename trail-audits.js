@@ -9858,6 +9858,111 @@
       startPoint: { lat: 46.3662149, lng: 11.4071866, label: 'Bletterbach visitor centre, Lerch 40, Aldein (official start)' },
       desc: 'The geological trail through the Bletterbach gorge, part of the UNESCO Dolomites GEOPARC, from the visitor centre at Aldein down into the gorge and up to the Gorz, past rock walls that show some 40 million years of Earth history. The park sets a ticket, a season, and a compulsory helmet against rockfall, and closes the gorge in bad weather. Officially about 4.6 km to the Butterloch from Aldein, and 6.3 to 9 km for the Gorz walk, with 200 to 300 m of climb. This walk is not verified by ORMA.\n\nThe park operator warns dog owners that the GEOWeg has several sections of iron stairs where the risk of injury to dogs is very high; if you take your dog anyway, it must stay on a lead.',
       tips: 'Think twice before bringing your dog: the park itself warns that the iron-stair sections are very dangerous for dogs. If you go, keep your dog on a lead, as the park requires, and turn back at the first iron stairs if your dog is unsure. Everyone in the gorge must wear a helmet (free to borrow at the visitor centre), and the park advises strongly against the gorge in rain, storms or cold because of rockfall. Check opening dates, tickets and any path closures at the visitor centre before you start.'
+    },
+    'nuvolau': {
+      // Hand audit 23 October 2026, completing the Dolomites session's research (line fixed in #946 along the official route).
+      // Route and figures from Cortina Dolomiti. Dogs: Cortina police regulation Art. 36(1) (lead); San Vito di Cadore and Colle Santa
+      // Lucia publish no findable dog rule, so the national ordinance of 6 Aug 2013 applies (owner-approved standard). Most of the line
+      // is in Natura 2000 IT3230017, whose Veneto conservation measures (DGR 786/2016, Annex A Art. 99) apply the same national lead rule.
+      "area": "Passo Giau – Cortina d'Ampezzo, San Vito di Cadore, Colle Santa Lucia",
+      "hours": "5",
+      "exposure": true,
+      "heatRisk": "high",
+      "shadeCoverage": 3,
+      "desc": "A loop from the 2,236 m Passo Giau by paths 443 and 439 past Rifugio Scoiattoli and Rifugio Averau to Rifugio Nuvolau, one of the best 360° viewpoints in the Dolomites, returning by 439, 464 and 452 across the Passo Giau pastures. Officially 9.8 km and 612 m of climb, about 5 hours, graded 'Sentiero per esperti' (a path for experienced walkers).\n\nDogs must be on a lead: Cortina d'Ampezzo's police regulation requires one, and in San Vito di Cadore and Colle Santa Lucia, which publish no dog rule of their own, the national rule applies, a lead of at most 1.5 m with a muzzle carried. Most of the walk lies in the Natura 2000 site Monte Pelmo – Mondeval – Formin, whose conservation measures apply the same rule. There is no shade and no fountain.",
+      "tips": "Follow 443 and 439 up and 439, 464 and 452 back. Never take path 438 from Passo Giau to the hut: it is the Ra Gusela via ferrata, with rungs, cables and a ladder, and no place for a dog. Path 443 has a short steep rocky section in zig-zags and a stream ford. Keep your dog on a short lead (1.5 m at most) and carry a muzzle; cows graze the Passo Giau pastures in summer on the way back. Carry all the water you both need: the huts open only in summer (Rifugio Nuvolau roughly mid-June to mid-September).",
+      "surfaceHazards": [
+        "Loose rock and scree throughout",
+        "A short steep rocky section in zig-zags on path 443",
+        "Stream ford on path 443",
+        "Gravel hut tracks with service vehicles"
+      ],
+      "routeNumberSource": {
+        "provider": "Cortina Dolomiti / Cortina Marketing (local tourism board)",
+        "name": "Al Rifugio Nuvolau",
+        "url": "https://cortina.dolomiti.org/it/escursioni/al-rifugio-nuvolau/"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Frisia Orientalis, CC BY-SA 3.0: Passo Giau with the Gusela and Nuvolau, at the start of the loop.",
+        "route": "Line rebuilt on the official paths in #946 (8.7 km on OSM, about 0.24 km unmapped near Averau); official 9.8 km.",
+        "routeNumbers": "Paths 443, 439, 464 and 452 as the official page lists them; path 438 (Ra Gusela via ferrata) is the switch to avoid.",
+        "mapPoints": "Start at the path 443 trailhead board above the Passo Giau car park; huts traced to OSM.",
+        "elevation": "Official 612 m of climb."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Cortina Dolomiti, Al Rifugio Nuvolau: 9.8 km, 612 m, 5 h, Sentiero per esperti; paths 443, 439, 464, 452",
+          "Comune di Cortina d'Ampezzo, Regolamento di Polizia Urbana (CC 26/2004) Art. 36(1): dogs on a lead",
+          "National ordinance of the Ministry of Health, 6 August 2013, Art. 1(3) (renewed to 2027): lead of at most 1.5 m, muzzle carried — for San Vito di Cadore and Colle Santa Lucia, which publish no dog rule",
+          "Natura 2000 IT3230017 Monte Pelmo – Mondeval – Formin: Regione Veneto DGR 786/2016, Annex A Art. 99 applies the same lead rule; no site-specific dog ban",
+          "OpenStreetMap: official line (paths 443/439/464/452), sac_scale, huts and the Ra Gusela via ferrata (path 438) avoided"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "Cortina Dolomiti, Al Rifugio Nuvolau",
+          "url": "https://cortina.dolomiti.org/it/escursioni/al-rifugio-nuvolau/"
+        },
+        {
+          "label": "Cortina d'Ampezzo, Regolamento di Polizia Urbana (PDF)",
+          "url": "https://www.comune.cortinadampezzo.bl.it/content/download/1385/36228/1/N.+42+REGOLAMENTO+POLIZIA+URBANA.pdf"
+        },
+        {
+          "label": "Ministry of Health ordinance, 6 August 2013 (text)",
+          "url": "https://www.certifico.com/id/26170"
+        },
+        {
+          "label": "Regione Veneto, Natura 2000 conservation measures (DGR 786/2016)",
+          "url": "https://www.regione.veneto.it/web/agricoltura-e-foreste/misure-di-conservazione"
+        },
+        {
+          "label": "OpenStreetMap relation 3197403",
+          "url": "https://www.openstreetmap.org/relation/3197403"
+        }
+      ]
     }
   };
 
