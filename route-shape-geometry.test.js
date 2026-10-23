@@ -14,7 +14,18 @@ const trails=loadProductionTrails(process.cwd());
 const byId=id=>trails.find(trail=>trail.id===id);
 
 describe('a route’s shape is declared, not guessed from its geometry', () => {
-  test.each(['cadini','lago-sorapis','nuvolau'])('%s is recorded as an out-and-back', id => {
+  // Nuvolau left this list on 2026-10-23. Its "out-and-back by path 452" line in
+  // fact climbed path 438, the Ra Gusela via ferrata; the official walk is a
+  // loop by 443, 439, 464 and 452, and that is what is drawn now.
+  test('nuvolau is the official loop and never the via ferrata', () => {
+    const trail=byId('nuvolau');
+    expect(trail.routeShape).not.toBe('out-and-back');
+    expect(km(trail.path[0], trail.path[trail.path.length-1])*1000).toBeLessThan(50);
+    expect(trail.waymarkedRelations).not.toContain(2261098);
+    expect(trail.tips).toMatch(/438/);
+  });
+
+  test.each(['cadini','lago-sorapis'])('%s is recorded as an out-and-back', id => {
     const trail=byId(id);
     expect(trail.routeShape).toBe('out-and-back');
     // The evidence that put it there: an open line about half the walk.
@@ -41,7 +52,7 @@ describe('a route’s shape is declared, not guessed from its geometry', () => {
   test('every declared out-and-back has a note saying why', () => {
     const overrides=require('./data/verified-trail-overrides.json');
     const shapes=overrides.trails.filter(entry => entry.verificationScope==='routeShape');
-    expect(shapes.length).toBeGreaterThanOrEqual(4);
+    expect(shapes.length).toBeGreaterThanOrEqual(3);
     for(const entry of shapes){
       expect(typeof entry.fields.routeShapeNote).toBe('string');
       expect(entry.fields.routeShapeNote.trim().length).toBeGreaterThan(20);
