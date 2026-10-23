@@ -456,6 +456,20 @@ describe('trail page map controls', () => {
     expect(trailJs).toContain('card.hidden = !markup;');
   });
 
+  // 0 of 473 places on the route had a checked dog policy, so every row read
+  // "Not yet verified, check before you go". The card now lists only what has
+  // been checked, and stays hidden where nothing has.
+  test('the on-route card lists only what has been checked', () => {
+    const trailJs = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+
+    expect(trailJs).toContain("window.DoloPawsTrailTrust.categoryVerified(t, 'water')");
+    expect(trailJs).not.toContain('Carry a backup supply.');
+    // The facts table is fetched even when nothing is listed yet, so a fact
+    // checked later shows without another change to the page.
+    expect(trailJs).toContain('if(!table) setTimeout(() => hydrateOnThisRoute(t), 0);');
+    expect(trailJs).not.toContain("if(!api || !document.getElementById('td2OnRoute')) return;");
+  });
+
   test('the on-route card states each thing once', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const trailJs = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
@@ -468,10 +482,8 @@ describe('trail page map controls', () => {
     // kilometres as the places list directly above it.
     expect(trailJs).not.toContain("window.t('trail.rifugiHead')");
 
-    // trail-trust already appends ", availability can change" to every
-    // unverified water point, so the footnote must not say it again.
+    // Unreviewed water is no longer listed, so neither caveat is needed.
     expect(trailJs).not.toContain('Availability can change. Carry a backup supply.');
-    expect(trailJs).toContain('Carry a backup supply.');
 
     // Water reads in the same list as the places above it.
     expect(trailJs).toContain('<ul class="td2-onroute">${water.map(w =>');
