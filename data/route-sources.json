@@ -242,6 +242,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T18:00:00.000Z"
     },
+    "osm-19974724": {
+      "url": "https://eggental.com/en/activity/middle-circular-route-at-lake-carezza_5711",
+      "publisher": "Eggental Tourismus",
+      "name": "Middle circular hike at Lake Carezza (green signs)",
+      "quote": "The starting point is at the car park Lake Carezza... follow path [6] uphill... continue along path [10] · Distance 2,7 km · Ascent 69 m · Activity time 45 min",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-19974725": {
+      "url": "https://eggental.com/en/activity/long-circular-route-at-lake-carezza_5705",
+      "publisher": "Eggental Tourismus",
+      "name": "Long circular route at Lake Carezza (orange signs)",
+      "quote": "follow path [6] uphill... turn left, and follow path [12] until reaching the junction with path [11]. Here, turn right onto path [11], which leads back to Lake Carezza. · 3.8 km · ascent 98 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
     "osm-3202880": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi78f78b7fec7706efe8118a3e4e471486.montiggler-seen-runde.montiggl",
       "publisher": "Südtirol.info (IDM Südtirol), with Tourismusverein Eppan listed as contact",
