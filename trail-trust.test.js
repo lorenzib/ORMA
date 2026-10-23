@@ -208,8 +208,18 @@ describe('trail data trust states', () => {
     expect(home).toContain('trailSafetyLabel(t)');
     expect(detail).not.toContain('No livestock noted in our field data');
 
-    const importedPage = fs.readFileSync(path.join(__dirname, 'trails/planetenweg-sentiero-dei-pianeti.html'), 'utf8');
     const productionTrails = loadProductionTrails(__dirname);
+    // Any published trail the trust module still calls imported. A named trail
+    // stops being one the day it is verified by hand.
+    const trustApi = loadTrust();
+    const catalogRecords = buildCanonicalCatalog(productionTrails).records;
+    const importedTrail = catalogRecords.find(record => {
+      const source = productionTrails.find(trail => trail.id === record.id);
+      return source && trustApi.provenanceLabel(source) === 'Imported trail' &&
+        fs.existsSync(path.join(__dirname, 'trails', `${record.slug}.html`));
+    });
+    expect(importedTrail).toBeDefined();
+    const importedPage = fs.readFileSync(path.join(__dirname, 'trails', `${importedTrail.slug}.html`), 'utf8');
     const reviewedSource = productionTrails.find(trail => trail.id === 'lago-braies');
     const reviewedTrail = buildCanonicalCatalog(productionTrails).records.find(trail => trail.id === 'lago-braies');
     expect(reviewedTrail).toBeDefined();
