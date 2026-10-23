@@ -94,10 +94,11 @@ describe('the free lane, across the whole catalogue',()=>{
   // anchors a start to a mapped access point within 400 m of the line and
   // Val di Funes has none, so there is nothing to recommend. It needs a
   // sourced start point, which is what the `startPoint` override scope is for.
-  test('every trail but one reaches a published entry',()=>{
-    expect(blocked.map(outcome=>`${outcome.id}: ${outcome.blocked}`))
-      .toEqual([expect.stringMatching(/^valley-view: .*requires sourced route guidance.*recommended-start/)]);
-    expect(published.length).toBe(trails.length-1);
+  // Val di Funes left the blocked list on 2026-10-22: its line was rebuilt as
+  // the official loop and it now has a sourced start point in St. Peter.
+  test('every trail reaches a published entry',()=>{
+    expect(blocked.map(outcome=>`${outcome.id}: ${outcome.blocked}`)).toEqual([]);
+    expect(published.length).toBe(trails.length);
   });
 
   test('and not one of them queued a job',()=>{
