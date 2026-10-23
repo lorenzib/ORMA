@@ -674,6 +674,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "osm-6404634": {
+      "url": "https://www.ecomuseo.vanoi.it/visita/anello-del-bosc-p363",
+      "publisher": "Ecomuseo del Vanoi",
+      "name": "Anello del Bosc",
+      "quote": "TEMPO 4 h / DISTANZA 7.6 km / DISLIVELLO in salita 513 m (Ecomuseo map); page: Lunghezza 7.1 km, Dislivello 380 m, Durata circa 4 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-6410700": {
       "url": "https://www.antholzertal.com/de/activity/dolomitenblickrunde_211086",
       "publisher": "Tourismusgenossenschaft Antholzertal",

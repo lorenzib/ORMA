@@ -13,9 +13,9 @@ const savedHtml = fs.readFileSync(path.join(root, 'saved.html'), 'utf8');
 
 describe('standalone draft route planner', () => {
   test('is entered from Explore and absent from trail detail', () => {
-    // Named for what it does -- loops, one-way and out and back -- and marked
-    // as experimental, in the menu under Record a walk.
-    expect(homeHtml).toContain('href="route-planner.html">Draw your own route <span class="li-menu-badge">Experimental</span><small>Loop, one-way or out and back</small>');
+    // Named for what it does -- loops, one-way and out and back -- marked new
+    // and experimental, in the menu under Record a walk.
+    expect(homeHtml).toContain('href="route-planner.html"><span class="li-menu-title">Draw your own route <span class="li-menu-badge">New</span></span><small>Loop, one-way or out and back · experimental</small>');
     expect(homeHtml).not.toContain('Draft a loop');
     expect(homeHtml).toContain('li-plan-route');
     expect(homeHtml.indexOf('li-plan-route')).toBeLessThan(homeHtml.indexOf('class="li-body"'));

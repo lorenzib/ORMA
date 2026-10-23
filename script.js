@@ -2568,6 +2568,36 @@ function liToggleHeadMenu(button){
   button.setAttribute('aria-expanded', 'true');
 }
 
+// "New: Draw your own route", said once under Record a walk. Seen means any
+// of: closed it, tried it, opened the menu it points at, or used the map's
+// own "Draw a route here". localStorage, so it stays gone next visit.
+const LI_NEW_CALLOUT_KEY = 'orma-new-draw-route-callout-v1';
+
+function liWireNewFeatureCallout(){
+  const callout = document.getElementById('liNewCallout');
+  if(!callout) return;
+  let seen = false;
+  try{ seen = localStorage.getItem(LI_NEW_CALLOUT_KEY) === '1'; }catch(error){}
+  callout.hidden = seen;
+  const markSeen = () => {
+    callout.hidden = true;
+    try{ localStorage.setItem(LI_NEW_CALLOUT_KEY, '1'); }catch(error){}
+  };
+  const close = document.getElementById('liNewCalloutClose');
+  if(close) close.addEventListener('click', (e) => { e.stopPropagation(); markSeen(); });
+  // "Try it" opens the planner where the map is, like the map's own button.
+  const tryIt = document.getElementById('liNewCalloutTry');
+  if(tryIt) tryIt.addEventListener('click', () => {
+    const fromMap = document.getElementById('homeMapDrawBtn');
+    if(fromMap) tryIt.href = fromMap.href;
+    markSeen();
+  });
+  ['liNewBtn', 'homeMapDrawBtn'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('click', markSeen);
+  });
+}
+
 function liCloseMenus(){
   ['liFiltersMenu', 'liNewMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu', 'liAreaMenu', 'liDayMenu'].forEach(id => {
     const menu = document.getElementById(id);
@@ -3146,6 +3176,7 @@ function initLoggedInShell(){
   const newBtn = document.getElementById('liNewBtn');
   const newMenu = document.getElementById('liNewMenu');
   if(newBtn && newMenu) wireMenu(newBtn, newMenu);
+  liWireNewFeatureCallout();
   // Recently viewed moved under the dog pill, so it is filled when that opens.
   const accountBtn = document.getElementById('liAccountBtn');
   wireMenu(accountBtn, document.getElementById('liAccountMenu'));
