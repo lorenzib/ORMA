@@ -529,10 +529,14 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liShowAllBtn').hidden).toBe(false);
     expect(search.value).toBe('');
 
-    // "Change" opens the search, which the editorial toolbar keeps folded away.
+    // The place is a word in the headline, and pressing it is how you change it.
+    const areaToken = document.querySelector('#liToolbarGreeting [data-li-head="area"]');
+    expect(areaToken.textContent).toBe('in Maurienne');
+    expect(document.querySelector('#liToolbarGreeting [data-li-head="day"]').textContent).toBe('today');
+
+    // "Search a valley or town" goes to the search, which is always there.
     document.getElementById('liChangeLocationBtn').click();
-    expect(document.getElementById('liToolbar').classList.contains('li-refine-open')).toBe(true);
-    expect(document.getElementById('liAdjustRecommendationBtn').getAttribute('aria-expanded')).toBe('true');
+    expect(document.activeElement).toBe(search);
   });
 
   test('current location limits recommendations to trails within 25 km', async () => {

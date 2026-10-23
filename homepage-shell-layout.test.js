@@ -8,7 +8,11 @@ describe('logged-in discovery workspace layout', () => {
     expect(html).toContain('class="li-toolbar-greet"');
     expect(html).not.toContain('id="liToolbarSummary"');
     expect(html).toContain('id="liRecommendationDate"');
-    expect(html).toContain('id="liAdjustRecommendationBtn"');
+    // The place and the day are words in the headline, each opening its own
+    // menu; nothing waits behind "Adjust recommendation" any more.
+    expect(html).not.toContain('liAdjustRecommendationBtn');
+    expect(html).toContain('id="liAreaMenu"');
+    expect(html).toContain('id="liDayMenu"');
     expect(css).toMatch(/\.li-toolbar-greet\s*\{[^}]*display:flex;/s);
   });
 
@@ -52,9 +56,10 @@ describe('logged-in discovery workspace layout', () => {
     // button itself -- a real link to walk.html, which is also what
     // device-handoff listens for -- and drafting a loop is the thing left in
     // the menu rather than a second copy of the same action.
-    expect(html.indexOf('id="liSearchSuggest"')).toBeLessThan(html.indexOf('id="liNewBtn"'));
+    // It sits beside the headline now, ahead of the search row.
+    expect(html.indexOf('id="liNewBtn"')).toBeLessThan(html.indexOf('id="liSearchSuggest"'));
     expect(html).toContain('id="liRecordBtn" href="walk.html"');
-    expect(html).toContain('>Record a walk<');
+    expect(html).toContain('>Record<span class="li-new-label-rest"> a walk</span><');
     expect(html.indexOf('id="liRecordBtn"')).toBeLessThan(html.indexOf('id="liNewBtn"'));
     // The menu holds the other thing you can make, not a second copy of the
     // button. (The footer's own "Record a walk" link is a different control
@@ -67,20 +72,29 @@ describe('logged-in discovery workspace layout', () => {
     expect(html).toContain('class="li-list-options"');
   });
 
-  test('keeps catalogue controls behind the recommendation adjustment action', () => {
+  test('keeps place, day, search, Filters and Record a walk on screen', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
-    expect(editorialCss).toContain('.li-toolbar:not(.li-refine-open) .li-search');
-    expect(editorialCss).toContain('.li-toolbar.li-refine-open .li-search{display:flex;');
-    expect(editorialCss).toContain('.li-toolbar.li-refine-open #liFiltersWrap{display:block;');
-    expect(editorialCss).toContain('@media (min-width:701px) and (max-width:1100px)');
-    expect(html).toContain('Adjust recommendation');
+    // Nothing is folded away behind a toggle.
+    expect(editorialCss).not.toContain('li-refine-open');
+    expect(fs.readFileSync('script.js', 'utf8')).not.toContain('li-refine-open');
+    expect(editorialCss).toContain('#returningCustomerHomepage #liToolbar .li-search{');
+    // Record a walk sits beside the headline, inside the greeting row.
+    const greet = html.slice(html.indexOf('class="li-toolbar-greet"'), html.indexOf('id="liToday"'));
+    expect(greet).toContain('id="liRecordBtn"');
+    expect(greet).toContain('id="liAreaMenu"');
+    expect(greet).toContain('id="liDayMenu"');
+    // Shade and water are inside Filters, with the rest of the narrowing.
+    const filters = html.slice(html.indexOf('id="liFiltersMenu"'), html.indexOf('id="liFiltersApply"'));
+    expect(filters).toContain('id="liQuickShade"');
+    expect(filters).toContain('id="liQuickWater"');
+    expect(html).toContain('<span class="li-filt-label">Filters</span>');
   });
 
-  test('keeps the recommendation hierarchy at desktop widths', () => {
+  test('lays the toolbar out the same way at every width', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
-    expect(editorialCss).toContain('@media (min-width:1041px)');
-    expect(editorialCss).toContain('grid-template-columns:minmax(240px,1fr) auto auto auto;');
-    expect(editorialCss).toContain('.li-toolbar.li-refine-open .li-new-wrap{grid-column:4;grid-row:3;}');
+    expect(editorialCss).toContain('grid-template-areas:"greet greet" "today today" "nudge nudge" "search filters";');
+    // Phones: headline on its own row, then search, Filters and Record.
+    expect(editorialCss).toContain('grid-template-areas:"greet greet greet" "today today today" "search filters new" "nudge nudge nudge";');
   });
 
   test('contains the quick shade and water filters in white outlined controls', () => {
