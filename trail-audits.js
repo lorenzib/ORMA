@@ -10503,6 +10503,207 @@
         { km: 3, lat: 46.5643693, lng: 11.6365965, osmId: 'node/4281669177', label: 'Fountain, Pufels village centre' }
       ],
       desc: 'A loop from Panider Sattel on the Geotrail: across the meadows and into the forest below the Puflatsch, down the old municipal road to the hamlet of Pufels (Bulla), and back past Col da Locia. The official route lists 6.9 km and 345 m of ascent.'
+    },
+    'osm-11832013': {
+      // Hand audit 23 October 2026: route, number and start from the Tourismusverein Sarntal Wanderbus 2025 brochure (path 22,
+      // 'völlig flach', from the bus stop at the lake outflow); the province's register line for the Seerundweg (2.50 km) lies within 15 m
+      // of the line everywhere. Dogs: Sarntal dog regulation Art. 4, 8. The lake is a natural monument (Sarntal landscape plan NDM
+      // 086_G08), whose rules set nothing on dogs. No Natura 2000 site on the line.
+      "area": "Durnholz / Valdurna, Sarntal",
+      "desc": "Path 22, the completely flat loop around the Durnholzer See at the head of the Sarntal, past the Durnholz church and the Fischerwirt, with meadows and larch and spruce woods round the shore. The loop is about 2.5 km and takes under an hour; it starts at the bus stop by the lake's southern outflow. The lake is a protected natural monument and is not an official bathing lake.\n\nDogs must be on a lead of at most 1.5 m on all public ground, and owners must carry a muzzle, under the Sarntal dog regulation; dogs are not allowed on the meadows beside the path. About 700 m of the loop follows the provincial road along the lake, where cars pass.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Sarntal requires, and keep to the path rather than the meadows. Watch for cars on the provincial road stretch by the lake. The lake is a protected natural monument and not a bathing lake, so keep your dog out of the water. Path 16 leaves the loop at the Fischerwirt for the Seebalm. Taps are mapped at the start and partway round.",
+      "shadeCoverage": 40,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 700 m on the provincial road (SP137) along the lake",
+        "Pebble-surfaced footpath"
+      ],
+      "routeNumberSource": {
+        "provider": "Tourismusverein Sarntal",
+        "name": "Seerundweg (22)",
+        "url": "https://www.sarntal.com/fileadmin/user_upload/Wanderbus_2025_dt.pdf"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Hubert Berberich (HubiB), CC BY-SA 3.0: the Durnholzer See and Durnholz church from the shore path, 8 m from the line (replaces a photo of another route).",
+        "route": "Published line 2.48 km, within 15 m of the province's register line (2.50 km) at every point; suedtirol.com's 'rund 3 km' is a rounded figure.",
+        "routeNumbers": "Path 22, Seerundweg, as the Sarntal brochure states; path 16 to the Seebalm leaves at the Fischerwirt.",
+        "mapPoints": "Start at the bus stop by the lake's southern outflow, as the brochure states; taps traced to OSM.",
+        "elevation": "Flat ('völlig flach'); the small figure shown is measured on the line."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Tourismusverein Sarntal, Wanderbus 2025 brochure: 'Markierung: Weg Nr. 22, Seerundweg', 'dem völlig flachen Seerundweg zurück zur Bushaltestelle am südlichen Seeabfluss'",
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub / CIVIS): Seerundweg, 2.50 km — closed licence, used for comparison only",
+          "Gemeinde Sarntal, dog regulation (GR 61/2015, updated 14 May 2025) Art. 4 (lead of at most 1.5 m, muzzle carried) and Art. 8 (no dogs on meadows, fields and orchards)",
+          "Sarntal landscape plan (valid 2025): Durnholzer See natural monument NDM 086_G08, no dog rule; no Natura 2000 site on the line (EEA)",
+          "OpenStreetMap relation 11832013: road classes, surfaces and water along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "Tourismusverein Sarntal, Wanderbus 2025 (PDF)",
+          "url": "https://www.sarntal.com/fileadmin/user_upload/Wanderbus_2025_dt.pdf"
+        },
+        {
+          "label": "South Tyrol trail register, Seerundweg (Open Data Hub)",
+          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426337"
+        },
+        {
+          "label": "Gemeinde Sarntal, dog regulation",
+          "url": "https://www.gemeinde.sarntal.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden"
+        },
+        {
+          "label": "OpenStreetMap relation 11832013",
+          "url": "https://www.openstreetmap.org/relation/11832013"
+        }
+      ]
+    },
+    'osm-12190657': {
+      // Hand audit 23 October 2026: the line lies on the province's own hiking-trail register line 'Rundweg Langfenn' (Open Data Hub /
+      // CIVIS, 4.64 km; every point of ours within 6 m; closed licence, cited not copied); figures from suedtirol.live (4.5 km, 141 m,
+      // 1.1 h). Dogs: Mölten dog regulation (GR 62/2010) Art. 4 and 8; the short Jenesien stretch has no findable rule, so the national
+      // ordinance of 6 Aug 2013 applies there (owner-approved standard). No Natura 2000 site on the line.
+      "area": "Langfenn, Mölten / Meltina (and Jenesien)",
+      "elevation": 141,
+      "hours": "1–1.5",
+      "desc": "An easy loop on the Salten plateau above Mölten, through larch meadows to Langfenn with its old church of St. Jakob and inn, and back over the open pastures with views across to the Dolomites. About 4.5 km and 141 m of climb, an hour or so, mostly on wide farm tracks.\n\nDogs must be on a lead of at most 1.5 m on all public ground, and owners must carry a muzzle, under the Mölten dog regulation, which also bars dogs from farmed meadows during the growing season; the short stretch in Jenesien falls under the same national lead rule. Keep to the tracks: the meadows beside them are farmed. About a quarter of the loop is in woodland.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, and keep to the tracks rather than the meadows. Farm buildings stand beside the path, so animals may be kept close by. There is no tap on the loop; the inn at Langfenn welcomes dogs on a lead unless the landlord says otherwise. About 650 m follows an asphalt lane used by cars.",
+      "shadeCoverage": 25,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 650 m on an asphalt lane used by cars"
+      ],
+      "routeNumberSource": {
+        "provider": "Autonome Provinz Bozen – hiking trail register",
+        "name": "Rundweg Langfenn",
+        "url": "https://suedtirol.live/de/tour/rundweg-langfenn-t22081"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons (Panoramio), Besenbinder, CC BY-SA 3.0: the path up through the meadow to Langfenn church and inn, 1 m from the line (replaces an untagged view from another commune).",
+        "route": "Published line 4.50 km; every point within 6 m of the province's register line (4.64 km).",
+        "routeNumbers": "No number of its own; the loop links paths 1 and 4 from Schermoos and Mölten to Langfenn.",
+        "mapPoints": "Start at the Schermoos bus stop by the loop; no tap mapped on the line.",
+        "elevation": "141 m of climb (suedtirol.live); was 165."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub / CIVIS): Rundweg Langfenn, 4.64 km — closed licence, used for comparison only",
+          "suedtirol.live, Rundweg Langfenn: 4.5 km, 141 m, 1.1 h, easy",
+          "Gemeinde Mölten, Verordnung über die Haltung und Führung von Hunden (GR 62/2010) Art. 4 (lead of at most 1.5 m, muzzle carried) and Art. 8 (no dogs on farmed meadows in the growing season)",
+          "Jenesien publishes no findable dog rule: national Ministry of Health ordinance of 6 August 2013, Art. 1(3); no Natura 2000 site on the line (EEA)",
+          "OpenStreetMap relation 12190657: tracks, land cover, farm buildings and water along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, Rundweg Langfenn (Open Data Hub)",
+          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428929"
+        },
+        {
+          "label": "suedtirol.live, Rundweg Langfenn",
+          "url": "https://suedtirol.live/de/tour/rundweg-langfenn-t22081"
+        },
+        {
+          "label": "Gemeinde Mölten, dog regulation (PDF)",
+          "url": "https://www.gemeinde.moelten.bz.it/system/web/GetDocument.ashx?cts=1731599216&fileId=1025831"
+        },
+        {
+          "label": "Ministry of Health ordinance, 6 August 2013 (text)",
+          "url": "https://www.certifico.com/id/26170"
+        },
+        {
+          "label": "OpenStreetMap relation 12190657",
+          "url": "https://www.openstreetmap.org/relation/12190657"
+        }
+      ]
     }
   };
 

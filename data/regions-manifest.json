@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-23T11:10:37.803Z",
+  "generatedAt": "2026-10-23T11:25:42.334Z",
   "regions": {
     "dolomites": {
       "trailCount": 110,
-      "trails": "data/regions/dolomites-trails.js?v=4a0d792e77e1",
+      "trails": "data/regions/dolomites-trails.js?v=fb05dd309f8b",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=26654e90f48e",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -71,7 +71,7 @@
         "osm-11815025": "data/trail-details/osm-11815025.js?v=47d6acb227b8",
         "osm-11816373": "data/trail-details/osm-11816373.js?v=b808df4db25c",
         "osm-11828233": "data/trail-details/osm-11828233.js?v=29c648e3ee75",
-        "osm-11832013": "data/trail-details/osm-11832013.js?v=32935f0f2014",
+        "osm-11832013": "data/trail-details/osm-11832013.js?v=62792f861208",
         "osm-11839597": "data/trail-details/osm-11839597.js?v=0f461f4b742a",
         "osm-11855879": "data/trail-details/osm-11855879.js?v=80d2070b3d17",
         "osm-11860429": "data/trail-details/osm-11860429.js?v=8e5778387274",
@@ -96,7 +96,7 @@
         "osm-12182936": "data/trail-details/osm-12182936.js?v=4a1b0714ae17",
         "osm-12189165": "data/trail-details/osm-12189165.js?v=14d825a0a18c",
         "osm-12190538": "data/trail-details/osm-12190538.js?v=37df3cb010a7",
-        "osm-12190657": "data/trail-details/osm-12190657.js?v=2fd5b3ceab6d",
+        "osm-12190657": "data/trail-details/osm-12190657.js?v=35921a90935f",
         "osm-12302191": "data/trail-details/osm-12302191.js?v=df9f79e80d38",
         "osm-12363235": "data/trail-details/osm-12363235.js?v=c8beeaf1f0fa",
         "osm-12371666": "data/trail-details/osm-12371666.js?v=2bbea03f0f22",

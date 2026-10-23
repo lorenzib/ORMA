@@ -82,6 +82,14 @@
       "foundBy": "orma-route-audit",
       "verifiedAt": "2026-10-23T18:00:00.000Z"
     },
+    "osm-11832013": {
+      "url": "https://www.sarntal.com/fileadmin/user_upload/Wanderbus_2025_dt.pdf",
+      "publisher": "Tourismusverein Sarntal",
+      "name": "Seerundweg (22)",
+      "quote": "Markierung: Weg Nr. 22, Seerundweg … dem völlig flachen Seerundweg zurück zur Bushaltestelle am südlichen Seeabfluss",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
     "osm-11839597": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoie48a748b7f4497eb984622ba50b6823a.fenn-promenade.sill",
       "publisher": "Tourismusgenossenschaft Ritten (via Südtirol.info / IDM Südtirol)",
@@ -135,6 +143,14 @@
       "publisher": "Tourismusverein Sarntal",
       "name": "Talrundweg (18)",
       "quote": "Wer eine leichte Spazierwanderung bevorzugt, liegt mit dem neu angelegten Talrundweg um Sarnthein-Nordheim-Astfeld … gold richtig. … Talrundweg (18) – Abzweig 18A – Waldrasthütte",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-12190657": {
+      "url": "https://suedtirol.live/de/tour/rundweg-langfenn-t22081",
+      "publisher": "suedtirol.live (Open Data Hub tour) / province trail register",
+      "name": "Rundweg Langfenn",
+      "quote": "Rundweg Langfenn · 4,5 km · 141 hm · 1:06 h · leicht",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
