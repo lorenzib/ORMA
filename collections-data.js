@@ -12,7 +12,7 @@
     {
       id:'lake-loops', title:'Dolomites lake-loop days', subtitle:'Three lake walks for a short Dolomites stay',
       description:'A three-day Dolomites shortlist built around Lago di Braies, Lago di Carezza and Montiggler Seen. Use each trail page to compare the drive, climb, water and terrain before choosing the order.',
-      coverImage:'images/lago-di-braies.webp', chips:['Circular routes','Lakeside scenery','Compare distance and climb'],
+      coverImage:'images/lago-di-carezza.webp', chips:['Circular routes','Lakeside scenery','Compare distance and climb'],
       countryCode:'IT', country:'Italy', region:'dolomites', regionLabel:'Dolomites', tripLength:'3 days',
       trailIds:['lago-braies','lago-carezza','osm-3202880'],
     },
