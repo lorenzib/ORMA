@@ -4,6 +4,7 @@ const {CLAIM_ENTITY_TYPE}=require('./compile-operational-facts');
 const {routeGuidanceByClaim,SAFETY_CATEGORY_OF_CLAIM}=require('./compile-verified-dossier');
 const {dogsNotAccepted}=require('./safety-research-lane');
 const {existingCopyFields}=require('./verified-editorial-handoff');
+const {researchMethodHolds,dogRuleBasis}=require('./research-methods');
 
 const TARGETS = Object.freeze({
   'osm-relation-1484751': { trailId: 'tre-cime', operation: 'update-existing', routeRef: 'backoffice-data/route-proposals/tre-cime-classic.geojson' },
@@ -135,9 +136,16 @@ function graduationFor(researched, hasPhoto, hasFields, settled=[], options={}){
   // And a walk where dogs are not allowed is never sealed (decision 2): the
   // research is complete, and what it found is that ORMA should not be
   // recommending the walk at all.
+  //
+  // And the research methods that verify a walk by hand (research-methods.js,
+  // approved 23 October 2026): an authority's own climb and walking time, a
+  // line as long as the walk it publishes, a dog rule for every municipality
+  // the line crosses, the protected areas it touches, and a photograph of this
+  // place. Short of any of them the walk is reviewed, not verified.
   const heldFor=[
     ...SETTLED_FOR_SEAL.filter(check=>completed.includes(check)&&!settled.includes(check)).map(check=>`${check}-unanswered`),
     ...(options.dogsNotAccepted?['dogs-not-accepted']:[]),
+    ...(options.researchHolds||[]),
   ];
   const status=GRADUATION_CHECKS.every(check=>completed.includes(check))&&!heldFor.length
     &&SETTLED_FOR_SEAL.every(check=>settled.includes(check))?'verified':'in-progress';
@@ -366,8 +374,15 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
     // than published claiming six checks it cannot show.
     const researched=Array.isArray(item?.researchedCategories)?item.researchedCategories:[];
     const banned=dogsNotAccepted(item);
+    // Read against the record as it will be published: the line it carries and
+    // the photograph it keeps or gains.
+    const photo=retainedImage?{heroImage:retainedImage.heroImage,imageIcon:retainedImage.imageIcon,
+      imageGeotag:existingTrail?.imageGeotag||null,imagePlace:existingTrail?.imagePlace||null}
+      :hero?{heroImage:hero.assetUrl,imageGeotag:hero.geotag||null,imagePlace:hero.place||null}
+        :{heroImage:null,imageIcon:null};
+    const research=researchMethodHolds(item,{...(existingTrail||{}),...photo});
     const graduation=graduationFor(researched,Boolean(retainedImage||hero),Boolean(verifiedFields),settledSafetyCategories(item),
-      {dogsNotAccepted:banned.length>0});
+      {dogsNotAccepted:banned.length>0,researchHolds:research.holds});
     // A trail short of the full seal publishes as a reviewed one.
     //
     // It was held here instead, because the override contract had no door for
@@ -434,7 +449,10 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
             sourceIds:fact.sourceIds||[]}))}}:{}),
       },
       lockedEvidence: { dossierRef: item.dossierRef, facts: item.lockedFacts, verificationConditions: item.verificationConditions,
-        acceptedUnknowns:item.acceptedUnknowns||[] },
+        acceptedUnknowns:item.acceptedUnknowns||[],
+        // Why the seal is held, in sentences, and which dog rules rest on the
+        // Italian national default -- said here so nobody has to derive it.
+        researchHolds:research.detail,dogRuleBasis:dogRuleBasis(item) },
       assetPolicy:item.assetPolicy||'source-new-asset',
       humanGate:item.assetPolicy==='preserve-existing'?'automated-existing-trail-publication-policy':'website-preview-and-publication-approval',
       policyGate: item.assetPolicy==='preserve-existing'?'existing-trail-evidence-and-quality-policy':'website-preview-and-publication-approval',

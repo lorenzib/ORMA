@@ -20,10 +20,16 @@
 
 const {specialistJob}=require('./apply-dossier-review');
 const {SAFETY_CATEGORIES:SAFETY_CHECKS}=require('./compile-verified-dossier');
+const {OFFICIAL_FIGURE_CLAIM_IDS,PROTECTED_AREAS_CLAIM}=require('./research-methods');
 
 // Bumped when what the lane asks changes, so a trail is sent once per
 // contract and never loops.
-const SAFETY_RESEARCH_CONTRACT='safety-research-v1';
+//
+// v2 (23 October 2026): the seal now also needs the research methods that
+// verify a walk by hand -- an authority's climb, time and distance, every
+// municipality on the line with its dog rule, and the protected areas -- so
+// the lane asks for them. A trail sent under v1 was not asked them.
+const SAFETY_RESEARCH_CONTRACT='safety-research-v2';
 const SAFETY_RESEARCH_STAGE='safety-research';
 
 // Only the safety questions. The rifugio and lift policies are left to the
@@ -32,9 +38,9 @@ const SAFETY_RESEARCH_STAGE='safety-research';
 // safety check.
 const SAFETY_SPECIALISTS=Object.freeze([
   {agentId:'regulatoryRanger',action:'safety-research-dog-and-seasonal-rules',
-    claimIds:['dog-access','leash-rules','seasonal-restrictions','protected-area-dog-policy']},
+    claimIds:['dog-access','leash-rules','seasonal-restrictions','protected-area-dog-policy',PROTECTED_AREAS_CLAIM]},
   {agentId:'terrainPoi',action:'safety-research-terrain-water-heat-and-livestock',
-    claimIds:['water','shade','surface','exposure','livestock','animals']},
+    claimIds:['water','shade','surface','exposure','livestock','animals',...OFFICIAL_FIGURE_CLAIM_IDS]},
 ]);
 const SAFETY_AGENTS=Object.freeze(SAFETY_SPECIALISTS.map(spec=>spec.agentId));
 

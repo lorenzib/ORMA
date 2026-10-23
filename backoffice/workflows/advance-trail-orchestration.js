@@ -8,6 +8,7 @@ const {routeGuidanceBlockingReasons,routeGuidanceContractStale,ROUTE_GUIDANCE_CO
 const {
   MAX_AUTOMATED_ATTEMPTS,ceilingFor,resolutionCandidates,ensureResolutionEntries,pendingAttempt,
   completedAttempts,reconcileCompletedAttempt,addQueuedAttempt,attemptStrategyText,
+  settleOverOptionalBudget,
 }=require('./claim-resolution');
 const {placesOnRoute,categoriesTheMapFoundNothingFor}=require('./places-on-route');
 const {loadMappedFeatures}=require('./run-trail-specialist');
@@ -482,7 +483,11 @@ async function advanceTrailOrchestration(store,options={}){
           placesOnRoute(catalogue.get(String(trail.trailId))?.path
             ||catalogue.get(String(trail.candidateId))?.path||[], loadMappedFeatures()));
         const entries=ensureResolutionEntries(trail,candidates,unmapped);
-        for(const entry of Object.values(entries))if(entry.state==='researchable'&&!pendingAttempt(entry,jobs))queueClaimResolution(trail,entry,jobs,queued,at);
+        for(const entry of Object.values(entries)){
+          if(entry.state!=='researchable'||pendingAttempt(entry,jobs))continue;
+          if(settleOverOptionalBudget(Object.values(entries),entry,at))continue;
+          queueClaimResolution(trail,entry,jobs,queued,at);
+        }
         trail.state='evidence-resolution';trail.stage='autonomous-claim-resolution';trail.updatedAt=at;advanced.push(trail.trailId);continue;
       }
       if(safety){
@@ -498,6 +503,7 @@ async function advanceTrailOrchestration(store,options={}){
       for(const entry of resolutionLedger(trail)){
         if(entry.state!=='researchable'||pendingAttempt(entry,jobs))continue;
         if(completedAttempts(entry).length>=ceilingFor(entry.claimId)){entry.state='source-exhausted';entry.updatedAt=at;continue;}
+        if(settleOverOptionalBudget(resolutionLedger(trail),entry,at))continue;
         queueClaimResolution(trail,entry,jobs,queued,at);scheduled=true;
       }
       const pending=resolutionLedger(trail).some(entry=>pendingAttempt(entry,[...jobs,...queued]));
