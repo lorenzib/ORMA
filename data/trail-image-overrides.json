@@ -1572,6 +1572,23 @@
       }
     },
     {
+      "id": "osm-1671736",
+      "approvedReviewId": "commons-osm-1671736-on-route",
+      "approvedAt": "2026-10-24T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-1671736-st-georgen.jpg",
+        "heroImage": "images/trails/osm-1671736-st-georgen.jpg",
+        "imageAlt": "St. Georgen church in Schenna, its tall spire and round chapel above a vineyard under a cloudy sky, at the end of the Höfeweg",
+        "imageCredit": "St. Georgen church in Schenna",
+        "imageCreditText": "St. Georgen church in Schenna by Ymblanter",
+        "imageCreator": "Ymblanter",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Schenna_St._Georgen_Church_from_below_1.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-1780768",
       "approvedReviewId": "commons-osm-1780768",
       "approvedAt": "2026-09-06T19:29:10.682Z",
@@ -1943,6 +1960,23 @@
       }
     },
     {
+      "id": "osm-5597577",
+      "approvedReviewId": "commons-osm-5597577-on-route",
+      "approvedAt": "2026-10-24T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-5597577-tschirland.jpg",
+        "heroImage": "images/trails/osm-5597577-tschirland.jpg",
+        "imageAlt": "Tschirland near Naturns seen from the hillside above, houses and a church among apple orchards on the valley floor",
+        "imageCredit": "Tschirland near Naturns",
+        "imageCreditText": "Tschirland near Naturns by Whgler",
+        "imageCreator": "Whgler",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Tschirland_2019.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-6244965",
       "approvedReviewId": "commons-osm-6244965-on-route",
       "approvedAt": "2026-10-24T10:00:00.000Z",
@@ -2044,6 +2078,23 @@
       }
     },
     {
+      "id": "osm-6453504",
+      "approvedReviewId": "commons-osm-6453504-on-route",
+      "approvedAt": "2026-10-24T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-6453504-aschbach.jpg",
+        "heroImage": "images/trails/osm-6453504-aschbach.jpg",
+        "imageAlt": "The hamlet of Aschbach above Algund, farmhouses and a small church on green meadows below a forested ridge",
+        "imageCredit": "Aschbach in Algund",
+        "imageCreditText": "Aschbach in Algund by Plentn",
+        "imageCreator": "Plentn",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Aschbach_Algund_2020.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-6823031",
       "approvedReviewId": "commons-osm-6823031",
       "approvedAt": "2026-09-06T14:47:45.542Z",
@@ -2125,6 +2176,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pian_dei_Buoi_panorama.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7424683",
+      "approvedReviewId": "commons-osm-7424683-on-route",
+      "approvedAt": "2026-10-24T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7424683-marlinger-waal.jpg",
+        "heroImage": "images/trails/osm-7424683-marlinger-waal.jpg",
+        "imageAlt": "The Marlinger Waalweg, a gravel path beside the irrigation channel on a steep slope above orchards, with the Meran basin below",
+        "imageCredit": "The Marlinger Waalweg above the orchards",
+        "imageCreditText": "The Marlinger Waalweg above the orchards by Benreis",
+        "imageCreator": "Benreis",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Marlinger_Waalweg_(9).JPG",
         "imageSourceType": "licensed-source"
       }
     },

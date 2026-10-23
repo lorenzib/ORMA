@@ -25050,12 +25050,14 @@ function effectiveOverrides(profile, adjustOverride){
         ],
         date: '2026-10-23'
       },
-      shadeCoverage: 23,
-      heatRisk: 'high',
+      // Shade re-measured 24 October with the wood areas fetched whole (the
+      // first count, 23%, missed woods that reach beyond the map extract).
+      shadeCoverage: 47,
+      heatRisk: 'moderate',
       exposure: false,
       surfaceHazards: ['The open irrigation channel runs right beside the path', 'A suspension footbridge at the Gratsch end (km 4.3)', 'Orchards and vineyards on both sides, where dogs are not allowed in the growing season', 'Short stretches on farm lanes'],
       terrainType: 'A level earth and gravel path beside the irrigation channel, with a few short farm lanes',
-      shadeDescription: 'About a quarter is under trees or vine pergolas; the rest crosses open orchards and vineyards on a sunny south-facing slope.',
+      shadeDescription: 'About half is under trees, in patches of woodland and chestnut along the channel and under the vine pergolas; the rest crosses open orchards and vineyards on a sunny south-facing slope.',
       terrainDescription: 'An easy, almost level family walk on an earth and gravel path along the channel, through orchards and vineyards above Algund, with wide views over Meran.',
       waterDescription: 'A drinking fountain at the Kneipp station at the start and two near Gratsch at the end; the channel itself carries water in the irrigation season. Carry water on hot days.',
       dogNotes: 'Algund requires a lead of at most 1.5 m and a muzzle carried on all public paths, and dogs may not go into orchards, vineyards or meadows in the growing season. The national rule (lead of at most 1.5 m, muzzle carried) covers the last stretch in Tirol. No grazing animals are mapped on the route.',
@@ -30110,6 +30112,2327 @@ function effectiveOverrides(profile, adjustOverride){
       ],
       "desc": "A striking turquoise glacial lake below the Sorapiss, reached on path 215 from Passo Tre Croci and back the same way: officially 10.5 km and 4 hours, with 434 m of climb, rated for expert hikers. After a flat first section through the forest, the path crosses a more demanding stretch with metal ladders and exposed sections along a ledge protected by wire ropes, about 4 km in, before the lake and Rifugio Vandelli.\n\nCortina's police regulation requires dogs to be kept on a lead in all public areas, and most of the walk lies in the Natura 2000 site of the Antelao, Marmarole and Sorapiss, where the national rule applies: a lead of at most 1.5 m and a muzzle carried.",
       "tips": "The official route is for expert hikers and includes metal ladders and exposed ledges protected by wire ropes: only consider it with a small or very sure-footed dog you can lift or guide safely, and turn back if your dog is unsure. Keep your dog on a short lead (1.5 m at most) and carry a muzzle. Carry all the water you need: there is no reliable water on the way, and Rifugio Vandelli is closed out of season (it reopens on 20 June 2027). Parking at Passo Tre Croci fills early in summer, so the tourist board recommends the bus and an early start."
+    },
+    'osm-7424683': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 3).
+      // The official tour of the Tourismusverein Lana, Lana to Töll. The line
+      // crosses Lana (km 0–0.5), Tscherms (to km 2.1), Marling (to km 7.3),
+      // Algund and the last metres of Partschins. Lana (2010), Tscherms
+      // (Gemeinderat 18/2019) and Marling (44/2010) all require a lead of at
+      // most 1.5 m and a muzzle carried on public ground and keep dogs off
+      // farmland (Tscherms all year, signs or no signs; Lana and Marling in
+      // the growing season); Algund likewise (11/2010). Partschins publishes
+      // no rule, so the national dog ordinance covers its few metres. No
+      // biotope, Natura 2000 site or park on the line (landscape plan layers).
+      area: 'Lana – Marling / Lana – Marlengo',
+      distance: 10.5,
+      elevation: 150,
+      hours: '3.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A one-way walk along the Marlinger Waal from Lana above Tscherms and Marling to Töll; buses 213 and 211 bring walkers back to Lana by way of Meran.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path beside the channel above the orchards, in April (Benreis, CC BY-SA 4.0), filed as the Marlinger Waalweg.',
+        route: 'Official 10.5 km, Lana to Töll; the stored OSM line (relation 7424683) runs 9.6 km, from 40 m of the official start at the top of the Raffeinweg to 27 m of the official end at Töll (the official figure includes the climb up from Lana centre).',
+        routeNumbers: 'From the Ultnerstraße in Lana follow the “Marlinger Waalweg” signs (MW) up the Villenerweg and the Raffeingasse to the channel, then follow the Waalweg all the way above Tscherms and Marling to its end at Töll.',
+        mapPoints: 'Start at the top of the Raffeinweg above Lana, by the Waalheim car park (official start); drinking water at km 0.5 and km 4.7 (OSM nodes 10770850207, 4416462238).',
+        elevation: 'Official 10.5 km, 150 m up and down, 3 h 30 min, high point 550 m (Tourismusverein Lana und Umgebung, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Lana und Umgebung, Marlinger Waalweg ab Lana (Südtirol.info)',
+          'Gemeinde Lana, Verordnung über die Haltung von Hunden (2010), Art. 4 and 8',
+          'Gemeinde Tscherms, Verordnung über die Hundehaltung im Gemeindegebiet (Gemeinderat 18/2019), Art. 5 and 9',
+          'Gemeinde Marling, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat 44/2010), Art. 4 and 8',
+          'Gemeinde Algund, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 11/2010), Art. 4 and 8',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 7424683, surface, bridge, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 60,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The open irrigation channel runs right beside the path', 'A steep tarmac climb of about 200 m up the Raffeinweg to the channel, then steps near the start', 'Several small footbridges', 'Orchards and vineyards on both sides, where dogs are not allowed (in Tscherms at any time of year)', 'Not suitable for prams or wheelchairs'],
+      terrainType: 'A level earth and gravel path beside the irrigation channel, after a short steep climb from Lana',
+      shadeDescription: 'About three fifths runs through woodland and chestnut groves. The path faces east: the sun reaches it in the morning and many stretches are in shade by the afternoon, so on hot days walk it later in the day.',
+      terrainDescription: 'After a short, steep climb from Lana, an almost level walk of over 9 km along the historic irrigation channel at about 450–550 m, through orchards, vineyards, chestnut groves and woods above the Meran basin.',
+      waterDescription: 'Drinking fountains near the start (km 0.5) and above Marling (km 4.7), and plenty of inns along the way; the channel itself carries water in the irrigation season. Dogs may not bathe in public fountains.',
+      dogNotes: 'Lana, Tscherms, Marling and Algund all require a lead of at most 1.5 m and a muzzle carried on public paths, and keep dogs out of orchards, vineyards and meadows; in Tscherms that holds all year, signs or no signs. The national rule covers the last few metres in Partschins. The path passes farms such as the Greiterhof, so animals may be close.',
+      tips: 'From Lana centre follow the Marlinger Waalweg signs up the Raffeinweg to the channel, then walk the Waalweg to Töll: 10.5 km, almost level once you are up, about 3½ hours, and the bus back via Meran. Keep your dog on a short lead (1.5 m at most) and out of the orchards and vineyards. The path faces east, so in summer start in the afternoon, when much of it is in shade; there are fountains at km 0.5 and 4.7 and many inns on the way.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Marlinger Waalweg ab Lana (Tourismusverein Lana)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi5a86cc6e2f57ca04fa0c686433aee148.marlinger-waalweg-ab-lana.tscherms' },
+        { label: 'Gemeinde Lana, Haltung von Hunden', url: 'https://www.gemeinde.lana.bz.it/de/Verwaltung/Dokumente/Haltung_von_Hunden' },
+        { label: 'Gemeinde Tscherms, Verordnung über die Hundehaltung', url: 'https://www.gemeinde.tscherms.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Hundehaltung_im_Gemeindegebiet' },
+        { label: 'Gemeinde Marling, Verordnung über die Führung und Haltung von Hunden', url: 'https://www.gemeinde.marling.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Fuehrung_und_Haltung_von_Hunden' },
+        { label: 'Gemeinde Algund, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.algund.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/7424683' }
+      ],
+      startPoint: { lat: 46.6263504, lng: 11.1383758, label: 'Top of the Raffeinweg above Lana, by the Waalheim car park (official start; signed from the Ultnerstraße)' },
+      waterSources: [
+        { km: 0.5, lat: 46.630741, lng: 11.14033, osmId: 'node/10770850207', label: 'Drinking fountain above Lana' },
+        { km: 4.7, lat: 46.6600171, lng: 11.1352349, osmId: 'node/4416462238', label: 'Drinking fountain above Marling' }
+      ],
+      desc: 'The longest irrigation-channel walk around Meran: after a short climb from Lana, almost level along the Marlinger Waal above Tscherms and Marling to Töll, through orchards, vineyards, chestnut groves and woods with views over the Meran basin. The official route lists 10.5 km and 150 m of ascent.'
+    },
+    'osm-6453504': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 3).
+      // The official family loop of the Tourismusverein Algund at Aschbach
+      // (Algund, not Naturns), from the cable car top station. Algund's dog
+      // regulation (11/2010) requires a lead of at most 1.5 m and a muzzle
+      // carried (Art. 4), keeps dogs off farmland in the growing season and
+      // requires a lead and muzzle on public transport (Art. 7, 8). No
+      // biotope, Natura 2000 site or park on the line.
+      area: 'Aschbach, Algund / Lagundo',
+      distance: 3.2,
+      elevation: 152,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Aschbach cable car top station along path 27A towards the Egger farms and round the forest nature trail.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Aschbach village by the start, in July (Plentn, CC0), 105 m from the line.',
+        route: 'Official loop 3.2 km from the Aschbach cable car top station; the stored OSM line (relation 6453504) is the same loop, 3.3 km, closed within 1 m of the official start.',
+        routeNumbers: 'From the cable car top station follow path 27A towards the Eggerhöfe for about five minutes, then the “Walderlebnispfad Aschbach” signs round the loop and back to the station.',
+        mapPoints: 'Start at the Aschbach cable car top station (official start and end); drinking fountains at the start (OSM nodes 4881672757, 6442027816).',
+        elevation: 'Official 3.2 km, 152 m up and down, 1 h, 1,339–1,429 m (Tourismusverein Algund, Südtirol.info); a second board record of the same loop gives 3.4 km and 1 h 10.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Algund, Walderlebnispfad Aschbach (Südtirol.info)',
+          'Gemeinde Algund, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 11/2010), Art. 4, 7 and 8',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 6453504, surface, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 69,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Forest tracks and paths with some roots and stones', 'Short stretches on the Aschbach village road at the start', 'Hunting stands and a game-feeding place by the path'],
+      terrainType: 'Gravel forest tracks and woodland paths, with a short stretch of village road',
+      shadeDescription: 'About two thirds is in open woodland; the rest crosses clearings with views over Partschins and the Texelgruppe.',
+      terrainDescription: 'An easy family loop at about 1,300–1,430 m on forest tracks and paths, with nature stations and information boards about the forest.',
+      waterDescription: 'Drinking fountains at the cable car station and in Aschbach village at the start; none on the loop itself, so carry water.',
+      dogNotes: 'Algund requires a lead of at most 1.5 m and a muzzle carried on all public paths, and dogs may not go onto meadows in the growing season. On the cable car, as on all public transport, dogs must be on a lead and muzzled. The loop starts past the Oberhauser, Tholer and Thaler farms, so farm animals may be close.',
+      tips: 'Take the cable car from Rabland up to Aschbach (or drive up), follow path 27A for five minutes and then the Walderlebnispfad signs round the loop: 3.2 km, about 150 m of climbing, an hour. Keep your dog on a short lead (1.5 m at most), and on the lead and muzzled in the cable car. It is cool and shady at 1,300 m, a good summer walk; fill up at the fountain by the station.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Walderlebnispfad Aschbach (Tourismusverein Algund)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiaf7e4d49bf25ed03c13cb80e7a7cf28c.walderlebnispfad-aschbach.aschbach' },
+        { label: 'Gemeinde Algund, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.algund.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/6453504' }
+      ],
+      startPoint: { lat: 46.6447379, lng: 11.075215, label: 'Aschbach cable car top station (official start and end)' },
+      waterSources: [
+        { km: 0, lat: 46.644894, lng: 11.0755645, osmId: 'node/4881672757', label: 'Drinking fountain by the cable car station' },
+        { km: 0.1, lat: 46.6434548, lng: 11.0730271, osmId: 'node/6442027816', label: 'Drinking fountain in Aschbach' }
+      ],
+      desc: 'A family forest trail at Aschbach, high above Algund and Rabland: a short loop from the cable car through open woods and clearings, with nature stations and views over Partschins and the Texelgruppe. The official route lists 3.2 km and 152 m of ascent.'
+    },
+    'osm-1671736': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 3).
+      // The official walk of the Tourismusverein Schenna, Verdins to St.
+      // Georgen; the line is turned to run that way by the routeLine override.
+      // Wholly in Schenna: its dog regulation (33/2010) requires a lead of at
+      // most 1.5 m and a muzzle carried (Art. 4) and keeps dogs off farmland
+      // in the growing season (Art. 8). No biotope, Natura 2000 site or park
+      // on the line.
+      area: 'Schennaberg, Schenna / Scena',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'St. Georgen church at the end of the walk, in July (Ymblanter, CC BY-SA 4.0), 24 m from the line.',
+        route: 'Official 8 km, Verdins to St. Georgen; the stored OSM line (relation 1671736) runs 7.9 km between the same two points (within 10 m of each), turned to run the official way.',
+        routeNumbers: 'From Verdins church take the Wiesersteig (path 16) to the farm road, turn right and climb past the Gasthof Hasenegg to the Hoferhof, up the meadow to Vallplatz and the Holznerhof, then follow the Höfeweg past the Zmailerhof, Rastlhof and Salfgut down to St. Georgen.',
+        mapPoints: 'Start in Verdins behind the parish church, bus stop Verdins (official start); drinking water in Verdins (OSM node 7318188908, km 0.3), at the Kleebrunnen (node 12192996889, km 5.6) and in St. Georgen (node 7318189189, km 7.9).',
+        elevation: 'Official 8 km, 450 m up and 550 m down, 2 h 30 min, high point 1,100 m (Tourismusverein Schenna, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Schenna, Der Höfeweg am Schennaberg (Südtirol.info)',
+          'Gemeinde Schenna, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 33/2010), Art. 4 and 8',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 1671736, surface, farm, woodland and road data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 44,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steep climb up through a meadow to the Hoferhof (the board warns of it)', 'About 3.5 km on farm roads and lanes open to cars', 'Narrow paths (about 0.8 m) on the Höfeweg itself', 'Working farmyards all along the route'],
+      terrainType: 'Farm roads, tracks and narrow paths between hill farms, about two fifths tarmac',
+      shadeDescription: 'Just under half is wooded; the farm meadows and the roads round the hill farms are open and sunny.',
+      terrainDescription: 'A hill-farm walk on the Schennaberg at 710–1,100 m: a steady climb from Verdins, including a steep stretch through a meadow, then farm tracks and paths past historic farms and down to St. Georgen.',
+      waterDescription: 'Drinking water in Verdins at the start, at the Kleebrunnen near the Zmailerhof (km 5.6) and in St. Georgen at the end, and many farm inns on the way.',
+      dogNotes: 'Schenna requires a lead of at most 1.5 m and a muzzle carried on all public paths, and dogs may not go onto meadows, fields or orchards in the growing season, so keep your dog on the path where it crosses the meadow to Vallplatz. The route runs through a string of working farms (the Hasenegg, Hoferhof, Vallplatzer, Holznerhof, Zmailerhof, Rastlhof and Salfgut), so farm animals and farm dogs may be close.',
+      tips: 'Take bus 231 to Verdins and start behind the church on the Wiesersteig (path 16), climb past the Hasenegg and the Hoferhof and follow the Höfeweg past the farms down to St. Georgen: 8 km, 450 m up and 550 m down, about 2½ hours. Keep your dog on a short lead (1.5 m at most), especially through the farmyards and across the meadow. Walk down to Schenna or take the bus back from St. Georgen.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Der Höfeweg am Schennaberg (Tourismusverein Schenna)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoic641c56811b44009cd5195bd1a4c2a1c.der-hoefeweg-am-schennaberg.schennaberg' },
+        { label: 'Gemeinde Schenna, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.schenna.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/1671736' }
+      ],
+      startPoint: { lat: 46.71199, lng: 11.20477, label: 'Verdins, behind the parish church, bus stop Verdins (official start)' },
+      waterSources: [
+        { km: 0.3, lat: 46.712454, lng: 11.20496, osmId: 'node/7318188908', label: 'Drinking fountain on the Verdins village square' },
+        { km: 5.6, lat: 46.6833207, lng: 11.2082948, osmId: 'node/12192996889', label: 'Kleebrunnen' },
+        { km: 7.9, lat: 46.6837128, lng: 11.1979388, osmId: 'node/7318189189', label: 'Drinking fountain in St. Georgen' }
+      ],
+      rifugi: [
+        { km: 0.4, lat: 46.71251, lng: 11.20469, osmId: 'node/4419224555', name: 'Gasthaus Dorfstub’m' },
+        { km: 0.5, lat: 46.7129, lng: 11.20513, osmId: 'node/12209161960', name: 'Wirtshaus St. Urban' },
+        { km: 1.3, lat: 46.70979, lng: 11.20902, osmId: 'node/528747722', name: 'Gasthof Hasenegg' },
+        { km: 2.1, lat: 46.70825, lng: 11.21361, osmId: 'way/123141926', name: 'Jausenstation Bachlerhof' },
+        { km: 2.6, lat: 46.70633, lng: 11.2097, osmId: 'node/1383440261', name: 'Vallplatzerhof' },
+        { km: 5, lat: 46.68805, lng: 11.20927, osmId: 'node/1370440487', name: 'Zmailer Hof' },
+        { km: 6.4, lat: 46.6848, lng: 11.20491, osmId: 'node/1370491067', name: 'Gasthof Rastlhof' },
+        { km: 7.1, lat: 46.68083, lng: 11.20483, osmId: 'way/351043931', name: 'Buschenschank Salfgut' },
+        { km: 7.9, lat: 46.68383, lng: 11.19831, osmId: 'node/528765366', name: 'Restaurant - Cafe Georgenhof' }
+      ],
+      desc: 'A walk past the historic hill farms of the Schennaberg above Meran: from Verdins up past the Hasenegg and the Hoferhof to Vallplatz, then along the Höfeweg past the Holznerhof, Zmailerhof, Rastlhof and Salfgut and down to St. Georgen, with wide views over the Meran basin. The official route lists 8 km, 450 m of ascent and 550 m of descent.'
+    },
+    'osm-5597577': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 3).
+      // The official nature trail of the Tourismusgenossenschaft Naturns,
+      // from Tschirland. Naturns publishes no dog rule, so the national dog
+      // ordinance (6 August 2013, extended to September 2027) applies. The
+      // loop crosses the Tschirlander Hoad natural monument (NDM 057_G05, a
+      // wooded pasture) at km 2.9–3.4; the Naturns landscape plan only
+      // forbids damaging it (Art. 3). No biotope, Natura 2000 site or park.
+      area: 'Tschirland, Naturns / Naturno',
+      distance: 4.6,
+      elevation: 216,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Tschirland past the Restaurant Ramilia, up through the woods to the Gsindboden viewpoint and back down by the Tschirlander Heide.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Tschirland, the start village, from the hillside above, in September (Whgler, CC BY-SA 4.0); no licensed photo of the trail itself was found.',
+        route: 'Official loop 4.6 km from Tschirland; the stored OSM line (relation 5597577, Rundweg Gsindboden) is the same loop, 4.3 km, starting 140 m from the official start in the village centre.',
+        routeNumbers: 'No route number: from Tschirland follow the signs along the farm road to the Restaurant Ramilia, then the nature-trail signs up through the woods past the quarry adit and the rest area to the Gsindboden platform, and down by the Tschirlander Heide back to the village.',
+        mapPoints: 'Start in Tschirland village centre by the Tschirlander Hof, Citybus 264 stop Tschirlander Hof (official start); drinking water at the start (OSM node 4881698545).',
+        elevation: 'Official 4.6 km, 216 m up and down, 1 h 25 min, 579–776 m (Tourismusgenossenschaft Naturns, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Naturns, Naturlehrpfad Gsindboden (Südtirol.info)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
+          'Landschaftsplan Naturns, Schutzbestimmungen, Art. 3 and 5 (newPlan doc 6310)',
+          'Province landscape-plan layers: Tschirlander Hoad natural monument; no biotope, Natura 2000 site or park',
+          'OpenStreetMap relation 5597577, surface, barrier and woodland data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 36,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 1 km on the farm road out of Tschirland, open to cars', 'A gate into the wooded pasture of the Tschirlander Hoad (km 2.9), where animals may graze', 'A steeper woodland path between km 2 and 2.7'],
+      terrainType: 'Farm road, forest tracks and woodland paths',
+      shadeDescription: 'The climb to the Gsindboden is through shady woods; the farm road out of Tschirland and the Tschirlander Heide are open, about a third of the loop in all under trees.',
+      terrainDescription: 'A moderate nature-trail loop at 580–780 m: out along a farm road between meadows and orchards, up through mixed woodland to the Gsindboden viewpoint, and down across the open Tschirlander Heide.',
+      waterDescription: 'A drinking fountain in Tschirland at the start; none on the loop, so carry water.',
+      dogNotes: 'Naturns has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. The loop crosses the Tschirlander Hoad, a protected wooded pasture behind a gate, where grazing animals may be about; keep your dog on the lead there and close the gate behind you.',
+      tips: 'Take Citybus 264 from Naturns to Tschirlander Hof, follow the farm road to the Restaurant Ramilia and then the nature-trail signs up to the Gsindboden viewpoint and back: 4.6 km, about 220 m of climbing, an hour and a half. Keep your dog on a short lead (1.5 m at most) and carry a muzzle; take particular care in the wooded pasture of the Tschirlander Hoad. Bring water: the only fountain is at the start.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Naturlehrpfad Gsindboden (Tourismusgenossenschaft Naturns)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoid182a311dc9225339ed6333778e0dda1.naturlehrpfad-gsindboden.naturns' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Landschaftsplan Naturns, Schutzbestimmungen und Nutzungsvorschriften (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/6310' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/5597577' }
+      ],
+      startPoint: { lat: 46.64337, lng: 10.99014, label: 'Tschirland village centre by the Tschirlander Hof, Citybus 264 stop Tschirlander Hof (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.6435392, lng: 10.990281, osmId: 'node/4881698545', label: 'Drinking fountain in Tschirland' }
+      ],
+      desc: 'A nature trail above Tschirland near Naturns: out through meadows and orchards, up through the woods past an old quartz quarry to the Gsindboden viewpoint over the Vinschgau, the Sonnenberg farms and the Schnalstal glaciers, and back across the Tschirlander Heide. The official route lists 4.6 km and 216 m of ascent.'
+    },
+    'osm-6404634': {
+      // Correction, 24 October 2026 (not a verification: no open-licence photo of the walk exists). The old 0.7 km line, filed
+      // under San Martino di Castrozza, was a fragment of the Ecomuseo del Vanoi's 'Anello del Bosc' in the Valzanca above Caoria; the
+      // line is rebuilt on OSM ways along the Ecomuseo's own GPS track (7.6 km), with its figures, start and the park's lead rule.
+      "area": "Valzanca, Caoria – Canal San Bovo (Vanoi)",
+      "path": [
+        [
+          46.21359,
+          11.70057
+        ],
+        [
+          46.21345,
+          11.70055
+        ],
+        [
+          46.21324,
+          11.70051
+        ],
+        [
+          46.21309,
+          11.70055
+        ],
+        [
+          46.21287,
+          11.70052
+        ],
+        [
+          46.21273,
+          11.70048
+        ],
+        [
+          46.21263,
+          11.70045
+        ],
+        [
+          46.21237,
+          11.70059
+        ],
+        [
+          46.21217,
+          11.70063
+        ],
+        [
+          46.21199,
+          11.70072
+        ],
+        [
+          46.21185,
+          11.70081
+        ],
+        [
+          46.21177,
+          11.70084
+        ],
+        [
+          46.21163,
+          11.70084
+        ],
+        [
+          46.21145,
+          11.70088
+        ],
+        [
+          46.21131,
+          11.70109
+        ],
+        [
+          46.21123,
+          11.70124
+        ],
+        [
+          46.2112,
+          11.70138
+        ],
+        [
+          46.21111,
+          11.7016
+        ],
+        [
+          46.21104,
+          11.70171
+        ],
+        [
+          46.21091,
+          11.70171
+        ],
+        [
+          46.21084,
+          11.70169
+        ],
+        [
+          46.21079,
+          11.70165
+        ],
+        [
+          46.21082,
+          11.70173
+        ],
+        [
+          46.21077,
+          11.70173
+        ],
+        [
+          46.21061,
+          11.70188
+        ],
+        [
+          46.21049,
+          11.70195
+        ],
+        [
+          46.21044,
+          11.70197
+        ],
+        [
+          46.21043,
+          11.70198
+        ],
+        [
+          46.21043,
+          11.702
+        ],
+        [
+          46.21049,
+          11.70207
+        ],
+        [
+          46.21055,
+          11.70217
+        ],
+        [
+          46.21058,
+          11.70222
+        ],
+        [
+          46.21055,
+          11.70223
+        ],
+        [
+          46.21042,
+          11.70221
+        ],
+        [
+          46.21026,
+          11.70217
+        ],
+        [
+          46.20996,
+          11.70215
+        ],
+        [
+          46.21,
+          11.70228
+        ],
+        [
+          46.20972,
+          11.70226
+        ],
+        [
+          46.20982,
+          11.70239
+        ],
+        [
+          46.20984,
+          11.70246
+        ],
+        [
+          46.20948,
+          11.70248
+        ],
+        [
+          46.20937,
+          11.70246
+        ],
+        [
+          46.20924,
+          11.70252
+        ],
+        [
+          46.20914,
+          11.70253
+        ],
+        [
+          46.20907,
+          11.70251
+        ],
+        [
+          46.20894,
+          11.70246
+        ],
+        [
+          46.20883,
+          11.70245
+        ],
+        [
+          46.2087,
+          11.70239
+        ],
+        [
+          46.20868,
+          11.70239
+        ],
+        [
+          46.20867,
+          11.70248
+        ],
+        [
+          46.20866,
+          11.70254
+        ],
+        [
+          46.20878,
+          11.70294
+        ],
+        [
+          46.20886,
+          11.70304
+        ],
+        [
+          46.209,
+          11.70322
+        ],
+        [
+          46.20913,
+          11.70347
+        ],
+        [
+          46.20922,
+          11.70363
+        ],
+        [
+          46.20927,
+          11.70369
+        ],
+        [
+          46.20943,
+          11.70391
+        ],
+        [
+          46.20959,
+          11.70412
+        ],
+        [
+          46.20975,
+          11.70423
+        ],
+        [
+          46.20982,
+          11.70437
+        ],
+        [
+          46.20986,
+          11.70444
+        ],
+        [
+          46.2099,
+          11.70449
+        ],
+        [
+          46.20986,
+          11.70452
+        ],
+        [
+          46.20981,
+          11.70454
+        ],
+        [
+          46.20973,
+          11.70464
+        ],
+        [
+          46.20969,
+          11.70491
+        ],
+        [
+          46.20968,
+          11.70511
+        ],
+        [
+          46.20972,
+          11.70522
+        ],
+        [
+          46.20977,
+          11.70546
+        ],
+        [
+          46.20991,
+          11.70563
+        ],
+        [
+          46.21001,
+          11.70575
+        ],
+        [
+          46.21007,
+          11.70583
+        ],
+        [
+          46.21015,
+          11.70595
+        ],
+        [
+          46.21016,
+          11.70601
+        ],
+        [
+          46.21025,
+          11.70626
+        ],
+        [
+          46.21036,
+          11.7064
+        ],
+        [
+          46.21048,
+          11.70656
+        ],
+        [
+          46.21056,
+          11.70668
+        ],
+        [
+          46.21068,
+          11.70677
+        ],
+        [
+          46.21079,
+          11.70693
+        ],
+        [
+          46.2109,
+          11.7071
+        ],
+        [
+          46.21104,
+          11.70729
+        ],
+        [
+          46.21117,
+          11.70742
+        ],
+        [
+          46.21132,
+          11.70755
+        ],
+        [
+          46.21146,
+          11.70775
+        ],
+        [
+          46.21166,
+          11.70799
+        ],
+        [
+          46.21184,
+          11.70824
+        ],
+        [
+          46.21202,
+          11.70844
+        ],
+        [
+          46.2122,
+          11.70851
+        ],
+        [
+          46.21241,
+          11.7085
+        ],
+        [
+          46.21262,
+          11.70855
+        ],
+        [
+          46.21275,
+          11.70865
+        ],
+        [
+          46.21279,
+          11.70883
+        ],
+        [
+          46.21306,
+          11.70943
+        ],
+        [
+          46.21333,
+          11.70984
+        ],
+        [
+          46.21339,
+          11.71074
+        ],
+        [
+          46.21381,
+          11.71111
+        ],
+        [
+          46.21386,
+          11.71118
+        ],
+        [
+          46.21394,
+          11.71131
+        ],
+        [
+          46.21402,
+          11.71144
+        ],
+        [
+          46.2141,
+          11.71155
+        ],
+        [
+          46.21417,
+          11.71166
+        ],
+        [
+          46.21419,
+          11.71169
+        ],
+        [
+          46.21426,
+          11.7118
+        ],
+        [
+          46.21427,
+          11.71182
+        ],
+        [
+          46.21438,
+          11.71209
+        ],
+        [
+          46.2144,
+          11.71215
+        ],
+        [
+          46.21442,
+          11.7122
+        ],
+        [
+          46.21445,
+          11.71228
+        ],
+        [
+          46.21449,
+          11.71238
+        ],
+        [
+          46.21475,
+          11.71305
+        ],
+        [
+          46.21506,
+          11.71371
+        ],
+        [
+          46.21518,
+          11.71408
+        ],
+        [
+          46.21521,
+          11.71425
+        ],
+        [
+          46.21517,
+          11.71477
+        ],
+        [
+          46.21508,
+          11.71508
+        ],
+        [
+          46.21507,
+          11.71515
+        ],
+        [
+          46.21507,
+          11.71527
+        ],
+        [
+          46.21505,
+          11.71576
+        ],
+        [
+          46.21538,
+          11.71635
+        ],
+        [
+          46.21544,
+          11.71667
+        ],
+        [
+          46.21551,
+          11.71675
+        ],
+        [
+          46.21558,
+          11.71681
+        ],
+        [
+          46.21566,
+          11.71687
+        ],
+        [
+          46.21576,
+          11.71698
+        ],
+        [
+          46.21588,
+          11.71708
+        ],
+        [
+          46.21605,
+          11.71717
+        ],
+        [
+          46.21615,
+          11.71723
+        ],
+        [
+          46.21616,
+          11.71724
+        ],
+        [
+          46.21625,
+          11.71733
+        ],
+        [
+          46.21632,
+          11.71743
+        ],
+        [
+          46.21637,
+          11.71752
+        ],
+        [
+          46.21641,
+          11.7176
+        ],
+        [
+          46.21647,
+          11.7177
+        ],
+        [
+          46.21653,
+          11.71778
+        ],
+        [
+          46.21662,
+          11.71786
+        ],
+        [
+          46.21675,
+          11.71795
+        ],
+        [
+          46.21697,
+          11.71809
+        ],
+        [
+          46.21721,
+          11.71822
+        ],
+        [
+          46.21731,
+          11.71828
+        ],
+        [
+          46.21737,
+          11.71826
+        ],
+        [
+          46.21731,
+          11.71828
+        ],
+        [
+          46.21779,
+          11.71867
+        ],
+        [
+          46.21803,
+          11.71955
+        ],
+        [
+          46.21832,
+          11.72048
+        ],
+        [
+          46.21835,
+          11.72052
+        ],
+        [
+          46.2188,
+          11.72065
+        ],
+        [
+          46.21934,
+          11.72068
+        ],
+        [
+          46.21942,
+          11.72099
+        ],
+        [
+          46.21959,
+          11.72122
+        ],
+        [
+          46.2199,
+          11.72142
+        ],
+        [
+          46.22007,
+          11.72164
+        ],
+        [
+          46.22029,
+          11.72207
+        ],
+        [
+          46.22036,
+          11.72233
+        ],
+        [
+          46.22037,
+          11.72255
+        ],
+        [
+          46.22033,
+          11.72277
+        ],
+        [
+          46.22036,
+          11.72296
+        ],
+        [
+          46.22045,
+          11.72318
+        ],
+        [
+          46.22041,
+          11.72341
+        ],
+        [
+          46.22054,
+          11.72352
+        ],
+        [
+          46.22071,
+          11.72421
+        ],
+        [
+          46.2206,
+          11.72444
+        ],
+        [
+          46.22059,
+          11.72472
+        ],
+        [
+          46.22066,
+          11.7249
+        ],
+        [
+          46.22075,
+          11.72546
+        ],
+        [
+          46.22088,
+          11.72568
+        ],
+        [
+          46.22086,
+          11.72588
+        ],
+        [
+          46.22103,
+          11.72606
+        ],
+        [
+          46.2212,
+          11.7264
+        ],
+        [
+          46.22119,
+          11.72674
+        ],
+        [
+          46.22125,
+          11.72688
+        ],
+        [
+          46.22128,
+          11.72701
+        ],
+        [
+          46.22147,
+          11.72712
+        ],
+        [
+          46.22145,
+          11.72739
+        ],
+        [
+          46.22167,
+          11.72765
+        ],
+        [
+          46.22173,
+          11.7279
+        ],
+        [
+          46.22177,
+          11.72805
+        ],
+        [
+          46.22186,
+          11.72836
+        ],
+        [
+          46.22222,
+          11.7286
+        ],
+        [
+          46.22227,
+          11.72884
+        ],
+        [
+          46.2225,
+          11.7289
+        ],
+        [
+          46.22281,
+          11.72934
+        ],
+        [
+          46.22297,
+          11.72936
+        ],
+        [
+          46.22312,
+          11.72948
+        ],
+        [
+          46.22315,
+          11.72933
+        ],
+        [
+          46.22314,
+          11.72928
+        ],
+        [
+          46.22312,
+          11.72923
+        ],
+        [
+          46.22304,
+          11.72915
+        ],
+        [
+          46.22297,
+          11.72907
+        ],
+        [
+          46.22288,
+          11.7289
+        ],
+        [
+          46.2228,
+          11.7287
+        ],
+        [
+          46.22273,
+          11.72845
+        ],
+        [
+          46.22272,
+          11.72831
+        ],
+        [
+          46.2227,
+          11.72822
+        ],
+        [
+          46.22258,
+          11.72808
+        ],
+        [
+          46.22239,
+          11.72784
+        ],
+        [
+          46.22232,
+          11.72772
+        ],
+        [
+          46.22226,
+          11.72759
+        ],
+        [
+          46.22223,
+          11.72741
+        ],
+        [
+          46.22223,
+          11.7273
+        ],
+        [
+          46.22225,
+          11.72721
+        ],
+        [
+          46.22235,
+          11.72694
+        ],
+        [
+          46.22239,
+          11.7267
+        ],
+        [
+          46.22241,
+          11.72645
+        ],
+        [
+          46.22245,
+          11.72635
+        ],
+        [
+          46.22249,
+          11.72627
+        ],
+        [
+          46.22257,
+          11.72611
+        ],
+        [
+          46.22259,
+          11.72601
+        ],
+        [
+          46.2226,
+          11.7259
+        ],
+        [
+          46.22261,
+          11.72566
+        ],
+        [
+          46.22259,
+          11.72552
+        ],
+        [
+          46.22253,
+          11.72524
+        ],
+        [
+          46.22252,
+          11.72514
+        ],
+        [
+          46.22252,
+          11.72505
+        ],
+        [
+          46.22253,
+          11.72497
+        ],
+        [
+          46.22253,
+          11.72481
+        ],
+        [
+          46.2225,
+          11.72467
+        ],
+        [
+          46.22241,
+          11.72453
+        ],
+        [
+          46.22232,
+          11.72441
+        ],
+        [
+          46.22225,
+          11.72429
+        ],
+        [
+          46.22222,
+          11.72415
+        ],
+        [
+          46.22216,
+          11.72406
+        ],
+        [
+          46.22213,
+          11.72405
+        ],
+        [
+          46.2221,
+          11.72409
+        ],
+        [
+          46.22207,
+          11.72416
+        ],
+        [
+          46.22209,
+          11.72434
+        ],
+        [
+          46.2221,
+          11.72447
+        ],
+        [
+          46.22208,
+          11.72454
+        ],
+        [
+          46.22207,
+          11.72456
+        ],
+        [
+          46.22199,
+          11.72467
+        ],
+        [
+          46.22191,
+          11.72476
+        ],
+        [
+          46.22183,
+          11.72486
+        ],
+        [
+          46.22178,
+          11.72498
+        ],
+        [
+          46.22179,
+          11.72515
+        ],
+        [
+          46.2218,
+          11.72529
+        ],
+        [
+          46.22179,
+          11.72537
+        ],
+        [
+          46.22176,
+          11.72541
+        ],
+        [
+          46.2217,
+          11.7254
+        ],
+        [
+          46.22167,
+          11.72536
+        ],
+        [
+          46.22166,
+          11.7253
+        ],
+        [
+          46.22164,
+          11.72523
+        ],
+        [
+          46.22163,
+          11.72514
+        ],
+        [
+          46.22154,
+          11.72492
+        ],
+        [
+          46.22147,
+          11.72475
+        ],
+        [
+          46.22151,
+          11.72455
+        ],
+        [
+          46.22149,
+          11.72443
+        ],
+        [
+          46.22146,
+          11.72433
+        ],
+        [
+          46.22144,
+          11.7243
+        ],
+        [
+          46.22142,
+          11.72427
+        ],
+        [
+          46.22134,
+          11.7242
+        ],
+        [
+          46.22129,
+          11.72409
+        ],
+        [
+          46.22126,
+          11.72397
+        ],
+        [
+          46.22122,
+          11.72385
+        ],
+        [
+          46.22121,
+          11.72373
+        ],
+        [
+          46.22123,
+          11.72367
+        ],
+        [
+          46.22126,
+          11.72362
+        ],
+        [
+          46.2213,
+          11.7236
+        ],
+        [
+          46.22139,
+          11.72357
+        ],
+        [
+          46.22147,
+          11.72347
+        ],
+        [
+          46.22149,
+          11.72338
+        ],
+        [
+          46.22149,
+          11.72325
+        ],
+        [
+          46.22147,
+          11.72316
+        ],
+        [
+          46.22144,
+          11.72309
+        ],
+        [
+          46.22139,
+          11.72301
+        ],
+        [
+          46.22137,
+          11.72298
+        ],
+        [
+          46.2213,
+          11.72263
+        ],
+        [
+          46.22125,
+          11.72247
+        ],
+        [
+          46.22119,
+          11.72224
+        ],
+        [
+          46.22116,
+          11.72202
+        ],
+        [
+          46.22114,
+          11.72195
+        ],
+        [
+          46.2211,
+          11.72194
+        ],
+        [
+          46.22106,
+          11.72195
+        ],
+        [
+          46.221,
+          11.72201
+        ],
+        [
+          46.22089,
+          11.72213
+        ],
+        [
+          46.22085,
+          11.72216
+        ],
+        [
+          46.22081,
+          11.72218
+        ],
+        [
+          46.22078,
+          11.72218
+        ],
+        [
+          46.22075,
+          11.72215
+        ],
+        [
+          46.22069,
+          11.72207
+        ],
+        [
+          46.22064,
+          11.72197
+        ],
+        [
+          46.22061,
+          11.72182
+        ],
+        [
+          46.22055,
+          11.72176
+        ],
+        [
+          46.22046,
+          11.72167
+        ],
+        [
+          46.22038,
+          11.72156
+        ],
+        [
+          46.22031,
+          11.72139
+        ],
+        [
+          46.22026,
+          11.7213
+        ],
+        [
+          46.22024,
+          11.72121
+        ],
+        [
+          46.22021,
+          11.72108
+        ],
+        [
+          46.22014,
+          11.72096
+        ],
+        [
+          46.22005,
+          11.72087
+        ],
+        [
+          46.21994,
+          11.72084
+        ],
+        [
+          46.2198,
+          11.72082
+        ],
+        [
+          46.21963,
+          11.72079
+        ],
+        [
+          46.21958,
+          11.72077
+        ],
+        [
+          46.21954,
+          11.72074
+        ],
+        [
+          46.21952,
+          11.7207
+        ],
+        [
+          46.21952,
+          11.72063
+        ],
+        [
+          46.21954,
+          11.72058
+        ],
+        [
+          46.21943,
+          11.72045
+        ],
+        [
+          46.21943,
+          11.7206
+        ],
+        [
+          46.21935,
+          11.72052
+        ],
+        [
+          46.21934,
+          11.72068
+        ],
+        [
+          46.21935,
+          11.72052
+        ],
+        [
+          46.21943,
+          11.7206
+        ],
+        [
+          46.21943,
+          11.72045
+        ],
+        [
+          46.21954,
+          11.72058
+        ],
+        [
+          46.21958,
+          11.72056
+        ],
+        [
+          46.21962,
+          11.72056
+        ],
+        [
+          46.21967,
+          11.7206
+        ],
+        [
+          46.21977,
+          11.72069
+        ],
+        [
+          46.21984,
+          11.72072
+        ],
+        [
+          46.22015,
+          11.72066
+        ],
+        [
+          46.22019,
+          11.72064
+        ],
+        [
+          46.22028,
+          11.72055
+        ],
+        [
+          46.22037,
+          11.72046
+        ],
+        [
+          46.22039,
+          11.72038
+        ],
+        [
+          46.2204,
+          11.72026
+        ],
+        [
+          46.22039,
+          11.7202
+        ],
+        [
+          46.22036,
+          11.72016
+        ],
+        [
+          46.22033,
+          11.72014
+        ],
+        [
+          46.22026,
+          11.72014
+        ],
+        [
+          46.22016,
+          11.72015
+        ],
+        [
+          46.2201,
+          11.72012
+        ],
+        [
+          46.22005,
+          11.72001
+        ],
+        [
+          46.21995,
+          11.71975
+        ],
+        [
+          46.21988,
+          11.71957
+        ],
+        [
+          46.21983,
+          11.71946
+        ],
+        [
+          46.21979,
+          11.71931
+        ],
+        [
+          46.21978,
+          11.71924
+        ],
+        [
+          46.2198,
+          11.71913
+        ],
+        [
+          46.2198,
+          11.719
+        ],
+        [
+          46.21979,
+          11.71868
+        ],
+        [
+          46.21981,
+          11.71857
+        ],
+        [
+          46.21991,
+          11.71836
+        ],
+        [
+          46.21993,
+          11.71827
+        ],
+        [
+          46.21993,
+          11.71813
+        ],
+        [
+          46.21993,
+          11.71801
+        ],
+        [
+          46.21995,
+          11.71783
+        ],
+        [
+          46.21995,
+          11.71744
+        ],
+        [
+          46.21994,
+          11.71734
+        ],
+        [
+          46.21992,
+          11.71726
+        ],
+        [
+          46.21983,
+          11.71709
+        ],
+        [
+          46.21976,
+          11.71701
+        ],
+        [
+          46.21968,
+          11.7169
+        ],
+        [
+          46.21961,
+          11.71669
+        ],
+        [
+          46.21955,
+          11.71648
+        ],
+        [
+          46.21953,
+          11.71606
+        ],
+        [
+          46.21956,
+          11.71578
+        ],
+        [
+          46.21956,
+          11.71551
+        ],
+        [
+          46.21952,
+          11.71529
+        ],
+        [
+          46.21946,
+          11.71512
+        ],
+        [
+          46.21934,
+          11.71499
+        ],
+        [
+          46.219,
+          11.71449
+        ],
+        [
+          46.2188,
+          11.71396
+        ],
+        [
+          46.21875,
+          11.71355
+        ],
+        [
+          46.21879,
+          11.71335
+        ],
+        [
+          46.21884,
+          11.71293
+        ],
+        [
+          46.21879,
+          11.71229
+        ],
+        [
+          46.21875,
+          11.71188
+        ],
+        [
+          46.21869,
+          11.71171
+        ],
+        [
+          46.21865,
+          11.71154
+        ],
+        [
+          46.21858,
+          11.71108
+        ],
+        [
+          46.21858,
+          11.71105
+        ],
+        [
+          46.21861,
+          11.7108
+        ],
+        [
+          46.21857,
+          11.71035
+        ],
+        [
+          46.21851,
+          11.71006
+        ],
+        [
+          46.21855,
+          11.70994
+        ],
+        [
+          46.21855,
+          11.7099
+        ],
+        [
+          46.21855,
+          11.70983
+        ],
+        [
+          46.21847,
+          11.70985
+        ],
+        [
+          46.21843,
+          11.7098
+        ],
+        [
+          46.21842,
+          11.70968
+        ],
+        [
+          46.21836,
+          11.70957
+        ],
+        [
+          46.21827,
+          11.70938
+        ],
+        [
+          46.21819,
+          11.70915
+        ],
+        [
+          46.21801,
+          11.70886
+        ],
+        [
+          46.2179,
+          11.70874
+        ],
+        [
+          46.21778,
+          11.70856
+        ],
+        [
+          46.21777,
+          11.70842
+        ],
+        [
+          46.21777,
+          11.70825
+        ],
+        [
+          46.21782,
+          11.70802
+        ],
+        [
+          46.2178,
+          11.70795
+        ],
+        [
+          46.21777,
+          11.70777
+        ],
+        [
+          46.21768,
+          11.70759
+        ],
+        [
+          46.21761,
+          11.70736
+        ],
+        [
+          46.21756,
+          11.70709
+        ],
+        [
+          46.21742,
+          11.70683
+        ],
+        [
+          46.21734,
+          11.70639
+        ],
+        [
+          46.2172,
+          11.70598
+        ],
+        [
+          46.2172,
+          11.70578
+        ],
+        [
+          46.21719,
+          11.70576
+        ],
+        [
+          46.21717,
+          11.70573
+        ],
+        [
+          46.21701,
+          11.7057
+        ],
+        [
+          46.21691,
+          11.70574
+        ],
+        [
+          46.21684,
+          11.70566
+        ],
+        [
+          46.21668,
+          11.70546
+        ],
+        [
+          46.21649,
+          11.70519
+        ],
+        [
+          46.21639,
+          11.70509
+        ],
+        [
+          46.21634,
+          11.70486
+        ],
+        [
+          46.21631,
+          11.70477
+        ],
+        [
+          46.21624,
+          11.70455
+        ],
+        [
+          46.21618,
+          11.70438
+        ],
+        [
+          46.21612,
+          11.70425
+        ],
+        [
+          46.21607,
+          11.70403
+        ],
+        [
+          46.21606,
+          11.70389
+        ],
+        [
+          46.2161,
+          11.70378
+        ],
+        [
+          46.21615,
+          11.70367
+        ],
+        [
+          46.21618,
+          11.70354
+        ],
+        [
+          46.21615,
+          11.70342
+        ],
+        [
+          46.21606,
+          11.70341
+        ],
+        [
+          46.21605,
+          11.70345
+        ],
+        [
+          46.21584,
+          11.70341
+        ],
+        [
+          46.21577,
+          11.70336
+        ],
+        [
+          46.21574,
+          11.70322
+        ],
+        [
+          46.21576,
+          11.70315
+        ],
+        [
+          46.21579,
+          11.70307
+        ],
+        [
+          46.21579,
+          11.70293
+        ],
+        [
+          46.21576,
+          11.70277
+        ],
+        [
+          46.21572,
+          11.70264
+        ],
+        [
+          46.21569,
+          11.70247
+        ],
+        [
+          46.21563,
+          11.70234
+        ],
+        [
+          46.21553,
+          11.70224
+        ],
+        [
+          46.21549,
+          11.70211
+        ],
+        [
+          46.21548,
+          11.70198
+        ],
+        [
+          46.2154,
+          11.70188
+        ],
+        [
+          46.21536,
+          11.70177
+        ],
+        [
+          46.21531,
+          11.70167
+        ],
+        [
+          46.2153,
+          11.70152
+        ],
+        [
+          46.21518,
+          11.70134
+        ],
+        [
+          46.21523,
+          11.70107
+        ],
+        [
+          46.21521,
+          11.70093
+        ],
+        [
+          46.21514,
+          11.70082
+        ],
+        [
+          46.21514,
+          11.70068
+        ],
+        [
+          46.21511,
+          11.70056
+        ],
+        [
+          46.21511,
+          11.70041
+        ],
+        [
+          46.21508,
+          11.70028
+        ],
+        [
+          46.21502,
+          11.70017
+        ],
+        [
+          46.21495,
+          11.69968
+        ],
+        [
+          46.21489,
+          11.69968
+        ],
+        [
+          46.21489,
+          11.69954
+        ],
+        [
+          46.21495,
+          11.69945
+        ],
+        [
+          46.215,
+          11.69905
+        ],
+        [
+          46.21511,
+          11.69884
+        ],
+        [
+          46.21521,
+          11.6986
+        ],
+        [
+          46.2153,
+          11.69841
+        ],
+        [
+          46.21531,
+          11.69836
+        ],
+        [
+          46.21538,
+          11.69819
+        ],
+        [
+          46.21541,
+          11.69807
+        ],
+        [
+          46.21541,
+          11.69802
+        ],
+        [
+          46.21539,
+          11.69801
+        ],
+        [
+          46.21538,
+          11.69802
+        ],
+        [
+          46.21531,
+          11.69812
+        ],
+        [
+          46.21527,
+          11.69814
+        ],
+        [
+          46.2152,
+          11.69819
+        ],
+        [
+          46.21514,
+          11.69821
+        ],
+        [
+          46.21503,
+          11.6982
+        ],
+        [
+          46.21501,
+          11.69804
+        ],
+        [
+          46.21504,
+          11.69775
+        ],
+        [
+          46.21506,
+          11.69755
+        ],
+        [
+          46.21505,
+          11.69726
+        ],
+        [
+          46.21507,
+          11.69717
+        ],
+        [
+          46.2151,
+          11.69698
+        ],
+        [
+          46.21511,
+          11.69665
+        ],
+        [
+          46.21511,
+          11.69654
+        ],
+        [
+          46.2151,
+          11.6965
+        ],
+        [
+          46.21494,
+          11.69654
+        ],
+        [
+          46.2148,
+          11.69696
+        ],
+        [
+          46.2147,
+          11.69717
+        ],
+        [
+          46.2143,
+          11.6977
+        ],
+        [
+          46.21405,
+          11.69817
+        ],
+        [
+          46.21387,
+          11.69844
+        ],
+        [
+          46.21384,
+          11.69855
+        ],
+        [
+          46.21377,
+          11.69909
+        ],
+        [
+          46.21375,
+          11.69927
+        ],
+        [
+          46.21372,
+          11.69946
+        ],
+        [
+          46.21372,
+          11.69959
+        ],
+        [
+          46.21375,
+          11.69969
+        ],
+        [
+          46.21377,
+          11.69982
+        ],
+        [
+          46.21377,
+          11.69995
+        ],
+        [
+          46.21377,
+          11.70006
+        ],
+        [
+          46.21376,
+          11.70013
+        ],
+        [
+          46.21375,
+          11.70021
+        ],
+        [
+          46.21373,
+          11.70026
+        ],
+        [
+          46.21371,
+          11.7003
+        ],
+        [
+          46.21361,
+          11.70037
+        ],
+        [
+          46.21355,
+          11.70039
+        ],
+        [
+          46.2136,
+          11.7005
+        ],
+        [
+          46.21361,
+          11.70053
+        ],
+        [
+          46.21359,
+          11.70057
+        ]
+      ],
+      "lat": 46.21359,
+      "lng": 11.70057,
+      "distance": 7.6,
+      "elevation": 513,
+      "hours": "4",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 1161
+        },
+        {
+          "km": 0.6,
+          "elev": 1234
+        },
+        {
+          "km": 1.2,
+          "elev": 1365
+        },
+        {
+          "km": 1.7,
+          "elev": 1385
+        },
+        {
+          "km": 2.3,
+          "elev": 1423
+        },
+        {
+          "km": 2.9,
+          "elev": 1404
+        },
+        {
+          "km": 3.5,
+          "elev": 1506
+        },
+        {
+          "km": 4.1,
+          "elev": 1526
+        },
+        {
+          "km": 4.6,
+          "elev": 1404
+        },
+        {
+          "km": 5.2,
+          "elev": 1341
+        },
+        {
+          "km": 5.8,
+          "elev": 1312
+        },
+        {
+          "km": 6.4,
+          "elev": 1248
+        },
+        {
+          "km": 7,
+          "elev": 1257
+        },
+        {
+          "km": 7.5,
+          "elev": 1168
+        },
+        {
+          "km": 7.6,
+          "elev": 1161
+        }
+      ],
+      "waterSources": [
+        {
+          "km": 0,
+          "lat": 46.2135575,
+          "lng": 11.7004718,
+          "osmId": "node/4296381343",
+          "label": "Drinking water (OSM-verified location)"
+        },
+        {
+          "km": 0.8,
+          "lat": 46.2099059,
+          "lng": 11.7049385,
+          "osmId": "node/10019042700",
+          "label": "Drinking water (OSM-verified location)"
+        }
+      ],
+      "rifugi": [],
+      "startPoint": {
+        "lat": 46.21352,
+        "lng": 11.7007,
+        "label": "Pian de la Siega (Segheria de Valzanca), Ponte Stèl above Caoria (official start)"
+      },
+      "terrainType": "Forest tracks (about 4.5 km) and paths (about 3.2 km); no public roads",
+      "shadeCoverage": 85,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "Two fords near the start and about ten small stream crossings",
+        "The descent on the Valsorda forest road is shared with mountain bikes"
+      ],
+      "routeNumberSource": {
+        "provider": "Ecomuseo del Vanoi",
+        "name": "Anello del Bosc",
+        "url": "https://www.ecomuseo.vanoi.it/visita/anello-del-bosc-p363"
+      },
+      "desc": "The Anello del Bosc, the Ecomuseo del Vanoi's 7.6 km forest loop in the Valzanca above Caoria. From Pian de la Siega it follows the Anello dei Pradi up to the 1,285 m junction, turns right up the Val Redòs past Prà dei Paolini to the rebuilt timber slide of Valsorda at about 1,500 m, and comes down the Valsorda forest road and past the Tognola meadows to the start. The Ecomuseo's map gives 7.6 km, 513 m of climb and about 4 hours, for good walkers. This walk is not yet verified by ORMA.\n\nThe whole loop lies in the Paneveggio – Pale di San Martino nature park, where dogs must always be kept on a lead; Canal San Bovo and Mezzano also require a lead of at most 1.5 m in public places.",
+      "tips": "Keep your dog on a lead the whole way: the nature park requires it. Most of the loop is shaded forest, with water at the start and fountains along the way. Expect two fords near the start and several small streams, and watch for mountain bikes on the forest-road descent. Park in Caoria: the Ecomuseo's shuttle to the start is suspended for summer 2026."
     }
   };
 

@@ -272,7 +272,47 @@
 .li-map-draw:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
 .li-map.map-layers-open .li-map-draw{display:none;}
 .li-map.map-fs .li-map-draw{top:max(52px,calc(env(safe-area-inset-top) + 52px));left:max(10px,env(safe-area-inset-left));}
-.li-menu-badge{display:inline-block;margin-left:4px;padding:1px 7px;border-radius:999px;background:#F7EEDC;color:#6E4E14;font:700 10px/1.5 'Inter',sans-serif;vertical-align:1px;}
+.li-menu-badge{display:inline-block;padding:1px 7px;border-radius:999px;background:#F7EEDC;color:#6E4E14;font:700 10px/1.5 'Inter',sans-serif;vertical-align:1px;}
 @media (max-width:700px){
   body.mhome-active .li-map-draw{top:52px;left:12px;height:32px;padding:0 11px;font-size:11.5px;border-radius:9px;}
+}
+
+/* The Record menu's one entry reads as a menu row. It still carries the old
+   green-button class (li-plan-route) for its hooks, so its border, height and
+   margin are put back here. */
+.li-new-menu .li-menu-item.li-plan-route{display:flex;height:auto;margin:0;border:0;background:none;color:var(--ink);}
+.li-new-menu .li-menu-item.li-plan-route:hover{background:#EEF3EC;}
+.li-menu-title{display:flex;align-items:center;flex-wrap:wrap;gap:6px;}
+
+/* "New: Draw your own route", once, under Record a walk. On wider screens it
+   takes its own room under the button and pushes the search row down while
+   it is there, rather than sitting over Filters; on phones it floats over
+   the map below the toolbar. Menus open over it. */
+@media (min-width:701px){
+  #returningCustomerHomepage #liToolbar .li-new-wrap{display:grid;grid-template-columns:1fr auto auto;row-gap:10px;}
+  #returningCustomerHomepage #liToolbar .li-new-main{grid-column:2;}
+  #returningCustomerHomepage #liToolbar .li-new-more{grid-column:3;}
+  #returningCustomerHomepage #liToolbar .li-new-callout{position:relative;top:auto;right:auto;grid-column:1/-1;justify-self:end;}
+}
+.li-new-callout{
+  position:absolute;top:calc(100% + 10px);right:0;z-index:55;width:290px;box-sizing:border-box;padding:12px 14px;
+  border:1px solid var(--paper-line);border-radius:12px;background:#fff;box-shadow:0 14px 34px -12px rgba(23,42,28,.35);
+  color:var(--ink);font:500 12.5px/1.5 'Inter',sans-serif;
+}
+.li-new-callout[hidden]{display:none;}
+.li-new-callout::before{content:'';position:absolute;top:-6px;right:38px;width:10px;height:10px;background:#fff;
+  border-left:1px solid var(--paper-line);border-top:1px solid var(--paper-line);transform:rotate(45deg);}
+.li-new-callout-head{display:flex;align-items:center;gap:8px;}
+.li-new-callout-head strong{flex:1;font:800 13.5px 'Inter',sans-serif;}
+.li-new-callout-close{flex:none;width:26px;height:26px;margin:-4px -6px -4px 0;border:0;border-radius:50%;background:none;
+  color:var(--ink-soft);font:400 18px/1 'Inter',sans-serif;cursor:pointer;}
+.li-new-callout-close:hover{background:#F0EDE1;color:var(--ink);}
+.li-new-callout p{margin:4px 0 10px;color:var(--ink-soft);}
+.li-new-callout-actions{display:flex;align-items:center;gap:10px;}
+.li-new-callout-try{flex:none;white-space:nowrap;display:inline-flex;align-items:center;height:30px;padding:0 13px;border:1px solid var(--accent);border-radius:999px;
+  color:var(--accent);font:800 12px 'Inter',sans-serif;text-decoration:none;}
+.li-new-callout-try:hover{background:var(--accent);color:#fff;}
+.li-new-callout-actions span{color:var(--ink-soft);font-size:11.5px;line-height:1.35;}
+@media (max-width:700px){
+  body.mhome-active #returningCustomerHomepage #liToolbar .li-new-callout{width:min(290px,calc(100vw - 20px));}
 }
