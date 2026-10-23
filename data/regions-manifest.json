@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-23T09:40:42.953Z",
+  "generatedAt": "2026-10-23T10:01:03.825Z",
   "regions": {
     "dolomites": {
       "trailCount": 110,
-      "trails": "data/regions/dolomites-trails.js?v=158fc211aa1b",
+      "trails": "data/regions/dolomites-trails.js?v=032810ca7839",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=26654e90f48e",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -112,8 +112,8 @@
         "osm-19330972": "data/trail-details/osm-19330972.js?v=586f3b461dc9",
         "osm-19697977": "data/trail-details/osm-19697977.js?v=67f3521c1b74",
         "osm-19703479": "data/trail-details/osm-19703479.js?v=7b332dfe2ee6",
-        "osm-19974724": "data/trail-details/osm-19974724.js?v=2ea6c845d17c",
-        "osm-19974725": "data/trail-details/osm-19974725.js?v=6b508bd3e644",
+        "osm-19974724": "data/trail-details/osm-19974724.js?v=5c83490a17bb",
+        "osm-19974725": "data/trail-details/osm-19974725.js?v=a31c0f015337",
         "osm-7277805": "data/trail-details/osm-7277805.js?v=c9d7093f5a3a",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },

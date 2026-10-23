@@ -15746,6 +15746,208 @@ function effectiveOverrides(profile, adjustOverride){
           "url": "https://www.openstreetmap.org/relation/7547983"
         }
       ]
+    },
+    'osm-19974724': {
+      // Hand audit 23 October 2026: route, figures and start from Eggental Tourismus; its GPX matches the line within 21 m both
+      // ways. Dog rules from the Welschnofen Hundeverordnung (GR 73/2023) Art. 4 and 8; the landscape plan (PPC-21058) makes the
+      // Karersee a natural monument with access only up to the fence (Art. 3(4)). No Natura 2000 site or biotope on the line.
+      "area": "Welschnofen / Nova Levante (Karersee)",
+      "distance": 3,
+      "elevation": 69,
+      "hours": "0.75",
+      "startPoint": {
+        "lat": 46.41165,
+        "lng": 11.57518,
+        "label": "Karersee car park, Welschnofen (official start)"
+      },
+      "desc": "The middle of the three marked loops at the Karersee, the green-signed one. From the lake car park it crosses the suspension bridge, climbs path 6 through the forest towards the Karerpass, crosses the road at the Hotel Lake & River and comes back on path 10 to the lake, with the Latemar above. The official route is 2.7 km with 69 m of climb, about 45 minutes, easy and suitable for pushchairs.\n\nDogs must be on a lead of at most 1.5 m everywhere in Welschnofen, and owners must carry a muzzle, under the commune's dog regulation; dogs are not allowed on farmed meadows. The Karersee is a protected natural monument: access is only up to the fence around the lake. Most of the loop runs through forest.",
+      "tips": "Keep the lead short (1.5 m at most) and carry a muzzle, as Welschnofen requires, and keep your dog off the meadows beside the path. Stay outside the fence at the lake. About 400 m follows paved lanes and a service road, and the loop crosses the main road at the Hotel Lake & River: keep your dog close there. The suspension bridge has a metal grid floor. Water and toilets are at the visitor centre by the car park.",
+      "shadeCoverage": 65,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "One crossing of the main road at the Hotel Lake & River",
+        "About 400 m on paved lanes and a service road",
+        "Suspension bridge with a metal grid floor"
+      ],
+      "routeNumberSource": {
+        "provider": "Eggental Tourismus",
+        "name": "Middle circular hike at Lake Carezza (green signs)",
+        "url": "https://eggental.com/en/activity/middle-circular-route-at-lake-carezza_5711"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "ORMA original: the Karersee from the road above it, with the Latemar behind, the view from the loop's climb on path 6.",
+        "route": "Published line 3.04 km; official 2.7 km; the official GPX matches the line within 21 m in both directions.",
+        "routeNumbers": "Green signs, paths 6 and 10, as the official text states; the only option it names is a lap of the lake.",
+        "mapPoints": "Start at the official Karersee car park; tap at the visitor centre traced to OSM.",
+        "elevation": "Official 69 m of climb (was 99)."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Eggental Tourismus, Middle circular hike at Lake Carezza, and its GPX",
+          "Gemeinde Welschnofen, Hundeverordnung (Gemeinderatsbeschluss 73/2023) Art. 4 (lead of at most 1.5 m, muzzle carried, also outside built-up areas) and Art. 8 (no dogs on farmed meadows)",
+          "Welschnofen landscape plan (PPC-21058) Art. 3(4): at the Karersee, access only up to the fence; no Natura 2000 site or biotope on the line (EEA, newPlan)",
+          "OpenStreetMap relation 19974724: paths 6 and 10, road classes, bridge and water along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "Eggental Tourismus, Middle circular hike at Lake Carezza",
+          "url": "https://eggental.com/en/activity/middle-circular-route-at-lake-carezza_5711"
+        },
+        {
+          "label": "Gemeinde Welschnofen, Hundeverordnung",
+          "url": "https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung"
+        },
+        {
+          "label": "OpenStreetMap relation 19974724",
+          "url": "https://www.openstreetmap.org/relation/19974724"
+        }
+      ]
+    },
+    'osm-19974725': {
+      // Hand audit 23 October 2026: route, figures and start from Eggental Tourismus; its GPX matches the line within 32 m both
+      // ways (the line is stored the other way round; stated in the text). Dog rules from the Welschnofen Hundeverordnung (GR 73/2023)
+      // Art. 4 and 8; the Karersee is a natural monument with access only up to the fence (landscape plan PPC-21058 Art. 3(4)).
+      "area": "Welschnofen / Nova Levante (Karersee)",
+      "distance": 4,
+      "elevation": 98,
+      "hours": "1",
+      "startPoint": {
+        "lat": 46.41168,
+        "lng": 11.575196,
+        "label": "Karersee car park, Welschnofen (official start)"
+      },
+      "desc": "The longest of the three marked loops at the Karersee, the orange-signed one. The official route crosses the suspension bridge from the lake car park, climbs path 6 towards the Karerpass, crosses the road at the Hotel Lake & River, follows path 12 into the Latemar forest and returns on path 11 to the lake; the line here is drawn the other way round. Officially 3.8 km with 98 m of climb, about an hour, easy.\n\nDogs must be on a lead of at most 1.5 m everywhere in Welschnofen, and owners must carry a muzzle, under the commune's dog regulation; dogs are not allowed on farmed meadows. The Karersee is a protected natural monument: access is only up to the fence around the lake. Most of the loop runs through the Latemar forest.",
+      "tips": "Keep the lead short (1.5 m at most) and carry a muzzle, as Welschnofen requires, and keep your dog off the meadows beside the path. Stay outside the fence at the lake. About 350 m follows a paved service road, and the loop passes the main road at the Hotel Lake & River (an underpass is mapped): keep your dog close there. The suspension bridge has a metal grid floor. Water and toilets are at the visitor centre by the car park.",
+      "shadeCoverage": 65,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "The main road at the Hotel Lake & River",
+        "About 350 m on a paved service road",
+        "Suspension bridge with a metal grid floor"
+      ],
+      "routeNumberSource": {
+        "provider": "Eggental Tourismus",
+        "name": "Long circular route at Lake Carezza (orange signs)",
+        "url": "https://eggental.com/en/activity/long-circular-route-at-lake-carezza_5705"
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "ORMA original: the Karersee from the slope above the road, with the Latemar forest behind, the view from the loop's climb on path 6.",
+        "route": "Published line 3.99 km, stored in the reverse direction; official 3.8 km; the official GPX matches the line within 32 m in both directions.",
+        "routeNumbers": "Orange signs, paths 6, 12 and 11, as the official text states; the only option it names is a lap of the lake.",
+        "mapPoints": "Start at the official Karersee car park (GPX start); tap at the visitor centre traced to OSM.",
+        "elevation": "Official 98 m of climb (was 162)."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Eggental Tourismus, Long circular route at Lake Carezza, and its GPX",
+          "Gemeinde Welschnofen, Hundeverordnung (Gemeinderatsbeschluss 73/2023) Art. 4 (lead of at most 1.5 m, muzzle carried, also outside built-up areas) and Art. 8 (no dogs on farmed meadows)",
+          "Welschnofen landscape plan (PPC-21058) Art. 3(4): at the Karersee, access only up to the fence; no Natura 2000 site or biotope on the line (EEA, newPlan)",
+          "OpenStreetMap relation 19974725: paths 6, 12 and 11, road classes, bridge and water along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "Eggental Tourismus, Long circular route at Lake Carezza",
+          "url": "https://eggental.com/en/activity/long-circular-route-at-lake-carezza_5705"
+        },
+        {
+          "label": "Gemeinde Welschnofen, Hundeverordnung",
+          "url": "https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung"
+        },
+        {
+          "label": "OpenStreetMap relation 19974725",
+          "url": "https://www.openstreetmap.org/relation/19974725"
+        }
+      ]
     }
   };
 
