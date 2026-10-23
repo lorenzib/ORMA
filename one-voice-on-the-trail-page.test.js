@@ -110,8 +110,12 @@ describe('what the reader is actually shown now',()=>{
   test('the catalogue still carries the pipeline wording the card now hides',()=>{
     const imported=trails.filter(trail=>/imported from the OpenStreetMap/i.test(String(trail.desc||'')));
     const verifiedStart=trails.filter(trail=>/OSM-verified access point/i.test(String(trail.startPoint&&trail.startPoint.label||'')));
-    expect(imported.length).toBeGreaterThan(100);
-    expect(verifiedStart.length).toBeGreaterThan(50);
+    // Every hand verification rewrites a trail's text and start, so these
+    // counts only fall (101 imported descriptions on 22 Oct 2026, 100 a day
+    // later). What justifies the card hiding the wording is that it is still
+    // there to hide, not how much of it is left.
+    expect(imported.length).toBeGreaterThan(0);
+    expect(verifiedStart.length).toBeGreaterThan(0);
   });
 
   // The separator is not the point, and pinning one was a trap: the promoter
