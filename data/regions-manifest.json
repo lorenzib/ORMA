@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-23T13:30:54.959Z",
+  "generatedAt": "2026-10-23T14:03:14.216Z",
   "regions": {
     "dolomites": {
       "trailCount": 110,
-      "trails": "data/regions/dolomites-trails.js?v=c629282d21b4",
+      "trails": "data/regions/dolomites-trails.js?v=9b88f377fd11",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -20,7 +20,7 @@
         "valley-view": "data/trail-details/valley-view.js?v=9611d5921a8e",
         "piancavallo": "data/trail-details/piancavallo.js?v=d6875e7a1bdb",
         "geotrail-bulla": "data/trail-details/geotrail-bulla.js?v=5c1f88c73208",
-        "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=2cc55748bb92",
+        "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=2cf323a8820d",
         "sentiero-hans-e-paula-steger": "data/trail-details/sentiero-hans-e-paula-steger.js?v=528a743b999c",
         "sentiero-del-trenino": "data/trail-details/sentiero-del-trenino.js?v=07ab452c84eb",
         "giro-del-sasso-lungo": "data/trail-details/giro-del-sasso-lungo.js?v=d1788deb7d95",
@@ -70,7 +70,7 @@
         "osm-11814895": "data/trail-details/osm-11814895.js?v=d9ac2d2582a7",
         "osm-11815025": "data/trail-details/osm-11815025.js?v=788013c95a90",
         "osm-11816373": "data/trail-details/osm-11816373.js?v=ab19b12d1d65",
-        "osm-11828233": "data/trail-details/osm-11828233.js?v=8621604bdb05",
+        "osm-11828233": "data/trail-details/osm-11828233.js?v=966502f570df",
         "osm-11832013": "data/trail-details/osm-11832013.js?v=62792f861208",
         "osm-11839597": "data/trail-details/osm-11839597.js?v=0f461f4b742a",
         "osm-11855879": "data/trail-details/osm-11855879.js?v=80d2070b3d17",
@@ -104,7 +104,7 @@
         "osm-12731853": "data/trail-details/osm-12731853.js?v=951a3e71ff4c",
         "osm-12736753": "data/trail-details/osm-12736753.js?v=c2fffee348c4",
         "osm-12953352": "data/trail-details/osm-12953352.js?v=c31d2efb268c",
-        "osm-13491868": "data/trail-details/osm-13491868.js?v=8f611c8de111",
+        "osm-13491868": "data/trail-details/osm-13491868.js?v=64d139ac8845",
         "osm-13528390": "data/trail-details/osm-13528390.js?v=92c51d276fc7",
         "osm-14058492": "data/trail-details/osm-14058492.js?v=1f5c4baeb290",
         "osm-14058632": "data/trail-details/osm-14058632.js?v=b9556ad9e0a1",
