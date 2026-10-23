@@ -9071,6 +9071,175 @@
         { label: 'Welschnofen landscape plan, implementing provisions (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/8298' },
         { label: 'OpenStreetMap drinking water node 7468241992', url: 'https://www.openstreetmap.org/node/7468241992' }
       ]
+    },
+    'osm-7388748': {
+      // Hand audit: 23 October 2026. The line is the official waymark-33 loop:
+      // every landmark the Parco della Memoria names lies on it, and it matches
+      // the official map. The CAI leaflet's "4,5 km circa" is a rounded 2010
+      // figure; the relation measures 5.3 km and that is what is published.
+      // Wholly in Lozzo di Cadore, not Auronzo. Lozzo police regulation Art. 39:
+      // dogs on a lead in every public place, trails included.
+      area: 'Pian dei Buoi, Lozzo di Cadore',
+      distance: 5.3,
+      elevation: 100,
+      hours: '1.5–2',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Davide borca, CC BY-SA 4.0: the Pian dei Buoi plateau, its tracks and pasture, with the Dolomite walls behind (autumn larch).',
+        route: 'OSM relation 7388748 (5.33 km) passes every landmark of the official waymark-33 description within about 60 m and matches the official map; the leaflet’s 4.5 km is given as “circa”.',
+        routeNumbers: 'Waymark 33, white and green, from Bivio Pellegrini round the whole loop; the only branch is the short “variante anello 33” spur to a gun post, after which walkers return to 33.',
+        mapPoints: 'Start at Bivio dei Pellegrini (route node 420511537) beside the small car park; drinking water at OSM node 9261740471, 18 m from the start.',
+        elevation: 'Official ascent 100 m (CAI Lozzo leaflet), in place of the sampled 252 m; no official time exists for the loop alone.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'CAI Lozzo di Cadore, Anelli e Vie (route descriptions)',
+          'Parco della Memoria, 13.2 Anello dei Colli (segnavia 33)',
+          'Comune di Lozzo di Cadore, Regolamento di Polizia Urbana (2018), Art. 39',
+          'OpenStreetMap relation 7388748, land-cover and farm tags'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 20,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Unpaved military tracks open to farm and forestry vehicles', 'WWI trenches, caverns and ruins beside the path; tunnel roofs are unsafe'],
+      shadeDescription: 'A high, mostly open plateau at 1,760–1,865 m with scrub and pasture; only short stretches pass through woodland, such as the Ciadìn wood below Col Vidal.',
+      terrainDescription: 'A gentle loop on paths and old military tracks across the Pian dei Buoi hills, with no equipped or exposed sections.',
+      waterDescription: 'Drinking water at the start only. In summer Lago Morto is a cattle trough and Lago delle Sepolture a small bog, and the Col Vidal fountain has been dry for decades, so carry water.',
+      dogNotes: 'Lozzo di Cadore requires dogs on a lead in every public place, trails included (at most 1.5 m on roads). Cattle graze the plateau in summer and the loop passes Casera delle Armente and a cowshed. Keep dogs out of the WWI caverns and trenches.',
+      tips: 'Park at Bivio Pellegrini, where there is a fountain, and follow waymark 33 round the hills past the Col Vidal forts and Casera delle Armente: about 5.3 km with 100 m of climbing. Keep your dog on a lead throughout, as Lozzo di Cadore requires on its trails, and expect grazing cattle in summer. There is no other water, so carry plenty; the access road is one-way by timetable in July and August.',
+      sourceLinks: [
+        { label: 'Parco della Memoria, 13.2 Anello dei Colli', url: 'https://www.lozzodicadore.eu/parcodellamemoria/13-1-col-vidal-e-13-2-anello-dei-colli-solo-testo-e-pdf/' },
+        { label: 'CAI Lozzo di Cadore, Anelli e Vie', url: 'https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-descrizione.pdf' },
+        { label: 'Comune di Lozzo di Cadore, Regolamento di Polizia Urbana', url: 'https://lozzo-di-cadore-api.municipiumapp.it/s3/3676/allegati/regolamento-polizia-urbana-2018.pdf' },
+        { label: 'Waymarked Trails, OSM relation 7388748', url: 'https://hiking.waymarkedtrails.org/#route?id=7388748' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/7388748' }
+      ],
+      startPoint: { lat: 46.5103134, lng: 12.4067517, label: 'Bivio dei Pellegrini, beside the small Pellegrini car park (Pian dei Buoi)' },
+      waterSources: [
+        { km: 0, lat: 46.5104486, lng: 12.4068797, osmId: 'node/9261740471', label: 'Drinking-water point at Bivio dei Pellegrini' }
+      ],
+      desc: 'A gentle loop on waymark 33 across the Pian dei Buoi hills above Lozzo di Cadore, past First World War forts, trenches and the Casera delle Armente, with wide views over the summer pastures. The official leaflet gives about 4.5 km and 100 m of ascent; the mapped loop measures 5.3 km.'
+    },
+    'osm-9492594': {
+      // Hand audit: 23 October 2026. Wholly in Lajen, not Kastelruth. The province
+      // register line (7.66 km) and the official 7.7 km match the OSM loop
+      // (7.30 km) within 6%. Lajen dog regulation (2010) Art. 4, 8: lead of at
+      // most 1.5 m, muzzle carried, no dogs on meadows in the growing season.
+      area: 'Lajen / Laion – Eisacktal',
+      distance: 7.7,
+      elevation: 422,
+      hours: '3',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Wolfgang Moroder, CC BY-SA 3.0: Lajen village and the meadows and field paths of the loop, from Tagusens in May, about 200 m from the line.',
+        route: 'OSM relation 9492594 chains into a closed 7.30 km loop; the province hiking-trail register line is 7.66 km and the official figure 7.7 km.',
+        routeNumbers: 'From Lajen follow waymark 35 (also signed Vogelweider Rundweg) down to Ried and the Vogelweiderhof, take the Eselsteig signed Vogelweider Rundweg to Albions, then at the church turn right uphill on path 5 back to Lajen.',
+        mapPoints: 'Start at the Lajen Dorfplatz on the loop; drinking-water points traced to OSM nodes in Lajen, Ried and Albions (the decorative fountain node 7727344250 is not drinking water).',
+        elevation: 'Official 422 m up and down, highest point 1,095 m, lowest 743 m, 3 h, in place of the sampled 377 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Südtirol.info (Infobüro Lajen), Walther von der Vogelweide Rundweg',
+          'Province hiking-trail register, Vogelweider Rundweg',
+          'Gemeinde Lajen, Verordnung über die Haltung und Führung von Hunden (2010), Art. 4 and 8',
+          'Landschaftsplan Lajen, Durchführungsbestimmungen, Art. 3 (newPlan doc 3430)',
+          'OpenStreetMap relation 9492594, farmyard, land-use and road tags'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['79 m on the SP139 Lajen road without a pavement', 'Two crossings of the busy Grödner Straße (SS242dir) in Ried, no pavement', 'Crossing of the SP139 above Ried', 'Asphalt farm lanes that heat up in sun', 'Two short flights of earth steps'],
+      shadeDescription: 'Mostly open meadows on a sunny slope between 750 and 1,100 m, with only short stretches beside woodland and hedges.',
+      terrainDescription: 'Farm lanes, tracks and earth paths linking Lajen, Ried and Albions, with short asphalt stretches, a few road crossings and two short flights of steps.',
+      waterDescription: 'Drinking-water fountains at the Lajen Dorfplatz (seasonal), in Ried and in Albions; no reliable streams in between, so carry water for the dog.',
+      dogNotes: 'Lajen requires dogs on a lead of at most 1.5 m on all public land and a muzzle carried, bans them from meadows and fields during the growing season, and forbids bathing in village fountains. The walk passes many working farms, so animals and farm dogs may be close by.',
+      tips: 'Follow waymark 35 down to Ried, the Eselsteig signed Vogelweider Rundweg to Albions, and path 5 back up to Lajen: 7.7 km with 422 m of climbing, about 3 hours. Keep your dog on a short lead (1.5 m at most) and off the meadows, as Lajen requires, and take care at the two crossings of the busy Grödner Straße in Ried. There is little shade, so walk early on warm days.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Walther von der Vogelweide Rundweg', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi520181808239e9eae0e8d1da49b742c4.walther-von-der-vogelweide-rundweg.lajen-dorf' },
+        { label: 'Province hiking-trail register, Vogelweider Rundweg (Open Data Hub)', url: 'https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427418' },
+        { label: 'Gemeinde Lajen, dog regulation', url: 'https://www.gemeinde.lajen.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden_im_Gemeindegebiet_von_Lajen_1' },
+        { label: 'Landschaftsplan Lajen, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/3430' },
+        { label: 'Waymarked Trails, OSM relation 9492594', url: 'https://hiking.waymarkedtrails.org/#route?id=9492594' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/9492594' }
+      ],
+      startPoint: { lat: 46.6092, lng: 11.5642, label: 'Lajen Dorfplatz, on the loop (parking at the sports ground, 270 m east)' },
+      waterSources: [
+        { km: 0, lat: 46.609325, lng: 11.56429, osmId: 'node/11808110869', label: 'Dorfbrunnen Lajen (Refill Südtirol)', seasonal: true },
+        { km: 2.1, lat: 46.6030151, lng: 11.5477166, osmId: 'node/6815774825', label: 'Drinking water, Ried' },
+        { km: 5.1, lat: 46.6230824, lng: 11.5597304, osmId: 'node/9575576442', label: 'Drinking water, Albions' }
+      ],
+      desc: 'A sunny farmland loop from Lajen down to Ried and the Vogelweiderhof, said to be the birthplace of the minnesinger Walther von der Vogelweide, then along the Eselsteig to Albions and back up on path 5. The official route lists 7.7 km and 422 m of ascent.'
+    },
+    'osm-11775760': {
+      // Hand audit: 23 October 2026. Wholly in Vahrn, not Brixen. The province
+      // register line (3.04 km, closed) lies within 22 m of the stored loop.
+      // Vahrn publishes no dog regulation online; the national dog ordinance
+      // (6 August 2013, extended to September 2027) requires a lead of at most
+      // 1.5 m and a muzzle carried in towns and public places, and Vahrn's
+      // landscape plan restricts dogs only in two biotopes off this route.
+      area: 'Vahrn / Varna',
+      distance: 3.1,
+      elevation: 172,
+      hours: '1',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Castel Salern ruin wall with the path beside it (CC BY-SA 3.0, March 2008), 11 m from the line.',
+        route: 'Province hiking-trail register line 3.04 km, closed; the stored loop (2.97 km) never strays more than 22 m from it.',
+        routeNumbers: 'No route number: from the village car park follow the “Naturdenkmal Schalderer Bach” theme-path signs up to the Kneipp park, take the Vernaggenweg to the Salern ruin, then the forest path down beside the Spilucker Bach back to the village.',
+        mapPoints: 'Start at the Vahrn Dorfparkplatz (official start point); drinking water at the Kneipp park, OSM node 4394596723, 6 m from the line.',
+        elevation: 'Official 3.1 km, 172 m up and down, high point 791 m, low point 646 m, 58 minutes.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Südtirol.info (Brixen Tourismus), Carl-Toldt-Weg in Vahrn',
+          'Province hiking-trail register, Carl-Toldt-Weg',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
+          'Landschaftsplan Vahrn, Durchführungsbestimmungen, Art. 3 and 4 (newPlan doc 4687)',
+          'OpenStreetMap relation 11775760, land-use and road tags'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Short stretch on the village road (40 km/h, pavement on one side)', 'Road crossings in the village, including the Schalderer Straße hairpin with no pavement', 'Tarmac lanes that get hot in summer (about 30% of the loop)', 'Short steps and roots on the forest path'],
+      shadeDescription: 'About a quarter is woodland, around the Kneipp park, the chestnut grove and along the Spilucker Bach; the Vernaggenweg and village lanes are open and sunny.',
+      terrainDescription: 'An easy family loop on forest paths, gravel and village lanes, with one moderately steep climb beside the stream to the Kneipp park.',
+      waterDescription: 'A drinking fountain at the Kneipp park, with the Schalderer and Spilucker streams beside the path; two more fountains are a short detour away in the village.',
+      dogNotes: 'Italian law requires dogs on a lead of at most 1.5 m and a muzzle carried in towns and public places, and the whole loop runs through or beside the village. No grazing animals are mapped. Keep dogs out of the Kneipp pools.',
+      tips: 'Start at the Vahrn village car park and follow the “Naturdenkmal Schalderer Bach” signs up to the Kneipp park, where there is drinking water and shade: 3.1 km with 172 m of climbing, about an hour. Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Italian rules require in built-up and public areas. It is a low, sunny loop, so go early or late in summer and watch for hot tarmac on the village lanes.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Carl-Toldt-Weg in Vahrn', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-sudtirol/pdp-erlebnisse.smgpoided61cbccffcce945596496bc2cdf7da.carl-toldt-weg-in-vahrn-bei-brixen.vahrn' },
+        { label: 'Province hiking-trail register, Carl-Toldt-Weg (Open Data Hub)', url: 'https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426514' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Landschaftsplan Vahrn, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/4687' },
+        { label: 'Waymarked Trails, OSM relation 11775760', url: 'https://hiking.waymarkedtrails.org/#route?id=11775760' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11775760' }
+      ],
+      startPoint: { lat: 46.739042, lng: 11.636112, label: 'Vahrn village car park (Dorfparkplatz), the official start' },
+      waterSources: [
+        { km: 2.3, lat: 46.7406533, lng: 11.6295873, osmId: 'node/4394596723', label: 'Drinking fountain at the Kneipp park' }
+      ],
+      desc: 'A short family loop above Vahrn near Brixen: up beside the Schalderer Bach to the Kneipp park, along the sunny Vernaggenweg to the Salern castle ruin, and back down through the chestnut grove beside the Spilucker Bach. The official route lists 3.1 km and 172 m of ascent.'
     }
   };
 
