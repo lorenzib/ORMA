@@ -6430,8 +6430,11 @@ function effectiveOverrides(profile, adjustOverride){
       // the importer elevation estimate. Access: 21 October 2026. The Natz-Schabs
       // landscape plan (Durchfuehrungsbestimmungen in force since 4 April 2025,
       // Art. 3) protects Biotop 12/1 Laugen and lists what is forbidden inside
-      // it: leaving the marked paths, disturbing wild animals, bathing. It
-      // neither bans dogs nor sets a leash rule, which settles the access check.
+      // it: leaving the marked paths, disturbing wild animals, bathing.
+      // Corrected 23 October 2026: the whole line is in Brixen, not Natz-Schabs.
+      // Brixen's animal ordinance (2011) Art. 5 requires a lead of at most 1.5 m
+      // in built-up areas and places open to the public, and its landscape plan
+      // Art. 3 forbids letting dogs run free inside biotopes, including 12/1 Laugen.
       distance: 4.2,
       elevation: 100,
       hours: '1.5',
@@ -6476,6 +6479,8 @@ function effectiveOverrides(profile, adjustOverride){
           'Official Laugen–Elvas overview board',
           'South Tyrol nature portal, protected biotopes',
           'Landscape plan of Natz-Schabs, implementing provisions, Art. 3 (Biotop 12/1 Laugen)',
+          'Landschaftsplan Brixen, Durchführungsbestimmungen, Art. 3 (Biotop 12/1 Laugen: no free-running dogs)',
+          'Stadtgemeinde Brixen, Verordnung über die Haltung und Führung von Tieren (Gemeinderat Nr. 5, 27.01.2011), Art. 5 and 6',
           'OpenStreetMap relation 12731853 and mapped water nodes'
         ],
         date: '2026-10-21'
@@ -6487,8 +6492,8 @@ function effectiveOverrides(profile, adjustOverride){
       shadeDescription: 'The official description places most of the route in an intensively cultivated landscape, with a smaller reed-fringed pond and riparian-woodland section.',
       terrainDescription: 'The mapped circuit mixes paved, unpaved, gravel and natural-ground sections; neither the official board nor OSM records an alpine-grade or equipped section.',
       waterDescription: 'Two drinking-water points are mapped near Elvas at exact coordinates; one is marked seasonal. Availability can change, so carry a backup supply.',
-      dogNotes: 'Dogs are not banned from the protected Laugen biotope, and its rules set no leash requirement. They do forbid leaving the marked paths, disturbing wild animals and bathing, so keep your dog on the path, out of the pond and under close control; a short lead through the wetland is the simple way to do that.',
-      tips: 'The official circuit starts in Elvas and visits the Laugen wetland and its information stations. The route is 4.2 km with about 100 m ascent and takes roughly 1½ hours. Dogs are allowed through the Laugen biotope, but its protection rules forbid leaving the marked path, disturbing wildlife and bathing, so keep your dog on the path, out of the pond and under close control.',
+      dogNotes: 'Dogs are not banned from the Laugen biotope. The walk is in Brixen, which requires dogs on a lead of at most 1.5 m in villages and places open to the public, a muzzle carried, and keeps dogs off farmed land. Inside the Laugen biotope dogs may not run free, and its rules forbid leaving the marked paths, disturbing wild animals and bathing, so keep your dog on a short lead, on the path and out of the pond.',
+      tips: 'The official circuit starts in Elvas and visits the Laugen wetland and its information stations. The route is 4.2 km with about 100 m ascent and takes roughly 1½ hours. Brixen’s rules require a lead of at most 1.5 m and a muzzle carried, and dogs may not run free in the Laugen biotope: keep your dog on a short lead, on the marked path and out of the pond.',
       sourceLinks: [
         {
           label: 'Bezirksgemeinschaft Eisacktal, Rundweg Laugen Elvas',
@@ -22015,6 +22020,366 @@ function effectiveOverrides(profile, adjustOverride){
           "url": "https://www.openstreetmap.org/relation/2179746"
         }
       ]
+    },
+    'osm-11764094': {
+      // Hand audit: 23 October 2026. In Natz-Schabs (the Laugen stretch is in
+      // Brixen), not Brixen as imported. The OSM line is the official loop; the
+      // routeLine override only turns it to start in Natz and run the official
+      // way round. Natz-Schabs publishes no dog regulation, so the national
+      // ordinance applies there; Brixen's ordinance and landscape plan apply at
+      // the Laugen biotope.
+      area: 'Natz-Schabs / Naz-Sciaves',
+      distance: 12,
+      elevation: 379,
+      hours: '3.5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Laugen pond with reeds and the Plose behind, October, 78 m from the line (Plentn, CC0).',
+        route: 'Stored line 12.04 km, closed; 98% within 60 m of the province register line; official 11 km (9.5% shorter, within tolerance).',
+        routeNumbers: 'No number: follow the “Dörferrunde” signs from Natz via the Waldertor viewpoint and Viums to Schabs, past the Flötscher Weiher and Raas, and back by the Laugen sports ground.',
+        mapPoints: 'Start in Natz village centre by the church (official start, bus stop Natz Kirche); drinking water at the church (OSM nodes 8491650106, 7434819736), near Viums (1388893213, 1404697279) and in Schabs (8648731851, 121 m off).',
+        elevation: 'Official 11 km, 379 m up and 385 m down, 3:30 h, high point 898 m, low point 809 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Natz-Schabs, Dörferrunde (Südtirol.info)',
+          'Province hiking-trail register, Dörferrunde (routes-hikingtrails.11425309)',
+          'Landschaftsplan Natz-Schabs, Durchführungsbestimmungen, Art. 3 (newPlan doc 10974)',
+          'Landschaftsplan Brixen, Durchführungsbestimmungen, Art. 3 (newPlan doc 3358)',
+          'Stadtgemeinde Brixen, Verordnung über die Haltung und Führung von Tieren (Gemeinderat Nr. 5, 27.01.2011), Art. 5 and 6',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Natz-Schabs publishes no dog regulation)',
+          'OpenStreetMap land cover, farm and road data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 35,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Road crossing at Hotel Seehof / Flötscher Weiher', 'About 300 m on Laugenstraße without a pavement', 'About 1.5 km of asphalt and cobbles through Natz'],
+      terrainType: 'Forest paths and gravel farm tracks, with village streets in Natz',
+      shadeDescription: 'About a third is woodland, between Viums and Schabs and between Raas and Flötsch; the rest is open orchards and meadows on the plateau at 810–900 m.',
+      terrainDescription: 'Mostly forest paths and gravel farm tracks, with about 1.5 km of asphalt through Natz and short road stretches. No equipped or alpine-grade sections; listed as a family walk.',
+      waterDescription: 'Fountains in Natz at the start, near Viums and in Schabs (a short detour). The ponds are protected wetlands or a hotel pond, so not for dogs.',
+      dogNotes: 'Natz-Schabs publishes no dog rule, so the Italian national rule applies there: a lead of at most 1.5 m and a muzzle carried in villages and public places. The Laugen stretch is in Brixen, which requires a lead of at most 1.5 m on public land, bans dogs from farmed land, and forbids letting dogs run free in its biotopes. Both wetlands (Raier Moos and Laugen) forbid leaving the path and bathing.',
+      tips: 'The official loop starts in Natz centre and links Viums, Schabs and Raas on “Dörferrunde” signs: about 11–12 km, 380 m of ascent, three and a half hours. Keep your dog on a short lead in the villages and through the Raier Moos and Laugen wetlands, where dogs may not run free, swim or leave the path. Carry water between Viums and Schabs, and watch traffic at the Hotel Seehof crossing and on Laugenstraße.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Dörferrunde Natz-Schabs', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi16e4208993e3b597de62e5c389b65d33.doerferrunde-natz-schabs.natz' },
+        { label: 'Province hiking-trail register (Open Data Hub)', url: 'https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425309' },
+        { label: 'Landschaftsplan Natz-Schabs, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/10974' },
+        { label: 'Landschaftsplan Brixen, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/3358' },
+        { label: 'Brixen, Verordnung über die Haltung und Führung von Tieren', url: 'https://asmb.it/export/sites/asmb2/.downloads/de/umweltdienste/verordnung_haltung-20und-20fuehrung-20tiere.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11764094' }
+      ],
+      startPoint: { lat: 46.752606, lng: 11.680557, label: 'Natz village centre, bus stop Natz Kirche (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.7525363, lng: 11.6804678, osmId: 'node/8491650106', label: 'Drinking-water tap by Natz church' },
+        { km: 0, lat: 46.7525076, lng: 11.6809683, osmId: 'node/7434819736', label: 'Village fountain in Natz' },
+        { km: 1.2, lat: 46.7600674, lng: 11.6903524, osmId: 'node/1388893213', label: 'Drinking water near Viums' },
+        { km: 3.4, lat: 46.7661469, lng: 11.6818229, osmId: 'node/1404697279', label: 'Drinking water near Plattnerhof, Viums' },
+        { km: 4.9, lat: 46.768329, lng: 11.6658068, osmId: 'node/8648731851', label: 'Drinking water in Schabs, 120 m off the route' }
+      ],
+      desc: 'A loop round the villages of the Natz-Schabs plateau above Brixen: from Natz past the Waldertor viewpoint over the Rienz gorge to Viums and Schabs, by the Flötscher Weiher and Raas, and back along the Laugen wetland. The official route lists 11 km and 379 m of ascent.'
+    },
+    'osm-12736753': {
+      // Hand audit: 23 October 2026. Wholly in Brixen. The stored line is the
+      // Bezirksgemeinschaft Eisacktal loop (official 12 km). Brixen's animal
+      // ordinance (2011) and landscape plan (Millander Au biotope) apply.
+      distance: 11.6,
+      elevation: 360,
+      hours: '3–3.5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Albeins parish church at the start, October (Haneburger, public domain), on the line.',
+        route: 'Stored line 11.54 km, closed; every main member of relation 12736753 within 25 m of it; official 12 km (3.7% longer).',
+        routeNumbers: 'From Albeins follow path 12 up through the Pfeffersberg woods to Prasod and Klerant, then 8 north, joining 7 down into Milland; cross Milland on village streets (Kirchsteig, Vintlerweg, Sarnser Straße, Wolkensteinstraße) to the Eisack, then follow 9 south along the left Eisack dam back to Albeins.',
+        mapPoints: 'Start at the Albeins Kindergarten bus stop (OSM node 2440142154), by the parking and overview board; six drinking-water points within 125 m of the line (OSM nodes 7452719619, 8766283130, 7484003619, 7594621912, 7418766922, 939307151).',
+        elevation: 'Official 12 km, 360 m up and down, 3:15 h, high point 897 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Bezirksgemeinschaft Eisacktal, Rundweg Albeins-Klerant-Milland-Albeins (route page and overview board)',
+          'Stadtgemeinde Brixen, Verordnung über die Haltung und Führung von Tieren (Gemeinderat Nr. 5, 27.01.2011), Art. 5 and 6',
+          'Landschaftsplan Brixen, Durchführungsbestimmungen, Art. 3 (newPlan doc 3358)',
+          'OpenStreetMap land cover, road and water data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 50,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 2.5 km on quiet village roads without a pavement (Prasod, Klerant)', 'Busy street crossings in Milland (Plosestraße, Sarnser Straße)', 'Asphalt sections hot in summer', 'Path beside the fast-flowing Eisack', 'Shared with cyclists in places'],
+      terrainType: 'Forest paths and farm tracks, village lanes and a dam path along the Eisack',
+      shadeDescription: 'The climb from Albeins to Klerant runs through mixed and pine forest, and the return along the Eisack dam is largely tree-lined; Klerant’s meadows and Milland’s streets are open.',
+      terrainDescription: 'Forest paths and farm tracks on the climb, asphalt lanes through Klerant and Milland, then a compacted dam path along the river; easy, about 360 m up and down.',
+      waterDescription: 'Village fountains at Albeins, Klerant and Milland (seasonal at the church) and a Stadtwerke tap on the dam. The Eisack is fast and dammed, and bathing is banned in the Millander Au biotope.',
+      dogNotes: 'In Brixen dogs must be on a lead of at most 1.5 m on all public and publicly accessible land, with a muzzle carried, and may not go onto farmland. Letting dogs run free is also banned in the Millander Au biotope beside the dam. Animals may graze parts of the Millander Au.',
+      tips: 'A 12 km loop from Albeins up through the woods to Klerant, down into Milland and back along the Eisack: 360 m of climbing, about three and a quarter hours. Keep your dog on a lead of at most 1.5 m the whole way and carry a muzzle, as Brixen requires, and keep it off the meadows, orchards and vineyards. There are drinking fountains in Albeins, Klerant, Milland and on the dam, but the river is too fast for a dip; take care at the two road crossings in Milland.',
+      sourceLinks: [
+        { label: 'Bezirksgemeinschaft Eisacktal, Rundweg Albeins-Klerant-Milland-Albeins', url: 'https://www.bzgeisacktal.it/de/Rundweg_Albeins-Klerant-Milland-Albeins' },
+        { label: 'Overview board (PDF)', url: 'https://www.bzgeisacktal.it/system/web/GetDocument.ashx?cts=1537201484&fileid=1030836' },
+        { label: 'Brixen, Verordnung über die Haltung und Führung von Tieren', url: 'https://asmb.it/export/sites/asmb2/.downloads/de/umweltdienste/verordnung_haltung-20und-20fuehrung-20tiere.pdf' },
+        { label: 'Landschaftsplan Brixen, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/3358' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12736753' }
+      ],
+      startPoint: { lat: 46.6771038, lng: 11.6311032, label: 'Albeins, Kindergarten bus stop (parking and overview board in the village)' },
+      waterSources: [
+        { km: 0.2, lat: 46.6757049, lng: 11.6328023, osmId: 'node/7452719619', label: 'Albeins fountain (Refill Südtirol)' },
+        { km: 0.2, lat: 46.6761776, lng: 11.63283, osmId: 'node/8766283130', label: 'Albeins drinking water' },
+        { km: 4, lat: 46.6881776, lng: 11.6603694, osmId: 'node/7484003619', label: 'Klerant village fountain' },
+        { km: 6.1, lat: 46.701707, lng: 11.663905, osmId: 'node/7594621912', label: 'Milland parish fountain', seasonal: true },
+        { km: 7.3, lat: 46.705597, lng: 11.657329, osmId: 'node/7418766922', label: 'Wolkensteinstraße playground fountain' },
+        { km: 9.8, lat: 46.6871569, lng: 11.6411121, osmId: 'node/939307151', label: 'Stadtwerke Brixen water tap by the Eisack dam' }
+      ],
+      desc: 'A loop on the hills and river south of Brixen: from Albeins up through the Pfeffersberg woods to Prasod and Klerant, down into Milland, and back along the Eisack dam. The official route lists 12 km and 360 m of ascent.'
+    },
+    'osm-12173965': {
+      // Hand audit: 23 October 2026. In Welsberg-Taisten, not Prags. The stored
+      // line is the official loop (register line 11427037 within 30 m).
+      // Welsberg-Taisten's dog regulation and Mayor's ordinance 03/2023 apply.
+      area: 'Welsberg / Monguelfo',
+      distance: 1.9,
+      elevation: 78,
+      hours: '0.75',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Schloss Welsperg in summer, 11 m from the line (Montepiana, CC0).',
+        route: 'Stored line 1.86 km, closed; province register line 1.88 km, closed, within 30 m; the official 2.3 km includes the walk to and from the tourist office.',
+        routeNumbers: 'No number: from the school centre follow the “Schlossrunde” waymarks up to Schloss Welsperg, down the castle hill to the bridge over the Gsieser Bach, and back along the old Gsiesertal road.',
+        mapPoints: 'Start at the Welsberg tourist office (official start), 180 m from the loop; drinking fountains OSM nodes 9006242959 (25 m off), 10916470437 (main square) and 5167581904 (tourist office).',
+        elevation: 'Official 2.3 km, 78 m up and down, 0:39 h, 1,085–1,163 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Gsiesertal-Welsberg-Taisten, Die Kleine Schlossrunde in Welsberg (Südtirol.info)',
+          'Gemeinde Welsberg-Taisten, Verordnung über die Haltung und das Führen von Hunden (2008, amended 2015), Art. 4 and 8',
+          'Gemeinde Welsberg-Taisten, Anordnung des Bürgermeisters 03/2023',
+          'Landschaftsplan Welsberg-Taisten, Durchführungsbestimmungen, Art. 3',
+          'OpenStreetMap land cover and road data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 42,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Village lanes with light traffic', 'Short steep earth zig-zag down the castle hill', 'Mostly asphalt', 'The old road is a groomed cross-country ski trail in winter'],
+      terrainType: 'Asphalt lanes with a short earth path down the castle hill',
+      shadeDescription: 'About two fifths in woodland on the castle hill and along the Gsieser Bach; the village part is open.',
+      terrainDescription: 'Almost all asphalt lanes, with a short earth path in bends down the castle hill and a wooden bridge. Officially easy, a family walk.',
+      waterDescription: 'Drinking fountains in the village at the start and finish; the Gsieser Bach runs beside the old road.',
+      dogNotes: 'Welsberg-Taisten requires a lead of at most 1.5 m on all public land and a muzzle carried; pick up after your dog. Dogs may not go onto meadows from 1 March to 31 October, or bathe in village fountains.',
+      tips: 'An easy 40-minute family loop from the Welsberg tourist office up to Schloss Welsperg and back along the Gsieser Bach. In Welsberg-Taisten dogs must be on a lead of at most 1.5 m everywhere public, with a muzzle carried; they may not go onto meadows from 1 March to 31 October, or into village fountains. A short detour leads to the Thurn ruin.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Die Kleine Schlossrunde in Welsberg', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoidec32d98620a0ae45230deb3a04391bb.die-kleine-schlossrunde-in-welsberg.welsberg' },
+        { label: 'Welsberg-Taisten, dog regulation', url: 'https://www.gemeinde.welsberg-taisten.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_das_Fuehren_von_Hunden_1' },
+        { label: 'Welsberg-Taisten, Mayor’s ordinance 03/2023', url: 'https://www.gemeinde.welsberg-taisten.bz.it/de/Neuigkeiten/News/Anordnung_des_Buergermeisters_fuer_das_Verhalten_von_Hundebesitzern' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12173965' }
+      ],
+      startPoint: { lat: 46.75574, lng: 12.10566, label: 'Welsberg tourist office (official start), 180 m from the loop via the main square' },
+      waterSources: [
+        { km: 0, lat: 46.7560017, lng: 12.105435, osmId: 'node/5167581904', label: 'Fountain at the tourist office' },
+        { km: 0.2, lat: 46.7579497, lng: 12.1053116, osmId: 'node/9006242959', label: 'Village fountain' },
+        { km: 0.2, lat: 46.7574635, lng: 12.1041028, osmId: 'node/10916470437', label: 'Main-square fountain, 130 m off the loop' }
+      ],
+      desc: 'A short family loop from Welsberg up to Schloss Welsperg and back along the Gsieser Bach on the old valley road. The official route lists 2.3 km from the tourist office and 78 m of ascent.'
+    },
+    'osm-12173984': {
+      // Hand audit: 23 October 2026. In Welsberg-Taisten, not Prags. The stored
+      // line is the official loop (register line 11427038, less its 330 m
+      // approach spur to the LS/SP46). The Pidigbach biotope is 74 m away and
+      // not entered.
+      area: 'Welsberg / Monguelfo',
+      distance: 5.5,
+      elevation: 130,
+      hours: '1.5–2',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The tower of Schloss Welsperg above the forest and the Gsieser Bach, September, 9 m from the line (Davide Mauro, CC BY-SA 4.0).',
+        route: 'Stored line 5.48 km, closed, wholly on the province register line; the official 6.2 km includes the walk from the tourist office.',
+        routeNumbers: 'No number: follow the “Große Schlossrunde” signs east along the old Gsiesertal road, turn right over a narrow wooden bridge after about 50 minutes, then return on the old castle path through the forest past Schloss Welsperg.',
+        mapPoints: 'Start at the Welsberg tourist office (official start); fountains in the village (OSM nodes 5167581904, 9006242959, 10916470437) and the Taistner Bach crossing at km 3.9 (way 507522282).',
+        elevation: 'Official 6.2 km, 130 m up and down, 1:42 h, 1,084–1,211 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Gsiesertal-Welsberg-Taisten, Die Große Schlossrunde in Welsberg (Südtirol.info)',
+          'Gemeinde Welsberg-Taisten, Verordnung über die Haltung und das Führen von Hunden (2008, amended 2015), Art. 4 and 8',
+          'Gemeinde Welsberg-Taisten, Anordnung des Bürgermeisters 03/2023',
+          'Landschaftsplan Welsberg-Taisten, Durchführungsbestimmungen, Art. 3 (Biotop Pidigbach, not entered)',
+          'OpenStreetMap land cover and road data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 38,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 2 km on the asphalt old valley road, groomed as a cross-country ski trail in winter', 'Village lanes with light traffic', 'Narrow wooden bridge', 'Gravel forest track'],
+      terrainType: 'Asphalt old valley road and village lanes (about 60%), gravel forest track (about 40%)',
+      shadeDescription: 'The return through the Grafenwald forest past the castle is shaded; the old road along the Gsieser Bach and the village are mostly open.',
+      terrainDescription: 'Easy and pram-friendly: about 60% asphalt (old valley road, village lanes) and 40% gravel forest track.',
+      waterDescription: 'Fountains in Welsberg at the start and finish, the Taistner Bach crossing, and the Gsieser Bach beside the old road.',
+      dogNotes: 'Welsberg-Taisten requires a lead of at most 1.5 m on all public land and a muzzle carried; pick up after your dog. Dogs may not go onto meadows from 1 March to 31 October, or bathe in village fountains.',
+      tips: 'An easy loop up the Gsieser Bach on the old valley road and back through the forest past Schloss Welsperg: about 6 km from the tourist office and 130 m of climbing, under two hours. Dogs must be on a lead of at most 1.5 m everywhere public in Welsberg-Taisten, with a muzzle carried, and may not go onto meadows from 1 March to 31 October. In winter the old road is a cross-country ski trail.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Die Große Schlossrunde in Welsberg', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi5566d3b1cb790bc6c703b9917b09ab33.die-grosse-schlossrunde-in-welsberg.welsberg' },
+        { label: 'Welsberg-Taisten, dog regulation', url: 'https://www.gemeinde.welsberg-taisten.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_das_Fuehren_von_Hunden_1' },
+        { label: 'Welsberg-Taisten, Mayor’s ordinance 03/2023', url: 'https://www.gemeinde.welsberg-taisten.bz.it/de/Neuigkeiten/News/Anordnung_des_Buergermeisters_fuer_das_Verhalten_von_Hundebesitzern' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12173984' }
+      ],
+      startPoint: { lat: 46.75574, lng: 12.10566, label: 'Welsberg tourist office (official start), 180 m from the loop via the main square' },
+      waterSources: [
+        { km: 0, lat: 46.7560017, lng: 12.105435, osmId: 'node/5167581904', label: 'Fountain at the tourist office' },
+        { km: 3.9, lat: 46.765271, lng: 12.118358, osmId: 'way/507522282', label: 'Taistner Bach (stream crossing)' },
+        { km: 5.3, lat: 46.7579497, lng: 12.1053116, osmId: 'node/9006242959', label: 'Village fountain' },
+        { km: 5.3, lat: 46.7574635, lng: 12.1041028, osmId: 'node/10916470437', label: 'Main-square fountain, 130 m off the loop' }
+      ],
+      desc: 'A loop from Welsberg up the Gsieser Bach on the old valley road and back through the Grafenwald forest past Schloss Welsperg. The official route lists 6.2 km from the tourist office and 130 m of ascent.'
+    },
+    'osm-12302191': {
+      // Hand audit: 23 October 2026. In Rasen-Antholz, not Bruneck. The stored
+      // line is the official loop. About 2.1 km (stored km 1.6–4.4) lies inside
+      // Naturpark Rieserferner-Ahrn, whose decree has no dog clause; the Rasner
+      // Möser biotope is 71 m away and not entered. OSM maps a level junction
+      // with the 90 km/h SP44 where the official text describes an underpass.
+      area: 'Rasen-Antholz / Rasun-Anterselva',
+      distance: 8.6,
+      elevation: 233,
+      hours: '2.5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Niederrasen and the wooded valley sides the loop runs along, October (Llorenzi, CC BY-SA 3.0).',
+        route: 'Stored line 8.54 km, closed; 99.7% within 40 m of the province register line; official 8.6 km.',
+        routeNumbers: 'No number: follow the blue-and-white “Dorfrundweg Rasen” waymark. From Oberrasen the route runs on the forest road along the Antholzer Bach towards Antholz, turns left under the main road to the Oberrasen barbecue site, follows the forest edge back to Niederrasen and returns over the Linde lane.',
+        mapPoints: 'Start in Niederrasen village centre at the Dorfrundweg guidepost (OSM node 2048599383); spring at the Oberrasen barbecue site (node 9001872395) and fountains in Oberrasen and Niederrasen.',
+        elevation: 'Official 8.6 km, 233 m up and 222 m down, 2:25 h, 1,000–1,190 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Antholzertal, Dorfrundweg Rasen (Südtirol.info)',
+          'Gemeinde Rasen-Antholz, Verordnung zur Regelung der Hundehaltung (Gemeinderat 10/10, 25.02.2010), Art. 4 and 8',
+          'Naturpark Rieserferner-Ahrn, park decree (consolidated 20 Feb 2026)',
+          'Landschaftsplan Rasen-Antholz, Durchführungsbestimmungen, Art. 3 and 8 (newPlan doc 12819)',
+          'OpenStreetMap land cover, road and water data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Near the Oberrasen barbecue site the official route passes under the Antholzer Talstraße (SP44, 90 km/h); OSM maps only a level junction there, so if you miss the underpass, cross with great care', 'Short stretches of village road in Oberrasen and Gepaiden', 'Tarmac on the Linde lane and village streets, hot in summer', 'Cyclists and riders on the shared gravel tracks', 'Rough grassy track sections'],
+      terrainType: 'Gravel forest roads and forest paths, with short tarmac lanes in the villages',
+      shadeDescription: 'About 45% woodland: shaded forest paths on the west side alternate with open forest-edge and meadow stretches; at 1,000–1,190 m it can be warm at midday in summer.',
+      terrainDescription: 'Easy gravel forest roads, forest paths and short tarmac lanes through Niederrasen and Oberrasen; 233 m of gentle climbing. Officially easy, suitable for families.',
+      waterDescription: 'The Antholzer Bach runs right beside the track for about 3 km, there is a spring at the Oberrasen barbecue site, and village fountains in both villages (most summer-only). Dogs may not bathe in public fountains.',
+      dogNotes: 'Rasen-Antholz requires a lead of at most 1.5 m at all times and a muzzle carried. Dogs are banned from farmed meadows and fields during the growing season, so keep to the path. The forest-edge stretch is inside Naturpark Rieserferner-Ahrn, where disturbing wildlife is forbidden. Watch for horse riders and cyclists on the tracks.',
+      tips: 'Start in Niederrasen or Oberrasen (bus 431 from Olang-Antholz station) and follow the blue-and-white “Dorfrundweg Rasen” signs: 8.6 km and 233 m of climbing, about two and a half hours. In Rasen-Antholz dogs must be on a lead of at most 1.5 m everywhere, with a muzzle carried, and must stay off the meadows while the grass is growing. Use the underpass to reach the Oberrasen barbecue site rather than crossing the fast main road.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Dorfrundweg Rasen', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi40a4c9071317de8b470217dd3e65515c.dorfrunde-rasen.neunhaeusern' },
+        { label: 'Rasen-Antholz, dog regulation', url: 'https://www.gemeinde.rasenantholz.bz.it/de/Themen/Haustier/Sekretariat_-_Verordnung_zur_Regelung_der_Hundehaltung' },
+        { label: 'Naturpark Rieserferner-Ahrn, park decree (2026)', url: 'https://assets-eu-01.kc-usercontent.com/35feaa56-a701-013e-eaec-7624d40e92a9/98256087-e8fa-47a3-83b5-dacbcf63239b/Dekret%20NP%20RFA%2020.02.2026.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12302191' }
+      ],
+      startPoint: { lat: 46.7820289, lng: 12.0483382, label: 'Niederrasen village centre: Dorfrundweg guidepost, near the town hall bus stop (line 431)' },
+      waterSources: [
+        { km: 4.3, lat: 46.8035184, lng: 12.0626255, osmId: 'node/9001872395', label: 'Spring at the Oberrasen barbecue site' },
+        { km: 5.9, lat: 46.7914918, lng: 12.0588851, osmId: 'node/7318189285', label: 'Fountain in Oberrasen', seasonal: true },
+        { km: 6.1, lat: 46.7913282, lng: 12.0560967, osmId: 'node/7318188896', label: 'Fountain in Oberrasen, 90 m off the route', seasonal: true },
+        { km: 7.5, lat: 46.78023, lng: 12.048047, osmId: 'node/2048599348', label: 'Fountain in Niederrasen, 80 m off the route', seasonal: true },
+        { km: 7.5, lat: 46.780934, lng: 12.049554, osmId: 'node/7318189085', label: 'Fountain at the Antholzertal tourist office, 130 m off the route' }
+      ],
+      desc: 'An easy village loop in Rasen-Antholz: from Niederrasen and Oberrasen along the Antholzer Bach towards Antholz, under the main road to the Oberrasen barbecue site, along the forest edge and back over the Linde lane past old farms. The official route lists 8.6 km and 233 m of ascent.'
+    },
+    'sentiero-del-trenino': {
+      // Hand audit: 23 October 2026. One-way along the old Gröden railway from
+      // Runggaditsch (Kastelruth) through St. Ulrich and St. Christina to Plan in
+      // Wolkenstein; back by bus 350/352. Each municipality's dog regulation
+      // applies; the first 1.1 km in Kastelruth rests on the national ordinance.
+      area: 'Val Gardena: Runggaditsch – Ortisei – Santa Cristina – Selva',
+      distance: 12.2,
+      elevation: 454,
+      hours: '3.5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The restored railway tunnel portal at St. Christina, marked 1915/1916, July, on the line (Vale93b, CC BY-SA 4.0).',
+        route: 'Stored line 12.43 km, one-way, following OSM relation 9445694 “La Ferata”; official GPX 12.17 km (2% shorter), within 82 m of it.',
+        routeNumbers: 'No path number: follow the old railway line (La Ferata / Grödner Bahnweg), marked by history boards, from Runggaditsch through Ortisei and St. Christina to Plan in Selva.',
+        mapPoints: 'Start at Streda Passua in Runggaditsch (official GPX start); about thirty drinking fountains within 150 m from Ortisei on, ten listed with OSM node ids.',
+        elevation: 'Official 12.2 km, 454 m up and 2 m down, 3:30 h, 1,141–1,595 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Val Gardena Marketing, Grödner Bahnweg – La Ferata de Gherdëina (official page and GPX)',
+          'Gemeinde St. Ulrich, Verordnung über die Haltung und das Führen von Hunden (GR Nr. 28, 06.08.2019), Art. 4 and 6',
+          'Gemeinde St. Christina, Gemeindeverordnung zur Hundehaltung (Ratsbeschluss Nr. 2, 08.02.2010), Art. 4, 7 and 8',
+          'Gemeinde Wolkenstein, Hundeverordnung (Ratsbeschluss Nr. 5, 05.02.2010), Art. 4, 7 and 8',
+          'Gemeinde Kastelruth, Ortspolizeiordnung (GR Nr. 57, 4 Sep 2024), Art. 13, and the Ministero della Salute ordinance of 6 Aug 2013, extended 16 July 2026',
+          'Landschaftspläne St. Ulrich, St. Christina, Wolkenstein (newPlan); Naturpark Puez-Geisler boundary (not entered)'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 15,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 200 m beside the SS242 state road in St. Christina', 'Several SS242 crossings', 'Village streets with traffic', 'Shared cycle path', 'Hot tarmac (about 80% paved)'],
+      terrainType: 'Old railway grade: mostly asphalt and quiet streets, with gravel and path sections',
+      shadeDescription: 'Mostly open, on the sunny side of the valley through villages and meadows; short wooded stretches near Ortisei and St. Christina.',
+      terrainDescription: 'The old railway grade, wide and gentle, climbing steadily from 1,141 m to 1,595 m; mostly asphalt and quiet streets, with a lit former railway tunnel at St. Christina (open 07:00–23:00).',
+      waterDescription: 'Many municipal drinking fountains from Ortisei onwards (none in the first 2 km); several are summer-only. Dogs may not bathe in public fountains, so bring a bowl.',
+      dogNotes: 'A lead of at most 1.5 m on the whole walk and a muzzle carried: the rule in St. Ulrich, St. Christina and Wolkenstein, and the national rule in the Kastelruth stretch at the start. Keep dogs off hay meadows in the growing season and out of public fountains. On the bus back dogs need a lead, a muzzle and a ticket.',
+      tips: 'A one-way walk: start in Runggaditsch at the western edge of Ortisei and finish in Plan (Selva), then ride bus 350 or 352 back down the valley; your dog needs a lead, a muzzle and a ticket. Keep it on a lead of 1.5 m or less the whole way and off the meadows. The route is sunny and mostly paved, so start early in summer; the St. Christina tunnel is open 07:00–23:00.',
+      sourceLinks: [
+        { label: 'Val Gardena, Grödner Bahnweg – La Ferata de Gherdëina', url: 'https://www.valgardena.it/de/outdoor/base/outdoor/groedner-bahnweg-la-ferata-de-gherdeeina/810054758/' },
+        { label: 'Val Gardena, La Ferata – der alte Bahnweg (bus 350/352)', url: 'https://www.valgardena.it/de/outdoor/base/outdoor/la-ferata-der-alte-bahnweg-mit-seinen-bronzeskulpturen-und-schneehoehen/39349526/' },
+        { label: 'St. Ulrich, dog regulation', url: 'https://www.gemeinde.stulrich.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_das_Fuehren_von_Hunden_1' },
+        { label: 'St. Christina, dog regulation', url: 'https://www.gemeinde.stchristina.bz.it/system/web/GetDocument.ashx?cts=1536582042&fileId=1004815' },
+        { label: 'Wolkenstein, dog regulation', url: 'https://www.selva.eu/system/web/Verordnung.aspx?detailonr=225185593&menuonr=219901528' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/9445694' }
+      ],
+      startPoint: { lat: 46.575063, lng: 11.645157, label: 'Runggaditsch, western edge of Ortisei (Streda Passua), start of the old railway promenade' },
+      waterSources: [
+        { km: 2.4, lat: 46.5750266, lng: 11.6708529, osmId: 'node/7831511185', label: 'Ortisei, Purger fountain', seasonal: true },
+        { km: 2.9, lat: 46.5731101, lng: 11.6769044, osmId: 'node/6652727100', label: 'Ortisei drinking water' },
+        { km: 3.4, lat: 46.571844, lng: 11.6810386, osmId: 'node/6652727098', label: 'Ortisei drinking fountain' },
+        { km: 5.9, lat: 46.5613264, lng: 11.7066981, osmId: 'node/7823639986', label: 'St. Christina drinking fountain' },
+        { km: 6.8, lat: 46.55934, lng: 11.716157, osmId: 'node/7823614885', label: 'St. Christina drinking fountain' },
+        { km: 7.5, lat: 46.5586007, lng: 11.7251797, osmId: 'node/7872988085', label: 'St. Christina drinking fountain', seasonal: true },
+        { km: 9.2, lat: 46.559502, lng: 11.741493, osmId: 'node/7829781185', label: 'La Poza, Selva', seasonal: true },
+        { km: 9.7, lat: 46.559734, lng: 11.748247, osmId: 'node/7829994086', label: 'Selva promenade', seasonal: true },
+        { km: 10.6, lat: 46.557724, lng: 11.757174, osmId: 'node/7829683485', label: 'Col da Lech, Selva', seasonal: true },
+        { km: 11.7, lat: 46.5514481, lng: 11.7641975, osmId: 'node/5008342232', label: 'Selva drinking fountain' }
+      ],
+      desc: 'A gentle one-way walk along the trackbed of the old Gröden valley railway, from Runggaditsch through Ortisei and St. Christina, past bronze sculptures, history boards and a lit former tunnel, to Plan in Selva. The official route lists 12.2 km and 454 m of ascent; the bus brings you back.'
     }
   };
 
