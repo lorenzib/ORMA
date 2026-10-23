@@ -5,6 +5,7 @@ const {routeGuidanceByClaim,SAFETY_CATEGORY_OF_CLAIM}=require('./compile-verifie
 const {dogsNotAccepted}=require('./safety-research-lane');
 const {existingCopyFields}=require('./verified-editorial-handoff');
 const {researchMethodHolds,dogRuleBasis}=require('./research-methods');
+const {loadFreeSealChecks,freeChecksFor}=require('./free-seal-checks');
 
 const TARGETS = Object.freeze({
   'osm-relation-1484751': { trailId: 'tre-cime', operation: 'update-existing', routeRef: 'backoffice-data/route-proposals/tre-cime-classic.geojson' },
@@ -319,6 +320,8 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
   const at = options.at || new Date().toISOString();
   const decisions = latestDecisions(reviewQueue);
   const trailsById = new Map((options.productionTrails || []).map(trail => [trail.id, trail]));
+  // The free measurements behind the seal, from the checkout like the trails.
+  const freeSealChecks = options.freeSealChecks === undefined ? loadFreeSealChecks() : options.freeSealChecks;
   const outputs = new Map((execution?.outputs || []).map(output => [output.jobId, output]));
   const items = editorialQueue.items.map(item => {
     // `update-existing` only where something exists to update. Calling a walk
@@ -380,7 +383,8 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
       imageGeotag:existingTrail?.imageGeotag||null,imagePlace:existingTrail?.imagePlace||null}
       :hero?{heroImage:hero.assetUrl,imageGeotag:hero.geotag||null,imagePlace:hero.place||null}
         :{heroImage:null,imageIcon:null};
-    const research=researchMethodHolds(item,{...(existingTrail||{}),...photo});
+    const research=researchMethodHolds(item,{...(existingTrail||{}),...photo},
+      {freeChecks:freeChecksFor(freeSealChecks,target?.trailId||item.candidateId)});
     const graduation=graduationFor(researched,Boolean(retainedImage||hero),Boolean(verifiedFields),settledSafetyCategories(item),
       {dogsNotAccepted:banned.length>0,researchHolds:research.holds});
     // A trail short of the full seal publishes as a reviewed one.
