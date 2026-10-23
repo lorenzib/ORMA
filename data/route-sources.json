@@ -146,6 +146,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-12182936": {
+      "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11429423",
+      "publisher": "Autonome Provinz Bozen (hiking-trail register)",
+      "name": "24 Schörgaurunde",
+      "quote": "24 Schörgaurunde — Number 24, length 4507 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
     "osm-12190657": {
       "url": "https://suedtirol.live/de/tour/rundweg-langfenn-t22081",
       "publisher": "suedtirol.live (Open Data Hub tour) / province trail register",
@@ -274,6 +282,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-19330972": {
+      "url": "https://www.outdooractive.com/de/route/wanderung/suedtirols-sueden/dorfwanderung-altrei/19007940/",
+      "publisher": "Tourismusverein Südtirols Süden",
+      "name": "Dorfwanderung Altrei",
+      "quote": "Folgend über die Markierung 5 zur Örtlichkeit Pichl",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
     "osm-19541366": {
       "url": "https://www.valthorens.com/randonnee/randonnee-pedestre-le-lac-blanc/",
       "publisher": "Office de Tourisme Val Thorens (Apidae)",
@@ -289,6 +305,14 @@
       "quote": "Number '14', code_name '14  Panoramaweg' (provincial hiking-trail register)",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T18:00:00.000Z"
+    },
+    "osm-19703479": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoidbfb9a1b6eccdea5b10b45c74300abc3.zum-beimstein-knott.voeran",
+      "publisher": "Informationsbüro Hafling-Vöran-Meran 2000",
+      "name": "Zum Beimstein Knott (paths 16, 12, 14)",
+      "quote": "Die Wanderung beginnt im Zentrum von Vöran, der Weg Nr. 16 führt … Der Abstieg erfolgt auf dem Weg Nr. 12 zurück zur ersten Kreuzung, dann links auf dem Waldweg Nr. 14 weiter bis nach Vöran Dorf",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
     "osm-19974724": {
       "url": "https://eggental.com/en/activity/middle-circular-route-at-lake-carezza_5711",
