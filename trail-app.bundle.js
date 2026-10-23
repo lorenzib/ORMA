@@ -20642,6 +20642,1379 @@ function effectiveOverrides(profile, adjustOverride){
           "url": "https://www.openstreetmap.org/relation/19330972"
         }
       ]
+    },
+    'osm-9675994': {
+      // Hand audit 23 October 2026: the line matches the province trail register's 'St. Agatha Rundweg' (routes-hikingtrails.11426959,
+      // 1.51 km) within 22 m everywhere; waymark A. Dogs: Deutschnofen dog regulation Art. 4 and 8. No Natura 2000 site on the line.
+      // Place corrected from Nova Levante to Deutschnofen.
+      "area": "Deutschnofen / Nova Ponente",
+      "hours": "0.5",
+      "startPoint": {
+        "lat": 46.4241244,
+        "lng": 11.4446947,
+        "label": "On the farm road at Unterkofl, Deutschnofen (where the loop meets the road)"
+      },
+      "shadeCoverage": 65,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 500 m on the narrow asphalt farm road to Unterkofl, used by cars",
+        "Passes through two working farmyards (Unterkofl and Oberkofl)"
+      ],
+      "routeNumberSource": {
+        "provider": "Autonome Provinz Bozen, hiking-trail register",
+        "name": "St. Agatha Rundweg (waymark A)",
+        "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426959"
+      },
+      "desc": "A short loop on waymark A over the wooded hilltop above Deutschnofen, past the small, remote St. Agatha chapel and the Unterkofl and Oberkofl farms. It is about 1.5 km and a little over half an hour, with some 60 m of up and down, mostly in forest.\n\nDeutschnofen's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows, so keep to the track where it runs beside the meadows.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Deutschnofen requires, and stay off the meadows. The loop passes through two working farmyards and uses about 500 m of the farm road, where cars come and go. There is no water on the way, so bring some. Two thirds of the loop is in forest, so it stays fairly cool.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Plentn, CC0: the Unterkofl farm on the loop with Dolomite peaks behind, 13 m from the line (replaces a Rosengarten view 2.2 km away).",
+        "route": "Published line 1.50 km, within 22 m of the province register's St. Agatha Rundweg (1.51 km) everywhere.",
+        "routeNumbers": "Waymark A, as Eggental Tourismus names it at the Oberkoflhof and as OSM records it.",
+        "mapPoints": "Start where the loop meets the Unterkofl farm road; there is no water on the loop.",
+        "elevation": "About 57 m of up and down, measured on the line; the register gives none."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'St. Agatha Rundweg', line routes-hikingtrails.11426959, 1,509 m; every register point within 10 m of the line",
+          "Eggental Tourismus, 'Wanderung zum Kirchlein St. Agatha': 'Am Oberkoflhof biegt man rechts auf den Weg [A] ab, der direkt zum kleinen, abgelegenen Kirchlein St. Agata führt' (waymark A on this loop)",
+          "Gemeinde Deutschnofen, Verordnung über die Haltung und Führung von Hunden (GR 6/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows and fields), Art. 12 (applies outside built-up areas)",
+          "No Natura 2000 site on the line (EEA); the Deutschnofen landscape plan's rules (2026) set no dog rule",
+          "OpenStreetMap: road classes, surfaces, forest and farmyards along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, St. Agatha Rundweg (Open Data Hub)",
+          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426959"
+        },
+        {
+          "label": "Eggental Tourismus, Wanderung zum Kirchlein St. Agatha",
+          "url": "https://eggental.com/de/activity/wanderung-zum-kirchlein-st-agatha_45778"
+        },
+        {
+          "label": "Gemeinde Deutschnofen, dog regulation (PDF)",
+          "url": "https://www.gemeinde.deutschnofen.bz.it/system/web/GetDocument.ashx?cts=1708335105&fileId=1001871"
+        },
+        {
+          "label": "OpenStreetMap relation 9675994",
+          "url": "https://www.openstreetmap.org/relation/9675994"
+        }
+      ]
+    },
+    'osm-12190538': {
+      // Hand audit 23 October 2026: the line matches the province trail register's 'Flaaser Rundweg' (routes-hikingtrails.11425436,
+      // 4.98 km): every register point within 39 m, one 70 m dog-leg past the Leitlkeller. Dogs: Jenesien dog regulation Art. 4 and 8.
+      // No Natura 2000 site, park or biotope on the line.
+      "area": "Flaas, San Genesio / Jenesien",
+      "elevation": 180,
+      "shadeCoverage": 60,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 1.2 km on quiet public roads (Kampidellerweg, Lanzenweg) and 300 m of service road, where cars pass"
+      ],
+      "routeNumberSource": {
+        "provider": "Autonome Provinz Bozen, hiking-trail register",
+        "name": "Flaaser Rundweg",
+        "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425436"
+      },
+      "desc": "A 5 km loop round the hamlet of Flaas on the Tschögglberg above Jenesien, through fenced meadows, past farmsteads and the Leitlkeller inn, and back through spruce forest. About 180 m of up and down, between 1,350 and 1,530 m, in an hour and a half to two hours.\n\nJenesien's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows during the growing season, so keep to the path where it crosses them.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Jenesien requires, and keep off the meadows; horses graze in the fenced pastures. About 1.2 km follows quiet public roads. The only tap is by Flaas church, about 160 m off the loop. The first stretch over the meadows is open; most of the second half is in forest.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons (kept): Flaas and its church seen from the meadow slope above the village, which the loop crosses.",
+        "route": "Published line 5.05 km against the province register's Flaaser Rundweg (4.98 km): every register point within 39 m; one 70 m dog-leg past the Leitlkeller.",
+        "routeNumbers": "The register names the loop without a number; about 300 m shares path 8.",
+        "mapPoints": "Start at the car park on the loop; the only tap is by Flaas church, 160 m off the line.",
+        "elevation": "About 180 m of up and down, measured on the line; the register gives none."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Flaaser Rundweg', line routes-hikingtrails.11425436, 4,978 m; every register point within 39 m of the line",
+          "Gemeinde Jenesien, Verordnung über die Haltung und Führung von Hunden (GR 8/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows and fields in the growing season), Art. 12 (applies outside built-up areas)",
+          "Jenesien landscape plan (newPlan PPC-21079): dogs may not run free in biotopes; no biotope on the line; no Natura 2000 site on the line (EEA)",
+          "OpenStreetMap: road classes, surfaces, forest, farmyards and water along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, Flaaser Rundweg (Open Data Hub)",
+          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425436"
+        },
+        {
+          "label": "Gemeinde Jenesien, dog regulation",
+          "url": "https://www.gemeinde.jenesien.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden"
+        },
+        {
+          "label": "OpenStreetMap relation 12190538",
+          "url": "https://www.openstreetmap.org/relation/12190538"
+        }
+      ]
+    },
+    'osm-12371666': {
+      // Hand audit 23 October 2026: the line matches the province trail register's 'Kastelaz Promenade' (routes-hikingtrails.11425908,
+      // 1.27 km) within 15 m everywhere. Dogs: Tramin dog regulation Art. 4 and 8. No Natura 2000 site, park or biotope on the line.
+      "shadeCoverage": 5,
+      "heatRisk": "high",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 480 m on asphalt lanes used by cars (the St. Jakob lane to the Kastelazkeller and the Kastelazweg)"
+      ],
+      "routeNumberSource": {
+        "provider": "Autonome Provinz Bozen, hiking-trail register",
+        "name": "Kastelaz Promenade",
+        "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425908"
+      },
+      "desc": "A short promenade of about 1.3 km above Tramin, up the lane towards the hill of Kastelaz and its St. Jakob church and back on footpaths between the vineyards, with views over the village spire and the Etsch valley. Allow half an hour.\n\nTramin's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed land during the growing season, so keep your dog out of the vineyards.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Tramin requires, and keep it out of the vineyards. About half the walk is on asphalt lanes where cars pass. There is almost no shade on this low, sunny vineyard slope, so avoid summer middays. Fountains are mapped in the village, 45 to 120 m off the route.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Plentn, CC BY-SA 4.0 (cropped): the Tramin parish spire and the Etsch valley from the St. Jakob lane, 26 m from the line (replaces a Kalterer See view 610 m away).",
+        "route": "Published line 1.28 km, within 15 m of the province register's Kastelaz Promenade (1.27 km) everywhere.",
+        "routeNumbers": "The register names the promenade without a number.",
+        "mapPoints": "Start at the Altersheim bus stop on the route; the fountains are in the village just off it.",
+        "elevation": "About 74 m of up and down, measured on the line; the register gives none."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Kastelaz Promenade', line routes-hikingtrails.11425908, 1,270 m; every register point within 10 m of the line",
+          "Gemeinde Tramin, Gemeindeverordnung über die Haltung und Führung von Hunden (GR 7/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed land in the growing season), Art. 12 (applies outside built-up areas)",
+          "Tramin landscape plan (newPlan PPC-21098): no biotope or natural monument on the line and no dog rule; no Natura 2000 site on the line (EEA)",
+          "OpenStreetMap: road classes, surfaces, vineyards and water along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, Kastelaz Promenade (Open Data Hub)",
+          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425908"
+        },
+        {
+          "label": "Gemeinde Tramin, dog regulation",
+          "url": "https://www.gemeinde.tramin.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden"
+        },
+        {
+          "label": "OpenStreetMap relation 12371666",
+          "url": "https://www.openstreetmap.org/relation/12371666"
+        }
+      ]
+    },
+    'osm-123162': {
+      // Hand audit 23 October 2026: route, waymarks and figures from the official Planetenweg description (suedtirol.info / Eggental
+      // Tourismus, LTS 'Planetenweg in Gummer'; Max Valier observatory); the line matches the province trail register's 'Planetenweg'
+      // (routes-hikingtrails.11426176, 9.03 km) within 60 m everywhere. Dogs: Karneid dog regulation Art. 4 and 8. No Natura 2000 site
+      // or park; the line crosses the Schustermoos biotope, whose rules forbid disturbing wildlife but set no dog rule. Place corrected
+      // from Nova Levante to Gummer, Karneid.
+      "area": "Gummer, Karneid / Cornedo all'Isarco",
+      "distance": 9.1,
+      "elevation": 262,
+      "hours": "3",
+      "startPoint": {
+        "lat": 46.45295,
+        "lng": 11.4627,
+        "label": "Max Valier observatory, Obergummer (official start; Gasthaus Unteregger beside it)"
+      },
+      "shadeCoverage": 30,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 230 m on and across the provincial road (SP132)",
+        "About 3.8 km on quiet asphalt farm roads (Via Learn, Via Obergummer) and village streets"
+      ],
+      "routeNumberSource": {
+        "provider": "Eggental Tourismus / IDM Südtirol (suedtirol.info)",
+        "name": "Planetenweg in Gummer (paths 5, 1/3, 1, 5A)",
+        "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi9283332f407d0ff86bbad260c028cf01.planetenweg.steinegg"
+      },
+      "desc": "The Planets Path at Gummer: a 9.1 km loop from the Max Valier observatory across the sunny plateau above the Eggental, with a scale model of the solar system along the way. Path 5 leads east past the Oberegger farm (Mars) to Malgeier (Saturn), down by a small moor and across the provincial road; paths 1/3 and 1 climb past the Lärchenwald inn (Uranus) to the high point near 1,420 m (Neptune), and path 5A returns by the Learn pond and Tschigg (Pluto). About 3 hours and 262 m of up and down; officially easy to walk, and tagged dog-friendly.\n\nKarneid's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows and fields, and may not bathe in fountains or cattle troughs.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Karneid requires, and keep it off the meadows; the loop passes several working farms and cowsheds. There is nowhere to eat or drink on the loop and no mapped tap, so bring water for you both; the Unteregger inn is at the start. Take care crossing the provincial road. Only about a third is in forest, so it is warm on sunny afternoons. Through the moor near Malgeier, keep your dog close so it does not disturb wildlife.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Christian Auer, CC BY-SA 3.0 (cropped): the Latemar from the Max Valier observatory at the start, as its description states; not geotagged (replaces a Lake Carezza view 10 km away).",
+        "route": "Published line 9.03 km, within 60 m of the province register's Planetenweg everywhere; officially 9.1 km. The observatory page's 'knapp 6 km' contradicts its own stage distances, which add up to 9.1 km.",
+        "routeNumbers": "Paths 5, 1/3, 1 and 5A with the planet signs, as the official description states.",
+        "mapPoints": "Start at the Max Valier observatory, the official start; no water on the loop, as the official page warns.",
+        "elevation": "Official 262 m of up and down."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Eggental Tourismus / IDM Südtirol (LTS 'Planetenweg in Gummer'), and the Max Valier observatory (sternwarte.it): 'Ausgehend von der Sternwarte „Max Valier“'; 9.1 km, 3 h, 262 m up and down, 1,288–1,425 m; waymarks 5, 1/3, 1, 5A",
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Planetenweg', line routes-hikingtrails.11426176, 9.03 km; every register point within 60 m of the line",
+          "Gemeinde Karneid, Verordnung über die Haltung und Führung von Hunden (in force 13 Sep 2015): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows and fields; no bathing in fountains or troughs), Art. 12 (applies outside built-up areas)",
+          "Karneid landscape plan (newPlan PPC-21023): Schustermoos biotope on the line, disturbing wild animals forbidden, no dog rule; no Natura 2000 site on the line (EEA)",
+          "OpenStreetMap: road classes, surfaces, forest and farms along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "suedtirol.info, Planetenweg in Gummer",
+          "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi9283332f407d0ff86bbad260c028cf01.planetenweg.steinegg"
+        },
+        {
+          "label": "South Tyrol trail register, Planetenweg (Open Data Hub)",
+          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426176"
+        },
+        {
+          "label": "Gemeinde Karneid, dog regulation",
+          "url": "https://www.gemeinde.karneid.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden"
+        },
+        {
+          "label": "OpenStreetMap relation 123162",
+          "url": "https://www.openstreetmap.org/relation/123162"
+        }
+      ]
+    },
+    'osm-2179746': {
+      // Hand audit 23 October 2026: line rebuilt on OSM ways along the province trail register's 'Naturlehrpfad Castelfeder'
+      // (routes-hikingtrails.11426625, 1.71 km), signed on the ground as the Naturerlebnisweg Castelfeder; the old 2.3 km line matched
+      // no official route. Dogs: Montan dog regulation Art. 4 and 8; the hill is the Castelfeder biotope (Natura 2000 IT3110035), whose
+      // landscape-plan rule forbids letting dogs run free.
+      "area": "Montan / Montagna – Castelfeder",
+      "path": [
+        [
+          46.33604,
+          11.29373
+        ],
+        [
+          46.33601,
+          11.29371
+        ],
+        [
+          46.33594,
+          11.29368
+        ],
+        [
+          46.33595,
+          11.29365
+        ],
+        [
+          46.33598,
+          11.29359
+        ],
+        [
+          46.33599,
+          11.29355
+        ],
+        [
+          46.33601,
+          11.29348
+        ],
+        [
+          46.33602,
+          11.29346
+        ],
+        [
+          46.33606,
+          11.29341
+        ],
+        [
+          46.33623,
+          11.29338
+        ],
+        [
+          46.33636,
+          11.2934
+        ],
+        [
+          46.33651,
+          11.29348
+        ],
+        [
+          46.33659,
+          11.29358
+        ],
+        [
+          46.33665,
+          11.29363
+        ],
+        [
+          46.33677,
+          11.2938
+        ],
+        [
+          46.33681,
+          11.29384
+        ],
+        [
+          46.33685,
+          11.29387
+        ],
+        [
+          46.33689,
+          11.29389
+        ],
+        [
+          46.33695,
+          11.29392
+        ],
+        [
+          46.33701,
+          11.29395
+        ],
+        [
+          46.33703,
+          11.29395
+        ],
+        [
+          46.33731,
+          11.29398
+        ],
+        [
+          46.33739,
+          11.29416
+        ],
+        [
+          46.33743,
+          11.29424
+        ],
+        [
+          46.33749,
+          11.29433
+        ],
+        [
+          46.33754,
+          11.29441
+        ],
+        [
+          46.33749,
+          11.29433
+        ],
+        [
+          46.33759,
+          11.29436
+        ],
+        [
+          46.33767,
+          11.29437
+        ],
+        [
+          46.33775,
+          11.29433
+        ],
+        [
+          46.33787,
+          11.29424
+        ],
+        [
+          46.33793,
+          11.29416
+        ],
+        [
+          46.33801,
+          11.29405
+        ],
+        [
+          46.33806,
+          11.29392
+        ],
+        [
+          46.33808,
+          11.29382
+        ],
+        [
+          46.3381,
+          11.2937
+        ],
+        [
+          46.33812,
+          11.29357
+        ],
+        [
+          46.33811,
+          11.29347
+        ],
+        [
+          46.33815,
+          11.29345
+        ],
+        [
+          46.33819,
+          11.29346
+        ],
+        [
+          46.33827,
+          11.29352
+        ],
+        [
+          46.33833,
+          11.2936
+        ],
+        [
+          46.33838,
+          11.29367
+        ],
+        [
+          46.33845,
+          11.29371
+        ],
+        [
+          46.33857,
+          11.29367
+        ],
+        [
+          46.33865,
+          11.29365
+        ],
+        [
+          46.3388,
+          11.29363
+        ],
+        [
+          46.33891,
+          11.29362
+        ],
+        [
+          46.33905,
+          11.29359
+        ],
+        [
+          46.33919,
+          11.29355
+        ],
+        [
+          46.33932,
+          11.29354
+        ],
+        [
+          46.33952,
+          11.29343
+        ],
+        [
+          46.33964,
+          11.29337
+        ],
+        [
+          46.33975,
+          11.29335
+        ],
+        [
+          46.33989,
+          11.29332
+        ],
+        [
+          46.33995,
+          11.29332
+        ],
+        [
+          46.34004,
+          11.29331
+        ],
+        [
+          46.34011,
+          11.29327
+        ],
+        [
+          46.34016,
+          11.29322
+        ],
+        [
+          46.3402,
+          11.29319
+        ],
+        [
+          46.34027,
+          11.29313
+        ],
+        [
+          46.34032,
+          11.29303
+        ],
+        [
+          46.34036,
+          11.29287
+        ],
+        [
+          46.3404,
+          11.29275
+        ],
+        [
+          46.34031,
+          11.29272
+        ],
+        [
+          46.34025,
+          11.29267
+        ],
+        [
+          46.34019,
+          11.29261
+        ],
+        [
+          46.34013,
+          11.29255
+        ],
+        [
+          46.34005,
+          11.29253
+        ],
+        [
+          46.33999,
+          11.29254
+        ],
+        [
+          46.33994,
+          11.29253
+        ],
+        [
+          46.33991,
+          11.2925
+        ],
+        [
+          46.33988,
+          11.2925
+        ],
+        [
+          46.33984,
+          11.29254
+        ],
+        [
+          46.33974,
+          11.29258
+        ],
+        [
+          46.33966,
+          11.29261
+        ],
+        [
+          46.33959,
+          11.29264
+        ],
+        [
+          46.33951,
+          11.29264
+        ],
+        [
+          46.33944,
+          11.29267
+        ],
+        [
+          46.33939,
+          11.2927
+        ],
+        [
+          46.33936,
+          11.29274
+        ],
+        [
+          46.33932,
+          11.29275
+        ],
+        [
+          46.33929,
+          11.29277
+        ],
+        [
+          46.33926,
+          11.29277
+        ],
+        [
+          46.33923,
+          11.29273
+        ],
+        [
+          46.33919,
+          11.29267
+        ],
+        [
+          46.33914,
+          11.29264
+        ],
+        [
+          46.33907,
+          11.29263
+        ],
+        [
+          46.33901,
+          11.29259
+        ],
+        [
+          46.33899,
+          11.29257
+        ],
+        [
+          46.33896,
+          11.29252
+        ],
+        [
+          46.33887,
+          11.29228
+        ],
+        [
+          46.33879,
+          11.29213
+        ],
+        [
+          46.33875,
+          11.29204
+        ],
+        [
+          46.33875,
+          11.29197
+        ],
+        [
+          46.33873,
+          11.29187
+        ],
+        [
+          46.33875,
+          11.29178
+        ],
+        [
+          46.33876,
+          11.29172
+        ],
+        [
+          46.33875,
+          11.29166
+        ],
+        [
+          46.33873,
+          11.29157
+        ],
+        [
+          46.33869,
+          11.2915
+        ],
+        [
+          46.33863,
+          11.29129
+        ],
+        [
+          46.33859,
+          11.29113
+        ],
+        [
+          46.33857,
+          11.29101
+        ],
+        [
+          46.33856,
+          11.29084
+        ],
+        [
+          46.33857,
+          11.29068
+        ],
+        [
+          46.33858,
+          11.29062
+        ],
+        [
+          46.3387,
+          11.29041
+        ],
+        [
+          46.33871,
+          11.29033
+        ],
+        [
+          46.33872,
+          11.2903
+        ],
+        [
+          46.33872,
+          11.29024
+        ],
+        [
+          46.33872,
+          11.29019
+        ],
+        [
+          46.3387,
+          11.2902
+        ],
+        [
+          46.33869,
+          11.29023
+        ],
+        [
+          46.33868,
+          11.29026
+        ],
+        [
+          46.33865,
+          11.29028
+        ],
+        [
+          46.33862,
+          11.29028
+        ],
+        [
+          46.33859,
+          11.29029
+        ],
+        [
+          46.33857,
+          11.29032
+        ],
+        [
+          46.33853,
+          11.29033
+        ],
+        [
+          46.33849,
+          11.29035
+        ],
+        [
+          46.33845,
+          11.29033
+        ],
+        [
+          46.33841,
+          11.29031
+        ],
+        [
+          46.33837,
+          11.29026
+        ],
+        [
+          46.33833,
+          11.29015
+        ],
+        [
+          46.33827,
+          11.29004
+        ],
+        [
+          46.33818,
+          11.28992
+        ],
+        [
+          46.33809,
+          11.28986
+        ],
+        [
+          46.33799,
+          11.28981
+        ],
+        [
+          46.33794,
+          11.28984
+        ],
+        [
+          46.33787,
+          11.2898
+        ],
+        [
+          46.33778,
+          11.28983
+        ],
+        [
+          46.33774,
+          11.28979
+        ],
+        [
+          46.33772,
+          11.28978
+        ],
+        [
+          46.33765,
+          11.28978
+        ],
+        [
+          46.33754,
+          11.28976
+        ],
+        [
+          46.33746,
+          11.2898
+        ],
+        [
+          46.33739,
+          11.28978
+        ],
+        [
+          46.33734,
+          11.28976
+        ],
+        [
+          46.33733,
+          11.28972
+        ],
+        [
+          46.33734,
+          11.28976
+        ],
+        [
+          46.33739,
+          11.28978
+        ],
+        [
+          46.33746,
+          11.2898
+        ],
+        [
+          46.33754,
+          11.28976
+        ],
+        [
+          46.33765,
+          11.28978
+        ],
+        [
+          46.33772,
+          11.28978
+        ],
+        [
+          46.33774,
+          11.28979
+        ],
+        [
+          46.33778,
+          11.28983
+        ],
+        [
+          46.33779,
+          11.28989
+        ],
+        [
+          46.33783,
+          11.28997
+        ],
+        [
+          46.33786,
+          11.28999
+        ],
+        [
+          46.3379,
+          11.29002
+        ],
+        [
+          46.33795,
+          11.29002
+        ],
+        [
+          46.33798,
+          11.29003
+        ],
+        [
+          46.33801,
+          11.29008
+        ],
+        [
+          46.33802,
+          11.29012
+        ],
+        [
+          46.33805,
+          11.29014
+        ],
+        [
+          46.33807,
+          11.29018
+        ],
+        [
+          46.33808,
+          11.29022
+        ],
+        [
+          46.33808,
+          11.29028
+        ],
+        [
+          46.33807,
+          11.29032
+        ],
+        [
+          46.33807,
+          11.29036
+        ],
+        [
+          46.33805,
+          11.2904
+        ],
+        [
+          46.33806,
+          11.29052
+        ],
+        [
+          46.3381,
+          11.29064
+        ],
+        [
+          46.33817,
+          11.29083
+        ],
+        [
+          46.33808,
+          11.2909
+        ],
+        [
+          46.33803,
+          11.2909
+        ],
+        [
+          46.33799,
+          11.29094
+        ],
+        [
+          46.33788,
+          11.29092
+        ],
+        [
+          46.33781,
+          11.2909
+        ],
+        [
+          46.33765,
+          11.29081
+        ],
+        [
+          46.33742,
+          11.29068
+        ],
+        [
+          46.33729,
+          11.29067
+        ],
+        [
+          46.33722,
+          11.29065
+        ],
+        [
+          46.33709,
+          11.29064
+        ],
+        [
+          46.33694,
+          11.29061
+        ],
+        [
+          46.33681,
+          11.29056
+        ],
+        [
+          46.33669,
+          11.29048
+        ],
+        [
+          46.3366,
+          11.29045
+        ],
+        [
+          46.33654,
+          11.29044
+        ],
+        [
+          46.3365,
+          11.29044
+        ],
+        [
+          46.33646,
+          11.29044
+        ],
+        [
+          46.33641,
+          11.29048
+        ],
+        [
+          46.33636,
+          11.29051
+        ],
+        [
+          46.3363,
+          11.29055
+        ],
+        [
+          46.3362,
+          11.29059
+        ],
+        [
+          46.33606,
+          11.2906
+        ],
+        [
+          46.33596,
+          11.29061
+        ],
+        [
+          46.33582,
+          11.2906
+        ],
+        [
+          46.33575,
+          11.29058
+        ],
+        [
+          46.33568,
+          11.29049
+        ],
+        [
+          46.33572,
+          11.29046
+        ],
+        [
+          46.33568,
+          11.29049
+        ],
+        [
+          46.33558,
+          11.29057
+        ],
+        [
+          46.33552,
+          11.29069
+        ],
+        [
+          46.33548,
+          11.29087
+        ],
+        [
+          46.33545,
+          11.29103
+        ]
+      ],
+      "lat": 46.33604,
+      "lng": 11.29373,
+      "distance": 1.7,
+      "elevation": 65,
+      "hours": "0.75",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 349
+        },
+        {
+          "km": 0.1,
+          "elev": 339
+        },
+        {
+          "km": 0.3,
+          "elev": 343
+        },
+        {
+          "km": 0.4,
+          "elev": 365
+        },
+        {
+          "km": 0.5,
+          "elev": 360
+        },
+        {
+          "km": 0.6,
+          "elev": 349
+        },
+        {
+          "km": 0.8,
+          "elev": 375
+        },
+        {
+          "km": 0.9,
+          "elev": 381
+        },
+        {
+          "km": 1,
+          "elev": 374
+        },
+        {
+          "km": 1.2,
+          "elev": 399
+        },
+        {
+          "km": 1.3,
+          "elev": 400
+        },
+        {
+          "km": 1.4,
+          "elev": 396
+        },
+        {
+          "km": 1.6,
+          "elev": 371
+        },
+        {
+          "km": 1.7,
+          "elev": 344
+        }
+      ],
+      "waterSources": [
+        {
+          "km": 0.1,
+          "lat": 46.3381272,
+          "lng": 11.2944135,
+          "osmId": "node/10797176761",
+          "label": "Drinking water (OSM-verified location)"
+        },
+        {
+          "km": 0.8,
+          "lat": 46.3381974,
+          "lng": 11.2908707,
+          "osmId": "node/1346913315",
+          "label": "Drinking water (OSM-verified location)"
+        }
+      ],
+      "rifugi": [
+        {
+          "km": 0.6,
+          "lat": 46.34192,
+          "lng": 11.29087,
+          "osmId": "way/163812110",
+          "name": "Bambus"
+        }
+      ],
+      "startPoint": {
+        "lat": 46.3363,
+        "lng": 11.2938,
+        "label": "Castelfeder sports-zone car park, Montan (beside the start of the trail)"
+      },
+      "terrainType": "Footpaths over open porphyry grassland and woodland, with a short track at each end",
+      "shadeCoverage": 35,
+      "heatRisk": "high",
+      "exposure": false,
+      "surfaceHazards": [
+        "A cattle grid across the path, and gates",
+        "Uneven porphyry rock and old ruin walls beside the path"
+      ],
+      "routeNumberSource": {
+        "provider": "Autonome Provinz Bozen, hiking-trail register",
+        "name": "Naturlehrpfad Castelfeder",
+        "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426625"
+      },
+      "desc": "The nature trail over Castelfeder, the low porphyry hill between Montan and Auer, signed on the ground as the Naturerlebnisweg Castelfeder. It climbs from the sports-zone car park through woodland onto the open, rocky hilltop with its ruins and the 'Heidenrutsche' rock, and comes down on the far side by the youth hostel, about 1.7 km and 65 m of climb in three quarters of an hour.\n\nThe whole hill is the Castelfeder biotope, a Natura 2000 site, where dogs may not run free. Montan's dog regulation requires a lead of at most 1.5 m on all public ground, and owners must carry a muzzle; dogs are not allowed on farmed meadows during the growing season. The hill is grazed, so expect livestock and a cattle grid on the path.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) the whole way and carry a muzzle: this is a protected biotope, and Montan requires it. Stay on the path, as the hill is grazed and the meadows are off limits to dogs. Lift or guide your dog over the cattle grid. It is low, rocky and sunny, so avoid hot middays; taps are mapped near the start and by the ruins.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, DKrieger, CC BY-SA 3.0 (kept): the open porphyry hilltop of Castelfeder by the Heidenrutsche rock, about 110 m from the line.",
+        "route": "Line rebuilt on OSM ways along the province register's Naturlehrpfad Castelfeder (1.71 km): 1.70 km, every register point within 14 m. The old 2.3 km line matched no official route.",
+        "routeNumbers": "The register names the nature trail without a number; it is signed Naturerlebnisweg Castelfeder.",
+        "mapPoints": "Start by the Castelfeder sports-zone car park; taps traced to OSM.",
+        "elevation": "About 65 m of climb between 338 and 401 m, measured on the line; the register gives none."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Naturlehrpfad Castelfeder', line routes-hikingtrails.11426625, 1,706 m; every register point within 14 m of the rebuilt line",
+          "IDM Südtirol (suedtirol.info), Biotop Castelfeder: 'Auf dem Naturerlebniswanderweg kann die Pflanzen- und Tierwelt des Biotops erkundet werden'; OSM survey (2025): guidepost 'Naturerlebnisweg Castelfeder'",
+          "Gemeinde Montan, Verordnung über die Haltung und Führung von Hunden (GR 6/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows in the growing season), Art. 12 (applies outside built-up areas)",
+          "Montan landscape plan (newPlan PPC-21053, 2021), Biotop Castelfeder: Art. 6(4)(h) forbids 'Hunde frei laufen zu lassen'; Art. 6(5)(a) allows grazing; Natura 2000 site IT3110035 (EEA)",
+          "OpenStreetMap: path surfaces, cattle grid, gates and water along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, Naturlehrpfad Castelfeder (Open Data Hub)",
+          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426625"
+        },
+        {
+          "label": "Gemeinde Montan, dog regulation",
+          "url": "https://www.gemeinde.montan.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden"
+        },
+        {
+          "label": "OpenStreetMap relation 2179746",
+          "url": "https://www.openstreetmap.org/relation/2179746"
+        }
+      ]
     }
   };
 
