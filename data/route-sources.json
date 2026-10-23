@@ -36,11 +36,11 @@
     },
     "nuvolau": {
       "url": "https://cortina.dolomiti.org/it/escursioni/al-rifugio-nuvolau/",
-      "publisher": "Cortina Dolomiti / Cortina Marketing (local tourism board)",
+      "publisher": "Cortina Dolomiti / Cortina Marketing",
       "name": "Al Rifugio Nuvolau",
-      "quote": "Dal parcheggio del Passo Giau prendete il sentiero n° 443: potrete ammirare alla vostra sinistra le pareti frastagliate de Ra Gusela e sulla destra i profili della Croda da Lago e dei Lastoi de Formin.",
-      "foundBy": "orma-route-source-scout",
-      "verifiedAt": "2026-10-12T20:04:08.598Z"
+      "quote": "9,8 km · 612 m · 5 h · Sentiero per esperti · sentieri 443, 439, 464, 452",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
     "osm-10539302": {
       "url": "https://www.valloire.net/sit/le-sentier-ecosylve-de-valloire-5841280/",
