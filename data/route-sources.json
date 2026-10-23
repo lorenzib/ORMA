@@ -114,6 +114,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T16:00:00.000Z"
     },
+    "osm-12182895": {
+      "url": "https://www.sarntal.com/fileadmin/user_upload/Wanderbus_2025_dt.pdf",
+      "publisher": "Tourismusverein Sarntal",
+      "name": "Talrundweg (18)",
+      "quote": "Wer eine leichte Spazierwanderung bevorzugt, liegt mit dem neu angelegten Talrundweg um Sarnthein-Nordheim-Astfeld … gold richtig. … Talrundweg (18) – Abzweig 18A – Waldrasthütte",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
     "osm-12745924": {
       "url": "https://www.la-norma.fr/en/equipement/les-escaliers-walking-trail-la-norma/",
       "publisher": "Haute Maurienne Vanoise Tourisme (La Norma)",
@@ -367,6 +375,14 @@
       "publisher": "Comune di Lozzo di Cadore / CAI",
       "name": "13 - Anello di Valzalina",
       "quote": "Dislivello in salita: 580 m; lunghezza: circa 3,8 km; tempo medio di percorrenza: 3h 30'; difficoltà: percorso di tipo E (escursionistico).",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-7549783": {
+      "url": "https://www.lozzodicadore.eu/sito/node/187",
+      "publisher": "Comune di Lozzo di Cadore / CAI",
+      "name": "14 - Anello del Troi de le Ciaure",
+      "quote": "Dislivello in salita: 380 m; lunghezza: circa 4 km; tempo medio di percorrenza: 2h 30'; difficoltà: percorso di tipo E (escursionistico) con un breve passaggio su roccia affiorante",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
