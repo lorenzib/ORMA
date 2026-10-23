@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-10-23T04:27:13.872Z",
+  "generatedAt": "2026-10-23T07:29:15.894Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-10-20T18:00:00+00:00",
       "expiresAt": "2026-10-22T05:59:00+00:00",
       "firstPublishedAt": "2026-10-19T22:21:40.478Z",
-      "lastSeenAt": "2026-10-23T04:27:13.872Z",
+      "lastSeenAt": "2026-10-23T07:29:15.894Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -42,7 +42,7 @@
       "effectiveAt": "2026-10-20T18:00:00+00:00",
       "expiresAt": "2026-10-21T23:59:00+00:00",
       "firstPublishedAt": "2026-10-19T22:21:40.478Z",
-      "lastSeenAt": "2026-10-23T04:27:13.872Z",
+      "lastSeenAt": "2026-10-23T07:29:15.894Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -91,7 +91,7 @@
       "effectiveAt": "2026-10-22T00:00:00+00:00",
       "expiresAt": "2026-10-23T23:59:00+00:00",
       "firstPublishedAt": "2026-10-18T22:19:35.615Z",
-      "lastSeenAt": "2026-10-23T04:27:13.872Z",
+      "lastSeenAt": "2026-10-23T07:29:15.894Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -116,7 +116,7 @@
       "effectiveAt": "2026-10-21T00:00:00+00:00",
       "expiresAt": "2026-10-21T23:59:00+00:00",
       "firstPublishedAt": "2026-10-18T22:19:35.615Z",
-      "lastSeenAt": "2026-10-23T04:27:13.872Z",
+      "lastSeenAt": "2026-10-23T07:29:15.894Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -160,12 +160,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/3471461f-4ed5-4bb7-b309-43b4abd90cf1",
-      "identifier": "2.49.0.0.250.0.FR.20261023060706.196023",
-      "effectiveAt": "2026-10-23T04:00:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/c88d9d99-61d0-43d7-97d1-ec59ed0378f9",
+      "identifier": "2.49.0.0.250.0.FR.20261023080040.621023",
+      "effectiveAt": "2026-10-23T06:00:00+00:00",
       "expiresAt": "2026-10-23T22:00:00+00:00",
       "firstPublishedAt": "2026-10-22T16:28:04.812Z",
-      "lastSeenAt": "2026-10-23T04:27:13.872Z",
+      "lastSeenAt": "2026-10-23T07:29:15.894Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -215,12 +215,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/3471461f-4ed5-4bb7-b309-43b4abd90cf1",
-      "identifier": "2.49.0.0.250.0.FR.20261023060706.196023",
-      "effectiveAt": "2026-10-23T04:00:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/c88d9d99-61d0-43d7-97d1-ec59ed0378f9",
+      "identifier": "2.49.0.0.250.0.FR.20261023080040.621023",
+      "effectiveAt": "2026-10-23T06:00:00+00:00",
       "expiresAt": "2026-10-23T22:00:00+00:00",
       "firstPublishedAt": "2026-10-23T04:27:13.872Z",
-      "lastSeenAt": "2026-10-23T04:27:13.872Z",
+      "lastSeenAt": "2026-10-23T07:29:15.894Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -299,7 +299,8 @@
         "Boucle du Moulin de Cornet",
         "Boucle des cascades",
         "Lacs du Chardonnet"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:thunderstorm:trentino-alto-adige",
@@ -316,7 +317,7 @@
       "effectiveAt": "2026-10-21T00:00:00+00:00",
       "expiresAt": "2026-10-21T23:59:00+00:00",
       "firstPublishedAt": "2026-10-19T22:21:40.478Z",
-      "lastSeenAt": "2026-10-23T04:27:13.872Z",
+      "lastSeenAt": "2026-10-23T07:29:15.894Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
