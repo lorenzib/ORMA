@@ -22380,6 +22380,235 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 11.7, lat: 46.5514481, lng: 11.7641975, osmId: 'node/5008342232', label: 'Selva drinking fountain' }
       ],
       desc: 'A gentle one-way walk along the trackbed of the old Gröden valley railway, from Runggaditsch through Ortisei and St. Christina, past bronze sculptures, history boards and a lit former tunnel, to Plan in Selva. The official route lists 12.2 km and 454 m of ascent; the bus brings you back.'
+    },
+    'osm-11828233': {
+      // Hand audit: 23 October 2026. In Mühlbach (hamlet Vals). The OSM
+      // relation lists one street twice and carries an out-and-back artefact;
+      // the official loop is rebuilt on OSM ways along the province register
+      // line through the routeLine override. Mühlbach's dog regulation applies.
+      area: 'Vals, Mühlbach / Rio di Pusteria',
+      distance: 5.2,
+      elevation: 164,
+      hours: '1.25–1.5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Vals village and its meadows in summer, from the slope above the walk (Franz Aschenbrenner, CC BY 3.0).',
+        route: 'Rebuilt on OSM ways along the province register line from the valley-station car park: 5.15 km, closed; official 5.1 km.',
+        routeNumbers: 'No route number: follow the “Valser Rundweg” signs from the valley station up the lane along the forest edge, through the village, down to the Masl chapel, then back along the Valler Bach.',
+        mapPoints: 'Start at the free car park at the Jochtal cable-car valley station (OSM way 939788336, the official start); drinking-water taps in the village centre (OSM nodes 3661313096, 12058755879), a short detour.',
+        elevation: 'Official 5.1 km, 164 m up and down, 1 h 19 min, high point 1,459 m, low point 1,296 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Gitschberg Jochtal, Valser Rundweg (Südtirol.info)',
+          'Province hiking-trail register, Valser Rundweg (routes-hikingtrails.11425895)',
+          'Gemeinde Mühlbach, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 4, 01.03.2010), Art. 4 and 8',
+          'Landschaftsplan Mühlbach, Durchführungsbestimmungen (newPlan doc 12815)',
+          'OpenStreetMap land cover, farm and road data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 35,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Village lanes without a pavement', 'Crossing the Valser road (SP100) at the Masl chapel', 'Roundabout by the valley station', 'Sunny asphalt on the first section'],
+      terrainType: 'Paved lanes and village roads (about 60%), then a gravel track closed to traffic along the Valler Bach',
+      shadeDescription: 'About a third in forest, mostly the stream track and the forest-edge lane; open meadows and village otherwise.',
+      terrainDescription: 'Paved lanes and village roads for about 60%, then a gravel track closed to traffic along the Valler Bach; gentle gradients throughout. Officially a family walk.',
+      waterDescription: 'Taps in the village centre, a short detour at about km 2; the last 2 km follow the Valler Bach, with easy stream access.',
+      dogNotes: 'Mühlbach requires a lead of no more than 1.5 m on all public land, in the village and outside it, and a muzzle carried. Dogs are not allowed on meadows during the growing season or on playgrounds. Farms are on the route, so animals may be close by.',
+      tips: 'Park free at the Jochtal valley station and follow the “Valser Rundweg” signs: 5.1 km and 164 m of climbing, about an hour and a quarter. Keep your dog on a lead of at most 1.5 m the whole way and off the hay meadows in the growing season, as Mühlbach requires, and carry a muzzle. Bring water for the first sunny, paved stretch; the stream comes at the end.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Valser Rundweg', url: 'https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoi21f910493232aae4d07d3e71b8b32bda.valser-loop-trail-scenic-walking-through-nature-and-village-life.vals-valles' },
+        { label: 'Mühlbach, dog regulation', url: 'https://www.gemeinde.muehlbach.bz.it/de/Verwaltung/Dokumente/Verordnung_-_Haltung_von_Hunden' },
+        { label: 'Province hiking-trail register (Open Data Hub)', url: 'https://tourism.api.opendatahub.com/v1/GeoShape/routes-hikingtrails.11425895' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11828233' }
+      ],
+      startPoint: { lat: 46.85002, lng: 11.62212, label: 'Free car park at the Jochtal cable-car valley station, Vals' },
+      waterSources: [
+        { km: 1.9, lat: 46.841253, lng: 11.625874, osmId: 'node/3661313096', label: 'Drinking-water tap in Vals village, about 120 m off the loop' },
+        { km: 1.9, lat: 46.84112, lng: 11.6258307, osmId: 'node/12058755879', label: 'Water tap by the trail noticeboard, about 130 m off the loop' }
+      ],
+      desc: 'A gentle village loop in Vals above Mühlbach: from the Jochtal valley station along the forest edge into the village, down to the Masl chapel and back along the Valler Bach. The official route lists 5.1 km and 164 m of ascent.'
+    },
+    'giro-del-bulacia': {
+      // Hand audit: 23 October 2026. The official tour starts at the Compatsch
+      // gondola top station and adds path 14 to the waymarked PU loop; the line
+      // is rebuilt along the official GPX through the routeLine override. Not in
+      // the Schlern-Rosengarten park (1.5 km away); inside the Seiser Alm
+      // landscape protection area, whose plan has no dog clause. Kastelruth sets
+      // no lead rule, so the national ordinance supplies it.
+      distance: 8.5,
+      elevation: 413,
+      hours: '2.5–3',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'ORMA original: a gravel Alm track on the Puflatsch in summer with cows and electric tape, Langkofel, Plattkofel and Sella behind.',
+        route: 'Rebuilt on OSM ways along the official GPX from the gondola top station: 8.52 km, closed; official 8.4 km. The PU loop itself matches the province register line within 46 m.',
+        routeNumbers: 'From the gondola top station follow path 14 up to the PU/14 signpost, then the red-white “PU” marking all the way round the Puflatsch (Bullaccia), returning on PU/14 to Compatsch.',
+        mapPoints: 'Start at the Compatsch gondola top station (official start, OSM node 102561714); drinking-water tap at the Arnika Hütte (OSM node 9980117889), and seasonal huts on the loop.',
+        elevation: 'Official 8.4 km, 413 m up and down, 2 h 36, lowest 1,852 m, highest 2,173 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Seiser Alm Marketing, Giro della Bullaccia (Südtirol.info, official page and GPX)',
+          'Seiser Alm Marketing, Urlaub mit dem Hund',
+          'Province hiking-trail register, Puflatschumrundung (routes-hikingtrails.11426011)',
+          'Gemeinde Kastelruth, Ortspolizeiordnung (GR Nr. 57, 4 Sep 2024), Art. 13 and 19',
+          'Landschaftsplan Seiser Alm (DLH 269/V/81, 10 Feb 1992)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
+          'OpenStreetMap pasture, gate, hut and land-cover data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 23,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 0.7 km of quiet paved road each way between the gondola and the loop (path 14), plus a short paved stretch in Compatsch, with hotel and service vehicles', 'Short stone steps near the Puflatsch top station', 'Pasture gates and electric fencing on the plateau'],
+      terrainType: 'Broad gravel tracks and earth paths over alpine meadow, with paved road at the start',
+      shadeDescription: 'Some spruce and larch on the lower slopes near Compatsch and the Dibaita hut; the Puflatsch plateau is open meadow at about 2,000–2,170 m with no shade.',
+      terrainDescription: 'Broad gravel tracks and earth paths over alpine meadow; a steady climb at the start, otherwise gentle. Officially a family walk, with no exposed sections.',
+      waterDescription: 'Huts on the loop (Tschötsch Alm, Bergrestaurant Puflatsch, Arnika Hütte with a drinking tap, and Dibaita just off the path), open in season only, and a few small streams near the Arnika hut. Carry water outside the hut season.',
+      dogNotes: 'The Puflatsch is summer pasture: cattle graze right beside the path, behind gates and electric fences. Kastelruth forbids leaving dogs unattended and requires you to pick up after them; the Italian national rule adds a lead of at most 1.5 m and a muzzle carried. The tourism board asks for a lead on all walks and a muzzle on the gondola and buses.',
+      tips: 'Cows graze the Puflatsch all summer, often right on the track: keep your dog on a short lead, give the herd room, and let go of the lead only if cattle charge. A lead of at most 1.5 m is required, and a muzzle on the gondola and buses (dogs pay on the bus). Compatsch is reached by gondola or bus, as the road is closed to cars from 9:00 to 17:00, and the huts close outside the season.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Giro della Bullaccia', url: 'https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoi6af98cb6de2e22ce1ffbb5b17b729a38.giro-della-bullaccia.alpe-di-siusi' },
+        { label: 'Seiser Alm, Urlaub mit dem Hund', url: 'https://www.seiseralm.it/de/info/aktuelle-infos/urlaub-mit-dem-hund.html' },
+        { label: 'Province hiking-trail register (Open Data Hub)', url: 'https://tourism.api.opendatahub.com/v1/GeoShape/routes-hikingtrails.11426011' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/9483250' }
+      ],
+      startPoint: { lat: 46.5425, lng: 11.6177, label: 'Compatsch, Seiser Alm gondola top station' },
+      waterSources: [
+        { km: 1.3, lat: 46.54906, lng: 11.61427, osmId: 'node/2755699223', label: 'Tschötsch Alm (hut)', seasonal: true },
+        { km: 1.7, lat: 46.55154, lng: 11.61624, osmId: 'way/97548906', label: 'Bergrestaurant Puflatsch', seasonal: true },
+        { km: 5, lat: 46.55925, lng: 11.60771, osmId: 'node/9980117889', label: 'Drinking-water tap at the Arnika Hütte', seasonal: true },
+        { km: 7.3, lat: 46.54705, lng: 11.60699, osmId: 'way/98576829', label: 'Dibaita Puflatschhütte, 67 m off the line', seasonal: true }
+      ],
+      desc: 'A family loop round the Puflatsch (Bullaccia) above the Seiser Alm: from the Compatsch gondola up path 14, then the PU marking past the Engelsrast and the Hexenbänke viewpoints over the plateau, with the Langkofel and Schlern in view. The official route lists 8.4 km and 413 m of ascent.'
+    },
+    'osm-13491868': {
+      // Hand audit: 23 October 2026. Starts in Verdings, municipality Klausen,
+      // Eisacktal: not Villnöss. The stored line covers the official walk within
+      // 21 m but runs it the other way round. Klausen's police rules require a
+      // lead on roads and public places; the national ordinance adds the 1.5 m
+      // lead and muzzle. Natural monuments on the route forbid only damage.
+      area: 'Verdings, Klausen / Chiusa',
+      distance: 3.2,
+      elevation: 191,
+      hours: '1–1.5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Verdings and its church, the start of the walk, in autumn (Cactus26, CC BY-SA 3.0).',
+        route: 'Stored line 3.32 km, closed, never more than 21 m from the official line (3.15 km); official 3.2 km.',
+        routeNumbers: 'Follow the Birmehlweg signs and numbered info boards 1–8 from the Verdings square: path 1B down through the Raslerwald to Pardell, briefly path 1, then the Keschtnweg (chestnut sign) east to Moar zu Viersch, and path 3 back up the old cobbled path to Verdings. The map line is drawn the other way round.',
+        mapPoints: 'Start at the village square in Verdings (official start); seasonal drinking fountain in Verdings, OSM node 13780461719, 13 m from the line.',
+        elevation: 'Official 3.2 km, 191 m up and down, 1:01 h, high point 963 m, low point 774 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Klausen, Barbian, Feldthurns & Villanders, Birmehlweg (klausen.it and Outdooractive tour 16571007)',
+          'Bezirksgemeinschaft Eisacktal, Birmehlweg overview board',
+          'Gemeinde Klausen, Gemeindepolizeiordnung (Gemeinderat Nr. 37, 23.06.2004), Art. 29',
+          'Landschaftsplan Klausen, Durchführungsbestimmungen, Art. 3 (newPlan doc 3367)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
+          'OpenStreetMap farm, gate, land-cover and road data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 20,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 0.5 km on the asphalt road to Pardell, shared with cars', 'Village streets in Verdings', 'Old cobbled path, slippery when wet', 'Rocky dry-grassland path on the church hill'],
+      terrainType: 'Paths, farm tracks and a quiet asphalt road, with an old cobbled path',
+      shadeDescription: 'Mostly open, south-facing dry grassland, vineyards and orchards; short stretches of chestnut and mixed wood.',
+      terrainDescription: 'An easy loop on paths, farm tracks and a quiet asphalt road, with an old cobbled path for the climb back to Verdings. Officially easy.',
+      waterDescription: 'One seasonal drinking fountain in Verdings, and the Leitacherbach stream below Moar zu Viersch. Gasthaus Huber in Pardell is an official rest stop. Carry water in summer.',
+      dogNotes: 'Klausen requires dogs on a lead on roads and public places and bans them from public green areas and playgrounds; the Italian national rule adds a lead of at most 1.5 m and a muzzle carried. Working farms at Pardell and Moar zu Viersch, with gates by the pasture, so animals may be close by.',
+      tips: 'Start at the village square in Verdings and follow the Birmehlweg boards down past the church hill to Pardell: 3.2 km and 191 m of climbing, about an hour. The south-facing slope gets very hot in summer, so go early, or in spring or autumn, and carry water: the only fountain is back in Verdings. Keep your dog on a short lead past the farms and stay off the protected dry grassland on the church hill.',
+      sourceLinks: [
+        { label: 'Klausen tourism, Birmehlweg', url: 'https://www.klausen.it/en/nature-experiences/hiking/theme-based-trails' },
+        { label: 'Bezirksgemeinschaft Eisacktal, Birmehlweg', url: 'https://www.bzgeisacktal.it/de/Birmehlweg' },
+        { label: 'Klausen, Gemeindepolizeiordnung', url: 'https://www.klausen.eu/de/Verwaltung/Dokumente/Gemeindepolizeiordnung' },
+        { label: 'Landschaftsplan Klausen, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/3367' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/13491868' }
+      ],
+      startPoint: { lat: 46.655337, lng: 11.571633, label: 'Village square (Dorfplatz), Verdings' },
+      waterSources: [
+        { km: 0.3, lat: 46.6564429, lng: 11.571742, osmId: 'node/13780461719', label: 'Drinking fountain, Verdings', seasonal: true }
+      ],
+      desc: 'A short loop from Verdings above Klausen: past the sunny dry grassland of the church hill, down through the woods to Pardell, along the chestnut path to the Moar zu Viersch farm and back up an old cobbled path, with eight information boards on the way. The official route lists 3.2 km and 191 m of ascent.'
+    },
+    'osm-12172440': {
+      // Hand audit: 23 October 2026. Wholly in Terenten. The stored line is the
+      // official loop (province register within 35 m) less the optional detour
+      // to St. Margareth that the official 7.2 km includes. Terenten's dog
+      // regulation (2008) and its 2026 lead notice apply.
+      distance: 6.7,
+      elevation: 329,
+      hours: '2–2.5',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Terenten and the St. Georg spire from the panoramic path above the village, August (M-Car, CC BY-SA 3.0).',
+        route: 'Stored line 6.59 km, closed, within 35 m of the province register line; the official 7.2 km includes the optional out-and-back detour to St. Margareth.',
+        routeNumbers: 'From the village centre walk west along the Sonnenstraße to Hotel Tirolerhof, then follow waymark 1A past the Pillinghof and the Marienstöckl to the Pirchner Moos biotope; then the “Natur- und Kulturweg” signs over meadow paths to Margen (optional detour on 13 to St. Margareth), along the Hansleitnerweg to the Jakobihof, east into the Mühlental past the earth pyramids, and back into the village on 22.',
+        mapPoints: 'Start at the Parkplatz Zentrum in Terenten (official start); Dorfbrunnen drinking fountain, OSM node 7318188985, 40 m off the line at the start and finish.',
+        elevation: 'Official 7.2 km, 329 m up and down, 2 h 13 min, high point 1,458 m, low point 1,196 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Gitschberg Jochtal, Natur- und Kulturweg Terenten (Südtirol.info)',
+          'Province hiking-trail register, Natur- und Kulturweg (routes-hikingtrails.11426555)',
+          'Gemeinde Terenten, Verordnung über die Haltung von Hunden und anderen Tieren (Gemeinderat Nr. 8/R/2008), Art. 3 and 5, and the council’s lead notice of 26 Feb 2026',
+          'Landschaftsplan Terenten, Durchführungsbestimmungen, Art. 4 and 5 (newPlan doc 3056)',
+          'OpenStreetMap farm, land-cover and road data'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 30,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 450 m on the SP40 main road through the village, no pavement', 'Quiet asphalt farm roads (Margener Straße, Hansleitnerweg)', 'Short steps and an eroded gully at the earth pyramids', 'The line crosses a farmyard at Margen'],
+      terrainType: 'Farm tracks, meadow paths and quiet roads, with a short path and steps past the earth pyramids',
+      shadeDescription: 'About a third is in woodland, towards the Pirchner Moos and in the Mühlental; the rest is open, sunny meadow and village on a south-facing terrace.',
+      terrainDescription: 'Farm tracks, meadow paths and quiet roads, with a short stretch of path and steps beside the Terner Bach past the earth pyramids. Listed as a family walk.',
+      waterDescription: 'The village fountain at the start and finish is the only tap. In the Mühlental the path runs right beside the Terner Bach, and the Hohenbichlbach is crossed twice. Carry water for the open first half.',
+      dogNotes: 'Terenten does not allow dogs to roam free, requires a lead on busy paths and car parks and, since its 2026 notice, on meadows and in woods too; dogs may not go onto farmland. Keep out of the Pirchner Moos biotope, where disturbing wildlife is banned. Many working farms are on the route.',
+      tips: 'Keep your dog on a lead the whole way: Terenten requires it, does not allow dogs on meadows or farmland, and the route passes many working farms. The loop is about 6.7 km and 329 m of climbing; the detour to the church of St. Margareth adds about 0.4 km and is how the official 7.2 km is counted. Fill up at the village fountain, because the next water is the stream in the Mühlental near the end.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Natur- und Kulturweg Terenten', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiac50eca494c2c950d7694272d7642b11.natur--und-kulturweg-in-terenten.terenten' },
+        { label: 'Terenten, dog regulation', url: 'https://www.gemeinde.terenten.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden_und_anderen_Tieren' },
+        { label: 'Terenten, lead notice (26 Feb 2026)', url: 'https://www.gemeinde.terenten.bz.it/de/Neuigkeiten/News/Aufruf_zur_Einhaltung_der_Leinenpflicht' },
+        { label: 'Landschaftsplan Terenten, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/3056' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12172440' }
+      ],
+      startPoint: { lat: 46.8296335, lng: 11.7769492, label: 'Parkplatz Zentrum, Terenten village centre (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.828989, lng: 11.776196, osmId: 'node/7318188985', label: 'Dorfbrunnen on the village square (drinking water)' },
+        { km: 0, lat: 46.8286789, lng: 11.7758987, osmId: 'node/2328513538', label: 'Fountain by St. Georg church' }
+      ],
+      desc: 'A loop round the sunny terrace of Terenten: west along the village, up past the Pillinghof and the Pirchner Moos wetland, over the meadows to Margen and the Jakobihof, and back through the Mühlental past the earth pyramids. The official route lists 7.2 km, with the detour to St. Margareth, and 329 m of ascent.'
     }
   };
 
