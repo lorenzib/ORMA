@@ -982,6 +982,30 @@ reviewed door unsealed, that each carries its own words and its directions, and
 that a trail without a photograph neither claims one nor writes image fields.
 It is what found the deadlock.
 
+## An imported walk's official line
+
+An imported trail's line is the OpenStreetMap relation as its mappers left it.
+Sometimes that is not the walk the operator signs: Seeweg in Ulten carried an
+old upper path and a 3.3 km loop on the far side of the dam, 11.7 km against
+an official 7.7. Nothing in the pipeline can correct that, because the line
+lives in a generated file the promoter rewrites.
+
+The `routeLine` override scope corrects it. A human rebuilds the walk on OSM
+ways along the operator's own route (the official GPX is a guide, never the
+line itself, because its licence is rarely stated) and records the result in
+`data/verified-trail-overrides.json`. The entry:
+
+- carries the line (`path`) and the distance measured on it, and may carry
+  only the numbers that follow from the line: ascent, time, profile, the
+  start coordinates and its shape;
+- states where the line came from in `routeLineNote`;
+- cites at least one dated `https` source.
+
+It claims nothing else. It does not seal the trail, and a verification of the
+other checks is recorded the usual way. Both the page builder and the runtime
+data read the ledger, so the line a reader sees on the page and on the map is
+the same one.
+
 ## The funnel reaches the page
 
 The verification funnel stopped at `ready-for-editorial`. That was honest for a
