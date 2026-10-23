@@ -9298,6 +9298,66 @@
         { km: 2.6, lat: 46.5367508, lng: 11.6431649, osmId: 'node/8949692865', label: 'Drinking-water point' },
         { km: 5.4, lat: 46.5268297, lng: 11.6504229, osmId: 'node/1387720796', label: 'Laranzer Schwaige (Alm hut)', seasonal: true }
       ]
+    },
+    'osm-3885162': { // Hand audit: 23 October 2026. The relation was 11.7 km with an old upper
+      // path and a loop east of the dam; the official walk is the 7.7 km lake loop, whose
+      // line comes from the routeLine override in data/verified-trail-overrides.json.
+      // Wholly in Ulten, outside the Stelvio park; Ulten's dog regulation applies.
+      area: 'Ulten / Ultimo',
+      distance: 7.8,
+      elevation: 38,
+      hours: '2',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Zoggler Stausee from the dam, 170 m from the start, autumn (Memorino, CC BY 3.0).',
+        route: 'Official GPX 7.75 km, closed loop; rebuilt on OSM ways along it and the province register Seeweg: 7.77 km, closed.',
+        routeNumbers: 'No route number: follow the “Seeweg” signs all the way round the lake. From the dam the first 1.5 km also carries path 20, and at Kuppelwies the signs are shared with path 19 and the Ultner Höfeweg.',
+        mapPoints: 'Start at the info board on the St. Walburg dam (OSM node 3740490405), bus stop Ulten, Zoggler Staudamm beside it; drinking water OSM node 14245045764 at km 0.7.',
+        elevation: 'Official 7.7 km, 38 m up and down, 1:58 h, high point 1,149 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Ultental, Neuer Seeweg (official page and GPX)',
+          'Province hiking-trail register, Seeweg',
+          'Gemeinde Ulten, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 51/2023), Art. 4 and 8',
+          'Landschaftsplan Ulten, Durchführungsbestimmungen (newPlan doc 13077)',
+          'OpenStreetMap land-use, road and amenity tags along the loop'
+        ],
+        date: '2026-10-23'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Promenade beside the LS/SP9 valley road for about 2 km', 'Road crossings at Kuppelwies and at the dam', 'Asphalt access road to the dam car park, with cars', 'Shared with cyclists'],
+      terrainType: 'Wide compacted gravel and fine-gravel lakeside promenade, with short asphalt stretches (official description)',
+      shadeDescription: 'The south shore runs through larch and spruce wood. The north-shore promenade is open and gets the sun.',
+      terrainDescription: 'A flat loop of wide compacted gravel and fine-gravel promenade, with short asphalt stretches. Officially barrier-free, fine for pushchairs and wheelchairs.',
+      waterDescription: 'A drinking fountain on the south shore after 0.7 km, several streams and the lake shore all the way round, and cafés at Kuppelwies and at the dam.',
+      dogNotes: 'Ulten requires a lead no longer than 1.5 m on all public paths, and you must carry a muzzle and pick up after your dog. Dogs are not allowed in the Kneipp facility. Cows and horses may be near the meadows and farms at Kuppelwies.',
+      tips: 'A flat, easy loop round the Zoggler reservoir from the dam at St. Walburg (bus stop Zoggler Staudamm, free parking south of the dam): 7.7 km, about two hours. Ulten’s rules say dogs stay on a lead of at most 1.5 m, you carry a muzzle and pick up after your dog; keep out of the Kneipp foot bath. On the north side the promenade runs close to the main valley road, so keep the lead short there.',
+      sourceLinks: [
+        { label: 'Tourismusgenossenschaft Ultental, Neuer Seeweg', url: 'https://www.merano-suedtirol.it/de/ultental/aktivurlaub/wandern-bergsteigen/wanderwege/121154963-nuovo-percorso-del-lago.html' },
+        { label: 'Gemeinde Ulten, Haltung und Führung von Hunden', url: 'https://www.gemeinde.ulten.bz.it/de/Themen/Haustier/Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Südtirol.info, Neuer Seeweg', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi978766e455b6c6e4ea5ea8f37500ad6e.neuer-seeweg.st--walburg' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/3885162' }
+      ],
+      startPoint: { lat: 46.54204, lng: 10.99034, label: 'Zoggler dam, St. Walburg: bus stop Ulten, Zoggler Staudamm; free car park on the south side of the dam' },
+      waterSources: [
+        { km: 0.7, lat: 46.5365827, lng: 10.9906591, osmId: 'node/14245045764', label: 'Drinking fountain on the south-shore road' },
+        { km: 3.9, lat: 46.52432, lng: 10.95651, osmId: 'way/95099761', label: 'Falschauer stream where it flows into the lake' },
+        { km: 7.5, lat: 46.54227, lng: 10.98686, osmId: 'way/784867044', label: 'Marschnellbach stream' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.54231, lng: 10.99165, osmId: 'node/1773369297', name: 'Café Seerast' },
+        { km: 4.5, lat: 46.52825, lng: 10.95589, osmId: 'node/5316076021', name: 'sea.wies bar&lodn' },
+        { km: 4.8, lat: 46.53016, lng: 10.95819, osmId: 'node/478636891', name: 'Kuppelwies' }
+      ],
+      desc: 'A flat loop round the Zoggler reservoir in the Ultental: from the St. Walburg dam through larch wood along the south shore to Kuppelwies, and back on the new lakeside promenade. The official route lists 7.7 km and 38 m of ascent.'
     }
   };
 

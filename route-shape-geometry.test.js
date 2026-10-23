@@ -60,23 +60,23 @@ describe('a route’s shape is declared, not guessed from its geometry', () => {
   });
 
   // Seeweg's line used to be drawn across a 3.12 km hole, and the hole was
-  // ours: its 48 members are one connected network, a closed western loop with
-  // an eastern lobe on two three-way junctions that a nose-to-tail stitcher
-  // cannot reach. Traversed as a graph it is one line, so the distance and the
-  // line now agree and there is nothing left to explain away.
-  test('Seeweg is drawn as one line, the length of its own member ways', () => {
+  // ours (#891). Joined up, it was still not the walk: relation 3885162 also
+  // carries the old upper north-shore path and a 3.3 km loop east of the dam,
+  // 11.75 km against the operator's 7.7. The official loop is now rebuilt on
+  // OSM ways through the routeLine override, closed at the dam.
+  test('Seeweg is drawn as the official lake loop, the length of its own line', () => {
     const trail=byId('osm-3885162');
     expect(trail.osmGeometryGaps).toBeUndefined();
     const line=lineKm(trail.path);
     const longest=Math.max(...trail.path.slice(1).map((point,i) => km(trail.path[i],point)));
-    // No jump: the widest step is a straight run of mapped path inside one
-    // way, which simplification leaves as a single segment.
     expect(longest).toBeLessThan(0.6);
-    // 11.75 km of member ways, checked against relation 3885162 on
-    // 20 Oct 2026. The line is the walk, so the distance is the line.
+    expect(km(trail.path[0], trail.path[trail.path.length-1])).toBeLessThan(0.05);
+    // Official GPX 7.75 km, read 23 Oct 2026. The line is the walk, so the
+    // distance is the line.
     expect(line).toBeCloseTo(trail.distance, 1);
-    expect(trail.distance).toBeGreaterThan(11);
-    expect(trail.distance).toBeLessThan(12);
+    expect(trail.distance).toBeGreaterThan(7.5);
+    expect(trail.distance).toBeLessThan(8);
+    expect(trail.routeShape).toBe('loop');
   });
 
   // The remaining disagreements are known and unexplained rather than fixed, so
