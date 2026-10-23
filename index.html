@@ -253,7 +253,21 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         </button>
         <div class="li-menu li-new-menu" id="liNewMenu" hidden>
           <div class="li-menu-kick">Create</div>
-          <a class="li-menu-item li-plan-route" href="route-planner.html">Draw your own route <span class="li-menu-badge">Experimental</span><small>Loop, one-way or out and back</small></a>
+          <a class="li-menu-item li-plan-route" href="route-planner.html"><span class="li-menu-title">Draw your own route <span class="li-menu-badge">New</span></span><small>Loop, one-way or out and back · experimental</small></a>
+        </div>
+        <!-- Said once: what is new and where it lives. Closing it, trying it,
+             or opening the menu above puts it away for good on this browser. -->
+        <div class="li-new-callout" id="liNewCallout" role="status" hidden>
+          <div class="li-new-callout-head">
+            <span class="li-menu-badge">New</span>
+            <strong>Draw your own route</strong>
+            <button type="button" class="li-new-callout-close" id="liNewCalloutClose" aria-label="Dismiss">×</button>
+          </div>
+          <p>Loop, one-way or out and back, along mapped walking paths. It is still experimental.</p>
+          <div class="li-new-callout-actions">
+            <a class="li-new-callout-try" id="liNewCalloutTry" href="route-planner.html">Try it</a>
+            <span>Also under the arrow beside Record a walk</span>
+          </div>
         </div>
       </div>
       <!-- Opened from "in Alta Pusteria" in the headline. -->
