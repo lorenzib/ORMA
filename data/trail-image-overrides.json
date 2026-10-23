@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-23T22:00:00.000Z",
+  "updatedAt": "2026-10-23T23:00:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -985,18 +985,18 @@
     },
     {
       "id": "osm-123162",
-      "approvedReviewId": "commons-osm-123162",
-      "approvedAt": "2026-09-06T09:58:55.741Z",
+      "approvedReviewId": "hand-audit-osm-123162",
+      "approvedAt": "2026-10-23T23:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-123162-commons.jpg",
-        "heroImage": "images/trails/osm-123162-commons.jpg",
-        "imageAlt": "The Latemar above Lake Carezza near Nova Levante",
-        "imageCredit": "Welschnofen Latemar & Karersee 1",
-        "imageCreditText": "Welschnofen Latemar & Karersee 1 by Zairon",
-        "imageCreator": "Zairon",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Welschnofen_Latemar_%26_Karersee_1.jpg",
+        "imageIcon": "images/trails/osm-123162-latemar-gummer.jpg",
+        "heroImage": "images/trails/osm-123162-latemar-gummer.jpg",
+        "imageAlt": "The pale Latemar peaks above dark forest, seen across a meadow with a lone autumn tree near the Gummer observatory",
+        "imageCredit": "The Latemar from the Gummer observatory",
+        "imageCreditText": "The Latemar from the Gummer observatory by Christian Auer",
+        "imageCreator": "Christian Auer",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Latemar_gummer.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1019,18 +1019,18 @@
     },
     {
       "id": "osm-12371666",
-      "approvedReviewId": "commons-osm-12371666",
-      "approvedAt": "2026-09-07T20:21:10.885Z",
+      "approvedReviewId": "hand-audit-osm-12371666",
+      "approvedAt": "2026-10-23T23:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-12371666-kalterer-see.jpg",
-        "heroImage": "images/trails/osm-12371666-kalterer-see.jpg",
-        "imageAlt": "A walled vineyard lane running down towards the Kalterer See, vine rows on both sides and wooded ridges across the valley in summer haze.",
-        "imageCredit": "Kalterer See",
-        "imageCreditText": "Kalterer See by qwesy qwesy",
-        "imageCreator": "qwesy qwesy",
-        "imageLicence": "CC BY 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kalterer_See%2C_Lago_di_Caldaro_-_panoramio.jpg",
+        "imageIcon": "images/trails/osm-12371666-tramin-spire.jpg",
+        "heroImage": "images/trails/osm-12371666-tramin-spire.jpg",
+        "imageAlt": "The tall Gothic spire of Tramin parish church above red roofs, with the Etsch valley floor and the mountains across the valley behind",
+        "imageCredit": "Tramin parish church and the Etsch valley",
+        "imageCreditText": "Tramin parish church and the Etsch valley by Plentn",
+        "imageCreator": "Plentn",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Quiricus_Julitta_Tramin_2021.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -2368,18 +2368,18 @@
     },
     {
       "id": "osm-9675994",
-      "approvedReviewId": "commons-osm-9675994",
-      "approvedAt": "2026-09-07T20:33:09.392Z",
+      "approvedReviewId": "hand-audit-osm-9675994",
+      "approvedAt": "2026-10-23T23:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-9675994-catinaccio.jpg",
-        "heroImage": "images/trails/osm-9675994-catinaccio.jpg",
-        "imageAlt": "The Catinaccio group above autumn larch and spruce, framed by pine branches, under a clear blue sky.",
-        "imageCredit": "Gruppo del Catinaccio",
-        "imageCreditText": "Gruppo del Catinaccio by giovanni bidi",
-        "imageCreator": "giovanni bidi",
-        "imageLicence": "CC BY 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Il_%22Gruppo_del_Catinaccio%22_visto_dalla_Torbiera_Woelfl_(BZ)_-_panoramio.jpg",
+        "imageIcon": "images/trails/osm-9675994-unterkofl.jpg",
+        "heroImage": "images/trails/osm-9675994-unterkofl.jpg",
+        "imageAlt": "The Unterkofl farmhouses and barn beside a narrow farm road above Deutschnofen, forested slopes and Dolomite peaks behind",
+        "imageCredit": "The Unterkofl farm, Deutschnofen",
+        "imageCreditText": "The Unterkofl farm, Deutschnofen by Plentn",
+        "imageCreator": "Plentn",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Unterkofl_Deutschnofen_1.JPG",
         "imageSourceType": "licensed-source"
       }
     },

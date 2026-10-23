@@ -314,6 +314,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-12190538": {
+      "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425436",
+      "publisher": "Autonome Provinz Bozen (hiking-trail register)",
+      "name": "Flaaser Rundweg",
+      "quote": "Flaaser Rundweg — length 4978 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
     "osm-12190657": {
       "url": "https://suedtirol.live/de/tour/rundweg-langfenn-t22081",
       "publisher": "suedtirol.live (Open Data Hub tour) / province trail register",
@@ -329,6 +337,22 @@
       "quote": "Startpunkt ist entweder Niederrasen oder Oberrasen. Von dort folgt man zunächst der Forststraße entlang des Antholzer Bachs in Richtung Antholz.",
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-123162": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi9283332f407d0ff86bbad260c028cf01.planetenweg.steinegg",
+      "publisher": "Eggental Tourismus / IDM Südtirol",
+      "name": "Planetenweg in Gummer",
+      "quote": "Ausgehend von der Sternwarte „Max Valier“",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-12371666": {
+      "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425908",
+      "publisher": "Autonome Provinz Bozen (hiking-trail register)",
+      "name": "Kastelaz Promenade",
+      "quote": "Kastelaz Promenade — length 1270 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
     "osm-12736753": {
       "url": "https://www.bzgeisacktal.it/de/Rundweg_Albeins-Klerant-Milland-Albeins",
@@ -522,6 +546,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-2179746": {
+      "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426625",
+      "publisher": "Autonome Provinz Bozen (hiking-trail register)",
+      "name": "Naturlehrpfad Castelfeder",
+      "quote": "Naturlehrpfad Castelfeder — length 1706 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
     "osm-3202880": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi78f78b7fec7706efe8118a3e4e471486.montiggler-seen-runde.montiggl",
       "publisher": "Südtirol.info (IDM Südtirol), with Tourismusverein Eppan listed as contact",
@@ -705,6 +737,14 @@
       "quote": "Il punto di partenza è l'ufficio informazioni.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
+    "osm-9675994": {
+      "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426959",
+      "publisher": "Autonome Provinz Bozen (hiking-trail register)",
+      "name": "St. Agatha Rundweg (waymark A)",
+      "quote": "St. Agatha Rundweg — length 1509 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
     "osm-9937537": {
       "url": "https://www.la-plagne.com/savourez-une-multitude-d-activites/la-plagne-l-ete/randonnee-pedestre-en-vanoise-et-en-tarentaise/itineraires-de-marche-et-randonnee/randonnee-vers-le-mont-jovet",
