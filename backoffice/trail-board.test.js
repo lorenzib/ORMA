@@ -48,8 +48,8 @@ describe('the trail board', () => {
     expect(rows.get('e').stage).toBe('stopped');
     expect(rows.get('g').stopKind).toBe('resting');
     expect(rows.get('h').stopKind).toBe('blocked');
-    // Verified through the route audit and never through the pipeline.
-    expect(rows.get('v').stage).toBe('passed');
+    // Verified by hand and never through the pipeline: beside Passed, not in it.
+    expect(rows.get('v').stage).toBe('hand');
   });
 
   test('the badge is the one the public page shows', () => {
