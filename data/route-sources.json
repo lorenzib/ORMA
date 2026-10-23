@@ -50,6 +50,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T19:40:50.460Z"
     },
+    "lago-sorapis": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/al-lago-del-sorapis/",
+      "publisher": "Cortina Marketing",
+      "name": "Al Lago del Sorapis (path 215)",
+      "quote": "Tempo 4 h · Lunghezza 10,5 km · Dislivello positivo 434 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "nuvolau": {
       "url": "https://cortina.dolomiti.org/it/escursioni/al-rifugio-nuvolau/",
       "publisher": "Cortina Dolomiti / Cortina Marketing",
@@ -673,6 +681,14 @@
       "quote": "CODE_NAME 'Naturlehrpfad' (provincial hiking-trail register, routes-hikingtrails.11425672, 5,127 m)",
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-7045225": {
+      "url": "https://sentieri.sat.tn.it/webapps/schede-sentieri?numero=O603",
+      "publisher": "SAT – Società degli Alpinisti Tridentini",
+      "name": "Path 603, Giro del Fausior",
+      "quote": "Lunghezza: 7650 metri · Tempo andata: 02:50 ore · Dislivello salita: 436 metri",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-7277805": {
       "url": "https://www.merano-suedtirol.it/it/val-passiria/vacanze-in-montagna/camminate-escursioni/sentieri-escursionistici/121154995-sentiero-waltner-rundweg-a-valtina.html",

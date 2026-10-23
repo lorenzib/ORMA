@@ -29836,6 +29836,190 @@ function effectiveOverrides(profile, adjustOverride){
           "url": "https://www.openstreetmap.org/relation/5512443"
         }
       ]
+    },
+    'osm-7045225': {
+      // Hand audit 24 October 2026: route, figures and grade from the SAT trail card for path 603 (7,650 m, 2:50 h, 436 m up,
+      // 527 m down, grade E); SAT's own GPX lies within 7 m of the line. One way, Santèl to Fai Le Coste. Dogs: Fai della Paganella
+      // ordinance 23/2026 (lead on public ground, advised everywhere because of bears and wolves); Spormaggiore regulation in villages;
+      // Mezzolombardo publishes no dog rule, so the national rule applies there. No Natura 2000 site or park on the line.
+      "area": "Fai della Paganella, Spormaggiore and Mezzolombardo",
+      "elevation": 436,
+      "hours": "2.75–3",
+      "startPoint": {
+        "lat": 46.1766382,
+        "lng": 11.0540457,
+        "label": "Santèl, on the SP 64 above Fai della Paganella (official start of SAT path 603); the walk ends at Fai Le Coste"
+      },
+      "shadeCoverage": 75,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "Slight exposure below some rock ledges near the end (SAT)",
+        "Log steps and old stone paving on the descent",
+        "Bear area: SAT signs warn of bears"
+      ],
+      "routeNumberSource": {
+        "provider": "SAT – Società degli Alpinisti Tridentini",
+        "name": "Path 603, Giro del Fausior (grade E)",
+        "url": "https://sentieri.sat.tn.it/webapps/schede-sentieri?numero=O603"
+      },
+      "desc": "SAT path 603, a one-way walk of about 7.5 km through the forests of the Paganella plateau, from Santèl on the road above Fai della Paganella round the Fausior to Fai Le Coste. It follows forest roads past the Campedèl and Pra Grande clearings, then a path with log steps down past Bocca delle Scalace, passing below some rock ledges with slight exposure. SAT gives 2:50 hours, 436 m of climb and 527 m of descent, grade E.\n\nFai della Paganella requires dogs on a lead on all public ground and asks owners to keep them on a lead outside the villages too, because bears and wolves live here. Spormaggiore's rule (a lead of at most 1.5 m) covers its villages, and in Mezzolombardo the national rule applies: a lead of at most 1.5 m and a muzzle carried.",
+      "tips": "Keep your dog on a lead the whole way: this is bear and wolf country, and Fai della Paganella asks for it. It is one way, so arrange a lift or bus back from Fai Le Coste, or walk back the same way (SAT gives 3 hours in that direction). Most of it is shaded forest road; take care with your dog on the log steps and below the rock ledges near the end. There is a spring near Baita Campedèl, about halfway.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-24",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Marco Tam, CC BY-SA 4.0 (cropped): the SAT 603 signpost at Bocca delle Scalace with the log-stepped path and the bear-area sign, 4 m from the line (replaces a Paganella view 890 m away).",
+        "route": "Published line 7.41 km, one way; SAT's GPX (7.50 km) lies within 7 m of it everywhere; the card gives 7,650 m.",
+        "routeNumbers": "SAT path 603, waymarked red and white; junctions with 603A, 680, 604, 604A, 603B and 602B as the card lists.",
+        "mapPoints": "Start at Santèl on the SP 64, the official start; springs traced to OSM.",
+        "elevation": "Official 436 m up and 527 m down, 2:50 h one way."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "SAT – Società degli Alpinisti Tridentini, trail card O603 (updated 29 Apr 2026): 'Lunghezza: 7650 metri', 'Tempo andata: 02:50 ore', 'Tempo ritorno: 03:00 ore', 'Dislivello salita: 436 metri', 'Dislivello discesa: 527 metri', grade E, from Santèl (SP 64) to Fai Le Coste; 'passa alla base di alcune balze rocciose (leggera esposizione)'; SAT's GPX within 7 m of the line",
+          "Comune di Fai della Paganella, Ordinanza 23/2026: 'è fatto obbligo di tenere i cani al guinzaglio … nelle aree pubbliche e di uso pubblico; si raccomanda altresì di mantenerli al guinzaglio … anche al di fuori dei centri abitati, in considerazione dei possibili pericoli connessi alla presenza di orsi e lupi'",
+          "Comune di Spormaggiore, dog regulation (CC 36/2025): Art. 5(1) lead of at most 1.5 m in public areas of the villages. Mezzolombardo publishes no dog rule (site search), so the national rule applies: Ministry of Health ordinance of 6 August 2013, Art. 1(3), lead of at most 1.5 m and a muzzle carried",
+          "No Natura 2000 site or park on the line (EEA; Adamello-Brenta park boundary)",
+          "OpenStreetMap: road classes, surfaces and springs along the line"
+        ],
+        "date": "2026-10-24"
+      },
+      "sourceLinks": [
+        {
+          "label": "SAT trail card, path 603",
+          "url": "https://sentieri.sat.tn.it/webapps/schede-sentieri?numero=O603"
+        },
+        {
+          "label": "Comune di Fai della Paganella, rules for dog owners (Ordinanza 23/2026)",
+          "url": "https://www.comune.faidellapaganella.tn.it/Novita/Avvisi/Obblighi-e-divieti-proprietari-e-detentori-di-cani"
+        },
+        {
+          "label": "Ministry of Health ordinance of 6 August 2013 (text)",
+          "url": "https://www.certifico.com/id/26170"
+        },
+        {
+          "label": "OpenStreetMap relation 7045225",
+          "url": "https://www.openstreetmap.org/relation/7045225"
+        }
+      ]
+    },
+    'lago-sorapis': {
+      // Correction, 24 October 2026 (not a verification: no authority says whether dogs manage the ladders and roped ledges,
+      // and there is no reliable water on the way). The elevation profile showed the path reaching 2,250 m; it is recomputed on the
+      // line (high point about 1,930 m at the lake). Official climb and time from Cortina Marketing; the false 'stream crossing' at km 2
+      // is removed; the dog rules are added (Cortina police regulation Art. 36; Natura 2000 IT3230081, national lead rule).
+      "elevation": 434,
+      "hours": "4",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 1807
+        },
+        {
+          "km": 0.4,
+          "elev": 1769
+        },
+        {
+          "km": 0.9,
+          "elev": 1720
+        },
+        {
+          "km": 1.3,
+          "elev": 1744
+        },
+        {
+          "km": 1.6,
+          "elev": 1736
+        },
+        {
+          "km": 2.1,
+          "elev": 1783
+        },
+        {
+          "km": 2.4,
+          "elev": 1795
+        },
+        {
+          "km": 2.8,
+          "elev": 1805
+        },
+        {
+          "km": 3.2,
+          "elev": 1773
+        },
+        {
+          "km": 3.6,
+          "elev": 1826
+        },
+        {
+          "km": 4.1,
+          "elev": 1903
+        },
+        {
+          "km": 4.5,
+          "elev": 1891
+        },
+        {
+          "km": 4.9,
+          "elev": 1897
+        },
+        {
+          "km": 5.2,
+          "elev": 1934
+        }
+      ],
+      "waterSources": [],
+      "rifugi": [
+        {
+          "km": 5.1,
+          "lat": 46.52167,
+          "lng": 12.22662,
+          "osmId": "way/200789472",
+          "name": "Rifugio Vandelli (seasonal; closed until 20 June 2027)"
+        }
+      ],
+      "desc": "A striking turquoise glacial lake below the Sorapiss, reached on path 215 from Passo Tre Croci and back the same way: officially 10.5 km and 4 hours, with 434 m of climb, rated for expert hikers. After a flat first section through the forest, the path crosses a more demanding stretch with metal ladders and exposed sections along a ledge protected by wire ropes, about 4 km in, before the lake and Rifugio Vandelli.\n\nCortina's police regulation requires dogs to be kept on a lead in all public areas, and most of the walk lies in the Natura 2000 site of the Antelao, Marmarole and Sorapiss, where the national rule applies: a lead of at most 1.5 m and a muzzle carried.",
+      "tips": "The official route is for expert hikers and includes metal ladders and exposed ledges protected by wire ropes: only consider it with a small or very sure-footed dog you can lift or guide safely, and turn back if your dog is unsure. Keep your dog on a short lead (1.5 m at most) and carry a muzzle. Carry all the water you need: there is no reliable water on the way, and Rifugio Vandelli is closed out of season (it reopens on 20 June 2027). Parking at Passo Tre Croci fills early in summer, so the tourist board recommends the bus and an early start."
     }
   };
 
