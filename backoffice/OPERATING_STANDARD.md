@@ -1006,6 +1006,22 @@ other checks is recorded the usual way. Both the page builder and the runtime
 data read the ledger, so the line a reader sees on the page and on the map is
 the same one.
 
+## A walk verified by hand is changed by hand
+
+A publication the evidence policy approves may add to what a trail has
+established; it may not take it away. The seal check guarded only the
+ledger's own `ormaVerified` field, but a hand verification records its seal in
+`trail-audits.js` and its official line in a `routeLine` entry, and a pipeline
+publication replaces the trail's ledger entry wholesale. On 23 October one
+would have put St. Magdalena back on its old 1.6 km line and taken its
+Verified badge off.
+
+So the publisher now **refuses** a publication for a trail that is verified by
+hand (`tier: 'route-audited'`, graduation `verified`) or that carries a
+`routeLine` entry, with the reason `verified-by-hand` or `line-set-by-hand`.
+Like a disagreeing distance it is refused, not thrown: the rest of the batch
+still publishes. Changing such a trail is a human edit.
+
 ## The funnel reaches the page
 
 The verification funnel stopped at `ready-for-editorial`. That was honest for a

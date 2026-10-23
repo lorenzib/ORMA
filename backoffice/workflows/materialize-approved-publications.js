@@ -83,6 +83,28 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
     if(!route?.geometry?.coordinates?.length){
       throw new Error(`Approved route geometry missing for ${request.candidateId}`);
     }
+    // A walk verified or re-lined by hand is changed by hand. Its seal lives in
+    // trail-audits.js and its official line in a routeLine entry, so neither is
+    // visible to the seal check below, and a pipeline publication replaces the
+    // ledger entry wholesale: on 23 October one would have put St. Magdalena
+    // back on its old line and taken the Verified badge off it. Refused, not
+    // thrown, for the same reason as a disagreeing distance.
+    const prior = priorById.get(item.targetTrailId);
+    const verifiedByHand = prior?.tier === 'route-audited' && prior?.graduation?.status === 'verified';
+    const lineSetByHand = (overrides?.trails || []).some(entry =>
+      entry?.id === item.targetTrailId && entry?.verificationScope === 'routeLine');
+    if(verifiedByHand || lineSetByHand){
+      refused.push({
+        candidateId:request.candidateId,
+        trailId:item.targetTrailId,
+        requestId:request.id,
+        reason:verifiedByHand ? 'verified-by-hand' : 'line-set-by-hand',
+        message:verifiedByHand
+          ? `${item.targetTrailId} is verified by hand; a pipeline publication may not replace it`
+          : `${item.targetTrailId} carries an official line set by hand; a pipeline publication may not replace it`,
+      });
+      continue;
+    }
     const fields = {
       ...item.proposedWebsiteFields,
       id:item.targetTrailId,
