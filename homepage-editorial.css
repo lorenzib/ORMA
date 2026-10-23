@@ -260,3 +260,19 @@
 .li-today[data-tone="moderate"]{background:#F7EEDC;color:#6E4E14;}
 .li-today[data-tone="high"]{background:#F7E2DB;color:#8C3A28;}
 @media (max-width:700px){.li-today{margin:8px 0 0;padding:9px 12px;font-size:12.5px;}}
+
+/* "Draw a route here": under the map's Layers button, out of the way while
+   the Layers panel is open in the same spot. */
+.li-map-draw{
+  position:absolute;top:52px;left:10px;z-index:6;display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;
+  border:1px solid var(--paper-line);border-radius:8px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15);
+  color:var(--ink);font:700 12px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;
+}
+.li-map-draw:hover{border-color:var(--accent);color:var(--accent);}
+.li-map-draw:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.li-map.map-layers-open .li-map-draw{display:none;}
+.li-map.map-fs .li-map-draw{top:max(52px,calc(env(safe-area-inset-top) + 52px));left:max(10px,env(safe-area-inset-left));}
+.li-menu-badge{display:inline-block;margin-left:4px;padding:1px 7px;border-radius:999px;background:#F7EEDC;color:#6E4E14;font:700 10px/1.5 'Inter',sans-serif;vertical-align:1px;}
+@media (max-width:700px){
+  body.mhome-active .li-map-draw{top:52px;left:12px;height:32px;padding:0 11px;font-size:11.5px;border-radius:9px;}
+}
