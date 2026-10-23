@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7426648",
   "name": "Algunder Waalweg",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T17:53:08.686Z",
+  "version": "2026.10.23-beta.2",
+  "generatedAt": "2026-10-23T18:26:14.664Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 1507410,
+  "packageBytes": 1507336,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67544,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Algunder Waalweg safety information",
       "url": "safety.json",
-      "bytes": 2057,
-      "sha256": "dadc95406e2266b398042b5e8de5b92d3ce13c3a5ec014508910e087410bcee9"
+      "bytes": 1983,
+      "sha256": "ccbe48b2ce6d50ccb98df0879c25a2125525a458be0ee33c021ef398726e8660"
     }
   ]
 }
