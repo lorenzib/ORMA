@@ -55468,8 +55468,15 @@ if(document.querySelector('.td2')){
     // settled. Printed when the record carries one: the five walks published
     // before the pipeline wrote that field have none.
     const guidanceStatus = verifiedRouteGuidance && String(verifiedRouteGuidance.status || '').trim();
+    // Most start sentences already begin "Start at …", and a "Start:" label in
+    // front of them read "Start: Start at …". The sentence's own first word
+    // takes the bold instead; a sentence that begins otherwise keeps the label.
+    const startLine = sentence => {
+      const text = String(sentence || '').trim();
+      return /^Start\b/.test(text) ? `<b>Start</b>${esc(text.slice(5))}` : `<b>Start:</b> ${esc(text)}`;
+    };
     const routeRefMarkup = verifiedRouteGuidance
-      ? `${routeBadges}<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p>${
+      ? `${routeBadges}<div class="s"><p>${startLine(verifiedRouteGuidance.start)}</p>${
         guidanceStatus ? `<p><b>Trail numbers:</b> ${esc(guidanceStatus)}</p>` : ''
       }<p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
       : routeRefs.length
