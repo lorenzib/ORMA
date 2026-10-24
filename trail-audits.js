@@ -26238,6 +26238,1366 @@
         { km: 1.1, lat: 46.2379204, lng: 11.2129251, osmId: 'way/884832961', label: 'Drinking fountain near the end' }
       ],
       desc: 'A short loop in Salurn, the southernmost village of South Tyrol: up beside the Titschenbach to its waterfall and back, with boards on the spring water that supplies the village. The official route lists 1.2 km and 115 m of ascent.'
+    },
+    'osm-12121798': {
+      // Hand audit 24 October 2026: line rebuilt on OSM ways along the OTI Cœur de Maurienne Arvan's official GPX for EN02 'Le
+      // terroir de Serpolière' (2.1 km, 0h50, 70 m) and put in the fiche's direction from the Les Féards car park; the old line left out
+      // the final climb. Dogs: the fiche says 'Animaux acceptés en laisse uniquement'; no commune arrêté; 1955 arrêté (no straying in
+      // vineyards). About 800 m in Natura 2000 FR8201782 (no dog rule); Vanoise partner area only.
+      "path": [
+        [
+          45.25423,
+          6.4231
+        ],
+        [
+          45.25402,
+          6.42336
+        ],
+        [
+          45.25378,
+          6.42362
+        ],
+        [
+          45.25361,
+          6.42389
+        ],
+        [
+          45.25357,
+          6.4242
+        ],
+        [
+          45.25356,
+          6.42447
+        ],
+        [
+          45.25354,
+          6.42469
+        ],
+        [
+          45.25344,
+          6.42488
+        ],
+        [
+          45.25272,
+          6.42548
+        ],
+        [
+          45.2526,
+          6.4256
+        ],
+        [
+          45.25254,
+          6.42569
+        ],
+        [
+          45.25252,
+          6.42579
+        ],
+        [
+          45.25251,
+          6.42591
+        ],
+        [
+          45.25249,
+          6.42596
+        ],
+        [
+          45.25247,
+          6.42601
+        ],
+        [
+          45.25242,
+          6.42602
+        ],
+        [
+          45.2523,
+          6.42608
+        ],
+        [
+          45.25225,
+          6.42612
+        ],
+        [
+          45.25194,
+          6.42636
+        ],
+        [
+          45.25166,
+          6.42657
+        ],
+        [
+          45.25159,
+          6.42661
+        ],
+        [
+          45.25156,
+          6.42663
+        ],
+        [
+          45.25148,
+          6.4267
+        ],
+        [
+          45.25143,
+          6.4268
+        ],
+        [
+          45.25141,
+          6.42682
+        ],
+        [
+          45.25138,
+          6.42687
+        ],
+        [
+          45.25136,
+          6.4269
+        ],
+        [
+          45.25115,
+          6.42704
+        ],
+        [
+          45.2511,
+          6.42707
+        ],
+        [
+          45.25107,
+          6.4271
+        ],
+        [
+          45.25087,
+          6.42725
+        ],
+        [
+          45.25084,
+          6.42727
+        ],
+        [
+          45.25071,
+          6.42733
+        ],
+        [
+          45.25053,
+          6.42745
+        ],
+        [
+          45.25037,
+          6.42752
+        ],
+        [
+          45.25015,
+          6.42756
+        ],
+        [
+          45.24993,
+          6.42795
+        ],
+        [
+          45.24979,
+          6.42819
+        ],
+        [
+          45.24967,
+          6.42831
+        ],
+        [
+          45.24967,
+          6.42832
+        ],
+        [
+          45.24949,
+          6.42847
+        ],
+        [
+          45.24937,
+          6.4286
+        ],
+        [
+          45.24919,
+          6.42881
+        ],
+        [
+          45.24912,
+          6.42887
+        ],
+        [
+          45.24896,
+          6.42895
+        ],
+        [
+          45.24891,
+          6.42919
+        ],
+        [
+          45.24896,
+          6.42895
+        ],
+        [
+          45.24901,
+          6.42869
+        ],
+        [
+          45.24909,
+          6.42847
+        ],
+        [
+          45.24912,
+          6.42834
+        ],
+        [
+          45.24915,
+          6.42814
+        ],
+        [
+          45.2492,
+          6.42789
+        ],
+        [
+          45.24933,
+          6.42756
+        ],
+        [
+          45.24939,
+          6.42723
+        ],
+        [
+          45.24944,
+          6.42698
+        ],
+        [
+          45.24952,
+          6.42661
+        ],
+        [
+          45.24955,
+          6.42634
+        ],
+        [
+          45.24963,
+          6.42605
+        ],
+        [
+          45.24969,
+          6.42585
+        ],
+        [
+          45.24972,
+          6.42557
+        ],
+        [
+          45.24975,
+          6.42451
+        ],
+        [
+          45.24976,
+          6.42431
+        ],
+        [
+          45.24981,
+          6.42383
+        ],
+        [
+          45.24976,
+          6.42333
+        ],
+        [
+          45.24975,
+          6.42276
+        ],
+        [
+          45.24976,
+          6.4222
+        ],
+        [
+          45.24976,
+          6.422
+        ],
+        [
+          45.24973,
+          6.42188
+        ],
+        [
+          45.24968,
+          6.42173
+        ],
+        [
+          45.24959,
+          6.42156
+        ],
+        [
+          45.24956,
+          6.4212
+        ],
+        [
+          45.24954,
+          6.42091
+        ],
+        [
+          45.24948,
+          6.42064
+        ],
+        [
+          45.24945,
+          6.42053
+        ],
+        [
+          45.24944,
+          6.42044
+        ],
+        [
+          45.24947,
+          6.42034
+        ],
+        [
+          45.24954,
+          6.42023
+        ],
+        [
+          45.24975,
+          6.42007
+        ],
+        [
+          45.24984,
+          6.42023
+        ],
+        [
+          45.24994,
+          6.42042
+        ],
+        [
+          45.25002,
+          6.42052
+        ],
+        [
+          45.25009,
+          6.42066
+        ],
+        [
+          45.25014,
+          6.42077
+        ],
+        [
+          45.25019,
+          6.4208
+        ],
+        [
+          45.25027,
+          6.42083
+        ],
+        [
+          45.25038,
+          6.42091
+        ],
+        [
+          45.2506,
+          6.42103
+        ],
+        [
+          45.25075,
+          6.42114
+        ],
+        [
+          45.25086,
+          6.42121
+        ],
+        [
+          45.25097,
+          6.42124
+        ],
+        [
+          45.25122,
+          6.42144
+        ],
+        [
+          45.25153,
+          6.4217
+        ],
+        [
+          45.25169,
+          6.42186
+        ],
+        [
+          45.25186,
+          6.42202
+        ],
+        [
+          45.2521,
+          6.42211
+        ],
+        [
+          45.25231,
+          6.42232
+        ],
+        [
+          45.25248,
+          6.42244
+        ],
+        [
+          45.25252,
+          6.42246
+        ],
+        [
+          45.25279,
+          6.42254
+        ],
+        [
+          45.25309,
+          6.42277
+        ],
+        [
+          45.25327,
+          6.42299
+        ],
+        [
+          45.25341,
+          6.42308
+        ],
+        [
+          45.25365,
+          6.42306
+        ],
+        [
+          45.25383,
+          6.42304
+        ],
+        [
+          45.25411,
+          6.42305
+        ],
+        [
+          45.25423,
+          6.4231
+        ]
+      ],
+      "lat": 45.25423,
+      "lng": 6.4231,
+      "distance": 2.1,
+      "elevation": 70,
+      "hours": "0.75–1",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 781
+        },
+        {
+          "km": 0.2,
+          "elev": 778
+        },
+        {
+          "km": 0.3,
+          "elev": 763
+        },
+        {
+          "km": 0.5,
+          "elev": 748
+        },
+        {
+          "km": 0.6,
+          "elev": 721
+        },
+        {
+          "km": 0.8,
+          "elev": 716
+        },
+        {
+          "km": 1,
+          "elev": 722
+        },
+        {
+          "km": 1.2,
+          "elev": 713
+        },
+        {
+          "km": 1.3,
+          "elev": 710
+        },
+        {
+          "km": 1.5,
+          "elev": 710
+        },
+        {
+          "km": 1.6,
+          "elev": 712
+        },
+        {
+          "km": 1.8,
+          "elev": 734
+        },
+        {
+          "km": 2,
+          "elev": 759
+        },
+        {
+          "km": 2.1,
+          "elev": 768
+        }
+      ],
+      "waterSources": [
+        {
+          "km": 0,
+          "lat": 45.2541113,
+          "lng": 6.4229575,
+          "osmId": "node/8281952224",
+          "label": "Drinking water (OSM-verified location)"
+        }
+      ],
+      "rifugi": [
+        {
+          "km": 0.1,
+          "lat": 45.25237,
+          "lng": 6.42614,
+          "osmId": "node/7858649260",
+          "name": "Pimpiolet"
+        }
+      ],
+      "shadeCoverage": 5,
+      "heatRisk": "high",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 385 m on the Route de Serpolière, a public road with cars",
+        "Service lanes and farm tracks; no steps or scree"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de tourisme Cœur de Maurienne Arvan",
+        "name": "EN02 – Le terroir de Serpolière",
+        "url": "https://www.explore-maurienne.com/itineraire/le-terroir-de-serpoliere/"
+      },
+      "desc": "A short family loop, waymarked EN02 and officially 2.1 km, 50 minutes and 70 m of climb, on the south-facing slope above the Maurienne at Saint-Julien-Mont-Denis. From the Les Féards car park by the pétanque ground it follows the road through the hamlet of Serpolière, past Le Pimpiolet, takes a track down to the Chapelle Sainte-Anne, turns right through the Babylone vineyard and climbs back to the car park. The tourist office says it has no difficulty.\n\nThe official route sheet accepts dogs on a lead only, and French law forbids letting dogs stray in vineyards. Part of the vineyard stretch lies in the Natura 2000 site of the Perron des Encombres.",
+      "tips": "Keep your dog on a lead, as the route sheet asks, and out of the vines. There is no forest, only scrub, vineyard and village lanes on a south-facing slope, so avoid hot afternoons. About 400 m follows the Route de Serpolière, where cars pass. A drinking-water tap is mapped at the start, and Le Pimpiolet is on the way.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-24",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Panoramax (IGN), Licence Ouverte 2.0 (kept): the gravel track through the scrub on the loop, 0.4 m from the line.",
+        "route": "Line rebuilt on OSM ways along the official GPX: 2.13 km against the GPX's 2.11 km and the fiche's 2.1 km; every GPX point within 12 m. Run in the fiche's direction from the car park. The old 1.5 km line left out the final climb.",
+        "routeNumbers": "EN02, as the route sheet states; the S15 path is an optional extension.",
+        "mapPoints": "Start at the Les Féards car park by the pétanque ground, the official start; the water tap is traced to OSM.",
+        "elevation": "Official 70 m of climb and 50 minutes."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Office de tourisme Cœur de Maurienne Arvan, EN02 route sheet (Apidae PDF): 'Type : Boucle // Distance : 2,1 km / Durée : 0h50 // Dénivelé : 70 m'; 'Se garer au niveau du terrain de pétanque'; 'Animaux acceptés en laisse uniquement'; official GPX within 14 m of the rebuilt line",
+          "Arrêté of 16 March 1955, art. 1: dogs may not be left to stray in vineyards. The commune of Saint-Julien-Mont-Denis publishes no dog arrêté (site search)",
+          "Natura 2000 FR8201782 Perron des Encombres on about 800 m (EEA), no dog rule; Vanoise National Park partner area only, not the core zone",
+          "OpenStreetMap: road classes, surfaces and drinking water along the line"
+        ],
+        "date": "2026-10-24"
+      },
+      "sourceLinks": [
+        {
+          "label": "OTI Cœur de Maurienne Arvan, Le terroir de Serpolière",
+          "url": "https://www.explore-maurienne.com/itineraire/le-terroir-de-serpoliere/"
+        },
+        {
+          "label": "EN02 route sheet (PDF)",
+          "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/68/115/13202244/EN02_Terroir+de+Serpolire.pdf"
+        },
+        {
+          "label": "OpenStreetMap relation 12121798",
+          "url": "https://www.openstreetmap.org/relation/12121798"
+        }
+      ]
+    },
+    'osm-13338113': {
+      // Hand audit 24 October 2026: route, season and figures from the Conseil départemental de la Haute-Savoie's PDIPR walk 'Lac
+      // de Darbon par les 3 cols' (Apidae 121363; 6.7 km, 3h30, 640 m); its GPX lies within 46 m of the line. Dogs: on a lead throughout
+      // (APPB Cornettes de Bise, Vacheresse arrêté AM2025_21 by the lake, and the route page), no swimming in the lake; herds with
+      // livestock guardian dogs on the route, as the department warns.
+      "area": "Vacheresse (Chalets de Bise)",
+      "distance": 6.7,
+      "elevation": 640,
+      "hours": "3.5",
+      "startPoint": {
+        "lat": 46.330517,
+        "lng": 6.765573,
+        "label": "Parking des Chalets de Bise, Vacheresse (official start)"
+      },
+      "shadeCoverage": 0,
+      "heatRisk": "high",
+      "exposure": true,
+      "safetyLevel": "caution",
+      "surfaceHazards": [
+        "Steep descent back to the Chalets de Bise (official)",
+        "A cliff edge beside the path between the Col de Pavis and the lake",
+        "Stony paths with short scree patches"
+      ],
+      "routeNumberSource": {
+        "provider": "Conseil départemental de la Haute-Savoie (PDIPR)",
+        "name": "Lac de Darbon par les 3 cols",
+        "url": "https://hautesavoiemontblanc-tourisme.com/offres/itineraire-pedestre-lac-de-darbon-par-les-3-cols-vacheresse-fr-5866094/"
+      },
+      "desc": "A 6.7 km loop from the Chalets de Bise above Vacheresse over three cols to the Lac de Darbon, on the departmental walking network: up via La Salle and the Col de Bise to the Col de Pavis, across to the lake, and back by the Col de Floray with a steep final descent to the chalets. Officially 3 hours 30 and 640 m of climb, between 1,500 and 1,955 m, rated quite difficult; the route is open from 1 June to 15 October.\n\nDogs must be kept on a lead the whole way: about 60% of the walk lies in the Cornettes de Bise biotope protection area, the commune requires a lead and forbids swimming in the lake for animals too, and the route page asks for it because of herds and wildlife. Herds with livestock guardian dogs graze here, and the department strongly advises against bringing pet dogs near the herds.",
+      "tips": "This is guardian-dog country: the department says pet dogs are strongly discouraged near the herds, so think twice before bringing yours, and keep it on a short lead the whole way. If a guardian dog approaches, let it, do not force your way through; in a conflict, drop the lead, do not step in and do not pick your dog up. Dogs may not swim in the Lac de Darbon. There is no shade and no water after the chalets, so carry plenty and go early. Watch the cliff edge near the lake and take the steep descent slowly. Open 1 June to 15 October.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-24",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, gab rallye, CC BY 3.0: the view from the Col de Bise on the walk towards the Valais Alps, 7 m from the line (replaces an Abondance valley view 4.8 km away).",
+        "route": "Published line 6.83 km; the department's GPX (6.68 km) lies within 46 m of it everywhere; officially 6.7 km.",
+        "routeNumbers": "Departmental signposts La Salle, Col de Bise, Montagne de Neuteu, Col de Pavis, Lac Darbon, Col de Floray, as the route page lists; no number.",
+        "mapPoints": "Start at the Parking des Chalets de Bise, the official start; water only at the chalets.",
+        "elevation": "Official 640 m of climb and 3h30."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Conseil départemental de la Haute-Savoie, 'Lac de Darbon par les 3 cols' (Apidae 121363, PDIPR; updated 18 July 2026; Cirkwi 137458): 'Durée 3h30mn Dist. 6.7 km … Déniv. pos. 640 m'; start 'Parking des Chalets de Bise'; season 1 June – 15 October; official GPX within 46 m of the line",
+          "Same page: 'Les chiens doivent être obligatoirement tenus en laisse en raison de la présence de troupeaux et de la faune sauvage'; 'Des chiens de protection de troupeaux sont présents sur ce secteur … les chiens de compagnie ou de chasse sont fortement déconseillés à proximité des troupeaux. En tout état de cause, tenez toujours votre chien en laisse. En cas de conflit, lâchez la laisse, ne vous interposez pas, ne prenez pas votre chien dans les bras'",
+          "Arrêté préfectoral de protection de biotope 'Cornettes de Bise' (FR3800220, 1984), official notice (Préfet de la Haute-Savoie / CC Pays d'Évian – Vallée d'Abondance): 'Chiens tenus en laisse'; about 60% of the walk inside it. Natura 2000 FR8201709 (no dog rule of its own)",
+          "Commune de Vacheresse, arrêté AM2025_21 (2 June 2025), art. 1: 'La baignade dans le lac de Darbon est strictement interdite y compris aux animaux domestiques. Les chiens doivent être tenus en laisse' (within 200 m of the lake)",
+          "OpenStreetMap: surfaces, cliffs, signposts and water along the line"
+        ],
+        "date": "2026-10-24"
+      },
+      "sourceLinks": [
+        {
+          "label": "Haute-Savoie Mont-Blanc, Lac de Darbon par les 3 cols",
+          "url": "https://hautesavoiemontblanc-tourisme.com/offres/itineraire-pedestre-lac-de-darbon-par-les-3-cols-vacheresse-fr-5866094/"
+        },
+        {
+          "label": "Cirkwi, Lac de Darbon par les 3 cols (CD74 data)",
+          "url": "https://www.cirkwi.com/fr/circuit/137458"
+        },
+        {
+          "label": "CCPEVA, protected biotope areas (APPB)",
+          "url": "https://www.cc-peva.fr/22203-arretes-prefectoraux-de-protection-biotope-appb.htm"
+        },
+        {
+          "label": "OpenStreetMap relation 13338113",
+          "url": "https://www.openstreetmap.org/relation/13338113"
+        }
+      ]
+    },
+    'osm-12121346': {
+      // Hand audit 24 October 2026: route, figures and start from the OTI Cœur de Maurienne's B08 route sheet (5.1 km, 2h35, 410 m);
+      // its GPX lies within 26 m of the line, which now starts at the Montandré chapel and runs towards Grenis first, as the sheet
+      // advises. Dogs: the route page accepts them on a lead only; no commune arrêté; no protected area. Two water points removed
+      // (one private, one a spring box).
+      "area": "La Tour-en-Maurienne (Hermillon) and Saint-Julien-Mont-Denis",
+      "path": [
+        [
+          45.28487,
+          6.3716
+        ],
+        [
+          45.28501,
+          6.37201
+        ],
+        [
+          45.28539,
+          6.37221
+        ],
+        [
+          45.28557,
+          6.37248
+        ],
+        [
+          45.28555,
+          6.3737
+        ],
+        [
+          45.28577,
+          6.37394
+        ],
+        [
+          45.28587,
+          6.37389
+        ],
+        [
+          45.28596,
+          6.37397
+        ],
+        [
+          45.28632,
+          6.37438
+        ],
+        [
+          45.28653,
+          6.3747
+        ],
+        [
+          45.28649,
+          6.37493
+        ],
+        [
+          45.28622,
+          6.37492
+        ],
+        [
+          45.2858,
+          6.37526
+        ],
+        [
+          45.28527,
+          6.37547
+        ],
+        [
+          45.28492,
+          6.37601
+        ],
+        [
+          45.28485,
+          6.37628
+        ],
+        [
+          45.28448,
+          6.37694
+        ],
+        [
+          45.28454,
+          6.37706
+        ],
+        [
+          45.28432,
+          6.37735
+        ],
+        [
+          45.28438,
+          6.37804
+        ],
+        [
+          45.28387,
+          6.37806
+        ],
+        [
+          45.28372,
+          6.37795
+        ],
+        [
+          45.2835,
+          6.37793
+        ],
+        [
+          45.28345,
+          6.37841
+        ],
+        [
+          45.28321,
+          6.37891
+        ],
+        [
+          45.28294,
+          6.37909
+        ],
+        [
+          45.28306,
+          6.37931
+        ],
+        [
+          45.28251,
+          6.37951
+        ],
+        [
+          45.28249,
+          6.37959
+        ],
+        [
+          45.28225,
+          6.37964
+        ],
+        [
+          45.28207,
+          6.37978
+        ],
+        [
+          45.28185,
+          6.37981
+        ],
+        [
+          45.28172,
+          6.37997
+        ],
+        [
+          45.28127,
+          6.38018
+        ],
+        [
+          45.28115,
+          6.3802
+        ],
+        [
+          45.28096,
+          6.38006
+        ],
+        [
+          45.28067,
+          6.38013
+        ],
+        [
+          45.28052,
+          6.38036
+        ],
+        [
+          45.28031,
+          6.38046
+        ],
+        [
+          45.28,
+          6.3814
+        ],
+        [
+          45.28007,
+          6.38165
+        ],
+        [
+          45.28015,
+          6.38181
+        ],
+        [
+          45.28028,
+          6.38179
+        ],
+        [
+          45.28052,
+          6.38193
+        ],
+        [
+          45.28076,
+          6.38199
+        ],
+        [
+          45.28095,
+          6.3819
+        ],
+        [
+          45.28112,
+          6.38192
+        ],
+        [
+          45.28138,
+          6.38198
+        ],
+        [
+          45.28163,
+          6.38214
+        ],
+        [
+          45.28231,
+          6.38283
+        ],
+        [
+          45.28226,
+          6.38313
+        ],
+        [
+          45.28239,
+          6.38302
+        ],
+        [
+          45.28242,
+          6.38349
+        ],
+        [
+          45.28293,
+          6.38347
+        ],
+        [
+          45.28273,
+          6.38386
+        ],
+        [
+          45.28338,
+          6.38348
+        ],
+        [
+          45.2836,
+          6.38346
+        ],
+        [
+          45.28427,
+          6.38373
+        ],
+        [
+          45.28455,
+          6.38359
+        ],
+        [
+          45.28489,
+          6.38361
+        ],
+        [
+          45.28572,
+          6.3834
+        ],
+        [
+          45.2877,
+          6.38343
+        ],
+        [
+          45.28799,
+          6.38317
+        ],
+        [
+          45.28853,
+          6.38291
+        ],
+        [
+          45.28864,
+          6.38303
+        ],
+        [
+          45.28883,
+          6.38401
+        ],
+        [
+          45.28896,
+          6.38409
+        ],
+        [
+          45.28951,
+          6.38386
+        ],
+        [
+          45.28909,
+          6.38404
+        ],
+        [
+          45.28964,
+          6.38377
+        ],
+        [
+          45.29002,
+          6.38408
+        ],
+        [
+          45.29031,
+          6.38445
+        ],
+        [
+          45.29038,
+          6.3844
+        ],
+        [
+          45.29039,
+          6.3842
+        ],
+        [
+          45.29028,
+          6.38396
+        ],
+        [
+          45.29033,
+          6.3839
+        ],
+        [
+          45.2905,
+          6.38415
+        ],
+        [
+          45.29057,
+          6.38342
+        ],
+        [
+          45.29045,
+          6.38285
+        ],
+        [
+          45.29074,
+          6.38232
+        ],
+        [
+          45.2909,
+          6.38169
+        ],
+        [
+          45.29076,
+          6.38083
+        ],
+        [
+          45.29086,
+          6.38044
+        ],
+        [
+          45.29105,
+          6.38001
+        ],
+        [
+          45.29155,
+          6.37966
+        ],
+        [
+          45.29206,
+          6.37913
+        ],
+        [
+          45.29222,
+          6.37909
+        ],
+        [
+          45.29209,
+          6.37899
+        ],
+        [
+          45.29161,
+          6.37794
+        ],
+        [
+          45.29209,
+          6.37749
+        ],
+        [
+          45.29212,
+          6.37677
+        ],
+        [
+          45.29273,
+          6.37663
+        ],
+        [
+          45.29321,
+          6.37669
+        ],
+        [
+          45.29247,
+          6.37547
+        ],
+        [
+          45.29204,
+          6.37511
+        ],
+        [
+          45.29138,
+          6.37474
+        ],
+        [
+          45.29004,
+          6.37497
+        ],
+        [
+          45.28965,
+          6.37478
+        ],
+        [
+          45.28945,
+          6.37483
+        ],
+        [
+          45.28918,
+          6.37507
+        ],
+        [
+          45.28889,
+          6.37513
+        ],
+        [
+          45.2878,
+          6.37502
+        ],
+        [
+          45.28776,
+          6.37516
+        ],
+        [
+          45.28759,
+          6.37519
+        ],
+        [
+          45.28739,
+          6.37549
+        ],
+        [
+          45.28741,
+          6.37592
+        ],
+        [
+          45.28735,
+          6.37601
+        ],
+        [
+          45.28664,
+          6.37507
+        ],
+        [
+          45.28653,
+          6.3747
+        ],
+        [
+          45.28632,
+          6.37438
+        ],
+        [
+          45.28596,
+          6.37397
+        ],
+        [
+          45.28587,
+          6.37389
+        ],
+        [
+          45.28577,
+          6.37394
+        ],
+        [
+          45.28555,
+          6.3737
+        ],
+        [
+          45.28557,
+          6.37248
+        ],
+        [
+          45.28539,
+          6.37221
+        ],
+        [
+          45.28501,
+          6.37201
+        ],
+        [
+          45.28487,
+          6.3716
+        ]
+      ],
+      "lat": 45.28487,
+      "lng": 6.3716,
+      "distance": 5.1,
+      "elevation": 410,
+      "hours": "2.5–3",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 878
+        },
+        {
+          "km": 0.4,
+          "elev": 919
+        },
+        {
+          "km": 0.8,
+          "elev": 1003
+        },
+        {
+          "km": 1.2,
+          "elev": 1136
+        },
+        {
+          "km": 1.6,
+          "elev": 1210
+        },
+        {
+          "km": 2,
+          "elev": 1250
+        },
+        {
+          "km": 2.4,
+          "elev": 1269
+        },
+        {
+          "km": 2.8,
+          "elev": 1264
+        },
+        {
+          "km": 3.2,
+          "elev": 1245
+        },
+        {
+          "km": 3.5,
+          "elev": 1188
+        },
+        {
+          "km": 4,
+          "elev": 1109
+        },
+        {
+          "km": 4.3,
+          "elev": 1023
+        },
+        {
+          "km": 4.8,
+          "elev": 936
+        },
+        {
+          "km": 5.1,
+          "elev": 889
+        }
+      ],
+      "waterSources": [
+        {
+          "km": 0,
+          "lat": 45.2846109,
+          "lng": 6.3711262,
+          "osmId": "node/8865425540",
+          "label": "Drinking water (OSM-verified location)"
+        },
+        {
+          "km": 1.7,
+          "lat": 45.2832551,
+          "lng": 6.3822771,
+          "osmId": "node/11083144627",
+          "label": "Drinking water (OSM-verified location)"
+        }
+      ],
+      "rifugi": [],
+      "startPoint": {
+        "lat": 45.284926,
+        "lng": 6.371628,
+        "label": "Montandré village, by the chapel and the old school (official start; park at the chapel)"
+      },
+      "shadeCoverage": 75,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 1.2 km on the asphalt road to the Col du Sapey, with cars",
+        "A few fairly steep sections on the climb to Grenis (official)",
+        "Three small fords on seasonal streams; a rock edge beside the path by the Grenis chapel"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de tourisme Cœur de Maurienne",
+        "name": "B08 – De Montandré à Champessuit",
+        "url": "https://www.explore-maurienne.com/activites/randonnees/itinerance/de-montandre-a-champessuit-hermillon-fr-6177225/"
+      },
+      "desc": "Route B08, a 5.1 km loop linking the mountain hamlets of Montandré, Grenis and Champessuit above Hermillon in the Maurienne. From the chapel at Montandré it climbs, steeply in places, to Grenis, follows the road towards the Col du Sapey for about 800 m, then crosses Les Grands Prés and Plan des Granges to Champessuit and comes back down by Au Plâtre. Officially 2 hours 35 and 410 m of climb; the tourist office suggests starting towards Grenis.\n\nThe official route page accepts dogs on a lead only. There is no protected area on the walk, and French law forbids letting dogs stray.",
+      "tips": "Keep your dog on a lead, as the route page asks. Most of the walk is in woodland, so it stays fairly cool, but about 1.2 km follows the road to the Col du Sapey, where cars pass. Fountains are mapped at Montandré and Grenis. Take care on the steep stretch up to Grenis and at the small stream fords after rain.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-24",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Panoramax (IGN), Licence Ouverte 2.0: the waymarked fork on the route near Grenis, on the line (replaces a photo of a track 143 m off the route).",
+        "route": "Published line 5.13 km; the official GPX (4.95 km) lies within 26 m of it everywhere; officially 5.1 km. Now started at the Montandré chapel and run towards Grenis first, as the sheet advises.",
+        "routeNumbers": "B08, yellow waymarks and PDIPR signposts (Fourneaux, Grenis, Derrière le Mollard, Les Grands Prés, Plan des Granges, Champessuit, La Cartelée, Au Plâtre).",
+        "mapPoints": "Start at the Montandré chapel, the official start; fountains at Montandré and Grenis traced to OSM (a private tap and a spring box removed).",
+        "elevation": "Official 410 m of climb and 2h35."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Office de tourisme Cœur de Maurienne (3CMA), B08 route sheet (Apidae PDF): 'Type : Boucle // Distance : 5,1 km Durée : 2h35 // Dénivelé : 410 m'; 'Village de Montandré / Se garer au niveau de la chapelle'; 'il est plus agréable de démarrer cette randonnée en direction de Grenis'; official GPX within 26 m of the line",
+          "Same route page: 'Animaux acceptés en laisse uniquement'. No dog arrêté published by La Tour-en-Maurienne or Saint-Julien-Mont-Denis; arrêté of 16 March 1955 (no straying)",
+          "No Natura 2000 site, reserve, park or biotope protection area on the line (EEA, INPN)",
+          "OpenStreetMap: road classes, surfaces, fords and fountains along the line"
+        ],
+        "date": "2026-10-24"
+      },
+      "sourceLinks": [
+        {
+          "label": "OTI Cœur de Maurienne, De Montandré à Champessuit (B08)",
+          "url": "https://www.explore-maurienne.com/activites/randonnees/itinerance/de-montandre-a-champessuit-hermillon-fr-6177225/"
+        },
+        {
+          "label": "B08 route sheet (PDF)",
+          "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/0/225/36757760/B08_De+Montandr++Champessuit.pdf"
+        },
+        {
+          "label": "OpenStreetMap relation 12121346",
+          "url": "https://www.openstreetmap.org/relation/12121346"
+        }
+      ]
     }
   };
 

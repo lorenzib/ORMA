@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-24T12:00:00.000Z",
+  "updatedAt": "2026-10-24T14:00:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -662,18 +662,18 @@
     },
     {
       "id": "osm-12121346",
-      "approvedReviewId": "panoramax-ign-osm-12121346",
-      "approvedAt": "2026-09-09T09:50:22.158Z",
+      "approvedReviewId": "hand-audit-osm-12121346",
+      "approvedAt": "2026-10-24T14:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-12121346-hameaux-track.jpg",
-        "heroImage": "images/trails/osm-12121346-hameaux-track.jpg",
-        "imageAlt": "A pale gravel track running away between grass verges and hazel under dappled September light above Montandré",
-        "imageCredit": "The track above Montandré in September",
-        "imageCreditText": "The track above Montandré in September by jérôme deschamps",
-        "imageCreator": "jérôme deschamps",
+        "imageIcon": "images/trails/osm-12121346-grenis-fork.jpg",
+        "heroImage": "images/trails/osm-12121346-grenis-fork.jpg",
+        "imageAlt": "A quiet lane and a gravel track fork beside yellow walking signposts among trees and meadows above Hermillon",
+        "imageCredit": "The waymarked fork near Grenis",
+        "imageCreditText": "The waymarked fork near Grenis by IGN (Panoramax)",
+        "imageCreator": "IGN (Panoramax)",
         "imageLicence": "Licence Ouverte 2.0",
-        "imageLicenceUrl": "https://alliance.numerique.gouv.fr/licence-ouverte-open-licence/",
-        "imageSourcePage": "https://panoramax.ign.fr/api/collections/fd801ce9-f41e-4348-ad27-6f12805f8496/items/98d909f3-1df3-4eed-86bb-edf81b57ac3c",
+        "imageLicenceUrl": "https://www.etalab.gouv.fr/licence-ouverte-open-licence/",
+        "imageSourcePage": "https://api.panoramax.xyz/api/collections/2385ca59-39e6-40bd-8ff1-ef395b8f44ed/items/382c8fc3-a1d3-47fc-8e72-8972027a0cd4",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1172,18 +1172,18 @@
     },
     {
       "id": "osm-13338113",
-      "approvedReviewId": "commons-osm-13338113",
-      "approvedAt": "2026-09-07T11:16:05.003Z",
+      "approvedReviewId": "hand-audit-osm-13338113",
+      "approvedAt": "2026-10-24T14:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-13338113-la-chapelle.jpg",
-        "heroImage": "images/trails/osm-13338113-la-chapelle.jpg",
-        "imageAlt": "The Abondance valley on an autumn morning, its village on the floor and a path running along the grassy slope above.",
-        "imageCredit": "La Chapelle-d Abondance and its valley",
-        "imageCreditText": "La Chapelle-d Abondance and its valley by Florian Pepellin",
-        "imageCreator": "Florian Pepellin",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:La_Chapelle-d%27Abondance_et_sa_vall%C3%A9e_au_matin_(octobre_2021).JPG",
+        "imageIcon": "images/trails/osm-13338113-col-de-bise-view.jpg",
+        "heroImage": "images/trails/osm-13338113-col-de-bise-view.jpg",
+        "imageAlt": "A summer view from the Col de Bise over green alpine valleys and forested ridges to a high glaciated massif in the distance",
+        "imageCredit": "View from the Col de Bise towards the Valais Alps",
+        "imageCreditText": "View from the Col de Bise towards the Valais Alps by gab rallye",
+        "imageCreator": "gab rallye",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Mont-Blanc_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
