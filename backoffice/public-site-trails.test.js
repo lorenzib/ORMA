@@ -34,10 +34,11 @@ describe('the existing-site verification boundary',()=>{
     // 178 when six walks with no usable picture -- Sentier du Four, the Marais
     // de Pré Lombard, the Anton Schwingshackl Weg, Marmottes, La Plagne and the
     // Demoiselles Coiffées -- gained an ORMA illustration (they stay Reviewed,
-    // never Verified).
+    // never Verified), then 184 and 182 with PanaRaida, the Feldthurns
+    // Panoramaweg, the Antholzer See loop and the Poststeig.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(180);
-    expect(currentSiteTrails(catalogue)).toHaveLength(178);
+    expect(catalogue).toHaveLength(184);
+    expect(currentSiteTrails(catalogue)).toHaveLength(182);
   });
 
   test('requires the artwork the public trail page needs',()=>{

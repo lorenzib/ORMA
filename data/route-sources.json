@@ -130,6 +130,14 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "osm-11768853": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiabd494811c18cb03c07e108804b54617.panoramaweg-in-feldthurns.feldthurns",
+      "publisher": "Brixen Tourismus via IDM suedtirol.info",
+      "name": "Panoramaweg in Feldthurns",
+      "quote": "Strecke 7.0 Km Dauer 2h:02 min Aufstieg 249 m Abstieg 247 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T23:00:00.000Z"
+    },
     "osm-11774783": {
       "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425838",
       "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
@@ -946,6 +954,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-7567918": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi6acb4676a668f87e73fb324d0138b19d.lehrpfad-am-antholzer-see.antholz-niedertal",
+      "publisher": "Tourismusverein Antholzertal via IDM suedtirol.info",
+      "name": "Seerundweg Antholzer See",
+      "quote": "Strecke 3.4 Km Dauer 1h:30 min Aufstieg 79 m Abstieg 79 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T23:00:00.000Z"
+    },
     "osm-7655311": {
       "url": "https://www.merano-suedtirol.it/de/partschins-rabland-und-toell/natur-kultur/wasserwelten/gsund-bleibm-salute-take-care/die-klimatische-terrainkur-gesundheit-und-fitness-fuer-herz-und-kreislauf/121155122-partschins-sonnenberger-panoramaweg-naturns-terrainkurweg-nr-5.html",
       "publisher": "Tourismusverein Partschins, Rabland und Töll",
@@ -969,6 +985,14 @@
       "quote": "CODE_NAME 'Dorfrundweg' (provincial hiking-trail register, routes-hikingtrails.11429378, 3,868 m)",
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-9450411": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiaf8f3c9ca4a78473c6937adbab75770a.poststeig.albions",
+      "publisher": "Tourismusverein Lajen via IDM suedtirol.info",
+      "name": "Poststeig",
+      "quote": "Strecke 11.9 Km Dauer 3h:36 min Aufstieg 500 m Abstieg 386 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T23:00:00.000Z"
     },
     "osm-9487078": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif3fcc4ba68834cc3f669758ebd680dd0.oswald-von-wolkenstein-weg.seis",
@@ -1009,6 +1033,14 @@
       "quote": "Da La Villa (fermata dell'autobus davanti all’Associazione Turistica), segui le indicazioni “Tru dles viles – Badia”.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
+    "osm-9648632": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoia5ba26aecaa788f6d7cb5cb3f88e2627.naturerlebnisweg-panaraida.s-cristina-gherdeina-st-christina-in-groeden",
+      "publisher": "Tourismusverein St. Christina via IDM suedtirol.info",
+      "name": "Naturerlebnisweg PanaRaida",
+      "quote": "Strecke 2.7 Km Dauer 0h:45 min Aufstieg 64 m Abstieg 64 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T23:00:00.000Z"
     },
     "osm-9651462": {
       "url": "https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoic210170ea03c994dc853c5205cdecf8d.sentiero-delle-leggende.onies",
