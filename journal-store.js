@@ -11,6 +11,11 @@
   var MAX_TRACK_CHARS = 60000;    // ~3,000 points, far past a day's walking
   var MAX_PHOTO_CHARS = 700000;   // same bound dog photos already use
   var MAX_NOTE_CHARS = 2000;
+  // Who came along: your dogs and friends, by name. Kept in the account as one
+  // newline-separated string so the rule can bound it with a single size check.
+  var MAX_COMPANIONS = 12;
+  var MAX_COMPANION_CHARS = 40;
+  var MAX_WALKED_WITH_CHARS = 400;
   var COORD_PRECISION = 1e5;      // ~1 m, the precision the recorder stores
 
   function text(value, limit){
@@ -93,7 +98,7 @@
       && /^data:image\/(jpeg|jpg|png|webp);base64,/.test(entry.photo)
       && entry.photo.length <= MAX_PHOTO_CHARS
       ? entry.photo : null;
-    return {
+    var remote = {
       schemaVersion: 1,
       entryId: text(entry.id, 120),
       date: text(entry.date, 40),
@@ -114,6 +119,30 @@
       tale: taleOf(entry),
       updatedAt: entryTimestamp(entry) || now,
     };
+    // Optional, and only sent when there is someone to name: a walk without
+    // companions writes exactly the fields older rules already accept.
+    var companions = walkedWithOf(entry);
+    if(companions.length) remote.walkedWith = companions.join('\n');
+    return remote;
+  }
+
+  // A clean list of names: trimmed, de-duplicated, bounded. Anything that is
+  // not a list of strings becomes an empty list rather than an error.
+  function walkedWithOf(entry){
+    var list = entry && entry.walkedWith;
+    if(typeof list === 'string') list = list.split('\n');
+    if(!Array.isArray(list)) return [];
+    var seen = new Set();
+    var clean = [];
+    list.forEach(function(name){
+      var value = text(name, MAX_COMPANION_CHARS).replace(/\n/g, ' ').trim();
+      var key = value.toLowerCase();
+      if(!value || seen.has(key) || clean.length >= MAX_COMPANIONS) return;
+      seen.add(key);
+      clean.push(value);
+    });
+    while(clean.join('\n').length > MAX_WALKED_WITH_CHARS) clean.pop();
+    return clean;
   }
 
   function taleOf(entry){
@@ -147,6 +176,7 @@
       segments: segments,
       gaps: finite(remote.gaps) || 0,
       tale: taleOf(remote),
+      walkedWith: walkedWithOf(remote),
       updatedAt: finite(remote.updatedAt) || 0,
     };
   }
@@ -216,6 +246,8 @@
     entryTimestamp: entryTimestamp,
     flatten: flatten,
     toRemote: toRemote,
+    walkedWithOf: walkedWithOf,
+    MAX_COMPANIONS: MAX_COMPANIONS,
     fromRemote: fromRemote,
     mergeEntries: mergeEntries,
     entriesToPush: entriesToPush,
