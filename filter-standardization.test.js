@@ -105,11 +105,10 @@ describe('shared trail-filter experience', () => {
 
     expect(styles).toContain('grid-template-columns:repeat(6,minmax(0,1fr))');
     expect(styles).toContain('.li-search{grid-column:1/-1;width:100%;max-width:none;}');
-    expect(browse).toContain('.browse-area-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))');
-    expect(browse).toContain('.browse-primary-controls .browse-search-shell{grid-column:1/-1;');
-    expect(browse).toContain('#browseMultiDay{grid-column:1/span 3;grid-row:2;}');
-    expect(browse).toContain('.browse-saved-only{grid-column:4/span 3;grid-row:2;');
-    expect(browse).toContain('@media(min-width:761px) and (max-width:1040px)');
+    // Browse is one row at every width (search, Area, Filters, Saved); on a
+    // phone the search takes its own line and the other three share the next.
+    expect(browse).toContain('#browseTools{display:flex;flex-wrap:nowrap;align-items:center;gap:8px;}');
+    expect(browse).toMatch(/@media\(max-width:760px\)\{\s*#browseTools\{flex-wrap:wrap;\}\s*#browseTools>\.browse-search-group\{flex:1 1 100%;\}/);
     expect(browse).toContain('overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;');
   });
 

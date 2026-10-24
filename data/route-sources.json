@@ -66,6 +66,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-10116380": {
+      "url": "https://www.lac-annecy.com/itineraire-de-randonnee-pedestre/a-la-decouverte-du-plateau-des-glieres-filliere/",
+      "publisher": "Office de Tourisme du Lac d'Annecy",
+      "name": "A la découverte du Plateau des Glières",
+      "quote": "Distance 4km · Dénivelé positif 100m · Durée 02h30 · Difficulté Très facile",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-10539302": {
       "url": "https://www.valloire.net/sit/le-sentier-ecosylve-de-valloire-5841280/",
       "publisher": "Valloire Tourisme (Apidae)",
@@ -562,6 +570,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-15791408": {
+      "url": "https://www.outdooractive.com/it/route/escursionismo/trentino/giro-di-bedolpian-il-laghetto-delle-rane-e-la-bellavista/67534499/",
+      "publisher": "APT Trento",
+      "name": "Giro di Bedolpian, il Laghetto delle Rane e la Bellavista",
+      "quote": "Distanza 3,3 km / Durata 0:55 h / Salita 53 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-16180587": {
       "url": "https://hautesavoiemontblanc-tourisme.com/offres/balade-du-plateau-dassy-au-lac-vert-par-la-passerelle-du-nant-bordon-passy-fr-5866028/",
       "publisher": "Office de Tourisme de Passy (Apidae)",
@@ -585,6 +601,14 @@
       "quote": "1h00 · 3.509 km · 16 m · Boucle · Départ : Parking du plan d'eau",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-16363583": {
+      "url": "https://explore.chamberymontagnes.com/fr/itineraires/le-marais-de-pre-lombard",
+      "publisher": "Grand Chambéry Alpes Tourisme",
+      "name": "Le Marais de Pré Lombard",
+      "quote": "2h · 7.3km · +125m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-16365005": {
       "url": "https://explore.chamberymontagnes.com/fr/itineraires/la-galoppaz-en-boucle-par-la-combe-servenne",
@@ -977,6 +1001,14 @@
       "quote": "St. Agatha Rundweg — length 1509 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-9933643": {
+      "url": "https://www.la-plagne.com/savourez-une-multitude-d-activites/la-plagne-l-ete/randonnee-pedestre-en-vanoise-et-en-tarentaise/itineraires-de-marche-et-randonnee/boucle-du-lac-vert",
+      "publisher": "Office de Tourisme de La Grande Plagne",
+      "name": "Boucle du Lac Vert",
+      "quote": "Distance : 3.4 km / Dénivelé positif 209 m / Durée 1h30 / Type itinéraire Boucle / Animaux acceptés oui",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-9937537": {
       "url": "https://www.la-plagne.com/savourez-une-multitude-d-activites/la-plagne-l-ete/randonnee-pedestre-en-vanoise-et-en-tarentaise/itineraires-de-marche-et-randonnee/randonnee-vers-le-mont-jovet",
