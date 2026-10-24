@@ -405,6 +405,16 @@ OpenAI remains in use for trail verification and for scouting additional trails.
   drain decides nothing the scheduled worker would not: it runs the same
   lanes with the same policy, and leaves publication (materialise, pull
   request, merge, deploy) to the scheduled worker that follows it.
+- Offline packages (`orma-offline-packages.yml`): every morning at 05:40,
+  Europe/Rome, and after any push to main that changes what decides the
+  Verified seal or a trail's route. One builder at a time, pinned to
+  `overpass-api.de`, builds only the packages that are missing or no longer
+  match the trail record, and removes the package of a trail that lost the
+  seal. It decides nothing: the seal is already decided, and every package
+  stays `field-review-required`. The result reaches the website the way the
+  warning snapshot does: an automatic pull request whose own quality-gate run
+  the workflow approves, merges once it passes, then validates and deploys.
+  The two pilots are never rebuilt by it.
 - New Trail scouting: paused for the duration of the ORMA Verified backfill.
   Each newly admitted trail opens a new verification gap faster than the backfill
   closes one, so intake stays paused until the lane reaches full coverage of the

@@ -71,12 +71,33 @@ out a fact a trail does not record.
 
 ## Keeping it current
 
-- A trail that **gains** the seal: run the builder (or `--trail=<id>`) and
-  commit the new package.
+`.github/workflows/orma-offline-packages.yml` keeps the packages following the
+seal, so nobody has to remember to run the builder. It runs every morning at
+05:40 Europe/Rome, by hand, and after a push to main that changes the trail
+sources, the verified-trail overrides or the evidence rule. (A verification
+merged with the workflow token starts no workflow, which is why the morning
+run exists.) It runs:
+
+```
+node scripts/build-offline-packages.js --prune --stale
+npm run build:trail-routing
+npm run build:trail-page-bundle
+```
+
+- A trail that **gains** the seal has no package, so `--stale` builds it.
+- A trail whose route, stored elevation profile or safety facts changed is
+  rebuilt. Everything else keeps its bytes and its revision, so a run without
+  the extract cache fetches only the corridors it needs.
 - A trail that **loses** the seal: `--prune` removes its package.
-  `offline-beta-scope.test.js` fails until it is gone, so a withdrawn trail
-  cannot keep offering a download.
-- `--refresh` fetches every extract again, for newer OpenStreetMap data.
+  `offline-beta-scope.test.js` fails until it is gone, so a withdrawal pull
+  request must prune in the same change.
+- One builder at a time (`concurrency: orma-offline-packages`), pinned to
+  `overpass-api.de`. The corridor extracts live in an actions cache.
+- The result is its own pull request on `orma-bot/offline-packages`, published
+  the way the hazard snapshot is: the run approves the PR's quality-gate run,
+  merges once it passes, and dispatches validation and the website deploy.
+- `--refresh` fetches every extract again, for newer OpenStreetMap data. That
+  stays a hand-run job.
 
 ## Where else it shows
 

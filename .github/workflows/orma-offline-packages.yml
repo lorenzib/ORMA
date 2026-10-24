@@ -1,0 +1,192 @@
+name: ORMA offline packages
+
+# Every trail the site shows as Verified has an offline map package (OFF-07).
+# The seal changes several times a week as research batches merge or seals are
+# withdrawn, so this keeps the packages following it: a trail that gains the
+# seal gets its package, one that loses it loses it, and a package whose route,
+# profile or safety facts no longer match the trail record is rebuilt.
+#
+# It runs after a push to main that touches what decides the seal or the route,
+# and every morning as well, because a verification merged with the workflow
+# token starts no workflow, push included.
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '40 5 * * *'
+      timezone: Europe/Rome
+  push:
+    branches: [main]
+    paths:
+      - trails-data.js
+      - osm-trails-data.js
+      - osm-trails-savoy-data.js
+      - trail-audits.js
+      - regions-config.js
+      - data/verified-trail-overrides.json
+      - data/lift-access.json
+      - data/trail-slug-overrides.json
+      - trust/evidence-v1.js
+      - scripts/load-production-trails.js
+      - scripts/build-offline-packages.js
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+# One builder at a time. Two in parallel on 23 October drew 502s and 429s from
+# the only Overpass mirror that was answering.
+concurrency:
+  group: orma-offline-packages
+  cancel-in-progress: false
+
+jobs:
+  build-packages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      # The other mirrors were down or had an expired certificate on 23 October.
+      OVERPASS_URL: https://overpass-api.de/api/interpreter
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # The raw corridor extracts are not committed (over 100 MB for 77
+      # trails). The cache keeps them between runs; without it a run fetches
+      # only the corridors of the packages it builds.
+      - name: Restore the corridor extracts
+        uses: actions/cache/restore@v6
+        with:
+          path: .cache/offline-map-sources
+          key: offline-map-sources-${{ github.run_id }}
+          restore-keys: offline-map-sources-
+      # --stale builds only the packages that are missing or out of date, so
+      # every other package keeps its bytes and its revision. A trail that
+      # failed (Overpass busy) is reported and the rest still publish.
+      - name: Build the offline packages for the Verified trails
+        id: build
+        shell: bash
+        run: |
+          set +e
+          node scripts/build-offline-packages.js --prune --stale 2>&1 | tee build.log
+          status=${PIPESTATUS[0]}
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          grep -E '^\[(prune|stale)\]| FAILED: ' build.log > changes.log || true
+          exit 0
+      - name: Rebuild what reads the packages
+        run: |
+          npm run build:trail-routing
+          npm run build:trail-page-bundle
+      - name: Save the corridor extracts
+        if: always()
+        uses: actions/cache/save@v6
+        with:
+          path: .cache/offline-map-sources
+          key: offline-map-sources-${{ github.run_id }}
+      # Nothing this workflow does with the repository token starts another
+      # workflow run. A package PR merged by an earlier run after its wait ran
+      # out has had no validation or deploy on main, so dispatch them here.
+      - name: Check and deploy main if the last package merge never did
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -o pipefail
+          head="$(git rev-parse HEAD)"
+          for workflow in validate.yml deploy-pages.yml; do
+            if gh run list --workflow "$workflow" --limit 30 --json headSha --jq '.[].headSha' | grep -qx "$head"; then
+              echo "main ($head) already has a $workflow run."
+            else
+              echo "main ($head) has no $workflow run; dispatching one."
+              gh workflow run "$workflow" --ref main
+            fi
+          done
+      # The same publication as the hazard snapshot (orma-hazard-watch.yml):
+      # main is protected, so the packages travel as a pull request on one
+      # fixed, force-pushed branch. The Actions bot never graduates from the
+      # first-time-contributor approval policy, so the run approves the PR's own
+      # quality-gate run, waits for it, merges, and dispatches validation and
+      # the website deploy, which the merge alone would not start. Auto-merge
+      # stays armed as the fallback if the gate outlasts the wait.
+      - name: Publish the offline packages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -o pipefail
+          generated=(offline/packages offline-packages.js trail-routing-coverage.js trail-app.bundle.js)
+          if [ -z "$(git status --porcelain -- "${generated[@]}")" ]; then
+            echo "Every Verified trail's offline package is current."
+            exit 0
+          fi
+          branch="orma-bot/offline-packages"
+          git config user.name "ORMA Backoffice"
+          git config user.email "orma-backoffice@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add -A -- "${generated[@]}"
+          # Generated packages are their own commit: nothing else may ride along.
+          if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+            echo "The package build changed files outside the offline packages:"
+            git status --porcelain --untracked-files=no
+            exit 1
+          fi
+          git commit -m "Offline maps follow the Verified trails"
+          git push --force origin "$branch"
+          body="$(printf 'Generated by the ORMA offline packages workflow: the set of Verified trails, or what one of them records, changed. Every package stays field-review-required. Merges itself once the quality gate passes.\n\n```\n%s\n```\n' "$(cat changes.log)")"
+          pr="$(gh pr list --head "$branch" --state open --json number --jq '.[0].number')"
+          if [ -z "$pr" ]; then
+            pr="$(gh pr create --base main --head "$branch" \
+              --title "Offline maps follow the Verified trails" \
+              --body "$body" \
+              | grep -oE '[0-9]+$')"
+          else
+            gh pr edit "$pr" --body "$body"
+          fi
+          approve_pending() {
+            gh run list --workflow validate.yml --branch "$branch" --event pull_request --limit 5 \
+              --json databaseId,conclusion,headSha \
+              --jq ".[] | select(.headSha == \"$1\" and .conclusion == \"action_required\") | .databaseId" \
+            | while read -r run; do
+                if gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/runs/${run}/approve" >/dev/null; then
+                  echo "Approved the pull request's quality-gate run ${run}."
+                else
+                  echo "Could not approve run ${run}; auto-merge stays armed for a maintainer to approve it."
+                fi
+              done
+          }
+          gh pr merge "$pr" --auto --squash
+          sleep 20
+          approve_pending "$(git rev-parse HEAD)"
+          # The quality gate checks every package byte for byte, so it takes
+          # longer than the hazard snapshot's: wait up to 20 minutes.
+          for attempt in $(seq 1 80); do
+            sleep 15
+            state="$(gh pr view "$pr" --json state,mergeStateStatus --jq '"\(.state) \(.mergeStateStatus)"')"
+            echo "[$attempt] $state"
+            case "$state" in
+              MERGED*) break ;;
+              "OPEN CLEAN") gh pr merge "$pr" --squash || true ;;
+              "OPEN BLOCKED") approve_pending "$(gh pr view "$pr" --json headRefOid --jq .headRefOid)" ;;
+              "OPEN BEHIND")
+                gh pr update-branch "$pr" || true
+                sleep 20
+                approve_pending "$(gh pr view "$pr" --json headRefOid --jq .headRefOid)" ;;
+            esac
+          done
+          if [ "$(gh pr view "$pr" --json state --jq .state)" = "MERGED" ]; then
+            echo "Packages merged; validating the merge commit and dispatching the website deploy."
+            gh workflow run validate.yml --ref main
+            gh workflow run deploy-pages.yml --ref main
+          else
+            echo "The quality gate outlasted the wait; auto-merge stays armed and the next run validates and deploys."
+          fi
+      - name: Report packages that were not built
+        if: steps.build.outputs.status != '0'
+        run: |
+          echo "Some offline packages were not built; the next run tries them again."
+          grep ' FAILED: ' build.log || true
+          exit 1
