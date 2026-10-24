@@ -108,10 +108,10 @@ describe('every collection cover can be credited', () => {
   const { loadProductionTrails } = require('./scripts/load-production-trails');
   const catalogue = loadProductionTrails(__dirname);
 
-  // The one cover no trail uses. It sits in images/ with no recorded rights,
-  // like the Lago di Carezza photograph did before its owner confirmed it, so
-  // it is named here rather than quietly passing.
-  const UNRESOLVED = new Set(['images/lago-di-braies.webp']);
+  // No exceptions left. Lake loops used images/lago-di-braies.webp, which no
+  // trail owns and has no recorded rights; it now uses Lago di Carezza, an
+  // ORMA original owned by a trail in the same collection.
+  const UNRESOLVED = new Set();
 
   const creditOf = cover => {
     const owner = catalogue.find(trail => trail.imageIcon === cover || trail.heroImage === cover);
@@ -125,6 +125,13 @@ describe('every collection cover can be credited', () => {
     const credit = owner.imageCredit;
     return (typeof credit === 'string' ? credit : credit && credit.text) || null;
   };
+
+  test('lake loops leads with an ORMA original from its own trails', () => {
+    const lakeLoops = collections.all().find(item => item.id === 'lake-loops');
+    expect(lakeLoops.coverImage).toBe('images/lago-di-carezza.webp');
+    expect(lakeLoops.trailIds).toContain('lago-carezza');
+    expect(creditOf(lakeLoops.coverImage)).toBe('ORMA original');
+  });
 
   test.each(collections.all().map(item => [item.id, item]))(
     '%s names whoever took its cover', (id, item) => {

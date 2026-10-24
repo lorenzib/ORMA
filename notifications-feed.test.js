@@ -6,6 +6,7 @@ describe('derived notifications feed', () => {
     { id: 'shady', name: 'Shady Loop', heatRisk: 'low', surfaceHazards: [] },
     { id: 'ridge', name: 'Ridge Trail', heatRisk: 'high', shadeCoverage: 10,
       surfaceHazards: ['Rocky steps near the ridge'],
+      graduation: { status: 'verified' },
       verified: { date: '2026-07-17', sources: ['Seceda Cableways'] } },
     { id: 'meadow', name: 'Meadow Walk', heatRisk: 'high', shadeCoverage: 20,
       surfaceHazards: [], reviewedAt: '2026-07-10' },
@@ -25,9 +26,26 @@ describe('derived notifications feed', () => {
     expect(audit).toBeDefined();
     expect(audit.group).toBe('earlier');
     expect(audit.timeLabel).toBe('17 Jul');
-    expect(audit.body).toContain('Seceda Cableways');
+    expect(audit.title).toBe('Ridge Trail');
+    expect(audit.body).toBe('Now ORMA Verified: checked against 1 official source.');
     // reviewedAt-only trails still qualify.
     expect(items.some(i => i.id === 'audit-meadow-2026-07-10')).toBe(true);
+  });
+
+  test('a verification is one plain line: no working notes, and map data is not counted as an official source', () => {
+    const note = "Tourismusgenossenschaft Naturns, 'Dauer 2:30 h', 'Länge 8,3 km'; official GPX within 20 m of the rebuilt line";
+    const items = feed.build({ now: NOW, trails: [{ id: 'w', name: 'Wallburgweg', graduation: { status: 'verified' },
+      verified: { date: '2026-01-30', sources: [note, 'Ordinanza 6 agosto 2013, Art. 1(3)', 'Naturns landscape plan',
+        'OpenStreetMap: road classes, surfaces, cliffs, steps and water along the line'] } }] });
+    const item = items.find(i => i.id === 'audit-w-2026-01-30');
+    expect(item.title).toBe('Wallburgweg');
+    expect(item.body).toBe('Now ORMA Verified: checked against 3 official sources.');
+    expect(item.body).not.toContain('Dauer');
+  });
+
+  test('a reviewed trail says so plainly and claims no verification', () => {
+    const items = feed.build({ trails, favorites: {}, now: NOW });
+    expect(items.find(i => i.id === 'audit-meadow-2026-07-10').body).toBe('Reviewed by ORMA: trail details updated.');
   });
 
   test('a profile save confirmation does not become a bell notification', () => {
