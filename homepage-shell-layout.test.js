@@ -75,9 +75,16 @@ describe('logged-in discovery workspace layout', () => {
     const head = html.slice(html.indexOf('class="li-list-head"'), html.indexOf('id="returningTrailList"'));
     expect(head).toContain('<h2 class="li-list-title" id="companionListTitle">');
     expect(head).toContain('id="companionListCount"');
-    expect(head).toContain('<select id="companionSortSelect" aria-label="Sort trails">');
+    // ORMA's own menu, not a native select: the system popup did not match.
+    expect(head).not.toContain('<select');
+    expect(head).toContain('id="liSortBtn" class="li-sort-pill" aria-haspopup="menu"');
+    for(const [key, label] of [['match', 'Best fit'], ['distance', 'Shortest'], ['effort', 'Least climb'], ['today', 'For today']]){
+      expect(head).toContain(`data-li-sort="${key}"`);
+      expect(head).toContain(`>${label}</button>`);
+    }
     expect(head).toContain('id="liViewSaved" class="li-saved-toggle" aria-pressed="false"');
-    expect(head.indexOf('id="companionSortSelect"')).toBeLessThan(head.indexOf('id="liViewSaved"'));
+    expect(head.indexOf('id="liSortBtn"')).toBeLessThan(head.indexOf('id="liReasonsToggle"'));
+    expect(head.indexOf('id="liReasonsToggle"')).toBeLessThan(head.indexOf('id="liViewSaved"'));
     for(const gone of ['companionKicker', 'returningSubline', 'li-list-options', 'liViewAll', 'companionSortGroup', 'li-explore-all']){
       expect(html).not.toContain(gone);
     }

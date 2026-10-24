@@ -57,6 +57,9 @@ function loadHomepageContext(testTrails){
       </div></div>
     <button id="liFiltersBtn"></button><div id="liFiltersMenu" hidden></div>
     <button id="liAccountBtn"></button><div id="liAccountMenu" hidden><div id="liRecentList"></div></div>
+    <button id="liSortBtn" aria-expanded="false"><span id="liSortValue">Best fit</span></button>
+    <div id="liSortMenu" hidden><button data-li-sort="match" aria-checked="true">Best fit</button><button data-li-sort="distance" aria-checked="false">Shortest</button></div>
+    <button id="liReasonsToggle" aria-pressed="false"><span class="li-reasons-word">Hide reasons</span></button>
     <button id="liViewSaved" aria-pressed="false"><span id="liSavedOnlyCount"></span></button>
     <span id="liDogCtxName"></span>
     <span id="liDogCtxBreedSep" hidden></span>
@@ -694,6 +697,60 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
   });
 
+  // One switch hides every card's reasons, and the choice is remembered; each
+  // card's own toggle still opens that card.
+  test('Hide reasons closes the top picks, and each card can still open', async () => {
+    const dolomitesFive = Array.from({ length: 5 }, (_, i) => ({
+      id: `dol${i}`, name: `Dolomite Trail ${i}`, region: 'dolomites', valley: 'Val Gardena',
+      area: 'Ortisei', lat: 46.57 + i / 100, lng: 11.67, curated: true, distance: 6,
+      elevation: 320, hours: 3, terrainType: 'Mixed', safetyLevel: 'low-risk',
+    }));
+    const context = loadHomepageContext(dolomitesFive);
+    const store = new Map();
+    context.localStorage.setItem = (key, value) => { store.set(key, String(value)); };
+    context.localStorage.removeItem = key => { store.delete(key); };
+    context.recommendTrail.mockImplementation(() => ({
+      scoringVersion:'1.6.0', score:86, category:'recommended', confidence:'high',
+      positiveReasons:[{ message:'The distance suits Teo’s normal range.' }],
+      cautions:[{ message:'Bring water for the exposed middle section.' }],
+      hardStops:[], unknowns:[],
+    }));
+    vm.runInContext('liLocationContext = { kind:"area", country:"IT", region:"dolomites", valley:"all", label:"Dolomites" }; liApplyLocationGeography();', context);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    expect(document.querySelectorAll('.li-row.is-why-open')).toHaveLength(3);
+
+    const toggle = document.getElementById('liReasonsToggle');
+    toggle.click();
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(document.querySelectorAll('.li-row.is-why-open')).toHaveLength(0);
+    expect(toggle.getAttribute('aria-pressed')).toBe('true');
+    expect(toggle.textContent).toBe('Show reasons');
+    expect(store.get('orma-home-reasons-hidden-v1')).toBe('1');
+
+    document.querySelector('.li-row [data-why-toggle]').click();
+    expect(document.querySelectorAll('.li-row.is-why-open')).toHaveLength(1);
+
+    toggle.click();
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(document.querySelectorAll('.li-row.is-why-open')).toHaveLength(3);
+    expect(store.has('orma-home-reasons-hidden-v1')).toBe(false);
+  });
+
+  test('Sort is a menu: choosing names the choice and re-sorts', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    const button = document.getElementById('liSortBtn');
+    const menu = document.getElementById('liSortMenu');
+    button.click();
+    expect(menu.hidden).toBe(false);
+    expect(button.getAttribute('aria-expanded')).toBe('true');
+    menu.querySelector('[data-li-sort="distance"]').click();
+    expect(menu.hidden).toBe(true);
+    expect(vm.runInContext('sortKey', context)).toBe('distance');
+    expect(document.getElementById('liSortValue').textContent).toBe('Shortest');
+    expect(menu.querySelector('[data-li-sort="distance"]').getAttribute('aria-checked')).toBe('true');
+    expect(menu.querySelector('[data-li-sort="match"]').getAttribute('aria-checked')).toBe('false');
+  });
+
   test('leads with three explained top picks and keeps alternatives compact', async () => {
     // Five in-scope trails so the three top picks and compact alternatives
     // both render.
@@ -753,11 +810,13 @@ describe('returning homepage region + valley filters', () => {
     expect([...rows].map(row => row.dataset.rank)).toEqual(['1', '2', '3', '4', '5']);
     expect(document.querySelector('.li-match b').textContent).toBe('Strong option');
     // Confidence left the verdict column for the evidence line, and "High
-    // confidence" is not said beside "ORMA route-audited" because it is the
+    // confidence" is not said beside "Verified by ORMA" because it is the
     // same statement twice. A caveat still appears; an agreement does not.
     expect(document.querySelector('.li-match-confidence')).toBeNull();
     const trust = document.querySelector('.li-row-trust').textContent;
-    expect(trust).toContain('ORMA route-audited');
+    // The trail page's words, so a card and its trail agree.
+    expect(trust).toContain('Verified by ORMA');
+    expect(trust).not.toContain('route-audited');
     expect(trust).not.toContain('Based on detailed trail data');
     expect(document.querySelector('.li-row--answer').textContent).not.toContain('86%');
   });

@@ -2717,11 +2717,11 @@ function liWireNewFeatureCallout(){
 }
 
 function liCloseMenus(){
-  ['liFiltersMenu', 'liNewMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu', 'liAreaMenu', 'liDayMenu'].forEach(id => {
+  ['liFiltersMenu', 'liNewMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu', 'liAreaMenu', 'liDayMenu', 'liSortMenu'].forEach(id => {
     const menu = document.getElementById(id);
     if(menu) menu.hidden = true;
   });
-  ['liFiltersBtn', 'liNewBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
+  ['liFiltersBtn', 'liNewBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn', 'liSortBtn'].forEach(id => {
     const btn = document.getElementById(id);
     if(btn) btn.setAttribute('aria-expanded', 'false');
   });
@@ -3719,7 +3719,7 @@ function liMatchColHtml(t, profile, overrides){
 }
 
 // One line for how well a verdict is known: where the evidence came from, any
-// caveat on it, and when it was checked. Confidence beside "ORMA route-audited"
+// caveat on it, and when it was checked. Confidence beside "Verified by ORMA"
 // was the same statement twice, so evidenceLine decides when it is worth
 // saying -- and with no vocabulary loaded there is nothing to say.
 function liProvenanceHtml(trail, profile){
@@ -4054,11 +4054,13 @@ async function renderReturningHomepage(profile, options = {}){
       : '';
     const rank = resultRanks.get(t.id) || index + 1;
     const isPrimary = !showingSavedOnly && index < TOP_PICKS;
-    // Every card can explain itself; the top picks simply start open, because
-    // they are the answer the page was asked for.
-    const explanation = liRecommendationExplanationHtml(t, profile, isPrimary, isNew);
+    // Every card can explain itself; the top picks start open, because they
+    // are the answer the page was asked for -- unless the reader has hidden
+    // reasons with the switch in the list header.
+    const startsOpen = isPrimary && !liReasonsHidden;
+    const explanation = liRecommendationExplanationHtml(t, profile, startsOpen, isNew);
     return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? `<div class="li-alternatives-heading"><span>Other options for ${liPersonalisationText(liScoredSubject(profile))}</span><a href="browse-trails.html">See the full catalogue →</a></div>` : ''}
-    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}${explanation && isPrimary ? ' is-why-open' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="Rank ${rank}: ${liPersonalisationText(t.name)}"${dim ? ' style="opacity:.55;"' : ''}>
+    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}${explanation && startsOpen ? ' is-why-open' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="Rank ${rank}: ${liPersonalisationText(t.name)}"${dim ? ' style="opacity:.55;"' : ''}>
       <span class="li-result-rank" aria-hidden="true" style="background:${liRecommendationPresentation(t, profile).color};">${rank}</span>
       ${thumb}
       <div class="li-row-body">
@@ -4071,7 +4073,7 @@ async function renderReturningHomepage(profile, options = {}){
       ${liMatchColHtml(t, profile, overrides)}
       <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? 'Remove ' + t.name + ' from saved trails' : 'Save ' + t.name}">${isFav ? '♥' : '♡'}</button>
       <div class="li-row-bar">
-        ${explanation ? liWhyToggleHtml(t, profile, isPrimary) : ''}
+        ${explanation ? liWhyToggleHtml(t, profile, startsOpen) : ''}
         <button type="button" class="li-bar-act locate-btn" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>See on map</button>
         ${directionsBarHtml(t)}
       </div>
@@ -4299,12 +4301,58 @@ if(savedTrailsBtn){
   });
 }
 
-// Sort, one dropdown in the list header: Best fit / Shortest / Least climb /
-// For today.
-const companionSortSelect = document.getElementById('companionSortSelect');
-if(companionSortSelect){
-  companionSortSelect.addEventListener('change', () => {
-    sortKey = companionSortSelect.value;
+// "Hide reasons" in the list header: whether the top cards open with their
+// reasons showing. A reading preference, so it is kept in this browser; each
+// card's own toggle still opens or closes that card.
+const LI_REASONS_HIDDEN_KEY = 'orma-home-reasons-hidden-v1';
+let liReasonsHidden = (() => {
+  try{ return localStorage.getItem(LI_REASONS_HIDDEN_KEY) === '1'; }catch(error){ return false; }
+})();
+function liSyncReasonsToggle(){
+  const toggle = document.getElementById('liReasonsToggle');
+  if(!toggle) return;
+  toggle.setAttribute('aria-pressed', String(liReasonsHidden));
+  const label = toggle.querySelector('.li-reasons-word');
+  if(label) label.textContent = liReasonsHidden ? 'Show reasons' : 'Hide reasons';
+}
+const liReasonsToggle = document.getElementById('liReasonsToggle');
+if(liReasonsToggle){
+  liSyncReasonsToggle();
+  liReasonsToggle.addEventListener('click', () => {
+    liReasonsHidden = !liReasonsHidden;
+    try{
+      if(liReasonsHidden) localStorage.setItem(LI_REASONS_HIDDEN_KEY, '1');
+      else localStorage.removeItem(LI_REASONS_HIDDEN_KEY);
+    }catch(error){}
+    liSyncReasonsToggle();
+    renderReturningHomepage(currentProfileForAdjust);
+  });
+}
+
+// Sort, one menu in the list header: Best fit / Shortest / Least climb /
+// For today. The button names the choice; the menu ticks it.
+const liSortBtn = document.getElementById('liSortBtn');
+const liSortMenu = document.getElementById('liSortMenu');
+if(liSortBtn && liSortMenu){
+  liSortBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const willOpen = liSortMenu.hidden;
+    liCloseMenus();
+    liSortMenu.hidden = !willOpen;
+    liSortBtn.setAttribute('aria-expanded', String(willOpen));
+  });
+  liSortMenu.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const option = event.target.closest('[data-li-sort]');
+    if(!option) return;
+    sortKey = option.dataset.liSort;
+    liSortMenu.querySelectorAll('[data-li-sort]').forEach(item => {
+      item.setAttribute('aria-checked', String(item === option));
+    });
+    const value = document.getElementById('liSortValue');
+    if(value) value.textContent = option.textContent;
+    liCloseMenus();
+    liSortBtn.focus();
     renderReturningHomepage(currentProfileForAdjust);
   });
 }
