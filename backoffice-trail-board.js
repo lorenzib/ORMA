@@ -80,6 +80,7 @@
   function renderJourney(){
     const counts=board.summary.stages||{};const stopped=board.summary.stopped||{};
     const hints={...STAGE_HINT,
+      research:board.summary.paidResearchEnabled===false?'Paused: paid research is off':STAGE_HINT.research,
       passed:`${board.summary.verified} Verified · ${board.summary.reviewed} Reviewed on the site`,
       hand:`${board.summary.verifiedByHand||0} of the ${board.summary.verified} Verified, checked in Claude`,
       stopped:`${stopped.resting||0} resting · ${stopped.rejected||0} rejected · ${stopped.blocked||0} blocked`};

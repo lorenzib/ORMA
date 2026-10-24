@@ -317,6 +317,16 @@ jobs:
         run: |
           npm run backoffice:confirm-publications
 
+      # A publication pull request that was closed instead of merged would
+      # otherwise stay on the board as a review for the owner forever.
+      - name: Record what happened to publication pull requests
+        if: ${{ always() }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          npm run backoffice:reconcile-publication-prs
+
       - name: Record worker completion
         id: worker_health
         if: ${{ always() }}

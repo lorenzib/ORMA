@@ -122,7 +122,8 @@ async function main(options = {}){
       const [orchestration, publicationRequests] = await Promise.all([
         store.getArtifact('trail-orchestration'), store.getArtifact('publication-requests')]);
       const next = buildTrailBoard({ trails: options.trails || loadProductionTrails(path.resolve(__dirname, '../..')),
-        orchestration, publicationRequests, jobs: await store.listJobs(['queued', 'running']), at: now });
+        orchestration, publicationRequests, jobs: await store.listJobs(['queued', 'running']), at: now,
+        paidResearchEnabled: process.env.ORMA_PAID_RESEARCH_ENABLED === 'true' });
       await store.setArtifact('trail-board', next, { trails: next.summary.trails, stuck: next.summary.stuck });
     }catch(error){
       console.error(`[trail-requests] board not refreshed: ${error.message}`);
