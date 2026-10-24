@@ -750,8 +750,9 @@
     if(!panel || !downloadButton || !openButton || !removeButton || !status) return;
 
     const raw = new URLSearchParams(window.location.search).get('id');
-    // The two offline packages are keyed by trail id, and lago-carezza's slug
-    // is lago-di-carezza-loop, so an unresolved param hides the panel.
+    // Offline packages are keyed by trail id, not by the slug in the URL
+    // (lago-carezza's is lago-di-carezza-loop), so an unresolved param hides
+    // the panel.
     const trailId = (window.DoloPawsRegionalData && window.DoloPawsRegionalData.resolveTrailId ? window.DoloPawsRegionalData.resolveTrailId(raw) : (raw));
     const trailCollection = typeof trails !== 'undefined' ? trails : null;
     const availability = availabilityForTrail(trailId, trailCollection);
@@ -790,6 +791,9 @@
       return;
     }
     panel.dataset.availability = availability.reason;
+    // trail.html carried a fixed link to the Carezza pilot, which was right
+    // while it was the only package; every trail opens its own map.
+    openButton.href = PACKAGES[trailId].offlineUrl;
 
     function signedIn(){
       return !!(window.DoloPawsAuth && window.DoloPawsAuth.currentUser);
