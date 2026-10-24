@@ -238,6 +238,16 @@
         "archeo"
       ],
       "gloss": "the archaeology trail"
+    },
+    "osm-11768853": {
+      "name": "Panoramaweg in Feldthurns",
+      "slug": "panoramaweg-in-feldthurns",
+      "gloss": "the Feldthurns panoramic path"
+    },
+    "osm-7567918": {
+      "name": "Seerundweg Antholzer See",
+      "slug": "seerundweg-antholzer-see",
+      "gloss": "the Antholz lake circuit"
     }
   }
 }
