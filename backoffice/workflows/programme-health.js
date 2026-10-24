@@ -17,7 +17,7 @@
  */
 
 const {buildFunnel}=require('./verification-funnel');
-const FINISHED_STATES=new Set(['ready-for-editorial','verified-by-hand']);
+const {badgeOf}=require('./build-trail-board');
 const {UNWAIVABLE_BLOCKER_IDS}=require('./compile-verified-dossier');
 const {MAX_AUTOMATED_ATTEMPTS,STRATEGIES}=require('./claim-resolution');
 const {describeDayUsage}=require('./firestore-usage-day');
@@ -139,7 +139,9 @@ function cost(usage={},jobsDone=0,dayUsage=null){
 }
 
 function summariseProgrammeHealth(options={}){
-  const {orchestration,jobs=[],reviewQueue,usage,jobsDone=0,nowMs=Date.now()}=options;
+  const {orchestration,jobs=[],reviewQueue,usage,jobsDone=0,nowMs=Date.now(),productionTrails=null}=options;
+  const siteVerified=Array.isArray(productionTrails)
+    ?new Set(productionTrails.filter(trail=>trail&&trail.id&&badgeOf(trail)==='verified').map(trail=>trail.id)):null;
   // Read from the funnel's own fields rather than a copy of them: `stages` and
   // `totalTrails` are what it returns, and guessing otherwise is how a report
   // ends up confidently printing undefined.
@@ -157,11 +159,12 @@ function summariseProgrammeHealth(options={}){
     throughput:{
       inPipeline:funnel.totalTrails??(orchestration?.trails||[]).length,
       stages,
-      // The board's "Finished" tile read this field and nothing wrote it, so
-      // it said 0 with 72 walks verified by hand. A trail is finished when the
-      // evidence policy approved it or it was verified by hand.
-      verified:(orchestration?.trails||[]).filter(trail=>FINISHED_STATES.has(trail.state)).length,
-      verifiedByHand:(orchestration?.trails||[]).filter(trail=>trail.state==='verified-by-hand').length,
+      // The number the site shows, read from the catalogue with the site's own
+      // badge rule. Counting pipeline states instead said 115 on 24 Oct while
+      // the site said 101: an evidence-policy approval is not yet a seal.
+      verified:siteVerified?siteVerified.size:null,
+      verifiedByHand:siteVerified?(orchestration?.trails||[])
+        .filter(trail=>trail.state==='verified-by-hand'&&siteVerified.has(trail.trailId)).length:null,
       // The two ends of the lane, stated even when they are 0 -- which is the
       // whole point: "ready for editorial: 0" is the programme's headline and no
       // existing tile showed it.

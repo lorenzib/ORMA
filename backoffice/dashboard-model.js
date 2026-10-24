@@ -563,15 +563,16 @@
         available:true,
         // The number the programme exists to move, stated even at zero -- which
         // is the whole point of putting it on the wall.
-        headline:Number(t.verified||0)
-          ?`${t.verified} trail${t.verified===1?'':'s'} verified${Number(t.verifiedByHand||0)?`, ${t.verifiedByHand} of them by hand`:''}`
-          :'No trail has finished yet',
+        headline:t.verified==null?'Verified count not recorded yet'
+          :Number(t.verified)
+            ?`${t.verified} trail${t.verified===1?'':'s'} Verified on the site${Number(t.verifiedByHand||0)?`, ${t.verifiedByHand} of them by hand`:''}`
+            :'No trail is Verified yet',
         settled:Number(t.verified||0)>0,
         // Four, not six. A tile for every field turns the two numbers that
         // matter into wallpaper.
         throughput:[
           {label:'In progress',value:t.inPipeline||0},
-          {label:'Finished',value:t.verified||0,emphasis:true},
+          {label:'Verified',value:t.verified??'—',emphasis:true},
           {label:'Needs you',value:stage('geometry-human-gate')+stage('dossier-human-gate'),
             warn:stage('geometry-human-gate')+stage('dossier-human-gate')>0},
           {label:'Stuck',value:t.stalled||0,warn:Number(t.stalled||0)>0},

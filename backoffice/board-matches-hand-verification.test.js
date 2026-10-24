@@ -22,13 +22,22 @@ const orchestration={trails:[flow('hand','verified-by-hand'),flow('policy','read
 const entry=(board,id)=>board.trails.find(item=>item.id===id);
 
 describe('the board describes how trails are verified now',()=>{
-  test('the Finished count includes walks verified by hand',()=>{
-    const health=summariseProgrammeHealth({orchestration,jobs:[],nowMs:Date.parse('2026-10-23T12:00:00Z')});
-    expect(health.throughput).toEqual(expect.objectContaining({verified:2,verifiedByHand:1}));
-    const board=buildProgrammeBoard({programmeHealth:health,nowMs:Date.parse('2026-10-23T12:00:00Z')});
+  test('the Verified count is the one the site shows, not every approval in the pipeline',()=>{
+    const ALL=['photo','route','routeNumbers','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'];
+    const sealed=id=>({...trail(id),curated:true,tier:'route-audited',
+      graduation:{status:'verified',required:ALL,completed:ALL,blockers:{}},verified:{categories:ALL.slice(5),sources:['a'],date:'2026-10-21'}});
+    // `policy` is approved by the evidence policy but carries no seal yet, so
+    // it is not Verified: counting it is how the headline said 115 for 101.
+    const productionTrails=[sealed('hand'),trail('policy'),trail('research')];
+    const nowMs=Date.parse('2026-10-23T12:00:00Z');
+    const health=summariseProgrammeHealth({orchestration,jobs:[],nowMs,productionTrails});
+    expect(health.throughput).toEqual(expect.objectContaining({verified:1,verifiedByHand:1}));
+    const board=buildProgrammeBoard({programmeHealth:health,nowMs});
     const verification=board.programmes.find(programme=>programme.id==='catalogue-verification');
-    expect(verification.headline).toBe('2 trails verified, 1 of them by hand');
-    expect(verification.throughput.find(tile=>tile.label==='Finished').value).toBe(2);
+    expect(verification.headline).toBe('1 trail Verified on the site, 1 of them by hand');
+    expect(verification.throughput.find(tile=>tile.label==='Verified').value).toBe(1);
+    const unknown=buildProgrammeBoard({programmeHealth:summariseProgrammeHealth({orchestration,jobs:[],nowMs}),nowMs});
+    expect(unknown.programmes.find(programme=>programme.id==='catalogue-verification').headline).toBe('Verified count not recorded yet');
   });
 
   test('trail coverage counts a hand-verified walk as verified',()=>{
