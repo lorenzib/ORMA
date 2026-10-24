@@ -12,8 +12,8 @@ describe('TRUST-01 evidence and freshness contract', () => {
 
   test.each([
     ['imported', 'Imported map data'],
-    ['route-audited', 'ORMA route-audited'],
-    ['field-verified', 'ORMA field-verified'],
+    ['route-audited', 'Verified by ORMA'],
+    ['field-verified', 'Verified and walked by ORMA'],
   ])('%s receives the canonical public label', (fixture, label) => {
     expect(evidence.assessTrail(fixtures.trails[fixture], {
       asOfDate: fixtures.asOfDate,
@@ -132,7 +132,7 @@ describe('a trail the verification pipeline graduates earns the seal', () => {
 
   test('it reads as route-audited and wears the public seal', () => {
     expect(evidence.tierOf(published())).toBe('route-audited');
-    expect(evidence.tierLabel(published())).toBe('ORMA route-audited');
+    expect(evidence.tierLabel(published())).toBe('Verified by ORMA');
   });
 
   test('a partial verification settles its one fact and claims no seal', () => {

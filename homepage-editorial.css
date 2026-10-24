@@ -333,11 +333,15 @@
 .li-list-count{color:var(--ink-soft);font:600 12px 'Inter',sans-serif;}
 .li-list-tools{flex:none;display:flex;align-items:center;gap:8px;margin-left:auto;}
 #returningCustomerHomepage .li-list-title-row>div{flex:none;width:auto;}
-.li-sort-pill{position:relative;display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 28px 0 12px;border:1px solid var(--paper-line);border-radius:999px;background:#fff;cursor:pointer;}
+.li-sort-wrap{position:relative;}
+.li-sort-pill{position:relative;display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 28px 0 12px;border:1px solid var(--paper-line);border-radius:999px;background:#fff;color:var(--ink);font:700 12px 'Inter',sans-serif;white-space:nowrap;cursor:pointer;}
+.li-sort-pill:hover,.li-sort-pill[aria-expanded="true"]{border-color:#C9CEC3;}
 .li-sort-pill::after{content:'';position:absolute;right:12px;top:50%;width:6px;height:6px;margin-top:-5px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:rotate(45deg);pointer-events:none;}
 .li-sort-pill .li-sort-label{color:var(--ink-soft);font:600 12px 'Inter',sans-serif;}
-.li-sort-pill select{appearance:none;-webkit-appearance:none;border:0;background:none;padding:0;color:var(--ink);font:700 12px 'Inter',sans-serif;cursor:pointer;}
-.li-sort-pill:focus-within{outline:2px solid var(--accent);outline-offset:2px;}
+.li-sort-pill:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.li-sort-menu{left:auto;right:0;top:calc(100% + 6px);width:180px;min-width:0;padding:6px;}
+.li-sort-option[aria-checked="true"]{background:#E9F0E7;color:#264231;}
+.li-sort-option[aria-checked="true"]::after{content:'✓';float:right;color:#3B6D4B;font-weight:800;}
 .li-saved-toggle{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:1px solid var(--paper-line);border-radius:999px;background:#fff;color:var(--ink);font:700 12px 'Inter',sans-serif;cursor:pointer;}
 .li-saved-toggle .orma-saved-heart{color:#9C3A25;}
 .li-saved-toggle .li-saved-count{display:grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:#EEF1E9;color:var(--ink-soft);font-size:10px;}
@@ -365,4 +369,22 @@
   body.mhome-active #returningCustomerHomepage .li-sort-pill .li-sort-label{display:none;}
   body.mhome-active #returningCustomerHomepage .li-saved-toggle{padding:0 10px;}
   body.mhome-active #returningCustomerHomepage .li-saved-toggle .li-saved-word{display:none;}
+}
+
+/* "Hide reasons" sits with Sort and Saved. Pressed means reasons are hidden. */
+.li-reasons-toggle[aria-pressed="true"]{border-color:#C9CEC3;background:#F4F2EA;}
+
+/* An open card's reasons, tightened: they made the top cards very tall. Two
+   short columns, less padding and line spacing, and View trail details as a
+   small button rather than a slab. */
+#returningCustomerHomepage .li-answer-explanation{gap:6px 18px;padding:10px 14px 12px;}
+#returningCustomerHomepage .li-answer-explanation b{font-size:11px;}
+#returningCustomerHomepage .li-answer-explanation ul{margin:3px 0 0;padding-left:15px;line-height:1.35;}
+#returningCustomerHomepage .li-answer-explanation li+li{margin-top:1px;}
+#returningCustomerHomepage .li-answer-actions{grid-column:1/-1;margin:2px 0 0;}
+#returningCustomerHomepage .li-answer-open{min-height:30px;padding:0 12px;border-radius:8px;font-size:11.5px;}
+#returningCustomerHomepage .li-answer-new,#returningCustomerHomepage .li-answer-gap{margin:0;}
+@media (max-width:700px){
+  /* Words, not an icon: a lone glyph here read as an equals sign. */
+  body.mhome-active #returningCustomerHomepage .li-reasons-toggle{padding:0 11px;}
 }

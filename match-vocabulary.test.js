@@ -203,15 +203,15 @@ describe('how well a verdict is known, in one line', () => {
   // and the wording in another -- and changing the wording would have switched
   // the rule off without a word of warning.
   test('an audited route with high confidence says it once', () => {
-    expect(evidenceLine({provenance:'ORMA route-audited',confidence:'high',
-      checkedLabel:'Checked 3 Sep 2026'})).toBe('ORMA route-audited · Checked 3 Sep 2026');
+    expect(evidenceLine({provenance:'Verified by ORMA',confidence:'high',
+      checkedLabel:'Checked 3 Sep 2026'})).toBe('Verified by ORMA · Checked 3 Sep 2026');
   });
 
   test('a caveat earns its place and is kept', () => {
     expect(evidenceLine({provenance:'Imported map data',confidence:'low'}))
       .toBe('Imported map data · Based on partial data');
-    expect(evidenceLine({provenance:'ORMA route-audited',confidence:'medium'}))
-      .toBe('ORMA route-audited · Based on available trail data');
+    expect(evidenceLine({provenance:'Verified by ORMA',confidence:'medium'}))
+      .toBe('Verified by ORMA · Based on available trail data');
   });
 
   test('missing parts leave no stray separators', () => {
