@@ -44744,6 +44744,204 @@ function effectiveOverrides(profile, adjustOverride){
         "A very steep path for about ten minutes on the direct route down to the lake (official)"
       ],
       "tips": "Keep your dog on a lead along the resort roads: the road variant follows the D221 for about 800 m, partly at 80 km/h with no pavement. Swimming in the lake is forbidden, for dogs too, and the meadow fills with picnics in season. The path out of the village drops very steeply for about ten minutes; the road variant avoids it. There is no drinking water on the way and the stream at the bottom can run dry, so carry water. The tourist office quotes 3.4 km for the direct route; the road variant is longer."
+    },
+    'osm-8396539': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 6).
+      // The official culture walk of the Tourismusverein Partschins, Rabland
+      // und Töll, wholly in Partschins (the importer said Naturns). Partschins
+      // publishes no dog rule, so the national dog ordinance (6 August 2013,
+      // extended to September 2027) applies. No biotope, Natura 2000 site or
+      // park on the line. The stored line is turned to start at the Töll weir
+      // and run the board's way (data/verified-trail-overrides.json).
+      area: 'Töll, Partschins / Tel, Parcines',
+      distance: 8.2,
+      elevation: 171,
+      hours: '2–2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Töll weir on the Etsch cycle path past Bad Egart to Rabland, up through the meadows to Partschins and its church, and back by Vertigen.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Partschins church tower seen through an old archway, in August (Sualkdd, CC BY-SA 3.0), 28 m from the line.',
+        route: 'Official loop 8.2 km from the Töll weir; the stored OSM line (relation 8396539, Kulturwanderweg Peter Mitterhofer) is the same loop, 8.6 km, passing 5 m from the official start, turned to start there and run the board’s way.',
+        routeNumbers: 'Waymarked with the blue KPM symbol: from the Töll weir along the Etsch cycle path (Via Claudia Augusta) to the Töll bridge, the Bahnhofstraße to Bad Egart, the Badlweg to the Saring bridge in Rabland, the Cutraunstraße, a short stretch on the Vinschgauer Straße, path 7A towards the Texelbahn, the Peter-Mitterhofer-Straße to the church square, then the Hubenstraße, Römerstraße and Zehentstraße to the Peter-Mitterhofer-Weg and over the meadows by Vertigen back to Töll.',
+        mapPoints: 'Start at the Töll weir and hydroelectric plant (official start); drinking water at km 3.1 and 3.9 in Rabland, 6.8 and 8.2 (OSM nodes 3700119815, 10963532211, 5613755761, 5953349388).',
+        elevation: 'Official 8.2 km, 171 m up and down, 2 h 15 min, 505–641 m (Tourismusverein Partschins, Rabland und Töll, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Partschins, Rabland und Töll, Kulturwanderweg Peter Mitterhofer (Südtirol.info)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Partschins publishes no dog rule)',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 8396539, road, surface, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 24,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 500 m on the pavement of the busy Vinschgauer Straße (SS38) in Rabland, with a zebra crossing', 'Roughly half the loop is on village streets and lanes open to cars', 'The Etsch cycle path and the cycle bridge at Töll, shared with bikes', 'Orchards and farmyards beside the lanes'],
+      terrainType: 'Village streets, farm lanes and meadow paths, with a stretch of the Etsch cycle path; pram-friendly',
+      shadeDescription: 'Mostly open: about a quarter has trees, mainly the paths between Rabland and Partschins; the cycle path and the lanes through the orchards are in the sun.',
+      terrainDescription: 'An easy culture walk at 505–640 m at the foot of the Texel group, mostly on tarmac and good paths: past the K.u.K. museum at Bad Egart, Peter Mitterhofer’s birthplace and the typewriter museum by the Partschins church.',
+      waterDescription: 'Drinking fountains in Rabland (km 3.1 and 3.9), in Partschins (km 6.8) and near Vertigen (km 8.2), and inns in each village. Dogs may not bathe in public fountains.',
+      dogNotes: 'Partschins publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. Keep your dog on a short lead on the Vinschgauer Straße and out of the orchards beside the lanes; the route passes several working farms.',
+      tips: 'Start at the Töll weir and follow the KPM signs by Bad Egart, Rabland and Partschins and back by Vertigen: 8.2 km, about 170 m of climbing, a little over two hours. Keep your dog on a short lead (1.5 m at most) and carry a muzzle, above all on the short stretch beside the main road in Rabland. It is low, sunny and mostly tarmac, so avoid summer middays; there are fountains in Rabland and Partschins.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Kulturwanderweg Peter Mitterhofer (Tourismusverein Partschins, Rabland und Töll)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoia413b41b418f1beee0eccd022d5b1adb.kulturwanderweg-peter-mitterhofer.sonnenberg---partschins' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/8396539' }
+      ],
+      startPoint: { lat: 46.6803, lng: 11.0918, label: 'Töll weir and hydroelectric plant on the Etsch cycle path (official start)' },
+      waterSources: [
+        { km: 3.1, lat: 46.666297, lng: 11.068585, osmId: 'node/3700119815', label: 'Refill drinking fountain in Rabland' },
+        { km: 3.9, lat: 46.670323, lng: 11.063281, osmId: 'node/10963532211', label: 'Refill drinking fountain in Rabland' },
+        { km: 6.8, lat: 46.6868245, lng: 11.0735818, osmId: 'node/5613755761', label: 'Drinking fountain in Partschins' },
+        { km: 8.2, lat: 46.6823862, lng: 11.089498, osmId: 'node/5953349388', label: 'Drinking fountain near Vertigen' }
+      ],
+      rifugi: [
+        { km: 0.6, lat: 46.67913, lng: 11.08816, osmId: 'node/4064684999', name: 'Restaurant Pizzeria SEM' },
+        { km: 0.6, lat: 46.67926, lng: 11.0882, osmId: 'node/7392441237', name: 'Restaurant THEDL' },
+        { km: 0.7, lat: 46.67887, lng: 11.08722, osmId: 'node/4064687615', name: 'Gasthaus Zollwirt' },
+        { km: 1.7, lat: 46.67183, lng: 11.08077, osmId: 'node/3731172413', name: 'Onkel Taa' },
+        { km: 2.9, lat: 46.66583, lng: 11.06955, osmId: 'node/690540443', name: 'Laterne' },
+        { km: 3.3, lat: 46.66744, lng: 11.06547, osmId: 'node/4045297352', name: 'Cutraunstube' },
+        { km: 3.8, lat: 46.66982, lng: 11.06054, osmId: 'node/4062721905', name: 'Gasthaus Pizzeria Ennemoser' },
+        { km: 3.8, lat: 46.6699, lng: 11.06174, osmId: 'node/4065218438', name: 'Restaurant Rössl' },
+        { km: 3.8, lat: 46.67061, lng: 11.06217, osmId: 'node/4063177500', name: 'Panorama - Steakhouse' },
+        { km: 6.3, lat: 46.6832, lng: 11.07285, osmId: 'node/4045263076', name: 'Garberstub' },
+        { km: 6.4, lat: 46.68387, lng: 11.07391, osmId: 'node/760263769', name: 'Tagesbar Die Sonne' },
+        { km: 6.4, lat: 46.68318, lng: 11.07356, osmId: 'node/760263782', name: 'Kronenwirt - Pizzeria' },
+        { km: 6.4, lat: 46.68357, lng: 11.0733, osmId: 'node/2707328610', name: 'Bussl&More' },
+        { km: 6.5, lat: 46.68422, lng: 11.07302, osmId: 'node/760263779', name: 'Stiegenwirt' },
+        { km: 7, lat: 46.6863, lng: 11.07552, osmId: 'node/620489326', name: 'Cafe Rudi' },
+        { km: 8.3, lat: 46.68192, lng: 11.08958, osmId: 'node/2755904548', name: 'Buschenschank Unterweirach' }
+      ],
+      desc: 'A culture walk round Partschins near Meran on the trail of Peter Mitterhofer, who built one of the first typewriters: from the Töll weir by Bad Egart and Rabland to his birthplace and museum by the church, and back over the meadows. The official route lists 8.2 km and 171 m of ascent.'
+    },
+    'osm-20380913': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 6).
+      // The official theme walk of the Tourismusgenossenschaft Naturns from
+      // Tabland, wholly in Naturns. Naturns publishes no dog rule, so the
+      // national dog ordinance (6 August 2013, extended to September 2027)
+      // applies. No biotope, Natura 2000 site or park on the line. The stored
+      // line is turned to run the board's way (data/verified-trail-overrides.json).
+      area: 'Tabland, Naturns / Tablà, Naturno',
+      distance: 5.1,
+      elevation: 233,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Tabland church out on road 4 past the Ritz’n Mühle and the shooting range, up path 4 through the wood to the Birkenwald, across to the Hasler Weide and down past the Ragoier and Oberwötzel farms.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'St. Nikolaus church in Tabland, at the start, in October (ManfredK, CC BY-SA 3.0), 16 m from the line.',
+        route: 'Official loop 5.1 km from Tabland church (the text calls the station path itself about 3 km); the stored OSM line (relation 20380913, Hinzlweg) is the same loop, 4.8 km, 11 m from the official start, turned to run the board’s way.',
+        routeNumbers: 'From the square by Tabland school and church walk down the road, turn left on the tarmac road waymarked 4 towards the Schleidertal past the Ritz’n Mühle to the shooting range, climb path 4 west through the wood to station 9 (Birkenwald), go east to the Hasler Weide, then follow the “Hinzlweg” waymark down past the Ragoier and Oberwötzel farms to the Tabland road and west back to the start.',
+        mapPoints: 'Start at the village square by the school and church in Tabland, Citybus 264 from Naturns (official start); no drinking water is mapped on the loop.',
+        elevation: 'Official 5.1 km, 233 m up and down, 2 h, 657–870 m (Tourismusgenossenschaft Naturns, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Naturns, Hinzlweg in Tabland (Südtirol.info)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Naturns publishes no dog rule)',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 20380913, road, surface, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 39,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['The first and last kilometre are on tarmac roads open to cars, including the Tabland road back to the village', 'A rougher stretch of path and track near km 2.4–2.7', 'Rock outcrops at some of the viewpoints'],
+      terrainType: 'Quiet tarmac roads, forest paths and farm tracks on the sunny side of the Vinschgau',
+      shadeDescription: 'About two fifths is in birch and pine wood, mostly the climb on path 4; the roads, clearings and meadows are open.',
+      terrainDescription: 'A theme walk at 660–870 m above Naturns with 15 stations on local legends and farm life, through birch and pine wood, clearings and meadows, with views over the Etsch valley and into the Schnalstal.',
+      waterDescription: 'No drinking water is mapped on the loop; carry enough for you and your dog. There is an inn by the church in Tabland at the start.',
+      dogNotes: 'Naturns publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. The loop crosses the Hasler Weide and passes the Ragoier and Oberwötzel farms, so expect grazing animals and farm dogs and keep your dog close.',
+      tips: 'Start by the church in Tabland (Citybus 264 from Naturns) and follow road and path 4, then the Hinzlweg signs: 5.1 km, about 230 m of climbing, two hours with the stations. Keep your dog on a short lead (1.5 m at most), carry a muzzle and take water, as there is none on the way. The slope faces south and is dry, so go early or late in summer.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Hinzlweg in Tabland (Tourismusgenossenschaft Naturns)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiad9c58538eeb1db5ae022493e8c91e4f.hinzlweg-in-tabland.st--leonhard-i-p-' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/20380913' }
+      ],
+      startPoint: { lat: 46.635, lng: 10.9732, label: 'Village square by the school and church in Tabland, Citybus 264 (official start)' },
+      waterSources: [],
+      desc: 'A theme walk above Naturns in the Vinschgau, from Tabland church through birch and pine wood and meadows, with 15 stations on the little “Hinzl” men of local legend, old crafts and farm life, and wide views over the Etsch valley. The official route lists 5.1 km and 233 m of ascent.'
+    },
+    'osm-10220399': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 6).
+      // The official family loop of the Tourismusverein Marling from the
+      // Gasthaus Eggerhof (Marling, not Meran). The line crosses Marling and
+      // Partschins (km 1.5–3.9). Marling's dog regulation (Gemeinderat 44/2010)
+      // requires a lead of at most 1.5 m and a muzzle carried (Art. 4) and
+      // keeps dogs off farmland (Art. 8); Partschins publishes no dog rule, so
+      // the national dog ordinance applies there. No biotope, Natura 2000 site
+      // or park on the line. The stored line is turned to run the board's way
+      // (data/verified-trail-overrides.json).
+      area: 'Eggerhöfe, Marling / Masi Egger, Marlengo',
+      distance: 4.3,
+      elevation: 213,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Gasthaus Eggerhof car park up path 9 to a viewpoint at about 1,450 m, round on path 27 and back down past the St. Martin chapel and the inn.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The St. Martin chapel by the Eggerhöfe, which gives the walk its name, in May (ManfredK, CC BY-SA 4.0), 73 m from the line.',
+        route: 'Official loop 4.3 km from the Gasthaus Eggerhof car park; the stored OSM line (relation 10220399, Martinsweg) is the same loop, 4.5 km, starting by the car park, turned to run the board’s way.',
+        routeNumbers: 'Signed as the Martinsweg: from the Gasthaus Eggerhof car park first path 9, then path 27, up to a viewpoint and back past the inn to the car park.',
+        mapPoints: 'Start at the public car park of the Gasthaus Eggerhof, terminus of bus 268 (official start); drinking water at km 0.6 (a seasonal Refill fountain) and km 4.0 (OSM nodes 7599250885, 4988635567, 4881664878).',
+        elevation: 'Official 4.3 km, 213 m up and 216 m down, 1 h 30 min, 1,276–1,450 m (Tourismusverein Marling, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Marling, Rundwanderung am Martinsweg (Südtirol.info)',
+          'Gemeinde Marling, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat 44/2010), Art. 4 and 8',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Partschins)',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 10220399, road, surface and woodland data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 94,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Forest roads and tracks used by forestry and farm vehicles', 'A barrier across the track just after the car park', 'A short stretch of narrower path near km 3.7–4.0'],
+      terrainType: 'Forest roads and tracks with a short path; the board calls it pram-friendly',
+      shadeDescription: 'Almost all in the wood above Marling; only the car park and the viewpoint are open.',
+      terrainDescription: 'An easy woodland loop at 1,280–1,450 m above Marling on wide forest roads, with resting places, reflective stations, a viewpoint over the Meran basin and the little St. Martin chapel by the Eggerhöfe.',
+      waterDescription: 'Drinking fountains early on (km 0.6, one of them a seasonal Refill fountain) and near the end (km 4.0). The Gasthaus Eggerhof at the start is the only inn.',
+      dogNotes: 'Marling requires a lead of at most 1.5 m and a muzzle carried on public paths, and keeps dogs off farmed land; the middle of the loop (km 1.5–3.9) is in Partschins, where the Italian national rule applies (lead of at most 1.5 m, muzzle carried). The Eggerhöfe at the start are working farms.',
+      tips: 'Take bus 268 to the Eggerhof terminus or park at the Gasthaus Eggerhof, then follow the Martinsweg signs, path 9 and then path 27: 4.3 km, about 210 m of climbing, an hour and a half. Keep your dog on a short lead (1.5 m at most) and carry a muzzle. It is shady and cool, a good summer walk; there is no inn on the loop until you are back at the Eggerhof.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Rundwanderung am Martinsweg (Tourismusverein Marling)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi57e9cfdd98fdbe3efe6bc4bc80c8ffb6.rundwanderung-am-martinsweg.marling' },
+        { label: 'Gemeinde Marling, Verordnung über die Führung und Haltung von Hunden', url: 'https://www.gemeinde.marling.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Fuehrung_und_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/10220399' }
+      ],
+      startPoint: { lat: 46.6593, lng: 11.11694, label: 'Public car park at the Gasthaus Eggerhof, bus 268 terminus Eggerhof (official start)' },
+      waterSources: [
+        { km: 0.6, lat: 46.654783, lng: 11.117365, osmId: 'node/7599250885', label: 'Refill drinking fountain (seasonal)' },
+        { km: 0.6, lat: 46.6547942, lng: 11.1172807, osmId: 'node/4988635567', label: 'Drinking fountain' },
+        { km: 4, lat: 46.6575297, lng: 11.1115347, osmId: 'node/4881664878', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.65971, lng: 11.11626, osmId: 'node/3708788873', name: 'Gasthaus Eggerhof' }
+      ],
+      desc: 'A shady family loop in the woods above Marling near Meran, named after the little St. Martin chapel by the Eggerhöfe: up on forest roads to a viewpoint over the Meran basin and back past the inn. The official route lists 4.3 km and 213 m of ascent.'
     }
   };
 

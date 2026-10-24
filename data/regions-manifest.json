@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-24T11:41:08.728Z",
+  "generatedAt": "2026-10-24T12:14:24.365Z",
   "regions": {
     "dolomites": {
-      "trailCount": 124,
-      "trails": "data/regions/dolomites-trails.js?v=b050006d13d8",
+      "trailCount": 127,
+      "trails": "data/regions/dolomites-trails.js?v=e9f62e10a16c",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -129,6 +129,9 @@
         "osm-11775923": "data/trail-details/osm-11775923.js?v=f281fe1b3b91",
         "osm-12302182": "data/trail-details/osm-12302182.js?v=7fe2a20cb9f1",
         "osm-12302137": "data/trail-details/osm-12302137.js?v=7fd98ffef944",
+        "osm-8396539": "data/trail-details/osm-8396539.js?v=c6e3161fe7e0",
+        "osm-20380913": "data/trail-details/osm-20380913.js?v=183c9909b523",
+        "osm-10220399": "data/trail-details/osm-10220399.js?v=6445e8023d34",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -324,6 +327,9 @@
     "osm-11775923": "dolomites",
     "osm-12302182": "dolomites",
     "osm-12302137": "dolomites",
+    "osm-8396539": "dolomites",
+    "osm-20380913": "dolomites",
+    "osm-10220399": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -520,6 +526,9 @@
     "osm-11775923": "torggeleweg",
     "osm-12302182": "dorfrundweg-niedertal",
     "osm-12302137": "dorfrundweg-mittertal",
+    "osm-8396539": "kulturwanderweg-peter-mitterhofer",
+    "osm-20380913": "hinzlweg",
+    "osm-10220399": "martinsweg",
     "osm-5479112": "chemin-des-diligences",
     "osm-9937537": "le-mont-jovet",
     "osm-10539302": "sentier-eco-sylve-de-poingt-ravier",
@@ -699,6 +708,9 @@
     "torggeleweg": "osm-11775923",
     "dorfrundweg-niedertal": "osm-12302182",
     "dorfrundweg-mittertal": "osm-12302137",
+    "kulturwanderweg-peter-mitterhofer": "osm-8396539",
+    "hinzlweg": "osm-20380913",
+    "martinsweg": "osm-10220399",
     "chemin-des-diligences": "osm-5479112",
     "le-mont-jovet": "osm-9937537",
     "sentier-eco-sylve-de-poingt-ravier": "osm-10539302",

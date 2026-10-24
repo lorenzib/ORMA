@@ -171,6 +171,23 @@
       }
     },
     {
+      "id": "osm-10220399",
+      "approvedReviewId": "commons-osm-10220399-on-route",
+      "approvedAt": "2026-10-24T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-10220399-st-martin-eggerhof.jpg",
+        "heroImage": "images/trails/osm-10220399-st-martin-eggerhof.jpg",
+        "imageAlt": "The small St. Martin chapel with its shingle roof and wooden bell turret on a meadow by the forest, the Meran basin far below",
+        "imageCredit": "St. Martin by the Eggerhof",
+        "imageCreditText": "St. Martin by the Eggerhof by ManfredK",
+        "imageCreator": "ManfredK",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Marling_St._Martin_beim_Eggerhof.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-10539302",
       "approvedReviewId": "commons-osm-10539302",
       "approvedAt": "2026-09-07T19:39:19.761Z",
@@ -1964,6 +1981,23 @@
       }
     },
     {
+      "id": "osm-20380913",
+      "approvedReviewId": "commons-osm-20380913-on-route",
+      "approvedAt": "2026-10-24T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-20380913-tabland-st-nikolaus.jpg",
+        "heroImage": "images/trails/osm-20380913-tabland-st-nikolaus.jpg",
+        "imageAlt": "The white bell tower and red-tiled roofs of St. Nikolaus church in Tabland, with dry wooded slopes and snowy peaks behind",
+        "imageCredit": "St. Nikolaus in Tabland",
+        "imageCreditText": "St. Nikolaus in Tabland by ManfredK",
+        "imageCreator": "ManfredK",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Naturns_St._Nikolaus.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-21021130",
       "approvedReviewId": "commons-osm-21021130",
       "approvedAt": "2026-09-07T19:39:19.761Z",
@@ -2519,6 +2553,23 @@
         "imageLicence": "CC BY-SA 2.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
         "imageSourcePage": "https://www.flickr.com/photos/84143066@N00/54041926001/",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-8396539",
+      "approvedReviewId": "commons-osm-8396539-on-route",
+      "approvedAt": "2026-10-24T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-8396539-partschins-church.jpg",
+        "heroImage": "images/trails/osm-8396539-partschins-church.jpg",
+        "imageAlt": "The white church tower of Partschins with its red onion dome, seen through an old stone archway over a garden lane",
+        "imageCredit": "The Partschins church tower",
+        "imageCreditText": "The Partschins church tower by Sualkdd",
+        "imageCreator": "Sualkdd",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kirchturm_in_Partschins_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },

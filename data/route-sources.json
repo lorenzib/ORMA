@@ -74,6 +74,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
+    "osm-10220399": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi57e9cfdd98fdbe3efe6bc4bc80c8ffb6.rundwanderung-am-martinsweg.marling",
+      "publisher": "Tourismusverein Marling via IDM suedtirol.info",
+      "name": "Rundwanderung am Martinsweg",
+      "quote": "Strecke 4.3 Km Dauer 1h:30 min Aufstieg 213 m Abstieg 216 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
     "osm-10539302": {
       "url": "https://www.valloire.net/sit/le-sentier-ecosylve-de-valloire-5841280/",
       "publisher": "Valloire Tourisme (Apidae)",
@@ -722,6 +730,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-20380913": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiad9c58538eeb1db5ae022493e8c91e4f.hinzlweg-in-tabland.st--leonhard-i-p-",
+      "publisher": "Tourismusgenossenschaft Naturns via IDM suedtirol.info",
+      "name": "Hinzlweg in Tabland",
+      "quote": "Strecke 5.1 Km Dauer 2h:00 min Aufstieg 233 m Abstieg 233 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
     "osm-2179746": {
       "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426625",
       "publisher": "Autonome Provinz Bozen (hiking-trail register)",
@@ -937,6 +953,14 @@
       "quote": "Dauer 2:30 h Länge 7,7 km Schwierigkeit leicht Höhenmeter bergauf 186 hm",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T18:00:00.000Z"
+    },
+    "osm-8396539": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoia413b41b418f1beee0eccd022d5b1adb.kulturwanderweg-peter-mitterhofer.sonnenberg---partschins",
+      "publisher": "Tourismusverein Partschins, Rabland und Töll via IDM suedtirol.info",
+      "name": "Kulturwanderweg Peter Mitterhofer",
+      "quote": "Strecke 8.2 Km Dauer 2h:15 min Aufstieg 171 m Abstieg 171 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
     },
     "osm-8510456": {
       "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11429378",
