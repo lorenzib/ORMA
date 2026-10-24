@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-15591346",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 9.7,
+    "ascentM": 780,
+    "highestPointM": 1028,
+    "expectedDuration": "4–4.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 60
+  },
+  "trailhead": {
+    "lat": 45.5046876,
+    "lng": 6.0514101,
+    "label": "Start here: cemetery car park on chemin de Beauvoir, Montmélian, heading for the Calloudes hamlet"
+  },
+  "waypoints": [],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Parts of this walk are exposed; keep your dog close and on a short lead.",
+    "Unprotected drop at the Roc de Manettaz belvedere (signed danger).",
+    "Sustained climbing on mountain paths (T2).",
+    "About 500 m along the chemin de Beauvoir at the start, with a pavement.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

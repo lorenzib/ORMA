@@ -1,8 +1,13 @@
 # Offline map source extracts
 
-This directory contains the raw geographic source used to build ORMA
-offline map images. These files are build inputs; they are not downloaded as
-part of a trail package.
+This directory contains the raw geographic source used to build the two pilot
+offline packages, Lago di Carezza and Alpe di Siusi. These files are build
+inputs; they are not downloaded as part of a trail package.
+
+Every other Verified trail's package is built by
+`node scripts/build-offline-packages.js` from an Overpass extract that is cached
+in `.cache/offline-map-sources/`, not committed. See
+`docs/architecture/OFF-07-verified-trail-offline-packages.md`.
 
 ## Lago di Carezza
 

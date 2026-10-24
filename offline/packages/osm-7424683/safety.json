@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-7424683",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 10.5,
+    "ascentM": 150,
+    "highestPointM": 560,
+    "expectedDuration": "3.5 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 60
+  },
+  "trailhead": {
+    "lat": 46.6263504,
+    "lng": 11.1383758,
+    "label": "Top of the Raffeinweg above Lana, by the Waalheim car park (official start; signed from the Ultnerstraße)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.630741,
+      "lng": 11.14033,
+      "label": "Drinking fountain above Lana",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6600171,
+      "lng": 11.1352349,
+      "label": "Drinking fountain above Marling",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "The open irrigation channel runs right beside the path.",
+    "A steep tarmac climb of about 200 m up the Raffeinweg to the channel, then steps near the start.",
+    "Several small footbridges.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

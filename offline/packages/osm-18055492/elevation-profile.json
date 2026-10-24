@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-18055492",
+  "distanceKm": 11.6,
+  "ascentM": 673,
+  "source": "Open-Meteo ground height sampled along the ORMA route",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1279
+    },
+    {
+      "km": 0.6,
+      "elev": 1303
+    },
+    {
+      "km": 1.2,
+      "elev": 1357
+    },
+    {
+      "km": 1.8,
+      "elev": 1450
+    },
+    {
+      "km": 2.5,
+      "elev": 1581
+    },
+    {
+      "km": 3.1,
+      "elev": 1713
+    },
+    {
+      "km": 3.7,
+      "elev": 1769
+    },
+    {
+      "km": 4.3,
+      "elev": 1806
+    },
+    {
+      "km": 4.9,
+      "elev": 1787
+    },
+    {
+      "km": 5.5,
+      "elev": 1858
+    },
+    {
+      "km": 6.1,
+      "elev": 1927
+    },
+    {
+      "km": 6.7,
+      "elev": 1815
+    },
+    {
+      "km": 7.4,
+      "elev": 1843
+    },
+    {
+      "km": 8,
+      "elev": 1690
+    },
+    {
+      "km": 8.6,
+      "elev": 1628
+    },
+    {
+      "km": 9.2,
+      "elev": 1517
+    },
+    {
+      "km": 9.8,
+      "elev": 1365
+    },
+    {
+      "km": 10.4,
+      "elev": 1319
+    },
+    {
+      "km": 11,
+      "elev": 1299
+    },
+    {
+      "km": 11.6,
+      "elev": 1279
+    }
+  ]
+}

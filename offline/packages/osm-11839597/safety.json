@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11839597",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.2,
+    "ascentM": 100,
+    "highestPointM": 1215,
+    "expectedDuration": "0.5–1 hours",
+    "difficulty": "Easy",
+    "shadePercent": 80
+  },
+  "trailhead": {
+    "lat": 46.538587,
+    "lng": 11.465236,
+    "label": "Dorf bus stop and village car park, Klobenstein (official start)"
+  },
+  "waypoints": [],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22T12:00:00.000Z"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

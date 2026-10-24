@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12164395",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.3,
+    "ascentM": 205,
+    "highestPointM": 894,
+    "expectedDuration": "1.5–2.5 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 50
+  },
+  "trailhead": {
+    "lat": 46.81716,
+    "lng": 11.72288,
+    "label": "Raiffeisenplatz, Niedervintl (route 4 signpost)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.8171565,
+      "lng": 11.7228394,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.8165206,
+      "lng": 11.7243624,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22T16:00:00.000Z"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

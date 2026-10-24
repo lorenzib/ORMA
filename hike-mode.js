@@ -172,8 +172,10 @@ function initHikeMode(map, trail, options){
   let completionRetry = null;
   const rejoinRoute = trail.path.map(point => ({ lat: point[0], lng: point[1] }));
   let footpathGraph = null;
-  const routedTrailIds = new Set(['lago-carezza', 'alpe-siusi']);
-  const rejoinSupported = routedTrailIds.has(trail.id) && !!window.DoloPawsFootpathRouter;
+  // The footpath graph ships inside the trail's offline package, so every
+  // trail that has one can route a walker back to it.
+  const rejoinSupported = !!(window.DoloPawsOffline && window.DoloPawsOffline.hasPackage(trail.id)) &&
+    !!window.DoloPawsFootpathRouter;
   let footpathGraphState = rejoinSupported ? 'loading' : 'unsupported';
 
   function updateRejoinControl(){

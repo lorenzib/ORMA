@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-6244965",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 14.1,
+    "ascentM": 321,
+    "highestPointM": 1230,
+    "expectedDuration": "4 hours",
+    "difficulty": "Hard",
+    "shadePercent": 44
+  },
+  "trailhead": {
+    "lat": 46.813469,
+    "lng": 11.877671,
+    "label": "Schulhausplatz, Pfalzen: the stone gate at the school (official start), free parking on the school square"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.80672,
+      "lng": 11.881612,
+      "label": "Fountain at the Pfalzen sports area",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.812245,
+      "lng": 11.853565,
+      "label": "Fountain at the Issinger Weiher",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.812103,
+      "lng": 11.853626,
+      "label": "Fountain at the Issinger Weiher",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.812775,
+      "lng": 11.84968,
+      "label": "Fountain west of the Issinger Weiher",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "About 3 km on tarmac, mostly quiet farm roads.",
+    "About 200 m on the SP89 provincial road (90 km/h, no pavement) before the Issinger Weiher.",
+    "Two crossings of the SP40 provincial road.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

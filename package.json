@@ -29,6 +29,7 @@
     "build:regional-data": "node scripts/build-regional-runtime-data.js",
     "build:trail-page-bundle": "node scripts/build-trail-page-bundle.js",
     "build:trail-routing": "node scripts/build-trail-routing-coverage.js",
+    "build:offline-packages": "node scripts/build-offline-packages.js",
     "fetch:trail-routing:funes": "node scripts/build-mapped-trail-routing.js --funes",
     "fetch:trail-routing:all": "node scripts/build-mapped-trail-routing.js --all --resume",
     "audit:trail-photos": "node scripts/audit-trail-photos.js",

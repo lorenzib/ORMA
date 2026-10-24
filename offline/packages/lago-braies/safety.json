@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lago-braies",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.6,
+    "ascentM": 39,
+    "highestPointM": 1500,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": null
+  },
+  "trailhead": {
+    "lat": 46.699015,
+    "lng": 12.085296,
+    "label": "Lago di Braies access, use the approved official P1–P4 parking set"
+  },
+  "waypoints": [],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-08-18T15:23:40.415Z"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -5,11 +5,6 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.resolve(__dirname, '..');
-const trailId = process.argv[2] || 'lago-carezza';
-if(!/^[a-z0-9-]+$/.test(trailId)) throw new Error('Trail ID must contain only lowercase letters, numbers, and hyphens.');
-const sourcePath = path.join(root, 'data', 'offline-map-sources', `${trailId}.osm`);
-const routePath = path.join(root, 'offline', 'packages', trailId, 'route.geojson');
-const outputPath = path.join(root, 'offline', 'packages', trailId, 'footpath-network.json');
 const ALLOWED_HIGHWAYS = new Set([
   'footway', 'path', 'pedestrian', 'track', 'steps',
   'service', 'residential', 'living_street', 'unclassified',
@@ -116,9 +111,8 @@ function nearestSegmentDistance(point, coordinates){
   return nearest;
 }
 
-function build(){
-  const { bounds, nodes, ways } = readOsm(fs.readFileSync(sourcePath, 'utf8'));
-  const route = JSON.parse(fs.readFileSync(routePath, 'utf8'));
+function buildFootpathNetwork({ trailId, xml, route, retrievedAt = null }){
+  const { bounds, nodes, ways } = readOsm(xml);
   const routeCoordinates = route.features[0].geometry.coordinates;
   const eligibleWays = ways.filter(way => walkable(way, nodes));
   const usedIds = new Set();
@@ -147,11 +141,12 @@ function build(){
     .filter(item => nearestSegmentDistance(item.node, routeCoordinates) <= 12)
     .map(item => item.index);
   if(!edges.length || !trailNodes.length) throw new Error(`No connected routing graph was produced for ${trailId}.`);
-  const output = {
+  return {
     schemaVersion:1,
     trailId,
     source:`OpenStreetMap bbox extract stored for ${trailId}`,
     attribution:'© OpenStreetMap contributors · ODbL',
+    ...(retrievedAt ? { retrievedAt } : {}),
     bounds,
     restrictions:{
       excludes:['access=no', 'access=private', 'foot=no', 'foot=private', 'dog=no', 'difficult alpine SAC scales'],
@@ -161,8 +156,22 @@ function build(){
     edges,
     trailNodes,
   };
-  fs.writeFileSync(outputPath, JSON.stringify(output));
-  console.log(JSON.stringify({ outputPath, nodes:graphNodes.length, edges:edges.length, trailNodes:trailNodes.length, bytes:fs.statSync(outputPath).size }, null, 2));
 }
 
-build();
+function buildPilot(trailId){
+  if(!/^[a-z0-9-]+$/.test(trailId)) throw new Error('Trail ID must contain only lowercase letters, numbers, and hyphens.');
+  const sourcePath = path.join(root, 'data', 'offline-map-sources', `${trailId}.osm`);
+  const routePath = path.join(root, 'offline', 'packages', trailId, 'route.geojson');
+  const outputPath = path.join(root, 'offline', 'packages', trailId, 'footpath-network.json');
+  const output = buildFootpathNetwork({
+    trailId,
+    xml:fs.readFileSync(sourcePath, 'utf8'),
+    route:JSON.parse(fs.readFileSync(routePath, 'utf8')),
+  });
+  fs.writeFileSync(outputPath, JSON.stringify(output));
+  console.log(JSON.stringify({ outputPath, nodes:output.nodes.length, edges:output.edges.length, trailNodes:output.trailNodes.length, bytes:fs.statSync(outputPath).size }, null, 2));
+}
+
+module.exports = { buildFootpathNetwork };
+
+if(require.main === module) buildPilot(process.argv[2] || 'lago-carezza');
