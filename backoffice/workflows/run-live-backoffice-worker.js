@@ -1020,6 +1020,7 @@ async function recordTrailBoard(store, options = {}){
     const board=buildTrailBoard({
       trails:options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..')),
       orchestration,publicationRequests,jobs,at:options.at||new Date().toISOString(),
+      paidResearchEnabled:options.paidResearchEnabled===true,
     });
     await store.setArtifact('trail-board',board,{trails:board.summary.trails,stuck:board.summary.stuck});
     return board.summary;

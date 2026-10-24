@@ -20,6 +20,7 @@ const fs = require('fs');
 const path = require('path');
 const evidence = require('../../trust/evidence-v1.js');
 const { actionsFor, ROUTE_STATES, RESEARCH_STATES } = require('./trail-requests');
+const { WITHDRAWN_STAGE } = require('./record-hand-verifications');
 const { verifiedByHand } = require('./record-hand-verifications');
 
 const CHECKS = Object.freeze(['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation',
@@ -125,7 +126,7 @@ function publicationText(request){
   return { next: 'Waiting to be published', failed: false, stuck: false };
 }
 
-function entryFor(trail, flow, publication, jobOwed, slug){
+function entryFor(trail, flow, publication, jobOwed, slug, paidResearch){
   const badge = badgeOf(trail);
   const checks = completedChecks(trail);
   const missing = CHECKS.filter(check => !checks.includes(check));
@@ -151,6 +152,12 @@ function entryFor(trail, flow, publication, jobOwed, slug){
     entry.stage = ROUTE_STATES.has(state) ? 'route' : 'research';
     entry.next = STATE_TEXT[state];
     entry.detail = jobOwed ? 'An agent job is waiting' : blockers.length ? `Open: ${list(blockers.slice(0, 2))}` : 'Waiting for the next pass';
+    // Research jobs call the model. With paid research off they stay queued
+    // and nothing in this stage moves, so saying agents are at work is false.
+    if(entry.stage === 'research' && !paidResearch){
+      entry.next = 'Paused: paid research is off';
+      entry.detail = blockers.length ? `Verify by hand. Open: ${list(blockers.slice(0, 2))}` : 'Verify by hand to move it on';
+    }
   }else if(state === 'ready-for-editorial'){
     const published = String(publication?.status || '') === 'published';
     if(published || badge !== 'imported'){
@@ -178,7 +185,12 @@ function entryFor(trail, flow, publication, jobOwed, slug){
   }else if(TERMINAL.has(state)){
     entry.stage = 'stopped';
     entry.stopKind = state === 'imported' ? 'resting' : state;
-    if(state === 'imported'){
+    if(state === 'imported' && flow.stage === WITHDRAWN_STAGE){
+      // A seal taken off by hand had an official page; what it lacked was an
+      // authority's climb and walking time.
+      entry.next = 'Seal withdrawn: no official climb or walking time';
+      entry.detail = 'Reopens when an authority publishes both';
+    }else if(state === 'imported'){
       entry.next = 'Resting: no official page to research from';
       entry.detail = 'Reopens only if a source appears';
     }else{
@@ -243,12 +255,12 @@ function slugMap(root = path.resolve(__dirname, '../..')){
   catch{ return {}; }
 }
 
-function buildTrailBoard({ trails = [], orchestration = null, publicationRequests = null, jobs = [], at, slugs = slugMap() } = {}){
+function buildTrailBoard({ trails = [], orchestration = null, publicationRequests = null, jobs = [], at, slugs = slugMap(), paidResearchEnabled = false } = {}){
   const flows = new Map((orchestration?.trails || []).map(flow => [flow.trailId || flow.candidateId, flow]));
   const publications = publicationByTrail(publicationRequests);
   const owed = new Set((jobs || []).filter(job => ACTIVE_JOB.has(job.status || 'queued')).map(job => job.candidateId).filter(Boolean));
   const entries = trails.filter(trail => trail && trail.id)
-    .map(trail => entryFor(trail, flows.get(trail.id), publications.get(trail.id), owed.has(trail.id), slugs[trail.id]));
+    .map(trail => entryFor(trail, flows.get(trail.id), publications.get(trail.id), owed.has(trail.id), slugs[trail.id], paidResearchEnabled));
   // What needs a look first, then what is moving, then what is settled, and
   // the long tail nobody has started last -- in journey order the board opened
   // on 141 untouched trails and buried the ones that mattered.
@@ -262,6 +274,7 @@ function buildTrailBoard({ trails = [], orchestration = null, publicationRequest
     publicMutationAllowed: false,
     summary: {
       trails: entries.length,
+      paidResearchEnabled: paidResearchEnabled === true,
       stages: Object.fromEntries(STAGES.map(stage => [stage, count(entry => entry.stage === stage)])),
       verified: count(entry => entry.badge === 'verified'),
       verifiedByHand: count(entry => entry.stage === 'hand'),
