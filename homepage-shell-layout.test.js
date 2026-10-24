@@ -74,6 +74,8 @@ describe('logged-in discovery workspace layout', () => {
     // toggle. The kicker, the news line and the fold-out of tabs are gone.
     const head = html.slice(html.indexOf('class="li-list-head"'), html.indexOf('id="returningTrailList"'));
     expect(head).toContain('<h2 class="li-list-title" id="companionListTitle">');
+    // Not "Best matches for Teo": the headline above already says "Best walk for Teo".
+    expect(fs.readFileSync('script.js', 'utf8')).not.toContain('`Best matches for ${profile.name}`');
     expect(head).toContain('id="companionListCount"');
     // ORMA's own menu, not a native select: the system popup did not match.
     expect(head).not.toContain('<select');
