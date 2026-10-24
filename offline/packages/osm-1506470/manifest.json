@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-1506470",
   "name": "Sissiweg - Sentiero Sissi",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T17:51:53.276Z",
+  "version": "2026.10.24-beta.2",
+  "generatedAt": "2026-10-24T12:00:57.357Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 1176914,
+  "packageBytes": 1176866,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65671,
@@ -35,7 +35,7 @@
   },
   "elevationProfile": {
     "strategy": "route-profile-v1",
-    "pointCount": 17,
+    "pointCount": 16,
     "distanceKm": 3,
     "ascentM": 109,
     "source": "ORMA route profile",
@@ -224,8 +224,8 @@
       "required": true,
       "label": "Sissiweg - Sentiero Sissi stored route elevation profile",
       "url": "elevation-profile.json",
-      "bytes": 950,
-      "sha256": "90161e735ba4caeffc4848f33539078310488c6ee364d30f19aab480e188afb5"
+      "bytes": 902,
+      "sha256": "fb3c5494a39706f5e614f104823fae1646eb17f20f40e134e65b289afb218898"
     },
     {
       "role": "safety",
