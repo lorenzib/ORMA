@@ -39325,6 +39325,613 @@
         { km: 2, lat: 46.74065, lng: 11.95727, osmId: 'way/123838729', name: 'Rifugio CAI Plan de Corones - Kronplatzhütte CAI' }
       ],
       desc: 'A short family loop round the summit of the Kronplatz at 2,275 m: past the Concordia 2000 peace bell, the MMM Corones and LUMEN museums and a series of viewpoints, with the Dolomites to the south and the main Alpine ridge to the north. The official route lists 2.4 km and 75 m of ascent.'
+    },
+    'fassa-da-canazei-a-penia': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
+      // APT Val di Fassa’s walk “Da Canazei a Penìa”, tagged “animali accettati”. The line
+      // is drawn on 48 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // Canazei publishes no dog rule, so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
+      // dog standard; Trentino’s animal law leaves leads and muzzles to it.
+      // No Natura 2000 site or nature park on the line.
+      area: 'Canazei – Alba – Penìa, Val di Fassa',
+      distance: 6.3,
+      elevation: 58,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the centre of Canazei up the Avisio to Alba and Penìa on one bank and back on the other, over wooden bridges; it ends in Canazei about 230 m from where it starts.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Penìa, the walk’s far end, with its church below the wooded slope, in July (Syrio, CC BY-SA 4.0).',
+        route: 'Official loop 6.3 km from Canazei (Piaz G. Marconi), as APT Val di Fassa publishes it; the stored line is drawn on 48 OSM ways along the APT’s published line, 6.4 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Piaz G. Marconi in Canazei along the Avisio past Alba, with its sandy river beach, play park and a small climbing crag with a cave, to Penìa, the last village before the Fedaia pass, and back down the other bank to Canazei.',
+        mapPoints: 'Start at Canazei (Piaz G. Marconi), the APT’s start; drinking water at the start, at km 1.1 and at km 1.8 (OSM nodes 7810377008, 3679999685, 2370878525).',
+        elevation: 'Official 6.3 km, 58 m up and 68 m down, 1 h 35 min, highest point 1,487 m, lowest 1,435 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Da Canazei a Penìa (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Canazei publishes no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the APT line (48 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 19,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 3.8 km on tarmac: village lanes and the valley cycle and foot path, shared with bikes', 'Wooden bridges over the Avisio', 'Busy round the playgrounds and the river beach at Alba in summer'],
+      terrainType: 'Village lanes, the valley cycle and foot path and short forest paths; pram-friendly',
+      shadeDescription: 'Mostly open: about a fifth runs through trees along the river; the rest crosses meadows and the villages.',
+      terrainDescription: 'An almost level family loop at 1,435–1,487 m along both banks of the Avisio at the head of the Val di Fassa, between Canazei, Alba and Penìa.',
+      waterDescription: 'Drinking fountains at the start, at km 1.1 and at km 1.8; bars and inns at the start and on the way.',
+      dogNotes: 'Canazei publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses.',
+      tips: 'Start in Piaz G. Marconi and follow the Avisio up to Penìa and back: 6.3 km, almost level, about an hour and a half. Keep your dog on a short lead (1.5 m at most) on the shared cycle path and carry a muzzle. Fountains in Canazei and Alba; the river beach at Alba is a good place to stop.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Da Canazei a Penìa', url: 'https://www.fassa.com/it/itinerari/da-canazei-a-penia' },
+        { label: 'Outdooractive, Da Canazei a Penìa (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/38079215' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.476686, lng: 11.771042, label: 'Canazei (Piaz G. Marconi), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.4765179, lng: 11.7698895, osmId: 'node/7810377008', label: 'Drinking fountain at the start' },
+        { km: 1.1, lat: 46.4721261, lng: 11.7768198, osmId: 'node/3679999685', label: 'Drinking fountain' },
+        { km: 1.8, lat: 46.4666188, lng: 11.7824682, osmId: 'node/2370878525', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.47682, lng: 11.76852, osmId: 'node/5411852730', name: 'El Pael' },
+        { km: 0, lat: 46.47704, lng: 11.76955, osmId: 'node/7240893487', name: 'Kaiserstube' },
+        { km: 0.3, lat: 46.47714, lng: 11.76483, osmId: 'node/3302466501', name: 'Stua dei Ladins' },
+        { km: 0.6, lat: 46.47263, lng: 11.77152, osmId: 'way/1083007749', name: 'Bait De Ca\'' },
+        { km: 2.1, lat: 46.46367, lng: 11.78508, osmId: 'way/228406316', name: 'Tobià de Zéli' }
+      ],
+      desc: 'An easy loop at the head of the Val di Fassa, up one bank of the Avisio from Canazei to Alba and Penìa and back down the other, past a river beach, playgrounds and a small climbing crag. The APT lists 6.3 km and 58 m of ascent.'
+    },
+    'fassa-sentiero-della-foresta': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
+      // APT Val di Fassa’s walk “Sentiero della Foresta”, tagged “animali accettati”. The line
+      // is drawn on 10 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // San Giovanni di Fassa publishes no dog rule, so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
+      // dog standard; Trentino’s animal law leaves leads and muzzles to it.
+      // No Natura 2000 site or nature park on the line.
+      area: 'Ciampedie – Gardeccia, San Giovanni di Fassa / Sèn Jan',
+      distance: 3,
+      elevation: 6,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A one-way walk from the top station of the Catinaccio cable car at Ciampedie through the forest to the Gardeccia hollow below the Rosengarten; walk back the same way to the cable car.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Ciampedie plateau at the start, with walkers on the gravel path below the Rosengarten, in August (Adert, CC BY-SA 4.0).',
+        route: 'Official one-way walk 3 km from Vigo di Fassa (stazione a monte funivia Ciampedie), as APT Val di Fassa publishes it; the stored line is drawn on 10 OSM ways along the APT’s published line, 3 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the top station of the Catinaccio cable car at Ciampedie (reached from Vigo) on the wide, level forest track between the Larséch walls and the Rosengarten to the Gardeccia hollow, past 24 nature totems for children.',
+        mapPoints: 'Start at Vigo di Fassa (stazione a monte funivia Ciampedie), the APT’s start; drinking water at km 2.8 (OSM nodes 4306282333).',
+        elevation: 'Official 3 km, 6 m up and 46 m down, 55 min, highest point 1,994 m, lowest 1,948 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Sentiero della Foresta (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the APT line (10 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 71,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Wide gravel forest track at about 1,950–2,000 m', 'You reach the start by the Catinaccio cable car from Vigo: a lead and muzzle are required on board', 'Busy with families round Ciampedie and Gardeccia in summer'],
+      terrainType: 'Wide gravel forest track; pram-friendly',
+      shadeDescription: 'Mostly shaded: about seven tenths runs through the larch and spruce forest; Ciampedie and the Gardeccia hollow are open.',
+      terrainDescription: 'A level nature trail at 1,950–2,000 m in the forest below the Rosengarten (Catinaccio), part of the Dolomites UNESCO World Heritage site, with 24 totems on the life of the forest and the rocks.',
+      waterDescription: 'Drinking fountain at km 2.8; bars and inns at the start and on the way.',
+      dogNotes: 'San Giovanni di Fassa publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses.',
+      tips: 'Take the Catinaccio cable car up from Vigo and follow the forest track to Gardeccia: 3 km one way, almost level, about an hour, then walk back to the cable car. Keep your dog on a short lead (1.5 m at most) and carry a muzzle, which the cable car also requires. Refuges at both ends; drinking water at Gardeccia.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Sentiero della Foresta', url: 'https://www.fassa.com/it/itinerari/sentiero-della-foresta' },
+        { label: 'Outdooractive, Sentiero della Foresta (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/63862495' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.434284, lng: 11.664402, label: 'Vigo di Fassa (stazione a monte funivia Ciampedie), the APT’s start' },
+      waterSources: [
+        { km: 2.8, lat: 46.4470125, lng: 11.6399078, osmId: 'node/4306282333', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.43327, lng: 11.66455, osmId: 'node/10266184675', name: 'Baita La Zondra' },
+        { km: 0, lat: 46.43363, lng: 11.66588, osmId: 'way/122118926', name: 'Ristorante Bellavista' },
+        { km: 2.3, lat: 46.44473, lng: 11.64368, osmId: 'way/122118919', name: 'Malga Couler' },
+        { km: 2.7, lat: 46.4472, lng: 11.64011, osmId: 'way/122023472', name: 'Rifugio Gardeccia' }
+      ],
+      desc: 'A level forest trail at 2,000 m from Ciampedie to the Gardeccia hollow below the Rosengarten, with 24 totems on the secrets of the forest and the mountain. You reach it by the Catinaccio cable car from Vigo. The APT lists 3 km one way and 6 m of ascent.'
+    },
+    'fassa-antichi-bagnes': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
+      // APT Val di Fassa’s walk “Agli antichi Bagnes del principe vescovo di Bressanone”, tagged “animali accettati”. The line
+      // is drawn on 29 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // San Giovanni di Fassa publishes no dog rule, so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
+      // dog standard; Trentino’s animal law leaves leads and muzzles to it.
+      // No Natura 2000 site or nature park on the line.
+      area: 'Pozza, San Giovanni di Fassa / Sèn Jan',
+      distance: 3,
+      elevation: 48,
+      hours: '0.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Piaza de Comun in Pozza through the wood to the Aloch sulphur spring and back along the Avisio on the cycle and foot path between Vigo and Pozza.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The peaks above Pozza seen from the start, in summer (Hiroki Ogawa, CC BY 3.0), 30 m from the line.',
+        route: 'Official loop 3 km from Pozza di Fassa (Piaza de Comun), as APT Val di Fassa publishes it; the stored line is drawn on 29 OSM ways along the APT’s published line, 3 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Piaz de Comun in Pozza through the wood past the Aloch spring, the only sulphur spring in Trentino, where the prince-bishop of Brixen ran baths from 1493, and back along the banks of the Avisio on the Vigo–Pozza cycle and foot path.',
+        mapPoints: 'Start at Pozza di Fassa (Piaza de Comun), the APT’s start; drinking water at the start, at km 0.5 and at km 1.3 (OSM nodes 737144778, 294679925, 12175341419).',
+        elevation: 'Official 3 km, 48 m up and 48 m down, 45 min, highest point 1,337 m, lowest 1,288 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Agli antichi Bagnes del principe vescovo di Bressanone (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the APT line (29 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 18,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 1.2 km on tarmac, partly the valley cycle and foot path shared with bikes', 'Forest paths with roots near the spring', 'Village streets in Pozza open to cars'],
+      terrainType: 'Forest paths, village lanes and the valley cycle and foot path',
+      shadeDescription: 'Mostly open: about a fifth is in the wood round the spring; the riverside path and the village are open.',
+      terrainDescription: 'A short history walk at 1,290–1,340 m round Pozza, to the sulphur spring whose baths were lost to a flood of the Avisio in 1641 and found again in 1923.',
+      waterDescription: 'Drinking fountains at the start, at km 0.5 and at km 1.3; bars and inns at the start and on the way.',
+      dogNotes: 'San Giovanni di Fassa publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses.',
+      tips: 'Start in Piaz de Comun in Pozza: 3 km, about 50 m of climbing, three quarters of an hour. Keep your dog on a short lead (1.5 m at most) on the shared cycle path and carry a muzzle. Fountains in Pozza at the start and on the way round.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Agli antichi Bagnes del principe vescovo di Bressanone', url: 'https://www.fassa.com/it/itinerari/agli-antichi-bagnes-del-principe-vescovo-di-bressanone' },
+        { label: 'Outdooractive, Agli antichi Bagnes del principe vescovo di Bressanone (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/38026217' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.430301, lng: 11.686314, label: 'Pozza di Fassa (Piaza de Comun), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.4308146, lng: 11.6874519, osmId: 'node/737144778', label: 'Drinking fountain at the start' },
+        { km: 0.5, lat: 46.4296872, lng: 11.693716, osmId: 'node/294679925', label: 'Drinking fountain' },
+        { km: 1.3, lat: 46.4237103, lng: 11.6866793, osmId: 'node/12175341419', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.43009, lng: 11.68614, osmId: 'node/722987884', name: 'Bar Gelateria Leon d\'Oro' },
+        { km: 0, lat: 46.43047, lng: 11.68636, osmId: 'node/736750203', name: 'Bar Al Ponte' },
+        { km: 0.2, lat: 46.43046, lng: 11.69158, osmId: 'way/58429469', name: 'Ristorante Al vecchio mulino' },
+        { km: 0.8, lat: 46.42557, lng: 11.6911, osmId: 'way/1410575290', name: 'Masc Aloch' },
+        { km: 1.3, lat: 46.42314, lng: 11.68893, osmId: 'node/623894359', name: 'Malga Aloch' }
+      ],
+      desc: 'A short loop from Pozza through the wood to the Aloch sulphur spring, where the prince-bishop of Brixen ran baths from 1493, and back along the Avisio. The APT lists 3 km and 48 m of ascent.'
+    },
+    'fassa-borgo-dei-patins': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
+      // APT Val di Fassa’s walk “A Vigo, nel borgo diffuso dei “patins””, tagged “animali accettati”. The line
+      // is drawn on 27 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // San Giovanni di Fassa publishes no dog rule, so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
+      // dog standard; Trentino’s animal law leaves leads and muzzles to it.
+      // No Natura 2000 site or nature park on the line.
+      area: 'Vigo, San Giovanni di Fassa / Sèn Jan',
+      distance: 3.1,
+      elevation: 82,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Strada Rezia in Vigo through the scattered hamlets of the village, among them Costa and Larcioné, and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Vigo from above the start, its roofs and the Val di Fassa beyond, in July (Bbruno, CC BY-SA 3.0), 80 m from the line.',
+        route: 'Official loop 3.1 km from Vigo di Fassa (Strada Rezia), as APT Val di Fassa publishes it; the stored line is drawn on 27 OSM ways along the APT’s published line, 3 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Strada Rezia in the centre of Vigo through the hamlets that make up the village, among them Costa and Larcioné, on sunny lanes facing the Rosengarten, and back to the centre.',
+        mapPoints: 'Start at Vigo di Fassa (Strada Rezia), the APT’s start; drinking water at the start, at km 0.4 and at km 1 (OSM nodes 2405075281, 6278639064, 4304787435).',
+        elevation: 'Official 3.1 km, 82 m up and 82 m down, 55 min, highest point 1,426 m, lowest 1,350 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, A Vigo, nel borgo diffuso dei “patins” (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the APT line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Village lanes open to cars for most of the way', 'Stone setts and pebbled lanes in the old hamlets', 'No refreshment point on the way round, only at the start'],
+      terrainType: 'Village lanes and farm tracks; trekking-pram friendly',
+      shadeDescription: 'No shade: the whole loop is on the sunny lanes and meadows between the hamlets.',
+      terrainDescription: 'A sunny loop at 1,350–1,430 m through the scattered hamlets of Vigo, one of the most beautiful villages in Italy, whose sunny slope gave its farmers bigger harvests and the nickname “patins”.',
+      waterDescription: 'Drinking fountains at the start, at km 0.4 and at km 1; bars and inns at the start.',
+      dogNotes: 'San Giovanni di Fassa publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses.',
+      tips: 'Start in Strada Rezia in Vigo: 3.1 km, about 80 m of climbing, an hour. Keep your dog on a short lead (1.5 m at most) on the lanes and carry a muzzle. There is no shade, so avoid midday in summer; fountains in Vigo and in the hamlets.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, A Vigo, nel borgo diffuso dei “patins”', url: 'https://www.fassa.com/it/itinerari/a-vigo-nel-borgo-diffuso-dei-patins' },
+        { label: 'Outdooractive, A Vigo, nel borgo diffuso dei “patins” (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/802245917' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.420045, lng: 11.67272, label: 'Vigo di Fassa (Strada Rezia), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.4193159, lng: 11.673558, osmId: 'node/2405075281', label: 'Drinking fountain at the start' },
+        { km: 0.4, lat: 46.4172331, lng: 11.6700832, osmId: 'node/6278639064', label: 'Drinking fountain' },
+        { km: 1, lat: 46.4125795, lng: 11.6687089, osmId: 'node/4304787435', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.42029, lng: 11.67569, osmId: 'node/305506310', name: 'Bar Mirella' },
+        { km: 0, lat: 46.42006, lng: 11.67188, osmId: 'node/1211103522', name: 'Bar Bianco' }
+      ],
+      desc: 'A sunny loop through the scattered hamlets of Vigo di Fassa, among them Costa and Larcioné, facing the Rosengarten. The APT lists 3.1 km and 82 m of ascent.'
+    },
+    'fassa-prato-di-sorte': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
+      // APT Val di Fassa’s walk “Quel Prato di Sorte...”, tagged “animali accettati”. The line
+      // is drawn on 33 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // Moena’s dog rules (August 2026) require a lead in public places, bags, a
+      // bottle of water to rinse urine, a muzzle when crowded, and keep dogs out
+      // where a ban is signed.
+      // No Natura 2000 site or nature park on the line.
+      area: 'Moena, Val di Fassa',
+      distance: 5.5,
+      elevation: 61,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Piaz de Sotegrava in Moena over the great meadow of the Prato di Sorte at the foot of the Sas da Ciamp, back along the Avisio; it ends in Moena about 120 m from where it starts.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Avisio in Moena at the start of the walk, in August (Mattana, CC BY-SA 3.0).',
+        route: 'Official loop 5.5 km from Moena (Piaz de Sotegrava), as APT Val di Fassa publishes it; the stored line is drawn on 33 OSM ways along the APT’s published line, 5.4 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Piaz de Sotegrava in Moena onto the right bank of the Avisio and round the Prato di Sorte, past the chapel of San Marco, painted on all four sides, the “Busa Vana” hollow and the Fiabilandia playground, and back to Moena along the river on the cycle and foot path.',
+        mapPoints: 'Start at Moena (Piaz de Sotegrava), the APT’s start; drinking water at the start, at km 4.6 and at km 5.3 (OSM nodes 1884458673, 5841706846, 3787633104).',
+        elevation: 'Official 5.5 km, 61 m up and 61 m down, 1 h 30 min, highest point 1,193 m, lowest 1,132 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Quel Prato di Sorte... (fassa.com and its Outdooractive page)',
+          'Comune di Moena, Regole per la conduzione dei cani nel territorio comunale (August 2026)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the APT line (33 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 12,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The valley cycle and foot path is shared with bikes: keep to the right', 'Open meadow that is mown for hay: keep to the path', 'Busy round the Fiabilandia playground in summer'],
+      terrainType: 'Meadow paths and the valley cycle and foot path; pram-friendly',
+      shadeDescription: 'Mostly open: about an eighth runs under trees by the river; the Prato di Sorte is a wide open meadow.',
+      terrainDescription: 'An almost level family loop at 1,130–1,190 m over the Prato di Sorte south of Moena, a hay meadow whose mowing rights were once drawn by lot, and where Moena’s children learned to ski until 1993.',
+      waterDescription: 'Drinking fountains at the start, at km 4.6 and at km 5.3; bars and inns at the start.',
+      dogNotes: 'Moena requires a lead in public places, bags to pick up after your dog, a bottle of water to rinse urine off pavements, and a muzzle when it is crowded; dogs may not enter places signed as closed to them.',
+      tips: 'Start in Piaz de Sotegrava in Moena: 5.5 km, almost level, about an hour and a half. Moena asks you to keep your dog on a lead, carry bags and a bottle of water to rinse urine off pavements, and carry a muzzle; keep right on the cycle path and stay off the mown meadow. Fountains in Moena at the start and at the end.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Quel Prato di Sorte...', url: 'https://www.fassa.com/it/itinerari/quel-prato-di-sorte' },
+        { label: 'Outdooractive, Quel Prato di Sorte... (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/37904523' },
+        { label: 'Comune di Moena, Regole per la conduzione dei cani', url: 'https://www.comune.moena.tn.it/ocmultibinary/download/4674/72838/4/6d6402a9f76531cb63cb42cee6b639e4.pdf/file/regole%2Bper%2Bconduzione%2Bcani.pdf' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.376623, lng: 11.659218, label: 'Moena (Piaz de Sotegrava), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.3768022, lng: 11.659712, osmId: 'node/1884458673', label: 'Drinking fountain at the start' },
+        { km: 4.6, lat: 46.3721089, lng: 11.6556581, osmId: 'node/5841706846', label: 'Drinking fountain' },
+        { km: 5.3, lat: 46.3752774, lng: 11.6601147, osmId: 'node/3787633104', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.37704, lng: 11.65966, osmId: 'node/3786688685', name: 'Bar Mancin' },
+        { km: 0, lat: 46.37767, lng: 11.65819, osmId: 'node/9802480737', name: 'Pizzeria Zalejada' }
+      ],
+      desc: 'An easy loop from Moena over the Prato di Sorte, a great hay meadow at the foot of the Sas da Ciamp with a painted chapel, and back along the Avisio. The APT lists 5.5 km and 61 m of ascent.'
+    },
+    'fassa-passato-ritrovato': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
+      // APT Val di Fassa’s walk “Il passato ritrovato: tra antichi masi e restaurati tobiè”, tagged “animali accettati”. The line
+      // is drawn on 39 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // Canazei and Campitello di Fassa publish no dog rule, so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
+      // dog standard; Trentino’s animal law leaves leads and muzzles to it.
+      // No Natura 2000 site or nature park on the line.
+      area: 'Canazei – Pian – Campitello, Val di Fassa',
+      distance: 6.2,
+      elevation: 152,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Piaz G. Marconi in Canazei along the slope facing the Sassolungo to the old hamlet of Pian above Campitello and back to Canazei.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Canazei and the Gran Vernel from the walk, in October (Ximonic, CC BY-SA 4.0), on the line.',
+        route: 'Official loop 6.2 km from Canazei (Piaz G. Marconi), as APT Val di Fassa publishes it; the stored line is drawn on 39 OSM ways along the APT’s published line, 6.3 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Piaz G. Marconi in Canazei along the slope facing the Sassolungo, past old farms and restored wooden barns (“tobiè”), to Pian, one of the oldest hamlets in the valley, above Campitello, and back to Canazei.',
+        mapPoints: 'Start at Canazei (Piaz G. Marconi), the APT’s start; drinking water at the start, at km 1.9, at km 2.4 and at km 4.7 (OSM nodes 7810377008, 639924483, 12105678587, 2632585633).',
+        elevation: 'Official 6.2 km, 152 m up and 153 m down, 2 h, highest point 1,539 m, lowest 1,411 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Il passato ritrovato: tra antichi masi e restaurati tobiè (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Canazei and Campitello di Fassa publish no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the APT line (39 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 18,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 3.3 km on tarmac, mostly quiet lanes between the hamlets, open to cars', 'Short forest paths; the APT suggests walking poles', 'Working farms and barns at Pian'],
+      terrainType: 'Village lanes, farm tracks and short forest paths',
+      shadeDescription: 'Mostly open: about a fifth runs through trees; the lanes between Canazei, Pian and Campitello face the sun.',
+      terrainDescription: 'A walk at 1,410–1,540 m on the sunny slope between Canazei and Campitello to Pian, with old farms, restored wooden barns and a view of the Sassolungo, the giant of the Ladin legend.',
+      waterDescription: 'Drinking fountains at the start, at km 1.9, at km 2.4 and at km 4.7; bars and inns at the start and on the way.',
+      dogNotes: 'Canazei and Campitello di Fassa publish no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses.',
+      tips: 'Start in Piaz G. Marconi in Canazei: 6.2 km, about 150 m of climbing, two hours. Keep your dog on a short lead (1.5 m at most) past the farms and carry a muzzle. Fountains in Canazei, in Campitello and at Pian; plenty of bars in Campitello halfway.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Il passato ritrovato: tra antichi masi e restaurati tobiè', url: 'https://www.fassa.com/it/itinerari/il-passato-ritrovato-tra-antichi-masi-e-restaurati-tobie' },
+        { label: 'Outdooractive, Il passato ritrovato: tra antichi masi e restaurati tobiè (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/41639219' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.476626, lng: 11.770951, label: 'Canazei (Piaz G. Marconi), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.4765179, lng: 11.7698895, osmId: 'node/7810377008', label: 'Drinking fountain at the start' },
+        { km: 1.9, lat: 46.4763601, lng: 11.7471697, osmId: 'node/639924483', label: 'Drinking fountain' },
+        { km: 2.4, lat: 46.4777444, lng: 11.7406223, osmId: 'node/12105678587', label: 'Drinking fountain' },
+        { km: 4.7, lat: 46.478559, lng: 11.76233, osmId: 'node/2632585633', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.47682, lng: 11.76852, osmId: 'node/5411852730', name: 'El Pael' },
+        { km: 0, lat: 46.47704, lng: 11.76955, osmId: 'node/7240893487', name: 'Kaiserstube' },
+        { km: 0.3, lat: 46.47714, lng: 11.76483, osmId: 'node/3302466501', name: 'Stua dei Ladins' },
+        { km: 1.9, lat: 46.476, lng: 11.7476, osmId: 'node/7240881786', name: 'Baita Ischia' },
+        { km: 2.2, lat: 46.47691, lng: 11.7416, osmId: 'node/5787239253', name: 'Tirol' }
+      ],
+      desc: 'A walk on the sunny slope from Canazei to Pian, one of the oldest hamlets in the Val di Fassa, past old farms and restored wooden barns facing the Sassolungo. The APT lists 6.2 km and 152 m of ascent.'
+    },
+    'fassa-santuario-dei-pellegrini': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
+      // APT Val di Fassa’s walk “Al santuario medievale dei pellegrini di Fassa”, tagged “animali accettati”. The line
+      // is drawn on 23 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // San Giovanni di Fassa publishes no dog rule, so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
+      // dog standard; Trentino’s animal law leaves leads and muzzles to it.
+      // No Natura 2000 site or nature park on the line.
+      area: 'Vigo – Santa Giuliana, San Giovanni di Fassa / Sèn Jan',
+      distance: 2.7,
+      elevation: 132,
+      hours: '1.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Strada Rezia in Vigo up to the medieval church of Santa Giuliana on the Ciaslir de Vich and back down through the larch wood.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of Santa Giuliana and its cobbled path, the walk’s goal, in August (Fabio Poggi, CC BY 3.0).',
+        route: 'Official loop 2.7 km from Vigo di Fassa (Strada Rezia), as APT Val di Fassa publishes it; the stored line is drawn on 23 OSM ways along the APT’s published line, 2.7 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Strada Rezia in the centre of Vigo up Strada de Sent’Uiana and the paved avenue to the church of Santa Giuliana, built in 1237 on the Ciaslir de Vich, an early Rhaetian settlement, and back down through the larch wood with its pilgrims’ benches.',
+        mapPoints: 'Start at Vigo di Fassa (Strada Rezia), the APT’s start; drinking water at the start, at km 0.7 and at km 2.3 (OSM nodes 2405075281, 294112531, 3761993182).',
+        elevation: 'Official 2.7 km, 132 m up and 132 m down, 1 h 20 min, highest point 1,524 m, lowest 1,393 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Al santuario medievale dei pellegrini di Fassa (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the APT line (23 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 41,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steady climb of about 130 m; the APT suggests walking poles', 'Steep cobbled avenue up to the church', 'Village lanes in Vigo open to cars'],
+      terrainType: 'Village lanes, a cobbled avenue and forest paths',
+      shadeDescription: 'About two fifths is in the larch wood round the church; the lanes in Vigo are open.',
+      terrainDescription: 'A short climb at 1,390–1,520 m from Vigo to Santa Giuliana, the church of the valley’s patron saint, on a hill where a prehistoric place of worship once stood.',
+      waterDescription: 'Drinking fountains at the start, at km 0.7 and at km 2.3; bars and inns at the start.',
+      dogNotes: 'San Giovanni di Fassa publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses.',
+      tips: 'Start in Strada Rezia in Vigo: 2.7 km, about 130 m of climbing, an hour and a quarter. Keep your dog on a short lead (1.5 m at most) and carry a muzzle; dogs wait outside the church. Fountains in Vigo and on the way up.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Al santuario medievale dei pellegrini di Fassa', url: 'https://www.fassa.com/it/itinerari/al-santuario-medievale-dei-pellegrini-di-fassa-1' },
+        { label: 'Outdooractive, Al santuario medievale dei pellegrini di Fassa (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/38000437' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.420107, lng: 11.672805, label: 'Vigo di Fassa (Strada Rezia), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.4193159, lng: 11.673558, osmId: 'node/2405075281', label: 'Drinking fountain at the start' },
+        { km: 0.7, lat: 46.4239533, lng: 11.668981, osmId: 'node/294112531', label: 'Drinking fountain' },
+        { km: 2.3, lat: 46.4193833, lng: 11.6693624, osmId: 'node/3761993182', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.42029, lng: 11.67569, osmId: 'node/305506310', name: 'Bar Mirella' },
+        { km: 0, lat: 46.42006, lng: 11.67188, osmId: 'node/1211103522', name: 'Bar Bianco' }
+      ],
+      desc: 'A short climb from Vigo di Fassa to the medieval church of Santa Giuliana, the valley’s patron saint, and back through the larch wood. The APT lists 2.7 km and 132 m of ascent.'
+    },
+    'fassa-malga-aloch': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
+      // APT Val di Fassa’s walk “Storie di vita contadina a Malga Aloch e Masc Aloch”, tagged “animali accettati”. The line
+      // is drawn on 19 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // San Giovanni di Fassa publishes no dog rule, so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
+      // dog standard; Trentino’s animal law leaves leads and muzzles to it.
+      // No Natura 2000 site or nature park on the line.
+      area: 'Pozza – Malga Aloch, San Giovanni di Fassa / Sèn Jan',
+      distance: 2,
+      elevation: 58,
+      hours: '0.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from Piaza de Comun in Pozza through trees and meadows to the Masc Aloch farm and Malga Aloch, and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Pozza with the Aloch slope beyond, in August (Adert, CC BY-SA 4.0).',
+        route: 'Official loop 2 km from Pozza di Fassa (Piaza de Comun), as APT Val di Fassa publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 2.1 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Piaz de Comun in Pozza through trees and meadows, once the pasture of the shepherds from Vigo, to the Masc Aloch farm, which sells its own cured meats, and on to Malga Aloch, with a sunny terrace facing the Rosengarten, and back.',
+        mapPoints: 'Start at Pozza di Fassa (Piaza de Comun), the APT’s start; drinking water at the start (OSM nodes 294679925).',
+        elevation: 'Official 2 km, 58 m up and 58 m down, 35 min, highest point 1,386 m, lowest 1,328 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Storie di vita contadina a Malga Aloch e Masc Aloch (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the APT line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 40,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Gravel tracks shared with farm vehicles near Masc Aloch', 'Working farm with animals at Masc Aloch', 'In winter the Aloch slope is a ski area; this is a summer walk'],
+      terrainType: 'Gravel tracks and meadow paths; trekking-pram friendly',
+      shadeDescription: 'About two fifths is under trees; the meadows below Malga Aloch are open.',
+      terrainDescription: 'A short walk at 1,330–1,390 m from Pozza to the Masc Aloch farm and Malga Aloch, on old pasture facing the Rosengarten.',
+      waterDescription: 'Drinking fountain at the start; bars and inns at the start and on the way.',
+      dogNotes: 'San Giovanni di Fassa publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses.',
+      tips: 'Start in Piaz de Comun in Pozza: 2 km, about 60 m of climbing, half an hour. Keep your dog on a short lead (1.5 m at most) past the farm animals and carry a muzzle. Fountains in Pozza; Malga Aloch serves food on its terrace.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Storie di vita contadina a Malga Aloch e Masc Aloch', url: 'https://www.fassa.com/it/itinerari/storie-di-vita-contadina-a-malga-aloch-e-masc-aloch' },
+        { label: 'Outdooractive, Storie di vita contadina a Malga Aloch e Masc Aloch (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/38025468' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.429625, lng: 11.693126, label: 'Pozza di Fassa (Piaza de Comun), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.4296872, lng: 11.693716, osmId: 'node/294679925', label: 'Drinking fountain at the start' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.42979, lng: 11.69223, osmId: 'node/1230713773', name: 'Bar Jodler' },
+        { km: 0, lat: 46.42928, lng: 11.69446, osmId: 'node/1230713777', name: 'Bar Meeting' },
+        { km: 0.3, lat: 46.42557, lng: 11.6911, osmId: 'way/1410575290', name: 'Masc Aloch' },
+        { km: 0.8, lat: 46.42314, lng: 11.68893, osmId: 'node/623894359', name: 'Malga Aloch' }
+      ],
+      desc: 'A short walk from Pozza to the Masc Aloch farm and Malga Aloch, with its sunny terrace facing the Rosengarten. The APT lists 2 km and 58 m of ascent.'
+    },
+    'fassa-molin-de-pezol': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
+      // APT Val di Fassa’s walk “Ruote del tempo: al Molin de Pèzol ancora funzionante”, tagged “animali accettati”. The line
+      // is drawn on 26 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // San Giovanni di Fassa publishes no dog rule, so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
+      // dog standard; Trentino’s animal law leaves leads and muzzles to it.
+      // No Natura 2000 site or nature park on the line.
+      area: 'Pozza – Pera, San Giovanni di Fassa / Sèn Jan',
+      distance: 3.7,
+      elevation: 38,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Piaza de Comun in Pozza over the Ciancoal meadows to Pera, past the dairy and the Molin de Pèzol watermill, and back to Pozza.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The peaks above Pozza from the start of the walk, in summer (Hiroki Ogawa, CC BY 3.0), 30 m from the line.',
+        route: 'Official loop 3.7 km from Pozza di Fassa (Piaza de Comun), as APT Val di Fassa publishes it; the stored line is drawn on 26 OSM ways along the APT’s published line, 3.7 km, with 99% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Piaz de Comun in Pozza across the Ciancoal flood-plain meadows, once fields of barley, wheat and potatoes, past the Piciocaa adventure park and the Agua Biencia farm to Pera, with its dairy and the museum section on cheese-making, and back past the Molin de Pèzol, the valley’s last working watermill.',
+        mapPoints: 'Start at Pozza di Fassa (Piaza de Comun), the APT’s start; drinking water at the start, at km 2.6 and at km 3.1 (OSM nodes 737144778, 298689646, 1358282328).',
+        elevation: 'Official 3.7 km, 38 m up and 28 m down, 55 min, highest point 1,330 m, lowest 1,303 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Ruote del tempo: al Molin de Pèzol ancora funzionante (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the APT line (26 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 1.3 km on tarmac, partly village streets open to cars', 'Farm animals at the Agua Biencia farm: keep your distance', 'Gravel tracks over meadows that are mown for hay: keep to the track'],
+      terrainType: 'Gravel tracks over meadows and village lanes; trekking-pram friendly',
+      shadeDescription: 'No shade: the loop crosses the open Ciancoal meadows and the villages.',
+      terrainDescription: 'A level family loop at 1,300–1,330 m over the Ciancoal meadows between Pozza and Pera, to the dairy and the last working watermill in the Val di Fassa, both sections of the Museo Ladin de Fascia.',
+      waterDescription: 'Drinking fountains at the start, at km 2.6 and at km 3.1; bars and inns at the start and on the way.',
+      dogNotes: 'San Giovanni di Fassa publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses.',
+      tips: 'Start in Piaz de Comun in Pozza: 3.7 km, almost level, under an hour. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep your distance from the farm animals. There is no shade, so avoid midday in summer; fountains in Pozza and Pera.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Ruote del tempo: al Molin de Pèzol ancora funzionante', url: 'https://www.fassa.com/it/itinerari/ruote-del-tempo-al-molin-de-pezol-ancora-funzionante' },
+        { label: 'Outdooractive, Ruote del tempo: al Molin de Pèzol ancora funzionante (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/38027154' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.430267, lng: 11.686029, label: 'Pozza di Fassa (Piaza de Comun), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.4308146, lng: 11.6874519, osmId: 'node/737144778', label: 'Drinking fountain at the start' },
+        { km: 2.6, lat: 46.4309218, lng: 11.6934045, osmId: 'node/298689646', label: 'Drinking fountain' },
+        { km: 3.1, lat: 46.428992, lng: 11.6928863, osmId: 'node/1358282328', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.42849, lng: 11.68412, osmId: 'node/1224415785', name: 'Bar Re Laurino' },
+        { km: 0, lat: 46.43009, lng: 11.68614, osmId: 'node/722987884', name: 'Bar Gelateria Leon d\'Oro' },
+        { km: 0.9, lat: 46.43591, lng: 11.69508, osmId: 'way/58610604', name: 'Bar Fraine' },
+        { km: 1.5, lat: 46.44063, lng: 11.69868, osmId: 'way/255840627', name: 'Agritur Agua Biencia' },
+        { km: 2.6, lat: 46.43046, lng: 11.69158, osmId: 'way/58429469', name: 'Ristorante Al vecchio mulino' }
+      ],
+      desc: 'A level family loop from Pozza over the Ciancoal meadows to Pera, with its dairy, and back past the Molin de Pèzol, the last working watermill in the Val di Fassa. The APT lists 3.7 km and 38 m of ascent.'
     }
   };
 

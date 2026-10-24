@@ -37,6 +37,159 @@
       }
     },
     {
+      "id": "fassa-antichi-bagnes",
+      "approvedReviewId": "commons-fassa-antichi-bagnes-on-route",
+      "approvedAt": "2026-10-24T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-antichi-bagnes-pozza.jpg",
+        "heroImage": "images/trails/fassa-antichi-bagnes-pozza.jpg",
+        "imageAlt": "Grey Dolomite peaks above a dark spruce forest and a row of houses on a meadow above Pozza",
+        "imageCredit": "The peaks above Pozza",
+        "imageCreditText": "The peaks above Pozza by Hiroki Ogawa",
+        "imageCreator": "Hiroki Ogawa",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Catinaccio_Pozza_di_Fassa_Italy_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-borgo-dei-patins",
+      "approvedReviewId": "commons-fassa-borgo-dei-patins-on-route",
+      "approvedAt": "2026-10-24T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-borgo-dei-patins-vigo.jpg",
+        "heroImage": "images/trails/fassa-borgo-dei-patins-vigo.jpg",
+        "imageAlt": "The roofs of Vigo di Fassa under a blue sky, with wooded mountains across the valley",
+        "imageCredit": "Vigo di Fassa in July",
+        "imageCreditText": "Vigo di Fassa in July by Bbruno",
+        "imageCreator": "Bbruno",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Panorama_Vigo_di_Fassa.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-da-canazei-a-penia",
+      "approvedReviewId": "commons-fassa-da-canazei-a-penia-on-route",
+      "approvedAt": "2026-10-24T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-da-canazei-a-penia-penia.jpg",
+        "heroImage": "images/trails/fassa-da-canazei-a-penia-penia.jpg",
+        "imageAlt": "Penìa’s houses and onion-domed church tower below a wooded slope, with a mown meadow and a tractor in the foreground",
+        "imageCredit": "Penìa in July",
+        "imageCreditText": "Penìa in July by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Penia_di_Canazei_-_Vista.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-malga-aloch",
+      "approvedReviewId": "commons-fassa-malga-aloch-on-route",
+      "approvedAt": "2026-10-24T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-malga-aloch-pozza-aloch.jpg",
+        "heroImage": "images/trails/fassa-malga-aloch-pozza-aloch.jpg",
+        "imageAlt": "The chalets of Pozza di Fassa below a forested slope with a grassy clearing, two rock peaks above",
+        "imageCredit": "Pozza and the Aloch slope",
+        "imageCreditText": "Pozza and the Aloch slope by Adert",
+        "imageCreator": "Adert",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pozza_di_Fassa.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-molin-de-pezol",
+      "approvedReviewId": "commons-fassa-molin-de-pezol-on-route",
+      "approvedAt": "2026-10-24T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-molin-de-pezol-pozza-peaks.jpg",
+        "heroImage": "images/trails/fassa-molin-de-pezol-pozza-peaks.jpg",
+        "imageAlt": "A sheer grey Dolomite wall above green forest, seen from the valley at Pozza",
+        "imageCredit": "The peaks above Pozza",
+        "imageCreditText": "The peaks above Pozza by Hiroki Ogawa",
+        "imageCreator": "Hiroki Ogawa",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Catinaccio_Pozza_di_Fassa_Italy_-_panoramio_(2).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-passato-ritrovato",
+      "approvedReviewId": "commons-fassa-passato-ritrovato-on-route",
+      "approvedAt": "2026-10-24T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-passato-ritrovato-canazei.jpg",
+        "heroImage": "images/trails/fassa-passato-ritrovato-canazei.jpg",
+        "imageAlt": "Chalets and a green meadow on the edge of Canazei, the snow-dusted Gran Vernel rising behind in autumn light",
+        "imageCredit": "Canazei and the Gran Vernel",
+        "imageCreditText": "Canazei and the Gran Vernel by Ximonic (Simo Räsänen)",
+        "imageCreator": "Ximonic (Simo Räsänen)",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Canazei_and_Gran_Vernel,_Trentino-Alto_Adige,_Italy,_2025_October.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-prato-di-sorte",
+      "approvedReviewId": "commons-fassa-prato-di-sorte-on-route",
+      "approvedAt": "2026-10-24T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-prato-di-sorte-moena.jpg",
+        "heroImage": "images/trails/fassa-prato-di-sorte-moena.jpg",
+        "imageAlt": "The Avisio running between the houses of Moena, flower boxes on wooden balconies and a pale Dolomite ridge behind",
+        "imageCredit": "The Avisio in Moena",
+        "imageCreditText": "The Avisio in Moena by Mattana",
+        "imageCreator": "Mattana",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Moena_002.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-santuario-dei-pellegrini",
+      "approvedReviewId": "commons-fassa-santuario-dei-pellegrini-on-route",
+      "approvedAt": "2026-10-24T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-santuario-dei-pellegrini-santa-giuliana.jpg",
+        "heroImage": "images/trails/fassa-santuario-dei-pellegrini-santa-giuliana.jpg",
+        "imageAlt": "The stone church of Santa Giuliana with its walled churchyard, a cobbled path climbing to it through the grass and larches",
+        "imageCredit": "Santa Giuliana",
+        "imageCreditText": "Santa Giuliana by Fabio Poggi",
+        "imageCreator": "Fabio Poggi",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:S._Giuliana_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-sentiero-della-foresta",
+      "approvedReviewId": "commons-fassa-sentiero-della-foresta-on-route",
+      "approvedAt": "2026-10-24T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-sentiero-della-foresta-ciampedie.jpg",
+        "heroImage": "images/trails/fassa-sentiero-della-foresta-ciampedie.jpg",
+        "imageAlt": "Walkers on a gravel path across the Ciampedie meadow by a chairlift and a play area, the pale towers of the Rosengarten behind",
+        "imageCredit": "Ciampedie below the Rosengarten",
+        "imageCreditText": "Ciampedie below the Rosengarten by Adert",
+        "imageCreator": "Adert",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gruppo_del_Catinaccio_-_Ciampedie2.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "geotrail-bulla",
       "approvedReviewId": "commons-geotrail-bulla-on-route",
       "approvedAt": "2026-10-23T20:00:00.000Z",
