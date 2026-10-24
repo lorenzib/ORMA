@@ -225,6 +225,9 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain("data.track is string && data.track.size() <= 60000");
     expect(rules).toContain('data.photo.size() <= 700000');
     expect(rules).toContain("data.note is string && data.note.size() <= 2000");
+    // Who came along: optional (not in hasAll), and bounded when present.
+    expect(rules).toContain("'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt',\n          'walkedWith'\n        ])");
+    expect(rules).toContain("|| (data.walkedWith is string && data.walkedWith.size() <= 400))");
   });
 
   test('post-hike outcomes are private, structured, and immutable', () => {

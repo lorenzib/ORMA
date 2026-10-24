@@ -336,6 +336,10 @@ describe('the walk journal belongs to its account', () => {
     await assertFails(setDoc(doc(owner, path), validJournalEntry({ photo:'https://example.com/dog.jpg' })));
     await assertFails(setDoc(doc(owner, path), validJournalEntry({ rating:9 })));
     await assertFails(setDoc(doc(owner, path), validJournalEntry({ schemaVersion:2 })));
+    // Who came along: accepted when bounded, refused when not a string or too long.
+    await assertSucceeds(setDoc(doc(owner, path), validJournalEntry({ walkedWith:'Teo\nMarco' })));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ walkedWith:['Teo'] })));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ walkedWith:'x'.repeat(401) })));
   });
 });
 

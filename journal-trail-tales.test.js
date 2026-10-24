@@ -7,13 +7,33 @@ describe('Trail Tales journal experience', () => {
   const journal = read('journal.html');
   const card = read('walk-card.js');
 
-  test('makes the latest walk a route-led Trail Tale', () => {
-    expect(journal).toContain('id="jnFeature"');
-    expect(journal).toContain('id="jnFeatureMap"');
-    expect(journal).toContain('id="jnFeatureShare"');
-    expect(journal).toContain('id="jnFeatureRecap"');
-    expect(journal).toContain('data-jn-feature=');
+  test('puts the stats first, then one row per walk', () => {
+    // The big "Latest Trail Tale" panel is gone; what it showed lives on each walk.
+    expect(journal).not.toContain('id="jnFeature"');
+    expect(journal.indexOf('id="jnStats"')).toBeLessThan(journal.indexOf('id="jnTimeline"'));
+    expect(journal).toContain("translate('journal.stats.outdoors', 'Outdoors', {})");
+    expect(journal).toContain("translate('journal.stats.trails', 'Trails', {})");
+    // Each walk: its photo, or its route, or a prompt to add a photo.
+    expect(journal).toContain("var route = e.photo ? '' : routeThumb(activeSegments(e));");
+    expect(journal).toContain("translate('journal.after.addPhotos', 'Add photos', {})");
+    expect(journal).toContain('data-jn-tale=');
+    expect(journal).toContain('data-jn-share=');
     expect(journal).toContain('trail && Array.isArray(trail.path) && trail.path.length > 1');
+  });
+
+  test('a walk that just ended opens asking for a photo and who came along', () => {
+    expect(journal).toContain('id="jnAfterOverlay"');
+    expect(journal).toContain('id="jnAfterPhotoBtn"');
+    expect(journal).toContain('id="jnWithChips"');
+    expect(journal).toContain('id="jnWithForm"');
+    expect(journal).toContain("var savedId = journalParams.get('saved');");
+    expect(journal).toContain('window.DoloPawsAuth.getDogProfiles().then(');
+    // Both recorders hand the journal the walk they just saved.
+    expect(read('walk-page.js')).toContain("window.location.href = 'journal.html?saved=' + encodeURIComponent(entry.id);");
+    const hike = read('hike-mode.js');
+    expect(hike).toContain('savedEntryId = saveWalkNow(user);');
+    expect(hike).toContain('if(savedEntryId) removeJournalEntry(savedEntryId);');
+    expect(hike).toContain('`journal.html?saved=${encodeURIComponent(id)}`');
   });
 
   test('renders private routes locally instead of sending their location to a tile service', () => {

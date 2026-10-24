@@ -33,7 +33,8 @@ describe('empty states and long-form navigation', () => {
       'journal.editTitle',
       'journal.storage',
     ].forEach(key => expect(html).toContain(`data-i18n="${key}"`));
-    expect(html).toContain("window.t('journal.saved')");
+    // A saved walk is confirmed in the sheet that opens on it.
+    expect(html).toContain('data-i18n="journal.after.saved"');
     expect(html).toContain("window.t('journal.shareError')");
     expect(html).toContain("translate('journal.titleFor'");
   });
