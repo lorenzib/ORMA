@@ -54165,6 +54165,640 @@
         "routeShapeNote": "A one-way walk on the old postal path from Lajen by Tschöfas, Tanirz and St. Peter to St. Ulrich in Gröden (500 m up, 386 m down); back the same way or by bus.",
         "routeLineNote": "The OSM line (relation 9450411, 12.2 km) is the official route, 13 m from the board’s start at the Baumann bus stop in Lajen and 27 m from its end in St. Ulrich; it is only turned to run the board’s way, from Lajen. The elevation profile is the stored one, re-measured in the new direction."
       }
+    },
+    {
+      "id": "osm-6601608",
+      "verificationScope": "routeLine",
+      "sources": [
+        {
+          "label": "Tourismusverein Sand in Taufers, Natur-Erlebnispfad Sand in Taufers (Südtirol.info)",
+          "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi542f0f17dff1b4f72336b94f0a136b23.wanderung-auf-dem-naturerlebnispfad.kematen---sand-in-taufers",
+          "reviewedAt": "2026-10-24"
+        }
+      ],
+      "fields": {
+        "path": [
+          [
+            46.91946,
+            11.95214
+          ],
+          [
+            46.91942,
+            11.95189
+          ],
+          [
+            46.92007,
+            11.95164
+          ],
+          [
+            46.92015,
+            11.9517
+          ],
+          [
+            46.92034,
+            11.95164
+          ],
+          [
+            46.92064,
+            11.95129
+          ],
+          [
+            46.92115,
+            11.95239
+          ],
+          [
+            46.92134,
+            11.95248
+          ],
+          [
+            46.92171,
+            11.95103
+          ],
+          [
+            46.92184,
+            11.95006
+          ],
+          [
+            46.92189,
+            11.95004
+          ],
+          [
+            46.92199,
+            11.95041
+          ],
+          [
+            46.92203,
+            11.95112
+          ],
+          [
+            46.92214,
+            11.95107
+          ],
+          [
+            46.92266,
+            11.94989
+          ],
+          [
+            46.9226,
+            11.94856
+          ],
+          [
+            46.92291,
+            11.94709
+          ],
+          [
+            46.92306,
+            11.94689
+          ],
+          [
+            46.92316,
+            11.94719
+          ],
+          [
+            46.92347,
+            11.9472
+          ],
+          [
+            46.92371,
+            11.94747
+          ],
+          [
+            46.92408,
+            11.94752
+          ],
+          [
+            46.92429,
+            11.94729
+          ],
+          [
+            46.92436,
+            11.94733
+          ],
+          [
+            46.92435,
+            11.94751
+          ],
+          [
+            46.92419,
+            11.94787
+          ],
+          [
+            46.9237,
+            11.94846
+          ],
+          [
+            46.92347,
+            11.94919
+          ],
+          [
+            46.92282,
+            11.95211
+          ],
+          [
+            46.9229,
+            11.95331
+          ],
+          [
+            46.92261,
+            11.95429
+          ],
+          [
+            46.92231,
+            11.95625
+          ],
+          [
+            46.92209,
+            11.95658
+          ],
+          [
+            46.92204,
+            11.95681
+          ],
+          [
+            46.92168,
+            11.9589
+          ],
+          [
+            46.92131,
+            11.95906
+          ],
+          [
+            46.92133,
+            11.95935
+          ],
+          [
+            46.9209,
+            11.9597
+          ],
+          [
+            46.92064,
+            11.9608
+          ],
+          [
+            46.92001,
+            11.96193
+          ],
+          [
+            46.91967,
+            11.9641
+          ],
+          [
+            46.91953,
+            11.96419
+          ],
+          [
+            46.9192,
+            11.96508
+          ],
+          [
+            46.9185,
+            11.96632
+          ],
+          [
+            46.91802,
+            11.96698
+          ],
+          [
+            46.9176,
+            11.96805
+          ],
+          [
+            46.91753,
+            11.9677
+          ],
+          [
+            46.91765,
+            11.96584
+          ],
+          [
+            46.9176,
+            11.96565
+          ],
+          [
+            46.9175,
+            11.96585
+          ],
+          [
+            46.91743,
+            11.96588
+          ],
+          [
+            46.91739,
+            11.96578
+          ],
+          [
+            46.91744,
+            11.96485
+          ],
+          [
+            46.91739,
+            11.96475
+          ],
+          [
+            46.91722,
+            11.96499
+          ],
+          [
+            46.91714,
+            11.9643
+          ],
+          [
+            46.91687,
+            11.96484
+          ],
+          [
+            46.91674,
+            11.96476
+          ],
+          [
+            46.91688,
+            11.96428
+          ],
+          [
+            46.91661,
+            11.96402
+          ],
+          [
+            46.91647,
+            11.96373
+          ],
+          [
+            46.91635,
+            11.96387
+          ],
+          [
+            46.91552,
+            11.96428
+          ],
+          [
+            46.91451,
+            11.96444
+          ],
+          [
+            46.91264,
+            11.96385
+          ],
+          [
+            46.9128,
+            11.96339
+          ],
+          [
+            46.91333,
+            11.96305
+          ],
+          [
+            46.91343,
+            11.96278
+          ],
+          [
+            46.91336,
+            11.96277
+          ],
+          [
+            46.91295,
+            11.96034
+          ],
+          [
+            46.91281,
+            11.95827
+          ],
+          [
+            46.91259,
+            11.95694
+          ],
+          [
+            46.91468,
+            11.95589
+          ],
+          [
+            46.91537,
+            11.95537
+          ],
+          [
+            46.91624,
+            11.95419
+          ],
+          [
+            46.91684,
+            11.95391
+          ],
+          [
+            46.91783,
+            11.95289
+          ],
+          [
+            46.91823,
+            11.95245
+          ],
+          [
+            46.9182,
+            11.95225
+          ],
+          [
+            46.91845,
+            11.9523
+          ],
+          [
+            46.91862,
+            11.95243
+          ],
+          [
+            46.91946,
+            11.95214
+          ]
+        ],
+        "distance": 6,
+        "elevation": 201,
+        "hours": "3",
+        "elevationProfile": [
+          {
+            "km": 0,
+            "elev": 880
+          },
+          {
+            "km": 0.4,
+            "elev": 914
+          },
+          {
+            "km": 0.8,
+            "elev": 955
+          },
+          {
+            "km": 1.2,
+            "elev": 973
+          },
+          {
+            "km": 1.7,
+            "elev": 1003
+          },
+          {
+            "km": 2.1,
+            "elev": 1010
+          },
+          {
+            "km": 2.5,
+            "elev": 1023
+          },
+          {
+            "km": 2.9,
+            "elev": 983
+          },
+          {
+            "km": 3.3,
+            "elev": 895
+          },
+          {
+            "km": 3.7,
+            "elev": 861
+          },
+          {
+            "km": 4.1,
+            "elev": 859
+          },
+          {
+            "km": 4.6,
+            "elev": 863
+          },
+          {
+            "km": 5,
+            "elev": 870
+          },
+          {
+            "km": 5.4,
+            "elev": 880
+          }
+        ],
+        "lat": 46.91946,
+        "lng": 11.95214,
+        "routeShape": "loop",
+        "routeShapeNote": "A loop from the Rathausplatz in Sand in Taufers over the Ahr, up the castle promenade to Burg Taufers, along the Wasserweg to the Cascade and back over the meadows.",
+        "routeLineNote": "The OSM line (relation 6601608, 5.4 km) is the official loop and runs the board’s way, but it was stored starting 160 m away on the Schlossweg; it is only turned to start where it passes the Rathausplatz, the board’s start (44 m away). The elevation profile is the stored one, re-measured from the new start."
+      }
+    },
+    {
+      "id": "osm-11791915",
+      "verificationScope": "routeLine",
+      "sources": [
+        {
+          "label": "Brixen Tourismus, Dorfrundwanderung in Aicha (Südtirol.info)",
+          "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi92e369279c97c4f79a64e4ab41f7717f.dorfrundwanderung-in-aicha.aicha",
+          "reviewedAt": "2026-10-24"
+        }
+      ],
+      "fields": {
+        "path": [
+          [
+            46.77601,
+            11.64194
+          ],
+          [
+            46.77597,
+            11.64312
+          ],
+          [
+            46.77604,
+            11.64332
+          ],
+          [
+            46.77686,
+            11.64327
+          ],
+          [
+            46.77711,
+            11.64304
+          ],
+          [
+            46.77765,
+            11.64329
+          ],
+          [
+            46.77786,
+            11.64276
+          ],
+          [
+            46.77795,
+            11.64278
+          ],
+          [
+            46.77792,
+            11.64393
+          ],
+          [
+            46.77806,
+            11.64571
+          ],
+          [
+            46.77887,
+            11.64375
+          ],
+          [
+            46.77904,
+            11.64292
+          ],
+          [
+            46.78016,
+            11.6412
+          ],
+          [
+            46.78031,
+            11.64087
+          ],
+          [
+            46.78043,
+            11.64025
+          ],
+          [
+            46.78074,
+            11.64
+          ],
+          [
+            46.78075,
+            11.63975
+          ],
+          [
+            46.78023,
+            11.63843
+          ],
+          [
+            46.78011,
+            11.6379
+          ],
+          [
+            46.77916,
+            11.63706
+          ],
+          [
+            46.77881,
+            11.63654
+          ],
+          [
+            46.77837,
+            11.63558
+          ],
+          [
+            46.77835,
+            11.63609
+          ],
+          [
+            46.77849,
+            11.63746
+          ],
+          [
+            46.77869,
+            11.63815
+          ],
+          [
+            46.77903,
+            11.63836
+          ],
+          [
+            46.77906,
+            11.63846
+          ],
+          [
+            46.77826,
+            11.63853
+          ],
+          [
+            46.778,
+            11.63863
+          ],
+          [
+            46.77798,
+            11.63885
+          ],
+          [
+            46.77686,
+            11.64021
+          ],
+          [
+            46.77635,
+            11.64168
+          ],
+          [
+            46.77601,
+            11.64194
+          ]
+        ],
+        "distance": 2.3,
+        "elevation": 89,
+        "hours": "0.75",
+        "elevationProfile": [
+          {
+            "km": 0,
+            "elev": 733
+          },
+          {
+            "km": 0.1,
+            "elev": 740
+          },
+          {
+            "km": 0.3,
+            "elev": 749
+          },
+          {
+            "km": 0.4,
+            "elev": 764
+          },
+          {
+            "km": 0.6,
+            "elev": 770
+          },
+          {
+            "km": 0.7,
+            "elev": 777
+          },
+          {
+            "km": 0.9,
+            "elev": 789
+          },
+          {
+            "km": 1,
+            "elev": 802
+          },
+          {
+            "km": 1.1,
+            "elev": 818
+          },
+          {
+            "km": 1.3,
+            "elev": 832
+          },
+          {
+            "km": 1.4,
+            "elev": 814
+          },
+          {
+            "km": 1.6,
+            "elev": 809
+          },
+          {
+            "km": 1.7,
+            "elev": 792
+          },
+          {
+            "km": 1.8,
+            "elev": 760
+          },
+          {
+            "km": 2,
+            "elev": 741
+          },
+          {
+            "km": 2.1,
+            "elev": 733
+          },
+          {
+            "km": 2.3,
+            "elev": 733
+          }
+        ],
+        "lat": 46.77601,
+        "lng": 11.64194,
+        "routeShape": "loop",
+        "routeShapeNote": "A short loop from the church in Aicha round the village and its orchards, following the Dorfrundweg symbol.",
+        "routeLineNote": "The OSM line (relation 11791915, 2.3 km) is the official loop, but it was stored starting 200 m from the church; it is only turned to start where it passes the church in Aicha, the board’s start (10 m away). The board gives no direction. The elevation profile is the stored one, re-measured from the new start."
+      }
     }
   ],
   "contractVersion": "1.0.0"

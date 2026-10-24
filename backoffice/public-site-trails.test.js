@@ -35,10 +35,12 @@ describe('the existing-site verification boundary',()=>{
     // de Pré Lombard, the Anton Schwingshackl Weg, Marmottes, La Plagne and the
     // Demoiselles Coiffées -- gained an ORMA illustration (they stay Reviewed,
     // never Verified), then 184 and 182 with PanaRaida, the Feldthurns
-    // Panoramaweg, the Antholzer See loop and the Poststeig.
+    // Panoramaweg, the Antholzer See loop and the Poststeig, then 188 and 186
+    // with the Sand in Taufers nature trail, the Aicha village walk, the
+    // Gratschenbergrunde and the Römerweg in Kiens.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(184);
-    expect(currentSiteTrails(catalogue)).toHaveLength(182);
+    expect(catalogue).toHaveLength(188);
+    expect(currentSiteTrails(catalogue)).toHaveLength(186);
   });
 
   test('requires the artwork the public trail page needs',()=>{

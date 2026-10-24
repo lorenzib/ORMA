@@ -45330,6 +45330,249 @@ function effectiveOverrides(profile, adjustOverride){
           "elev": 898
         }
       ]
+    },
+    'osm-6601608': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 8).
+      // The official nature trail of Sand in Taufers, built by the commune and
+      // the nature parks office, wholly in Sand in Taufers (the importer said
+      // Bruneck). Sand in Taufers publishes no dog rule, so the national dog
+      // ordinance (6 August 2013, extended to September 2027) applies. No
+      // biotope, Natura 2000 site or park on the line. The stored line is
+      // turned to start at the Rathausplatz (data/verified-trail-overrides.json).
+      area: 'Sand in Taufers / Campo Tures',
+      distance: 6,
+      elevation: 201,
+      hours: '3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Rathausplatz in Sand in Taufers over the Ahr, up the castle promenade to Burg Taufers, along the Wasserweg to the Cascade and back over the meadows.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Burg Taufers on its crag below the snowy Ahrntal peaks, in April (Rolf Kranz, CC BY-SA 4.0), taken 16 m from the line.',
+        route: 'Official loop 6 km from the Rathausplatz; the stored OSM line (relation 6601608, Naturerlebnispfad) is the same loop, 5.4 km, and runs the board’s way, turned to start where it passes the Rathausplatz (44 m away).',
+        routeNumbers: 'Signed with the squirrel logo of the Naturerlebnispfad: from the Rathausplatz north, after 50 m right over the Ahr and along the river to the Burgpromenade, up under the old toll gate and past the ice-age slide to Burg Taufers, on north-east past the castle, along the Wasserweg to the Cascade, across the main road and back through meadows and fields to the Gänsebrunnen on the Rathausplatz.',
+        mapPoints: 'Start at the Rathausplatz in Sand in Taufers (official start); drinking water at the start, at km 1.2 and at km 5.3 (OSM nodes 9180091759, 14017483401, 12587149301).',
+        elevation: 'Official 6 km, 201 m up and down, 3 h, 859–1,010 m (Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Natur-Erlebnispfad Sand in Taufers (Südtirol.info)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Sand in Taufers publishes no dog rule)',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 6601608, road, surface and woodland data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 40,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A crossing of the busy Ahrntaler Straße right at the start', 'A crossing of the main road near the Cascade, km 4.0', 'A wooden footbridge over the Ahr, km 0.3', 'Village streets at the start and end'],
+      terrainType: 'Riverside and castle paths, forest tracks and meadow lanes, with village streets',
+      shadeDescription: 'About two fifths is wooded, mostly the climb to Burg Taufers and the Wasserweg under alders and willows; the meadows on the way back are open.',
+      terrainDescription: 'An easy nature trail at 860–1,020 m round Sand in Taufers, with stations on wildlife, plants, geology and local legends, a treetop viewing platform and Burg Taufers on the way.',
+      waterDescription: 'Drinking water on the Rathausplatz at the start, near the castle path (km 1.2) and a Refill fountain at km 5.3; the Ahr and the Wasserweg run beside parts of the loop. Inns in the village and the Burgcafé by the castle.',
+      dogNotes: 'Sand in Taufers publishes no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. Keep your dog out of the farmed meadows and fields on the way back, and on a short lead at the two road crossings.',
+      tips: 'Start on the Rathausplatz and follow the squirrel signs over the Ahr, up to Burg Taufers, along the Wasserweg to the Cascade and back over the meadows: 6 km, about 200 m of climbing, allow three hours with the stations. Keep your dog on a short lead (1.5 m at most) and carry a muzzle, above all at the two road crossings. Water is easy to find, and the Wasserweg is cool on warm days.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Natur-Erlebnispfad Sand in Taufers', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi542f0f17dff1b4f72336b94f0a136b23.wanderung-auf-dem-naturerlebnispfad.kematen---sand-in-taufers' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/6601608' }
+      ],
+      startPoint: { lat: 46.9197, lng: 11.9526, label: 'Rathausplatz, Sand in Taufers (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.9196598, lng: 11.9522075, osmId: 'node/9180091759', label: 'Drinking fountain on the Rathausplatz' },
+        { km: 1.2, lat: 46.9231737, lng: 11.9483378, osmId: 'node/14017483401', label: 'Drinking fountain' },
+        { km: 5.3, lat: 46.918508, lng: 11.952503, osmId: 'node/12587149301', label: 'Refill drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.91964, lng: 11.95161, osmId: 'node/299473855', name: 'Deko' },
+        { km: 0, lat: 46.91938, lng: 11.95222, osmId: 'node/9006436550', name: 'Drumlerhof' },
+        { km: 0, lat: 46.91862, lng: 11.95227, osmId: 'node/2565552378', name: 'Domino' },
+        { km: 0, lat: 46.91837, lng: 11.95213, osmId: 'node/2616694243', name: 'Rosmarin' },
+        { km: 0.1, lat: 46.92043, lng: 11.95188, osmId: 'node/2681395577', name: 'Zumturm' },
+        { km: 0.3, lat: 46.92135, lng: 11.9527, osmId: 'node/2681395579', name: 'Toccorosso' },
+        { km: 1.5, lat: 46.92296, lng: 11.95201, osmId: 'node/5856623680', name: 'Burgcafé' },
+        { km: 5.2, lat: 46.91806, lng: 11.9524, osmId: 'node/4149280983', name: 'Sandis Bistro' }
+      ],
+      desc: 'A nature trail round Sand in Taufers at the mouth of the Ahrntal: over the Ahr, up to the mighty Burg Taufers and along a cool water path, with stations on wildlife, geology and legends and a treetop platform. The official route lists 6 km and 201 m of ascent.'
+    },
+    'osm-11791915': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 8).
+      // The official village walk of Brixen Tourismus in Aicha, wholly in
+      // Natz-Schabs (the importer said Brixen). Natz-Schabs publishes no dog
+      // rule, so the national dog ordinance (6 August 2013, extended to
+      // September 2027) applies. No biotope, Natura 2000 site or park on the
+      // line; it passes 10 m from a natural monument without entering it. The
+      // stored line is turned to start at the church (data/verified-trail-overrides.json).
+      area: 'Aicha, Natz-Schabs / Aica, Naz-Sciaves',
+      distance: 2.3,
+      elevation: 89,
+      hours: '0.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the church in Aicha round the village and its orchards, following the Dorfrundweg symbol.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The parish church of St. Nikolaus in Aicha, where the walk starts, in August (Michielverbeek, CC BY-SA 4.0), 55 m from the line.',
+        route: 'Official loop 2.3 km from the church in Aicha; the stored OSM line (relation 11791915, Dorfrundweg Aicha) is the same loop, 2.3 km, turned to start where it passes the church (10 m away).',
+        routeNumbers: 'Signed with the Dorfrundweg symbol from the church in Aicha; the board gives no further directions.',
+        mapPoints: 'Start at the church of St. Nikolaus in Aicha (official start); drinking water near the church at km 2.2 (OSM node 289017239).',
+        elevation: 'Official 2.3 km, 89 m up and down, 45 min, 724–798 m (Brixen Tourismus, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Brixen Tourismus, Dorfrundwanderung in Aicha (Südtirol.info)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Natz-Schabs publishes no dog rule)',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 11791915, road, surface and woodland data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 37,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 300 m on the Nikolausstraße through Aicha, the main road of the village', 'Quiet village lanes open to cars for much of the loop', 'Orchards beside the lanes'],
+      terrainType: 'Village lanes, farm tracks and short woodland paths',
+      shadeDescription: 'Over a third is wooded; the lanes through the village and the orchards are open and sunny.',
+      terrainDescription: 'A short, easy village walk at 725–800 m round Aicha on the sunny terrace above the Eisack valley near Brixen, past orchards, farms and the tall-spired parish church.',
+      waterDescription: 'Drinking water near the church at the end of the loop (km 2.2); none on the way, so bring water on warm days.',
+      dogNotes: 'Natz-Schabs publishes no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. Keep your dog out of the orchards beside the lanes and on a short lead on the village road.',
+      tips: 'Start at the church in Aicha and follow the Dorfrundweg symbol: 2.3 km, about 90 m of climbing, three quarters of an hour. Keep your dog on a short lead (1.5 m at most) and carry a muzzle. It is low and sunny, so go early or late in summer; spring blossom is the best time.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Dorfrundwanderung in Aicha (Brixen Tourismus)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi92e369279c97c4f79a64e4ab41f7717f.dorfrundwanderung-in-aicha.aicha' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11791915' }
+      ],
+      startPoint: { lat: 46.7761, lng: 11.6419, label: 'Church of St. Nikolaus in Aicha (official start)' },
+      waterSources: [
+        { km: 2.2, lat: 46.7761428, lng: 11.6415731, osmId: 'node/289017239', label: 'Drinking fountain by the church' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.77646, lng: 11.6416, osmId: 'node/12174610520', name: 'Bar al Tiiglio' }
+      ],
+      desc: 'A short village walk round Aicha above the Eisack valley near Brixen: from the parish church of St. Nikolaus with its tall spire, past orchards and old farms and back. The official route lists 2.3 km and 89 m of ascent.'
+    },
+    'osm-3707731': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 8).
+      // The official walk of the Tourismusverein Villnöss from Teis on path 7,
+      // wholly in Villnöss. Villnöss's dog regulation (Gemeinderat 16/2010)
+      // requires a lead of at most 1.5 m and a muzzle carried (Art. 4) and
+      // keeps dogs off farmed meadows and fields (Art. 8). No biotope, Natura
+      // 2000 site or park on the line.
+      area: 'Teis, Villnöss / Tiso, Funes',
+      distance: 4.9,
+      elevation: 224,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Teis village on path 7 past the Gneller farm, up by the Gratschenberg to the forest road at the Stallboden and back through the wood to Teis.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Teis village and its church from the air, with the Eisack valley and the peaks beyond, in April (Syrio, CC BY-SA 4.0), 180 m from the line.',
+        route: 'Official loop 4.9 km from the Brunngasse in Teis; the stored OSM line (relation 3707731, 7 - Gratschenbergrunde) is the same loop, 4.9 km, 8 m from the official start, and runs the board’s way.',
+        routeNumbers: 'Path 7 throughout: from the Brunngasse in Teis right on the tarmac road, gently up past the Schneggenbach to the Gneller farm, then a footpath up past the Gratschenberg to a forest road, right past the Stallboden and back through the wood to Teis.',
+        mapPoints: 'Start on the Brunngasse in Teis village centre (official start); drinking water at the start and at km 4.8 in Teis (OSM nodes 4810096608, 9668974307, 7589458385); a watering trough at km 1.7.',
+        elevation: 'Official 4.9 km, 224 m up and down, 1 h 30 min, 952–1,153 m (Tourismusverein Villnöss, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Villnöss, Gratschenbergrundgang (Südtirol.info)',
+          'Gemeinde Villnöss, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 16/2010), Art. 4 and 8',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 3707731, road, surface, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 58,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The first 1.5 km on a quiet tarmac road open to cars', 'Forest roads used by forestry vehicles', 'A working farm at the Gneller Hof'],
+      terrainType: 'Quiet tarmac road, footpath and forest roads',
+      shadeDescription: 'More than half is in the wood above Teis; the first stretch on the road through the meadows is open.',
+      terrainDescription: 'An easy loop at 950–1,155 m above Teis at the mouth of the Villnöss valley, through remote meadows and woods with views over the Eisack valley to Brixen.',
+      waterDescription: 'Drinking water (Refill) in Teis at the start and the end; a watering trough at km 1.7. Inns in Teis.',
+      dogNotes: 'Villnöss requires a lead of at most 1.5 m on all public land and a muzzle carried, and dogs may not go on farmed meadows and fields at any time of year. The loop passes the Gneller farm, so keep your dog close.',
+      tips: 'Start on the Brunngasse in Teis and follow path 7 by the Gneller farm and the Stallboden back to the village: 4.9 km, about 225 m of climbing, an hour and a half. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep off the meadows. The Teis mineral museum is by the start.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Gratschenbergrundgang (Tourismusverein Villnöss)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi0b1152749ea7c4cbc7d65e2dbf49e64e.gratschenbergrundgang.teis' },
+        { label: 'Gemeinde Villnöss, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.villnoess.bz.it/system/web/GetDocument.ashx?cts=1789663369&fileId=1048678' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/3707731' }
+      ],
+      startPoint: { lat: 46.6526, lng: 11.6202, label: 'Brunngasse, Teis village centre (official start)' },
+      waterSources: [
+        { km: 0.1, lat: 46.6530451, lng: 11.619984, osmId: 'node/4810096608', label: 'Refill drinking fountain in Teis' },
+        { km: 4.8, lat: 46.6526036, lng: 11.6216016, osmId: 'node/9668974307', label: 'Drinking fountain in Teis' },
+        { km: 4.8, lat: 46.6526253, lng: 11.6205538, osmId: 'node/7589458385', label: 'Refill drinking fountain by the Vereinshaus' }
+      ],
+      desc: 'A quiet loop above Teis at the mouth of the Villnöss valley: on path 7 through remote meadows to the Gneller farm, up past the Gratschenberg and back through the wood, with views over the Eisack valley to Brixen. The official route lists 4.9 km and 224 m of ascent.'
+    },
+    'osm-11833313': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 8).
+      // The official history walk from Kiens to Ehrenburg and back, wholly in
+      // Kiens. Kiens publishes no dog rule, so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies. The line runs
+      // through a landscape protection area (km 0.1–2.7), which limits building,
+      // not access; no biotope, Natura 2000 site or park.
+      area: 'Kiens – Ehrenburg / Chienes – Casteldarne',
+      distance: 3.1,
+      elevation: 70,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Kiens village centre to Ehrenburg, past the Roman milestone, Ehrenburg castle and the baroque parish church, and back through the farmland of the Pustertal.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Rienz at Kiens, in August (mAyo, CC0), 17 m from the line.',
+        route: 'Official loop 3.1 km from Kiens village centre; the stored OSM line (relation 11833313, Römerweg) is the same loop, 3.1 km, 22 m from the official start.',
+        routeNumbers: 'Signed as the Römerweg: from Kiens village centre through the farmland to Ehrenburg, past rest and information points on Roman travel, the Roman milestone, Ehrenburg castle and the parish church of Mariä Himmelfahrt, and back to Kiens.',
+        mapPoints: 'Start in Kiens village centre (official start); drinking water at km 0.1 (OSM node 6807612586); the Roman milestone at km 1.3.',
+        elevation: 'Official 3.1 km, 70 m up and 81 m down, 52 min, highest point 826 m (Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Auf den Spuren der alten Römer von Kiens nach Ehrenburg (Südtirol.info)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Kiens publishes no dog rule)',
+          'Province landscape-plan layers: a landscape protection area (building limits only); no biotope, Natura 2000 site or park',
+          'OpenStreetMap relation 11833313, road, surface and woodland data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 43,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Village lanes in Kiens and Ehrenburg open to cars', 'A short steep lane with a handrail near the start', 'Fields and meadows beside the tracks'],
+      terrainType: 'Village lanes, farm tracks and field paths',
+      shadeDescription: 'A little under half has trees, mostly along the Rienz and the edge of the wood; the fields between the villages are open.',
+      terrainDescription: 'An easy history walk at about 770–845 m in the Pustertal between Kiens and Ehrenburg, with rest points on the Roman road, one of the best-preserved Roman milestones in South Tyrol, a castle and a baroque church.',
+      waterDescription: 'Drinking water in Kiens near the start (km 0.1); the Rienz flows beside part of the walk. Inns in Kiens and Ehrenburg.',
+      dogNotes: 'Kiens publishes no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. Keep your dog out of the fields and meadows between the villages.',
+      tips: 'Start in Kiens centre and follow the Römerweg signs to Ehrenburg and back: 3.1 km, barely 80 m of climbing, under an hour. Keep your dog on a short lead (1.5 m at most) and carry a muzzle. Look out for the Roman milestone, which still gives the distance to Aguntum near Lienz.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Auf den Spuren der alten Römer von Kiens nach Ehrenburg', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi90f372518a16d2b4c4887a38ac32e514.auf-den-spuren-der-alten-roemer-von-kiens-nach-ehrenburg.kiens' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11833313' }
+      ],
+      startPoint: { lat: 46.8063, lng: 11.836, label: 'Kiens village centre (official start)' },
+      waterSources: [
+        { km: 0.1, lat: 46.8056725, lng: 11.8358739, osmId: 'node/6807612586', label: 'Drinking fountain in Kiens' }
+      ],
+      desc: 'An easy history walk in the Pustertal from Kiens to Ehrenburg and back, on the trail of the Roman road: past rest points on Roman travel, a 2,000-year-old milestone, Ehrenburg castle and the baroque parish church. The official route lists 3.1 km and 70 m of ascent.'
     }
   };
 
