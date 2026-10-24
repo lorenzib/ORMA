@@ -3417,6 +3417,9 @@ ${points}
         installedAt: inspection.metadata && inspection.metadata.installedAt || null,
         verificationStatus: manifest && manifest.verificationStatus ||
           inspection.metadata && inspection.metadata.verificationStatus || null,
+        // What the trail's latest package says, when the network allows reading
+        // it: a map downloaded before OFF-08 carries a retired label.
+        currentVerificationStatus: available && available.verificationStatus || null,
         ownership: await ownershipState(inspection.metadata, user),
         state: ['ready', 'stale'].includes(inspection.state) && updateAvailable
           ? 'update-available'
