@@ -63,6 +63,18 @@
       card.append(owner,body,link);
       queue.append(card);
     }
+    // Not a decision -- no verification gate waits on a person -- but nothing
+    // will move these trails until somebody looks, and the headline counts them.
+    for(const item of model.stuckItems||[]){
+      const card=element('article','bo-exec-decision is-stopped');
+      const owner=element('span','bo-owner-chip is-you','Your turn');
+      const body=element('div','bo-exec-decision-body');
+      body.append(element('small','','Stopped trail'),element('h3','',item.title),element('p','',(item.reasons||[]).join(' · ')));
+      const link=item.href?element('a','',`${item.nextAction} ↗`):null;
+      if(link){link.href=item.href;if(item.external){link.target='_blank';link.rel='noopener';}}
+      card.append(owner,body,...(link?[link]:[]));
+      queue.append(card);
+    }
     if(!queue.children.length)queue.append(element('p','bo-decision-empty','Nothing needs your decision. ORMA will return work here when it is ready.'));
   }
 
@@ -104,6 +116,12 @@
     if(health.runUrl){action.href=health.runUrl;action.hidden=false;}else action.hidden=true;
   }
 
+  function note(id,text){
+    const node=document.getElementById(id);
+    if(!node)return;
+    node.textContent=text;node.hidden=!text;
+  }
+
   function renderBlockingIssues(model){
     const list=document.getElementById('blockingIssuesList');
     if(!list)return;
@@ -126,9 +144,12 @@
   function render(model,community){
     set('needsReviewCount',model.summary.needsYou+community.items.length);
     set('agentWorkCount',model.summary.agentWork);
+    note('agentWorkNote',model.agentHeld
+      ?`${model.agentHeld} on hold: paid research is off`
+      :'');
     set('publicWarningCount',model.summary.blockers);
     set('publishedCount',model.summary.prsReady);
-    set('existingCatalogueProgress',`${model.trackedTrails} tracked · ${model.summary.agentWork} jobs active · ${model.summary.blockers} blocked`);
+    set('existingCatalogueProgress',`${model.trackedTrails} tracked · ${model.summary.agentWork} agent jobs${model.agentHeld?` (${model.agentHeld} on hold)`:''} · ${model.summary.blockers} blocked`);
     set('newTrailProgress',`${model.newTrailProgress.candidates} candidates · ${model.newTrailProgress.waiting} need you`);
     set('groundskeeperProgress',`${model.groundskeeperProgress.active} warnings · ${model.groundskeeperProgress.waiting} need review`);
     set('communityProgress',community.items.length?`${community.items.length} submissions need you`:'Queue clear');
@@ -337,7 +358,7 @@
     set('dashboardUpdated','Refreshing protected Firestore…');
     try{
       const remote=await api();
-      const [orchestration,dossiers,execution,routeReview,routeReviewResult,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,jobResult,historyResult,communityResult,verifiedRegistry,programmeHealth,regionalCoverage]=await Promise.all([
+      const [orchestration,dossiers,execution,routeReview,routeReviewResult,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,jobResult,historyResult,communityResult,verifiedRegistry,programmeHealth,regionalCoverage,pipelineHealth]=await Promise.all([
         required(remote,'trail-orchestration'),
         required(remote,'dossier-review-queue'),
         required(remote,'verified-trail-editorial-execution'),
@@ -365,6 +386,8 @@
         // these: listing a collection here would cost ~100 reads a poll.
         optional(remote,'programme-health',null),
         optional(remote,'regional-coverage',null),
+        // The worker's count of every job; the job list above is the newest 100.
+        optional(remote,'pipeline-health',null),
       ]);
       if(!jobResult?.ok)throw new Error(`Could not load agent jobs: ${jobResult?.error||'unknown error'}`);
       if(!historyResult?.ok)throw new Error(`Could not load decision receipts: ${historyResult?.error||'unknown error'}`);
@@ -374,7 +397,7 @@
       if(!communityResult?.ok)throw new Error(`Could not load community moderation: ${communityResult?.error||'unknown error'}`);
 
       const strategyStatus={summary:{editorialStatus:'parked for MVP',newsletterStatus:'parked for MVP',productStatus:'parked for MVP'}};
-      const model=window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,routeReview,routeReviews:routeReviewResult.reviews||[],publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviews:newTrailReviewResult.reviews||[],hazards,hazardQueue,hazardStatus,hazardReviews:hazardReviewResult.reviews||[],strategyStatus,jobs:jobResult.jobs||[],history:historyResult.decisions||[]});
+      const model=window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,routeReview,routeReviews:routeReviewResult.reviews||[],publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviews:newTrailReviewResult.reviews||[],hazards,hazardQueue,hazardStatus,hazardReviews:hazardReviewResult.reviews||[],strategyStatus,jobs:jobResult.jobs||[],pipelineHealth,history:historyResult.decisions||[]});
       document.getElementById('executiveDecisionQueue').classList.remove('is-error');
       coverage=window.ORMADashboardModel.buildCoverageGrid({hazards,verifiedRegistry,orchestration});
       renderCoverage();

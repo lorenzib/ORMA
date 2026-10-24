@@ -158,6 +158,16 @@ function summarisePipeline(jobs, options = {}) {
   // back exactly the jobs that pass both of these, so the desk must too.
   const resumes = job => providerOutage(job.lastError) && laneRuns(job.jobType);
 
+  // Queued work the worker is told not to take. While paid research is off the
+  // specialist lanes keep their jobs queued, untouched, and only the free
+  // survey runs -- so "131 queued" read as work in progress when 124 of them
+  // could not start. The caller names which jobs those are, for the same
+  // reason it names the live lanes. Unknown when the caller does not say.
+  const paidResearch = typeof options.paidResearchEnabled === 'boolean' ? options.paidResearchEnabled : null;
+  const heldWhilePaidOff = typeof options.heldWhilePaidOff === 'function' ? options.heldWhilePaidOff : () => false;
+  const held = jobs => paidResearch === false
+    ? jobs.filter(job => job.status === 'queued' && heldWhilePaidOff(job)).length : 0;
+
   const byLane = new Map();
   all.forEach(job => {
     const jobType = String(job.jobType || '(unnamed lane)');
@@ -187,6 +197,7 @@ function summarisePipeline(jobs, options = {}) {
         // Of those, the ones a worker could actually claim right now.
         queuedDue: dueCount(laneJobs),
         queuedWaitingBackoff: waitingCount(laneJobs),
+        queuedHeld: held(laneJobs),
         nextDueAt: nextDueAt(laneJobs),
         running: laneJobs.filter(job => job.status === 'running').length,
         readyForReview: laneJobs.filter(job => job.status === 'ready-for-review').length,
@@ -211,6 +222,9 @@ function summarisePipeline(jobs, options = {}) {
       // queue of work nobody picked up.
       queuedDue: dueCount(all),
       queuedWaitingBackoff: waitingCount(all),
+      // Of the queued, the ones held because paid research is off.
+      queuedHeld: held(all),
+      paidResearchEnabled: paidResearch,
       nextDueAt: nextDueAt(all),
       running: count('running'),
       readyForReview: count('ready-for-review'),

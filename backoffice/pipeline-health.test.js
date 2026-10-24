@@ -69,6 +69,8 @@ describe('pipeline health', () => {
     // so the two look identical in a status-only count.
     expect(health.working).toEqual({
       queued:2, queuedDue:2, queuedWaitingBackoff:0, nextDueAt:null,
+      // Nobody said whether paid research is on, so nothing is called held.
+      queuedHeld:0, paidResearchEnabled:null,
       running:1, readyForReview:1,
     });
     expect(health.stopped.total).toBe(0);
