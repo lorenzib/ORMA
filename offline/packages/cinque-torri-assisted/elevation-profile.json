@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cinque-torri-assisted",
+  "distanceKm": 5.3,
+  "ascentM": 10,
+  "source": "Open-Meteo ground height sampled along the ORMA route",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1874
+    },
+    {
+      "km": 0.5,
+      "elev": 2046
+    },
+    {
+      "km": 1,
+      "elev": 2148
+    },
+    {
+      "km": 1.5,
+      "elev": 2237
+    },
+    {
+      "km": 1.9,
+      "elev": 2171
+    },
+    {
+      "km": 2.4,
+      "elev": 2180
+    },
+    {
+      "km": 2.9,
+      "elev": 2134
+    },
+    {
+      "km": 3.4,
+      "elev": 2070
+    },
+    {
+      "km": 3.9,
+      "elev": 2040
+    },
+    {
+      "km": 4.4,
+      "elev": 1947
+    },
+    {
+      "km": 4.8,
+      "elev": 1906
+    },
+    {
+      "km": 5.3,
+      "elev": 1880
+    }
+  ]
+}

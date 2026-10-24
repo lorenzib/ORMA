@@ -2704,20 +2704,113 @@ ${points}
 (function(){
   'use strict';
 
-  const PACKAGES = {
-    'lago-carezza': {
-      name: 'Lago di Carezza Loop',
-      manifestUrl: '/offline/packages/lago-carezza/manifest.json',
-      trailUrl: '/trail.html?id=lago-carezza',
-      offlineUrl: '/offline/trail.html?id=lago-carezza',
-    },
-    'alpe-siusi': {
-      name: 'Alpe di Siusi Meadow Loop',
-      manifestUrl: '/offline/packages/alpe-siusi/manifest.json',
-      trailUrl: '/trail.html?id=alpe-siusi',
-      offlineUrl: '/offline/trail.html?id=alpe-siusi',
-    },
+  // Every trail with a package under offline/packages/: the two pilots and
+  // each Verified trail. Written by scripts/build-offline-packages.js from the
+  // manifests; do not edit the block by hand.
+  // <offline-package-registry>
+  const PACKAGE_NAMES = {
+    'alpe-siusi': "Alpe di Siusi Meadow Loop",
+    'cinque-torri-assisted': "Cinque Torri three-refuges assisted circuit",
+    'giro-del-bulacia': "Giro della Bullaccia",
+    'lago-braies': "Lago di Braies Seeweg circuit",
+    'lago-carezza': "Lago di Carezza Loop",
+    'nuvolau': "Passo Giau to Rifugio Nuvolau",
+    'osm-10539302': "Sentier éco-sylve de Poingt-Ravier",
+    'osm-11270309': "Passeggiata delle Sorgenti - Quellenpromenade",
+    'osm-11517208': "La Croix des Salles",
+    'osm-11764094': "Dörferrunde: Natz, Raas, Schabs and Viums",
+    'osm-11775760': "Carl-Toldt-Weg",
+    'osm-11780502': "Naturerlebnispfad Zans",
+    'osm-11795251': "Dörferrundweg (Vintl)",
+    'osm-11814834': "Geotrail Bula - Pufels - Bulla",
+    'osm-11828233': "Valser Rundweg",
+    'osm-11832013': "Seerundweg",
+    'osm-11839597': "Fenn Promenade",
+    'osm-11860429': "Roda dles Viles",
+    'osm-12118490': "Le Balcon des Plagnes",
+    'osm-12121346': "Le tour des hameaux de Montandré, Champessuit et Grenis",
+    'osm-12121798': "Le terroir de Serpolière",
+    'osm-12142337': "Rundweg Peitlerkofel",
+    'osm-12150790': "Giro dei Capitelli - Kapellenrunde",
+    'osm-12164395': "Dörferrundweg",
+    'osm-12172440': "Natur- und Kulturweg",
+    'osm-12173549': "Mühlenweg",
+    'osm-12173965': "Kleine Schlossrunde",
+    'osm-12173984': "Große Schlossrunde",
+    'osm-12182895': "Talrundweg",
+    'osm-12190657': "Rundweg Langfenn",
+    'osm-12302191': "Dorfrundweg Rasen",
+    'osm-123162': "Planetenweg - Sentiero dei pianeti",
+    'osm-12731853': "Rundweg Laugen Elvas",
+    'osm-12736753': "Albeins-Klerant-Milland - Albes-Cleran-Millan",
+    'osm-12745924': "Circuit des escaliers",
+    'osm-12953352': "Archeopfad Brixen",
+    'osm-13338113': "Lac de Darbon",
+    'osm-13491868': "Birmehlweg - Sentiero Birmehl",
+    'osm-14095296': "Les Marais d'Albens",
+    'osm-14375158': "Crêt de la Parenche",
+    'osm-14376573': "Crêt de Talière",
+    'osm-14378946': "Lac de Pramol",
+    'osm-14379010': "Croix de Pralognan",
+    'osm-14381570': "Albanne",
+    'osm-14381584': "Beaumollard",
+    'osm-14864704': "Boucle du Taillefer",
+    'osm-1506470': "Sissiweg - Sentiero Sissi",
+    'osm-15591346': "Sentier des Buis",
+    'osm-16180587': "Balade du Plateau d'Assy au Lac Vert",
+    'osm-16218739': "Circuit du Ragairon",
+    'osm-16322228': "Boucle du Marais des Chassettes",
+    'osm-16365005': "La Galoppaz par la Combe Servenne",
+    'osm-16395076': "Boucle du Lac de la Thuile",
+    'osm-1671736': "Höfeweg",
+    'osm-18055492': "Le Mont d'Arbois - Mont Joux",
+    'osm-19064561': "Ombres sur l'Alpage",
+    'osm-19153189': "Le Belvédère (Saint-Pierre-d'Albigny)",
+    'osm-19330972': "Dorfrundweg - Giro del Paese",
+    'osm-19541366': "Lac Blanc",
+    'osm-19703479': "Rundweg Beimsteinkogel",
+    'osm-19855818': "Boucle des cascades",
+    'osm-19974724': "Mittlerer Rundweg am Karer See",
+    'osm-19974725': "Langer Rundweg am Karer See",
+    'osm-2376630': "Rundweg Katharinaberg",
+    'osm-3202880': "Rundweg Montiggler Seen",
+    'osm-3885162': "Seeweg, Val d'Ultimo",
+    'osm-3982382': "Circuit Béatrice de Savoie",
+    'osm-5479112': "Chemin des Diligences",
+    'osm-5512443': "Wallburgweg",
+    'osm-5597577': "Rundweg Gsindboden",
+    'osm-6244965': "Steine erzählen",
+    'osm-6250300': "Boucle du Lac Vert",
+    'osm-6404258': "Rundweg Salla",
+    'osm-6410700': "Dolomitenblickrunde",
+    'osm-6453504': "Walderlebnispfad Aschbach",
+    'osm-7045225': "Giro del Fausior",
+    'osm-7424683': "Marlinger Waalweg",
+    'osm-7426648': "Algunder Waalweg",
+    'osm-7426666': "Maiser Waalweg",
+    'osm-7446701': "Waltner Rundweg 18",
+    'osm-7547983': "Anello di Valzalina",
+    'osm-7548344': "Anello del Sole",
+    'osm-7549783': "Anello del Troi de le Ciaure",
+    'osm-7655311': "Sonnenberger Panoramaweg - Sentiero",
+    'osm-9492594': "Vogelweider Rundweg",
+    'osm-9493733': "Tru di Lëc",
+    'osm-9511999': "Tru dles Viles",
+    'osm-9937537': "Le Mont Jovet",
+    'prato-piazza': "Prato Piazza (Plätzwiese)",
+    'santa-maddalena': "Rundweg St. Magdalena",
+    'sentiero-del-trenino': "Sentiero del Trenino",
+    'sentiero-hans-e-paula-steger': "Sentiero Hans e Paula Steger",
+    'tre-cime': "Tre Cime di Lavaredo classic circuit",
+    'valley-view': "Val di Funes Panorama Trail",
   };
+  // </offline-package-registry>
+  const PACKAGES = Object.freeze(Object.fromEntries(Object.keys(PACKAGE_NAMES).map(trailId => [trailId, Object.freeze({
+    name: PACKAGE_NAMES[trailId],
+    manifestUrl: `/offline/packages/${trailId}/manifest.json`,
+    trailUrl: `/trail.html?id=${trailId}`,
+    offlineUrl: `/offline/trail.html?id=${trailId}`,
+  })])));
   const CACHE_PREFIX = 'dolopaws-trail-';
   const METADATA_PREFIX = 'dolopaws-offline:';
   const OWNER_SALT_KEY = 'dolopaws-offline-owner-salt';
@@ -3278,7 +3371,14 @@ ${points}
 
   async function listPackageStates(user){
     const records = [];
-    for(const trailId of Object.keys(PACKAGES)){
+    // A trail with no cache under its prefix is 'not-downloaded', which is
+    // never listed. With every Verified trail registered, asking each one in
+    // turn cost the page one metadata read per trail to list a handful.
+    // Without Cache Storage nothing can have been downloaded at all.
+    const cacheNames = 'caches' in window ? await caches.keys() : [];
+    const stored = Object.keys(PACKAGES).filter(trailId =>
+      cacheNames.some(name => name.startsWith(`${CACHE_PREFIX}${trailId}-`)));
+    for(const trailId of stored){
       const config = PACKAGES[trailId];
       const inspection = await inspectPackage(trailId);
       if(inspection.state === 'not-downloaded') continue;
@@ -3562,7 +3662,12 @@ ${points}
     refresh();
   }
 
+  function hasPackage(trailId){
+    return Object.prototype.hasOwnProperty.call(PACKAGES, trailId);
+  }
+
   window.DoloPawsOffline = {
+    hasPackage,
     installPackage,
     installedPackage,
     installedPackageRecord,
@@ -41497,6 +41602,2963 @@ function effectiveOverrides(profile, adjustOverride){
       },
       "desc": "A loop on the sunny slope above Séez, through the Bochères forest, the hamlet of Saint-Germain and its mill, alpine pastures and the Champ Plan clearing to the Croix de Champ Plan, returning by a zigzag path that rejoins the way up. The tourist office rates it easy and gives 4.9 km, 2 hours 25 and 435 m of climb; with the shared stretch walked back to the car park it is about 6 km. This walk is not yet verified by ORMA.\n\nThe tourist office asks for dogs on a lead because the Bochères forest is a communal hunting and wildlife reserve. Séez also has a municipal arrêté on domestic animals whose text is not published online.",
       "tips": "Keep your dog on a lead, as the tourist office asks: the Bochères forest is a hunting and wildlife reserve, and the route crosses pastures. Cross the scree area carefully. There is drinking water at Saint-Germain and at the new basin by the Croix de Champ Plan."
+    },
+    'osm-15791408': {
+      // Hand audit 24 October 2026: line rebuilt on OSM ways along APT Trento's GPX for 'Giro di Bedolpian, il Laghetto delle Rane e
+      // la Bellavista' (3.3 km, 0:55 h, 53 m, easy), now taking in the Bellavista spur the old line skipped. Dogs: Baselga di Piné's order
+      // requires a lead only in built-up areas, so the national rule applies on the walk (Ministry of Health ordinance of 6 August 2013,
+      // Art. 1(3)). No protected area on the line. Place corrected to the Altopiano di Piné.
+      "area": "Bedolpian, Baselga di Piné (Altopiano di Piné)",
+      "path": [
+        [
+          46.14277,
+          11.24609
+        ],
+        [
+          46.14296,
+          11.24575
+        ],
+        [
+          46.14301,
+          11.24566
+        ],
+        [
+          46.14311,
+          11.24552
+        ],
+        [
+          46.14319,
+          11.2454
+        ],
+        [
+          46.1432,
+          11.24538
+        ],
+        [
+          46.14328,
+          11.24525
+        ],
+        [
+          46.14332,
+          11.24516
+        ],
+        [
+          46.14334,
+          11.2451
+        ],
+        [
+          46.14341,
+          11.24493
+        ],
+        [
+          46.14346,
+          11.24481
+        ],
+        [
+          46.14348,
+          11.24466
+        ],
+        [
+          46.14341,
+          11.24453
+        ],
+        [
+          46.14327,
+          11.24441
+        ],
+        [
+          46.14318,
+          11.24433
+        ],
+        [
+          46.14319,
+          11.24424
+        ],
+        [
+          46.14325,
+          11.24409
+        ],
+        [
+          46.14339,
+          11.24384
+        ],
+        [
+          46.14354,
+          11.24363
+        ],
+        [
+          46.14369,
+          11.24332
+        ],
+        [
+          46.14383,
+          11.24314
+        ],
+        [
+          46.1439,
+          11.24287
+        ],
+        [
+          46.14402,
+          11.24272
+        ],
+        [
+          46.14422,
+          11.24257
+        ],
+        [
+          46.14439,
+          11.24237
+        ],
+        [
+          46.14463,
+          11.24206
+        ],
+        [
+          46.14474,
+          11.24194
+        ],
+        [
+          46.14488,
+          11.24176
+        ],
+        [
+          46.14491,
+          11.24169
+        ],
+        [
+          46.14498,
+          11.24164
+        ],
+        [
+          46.14491,
+          11.24169
+        ],
+        [
+          46.14518,
+          11.2417
+        ],
+        [
+          46.14543,
+          11.2416
+        ],
+        [
+          46.14562,
+          11.24148
+        ],
+        [
+          46.14585,
+          11.24131
+        ],
+        [
+          46.14603,
+          11.24096
+        ],
+        [
+          46.14619,
+          11.24067
+        ],
+        [
+          46.14634,
+          11.24039
+        ],
+        [
+          46.14642,
+          11.24023
+        ],
+        [
+          46.14654,
+          11.24012
+        ],
+        [
+          46.14657,
+          11.2401
+        ],
+        [
+          46.14675,
+          11.24
+        ],
+        [
+          46.14693,
+          11.23996
+        ],
+        [
+          46.14702,
+          11.23984
+        ],
+        [
+          46.14708,
+          11.23957
+        ],
+        [
+          46.14715,
+          11.23924
+        ],
+        [
+          46.14722,
+          11.23893
+        ],
+        [
+          46.14728,
+          11.23872
+        ],
+        [
+          46.14752,
+          11.23856
+        ],
+        [
+          46.1478,
+          11.23838
+        ],
+        [
+          46.14795,
+          11.23823
+        ],
+        [
+          46.14807,
+          11.23795
+        ],
+        [
+          46.14816,
+          11.23785
+        ],
+        [
+          46.14823,
+          11.23766
+        ],
+        [
+          46.14833,
+          11.23743
+        ],
+        [
+          46.14848,
+          11.23727
+        ],
+        [
+          46.1486,
+          11.23715
+        ],
+        [
+          46.14871,
+          11.23705
+        ],
+        [
+          46.14875,
+          11.23695
+        ],
+        [
+          46.14874,
+          11.23686
+        ],
+        [
+          46.14843,
+          11.23659
+        ],
+        [
+          46.14821,
+          11.23647
+        ],
+        [
+          46.14799,
+          11.23634
+        ],
+        [
+          46.14782,
+          11.23615
+        ],
+        [
+          46.14774,
+          11.23588
+        ],
+        [
+          46.14768,
+          11.23577
+        ],
+        [
+          46.14761,
+          11.23592
+        ],
+        [
+          46.14762,
+          11.23604
+        ],
+        [
+          46.14761,
+          11.23592
+        ],
+        [
+          46.14768,
+          11.23577
+        ],
+        [
+          46.14768,
+          11.23565
+        ],
+        [
+          46.14752,
+          11.2358
+        ],
+        [
+          46.14768,
+          11.23565
+        ],
+        [
+          46.1477,
+          11.23558
+        ],
+        [
+          46.1478,
+          11.23538
+        ],
+        [
+          46.14807,
+          11.23522
+        ],
+        [
+          46.14822,
+          11.23522
+        ],
+        [
+          46.14828,
+          11.23468
+        ],
+        [
+          46.1482,
+          11.2344
+        ],
+        [
+          46.1481,
+          11.23415
+        ],
+        [
+          46.14805,
+          11.23404
+        ],
+        [
+          46.14792,
+          11.23386
+        ],
+        [
+          46.14783,
+          11.23376
+        ],
+        [
+          46.14779,
+          11.23375
+        ],
+        [
+          46.14783,
+          11.23376
+        ],
+        [
+          46.14792,
+          11.23386
+        ],
+        [
+          46.14805,
+          11.23404
+        ],
+        [
+          46.1481,
+          11.23415
+        ],
+        [
+          46.1482,
+          11.2344
+        ],
+        [
+          46.14828,
+          11.23468
+        ],
+        [
+          46.14822,
+          11.23522
+        ],
+        [
+          46.14829,
+          11.2353
+        ],
+        [
+          46.14869,
+          11.23531
+        ],
+        [
+          46.14904,
+          11.23554
+        ],
+        [
+          46.14964,
+          11.23571
+        ],
+        [
+          46.15,
+          11.23588
+        ],
+        [
+          46.15038,
+          11.23618
+        ],
+        [
+          46.15059,
+          11.23653
+        ],
+        [
+          46.15089,
+          11.23691
+        ],
+        [
+          46.15124,
+          11.23777
+        ],
+        [
+          46.1513,
+          11.23814
+        ],
+        [
+          46.15122,
+          11.23869
+        ],
+        [
+          46.15109,
+          11.2391
+        ],
+        [
+          46.15095,
+          11.23953
+        ],
+        [
+          46.15078,
+          11.24052
+        ],
+        [
+          46.15038,
+          11.24125
+        ],
+        [
+          46.15006,
+          11.24181
+        ],
+        [
+          46.14963,
+          11.24211
+        ],
+        [
+          46.14948,
+          11.2423
+        ],
+        [
+          46.14916,
+          11.24268
+        ],
+        [
+          46.14923,
+          11.2427
+        ],
+        [
+          46.14916,
+          11.24268
+        ],
+        [
+          46.14898,
+          11.24287
+        ],
+        [
+          46.14863,
+          11.2434
+        ],
+        [
+          46.14832,
+          11.24377
+        ],
+        [
+          46.14804,
+          11.24397
+        ],
+        [
+          46.14797,
+          11.24402
+        ],
+        [
+          46.14791,
+          11.24407
+        ],
+        [
+          46.14778,
+          11.24416
+        ],
+        [
+          46.14747,
+          11.24438
+        ],
+        [
+          46.14686,
+          11.24473
+        ],
+        [
+          46.14666,
+          11.24497
+        ],
+        [
+          46.14636,
+          11.24524
+        ],
+        [
+          46.14625,
+          11.24541
+        ],
+        [
+          46.1461,
+          11.24556
+        ],
+        [
+          46.14573,
+          11.24581
+        ],
+        [
+          46.14544,
+          11.24601
+        ],
+        [
+          46.14525,
+          11.24608
+        ],
+        [
+          46.14512,
+          11.24607
+        ],
+        [
+          46.14491,
+          11.24599
+        ],
+        [
+          46.14483,
+          11.24601
+        ],
+        [
+          46.14441,
+          11.24636
+        ],
+        [
+          46.14411,
+          11.24645
+        ],
+        [
+          46.14399,
+          11.24648
+        ],
+        [
+          46.14389,
+          11.24669
+        ],
+        [
+          46.14374,
+          11.24669
+        ],
+        [
+          46.14361,
+          11.24666
+        ],
+        [
+          46.14354,
+          11.24662
+        ],
+        [
+          46.14349,
+          11.24658
+        ],
+        [
+          46.14338,
+          11.24648
+        ],
+        [
+          46.14336,
+          11.24643
+        ],
+        [
+          46.14339,
+          11.24642
+        ],
+        [
+          46.14348,
+          11.24646
+        ],
+        [
+          46.14339,
+          11.24642
+        ],
+        [
+          46.14336,
+          11.24643
+        ],
+        [
+          46.14338,
+          11.24648
+        ],
+        [
+          46.14333,
+          11.24647
+        ],
+        [
+          46.14312,
+          11.24638
+        ],
+        [
+          46.14293,
+          11.24633
+        ],
+        [
+          46.1428,
+          11.24628
+        ]
+      ],
+      "lat": 46.14277,
+      "lng": 11.24609,
+      "distance": 3.3,
+      "elevation": 53,
+      "hours": "1",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 1127
+        },
+        {
+          "km": 0.3,
+          "elev": 1131
+        },
+        {
+          "km": 0.5,
+          "elev": 1136
+        },
+        {
+          "km": 0.8,
+          "elev": 1138
+        },
+        {
+          "km": 1,
+          "elev": 1143
+        },
+        {
+          "km": 1.3,
+          "elev": 1125
+        },
+        {
+          "km": 1.6,
+          "elev": 1092
+        },
+        {
+          "km": 1.8,
+          "elev": 1097
+        },
+        {
+          "km": 2.1,
+          "elev": 1078
+        },
+        {
+          "km": 2.4,
+          "elev": 1087
+        },
+        {
+          "km": 2.6,
+          "elev": 1117
+        },
+        {
+          "km": 2.9,
+          "elev": 1123
+        },
+        {
+          "km": 3.1,
+          "elev": 1135
+        },
+        {
+          "km": 3.4,
+          "elev": 1127
+        }
+      ],
+      "waterSources": [
+        {
+          "km": 0,
+          "lat": 46.1426218,
+          "lng": 11.2462265,
+          "osmId": "node/928020037",
+          "label": "Drinking water (OSM-verified location)"
+        }
+      ],
+      "rifugi": [
+        {
+          "km": 0,
+          "lat": 46.14333,
+          "lng": 11.24591,
+          "osmId": "way/116828666",
+          "name": "La Capannina"
+        }
+      ],
+      "startPoint": {
+        "lat": 46.142777,
+        "lng": 11.246126,
+        "label": "Bedolpian car park by La Capannina, Baselga di Piné (official start)"
+      },
+      "terrainType": "Gravel forest roads almost throughout",
+      "shadeCoverage": 50,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "A short stretch on the Strada di Bedolpian at the start"
+      ],
+      "routeNumberSource": {
+        "provider": "APT Trento (APT Piné)",
+        "name": "Giro di Bedolpian, il Laghetto delle Rane e la Bellavista (route 08)",
+        "url": "https://www.outdooractive.com/it/route/escursionismo/trentino/giro-di-bedolpian-il-laghetto-delle-rane-e-la-bellavista/67534499/"
+      },
+      "desc": "An easy 3.3 km loop on the gravel forest roads of Bedolpian above Baselga di Piné, waymarked as route 08: from the car park by La Capannina to the little Laghetto delle Rane, out to the Bellavista balcony with its view down over the terraced vineyards of the Cembra valley, and back round the Giro di Bedolpian clockwise. APT Trento gives 55 minutes and 53 m of climb. Part of the pine forest was cleared by the 2018 Vaia storm and is now open meadow.\n\nBaselga di Piné requires dogs on a lead in public areas of its villages; out on the walk the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Where signs say so, dogs are not allowed in public parks and green areas.",
+      "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle, as the national rule requires, and watch for signs banning dogs in public green areas. The loop is almost all gravel forest road, easy and fairly shaded. There is a drinking fountain at the start. Hold your dog close at the Bellavista balcony.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-24",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Syrio, CC BY-SA 4.0: the Cembra valley from the Bellavista of Bedolpian, the walk's viewpoint, as its description states; not geotagged (replaces a Lago di Lases view several km away).",
+        "route": "Line rebuilt on OSM ways along APT Trento's GPX: 3.43 km against the GPX's 3.35 km and the page's 3.3 km; every GPX point within 37 m. It now includes the Bellavista spur the old line skipped.",
+        "routeNumbers": "Route 08, red-and-white waymarks, signed Lago delle Rane, Bellavista and Giro di Bedolpian, as the official text describes.",
+        "mapPoints": "Start at the Bedolpian car park by La Capannina, the official start; the fountain is traced to OSM.",
+        "elevation": "Official 53 m of climb and 55 minutes."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "APT Trento, 'Giro di Bedolpian, il Laghetto delle Rane e la Bellavista' (Outdooractive 67534499, shown on visittrentino.info): 'Distanza 3,3 km / Durata 0:55 h / Salita 53 m / Discesa 53 m'; start at the Bedolpian car park by La Capannina; 'Il giro proposto è in senso orario'; official GPX within 37 m of the rebuilt line",
+          "Comune di Baselga di Piné, ordinanza on dog owners (6 July 2006): lead in public areas of built-up areas (point 4); no dogs where signs forbid them in public parks and green areas (point 7). Outside the villages the national rule applies: Ministry of Health, Ordinanza 6 agosto 2013, Art. 1(3), renewed to 5 Sep 2027 ('utilizzare sempre il guinzaglio a una misura non superiore a mt 1,50', muzzle carried)",
+          "No Natura 2000 site, reserve, biotope or park on the line (EEA, Provincia autonoma di Trento layers)",
+          "OpenStreetMap: forest roads, the viewpoint and the fountain along the line"
+        ],
+        "date": "2026-10-24"
+      },
+      "sourceLinks": [
+        {
+          "label": "APT Trento, Giro di Bedolpian (Outdooractive)",
+          "url": "https://www.outdooractive.com/it/route/escursionismo/trentino/giro-di-bedolpian-il-laghetto-delle-rane-e-la-bellavista/67534499/"
+        },
+        {
+          "label": "Visit Trentino, Giro di Bedolpian",
+          "url": "https://www.visittrentino.info/it/guida/tour/giro-di-bedolpian-il-laghetto-delle-rane-e-la-bellavista_tour_67534499"
+        },
+        {
+          "label": "Ministry of Health ordinance of 6 August 2013 (text)",
+          "url": "https://www.certifico.com/id/26170"
+        },
+        {
+          "label": "OpenStreetMap relation 15791408",
+          "url": "https://www.openstreetmap.org/relation/15791408"
+        }
+      ]
+    },
+    'osm-10116380': {
+      // Hand audit 24 October 2026: line rebuilt on OSM ways along the Office de Tourisme du Lac d'Annecy's GPX for 'A la découverte
+      // du Plateau des Glières' (4 km, 2h30, 100 m, very easy); the old line had a 480 m gap. Dogs on a lead: the plateau brochure, and
+      // the Natura 2000 site charter (FR8201704); herds and working dogs on the alpages.
+      "area": "Plateau des Glières (Glières-Val-de-Borne / Fillière)",
+      "path": [
+        [
+          45.96619,
+          6.33133
+        ],
+        [
+          45.96617,
+          6.3314
+        ],
+        [
+          45.96617,
+          6.33141
+        ],
+        [
+          45.96617,
+          6.33143
+        ],
+        [
+          45.96617,
+          6.33145
+        ],
+        [
+          45.96618,
+          6.33147
+        ],
+        [
+          45.96622,
+          6.33158
+        ],
+        [
+          45.96624,
+          6.33161
+        ],
+        [
+          45.96625,
+          6.33164
+        ],
+        [
+          45.96625,
+          6.33167
+        ],
+        [
+          45.96626,
+          6.33169
+        ],
+        [
+          45.96626,
+          6.33172
+        ],
+        [
+          45.96626,
+          6.33175
+        ],
+        [
+          45.96626,
+          6.33177
+        ],
+        [
+          45.96626,
+          6.33187
+        ],
+        [
+          45.96626,
+          6.33189
+        ],
+        [
+          45.96626,
+          6.33192
+        ],
+        [
+          45.96626,
+          6.33195
+        ],
+        [
+          45.96626,
+          6.33198
+        ],
+        [
+          45.96627,
+          6.332
+        ],
+        [
+          45.96628,
+          6.33204
+        ],
+        [
+          45.96629,
+          6.33206
+        ],
+        [
+          45.9663,
+          6.33208
+        ],
+        [
+          45.96631,
+          6.3321
+        ],
+        [
+          45.96633,
+          6.33212
+        ],
+        [
+          45.96634,
+          6.33214
+        ],
+        [
+          45.96636,
+          6.33215
+        ],
+        [
+          45.96637,
+          6.33217
+        ],
+        [
+          45.96639,
+          6.33218
+        ],
+        [
+          45.96641,
+          6.33219
+        ],
+        [
+          45.96645,
+          6.33221
+        ],
+        [
+          45.96647,
+          6.33222
+        ],
+        [
+          45.96648,
+          6.33224
+        ],
+        [
+          45.96648,
+          6.33225
+        ],
+        [
+          45.96649,
+          6.33227
+        ],
+        [
+          45.96649,
+          6.3323
+        ],
+        [
+          45.96649,
+          6.33232
+        ],
+        [
+          45.96649,
+          6.33234
+        ],
+        [
+          45.96648,
+          6.33237
+        ],
+        [
+          45.96647,
+          6.33239
+        ],
+        [
+          45.96646,
+          6.3324
+        ],
+        [
+          45.96645,
+          6.33241
+        ],
+        [
+          45.96644,
+          6.33242
+        ],
+        [
+          45.9664,
+          6.33243
+        ],
+        [
+          45.96637,
+          6.33244
+        ],
+        [
+          45.96629,
+          6.33246
+        ],
+        [
+          45.96624,
+          6.33247
+        ],
+        [
+          45.96619,
+          6.33247
+        ],
+        [
+          45.96615,
+          6.33248
+        ],
+        [
+          45.9661,
+          6.33247
+        ],
+        [
+          45.96565,
+          6.33243
+        ],
+        [
+          45.9656,
+          6.33242
+        ],
+        [
+          45.96557,
+          6.33242
+        ],
+        [
+          45.96553,
+          6.33243
+        ],
+        [
+          45.9655,
+          6.33244
+        ],
+        [
+          45.96547,
+          6.33245
+        ],
+        [
+          45.9654,
+          6.33248
+        ],
+        [
+          45.96533,
+          6.33251
+        ],
+        [
+          45.96528,
+          6.33255
+        ],
+        [
+          45.96524,
+          6.33259
+        ],
+        [
+          45.96521,
+          6.33262
+        ],
+        [
+          45.96518,
+          6.33268
+        ],
+        [
+          45.96515,
+          6.33275
+        ],
+        [
+          45.96513,
+          6.33282
+        ],
+        [
+          45.96512,
+          6.33289
+        ],
+        [
+          45.96509,
+          6.33304
+        ],
+        [
+          45.96507,
+          6.33322
+        ],
+        [
+          45.96505,
+          6.33337
+        ],
+        [
+          45.96505,
+          6.33346
+        ],
+        [
+          45.96505,
+          6.33351
+        ],
+        [
+          45.96507,
+          6.33357
+        ],
+        [
+          45.96512,
+          6.33378
+        ],
+        [
+          45.96513,
+          6.33386
+        ],
+        [
+          45.965,
+          6.33379
+        ],
+        [
+          45.96485,
+          6.33363
+        ],
+        [
+          45.96469,
+          6.33346
+        ],
+        [
+          45.96459,
+          6.33336
+        ],
+        [
+          45.96444,
+          6.33312
+        ],
+        [
+          45.96435,
+          6.33303
+        ],
+        [
+          45.96426,
+          6.33293
+        ],
+        [
+          45.9642,
+          6.33284
+        ],
+        [
+          45.96415,
+          6.33276
+        ],
+        [
+          45.96417,
+          6.33283
+        ],
+        [
+          45.96418,
+          6.33289
+        ],
+        [
+          45.96417,
+          6.33296
+        ],
+        [
+          45.96416,
+          6.33302
+        ],
+        [
+          45.96415,
+          6.33308
+        ],
+        [
+          45.96392,
+          6.33363
+        ],
+        [
+          45.96388,
+          6.33381
+        ],
+        [
+          45.96387,
+          6.33404
+        ],
+        [
+          45.96387,
+          6.33432
+        ],
+        [
+          45.96388,
+          6.33451
+        ],
+        [
+          45.9639,
+          6.33464
+        ],
+        [
+          45.9639,
+          6.33471
+        ],
+        [
+          45.9639,
+          6.33486
+        ],
+        [
+          45.96389,
+          6.33506
+        ],
+        [
+          45.96389,
+          6.33523
+        ],
+        [
+          45.96389,
+          6.33532
+        ],
+        [
+          45.96389,
+          6.33541
+        ],
+        [
+          45.96394,
+          6.3356
+        ],
+        [
+          45.964,
+          6.33585
+        ],
+        [
+          45.96406,
+          6.33612
+        ],
+        [
+          45.9641,
+          6.3363
+        ],
+        [
+          45.96416,
+          6.33644
+        ],
+        [
+          45.9643,
+          6.33663
+        ],
+        [
+          45.96439,
+          6.33679
+        ],
+        [
+          45.96449,
+          6.33692
+        ],
+        [
+          45.96457,
+          6.33707
+        ],
+        [
+          45.96463,
+          6.33721
+        ],
+        [
+          45.96469,
+          6.33733
+        ],
+        [
+          45.96476,
+          6.33748
+        ],
+        [
+          45.96482,
+          6.33764
+        ],
+        [
+          45.96486,
+          6.33778
+        ],
+        [
+          45.96488,
+          6.33794
+        ],
+        [
+          45.96487,
+          6.33808
+        ],
+        [
+          45.96486,
+          6.33822
+        ],
+        [
+          45.96488,
+          6.33833
+        ],
+        [
+          45.96491,
+          6.33842
+        ],
+        [
+          45.96497,
+          6.33855
+        ],
+        [
+          45.96511,
+          6.33882
+        ],
+        [
+          45.96529,
+          6.33915
+        ],
+        [
+          45.9655,
+          6.33948
+        ],
+        [
+          45.96555,
+          6.33957
+        ],
+        [
+          45.96557,
+          6.33962
+        ],
+        [
+          45.96562,
+          6.33977
+        ],
+        [
+          45.96567,
+          6.33977
+        ],
+        [
+          45.96562,
+          6.33977
+        ],
+        [
+          45.96561,
+          6.33987
+        ],
+        [
+          45.9656,
+          6.33996
+        ],
+        [
+          45.96556,
+          6.34012
+        ],
+        [
+          45.96556,
+          6.34014
+        ],
+        [
+          45.96556,
+          6.34016
+        ],
+        [
+          45.96557,
+          6.34019
+        ],
+        [
+          45.96558,
+          6.34021
+        ],
+        [
+          45.96559,
+          6.34023
+        ],
+        [
+          45.9656,
+          6.34024
+        ],
+        [
+          45.96562,
+          6.34025
+        ],
+        [
+          45.96563,
+          6.34025
+        ],
+        [
+          45.96565,
+          6.34026
+        ],
+        [
+          45.96574,
+          6.34026
+        ],
+        [
+          45.96576,
+          6.34027
+        ],
+        [
+          45.96578,
+          6.34027
+        ],
+        [
+          45.9658,
+          6.34029
+        ],
+        [
+          45.96582,
+          6.34031
+        ],
+        [
+          45.96583,
+          6.34034
+        ],
+        [
+          45.96587,
+          6.34042
+        ],
+        [
+          45.96594,
+          6.34062
+        ],
+        [
+          45.96591,
+          6.34077
+        ],
+        [
+          45.96587,
+          6.3408
+        ],
+        [
+          45.96612,
+          6.34136
+        ],
+        [
+          45.96628,
+          6.34172
+        ],
+        [
+          45.96633,
+          6.34185
+        ],
+        [
+          45.96639,
+          6.34199
+        ],
+        [
+          45.9665,
+          6.34223
+        ],
+        [
+          45.96656,
+          6.34238
+        ],
+        [
+          45.96662,
+          6.3425
+        ],
+        [
+          45.96661,
+          6.34261
+        ],
+        [
+          45.96663,
+          6.34277
+        ],
+        [
+          45.96675,
+          6.34367
+        ],
+        [
+          45.96684,
+          6.34377
+        ],
+        [
+          45.96718,
+          6.34388
+        ],
+        [
+          45.96746,
+          6.34399
+        ],
+        [
+          45.96785,
+          6.34422
+        ],
+        [
+          45.9678,
+          6.34429
+        ],
+        [
+          45.96778,
+          6.34434
+        ],
+        [
+          45.96777,
+          6.34445
+        ],
+        [
+          45.96778,
+          6.34447
+        ],
+        [
+          45.96779,
+          6.34456
+        ],
+        [
+          45.96779,
+          6.3446
+        ],
+        [
+          45.96779,
+          6.34461
+        ],
+        [
+          45.9678,
+          6.34462
+        ],
+        [
+          45.96781,
+          6.34463
+        ],
+        [
+          45.96792,
+          6.34468
+        ],
+        [
+          45.96793,
+          6.34469
+        ],
+        [
+          45.96794,
+          6.3447
+        ],
+        [
+          45.96795,
+          6.34471
+        ],
+        [
+          45.96816,
+          6.34515
+        ],
+        [
+          45.96841,
+          6.34559
+        ],
+        [
+          45.96842,
+          6.34626
+        ],
+        [
+          45.96832,
+          6.34684
+        ],
+        [
+          45.96844,
+          6.34698
+        ],
+        [
+          45.96845,
+          6.347
+        ],
+        [
+          45.96846,
+          6.34702
+        ],
+        [
+          45.96851,
+          6.34708
+        ],
+        [
+          45.96853,
+          6.34709
+        ],
+        [
+          45.96854,
+          6.34709
+        ],
+        [
+          45.96856,
+          6.3471
+        ],
+        [
+          45.96857,
+          6.34709
+        ],
+        [
+          45.96863,
+          6.34707
+        ],
+        [
+          45.96867,
+          6.34703
+        ],
+        [
+          45.96869,
+          6.34701
+        ],
+        [
+          45.96873,
+          6.34697
+        ],
+        [
+          45.96874,
+          6.34696
+        ],
+        [
+          45.96876,
+          6.34695
+        ],
+        [
+          45.96878,
+          6.34694
+        ],
+        [
+          45.9688,
+          6.34694
+        ],
+        [
+          45.96905,
+          6.34692
+        ],
+        [
+          45.96912,
+          6.3469
+        ],
+        [
+          45.96949,
+          6.34715
+        ],
+        [
+          45.96977,
+          6.3473
+        ],
+        [
+          45.96984,
+          6.34716
+        ],
+        [
+          45.9699,
+          6.34703
+        ],
+        [
+          45.9699,
+          6.347
+        ],
+        [
+          45.9699,
+          6.34698
+        ],
+        [
+          45.9699,
+          6.34696
+        ],
+        [
+          45.9699,
+          6.34694
+        ],
+        [
+          45.96987,
+          6.34683
+        ],
+        [
+          45.96986,
+          6.34678
+        ],
+        [
+          45.96985,
+          6.34674
+        ],
+        [
+          45.96984,
+          6.34671
+        ],
+        [
+          45.96978,
+          6.34636
+        ],
+        [
+          45.96978,
+          6.34634
+        ],
+        [
+          45.96978,
+          6.34632
+        ],
+        [
+          45.96979,
+          6.34631
+        ],
+        [
+          45.9698,
+          6.3463
+        ],
+        [
+          45.96982,
+          6.34629
+        ],
+        [
+          45.96989,
+          6.34627
+        ],
+        [
+          45.9699,
+          6.34627
+        ],
+        [
+          45.96992,
+          6.34627
+        ],
+        [
+          45.96993,
+          6.34628
+        ],
+        [
+          45.96994,
+          6.34629
+        ],
+        [
+          45.96995,
+          6.3463
+        ],
+        [
+          45.96996,
+          6.34631
+        ],
+        [
+          45.96997,
+          6.34632
+        ],
+        [
+          45.97015,
+          6.34659
+        ],
+        [
+          45.97017,
+          6.3466
+        ],
+        [
+          45.97018,
+          6.34661
+        ],
+        [
+          45.97019,
+          6.34662
+        ],
+        [
+          45.9702,
+          6.34662
+        ],
+        [
+          45.97022,
+          6.34662
+        ],
+        [
+          45.97024,
+          6.34661
+        ],
+        [
+          45.97026,
+          6.34661
+        ],
+        [
+          45.97027,
+          6.34661
+        ],
+        [
+          45.97028,
+          6.34662
+        ],
+        [
+          45.97033,
+          6.34663
+        ],
+        [
+          45.97034,
+          6.34663
+        ],
+        [
+          45.97035,
+          6.34663
+        ],
+        [
+          45.97036,
+          6.34663
+        ],
+        [
+          45.97037,
+          6.34663
+        ],
+        [
+          45.97038,
+          6.34663
+        ],
+        [
+          45.97039,
+          6.34664
+        ],
+        [
+          45.97041,
+          6.34666
+        ],
+        [
+          45.97042,
+          6.34668
+        ],
+        [
+          45.97047,
+          6.34683
+        ],
+        [
+          45.97047,
+          6.34684
+        ],
+        [
+          45.97048,
+          6.34685
+        ],
+        [
+          45.97048,
+          6.34686
+        ],
+        [
+          45.97053,
+          6.34691
+        ],
+        [
+          45.97054,
+          6.34692
+        ],
+        [
+          45.97054,
+          6.34693
+        ],
+        [
+          45.97055,
+          6.34694
+        ],
+        [
+          45.97058,
+          6.347
+        ],
+        [
+          45.97059,
+          6.34701
+        ],
+        [
+          45.97059,
+          6.34702
+        ],
+        [
+          45.9706,
+          6.34702
+        ],
+        [
+          45.97064,
+          6.34705
+        ],
+        [
+          45.97065,
+          6.34706
+        ],
+        [
+          45.97066,
+          6.34706
+        ],
+        [
+          45.97067,
+          6.34707
+        ],
+        [
+          45.97076,
+          6.34722
+        ],
+        [
+          45.97077,
+          6.34722
+        ],
+        [
+          45.97078,
+          6.34723
+        ],
+        [
+          45.97079,
+          6.34723
+        ],
+        [
+          45.9708,
+          6.34723
+        ],
+        [
+          45.97081,
+          6.34722
+        ],
+        [
+          45.97082,
+          6.34721
+        ],
+        [
+          45.97082,
+          6.3472
+        ],
+        [
+          45.97084,
+          6.3471
+        ],
+        [
+          45.97084,
+          6.34709
+        ],
+        [
+          45.97085,
+          6.34708
+        ],
+        [
+          45.97085,
+          6.34707
+        ],
+        [
+          45.97088,
+          6.34703
+        ],
+        [
+          45.97089,
+          6.34702
+        ],
+        [
+          45.97089,
+          6.34701
+        ],
+        [
+          45.97089,
+          6.347
+        ],
+        [
+          45.97089,
+          6.34699
+        ],
+        [
+          45.97088,
+          6.34696
+        ],
+        [
+          45.97088,
+          6.34695
+        ],
+        [
+          45.97088,
+          6.34694
+        ],
+        [
+          45.97089,
+          6.34694
+        ],
+        [
+          45.97089,
+          6.34691
+        ],
+        [
+          45.9709,
+          6.3469
+        ],
+        [
+          45.97091,
+          6.34689
+        ],
+        [
+          45.97092,
+          6.34689
+        ],
+        [
+          45.97102,
+          6.34684
+        ],
+        [
+          45.97112,
+          6.3468
+        ],
+        [
+          45.97113,
+          6.34679
+        ],
+        [
+          45.97114,
+          6.34679
+        ],
+        [
+          45.97115,
+          6.34679
+        ],
+        [
+          45.97116,
+          6.3468
+        ],
+        [
+          45.97126,
+          6.34683
+        ],
+        [
+          45.97128,
+          6.34684
+        ],
+        [
+          45.97129,
+          6.34684
+        ],
+        [
+          45.9713,
+          6.34683
+        ],
+        [
+          45.97138,
+          6.3468
+        ],
+        [
+          45.97139,
+          6.3468
+        ],
+        [
+          45.9714,
+          6.34679
+        ],
+        [
+          45.9714,
+          6.34678
+        ],
+        [
+          45.97141,
+          6.34678
+        ],
+        [
+          45.97147,
+          6.34676
+        ],
+        [
+          45.97148,
+          6.34675
+        ],
+        [
+          45.97149,
+          6.34675
+        ],
+        [
+          45.97149,
+          6.34673
+        ],
+        [
+          45.97151,
+          6.34669
+        ],
+        [
+          45.97151,
+          6.34668
+        ],
+        [
+          45.97152,
+          6.34667
+        ],
+        [
+          45.97153,
+          6.34666
+        ],
+        [
+          45.97158,
+          6.34663
+        ],
+        [
+          45.9716,
+          6.34662
+        ],
+        [
+          45.97161,
+          6.34661
+        ],
+        [
+          45.97162,
+          6.3466
+        ],
+        [
+          45.97166,
+          6.34655
+        ],
+        [
+          45.97167,
+          6.34654
+        ],
+        [
+          45.97168,
+          6.34653
+        ],
+        [
+          45.97173,
+          6.3465
+        ],
+        [
+          45.97174,
+          6.3465
+        ],
+        [
+          45.97174,
+          6.34649
+        ],
+        [
+          45.97175,
+          6.34649
+        ],
+        [
+          45.97175,
+          6.34648
+        ],
+        [
+          45.97178,
+          6.34643
+        ],
+        [
+          45.97178,
+          6.34642
+        ],
+        [
+          45.97179,
+          6.34642
+        ],
+        [
+          45.97179,
+          6.34641
+        ],
+        [
+          45.97182,
+          6.34639
+        ],
+        [
+          45.97183,
+          6.34638
+        ],
+        [
+          45.97183,
+          6.34637
+        ],
+        [
+          45.97184,
+          6.34637
+        ],
+        [
+          45.97193,
+          6.34623
+        ],
+        [
+          45.97215,
+          6.34599
+        ],
+        [
+          45.97214,
+          6.34595
+        ],
+        [
+          45.97213,
+          6.34591
+        ],
+        [
+          45.97212,
+          6.34588
+        ],
+        [
+          45.9721,
+          6.34585
+        ],
+        [
+          45.97209,
+          6.34581
+        ],
+        [
+          45.97207,
+          6.34578
+        ],
+        [
+          45.97185,
+          6.34529
+        ],
+        [
+          45.97184,
+          6.34525
+        ],
+        [
+          45.97183,
+          6.34522
+        ],
+        [
+          45.97183,
+          6.34518
+        ],
+        [
+          45.97182,
+          6.34514
+        ],
+        [
+          45.97182,
+          6.3451
+        ],
+        [
+          45.97182,
+          6.34502
+        ],
+        [
+          45.97183,
+          6.34494
+        ],
+        [
+          45.97184,
+          6.34486
+        ],
+        [
+          45.97185,
+          6.34478
+        ],
+        [
+          45.97188,
+          6.34461
+        ],
+        [
+          45.9719,
+          6.34448
+        ],
+        [
+          45.97192,
+          6.34439
+        ],
+        [
+          45.97192,
+          6.34436
+        ],
+        [
+          45.97192,
+          6.34432
+        ],
+        [
+          45.97192,
+          6.34427
+        ],
+        [
+          45.97192,
+          6.34424
+        ],
+        [
+          45.97192,
+          6.3442
+        ],
+        [
+          45.97191,
+          6.34415
+        ],
+        [
+          45.9719,
+          6.34411
+        ],
+        [
+          45.97188,
+          6.34407
+        ],
+        [
+          45.97175,
+          6.34381
+        ],
+        [
+          45.97172,
+          6.34376
+        ],
+        [
+          45.9717,
+          6.34372
+        ],
+        [
+          45.97161,
+          6.3435
+        ],
+        [
+          45.9716,
+          6.34346
+        ],
+        [
+          45.97158,
+          6.34342
+        ],
+        [
+          45.97158,
+          6.34337
+        ],
+        [
+          45.97155,
+          6.34318
+        ],
+        [
+          45.97154,
+          6.34314
+        ],
+        [
+          45.97153,
+          6.3431
+        ],
+        [
+          45.97152,
+          6.34305
+        ],
+        [
+          45.97151,
+          6.34301
+        ],
+        [
+          45.97149,
+          6.34297
+        ],
+        [
+          45.97147,
+          6.3429
+        ],
+        [
+          45.97129,
+          6.34244
+        ],
+        [
+          45.97127,
+          6.34238
+        ],
+        [
+          45.97125,
+          6.34232
+        ],
+        [
+          45.97113,
+          6.3419
+        ],
+        [
+          45.97107,
+          6.34171
+        ],
+        [
+          45.97105,
+          6.34164
+        ],
+        [
+          45.97103,
+          6.34157
+        ],
+        [
+          45.97101,
+          6.34151
+        ],
+        [
+          45.97098,
+          6.34144
+        ],
+        [
+          45.97096,
+          6.34138
+        ],
+        [
+          45.97093,
+          6.34131
+        ],
+        [
+          45.97091,
+          6.34127
+        ],
+        [
+          45.97075,
+          6.34096
+        ],
+        [
+          45.97074,
+          6.34094
+        ],
+        [
+          45.97073,
+          6.34091
+        ],
+        [
+          45.97072,
+          6.34087
+        ],
+        [
+          45.97063,
+          6.34061
+        ],
+        [
+          45.97062,
+          6.34058
+        ],
+        [
+          45.97062,
+          6.34054
+        ],
+        [
+          45.97062,
+          6.34051
+        ],
+        [
+          45.97062,
+          6.34047
+        ],
+        [
+          45.97068,
+          6.34013
+        ],
+        [
+          45.97069,
+          6.34009
+        ],
+        [
+          45.97069,
+          6.34006
+        ],
+        [
+          45.97069,
+          6.34002
+        ],
+        [
+          45.97069,
+          6.33998
+        ],
+        [
+          45.97069,
+          6.33995
+        ],
+        [
+          45.97068,
+          6.3399
+        ],
+        [
+          45.97062,
+          6.33969
+        ],
+        [
+          45.97062,
+          6.33966
+        ],
+        [
+          45.9706,
+          6.33963
+        ],
+        [
+          45.97055,
+          6.33946
+        ],
+        [
+          45.97054,
+          6.33943
+        ],
+        [
+          45.97053,
+          6.33939
+        ],
+        [
+          45.97047,
+          6.3391
+        ],
+        [
+          45.97045,
+          6.33902
+        ],
+        [
+          45.97042,
+          6.33886
+        ],
+        [
+          45.97041,
+          6.33882
+        ],
+        [
+          45.9704,
+          6.33877
+        ],
+        [
+          45.97038,
+          6.33872
+        ],
+        [
+          45.97012,
+          6.33781
+        ],
+        [
+          45.97011,
+          6.33775
+        ],
+        [
+          45.97009,
+          6.33769
+        ],
+        [
+          45.97007,
+          6.33763
+        ],
+        [
+          45.9699,
+          6.3372
+        ],
+        [
+          45.96988,
+          6.33716
+        ],
+        [
+          45.96987,
+          6.33711
+        ],
+        [
+          45.96985,
+          6.33706
+        ],
+        [
+          45.96981,
+          6.33685
+        ],
+        [
+          45.96979,
+          6.33681
+        ],
+        [
+          45.96978,
+          6.33675
+        ],
+        [
+          45.96977,
+          6.3367
+        ],
+        [
+          45.96975,
+          6.33664
+        ],
+        [
+          45.96973,
+          6.33661
+        ],
+        [
+          45.96968,
+          6.33649
+        ],
+        [
+          45.96967,
+          6.33646
+        ],
+        [
+          45.96966,
+          6.33643
+        ],
+        [
+          45.96965,
+          6.3364
+        ],
+        [
+          45.96957,
+          6.33615
+        ],
+        [
+          45.96955,
+          6.3361
+        ],
+        [
+          45.96954,
+          6.33607
+        ],
+        [
+          45.96952,
+          6.33603
+        ],
+        [
+          45.9695,
+          6.336
+        ],
+        [
+          45.96948,
+          6.33597
+        ],
+        [
+          45.96947,
+          6.33594
+        ],
+        [
+          45.96927,
+          6.3357
+        ],
+        [
+          45.96926,
+          6.33568
+        ],
+        [
+          45.96924,
+          6.33566
+        ],
+        [
+          45.96922,
+          6.33563
+        ],
+        [
+          45.96921,
+          6.33559
+        ],
+        [
+          45.96912,
+          6.33539
+        ],
+        [
+          45.9691,
+          6.33535
+        ],
+        [
+          45.96908,
+          6.33531
+        ],
+        [
+          45.96905,
+          6.33527
+        ],
+        [
+          45.96864,
+          6.33472
+        ],
+        [
+          45.96861,
+          6.33468
+        ],
+        [
+          45.96858,
+          6.33465
+        ],
+        [
+          45.96834,
+          6.33439
+        ],
+        [
+          45.96831,
+          6.33436
+        ],
+        [
+          45.96828,
+          6.33432
+        ],
+        [
+          45.96825,
+          6.33428
+        ],
+        [
+          45.96816,
+          6.33414
+        ],
+        [
+          45.96813,
+          6.3341
+        ],
+        [
+          45.9681,
+          6.33405
+        ],
+        [
+          45.96807,
+          6.33401
+        ],
+        [
+          45.96784,
+          6.33373
+        ],
+        [
+          45.9678,
+          6.33368
+        ],
+        [
+          45.96777,
+          6.33364
+        ],
+        [
+          45.96773,
+          6.33359
+        ],
+        [
+          45.96769,
+          6.33352
+        ],
+        [
+          45.96756,
+          6.33334
+        ],
+        [
+          45.96743,
+          6.33314
+        ],
+        [
+          45.96741,
+          6.33309
+        ],
+        [
+          45.96738,
+          6.33305
+        ],
+        [
+          45.96708,
+          6.33268
+        ],
+        [
+          45.96678,
+          6.33231
+        ],
+        [
+          45.96676,
+          6.33228
+        ],
+        [
+          45.96673,
+          6.33224
+        ],
+        [
+          45.96672,
+          6.33222
+        ],
+        [
+          45.9667,
+          6.33219
+        ],
+        [
+          45.9665,
+          6.33186
+        ],
+        [
+          45.96624,
+          6.33142
+        ],
+        [
+          45.96617,
+          6.3314
+        ],
+        [
+          45.96617,
+          6.33141
+        ],
+        [
+          45.96617,
+          6.33143
+        ],
+        [
+          45.96617,
+          6.33145
+        ],
+        [
+          45.96618,
+          6.33147
+        ],
+        [
+          45.96622,
+          6.33158
+        ],
+        [
+          45.96624,
+          6.33161
+        ],
+        [
+          45.96625,
+          6.33164
+        ],
+        [
+          45.96625,
+          6.33167
+        ],
+        [
+          45.96625,
+          6.33164
+        ],
+        [
+          45.96624,
+          6.33161
+        ],
+        [
+          45.96622,
+          6.33158
+        ],
+        [
+          45.96618,
+          6.33147
+        ],
+        [
+          45.96617,
+          6.33145
+        ],
+        [
+          45.96617,
+          6.33143
+        ],
+        [
+          45.96617,
+          6.33141
+        ],
+        [
+          45.96617,
+          6.3314
+        ],
+        [
+          45.96619,
+          6.33133
+        ]
+      ],
+      "lat": 45.96619,
+      "lng": 6.33133,
+      "distance": 4,
+      "elevation": 100,
+      "hours": "2.5",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 1457
+        },
+        {
+          "km": 0.3,
+          "elev": 1428
+        },
+        {
+          "km": 0.6,
+          "elev": 1439
+        },
+        {
+          "km": 0.9,
+          "elev": 1428
+        },
+        {
+          "km": 1.2,
+          "elev": 1408
+        },
+        {
+          "km": 1.5,
+          "elev": 1410
+        },
+        {
+          "km": 1.8,
+          "elev": 1394
+        },
+        {
+          "km": 2.1,
+          "elev": 1393
+        },
+        {
+          "km": 2.3,
+          "elev": 1394
+        },
+        {
+          "km": 2.7,
+          "elev": 1394
+        },
+        {
+          "km": 2.9,
+          "elev": 1399
+        },
+        {
+          "km": 3.2,
+          "elev": 1422
+        },
+        {
+          "km": 3.6,
+          "elev": 1442
+        },
+        {
+          "km": 3.8,
+          "elev": 1457
+        },
+        {
+          "km": 3.9,
+          "elev": 1457
+        }
+      ],
+      "waterSources": [],
+      "rifugi": [
+        {
+          "km": 3,
+          "lat": 45.96984,
+          "lng": 6.33651,
+          "osmId": "node/5939625013",
+          "name": "Chez Merlin"
+        }
+      ],
+      "startPoint": {
+        "lat": 45.965859,
+        "lng": 6.330851,
+        "label": "Col des Glières car park, Route des Glières (official start)"
+      },
+      "terrainType": "Meadow paths, a gravel farm track, a short boardwalk and a few concrete steps",
+      "shadeCoverage": 40,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 1.3 km on a gravel farm track open to vehicles",
+        "A short stretch on the Route des Glières at the car park"
+      ],
+      "routeNumberSource": {
+        "provider": "Office de Tourisme du Lac d'Annecy",
+        "name": "A la découverte du Plateau des Glières (nature trail, yellow waymarks)",
+        "url": "https://www.lac-annecy.com/itineraire-de-randonnee-pedestre/a-la-decouverte-du-plateau-des-glieres-filliere/"
+      },
+      "desc": "The nature discovery trail on the Plateau des Glières, a very easy waymarked loop with twelve information panels across the high meadows, wetland and forest of the plateau, from the col des Glières car park past the Mémoire du Maquis. The tourist office gives 4 km, 2 hours 30 and 100 m of climb, at about 1,400 m.\n\nDogs must be kept on a lead: the plateau's brochure asks it because herds and working dogs graze the alpages in summer, and the plateau is a Natura 2000 site whose charter asks the same.",
+      "tips": "Keep your dog on a lead throughout: cattle and their working dogs graze the plateau in summer, and the Département's alpage notices ask walkers to respect the herds. There is no drinking water on the loop, so bring some; there is a restaurant near the car park. Part of the loop follows a gravel farm track where vehicles may pass. The meadows are open, but about 40% of the walk is in the forest.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-24",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Ylliab Photo, CC BY 2.0 (cropped): sunrise over the plateau meadows with a chalet and mist, 85 m from the line (replaces a plateau view 1.8 km away).",
+        "route": "Line rebuilt on OSM ways along the official GPX: 3.9 km against the GPX's 3.92 km and the page's 4 km. The old line had a 480 m gap.",
+        "routeNumbers": "Waymarked nature trail with twelve panels (yellow waymarks), as the tourist office states.",
+        "mapPoints": "Start at the col des Glières car park, the official start; no drinking water on the loop.",
+        "elevation": "Official 100 m of climb and 2h30."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Office de Tourisme du Lac d'Annecy, 'A la découverte du Plateau des Glières': 'Distance 4km · Dénivelé positif 100m · Commune de départ Fillière · Durée 02h30 · Difficulté Très facile'; start at the col des Glières car park; waymarked; official GPX within 99 m of the rebuilt line (96% within 60 m)",
+          "Plateau des Glières summer brochure: 'Tenez votre chien en laisse, il peut effrayer les troupeaux et troubler les chiens de travail'; nature trail 'Boucle - Très facile 2h30 | 100m'",
+          "Natura 2000 FR8201704 'Les Frettes – Massif des Glières' (EEA): site charter 'Garder les chiens en laisse sauf en période de chasse'; no reserve or biotope order on the line (INPN). Arrêté of 16 March 1955",
+          "OpenStreetMap: paths, tracks, the boardwalk and the alpage notice along the line"
+        ],
+        "date": "2026-10-24"
+      },
+      "sourceLinks": [
+        {
+          "label": "Office de Tourisme du Lac d'Annecy, A la découverte du Plateau des Glières",
+          "url": "https://www.lac-annecy.com/itineraire-de-randonnee-pedestre/a-la-decouverte-du-plateau-des-glieres-filliere/"
+        },
+        {
+          "label": "OpenStreetMap relation 10116380",
+          "url": "https://www.openstreetmap.org/relation/10116380"
+        }
+      ]
+    },
+    'osm-16363583': {
+      // Correction, 24 October 2026 (not a verification: no licensed photo of the walk exists, and the current one has no licence).
+      // Start, figures and route from Grand Chambéry Alpes Tourisme (7.3 km, 2 h, 125 m; its GPX matches the line); the claims that the
+      // walk is waymarked and that the commune quotes 9 km are removed; La Motte-Servolex requires dogs on a lead everywhere.
+      "distance": 7.3,
+      "elevation": 125,
+      "hours": "2",
+      "startPoint": {
+        "lat": 45.60504,
+        "lng": 5.88197,
+        "label": "Chemin de Pré Marquis, La Motte-Servolex (official start; alternative from the car park on Place Rémi Catin, opposite the post office)"
+      },
+      "shadeCoverage": 5,
+      "heatRisk": "high",
+      "surfaceHazards": [
+        "About 3.5 km on public lanes and roads, partly at 50 km/h",
+        "The southern leg runs beside the A43 motorway for about 1 km, close to a slip road near the start",
+        "A fairly steep path down to the Combe stream (official)"
+      ],
+      "routeNumberSource": {
+        "provider": "Grand Chambéry Alpes Tourisme",
+        "name": "Le Marais de Pré Lombard (not waymarked)",
+        "url": "https://explore.chamberymontagnes.com/fr/itineraires/le-marais-de-pre-lombard"
+      },
+      "desc": "A 7.3 km loop through the farmland, woods and marsh west of La Motte-Servolex: from the Chemin de Pré Marquis along the A43, across the Servolex plateau and Grands Champs, down a fairly steep path to the Combe stream, up to Beauvoir and Montarlet, then down to the Pré Lombard marsh and back along the wide track beside the Leysse. The tourist office gives 2 hours and 125 m of climb, and says it is not waymarked, so take the route sheet. This walk is not yet verified by ORMA.\n\nLa Motte-Servolex requires every dog to be kept on a lead, everywhere in the commune.",
+      "tips": "Keep your dog on a lead the whole way: La Motte-Servolex requires it everywhere. About half the walk is on public lanes and roads, and the southern leg runs close to the A43 motorway and a slip road, so hold your dog close there. There is almost no shade and no drinking water, so avoid hot days and carry water. The route is not waymarked: take the tourist office's route sheet."
+    },
+    'osm-9933643': {
+      // Correction, 24 October 2026 (not a verification: the tourist office's figures, 3.4 km, 209 m, 1h30, are for the direct route
+      // down through the larches, while its own GPS track follows the longer road variant, so no published figures match a drawable line).
+      // Place and photo corrected (the old photo was 1.7 km away at Belle Plagne); the road hazard and the seasonal stream added.
+      "area": "La Plagne Tarentaise / Aime-la-Plagne",
+      "surfaceHazards": [
+        "The road variant follows the D221 Route de Plagne Centre for about 800 m, partly at 80 km/h with no pavement",
+        "About 1 km more on resort roads and service roads, with cars",
+        "A very steep path for about ten minutes on the direct route down to the lake (official)"
+      ],
+      "tips": "Keep your dog on a lead along the resort roads: the road variant follows the D221 for about 800 m, partly at 80 km/h with no pavement. Swimming in the lake is forbidden, for dogs too, and the meadow fills with picnics in season. The path out of the village drops very steeply for about ten minutes; the road variant avoids it. There is no drinking water on the way and the stream at the bottom can run dry, so carry water. The tourist office quotes 3.4 km for the direct route; the road variant is longer."
     }
   };
 
@@ -42321,7 +45383,7 @@ function findOwnPoiMatch(name, lng, lat){
 
 // ---- trail-routing-coverage.js ----
 // Generated by scripts/build-trail-routing-coverage.js. Do not edit.
-window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalkingRouteM":5000,"trails":{"alpe-siusi":{"graphUrl":"offline/packages/alpe-siusi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5305,"west":11.6165,"north":46.5429,"east":11.6466},"nodeCount":1367,"edgeCount":1372,"retrievedAt":null},"lago-carezza":{"graphUrl":"offline/packages/lago-carezza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.407,"west":11.5718,"north":46.4113,"east":11.5784},"nodeCount":224,"edgeCount":223,"retrievedAt":null},"cadini":{"graphUrl":"routing-graphs/cadini.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55649444125045,"west":12.229910941417796,"north":46.65695555874955,"east":12.366869058582203},"nodeCount":6866,"edgeCount":6975,"retrievedAt":"2026-08-27T17:15:15.218Z"},"geotrail-bulla":{"graphUrl":"routing-graphs/geotrail-bulla.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.51903444125045,"west":11.55345269315764,"north":46.62516555874955,"east":11.70241730684236},"nodeCount":9385,"edgeCount":9572,"retrievedAt":"2026-08-27T17:18:08.640Z"},"giro-del-bulacia":{"graphUrl":"routing-graphs/giro-del-bulacia.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50077344125045,"west":11.533750303446165,"north":46.60936095874955,"east":11.686425896553834},"nodeCount":9853,"edgeCount":9930,"retrievedAt":"2026-08-27T17:18:27.370Z"},"giro-del-sasso-lungo":{"graphUrl":"routing-graphs/giro-del-sasso-lungo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45471214125045,"west":11.632413276592942,"north":46.57778705874955,"east":11.82497362340706},"nodeCount":20598,"edgeCount":20981,"retrievedAt":"2026-08-27T17:19:01.411Z"},"lago-braies":{"graphUrl":"routing-graphs/lago-braies.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64417944125045,"west":12.014860548903378,"north":46.745157558749554,"east":12.154071451096621},"nodeCount":2510,"edgeCount":2550,"retrievedAt":"2026-08-27T17:16:50.407Z"},"lago-sorapis":{"graphUrl":"routing-graphs/lago-sorapis.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47704444125045,"west":12.139152431687037,"north":46.60112555874955,"east":12.294177568312962},"nodeCount":3815,"edgeCount":3854,"retrievedAt":"2026-08-27T17:17:07.622Z"},"nuvolau":{"graphUrl":"routing-graphs/nuvolau.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44016444125045,"west":11.980511149703753,"north":46.540225558749555,"east":12.122418850296247},"nodeCount":7292,"edgeCount":7418,"retrievedAt":"2026-08-27T17:16:21.759Z"},"osm-10116283":{"graphUrl":"routing-graphs/osm-10116283.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91896444125045,"west":6.266709454636495,"north":46.01604555874955,"east":6.406880545363505},"nodeCount":6521,"edgeCount":6598,"retrievedAt":"2026-08-27T17:20:59.197Z"},"osm-10116380":{"graphUrl":"routing-graphs/osm-10116380.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91895444125045,"west":6.268138865501141,"north":46.01706555874955,"east":6.411921134498859},"nodeCount":5610,"edgeCount":5678,"retrievedAt":"2026-08-27T17:41:31.286Z"},"osm-1116675":{"graphUrl":"routing-graphs/osm-1116675.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61417444125045,"west":12.30487349355897,"north":46.71087555874955,"east":12.443416506441029},"nodeCount":4150,"edgeCount":4215,"retrievedAt":"2026-08-27T20:14:51.910Z"},"osm-1116680":{"graphUrl":"routing-graphs/osm-1116680.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63077444125045,"west":12.285241785323949,"north":46.74662555874955,"east":12.451178214676052},"nodeCount":11996,"edgeCount":12255,"retrievedAt":"2026-08-27T20:25:39.850Z"},"osm-11517208":{"graphUrl":"routing-graphs/osm-11517208.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.82466444125045,"west":6.5280025665062515,"north":45.933155558749554,"east":6.686357433493749},"nodeCount":20707,"edgeCount":21016,"retrievedAt":"2026-08-27T17:42:36.366Z"},"osm-11774783":{"graphUrl":"routing-graphs/osm-11774783.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.603354441250445,"west":11.528868487262596,"north":46.69691555874955,"east":11.665491512737404},"nodeCount":10234,"edgeCount":10377,"retrievedAt":"2026-08-27T17:10:19.838Z"},"osm-11780502":{"graphUrl":"routing-graphs/osm-11780502.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58839444125045,"west":11.691435852533683,"north":46.683155558749554,"east":11.837114147466316},"nodeCount":7359,"edgeCount":7425,"retrievedAt":"2026-08-27T17:10:42.226Z"},"osm-12142337":{"graphUrl":"routing-graphs/osm-12142337.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60084444125045,"west":11.739506138448354,"north":46.71983555874955,"east":11.916233861551646},"nodeCount":13008,"edgeCount":13108,"retrievedAt":"2026-08-27T17:10:52.434Z"},"osm-123162":{"graphUrl":"routing-graphs/osm-123162.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40658444125045,"west":11.391321942194814,"north":46.50572555874955,"east":11.556188057805185},"nodeCount":10365,"edgeCount":10504,"retrievedAt":"2026-08-27T19:56:49.589Z"},"osm-13491868":{"graphUrl":"routing-graphs/osm-13491868.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60683444125045,"west":11.506114355606796,"north":46.70026555874955,"east":11.638455644393204},"nodeCount":9379,"edgeCount":9498,"retrievedAt":"2026-08-27T17:11:05.150Z"},"osm-14095296":{"graphUrl":"routing-graphs/osm-14095296.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.74418444125045,"west":5.884595618989789,"north":45.853015558749554,"east":6.027074381010211},"nodeCount":6410,"edgeCount":6594,"retrievedAt":"2026-08-27T19:24:39.004Z"},"osm-14864704":{"graphUrl":"routing-graphs/osm-14864704.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.761084441250446,"west":6.1280243865015525,"north":45.872825558749554,"east":6.270315613498448},"nodeCount":10976,"edgeCount":11300,"retrievedAt":"2026-08-27T19:19:58.714Z"},"osm-15591346":{"graphUrl":"routing-graphs/osm-15591346.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.459774441250445,"west":5.98503178827734,"north":45.56897555874955,"east":6.14100821172266},"nodeCount":16088,"edgeCount":16629,"retrievedAt":"2026-08-27T19:56:33.029Z"},"osm-16322228":{"graphUrl":"routing-graphs/osm-16322228.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.50406444125045,"west":5.904177110685752,"north":45.60305555874955,"east":6.043782889314248},"nodeCount":14377,"edgeCount":15276,"retrievedAt":"2026-08-27T19:24:42.898Z"},"osm-16363583":{"graphUrl":"routing-graphs/osm-16363583.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.55814444125045,"west":5.799788796148411,"north":45.66849555874955,"east":5.9486112038515895},"nodeCount":10179,"edgeCount":10964,"retrievedAt":"2026-08-27T19:25:16.148Z"},"osm-16365005":{"graphUrl":"routing-graphs/osm-16365005.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.51677444125045,"west":5.9944446829961535,"north":45.62962555874955,"east":6.139465317003847},"nodeCount":8626,"edgeCount":8701,"retrievedAt":"2026-08-27T19:56:44.815Z"},"osm-16395076":{"graphUrl":"routing-graphs/osm-16395076.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.48297444125045,"west":5.9889733229959266,"north":45.57818555874955,"east":6.1254666770040735},"nodeCount":7951,"edgeCount":8074,"retrievedAt":"2026-08-27T19:39:22.742Z"},"osm-18055492":{"graphUrl":"routing-graphs/osm-18055492.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.79283444125045,"west":6.56720827118181,"north":45.90343555874955,"east":6.7415217288181895},"nodeCount":24364,"edgeCount":24659,"retrievedAt":"2026-08-27T19:04:06.346Z"},"osm-19153189":{"graphUrl":"routing-graphs/osm-19153189.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.527044441250446,"west":6.091252260695849,"north":45.62359555874955,"east":6.237467739304152},"nodeCount":6531,"edgeCount":6666,"retrievedAt":"2026-08-27T19:39:31.023Z"},"osm-20347406":{"graphUrl":"routing-graphs/osm-20347406.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91896444125045,"west":6.266689958139611,"north":46.04945555874955,"east":6.458980041860389},"nodeCount":10492,"edgeCount":10630,"retrievedAt":"2026-08-27T17:42:14.560Z"},"osm-2179746":{"graphUrl":"routing-graphs/osm-2179746.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.29053444125045,"west":11.224413051871634,"north":46.385315558749554,"east":11.359506948128365},"nodeCount":9415,"edgeCount":9648,"retrievedAt":"2026-08-27T20:26:16.794Z"},"osm-3202880":{"graphUrl":"routing-graphs/osm-3202880.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37478444125045,"west":11.219838865920021,"north":46.47579555874955,"east":11.36296113407998},"nodeCount":15379,"edgeCount":15878,"retrievedAt":"2026-08-27T20:42:27.979Z"},"osm-3982382":{"graphUrl":"routing-graphs/osm-3982382.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.39130444125045,"west":5.68870273280012,"north":45.49504555874955,"east":5.8256372671998795},"nodeCount":3515,"edgeCount":3604,"retrievedAt":"2026-08-27T17:19:14.273Z"},"osm-5512443":{"graphUrl":"routing-graphs/osm-5512443.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60554444125045,"west":10.914493091157304,"north":46.70364555874955,"east":11.079186908842695},"nodeCount":7217,"edgeCount":7345,"retrievedAt":"2026-08-27T20:44:08.748Z"},"osm-6250300":{"graphUrl":"routing-graphs/osm-6250300.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.903254441250446,"west":6.676860309200672,"north":45.99598555874955,"east":6.821329690799328},"nodeCount":10787,"edgeCount":11000,"retrievedAt":"2026-08-27T17:19:25.153Z"},"osm-6404258":{"graphUrl":"routing-graphs/osm-6404258.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.701494441250446,"west":11.972922724716238,"north":46.80611555874955,"east":12.149147275283761},"nodeCount":13366,"edgeCount":13635,"retrievedAt":"2026-08-27T20:44:30.610Z"},"osm-6404633":{"graphUrl":"routing-graphs/osm-6404633.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16376444125045,"west":11.631540823974001,"north":46.26285555874955,"east":11.774189176025999},"nodeCount":7270,"edgeCount":7350,"retrievedAt":"2026-08-27T20:44:44.284Z"},"osm-6404634":{"graphUrl":"routing-graphs/osm-6404634.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16376444125045,"west":11.636474806635869,"north":46.25611555874955,"east":11.770655193364131},"nodeCount":6487,"edgeCount":6560,"retrievedAt":"2026-08-27T21:01:51.031Z"},"osm-6410700":{"graphUrl":"routing-graphs/osm-6410700.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.721594441250446,"west":11.985686129252224,"north":46.82971555874955,"east":12.151803870747777},"nodeCount":10637,"edgeCount":10778,"retrievedAt":"2026-08-27T21:01:57.131Z"},"osm-6823031":{"graphUrl":"routing-graphs/osm-6823031.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73590444125045,"west":11.873350912645975,"north":46.84038555874955,"east":12.025849087354025},"nodeCount":25710,"edgeCount":26439,"retrievedAt":"2026-08-27T21:02:49.999Z"},"osm-7045225":{"graphUrl":"routing-graphs/osm-7045225.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13172444125045,"west":10.986518368918368,"north":46.24825555874955,"east":11.141551631081631},"nodeCount":10547,"edgeCount":10783,"retrievedAt":"2026-08-27T21:02:54.311Z"},"osm-7086961":{"graphUrl":"routing-graphs/osm-7086961.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.128294441250446,"west":11.533400512335708,"north":46.231105558749555,"east":11.676629487664291},"nodeCount":2576,"edgeCount":2583,"retrievedAt":"2026-08-27T21:11:22.127Z"},"osm-7388748":{"graphUrl":"routing-graphs/osm-7388748.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46005444125045,"west":12.341487742111875,"north":46.55934555874955,"east":12.493212257888125},"nodeCount":10355,"edgeCount":10591,"retrievedAt":"2026-08-27T21:11:40.719Z"},"osm-7546708":{"graphUrl":"routing-graphs/osm-7546708.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44345444125045,"west":12.36812824682951,"north":46.54177555874955,"east":12.50749175317049},"nodeCount":10650,"edgeCount":10913,"retrievedAt":"2026-08-27T21:11:54.539Z"},"osm-7547653":{"graphUrl":"routing-graphs/osm-7547653.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46785444125045,"west":12.363839203471993,"north":46.565765558749554,"east":12.507590796528007},"nodeCount":7277,"edgeCount":7395,"retrievedAt":"2026-08-27T21:11:59.022Z"},"osm-7547983":{"graphUrl":"routing-graphs/osm-7547983.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43600444125045,"west":12.340097032272725,"north":46.53457555874955,"east":12.487892967727275},"nodeCount":11364,"edgeCount":11629,"retrievedAt":"2026-08-27T21:12:19.499Z"},"osm-7548201":{"graphUrl":"routing-graphs/osm-7548201.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47499444125045,"west":12.374697843622796,"north":46.57753555874955,"east":12.527532156377204},"nodeCount":5951,"edgeCount":6007,"retrievedAt":"2026-08-27T21:12:23.188Z"},"osm-9933643":{"graphUrl":"routing-graphs/osm-9933643.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.46001444125045,"west":6.603237869650619,"north":45.55805555874955,"east":6.7443221303493806},"nodeCount":14632,"edgeCount":14901,"retrievedAt":"2026-08-27T17:20:33.017Z"},"piancavallo":{"graphUrl":"routing-graphs/piancavallo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.05039444125045,"west":12.458888920919806,"north":46.15883555874955,"east":12.616651079080192},"nodeCount":21111,"edgeCount":21289,"retrievedAt":"2026-08-27T17:17:48.733Z"},"prato-piazza":{"graphUrl":"routing-graphs/prato-piazza.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.595274441250446,"west":12.113642309733521,"north":46.69867555874955,"east":12.263057690266479},"nodeCount":3142,"edgeCount":3186,"retrievedAt":"2026-08-27T17:15:57.299Z"},"santa-maddalena":{"graphUrl":"routing-graphs/santa-maddalena.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59590444125045,"west":11.650737359001882,"north":46.68969555874955,"east":11.785922640998118},"nodeCount":6748,"edgeCount":6817,"retrievedAt":"2026-08-27T17:09:57.888Z"},"sassolungo":{"graphUrl":"routing-graphs/sassolungo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45471444125045,"west":11.63240987611249,"north":46.577785558749554,"east":11.83336012388751},"nodeCount":20798,"edgeCount":21180,"retrievedAt":"2026-08-27T17:16:32.997Z"},"seceda":{"graphUrl":"routing-graphs/seceda.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.53061444125045,"west":11.658993879765028,"north":46.64480555874955,"east":11.824916120234972},"nodeCount":17322,"edgeCount":17676,"retrievedAt":"2026-08-27T17:15:07.870Z"},"sentiero-del-trenino":{"graphUrl":"routing-graphs/sentiero-del-trenino.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50122394125045,"west":11.579771099956796,"north":46.620546058749554,"east":11.834705400043205},"nodeCount":31869,"edgeCount":32496,"retrievedAt":"2026-08-27T17:18:53.015Z"},"sentiero-hans-e-paula-steger":{"graphUrl":"routing-graphs/sentiero-hans-e-paula-steger.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47457534125045,"west":11.55202977961426,"north":46.58771235874955,"east":11.73381722038574},"nodeCount":16978,"edgeCount":17096,"retrievedAt":"2026-08-27T17:18:30.960Z"},"tre-cime":{"graphUrl":"routing-graphs/tre-cime.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56729029125045,"west":12.21890409925356,"north":46.68179013874955,"east":12.380584860746438},"nodeCount":9099,"edgeCount":9213,"retrievedAt":"2026-08-27T17:15:12.018Z"},"valley-view":{"graphUrl":"routing-graphs/valley-view.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60012444125045,"west":11.624142315781222,"north":46.69381555874955,"east":11.781507684218777},"nodeCount":9655,"edgeCount":9750,"retrievedAt":"2026-08-27T17:10:02.955Z"}}});
+window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalkingRouteM":5000,"trails":{"alpe-siusi":{"graphUrl":"offline/packages/alpe-siusi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5305,"west":11.6165,"north":46.5429,"east":11.6466},"nodeCount":1367,"edgeCount":1372,"retrievedAt":null},"cadini":{"graphUrl":"routing-graphs/cadini.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55649444125045,"west":12.229910941417796,"north":46.65695555874955,"east":12.366869058582203},"nodeCount":6866,"edgeCount":6975,"retrievedAt":"2026-08-27T17:15:15.218Z"},"cinque-torri-assisted":{"graphUrl":"offline/packages/cinque-torri-assisted/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50444,"west":12.03299,"north":46.5237,"east":12.06425},"nodeCount":2161,"edgeCount":2197,"retrievedAt":"2026-10-23"},"geotrail-bulla":{"graphUrl":"routing-graphs/geotrail-bulla.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.51903444125045,"west":11.55345269315764,"north":46.62516555874955,"east":11.70241730684236},"nodeCount":9385,"edgeCount":9572,"retrievedAt":"2026-08-27T17:18:08.640Z"},"giro-del-bulacia":{"graphUrl":"routing-graphs/giro-del-bulacia.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50077344125045,"west":11.533750303446165,"north":46.60936095874955,"east":11.686425896553834},"nodeCount":9853,"edgeCount":9930,"retrievedAt":"2026-08-27T17:18:27.370Z"},"giro-del-sasso-lungo":{"graphUrl":"routing-graphs/giro-del-sasso-lungo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45471214125045,"west":11.632413276592942,"north":46.57778705874955,"east":11.82497362340706},"nodeCount":20598,"edgeCount":20981,"retrievedAt":"2026-08-27T17:19:01.411Z"},"lago-braies":{"graphUrl":"routing-graphs/lago-braies.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64417944125045,"west":12.014860548903378,"north":46.745157558749554,"east":12.154071451096621},"nodeCount":2510,"edgeCount":2550,"retrievedAt":"2026-08-27T17:16:50.407Z"},"lago-carezza":{"graphUrl":"offline/packages/lago-carezza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.407,"west":11.5718,"north":46.4113,"east":11.5784},"nodeCount":224,"edgeCount":223,"retrievedAt":null},"lago-sorapis":{"graphUrl":"routing-graphs/lago-sorapis.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47704444125045,"west":12.139152431687037,"north":46.60112555874955,"east":12.294177568312962},"nodeCount":3815,"edgeCount":3854,"retrievedAt":"2026-08-27T17:17:07.622Z"},"nuvolau":{"graphUrl":"routing-graphs/nuvolau.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44016444125045,"west":11.980511149703753,"north":46.540225558749555,"east":12.122418850296247},"nodeCount":7292,"edgeCount":7418,"retrievedAt":"2026-08-27T17:16:21.759Z"},"osm-10116283":{"graphUrl":"routing-graphs/osm-10116283.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91896444125045,"west":6.266709454636495,"north":46.01604555874955,"east":6.406880545363505},"nodeCount":6521,"edgeCount":6598,"retrievedAt":"2026-08-27T17:20:59.197Z"},"osm-10116380":{"graphUrl":"routing-graphs/osm-10116380.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91895444125045,"west":6.268138865501141,"north":46.01706555874955,"east":6.411921134498859},"nodeCount":5610,"edgeCount":5678,"retrievedAt":"2026-08-27T17:41:31.286Z"},"osm-10539302":{"graphUrl":"offline/packages/osm-10539302/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.16013,"west":6.41489,"north":45.17686,"east":6.43483},"nodeCount":4469,"edgeCount":4528,"retrievedAt":"2026-10-23"},"osm-1116675":{"graphUrl":"routing-graphs/osm-1116675.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61417444125045,"west":12.30487349355897,"north":46.71087555874955,"east":12.443416506441029},"nodeCount":4150,"edgeCount":4215,"retrievedAt":"2026-08-27T20:14:51.910Z"},"osm-1116680":{"graphUrl":"routing-graphs/osm-1116680.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63077444125045,"west":12.285241785323949,"north":46.74662555874955,"east":12.451178214676052},"nodeCount":11996,"edgeCount":12255,"retrievedAt":"2026-08-27T20:25:39.850Z"},"osm-11270309":{"graphUrl":"offline/packages/osm-11270309/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.23386,"west":11.20861,"north":46.24283,"east":11.22519},"nodeCount":1421,"edgeCount":1495,"retrievedAt":"2026-10-24"},"osm-11517208":{"graphUrl":"routing-graphs/osm-11517208.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.82466444125045,"west":6.5280025665062515,"north":45.933155558749554,"east":6.686357433493749},"nodeCount":20707,"edgeCount":21016,"retrievedAt":"2026-08-27T17:42:36.366Z"},"osm-11764094":{"graphUrl":"offline/packages/osm-11764094/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73736,"west":11.65734,"north":46.77376,"east":11.69919},"nodeCount":5789,"edgeCount":5860,"retrievedAt":"2026-10-23"},"osm-11774783":{"graphUrl":"routing-graphs/osm-11774783.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.603354441250445,"west":11.528868487262596,"north":46.69691555874955,"east":11.665491512737404},"nodeCount":10234,"edgeCount":10377,"retrievedAt":"2026-08-27T17:10:19.838Z"},"osm-11775760":{"graphUrl":"offline/packages/osm-11775760/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73545,"west":11.62126,"north":46.74953,"east":11.6417},"nodeCount":1523,"edgeCount":1539,"retrievedAt":"2026-10-23"},"osm-11780502":{"graphUrl":"routing-graphs/osm-11780502.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58839444125045,"west":11.691435852533683,"north":46.683155558749554,"east":11.837114147466316},"nodeCount":7359,"edgeCount":7425,"retrievedAt":"2026-08-27T17:10:42.226Z"},"osm-11795251":{"graphUrl":"offline/packages/osm-11795251/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.79966,"west":11.71249,"north":46.82551,"east":11.77545},"nodeCount":7649,"edgeCount":7697,"retrievedAt":"2026-10-23"},"osm-11814834":{"graphUrl":"offline/packages/osm-11814834/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56036,"west":11.61356,"north":46.58384,"east":11.64231},"nodeCount":2023,"edgeCount":2008,"retrievedAt":"2026-10-23"},"osm-11828233":{"graphUrl":"offline/packages/osm-11828233/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.83137,"west":11.61317,"north":46.85494,"east":11.63902},"nodeCount":2189,"edgeCount":2204,"retrievedAt":"2026-10-23"},"osm-11832013":{"graphUrl":"offline/packages/osm-11832013/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.7355,"west":11.43425,"north":46.74905,"east":11.45676},"nodeCount":739,"edgeCount":736,"retrievedAt":"2026-10-23"},"osm-11839597":{"graphUrl":"offline/packages/osm-11839597/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.53471,"west":11.46113,"north":46.54726,"east":11.47905},"nodeCount":1136,"edgeCount":1143,"retrievedAt":"2026-10-23"},"osm-11860429":{"graphUrl":"offline/packages/osm-11860429/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.6539,"west":11.91342,"north":46.66987,"east":11.93607},"nodeCount":1648,"edgeCount":1663,"retrievedAt":"2026-10-23"},"osm-12118490":{"graphUrl":"offline/packages/osm-12118490/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.30187,"west":6.34749,"north":45.32242,"east":6.37269},"nodeCount":2283,"edgeCount":2296,"retrievedAt":"2026-10-23"},"osm-12121346":{"graphUrl":"offline/packages/osm-12121346/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.27641,"west":6.36649,"north":45.2968,"east":6.38956},"nodeCount":2284,"edgeCount":2295,"retrievedAt":"2026-10-24"},"osm-12121798":{"graphUrl":"offline/packages/osm-12121798/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.24532,"west":6.41497,"north":45.25782,"east":6.43429},"nodeCount":1484,"edgeCount":1507,"retrievedAt":"2026-10-24"},"osm-12142337":{"graphUrl":"routing-graphs/osm-12142337.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60084444125045,"west":11.739506138448354,"north":46.71983555874955,"east":11.916233861551646},"nodeCount":13008,"edgeCount":13108,"retrievedAt":"2026-08-27T17:10:52.434Z"},"osm-12150790":{"graphUrl":"offline/packages/osm-12150790/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.23201,"west":11.20861,"north":46.24357,"east":11.23032},"nodeCount":1893,"edgeCount":1966,"retrievedAt":"2026-10-23"},"osm-12164395":{"graphUrl":"offline/packages/osm-12164395/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81348,"west":11.70925,"north":46.84542,"east":11.74427},"nodeCount":5454,"edgeCount":5470,"retrievedAt":"2026-10-23"},"osm-12172440":{"graphUrl":"offline/packages/osm-12172440/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82544,"west":11.75103,"north":46.84606,"east":11.78333},"nodeCount":4076,"edgeCount":4138,"retrievedAt":"2026-10-23"},"osm-12173549":{"graphUrl":"offline/packages/osm-12173549/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82624,"west":11.76648,"north":46.84636,"east":11.78855},"nodeCount":3066,"edgeCount":3114,"retrievedAt":"2026-10-24"},"osm-12173965":{"graphUrl":"offline/packages/osm-12173965/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75363,"west":12.10025,"north":46.76438,"east":12.11973},"nodeCount":1386,"edgeCount":1426,"retrievedAt":"2026-10-23"},"osm-12173984":{"graphUrl":"offline/packages/osm-12173984/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75363,"west":12.10024,"north":46.76991,"east":12.13922},"nodeCount":3363,"edgeCount":3417,"retrievedAt":"2026-10-23"},"osm-12182895":{"graphUrl":"offline/packages/osm-12182895/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61928,"west":11.32843,"north":46.6788,"east":11.39347},"nodeCount":11644,"edgeCount":11734,"retrievedAt":"2026-10-23"},"osm-12190657":{"graphUrl":"offline/packages/osm-12190657/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57259,"west":11.26569,"north":46.59378,"east":11.29048},"nodeCount":1012,"edgeCount":1011,"retrievedAt":"2026-10-23"},"osm-12302191":{"graphUrl":"offline/packages/osm-12302191/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.7723,"west":12.03174,"north":46.80726,"east":12.07136},"nodeCount":2762,"edgeCount":2777,"retrievedAt":"2026-10-23"},"osm-123162":{"graphUrl":"routing-graphs/osm-123162.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40658444125045,"west":11.391321942194814,"north":46.50572555874955,"east":11.556188057805185},"nodeCount":10365,"edgeCount":10504,"retrievedAt":"2026-08-27T19:56:49.589Z"},"osm-12731853":{"graphUrl":"offline/packages/osm-12731853/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.72853,"west":11.65918,"north":46.74916,"east":11.68176},"nodeCount":1911,"edgeCount":1933,"retrievedAt":"2026-10-23"},"osm-12736753":{"graphUrl":"offline/packages/osm-12736753/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67235,"west":11.62528,"north":46.71065,"east":11.67137},"nodeCount":7545,"edgeCount":7692,"retrievedAt":"2026-10-23"},"osm-12745924":{"graphUrl":"offline/packages/osm-12745924/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.19215,"west":6.68486,"north":45.20486,"east":6.70586},"nodeCount":2303,"edgeCount":2342,"retrievedAt":"2026-10-23"},"osm-12953352":{"graphUrl":"offline/packages/osm-12953352/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71343,"west":11.65174,"north":46.73625,"east":11.67671},"nodeCount":4484,"edgeCount":4685,"retrievedAt":"2026-10-23"},"osm-13338113":{"graphUrl":"offline/packages/osm-13338113/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.32693,"west":6.74281,"north":46.35217,"east":6.77156},"nodeCount":3863,"edgeCount":3876,"retrievedAt":"2026-10-24"},"osm-13491868":{"graphUrl":"routing-graphs/osm-13491868.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60683444125045,"west":11.506114355606796,"north":46.70026555874955,"east":11.638455644393204},"nodeCount":9379,"edgeCount":9498,"retrievedAt":"2026-08-27T17:11:05.150Z"},"osm-14095296":{"graphUrl":"routing-graphs/osm-14095296.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.74418444125045,"west":5.884595618989789,"north":45.853015558749554,"east":6.027074381010211},"nodeCount":6410,"edgeCount":6594,"retrievedAt":"2026-08-27T19:24:39.004Z"},"osm-14375158":{"graphUrl":"offline/packages/osm-14375158/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20806,"west":6.39918,"north":45.23123,"east":6.43601},"nodeCount":3965,"edgeCount":4006,"retrievedAt":"2026-10-23"},"osm-14376573":{"graphUrl":"offline/packages/osm-14376573/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.19973,"west":6.3841,"north":45.21655,"east":6.40706},"nodeCount":1243,"edgeCount":1250,"retrievedAt":"2026-10-23"},"osm-14378946":{"graphUrl":"offline/packages/osm-14378946/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20923,"west":6.39867,"north":45.23124,"east":6.42434},"nodeCount":2983,"edgeCount":3012,"retrievedAt":"2026-10-23"},"osm-14379010":{"graphUrl":"offline/packages/osm-14379010/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20806,"west":6.39918,"north":45.23123,"east":6.43284},"nodeCount":3861,"edgeCount":3901,"retrievedAt":"2026-10-23"},"osm-14381570":{"graphUrl":"offline/packages/osm-14381570/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20183,"west":6.39812,"north":45.23123,"east":6.42942},"nodeCount":4902,"edgeCount":4965,"retrievedAt":"2026-10-23"},"osm-14381584":{"graphUrl":"offline/packages/osm-14381584/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.21117,"west":6.39918,"north":45.23124,"east":6.4289},"nodeCount":3140,"edgeCount":3172,"retrievedAt":"2026-10-23"},"osm-14864704":{"graphUrl":"routing-graphs/osm-14864704.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.761084441250446,"west":6.1280243865015525,"north":45.872825558749554,"east":6.270315613498448},"nodeCount":10976,"edgeCount":11300,"retrievedAt":"2026-08-27T19:19:58.714Z"},"osm-1506470":{"graphUrl":"offline/packages/osm-1506470/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65671,"west":11.1564,"north":46.67523,"east":11.18876},"nodeCount":5326,"edgeCount":5552,"retrievedAt":"2026-10-23"},"osm-15591346":{"graphUrl":"routing-graphs/osm-15591346.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.459774441250445,"west":5.98503178827734,"north":45.56897555874955,"east":6.14100821172266},"nodeCount":16088,"edgeCount":16629,"retrievedAt":"2026-08-27T19:56:33.029Z"},"osm-16180587":{"graphUrl":"offline/packages/osm-16180587/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.93358,"west":6.70581,"north":45.95601,"east":6.75957},"nodeCount":5612,"edgeCount":5706,"retrievedAt":"2026-10-23"},"osm-16218739":{"graphUrl":"offline/packages/osm-16218739/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.55579,"west":6.73839,"north":45.57494,"east":6.7721},"nodeCount":2852,"edgeCount":2908,"retrievedAt":"2026-10-24"},"osm-16322228":{"graphUrl":"routing-graphs/osm-16322228.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.50406444125045,"west":5.904177110685752,"north":45.60305555874955,"east":6.043782889314248},"nodeCount":14377,"edgeCount":15276,"retrievedAt":"2026-08-27T19:24:42.898Z"},"osm-16363583":{"graphUrl":"routing-graphs/osm-16363583.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.55814444125045,"west":5.799788796148411,"north":45.66849555874955,"east":5.9486112038515895},"nodeCount":10179,"edgeCount":10964,"retrievedAt":"2026-08-27T19:25:16.148Z"},"osm-16365005":{"graphUrl":"routing-graphs/osm-16365005.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.51677444125045,"west":5.9944446829961535,"north":45.62962555874955,"east":6.139465317003847},"nodeCount":8626,"edgeCount":8701,"retrievedAt":"2026-08-27T19:56:44.815Z"},"osm-16395076":{"graphUrl":"routing-graphs/osm-16395076.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.48297444125045,"west":5.9889733229959266,"north":45.57818555874955,"east":6.1254666770040735},"nodeCount":7951,"edgeCount":8074,"retrievedAt":"2026-08-27T19:39:22.742Z"},"osm-1671736":{"graphUrl":"offline/packages/osm-1671736/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67673,"west":11.18372,"north":46.71706,"east":11.22782},"nodeCount":10591,"edgeCount":10640,"retrievedAt":"2026-10-23"},"osm-18055492":{"graphUrl":"routing-graphs/osm-18055492.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.79283444125045,"west":6.56720827118181,"north":45.90343555874955,"east":6.7415217288181895},"nodeCount":24364,"edgeCount":24659,"retrievedAt":"2026-08-27T19:04:06.346Z"},"osm-19064561":{"graphUrl":"offline/packages/osm-19064561/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.2699,"west":6.47784,"north":46.28978,"east":6.49943},"nodeCount":2236,"edgeCount":2263,"retrievedAt":"2026-10-23"},"osm-19153189":{"graphUrl":"routing-graphs/osm-19153189.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.527044441250446,"west":6.091252260695849,"north":45.62359555874955,"east":6.237467739304152},"nodeCount":6531,"edgeCount":6666,"retrievedAt":"2026-08-27T19:39:31.023Z"},"osm-19330972":{"graphUrl":"offline/packages/osm-19330972/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.27394,"west":11.35918,"north":46.2857,"east":11.37562},"nodeCount":705,"edgeCount":716,"retrievedAt":"2026-10-23"},"osm-19541366":{"graphUrl":"offline/packages/osm-19541366/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.28654,"west":6.5791,"north":45.30153,"east":6.61461},"nodeCount":2298,"edgeCount":2366,"retrievedAt":"2026-10-23"},"osm-19703479":{"graphUrl":"offline/packages/osm-19703479/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60034,"west":11.22082,"north":46.61393,"east":11.24392},"nodeCount":1473,"edgeCount":1480,"retrievedAt":"2026-10-23"},"osm-19855818":{"graphUrl":"offline/packages/osm-19855818/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.4373,"west":6.41848,"north":45.46194,"east":6.44702},"nodeCount":3895,"edgeCount":3951,"retrievedAt":"2026-10-24"},"osm-19974724":{"graphUrl":"offline/packages/osm-19974724/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40326,"west":11.56994,"north":46.41764,"east":11.58629},"nodeCount":1186,"edgeCount":1193,"retrievedAt":"2026-10-23"},"osm-19974725":{"graphUrl":"offline/packages/osm-19974725/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39883,"west":11.5669,"north":46.41764,"east":11.58736},"nodeCount":1722,"edgeCount":1736,"retrievedAt":"2026-10-23"},"osm-20347406":{"graphUrl":"routing-graphs/osm-20347406.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91896444125045,"west":6.266689958139611,"north":46.04945555874955,"east":6.458980041860389},"nodeCount":10492,"edgeCount":10630,"retrievedAt":"2026-08-27T17:42:14.560Z"},"osm-2179746":{"graphUrl":"routing-graphs/osm-2179746.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.29053444125045,"west":11.224413051871634,"north":46.385315558749554,"east":11.359506948128365},"nodeCount":9415,"edgeCount":9648,"retrievedAt":"2026-08-27T20:26:16.794Z"},"osm-2376630":{"graphUrl":"offline/packages/osm-2376630/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66777,"west":10.9307,"north":46.69258,"east":10.96319},"nodeCount":2200,"edgeCount":2207,"retrievedAt":"2026-10-24"},"osm-3202880":{"graphUrl":"routing-graphs/osm-3202880.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37478444125045,"west":11.219838865920021,"north":46.47579555874955,"east":11.36296113407998},"nodeCount":15379,"edgeCount":15878,"retrievedAt":"2026-08-27T20:42:27.979Z"},"osm-3885162":{"graphUrl":"offline/packages/osm-3885162/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.52065,"west":10.95063,"north":46.54583,"east":10.99775},"nodeCount":2634,"edgeCount":2624,"retrievedAt":"2026-10-23"},"osm-3982382":{"graphUrl":"routing-graphs/osm-3982382.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.39130444125045,"west":5.68870273280012,"north":45.49504555874955,"east":5.8256372671998795},"nodeCount":3515,"edgeCount":3604,"retrievedAt":"2026-08-27T17:19:14.273Z"},"osm-5479112":{"graphUrl":"offline/packages/osm-5479112/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.01551,"west":6.91028,"north":46.05405,"east":6.95192},"nodeCount":9443,"edgeCount":9518,"retrievedAt":"2026-10-23"},"osm-5512443":{"graphUrl":"routing-graphs/osm-5512443.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60554444125045,"west":10.914493091157304,"north":46.70364555874955,"east":11.079186908842695},"nodeCount":7217,"edgeCount":7345,"retrievedAt":"2026-08-27T20:44:08.748Z"},"osm-5597577":{"graphUrl":"offline/packages/osm-5597577/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62561,"west":10.98047,"north":46.64607,"east":11.00282},"nodeCount":2129,"edgeCount":2200,"retrievedAt":"2026-10-23"},"osm-6244965":{"graphUrl":"offline/packages/osm-6244965/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.8005,"west":11.84283,"north":46.82695,"east":11.90723},"nodeCount":7080,"edgeCount":7191,"retrievedAt":"2026-10-23"},"osm-6250300":{"graphUrl":"routing-graphs/osm-6250300.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.903254441250446,"west":6.676860309200672,"north":45.99598555874955,"east":6.821329690799328},"nodeCount":10787,"edgeCount":11000,"retrievedAt":"2026-08-27T17:19:25.153Z"},"osm-6404258":{"graphUrl":"routing-graphs/osm-6404258.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.701494441250446,"west":11.972922724716238,"north":46.80611555874955,"east":12.149147275283761},"nodeCount":13366,"edgeCount":13635,"retrievedAt":"2026-08-27T20:44:30.610Z"},"osm-6404633":{"graphUrl":"routing-graphs/osm-6404633.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16376444125045,"west":11.631540823974001,"north":46.26285555874955,"east":11.774189176025999},"nodeCount":7270,"edgeCount":7350,"retrievedAt":"2026-08-27T20:44:44.284Z"},"osm-6404634":{"graphUrl":"routing-graphs/osm-6404634.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16376444125045,"west":11.636474806635869,"north":46.25611555874955,"east":11.770655193364131},"nodeCount":6487,"edgeCount":6560,"retrievedAt":"2026-08-27T21:01:51.031Z"},"osm-6410700":{"graphUrl":"routing-graphs/osm-6410700.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.721594441250446,"west":11.985686129252224,"north":46.82971555874955,"east":12.151803870747777},"nodeCount":10637,"edgeCount":10778,"retrievedAt":"2026-08-27T21:01:57.131Z"},"osm-6453504":{"graphUrl":"offline/packages/osm-6453504/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63271,"west":11.06288,"north":46.6488,"east":11.0833},"nodeCount":1158,"edgeCount":1173,"retrievedAt":"2026-10-23"},"osm-6823031":{"graphUrl":"routing-graphs/osm-6823031.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73590444125045,"west":11.873350912645975,"north":46.84038555874955,"east":12.025849087354025},"nodeCount":25710,"edgeCount":26439,"retrievedAt":"2026-08-27T21:02:49.999Z"},"osm-7045225":{"graphUrl":"routing-graphs/osm-7045225.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13172444125045,"west":10.986518368918368,"north":46.24825555874955,"east":11.141551631081631},"nodeCount":10547,"edgeCount":10783,"retrievedAt":"2026-08-27T21:02:54.311Z"},"osm-7086961":{"graphUrl":"routing-graphs/osm-7086961.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.128294441250446,"west":11.533400512335708,"north":46.231105558749555,"east":11.676629487664291},"nodeCount":2576,"edgeCount":2583,"retrievedAt":"2026-08-27T21:11:22.127Z"},"osm-7388748":{"graphUrl":"routing-graphs/osm-7388748.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46005444125045,"west":12.341487742111875,"north":46.55934555874955,"east":12.493212257888125},"nodeCount":10355,"edgeCount":10591,"retrievedAt":"2026-08-27T21:11:40.719Z"},"osm-7424683":{"graphUrl":"offline/packages/osm-7424683/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62276,"west":11.08183,"north":46.6843,"east":11.14908},"nodeCount":20523,"edgeCount":20732,"retrievedAt":"2026-10-23"},"osm-7426648":{"graphUrl":"offline/packages/osm-7426648/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67544,"west":11.09013,"north":46.69898,"east":11.14735},"nodeCount":9817,"edgeCount":9904,"retrievedAt":"2026-10-23"},"osm-7426666":{"graphUrl":"offline/packages/osm-7426666/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66096,"west":11.1533,"north":46.73023,"east":11.22905},"nodeCount":31605,"edgeCount":31996,"retrievedAt":"2026-10-23"},"osm-7446701":{"graphUrl":"offline/packages/osm-7446701/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81439,"west":11.27692,"north":46.83618,"east":11.33001},"nodeCount":2726,"edgeCount":2713,"retrievedAt":"2026-10-23"},"osm-7546708":{"graphUrl":"routing-graphs/osm-7546708.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44345444125045,"west":12.36812824682951,"north":46.54177555874955,"east":12.50749175317049},"nodeCount":10650,"edgeCount":10913,"retrievedAt":"2026-08-27T21:11:54.539Z"},"osm-7547653":{"graphUrl":"routing-graphs/osm-7547653.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46785444125045,"west":12.363839203471993,"north":46.565765558749554,"east":12.507590796528007},"nodeCount":7277,"edgeCount":7395,"retrievedAt":"2026-08-27T21:11:59.022Z"},"osm-7547983":{"graphUrl":"routing-graphs/osm-7547983.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43600444125045,"west":12.340097032272725,"north":46.53457555874955,"east":12.487892967727275},"nodeCount":11364,"edgeCount":11629,"retrievedAt":"2026-08-27T21:12:19.499Z"},"osm-7548201":{"graphUrl":"routing-graphs/osm-7548201.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47499444125045,"west":12.374697843622796,"north":46.57753555874955,"east":12.527532156377204},"nodeCount":5951,"edgeCount":6007,"retrievedAt":"2026-08-27T21:12:23.188Z"},"osm-7548344":{"graphUrl":"offline/packages/osm-7548344/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47477,"west":12.41932,"north":46.48885,"east":12.44329},"nodeCount":1675,"edgeCount":1738,"retrievedAt":"2026-10-23"},"osm-7549783":{"graphUrl":"offline/packages/osm-7549783/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.48829,"west":12.43636,"north":46.51038,"east":12.46043},"nodeCount":1946,"edgeCount":1969,"retrievedAt":"2026-10-23"},"osm-7655311":{"graphUrl":"offline/packages/osm-7655311/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64858,"west":11.00248,"north":46.68784,"east":11.07999},"nodeCount":11285,"edgeCount":11388,"retrievedAt":"2026-10-23"},"osm-9492594":{"graphUrl":"offline/packages/osm-9492594/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59866,"west":11.53897,"north":46.62667,"east":11.56955},"nodeCount":3744,"edgeCount":3742,"retrievedAt":"2026-10-23"},"osm-9493733":{"graphUrl":"offline/packages/osm-9493733/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59262,"west":11.87255,"north":46.61921,"east":11.90157},"nodeCount":2915,"edgeCount":2916,"retrievedAt":"2026-10-23"},"osm-9511999":{"graphUrl":"offline/packages/osm-9511999/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57931,"west":11.88494,"north":46.61899,"east":11.92825},"nodeCount":7626,"edgeCount":7660,"retrievedAt":"2026-10-23"},"osm-9933643":{"graphUrl":"routing-graphs/osm-9933643.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.46001444125045,"west":6.603237869650619,"north":45.55805555874955,"east":6.7443221303493806},"nodeCount":14632,"edgeCount":14901,"retrievedAt":"2026-08-27T17:20:33.017Z"},"osm-9937537":{"graphUrl":"offline/packages/osm-9937537/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.48919,"west":6.6296,"north":45.51733,"east":6.67286},"nodeCount":3843,"edgeCount":3877,"retrievedAt":"2026-10-23"},"piancavallo":{"graphUrl":"routing-graphs/piancavallo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.05039444125045,"west":12.458888920919806,"north":46.15883555874955,"east":12.616651079080192},"nodeCount":21111,"edgeCount":21289,"retrievedAt":"2026-08-27T17:17:48.733Z"},"prato-piazza":{"graphUrl":"routing-graphs/prato-piazza.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.595274441250446,"west":12.113642309733521,"north":46.69867555874955,"east":12.263057690266479},"nodeCount":3142,"edgeCount":3186,"retrievedAt":"2026-08-27T17:15:57.299Z"},"santa-maddalena":{"graphUrl":"routing-graphs/santa-maddalena.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59590444125045,"west":11.650737359001882,"north":46.68969555874955,"east":11.785922640998118},"nodeCount":6748,"edgeCount":6817,"retrievedAt":"2026-08-27T17:09:57.888Z"},"sassolungo":{"graphUrl":"routing-graphs/sassolungo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45471444125045,"west":11.63240987611249,"north":46.577785558749554,"east":11.83336012388751},"nodeCount":20798,"edgeCount":21180,"retrievedAt":"2026-08-27T17:16:32.997Z"},"seceda":{"graphUrl":"routing-graphs/seceda.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.53061444125045,"west":11.658993879765028,"north":46.64480555874955,"east":11.824916120234972},"nodeCount":17322,"edgeCount":17676,"retrievedAt":"2026-08-27T17:15:07.870Z"},"sentiero-del-trenino":{"graphUrl":"routing-graphs/sentiero-del-trenino.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50122394125045,"west":11.579771099956796,"north":46.620546058749554,"east":11.834705400043205},"nodeCount":31869,"edgeCount":32496,"retrievedAt":"2026-08-27T17:18:53.015Z"},"sentiero-hans-e-paula-steger":{"graphUrl":"routing-graphs/sentiero-hans-e-paula-steger.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47457534125045,"west":11.55202977961426,"north":46.58771235874955,"east":11.73381722038574},"nodeCount":16978,"edgeCount":17096,"retrievedAt":"2026-08-27T17:18:30.960Z"},"tre-cime":{"graphUrl":"routing-graphs/tre-cime.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56729029125045,"west":12.21890409925356,"north":46.68179013874955,"east":12.380584860746438},"nodeCount":9099,"edgeCount":9213,"retrievedAt":"2026-08-27T17:15:12.018Z"},"valley-view":{"graphUrl":"routing-graphs/valley-view.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60012444125045,"west":11.624142315781222,"north":46.69381555874955,"east":11.781507684218777},"nodeCount":9655,"edgeCount":9750,"retrievedAt":"2026-08-27T17:10:02.955Z"}}});
 ;
 
 // ---- trail-access-directions.js ----
@@ -44638,8 +47700,10 @@ function initHikeMode(map, trail, options){
   let completionRetry = null;
   const rejoinRoute = trail.path.map(point => ({ lat: point[0], lng: point[1] }));
   let footpathGraph = null;
-  const routedTrailIds = new Set(['lago-carezza', 'alpe-siusi']);
-  const rejoinSupported = routedTrailIds.has(trail.id) && !!window.DoloPawsFootpathRouter;
+  // The footpath graph ships inside the trail's offline package, so every
+  // trail that has one can route a walker back to it.
+  const rejoinSupported = !!(window.DoloPawsOffline && window.DoloPawsOffline.hasPackage(trail.id)) &&
+    !!window.DoloPawsFootpathRouter;
   let footpathGraphState = rejoinSupported ? 'loading' : 'unsupported';
 
   function updateRejoinControl(){

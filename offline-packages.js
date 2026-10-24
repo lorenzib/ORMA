@@ -1,20 +1,113 @@
 (function(){
   'use strict';
 
-  const PACKAGES = {
-    'lago-carezza': {
-      name: 'Lago di Carezza Loop',
-      manifestUrl: '/offline/packages/lago-carezza/manifest.json',
-      trailUrl: '/trail.html?id=lago-carezza',
-      offlineUrl: '/offline/trail.html?id=lago-carezza',
-    },
-    'alpe-siusi': {
-      name: 'Alpe di Siusi Meadow Loop',
-      manifestUrl: '/offline/packages/alpe-siusi/manifest.json',
-      trailUrl: '/trail.html?id=alpe-siusi',
-      offlineUrl: '/offline/trail.html?id=alpe-siusi',
-    },
+  // Every trail with a package under offline/packages/: the two pilots and
+  // each Verified trail. Written by scripts/build-offline-packages.js from the
+  // manifests; do not edit the block by hand.
+  // <offline-package-registry>
+  const PACKAGE_NAMES = {
+    'alpe-siusi': "Alpe di Siusi Meadow Loop",
+    'cinque-torri-assisted': "Cinque Torri three-refuges assisted circuit",
+    'giro-del-bulacia': "Giro della Bullaccia",
+    'lago-braies': "Lago di Braies Seeweg circuit",
+    'lago-carezza': "Lago di Carezza Loop",
+    'nuvolau': "Passo Giau to Rifugio Nuvolau",
+    'osm-10539302': "Sentier éco-sylve de Poingt-Ravier",
+    'osm-11270309': "Passeggiata delle Sorgenti - Quellenpromenade",
+    'osm-11517208': "La Croix des Salles",
+    'osm-11764094': "Dörferrunde: Natz, Raas, Schabs and Viums",
+    'osm-11775760': "Carl-Toldt-Weg",
+    'osm-11780502': "Naturerlebnispfad Zans",
+    'osm-11795251': "Dörferrundweg (Vintl)",
+    'osm-11814834': "Geotrail Bula - Pufels - Bulla",
+    'osm-11828233': "Valser Rundweg",
+    'osm-11832013': "Seerundweg",
+    'osm-11839597': "Fenn Promenade",
+    'osm-11860429': "Roda dles Viles",
+    'osm-12118490': "Le Balcon des Plagnes",
+    'osm-12121346': "Le tour des hameaux de Montandré, Champessuit et Grenis",
+    'osm-12121798': "Le terroir de Serpolière",
+    'osm-12142337': "Rundweg Peitlerkofel",
+    'osm-12150790': "Giro dei Capitelli - Kapellenrunde",
+    'osm-12164395': "Dörferrundweg",
+    'osm-12172440': "Natur- und Kulturweg",
+    'osm-12173549': "Mühlenweg",
+    'osm-12173965': "Kleine Schlossrunde",
+    'osm-12173984': "Große Schlossrunde",
+    'osm-12182895': "Talrundweg",
+    'osm-12190657': "Rundweg Langfenn",
+    'osm-12302191': "Dorfrundweg Rasen",
+    'osm-123162': "Planetenweg - Sentiero dei pianeti",
+    'osm-12731853': "Rundweg Laugen Elvas",
+    'osm-12736753': "Albeins-Klerant-Milland - Albes-Cleran-Millan",
+    'osm-12745924': "Circuit des escaliers",
+    'osm-12953352': "Archeopfad Brixen",
+    'osm-13338113': "Lac de Darbon",
+    'osm-13491868': "Birmehlweg - Sentiero Birmehl",
+    'osm-14095296': "Les Marais d'Albens",
+    'osm-14375158': "Crêt de la Parenche",
+    'osm-14376573': "Crêt de Talière",
+    'osm-14378946': "Lac de Pramol",
+    'osm-14379010': "Croix de Pralognan",
+    'osm-14381570': "Albanne",
+    'osm-14381584': "Beaumollard",
+    'osm-14864704': "Boucle du Taillefer",
+    'osm-1506470': "Sissiweg - Sentiero Sissi",
+    'osm-15591346': "Sentier des Buis",
+    'osm-16180587': "Balade du Plateau d'Assy au Lac Vert",
+    'osm-16218739': "Circuit du Ragairon",
+    'osm-16322228': "Boucle du Marais des Chassettes",
+    'osm-16365005': "La Galoppaz par la Combe Servenne",
+    'osm-16395076': "Boucle du Lac de la Thuile",
+    'osm-1671736': "Höfeweg",
+    'osm-18055492': "Le Mont d'Arbois - Mont Joux",
+    'osm-19064561': "Ombres sur l'Alpage",
+    'osm-19153189': "Le Belvédère (Saint-Pierre-d'Albigny)",
+    'osm-19330972': "Dorfrundweg - Giro del Paese",
+    'osm-19541366': "Lac Blanc",
+    'osm-19703479': "Rundweg Beimsteinkogel",
+    'osm-19855818': "Boucle des cascades",
+    'osm-19974724': "Mittlerer Rundweg am Karer See",
+    'osm-19974725': "Langer Rundweg am Karer See",
+    'osm-2376630': "Rundweg Katharinaberg",
+    'osm-3202880': "Rundweg Montiggler Seen",
+    'osm-3885162': "Seeweg, Val d'Ultimo",
+    'osm-3982382': "Circuit Béatrice de Savoie",
+    'osm-5479112': "Chemin des Diligences",
+    'osm-5512443': "Wallburgweg",
+    'osm-5597577': "Rundweg Gsindboden",
+    'osm-6244965': "Steine erzählen",
+    'osm-6250300': "Boucle du Lac Vert",
+    'osm-6404258': "Rundweg Salla",
+    'osm-6410700': "Dolomitenblickrunde",
+    'osm-6453504': "Walderlebnispfad Aschbach",
+    'osm-7045225': "Giro del Fausior",
+    'osm-7424683': "Marlinger Waalweg",
+    'osm-7426648': "Algunder Waalweg",
+    'osm-7426666': "Maiser Waalweg",
+    'osm-7446701': "Waltner Rundweg 18",
+    'osm-7547983': "Anello di Valzalina",
+    'osm-7548344': "Anello del Sole",
+    'osm-7549783': "Anello del Troi de le Ciaure",
+    'osm-7655311': "Sonnenberger Panoramaweg - Sentiero",
+    'osm-9492594': "Vogelweider Rundweg",
+    'osm-9493733': "Tru di Lëc",
+    'osm-9511999': "Tru dles Viles",
+    'osm-9937537': "Le Mont Jovet",
+    'prato-piazza': "Prato Piazza (Plätzwiese)",
+    'santa-maddalena': "Rundweg St. Magdalena",
+    'sentiero-del-trenino': "Sentiero del Trenino",
+    'sentiero-hans-e-paula-steger': "Sentiero Hans e Paula Steger",
+    'tre-cime': "Tre Cime di Lavaredo classic circuit",
+    'valley-view': "Val di Funes Panorama Trail",
   };
+  // </offline-package-registry>
+  const PACKAGES = Object.freeze(Object.fromEntries(Object.keys(PACKAGE_NAMES).map(trailId => [trailId, Object.freeze({
+    name: PACKAGE_NAMES[trailId],
+    manifestUrl: `/offline/packages/${trailId}/manifest.json`,
+    trailUrl: `/trail.html?id=${trailId}`,
+    offlineUrl: `/offline/trail.html?id=${trailId}`,
+  })])));
   const CACHE_PREFIX = 'dolopaws-trail-';
   const METADATA_PREFIX = 'dolopaws-offline:';
   const OWNER_SALT_KEY = 'dolopaws-offline-owner-salt';
@@ -575,7 +668,14 @@
 
   async function listPackageStates(user){
     const records = [];
-    for(const trailId of Object.keys(PACKAGES)){
+    // A trail with no cache under its prefix is 'not-downloaded', which is
+    // never listed. With every Verified trail registered, asking each one in
+    // turn cost the page one metadata read per trail to list a handful.
+    // Without Cache Storage nothing can have been downloaded at all.
+    const cacheNames = 'caches' in window ? await caches.keys() : [];
+    const stored = Object.keys(PACKAGES).filter(trailId =>
+      cacheNames.some(name => name.startsWith(`${CACHE_PREFIX}${trailId}-`)));
+    for(const trailId of stored){
       const config = PACKAGES[trailId];
       const inspection = await inspectPackage(trailId);
       if(inspection.state === 'not-downloaded') continue;
@@ -859,7 +959,12 @@
     refresh();
   }
 
+  function hasPackage(trailId){
+    return Object.prototype.hasOwnProperty.call(PACKAGES, trailId);
+  }
+
   window.DoloPawsOffline = {
+    hasPackage,
     installPackage,
     installedPackage,
     installedPackageRecord,

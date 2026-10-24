@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-14375158",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 9,
+    "ascentM": 220,
+    "highestPointM": 1696,
+    "expectedDuration": "2.5–3 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 60
+  },
+  "trailhead": {
+    "lat": 45.2271183,
+    "lng": 6.404797,
+    "label": "Les Karellis resort, by the Vinouve chairlift"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.2278921,
+      "lng": 6.4048539,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Scree crossings on forest tracks.",
+    "Two road stretches of about 150 m and one road crossing.",
+    "Electric fence at the summer pasture.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

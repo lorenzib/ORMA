@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-6250300",
+  "name": "Boucle du Lac Vert",
+  "version": "2026.10.23-beta.1",
+  "generatedAt": "2026-10-23T17:51:29.475Z",
+  "scoringVersion": "1.6.0",
+  "verificationStatus": "field-review-required",
+  "packageBytes": 249926,
+  "packageBudgetBytes": 5242880,
+  "bounds": {
+    "south": 45.94428,
+    "west": 6.73629,
+    "north": 45.95496,
+    "east": 6.7619
+  },
+  "image": {
+    "width": 1200,
+    "height": 720
+  },
+  "mapCorridor": {
+    "strategy": "fixed-bounds-svg-v1",
+    "scaleLevels": [
+      1
+    ],
+    "width": 1200,
+    "height": 720
+  },
+  "routingGraph": {
+    "strategy": "osm-walking-graph-v1",
+    "nodeCount": 1431,
+    "edgeCount": 1464,
+    "trailNodeCount": 245,
+    "maxRejoinRouteM": 1500
+  },
+  "elevationProfile": {
+    "strategy": "route-profile-v1",
+    "pointCount": 15,
+    "distanceKm": 3.61,
+    "ascentM": 100,
+    "source": "ORMA route profile",
+    "demPackaged": false
+  },
+  "evidence": {
+    "version": "1.0.0",
+    "tier": "mapped",
+    "tierLabel": "Mapped route",
+    "categories": {
+      "route": {
+        "sourceState": "mapped",
+        "sourceLabel": "Mapped data",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "water": {
+        "sourceState": "mapped",
+        "sourceLabel": "Mapped data",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "heat": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "exposure": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "livestock": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "surfaceHazards": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "access": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      }
+    }
+  },
+  "attribution": "Route data © ORMA; © OpenStreetMap contributors where applicable",
+  "licenceUrl": "https://www.openstreetmap.org/copyright",
+  "resources": [
+    {
+      "role": "shell",
+      "required": true,
+      "label": "Offline trail page",
+      "url": "/offline/trail.html",
+      "bytes": 9643,
+      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+    },
+    {
+      "role": "style",
+      "required": true,
+      "label": "Offline trail styles",
+      "url": "/offline/offline.css",
+      "bytes": 11338,
+      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+    },
+    {
+      "role": "app",
+      "required": true,
+      "label": "Offline trail application",
+      "url": "/offline/offline-app.js",
+      "bytes": 34522,
+      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+    },
+    {
+      "role": "gps-policy",
+      "required": true,
+      "label": "GPS safety policy",
+      "url": "/hike-gps-policy.js",
+      "bytes": 3987,
+      "sha256": "752e25b27a0843cfb7c3dd38958a220ea86d045564bd6d0e956e788d62f9d23a"
+    },
+    {
+      "role": "route-rejoin",
+      "required": true,
+      "label": "Offline route rejoin guidance",
+      "url": "/route-rejoin.js",
+      "bytes": 2981,
+      "sha256": "da9f712e32f9abc39071092a88c5876d297a831b75a7e0d6392c0dbde7e34c96"
+    },
+    {
+      "role": "hike-distance",
+      "required": true,
+      "label": "Direction-neutral walked distance",
+      "url": "/hike-distance.js",
+      "bytes": 2828,
+      "sha256": "d320ca20b3b59a7961834da24ca3367ba898f6850ec7206d051f9bbb9c614175"
+    },
+    {
+      "role": "footpath-router",
+      "required": true,
+      "label": "Offline mapped footpath router",
+      "url": "/footpath-router.js",
+      "bytes": 12815,
+      "sha256": "6d1aa1e1d9de371505d1bb4f006f38c2c0978abeaacb0436b27af5c4e696ad61"
+    },
+    {
+      "role": "elevation-engine",
+      "required": true,
+      "label": "Offline route elevation engine",
+      "url": "/offline-elevation.js",
+      "bytes": 2575,
+      "sha256": "6200f5e716264112ff69d82cade64f1c9df0b96674e76d9b83ae388360de77ec"
+    },
+    {
+      "role": "session",
+      "required": true,
+      "label": "Durable hike session",
+      "url": "/hike-session.js",
+      "bytes": 6484,
+      "sha256": "825cf5b9e27acc260f408e224ec2d5c3d84c27373ff2f6c98ac06fc07c01f72d"
+    },
+    {
+      "role": "completion",
+      "required": true,
+      "label": "Durable hike completion",
+      "url": "/hike-completions.js",
+      "bytes": 6065,
+      "sha256": "0abbaafe655171cc19251c14888c94e1f5c99e9c1e5c428bd8a632ee69f1fc00"
+    },
+    {
+      "role": "outcome",
+      "required": true,
+      "label": "Private post-hike outcome",
+      "url": "/post-hike-outcomes.js",
+      "bytes": 11204,
+      "sha256": "2c851a286d24d2c832075864e267e0f8714d78ee68076ae9ded5c71aabdf3c00"
+    },
+    {
+      "role": "map",
+      "required": true,
+      "label": "Boucle du Lac Vert OSM offline map",
+      "url": "map.svg",
+      "bytes": 69850,
+      "sha256": "24aa5129aa219fbe7182e3bc99220299cf104e3e5f08c1816bdf0c7b5f33d0bb"
+    },
+    {
+      "role": "route",
+      "required": true,
+      "label": "Boucle du Lac Vert route",
+      "url": "route.geojson",
+      "bytes": 6145,
+      "sha256": "2152c39eb1df953866e97599d8d7eed167be0713b947099c3bd14653c66b9ef2"
+    },
+    {
+      "role": "footpath-network",
+      "required": true,
+      "label": "Boucle du Lac Vert routable footpath corridor",
+      "url": "footpath-network.json",
+      "bytes": 67236,
+      "sha256": "2cb687e876f7bab7db0c27e4d04cfddacdbc0581a5f9a16f2a2172b1b94fd659"
+    },
+    {
+      "role": "elevation-profile",
+      "required": true,
+      "label": "Boucle du Lac Vert stored route elevation profile",
+      "url": "elevation-profile.json",
+      "bytes": 895,
+      "sha256": "aecbc243e3325f127a2905bd5d1ac9e85df081ae3fdb4c69f565dcfab6a8a31d"
+    },
+    {
+      "role": "safety",
+      "required": true,
+      "label": "Boucle du Lac Vert safety information",
+      "url": "safety.json",
+      "bytes": 1358,
+      "sha256": "2f22a7a44f643d12fd38a0bee7a91e4d7caa89ddee52a0ffc0e25c4c5401188f"
+    }
+  ]
+}

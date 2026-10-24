@@ -6,16 +6,21 @@
 
 ## Beta scope exercised by this matrix
 
-The first controlled offline beta is limited to two packaged routes:
+This matrix is run on the two pilot packages:
 
 1. **Lago di Carezza Loop** (`lago-carezza`) — the established iPhone and
    airplane-mode reference package.
 2. **Alpe di Siusi Meadow Loop** (`alpe-siusi`) — the in-region package and the
    second route-rejoin pilot.
 
-No other trail may display an offline-download promise during this beta. A
-published trail without a registered package remains available for online
-planning and GPX export only.
+Since OFF-07 (23 October 2026) every trail the site shows as Verified also has
+a package, built by `scripts/build-offline-packages.js` with the same reader,
+the same checks and the same `field-review-required` label. Those packages are
+not device-tested one by one: they share every byte of the reader with the two
+pilots, so the pilots' results stand for the reader, and each generated
+package's own files are checked by `offline-beta-scope.test.js`. A trail that
+is neither a pilot nor Verified shows no offline-download promise; it remains
+available for online planning and GPX export only.
 
 ## Required device coverage
 

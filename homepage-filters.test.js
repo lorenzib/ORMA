@@ -973,7 +973,10 @@ describe('returning homepage region + valley filters', () => {
     context.localStorage.getItem = key => (key === 'orma-recent-trails-v1' ? recent : null);
     vm.runInContext('liRenderRecentTrails();', context);
     const links = Array.from(document.querySelectorAll('#liRecentList a'));
-    expect(links.map(link => link.textContent)).toEqual(['Val Gardena TrailVal Gardena', 'Maurienne TrailMaurienne']);
+    // One row each: the name on its own line, the area under it.
+    expect(links.map(link => link.querySelector('.li-recent-name').textContent)).toEqual(['Val Gardena Trail', 'Maurienne Trail']);
+    expect(links.map(link => link.querySelector('.li-recent-area').textContent)).toEqual(['Val Gardena', 'Maurienne']);
+    expect(links[0].querySelector('.li-recent-thumb')).not.toBeNull();
     expect(links[0].getAttribute('href')).toBe('trail.html?id=vag');
     // Recently viewed is a shortlist of places, not a plan: a date is carried
     // only while one is set, and today is not a date worth carrying.

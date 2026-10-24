@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "tre-cime",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 9.528,
+    "ascentM": 468,
+    "highestPointM": 2454,
+    "expectedDuration": "3.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": null
+  },
+  "trailhead": {
+    "lat": 46.612849,
+    "lng": 12.292858,
+    "label": "Parcheggio Rifugio Auronzo (P1), approved parking pin"
+  },
+  "waypoints": [],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Loose gravel patches near the rifugi.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-08-18T15:04:59.634Z"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

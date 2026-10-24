@@ -34,6 +34,21 @@ describe('asset cache keys are derived from the file', () => {
     expect(read(dir,'index.html')).toContain(`app.js?v=${sha('console.log(1)').slice(0,10)}`);
   });
 
+  test('the offline package shell is left byte for byte as committed', () => {
+    // Its manifest records this file's SHA-256, and the phone checks it.
+    const shell = '<link rel="stylesheet" href="offline.css"><script src="../hike-session.js"></script><script src="offline-app.js"></script>';
+    const dir = site({
+      'offline/trail.html':shell,
+      'offline/offline.css':'body{}',
+      'offline/offline-app.js':'console.log(1)',
+      'hike-session.js':'x',
+      'index.html':'<script src="hike-session.js"></script>',
+    });
+    stampSite(dir);
+    expect(read(dir,'offline/trail.html')).toBe(shell);
+    expect(read(dir,'index.html')).toContain(`hike-session.js?v=${sha('x').slice(0,10)}`);
+  });
+
   test('a hand-typed key is replaced, not kept', () => {
     const dir = site({ 'index.html':'<script src="app.js?v=20260917-4"></script>', 'app.js':'x' });
     stampSite(dir);

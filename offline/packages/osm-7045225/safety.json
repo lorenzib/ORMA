@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-7045225",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 7.4,
+    "ascentM": 436,
+    "highestPointM": 1405,
+    "expectedDuration": "2.75–3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 75
+  },
+  "trailhead": {
+    "lat": 46.1766382,
+    "lng": 11.0540457,
+    "label": "Santèl, on the SP 64 above Fai della Paganella (official start of SAT path 603); the walk ends at Fai Le Coste"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.1755031,
+      "lng": 11.0531235,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1940767,
+      "lng": 11.0599127,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1886092,
+      "lng": 11.0769664,
+      "label": "Fontana bianca",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Slight exposure below some rock ledges near the end (SAT).",
+    "Log steps and old stone paving on the descent.",
+    "Bear area: SAT signs warn of bears.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

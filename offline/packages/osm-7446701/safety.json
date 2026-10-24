@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-7446701",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8.4,
+    "ascentM": 368,
+    "highestPointM": 1533,
+    "expectedDuration": "2.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 35
+  },
+  "trailhead": {
+    "lat": 46.82668,
+    "lng": 11.28702,
+    "label": "Gasthof Alpenrose and the Walten bus stop, Innerwalten (official start)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.8197314,
+      "lng": 11.3240125,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.8251919,
+      "lng": 11.3092468,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.8264443,
+      "lng": 11.3075302,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "About 500 m on or beside the SS44 Jaufenstraße (60 km/h), partly without a pavement.",
+    "About 1.9 km on minor roads and farm lanes with cars.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

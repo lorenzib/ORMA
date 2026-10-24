@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12182895",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 15.6,
+    "ascentM": 543,
+    "highestPointM": 1176,
+    "expectedDuration": "4.5–5.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 35
+  },
+  "trailhead": {
+    "lat": 46.6251183,
+    "lng": 11.3666139,
+    "label": "Bad Schörgau bus stop, on the loop; the loop can equally be started at the church square in Sarnthein"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6665284,
+      "lng": 11.3654315,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6719325,
+      "lng": 11.3622628,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6710664,
+      "lng": 11.3588814,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6439207,
+      "lng": 11.3571973,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "About 5 km on village lanes and minor roads with traffic.",
+    "A few hundred metres beside or across the main valley road.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}
