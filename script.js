@@ -2457,7 +2457,7 @@ function renderLiSavedControl(){
   }
   if(savedTab){
     savedTab.classList.toggle('active', showingSavedOnly);
-    savedTab.setAttribute('aria-selected', String(showingSavedOnly));
+    savedTab.setAttribute('aria-pressed', String(showingSavedOnly));
   }
 }
 
@@ -3298,7 +3298,8 @@ function initLoggedInShell(){
   const viewAll = document.getElementById('liViewAll');
   const viewSaved = document.getElementById('liViewSaved');
   if(viewAll) viewAll.addEventListener('click', () => setSavedView(false));
-  if(viewSaved) viewSaved.addEventListener('click', () => setSavedView(true));
+  // One button, pressed or not: Saved on, then back to every match.
+  if(viewSaved) viewSaved.addEventListener('click', () => setSavedView(!showingSavedOnly));
 
   const wireQuickFilter = (id, toggle) => {
     const button = document.getElementById(id);
@@ -3348,7 +3349,8 @@ function initLoggedInShell(){
     if(collapseBtn){
       collapseBtn.setAttribute('aria-expanded', String(!collapsed));
       collapseBtn.setAttribute('aria-label', collapsed ? 'Expand ranked trails panel' : 'Collapse ranked trails panel');
-      collapseBtn.textContent = collapsed ? '☰ Expand trails' : '▤ Collapse trails';
+      collapseBtn.textContent = collapsed ? '☰ Show trails' : '⇥';
+      collapseBtn.title = collapsed ? '' : 'Hide the trail list';
     }
     if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
   };
@@ -3791,7 +3793,13 @@ function liRecommendationView(trail, profile){
   });
 }
 
-function liRecommendationExplanationHtml(trail, profile, open){
+// What "New for <dog>" means, said where it is shown: the badge's tooltip and
+// the card's own explanation, so a phone, which has no tooltip, still gets it.
+function liNewForMeaning(profile){
+  return `It now scores ${NEW_MATCH_THRESHOLD}% or more for ${liPersonalisationText(liScoredSubject(profile))}, and it did not at your last visit.`;
+}
+
+function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   const recommendation = trail && trail.recommendation;
   const view = liRecommendationView(trail, profile);
   if(!view) return '';
@@ -3843,6 +3851,9 @@ function liRecommendationExplanationHtml(trail, profile, open){
   const know = concerns.length
     ? `<div><b>What to know ${liWalkDate === liDateOffsetIso(0) ? 'today' : 'for this day'}</b><ul>${items(concerns)}</ul></div>`
     : '';
+  const fresh = isNew
+    ? `<p class="li-answer-new"><b>New for ${liPersonalisationText(dogName)}.</b> ${liNewForMeaning(profile)}</p>`
+    : '';
   // Opens the wizard on the dog it is talking about, rather than sending the
   // reader to the account page to find it themselves.
   const gapFields = profile && profile.name ? liDogGapFields(recommendation) : [];
@@ -3857,7 +3868,7 @@ function liRecommendationExplanationHtml(trail, profile, open){
   // every card also has: two of the same button on one card is one too many.
   const panelId = `li-why-${encodeURIComponent(trail.id)}`;
   return `<div class="li-answer-explanation" id="${panelId}"${open ? '' : ' hidden'}>
-    ${fit}${know}${gap}
+    ${fresh}${fit}${know}${gap}
     <div class="li-answer-actions">
       <a class="li-answer-open" href="${liTrailHref(trail.id)}">View trail details</a>
     </div>
@@ -3910,7 +3921,6 @@ if(typeof window !== 'undefined'){
 async function renderReturningHomepage(profile, options = {}){
   profile = liResolveActiveProfile(profile);
   const heading = document.getElementById('returningHeading');
-  const subline = document.getElementById('returningSubline');
   const listEl = document.getElementById('returningTrailList');
   if(!heading || typeof trails === 'undefined') return;
 
@@ -3934,10 +3944,6 @@ async function renderReturningHomepage(profile, options = {}){
   const overrides = profile ? effectiveOverrides(profile, adjustOverride) : guestOverrides();
   liChairliftSafe = liProfileChairliftSafe(profile);
 
-  const kicker = document.getElementById('companionKicker');
-  if(kicker) kicker.textContent = showingSavedOnly
-    ? 'Saved for later'
-    : `Chosen for ${liScoredSubject(profile)}`;
 
   const scored = trails.map(t => {
     const recommendation = recommendTrail(t, overrides, liConditionsFor(t));
@@ -3959,18 +3965,14 @@ async function renderReturningHomepage(profile, options = {}){
   const answerTitle = ['Best walk', profile && profile.name ? `for ${profile.name}` : '', locationPhrase, dayLabel]
     .filter(Boolean).join(' ');
   heading.textContent = answerTitle;
-  // No line under it: the headline names the scope itself, "across all
-  // trails" for the whole catalogue.
+  // No line under it: the headline names the scope itself ("in the
+  // Dolomites", "near you").
   liRenderHeadline(profile, locationPhrase, dayLabel);
-  // The old copy ("Pick a province or valley below... Edit profile") duplicated
-  // what the sidebar now already shows (filters + the dog card's edit link),
-  // so this line is now just the one thing the sidebar can't say: whether
-  // anything changed since last visit.
-  const newsLine = newIds.size > 0
-    ? (newIds.size === 1 ? t('home.newMatch1') : t('home.newMatches', {n: newIds.size}))
-    : '';
-  subline.innerHTML = newsLine || '';
-  subline.hidden = !newsLine;
+  // "N new matches since your last visit" used to head the list. It counted
+  // trails now at NEW_MATCH_THRESHOLD or more that were not at the last
+  // visit -- which the weather or a profile change can cause as easily as a
+  // new trail -- so it said less than it seemed to. Each such card now says
+  // "New for <dog>" and what that means.
 
   renderBreedInsight(profile);
 
@@ -3978,6 +3980,8 @@ async function renderReturningHomepage(profile, options = {}){
   if(titleEl) titleEl.textContent = showingSavedOnly ? 'Saved trails' : (profile && profile.name ? `Best matches for ${profile.name}` : 'Best matches');
 
   let displayList = filterTrailsForReturningView(scored);
+  const countEl = document.getElementById('companionListCount');
+  if(countEl) countEl.textContent = `${displayList.length} ${displayList.length === 1 ? 'trail' : 'trails'}`;
 
   renderLiConditionsCard(profile, displayList);
 
@@ -4045,12 +4049,14 @@ async function renderReturningHomepage(profile, options = {}){
     const dim = adjustActive && t.score < 60;
     const thumb = trailCardVisual(t, { className:'li-thumb photo', dataTrailId:t.id, clickable:true });
     const selected = t.id === selectedTrailId;
-    const newBadge = isNew ? productBadge('new', window.t('badge.new')) : '';
+    const newBadge = isNew
+      ? `<span class="li-new-for" title="${liEscapeHtml(liNewForMeaning(profile))}">${productBadge('new', `New for ${liPersonalisationText(liScoredSubject(profile))}`)}</span>`
+      : '';
     const rank = resultRanks.get(t.id) || index + 1;
     const isPrimary = !showingSavedOnly && index < TOP_PICKS;
     // Every card can explain itself; the top picks simply start open, because
     // they are the answer the page was asked for.
-    const explanation = liRecommendationExplanationHtml(t, profile, isPrimary);
+    const explanation = liRecommendationExplanationHtml(t, profile, isPrimary, isNew);
     return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? `<div class="li-alternatives-heading"><span>Other options for ${liPersonalisationText(liScoredSubject(profile))}</span><a href="browse-trails.html">See the full catalogue →</a></div>` : ''}
     <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}${explanation && isPrimary ? ' is-why-open' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="Rank ${rank}: ${liPersonalisationText(t.name)}"${dim ? ' style="opacity:.55;"' : ''}>
       <span class="li-result-rank" aria-hidden="true" style="background:${liRecommendationPresentation(t, profile).color};">${rank}</span>
@@ -4293,14 +4299,12 @@ if(savedTrailsBtn){
   });
 }
 
-// Companion sort control, Best match / Shortest / Least climb
-const companionSortGroup = document.getElementById('companionSortGroup');
-if(companionSortGroup){
-  companionSortGroup.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-sort]');
-    if(!btn) return;
-    sortKey = btn.dataset.sort;
-    companionSortGroup.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+// Sort, one dropdown in the list header: Best fit / Shortest / Least climb /
+// For today.
+const companionSortSelect = document.getElementById('companionSortSelect');
+if(companionSortSelect){
+  companionSortSelect.addEventListener('change', () => {
+    sortKey = companionSortSelect.value;
     renderReturningHomepage(currentProfileForAdjust);
   });
 }

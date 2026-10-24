@@ -57,8 +57,7 @@ function loadHomepageContext(testTrails){
       </div></div>
     <button id="liFiltersBtn"></button><div id="liFiltersMenu" hidden></div>
     <button id="liAccountBtn"></button><div id="liAccountMenu" hidden><div id="liRecentList"></div></div>
-    <button id="liViewAll" class="active"></button>
-    <button id="liViewSaved"><span id="liSavedOnlyCount"></span></button>
+    <button id="liViewSaved" aria-pressed="false"><span id="liSavedOnlyCount"></span></button>
     <span id="liDogCtxName"></span>
     <span id="liDogCtxBreedSep" hidden></span>
     <a id="liDogCtxBreed" href="guides/breed-group-caveats.html" hidden></a>
@@ -73,8 +72,7 @@ function loadHomepageContext(testTrails){
     <a id="liManageLink"></a>
     <a id="liGreetManageLink"></a>
     <h1 id="returningHeading"></h1>
-    <span id="companionKicker"></span><div id="companionListTitle"></div>
-    <p id="returningSubline"></p>
+    <h2 id="companionListTitle"></h2><span id="companionListCount"></span>
     <div id="returningTrailList"></div>
     <button id="liSearchThisArea" type="button" class="li-search-area" hidden>Search this area</button>
     <button id="savedTrailsBtn"></button>
@@ -189,14 +187,33 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
   });
 
-  test('the Saved view tab reflects and filters saved trails', async () => {
+  test('the Saved toggle reflects and filters saved trails', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('currentFavorites = { vag: true }; showingSavedOnly = true; activeRegion = "all"; renderLiSavedControl();', context);
-    expect(document.getElementById('liViewSaved').getAttribute('aria-selected')).toBe('true');
-    expect(document.getElementById('liViewAll').getAttribute('aria-selected')).toBe('false');
+    // One button, pressed or not, in the one-line list header.
+    expect(document.getElementById('liViewSaved').getAttribute('aria-pressed')).toBe('true');
     expect(document.getElementById('liSavedOnlyCount').textContent).toBe('1');
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
+    expect(document.getElementById('companionListTitle').textContent).toBe('Saved trails');
+    expect(document.getElementById('companionListCount').textContent).toBe('1 trail');
+  });
+
+  test('a new match says "New for" its dog, and what that means', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('activeRegion = "all"; liNewMatchIds = new Set(["vag"]);', context);
+    await vm.runInContext('renderReturningHomepage(null, { skipNewMatchSync:true });', context);
+    const card = document.querySelector('#returningTrailList .li-row[data-trail-id="vag"]')
+      || [...document.querySelectorAll('#returningTrailList .li-row')].find(row => row.querySelector('.li-new-for'));
+    const badge = card.querySelector('.li-new-for');
+    // Not "NEW MATCH": a score that crossed 70% is not a new trail, so the
+    // card says who it is new for and, on the card itself, what new means.
+    expect(badge.textContent.trim()).toBe('New for a medium dog');
+    expect(badge.getAttribute('title')).toBe('It now scores 70% or more for a medium dog, and it did not at your last visit.');
+    expect(card.querySelector('.li-answer-new').textContent)
+      .toBe('New for a medium dog. It now scores 70% or more for a medium dog, and it did not at your last visit.');
+    // Nothing heads the list announcing it any more.
+    expect(document.getElementById('returningSubline')).toBeNull();
   });
 
   // The map is a geography, not a filter layered on one. Panning to another

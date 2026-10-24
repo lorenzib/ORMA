@@ -70,9 +70,19 @@ describe('logged-in discovery workspace layout', () => {
     const createMenu = html.slice(html.indexOf('id="liNewMenu"'), html.indexOf('id="liNewMenu"') + 500);
     expect(createMenu).toContain('li-plan-route');
     expect(createMenu).not.toContain('Record a walk');
-    // Saved becomes a view tab beside Sort in the list head.
-    expect(html.indexOf('id="liViewSaved"')).toBeLessThan(html.indexOf('id="companionSortGroup"'));
-    expect(html).toContain('class="li-list-options"');
+    // The list header is one line: title, count, a Sort dropdown and a Saved
+    // toggle. The kicker, the news line and the fold-out of tabs are gone.
+    const head = html.slice(html.indexOf('class="li-list-head"'), html.indexOf('id="returningTrailList"'));
+    expect(head).toContain('<h2 class="li-list-title" id="companionListTitle">');
+    expect(head).toContain('id="companionListCount"');
+    expect(head).toContain('<select id="companionSortSelect" aria-label="Sort trails">');
+    expect(head).toContain('id="liViewSaved" class="li-saved-toggle" aria-pressed="false"');
+    expect(head.indexOf('id="companionSortSelect"')).toBeLessThan(head.indexOf('id="liViewSaved"'));
+    for(const gone of ['companionKicker', 'returningSubline', 'li-list-options', 'liViewAll', 'companionSortGroup', 'li-explore-all']){
+      expect(html).not.toContain(gone);
+    }
+    // Browse all trails moved to the foot of the list.
+    expect(html).toContain('<a class="li-list-foot" href="browse-trails.html">Browse all trails →</a>');
   });
 
   test('keeps place, day, search, Filters and Record a walk on screen', () => {

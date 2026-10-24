@@ -407,40 +407,32 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
     <!-- ================= LIST ================= -->
     <aside class="li-list" aria-label="Personalised trail recommendation">
+      <!-- One line: what this is, how many, and the two ways to change the
+           view. "New for <dog>" lives on the card it is about, with what it
+           means; Browse all trails sits at the foot of the list. -->
       <div class="li-list-head">
-        <p class="li-newsline" id="returningSubline" hidden></p>
         <div class="li-list-title-row">
-          <div>
-            <div class="li-kick" id="companionKicker">Your recommendation</div>
-            <div class="li-list-title" id="companionListTitle">Best walk</div>
+          <h2 class="li-list-title" id="companionListTitle">Best matches</h2>
+          <span class="li-list-count" id="companionListCount"></span>
+          <div class="li-list-tools">
+            <label class="li-sort-pill">
+              <span class="li-sort-label">Sort:</span>
+              <select id="companionSortSelect" aria-label="Sort trails">
+                <option value="match">Best fit</option>
+                <option value="distance">Shortest</option>
+                <option value="effort">Least climb</option>
+                <option value="today">For today</option>
+              </select>
+            </label>
+            <button type="button" id="liViewSaved" class="li-saved-toggle" aria-pressed="false" aria-label="Saved trails"><span class="orma-saved-heart" aria-hidden="true">♥</span><span class="li-saved-word">Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span></button>
           </div>
-          <a class="li-explore-all" href="browse-trails.html">Browse all trails →</a>
         </div>
-        <details class="li-list-options">
-          <summary>Saved trails and ranking options</summary>
-          <div class="li-listbar">
-          <!-- Saved is a view of the ranked list, not a filter, so it sits with
-               Sort as a tab rather than in the refine bar. -->
-          <div class="li-views" role="tablist" aria-label="Trail view">
-            <button type="button" id="liViewAll" class="li-view active" role="tab" aria-selected="true">All trails</button>
-            <button type="button" id="liViewSaved" class="li-view" role="tab" aria-selected="false"><span class="orma-saved-heart" aria-hidden="true">♥</span>Saved<span class="li-saved-count" id="liSavedOnlyCount">0</span></button>
-          </div>
-          <div class="li-sort">
-            <span class="li-sort-label">Sort</span>
-            <div class="companion-sort-group" id="companionSortGroup">
-              <button type="button" data-sort="match" class="active">Best fit</button>
-              <button type="button" data-sort="distance">Shortest</button>
-              <button type="button" data-sort="effort">Climb</button>
-              <button type="button" data-sort="today">For today</button>
-            </div>
-          </div>
-          </div>
-        </details>
       </div>
       <div class="li-rows" id="returningTrailList"></div>
+      <a class="li-list-foot" href="browse-trails.html">Browse all trails →</a>
     </aside>
 
-    <button type="button" id="liCollapseTrailsBtn" class="li-trails-toggle" aria-expanded="true" aria-label="Collapse ranked trails panel">▤ Collapse trails</button>
+    <button type="button" id="liCollapseTrailsBtn" class="li-trails-toggle" aria-expanded="true" aria-label="Collapse ranked trails panel" title="Hide the trail list">⇥</button>
 
   </div>
 </div>
