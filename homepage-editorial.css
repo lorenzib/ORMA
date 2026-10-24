@@ -388,3 +388,18 @@
   /* Words, not an icon: a lone glyph here read as an equals sign. */
   body.mhome-active #returningCustomerHomepage .li-reasons-toggle{padding:0 11px;}
 }
+
+/* The list header on one row: "131 trails · best fit first", then Sort,
+   Show reasons and Saved, with the collapse button's corner kept clear. The
+   title no longer repeats the headline, so it is short enough to share the
+   row; Saved is its heart and count everywhere, as it already was on phones
+   (the button keeps its "Saved trails" label for screen readers). */
+#returningCustomerHomepage .li-list-title-row{flex-wrap:nowrap;align-items:center;}
+#returningCustomerHomepage .li-list-title{white-space:nowrap;}
+#returningCustomerHomepage .li-list-count{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+#returningCustomerHomepage .li-saved-toggle .li-saved-word{display:none;}
+#returningCustomerHomepage .li-saved-toggle{padding:0 10px;}
+@media (max-width:420px){
+  /* Very narrow: the order words give way before the controls do. */
+  #returningCustomerHomepage .li-list-count{display:none;}
+}
