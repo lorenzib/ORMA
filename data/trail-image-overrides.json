@@ -306,6 +306,23 @@
       }
     },
     {
+      "id": "osm-11775923",
+      "approvedReviewId": "commons-osm-11775923-on-route",
+      "approvedAt": "2026-10-24T19:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11775923-neustift.jpg",
+        "heroImage": "images/trails/osm-11775923-neustift.jpg",
+        "imageAlt": "Neustift abbey with its towers and red roofs beyond rows of vines, wooded mountains behind",
+        "imageCredit": "Neustift abbey above its vineyards",
+        "imageCreditText": "Neustift abbey above its vineyards by Oliver Abels (SBT)",
+        "imageCreator": "Oliver Abels (SBT)",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vahrn_Neustift_Kloster_Neustift_(17760).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-11780502",
       "approvedReviewId": "commons-osm-11780502-on-route",
       "approvedAt": "2026-10-24T10:00:00.000Z",
@@ -999,6 +1016,40 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gasthaus_Langfenn_am_Salten_bei_M%C3%B6lten_-_Verschneid,_zwischen_Meran_und_Bozen,_Trentino,_S%C3%BCdtirol,_Italien_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12302137",
+      "approvedReviewId": "commons-osm-12302137-on-route",
+      "approvedAt": "2026-10-24T19:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12302137-antholz-mittertal.jpg",
+        "heroImage": "images/trails/osm-12302137-antholz-mittertal.jpg",
+        "imageAlt": "The green Antholz valley at Mittertal, meadows and scattered farms below wooded slopes and rocky peaks under clouds",
+        "imageCredit": "The Antholz valley at Mittertal",
+        "imageCreditText": "The Antholz valley at Mittertal by Gianni Bassini",
+        "imageCreator": "Gianni Bassini",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:39030_Rasen-Antholz,_Province_of_Bolzano_-_South_Tyrol,_Italy_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12302182",
+      "approvedReviewId": "commons-osm-12302182-on-route",
+      "approvedAt": "2026-10-24T19:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12302182-antholz-niedertal.jpg",
+        "heroImage": "images/trails/osm-12302182-antholz-niedertal.jpg",
+        "imageAlt": "A green meadow with a wooden hay barn and a fence at Antholz Niedertal, farmhouses and a red church spire below forested mountains",
+        "imageCredit": "The meadows by Antholz Niedertal",
+        "imageCreditText": "The meadows by Antholz Niedertal by Jörg Blobelt",
+        "imageCreator": "Jörg Blobelt",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:20050903165DR_Rasen_Antholz_Niedertal_Antholzer_Tal.jpg",
         "imageSourceType": "licensed-source"
       }
     },

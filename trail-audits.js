@@ -35220,6 +35220,187 @@
       },
       "desc": "A loop on the sunny slope above Séez, through the Bochères forest, the hamlet of Saint-Germain and its mill, alpine pastures and the Champ Plan clearing to the Croix de Champ Plan, returning by a zigzag path that rejoins the way up. The tourist office rates it easy and gives 4.9 km, 2 hours 25 and 435 m of climb; with the shared stretch walked back to the car park it is about 6 km. This walk is not yet verified by ORMA.\n\nThe tourist office asks for dogs on a lead because the Bochères forest is a communal hunting and wildlife reserve. Séez also has a municipal arrêté on domestic animals whose text is not published online.",
       "tips": "Keep your dog on a lead, as the tourist office asks: the Bochères forest is a hunting and wildlife reserve, and the route crosses pastures. Cross the scree area carefully. There is drinking water at Saint-Germain and at the new basin by the Croix de Champ Plan."
+    },
+    'osm-11775923': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 5).
+      // The official walk of Brixen Tourismus from Neustift abbey (Vahrn, not
+      // Brixen). The line crosses Vahrn, Brixen (km 2.9–3.8) and Natz-Schabs
+      // (km 3.8–4.4). Vahrn and Natz-Schabs publish no dog rule, so the
+      // national dog ordinance (6 August 2013, extended to September 2027)
+      // applies there; Brixen's animal ordinance (Gemeinderat 5/2011) requires
+      // a lead in built-up areas (Art. 5) and bans dogs from farmland (Art. 6).
+      // No biotope, Natura 2000 site or park on the line.
+      area: 'Neustift, Vahrn / Novacella, Varna',
+      distance: 6.1,
+      elevation: 215,
+      hours: '1.5–2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Neustift abbey through the northernmost vineyards of the Eisack valley to the Wetterkreuz and Gasthaus Sunnegg, back along the Eisack cycle path and the Höfeweg.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Neustift abbey above its vineyards, in May (Oliver Abels, CC BY-SA 3.0), 11 m from the line.',
+        route: 'Official loop 6.1 km from the Neustift abbey car park; the stored OSM line (relation 11775923, Törggeleweg) is the same loop, 6.3 km, starting 26 m from the official start.',
+        routeNumbers: 'From the abbey car park cross the Eisack bridge, follow the village road past the fire station, the way to the Köfererhof, then waymarks 4A/4 up through the vineyards, 6 down to the Pacherhof and the “T” waymark through the wood to the Wetterkreuz and Gasthaus Sunnegg; then 15 down to the Eisack cycle path, north through the Löwenviertel and back on the Höfeweg (9).',
+        mapPoints: 'Start at the large car park of Neustift abbey, bus stop Neustift Kloster (official start); drinking water at the start and at km 2.3, 3.6, 5.4 and 6.0 (OSM nodes 8663117307, 13875144101, 9852744717, 8663117305, 11332444269).',
+        elevation: 'Official 6.1 km, 215 m up and down, 1 h 46 min, 572–725 m (Brixen Tourismus, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Brixen Tourismus, Törggele-Rundweg in Neustift-Brixen (Südtirol.info)',
+          'Stadtgemeinde Brixen, Verordnung über die Haltung und Führung von Tieren (Gemeinderat Nr. 5, 27.01.2011), Art. 5 and 6',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Vahrn, Natz-Schabs)',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 11775923, road, surface, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 31,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 550 m on the Stiftstraße and a crossing of the old Pustertaler Straße (SS49)', 'A steep lane (15%) near km 4.4', 'A stretch on the Eisack cycle path, shared with bikes', 'Vineyards on both sides, where dogs may not go in the Brixen stretch'],
+      terrainType: 'Village lanes, farm tracks and vineyard paths, with a woodland section and the Eisack cycle path',
+      shadeDescription: 'About a third is wooded, mostly the climb to the Wetterkreuz; the vineyards above Neustift are open and sunny.',
+      terrainDescription: 'An easy loop at 570–725 m through the northernmost vineyards of the Eisack valley, past wine farms, with a short wooded climb and a return along the river.',
+      waterDescription: 'Drinking water at the abbey at the start and at several points on the loop (km 2.3, 3.6, 5.4 and 6.0). Dogs may not bathe in public fountains.',
+      dogNotes: 'Vahrn and Natz-Schabs publish no dog rule, so the Italian national rule applies there: a lead of at most 1.5 m and a muzzle carried in villages and public places. On the Brixen stretch (km 2.9–3.8) Brixen requires a lead in built-up areas and bans dogs from vineyards, orchards and fields. The route passes working wine farms, so keep your dog close.',
+      tips: 'Start at the Neustift abbey car park and follow the Törggeleweg through the vineyards to the Wetterkreuz and back along the Eisack: 6.1 km, about 215 m of climbing, under two hours. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep out of the vineyards. It is sunny and low, so go early or late in summer; in the Törggelen season, from October to Advent, the wine farms on the way open their parlours.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Törggele-Rundweg in Neustift-Brixen (Brixen Tourismus)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi2a589414c08dcf1a15db8ef9caf919d9.toerggele-rundweg-in-neustift-brixen.neustift' },
+        { label: 'Brixen, Verordnung über die Haltung und Führung von Tieren', url: 'https://asmb.it/export/sites/asmb2/.downloads/de/umweltdienste/verordnung_haltung-20und-20fuehrung-20tiere.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11775923' }
+      ],
+      startPoint: { lat: 46.7417884, lng: 11.647857, label: 'Neustift abbey car park, bus stop Neustift Kloster (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.7420606, lng: 11.6482978, osmId: 'node/8663117307', label: 'Drinking water at the abbey' },
+        { km: 2.3, lat: 46.7313382, lng: 11.6538415, osmId: 'node/13875144101', label: 'Drinking fountain' },
+        { km: 3.6, lat: 46.7383238, lng: 11.6569388, osmId: 'node/9852744717', label: 'Drinking fountain' },
+        { km: 5.4, lat: 46.743984, lng: 11.6487217, osmId: 'node/8663117305', label: 'Drinking fountain' },
+        { km: 6, lat: 46.7391019, lng: 11.6504791, osmId: 'node/11332444269', label: 'Drinking fountain' }
+      ],
+      desc: 'A vineyard walk from Neustift abbey near Brixen: up through the northernmost vineyards of the Eisack valley past wine farms to the Wetterkreuz and Gasthaus Sunnegg, and back along the river. The official route lists 6.1 km and 215 m of ascent.'
+    },
+    'osm-12302182': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 5).
+      // The official family loop of the Tourismusgenossenschaft Antholzertal
+      // round Antholz Niedertal (Rasen-Antholz, not Gsies). Rasen-Antholz's dog
+      // regulation (Gemeinderat 10/2010) requires a lead of at most 1.5 m and a
+      // muzzle carried (Art. 4) and keeps dogs off farmed meadows (Art. 8). No
+      // biotope, Natura 2000 site or park on the line.
+      area: 'Antholz Niedertal, Rasen-Antholz / Anterselva di Sotto, Rasun-Anterselva',
+      distance: 3.1,
+      elevation: 30,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Antholz Niedertal past the fishing pond, up the forest road to the Walderhöfe, down to Bad Salomonsbrunn and back along the cycle path and the stream.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The meadows by Antholz Niedertal, near the start, in September (Jörg Blobelt, CC BY-SA 4.0).',
+        route: 'Official loop 3.1 km from Antholz Niedertal; the stored OSM line (relation 12302182, Dorfrundweg Niedertal) is the same loop, 3.0 km, within 3 m of the official start.',
+        routeNumbers: 'No route number: from Antholz Niedertal walk to the fishing pond, take the forest road towards the Hofstatt Alm as far as the Walderhöfe, then the lane down to Bad Salomonsbrunn, the cycle path back towards the pond and on to the barbecue area, and over the little bridge back to the village.',
+        mapPoints: 'Start in Antholz Niedertal, bus 431 stop Antholz Niedertal (official start); Refill drinking fountains at the start and at km 2.6 (OSM nodes 7318189286, 7318189385).',
+        elevation: 'Official 3.1 km, 30 m up and down, 1 h, 1,094–1,120 m (Tourismusgenossenschaft Antholzertal, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Antholzertal, Niedertaler Rundweg (Südtirol.info)',
+          'Gemeinde Rasen-Antholz, Verordnung über die Haltung von Hunden (Gemeinderat 10/2010), Art. 4 and 8',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 12302182, road, surface and woodland data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 27,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A stretch on the cycle path along the stream, shared with bikes', 'About 200 m on the Niedertaler Straße and short lanes past the Walderhöfe', 'A small wooden bridge with steps at km 2.1'],
+      terrainType: 'Gravel forest road, quiet lanes and the valley cycle path; pram-friendly',
+      shadeDescription: 'About a quarter is along the edge of the forest; the meadows and the cycle path by the stream are open.',
+      terrainDescription: 'An almost level family walk at about 1,100 m on a forest road, lanes and the cycle path beside the Antholzer Bach; the board calls it suitable for prams.',
+      waterDescription: 'Refill drinking fountains in the village at the start and near the end (km 2.6), and the stream beside much of the return.',
+      dogNotes: 'Rasen-Antholz requires a lead of at most 1.5 m on all public land and a muzzle carried, and dogs must stay off the farmed meadows from March to October. The loop passes the Walderhöfe farms and the fishing pond, so keep your dog close.',
+      tips: 'An easy hour round Antholz Niedertal (bus 431 to Antholz Niedertal): 3.1 km and barely any climbing, on a forest road, lanes and the cycle path by the stream. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep off the meadows; watch for bikes on the cycle path. Fill up at the Refill fountain in the village.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Niedertaler Rundweg (Tourismusgenossenschaft Antholzertal)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi0cbd50c2238da2f63c18f817fffb82c7.niedertaler-rundweg.neunhaeusern' },
+        { label: 'Gemeinde Rasen-Antholz, dog regulation', url: 'https://www.gemeinde.rasenantholz.bz.it/it/Argomenti/Animale_domestico/Segreteria-_Ordinanza_sul_regolamento_della_tenuta_dei_cani_1' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12302182' }
+      ],
+      startPoint: { lat: 46.831743, lng: 12.0886862, label: 'Antholz Niedertal village, bus 431 stop Antholz Niedertal (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.831747, lng: 12.090456, osmId: 'node/7318189286', label: 'Refill drinking fountain in Antholz Niedertal' },
+        { km: 2.6, lat: 46.830009, lng: 12.091274, osmId: 'node/7318189385', label: 'Refill drinking fountain' }
+      ],
+      desc: 'A gentle family loop round Antholz Niedertal in the Antholz valley: past the fishing pond, along the forest edge to the Walderhöfe, down to Bad Salomonsbrunn and back beside the stream. The official route lists 3.1 km and 30 m of ascent.'
+    },
+    'osm-12302137': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 5).
+      // The official loop of the Tourismusgenossenschaft Antholzertal round
+      // Antholz Mittertal (Rasen-Antholz, not Gsies). Rasen-Antholz's dog
+      // regulation (Gemeinderat 10/2010) applies. The line touches the edge of
+      // the Rieserferner-Ahrn nature park at one point (km 2.1), where the
+      // nature parks' code of conduct requires a lead.
+      area: 'Antholz Mittertal, Rasen-Antholz / Anterselva di Mezzo, Rasun-Anterselva',
+      distance: 4.4,
+      elevation: 150,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Antholz Mittertal by the Ausserwegersäge, road 11 and path 6A past the Wanzler Hof to the Eggerhöfe, and back to the village.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Antholz valley at Mittertal, in August (Gianni Bassini, CC BY-SA 3.0), 8 m from the line.',
+        route: 'Official loop 4.4 km from Antholz Mittertal; the stored OSM line (relation 12302137, Dorfrundweg Mittertal) is the same loop, 4.7 km, within 4 m of the official start.',
+        routeNumbers: 'From the village centre walk towards the Ausserwegersäge, turn right onto the lane waymarked 11, right again towards the Waldrasthof, then path 6A along the forest edge past the Wanzler Hof to the Eggerhöfe, and back to Antholz Mittertal.',
+        mapPoints: 'Start in Antholz Mittertal village centre, bus 431 stop Antholz Mittertal (official start); Refill drinking fountains in the village at km 0–0.3 (OSM nodes 7318188890, 7318188891, 7318188894).',
+        elevation: 'Official 4.4 km, 150 m up and down, 1 h 30 min, 1,236–1,349 m (Tourismusgenossenschaft Antholzertal, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Antholzertal, Mittertaler Rundweg (Südtirol.info)',
+          'Gemeinde Rasen-Antholz, Verordnung über die Haltung von Hunden (Gemeinderat 10/2010), Art. 4 and 8',
+          'South Tyrol nature parks, code of conduct (dogs on a lead at all times)',
+          'Province landscape-plan layers: edge of the Rieserferner-Ahrn nature park at km 2.1; no biotope',
+          'OpenStreetMap relation 12302137, road, surface, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 13,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Most of the loop is on quiet village and farm lanes, some tarmac, open to cars', 'Working farms at the Wanzler Hof and the Eggerhöfe'],
+      terrainType: 'Village and farm lanes with a forest-edge path',
+      shadeDescription: 'Mostly open: only about an eighth runs along the forest edge; the lanes and meadows on the sunny side of the valley are exposed to the sun.',
+      terrainDescription: 'An easy panoramic loop at 1,240–1,350 m on lanes and a forest-edge path above Antholz Mittertal, with views over the village and up the valley.',
+      waterDescription: 'Several Refill drinking fountains in the village at the start; none on the loop itself, so carry water on warm days.',
+      dogNotes: 'Rasen-Antholz requires a lead of at most 1.5 m on all public land and a muzzle carried, and dogs must stay off the farmed meadows from March to October. The loop passes working farms (the Wanzler Hof and the Eggerhöfe), and touches the edge of the Rieserferner-Ahrn nature park, where a lead is required.',
+      tips: 'Start in Antholz Mittertal (bus 431) and follow road 11 and path 6A past the Wanzler Hof to the Eggerhöfe and back: 4.4 km, about 150 m of climbing, an hour and a half. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep off the meadows. The loop is mostly open, so the board recommends the morning or evening; fill up at a fountain in the village.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Mittertaler Rundweg (Tourismusgenossenschaft Antholzertal)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoib5ebf0e219b99946241c83b6f7fb3efb.mittertaler-rundweg.neunhaeusern' },
+        { label: 'Gemeinde Rasen-Antholz, dog regulation', url: 'https://www.gemeinde.rasenantholz.bz.it/it/Argomenti/Animale_domestico/Segreteria-_Ordinanza_sul_regolamento_della_tenuta_dei_cani_1' },
+        { label: 'South Tyrol nature parks, code of conduct', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12302137' }
+      ],
+      startPoint: { lat: 46.8587132, lng: 12.0992638, label: 'Antholz Mittertal village centre, bus 431 stop Antholz Mittertal (official start)' },
+      waterSources: [
+        { km: 0.1, lat: 46.8595087, lng: 12.0998005, osmId: 'node/7318188890', label: 'Refill drinking fountain in Antholz Mittertal' },
+        { km: 0.2, lat: 46.860027, lng: 12.1005345, osmId: 'node/7318188891', label: 'Refill drinking fountain' },
+        { km: 0.2, lat: 46.8606092, lng: 12.1010639, osmId: 'node/7318188894', label: 'Refill drinking fountain' }
+      ],
+      desc: 'A panoramic loop above Antholz Mittertal in the Antholz valley: on quiet lanes and along the forest edge past old farms to the Eggerhöfe, with views over the village and the mountains at the head of the valley. The official route lists 4.4 km and 150 m of ascent.'
     }
   };
 
