@@ -1,0 +1,47 @@
+name: ORMA hand verifications
+
+# A walk verified by hand is recorded in the backoffice the moment it merges.
+#
+# Verification is done by hand in Claude and lands in the published record
+# (trail-audits.js, the verified-trail ledger). This copies it into the
+# orchestration as `verified-by-hand`, retires the queued work those trails
+# still own, and redraws the trail board -- so the board agrees with the site
+# within minutes of the merge, not at the next three-hourly worker pass. The
+# worker runs the same step first in every pass, so a missed push is caught up.
+#
+# No model call. It shares the worker's concurrency group because both write the
+# orchestration.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'trail-audits.js'
+      - 'data/verified-trail-overrides.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orma-backoffice-worker
+  cancel-in-progress: false
+
+jobs:
+  record:
+    if: github.event_name == 'workflow_dispatch' || vars.ORMA_WORKER_AUTOMATION_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check worker credentials
+        run: test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+      - run: npm ci
+      - name: Record hand verifications and redraw the board
+        run: npm run backoffice:hand-verifications

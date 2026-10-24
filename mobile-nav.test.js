@@ -208,11 +208,14 @@ describe('shared navigation hardening', () => {
     expect(kicks).toContain('Recently viewed');
     const recent = [...menu.querySelectorAll('a')]
       .filter(a => (a.getAttribute('href') || '').startsWith('trail.html'))
-      .map(a => `${a.textContent} \u2192 ${a.getAttribute('href')}`);
+      .map(a => `${a.querySelector('.nav-dogmenu-recent-name').textContent} \u2192 ${a.getAttribute('href')}`);
     expect(recent).toEqual([
       'Val Gardena Trail \u2192 trail.html?id=vag',
       'Maurienne Trail \u2192 trail.html?id=mau',
     ]);
+    // The area sits under the name, not beside it.
+    expect([...menu.querySelectorAll('.nav-dogmenu-recent-area')].map(area => area.textContent))
+      .toEqual(['Val Gardena', 'Maurienne']);
   });
 
   test('shows the banner for a signed-in account without dog details', () => {

@@ -338,6 +338,9 @@ async function advanceTrailOrchestration(store,options={}){
   const reviewQueue=await store.getArtifact('dossier-review-queue')||{contractVersion:'1.0.0',items:[],publicMutationAllowed:false};
   const next=JSON.parse(JSON.stringify(state)); const nextQueue=JSON.parse(JSON.stringify(reviewQueue)); const queued=[]; const advanced=[]; const releasedGates=[];
   for(const trail of next.trails){
+    // Changed by hand, never by a pass: a job that finishes or fails after the
+    // trail was verified by hand must not reopen a gate on it.
+    if(trail.state==='verified-by-hand')continue;
     const latestTrailJobs=new Map();for(const job of jobs.filter(item=>trail.jobIds.includes(item.id))){
       const current=latestTrailJobs.get(job.agentId);if(!current||timeValue(job.createdAt)>timeValue(current.createdAt))latestTrailJobs.set(job.agentId,job);
     }

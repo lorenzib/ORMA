@@ -20,15 +20,20 @@ const fs = require('fs');
 const path = require('path');
 const evidence = require('../../trust/evidence-v1.js');
 const { actionsFor, ROUTE_STATES, RESEARCH_STATES } = require('./trail-requests');
+const { WITHDRAWN_STAGE } = require('./record-hand-verifications');
+const { verifiedByHand } = require('./record-hand-verifications');
 
 const CHECKS = Object.freeze(['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation',
   'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access']);
 const CHECK_LABELS = Object.freeze({ photo: 'photo', route: 'route', routeNumbers: 'trail numbers',
   mapPoints: 'map points', elevation: 'elevation', water: 'water', heat: 'heat', exposure: 'exposure',
   livestock: 'livestock', surfaceHazards: 'ground', access: 'dog access' });
-const STAGES = Object.freeze(['queued', 'route', 'research', 'publish', 'passed', 'stopped']);
+// `hand` is not a step on the pipeline's road: it is where a walk verified by
+// hand sits, beside Passed rather than inside it, so the pipeline's own count
+// stays what the evidence policy actually approved.
+const STAGES = Object.freeze(['queued', 'route', 'research', 'publish', 'passed', 'hand', 'stopped']);
 const STAGE_LABELS = Object.freeze({ queued: 'Not started', route: 'Route check', research: 'Research',
-  publish: 'Publishing', passed: 'Passed', stopped: 'Stopped' });
+  publish: 'Publishing', passed: 'Passed', hand: 'Verified by hand', stopped: 'Stopped' });
 const STATE_TEXT = Object.freeze({
   'geometry-audit': 'Route survey by the cartographer',
   'geometry-human-gate': 'Route decision, settled by the evidence policy',
@@ -95,7 +100,7 @@ function publicationByTrail(requests){
   for(const request of requests?.requests || []){
     const id = request.candidateId || request.trailId;
     if(!id) continue;
-    const at = new Date(request.failedAt || request.publishedAt || request.processedAt || request.submittedAt || request.createdAt || 0).getTime();
+    const at = new Date(request.failedAt || request.publishedAt || request.pullRequestClosedAt || request.processedAt || request.submittedAt || request.createdAt || 0).getTime();
     const current = out.get(id);
     if(!current || at >= current.at) out.set(id, { request, at });
   }
@@ -115,12 +120,13 @@ function publicationText(request){
       failed: true, stuck: manual, retryable: request.retryable !== false,
     };
   }
-  if(status === 'pull-request-opened') return { next: 'Publication pull request open', failed: false, stuck: false };
+  if(status === 'pull-request-opened') return { next: request.pullRequestMergedAt ? 'Publication merged, waiting to go live' : 'Publication pull request open', failed: false, stuck: false };
+  if(status === 'pull-request-closed') return { next: 'Publication pull request closed unmerged', failed: false, stuck: false };
   if(status === 'hold') return { next: 'Publication on hold', failed: false, stuck: false };
   return { next: 'Waiting to be published', failed: false, stuck: false };
 }
 
-function entryFor(trail, flow, publication, jobOwed, slug){
+function entryFor(trail, flow, publication, jobOwed, slug, paidResearch){
   const badge = badgeOf(trail);
   const checks = completedChecks(trail);
   const missing = CHECKS.filter(check => !checks.includes(check));
@@ -135,13 +141,23 @@ function entryFor(trail, flow, publication, jobOwed, slug){
     publicationFailed: false, flag: null, next: '', detail: '',
   };
   if(!flow){
-    entry.stage = badge === 'verified' ? 'passed' : 'queued';
-    entry.next = badge === 'verified' ? 'Verified' : 'Waiting for the daily intake';
-    entry.detail = badge === 'verified' ? 'Verified through the route audit' : '';
+    // Until the first pass records it, a walk verified by hand with no
+    // orchestration entry is still a hand verification, not a pipeline pass.
+    const hand = badge === 'verified' && verifiedByHand(trail);
+    entry.stage = hand ? 'hand' : badge === 'verified' ? 'passed' : 'queued';
+    entry.next = hand ? 'Verified by hand' : badge === 'verified' ? 'Verified' : 'Waiting for the daily intake';
+    entry.detail = hand ? 'Not yet recorded in the backoffice; the next pass records it'
+      : badge === 'verified' ? 'Verified through the route audit' : '';
   }else if(ROUTE_STATES.has(state) || RESEARCH_STATES.has(state)){
     entry.stage = ROUTE_STATES.has(state) ? 'route' : 'research';
     entry.next = STATE_TEXT[state];
     entry.detail = jobOwed ? 'An agent job is waiting' : blockers.length ? `Open: ${list(blockers.slice(0, 2))}` : 'Waiting for the next pass';
+    // Research jobs call the model. With paid research off they stay queued
+    // and nothing in this stage moves, so saying agents are at work is false.
+    if(entry.stage === 'research' && !paidResearch){
+      entry.next = 'Paused: paid research is off';
+      entry.detail = blockers.length ? `Verify by hand. Open: ${list(blockers.slice(0, 2))}` : 'Verify by hand to move it on';
+    }
   }else if(state === 'ready-for-editorial'){
     const published = String(publication?.status || '') === 'published';
     if(published || badge !== 'imported'){
@@ -156,10 +172,25 @@ function entryFor(trail, flow, publication, jobOwed, slug){
       entry.publicationFailed = text.failed && text.retryable;
       if(text.stuck) entry.flag = 'stuck';
     }
+  }else if(state === 'verified-by-hand'){
+    const hand = flow.handVerification || {};
+    entry.stage = 'hand';
+    entry.next = badge === 'verified' ? 'Verified by hand' : 'Recorded as verified by hand; the site has not caught up';
+    entry.detail = [hand.reviewedAt ? `Checked ${hand.reviewedAt} against official sources` : 'Checked against official sources',
+      hand.previousState ? `the pipeline had reached ${hand.previousState.replace(/-/g, ' ')}` : 'never admitted to the pipeline'].join('; ');
+    entry.hand = { reviewedAt: hand.reviewedAt || null, reviewedBy: hand.reviewedBy || null,
+      sources: hand.sources || [], previousState: hand.previousState || null };
+    // The record says verified; if the site does not, somebody should know.
+    if(badge !== 'verified') entry.flag = 'disagree';
   }else if(TERMINAL.has(state)){
     entry.stage = 'stopped';
     entry.stopKind = state === 'imported' ? 'resting' : state;
-    if(state === 'imported'){
+    if(state === 'imported' && flow.stage === WITHDRAWN_STAGE){
+      // A seal taken off by hand had an official page; what it lacked was an
+      // authority's climb and walking time.
+      entry.next = 'Seal withdrawn: no official climb or walking time';
+      entry.detail = 'Reopens when an authority publishes both';
+    }else if(state === 'imported'){
       entry.next = 'Resting: no official page to research from';
       entry.detail = 'Reopens only if a source appears';
     }else{
@@ -224,16 +255,16 @@ function slugMap(root = path.resolve(__dirname, '../..')){
   catch{ return {}; }
 }
 
-function buildTrailBoard({ trails = [], orchestration = null, publicationRequests = null, jobs = [], at, slugs = slugMap() } = {}){
+function buildTrailBoard({ trails = [], orchestration = null, publicationRequests = null, jobs = [], at, slugs = slugMap(), paidResearchEnabled = false } = {}){
   const flows = new Map((orchestration?.trails || []).map(flow => [flow.trailId || flow.candidateId, flow]));
   const publications = publicationByTrail(publicationRequests);
   const owed = new Set((jobs || []).filter(job => ACTIVE_JOB.has(job.status || 'queued')).map(job => job.candidateId).filter(Boolean));
   const entries = trails.filter(trail => trail && trail.id)
-    .map(trail => entryFor(trail, flows.get(trail.id), publications.get(trail.id), owed.has(trail.id), slugs[trail.id]));
+    .map(trail => entryFor(trail, flows.get(trail.id), publications.get(trail.id), owed.has(trail.id), slugs[trail.id], paidResearchEnabled));
   // What needs a look first, then what is moving, then what is settled, and
   // the long tail nobody has started last -- in journey order the board opened
   // on 141 untouched trails and buried the ones that mattered.
-  const order = new Map(['publish', 'research', 'route', 'passed', 'stopped', 'queued'].map((stage, index) => [stage, index]));
+  const order = new Map(['publish', 'research', 'route', 'passed', 'hand', 'stopped', 'queued'].map((stage, index) => [stage, index]));
   const attention = entry => (entry.flag ? 0 : 1);
   entries.sort((a, b) => (attention(a) - attention(b)) || (order.get(a.stage) - order.get(b.stage)) || a.name.localeCompare(b.name));
   const count = predicate => entries.filter(predicate).length;
@@ -243,8 +274,10 @@ function buildTrailBoard({ trails = [], orchestration = null, publicationRequest
     publicMutationAllowed: false,
     summary: {
       trails: entries.length,
+      paidResearchEnabled: paidResearchEnabled === true,
       stages: Object.fromEntries(STAGES.map(stage => [stage, count(entry => entry.stage === stage)])),
       verified: count(entry => entry.badge === 'verified'),
+      verifiedByHand: count(entry => entry.stage === 'hand'),
       reviewed: count(entry => entry.badge === 'reviewed'),
       stuck: count(entry => entry.flag === 'stuck'),
       disagree: count(entry => entry.flag === 'disagree'),

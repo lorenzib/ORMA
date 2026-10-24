@@ -43,6 +43,24 @@
     return null;
   }
 
+  // A source entry is the verifier's working note -- quotes, article numbers,
+  // document ids -- and on 24 October the bell pasted whole paragraphs of them.
+  // The bell says what happened in one line; the notes stay in the record.
+  // Map data is how the line was drawn, not an authority, so it is not counted.
+  function officialSourceCount(trail){
+    var sources = trail && trail.verified && Array.isArray(trail.verified.sources) ? trail.verified.sources : [];
+    return sources.filter(function(source){
+      return !/^\s*openstreetmap\b/i.test(String(source || ''));
+    }).length;
+  }
+
+  function auditLine(trail){
+    if(!(trail && trail.graduation && trail.graduation.status === 'verified')) return 'Reviewed by ORMA: trail details updated.';
+    var count = officialSourceCount(trail);
+    if(!count) return 'Now ORMA Verified.';
+    return 'Now ORMA Verified: checked against ' + count + ' official source' + (count === 1 ? '' : 's') + '.';
+  }
+
   // → [{id, icon, alert, group:'today'|'earlier', timeLabel, title, body, href}]
   function build(opts){
     opts = opts || {};
@@ -113,14 +131,11 @@
       .slice(0, AUDIT_LIMIT)
       .forEach(function(entry){
         var t = entry.t;
-        var sources = t.verified && Array.isArray(t.verified.sources) && t.verified.sources.length
-          ? 'Checked against ' + t.verified.sources.join(', ') + '.'
-          : 'Desk-reviewed by ORMA.';
         items.push({
           id: 'audit-' + t.id + '-' + entry.date,
           icon: 'verified', alert: false, group: 'earlier', timeLabel: shortDate(entry.date),
-          title: t.name + ' has updated trail information',
-          body: sources + ' Its trail details have been updated.',
+          title: t.name,
+          body: auditLine(t),
           href: 'trail.html?id=' + encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)))
         });
       });

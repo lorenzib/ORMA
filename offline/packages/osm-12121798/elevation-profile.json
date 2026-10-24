@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12121798",
+  "distanceKm": 2.1,
+  "ascentM": 70,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 781
+    },
+    {
+      "km": 0.2,
+      "elev": 778
+    },
+    {
+      "km": 0.3,
+      "elev": 763
+    },
+    {
+      "km": 0.5,
+      "elev": 748
+    },
+    {
+      "km": 0.6,
+      "elev": 721
+    },
+    {
+      "km": 0.8,
+      "elev": 716
+    },
+    {
+      "km": 1,
+      "elev": 722
+    },
+    {
+      "km": 1.2,
+      "elev": 713
+    },
+    {
+      "km": 1.3,
+      "elev": 710
+    },
+    {
+      "km": 1.5,
+      "elev": 710
+    },
+    {
+      "km": 1.6,
+      "elev": 712
+    },
+    {
+      "km": 1.8,
+      "elev": 734
+    },
+    {
+      "km": 2,
+      "elev": 759
+    },
+    {
+      "km": 2.1,
+      "elev": 768
+    }
+  ]
+}

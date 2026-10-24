@@ -124,6 +124,13 @@ URL, clears the final-PR gate, and adds the live trail link to **What happened
 after your clicks**. A delayed Pages run is an expected waiting state: the next
 worker pass checks again without claiming publication early.
 
+Every worker pass also asks GitHub what happened to each publication PR. A
+merged PR leaves the final-PR gate at once and waits for its deployment
+receipt. A PR closed without merging changes the receipt to
+`pull-request-closed`: the card leaves the board, nothing from that PR is
+published, and it is not retried, because its trails may since have been
+verified by hand or withdrawn. A fresh approval publishes again.
+
 If reconciliation is ever missed, manually run **Confirm ORMA trail
 deployment**. Leave its optional commit blank to verify the latest successful
 Pages deployment, or supply the known deployed commit to verify that exact

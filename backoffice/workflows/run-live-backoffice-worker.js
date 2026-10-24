@@ -35,6 +35,9 @@ const fs=require('fs');
 const {buildTrailBoard}=require('./build-trail-board');
 const {planSafetyResearch,dispatchSafetyResearch,planStandDown,standDown}=require('./safety-research-lane');
 const {retirementFields}=require('./retire-blocked-jobs');
+const {planHandVerifications,RETIRED_REASON:HAND_RETIRED_REASON}=require('./record-hand-verifications');
+const {summarize:summarizeOrchestration}=require('./build-live-orchestration');
+const {validateTrailOrchestration}=require('../contracts/trail-orchestration-v1');
 const path=require('path');
 
 function iso(value){
@@ -839,6 +842,9 @@ async function runLiveBackofficeWorker(store, options = {}){
   // nothing blocking them at all. Publication is a separate lane and keeps its
   // own gate; this decides whether a trail is verified, not whether it ships.
   const catalogueTrails=productionTrails;
+  // First, so the intake never admits a walk already verified by hand and no
+  // lane below spends a pass on one.
+  const handVerifications=await recordHandVerifications(store,{...options,productionTrails});
   const campaign=await runScheduledTrailCampaign(store,siteTrails,{enabled:options.campaignEnabled===true,
     at:options.at,limit:options.campaignLimit||DEFAULT_CAMPAIGN_LIMIT,capacity:options.campaignCapacity||DEFAULT_TRAIL_CAPACITY,
     queueCapacity:options.campaignQueueCapacity,trigger:options.campaignTrigger,
@@ -931,7 +937,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   const coverage = await recordRegionalCoverage(store,{...options,productionTrails:siteTrails});
   // Last of all, so Backoffice Home shows each trail as this pass leaves it.
   const trailBoard = await recordTrailBoard(store,{...options,productionTrails});
-  return { workerId:options.workerId || null,campaign,pipeline,programme,coverage,trailBoard,usageDay,publicationStaging,newTrailReviews,hazardReviews,closureScouting,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,safetyResearch,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,handVerifications,campaign,pipeline,programme,coverage,trailBoard,usageDay,publicationStaging,newTrailReviews,hazardReviews,closureScouting,communityHazards,recoveredJobs,requeuedAfterOutage, routeReviews, routeAdmissions, gateDispatches,safetyResearch,automatedGates, dossierReviews, gateAdjudications, advancementBefore,reviews,editorialFirstPass,automatedEditorial,jobs,specialistJobs,advancementAfter,automatedPublications,publications,completedAt:new Date().toISOString() };
 }
 
 /**
@@ -960,6 +966,40 @@ async function recordDayUsage(store, options = {}){
 }
 
 /**
+ * Copy what was verified by hand into the orchestration (OPERATING_STANDARD.md,
+ * "A walk verified by hand is recorded in the backoffice"), and retire the
+ * queued work those trails still own.
+ *
+ * Fatal, unlike the summaries: a pass that went on to research or admit a walk
+ * already verified by hand would spend credit on it.
+ */
+async function recordHandVerifications(store, options = {}){
+  if(typeof store.getArtifact!=='function'||typeof store.setArtifact!=='function')return null;
+  const at=options.at||new Date().toISOString();
+  const [orchestration,jobs]=await Promise.all([
+    store.getArtifact('trail-orchestration'),
+    typeof store.listJobs==='function'?store.listJobs(['queued']):[],
+  ]);
+  const plan=planHandVerifications({
+    trails:options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..')),
+    orchestration,jobs,at,
+  });
+  if(plan.orchestration){
+    const next={...plan.orchestration,generatedAt:at,summary:summarizeOrchestration(plan.orchestration.trails)};
+    const errors=validateTrailOrchestration(next);if(errors.length)throw new Error(errors.join('; '));
+    await store.setArtifact('trail-orchestration',next,{handVerificationsAt:at});
+  }
+  const retired=[];
+  if(typeof store.completeSystemJob==='function'){
+    for(const id of plan.retireJobIds){
+      await store.completeSystemJob(id,retirementFields(HAND_RETIRED_REASON,at,'queued'));
+      retired.push(id);
+    }
+  }
+  return {recorded:plan.recorded,withdrawn:plan.withdrawn,retiredJobs:retired};
+}
+
+/**
  * Every catalogue trail and where it is in verification, for Backoffice Home.
  *
  * The desk can read the orchestration but not the catalogue, and the
@@ -980,6 +1020,7 @@ async function recordTrailBoard(store, options = {}){
     const board=buildTrailBoard({
       trails:options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..')),
       orchestration,publicationRequests,jobs,at:options.at||new Date().toISOString(),
+      paidResearchEnabled:options.paidResearchEnabled===true,
     });
     await store.setArtifact('trail-board',board,{trails:board.summary.trails,stuck:board.summary.stuck});
     return board.summary;
@@ -1070,4 +1111,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { sendReviewedTrailsForSafetyResearch,PROCESSABLE_JOB_TYPES,refreshPublicationStaging,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore,scoutClosureNotices, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordTrailBoard,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { sendReviewedTrailsForSafetyResearch,PROCESSABLE_JOB_TYPES,refreshPublicationStaging,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore,scoutClosureNotices, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordTrailBoard,recordHandVerifications,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

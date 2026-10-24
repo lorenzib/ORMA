@@ -28,14 +28,17 @@ describe('logged-in discovery workspace layout', () => {
     expect(html).toContain('id="liLocationNudgeBtn"');
     expect(html).toContain('Your position stays in this browser session and is not added to your profile.');
     expect(html).toContain('id="liChangeLocationBtn"');
-    expect(html).toContain('id="liShowAllBtn"');
+    // One region at a time: the place menu offers the two regions, never "All".
+    expect(html).not.toContain('id="liShowAllBtn"');
+    expect(html).toContain('data-li-region="dolomites"');
+    expect(html).toContain('data-li-region="savoy"');
     // Scope lives in one place: the three controls sit together on the location
     // summary rather than half there and half behind an Explore menu.
     expect(html).not.toContain('id="liExploreBtn"');
     expect(html).not.toContain('id="liExploreMenu"');
     expect(html).toContain('id="liNearMeBtn"');
-    expect(html.indexOf('id="liChangeLocationBtn"')).toBeLessThan(html.indexOf('id="liNearMeBtn"'));
-    expect(html.indexOf('id="liNearMeBtn"')).toBeLessThan(html.indexOf('id="liShowAllBtn"'));
+    expect(html.indexOf('data-li-region="savoy"')).toBeLessThan(html.indexOf('id="liNearMeBtn"'));
+    expect(html.indexOf('id="liNearMeBtn"')).toBeLessThan(html.indexOf('id="liChangeLocationBtn"'));
     expect(css).toContain('.li-toolbar[hidden],.li-body[hidden]{display:none!important;}');
     expect(css).not.toContain('.li-location-gate');
   });
@@ -67,9 +70,19 @@ describe('logged-in discovery workspace layout', () => {
     const createMenu = html.slice(html.indexOf('id="liNewMenu"'), html.indexOf('id="liNewMenu"') + 500);
     expect(createMenu).toContain('li-plan-route');
     expect(createMenu).not.toContain('Record a walk');
-    // Saved becomes a view tab beside Sort in the list head.
-    expect(html.indexOf('id="liViewSaved"')).toBeLessThan(html.indexOf('id="companionSortGroup"'));
-    expect(html).toContain('class="li-list-options"');
+    // The list header is one line: title, count, a Sort dropdown and a Saved
+    // toggle. The kicker, the news line and the fold-out of tabs are gone.
+    const head = html.slice(html.indexOf('class="li-list-head"'), html.indexOf('id="returningTrailList"'));
+    expect(head).toContain('<h2 class="li-list-title" id="companionListTitle">');
+    expect(head).toContain('id="companionListCount"');
+    expect(head).toContain('<select id="companionSortSelect" aria-label="Sort trails">');
+    expect(head).toContain('id="liViewSaved" class="li-saved-toggle" aria-pressed="false"');
+    expect(head.indexOf('id="companionSortSelect"')).toBeLessThan(head.indexOf('id="liViewSaved"'));
+    for(const gone of ['companionKicker', 'returningSubline', 'li-list-options', 'liViewAll', 'companionSortGroup', 'li-explore-all']){
+      expect(html).not.toContain(gone);
+    }
+    // Browse all trails moved to the foot of the list.
+    expect(html).toContain('<a class="li-list-foot" href="browse-trails.html">Browse all trails →</a>');
   });
 
   test('keeps place, day, search, Filters and Record a walk on screen', () => {
@@ -88,6 +101,24 @@ describe('logged-in discovery workspace layout', () => {
     expect(filters).toContain('id="liQuickShade"');
     expect(filters).toContain('id="liQuickWater"');
     expect(html).toContain('<span class="li-filt-label">Filters</span>');
+  });
+
+  test('announces Draw your own route once, under Record a walk', () => {
+    const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
+    const source = fs.readFileSync('script.js', 'utf8');
+    // Hidden until the script decides it has not been seen.
+    const wrap = html.slice(html.indexOf('id="liNewWrap"'), html.indexOf('id="liAreaMenu"'));
+    expect(wrap).toContain('<div class="li-new-callout" id="liNewCallout" role="status" hidden>');
+    expect(wrap).toContain('id="liNewCalloutTry" href="route-planner.html"');
+    expect(wrap).toContain('id="liNewCalloutClose" aria-label="Dismiss"');
+    // Seen for good once closed, tried, or once either way in is used.
+    expect(source).toContain("const LI_NEW_CALLOUT_KEY = 'orma-new-draw-route-callout-v1';");
+    expect(source).toContain("['liNewBtn', 'homeMapDrawBtn'].forEach(id => {");
+    // Wider screens give it room instead of laying it over Filters.
+    expect(editorialCss).toContain('#returningCustomerHomepage #liToolbar .li-new-callout{position:relative;');
+    // The menu entry is a plain row with the tag on its title line.
+    expect(html).toContain('<span class="li-menu-title">Draw your own route <span class="li-menu-badge">New</span></span>');
+    expect(editorialCss).toContain('.li-new-menu .li-menu-item.li-plan-route{display:flex;height:auto;margin:0;border:0;');
   });
 
   test('lays the toolbar out the same way at every width', () => {

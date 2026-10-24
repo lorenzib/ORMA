@@ -13,13 +13,38 @@ const savedHtml = fs.readFileSync(path.join(root, 'saved.html'), 'utf8');
 
 describe('standalone draft route planner', () => {
   test('is entered from Explore and absent from trail detail', () => {
-    // "Draft a loop" now lives inside the "+ New" create menu in the toolbar.
-    expect(homeHtml).toContain('href="route-planner.html">Draft a loop');
+    // Named for what it does -- loops, one-way and out and back -- marked new
+    // and experimental, in the menu under Record a walk.
+    expect(homeHtml).toContain('href="route-planner.html"><span class="li-menu-title">Draw your own route <span class="li-menu-badge">New</span></span><small>Loop, one-way or out and back · experimental</small>');
+    expect(homeHtml).not.toContain('Draft a loop');
     expect(homeHtml).toContain('li-plan-route');
     expect(homeHtml.indexOf('li-plan-route')).toBeLessThan(homeHtml.indexOf('class="li-body"'));
     expect(detailHtml).not.toContain('id="mapLoopComposerBtn"');
     expect(detailHtml).not.toContain('id="mapLoopComposerPanel"');
     expect(detailSource).not.toContain('    initLoopComposer(map, t);');
+  });
+
+  test('the homepage map opens the planner on the area on screen', () => {
+    // A link, not a click handler, so a new tab gets the same place; its
+    // address follows the map.
+    expect(homeHtml).toContain('<a id="homeMapDrawBtn" class="li-map-draw" href="route-planner.html">');
+    expect(homeHtml.indexOf('id="homeMapDrawBtn"')).toBeGreaterThan(homeHtml.indexOf('id="trailMapWrap"'));
+    const homeSource = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
+    expect(homeSource).toContain("trailMapInstance.on('moveend', syncDrawLink);");
+    expect(homeSource).toContain('route-planner.html?lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}');
+  });
+
+  test('starts at the view it is given, and ignores one it cannot use', () => {
+    const body = plannerSource.match(/  function requestedView\(\)\{[\s\S]*?\n  \}\n/)[0];
+    const view = search => new Function('location', `${body}; return requestedView();`)({ search });
+    expect(view('?lat=46.69900&lng=12.08530&z=13.50')).toEqual({ center:[12.0853, 46.699], zoom:13.5 });
+    expect(view('?lat=46.7&lng=12.1')).toEqual({ center:[12.1, 46.7], zoom:12 });
+    expect(view('?lat=46.7&lng=12.1&z=30').zoom).toBe(16);
+    expect(view('')).toBeNull();
+    expect(view('?lat=&lng=12')).toBeNull();
+    expect(view('?lat=95&lng=12')).toBeNull();
+    expect(view('?route=abc')).toBeNull();
+    expect(plannerSource).toContain('...requestedView(),');
   });
 
   test('uses geographic coverage only for the bundled fallback graph', () => {
@@ -192,10 +217,14 @@ describe('drawing interactions', () => {
       removeEventListener(){},
       setAttribute(name, value){ this.dataset[name] = value; },
       getAttribute(name){ return this.dataset[name] === undefined ? null : this.dataset[name]; },
-      append(){}, appendChild(){}, replaceChildren(){}, remove(){}, focus(){},
+      append(...kids){ this.children.push(...kids); }, appendChild(kid){ this.children.push(kid); },
+      replaceChildren(){ this.children = []; }, remove(){}, focus(){},
       querySelector:() => null,
       querySelectorAll:() => [],
-      click(){ (this.listeners.click || []).forEach(handler => handler({ target:this })); },
+      click(){
+        const event = { target:this, stopPropagation(){}, preventDefault(){} };
+        (this.listeners.click || []).forEach(handler => handler(event));
+      },
     };
     return el;
   }
@@ -209,6 +238,8 @@ describe('drawing interactions', () => {
     };
     const mapHandlers = {};
     const markers = [];
+    const popup = { open:false, content:null };
+    const docHandlers = {};
     const map = {
       handlers:mapHandlers,
       addControl(){}, addSource(){}, addLayer(){}, setLayoutProperty(){},
@@ -234,9 +265,19 @@ describe('drawing interactions', () => {
         Map:function(){ return map; },
         NavigationControl:function(){}, GeolocateControl:function(){},
         LngLatBounds:function(){ return { extend(){}, isEmpty:() => true }; },
-        Marker:function(){
+        Popup:function(){
+          const instance = {
+            setLngLat(){ return instance; },
+            setDOMContent(content){ popup.content = content; return instance; },
+            addTo(){ popup.open = true; return instance; },
+            remove(){ popup.open = false; popup.content = null; return instance; },
+          };
+          return instance;
+        },
+        Marker:function(options){
           const marker = {
             listeners:{},
+            getElement:() => (options && options.element) || element(),
             setLngLat(){ return marker; },
             addTo(){ markers.push(marker); return marker; },
             remove(){},
@@ -251,7 +292,7 @@ describe('drawing interactions', () => {
         querySelector:() => null,
         querySelectorAll:selector => (selector === '[data-planner-shape]' ? shapeButtons : []),
         createElement:() => element(),
-        addEventListener(){},
+        addEventListener(type, handler){ (docHandlers[type] = docHandlers[type] || []).push(handler); },
       },
       window:null, globalThis:null,
     };
@@ -264,7 +305,7 @@ describe('drawing interactions', () => {
     context.DoloPawsTrailRoutingCoverage = { trails:{} };
     vm.createContext(context);
     vm.runInContext(fs.readFileSync(path.join(root, 'route-planner.js'), 'utf8'), context);
-    return { context, map, markers, elements, getElementById, shapeButtons };
+    return { context, map, markers, elements, getElementById, shapeButtons, popup, docHandlers };
   }
 
   const flush = () => new Promise(resolve => setTimeout(resolve, 0));
@@ -272,6 +313,89 @@ describe('drawing interactions', () => {
     path:points.map(point => ({ lat:point.lat, lng:point.lng })),
     distanceM:1200, ascentM:88, closed:false, shape:'point-to-point',
     source:'openstreetmap-brouter',
+  });
+
+  // Three points, then the third one clicked: its menu opens.
+  async function threePointsAndSelectLast(planner){
+    const click = planner.map.handlers.click[0];
+    click({ lngLat:{ lat:46.50, lng:11.60 }, point:{ x:1, y:1 } });
+    await flush();
+    click({ lngLat:{ lat:46.52, lng:11.62 }, point:{ x:2, y:2 } });
+    await flush();
+    click({ lngLat:{ lat:46.54, lng:11.64 }, point:{ x:3, y:3 } });
+    await flush();
+    planner.markers.at(-1).getElement().click();
+    return click;
+  }
+  const button = (planner, text) => planner.popup.content.children.find(kid => kid.textContent === text);
+  const lastSent = planner => planner.context.DoloPawsRoutePlannerRouting.route.mock.calls.at(-1)[0].map(point => point.lat);
+
+  test('clicking a dot opens its menu, and Remove takes that dot out', async () => {
+    const planner = loadPlanner({ routeResult:okRoute, onLine:false });
+    await threePointsAndSelectLast(planner);
+    expect(planner.popup.open).toBe(true);
+    expect(planner.popup.content.children[0].textContent).toBe('Point 3');
+    button(planner, 'Remove').click();
+    await flush();
+    expect(planner.popup.open).toBe(false);
+    expect(lastSent(planner)).toEqual([46.50, 46.52]);
+  });
+
+  test('Delete removes the selected dot, and a key while typing does not', async () => {
+    const planner = loadPlanner({ routeResult:okRoute, onLine:false });
+    await threePointsAndSelectLast(planner);
+    const keydown = planner.docHandlers.keydown[0];
+    keydown({ key:'Backspace', target:{ tagName:'INPUT' }, preventDefault(){} });
+    expect(planner.popup.open).toBe(true);
+    keydown({ key:'Delete', target:{ tagName:'BODY' }, preventDefault(){} });
+    await flush();
+    expect(lastSent(planner)).toEqual([46.50, 46.52]);
+  });
+
+  test('with a menu open, a click on the map closes it and adds nothing', async () => {
+    const planner = loadPlanner({ routeResult:okRoute, onLine:false });
+    const click = await threePointsAndSelectLast(planner);
+    const calls = planner.context.DoloPawsRoutePlannerRouting.route.mock.calls.length;
+    click({ lngLat:{ lat:46.60, lng:11.70 }, point:{ x:9, y:9 } });
+    await flush();
+    expect(planner.popup.open).toBe(false);
+    expect(planner.context.DoloPawsRoutePlannerRouting.route.mock.calls.length).toBe(calls);
+  });
+
+  test('a dot just dragged is not selected by the click that ends the drag', async () => {
+    const planner = loadPlanner({ routeResult:okRoute, onLine:false });
+    const click = planner.map.handlers.click[0];
+    click({ lngLat:{ lat:46.50, lng:11.60 }, point:{ x:1, y:1 } });
+    await flush();
+    const marker = planner.markers.at(-1);
+    marker.listeners.dragstart();
+    marker.getElement().click();
+    expect(planner.popup.open).toBe(false);
+  });
+
+  test('on a loop, Make start puts that dot first and keeps the order around', async () => {
+    const planner = loadPlanner({ routeResult:okRoute, onLine:false });
+    // Loop is the default shape.
+    await threePointsAndSelectLast(planner);
+    button(planner, 'Make start').click();
+    await flush();
+    expect(lastSent(planner).slice(0, 3)).toEqual([46.54, 46.50, 46.52]);
+  });
+
+  test('Make start is offered only on a loop', async () => {
+    const planner = loadPlanner({ routeResult:okRoute, onLine:false });
+    planner.shapeButtons.find(b => b.dataset.plannerShape === 'point-to-point').click();
+    await threePointsAndSelectLast(planner);
+    expect(button(planner, 'Make start')).toBeUndefined();
+    expect(planner.popup.content.children[0].textContent).toBe('Finish');
+  });
+
+  test('the map says how to draw, and says tap on a touch screen', () => {
+    expect(plannerHtml).toContain('<p id="plannerGuide" class="planner-guide">');
+    expect(plannerHtml).toContain('<span><span data-verb>Click</span> the map to add a point</span>');
+    expect(plannerHtml).toContain('<span>Drag a dot to move it</span>');
+    expect(plannerHtml).toContain('<span><span data-verb>Click</span> a dot to remove it</span>');
+    expect(plannerSource).toContain("window.matchMedia('(pointer: coarse)').matches");
   });
 
   test('a click away from the line appends a point to the end', async () => {

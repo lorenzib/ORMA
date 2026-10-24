@@ -1,6 +1,7 @@
 # OFF-01 — Offline map architecture decision
 
 **Status:** Provisional decision accepted for the beta. Local feasibility passed; production map generation and physical-device validation remain open.
+Since OFF-07 (2026-10-23) the beta covers every Verified trail, not only the two pilots.
 
 ## Outcome
 

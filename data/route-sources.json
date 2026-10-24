@@ -50,6 +50,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T19:40:50.460Z"
     },
+    "lago-sorapis": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/al-lago-del-sorapis/",
+      "publisher": "Cortina Marketing",
+      "name": "Al Lago del Sorapis (path 215)",
+      "quote": "Tempo 4 h · Lunghezza 10,5 km · Dislivello positivo 434 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "nuvolau": {
       "url": "https://cortina.dolomiti.org/it/escursioni/al-rifugio-nuvolau/",
       "publisher": "Cortina Dolomiti / Cortina Marketing",
@@ -57,6 +65,14 @@
       "quote": "9,8 km · 612 m · 5 h · Sentiero per esperti · sentieri 443, 439, 464, 452",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-10116380": {
+      "url": "https://www.lac-annecy.com/itineraire-de-randonnee-pedestre/a-la-decouverte-du-plateau-des-glieres-filliere/",
+      "publisher": "Office de Tourisme du Lac d'Annecy",
+      "name": "A la découverte du Plateau des Glières",
+      "quote": "Distance 4km · Dénivelé positif 100m · Durée 02h30 · Difficulté Très facile",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-10539302": {
       "url": "https://www.valloire.net/sit/le-sentier-ecosylve-de-valloire-5841280/",
@@ -82,6 +98,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T19:00:00.000Z"
     },
+    "osm-11270309": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif8faa07b611ad03ce3e44df4a2668b3e.quellenpromenade-salurn.salurn",
+      "publisher": "Tourismusgenossenschaft Südtirols Süden via IDM suedtirol.info",
+      "name": "Quellenpromenade Salurn",
+      "quote": "Strecke 1.2 Km Dauer 0h:30 min Aufstieg 115 m Abstieg 115 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T15:00:00.000Z"
+    },
+    "osm-11517208": {
+      "url": "https://www.combloux.com/itineraires/randonnee-pedestre-la-croix-des-salles/",
+      "publisher": "Office de tourisme de Combloux",
+      "name": "La Croix des Salles",
+      "quote": "Durée 03h30 · Dénivelé 487 D- / 498 D+ · Distance 9,1 km",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-11764094": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi16e4208993e3b597de62e5c389b65d33.doerferrunde-natz-schabs.natz",
       "publisher": "IDM Südtirol (LTS record of Tourismusverein Natz-Schabs / Brixen und Umgebung)",
@@ -105,6 +137,14 @@
       "quote": "Vom Dorfparkplatz in Vahrn (677 m) folgt man der Beschilderung des Themenweges „Naturdenkmal Schalderer Bach“ und steigt links vom Bach mäßig steil bis zur Kneippanlage auf.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
+    "osm-11775923": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi2a589414c08dcf1a15db8ef9caf919d9.toerggele-rundweg-in-neustift-brixen.neustift",
+      "publisher": "Brixen Tourismus via IDM suedtirol.info",
+      "name": "Törggele-Rundweg in Neustift-Brixen",
+      "quote": "Strecke 6.1 Km Dauer 1h:46 min Aufstieg 215 m Abstieg 215 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T19:00:00.000Z"
     },
     "osm-11780502": {
       "url": "https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoi17c55fc383bcaf2bebb595bceebe0ab5.sentiero-natura-zannes.s--maddalena---funes",
@@ -234,13 +274,21 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-12121346": {
+      "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/0/225/36757760/B08_De+Montandr++Champessuit.pdf",
+      "publisher": "Office de tourisme Cœur de Maurienne",
+      "name": "B08 – De Montandré à Champessuit",
+      "quote": "Type : Boucle // Distance : 5,1 km Durée : 2h35 // Dénivelé : 410 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-12121798": {
-      "url": "https://www.explore-maurienne.com/itineraire/le-terroir-de-serpoliere/",
-      "publisher": "Office de tourisme intercommunal Cœur de Maurienne Arvan (Apidae)",
-      "name": "EN02 Le Terroir de Serpolière",
+      "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/68/115/13202244/EN02_Terroir+de+Serpolire.pdf",
+      "publisher": "Office de tourisme Cœur de Maurienne Arvan",
+      "name": "EN02 – Le terroir de Serpolière",
       "quote": "Type : Boucle // Distance : 2,1 km / Durée : 0h50 // Dénivelé : 70 m",
       "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-22T18:00:00.000Z"
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-12132169": {
       "url": "https://www.dreizinnen.com/de/activity/toblacher-h-henweg-_543",
@@ -289,6 +337,14 @@
       "quote": "Startpunkt der Wanderung ist das Dorfzentrum von Terenten.",
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-12173549": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif49540ba52c904c9b1d49dd2d0b55f34.muehlenweg---erdpyramiden.terenten",
+      "publisher": "Ski- und Almregion Gitschberg Jochtal via IDM suedtirol.info",
+      "name": "Mühlenweg und Erdpyramiden",
+      "quote": "Strecke 4.5 Km Dauer 1h:30 min Aufstieg 235 m Abstieg 235 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T15:00:00.000Z"
     },
     "osm-12173965": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoidec32d98620a0ae45230deb3a04391bb.die-kleine-schlossrunde-in-welsberg.welsberg",
@@ -346,6 +402,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-12302137": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoib5ebf0e219b99946241c83b6f7fb3efb.mittertaler-rundweg.neunhaeusern",
+      "publisher": "Tourismusgenossenschaft Antholzertal via IDM suedtirol.info",
+      "name": "Mittertaler Rundweg",
+      "quote": "Strecke 4.4 Km Dauer 1h:30 min Aufstieg 150 m Abstieg 150 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T19:00:00.000Z"
+    },
+    "osm-12302182": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi0cbd50c2238da2f63c18f817fffb82c7.niedertaler-rundweg.neunhaeusern",
+      "publisher": "Tourismusgenossenschaft Antholzertal via IDM suedtirol.info",
+      "name": "Niedertaler Rundweg",
+      "quote": "Strecke 3.1 Km Dauer 1h:00 min Aufstieg 30 m Abstieg 30 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T19:00:00.000Z"
+    },
     "osm-12302191": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi40a4c9071317de8b470217dd3e65515c.dorfrunde-rasen.neunhaeusern",
       "publisher": "IDM Südtirol / Tourismusverein Antholzertal",
@@ -393,6 +465,14 @@
       "quote": "The Archeopfad Trail leads to the old Roman tower in Stufels/Stufles, the historical quarter in Brixen/Bressanone.",
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
+    },
+    "osm-13338113": {
+      "url": "https://hautesavoiemontblanc-tourisme.com/offres/itineraire-pedestre-lac-de-darbon-par-les-3-cols-vacheresse-fr-5866094/",
+      "publisher": "Conseil départemental de la Haute-Savoie",
+      "name": "Lac de Darbon par les 3 cols",
+      "quote": "Durée 3h30mn · Dist. 6.7 km · Déniv. pos. 640 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-13491868": {
       "url": "https://www.klausen.it/en/nature-experiences/hiking/theme-based-trails-and-gastronomic-trails/-birmehl-trail.html",
@@ -458,6 +538,30 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-1506470": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif2a95dde634657f7c39401eb08f491ed.sissiweg-meran.meran",
+      "publisher": "Kurverwaltung Meran via IDM suedtirol.info",
+      "name": "Sissiweg Meran",
+      "quote": "Strecke 3.2 Km Dauer 0h:55 min Aufstieg 109 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T18:00:00.000Z"
+    },
+    "osm-15321049": {
+      "url": "https://www.cirkwi.com/fr/circuit/137601-sentier-des-ecureuils",
+      "publisher": "Office de tourisme de Sainte-Foy Tarentaise",
+      "name": "Sentier des Écureuils",
+      "quote": "Durée 2h · Dist. 4.6 km · Déniv. pos. 173 m; Pour le retour, emprunter le même chemin qu'à l'aller",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
+    "osm-15321786": {
+      "url": "https://www.cirkwi.com/fr/circuit/137602-circuit-de-la-comtesse-cecile",
+      "publisher": "Office de tourisme de Sainte-Foy Tarentaise",
+      "name": "Circuit de la Comtesse Cécile",
+      "quote": "Durée 2h25mn · Dist. 4.9 km · Déniv. pos. 435 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-15591346": {
       "url": "https://tourisme.coeurdesavoie.fr/fiches/le-sentier-des-buis-114550/",
       "publisher": "Office de Tourisme Cœur de Savoie (Apidae)",
@@ -465,6 +569,14 @@
       "quote": "Dénivelé cumulé 780 m · Durée 4h30 · Distance 9.5km · Départ du circuit : du parking proche du cimetière-parc, chemin de Beauvoir",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-15791408": {
+      "url": "https://www.outdooractive.com/it/route/escursionismo/trentino/giro-di-bedolpian-il-laghetto-delle-rane-e-la-bellavista/67534499/",
+      "publisher": "APT Trento",
+      "name": "Giro di Bedolpian, il Laghetto delle Rane e la Bellavista",
+      "quote": "Distanza 3,3 km / Durata 0:55 h / Salita 53 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-16180587": {
       "url": "https://hautesavoiemontblanc-tourisme.com/offres/balade-du-plateau-dassy-au-lac-vert-par-la-passerelle-du-nant-bordon-passy-fr-5866028/",
@@ -474,6 +586,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-16218739": {
+      "url": "https://www.peisey-vallandry.com/pedestre/le-circuit-de-ragairon.html",
+      "publisher": "Office de Tourisme de Peisey-Vallandry",
+      "name": "Le circuit de Ragairon",
+      "quote": "Dénivellation (en m) : 731 · Durée journalière (en min) : 270",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-16322228": {
       "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/160/129/13533600/13-La-boucle-du-marais-des-chassettes.pdf",
       "publisher": "Grand Chambéry Alpes Tourisme (Apidae)",
@@ -481,6 +601,22 @@
       "quote": "1h00 · 3.509 km · 16 m · Boucle · Départ : Parking du plan d'eau",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-16363583": {
+      "url": "https://explore.chamberymontagnes.com/fr/itineraires/le-marais-de-pre-lombard",
+      "publisher": "Grand Chambéry Alpes Tourisme",
+      "name": "Le Marais de Pré Lombard",
+      "quote": "2h · 7.3km · +125m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
+    "osm-16365005": {
+      "url": "https://explore.chamberymontagnes.com/fr/itineraires/la-galoppaz-en-boucle-par-la-combe-servenne",
+      "publisher": "Grand Chambéry Alpes Tourisme",
+      "name": "La Galoppaz en boucle par la Combe Servenne",
+      "quote": "Difficile · 5h · 9km · Boucle · +640m −640m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-16395076": {
       "url": "https://explore.chamberymontagnes.com/fr/itineraires/la-boucle-du-lac-de-la-thuile",
@@ -490,6 +626,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-1671736": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoic641c56811b44009cd5195bd1a4c2a1c.der-hoefeweg-am-schennaberg.schennaberg",
+      "publisher": "Tourismusverein Schenna via IDM suedtirol.info",
+      "name": "Der Höfeweg am Schennaberg",
+      "quote": "Strecke 8 Km Dauer 2h:30 min Aufstieg 450 m Abstieg 550 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-1780768": {
       "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoiedf6cb529c8a7bd40bd3a49332d95f0a.the--talblickweg--path-in-the-val-casies-valley.tesido-taisten",
       "publisher": "South Tyrol Tourism / Tourism Association Gsiesertal Valley-Welsberg-Taisten",
@@ -497,6 +641,14 @@
       "quote": "Following partly the valley road, partly farm access roads and other paths, from the area of Welsberg-Taisten the trail leads along one side of the Gsiesertal Valley to the end of the valley near St. Magdalena and back out of the valley on the other side.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-18055492": {
+      "url": "https://www.megeve-tourisme.fr/itineraires/itineraire-rando-le-mont-darbois-mont-joux/",
+      "publisher": "Megève Tourisme (Mairie de Megève)",
+      "name": "Le Mont d'Arbois – Mont Joux",
+      "quote": "Durée 03h45 · Dénivelé 673 D- / 673 D+ · Distance 11,7 km",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-19064561": {
       "url": "https://hautesavoiemontblanc-tourisme.com/offres/ombres-sur-lalpage-parcours-de-decouverte-lullin-fr-5867320/",
@@ -546,6 +698,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-19855818": {
+      "url": "https://rando.valmorel.com/trek/58779-Boucle-des-cascades-:-randonnee-bien-arrosee-a-Valmorel",
+      "publisher": "CC des Vallées d'Aigueblanche (Geotrek Valmorel)",
+      "name": "B14 – Boucle des cascades",
+      "quote": "Difficile · 4h30 · 8,3km · +600m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-19974724": {
       "url": "https://eggental.com/en/activity/middle-circular-route-at-lake-carezza_5711",
       "publisher": "Eggental Tourismus",
@@ -569,6 +729,14 @@
       "quote": "Naturlehrpfad Castelfeder — length 1706 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-2376630": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoia639e0b463e7f3aecca1a877758bab3b.grosse-rundwanderung-katharinaberg.katharinaberg",
+      "publisher": "Tourismusgenossenschaft Schnalstal via IDM suedtirol.info",
+      "name": "Große Rundwanderung Katharinaberg",
+      "quote": "Strecke 8.2 Km Dauer 2h:40 min Aufstieg 514 m Abstieg 514 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T15:00:00.000Z"
     },
     "osm-3202880": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi78f78b7fec7706efe8118a3e4e471486.montiggler-seen-runde.montiggl",
@@ -602,6 +770,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-5512443": {
+      "url": "https://www.merano-suedtirol.it/de/naturns/aktiv-entspannen/wandern-bergsteigen/wanderwege/121154118-kult-und-kraftplatz-wallburgboden.html",
+      "publisher": "Tourismusgenossenschaft Naturns",
+      "name": "Kult- und Kraftplatz Wallburgboden",
+      "quote": "Dauer 2:30 h · Länge 8,3 km · Höhenmeter bergauf 349 hm",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
+    "osm-5597577": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoid182a311dc9225339ed6333778e0dda1.naturlehrpfad-gsindboden.naturns",
+      "publisher": "Tourismusgenossenschaft Naturns via IDM suedtirol.info",
+      "name": "Naturlehrpfad Gsindboden",
+      "quote": "Strecke 4.6 Km Dauer 1h:25 min Aufstieg 216 m Abstieg 216 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-6244965": {
       "url": "https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoi432cc269cc7e3628df3ccfeb7ab84799.the-story-of-stones.plata-platten---falzes-pfalzen",
       "publisher": "IDM Südtirol / Tourismusverband Bruneck Kronplatz – Tourist Office Pfalzen",
@@ -634,6 +818,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "osm-6404634": {
+      "url": "https://www.ecomuseo.vanoi.it/visita/anello-del-bosc-p363",
+      "publisher": "Ecomuseo del Vanoi",
+      "name": "Anello del Bosc",
+      "quote": "TEMPO 4 h / DISTANZA 7.6 km / DISLIVELLO in salita 513 m (Ecomuseo map); page: Lunghezza 7.1 km, Dislivello 380 m, Durata circa 4 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-6410700": {
       "url": "https://www.antholzertal.com/de/activity/dolomitenblickrunde_211086",
       "publisher": "Tourismusgenossenschaft Antholzertal",
@@ -641,6 +833,14 @@
       "quote": "Vom Kirmlehof folgt man der Dolomitenblickrunde weiter über die Obergoste.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-6453504": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiaf7e4d49bf25ed03c13cb80e7a7cf28c.walderlebnispfad-aschbach.aschbach",
+      "publisher": "Tourismusverein Algund via IDM suedtirol.info",
+      "name": "Walderlebnispfad Aschbach",
+      "quote": "Strecke 3.2 Km Dauer 1h:00 min Aufstieg 152 m Abstieg 152 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-6529356": {
       "url": "https://www.muntdarina.com/aktiv/wandern/",
@@ -658,6 +858,14 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "osm-7045225": {
+      "url": "https://sentieri.sat.tn.it/webapps/schede-sentieri?numero=O603",
+      "publisher": "SAT – Società degli Alpinisti Tridentini",
+      "name": "Path 603, Giro del Fausior",
+      "quote": "Lunghezza: 7650 metri · Tempo andata: 02:50 ore · Dislivello salita: 436 metri",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-7277805": {
       "url": "https://www.merano-suedtirol.it/it/val-passiria/vacanze-in-montagna/camminate-escursioni/sentieri-escursionistici/121154995-sentiero-waltner-rundweg-a-valtina.html",
       "publisher": "Associazione turistica Val Passiria (Tourismusverein Passeiertal)",
@@ -674,13 +882,37 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
+    "osm-7424683": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi5a86cc6e2f57ca04fa0c686433aee148.marlinger-waalweg-ab-lana.tscherms",
+      "publisher": "Tourismusverein Lana und Umgebung via IDM suedtirol.info",
+      "name": "Marlinger Waalweg ab Lana",
+      "quote": "Strecke 10.5 Km Dauer 3h:30 min Aufstieg 150 m Abstieg 150 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
+    "osm-7426648": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi828d222799944e938274714fea8aea0a.algunder-waalweg.algund",
+      "publisher": "Tourismusbüro Algund via IDM suedtirol.info",
+      "name": "Algunder Waalweg",
+      "quote": "Strecke 4.5 Km Dauer 1h:08 min Aufstieg 29 m Abstieg 158 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T20:00:00.000Z"
+    },
+    "osm-7426666": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi18ca160215336c697a4ed595b6e5084b.wanderung-maiser-waalweg.saltaus",
+      "publisher": "Tourismusverein Passeiertal via IDM suedtirol.info",
+      "name": "Wanderung Maiser Waalweg",
+      "quote": "Strecke 9.4 Km Dauer 2h:30 min Aufstieg 46 m Abstieg 215 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T20:00:00.000Z"
+    },
     "osm-7446701": {
       "url": "https://www.merano-suedtirol.it/de/passeiertal/aktivurlaub/wandern-bergsteigen/wanderwege/121154995-circular-path-waltner-rundweg-in-walten-valtina.html",
       "publisher": "Tourismusverein Passeiertal",
       "name": "Waltner Rundweg in Walten",
-      "quote": "Vom Gasthof Alpenrose führt der Weg in Richtung Kirche.",
-      "foundBy": "orma-route-source-scout",
-      "verifiedAt": "2026-10-12T20:04:08.598Z"
+      "quote": "Dauer 2:30 h · Länge 8,4 km · Höhenmeter bergauf 368 hm",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-7547983": {
       "url": "https://www.lozzodicadore.eu/sito/node/186",
@@ -697,6 +929,14 @@
       "quote": "Dislivello in salita: 380 m; lunghezza: circa 4 km; tempo medio di percorrenza: 2h 30'; difficoltà: percorso di tipo E (escursionistico) con un breve passaggio su roccia affiorante",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-7655311": {
+      "url": "https://www.merano-suedtirol.it/de/partschins-rabland-und-toell/natur-kultur/wasserwelten/gsund-bleibm-salute-take-care/die-klimatische-terrainkur-gesundheit-und-fitness-fuer-herz-und-kreislauf/121155122-partschins-sonnenberger-panoramaweg-naturns-terrainkurweg-nr-5.html",
+      "publisher": "Tourismusverein Partschins, Rabland und Töll",
+      "name": "Partschins – Sonnenberger Panoramaweg – Naturns (Terrainkurweg Nr. 5)",
+      "quote": "Dauer 2:30 h Länge 7,7 km Schwierigkeit leicht Höhenmeter bergauf 186 hm",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-23T18:00:00.000Z"
     },
     "osm-8510456": {
       "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11429378",
@@ -761,6 +1001,14 @@
       "quote": "St. Agatha Rundweg — length 1509 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-9933643": {
+      "url": "https://www.la-plagne.com/savourez-une-multitude-d-activites/la-plagne-l-ete/randonnee-pedestre-en-vanoise-et-en-tarentaise/itineraires-de-marche-et-randonnee/boucle-du-lac-vert",
+      "publisher": "Office de Tourisme de La Grande Plagne",
+      "name": "Boucle du Lac Vert",
+      "quote": "Distance : 3.4 km / Dénivelé positif 209 m / Durée 1h30 / Type itinéraire Boucle / Animaux acceptés oui",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-9937537": {
       "url": "https://www.la-plagne.com/savourez-une-multitude-d-activites/la-plagne-l-ete/randonnee-pedestre-en-vanoise-et-en-tarentaise/itineraires-de-marche-et-randonnee/randonnee-vers-le-mont-jovet",

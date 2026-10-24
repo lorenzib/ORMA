@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "trailId": "prato-piazza",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 8.2,
+    "ascentM": 400,
+    "highestPointM": 2298,
+    "expectedDuration": "2.5–3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 5
+  },
+  "trailhead": {
+    "lat": 46.65379,
+    "lng": 12.17901,
+    "label": "Berggasthof Plätzwiese, above the Plätzwiese car park"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.65388,
+      "lng": 12.17924,
+      "label": "Berggasthof Plätzwiese (restaurant)",
+      "reliability": "Seasonal; not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.64941,
+      "lng": 12.19076,
+      "label": "Drinking-water point, about 70 m off the path",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.64542,
+      "lng": 12.1987,
+      "label": "Spring beside the path",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Loose gravel on the summit path.",
+    "Rough gravel tracks.",
+    "Mountain bikes on the tracks.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

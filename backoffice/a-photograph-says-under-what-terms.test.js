@@ -66,7 +66,9 @@ describe('the audit says what is known about each picture',()=>{
     for(const [id,licence,creator] of [
       ['osm-6250300','CC BY-SA 3.0','Mangatome'],
       ['osm-10116283','CC BY 2.0','Guilhem Vellut'],
-      ['osm-10116380','CC BY 2.0','Guilhem Vellut'],
+      // Replaced on 24 October 2026 by a photograph taken 85 m from the
+      // walk (the previous one was 1.8 km away).
+      ['osm-10116380','CC BY 2.0','Ylliab Photo'],
       ['osm-20347406','CC BY 2.0','Guilhem Vellut'],
       // The credit said only "CC BY-SA"; the source page says 4.0.
       ['osm-16322228','CC BY-SA 4.0','Anthony Levrot'],
@@ -82,8 +84,10 @@ describe('the audit says what is known about each picture',()=>{
     }
   });
 
-  test('the two illustrations are recorded as ORMA’s own and not as photographs',()=>{
-    for(const id of ['osm-11517208','osm-14987412']){
+  // La Croix des Salles (osm-11517208) was the second until its hand
+  // verification on 24 October 2026 gave it a licensed photograph.
+  test('the remaining illustration is recorded as ORMA’s own and not as a photograph',()=>{
+    for(const id of ['osm-14987412']){
       const trail=trails.find(record=>record.id===id);
       expect({id,standing:standingOf(trail),creator:trail.imageCreator,type:trail.imageSourceType})
         .toEqual({id,standing:'illustration',creator:'ORMA',type:'ai-illustration'});

@@ -92,7 +92,7 @@ async function runScheduledTrailCampaign(store,trails,options={}){
         // chain where the request looked accepted and never happened.
         reverifyTrailIds:options.reverifyTrailIds||[]});
     const completedAt=options.completedAt||new Date().toISOString();const receipt={outcome:'success',startedAt:eligibility.at,completedAt,
-      admitted:result.jobIds.length,remainingQueueable:result.campaign.summary.remainingQueueable,
+      admitted:result.jobIds.length,capacity:options.capacity||5,remainingQueueable:result.campaign.summary.remainingQueueable,
       routeNumberGuidanceVerified:result.campaign.summary.routeNumberGuidanceVerified,
       routeNumberGuidanceOutstanding:result.campaign.summary.routeNumberGuidanceOutstanding,...runIdentity};
     const health={...started,status:'healthy',completedAt,lastSuccessfulAt:completedAt,

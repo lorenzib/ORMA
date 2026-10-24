@@ -17,6 +17,11 @@ const STATES = Object.freeze([
   // stays on the site with its terrain, its elevation and its honest badge;
   // the pipeline simply stops spending on it.
   'imported',
+  // Verified by hand in Claude against official sources, not by the evidence
+  // policy (OPERATING_STANDARD.md, "A walk verified by hand is recorded in the
+  // backoffice"). Its own state, never ready-for-editorial: the pipeline did
+  // not pass it, and the record says who did.
+  'verified-by-hand',
   'rejected', 'blocked',
 ]);
 

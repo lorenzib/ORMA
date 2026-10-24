@@ -238,7 +238,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <span class="li-avatar li-greet-avatar" id="liGreetAvatar" aria-hidden="true">🐾</span>
       <span class="li-toolbar-greet-copy">
         <strong id="liToolbarGreeting">Where are we going today?</strong>
-        <small id="liToolbarDogContext">Trails ranked for your dog’s needs and your current choices.</small>
       </span>
       <!-- Create actions are not filters, so they sit out of the refine zone.
            Recording is the one you do standing on the trail, so it is the
@@ -253,7 +252,21 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         </button>
         <div class="li-menu li-new-menu" id="liNewMenu" hidden>
           <div class="li-menu-kick">Create</div>
-          <a class="li-menu-item li-plan-route" href="route-planner.html">Draft a loop<small>Plan your own route on the map</small></a>
+          <a class="li-menu-item li-plan-route" href="route-planner.html"><span class="li-menu-title">Draw your own route <span class="li-menu-badge">New</span></span><small>Loop, one-way or out and back · experimental</small></a>
+        </div>
+        <!-- Said once: what is new and where it lives. Closing it, trying it,
+             or opening the menu above puts it away for good on this browser. -->
+        <div class="li-new-callout" id="liNewCallout" role="status" hidden>
+          <div class="li-new-callout-head">
+            <span class="li-menu-badge">New</span>
+            <strong>Draw your own route</strong>
+            <button type="button" class="li-new-callout-close" id="liNewCalloutClose" aria-label="Dismiss">×</button>
+          </div>
+          <p>Loop, one-way or out and back, along mapped walking paths. It is still experimental.</p>
+          <div class="li-new-callout-actions">
+            <a class="li-new-callout-try" id="liNewCalloutTry" href="route-planner.html">Try it</a>
+            <span>Also under the arrow beside Record a walk</span>
+          </div>
         </div>
       </div>
       <!-- Opened from "in Alta Pusteria" in the headline. -->
@@ -261,9 +274,14 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <span class="li-location-summary" id="liLocationSummary" hidden>
           <span><small id="liLocationSummaryKick">Looking near</small><strong id="liLocationSummaryLabel"></strong></span>
         </span>
-        <button type="button" class="li-head-option" id="liChangeLocationBtn">Search a valley or town</button>
+        <!-- One region at a time: a walk is planned in one place, never in
+             the Dolomites and Savoy at once. -->
+        <div class="li-head-kick">Region</div>
+        <button type="button" class="li-head-option li-head-region" data-li-region="dolomites" aria-pressed="false">The Dolomites<small data-li-region-count></small></button>
+        <button type="button" class="li-head-option li-head-region" data-li-region="savoy" aria-pressed="false">Savoy<small data-li-region-count></small></button>
+        <div class="li-head-sep" role="separator"></div>
         <button type="button" class="li-head-option" id="liNearMeBtn">Near me</button>
-        <button type="button" class="li-head-option" id="liShowAllBtn" hidden>All ORMA trails</button>
+        <button type="button" class="li-head-option" id="liChangeLocationBtn">Search a valley or town</button>
       </div>
       <!-- Opened from "today" in the headline. -->
       <div class="li-menu li-head-menu" id="liDayMenu" role="dialog" aria-label="When you are walking" hidden>
@@ -334,6 +352,10 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <!-- The map doubles as the geography control: pan/zoom, then refilter the
            list to the visible area. Hidden until the view actually moves. -->
       <button id="liSearchThisArea" type="button" class="li-search-area" hidden>Search this area</button>
+      <!-- The route planner, opened on the area on screen. It sits on the map
+           because the map is where a route is drawn; the link follows the
+           view as it moves. -->
+      <a id="homeMapDrawBtn" class="li-map-draw" href="route-planner.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8.5a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7H16"/></svg><span>Draw a route here</span></a>
       <button id="homeMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
       <div class="li-rank-map-key" aria-label="Map key">
         <span><i class="is-ranked">1</i>Matches list</span>
@@ -385,40 +407,32 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
     <!-- ================= LIST ================= -->
     <aside class="li-list" aria-label="Personalised trail recommendation">
+      <!-- One line: what this is, how many, and the two ways to change the
+           view. "New for <dog>" lives on the card it is about, with what it
+           means; Browse all trails sits at the foot of the list. -->
       <div class="li-list-head">
-        <p class="li-newsline" id="returningSubline" hidden></p>
         <div class="li-list-title-row">
-          <div>
-            <div class="li-kick" id="companionKicker">Your recommendation</div>
-            <div class="li-list-title" id="companionListTitle">Best walk</div>
+          <h2 class="li-list-title" id="companionListTitle">Best matches</h2>
+          <span class="li-list-count" id="companionListCount"></span>
+          <div class="li-list-tools">
+            <label class="li-sort-pill">
+              <span class="li-sort-label">Sort:</span>
+              <select id="companionSortSelect" aria-label="Sort trails">
+                <option value="match">Best fit</option>
+                <option value="distance">Shortest</option>
+                <option value="effort">Least climb</option>
+                <option value="today">For today</option>
+              </select>
+            </label>
+            <button type="button" id="liViewSaved" class="li-saved-toggle" aria-pressed="false" aria-label="Saved trails"><span class="orma-saved-heart" aria-hidden="true">♥</span><span class="li-saved-word">Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span></button>
           </div>
-          <a class="li-explore-all" href="browse-trails.html">Browse all trails →</a>
         </div>
-        <details class="li-list-options">
-          <summary>Saved trails and ranking options</summary>
-          <div class="li-listbar">
-          <!-- Saved is a view of the ranked list, not a filter, so it sits with
-               Sort as a tab rather than in the refine bar. -->
-          <div class="li-views" role="tablist" aria-label="Trail view">
-            <button type="button" id="liViewAll" class="li-view active" role="tab" aria-selected="true">All trails</button>
-            <button type="button" id="liViewSaved" class="li-view" role="tab" aria-selected="false"><span class="orma-saved-heart" aria-hidden="true">♥</span>Saved<span class="li-saved-count" id="liSavedOnlyCount">0</span></button>
-          </div>
-          <div class="li-sort">
-            <span class="li-sort-label">Sort</span>
-            <div class="companion-sort-group" id="companionSortGroup">
-              <button type="button" data-sort="match" class="active">Best fit</button>
-              <button type="button" data-sort="distance">Shortest</button>
-              <button type="button" data-sort="effort">Climb</button>
-              <button type="button" data-sort="today">For today</button>
-            </div>
-          </div>
-          </div>
-        </details>
       </div>
       <div class="li-rows" id="returningTrailList"></div>
+      <a class="li-list-foot" href="browse-trails.html">Browse all trails →</a>
     </aside>
 
-    <button type="button" id="liCollapseTrailsBtn" class="li-trails-toggle" aria-expanded="true" aria-label="Collapse ranked trails panel">▤ Collapse trails</button>
+    <button type="button" id="liCollapseTrailsBtn" class="li-trails-toggle" aria-expanded="true" aria-label="Collapse ranked trails panel" title="Hide the trail list">⇥</button>
 
   </div>
 </div>
@@ -545,7 +559,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="discovery-filters.js?v=20261005-1" defer></script>
 <script src="regions-runtime-manifest.js?v=20261007-1"></script>
 <script src="regional-trails-loader.js?v=20261007-2" data-default-region="all"></script>
-<script src="notifications-feed.js?v=20261007-1" defer></script>
+<script src="notifications-feed.js?v=20261023-1" defer></script>
 <script src="trail-audits.js?v=20260815-4" defer></script>
 <script src="regions-config.js?v=20260816-1" defer></script>
 <script src="guest-context.js?v=20260917-2" defer></script>

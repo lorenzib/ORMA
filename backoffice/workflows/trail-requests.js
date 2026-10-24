@@ -71,7 +71,8 @@ function actionsFor(entry){
   if(entry.publicationFailed) out.push('retry-publication');
   if(state === 'rejected') out.push('reconsider');
   // planResurvey holds a trail already at the survey and skips a resting one.
-  if(entry.inPipeline && state && state !== 'geometry-audit' && state !== 'imported') out.push('resurvey');
+  // A walk verified by hand is changed by hand, not re-measured by a pass.
+  if(entry.inPipeline && state && state !== 'geometry-audit' && state !== 'imported' && state !== 'verified-by-hand') out.push('resurvey');
   return out;
 }
 

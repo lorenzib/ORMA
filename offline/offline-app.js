@@ -1,10 +1,11 @@
 (function(){
   'use strict';
 
-  const PACKAGE_MANIFESTS = Object.freeze({
-    'lago-carezza': 'packages/lago-carezza/manifest.json',
-    'alpe-siusi': 'packages/alpe-siusi/manifest.json',
-  });
+  // Every package sits at packages/<trail id>/. Which trails have one is the
+  // download controller's list; the reader only needs a well-formed id.
+  function packageManifestUrl(trailId){
+    return /^[a-z0-9-]+$/.test(trailId || '') ? `packages/${trailId}/manifest.json` : null;
+  }
   let manifestUrl = null;
   let watchId = null;
   let activeSession = null;
@@ -127,6 +128,9 @@
   }
 
   function addFact(label, value){
+    // A generated package leaves out what the trail does not record (shade,
+    // for one) rather than print "null%".
+    if(value === null || value === undefined || /\bnull\b|\bundefined\b/.test(String(value))) return;
     const term = document.createElement('dt');
     const detail = document.createElement('dd');
     term.textContent = label;
@@ -150,10 +154,10 @@
 
   function renderMapDetails(safety, bounds){
     const facts = safety.facts || {};
-    elements.mapDistance.textContent = Number.isFinite(facts.distanceKm) ? `${facts.distanceKm} km` : ', ';
-    elements.mapDuration.textContent = facts.expectedDuration || ', ';
-    elements.mapAscent.textContent = Number.isFinite(facts.ascentM) ? `${facts.ascentM} m` : ', ';
-    elements.mapShade.textContent = Number.isFinite(facts.shadePercent) ? `${facts.shadePercent}%` : ', ';
+    elements.mapDistance.textContent = Number.isFinite(facts.distanceKm) ? `${facts.distanceKm} km` : 'Not recorded';
+    elements.mapDuration.textContent = facts.expectedDuration || 'Not recorded';
+    elements.mapAscent.textContent = Number.isFinite(facts.ascentM) ? `${facts.ascentM} m` : 'Not recorded';
+    elements.mapShade.textContent = Number.isFinite(facts.shadePercent) ? `${facts.shadePercent}%` : 'Not recorded';
     elements.mapAnnotations.replaceChildren();
     const waypoints = safety.waypoints || [];
     const trailheadWater = safety.trailhead && waypoints.find(waypoint =>
@@ -703,7 +707,7 @@
     window.addEventListener('offline', setNetworkState);
 
     const trailId = new URLSearchParams(window.location.search).get('id');
-    manifestUrl = PACKAGE_MANIFESTS[trailId];
+    manifestUrl = packageManifestUrl(trailId);
     if(!manifestUrl){
       showFailure('No downloaded beta package is configured for this trail.');
       return;

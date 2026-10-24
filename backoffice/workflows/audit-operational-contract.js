@@ -169,6 +169,10 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&adjudicator.includes('contestedCount'),
     'A blocker only a moderator can decide arrives with a cited recommendation in the reason field, after the dispatch and apply steps; the recommendation cites a retrieved source, is never offered for an unwaivable blocker, and nothing is ticked or accepted without a person');
   add('hazard-snapshot-publication',workflows['orma-hazard-watch.yml']?.includes('orma-bot/hazard-snapshot')&&workflows['orma-hazard-watch.yml']?.includes('gh pr merge')&&workflows['orma-hazard-watch.yml']?.includes('--auto')&&workflows['orma-hazard-watch.yml']?.includes('/actions/runs/${run}/approve')&&workflows['orma-hazard-watch.yml']?.includes('gh workflow run deploy-pages.yml --ref main')&&workflows['orma-hazard-watch.yml']?.includes('gh pr update-branch')&&standard.includes('automatic pull request whenever the warning set changes'),'The public warning snapshot reaches the website through a pull request whenever the warning set changes: the run approves the PR\'s own quality-gate run (a bot never graduates from the first-time-contributor policy), merges once it passes, and dispatches the website deploy, which nothing done with the workflow token starts by itself');
+  // Offline packages follow the Verified seal without anyone running the
+  // builder, and reach the website the same way the warning snapshot does.
+  const offlineWorkflow=workflows['orma-offline-packages.yml']||'';
+  add('offline-packages-follow-the-seal',offlineWorkflow.includes('--prune --stale')&&offlineWorkflow.includes('orma-bot/offline-packages')&&offlineWorkflow.includes('/actions/runs/${run}/approve')&&offlineWorkflow.includes('gh workflow run deploy-pages.yml --ref main')&&offlineWorkflow.includes('group: orma-offline-packages')&&standard.includes('Offline packages (`orma-offline-packages.yml`)'),'Every Verified trail gets its offline package and a withdrawn one loses it, built by one scheduled builder at a time and published through a self-approving pull request');
   add('hazard-cadence',workflows['orma-hazard-watch.yml']?.includes("cron: '7 */3 * * *'")&&workflows['orma-hazard-watch.yml']?.includes('timezone: Europe/Rome'),'Groundskeeper targets minute 7 of every third hour in Europe/Rome, clear of the queue worker and within the Firestore daily quota');
   // The intake budget is read by whichever job admits, and both read the same
   // variable.
@@ -724,7 +728,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&resurvey.includes('attempts.cartographer = Number(attempts.cartographer || 0) + 1;')
     // Held rather than double-surveyed, and resting trails left alone.
     &&resurvey.includes("if(String(trail.state) === 'geometry-audit')")
-    &&resurvey.includes("RESTING = Object.freeze(['imported', 'rejected'])")
+    &&resurvey.includes("RESTING = Object.freeze(['imported', 'rejected', 'verified-by-hand'])")
     &&resurveyCli.includes("if(!args.apply){")
     // And it can actually be run. The state is in Firestore and the credential
     // stays in Actions, so an npm script on its own is a command nobody can
@@ -869,7 +873,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     dossierReview.includes('function restingState(')
     &&dossierReview.includes("? 'imported' : 'rejected'")
     &&orchestrationStates.includes("'imported'")
-    &&campaign.includes("TERMINAL_STATES=new Set(['ready-for-editorial','imported','rejected','blocked'])")
+    &&campaign.includes("TERMINAL_STATES=new Set(['ready-for-editorial','imported','verified-by-hand','rejected','blocked'])")
     &&standard.includes('A walk nobody wrote about rests, it is not rejected'),
     'A refusal standing only on route guidance rests as imported, keeping its place on the site while the pipeline stops spending on it; a refusal standing on a broken line or a contradicted identity is still a rejection, and resting is terminal so a rested trail holds no place in the intake budget');
 

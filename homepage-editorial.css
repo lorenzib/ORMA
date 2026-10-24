@@ -60,6 +60,11 @@
 }
 .li-head-option:hover,.li-head-option:focus-visible{outline:none;background:#F0EDE1;}
 .li-head-option[hidden]{display:none;}
+.li-head-kick{padding:8px 12px 4px;color:#8A9689;font:700 10px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
+.li-head-region small{display:block;margin-top:2px;color:var(--ink-soft);font:500 11.5px 'Inter',sans-serif;}
+.li-head-region[aria-pressed="true"]{background:#E9F0E7;color:#264231;}
+.li-head-region[aria-pressed="true"]::after{content:'✓';float:right;margin-top:-18px;color:#3B6D4B;font-weight:800;}
+.li-head-sep{height:1px;margin:4px 8px;background:#EDE9DD;}
 #returningCustomerHomepage #liToolbar .li-head-menu .li-location-summary{
   display:flex;width:auto;margin:0 0 4px;padding:8px 12px 10px;border:0;border-bottom:1px solid #EDE9DD;border-radius:0;background:none;
 }
@@ -260,3 +265,104 @@
 .li-today[data-tone="moderate"]{background:#F7EEDC;color:#6E4E14;}
 .li-today[data-tone="high"]{background:#F7E2DB;color:#8C3A28;}
 @media (max-width:700px){.li-today{margin:8px 0 0;padding:9px 12px;font-size:12.5px;}}
+
+/* "Draw a route here": under the map's Layers button, out of the way while
+   the Layers panel is open in the same spot. */
+.li-map-draw{
+  position:absolute;top:52px;left:10px;z-index:6;display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;
+  border:1px solid var(--paper-line);border-radius:8px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15);
+  color:var(--ink);font:700 12px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;
+}
+.li-map-draw:hover{border-color:var(--accent);color:var(--accent);}
+.li-map-draw:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.li-map.map-layers-open .li-map-draw{display:none;}
+.li-map.map-fs .li-map-draw{top:max(52px,calc(env(safe-area-inset-top) + 52px));left:max(10px,env(safe-area-inset-left));}
+.li-menu-badge{display:inline-block;padding:1px 7px;border-radius:999px;background:#F7EEDC;color:#6E4E14;font:700 10px/1.5 'Inter',sans-serif;vertical-align:1px;}
+@media (max-width:700px){
+  body.mhome-active .li-map-draw{top:52px;left:12px;height:32px;padding:0 11px;font-size:11.5px;border-radius:9px;}
+}
+
+/* The Record menu's one entry reads as a menu row. It still carries the old
+   green-button class (li-plan-route) for its hooks, so its border, height and
+   margin are put back here. */
+.li-new-menu .li-menu-item.li-plan-route{display:flex;height:auto;margin:0;border:0;background:none;color:var(--ink);}
+.li-new-menu .li-menu-item.li-plan-route:hover{background:#EEF3EC;}
+.li-menu-title{display:flex;align-items:center;flex-wrap:wrap;gap:6px;}
+
+/* "New: Draw your own route", once, under Record a walk. On wider screens it
+   takes its own room under the button and pushes the search row down while
+   it is there, rather than sitting over Filters; on phones it floats over
+   the map below the toolbar. Menus open over it. */
+@media (min-width:701px){
+  #returningCustomerHomepage #liToolbar .li-new-wrap{display:grid;grid-template-columns:1fr auto auto;row-gap:10px;}
+  #returningCustomerHomepage #liToolbar .li-new-main{grid-column:2;}
+  #returningCustomerHomepage #liToolbar .li-new-more{grid-column:3;}
+  #returningCustomerHomepage #liToolbar .li-new-callout{position:relative;top:auto;right:auto;grid-column:1/-1;justify-self:end;}
+}
+.li-new-callout{
+  position:absolute;top:calc(100% + 10px);right:0;z-index:55;width:290px;box-sizing:border-box;padding:12px 14px;
+  border:1px solid var(--paper-line);border-radius:12px;background:#fff;box-shadow:0 14px 34px -12px rgba(23,42,28,.35);
+  color:var(--ink);font:500 12.5px/1.5 'Inter',sans-serif;
+}
+.li-new-callout[hidden]{display:none;}
+.li-new-callout::before{content:'';position:absolute;top:-6px;right:38px;width:10px;height:10px;background:#fff;
+  border-left:1px solid var(--paper-line);border-top:1px solid var(--paper-line);transform:rotate(45deg);}
+.li-new-callout-head{display:flex;align-items:center;gap:8px;}
+.li-new-callout-head strong{flex:1;font:800 13.5px 'Inter',sans-serif;}
+.li-new-callout-close{flex:none;width:26px;height:26px;margin:-4px -6px -4px 0;border:0;border-radius:50%;background:none;
+  color:var(--ink-soft);font:400 18px/1 'Inter',sans-serif;cursor:pointer;}
+.li-new-callout-close:hover{background:#F0EDE1;color:var(--ink);}
+.li-new-callout p{margin:4px 0 10px;color:var(--ink-soft);}
+.li-new-callout-actions{display:flex;align-items:center;gap:10px;}
+.li-new-callout-try{flex:none;white-space:nowrap;display:inline-flex;align-items:center;height:30px;padding:0 13px;border:1px solid var(--accent);border-radius:999px;
+  color:var(--accent);font:800 12px 'Inter',sans-serif;text-decoration:none;}
+.li-new-callout-try:hover{background:var(--accent);color:#fff;}
+.li-new-callout-actions span{color:var(--ink-soft);font-size:11.5px;line-height:1.35;}
+@media (max-width:700px){
+  body.mhome-active #returningCustomerHomepage #liToolbar .li-new-callout{width:min(290px,calc(100vw - 20px));}
+}
+
+/* The matches list header, on one line: "Best matches for Teo · 12 trails",
+   then Sort and Saved. It used to take three rows -- a news line, a kicker
+   and the title, then a fold-out holding the view tabs and four sort
+   buttons. The right padding leaves room for "Collapse trails", which sits
+   over this corner on desktop. */
+#returningCustomerHomepage .li-list-head{padding:12px 20px;}
+#returningCustomerHomepage .li-list-title-row{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:6px 12px;margin:0;}
+#returningCustomerHomepage .li-list-title{margin:0;font:700 18px/1.2 'Bricolage Grotesque',sans-serif;color:var(--ink);}
+.li-list-count{color:var(--ink-soft);font:600 12px 'Inter',sans-serif;}
+.li-list-tools{flex:none;display:flex;align-items:center;gap:8px;margin-left:auto;}
+#returningCustomerHomepage .li-list-title-row>div{flex:none;width:auto;}
+.li-sort-pill{position:relative;display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 28px 0 12px;border:1px solid var(--paper-line);border-radius:999px;background:#fff;cursor:pointer;}
+.li-sort-pill::after{content:'';position:absolute;right:12px;top:50%;width:6px;height:6px;margin-top:-5px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:rotate(45deg);pointer-events:none;}
+.li-sort-pill .li-sort-label{color:var(--ink-soft);font:600 12px 'Inter',sans-serif;}
+.li-sort-pill select{appearance:none;-webkit-appearance:none;border:0;background:none;padding:0;color:var(--ink);font:700 12px 'Inter',sans-serif;cursor:pointer;}
+.li-sort-pill:focus-within{outline:2px solid var(--accent);outline-offset:2px;}
+.li-saved-toggle{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:1px solid var(--paper-line);border-radius:999px;background:#fff;color:var(--ink);font:700 12px 'Inter',sans-serif;cursor:pointer;}
+.li-saved-toggle .orma-saved-heart{color:#9C3A25;}
+.li-saved-toggle .li-saved-count{display:grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:#EEF1E9;color:var(--ink-soft);font-size:10px;}
+.li-saved-toggle[aria-pressed="true"]{border-color:#E3B3A6;background:#FBEDE8;}
+.li-saved-toggle[aria-pressed="true"] .li-saved-count{background:#9C3A25;color:#fff;}
+.li-list-foot{display:block;padding:14px 20px 18px;color:var(--accent);font:750 12px 'Inter',sans-serif;text-decoration:none;}
+.li-list-foot:hover{text-decoration:underline;}
+/* "New for Teo": the badge says it, the card's explanation says what it means. */
+.li-answer-new{grid-column:1/-1;margin:0;padding:8px 11px;border-radius:9px;background:#E9F2EA;color:#2F5A3D;font-size:12px;line-height:1.45;}
+.li-answer-new b{font-weight:800;}
+@media (min-width:1041px){
+  body[data-homepage-view="returning"] #returningCustomerHomepage .li-list-title-row{padding-right:48px;}
+  /* Open, the list's collapse control is an icon in the header's corner;
+     collapsed, it says "Show trails", because then it is the way back. */
+  #returningCustomerHomepage .li-body:not(.list-collapsed) .li-trails-toggle{min-width:0;width:34px;height:34px;padding:0;top:11px;right:16px;font-size:14px;}
+}
+@media (max-width:1040px){
+  #returningCustomerHomepage .li-list-title-row{padding-right:0;}
+}
+@media (max-width:700px){
+  body.mhome-active #returningCustomerHomepage .li-list-head{padding:0 16px 8px;}
+  body.mhome-active #returningCustomerHomepage .li-list-title{font-size:17px;}
+  /* Tighter on a phone: the dropdown shows only its choice, and Saved is
+     the heart and its count. */
+  body.mhome-active #returningCustomerHomepage .li-sort-pill .li-sort-label{display:none;}
+  body.mhome-active #returningCustomerHomepage .li-saved-toggle{padding:0 10px;}
+  body.mhome-active #returningCustomerHomepage .li-saved-toggle .li-saved-word{display:none;}
+}

@@ -12,13 +12,14 @@
   const REQUEST_LIMIT=25;
   const STAGES=[
     ['queued','Not started'],['route','Route check'],['research','Research'],
-    ['publish','Publishing'],['passed','Passed'],['stopped','Stopped'],
+    ['publish','Publishing'],['passed','Passed'],['hand','Verified by hand'],['stopped','Stopped'],
   ];
   const STAGE_HINT={
     queued:'Waiting for the daily intake',
     route:'Line and distance against the source',
     research:'Agents gather directions and safety facts',
     publish:'Approved, going to the site',
+    hand:'Checked by hand against official sources',
   };
   const STAGE_INDEX={route:0,research:1,publish:2,passed:3};
   const BADGE={verified:['tb-p-ver','Verified'],reviewed:['tb-p-rev','Reviewed'],imported:['tb-p-imp','Imported']};
@@ -79,7 +80,9 @@
   function renderJourney(){
     const counts=board.summary.stages||{};const stopped=board.summary.stopped||{};
     const hints={...STAGE_HINT,
+      research:board.summary.paidResearchEnabled===false?'Paused: paid research is off':STAGE_HINT.research,
       passed:`${board.summary.verified} Verified · ${board.summary.reviewed} Reviewed on the site`,
+      hand:`${board.summary.verifiedByHand||0} of the ${board.summary.verified} Verified, checked in Claude`,
       stopped:`${stopped.resting||0} resting · ${stopped.rejected||0} rejected · ${stopped.blocked||0} blocked`};
     $('tbJourney').innerHTML=STAGES.map(([key,label])=>`<button type="button" class="tb-step${key==='stopped'?' tb-step-stopped':''}" data-stage="${key}" aria-pressed="${stage===key}">
       <span class="tb-n">${Number(counts[key]||0)}</span><span class="tb-l">${label}</span><span class="tb-h">${esc(hints[key])}</span></button>`).join('');
@@ -104,7 +107,7 @@
     let html='';
     for(let index=0;index<4;index+=1){
       let cls='tb-seg';
-      if(entry.stage==='passed')cls+=' is-done';
+      if(entry.stage==='passed'||entry.stage==='hand')cls+=' is-done';
       else if(entry.stage==='stopped'){
         const at=entry.state==='imported'?1:0;
         cls+=index<at?' is-done':index===at?(entry.stopKind==='resting'?' is-rest':' is-bad'):'';
@@ -154,6 +157,7 @@
       ['Pipeline state',entry.state?entry.state.replace(/-/g,' '):'not in the pipeline'],
       ['Since',entry.since||'—'],
       ...((entry.audit||[]).map(item=>['Read by hand',`${item.claimId}: ${(item.sources||[]).join(' ')||'no address given'}`])),
+      ...(entry.hand?[['Verified by',entry.hand.reviewedBy||'hand audit'],['Sources',(entry.hand.sources||[]).join(' · ')||'none recorded']]:[]),
     ];
     return `<tr class="tb-detail"><td colspan="5"><div class="tb-det">
       <div><h3>Where it is</h3><dl class="tb-facts">${facts.map(([key,value])=>`<dt>${key}</dt><dd>${esc(value)}</dd>`).join('')}</dl>

@@ -298,6 +298,6 @@
   }
 
   return Object.freeze({
-    DISTANCES, MULTI_DAY_MIN_KM, normalizedTrail, matches, filter, active, diagnoseZero, safeBroadenings, ridesOpenChairlift,
+    DISTANCES, MULTI_DAY_MIN_KM, normalizedTrail, matches, filter, active, without, diagnoseZero, safeBroadenings, ridesOpenChairlift,
   });
 });
