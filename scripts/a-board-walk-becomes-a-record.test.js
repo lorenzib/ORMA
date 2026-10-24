@@ -100,6 +100,32 @@ describe('the line is drawn on OSM ways along the guide', () => {
     expect(Math.abs(drawn.meters / 1000 - lengthKm)).toBeLessThan(0.05);
   });
 
+  test('an out-and-back keeps its way back', () => {
+    // Up column 0 and back down it: every step is a there-and-back, and only
+    // a few metres of snapping are a spur.
+    const outAndBack = [at(0, 0, 0.00004), at(8, 0, 0.00004), at(0, 0, 0.00004)];
+    const drawn = matchGuide(buildGraph([grid()]), outAndBack);
+    expect(drawn.refused).toBeUndefined();
+    expect(drawn.meters / 1000).toBeGreaterThan(1.5);
+    expect(judge(outAndBack, drawn.line, 1.6).keep).toBe(true);
+  });
+
+  test('and so does one whose path is mapped in pieces shorter than a snap', () => {
+    // One path 1 km long with a node every 20 m: each step back is shorter
+    // than a snap, but the way back as a whole is not, so none of it goes.
+    const elements = [];
+    for (let k = 0; k <= 50; k += 1) elements.push({ type: 'node', id: 5000 + k, lat: BASE[0] + k * 0.00018, lon: BASE[1] });
+    elements.push({ type: 'way', id: 900, nodes: [...Array(51).keys()].map(k => 5000 + k), tags: { highway: 'path' } });
+    const there = [BASE[0] + 0.00002, BASE[1] + 0.00003];
+    const turn = [BASE[0] + 50 * 0.00018, BASE[1] + 0.00003];
+    const drawn = matchGuide(buildGraph([{ elements }]), [there, turn, there]);
+    expect(drawn.meters / 1000).toBeGreaterThan(1.9);
+  });
+
+  test('and nothing drawn is never a walk', () => {
+    expect(judge(GUIDE, [], lengthKm)).toMatchObject({ keep: false, reasons: ['nothing was drawn'] });
+  });
+
   test('its surfaces are summed from the ways, so the promoter can describe the ground', () => {
     const drawn = matchGuide(buildGraph([grid()]), GUIDE);
     expect(drawn.surfaces).toEqual({ gravel: 0.8 });

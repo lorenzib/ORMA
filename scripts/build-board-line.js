@@ -297,16 +297,24 @@ function matchGuide(graph, guide) {
     edges = edges.concat(leg.edges);
   }
   // A waypoint snapped a few metres off the guide makes the line step out to
-  // it and back. Those spurs are not part of the walk.
-  for (let changed = true; changed;) {
-    changed = false;
-    for (let i = 1; i + 1 < nodes.length; i += 1) {
-      if (nodes[i - 1] === nodes[i + 1]) {
-        nodes.splice(i, 2);
-        edges.splice(i - 1, 2);
-        changed = true;
-        break;
-      }
+  // it and back. Those spurs are not part of the walk -- but only short ones
+  // are spurs. A walk that goes up a path and comes back down it is an
+  // out-and-back, and removing every there-and-back step deleted all of it:
+  // two Val di Fassa walks came out as 0.00 km. Removing short steps one at a
+  // time is no better, because a long way back made of short pieces unwinds a
+  // piece at a time. So each there-and-back is measured whole, out to its turn,
+  // and removed only if all of it is shorter than a snap.
+  for (let i = 1; i + 1 < nodes.length; i += 1) {
+    if (nodes[i - 1] !== nodes[i + 1]) continue;
+    let reach = 1;
+    while (i - reach - 1 >= 0 && i + reach + 1 < nodes.length && nodes[i - reach - 1] === nodes[i + reach + 1]) reach += 1;
+    const out = edges.slice(i - reach, i).reduce((sum, edge) => sum + edge.length, 0);
+    if (out <= SNAP_M) {
+      nodes.splice(i - reach + 1, 2 * reach);
+      edges.splice(i - reach, 2 * reach);
+      i = Math.max(0, i - reach - 1);
+    } else {
+      i += reach;
     }
   }
   const line = nodes.map(id => graph.nodes.get(id));
@@ -323,6 +331,7 @@ function matchGuide(graph, guide) {
 
 /** Whether a drawn line is the operator's walk, and why not when it is not. */
 function judge(guide, line, officialKm) {
+  if (line.length < 2) return { keep: false, reasons: ['nothing was drawn'], guideCovered: 0, lineCovered: 0, km: 0 };
   const guideCovered = coverage(densify(guide, 15), line);
   const lineCovered = coverage(densify(line, 15), guide);
   const km = lineMeters(line) / 1000;
