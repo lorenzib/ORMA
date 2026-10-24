@@ -104,15 +104,15 @@ describe('Browse filter UI', () => {
     expect(window.document.querySelector('.simple-card')).not.toBeNull();
   });
 
-  test('exposes valley, high shade, water and saved beside search', () => {
+  test('keeps valley in Area, shade and water in Filters, and Saved in the row', () => {
     const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites');
     const tools = window.document.getElementById('browseTools');
     const filters = window.document.getElementById('browseFiltersMenu');
 
-    expect(tools.querySelector('#browseValleySelect')).not.toBeNull();
-    expect(tools.querySelector('#browseQuickShade')).not.toBeNull();
-    expect(tools.querySelector('#browseWater')).not.toBeNull();
-    expect(tools.querySelector('#browseSavedOnly')).not.toBeNull();
+    expect(window.document.getElementById('browseAreaPanel').querySelector('#browseValleySelect')).not.toBeNull();
+    expect(filters.querySelector('#browseQuickShade')).not.toBeNull();
+    expect(filters.querySelector('#browseWater')).not.toBeNull();
+    expect(tools.querySelector(':scope > #browseSavedOnly')).not.toBeNull();
     expect(filters.querySelector('#brWaterToggle')).toBeNull();
 
     window.document.getElementById('browseQuickShade').click();
@@ -122,6 +122,75 @@ describe('Browse filter UI', () => {
     window.document.getElementById('browseWater').click();
     expect(window.location.search).toContain('water=1');
     expect(window.document.getElementById('browseWater').getAttribute('aria-pressed')).toBe('true');
+  });
+
+  test('shows each active filter as a chip that takes it off', () => {
+    const window = setup('https://www.app-orma.com/browse-trails.html?water=1&heat=shade-60');
+    const chips = () => Array.from(window.document.querySelectorAll('#browseActiveChips [data-remove-filter]'))
+      .map(chip => chip.dataset.removeFilter);
+
+    expect(window.document.getElementById('browseActiveChips').hidden).toBe(false);
+    expect(chips().sort()).toEqual(['heat', 'water']);
+    // Shade and water live inside Filters now, so they count on its button.
+    expect(window.document.getElementById('browseFiltersCount').textContent).toBe(' (2)');
+
+    window.document.querySelector('[data-remove-filter="water"]').click();
+    expect(window.location.search).not.toContain('water=');
+    expect(window.location.search).toContain('heat=shade-60');
+    expect(chips()).toEqual(['heat']);
+    expect(window.document.getElementById('browseWater').getAttribute('aria-pressed')).toBe('false');
+    expect(window.document.getElementById('browseFiltersCount').textContent).toBe(' (1)');
+  });
+
+  test('the place is named on the Area button, not repeated as a chip', () => {
+    const window = setup('https://www.app-orma.com/browse-trails.html?country=italy&region=dolomites&valley=Val%20d%E2%80%99Ega');
+
+    expect(window.document.getElementById('browseAreaLabel').textContent).toBe('Dolomites › Val d’Ega');
+    expect(window.document.querySelector('#browseActiveChips [data-remove-filter="valley"]')).toBeNull();
+
+    const button = window.document.getElementById('browseAreaBtn');
+    button.click();
+    expect(window.document.getElementById('browseAreaPanel').hidden).toBe(false);
+    expect(button.getAttribute('aria-expanded')).toBe('true');
+    window.document.body.click();
+    expect(window.document.getElementById('browseAreaPanel').hidden).toBe(true);
+  });
+
+  test('a card leads with View trail; Compare is a tick box', () => {
+    const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites');
+    const card = window.document.querySelector('.simple-card');
+    const open = card.querySelector('.browse-card-open');
+
+    expect(open.textContent.trim()).toBe('View trail →');
+    expect(open.getAttribute('href')).toMatch(/^trail\.html\?id=reviewed-loop&from=/);
+    const compare = card.querySelector('.browse-card-compare');
+    expect(compare.textContent.trim()).toBe('Compare');
+    compare.click();
+    expect(window.document.querySelector('.browse-card-compare').getAttribute('aria-pressed')).toBe('true');
+    // Ticked, it keeps its name; the tick says it is chosen.
+    expect(window.document.querySelector('.browse-card-compare').textContent.trim()).toBe('Compare');
+    expect(source('browse-trails.html')).not.toContain('.browse-card-open{display:none;}');
+  });
+
+  test('each trail rating links to its explanation', () => {
+    [
+      ['low-risk', 'rating-low-risk', 'Low-risk terrain'],
+      ['moderate', 'rating-moderate', 'Moderate terrain'],
+      ['caution', 'rating-caution', 'Caution terrain'],
+    ].forEach(([safetyLevel, anchor, label]) => {
+      const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites', { safetyLevel });
+      const link = window.document.querySelector('.simple-card__facts .browse-rating-link');
+      expect(link.getAttribute('href')).toBe(`how-scoring-works.html#${anchor}`);
+      expect(link.getAttribute('aria-label')).toBe(`${label}: what this rating means`);
+      expect(link.textContent).toContain(label);
+    });
+
+    // The scoring page answers each of those anchors in both languages.
+    const scoring = source('how-scoring-works.html');
+    expect(scoring).toContain("var RATINGS = { 'rating-low-risk':'low', 'rating-moderate':'moderate', 'rating-caution':'caution' };");
+    ['low', 'moderate', 'caution'].forEach(level => {
+      expect(scoring.match(new RegExp(`sc-score-option--${level}"`, 'g'))).toHaveLength(2);
+    });
   });
 
   test('retires source-review filtering and strips its legacy URL state', () => {
@@ -185,20 +254,13 @@ describe('Browse filter UI', () => {
   test('mobile discovery controls wrap inside the phone canvas', () => {
     const html = source('browse-trails.html');
 
-    expect(html).toMatch(/@media\(max-width:760px\)[\s\S]*?\.browse-primary-controls \.browse-tools\{[^}]*display:grid;[^}]*grid-template-columns:repeat\(6,minmax\(0,1fr\)\);/);
-    expect(html).toMatch(/\.browse-primary-controls \.browse-search-group\{grid-column:1\/-1;grid-row:1;width:100%;min-width:0;\}/);
-    expect(html).toMatch(/\.browse-primary-controls \.browse-search-shell\{[^}]*grid-column:1\/-1;[^}]*grid-row:1;[^}]*width:100%;[^}]*min-width:0;/);
-    expect(html).toMatch(/\.browse-area-controls\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\);/);
-    expect(html).toMatch(/\.browse-geo-group--valley\{grid-column:auto;/);
-    // Filter trails lifts onto its own full-width row (3); the chips grid follows.
-    expect(html).toMatch(/#browseFiltersWrap\{grid-column:1\/-1;grid-row:3;width:100%;/);
-    expect(html).toMatch(/\.browse-refinement-controls\{grid-column:1\/-1;grid-row:4;display:grid;grid-template-columns:repeat\(6,minmax\(0,1fr\)\);/);
-    expect(html).toMatch(/\.browse-quick-filters\{display:contents;\}/);
-    expect(html).toMatch(/#browseQuickShade\{grid-column:1\/span 3;grid-row:1;\}/);
-    expect(html).toMatch(/#browseWater\{grid-column:4\/span 3;grid-row:1;\}/);
-    expect(html).toMatch(/#browseMultiDay\{grid-column:1\/span 3;grid-row:2;\}/);
-    expect(html).toMatch(/#browseChairlifts\{grid-column:1\/-1;grid-row:3;\}/);
-    expect(html).toMatch(/\.browse-saved-only\{grid-column:4\/span 3;grid-row:2;[^}]*width:100%;/);
+    // Search on its own line, then Area, Filters and Saved sharing the next:
+    // Area takes what is left, Saved keeps its heart and count, Filters drops
+    // its caret.
+    expect(html).toMatch(/@media\(max-width:760px\)\{\s*#browseTools\{flex-wrap:wrap;\}/);
+    expect(html).toContain('#browseTools>.browse-area-wrap{flex:1 1 0;min-width:0;}');
+    expect(html).toContain('#browseTools>.browse-saved-only [data-i18n="browse.quick.saved"]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}');
+    expect(html).toContain('#browseTools #browseFiltersBtn .li-caret{display:none;}');
     expect(html).toMatch(/#browseFiltersMenu\{[^}]*position:fixed;[^}]*bottom:max\(8px,env\(safe-area-inset-bottom\)\);[^}]*overflow-y:auto;/);
   });
 
@@ -224,26 +286,32 @@ describe('Browse filter UI', () => {
     expect(dropdown).toContain("const controlKicker = select.dataset.controlKicker;");
   });
 
-  test('reserves readable geography widths in the browse toolbar', () => {
+  test('country, region and valley open inside one Area control', () => {
     const html = source('browse-trails.html');
+    const panel = html.slice(html.indexOf('id="browseAreaPanel"'), html.indexOf('id="browseFiltersWrap"'));
 
-    expect(html).toContain('.browse-geo-group,.browse-geo-group--valley{display:block;flex:1 1 0;width:auto;min-width:0;}');
-    expect(html).toContain('max-width:360px;min-width:0;');
-    expect(html).toContain('@media(min-width:761px) and (max-width:1040px)');
-    expect(html).toContain('grid-template-columns:repeat(3,minmax(0,1fr));');
-    expect(html).toContain('.browse-geo-group .area-select-trigger--kicker-until-selected:not(.area-select-trigger--has-selection) .area-select-trigger__label{display:none;}');
+    ['browseCountrySelect', 'browseRegionSelect', 'browseValleySelect'].forEach(id => {
+      expect(panel).toContain(`id="${id}"`);
+    });
+    expect(html).toContain('<button type="button" id="browseAreaBtn" class="browse-area-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="browseAreaPanel">');
+    // The heading above each picker names it, so the picker shows its value.
+    expect(html).toContain('#browseAreaPanel .area-select-trigger__kicker{display:none;}');
+    expect(html).toContain('#browseAreaPanel .browse-geo-label{position:static;');
   });
 
-  test('uses intentional filter rows instead of squeezing controls together', () => {
+  test('keeps one row of controls instead of three equal rows', () => {
     const html = source('browse-trails.html');
 
-    expect(html).toContain('@media(min-width:1041px)');
-    expect(html).toMatch(/@media\(min-width:1041px\)[\s\S]*?\.browse-primary-controls \.browse-tools\{[^}]*display:grid;[^}]*grid-template-columns:minmax\(300px,520px\) auto auto 1fr;[^}]*grid-template-rows:auto auto;/);
-    // Dropdowns packed (capped at 205px, not stretched), Filter trails on their row.
-    expect(html).toContain('.browse-area-controls{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,205px));gap:9px;}');
-    expect(html).toContain('#browseFiltersWrap{grid-column:3;grid-row:1;width:max-content;}');
-    expect(html).toContain('.browse-refinement-controls{grid-column:1/-1;grid-row:2;display:flex;flex-wrap:wrap;justify-content:flex-start;}');
-    expect(html).toContain('.browse-saved-only{width:max-content;min-width:0;}');
+    // The old per-width grids are gone; the row is the same everywhere.
+    expect(html).not.toContain('browse-refinement-controls');
+    expect(html).not.toContain('@media(min-width:1041px)');
+    expect(html).toContain('#browseTools>.browse-search-group{flex:1 1 320px;min-width:0;}');
+    // Shade, water, chairlift and multi-day sit inside Filters, first.
+    const menu = html.slice(html.indexOf('id="browseFiltersMenu"'), html.indexOf('id="browseFiltersApply"'));
+    expect(menu.indexOf('data-i18n="browse.filters.quick"')).toBeLessThan(menu.indexOf('id="brDistSeg"'));
+    ['browseQuickShade', 'browseWater', 'browseChairlifts', 'browseMultiDay'].forEach(id => {
+      expect(menu).toContain(`id="${id}"`);
+    });
   });
 
   test('matches the shared title scale and homepage workspace proportions', () => {

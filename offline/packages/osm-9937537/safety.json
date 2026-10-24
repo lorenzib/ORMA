@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-9937537",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 11,
+    "ascentM": 870,
+    "highestPointM": 2460,
+    "expectedDuration": "6 hours",
+    "difficulty": "Hard",
+    "shadePercent": 3
+  },
+  "trailhead": {
+    "lat": 45.510959,
+    "lng": 6.664795,
+    "label": "Plagne Aime 2000 (official start)"
+  },
+  "waypoints": [],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Parts of this walk are exposed; keep your dog close and on a short lead.",
+    "Steep, exposed passage at the Pas des Brebis (official).",
+    "Stony ground on the summit ridge.",
+    "Small stream crossings without bridges.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

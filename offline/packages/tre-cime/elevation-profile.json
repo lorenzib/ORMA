@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "trailId": "tre-cime",
+  "distanceKm": 11.8,
+  "ascentM": 468,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 2320
+    },
+    {
+      "km": 2.4,
+      "elev": 2344
+    },
+    {
+      "km": 4.2,
+      "elev": 2454
+    },
+    {
+      "km": 7.2,
+      "elev": 2405
+    },
+    {
+      "km": 9.8,
+      "elev": 2240
+    },
+    {
+      "km": 11.8,
+      "elev": 2320
+    }
+  ]
+}

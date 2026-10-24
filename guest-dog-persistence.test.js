@@ -85,7 +85,10 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     }
     expect(dictionary).toContain("'browse.empty.title': 'Nessun sentiero corrisponde a questa combinazione'");
     expect(browse).toContain('data-i18n-ph="browse.search.ph"');
-    expect(browse).toContain('<span data-i18n="browse.filters.button">Filter trails</span>');
+    expect(browse).toContain('<span data-i18n="browse.filters.button">Filters</span>');
+    for(const key of ['browse.filters.quick','browse.area.all','browse.chips.remove','browse.chips.clear','browse.card.view','browse.card.ratingMeans','browse.card.ratingLink']){
+      expect((dictionary.match(new RegExp(`'${key.replace(/\./g,'\\.')}':`, 'g')) || []).length).toBe(2);
+    }
     expect(browse).toContain('data-browse-view="list" aria-pressed="true" data-i18n="browse.view.list">List</button>');
     expect(browse).toContain("bt('browse.compare.count', '{n} of 3 selected', { n: selected.length })");
     expect(browse).toContain("bt('browse.results.ofTotal', '{n} of {total} trails', { n: pool.length, total: trails.length })");

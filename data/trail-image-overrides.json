@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-24T16:00:00.000Z",
+  "updatedAt": "2026-10-24T18:00:00.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -155,17 +155,18 @@
     },
     {
       "id": "osm-10116380",
-      "approvedAt": "2026-10-20T12:00:00.000Z",
+      "approvedReviewId": "hand-audit-osm-10116380",
+      "approvedAt": "2026-10-24T18:00:00.000Z",
       "fields": {
-        "imageIcon": "images/itineraire-decouverte-de-la-nature.webp",
-        "heroImage": "images/itineraire-decouverte-de-la-nature.webp",
-        "imageAlt": "A broad forest track on the Plateau des Glieres, running between tall spruce into dappled sunlight",
-        "imageCredit": "Guilhem Vellut, CC BY 2.0, via Wikimedia Commons (edited)",
-        "imageCreditText": "Guilhem Vellut, CC BY 2.0, via Wikimedia Commons (edited)",
-        "imageCreator": "Guilhem Vellut",
+        "imageIcon": "images/trails/osm-10116380-glieres-sunrise.jpg",
+        "heroImage": "images/trails/osm-10116380-glieres-sunrise.jpg",
+        "imageAlt": "Sunrise over the Plateau des Glières with mist on the meadows, a lone chalet and forested slopes and peaks behind",
+        "imageCredit": "Sunrise on the Plateau des Glières",
+        "imageCreditText": "Sunrise on the Plateau des Glières by Ylliab Photo",
+        "imageCreator": "Ylliab Photo",
         "imageLicence": "CC BY 2.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0/",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Plateau_des_Gli%C3%A8res_(51176314526).jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Plateau_des_Gli%C3%A8res_(35478856124).jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -217,6 +218,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pohled_na_%C3%BAdol%C3%AD_Val_Fiscalina_od_pevnosti_Mitterberg.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11270309",
+      "approvedReviewId": "commons-osm-11270309-on-route",
+      "approvedAt": "2026-10-24T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11270309-salurn.jpg",
+        "heroImage": "images/trails/osm-11270309-salurn.jpg",
+        "imageAlt": "St. Andreas church in Salurn, its tall brick bell tower and pale façade on the village square, a dolphin fountain in the foreground",
+        "imageCredit": "St. Andreas church in Salurn",
+        "imageCreditText": "St. Andreas church in Salurn by HaSt",
+        "imageCreator": "HaSt",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Salurn_-_St._Andreas_4.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -812,6 +830,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Terento_dal_sentiero_panoramico.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12173549",
+      "approvedReviewId": "commons-osm-12173549-on-route",
+      "approvedAt": "2026-10-24T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12173549-terenten-mill.jpg",
+        "heroImage": "images/trails/osm-12173549-terenten-mill.jpg",
+        "imageAlt": "A wooden corn mill with a water wheel beside the Mühlenweg path in Terenten, the path climbing past a wooden fence into the woods",
+        "imageCredit": "A corn mill on the Mühlenweg in Terenten",
+        "imageCreditText": "A corn mill on the Mühlenweg in Terenten by Rainerhaufe",
+        "imageCreator": "Rainerhaufe",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kornm%C3%BChle_M%C3%BChlensteig_Terenten.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1475,18 +1510,18 @@
     },
     {
       "id": "osm-15791408",
-      "approvedReviewId": "commons-osm-15791408",
-      "approvedAt": "2026-09-07T20:21:10.885Z",
+      "approvedReviewId": "hand-audit-osm-15791408",
+      "approvedAt": "2026-10-24T18:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-15791408-lago-di-lases.jpg",
-        "heroImage": "images/trails/osm-15791408-lago-di-lases.jpg",
-        "imageAlt": "The lake at Lases seen across a grass shore under spruce and poplar, wooded slopes and pale quarry faces on the far side.",
-        "imageCredit": "Lago di Lases",
-        "imageCreditText": "Lago di Lases by Matteo Ianeselli",
-        "imageCreator": "Matteo Ianeselli",
-        "imageLicence": "CC BY-SA 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lases-lake_Lases_from_north.jpg",
+        "imageIcon": "images/trails/osm-15791408-bellavista-cembra.jpg",
+        "heroImage": "images/trails/osm-15791408-bellavista-cembra.jpg",
+        "imageAlt": "The view from the Bellavista of Bedolpian over the terraced vineyards and villages of the Cembra valley to the mountains beyond",
+        "imageCredit": "The Cembra valley from the Bellavista of Bedolpian",
+        "imageCreditText": "The Cembra valley from the Bellavista of Bedolpian by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Veduta_sulla_val_di_Cembra_dal_bellavista_di_Bedolpian_01.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1908,6 +1943,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castelfeder_3294.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-2376630",
+      "approvedReviewId": "commons-osm-2376630-on-route",
+      "approvedAt": "2026-10-24T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-2376630-katharinaberg.jpg",
+        "heroImage": "images/trails/osm-2376630-katharinaberg.jpg",
+        "imageAlt": "The hill village of Katharinaberg in the Schnalstal, houses and a white church with a red spire on a green slope below dense forest",
+        "imageCredit": "Katharinaberg in the Schnalstal",
+        "imageCreditText": "Katharinaberg in the Schnalstal by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Monte_Santa_Caterina_04.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -2557,18 +2609,18 @@
     },
     {
       "id": "osm-9933643",
-      "approvedReviewId": "commons-osm-9933643",
-      "approvedAt": "2026-09-08T14:40:21.781Z",
+      "approvedReviewId": "hand-audit-osm-9933643",
+      "approvedAt": "2026-10-24T18:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-9933643-belle-plagne.jpg",
-        "heroImage": "images/trails/osm-9933643-belle-plagne.jpg",
-        "imageAlt": "Alpenrose in full flower on a slope near Belle Plagne, spruce behind it and the green ridge of the Mont Saint-Jacques under summer cumulus.",
-        "imageCredit": "Near Belle Plagne",
-        "imageCreditText": "Near Belle Plagne by Henk Monster",
-        "imageCreator": "Henk Monster",
-        "imageLicence": "CC BY 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Near_Belle_Plagne_2050_m_you_can_enjoy_Alp_roses_and_Mont_St_Jacques_2407_m_-_panoramio.jpg",
+        "imageIcon": "images/trails/osm-9933643-lac-vert.jpg",
+        "heroImage": "images/trails/osm-9933643-lac-vert.jpg",
+        "imageAlt": "The green Lac Vert among larches above Plagne Centre, with its information board asking visitors not to swim",
+        "imageCredit": "The Lac Vert and its information board",
+        "imageCreditText": "The Lac Vert and its information board by ultimap",
+        "imageCreator": "ultimap",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://api.panoramax.xyz/api/collections/b4860662-3bfa-4540-9f0d-37d39f6ff7eb/items/2d48f1da-5c2a-48bf-99eb-13a792751774",
         "imageSourceType": "licensed-source"
       }
     },

@@ -66,6 +66,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
     },
+    "osm-10116380": {
+      "url": "https://www.lac-annecy.com/itineraire-de-randonnee-pedestre/a-la-decouverte-du-plateau-des-glieres-filliere/",
+      "publisher": "Office de Tourisme du Lac d'Annecy",
+      "name": "A la découverte du Plateau des Glières",
+      "quote": "Distance 4km · Dénivelé positif 100m · Durée 02h30 · Difficulté Très facile",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-10539302": {
       "url": "https://www.valloire.net/sit/le-sentier-ecosylve-de-valloire-5841280/",
       "publisher": "Valloire Tourisme (Apidae)",
@@ -89,6 +97,14 @@
       "quote": "Il sentiero parte dai masi Kiniger (1375 m) sopra Sesto e conduce inizialmente lungo il bordo del prato verso Moso fino a \"Palmstatt\" (sentiero n. 1).",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T19:00:00.000Z"
+    },
+    "osm-11270309": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif8faa07b611ad03ce3e44df4a2668b3e.quellenpromenade-salurn.salurn",
+      "publisher": "Tourismusgenossenschaft Südtirols Süden via IDM suedtirol.info",
+      "name": "Quellenpromenade Salurn",
+      "quote": "Strecke 1.2 Km Dauer 0h:30 min Aufstieg 115 m Abstieg 115 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T15:00:00.000Z"
     },
     "osm-11517208": {
       "url": "https://www.combloux.com/itineraires/randonnee-pedestre-la-croix-des-salles/",
@@ -314,6 +330,14 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "osm-12173549": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoif49540ba52c904c9b1d49dd2d0b55f34.muehlenweg---erdpyramiden.terenten",
+      "publisher": "Ski- und Almregion Gitschberg Jochtal via IDM suedtirol.info",
+      "name": "Mühlenweg und Erdpyramiden",
+      "quote": "Strecke 4.5 Km Dauer 1h:30 min Aufstieg 235 m Abstieg 235 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T15:00:00.000Z"
+    },
     "osm-12173965": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoidec32d98620a0ae45230deb3a04391bb.die-kleine-schlossrunde-in-welsberg.welsberg",
       "publisher": "IDM Südtirol / Tourismusgenossenschaft Gsiesertal-Welsberg-Taisten",
@@ -522,6 +546,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-15791408": {
+      "url": "https://www.outdooractive.com/it/route/escursionismo/trentino/giro-di-bedolpian-il-laghetto-delle-rane-e-la-bellavista/67534499/",
+      "publisher": "APT Trento",
+      "name": "Giro di Bedolpian, il Laghetto delle Rane e la Bellavista",
+      "quote": "Distanza 3,3 km / Durata 0:55 h / Salita 53 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-16180587": {
       "url": "https://hautesavoiemontblanc-tourisme.com/offres/balade-du-plateau-dassy-au-lac-vert-par-la-passerelle-du-nant-bordon-passy-fr-5866028/",
       "publisher": "Office de Tourisme de Passy (Apidae)",
@@ -545,6 +577,14 @@
       "quote": "1h00 · 3.509 km · 16 m · Boucle · Départ : Parking du plan d'eau",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-16363583": {
+      "url": "https://explore.chamberymontagnes.com/fr/itineraires/le-marais-de-pre-lombard",
+      "publisher": "Grand Chambéry Alpes Tourisme",
+      "name": "Le Marais de Pré Lombard",
+      "quote": "2h · 7.3km · +125m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-16365005": {
       "url": "https://explore.chamberymontagnes.com/fr/itineraires/la-galoppaz-en-boucle-par-la-combe-servenne",
@@ -665,6 +705,14 @@
       "quote": "Naturlehrpfad Castelfeder — length 1706 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-2376630": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoia639e0b463e7f3aecca1a877758bab3b.grosse-rundwanderung-katharinaberg.katharinaberg",
+      "publisher": "Tourismusgenossenschaft Schnalstal via IDM suedtirol.info",
+      "name": "Große Rundwanderung Katharinaberg",
+      "quote": "Strecke 8.2 Km Dauer 2h:40 min Aufstieg 514 m Abstieg 514 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T15:00:00.000Z"
     },
     "osm-3202880": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi78f78b7fec7706efe8118a3e4e471486.montiggler-seen-runde.montiggl",
@@ -929,6 +977,14 @@
       "quote": "St. Agatha Rundweg — length 1509 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-9933643": {
+      "url": "https://www.la-plagne.com/savourez-une-multitude-d-activites/la-plagne-l-ete/randonnee-pedestre-en-vanoise-et-en-tarentaise/itineraires-de-marche-et-randonnee/boucle-du-lac-vert",
+      "publisher": "Office de Tourisme de La Grande Plagne",
+      "name": "Boucle du Lac Vert",
+      "quote": "Distance : 3.4 km / Dénivelé positif 209 m / Durée 1h30 / Type itinéraire Boucle / Animaux acceptés oui",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-9937537": {
       "url": "https://www.la-plagne.com/savourez-une-multitude-d-activites/la-plagne-l-ete/randonnee-pedestre-en-vanoise-et-en-tarentaise/itineraires-de-marche-et-randonnee/randonnee-vers-le-mont-jovet",

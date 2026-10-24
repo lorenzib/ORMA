@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-19855818",
+  "generatedAt": "2026-10-24T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8.3,
+    "ascentM": 600,
+    "highestPointM": 1918,
+    "expectedDuration": "4.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 55
+  },
+  "trailhead": {
+    "lat": 45.45773,
+    "lng": 6.4419,
+    "label": "Tennis du Mottet, Valmorel (official start; parking P4, P5 or P6)"
+  },
+  "waypoints": [],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Stone steps up to Plan Salin and a long switchback descent ('Les 51 virages').",
+    "Wet, shaded ground by the waterfalls; strongly advised against in rain or storms (official).",
+    "Mountain bikes may cross the path in the forest (official).",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-24",
+      "licence": "ODbL"
+    }
+  ]
+}

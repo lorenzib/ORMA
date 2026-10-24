@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11517208",
+  "generatedAt": "2026-10-24T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 9.1,
+    "ascentM": 498,
+    "highestPointM": 1747,
+    "expectedDuration": "3.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 60
+  },
+  "trailhead": {
+    "lat": 45.88865,
+    "lng": 6.62206,
+    "label": "Parking de Cuchet, route de La Cry-Cuchet, Combloux (official start)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.888659,
+      "lng": 6.6224939,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.8782577,
+      "lng": 6.6052867,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Ski-area service tracks: service vehicles possible.",
+    "Passes under the Beauregard gondola.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-24",
+      "licence": "ODbL"
+    }
+  ]
+}

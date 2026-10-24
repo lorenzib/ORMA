@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-6453504",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.2,
+    "ascentM": 152,
+    "highestPointM": 1429,
+    "expectedDuration": "1 hour",
+    "difficulty": "Moderate",
+    "shadePercent": 69
+  },
+  "trailhead": {
+    "lat": 46.6447379,
+    "lng": 11.075215,
+    "label": "Aschbach cable car top station (official start and end)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.644894,
+      "lng": 11.0755645,
+      "label": "Drinking fountain by the cable car station",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6434548,
+      "lng": 11.0730271,
+      "label": "Drinking fountain in Aschbach",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Forest tracks and paths with some roots and stones.",
+    "Short stretches on the Aschbach village road at the start.",
+    "Hunting stands and a game-feeding place by the path.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

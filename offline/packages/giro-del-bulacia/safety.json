@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "trailId": "giro-del-bulacia",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8.5,
+    "ascentM": 413,
+    "highestPointM": 2139,
+    "expectedDuration": "2.5–3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 23
+  },
+  "trailhead": {
+    "lat": 46.5425,
+    "lng": 11.6177,
+    "label": "Compatsch, Seiser Alm gondola top station"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.54906,
+      "lng": 11.61427,
+      "label": "Tschötsch Alm (hut)",
+      "reliability": "Seasonal; not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.55154,
+      "lng": 11.61624,
+      "label": "Bergrestaurant Puflatsch",
+      "reliability": "Seasonal; not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.55925,
+      "lng": 11.60771,
+      "label": "Drinking-water tap at the Arnika Hütte",
+      "reliability": "Seasonal; not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.54705,
+      "lng": 11.60699,
+      "label": "Dibaita Puflatschhütte, 67 m off the line",
+      "reliability": "Seasonal; not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "About 0.7 km of quiet paved road each way between the gondola and the loop (path 14), plus a short paved stretch in Compatsch, with hotel and service vehicles.",
+    "Short stone steps near the Puflatsch top station.",
+    "Pasture gates and electric fencing on the plateau.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}
