@@ -290,6 +290,23 @@
       }
     },
     {
+      "id": "osm-11768853",
+      "approvedReviewId": "commons-osm-11768853-on-route",
+      "approvedAt": "2026-10-24T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11768853-schnauders.jpg",
+        "heroImage": "images/trails/osm-11768853-schnauders.jpg",
+        "imageAlt": "The hamlet of Schnauders with the church of St. Georg on a wooded slope, seen through spring foliage from Feldthurns",
+        "imageCredit": "Schnauders and St. Georg from Feldthurns",
+        "imageCreditText": "Schnauders and St. Georg from Feldthurns by Oliver Abels",
+        "imageCreator": "Oliver Abels",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Feldthurns_Schnauders_St._Georg_(14801).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-11774783",
       "approvedReviewId": "commons-osm-11774783",
       "approvedAt": "2026-09-06T08:52:09.690Z",
@@ -2540,6 +2557,23 @@
       }
     },
     {
+      "id": "osm-7567918",
+      "approvedReviewId": "commons-osm-7567918-on-route",
+      "approvedAt": "2026-10-24T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7567918-antholzer-see.jpg",
+        "heroImage": "images/trails/osm-7567918-antholzer-see.jpg",
+        "imageAlt": "The still Antholzer See mirroring the dark spruce forest, a lakeside house and the mountains and clouds above",
+        "imageCredit": "The Antholzer See",
+        "imageCreditText": "The Antholzer See by PantheraLeo1359531",
+        "imageCreator": "PantheraLeo1359531",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Seespiegelung_am_Antholzer_See_in_Italien_23082018_001.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-7655311",
       "approvedReviewId": "flickr-osm-7655311-on-route",
       "approvedAt": "2026-10-23T18:00:00.000Z",
@@ -2587,6 +2621,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kiens,_de_Rienz_IMG_1121_2019-08-03_20.37.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-9450411",
+      "approvedReviewId": "commons-osm-9450411-on-route",
+      "approvedAt": "2026-10-24T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9450411-st-peter-lajen.jpg",
+        "heroImage": "images/trails/osm-9450411-st-peter-lajen.jpg",
+        "imageAlt": "St. Peter church with its red onion-domed tower and graveyard above the village of St. Peter near Lajen, wooded slopes and snowy peaks behind",
+        "imageCredit": "St. Peter near Lajen",
+        "imageCreditText": "St. Peter near Lajen by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:San_Pietro,_Laion,_chiesa_di_San_Pietro_by_drone_01.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -2672,6 +2723,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cianacei,_Badia.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-9648632",
+      "approvedReviewId": "commons-osm-9648632-on-route",
+      "approvedAt": "2026-10-24T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9648632-monte-pana.jpg",
+        "heroImage": "images/trails/osm-9648632-monte-pana.jpg",
+        "imageAlt": "Green meadows on Monte Pana with a small chapel and forest edge, the rock towers of the Langkofel and Plattkofel under a blue summer sky",
+        "imageCredit": "Monte Pana below the Langkofel",
+        "imageCreditText": "Monte Pana below the Langkofel by Martin Kolp",
+        "imageCreator": "Martin Kolp",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Monte_Pana,_Blick_auf_Langkofel_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },

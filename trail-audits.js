@@ -38556,6 +38556,274 @@
         { km: 0, lat: 46.65971, lng: 11.11626, osmId: 'node/3708788873', name: 'Gasthaus Eggerhof' }
       ],
       desc: 'A shady family loop in the woods above Marling near Meran, named after the little St. Martin chapel by the Eggerhöfe: up on forest roads to a viewpoint over the Meran basin and back past the inn. The official route lists 4.3 km and 213 m of ascent.'
+    },
+    'osm-9648632': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 7).
+      // The official nature trail of the Tourismusverein St. Christina on
+      // Monte Pana, wholly in St. Christina in Gröden (the importer said
+      // Wolkenstein). St. Christina's dog regulation (Gemeinderat 2/2010)
+      // requires a lead of at most 1.5 m and a muzzle carried (Art. 4) and keeps
+      // dogs off farmed meadows in the growing season (Art. 8). No biotope,
+      // Natura 2000 site or park on the line. The stored line is turned to run
+      // the board's way (data/verified-trail-overrides.json).
+      area: 'Monte Pana, St. Christina in Gröden / Santa Cristina Val Gardena',
+      distance: 2.7,
+      elevation: 64,
+      hours: '0.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Monte Pana car park past the Sporthotel and Franz Baumann’s chapel, through meadows and wood to a small pond, and back by the Monte Pana cross-country centre.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Monte Pana meadows below the Langkofel and Plattkofel, in August (Martin Kolp, CC BY-SA 3.0), 38 m from the line.',
+        route: 'Official loop 2.7 km from the Monte Pana car park; the stored OSM line (relation 9648632, Pana Raida) is the same loop, 2.6 km, 10 m from the official start, turned to run the board’s way.',
+        routeNumbers: 'Signed as PanaRaida: from the car park at the top of Monte Pana towards the Monte Pana Dolomites Hotel, past the chapel by the architect Franz Baumann, through meadows and wood to a small pond, and back by the Monte Pana cross-country centre.',
+        mapPoints: 'Start at the car park at the top of Monte Pana (official start); a Kneipp foot basin at km 1.9; no drinking water is mapped on the loop.',
+        elevation: 'Official 2.7 km, 64 m up and down, 45 min, 1,624–1,686 m (Tourismusverein St. Christina, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein St. Christina, Naturerlebnisweg PanaRaida (Südtirol.info)',
+          'Gemeinde St. Christina in Gröden, Gemeindeverordnung zur Hundehaltung (Gemeinderat 2/2010), Art. 4 and 8',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 9648632, road, surface and woodland data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 7,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Short stretches on the Monte Pana road at the start and end, open to cars', 'Small grass-covered footbridges that can be hard to see (km 1.5–1.7)', 'Play and activity stations along the path'],
+      terrainType: 'Meadow and woodland paths with play stations, almost level',
+      shadeDescription: 'Almost all open meadow: under a tenth is in the trees, so there is little shade at midday.',
+      terrainDescription: 'An easy family nature trail at 1,620–1,690 m on the Monte Pana plateau above St. Christina, with play stations made of natural materials and big views of the Langkofel group.',
+      waterDescription: 'No drinking water is mapped on the loop, so carry enough for your dog; there is a Kneipp foot basin at km 1.9 and inns by the car park.',
+      dogNotes: 'St. Christina requires a lead of at most 1.5 m on all public land and a muzzle carried, and dogs must stay off farmed meadows during the growing season, which on Monte Pana means keeping to the path. Expect many families and children at the play stations.',
+      tips: 'Drive or take the bus up to Monte Pana and follow the PanaRaida signs: 2.7 km, barely 60 m of climbing, about 45 minutes. Keep your dog on a short lead (1.5 m at most), carry a muzzle and stay on the path through the meadows. There is almost no shade and no water on the loop, so bring water and avoid hot middays.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Naturerlebnisweg PanaRaida (Tourismusverein St. Christina)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoia5ba26aecaa788f6d7cb5cb3f88e2627.naturerlebnisweg-panaraida.s-cristina-gherdeina-st-christina-in-groeden' },
+        { label: 'Gemeinde St. Christina in Gröden, Verordnung - Führung von Hunden', url: 'https://comune.santacristina.bz.it/system/web/GetDocument.ashx?cts=1536582042&fileId=1004815' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/9648632' }
+      ],
+      startPoint: { lat: 46.5514, lng: 11.7163, label: 'Car park at the top of Monte Pana (official start)' },
+      waterSources: [],
+      desc: 'A family nature trail on the Monte Pana plateau above St. Christina in Gröden: through open meadows and a little wood, past Franz Baumann’s mountain chapel and a small pond, with the Langkofel rising behind. The official route lists 2.7 km and 64 m of ascent.'
+    },
+    'osm-11768853': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 7).
+      // The official walk of Brixen Tourismus round Feldthurns, wholly in
+      // Feldthurns (the importer said Brixen). Feldthurns publishes no dog rule
+      // (only a 2024 appeal to dog owners), so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies. No biotope,
+      // Natura 2000 site or park on the line.
+      area: 'Feldthurns / Velturno',
+      distance: 7,
+      elevation: 249,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Feldthurns village past Schloss Velthurns, on the Keschtnweg (12A) to Schnauders, along the Panoramaweg to the Glangerhof and the Kloasnerhof, and back through the hamlet of Guln.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Schnauders and its church of St. Georg seen from Feldthurns, in May (Oliver Abels, CC BY-SA 3.0), 11 m from the line.',
+        route: 'Official loop 7.0 km from Feldthurns village centre; the stored OSM line (relation 11768853, Panoramaweg) is the same loop, 6.3 km, 6 m from the official start, and runs the board’s way.',
+        routeNumbers: 'From the village centre left past Schloss Velthurns towards the Schnauderer Straße, after about 100 m right onto the Keschtnweg, waymark 12A to Schnauders, then the Panoramaweg to the Glangerhof, on to the Kloasnerhof with the Troger plague picture and back through Guln to the start.',
+        mapPoints: 'Start in Feldthurns village centre by Schloss Velthurns (official start); drinking water at the village fountain at the start (OSM node 2506252488).',
+        elevation: 'Official 7.0 km, 249 m up and 247 m down, 2 h 2 min, 847–1,014 m (Brixen Tourismus, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Brixen Tourismus, Panoramaweg in Feldthurns (Südtirol.info)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Feldthurns publishes no dog rule)',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 11768853, road, surface, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 30,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 800 m on village streets and the Schnauderer Straße, and longer stretches on quiet farm roads open to cars', 'Working farms at Schnauders, the Glangerhof and Guln', 'A deer enclosure at the Glangerhof'],
+      terrainType: 'Village streets, farm roads, tracks and meadow paths',
+      shadeDescription: 'About a third is wooded; the meadows and farm roads on the sunny Feldthurns plateau are open.',
+      terrainDescription: 'An easy panoramic loop at 850–1,015 m on the sunny plateau above the Eisack valley, past chestnut groves, farms and chapels, with views of the Geisler peaks and the Dolomites.',
+      waterDescription: 'Drinking water at the village fountain at the start; none is mapped on the loop, so carry water on warm days. The Glangerhof serves on request, and there are cafés in Feldthurns.',
+      dogNotes: 'Feldthurns publishes no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. The commune has asked owners to keep dogs on a lead and out of meadows and orchards; keep your dog close past the farms and the deer enclosure at the Glangerhof.',
+      tips: 'Start in Feldthurns by the castle and follow 12A to Schnauders, then the Panoramaweg by the Glangerhof and Guln: 7 km, about 250 m of climbing, two hours. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep out of the meadows and chestnut groves. The plateau is sunny, so go early or late in summer; spring blossom and autumn chestnuts are the best times.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Panoramaweg in Feldthurns (Brixen Tourismus)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiabd494811c18cb03c07e108804b54617.panoramaweg-in-feldthurns.feldthurns' },
+        { label: 'Gemeinde Feldthurns, Aufruf an alle Hundebesitzer (2024)', url: 'https://www.gemeinde.feldthurns.bz.it/de/Neuigkeiten/Bekanntmachungen/Aufruf_an_alle_Hundebesitzer_2' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11768853' }
+      ],
+      startPoint: { lat: 46.6697, lng: 11.5998, label: 'Feldthurns village centre by Schloss Velthurns (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.66968, lng: 11.5998933, osmId: 'node/2506252488', label: 'Village fountain in Feldthurns' }
+      ],
+      desc: 'A panoramic loop on the sunny Feldthurns plateau above Brixen: past Schloss Velthurns and through chestnut groves to Schnauders, along the Panoramaweg by old farms and back through Guln, with wide views of the Dolomites. The official route lists 7.0 km and 249 m of ascent.'
+    },
+    'osm-7567918': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 7).
+      // The official nature trail of the Tourismusverein Antholzertal round the
+      // Antholzer See, wholly in Rasen-Antholz (the importer said Gsies). Rasen-
+      // Antholz's dog regulation (Gemeinderat 10/2010) requires a lead of at
+      // most 1.5 m and a muzzle carried (Art. 4). Most of the loop (km 0.4–1.8)
+      // is in the Rieserferner-Ahrn nature park and the lake biotope, which the
+      // landscape plan (Art. 8) places under the park decree; the nature parks'
+      // code of conduct requires a lead and does not ban dogs. The stored line
+      // is turned to start at the board's start (data/verified-trail-overrides.json).
+      area: 'Antholzer See, Rasen-Antholz / Lago di Anterselva, Rasun-Anterselva',
+      distance: 3.4,
+      elevation: 79,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'Once round the Antholzer See at about 1,640 m, from the biathlon centre car park and bus stop, past the Seerestaurant and the information boards.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Antholzer See reflecting the wooded slopes and the peaks above, in August (PantheraLeo1359531, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official loop 3.4 km from the biathlon centre car park; the stored OSM line (relation 7567918, Seerundweg) is the same loop, 3.4 km, turned to start where it passes the official start (8 m away).',
+        routeNumbers: 'Signed as the Seerundweg: from the biathlon centre car park or the bus stop Antholzer See about 200 m to the lake, then once round the lake on the barrier-free path with information boards, and back to the start.',
+        mapPoints: 'Start at the biathlon centre car park, bus stop Antholzer See (official start); a drinking fountain at km 1.8 by the Seerestaurant, marked as not for dogs (OSM node 289158036).',
+        elevation: 'Official 3.4 km, 79 m up and down, 1 h 30 min, 1,641–1,680 m (Tourismusverein Antholzertal, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Antholzertal, Seerundweg Antholzer See (Südtirol.info)',
+          'Gemeinde Rasen-Antholz, Verordnung über die Haltung von Hunden (Gemeinderat 10/2010), Art. 4 and 8',
+          'Gemeinde Rasen-Antholz, Durchführungsbestimmungen zum Landschaftsplan (June 2026), Art. 8: the Rieserferner-Ahrn nature park decree applies',
+          'South Tyrol nature parks, code of conduct (dogs on a lead at all times)',
+          'OpenStreetMap relation 7567918, road, surface and woodland data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 90,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A crossing of the Obertaler Straße (valley road to the Staller Sattel) by the Seerestaurant, km 1.7', 'A wooden footbridge near km 3.0', 'Busy with walkers in summer'],
+      terrainType: 'Wide, barrier-free lakeside path through the forest',
+      shadeDescription: 'Almost all in the spruce forest round the lake; only the shore by the Seerestaurant is open.',
+      terrainDescription: 'An easy, almost level loop at about 1,640 m round the emerald Antholzer See at the head of the Antholz valley, on a well-built barrier-free path with boards on the lake’s wildlife and legends.',
+      waterDescription: 'There is a drinking fountain at the Seerestaurant (km 1.8), but it is marked as not for dogs, so bring water and a bowl. Inns at the start and at the Seerestaurant.',
+      dogNotes: 'Rasen-Antholz requires a lead of at most 1.5 m on all public land and a muzzle carried. Most of the loop runs through the Rieserferner-Ahrn nature park and the protected lake biotope, where dogs must stay on a lead and must not disturb wildlife; do not let your dog into the lake or the reed beds. The fountain at the Seerestaurant is marked as not for dogs.',
+      tips: 'Take bus 431 to Antholzer See or park at the biathlon centre and walk once round the lake: 3.4 km, almost level, about an hour and a half with the boards. Keep your dog on a short lead (1.5 m at most), carry a muzzle and bring water. It is shady and cool, a good summer walk, but very busy at midday in August.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Seerundweg Antholzer See (Tourismusverein Antholzertal)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi6acb4676a668f87e73fb324d0138b19d.lehrpfad-am-antholzer-see.antholz-niedertal' },
+        { label: 'Gemeinde Rasen-Antholz, dog regulation', url: 'https://www.gemeinde.rasenantholz.bz.it/it/Argomenti/Animale_domestico/Segreteria-_Ordinanza_sul_regolamento_della_tenuta_dei_cani_1' },
+        { label: 'Rasen-Antholz landscape plan, implementing rules (newplan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/12819' },
+        { label: 'South Tyrol nature parks, code of conduct', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/7567918' }
+      ],
+      startPoint: { lat: 46.8843, lng: 12.1579, label: 'Biathlon centre car park, bus stop Antholzer See (official start)' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.88401, lng: 12.15749, osmId: 'way/444628469', name: 'Tiroler Hütte' },
+        { km: 1.7, lat: 46.88786, lng: 12.17539, osmId: 'way/247956953', name: 'Enzian Hütte' },
+        { km: 1.8, lat: 46.88709, lng: 12.1732, osmId: 'way/247956952', name: 'Seerestaurant' }
+      ],
+      desc: 'An easy loop round the emerald Antholzer See at the head of the Antholz valley, in the Rieserferner-Ahrn nature park: a barrier-free lakeside path through the spruce forest, with boards on the lake’s wildlife and legends. The official route lists 3.4 km and 79 m of ascent.'
+    },
+    'osm-9450411': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 7).
+      // The official walk of the Tourismusverein Lajen on the old postal path
+      // from Lajen to St. Ulrich in Gröden (the importer said St. Ulrich only).
+      // Lajen's dog regulation (Gemeinderat 15/2010) requires a lead of at most
+      // 1.5 m and a muzzle carried (Art. 4) and keeps dogs off farmed meadows in
+      // the growing season (Art. 8); St. Ulrich (from about km 9.4) publishes no
+      // dog rule, so the national dog ordinance applies there. No biotope,
+      // Natura 2000 site or park on the line. The stored line is turned to run
+      // the board's way (data/verified-trail-overrides.json).
+      area: 'Lajen – St. Ulrich in Gröden / Laion – Ortisei',
+      distance: 11.9,
+      elevation: 500,
+      hours: '3.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A one-way walk on the old postal path from Lajen by Tschöfas, Tanirz and St. Peter to St. Ulrich in Gröden (500 m up, 386 m down); back the same way or by bus.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'St. Peter church and village above Lajen, in February (Syrio, CC BY-SA 4.0), 72 m from the line.',
+        route: 'Official one-way route 11.9 km from Lajen to St. Ulrich; the stored OSM line (relation 9450411, Poststeig) is the same route, 12.2 km, 13 m from the official start and 27 m from its end, turned to run the board’s way.',
+        routeNumbers: 'Waymarked “P” for Poststeig: from Lajen past the Ploner butcher’s towards Tschöfas, across fields and meadows above Tanirz into the wood, briefly below the main road at the Felsonnes farms, to St. Peter, the road up to the Pedrutsch inn, a level forest path above Pontives across a steep, partly rocky slope, then the fields of Außerwinkel, the Nevelstraße and the Bahnhofstraße into St. Ulrich.',
+        mapPoints: 'Start in Lajen village (official start); drinking water at km 0, 0.2, 1.3, 5.0, 10.2, 10.3, 11.4 and 11.5 (OSM nodes 11808110869, 11808110969, 7072384866, 7727344198, 7727322865, 7727322863, 8193286317, 6665174752); end in St. Ulrich centre.',
+        elevation: 'Official 11.9 km, 500 m up and 386 m down, 3 h 36 min, 1,091–1,291 m (Tourismusverein Lajen, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Lajen, Poststeig (Südtirol.info)',
+          'Gemeinde Lajen, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 15/2010), Art. 4 and 8',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (St. Ulrich publishes no dog rule)',
+          'Province landscape-plan layers: biotopes, Natura 2000 and parks (none on the line)',
+          'OpenStreetMap relation 9450411, road, surface, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 52,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Short stretches beside and across the busy Gröden road (SS242) near the Felsonnes farms, km 3.2–4.0', 'A steep, partly rocky forest slope above Pontives, km 8.4–9.5', 'Village streets in Lajen, St. Peter and St. Ulrich, and the tarmac road up to the Pedrutsch inn', 'Working farms along much of the way'],
+      terrainType: 'Field tracks, meadow and forest paths, with village streets and short road stretches',
+      shadeDescription: 'About half is wooded, mostly between Tanirz and St. Peter and above Pontives; the fields round Lajen and Tschöfas are open and sunny.',
+      terrainDescription: 'A long, easy-going historic walk at 1,090–1,290 m on the sunny slope between the Eisack valley and Gröden, through meadows, farms and wood with views of the Langkofel, ending in St. Ulrich.',
+      waterDescription: 'Plenty of fountains: in Lajen at the start, at Tschöfas, near St. Peter (km 5.0) and several in Außerwinkel and St. Ulrich (km 10.2–11.5); some are seasonal. Inns in Tschöfas, St. Peter and at the Pedrutsch inn.',
+      dogNotes: 'Lajen requires a lead of at most 1.5 m on all public land and a muzzle carried, and dogs must stay off farmed meadows and fields during the growing season; the path crosses many of them. St. Ulrich (the last 2.5 km) publishes no dog rule, so the Italian national rule applies there (lead of at most 1.5 m, muzzle carried). The route passes many working farms, so keep your dog close.',
+      tips: 'Start in Lajen and follow the “P” signs to St. Ulrich: 11.9 km, about 500 m up and 390 m down, three and a half hours one way; take the bus back. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep to the path through the meadows. Take care on the short road stretches near Felsonnes and on the steep, rocky slope above Pontives. Water is easy to find along the way.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Poststeig (Tourismusverein Lajen)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiaf8f3c9ca4a78473c6937adbab75770a.poststeig.albions' },
+        { label: 'Gemeinde Lajen, Haltung und Führung von Hunden', url: 'https://www.gemeinde.lajen.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden_im_Gemeindegebiet_von_Lajen_1' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/9450411' }
+      ],
+      startPoint: { lat: 46.6092, lng: 11.5643, label: 'Lajen village square (official start)' },
+      waterSources: [
+        { km: 0, lat: 46.609325, lng: 11.56429, osmId: 'node/11808110869', label: 'Refill village fountain in Lajen (seasonal)' },
+        { km: 0.2, lat: 46.6094206, lng: 11.5667632, osmId: 'node/11808110969', label: 'Tantscher fountain (seasonal)' },
+        { km: 1.3, lat: 46.6089701, lng: 11.5790445, osmId: 'node/7072384866', label: 'Drinking fountain in Tschöfas' },
+        { km: 5, lat: 46.6050167, lng: 11.6167363, osmId: 'node/7727344198', label: 'Drinking fountain near St. Peter' },
+        { km: 10.2, lat: 46.5774593, lng: 11.6509061, osmId: 'node/7727322865', label: 'Drinking fountain in Außerwinkel' },
+        { km: 10.3, lat: 46.5773705, lng: 11.6521102, osmId: 'node/7727322863', label: 'Drinking fountain' },
+        { km: 11.4, lat: 46.576297, lng: 11.664863, osmId: 'node/8193286317', label: 'Refill drinking fountain in St. Ulrich' },
+        { km: 11.5, lat: 46.5763317, lng: 11.6662878, osmId: 'node/6665174752', label: 'Drinking fountain in St. Ulrich' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.60897, lng: 11.56382, osmId: 'node/3658506325', name: 'Gasthof zur Krone' },
+        { km: 0, lat: 46.60932, lng: 11.56398, osmId: 'node/4123891384', name: 'Cafè Am Platzl' },
+        { km: 0.1, lat: 46.60899, lng: 11.56502, osmId: 'node/850636743', name: 'Zur Sonne' },
+        { km: 4.3, lat: 46.60225, lng: 11.61079, osmId: 'way/172845264', name: 'Hotel Überbacher' },
+        { km: 6.6, lat: 46.59813, lng: 11.62695, osmId: 'way/172845330', name: 'Pedrutscherhof' },
+        { km: 11.6, lat: 46.57558, lng: 11.66799, osmId: 'node/1636849153', name: 'Bar San Durich' },
+        { km: 11.8, lat: 46.57487, lng: 11.67052, osmId: 'node/9987846455', name: 'Turonda' },
+        { km: 11.8, lat: 46.57517, lng: 11.67119, osmId: 'node/11630086136', name: 'Restaurant - Pizzeria Four' },
+        { km: 11.8, lat: 46.57518, lng: 11.67122, osmId: 'node/11630490136', name: 'Bar Four' },
+        { km: 11.9, lat: 46.57421, lng: 11.6716, osmId: 'node/2756046760', name: 'La Cërcia Vinotheque' },
+        { km: 11.9, lat: 46.5742, lng: 11.67188, osmId: 'node/2756048126', name: 'Sotriffer Restaurant & Wine Bar' },
+        { km: 11.9, lat: 46.57415, lng: 11.67198, osmId: 'node/2756048300', name: 'Café Demetz' },
+        { km: 11.9, lat: 46.57411, lng: 11.67129, osmId: 'node/10679888105', name: 'Maurizkeller Restaurant/Pizzeria' },
+        { km: 11.9, lat: 46.57451, lng: 11.67131, osmId: 'node/11801472767', name: 'Cafe Adler' },
+        { km: 11.9, lat: 46.57452, lng: 11.67089, osmId: 'node/2756043799', name: 'The Classic Cafe Stetteneck' },
+        { km: 12.2, lat: 46.57386, lng: 11.673, osmId: 'node/1594790717', name: 'Corso' },
+        { km: 12.2, lat: 46.57335, lng: 11.67363, osmId: 'node/1636849149', name: 'Haiti' },
+        { km: 12.2, lat: 46.57422, lng: 11.67355, osmId: 'node/2756051369', name: 'Soviso' },
+        { km: 12.2, lat: 46.57393, lng: 11.67329, osmId: 'node/9151291236', name: 'Zur Goldenen Traube' },
+        { km: 12.2, lat: 46.57311, lng: 11.67409, osmId: 'node/9151313010', name: 'Vedl Mulin - Restaurant/Pizzeria' }
+      ],
+      desc: 'A historic walk on the old postal path from Lajen to St. Ulrich in Gröden, once used by postmen and traders: through the meadows and farms of the Lajen sunny slope, past Tschöfas and St. Peter, with the Langkofel ahead. The official route lists 11.9 km and 500 m of ascent.'
     }
   };
 

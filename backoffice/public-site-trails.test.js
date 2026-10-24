@@ -30,10 +30,12 @@ describe('the existing-site verification boundary',()=>{
     // then 174 and 166 with the Mühlenweg, the Katharinaberg loop and the
     // Quellenpromenade, then 177 and 169 with the Törggeleweg and the
     // Niedertal and Mittertal loops in Antholz, then 180 and 172 with the
-    // Kulturwanderweg Peter Mitterhofer, the Hinzlweg and the Martinsweg.
+    // Kulturwanderweg Peter Mitterhofer, the Hinzlweg and the Martinsweg, then
+    // 184 and 176 with PanaRaida, the Feldthurns Panoramaweg, the Antholzer
+    // See loop and the Poststeig.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(180);
-    expect(currentSiteTrails(catalogue)).toHaveLength(172);
+    expect(catalogue).toHaveLength(184);
+    expect(currentSiteTrails(catalogue)).toHaveLength(176);
   });
 
   test('requires the artwork the public trail page needs',()=>{
