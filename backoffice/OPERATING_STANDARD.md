@@ -2294,6 +2294,47 @@ agent; trails verified by hand are untouched. The safety lane's contract moves
 to `safety-research-v2` because it now asks these questions too, so when it is
 switched on it asks them once of the trails it already researched.
 
+## Four of the seal's checks are measured for free
+
+> **Status: proposed 23 October 2026 -- a standards change awaiting the CEO's
+> approval in its pull request.** Built in
+> `backoffice/workflows/free-seal-checks.js`; run by
+> `npm run backoffice:free-checks` and weekly by the **ORMA free seal checks**
+> workflow.
+
+Four of the six methods in the section above are measurements, not research,
+and need nobody to read a page. They are run for every catalogue trail, cost
+no model call and no Firestore read, and are written to
+`data/free-seal-checks.json`:
+
+- **Municipalities on the line** -- OpenStreetMap administrative boundaries
+  (admin level 8: the comune, the commune) under points along the whole line.
+  An empty answer is a mirror without boundary data, never a line that crosses
+  none, so it is a failed lookup and the next mirror is asked.
+- **Natura 2000 sites the line touches** -- the EEA's own query service. A site
+  that is certainly protected (Fanes-Senes-Braies, `IT3110049`) is asked first
+  on every run; if it does not come back, no empty answer that run is trusted.
+- **The line against the official distance** -- where ORMA has recorded the
+  official page and its quote names exactly one distance. Two figures in one
+  quote are not guessed between.
+- **Where the photograph was taken** -- from the host that published it:
+  Wikimedia Commons (the camera position), Panoramax, iNaturalist, Flickr.
+  Hosts that need a key are recorded as not supported.
+
+A lookup that fails keeps the last real answer, marked stale; an outage is not
+evidence about a trail. The workflow opens a pull request only when a
+measurement changed.
+
+**Who uses it.** A person verifying by hand starts from it instead of
+measuring again. The Ranger and the terrain analyst are handed it as a lead,
+so a paid search goes on the dog rules rather than on finding the communes. And
+the seal accepts what it measured where no agent answered.
+
+**What it does not do.** It gives no badge. The climb, the walking time, each
+commune's dog rule and the six safety checks still need somebody to read an
+authority's page, so the badge is still given by hand while paid research is
+off.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:

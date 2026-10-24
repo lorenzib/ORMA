@@ -1,0 +1,77 @@
+name: ORMA free seal checks
+
+# The four checks behind the ORMA Verified seal that need nobody to read a
+# page: which municipalities each trail's line crosses (OpenStreetMap admin
+# boundaries), which Natura 2000 sites it touches (EEA), its length against the
+# official distance ORMA recorded, and where its photograph was taken.
+#
+# Free: no model call, no Firestore read. Run for every catalogue trail and
+# written to data/free-seal-checks.json, which hand verification starts from,
+# the agents are handed as a lead, and the seal reads. It decides nothing and
+# changes no trail; the badge is still given by hand.
+on:
+  workflow_dispatch:
+    inputs:
+      trail:
+        description: 'Optional: comma-separated trail ids. Blank checks every trail.'
+        required: false
+        default: ''
+  schedule:
+    - cron: '30 4 * * 1'        # Mondays, before the working day
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: orma-free-seal-checks
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    # 163 trails, one Overpass, one EEA and one photo lookup each, paced at
+    # 1.5 s so the public mirrors are not hammered.
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+
+      - name: Run the free checks
+        env:
+          TRAILS: ${{ inputs.trail }}
+        run: |
+          if [ -n "$TRAILS" ]; then
+            npm run backoffice:free-checks -- "--trail=$TRAILS"
+          else
+            npm run backoffice:free-checks
+          fi
+
+      - name: Open a pull request with the results
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "dolopaws-bot"
+          git config user.email "actions@github.com"
+          git add data/free-seal-checks.json
+
+          # Every run stamps fresh times; only a changed measurement is news.
+          substantive="$(git diff --cached -U0 | grep -E '^[+-][^+-]' | grep -vE '"(generatedAt|checkedAt|staleSince)"' || true)"
+          if [ -z "$substantive" ]; then
+            echo "Only timestamps changed; nothing to publish."
+            git reset
+            exit 0
+          fi
+
+          # main is protected and requires a reviewed pull request.
+          branch="orma-bot/free-seal-checks-${GITHUB_RUN_ID}"
+          git checkout -b "$branch"
+          git commit -m "Refresh the free seal checks"
+          git push origin "$branch"
+          gh pr create --base "${GITHUB_REF_NAME}" --head "$branch" \
+            --title "Refresh the free seal checks" \
+            --body "Weekly free measurements for every trail: municipalities on the line, Natura 2000 sites, line length against the recorded official distance, and photo location. No model call was made. Opened automatically because main requires a reviewed pull request."
