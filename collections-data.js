@@ -61,7 +61,7 @@
     {
       id:'savoy-rifugio-days', title:'Savoy mountain-stop days', subtitle:'Five walks with a mapped hut or mountain stop',
       description:'A Savoy shortlist where a hut or mountain stop can anchor the day. Opening dates and dog rules can change, so confirm them directly before relying on a stop.',
-      coverImage:'images/le-mont-d-arbois-mont-joux.webp', chips:['Mapped mountain stops','Long-lunch potential','Check current opening'],
+      coverImage:'images/trails/osm-18055492-pointe-percee.jpg', chips:['Mapped mountain stops','Long-lunch potential','Check current opening'],
       countryCode:'FR', country:'France', region:'savoy', regionLabel:'Savoy', tripLength:'3–5 days',
       trailIds:['osm-6250300','osm-9933643','osm-18055492','osm-14864704','osm-16322228'],
     },
@@ -82,7 +82,7 @@
     {
       id:'savoy-cable-car-days', title:'Lift-assisted Savoy days', subtitle:'Five high-level options with a lift near the start',
       description:'A Savoy shortlist of walks that can begin with a cable car, gondola or lift. Services and dog policies are seasonal, so use each trail’s access notes and verify the operator timetable.',
-      coverImage:'images/la-croix-des-salles.webp', chips:['Lift-assisted access','High-level starts','Verify dog policy'],
+      coverImage:'images/trails/osm-11517208-beauregard-track.jpg', chips:['Lift-assisted access','High-level starts','Verify dog policy'],
       countryCode:'FR', country:'France', region:'savoy', regionLabel:'Savoy', tripLength:'3–5 days',
       trailIds:['osm-11517208','osm-9937537','osm-12745924','osm-14375158','osm-14376573'],
     },
