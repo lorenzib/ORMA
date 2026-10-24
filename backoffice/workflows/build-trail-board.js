@@ -99,7 +99,7 @@ function publicationByTrail(requests){
   for(const request of requests?.requests || []){
     const id = request.candidateId || request.trailId;
     if(!id) continue;
-    const at = new Date(request.failedAt || request.publishedAt || request.processedAt || request.submittedAt || request.createdAt || 0).getTime();
+    const at = new Date(request.failedAt || request.publishedAt || request.pullRequestClosedAt || request.processedAt || request.submittedAt || request.createdAt || 0).getTime();
     const current = out.get(id);
     if(!current || at >= current.at) out.set(id, { request, at });
   }
@@ -119,7 +119,8 @@ function publicationText(request){
       failed: true, stuck: manual, retryable: request.retryable !== false,
     };
   }
-  if(status === 'pull-request-opened') return { next: 'Publication pull request open', failed: false, stuck: false };
+  if(status === 'pull-request-opened') return { next: request.pullRequestMergedAt ? 'Publication merged, waiting to go live' : 'Publication pull request open', failed: false, stuck: false };
+  if(status === 'pull-request-closed') return { next: 'Publication pull request closed unmerged', failed: false, stuck: false };
   if(status === 'hold') return { next: 'Publication on hold', failed: false, stuck: false };
   return { next: 'Waiting to be published', failed: false, stuck: false };
 }
