@@ -248,6 +248,26 @@
       "name": "Seerundweg Antholzer See",
       "slug": "seerundweg-antholzer-see",
       "gloss": "the Antholz lake circuit"
+    },
+    "osm-6601608": {
+      "name": "Naturerlebnispfad Sand in Taufers",
+      "slug": "naturerlebnispfad-sand-in-taufers",
+      "gloss": "the Sand in Taufers nature trail"
+    },
+    "osm-11791915": {
+      "name": "Dorfrundweg Aicha",
+      "slug": "dorfrundweg-aicha",
+      "gloss": "the Aicha village circuit"
+    },
+    "osm-3707731": {
+      "name": "Gratschenbergrunde",
+      "slug": "gratschenbergrunde",
+      "gloss": "the Gratschenberg circuit"
+    },
+    "osm-11833313": {
+      "name": "Römerweg Kiens",
+      "slug": "roemerweg-kiens",
+      "gloss": "the Roman road walk"
     }
   }
 }
