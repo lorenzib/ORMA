@@ -14,7 +14,19 @@
     return {text,url:/^https:\/\//i.test(url)?url:'',bare:record?.bare===true,label:record?.bare===true?text:`Photo: ${text}`};
   }
 
-  function heroCredit(trail){return normalizeCredit(trail?.imageCredit,trail?.imageSourcePage);}
+  // An illustration is not a photograph, so its line is not headed "Photo:"
+  // and carries no photographer or licence. The same two types are listed as
+  // NOT_A_PHOTOGRAPH in backoffice/workflows/build-publication-staging.js.
+  const ILLUSTRATION_TYPES=['ai-illustration','orma-illustration'];
+  function isIllustration(trail){return ILLUSTRATION_TYPES.includes(String(trail?.imageSourceType||''));}
+
+  function heroCredit(trail){
+    if(isIllustration(trail)){
+      const credit=normalizeCredit({text:typeof trail.imageCredit==='string'?trail.imageCredit:trail?.imageCredit?.text,bare:true});
+      return credit?{...credit,url:'',isIllustration:true}:null;
+    }
+    return normalizeCredit(trail?.imageCredit,trail?.imageSourcePage);
+  }
 
   function editorialPhotos(trail){
     return (Array.isArray(trail?.editorialPhotos)?trail.editorialPhotos:[])
@@ -34,5 +46,5 @@
 
   function photoAlt(photo){return clean(photo?.alt,500)||clean(photo?.caption,500)||'Trail photograph';}
 
-  return {clean,normalizeCredit,heroCredit,editorialPhotos,photoCaption,photoAlt};
+  return {clean,normalizeCredit,heroCredit,isIllustration,editorialPhotos,photoCaption,photoAlt};
 });

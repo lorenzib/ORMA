@@ -360,6 +360,12 @@ function photoCreditHtml(t){
     const publisher=/Wikimedia Commons/i.test(credit.text)?' <span aria-hidden="true">·</span> via Wikimedia Commons':'';
     content=`<a href="${escapeHtml(credit.url)}" rel="noopener nofollow">${escapeHtml(title)}</a> by ${escapeHtml(t.imageCreator)} <span aria-hidden="true">·</span> ${licence}${publisher}`;
   }
+  if(credit.isIllustration){
+    return `<details class="sp-photo-credit">
+      <summary aria-label="About this illustration" title="About this illustration">i</summary>
+      <div class="sp-photo-credit__body">${content}</div>
+    </details>`;
+  }
   return `<details class="sp-photo-credit">
       <summary aria-label="Show photo credit" title="Photo credit">C</summary>
       <div class="sp-photo-credit__body">${content} <span aria-hidden="true">·</span> Cropped for display.</div>

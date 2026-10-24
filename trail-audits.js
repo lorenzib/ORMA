@@ -38345,7 +38345,65 @@
         "url": "https://explore.chamberymontagnes.com/fr/itineraires/le-marais-de-pre-lombard"
       },
       "desc": "A 7.3 km loop through the farmland, woods and marsh west of La Motte-Servolex: from the Chemin de Pré Marquis along the A43, across the Servolex plateau and Grands Champs, down a fairly steep path to the Combe stream, up to Beauvoir and Montarlet, then down to the Pré Lombard marsh and back along the wide track beside the Leysse. The tourist office gives 2 hours and 125 m of climb, and says it is not waymarked, so take the route sheet. This walk is not yet verified by ORMA.\n\nLa Motte-Servolex requires every dog to be kept on a lead, everywhere in the commune.",
-      "tips": "Keep your dog on a lead the whole way: La Motte-Servolex requires it everywhere. About half the walk is on public lanes and roads, and the southern leg runs close to the A43 motorway and a slip road, so hold your dog close there. There is almost no shade and no drinking water, so avoid hot days and carry water. The route is not waymarked: take the tourist office's route sheet."
+      "tips": "Keep your dog on a lead the whole way: La Motte-Servolex requires it everywhere. About half the walk is on public lanes and roads, and the southern leg runs close to the A43 motorway and a slip road, so hold your dog close there. There is almost no shade and no drinking water, so avoid hot days and carry water. The route is not waymarked: take the tourist office's route sheet.",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 291
+        },
+        {
+          "km": 1,
+          "elev": 288
+        },
+        {
+          "km": 1.1,
+          "elev": 283
+        },
+        {
+          "km": 1.7,
+          "elev": 298
+        },
+        {
+          "km": 2.3,
+          "elev": 317
+        },
+        {
+          "km": 2.8,
+          "elev": 300
+        },
+        {
+          "km": 3.4,
+          "elev": 258
+        },
+        {
+          "km": 4,
+          "elev": 245
+        },
+        {
+          "km": 4.4,
+          "elev": 247
+        },
+        {
+          "km": 4.9,
+          "elev": 248
+        },
+        {
+          "km": 5.5,
+          "elev": 256
+        },
+        {
+          "km": 6.1,
+          "elev": 254
+        },
+        {
+          "km": 6.6,
+          "elev": 255
+        },
+        {
+          "km": 7.2,
+          "elev": 292
+        }
+      ]
     },
     'osm-9933643': {
       // Correction, 24 October 2026 (not a verification: the tourist office's figures, 3.4 km, 209 m, 1h30, are for the direct route
@@ -38824,6 +38882,68 @@
         { km: 12.2, lat: 46.57311, lng: 11.67409, osmId: 'node/9151313010', name: 'Vedl Mulin - Restaurant/Pizzeria' }
       ],
       desc: 'A historic walk on the old postal path from Lajen to St. Ulrich in Gröden, once used by postmen and traders: through the meadows and farms of the Lajen sunny slope, past Tschöfas and St. Peter, with the Langkofel ahead. The official route lists 11.9 km and 500 m of ascent.'
+    },
+    'osm-14987412': {
+      // Correction, 24 October 2026: the record had no climb profile; it is measured on the published line, so the page and its
+      // ORMA illustration can show it.
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 891
+        },
+        {
+          "km": 0.7,
+          "elev": 833
+        },
+        {
+          "km": 1.3,
+          "elev": 834
+        },
+        {
+          "km": 1.9,
+          "elev": 885
+        },
+        {
+          "km": 2.6,
+          "elev": 901
+        },
+        {
+          "km": 3.2,
+          "elev": 911
+        },
+        {
+          "km": 4,
+          "elev": 836
+        },
+        {
+          "km": 4.5,
+          "elev": 851
+        },
+        {
+          "km": 5.1,
+          "elev": 916
+        },
+        {
+          "km": 5.7,
+          "elev": 923
+        },
+        {
+          "km": 6.4,
+          "elev": 868
+        },
+        {
+          "km": 7,
+          "elev": 874
+        },
+        {
+          "km": 7.7,
+          "elev": 904
+        },
+        {
+          "km": 8.3,
+          "elev": 898
+        }
+      ]
     }
   };
 

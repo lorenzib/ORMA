@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-24T18:00:00.000Z",
+  "updatedAt": "2026-10-24T12:17:31.000Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -614,19 +614,17 @@
     },
     {
       "id": "osm-12018939",
-      "approvedReviewId": "commons-osm-12018939",
-      "approvedAt": "2026-09-06T15:21:27.825Z",
+      "approvedReviewId": "orma-illustration-osm-12018939",
+      "approvedAt": "2026-10-24T12:17:30.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-12018939-steinegg.jpg",
-        "heroImage": "images/trails/osm-12018939-steinegg.jpg",
-        "imageAlt": "The village of Steinegg on its wooded ridge above forested slopes and meadows.",
-        "imageCredit": "Steinegg seen from the castle ruin",
-        "imageCreditText": "Steinegg seen from the castle ruin by Plentn",
-        "imageCreator": "Plentn",
-        "imageLicence": "CC0",
-        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Steinegg.jpg",
-        "imageSourceType": "licensed-source"
+        "imageIcon": "images/trails/osm-12018939-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-12018939-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Steinegger Höhenweg: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
       }
     },
     {
@@ -1005,19 +1003,17 @@
     },
     {
       "id": "osm-12189165",
-      "approvedReviewId": "commons-osm-12189165",
-      "approvedAt": "2026-09-08T09:19:47.259Z",
+      "approvedReviewId": "orma-illustration-osm-12189165",
+      "approvedAt": "2026-10-24T12:17:30.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-12189165-val-sarentina.jpg",
-        "heroImage": "images/trails/osm-12189165-val-sarentina.jpg",
-        "imageAlt": "A hay meadow on the valley side above Sarnthein, the Sarntal opening below between forested slopes with farms scattered on the far side.",
-        "imageCredit": "Val Sarentina",
-        "imageCreditText": "Val Sarentina by Alessandro Gigliotti",
-        "imageCreator": "Alessandro Gigliotti",
-        "imageLicence": "CC BY 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Val_Sarentina_con_Forcella_Sarentina_e_Cima_Rodella_-_panoramio.jpg",
-        "imageSourceType": "licensed-source"
+        "imageIcon": "images/trails/osm-12189165-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-12189165-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Rundweg Schwarzegg - Sentiero circolare Dosso Nero: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
       }
     },
     {
@@ -1243,19 +1239,17 @@
     },
     {
       "id": "osm-13337921",
-      "approvedReviewId": "commons-osm-13337921",
-      "approvedAt": "2026-09-06T13:25:25.857Z",
+      "approvedReviewId": "orma-illustration-osm-13337921",
+      "approvedAt": "2026-10-24T12:17:30.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-13337921-commons.jpg",
-        "heroImage": "images/trails/osm-13337921-commons.jpg",
-        "imageAlt": "La Chèvrerie below the Roc d'Enfer",
-        "imageCredit": "Pano Chèvrerie",
-        "imageCreditText": "Pano Chèvrerie by Benoit Kornmann",
-        "imageCreator": "Benoit Kornmann",
-        "imageLicence": "CC BY-SA 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pano_Ch%C3%A8vrerie.jpg",
-        "imageSourceType": "licensed-source"
+        "imageIcon": "images/trails/osm-13337921-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-13337921-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Au pied du Roc d'Enfer: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
       }
     },
     {
@@ -1446,19 +1440,17 @@
     },
     {
       "id": "osm-14379937",
-      "approvedReviewId": "commons-osm-14379937",
-      "approvedAt": "2026-09-06T13:11:45.902Z",
+      "approvedReviewId": "orma-illustration-osm-14379937",
+      "approvedAt": "2026-10-24T12:17:31.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-14379937-commons.jpg",
-        "heroImage": "images/trails/osm-14379937-commons.jpg",
-        "imageAlt": "Willowherb in flower above Valloire",
-        "imageCredit": "Épilobe devant les montagnes",
-        "imageCreditText": "Épilobe devant les montagnes by Wikisquack",
-        "imageCreator": "Wikisquack",
-        "imageLicence": "CC BY 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:%C3%89pilobe_devant_les_montagnes.jpg",
-        "imageSourceType": "licensed-source"
+        "imageIcon": "images/trails/osm-14379937-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-14379937-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Albannette petite boucle: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
       }
     },
     {
@@ -1496,6 +1488,36 @@
       }
     },
     {
+      "id": "osm-14381788",
+      "approvedReviewId": "orma-illustration-osm-14381788",
+      "approvedAt": "2026-10-24T12:17:30.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14381788-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-14381788-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Marmottes: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
+      }
+    },
+    {
+      "id": "osm-14381930",
+      "approvedReviewId": "orma-illustration-osm-14381930",
+      "approvedAt": "2026-10-24T12:17:30.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14381930-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-14381930-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of La Plagne: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
+      }
+    },
+    {
       "id": "osm-14864704",
       "approvedAt": "2026-10-20T11:58:14.431Z",
       "fields": {
@@ -1513,17 +1535,17 @@
     },
     {
       "id": "osm-14987412",
-      "approvedAt": "2026-10-20T12:00:00.000Z",
+      "approvedReviewId": "orma-illustration-osm-14987412",
+      "approvedAt": "2026-10-24T12:17:29.000Z",
       "fields": {
-        "imageIcon": "images/sentier-du-four.webp",
-        "imageAlt": "An illustration of the Chemin des Fours at Arbusigny, generated by ORMA and not a photograph of the walk",
-        "imageCredit": "AI-generated illustration of the Chemin des Fours at Arbusigny, not a photograph",
-        "imageCreditText": "AI-generated illustration of the Chemin des Fours at Arbusigny, not a photograph",
+        "imageIcon": "images/trails/osm-14987412-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-14987412-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Sentier du Four: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
         "imageCreator": "ORMA",
         "imageLicence": "ORMA-owned",
-        "imageLicenceUrl": null,
-        "imageSourcePage": null,
-        "imageSourceType": "ai-illustration"
+        "imageSourceType": "orma-illustration"
       }
     },
     {
@@ -1661,6 +1683,21 @@
       }
     },
     {
+      "id": "osm-16363583",
+      "approvedReviewId": "orma-illustration-osm-16363583",
+      "approvedAt": "2026-10-24T12:17:29.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-16363583-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-16363583-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Le Marais de Pré Lombard: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
+      }
+    },
+    {
       "id": "osm-16365005",
       "approvedReviewId": "hand-audit-osm-16365005",
       "approvedAt": "2026-10-24T16:00:00.000Z",
@@ -1695,19 +1732,17 @@
     },
     {
       "id": "osm-16490407",
-      "approvedReviewId": "commons-osm-16490407",
-      "approvedAt": "2026-09-07T19:39:19.761Z",
+      "approvedReviewId": "orma-illustration-osm-16490407",
+      "approvedAt": "2026-10-24T12:17:31.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-16490407-grande-chible.jpg",
-        "heroImage": "images/trails/osm-16490407-grande-chible.jpg",
-        "imageAlt": "The dark schist ridge of the Grande Chible above Montricher-Albanne, a path traced along its alpine grass shoulder under building cloud.",
-        "imageCredit": "La grande Chible",
-        "imageCreditText": "La grande Chible by Patrick OTER",
-        "imageCreator": "Patrick OTER",
-        "imageLicence": "CC0",
-        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:La_grande_Chible.jpg",
-        "imageSourceType": "licensed-source"
+        "imageIcon": "images/trails/osm-16490407-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-16490407-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Circuit des Sallanches: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
       }
     },
     {
@@ -1846,6 +1881,21 @@
       }
     },
     {
+      "id": "osm-19531872",
+      "approvedReviewId": "orma-illustration-osm-19531872",
+      "approvedAt": "2026-10-24T12:17:30.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19531872-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-19531872-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Circuit des Demoiselles Coiffées: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
+      }
+    },
+    {
       "id": "osm-19541366",
       "approvedReviewId": "commons-osm-19541366",
       "approvedAt": "2026-09-07T19:39:19.761Z",
@@ -1864,19 +1914,17 @@
     },
     {
       "id": "osm-19661726",
-      "approvedReviewId": "commons-osm-19661726",
-      "approvedAt": "2026-09-07T16:02:46.715Z",
+      "approvedReviewId": "orma-illustration-osm-19661726",
+      "approvedAt": "2026-10-24T12:17:31.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-19661726-combloux.jpg",
-        "heroImage": "images/trails/osm-19661726-combloux.jpg",
-        "imageAlt": "A summer meadow of daisies, clover and cow parsley on the slopes above Combloux, with spruce and wooded hills beyond.",
-        "imageCredit": "The Combloux slopes in summer",
-        "imageCreditText": "The Combloux slopes in summer by Geoff Gallice",
-        "imageCreator": "Geoff Gallice",
-        "imageLicence": "CC BY 2.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Flickr_-_ggallice_-_Les_Pistes_de_Combloux%2C_%C3%A0_l'%C3%A9t%C3%A9.jpg",
-        "imageSourceType": "licensed-source"
+        "imageIcon": "images/trails/osm-19661726-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-19661726-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Sentier pédestre des Graniteurs: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
       }
     },
     {
@@ -1915,19 +1963,17 @@
     },
     {
       "id": "osm-19760372",
-      "approvedReviewId": "commons-osm-19760372",
-      "approvedAt": "2026-09-07T19:55:05.873Z",
+      "approvedReviewId": "orma-illustration-osm-19760372",
+      "approvedAt": "2026-10-24T12:17:31.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-19760372-le-morel.jpg",
-        "heroImage": "images/trails/osm-19760372-le-morel.jpg",
-        "imageAlt": "The Morel river stepping over its weirs into clear green pools, spruce woods on both banks and a track along the near side.",
-        "imageCredit": "Le Morel et ses seuils",
-        "imageCreditText": "Le Morel et ses seuils by Florian Pépellin",
-        "imageCreator": "Florian Pépellin",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Le_Morel_et_ses_seuils_au_matin_(ao%C3%BBt_2025).JPG",
-        "imageSourceType": "licensed-source"
+        "imageIcon": "images/trails/osm-19760372-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-19760372-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Boucle du Moulin de Cornet: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
       }
     },
     {
@@ -2235,19 +2281,17 @@
     },
     {
       "id": "osm-6404634",
-      "approvedReviewId": "commons-osm-6404634",
-      "approvedAt": "2026-09-06T12:22:30.979Z",
+      "approvedReviewId": "orma-illustration-osm-6404634",
+      "approvedAt": "2026-10-24T12:17:30.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-6404634-commons.jpg",
-        "heroImage": "images/trails/osm-6404634-commons.jpg",
-        "imageAlt": "Mixed woodland in Val Canali in the Paneveggio nature park",
-        "imageCredit": "Bosco misto in Val Canali ph Carlo A.Turra",
-        "imageCreditText": "Bosco misto in Val Canali ph Carlo A.Turra by Viducoli",
-        "imageCreator": "Viducoli",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bosco_misto_in_Val_Canali_ph_Carlo_A.Turra.jpg",
-        "imageSourceType": "licensed-source"
+        "imageIcon": "images/trails/osm-6404634-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-6404634-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Anello del Bosco: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
       }
     },
     {
@@ -2282,6 +2326,21 @@
         "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Aschbach_Algund_2020.jpg",
         "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-6529356",
+      "approvedReviewId": "orma-illustration-osm-6529356",
+      "approvedAt": "2026-10-24T12:17:30.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-6529356-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-6529356-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Anton Schwingshackl Weg: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
       }
     },
     {
@@ -2439,19 +2498,17 @@
     },
     {
       "id": "osm-7546708",
-      "approvedReviewId": "commons-osm-7546708",
-      "approvedAt": "2026-09-07T20:33:09.392Z",
+      "approvedReviewId": "orma-illustration-osm-7546708",
+      "approvedAt": "2026-10-24T12:17:30.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-7546708-somacros.jpg",
-        "heroImage": "images/trails/osm-7546708-somacros.jpg",
-        "imageAlt": "A grass track through the hay meadows at Somacros above Domegge, an old timber hay barn beside it and spruce forest closing the valley.",
-        "imageCredit": "Prati a Somacros",
-        "imageCreditText": "Prati a Somacros by Antonio De Lorenzo",
-        "imageCreator": "Antonio De Lorenzo",
-        "imageLicence": "CC BY 2.5",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.5",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Domegge_somacros_prati.JPG",
-        "imageSourceType": "licensed-source"
+        "imageIcon": "images/trails/osm-7546708-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-7546708-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Anello di Soracrode: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
       }
     },
     {
@@ -2490,19 +2547,17 @@
     },
     {
       "id": "osm-7548201",
-      "approvedReviewId": "commons-osm-7548201",
-      "approvedAt": "2026-09-06T08:52:09.690Z",
+      "approvedReviewId": "orma-illustration-osm-7548201",
+      "approvedAt": "2026-10-24T12:17:30.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-7548201-commons.jpg",
-        "heroImage": "images/trails/osm-7548201-commons.jpg",
-        "imageAlt": "Auronzo di Cadore seen from the Tre Cime",
-        "imageCredit": "Auronzo di Cadore dalle Tre Cime",
-        "imageCreditText": "Auronzo di Cadore dalle Tre Cime by Davide Mauro",
-        "imageCreator": "Davide Mauro",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Auronzo_di_Cadore_dalle_Tre_Cime.jpg",
-        "imageSourceType": "licensed-source"
+        "imageIcon": "images/trails/osm-7548201-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-7548201-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Anello di Ciampeviei: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
       }
     },
     {
@@ -2524,19 +2579,17 @@
     },
     {
       "id": "osm-7548489",
-      "approvedReviewId": "commons-osm-7548489",
-      "approvedAt": "2026-09-05T20:54:58.988Z",
+      "approvedReviewId": "orma-illustration-osm-7548489",
+      "approvedAt": "2026-10-24T12:17:30.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-7548489-commons.jpg",
-        "heroImage": "images/trails/osm-7548489-commons.jpg",
-        "imageAlt": "Autumn beside the lake at Auronzo di Cadore",
-        "imageCredit": "Auronzo cadore lago autunno",
-        "imageCreditText": "Auronzo cadore lago autunno by Kufoleto Antonio De Lorenzo & Marina Ventayol",
-        "imageCreator": "Kufoleto Antonio De Lorenzo & Marina Ventayol",
-        "imageLicence": "CC BY 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Auronzo_cadore_lago_autunno.jpg",
-        "imageSourceType": "licensed-source"
+        "imageIcon": "images/trails/osm-7548489-orma-illustration.jpg",
+        "heroImage": "images/trails/osm-7548489-orma-illustration.jpg",
+        "imageAlt": "ORMA illustration of Anello dei Faggi: its climb drawn as contour bands and its route shape, not a photograph",
+        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageSourceType": "orma-illustration"
       }
     },
     {

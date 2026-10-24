@@ -5,7 +5,7 @@ const {loadProductionTrails}=require('../scripts/load-production-trails');
 const {isCurrentSiteTrail,currentSiteTrails}=require('./services/public-site-trails');
 
 describe('the existing-site verification boundary',()=>{
-  test('includes the 169 trail pages that have artwork, whatever the catalogue holds',()=>{
+  test('includes the 178 trail pages that have artwork, whatever the catalogue holds',()=>{
     // The boundary is artwork, and it is not publication: the catalogue grew
     // from 162 to 163 and the drafts fell from 22 to 2 without either moving
     // this number. The two were equal only while the drafts and the
@@ -30,12 +30,15 @@ describe('the existing-site verification boundary',()=>{
     // then 174 and 166 with the Mühlenweg, the Katharinaberg loop and the
     // Quellenpromenade, then 177 and 169 with the Törggeleweg and the
     // Niedertal and Mittertal loops in Antholz, then 180 and 172 with the
-    // Kulturwanderweg Peter Mitterhofer, the Hinzlweg and the Martinsweg, then
-    // 184 and 176 with PanaRaida, the Feldthurns Panoramaweg, the Antholzer
-    // See loop and the Poststeig.
+    // Kulturwanderweg Peter Mitterhofer, the Hinzlweg and the Martinsweg. Then
+    // 178 when six walks with no usable picture -- Sentier du Four, the Marais
+    // de Pré Lombard, the Anton Schwingshackl Weg, Marmottes, La Plagne and the
+    // Demoiselles Coiffées -- gained an ORMA illustration (they stay Reviewed,
+    // never Verified), then 184 and 182 with PanaRaida, the Feldthurns
+    // Panoramaweg, the Antholzer See loop and the Poststeig.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
     expect(catalogue).toHaveLength(184);
-    expect(currentSiteTrails(catalogue)).toHaveLength(176);
+    expect(currentSiteTrails(catalogue)).toHaveLength(182);
   });
 
   test('requires the artwork the public trail page needs',()=>{
