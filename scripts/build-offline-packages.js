@@ -44,6 +44,7 @@ const fs = require('fs');
 const path = require('path');
 const { loadProductionTrails } = require('./load-production-trails');
 const evidence = require('../trust/evidence-v1.js');
+const offlineElevation = require('../offline-elevation.js');
 const { renderOfflineMap } = require('./render-offline-osm-map');
 const { buildFootpathNetwork } = require('./build-offline-footpath-network');
 const { buildManifest } = require('./build-offline-manifest');
@@ -243,16 +244,42 @@ async function elevationProfileFor(trail){
   return profileFile(trail, storedProfile(trail) || await sampledProfile(trail));
 }
 
+/**
+ * The offline page draws the profile only when every point lies further along
+ * the route than the one before (offline-elevation.js validProfile), and
+ * refuses the whole package otherwise. The catalogue rounds a profile's
+ * distances to 0.1 km, so two samples can land on the same mark: Fenn
+ * Promenade has two at 1.1 km, and five packages would not open. A point that
+ * does not move along the route is dropped; the last point always stays, so
+ * the profile still ends where the walk does.
+ */
+function alongTheRoute(points){
+  const kept = [];
+  points.forEach((point, index) => {
+    const previous = kept[kept.length - 1];
+    if(!previous || point.km > previous.km){
+      kept.push(point);
+    }else if(index === points.length - 1){
+      kept[kept.length - 1] = point;
+    }
+  });
+  return kept;
+}
+
 function profileFile(trail, stored){
-  const last = stored.points[stored.points.length - 1];
-  return {
+  const points = alongTheRoute(stored.points);
+  const profile = {
     schemaVersion:1,
     trailId:trail.id,
-    distanceKm:last.km,
+    distanceKm:points[points.length - 1].km,
     ascentM:Number.isFinite(trail.elevation) ? trail.elevation : null,
     source:stored.source,
-    points:stored.points,
+    points,
   };
+  if(!offlineElevation.validProfile(profile, trail.id)){
+    throw new Error(`${trail.id} has an elevation profile the offline page would reject`);
+  }
+  return profile;
 }
 
 function routeFor(trail){
