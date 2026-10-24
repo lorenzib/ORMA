@@ -82,8 +82,10 @@ describe('the audit says what is known about each picture',()=>{
     }
   });
 
-  test('the two illustrations are recorded as ORMA’s own and not as photographs',()=>{
-    for(const id of ['osm-11517208','osm-14987412']){
+  // La Croix des Salles (osm-11517208) was the second until its hand
+  // verification on 24 October 2026 gave it a licensed photograph.
+  test('the remaining illustration is recorded as ORMA’s own and not as a photograph',()=>{
+    for(const id of ['osm-14987412']){
       const trail=trails.find(record=>record.id===id);
       expect({id,standing:standingOf(trail),creator:trail.imageCreator,type:trail.imageSourceType})
         .toEqual({id,standing:'illustration',creator:'ORMA',type:'ai-illustration'});
