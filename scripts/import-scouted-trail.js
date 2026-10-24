@@ -6,6 +6,7 @@
  *
  *   node scripts/import-scouted-trail.js --relation 11839597
  *   node scripts/import-scouted-trail.js --relation 11839597 --region savoy --apply
+ *   node scripts/import-scouted-trail.js --relation 948852 --name "Jochrunde" --apply
  *
  * Dry run by default.
  *
@@ -22,6 +23,13 @@
  * surface tags, water and rifugi from the mapped points, the start from the
  * nearest access point -- so an imported walk is the same kind of record as
  * the 163 already there, and `check:generated` holds it to that.
+ *
+ * Many walks a tourist board publishes are numbered routes that OpenStreetMap
+ * carries with a ref and no name, and "the relation has no name" refused every
+ * one of them. `--name` supplies the name the operator publishes, for a
+ * relation that has none; it never replaces a name OSM already gives, because
+ * renaming a trail is what data/trail-slug-overrides.json is for. The source of
+ * the name belongs in the trail's verification record like every other fact.
  *
  * It applies the discovery pass's own screening first. A walk reached this way
  * has not been through phase 1, and importing one the region sweep would have
@@ -43,7 +51,7 @@ const REGIONS = Object.freeze({
 const OVERRIDES_PATH = path.join(ROOT, 'data', 'dog-route-overrides.json');
 
 function parseArgs(argv) {
-  const out = { relation: null, region: 'dolomites', apply: false };
+  const out = { relation: null, region: 'dolomites', apply: false, name: null };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = String(argv[i]);
     if (arg === '--relation') { out.relation = Number(argv[i += 1]); continue; }
@@ -51,6 +59,8 @@ function parseArgs(argv) {
     if (arg === '--region') { out.region = String(argv[i += 1] || ''); continue; }
     if (arg.startsWith('--region=')) { out.region = arg.slice('--region='.length); continue; }
     if (arg === '--apply') { out.apply = true; continue; }
+    if (arg === '--name') { out.name = String(argv[i += 1] ?? '').trim() || null; continue; }
+    if (arg.startsWith('--name=')) { out.name = arg.slice('--name='.length).trim() || null; continue; }
   }
   return out;
 }
@@ -152,6 +162,15 @@ async function main(options = {}) {
   const relation = (geom.elements || []).find(element => element.type === 'relation' && element.id === args.relation);
   if (!relation) { console.log(`[import] OpenStreetMap returned no relation ${args.relation}.`); return { status: 'not-found' }; }
   const memberWays = (ways.elements || []).filter(element => element.type === 'way');
+  if (args.name) {
+    if (relation.tags?.name) {
+      console.log(`[import] OpenStreetMap already names relation ${args.relation} "${relation.tags.name}"; --name only names a relation that has none.`);
+      console.log('[import] To publish it under another name, use data/trail-slug-overrides.json. Nothing was changed.');
+      return { status: 'already-named', name: relation.tags.name };
+    }
+    console.log(`[import] OpenStreetMap gives relation ${args.relation} no name; importing it as "${args.name}" (--name).`);
+    relation.tags = { ...(relation.tags || {}), name: args.name };
+  }
 
   const overrides = await readJson(OVERRIDES_PATH, {});
   const verdict = screen(relation, memberWays, overrides);
