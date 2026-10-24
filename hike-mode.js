@@ -1046,6 +1046,7 @@ function initHikeMode(map, trail, options){
             <button type="button" class="hk-danger" id="hkDiscardConfirmBtn">${esc(window.t('hike.discard'))}</button>
           </div>
         </div>
+        <p class="hk-saved-note" id="hkSavedNote" role="status" hidden>✓ ${esc(window.t('hike.savedAuto'))}</p>
         <div class="hk-actions" id="hkActions">
           <button type="button" class="hk-ghost" id="hkDiscardBtn">${esc(window.t('hike.discard'))}</button>
           <button type="button" class="hk-save" id="hkSaveBtn">${esc(window.t('hike.saveJournal'))}</button>
@@ -1246,6 +1247,8 @@ function initHikeMode(map, trail, options){
       q('#hkDiscardBtn').focus();
     });
     q('#hkDiscardConfirmBtn').addEventListener('click', () => {
+      // Discarding takes back the walk that was saved when it ended.
+      if(savedEntryId) removeJournalEntry(savedEntryId);
       if(window.DoloPawsHikeCompletions){
         window.DoloPawsHikeCompletions.markFollowUp(
           completion.completionId,
@@ -1264,14 +1267,29 @@ function initHikeMode(map, trail, options){
         window.location.href = `journal.html?trail=${encodeURIComponent(trail.id)}&duration=${elapsedMinutes}&completion=${encodeURIComponent(completion.completionId)}&from=${encodeURIComponent(returnToTrail)}`;
         return;
       }
-      const journalStore = window.DoloPawsJournalStore;
-      const savedAt = Date.now();
-      const entry = {
+      // Already saved when the walk ended; Done keeps what was chosen here
+      // since (how it felt, the photos, sharing them) and opens the journal
+      // on this walk, which asks for a photo and who came along.
+      const id = savedEntryId || saveWalkNow(user);
+      if(id && savedEntryId) writeJournalEntry(user, buildJournalEntry(id, Date.now()));
+      closeOverlay();
+      window.location.href = id ? `journal.html?saved=${encodeURIComponent(id)}` : 'journal.html';
+    });
+
+    // ---- Saved the moment the walk ends ----------------------------------
+    // A walk used to reach the journal only if "Save to journal" was pressed
+    // on this screen; closing the tab lost it. Now a signed-in walk is written
+    // as soon as this screen opens, and Discard is what takes it back.
+    let savedEntryId = null;
+    const startedAt = new Date().toISOString();
+    function journalKey(user){ return `dolopaws-journal-${user.uid}`; }
+    function buildJournalEntry(id, savedAt){
+      return {
         // A unique id per walk: journal entries now sync to the account, where
         // two devices sharing an id would mean one walk overwriting the other.
-        id: journalStore ? journalStore.newId(savedAt) : ('w' + savedAt),
+        id,
         updatedAt: savedAt,
-        date: new Date().toISOString(),
+        date: startedAt,
         trailId: trail.id,
         trail: trail.name,
         region: trail.valley || trail.area || '',
@@ -1283,24 +1301,49 @@ function initHikeMode(map, trail, options){
         photos: photos.length,
         shareToTrail: photos.length > 0 && shareOn,
       };
-      let saved = false;
+    }
+    function writeJournalEntry(user, entry){
       try {
-        const key = `dolopaws-journal-${user.uid}`;
-        const entries = JSON.parse(localStorage.getItem(key) || '[]');
-        entries.unshift(entry);
+        const key = journalKey(user);
+        const entries = JSON.parse(localStorage.getItem(key) || '[]')
+          .filter(item => item && item.id !== entry.id);
+        const previous = JSON.parse(localStorage.getItem(key) || '[]').find(item => item && item.id === entry.id);
+        // Keep anything the journal added since (a photo, who came along).
+        entries.unshift(previous ? { ...previous, ...entry } : entry);
         entries.sort((a, b) => new Date(b.date) - new Date(a.date));
         localStorage.setItem(key, JSON.stringify(entries));
-        saved = true;
-      } catch (e) { /* storage full/blocked, still leave the page gracefully */ }
-      if(saved && window.DoloPawsHikeCompletions){
-        window.DoloPawsHikeCompletions.markFollowUp(
-          completion.completionId,
-          'journal-saved'
-        );
+        return true;
+      } catch (e) { return false; /* storage full/blocked */ }
+    }
+    function removeJournalEntry(id){
+      const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+      if(!user) return;
+      try {
+        const key = journalKey(user);
+        const entries = JSON.parse(localStorage.getItem(key) || '[]').filter(item => item && item.id !== id);
+        localStorage.setItem(key, JSON.stringify(entries));
+      } catch (e) { /* nothing to take back */ }
+    }
+    function saveWalkNow(user){
+      const journalStore = window.DoloPawsJournalStore;
+      const savedAt = Date.now();
+      const id = journalStore ? journalStore.newId(savedAt) : ('w' + savedAt);
+      if(!writeJournalEntry(user, buildJournalEntry(id, savedAt))) return null;
+      if(window.DoloPawsHikeCompletions){
+        window.DoloPawsHikeCompletions.markFollowUp(completion.completionId, 'journal-saved');
       }
-      closeOverlay();
-      window.location.href = 'journal.html';
-    });
+      return id;
+    }
+    {
+      const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+      if(user){
+        savedEntryId = saveWalkNow(user);
+        if(savedEntryId){
+          q('#hkSavedNote').hidden = false;
+          q('#hkSaveBtn').textContent = window.t('hike.done');
+        }
+      }
+    }
 
     renderCond();
     renderPhotos();

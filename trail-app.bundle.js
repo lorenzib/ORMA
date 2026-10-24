@@ -3417,6 +3417,9 @@ ${points}
         installedAt: inspection.metadata && inspection.metadata.installedAt || null,
         verificationStatus: manifest && manifest.verificationStatus ||
           inspection.metadata && inspection.metadata.verificationStatus || null,
+        // What the trail's latest package says, when the network allows reading
+        // it: a map downloaded before OFF-08 carries a retired label.
+        currentVerificationStatus: available && available.verificationStatus || null,
         ownership: await ownershipState(inspection.metadata, user),
         state: ['ready', 'stale'].includes(inspection.state) && updateAvailable
           ? 'update-available'
@@ -47998,6 +48001,11 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
   var MAX_TRACK_CHARS = 60000;    // ~3,000 points, far past a day's walking
   var MAX_PHOTO_CHARS = 700000;   // same bound dog photos already use
   var MAX_NOTE_CHARS = 2000;
+  // Who came along: your dogs and friends, by name. Kept in the account as one
+  // newline-separated string so the rule can bound it with a single size check.
+  var MAX_COMPANIONS = 12;
+  var MAX_COMPANION_CHARS = 40;
+  var MAX_WALKED_WITH_CHARS = 400;
   var COORD_PRECISION = 1e5;      // ~1 m, the precision the recorder stores
 
   function text(value, limit){
@@ -48080,7 +48088,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
       && /^data:image\/(jpeg|jpg|png|webp);base64,/.test(entry.photo)
       && entry.photo.length <= MAX_PHOTO_CHARS
       ? entry.photo : null;
-    return {
+    var remote = {
       schemaVersion: 1,
       entryId: text(entry.id, 120),
       date: text(entry.date, 40),
@@ -48101,6 +48109,30 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
       tale: taleOf(entry),
       updatedAt: entryTimestamp(entry) || now,
     };
+    // Optional, and only sent when there is someone to name: a walk without
+    // companions writes exactly the fields older rules already accept.
+    var companions = walkedWithOf(entry);
+    if(companions.length) remote.walkedWith = companions.join('\n');
+    return remote;
+  }
+
+  // A clean list of names: trimmed, de-duplicated, bounded. Anything that is
+  // not a list of strings becomes an empty list rather than an error.
+  function walkedWithOf(entry){
+    var list = entry && entry.walkedWith;
+    if(typeof list === 'string') list = list.split('\n');
+    if(!Array.isArray(list)) return [];
+    var seen = new Set();
+    var clean = [];
+    list.forEach(function(name){
+      var value = text(name, MAX_COMPANION_CHARS).replace(/\n/g, ' ').trim();
+      var key = value.toLowerCase();
+      if(!value || seen.has(key) || clean.length >= MAX_COMPANIONS) return;
+      seen.add(key);
+      clean.push(value);
+    });
+    while(clean.join('\n').length > MAX_WALKED_WITH_CHARS) clean.pop();
+    return clean;
   }
 
   function taleOf(entry){
@@ -48134,6 +48166,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
       segments: segments,
       gaps: finite(remote.gaps) || 0,
       tale: taleOf(remote),
+      walkedWith: walkedWithOf(remote),
       updatedAt: finite(remote.updatedAt) || 0,
     };
   }
@@ -48203,6 +48236,8 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     entryTimestamp: entryTimestamp,
     flatten: flatten,
     toRemote: toRemote,
+    walkedWithOf: walkedWithOf,
+    MAX_COMPANIONS: MAX_COMPANIONS,
     fromRemote: fromRemote,
     mergeEntries: mergeEntries,
     entriesToPush: entriesToPush,
@@ -49755,6 +49790,7 @@ function initHikeMode(map, trail, options){
             <button type="button" class="hk-danger" id="hkDiscardConfirmBtn">${esc(window.t('hike.discard'))}</button>
           </div>
         </div>
+        <p class="hk-saved-note" id="hkSavedNote" role="status" hidden>✓ ${esc(window.t('hike.savedAuto'))}</p>
         <div class="hk-actions" id="hkActions">
           <button type="button" class="hk-ghost" id="hkDiscardBtn">${esc(window.t('hike.discard'))}</button>
           <button type="button" class="hk-save" id="hkSaveBtn">${esc(window.t('hike.saveJournal'))}</button>
@@ -49955,6 +49991,8 @@ function initHikeMode(map, trail, options){
       q('#hkDiscardBtn').focus();
     });
     q('#hkDiscardConfirmBtn').addEventListener('click', () => {
+      // Discarding takes back the walk that was saved when it ended.
+      if(savedEntryId) removeJournalEntry(savedEntryId);
       if(window.DoloPawsHikeCompletions){
         window.DoloPawsHikeCompletions.markFollowUp(
           completion.completionId,
@@ -49973,14 +50011,29 @@ function initHikeMode(map, trail, options){
         window.location.href = `journal.html?trail=${encodeURIComponent(trail.id)}&duration=${elapsedMinutes}&completion=${encodeURIComponent(completion.completionId)}&from=${encodeURIComponent(returnToTrail)}`;
         return;
       }
-      const journalStore = window.DoloPawsJournalStore;
-      const savedAt = Date.now();
-      const entry = {
+      // Already saved when the walk ended; Done keeps what was chosen here
+      // since (how it felt, the photos, sharing them) and opens the journal
+      // on this walk, which asks for a photo and who came along.
+      const id = savedEntryId || saveWalkNow(user);
+      if(id && savedEntryId) writeJournalEntry(user, buildJournalEntry(id, Date.now()));
+      closeOverlay();
+      window.location.href = id ? `journal.html?saved=${encodeURIComponent(id)}` : 'journal.html';
+    });
+
+    // ---- Saved the moment the walk ends ----------------------------------
+    // A walk used to reach the journal only if "Save to journal" was pressed
+    // on this screen; closing the tab lost it. Now a signed-in walk is written
+    // as soon as this screen opens, and Discard is what takes it back.
+    let savedEntryId = null;
+    const startedAt = new Date().toISOString();
+    function journalKey(user){ return `dolopaws-journal-${user.uid}`; }
+    function buildJournalEntry(id, savedAt){
+      return {
         // A unique id per walk: journal entries now sync to the account, where
         // two devices sharing an id would mean one walk overwriting the other.
-        id: journalStore ? journalStore.newId(savedAt) : ('w' + savedAt),
+        id,
         updatedAt: savedAt,
-        date: new Date().toISOString(),
+        date: startedAt,
         trailId: trail.id,
         trail: trail.name,
         region: trail.valley || trail.area || '',
@@ -49992,24 +50045,49 @@ function initHikeMode(map, trail, options){
         photos: photos.length,
         shareToTrail: photos.length > 0 && shareOn,
       };
-      let saved = false;
+    }
+    function writeJournalEntry(user, entry){
       try {
-        const key = `dolopaws-journal-${user.uid}`;
-        const entries = JSON.parse(localStorage.getItem(key) || '[]');
-        entries.unshift(entry);
+        const key = journalKey(user);
+        const entries = JSON.parse(localStorage.getItem(key) || '[]')
+          .filter(item => item && item.id !== entry.id);
+        const previous = JSON.parse(localStorage.getItem(key) || '[]').find(item => item && item.id === entry.id);
+        // Keep anything the journal added since (a photo, who came along).
+        entries.unshift(previous ? { ...previous, ...entry } : entry);
         entries.sort((a, b) => new Date(b.date) - new Date(a.date));
         localStorage.setItem(key, JSON.stringify(entries));
-        saved = true;
-      } catch (e) { /* storage full/blocked, still leave the page gracefully */ }
-      if(saved && window.DoloPawsHikeCompletions){
-        window.DoloPawsHikeCompletions.markFollowUp(
-          completion.completionId,
-          'journal-saved'
-        );
+        return true;
+      } catch (e) { return false; /* storage full/blocked */ }
+    }
+    function removeJournalEntry(id){
+      const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+      if(!user) return;
+      try {
+        const key = journalKey(user);
+        const entries = JSON.parse(localStorage.getItem(key) || '[]').filter(item => item && item.id !== id);
+        localStorage.setItem(key, JSON.stringify(entries));
+      } catch (e) { /* nothing to take back */ }
+    }
+    function saveWalkNow(user){
+      const journalStore = window.DoloPawsJournalStore;
+      const savedAt = Date.now();
+      const id = journalStore ? journalStore.newId(savedAt) : ('w' + savedAt);
+      if(!writeJournalEntry(user, buildJournalEntry(id, savedAt))) return null;
+      if(window.DoloPawsHikeCompletions){
+        window.DoloPawsHikeCompletions.markFollowUp(completion.completionId, 'journal-saved');
       }
-      closeOverlay();
-      window.location.href = 'journal.html';
-    });
+      return id;
+    }
+    {
+      const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+      if(user){
+        savedEntryId = saveWalkNow(user);
+        if(savedEntryId){
+          q('#hkSavedNote').hidden = false;
+          q('#hkSaveBtn').textContent = window.t('hike.done');
+        }
+      }
+    }
 
     renderCond();
     renderPhotos();
