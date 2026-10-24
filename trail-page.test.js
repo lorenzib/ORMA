@@ -377,12 +377,12 @@ describe('trail page map controls', () => {
     expect(blueprint).toContain('switch from trail <b>${esc(item.from)}</b> to trail <b>${esc(item.to)}</b>');
     expect(blueprint).toContain("guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'");
     expect(blueprint).toContain("guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'");
-    expect(blueprint).toContain('<b>Start:</b> ${esc(verifiedRouteGuidance.start)}');
+    expect(blueprint).toContain('<p>${startLine(verifiedRouteGuidance.start)}</p>');
     expect(blueprint).toContain('for the final section to the route finish');
     expect(blueprint).toContain('marked only on the verified section');
     expect(blueprint).toContain('aroundGrid.innerHTML = routeRefMarkup ? renderCards([routeCard])');
     expect(blueprint).toContain('<b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route.');
-    expect(blueprint).toContain('? `${routeBadges}<div class="s"><p><b>Start:</b>');
+    expect(blueprint).toContain('? `${routeBadges}<div class="s"><p>${startLine(');
     expect(blueprint).not.toContain('does not publish a usable trail number or numbered switch');
     expect(html).toContain('.td2-route-ref{display:inline-flex;');
     expect(html).toContain('.td2-route-switch-list{display:grid;');
@@ -425,7 +425,7 @@ describe('trail page map controls', () => {
     expect(section).toContain('<b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route.');
 
     // The sourced cases keep their real guidance.
-    expect(section).toContain('<b>Start:</b> ${esc(verifiedRouteGuidance.start)}');
+    expect(section).toContain('<p>${startLine(verifiedRouteGuidance.start)}</p>');
     expect(section).toContain('Begin the hike on trail <b>${esc(routeSwitches[0].from)}</b>');
 
     // The built bundle is what the browser runs, so it has to carry the fix.
