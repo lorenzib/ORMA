@@ -929,7 +929,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   // knows what it spent; only the total says what is left.
   const usageDay = await recordDayUsage(store, options);
   const programme = await recordProgrammeHealth(store,
-    {...options,dayUsage:usageDay&&!usageDay.error?usageDay:null,
+    {...options,productionTrails,dayUsage:usageDay&&!usageDay.error?usageDay:null,
       jobsDone:(specialistJobs||[]).filter(job=>job.status==='completed').length});
   // The expansion programme's numbers come from the repository, not Firestore,
   // so the pass that has the checkout is the one that can write them down for a
@@ -1086,6 +1086,7 @@ async function recordProgrammeHealth(store, options = {}){
       usage:typeof store.usage?.snapshot==='function'?store.usage.snapshot():undefined,
       jobsDone:options.jobsDone||0,
       dayUsage:options.dayUsage||null,
+      productionTrails:options.productionTrails||null,
       nowMs:options.at?new Date(options.at).valueOf():Date.now(),
     });
     await store.setArtifact('programme-health',health,

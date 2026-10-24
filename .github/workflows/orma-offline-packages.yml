@@ -129,9 +129,11 @@ jobs:
           git checkout -B "$branch"
           git add -A -- "${generated[@]}"
           # Generated packages are their own commit: nothing else may ride along.
-          if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+          # The generated files are staged by now, so only an unstaged change is
+          # one outside them (git status would list the staged ones too).
+          if ! git diff --quiet; then
             echo "The package build changed files outside the offline packages:"
-            git status --porcelain --untracked-files=no
+            git diff --name-only
             exit 1
           fi
           git commit -m "Offline maps follow the Verified trails"
