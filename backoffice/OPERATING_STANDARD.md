@@ -2221,7 +2221,119 @@ So the split is:
   reviewed before merge.
 
 Before paid research is switched back on, the evidence ladder's retries on
-optional detail need a cap, or the next top-up goes the same way.
+optional detail need a cap, or the next top-up goes the same way. That cap is
+now in place: see the next section.
+
+## The seal is earned the way hand verification earns it
+
+> **Status: proposed 23 October 2026 -- a standards change awaiting the CEO's
+> approval in its pull request.** Built in
+> `backoffice/workflows/research-methods.js`.
+
+Verification by hand found what the agents had published wrong, using six
+methods. They are now rules the agents are asked to follow and rules the seal
+checks, so that when paid research is switched back on the agents reach the
+answer a person reached.
+
+**They hold the seal, not the route.** A walk whose directions are settled is
+still published as *Reviewed by ORMA*. It is not called *ORMA Verified* while
+any of these rules stands against it, and the reason is written into the
+graduation's `heldFor` list, the same list that already holds the seal for an
+unanswered access or livestock question. The dossier gate, the fast lane,
+resting and rejection are unchanged.
+
+1. **An authority publishes the climb and the walking time.** A tourism
+   board, a province or regional register, a park, a commune or an Alpine
+   club must publish both, as numbers, on a page that is not a map, a hiking
+   aggregator or ORMA. A climb ORMA measured from its line, or a time worked
+   out from distance and climb, does not verify a walk however close it is
+   (`official-climb-unpublished`, `official-time-unpublished`). The agent
+   says which it is -- `basis: published | measured | estimated` -- and a
+   measured or estimated answer is recorded as unresolved, so it goes round
+   the ladder looking for the published one.
+2. **Every municipality the line crosses.** The Ranger is given sample points
+   along the whole line -- the start, one every kilometre, the point farthest
+   from the start, and the end -- because a loop often crosses into the next
+   commune. It returns one claim per municipality and a dog rule for each.
+   Every protected area the line touches is checked against the EEA Natura
+   2000 data, and an empty answer is first sanity-checked against a site known
+   to be there (`communes-unchecked`, `dog-rule-unsettled`,
+   `protected-areas-unchecked`).
+3. **The Italian default.** Where an Italian commune publishes no dog rule,
+   the national ordinance of 6 August 2013 -- a lead no longer than 1.5 m, a
+   muzzle carried -- counts as settled, provided the protected-area check was
+   done. The verification record says so in words (`dogRuleBasis`). Outside
+   Italy there is no default, and an unpublished rule stays unsettled.
+4. **The line is as long as the walk.** The line's length is compared with
+   the distance the authority publishes (or the length of its GPX). More than
+   ten per cent apart holds the seal (`line-differs-from-official`); no
+   published distance to compare holds it too
+   (`official-distance-unpublished`). An out-and-back may be published with
+   its return leg counted.
+5. **The photograph is of this place.** A photograph needs a geotag within a
+   kilometre of the line, or a place label naming a municipality on the line.
+   Further away, or a different town, holds the seal (`photo-off-the-line`,
+   `photo-wrong-place`); a photograph with neither cannot be checked and holds
+   it too (`photo-place-unconfirmed`). The photo ledger gains two fields for
+   this, `imageGeotag` and `imagePlace`, filled in by hand like the rest.
+6. **Where to look, and when to stop.** Every agent is told to prefer the
+   official page over OpenStreetMap; to read the Open Data Hub tourism data and
+   its `routes-hikingtrails` register and cite them without copying their
+   text, which is under a closed licence; to read newPlan landscape plans; and
+   to read linked PDFs to the end, a scanned one through OCR, rather than
+   report it unreadable. And optional detail has a budget: **three paid calls
+   per agent per trail in all**, across every optional claim. Past that, an
+   optional claim is recorded unknown like any exhausted one. What decides the
+   seal -- route guidance, the official figures, the municipalities and their
+   dog rules, the protected areas -- keeps its own ladder.
+
+**What this costs while paid research is off.** Nothing is spent. It does
+mean no trail can earn the full seal through the backoffice until research is
+switched back on, because the figures and the communes have to come from an
+agent; trails verified by hand are untouched. The safety lane's contract moves
+to `safety-research-v2` because it now asks these questions too, so when it is
+switched on it asks them once of the trails it already researched.
+
+## Four of the seal's checks are measured for free
+
+> **Status: proposed 23 October 2026 -- a standards change awaiting the CEO's
+> approval in its pull request.** Built in
+> `backoffice/workflows/free-seal-checks.js`; run by
+> `npm run backoffice:free-checks` and weekly by the **ORMA free seal checks**
+> workflow.
+
+Four of the six methods in the section above are measurements, not research,
+and need nobody to read a page. They are run for every catalogue trail, cost
+no model call and no Firestore read, and are written to
+`data/free-seal-checks.json`:
+
+- **Municipalities on the line** -- OpenStreetMap administrative boundaries
+  (admin level 8: the comune, the commune) under points along the whole line.
+  An empty answer is a mirror without boundary data, never a line that crosses
+  none, so it is a failed lookup and the next mirror is asked.
+- **Natura 2000 sites the line touches** -- the EEA's own query service. A site
+  that is certainly protected (Fanes-Senes-Braies, `IT3110049`) is asked first
+  on every run; if it does not come back, no empty answer that run is trusted.
+- **The line against the official distance** -- where ORMA has recorded the
+  official page and its quote names exactly one distance. Two figures in one
+  quote are not guessed between.
+- **Where the photograph was taken** -- from the host that published it:
+  Wikimedia Commons (the camera position), Panoramax, iNaturalist, Flickr.
+  Hosts that need a key are recorded as not supported.
+
+A lookup that fails keeps the last real answer, marked stale; an outage is not
+evidence about a trail. The workflow opens a pull request only when a
+measurement changed.
+
+**Who uses it.** A person verifying by hand starts from it instead of
+measuring again. The Ranger and the terrain analyst are handed it as a lead,
+so a paid search goes on the dog rules rather than on finding the communes. And
+the seal accepts what it measured where no agent answered.
+
+**What it does not do.** It gives no badge. The climb, the walking time, each
+commune's dog rule and the six safety checks still need somebody to read an
+authority's page, so the badge is still given by hand while paid research is
+off.
 
 ## Definition of done for future iterations
 

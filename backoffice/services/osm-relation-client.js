@@ -154,6 +154,6 @@ async function fetchRelation(externalId, options = {}){
   }
 }
 
-module.exports = { DEFAULT_ENDPOINTS, USER_AGENT, ROUTE_SAMPLE_POINTS, numericRelationId, buildRelationQuery,
+module.exports = { DEFAULT_ENDPOINTS, USER_AGENT, ROUTE_SAMPLE_POINTS, runQuery, numericRelationId, buildRelationQuery,
   samplePath, buildRoutesNearPathQuery, fetchRoutesNearPath, fetchRelation,
   AERIALWAY_RADIUS_M, aerialwaysFromPayload };

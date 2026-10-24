@@ -3,6 +3,10 @@
 const IMAGE_FIELDS = new Set([
   'imageIcon','heroImage','imageAlt','imageCredit','imageCreditText','imageCreator',
   'imageLicence','imageLicenceUrl','imageSourcePage','imageSourceType',
+  // Where the photograph was taken -- a geotag {lat, lng} and the place it is
+  // labelled with -- so the seal can check it is a picture of this walk
+  // (backoffice/workflows/research-methods.js).
+  'imageGeotag','imagePlace',
 ]);
 
 function applyTrailImageOverrides(trails, artifact){

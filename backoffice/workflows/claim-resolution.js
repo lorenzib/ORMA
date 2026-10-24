@@ -9,6 +9,7 @@ const {
   resolutionStatus,
 }=require('../contracts/resolution-policy-v1');
 const {ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
+const {OFFICIAL_FIGURE_CLAIM_IDS,COMMUNE_CLAIM_PREFIX,COMMUNE_DOG_RULE_PREFIX,PROTECTED_AREAS_CLAIM}=require('./research-methods');
 
 /**
  * How many attempts this claim gets: the full ladder for the directions a walk
@@ -235,6 +236,50 @@ function mergeClaimResolutionResult(previous,next,job,at){
     strategy:job.resolutionStrategy,strategyLabel:job.resolutionStrategyLabel,completedAt:at}};
 }
 
-module.exports={NOTHING_MAPPED,MAX_AUTOMATED_ATTEMPTS,MAX_WAIVABLE_ATTEMPTS,EXHAUSTED_PHRASE,ceilingFor,RESOLVABLE_FINDINGS,STRATEGIES,strategyById,attemptStrategyText,keyFor,strategyFor,notBeforeFor,
+/**
+ * How many paid research calls one agent may spend on one trail's optional
+ * detail, across all of its claims together.
+ *
+ * Each optional claim already stops at three attempts. That was a ceiling per
+ * claim, and an agent owns ten: the terrain analyst was asked 23 times about
+ * one trail in the 31 hours a credit top-up lasted (20-21 October 2026), and
+ * 95 of the backoffice's 101 calls in that window were the fourth attempt or
+ * later of an agent on the same trail. The operating standard asked for this
+ * cap before paid research is switched back on.
+ *
+ * Three in all, per agent per trail. What decides the seal is outside it: the
+ * route guidance, the official figures, the municipalities and their dog
+ * rules, and the protected areas each keep their own ladder.
+ */
+const OPTIONAL_RESEARCH_CALLS_PER_AGENT=3;
+const OVER_BUDGET_NOTE='The optional research budget for this agent on this trail is spent; automated resolution strategies exhausted; this remains unknown.';
+
+/** Whether a claim decides the seal, so its research is never cut short by the optional budget. */
+function decidesTheSeal(claimId){
+  const id=String(claimId||'');
+  return ROUTE_GUIDANCE_CLAIM_IDS.includes(id)||OFFICIAL_FIGURE_CLAIM_IDS.includes(id)
+    ||id.startsWith(COMMUNE_CLAIM_PREFIX)||id.startsWith(COMMUNE_DOG_RULE_PREFIX)||id===PROTECTED_AREAS_CLAIM;
+}
+
+/** Paid optional-detail attempts this agent has had on this trail, queued or done. */
+function optionalCallsSpent(ledger,agentId){
+  return (ledger||[]).filter(entry=>entry.agentId===agentId&&!decidesTheSeal(entry.claimId))
+    .reduce((sum,entry)=>sum+(entry.attempts||[]).length,0);
+}
+
+/**
+ * Settle an optional claim the budget no longer covers, in the same words an
+ * exhausted ladder uses, so every consumer reads it the same way. Returns
+ * whether it settled it.
+ */
+function settleOverOptionalBudget(ledger,entry,at){
+  if(decidesTheSeal(entry.claimId))return false;
+  if(optionalCallsSpent(ledger,entry.agentId)<OPTIONAL_RESEARCH_CALLS_PER_AGENT)return false;
+  entry.state='source-exhausted';entry.settledBy='optional-research-budget';
+  entry.note=OVER_BUDGET_NOTE;entry.updatedAt=at;
+  return true;
+}
+
+module.exports={OPTIONAL_RESEARCH_CALLS_PER_AGENT,OVER_BUDGET_NOTE,decidesTheSeal,optionalCallsSpent,settleOverOptionalBudget,NOTHING_MAPPED,MAX_AUTOMATED_ATTEMPTS,MAX_WAIVABLE_ATTEMPTS,EXHAUSTED_PHRASE,ceilingFor,RESOLVABLE_FINDINGS,STRATEGIES,strategyById,attemptStrategyText,keyFor,strategyFor,notBeforeFor,
   resolutionCandidates,ensureResolutionEntries,pendingAttempt,completedAttempts,resolutionStateFor,
   reconcileCompletedAttempt,addQueuedAttempt,annotateResolvedClaim,mergeClaimResolutionResult};

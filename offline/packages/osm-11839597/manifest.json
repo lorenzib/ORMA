@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11839597",
   "name": "Fenn Promenade",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T17:42:13.790Z",
+  "version": "2026.10.24-beta.2",
+  "generatedAt": "2026-10-24T12:00:57.123Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 341026,
+  "packageBytes": 340977,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.53471,
@@ -35,7 +35,7 @@
   },
   "elevationProfile": {
     "strategy": "route-profile-v1",
-    "pointCount": 13,
+    "pointCount": 12,
     "distanceKm": 2.2,
     "ascentM": 100,
     "source": "ORMA route profile",
@@ -224,8 +224,8 @@
       "required": true,
       "label": "Fenn Promenade stored route elevation profile",
       "url": "elevation-profile.json",
-      "bytes": 778,
-      "sha256": "aa21a081f0b9e6b3816ecc2cfe01e2e08eca911947f4e480875886445f6b7337"
+      "bytes": 729,
+      "sha256": "bb73a10bdf59d3e0ef0f3ff79e735dd9aa979ff7a9d451edd0601bcf1c5590dc"
     },
     {
       "role": "safety",

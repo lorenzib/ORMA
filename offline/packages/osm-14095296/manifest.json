@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14095296",
   "name": "Les Marais d'Albens",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T17:52:40.692Z",
+  "version": "2026.10.24-beta.2",
+  "generatedAt": "2026-10-24T12:00:57.073Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 532669,
+  "packageBytes": 532623,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.78551,
@@ -35,7 +35,7 @@
   },
   "elevationProfile": {
     "strategy": "route-profile-v1",
-    "pointCount": 14,
+    "pointCount": 13,
     "distanceKm": 6.61,
     "ascentM": 22,
     "source": "ORMA route profile",
@@ -224,8 +224,8 @@
       "required": true,
       "label": "Les Marais d'Albens stored route elevation profile",
       "url": "elevation-profile.json",
-      "bytes": 810,
-      "sha256": "0cb42105e9ad6bfda45289ecb9af5371ca418c9d2af2be31aabb11476566b995"
+      "bytes": 764,
+      "sha256": "d60a999a3e1265623fbddc1d70b8332b8840545d8181de10bc5d7003db078118"
     },
     {
       "role": "safety",

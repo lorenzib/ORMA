@@ -1,6 +1,7 @@
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
+const offlineElevation = require('./offline-elevation.js');
 const { loadProductionTrails } = require('./scripts/load-production-trails');
 const { isVerified, PILOT_IDS } = require('./scripts/build-offline-packages');
 
@@ -85,6 +86,13 @@ describe('every offline package is complete and verifiable', () => {
     }
     expect(manifest.packageBytes).toBe(total);
     expect(total).toBeLessThanOrEqual(manifest.packageBudgetBytes);
+  });
+
+  test.each(packageIds())('%s has a profile the offline page will draw', id => {
+    // The page runs this exact check and refuses the whole package if it
+    // fails; Fenn Promenade downloaded fine and then would not open.
+    const profile = JSON.parse(fs.readFileSync(path.join(packagesDir, id, 'elevation-profile.json'), 'utf8'));
+    expect(offlineElevation.validProfile(profile, id)).toBe(true);
   });
 
   test.each(packageIds())('%s draws its route inside its own map', id => {

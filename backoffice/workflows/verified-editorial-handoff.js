@@ -51,7 +51,10 @@ function editorialItem(dossier,record,at,options={}){
       derivedFrom:claim.derivedFrom||null,
       entityName:claim.entityName||null,rule:claim.rule||null,observedAt:claim.observedAt||null,
       location:claim.location||null,
-      variesWith:claim.variesWith||null})),
+      variesWith:claim.variesWith||null,
+      // What the seal's research-method checks read: whether a figure or a dog
+      // rule was published, and the figure itself.
+      basis:claim.basis||null,figure:Number.isFinite(claim.figure)?claim.figure:null})),
     evidenceSources:dossier.sources||[],routeGeometry:dossier.routeGeometry||null,
     editorialBrief:{objective:'Produce concise premium ORMA trail copy using only the locked dossier facts.',
       requiredSections:['About the trail','Why it suits dogs','Important practical notes'],

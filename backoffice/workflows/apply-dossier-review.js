@@ -30,6 +30,7 @@ function restingState(blockers){
   return unwaivable.every(id=>routeGuidance.has(id)) ? 'imported' : 'rejected';
 }
 const {retirementFields}=require('./retire-blocked-jobs');
+const {OFFICIAL_FIGURE_CLAIM_IDS,PROTECTED_AREAS_CLAIM}=require('./research-methods');
 
 const BASE_SPECIALISTS=Object.freeze([
   // Route guidance is logistics' work too, and the output contract has demanded
@@ -44,9 +45,14 @@ const BASE_SPECIALISTS=Object.freeze([
   // granularity, so they belong to the same specialist and the same human
   // gate rather than to a separate manual exercise.
   {agentId:'regulatoryRanger',action:'verify-dog-and-seasonal-rules',
-    claimIds:['dog-access','leash-rules','seasonal-restrictions','rifugio-dog-policy','lift-dog-policy']},
+    claimIds:['dog-access','leash-rules','seasonal-restrictions','rifugio-dog-policy','lift-dog-policy',
+      // With one claim per municipality the line crosses and its dog rule,
+      // which the agent names as it finds them (research-methods.js).
+      PROTECTED_AREAS_CLAIM]},
   {agentId:'terrainPoi',action:'verify-terrain-water-heat-and-livestock',claimIds:[
     'elevation','shade','surface','water','mountain-huts','food-drink','other-places','exposure','livestock','animals',
+    // The seal needs an authority's own figures, not ORMA's measurement.
+    ...OFFICIAL_FIGURE_CLAIM_IDS,
   ]},
 ]);
 
