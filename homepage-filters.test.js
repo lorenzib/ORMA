@@ -198,8 +198,13 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liSavedOnlyCount').textContent).toBe('1');
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
-    expect(document.getElementById('companionListTitle').textContent).toBe('Saved trails');
-    expect(document.getElementById('companionListCount').textContent).toBe('1 trail');
+    // The headline says what this is, so the list's label is how many --
+    // "1 saved trail" -- and beside it the order they are in.
+    expect(document.getElementById('companionListTitle').textContent).toBe('1 saved trail');
+    expect(document.getElementById('companionListCount').textContent).toBe('best fit first');
+    vm.runInContext('sortKey = "distance";', context);
+    await vm.runInContext('renderReturningHomepage(currentProfileForAdjust);', context);
+    expect(document.getElementById('companionListCount').textContent).toBe('shortest first');
   });
 
   test('a new match says "New for" its dog, and what that means', async () => {

@@ -229,6 +229,10 @@ let liContextBeforeMapArea = null;
 let liMapAutoFramingUntil = 0;
 const LI_MAP_AUTO_FRAME_MS = 1400;
 let sortKey = 'match';             // 'match' | 'distance' | 'effort', Companion sort control
+// Said beside the list's count: the order the trails are in.
+const LI_SORT_ORDER_WORDS = Object.freeze({
+  match:'best fit first', distance:'shortest first', effort:'least climb first', today:'best for today first',
+});
 let selectedTrailId = null;        // map pin / card selection (Companion layout)
 
 // Logged-in shell (map + list app layout), header search + filter panel state.
@@ -3976,12 +3980,15 @@ async function renderReturningHomepage(profile, options = {}){
 
   renderBreedInsight(profile);
 
-  const titleEl = document.getElementById('companionListTitle');
-  if(titleEl) titleEl.textContent = showingSavedOnly ? 'Saved trails' : (profile && profile.name ? `Best matches for ${profile.name}` : 'Best matches');
-
   let displayList = filterTrailsForReturningView(scored);
+  // The headline already says "Best walk for Teo…", so the list does not say
+  // "Best matches for Teo" again: its label is how many, and beside it the
+  // order they are in.
+  const n = displayList.length;
+  const titleEl = document.getElementById('companionListTitle');
+  if(titleEl) titleEl.textContent = `${n} ${showingSavedOnly ? 'saved ' : ''}${n === 1 ? 'trail' : 'trails'}`;
   const countEl = document.getElementById('companionListCount');
-  if(countEl) countEl.textContent = `${displayList.length} ${displayList.length === 1 ? 'trail' : 'trails'}`;
+  if(countEl) countEl.textContent = LI_SORT_ORDER_WORDS[sortKey] || LI_SORT_ORDER_WORDS.match;
 
   renderLiConditionsCard(profile, displayList);
 
