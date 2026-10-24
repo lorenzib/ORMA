@@ -228,6 +228,18 @@ function eachFile(dir, matches, visit) {
 // nothing.
 const MAX_SETTLING_ROUNDS = 10;
 
+// Everything under offline/ is downloaded into a phone's offline storage and
+// checked there against the SHA-256 its package manifest recorded. A cache key
+// written into offline/trail.html changes those bytes, so every download
+// failed its own checksum, and once offline the page would ask for
+// `offline.css?v=...`, a URL the stored package does not hold. The packages
+// are versioned by their manifests, not by query strings, so the pass leaves
+// the directory exactly as committed.
+function isOfflinePackageFile(file, outDir) {
+  const relative = path.relative(outDir, file).split(path.sep);
+  return relative[0] === 'offline';
+}
+
 function stampSite(outDir) {
   // Keys inside scripts first, and repeatedly until nothing moves. Stamping a
   // file changes that file's own bytes, so any page quoting it has to be keyed
@@ -239,6 +251,7 @@ function stampSite(outDir) {
     let moved = 0;
     const round = new Map();
     eachFile(outDir, name => name.endsWith('.js'), file => {
+      if (isOfflinePackageFile(file, outDir)) return;
       moved += stampEmbeddedKeys(file, outDir, round);
     });
     if (!moved) break;
@@ -252,6 +265,7 @@ function stampSite(outDir) {
   let pages = 0;
   let references = 0;
   eachFile(outDir, name => name.endsWith('.html'), file => {
+    if (isOfflinePackageFile(file, outDir)) return;
     // Attributes first, then whatever still carries a key of its own: a
     // srcset entry, a picture, a URL built in an inline script.
     const changed = stampPage(file, outDir, keys) + stampEmbeddedKeys(file, outDir, keys);

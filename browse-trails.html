@@ -44,7 +44,6 @@
   .browse-primary-controls .browse-tools{width:100%;min-width:0;margin:0;flex-wrap:nowrap;justify-content:flex-start;}
   .browse-primary-controls .browse-search-shell{flex:1 1 300px;width:auto;max-width:360px;min-width:0;}
   .browse-primary-controls .browse-filter-divider{display:none;}
-  .browse-refinement-controls{display:flex;align-items:center;gap:8px;min-width:0;padding-top:10px;border-top:1px solid rgba(46,64,52,.1);}
   .simple-grid{display:flex;flex-direction:column;gap:12px;}
   .simple-card{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(190px,235px);grid-template-rows:auto auto;column-gap:16px;row-gap:9px;align-items:center;padding:14px;background:var(--card);border:1px solid var(--paper-line);border-radius:var(--radius-panel);overflow:hidden;transition:box-shadow .2s,border-color .2s,transform .2s;}
   .simple-card:hover{border-color:var(--accent-light);transform:translateY(-2px);box-shadow:var(--shadow-card-hover);}
@@ -64,7 +63,6 @@
   .simple-card__match--check{background:#F7E5E0;}
   .simple-card__match--check strong{color:#9C3A25;}
   .browse-card-actions{display:flex;align-items:center;gap:8px;}
-  .browse-card-open{display:none;}
   .browse-card-compare{display:inline-flex;align-items:center;justify-content:center;min-height:36px;border-radius:var(--radius-pill);font:700 10.5px 'Inter',sans-serif;border:1px solid var(--paper-line);background:#fff;color:var(--ink-soft);padding:6px 12px;cursor:pointer;}
   .browse-card-compare[aria-pressed="true"]{background:#EAF3EC;border-color:#7EAD91;color:#24462E;}
   .browse-card-compare:disabled{cursor:not-allowed;opacity:.48;}
@@ -85,9 +83,6 @@
   .browse-water{min-height:38px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
   .browse-water[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
   .browse-quick-filters{display:flex;align-items:center;gap:8px;}
-  #browseFiltersWrap{order:1;}
-  .browse-quick-filters{order:2;}
-  .browse-saved-only{order:3;}
   .browse-quick-filter,.browse-saved-only{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:40px;min-height:40px;box-sizing:border-box;padding:0 13px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:var(--card);color:var(--ink);font:600 12.5px/1 'Inter',sans-serif;white-space:nowrap;cursor:pointer;}
   #browseWater .dp-icon-svg{transform:translateY(1px);}
   #browseWater>span:last-child,.browse-saved-only>span:nth-child(2){display:inline-flex;align-items:center;min-height:21px;line-height:1;}
@@ -99,41 +94,6 @@
   .browse-filter-group__title{font:700 10px/1 'Inter',sans-serif;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
   #browseFiltersBtn.on{border-color:#9FC4B0;font-weight:700;}
   #browseFiltersMenu{left:auto;right:0;}
-  @media(min-width:1041px){
-    .browse-primary-controls .browse-tools{
-      display:grid;
-      grid-template-columns:minmax(300px,520px) auto auto 1fr;
-      grid-template-rows:auto auto;
-      gap:10px 12px;
-      align-items:center;
-    }
-    .browse-primary-controls .browse-search-group{grid-column:1;grid-row:1;width:100%;min-width:0;}
-    .browse-primary-controls .browse-search-shell{width:100%;max-width:none;min-width:0;}
-    /* Pack the geo dropdowns tight (capped, not stretched across the row) and
-       lift the Filter trails button up onto their row. */
-    .browse-area-controls{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,205px));gap:9px;}
-    .browse-area-controls .browse-geo-group{width:100%;min-width:0;flex:none;}
-    #browseFiltersWrap{grid-column:3;grid-row:1;width:max-content;}
-    .browse-refinement-controls{grid-column:1/-1;grid-row:2;display:flex;flex-wrap:wrap;justify-content:flex-start;}
-    .browse-quick-filters{display:flex;flex-wrap:wrap;min-width:0;}
-    .browse-quick-filter{min-width:0;}
-    .browse-saved-only{width:max-content;min-width:0;}
-  }
-  @media(min-width:761px) and (max-width:1040px){
-    .browse-primary-controls .browse-tools{
-      display:grid;
-      grid-template-columns:auto minmax(0,1fr) auto;
-      gap:9px;
-    }
-    .browse-primary-controls .browse-search-group{grid-column:1/-1;grid-row:1;width:100%;min-width:0;}
-    .browse-primary-controls .browse-search-shell{width:100%;max-width:none;min-width:0;}
-    .browse-area-controls{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
-    .browse-geo-group,.browse-geo-group--valley{width:100%;min-width:0;flex:none;}
-    #browseFiltersWrap{grid-column:1/-1;grid-row:3;width:max-content;justify-self:start;}
-    .browse-refinement-controls{grid-column:1/-1;grid-row:4;display:flex;flex-wrap:wrap;justify-content:flex-start;}
-    .browse-quick-filters{display:flex;flex-wrap:wrap;min-width:0;}
-    .browse-saved-only{width:max-content;}
-  }
   @media(max-width:700px){
     #browseFiltersMenu{
       position:fixed;top:auto;right:8px;bottom:max(8px,env(safe-area-inset-bottom));left:8px;
@@ -148,29 +108,8 @@
     .browse-design-head{padding-left:18px;padding-right:18px;}
     .browse-design-wrap{padding-left:16px;padding-right:16px;}
     .browse-primary-controls{margin-top:8px;padding:10px;}
-    .browse-area-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;width:100%;min-width:0;}
-    .browse-geo-group,.browse-geo-group--valley{width:100%;min-width:0;flex:none;}
-    .browse-geo-group--valley{grid-column:auto;}
     .browse-geo-group .area-select-trigger{width:100%;min-width:0;justify-content:space-between;padding-inline:10px;}
-    .browse-primary-controls .browse-tools{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));width:100%;max-width:none;flex-wrap:wrap;justify-content:stretch;}
     .browse-profile-banner{align-items:flex-start;flex-direction:column;}
-    /* Search full-width, and the Distance / Trail rating / Water controls
-       visible right under it, never hidden off-screen. */
-    .browse-tools{flex-wrap:wrap;overflow-x:visible;padding-bottom:0;gap:9px;}
-    .browse-primary-controls .browse-search-group{grid-column:1/-1;grid-row:1;width:100%;min-width:0;}
-    .browse-primary-controls .browse-search-shell{grid-column:1/-1;grid-row:1;width:100%;max-width:none;min-width:0;}
-    .browse-area-controls{grid-column:1/-1;grid-row:2;}
-    #browseFiltersWrap{grid-column:1/-1;grid-row:3;width:100%;order:initial;}
-    #browseFiltersBtn{width:100%;justify-content:center;}
-    .browse-refinement-controls{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px;padding-top:9px;}
-    .browse-quick-filters{display:contents;}
-    .browse-quick-filter{width:100%;min-width:0;}
-    #browseQuickShade{grid-column:1/span 3;grid-row:1;}
-    #browseWater{grid-column:4/span 3;grid-row:1;}
-    #browseMultiDay{grid-column:1/span 3;grid-row:2;}
-    .browse-saved-only{grid-column:4/span 3;grid-row:2;width:100%;min-width:0;order:initial;padding-inline:7px;}
-    /* The chairlift chip has the longest label, so it takes a full row of its own under the 2x2 chips. */
-    #browseChairlifts{grid-column:1/-1;grid-row:3;}
     .browse-filter-divider{display:none;}
     .browse-filter-controls{flex:1 1 100%;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:9px;padding-bottom:3px;scrollbar-width:none;}
     .browse-filter-controls::-webkit-scrollbar{display:none;}
@@ -186,9 +125,6 @@
     .simple-card__match strong{font-size:13px;}
     .simple-card__match-actions{margin-left:0;flex:none;}
     .browse-card-compare{min-height:32px;padding-inline:11px;}
-  }
-  @media(max-width:480px){
-    #browseFiltersWrap{grid-column:1/-1;}
   }
   @media(max-width:360px){
     .simple-card__match{display:flex;}
@@ -289,6 +225,68 @@
     .browse-list-pane .simple-card{grid-template-columns:88px minmax(0,1fr);}
     .browse-list-pane .simple-card .photo{width:88px;height:78px;}
   }
+
+  /* One row, like the homepage: search, Area, Filters, Saved. Area opens the
+     Country / Region / Valley pickers; Filters holds everything else,
+     shade, water, chairlift and multi-day included; what is on shows as
+     removable chips underneath. The same row at every width; phones let
+     the search take its own line. */
+  #browseTools{display:flex;flex-wrap:nowrap;align-items:center;gap:8px;}
+  #browseTools>.browse-search-group{flex:1 1 320px;min-width:0;}
+  #browseTools .browse-search-shell{max-width:none;}
+  #browseTools>.browse-area-wrap,#browseTools>#browseFiltersWrap,#browseTools>.browse-saved-only{flex:none;width:auto;}
+  .browse-area-btn{display:inline-flex;align-items:center;gap:7px;height:42px;max-width:300px;box-sizing:border-box;padding:0 14px;border:1.5px solid var(--paper-line);border-radius:999px;background:#fff;color:var(--ink);font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+  .browse-area-btn svg{flex:none;color:var(--accent);}
+  .browse-area-btn #browseAreaLabel{overflow:hidden;text-overflow:ellipsis;}
+  .browse-area-btn:hover,.browse-area-btn[aria-expanded="true"]{border-color:#9FC4B0;}
+  #browseAreaPanel{position:absolute;top:calc(100% + 8px);left:0;z-index:60;width:300px;box-sizing:border-box;padding:12px;border:1px solid var(--paper-line);border-radius:14px;background:#fff;box-shadow:0 14px 34px -12px rgba(23,42,28,.4);}
+  #browseAreaPanel[hidden]{display:none;}
+  #browseAreaPanel .browse-area-controls{display:grid;grid-template-columns:1fr;gap:10px;}
+  #browseAreaPanel .browse-geo-group{display:flex;flex-direction:column;gap:5px;width:100%;}
+  #browseAreaPanel .browse-geo-label{position:static;width:auto;height:auto;overflow:visible;clip:auto;color:#8A9689;font:700 10px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
+  /* Inside the panel the heading above names the picker, so the picker
+     shows its value ("All countries") rather than repeating its name. */
+  #browseAreaPanel .area-select-trigger__kicker{display:none;}
+  #browseAreaPanel .area-select-trigger__label{display:inline;}
+  #browseFiltersMenu .browse-quick-filters{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:4px 8px 2px;padding:0;border:0;}
+  #browseFiltersMenu .browse-quick-filter{width:100%;min-width:0;height:38px;min-height:38px;padding:0 10px;font-size:12px;}
+  .browse-active-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px;}
+  .browse-active-chips[hidden]{display:none;}
+  .browse-active-chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px 0 12px;border:1px solid #A9C5AE;border-radius:999px;background:#E1ECE2;color:#24462E;font:700 12px 'Inter',sans-serif;cursor:pointer;}
+  .browse-active-chip span{font-size:15px;line-height:1;opacity:.7;}
+  .browse-active-chip:hover span{opacity:1;}
+  .browse-active-clear{border:0;background:none;color:var(--accent);font:700 12px 'Inter',sans-serif;cursor:pointer;padding:4px 6px;}
+
+  /* The card: View trail is the one main action; Compare is a quiet tick box. */
+  .browse-card-actions{flex-direction:column;align-items:flex-start;gap:9px;}
+  .browse-card-open{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 16px;border-radius:999px;background:var(--accent);color:#fff;font:800 12.5px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;}
+  .browse-card-open:hover{filter:brightness(1.06);}
+  .browse-card-compare,.browse-card-compare[aria-pressed="true"]{min-height:0;padding:2px 0;border:0;background:none;color:var(--ink-soft);font:600 12px 'Inter',sans-serif;gap:7px;}
+  .browse-card-compare::before{content:'';width:14px;height:14px;box-sizing:border-box;border:1.5px solid #9AA69B;border-radius:4px;background:#fff;}
+  .browse-card-compare[aria-pressed="true"]{color:#24462E;}
+  .browse-card-compare[aria-pressed="true"]::before{border-color:#3E7A91;background:#3E7A91 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/10px no-repeat;}
+  .browse-card-compare:hover{color:var(--ink);}
+
+  /* The rating chip says what it is and where it is explained. */
+  .browse-rating-link{display:inline-flex;border-radius:999px;text-decoration:none;}
+  .browse-rating-link .dp-badge>span{text-decoration:underline dotted;text-underline-offset:3px;}
+  .browse-rating-link .dp-badge::after{content:'ⓘ';margin-left:2px;font-size:11px;opacity:.75;}
+  .browse-rating-link:hover .dp-badge{filter:brightness(.97);}
+  .browse-rating-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  @media(max-width:760px){
+    #browseTools{flex-wrap:wrap;}
+    #browseTools>.browse-search-group{flex:1 1 100%;}
+    #browseTools>.browse-area-wrap{flex:1 1 0;min-width:0;}
+    #browseTools .browse-area-btn{width:100%;max-width:none;}
+    #browseAreaPanel{width:min(300px,calc(100vw - 32px));}
+    /* Saved shrinks to its heart and count so the second row holds all three. */
+    #browseTools>.browse-saved-only{padding-inline:11px;gap:6px;}
+    #browseTools>.browse-saved-only [data-i18n="browse.quick.saved"]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+    #browseTools #browseFiltersBtn{width:auto;padding-inline:12px;}
+    #browseTools #browseFiltersBtn .li-caret{display:none;}
+    #browseTools .browse-area-btn{padding-inline:12px;}
+  }
 </style>
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
 </head>
@@ -328,29 +326,48 @@
       </label>
       <button type="button" id="browseSearchBtn" class="browse-search-submit" data-i18n="browse.search.go">Search</button>
     </div>
-    <div class="browse-area-controls" aria-label="Choose trail area">
-      <label class="browse-geo-group geo-filter-control" for="browseCountrySelect">
-        <span class="browse-geo-label" data-i18n="browse.geo.country">Country</span>
-        <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-kicker-until-selected data-control-kicker="Country" aria-label="Filter trails by country"></select></span>
-      </label>
-      <label class="browse-geo-group geo-filter-control" for="browseRegionSelect">
-        <span class="browse-geo-label" data-i18n="browse.geo.region">Region</span>
-        <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label data-kicker-until-selected data-control-kicker="Region" aria-label="Filter trails by region"></select></span>
-      </label>
-      <label class="browse-geo-group browse-geo-group--valley geo-filter-control" for="browseValleySelect">
-        <span class="browse-geo-label" data-i18n="browse.geo.valley">Valley</span>
-        <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-kicker-until-selected data-control-kicker="Valley" aria-label="Filter trails by valley"></select></span>
-      </label>
+    <!-- One "Area" control in the row; Country, Region and Valley open
+         inside it and still drive the same selects. -->
+    <div class="li-menuwrap browse-area-wrap" id="browseAreaWrap">
+      <button type="button" id="browseAreaBtn" class="browse-area-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="browseAreaPanel">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
+        <span id="browseAreaLabel">All areas</span> <span class="li-caret" aria-hidden="true">▾</span>
+      </button>
+      <div class="browse-area-panel" id="browseAreaPanel" role="dialog" aria-label="Choose an area" hidden>
+        <div class="browse-area-controls" aria-label="Choose trail area">
+          <label class="browse-geo-group geo-filter-control" for="browseCountrySelect">
+            <span class="browse-geo-label" data-i18n="browse.geo.country">Country</span>
+            <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-kicker-until-selected data-control-kicker="Country" aria-label="Filter trails by country"></select></span>
+          </label>
+          <label class="browse-geo-group geo-filter-control" for="browseRegionSelect">
+            <span class="browse-geo-label" data-i18n="browse.geo.region">Region</span>
+            <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label data-kicker-until-selected data-control-kicker="Region" aria-label="Filter trails by region"></select></span>
+          </label>
+          <label class="browse-geo-group browse-geo-group--valley geo-filter-control" for="browseValleySelect">
+            <span class="browse-geo-label" data-i18n="browse.geo.valley">Valley</span>
+            <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-kicker-until-selected data-control-kicker="Valley" aria-label="Filter trails by valley"></select></span>
+          </label>
+        </div>
+      </div>
     </div>
     <div class="li-menuwrap" id="browseFiltersWrap">
         <button type="button" id="browseFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
-          <span data-i18n="browse.filters.button">Filter trails</span><span id="browseFiltersCount"></span> <span class="li-caret">▾</span>
+          <span data-i18n="browse.filters.button">Filters</span><span id="browseFiltersCount"></span> <span class="li-caret">▾</span>
         </button>
         <div class="li-menu li-filters-menu discovery-filter-panel" id="browseFiltersMenu" hidden>
           <div class="li-fhead">
             <span data-i18n="browse.filters.title">Filter trails</span>
             <button type="button" id="browseFiltersReset" data-i18n="browse.filters.resetAll">Reset all</button>
+          </div>
+          <div class="browse-filter-group">
+            <div class="browse-filter-group__title" data-i18n="browse.filters.quick">Quick filters</div>
+            <div class="browse-quick-filters" aria-label="Quick dog filters" data-i18n-aria-label="browse.quick.aria">
+              <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26" aria-hidden="true"></span><span data-i18n="browse.quick.shade">High shade</span></button>
+              <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="22" aria-hidden="true"></span><span data-i18n="browse.quick.water">Water</span></button>
+              <button type="button" class="browse-quick-filter" id="browseChairlifts" aria-pressed="false" data-audit-label="Chairlift-assisted routes" title="Routes that ride an open chairlift are hidden by default: they can be fatal for a dog not used to one" data-i18n-title="browse.chairlifts.title"><span aria-hidden="true">⚠</span><span data-i18n="browse.chairlifts.label">Include chairlift routes</span></button>
+              <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Show long multi-day itineraries (over 25 km)" data-i18n-title="browse.quick.multiDayTitle"><span aria-hidden="true">🏕️</span><span data-i18n="browse.quick.multiDay">Multi-day</span></button>
+            </div>
           </div>
           <div class="browse-filter-group">
             <div class="browse-filter-group__title" data-i18n="browse.filters.essentials">Route essentials</div>
@@ -369,17 +386,9 @@
           <button type="button" class="li-apply" id="browseFiltersApply" data-i18n="browse.filters.show">Show trails</button>
         </div>
       </div>
-    <div class="browse-refinement-controls" aria-label="Refine trail results">
-      <div class="browse-quick-filters" aria-label="Quick dog filters" data-i18n-aria-label="browse.quick.aria">
-        <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26" aria-hidden="true"></span><span data-i18n="browse.quick.shade">High shade</span></button>
-        <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="22" aria-hidden="true"></span><span data-i18n="browse.quick.water">Water</span></button>
-        <button type="button" class="browse-quick-filter" id="browseChairlifts" aria-pressed="false" data-audit-label="Chairlift-assisted routes" title="Routes that ride an open chairlift are hidden by default: they can be fatal for a dog not used to one" data-i18n-title="browse.chairlifts.title"><span aria-hidden="true">⚠</span><span data-i18n="browse.chairlifts.label">Include chairlift routes</span></button>
-        <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Show long multi-day itineraries (over 25 km)" data-i18n-title="browse.quick.multiDayTitle"><span aria-hidden="true">🏕️</span><span data-i18n="browse.quick.multiDay">Multi-day</span></button>
-      </div>
       <button type="button" id="browseSavedOnly" class="browse-saved-only" aria-pressed="false">
         <span class="orma-saved-heart" aria-hidden="true">♥</span><span data-i18n="browse.quick.saved">Saved</span><span class="browse-saved-count" id="browseSavedCount">0</span>
       </button>
-    </div>
     <div class="browse-filter-controls" id="browseFilterControls" hidden>
       <label class="browse-field"><span>Distance</span>
         <select id="browseDistance" aria-label="Filter by distance">
@@ -432,6 +441,8 @@
       </label>
       </div>
     </div>
+    <!-- What is switched on, each removable, so nothing filters out of sight. -->
+    <div class="browse-active-chips" id="browseActiveChips" aria-label="Active filters" hidden></div>
   </div>
   <div id="browseLocationBreadcrumb" class="browse-location-breadcrumb" aria-live="polite"></div>
   <div class="browse-view-toggle" role="group" aria-label="Choose catalogue view" data-i18n-aria-label="browse.view.aria">
@@ -496,6 +507,8 @@
 <a href="trail.html?id=dorferrundweg" style="display:block;color:inherit;">Dörferrundweg</a>
 <a href="trail.html?id=dorferrundweg-vintl" style="display:block;color:inherit;">Dörferrundweg (Vintl)</a>
 <a href="trail.html?id=dorfrundweg-giro-del-paese" style="display:block;color:inherit;">Dorfrundweg - Giro del Paese</a>
+<a href="trail.html?id=dorfrundweg-mittertal" style="display:block;color:inherit;">Dorfrundweg Mittertal</a>
+<a href="trail.html?id=dorfrundweg-niedertal" style="display:block;color:inherit;">Dorfrundweg Niedertal</a>
 <a href="trail.html?id=dorfrundweg-rasen" style="display:block;color:inherit;">Dorfrundweg Rasen</a>
 <a href="trail.html?id=dorfrundweg-st-sigmund" style="display:block;color:inherit;">Dorfrundweg St. Sigmund</a>
 <a href="trail.html?id=familienrundweg" style="display:block;color:inherit;">Familienrundweg</a>
@@ -580,6 +593,7 @@
 <a href="trail.html?id=talrundweg" style="display:block;color:inherit;">Talrundweg</a>
 <a href="trail.html?id=timpfler-rundweg" style="display:block;color:inherit;">Timpfler Rundweg</a>
 <a href="trail.html?id=toblacher-hohenweg" style="display:block;color:inherit;">Toblacher Höhenweg</a>
+<a href="trail.html?id=torggeleweg" style="display:block;color:inherit;">Törggeleweg</a>
 <a href="trail.html?id=tre-cime-di-lavaredo-classic-circuit" style="display:block;color:inherit;">Tre Cime di Lavaredo classic circuit</a>
 <a href="trail.html?id=tru-di-lec" style="display:block;color:inherit;">Tru di Lëc</a>
 <a href="trail.html?id=tru-dles-viles" style="display:block;color:inherit;">Tru dles Viles</a>
@@ -711,7 +725,7 @@
 </footer>
 
 <script src="mobile-nav.js?v=20261007-1"></script>
-<script src="i18n.js?v=20261006-1"></script>
+<script src="i18n.js?v=20261024-1"></script>
 <script src="trust/evidence-v1.js?v=20261006-2"></script>
 <script src="trail-trust.js?v=20261005-1"></script>
 <script src="scoring/recommendation-v1.js?v=20260917-1"></script>
@@ -728,7 +742,7 @@
 <script src="guest-context.js?v=20260917-2" defer></script>
 <script src="auth-ui.js?v=20260916-2" defer></script>
 <script src="discovery-state.js?v=20261007-1" defer></script>
-<script src="discovery-filters.js?v=20261005-1" defer></script>
+<script src="discovery-filters.js?v=20261024-1" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
 <script src="area-dropdown.js?v=20260823-2"></script>
 <script src="map-runtime.js?v=20260908-2"></script>
@@ -863,6 +877,16 @@
       event.preventDefault();
       if(searchButton) searchButton.click();
     });
+
+    // A trail rating is a word with a definition. Each chip opens How our
+    // scoring works at that rating, already explained (see its #rating-*
+    // handler). Unknown ratings stay plain text.
+    const RATING_ANCHORS = { 'low-risk':'rating-low-risk', moderate:'rating-moderate', caution:'rating-caution' };
+    function ratingLink(level, badge, label){
+      const anchor = RATING_ANCHORS[level];
+      if(!anchor) return badge;
+      return `<a class="browse-rating-link" href="how-scoring-works.html#${anchor}" aria-label="${esc(bt('browse.card.ratingLink', '{label}: what this rating means', { label }))}" title="${esc(bt('browse.card.ratingMeans', 'What {label} means', { label }))}">${badge}</a>`;
+    }
 
     const SAFETY = {
       'low-risk': [window.t('legend.low'), '#E4EADF', '#2C5C34'],
@@ -1216,8 +1240,10 @@
       }
       if(savedCount) savedCount.textContent = String(Object.keys(currentFavorites).length);
       if(!filtersBtn) return;
+      // Shade, water, chairlift and multi-day live inside Filters now, so
+      // they count; the place, the search and a collection do not.
       const n = filterApi.active(currentFilterState())
-        .filter(item => !['search','country','region','valley','collection','water','heat'].includes(item.key)).length;
+        .filter(item => !['search','country','region','valley','collection'].includes(item.key)).length;
       if(filtersCount) filtersCount.textContent = n > 0 ? ' (' + n + ')' : '';
       filtersBtn.classList.toggle('on', n > 0);
     }
@@ -1264,7 +1290,26 @@
       if(filtersMenu) filtersMenu.hidden = true;
       if(filtersBtn) filtersBtn.setAttribute('aria-expanded', 'false');
     });
+    const areaWrap = document.getElementById('browseAreaWrap');
+    const areaBtn = document.getElementById('browseAreaBtn');
+    const areaPanel = document.getElementById('browseAreaPanel');
+    const setAreaOpen = open => {
+      if(!areaPanel || !areaBtn) return;
+      areaPanel.hidden = !open;
+      areaBtn.setAttribute('aria-expanded', String(open));
+    };
+    if(areaBtn){
+      areaBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = areaPanel.hidden;
+        if(open && filtersMenu){ filtersMenu.hidden = true; if(filtersBtn) filtersBtn.setAttribute('aria-expanded', 'false'); }
+        setAreaOpen(open);
+      });
+      document.addEventListener('click', (e) => { if(areaWrap && !areaWrap.contains(e.target)) setAreaOpen(false); });
+      document.addEventListener('keydown', (e) => { if(e.key === 'Escape') setAreaOpen(false); });
+    }
     if(filtersBtn){
+      filtersBtn.addEventListener('click', () => setAreaOpen(false));
       filtersBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         const open = filtersMenu ? filtersMenu.hidden : false;
@@ -1307,6 +1352,48 @@
       });
     }
 
+    // The Area button names the place in one phrase: the region (or the
+    // country, when no region is picked) and the valley.
+    function renderAreaLabel(){
+      const label = document.getElementById('browseAreaLabel');
+      if(!label) return;
+      const picked = id => {
+        const select = document.getElementById(id);
+        const option = select && select.selectedOptions && select.selectedOptions[0];
+        // Options read "Dolomites (121)"; the count belongs in the list, not the label.
+        return option && select.value && select.value !== 'all' ? option.textContent.replace(/\s*\(\d+\)\s*$/, '').trim() : '';
+      };
+      const place = picked('browseRegionSelect') || picked('browseCountrySelect');
+      label.textContent = [place, picked('browseValleySelect')].filter(Boolean).join(' › ')
+        || bt('browse.area.all', 'All areas');
+    }
+
+    // Every filter that is on, as a chip that takes it off. The place is left
+    // out: the Area button already says it.
+    const PLACE_KEYS = new Set(['country', 'region', 'valley']);
+    function renderActiveChips(activeFilters, hasFilters){
+      const host = document.getElementById('browseActiveChips');
+      if(!host) return;
+      const chips = activeFilters.filter(item => !PLACE_KEYS.has(item.key));
+      host.hidden = !chips.length;
+      host.innerHTML = chips.map(item =>
+        `<button type="button" class="browse-active-chip" data-remove-filter="${esc(item.key)}" aria-label="${esc(bt('browse.chips.remove', 'Remove {label}', { label: item.label }))}">${esc(item.label)}<span aria-hidden="true">×</span></button>`
+      ).join('') + (chips.length && hasFilters
+        ? `<button type="button" class="browse-active-clear" data-clear-filters>${esc(bt('browse.chips.clear', 'Clear all'))}</button>`
+        : '');
+      host.querySelectorAll('[data-remove-filter]').forEach(button => {
+        button.addEventListener('click', () => {
+          const next = filterApi.without(currentFilterState(), button.dataset.removeFilter);
+          window.history.pushState(null, '', window.DoloPawsDiscoveryState.browseHref({ ...next, page:1 }));
+          applyBrowseUrl();
+          renderPage(null);
+          buildFilterPanel();
+        });
+      });
+      const clearAll = host.querySelector('[data-clear-filters]');
+      if(clearAll) clearAll.addEventListener('click', () => clear.click());
+    }
+
     function renderPage(historyMode, renderOptions){
       const h1 = document.getElementById('trailCountHeading');
       const sub = document.querySelector('.browse-design-head .sub');
@@ -1326,6 +1413,8 @@
       if(filtersApply) filtersApply.textContent = bt('browse.filters.showCount', 'Show {count}', { count: poolCount });
       resultCount.innerHTML = `<span class="browse-result-accessible">${esc(bt('browse.results.foundAria', '{count} found.', { count: poolCount }))} </span>${esc(bt('browse.results.ofTotal', '{n} of {total} trails', { n: pool.length, total: trails.length }))}${mapBoundsFilter ? esc(bt('browse.results.inMapArea', ' in this map area')) : ''}`;
       clear.hidden = !hasFilters;
+      renderAreaLabel();
+      renderActiveChips(activeFilters, hasFilters);
       const totalPages = Math.max(1, Math.ceil(pool.length / PER_PAGE));
       if(page > totalPages) page = totalPages;
       if(historyMode) syncBrowseUrl(historyMode);
@@ -1396,9 +1485,9 @@
             <div class="simple-card__meta">${meta}</div>
           </a>
           <div class="simple-card__facts">
-            ${icons
+            ${ratingLink(t.safetyLevel, icons
               ? icons.badgeHtml(t.safetyLevel, ratingLabel)
-              : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${ratingLabel}</span>`}
+              : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${ratingLabel}</span>`, ratingLabel)}
             ${provenance}
           </div>
           <div class="simple-card__match simple-card__match--${tierClass}">
@@ -1409,10 +1498,10 @@
             </div>
             <div class="simple-card__match-actions">
               <div class="browse-card-actions">
-                <a class="browse-card-open" href="${openHref}">${window.t('card.details')} →</a>
+                <a class="browse-card-open" href="${openHref}">${esc(bt('browse.card.view', 'View trail'))} <span aria-hidden="true">→</span></a>
                 <button type="button" class="browse-card-compare" data-compare-id="${esc(t.id)}"
                   aria-pressed="${isCompared ? 'true' : 'false'}" ${compareDisabled ? 'disabled' : ''}>
-                  ${esc(isCompared ? bt('browse.compare.selected', 'Selected') : bt('browse.compare.add', 'Compare'))}
+                  ${esc(bt('browse.compare.add', 'Compare'))}
                 </button>
               </div>
             </div>

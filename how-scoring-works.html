@@ -687,6 +687,29 @@ document.documentElement.classList.add('sc-js');
     });
   });
 })();
+
+/* A trail rating linked from elsewhere (#rating-low-risk, #rating-moderate,
+   #rating-caution) opens here already explained: that rating is pressed in
+   the trail-rating picker of each language, and the visible one is brought
+   into view. */
+(function(){
+  var RATINGS = { 'rating-low-risk':'low', 'rating-moderate':'moderate', 'rating-caution':'caution' };
+  function showRating(){
+    var level = RATINGS[(location.hash || '').slice(1)];
+    if(!level) return;
+    var shown = null;
+    document.querySelectorAll('[data-lang-block]').forEach(function(block){
+      var option = block.querySelector('.sc-score-option--' + level);
+      if(!option) return;
+      option.click();
+      if(!block.hidden) shown = option.closest('[data-score-card]');
+    });
+    if(shown) shown.scrollIntoView({ block:'center' });
+  }
+  window.addEventListener('hashchange', showRating);
+  // After i18n has picked which language block is visible.
+  window.addEventListener('load', showRating);
+})();
 </script>
 </body>
 </html>
