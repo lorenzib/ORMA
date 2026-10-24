@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-15791408",
+  "generatedAt": "2026-10-24T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.3,
+    "ascentM": 53,
+    "highestPointM": 1143,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 50
+  },
+  "trailhead": {
+    "lat": 46.142777,
+    "lng": 11.246126,
+    "label": "Bedolpian car park by La Capannina, Baselga di Piné (official start)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.1426218,
+      "lng": 11.2462265,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "A short stretch on the Strada di Bedolpian at the start.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-24",
+      "licence": "ODbL"
+    }
+  ]
+}
