@@ -268,6 +268,16 @@
       "name": "Römerweg Kiens",
       "slug": "roemerweg-kiens",
       "gloss": "the Roman road walk"
+    },
+    "osm-12737724": {
+      "name": "Historische Rundwanderung Teis",
+      "slug": "historische-rundwanderung-teis",
+      "gloss": "the Teis history walk"
+    },
+    "osm-6401355": {
+      "name": "Panoramarundweg Concordia 360°",
+      "slug": "panoramarundweg-concordia-360",
+      "gloss": "the Kronplatz summit panorama loop"
     }
   }
 }
