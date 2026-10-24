@@ -114,7 +114,7 @@
 
   // How well a verdict is known, in one line instead of two.
   //
-  // Confidence next to "ORMA route-audited" says the same thing twice: an
+  // Confidence next to "Verified by ORMA" says the same thing twice: an
   // audited route is the confident case, so the words only earn their place
   // when they qualify it. Saying nothing where there is nothing to add is what
   // leaves room for the caveat to be noticed when there is.

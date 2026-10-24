@@ -31,11 +31,14 @@
   const TIERS = Object.freeze([
     'imported', 'mapped', 'route-audited', 'field-verified',
   ]);
+  // Visitor-facing, so in the trail page's words (trail-trust.js tierLabel):
+  // a card used the tier's internal name where the same trail's page said
+  // "Verified by ORMA". The tier ids stay as they are.
   const TIER_LABELS = Object.freeze({
     imported: 'Imported map data',
     mapped: 'Mapped route',
-    'route-audited': 'ORMA route-audited',
-    'field-verified': 'ORMA field-verified',
+    'route-audited': 'Verified by ORMA',
+    'field-verified': 'Verified and walked by ORMA',
   });
   const SOURCE_LABELS = Object.freeze({
     unknown: 'Evidence unknown',

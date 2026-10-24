@@ -58,7 +58,7 @@ describe('comparison presentation model', () => {
     // A route ORMA audited from sources and one ORMA walked are different
     // claims. This table used to call both "Verified by ORMA", hiding the
     // distinction a reader opens a comparison to see.
-    expect(result.cells.verification.text).toBe('ORMA route-audited');
+    expect(result.cells.verification.text).toBe('Verified by ORMA');
     expect(result.cells.water.text).toBe('1 reviewed water point');
     expect(result.cells.restrictions.text).toBe('Dogs allowed on leash');
     expect(result.cells.duration.text).toBe('1.5 h');

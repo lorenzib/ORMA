@@ -415,15 +415,18 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <h2 class="li-list-title" id="companionListTitle">Best matches</h2>
           <span class="li-list-count" id="companionListCount"></span>
           <div class="li-list-tools">
-            <label class="li-sort-pill">
-              <span class="li-sort-label">Sort:</span>
-              <select id="companionSortSelect" aria-label="Sort trails">
-                <option value="match">Best fit</option>
-                <option value="distance">Shortest</option>
-                <option value="effort">Least climb</option>
-                <option value="today">For today</option>
-              </select>
-            </label>
+            <!-- ORMA's own menu, like Filters and the headline's: a native
+                 select opened the system's grey popup inside a pill. -->
+            <div class="li-menuwrap li-sort-wrap">
+              <button type="button" id="liSortBtn" class="li-sort-pill" aria-haspopup="menu" aria-expanded="false" aria-controls="liSortMenu"><span class="li-sort-label">Sort:</span><span id="liSortValue">Best fit</span></button>
+              <div class="li-menu li-sort-menu" id="liSortMenu" role="menu" aria-label="Sort trails" hidden>
+                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="match" aria-checked="true">Best fit</button>
+                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="distance" aria-checked="false">Shortest</button>
+                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="effort" aria-checked="false">Least climb</button>
+                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="today" aria-checked="false">For today</button>
+              </div>
+            </div>
+            <button type="button" id="liReasonsToggle" class="li-saved-toggle li-reasons-toggle" aria-pressed="false"><span class="li-reasons-word">Hide reasons</span></button>
             <button type="button" id="liViewSaved" class="li-saved-toggle" aria-pressed="false" aria-label="Saved trails"><span class="orma-saved-heart" aria-hidden="true">♥</span><span class="li-saved-word">Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span></button>
           </div>
         </div>
