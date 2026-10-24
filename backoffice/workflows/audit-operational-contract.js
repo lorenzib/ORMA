@@ -623,7 +623,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   // this trail has a photograph of it.
   add('a-photograph-says-under-what-terms',
     staging.includes("if(!String(trail.imageLicence||'').trim()||!String(trail.imageCreator||'').trim())return null;")
-    &&staging.includes("const NOT_A_PHOTOGRAPH=Object.freeze(['ai-illustration']);")
+    &&staging.includes("const NOT_A_PHOTOGRAPH=Object.freeze(['ai-illustration','orma-illustration']);")
     &&staging.includes("if(NOT_A_PHOTOGRAPH.includes(String(trail.imageSourceType||'')))return null;")
     // And the question can be asked again without stumbling on it.
     &&photoAudit.includes('function standingOf(trail)')
