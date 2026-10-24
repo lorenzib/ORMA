@@ -256,6 +256,10 @@ const LI_LOCATION_RADIUS_KM = 25;
 const LI_TOWN_RADIUS_KM = 40;
 let liTowns = null;
 const LI_LOCATION_SESSION_KEY = 'orma-home-current-location-v1';
+// A chosen area lasts for the visit, so a trail page and back keeps it; a
+// new visit opens on every trail, or near you when location is already
+// allowed. It used to be kept for good in localStorage, which reopened the
+// page on the last area chosen -- weeks later, and ahead of "near you".
 const LI_AREA_STORAGE_KEY = 'orma-home-selected-area-v1';
 const LI_WALK_DATE_SESSION_KEY = 'orma-home-walk-date-v1';
 const LI_LOCATION_LABEL_ALIASES = Object.freeze({
@@ -367,8 +371,10 @@ function liLoadLocationContext(){
     const current = liValidLocationContext(liStoredJson(sessionStorage, LI_LOCATION_SESSION_KEY));
     if(current) return current;
   }
-  if(typeof localStorage !== 'undefined'){
-    const area = liValidLocationContext(liStoredJson(localStorage, LI_AREA_STORAGE_KEY));
+  // An area kept by an older version, for good, is forgotten here.
+  try{ if(typeof localStorage !== 'undefined') localStorage.removeItem(LI_AREA_STORAGE_KEY); }catch(error){}
+  if(typeof sessionStorage !== 'undefined'){
+    const area = liValidLocationContext(liStoredJson(sessionStorage, LI_AREA_STORAGE_KEY));
     if(area) return area;
   }
   return liDefaultLocationContext();
@@ -377,11 +383,12 @@ function liLoadLocationContext(){
 function liRememberLocationContext(context){
   try{
     if(typeof sessionStorage !== 'undefined') sessionStorage.removeItem(LI_LOCATION_SESSION_KEY);
+    if(typeof sessionStorage !== 'undefined') sessionStorage.removeItem(LI_AREA_STORAGE_KEY);
     if(typeof localStorage !== 'undefined') localStorage.removeItem(LI_AREA_STORAGE_KEY);
     if(context && context.kind === 'current' && typeof sessionStorage !== 'undefined'){
       sessionStorage.setItem(LI_LOCATION_SESSION_KEY, JSON.stringify(context));
-    } else if(context && (context.kind === 'area' || context.kind === 'town') && !context.transient && !liIsAllTrailsContext(context) && typeof localStorage !== 'undefined'){
-      localStorage.setItem(LI_AREA_STORAGE_KEY, JSON.stringify(context));
+    } else if(context && (context.kind === 'area' || context.kind === 'town') && !context.transient && !liIsAllTrailsContext(context) && typeof sessionStorage !== 'undefined'){
+      sessionStorage.setItem(LI_AREA_STORAGE_KEY, JSON.stringify(context));
     }
   }catch(error){ /* Storage can be unavailable in private browsing. */ }
 }
@@ -749,7 +756,21 @@ function liDismissLocationNudge(){
   liRenderLocationNudge();
 }
 
-function liRequestCurrentLocation(){
+// Anything ORMA has within reach of a position. The page only moves itself
+// to "near you" when there is something there; a reader at home far from
+// any trail stays on every trail rather than opening on an empty list.
+function liAnyTrailNear(lat, lng, radiusKm){
+  const list = typeof trails !== 'undefined' && Array.isArray(trails) ? trails : [];
+  return list.some(trail => {
+    const point = liTrailLngLat(trail);
+    return point && liDistanceKm(lat, lng, point[1], point[0]) <= radiusKm;
+  });
+}
+
+// `auto` is the page acting on a permission already granted, not the reader
+// pressing Near me: that one is shown even when nothing is close.
+function liRequestCurrentLocation(options){
+  const auto = !!(options && options.auto);
   if(typeof navigator === 'undefined' || !navigator.geolocation){
     liLocationPermission = 'unavailable';
     liRenderLocationNudge();
@@ -761,12 +782,13 @@ function liRequestCurrentLocation(){
   navigator.geolocation.getCurrentPosition(position => {
     liLocationRequestPending = false;
     liLocationPermission = 'granted';
-    liSetLocationContext({
-      kind:'current',
-      lat:Number(position.coords.latitude),
-      lng:Number(position.coords.longitude),
-      radiusKm:LI_LOCATION_RADIUS_KM,
-    });
+    const lat = Number(position.coords.latitude);
+    const lng = Number(position.coords.longitude);
+    if(auto && !liAnyTrailNear(lat, lng, LI_LOCATION_RADIUS_KM)){
+      liRenderLocationNudge();
+      return;
+    }
+    liSetLocationContext({ kind:'current', lat, lng, radiusKm:LI_LOCATION_RADIUS_KM });
   }, error => {
     liLocationRequestPending = false;
     liLocationPermission = error && error.code === 1 ? 'denied' : 'error';
@@ -797,7 +819,7 @@ async function liProbeLocationPermission(){
     }
   }catch(error){ state = 'prompt'; }
   liLocationPermission = state;
-  if(state === 'granted' && liIsAllTrailsContext(liLocationContext)) liRequestCurrentLocation();
+  if(state === 'granted' && liIsAllTrailsContext(liLocationContext)) liRequestCurrentLocation({ auto:true });
   else liRenderLocationNudge();
 }
 
@@ -2781,18 +2803,6 @@ function renderLiToolbarContext(profile){
   if(greeting) greeting.textContent = profile && profile.name
     ? `Where are we going today, ${profile.name}?`
     : 'Where are we going today?';
-  const toolbarContext = document.getElementById('liToolbarDogContext');
-  if(!toolbarContext) return;
-  // "Right now" is a claim about today, so it is only made once a forecast
-  // has actually landed. Otherwise the subtitle promises less and stays true.
-  const dayKnown = !!(window.DoloPawsHomeConditions
-    && typeof window.DoloPawsHomeConditions.band === 'function'
-    && window.DoloPawsHomeConditions.band());
-  toolbarContext.textContent = profile && profile.name
-    ? (dayKnown
-      ? `Ranked for ${profile.name}, right now. Adjust only if you want to.`
-      : `Trails ranked for ${profile.name}\u2019s needs and your current choices.`)
-    : 'Trails ranked for your dog\u2019s needs and your current choices.';
 }
 
 // Filter panel, segmented options + toggle rows. Rebuilt on every render
@@ -3852,18 +3862,9 @@ async function renderReturningHomepage(profile, options = {}){
   const answerTitle = ['Best walk', profile && profile.name ? `for ${profile.name}` : '', locationPhrase, dayLabel]
     .filter(Boolean).join(' ');
   heading.textContent = answerTitle;
+  // No line under it: the headline names the scope itself, "across all
+  // trails" for the whole catalogue.
   liRenderHeadline(profile, locationPhrase, dayLabel);
-  const toolbarContext = document.getElementById('liToolbarDogContext');
-  // The scope belongs here, not in a pill. The headline is assembled from the
-  // dog, the place and the day -- but liRecommendationLocationPhrase returns ''
-  // for the whole catalogue, so a reader scoped to everything would be told
-  // nowhere what "everything" means. Said once, in the line already under the
-  // headline, and left unsaid when the headline has already named the place.
-  if(toolbarContext){
-    toolbarContext.textContent = locationPhrase
-      ? 'Your top matches first, with the reasons and cautions that matter.'
-      : 'Every ORMA trail, your top matches first, with the reasons and cautions that matter.';
-  }
   // The old copy ("Pick a province or valley below... Edit profile") duplicated
   // what the sidebar now already shows (filters + the dog card's edit link),
   // so this line is now just the one thing the sidebar can't say: whether

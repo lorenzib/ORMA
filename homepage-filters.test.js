@@ -344,19 +344,20 @@ describe('returning homepage region + valley filters', () => {
     const context = loadHomepageContext(sampleTrails);
     // The shared harness stubs storage to a no-op, so this test brings a real
     // one: whether a map area quietly erases the stored area is the whole point.
+    // A chosen area lasts for the visit, so it lives in sessionStorage.
     const store = new Map();
-    context.localStorage = {
+    context.sessionStorage = {
       getItem: key => (store.has(key) ? store.get(key) : null),
       setItem: (key, value) => { store.set(key, String(value)); },
       removeItem: key => { store.delete(key); },
     };
     vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
       valley:"Val Gardena", label:"Val Gardena" });`, context);
-    const stored = vm.runInContext('localStorage.getItem(LI_AREA_STORAGE_KEY)', context);
+    const stored = vm.runInContext('sessionStorage.getItem(LI_AREA_STORAGE_KEY)', context);
     expect(stored).toContain('Val Gardena');
     vm.runInContext(mapArea(6, 45, 7, 46), context);
-    // Still the typed area, untouched, so a reload comes back to it.
-    expect(vm.runInContext('localStorage.getItem(LI_AREA_STORAGE_KEY)', context)).toBe(stored);
+    // Still the typed area, untouched, so going back to the page comes back to it.
+    expect(vm.runInContext('sessionStorage.getItem(LI_AREA_STORAGE_KEY)', context)).toBe(stored);
   });
 
   // A map area is applied by a click handler that lives inside the map setup,
@@ -451,8 +452,6 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liDogCtxBreed').hidden).toBe(false);
     expect(document.getElementById('liDogCtxBreed').getAttribute('href')).toBe('guides/breed-group-caveats.html');
     expect(document.getElementById('liToolbarGreeting').textContent).toBe('Where are we going today, Eddie?');
-    expect(document.getElementById('liToolbarDogContext').textContent).toBe('Trails ranked for Eddie’s needs and your current choices.');
-    expect(document.getElementById('liToolbarDogContext').textContent).not.toContain('Podenco Andaluz');
   });
 
   test('keeps the cached active dog when a profile read transiently returns null', async () => {
@@ -578,28 +577,65 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('returningHeading').textContent).not.toContain('Tre Cime');
   });
 
-  // The scope used to be a pill beside the headline. The headline is assembled
-  // from the dog, the place and the day, so that pill was the same sentence
-  // twice -- except for the whole catalogue, where the place phrase is empty
-  // and nothing named the scope at all. It is said once now, in the line under
-  // the headline, and only when the headline has not already said it.
-  test('the subtitle names the scope only when the headline does not', async () => {
+  // The headline names the scope itself, so there is no line under it: "in
+  // Alta Pusteria" for an area, "across all trails" for the whole catalogue.
+  test('the headline names the scope, with no line under it', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('liEnsureAreaChoices(); liLocationContext = { kind:"area", country:"IT", region:"dolomites", valley:"Alta Pusteria – Tre Cime", label:"Alta Pusteria – Tre Cime" };', context);
     await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
-    const scoped = document.getElementById('liToolbarDogContext').textContent;
-    expect(document.getElementById('returningHeading').textContent).toContain('Alta Pusteria');
-    expect(scoped).not.toMatch(/Every ORMA trail/);
-    expect(scoped).toMatch(/top matches first/);
+    expect(document.querySelector('#liToolbarGreeting [data-li-head="area"]').textContent).toBe('in Alta Pusteria');
 
     vm.runInContext('liLocationContext = liDefaultLocationContext();', context);
     await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
-    const everywhere = document.getElementById('liToolbarDogContext').textContent;
-    // The headline cannot say it here: the place phrase is empty for the whole
-    // catalogue, which is exactly why the line has to.
-    expect(vm.runInContext('liRecommendationLocationPhrase()', context)).toBe('');
-    expect(everywhere).toMatch(/^Every ORMA trail,/);
-    expect(everywhere).toMatch(/top matches first/);
+    expect(document.querySelector('#liToolbarGreeting [data-li-head="area"]').textContent).toBe('across all trails');
+    expect(fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8')).not.toContain('liToolbarDogContext');
+  });
+
+  // A new visit opens on every trail. An area chosen weeks ago used to be
+  // kept for good and reopened every time, ahead of "near you".
+  test('a new visit forgets an area kept by an older version', () => {
+    const context = loadHomepageContext(sampleTrails);
+    const durable = new Map([['orma-home-selected-area-v1', JSON.stringify({ kind:'area', country:'IT', region:'dolomites', valley:'Alta Pusteria – Tre Cime', label:'Alta Pusteria – Tre Cime' })]]);
+    context.localStorage = {
+      getItem: key => (durable.has(key) ? durable.get(key) : null),
+      setItem: (key, value) => { durable.set(key, String(value)); },
+      removeItem: key => { durable.delete(key); },
+    };
+    expect(vm.runInContext('liIsAllTrailsContext(liLoadLocationContext())', context)).toBe(true);
+    expect(durable.has('orma-home-selected-area-v1')).toBe(false);
+  });
+
+  test('an area chosen during the visit is kept for that visit', () => {
+    const context = loadHomepageContext(sampleTrails);
+    const session = new Map();
+    context.sessionStorage = {
+      getItem: key => (session.has(key) ? session.get(key) : null),
+      setItem: (key, value) => { session.set(key, String(value)); },
+      removeItem: key => { session.delete(key); },
+    };
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val Gardena", label:"Val Gardena" });`, context);
+    // A fresh page load has no region deep link, so clear the one the area set.
+    expect(vm.runInContext('activeRegion = "all"; liLoadLocationContext().label', context)).toBe('Val Gardena');
+  });
+
+  // Location already allowed moves the page to "near you" only when ORMA has
+  // a trail there; far from every trail it stays on all of them.
+  test('a granted location opens near you only when a trail is close', async () => {
+    const at = (lat, lng) => {
+      const context = loadHomepageContext(sampleTrails);
+      context.navigator.geolocation = { getCurrentPosition: success => success({ coords:{ latitude:lat, longitude:lng } }) };
+      context.navigator.permissions = { query: jest.fn(() => Promise.resolve({ state:'granted' })) };
+      vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography(); initLoggedInShell();', context);
+      return context;
+    };
+    const london = at(51.5, -0.12);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(vm.runInContext('liIsAllTrailsContext(liLocationContext)', london)).toBe(true);
+
+    const gardena = at(46.57, 11.67);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(vm.runInContext('liLocationContext.kind', gardena)).toBe('current');
   });
 
   test('searching for a destination sets a complete recommendation scope', async () => {
@@ -932,7 +968,7 @@ describe('map-first returning homepage layout contract', () => {
 
   test('integrates the greeting and one filters control into the compact toolbar', () => {
     expect(html).toContain('class="li-toolbar-greet"');
-    expect(html).toContain('id="liToolbarDogContext"');
+    expect(html).not.toContain('id="liToolbarDogContext"');
     expect(html).toContain('id="liFiltersWrap"');
     // The three geography dropdowns are replaced by the unified search box and
     // the map. Saved moves from the toolbar to a view tab beside Sort.
@@ -985,7 +1021,8 @@ describe('map-first returning homepage layout contract', () => {
     expect(markerLayer).toContain("'text-font': window.ORMAMapStyle.FONT_BOLD");
     expect(markerLayer).toContain("'#9AA19C'");
     expect(script).toContain('Where are we going today, ${profile.name}?');
-    expect(script).toContain('Trails ranked for ${profile.name}\\u2019s needs');
+    // The line under the headline is gone; the headline names the scope.
+    expect(script).not.toContain('Trails ranked for ${profile.name}\\u2019s needs');
     expect(script).not.toContain('trails scored`');
   });
 
