@@ -24,7 +24,7 @@ const root = path.resolve(__dirname, '..');
 const outDir = path.join(root, 'data', 'regions');
 const detailDir = path.join(root, 'data', 'trail-details');
 const sourceFiles = [
-  'trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js',
+  'trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'board-trails-data.js',
   'dog-friendly-routes.geojson', 'dog-friendly-routes-savoy.geojson',
   'regions-config.js', 'water-sources-all-regions.geojson', 'huts-bars-all-regions.geojson',
   'data/verified-trail-overrides.json',
@@ -35,7 +35,7 @@ fs.mkdirSync(detailDir, { recursive: true });
 function loadTrails() {
   const context = { window: {}, console };
   vm.createContext(context);
-  ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'regions-config.js']
+  ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'board-trails-data.js', 'regions-config.js']
     .forEach(file => vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context, { filename: file }));
   const trails = JSON.parse(vm.runInContext('window.DoloPawsRegions.assign(trails); JSON.stringify(trails)', context));
   const overrides = JSON.parse(fs.readFileSync(path.join(root, 'data', 'verified-trail-overrides.json'), 'utf8'));

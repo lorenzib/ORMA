@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, '..');
 const context = { window: {} };
 vm.createContext(context);
 
-for (const file of ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'trail-audits.js']) {
+for (const file of ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'board-trails-data.js', 'trail-audits.js']) {
   vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context, { filename:file });
 }
 

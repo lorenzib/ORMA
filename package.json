@@ -35,7 +35,7 @@
     "audit:trail-photos": "node scripts/audit-trail-photos.js",
     "render:trail-illustrations": "node scripts/render-trail-illustrations.js",
     "import:scouted-trail": "node scripts/import-scouted-trail.js",
-    "promote:trails": "node scripts/promote-osm-trails.js && node scripts/promote-osm-trails.js --region savoy",
+    "promote:trails": "node scripts/promote-osm-trails.js && node scripts/promote-osm-trails.js --region savoy && node scripts/promote-osm-trails.js --region board",
     "generate:artifacts": "npm run promote:trails && npm run validate:production-trails && node scripts/generate-trail-pages.js && npm run build:regional-data && npm run build:trail-routing",
     "check:generated": "node scripts/check-generated-artifacts.js",
     "quality:gate": "node scripts/run-quality-gate.js",

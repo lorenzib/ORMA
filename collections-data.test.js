@@ -9,7 +9,7 @@ function loadTrails(){
   context.globalThis = context;
   context.window = context;
   vm.createContext(context);
-  ['trails-data.js','osm-trails-data.js','osm-trails-savoy-data.js','trail-audits.js','regions-config.js'].forEach(file => {
+  ['trails-data.js','osm-trails-data.js','osm-trails-savoy-data.js','board-trails-data.js','trail-audits.js','regions-config.js'].forEach(file => {
     vm.runInContext(fs.readFileSync(path.join(__dirname, file), 'utf8'), context, { filename:file });
   });
   vm.runInContext('DoloPawsRegions.assign(trails)', context);

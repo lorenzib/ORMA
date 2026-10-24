@@ -1152,6 +1152,49 @@ Three things it will not do:
 
 Dry run by default, and the intake hold now names the command that clears it.
 
+## A walk its operator publishes, drawn on OSM ways
+
+Most walks a tourist board publishes are not one route in OpenStreetMap. A
+board's loop is stitched from several numbered paths, and OSM carries each
+number as its own one-way stretch: of 133 South Tyrol board walks matched to a
+numbered relation, one was a closed loop, and of 30 Val di Fassa walks the APT
+marks "dogs accepted", one matched a relation end to end. The importer starts
+from a relation, so none of these could enter the catalogue however well their
+operator documents them.
+
+`scripts/build-board-line.js` lets such a walk in. It reads the line the
+operator publishes on a page anyone can open (an Outdooractive tour page's
+schema.org data, for the Trentino boards) and draws the walk on OSM ways
+along it. The published line is a **guide and is never stored or published**,
+for the reason the official GPX never is: its licence is rarely stated. What is
+stored, in `data/board-line-routes.geojson`, is the line drawn on OSM ways, the
+ways it uses, the operator, its page and the figures it publishes.
+
+**It is the operator's walk or it is refused.** 95% of the guide must lie
+within 25 m of the drawn line and 95% of the line within 25 m of the guide, and
+the line must be within ten per cent of the distance the operator publishes. A
+guide point with no OSM path within 50 m, or a gap the OSM network does not
+join, refuses it too. A refused walk writes nothing, and the reason is printed.
+
+**It becomes the same kind of record.** `node scripts/promote-osm-trails.js
+--region board` derives elevation, profile, terrain, water and rifugi from the
+line exactly as for an imported relation, into the generated
+`board-trails-data.js`, which the loader, the regional build and the
+generated-file check read like the other promoted files. Two things differ. The
+start and the direction are the operator's, so the kilometres on the page match
+the board's; an imported loop is turned to its nearest access point and gentler
+side, and this one is not. And the id is `<area>-<slug>` (`fassa-…`), never
+`osm-…`, with the operator and its page where the relation and Waymarked Trails
+stand.
+
+**It earns the seal the way every walk does.** Nothing here verifies a walk. A
+board-line trail is published *Reviewed*, and verified by hand in
+`trail-audits.js` under the same rules: an authority publishes the climb and the
+time, every commune on the line has a dog rule or the Italian default, the
+protected areas are checked, the photograph is of this place, and the line is
+as long as the walk. An operator's own "dogs accepted" flag is cited as support
+for access; it does not replace the commune's rule or the protected-area check.
+
 ## A walk the catalogue does not hold cannot be published
 
 A scouted walk exists only in Firestore. `candidateToTrail` builds it from the
