@@ -98,6 +98,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T15:00:00.000Z"
     },
+    "osm-11517208": {
+      "url": "https://www.combloux.com/itineraires/randonnee-pedestre-la-croix-des-salles/",
+      "publisher": "Office de tourisme de Combloux",
+      "name": "La Croix des Salles",
+      "quote": "Durée 03h30 · Dénivelé 487 D- / 498 D+ · Distance 9,1 km",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-11764094": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi16e4208993e3b597de62e5c389b65d33.doerferrunde-natz-schabs.natz",
       "publisher": "IDM Südtirol (LTS record of Tourismusverein Natz-Schabs / Brixen und Umgebung)",
@@ -506,6 +514,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T18:00:00.000Z"
     },
+    "osm-15321049": {
+      "url": "https://www.cirkwi.com/fr/circuit/137601-sentier-des-ecureuils",
+      "publisher": "Office de tourisme de Sainte-Foy Tarentaise",
+      "name": "Sentier des Écureuils",
+      "quote": "Durée 2h · Dist. 4.6 km · Déniv. pos. 173 m; Pour le retour, emprunter le même chemin qu'à l'aller",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
+    "osm-15321786": {
+      "url": "https://www.cirkwi.com/fr/circuit/137602-circuit-de-la-comtesse-cecile",
+      "publisher": "Office de tourisme de Sainte-Foy Tarentaise",
+      "name": "Circuit de la Comtesse Cécile",
+      "quote": "Durée 2h25mn · Dist. 4.9 km · Déniv. pos. 435 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-15591346": {
       "url": "https://tourisme.coeurdesavoie.fr/fiches/le-sentier-des-buis-114550/",
       "publisher": "Office de Tourisme Cœur de Savoie (Apidae)",
@@ -522,6 +546,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-16218739": {
+      "url": "https://www.peisey-vallandry.com/pedestre/le-circuit-de-ragairon.html",
+      "publisher": "Office de Tourisme de Peisey-Vallandry",
+      "name": "Le circuit de Ragairon",
+      "quote": "Dénivellation (en m) : 731 · Durée journalière (en min) : 270",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
     "osm-16322228": {
       "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/160/129/13533600/13-La-boucle-du-marais-des-chassettes.pdf",
       "publisher": "Grand Chambéry Alpes Tourisme (Apidae)",
@@ -529,6 +561,14 @@
       "quote": "1h00 · 3.509 km · 16 m · Boucle · Départ : Parking du plan d'eau",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-16365005": {
+      "url": "https://explore.chamberymontagnes.com/fr/itineraires/la-galoppaz-en-boucle-par-la-combe-servenne",
+      "publisher": "Grand Chambéry Alpes Tourisme",
+      "name": "La Galoppaz en boucle par la Combe Servenne",
+      "quote": "Difficile · 5h · 9km · Boucle · +640m −640m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-16395076": {
       "url": "https://explore.chamberymontagnes.com/fr/itineraires/la-boucle-du-lac-de-la-thuile",
@@ -553,6 +593,14 @@
       "quote": "Following partly the valley road, partly farm access roads and other paths, from the area of Welsberg-Taisten the trail leads along one side of the Gsiesertal Valley to the end of the valley near St. Magdalena and back out of the valley on the other side.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "osm-18055492": {
+      "url": "https://www.megeve-tourisme.fr/itineraires/itineraire-rando-le-mont-darbois-mont-joux/",
+      "publisher": "Megève Tourisme (Mairie de Megève)",
+      "name": "Le Mont d'Arbois – Mont Joux",
+      "quote": "Durée 03h45 · Dénivelé 673 D- / 673 D+ · Distance 11,7 km",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-19064561": {
       "url": "https://hautesavoiemontblanc-tourisme.com/offres/ombres-sur-lalpage-parcours-de-decouverte-lullin-fr-5867320/",
@@ -601,6 +649,14 @@
       "quote": "Die Wanderung beginnt im Zentrum von Vöran, der Weg Nr. 16 führt … Der Abstieg erfolgt auf dem Weg Nr. 12 zurück zur ersten Kreuzung, dann links auf dem Waldweg Nr. 14 weiter bis nach Vöran Dorf",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-19855818": {
+      "url": "https://rando.valmorel.com/trek/58779-Boucle-des-cascades-:-randonnee-bien-arrosee-a-Valmorel",
+      "publisher": "CC des Vallées d'Aigueblanche (Geotrek Valmorel)",
+      "name": "B14 – Boucle des cascades",
+      "quote": "Difficile · 4h30 · 8,3km · +600m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
     "osm-19974724": {
       "url": "https://eggental.com/en/activity/middle-circular-route-at-lake-carezza_5711",
