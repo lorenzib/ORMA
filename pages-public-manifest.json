@@ -34,6 +34,7 @@
     "area-dropdown.js",
     "auth-ui.js",
     "basemap-poi-click.js",
+    "board-trails-data.js",
     "breed-group-guide.js",
     "breeds-data.js",
     "browse-map.js",
