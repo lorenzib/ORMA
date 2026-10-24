@@ -13,6 +13,7 @@ const DEFAULT_FILES = [
   'trails-data.js',
   'osm-trails-data.js',
   'osm-trails-savoy-data.js',
+  'board-trails-data.js',
   'trail-audits.js',
   'regions-config.js',
 ];

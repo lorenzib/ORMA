@@ -16,6 +16,8 @@ const generatedTargets = [
   // file and this check passed, because it started below it.
   'osm-trails-data.js',
   'osm-trails-savoy-data.js',
+  // Walks drawn along their operator's line, promoted the same way.
+  'board-trails-data.js',
   'browse-trails.html',
   'sitemap.xml',
   'trails',
@@ -97,6 +99,7 @@ function main(){
     const offline = { env: { ...process.env, ORMA_PROMOTE_OFFLINE: 'true' } };
     run(process.execPath, ['scripts/promote-osm-trails.js'], temporaryRoot, offline);
     run(process.execPath, ['scripts/promote-osm-trails.js', '--region', 'savoy'], temporaryRoot, offline);
+    run(process.execPath, ['scripts/promote-osm-trails.js', '--region', 'board'], temporaryRoot, offline);
     run(process.execPath, ['scripts/validate-production-trails.js', '--report', 'data/generated/trail-validation-report.json'], temporaryRoot);
     run(process.execPath, ['scripts/generate-trail-pages.js'], temporaryRoot);
     run(process.execPath, ['scripts/build-regional-runtime-data.js'], temporaryRoot);

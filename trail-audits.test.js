@@ -5,7 +5,7 @@ const vm = require('vm');
 function loadTrails() {
   const context = { window: {} };
   vm.createContext(context);
-  for (const file of ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'trail-audits.js']) {
+  for (const file of ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'board-trails-data.js', 'trail-audits.js']) {
     vm.runInContext(fs.readFileSync(path.join(__dirname, file), 'utf8'), context, { filename: file });
   }
   return vm.runInContext('trails', context);
