@@ -84,22 +84,27 @@ describe('the audit says what is known about each picture',()=>{
     }
   });
 
-  // La Croix des Salles (osm-11517208) was the second until its hand
-  // verification on 24 October 2026 gave it a licensed photograph.
-  test('the remaining illustration is recorded as ORMA’s own and not as a photograph',()=>{
-    for(const id of ['osm-14987412']){
+  // Every trail drawn by scripts/render-trail-illustrations.js. Sentier du
+  // Four's AI picture was the first illustration; it is now an ORMA one, and
+  // La Croix des Salles left the list when it gained a licensed photograph.
+  test('the illustrations are recorded as ORMA’s own and not as photographs',()=>{
+    const listed=require('../data/trail-illustrations.json').trails.map(entry=>entry.id);
+    expect(listed).toContain('osm-14987412');
+    for(const id of listed){
       const trail=trails.find(record=>record.id===id);
       expect({id,standing:standingOf(trail),creator:trail.imageCreator,type:trail.imageSourceType})
-        .toEqual({id,standing:'illustration',creator:'ORMA',type:'ai-illustration'});
+        .toEqual({id,standing:'illustration',creator:'ORMA',type:'orma-illustration'});
       expect(existingImageFields(trail)).toBeNull();
     }
   });
 
   // The ones still owed an answer. Named, because a count cannot be acted on.
-  test('the pictures whose terms nobody has recorded are still named',()=>{
+  // Le Marais de Pré Lombard was the last: its only picture came from a
+  // commercial site with no licence. It is now an ORMA illustration, so no
+  // picture is left whose terms nobody has recorded. A new one fails here.
+  test('no picture is left whose terms nobody has recorded',()=>{
     const unestablished=groups['terms-not-established'].map(trail=>trail.id).sort();
-    expect(unestablished.length).toBeGreaterThan(0);
-    expect(unestablished).toContain('osm-16363583');
+    expect(unestablished).toEqual([]);
     for(const trail of groups['terms-not-established']){
       // None of them is being published as the trail's own.
       expect({id:trail.id,published:Boolean(existingImageFields(trail))})
