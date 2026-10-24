@@ -29,7 +29,7 @@
 const ORMA_AUTHORITY = 'ORMA';
 // In the value, like the map's own line, because a value is quoted far from
 // its citation.
-const ORMA_SUGGESTION = 'ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.';
+const ORMA_SUGGESTION = 'This is ORMA’s suggestion, not one published by the trail’s operator.';
 // Only the start carries it. Access is about whether somebody may begin here
 // today -- a barrier, a closed car park, a seasonal road -- and saying it after
 // a sentence about trail numbers attaches a warning to the wrong fact.
@@ -37,13 +37,22 @@ const CHECK_ACCESS = 'Check current access before travelling.';
 
 function trimmed(value){ return String(value == null ? '' : value).trim(); }
 
+// What promote-osm-trails writes when it found no car park, bus stop or lift
+// near the line. It describes ORMA's search, not a place to go.
+const UNNAMED_START = /^Route start per OpenStreetMap\b/i;
+
 /** The start ORMA recorded, named and placed. */
 function recordedStart(trail){
   const point = trail?.startPoint;
-  const label = trimmed(point?.label)
+  const raw = trimmed(point?.label);
+  const label = UNNAMED_START.test(raw) ? 'route start' : raw
     // trail-trust strips the same prefix for the same reason: "Start here," is
     // how the record phrases it, not part of the place's name.
-    .replace(/^Start here\s*[,.:;—–-]*\s*/i, '');
+    .replace(/^Start here\s*[,.:;—–-]*\s*/i, '')
+    // How the place was found, not part of its name (generate-trail-pages
+    // strips it from the page for the same reason).
+    .replace(/\s*\(OSM-verified access point\)/gi, '')
+    .trim();
   if(!label) return null;
   const lat = Number(point?.lat);
   const lng = Number(point?.lng);
@@ -151,6 +160,25 @@ function followedByLandmark(trail, claimId){
     : `${noNumber} ORMA has no landmark sequence recorded for it: follow the walk’s name on local signs and the mapped ORMA line on this page.`;
 }
 
+// The access point's kind, as a walker would say it.
+const KIND = [[/^Parking\b/i, 'the car park'], [/^Bus stop\b/i, 'the bus stop'], [/^Lift station\b/i, 'the lift station']];
+
+/**
+ * The start as a walker reads it. It used to be the record's label with its
+ * coordinates -- "Start at Route start per OpenStreetMap — best parking/access
+ * not yet verified (45.19398, 6.39891)" went live on Circuit des Sallanches on
+ * 24 October. The point is pinned on the map beside these words, so the
+ * coordinates add nothing a walker can use.
+ */
+function startSentence(start){
+  if(start.label === 'route start'){
+    return `Start where the route begins, marked on the map. No car park or bus stop has been confirmed nearby. ${ORMA_SUGGESTION} ${CHECK_ACCESS}`;
+  }
+  let place = start.label;
+  for(const [pattern, words] of KIND) if(pattern.test(place)){ place = place.replace(pattern, words); break; }
+  return `Start at ${place}, marked on the map. ${ORMA_SUGGESTION} ${CHECK_ACCESS}`;
+}
+
 /**
  * The claims ORMA can answer about itself.
  *
@@ -178,8 +206,7 @@ function routeGuidanceFromRecord(trail, options = {}){
   });
   const start = recordedStart(trail);
   if(start){
-    claims['recommended-start'] = claim('recommended-start',
-      `Start at ${start.label} (${start.lat.toFixed(5)}, ${start.lng.toFixed(5)}). ${ORMA_SUGGESTION} ${CHECK_ACCESS}`);
+    claims['recommended-start'] = claim('recommended-start', startSentence(start));
   }
   const status = recordedStatus(trail, options.measuredRefs);
   if(status){
@@ -197,5 +224,5 @@ function routeGuidanceFromRecord(trail, options = {}){
   return claims;
 }
 
-module.exports = { ORMA_AUTHORITY, ORMA_SUGGESTION, CHECK_ACCESS, recordedStart, recordedStatus,
+module.exports = { ORMA_AUTHORITY, ORMA_SUGGESTION, CHECK_ACCESS, recordedStart, startSentence, recordedStatus,
   recordedLandmarks, landmarkRun, followedByLandmark, routeGuidanceFromRecord };

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-7567918",
   "generatedAt": "2026-10-24T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 3.4,
@@ -19,12 +19,11 @@
   },
   "waypoints": [],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "A crossing of the Obertaler Straße (valley road to the Staller Sattel) by the Seerestaurant, km 1.7.",
     "A wooden footbridge near km 3.0.",
     "Busy with walkers in summer.",
     "No water point is listed on this walk: carry enough for you and your dog.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

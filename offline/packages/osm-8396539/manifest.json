@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-8396539",
   "name": "Kulturwanderweg Peter Mitterhofer",
-  "version": "2026.10.24-beta.1",
-  "generatedAt": "2026-10-24T13:49:50.500Z",
+  "version": "2026.10.24-beta.2",
+  "generatedAt": "2026-10-24T17:48:41.749Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 1249242,
+  "verificationStatus": "source-verified",
+  "packageBytes": 1250197,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.66147,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Kulturwanderweg Peter Mitterhofer route",
       "url": "route.geojson",
-      "bytes": 8341,
-      "sha256": "1c8613f1902a77f88b9e6df3bf14db3fe0cb4c9867618ec8ac19a6a71b35e257"
+      "bytes": 8335,
+      "sha256": "58ff70e4b359ed9ebf2681fb8a65e27a9254bcb6efcf774bbdaa491e8fbd9de5"
     },
     {
       "role": "footpath-network",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Kulturwanderweg Peter Mitterhofer safety information",
       "url": "safety.json",
-      "bytes": 2251,
-      "sha256": "80284a745cbd7a52441e613101d923bd9f8a2fce17945396303c4fbe8f202a6a"
+      "bytes": 2163,
+      "sha256": "6bbc4315e9160478b6ab54269c34ab00bcf6bb4225af8f35128bf36ffe1f1743"
     }
   ]
 }

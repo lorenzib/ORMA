@@ -50,6 +50,17 @@ describe('the directions reach the crawlable page',()=>{
     for(const field of ['start','sequence','switches'])expect(rendered).toContain(plain(guidance[field]));
   });
 
+  test('a start that already begins "Start" is not labelled "Start:" again',()=>{
+    const section=directionsSection({routeNumberGuidance:{start:'Start at Rifugio Auronzo.',sequence:'Follow 101.',switches:'None.'}});
+    expect(section).toContain('<p><b>Start</b> at Rifugio Auronzo.</p>');
+    expect(text(section)).not.toMatch(/Start:\s*Start/);
+    for(const trail of withGuidance)expect({id:trail.id,repeated:/Start:\s*Start/.test(text(directionsSection(trail)))})
+      .toEqual({id:trail.id,repeated:false});
+    // A sentence that begins otherwise keeps its label.
+    expect(directionsSection({routeNumberGuidance:{start:'No official start is published.',sequence:'a',switches:'b'}}))
+      .toContain('<b>Start:</b> No official start is published.');
+  });
+
   test('the numbers shown are the ones the app shows, in the same order',()=>{
     for(const trail of withGuidance){
       const shields=[...directionsSection(trail).matchAll(/class="sp-route-ref">([^<]*)</g)]

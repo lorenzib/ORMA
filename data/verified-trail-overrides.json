@@ -54813,8 +54813,8 @@
         "ormaVerified": false,
         "routeNumberGuidance": {
           "mode": "numbered",
-          "start": "Start at Route start per OpenStreetMap — best parking/access not yet verified (45.19398, 6.39891). ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation. Check current access before travelling.",
-          "status": "The mapped route carries trail numbers 17, 24; look for them at junctions. ORMA has not confirmed how they appear on local signs. ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.",
+          "start": "Start where the route begins, marked on the map. No car park or bus stop has been confirmed nearby. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.",
+          "status": "The mapped route carries trail numbers 17, 24; look for them at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.",
           "sequence": "This walk carries no route number of its own. The mapped route runs along waymarked routes 17, 24 and then 17, in that order from the start. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
           "switches": "The mapped route runs along waymarked routes 17 and 24 and 17 throughout, with no change of waymark recorded along it. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
           "establishedBy": {

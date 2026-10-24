@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6244965",
   "name": "Steine erzählen",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T17:59:27.265Z",
+  "version": "2026.10.24-beta.2",
+  "generatedAt": "2026-10-24T17:45:19.401Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 1369251,
+  "verificationStatus": "source-verified",
+  "packageBytes": 1370206,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.8005,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Steine erzählen route",
       "url": "route.geojson",
-      "bytes": 51760,
-      "sha256": "5ff119de491acfae9db65b8a8f41787235f6a78bc40dd014204f4e4aa8c59961"
+      "bytes": 51754,
+      "sha256": "9eb00f3b95ca42df7bc2325081c08fc03e4607b70fc6b664b1a341640879673b"
     },
     {
       "role": "footpath-network",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Steine erzählen safety information",
       "url": "safety.json",
-      "bytes": 2139,
-      "sha256": "96875372fe9df42899ad6a2160a368adf9901135fdea4d9611526a215ed35748"
+      "bytes": 2051,
+      "sha256": "9722e697b1ad379935c4cb9ddb6c0f8f7a8beca80185200d2dd9254dee330764"
     }
   ]
 }

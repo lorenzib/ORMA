@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-19974724",
   "name": "Mittlerer Rundweg am Karer See",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T17:50:28.196Z",
+  "version": "2026.10.24-beta.2",
+  "generatedAt": "2026-10-24T17:45:58.231Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 374623,
+  "verificationStatus": "source-verified",
+  "packageBytes": 375578,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.40326,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Mittlerer Rundweg am Karer See route",
       "url": "route.geojson",
-      "bytes": 4339,
-      "sha256": "c2ff92bc9b5ffe42afe7dcc531eab0d525ca7dcda7a879aeaa695ecc051d9a15"
+      "bytes": 4333,
+      "sha256": "cfbb4c4f84a034cd86137d9192002887411e8e1f7dac61afbbd7be1d0c634df1"
     },
     {
       "role": "footpath-network",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Mittlerer Rundweg am Karer See safety information",
       "url": "safety.json",
-      "bytes": 1521,
-      "sha256": "0f91aeac4dec202d5bd0a9bf34c396e07dd80d2c6120ac6e9a476e7dea3fbf0e"
+      "bytes": 1433,
+      "sha256": "472abd42f6a33d20ed0cc76fa2dbe2025cd5ab36053c65b6fa033bc70f1742d4"
     }
   ]
 }

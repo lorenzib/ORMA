@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-7446701",
   "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 8.4,
@@ -41,11 +41,10 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "About 500 m on or beside the SS44 Jaufenstraße (60 km/h), partly without a pavement.",
     "About 1.9 km on minor roads and farm lanes with cars.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

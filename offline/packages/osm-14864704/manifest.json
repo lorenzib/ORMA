@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14864704",
   "name": "Boucle du Taillefer",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T17:52:02.268Z",
+  "version": "2026.10.24-beta.2",
+  "generatedAt": "2026-10-24T17:45:18.148Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 660589,
+  "verificationStatus": "source-verified",
+  "packageBytes": 661544,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.80241,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Boucle du Taillefer route",
       "url": "route.geojson",
-      "bytes": 10264,
-      "sha256": "46a55027f00acf11ab8a10066276c8cf70a2191cf5b8facd500f0346253c9e7a"
+      "bytes": 10258,
+      "sha256": "2c995998d93fd5fef6b95363d74b0ddc681e76727e399d65d977a9034bdb66a6"
     },
     {
       "role": "footpath-network",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Boucle du Taillefer safety information",
       "url": "safety.json",
-      "bytes": 1375,
-      "sha256": "0523c9c9d7ac8e7d20c3aa09f3e1899af04f64fc51d2556ed6da5360645bfb0b"
+      "bytes": 1287,
+      "sha256": "3e19b8659c9fdd0eed67622bd3a796d52d1d8094581ddedcf63eb7b9d1000afa"
     }
   ]
 }

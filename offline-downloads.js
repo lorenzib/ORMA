@@ -63,16 +63,16 @@
     const removeButton = record.hasLocalData
       ? `<button type="button" class="od-btn od-btn--danger" data-action="request-remove">${escapeHtml(tr('downloads.action.remove', 'Remove'))}</button>`
       : '';
-    const verificationLabel = record.verificationStatus === 'field-review-required'
-      ? tr('downloads.review.pending', 'Beta field review pending')
-      : ['verified', 'vetted', 'dolopaws-vetted', 'field-checked']
-        .includes(record.verificationStatus)
-        ? tr('downloads.review.vetted', 'Vetted by ORMA')
+    // The same status the trail page shows for the route (OFF-08).
+    const verificationLabel = record.verificationStatus === 'source-verified'
+      ? tr('downloads.review.verified', 'Verified by ORMA')
+      : record.verificationStatus === 'not-verified'
+        ? tr('downloads.review.notVerified', 'Not yet verified by ORMA')
         : tr('downloads.review.unavailable', 'Review status unavailable');
     const betaVersion = String(record.version || '').match(/beta\.(\d+)$/i);
     const versionLabel = typeof translateFn === 'function'
       ? betaVersion
-        ? tr('downloads.version.beta', 'Beta package {version}', { version:betaVersion[1] })
+        ? tr('downloads.version.package', 'Package {version}', { version:betaVersion[1] })
         : record.version
           ? tr('downloads.version.package', 'Package {version}', { version:record.version })
           : tr('downloads.version.unavailable', 'Package revision unavailable')
@@ -92,7 +92,7 @@
             <span>${escapeHtml(sizeLabel)}</span>
             <span>${escapeHtml(tr('downloads.downloaded', 'Downloaded {date}', { date:offline.formatInstalledDate(record.installedAt) }))}</span>
             <span>${escapeHtml(versionLabel)}</span>
-            <span>${escapeHtml(verificationLabel)}</span>
+            <span class="od-route" data-status="${escapeHtml(record.verificationStatus || '')}">${escapeHtml(verificationLabel)}</span>
           </div>
           <p class="od-owner">${escapeHtml(ownershipLabel)}</p>
           <span class="od-state" data-state="${state[0]}">${state[1]}</span>
