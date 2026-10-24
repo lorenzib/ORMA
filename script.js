@@ -203,13 +203,17 @@ let lastFilterKey = '';            // legacy, kept for safety
 // Geography is no longer a set of dropdowns: the unified search and the map
 // are the geography controls, so the homepage loads every region and defaults
 // to "all". A ?region= deep link still narrows the initial view.
-let activeRegion = (() => {
+// The region a ?region= link asked for, kept apart from activeRegion: the
+// page sets activeRegion itself when it opens on a region, and that must not
+// be read back as a link someone shared.
+const LI_LINKED_REGION = (() => {
   try {
     const requested = new URLSearchParams(window.location.search).get('region');
     if(requested === 'savoy' || requested === 'dolomites') return requested;
     return 'all';
   } catch(e) { return 'all'; }
 })();
+let activeRegion = LI_LINKED_REGION;
 let activeCountry = activeRegion === 'savoy' ? 'FR' : activeRegion === 'dolomites' ? 'IT' : 'all';
 let activeValley = 'all';
 // The geography the map replaced, so "Clear map area" puts back the area the
@@ -256,17 +260,52 @@ const LI_LOCATION_RADIUS_KM = 25;
 const LI_TOWN_RADIUS_KM = 40;
 let liTowns = null;
 const LI_LOCATION_SESSION_KEY = 'orma-home-current-location-v1';
+// A chosen area lasts for the visit, so a trail page and back keeps it; a
+// new visit opens on every trail, or near you when location is already
+// allowed. It used to be kept for good in localStorage, which reopened the
+// page on the last area chosen -- weeks later, and ahead of "near you".
 const LI_AREA_STORAGE_KEY = 'orma-home-selected-area-v1';
 const LI_WALK_DATE_SESSION_KEY = 'orma-home-walk-date-v1';
 const LI_LOCATION_LABEL_ALIASES = Object.freeze({
   'Alta Pusteria – Tre Cime':'Alta Pusteria',
 });
-// With nothing chosen, the list is the whole catalogue ranked for the dog.
-// This is a real context, not the absence of one: the page never waits for a
-// place before it shows a walk. Choosing "All trails" also forgets any
-// remembered area, which is why it is never written to storage itself.
+// The whole catalogue, for the ?all=1 link only. A walk is planned in one
+// place, so the page itself never opens on the Dolomites and Savoy mixed.
 const LI_ALL_TRAILS_CONTEXT = Object.freeze({ kind:'area', country:'all', region:'all', valley:'all', label:'All ORMA trails', transient:true });
-function liDefaultLocationContext(){ return { ...LI_ALL_TRAILS_CONTEXT }; }
+const LI_REGION_LABELS = Object.freeze({ dolomites:'The Dolomites', savoy:'Savoy' });
+// The last trails opened, kept by trail.js in this browser only. Declared up
+// here because the page's opening region is read from them at load.
+const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';
+
+// One region. `auto` marks a region the page chose for itself, which a
+// location already allowed may still narrow to "near you"; one the reader
+// picked is kept for the visit instead.
+function liRegionContext(region, auto){
+  const context = {
+    kind:'area', country:region === 'savoy' ? 'FR' : 'IT', region, valley:'all',
+    label:LI_REGION_LABELS[region] || region,
+  };
+  if(auto){ context.transient = true; context.auto = true; }
+  return context;
+}
+
+function liCatalogueTrails(){
+  return typeof trails !== 'undefined' && Array.isArray(trails) ? trails : [];
+}
+
+// Where the page opens with nothing chosen: the region of the trail looked at
+// most recently, else the Dolomites, which has the most trails. Location, when
+// already allowed, refines this after load (liProbeLocationPermission).
+function liDefaultLocationContext(){
+  let recent = [];
+  try{ recent = JSON.parse(localStorage.getItem(LI_RECENT_TRAILS_KEY) || '[]'); }catch(error){}
+  const list = liCatalogueTrails();
+  for(const item of Array.isArray(recent) ? recent : []){
+    const trail = item && list.find(candidate => candidate.id === item.id);
+    if(trail && LI_REGION_LABELS[trail.region]) return liRegionContext(trail.region, true);
+  }
+  return liRegionContext('dolomites', true);
+}
 function liIsAllTrailsContext(context){
   return !!context && context.kind === 'area'
     && (context.country || 'all') === 'all' && (context.region || 'all') === 'all' && (context.valley || 'all') === 'all';
@@ -360,15 +399,17 @@ function liValidLocationContext(value){
 function liLoadLocationContext(){
   // A region deep link is already an explicit geographic choice. Keep its
   // scope broad because that is what the shared URL promises.
-  if(activeRegion !== 'all'){
-    return { kind:'area', region:activeRegion, valley:'all', label:activeRegion === 'savoy' ? 'Savoy' : 'The Dolomites', transient:true };
+  if(LI_LINKED_REGION !== 'all'){
+    return { ...liRegionContext(LI_LINKED_REGION), transient:true };
   }
   if(typeof sessionStorage !== 'undefined'){
     const current = liValidLocationContext(liStoredJson(sessionStorage, LI_LOCATION_SESSION_KEY));
     if(current) return current;
   }
-  if(typeof localStorage !== 'undefined'){
-    const area = liValidLocationContext(liStoredJson(localStorage, LI_AREA_STORAGE_KEY));
+  // An area kept by an older version, for good, is forgotten here.
+  try{ if(typeof localStorage !== 'undefined') localStorage.removeItem(LI_AREA_STORAGE_KEY); }catch(error){}
+  if(typeof sessionStorage !== 'undefined'){
+    const area = liValidLocationContext(liStoredJson(sessionStorage, LI_AREA_STORAGE_KEY));
     if(area) return area;
   }
   return liDefaultLocationContext();
@@ -377,11 +418,12 @@ function liLoadLocationContext(){
 function liRememberLocationContext(context){
   try{
     if(typeof sessionStorage !== 'undefined') sessionStorage.removeItem(LI_LOCATION_SESSION_KEY);
+    if(typeof sessionStorage !== 'undefined') sessionStorage.removeItem(LI_AREA_STORAGE_KEY);
     if(typeof localStorage !== 'undefined') localStorage.removeItem(LI_AREA_STORAGE_KEY);
     if(context && context.kind === 'current' && typeof sessionStorage !== 'undefined'){
       sessionStorage.setItem(LI_LOCATION_SESSION_KEY, JSON.stringify(context));
-    } else if(context && (context.kind === 'area' || context.kind === 'town') && !context.transient && !liIsAllTrailsContext(context) && typeof localStorage !== 'undefined'){
-      localStorage.setItem(LI_AREA_STORAGE_KEY, JSON.stringify(context));
+    } else if(context && (context.kind === 'area' || context.kind === 'town') && !context.transient && !liIsAllTrailsContext(context) && typeof sessionStorage !== 'undefined'){
+      sessionStorage.setItem(LI_AREA_STORAGE_KEY, JSON.stringify(context));
     }
   }catch(error){ /* Storage can be unavailable in private browsing. */ }
 }
@@ -573,7 +615,8 @@ function liRecommendationLocationPhrase(){
     const area = liAreasInView(1)[0];
     return area ? `in ${area.label}` : 'in the map view';
   }
-  return `in ${liDisplayLocationLabel(liLocationContext.label)}`;
+  // "in the Dolomites", not "in The Dolomites".
+  return `in ${liDisplayLocationLabel(liLocationContext.label).replace(/^The /, 'the ')}`;
 }
 
 /**
@@ -749,7 +792,33 @@ function liDismissLocationNudge(){
   liRenderLocationNudge();
 }
 
-function liRequestCurrentLocation(){
+// Anything ORMA has within reach of a position. The page only moves itself
+// to "near you" when there is something there; a reader at home far from
+// any trail stays on every trail rather than opening on an empty list.
+function liAnyTrailNear(lat, lng, radiusKm){
+  return liCatalogueTrails().some(trail => {
+    const point = liTrailLngLat(trail);
+    return point && liDistanceKm(lat, lng, point[1], point[0]) <= radiusKm;
+  });
+}
+
+// The region of the trail closest to a position, however far away it is.
+function liNearestTrailRegion(lat, lng){
+  let best = null;
+  let bestKm = Infinity;
+  liCatalogueTrails().forEach(trail => {
+    const point = liTrailLngLat(trail);
+    if(!point || !LI_REGION_LABELS[trail.region]) return;
+    const km = liDistanceKm(lat, lng, point[1], point[0]);
+    if(km < bestKm){ bestKm = km; best = trail.region; }
+  });
+  return best;
+}
+
+// `auto` is the page acting on a permission already granted, not the reader
+// pressing Near me: that one is shown even when nothing is close.
+function liRequestCurrentLocation(options){
+  const auto = !!(options && options.auto);
   if(typeof navigator === 'undefined' || !navigator.geolocation){
     liLocationPermission = 'unavailable';
     liRenderLocationNudge();
@@ -761,12 +830,19 @@ function liRequestCurrentLocation(){
   navigator.geolocation.getCurrentPosition(position => {
     liLocationRequestPending = false;
     liLocationPermission = 'granted';
-    liSetLocationContext({
-      kind:'current',
-      lat:Number(position.coords.latitude),
-      lng:Number(position.coords.longitude),
-      radiusKm:LI_LOCATION_RADIUS_KM,
-    });
+    const lat = Number(position.coords.latitude);
+    const lng = Number(position.coords.longitude);
+    if(auto && !liAnyTrailNear(lat, lng, LI_LOCATION_RADIUS_KM)){
+      // Nothing within reach: open on the nearer region instead, unless the
+      // reader has picked a place in the meantime.
+      const region = liNearestTrailRegion(lat, lng);
+      if(region && liLocationContext && liLocationContext.auto && region !== liLocationContext.region){
+        liSetLocationContext(liRegionContext(region, true));
+      }
+      liRenderLocationNudge();
+      return;
+    }
+    liSetLocationContext({ kind:'current', lat, lng, radiusKm:LI_LOCATION_RADIUS_KM });
   }, error => {
     liLocationRequestPending = false;
     liLocationPermission = error && error.code === 1 ? 'denied' : 'error';
@@ -797,7 +873,7 @@ async function liProbeLocationPermission(){
     }
   }catch(error){ state = 'prompt'; }
   liLocationPermission = state;
-  if(state === 'granted' && liIsAllTrailsContext(liLocationContext)) liRequestCurrentLocation();
+  if(state === 'granted' && liLocationContext && liLocationContext.auto) liRequestCurrentLocation({ auto:true });
   else liRenderLocationNudge();
 }
 
@@ -830,9 +906,7 @@ function liRenderLocationNudge(){
   nudge.dataset.state = liLocationRequestPending ? 'pending' : liLocationPermission;
 }
 
-// The last trails opened, kept by trail.js in this browser only. The dog menu
-// lists them as a shortlist, never as a history.
-const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';
+// The dog menu lists the last trails opened as a shortlist, never as a history.
 function liRecentTrails(){
   try{
     const list = JSON.parse(localStorage.getItem(LI_RECENT_TRAILS_KEY) || '[]');
@@ -890,13 +964,29 @@ function liRenderRecentTrails(){
   });
 }
 
+// The two regions in the place menu, each with its trail count, the one in
+// use marked. "Near you" sits inside a region, so neither is marked then.
+function liRenderRegionChoices(){
+  const list = liCatalogueTrails();
+  document.querySelectorAll('[data-li-region]').forEach(button => {
+    const region = button.dataset.liRegion;
+    const count = button.querySelector('[data-li-region-count]');
+    if(count){
+      const n = list.filter(trail => trail.region === region).length;
+      count.textContent = `${region === 'savoy' ? 'France' : 'Italy'} · ${n} ${n === 1 ? 'trail' : 'trails'}`;
+    }
+    const on = !!liLocationContext && liLocationContext.kind === 'area'
+      && liLocationContext.region === region && (liLocationContext.valley || 'all') === 'all';
+    button.setAttribute('aria-pressed', String(on));
+  });
+}
+
 function liRenderLocationContext(profile){
   const toolbar = document.getElementById('liToolbar');
   const workspace = document.querySelector('#returningCustomerHomepage .li-body');
   const summary = document.getElementById('liLocationSummary');
   const summaryLabel = document.getElementById('liLocationSummaryLabel');
   const summaryKick = document.getElementById('liLocationSummaryKick');
-  const showAll = document.getElementById('liShowAllBtn');
   // The list and the map are always there: a place narrows them, it does not
   // unlock them.
   if(toolbar) toolbar.hidden = false;
@@ -906,15 +996,19 @@ function liRenderLocationContext(profile){
     document.body.classList.add('li-location-ready');
   }
   if(summary){
-    summary.hidden = !liLocationContext;
+    // A whole region is already ticked in the list below, so the line naming
+    // it would say the same thing twice; a valley, town or "near you" keeps it.
+    const wholeRegion = !!liLocationContext && liLocationContext.kind === 'area'
+      && !!LI_REGION_LABELS[liLocationContext.region] && (liLocationContext.valley || 'all') === 'all';
+    summary.hidden = !liLocationContext || wholeRegion;
     if(summaryLabel) summaryLabel.textContent = liLocationContextLabel();
     if(summaryKick){
       summaryKick.textContent = !liLocationContext ? '' : liIsAllTrailsContext(liLocationContext)
         ? 'Showing'
         : (liLocationContext.kind === 'current' || liLocationContext.kind === 'town') ? 'Looking near' : 'Looking in';
     }
-    if(showAll) showAll.hidden = !liLocationContext || liIsAllTrailsContext(liLocationContext);
   }
+  liRenderRegionChoices();
   liSyncWalkDateInputs();
   liRenderLocationNudge();
 }
@@ -1008,7 +1102,7 @@ window.DoloPawsHomepageLocation = {
     try{ localStorage.removeItem(LI_LOCATION_NUDGE_DISMISSED_KEY); }catch(error){}
     liRequestCurrentLocation();
   },
-  showAll:() => liSetLocationContext(liDefaultLocationContext()),
+  showAll:() => liSetLocationContext({ ...LI_ALL_TRAILS_CONTEXT }),
 };
 
 // ?near=1 asks for the position, ?all=1 opens the whole catalogue. The Explore
@@ -2805,18 +2899,6 @@ function renderLiToolbarContext(profile){
   if(greeting) greeting.textContent = profile && profile.name
     ? `Where are we going today, ${profile.name}?`
     : 'Where are we going today?';
-  const toolbarContext = document.getElementById('liToolbarDogContext');
-  if(!toolbarContext) return;
-  // "Right now" is a claim about today, so it is only made once a forecast
-  // has actually landed. Otherwise the subtitle promises less and stays true.
-  const dayKnown = !!(window.DoloPawsHomeConditions
-    && typeof window.DoloPawsHomeConditions.band === 'function'
-    && window.DoloPawsHomeConditions.band());
-  toolbarContext.textContent = profile && profile.name
-    ? (dayKnown
-      ? `Ranked for ${profile.name}, right now. Adjust only if you want to.`
-      : `Trails ranked for ${profile.name}\u2019s needs and your current choices.`)
-    : 'Trails ranked for your dog\u2019s needs and your current choices.';
 }
 
 // Filter panel, segmented options + toggle rows. Rebuilt on every render
@@ -3165,10 +3247,11 @@ function initLoggedInShell(){
   });
   const changeLocation = document.getElementById('liChangeLocationBtn');
   if(changeLocation) changeLocation.addEventListener('click', liFocusSearchForPlace);
-  const showAll = document.getElementById('liShowAllBtn');
-  if(showAll) showAll.addEventListener('click', () => {
-    liCloseMenus();
-    liSetLocationContext(liDefaultLocationContext());
+  document.querySelectorAll('[data-li-region]').forEach(button => {
+    button.addEventListener('click', () => {
+      liCloseMenus();
+      liSetLocationContext(liRegionContext(button.dataset.liRegion));
+    });
   });
   const nudgeButton = document.getElementById('liLocationNudgeBtn');
   if(nudgeButton) nudgeButton.addEventListener('click', liRequestCurrentLocation);
@@ -3882,18 +3965,9 @@ async function renderReturningHomepage(profile, options = {}){
   const answerTitle = ['Best walk', profile && profile.name ? `for ${profile.name}` : '', locationPhrase, dayLabel]
     .filter(Boolean).join(' ');
   heading.textContent = answerTitle;
+  // No line under it: the headline names the scope itself ("in the
+  // Dolomites", "near you").
   liRenderHeadline(profile, locationPhrase, dayLabel);
-  const toolbarContext = document.getElementById('liToolbarDogContext');
-  // The scope belongs here, not in a pill. The headline is assembled from the
-  // dog, the place and the day -- but liRecommendationLocationPhrase returns ''
-  // for the whole catalogue, so a reader scoped to everything would be told
-  // nowhere what "everything" means. Said once, in the line already under the
-  // headline, and left unsaid when the headline has already named the place.
-  if(toolbarContext){
-    toolbarContext.textContent = locationPhrase
-      ? 'Your top matches first, with the reasons and cautions that matter.'
-      : 'Every ORMA trail, your top matches first, with the reasons and cautions that matter.';
-  }
   // "N new matches since your last visit" used to head the list. It counted
   // trails now at NEW_MATCH_THRESHOLD or more that were not at the last
   // visit -- which the weather or a profile change can cause as easily as a
