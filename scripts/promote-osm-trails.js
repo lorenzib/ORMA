@@ -32,6 +32,7 @@ const fs = require('fs/promises');
 const nodeFs = require('fs');
 const vm = require('vm');
 const path = require('path');
+const { isRemovedRelation } = require('./removed-trails');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -865,6 +866,12 @@ async function main() {
 
   for (const [n, feature] of routes.features.entries()) {
     const p = feature.properties;
+    // Removed outright on the owner's decision (data/removed-trails.json): the
+    // same list the scout, the importer and publication read.
+    if (isRemovedRelation(p.osm_relation)) {
+      console.log(`[promote] Skipping ${p.name} (${p.osm_relation}), removed from ORMA.`);
+      continue;
+    }
     if (PROMOTED_RELATIONS.has(Number(p.osm_relation))) {
       console.log(`[promote] Skipping ${p.name} (${p.osm_relation}), already verified in trails-data.js.`);
       continue;
