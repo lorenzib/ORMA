@@ -37,10 +37,11 @@ describe('the existing-site verification boundary',()=>{
     // never Verified), then 184 and 182 with PanaRaida, the Feldthurns
     // Panoramaweg, the Antholzer See loop and the Poststeig, then 188 and 186
     // with the Sand in Taufers nature trail, the Aicha village walk, the
-    // Gratschenbergrunde and the Römerweg in Kiens.
+    // Gratschenbergrunde and the Römerweg in Kiens, then 190 and 188 with the
+    // history walk in Teis and the Concordia loop on the Kronplatz.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(188);
-    expect(currentSiteTrails(catalogue)).toHaveLength(186);
+    expect(catalogue).toHaveLength(190);
+    expect(currentSiteTrails(catalogue)).toHaveLength(188);
   });
 
   test('requires the artwork the public trail page needs',()=>{

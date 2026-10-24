@@ -1238,6 +1238,23 @@
       }
     },
     {
+      "id": "osm-12737724",
+      "approvedReviewId": "commons-osm-12737724-on-route",
+      "approvedAt": "2026-10-25T03:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12737724-teis.jpg",
+        "heroImage": "images/trails/osm-12737724-teis.jpg",
+        "imageAlt": "Teis village with its pointed church tower among meadows and woods, seen from the air, the Eisack valley and distant peaks beyond",
+        "imageCredit": "Teis from above",
+        "imageCreditText": "Teis from above by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Tiso_by_drone_02.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-12745924",
       "approvedReviewId": "hand-audit-osm-12745924",
       "approvedAt": "2026-10-23T09:00:00.000Z",
@@ -2293,6 +2310,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lac_vert_de_passy_(1).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-6401355",
+      "approvedReviewId": "commons-osm-6401355-on-route",
+      "approvedAt": "2026-10-25T03:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-6401355-kronplatz.jpg",
+        "heroImage": "images/trails/osm-6401355-kronplatz.jpg",
+        "imageAlt": "Gravel paths across the brown autumn summit of the Kronplatz by a hut and a modern museum building, the Pustertal and snowy peaks far below",
+        "imageCredit": "The Kronplatz summit in autumn",
+        "imageCreditText": "The Kronplatz summit in autumn by -wuppertaler",
+        "imageCreator": "-wuppertaler",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:ITA_Brunico,_Kronplatz_025.jpg",
         "imageSourceType": "licensed-source"
       }
     },

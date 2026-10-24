@@ -45588,6 +45588,144 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 0.1, lat: 46.8056725, lng: 11.8358739, osmId: 'node/6807612586', label: 'Drinking fountain in Kiens' }
       ],
       desc: 'An easy history walk in the Pustertal from Kiens to Ehrenburg and back, on the trail of the Roman road: past rest points on Roman travel, a 2,000-year-old milestone, Ehrenburg castle and the baroque parish church. The official route lists 3.1 km and 70 m of ascent.'
+    },
+    'osm-12737724': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 9).
+      // The official history walk of the Tourismusverein Villnöss from Teis by
+      // Nafen to Albeins and back. The line runs in Villnöss and, round Albeins
+      // (about km 3.2–5.3), in Brixen. Villnöss's dog regulation (Gemeinderat
+      // 16/2010) requires a lead of at most 1.5 m and a muzzle carried (Art. 4)
+      // and keeps dogs off farmed meadows and fields (Art. 8); Brixen's animal
+      // ordinance (Gemeinderat 5/2011) requires a lead in built-up areas
+      // (Art. 5) and bans dogs from farmland (Art. 6). No biotope, Natura 2000
+      // site or park on the line. The stored line is turned to start in Teis
+      // and run the board's way (data/verified-trail-overrides.json).
+      area: 'Teis – Albeins, Villnöss / Tiso – Albes, Funes',
+      distance: 8.5,
+      elevation: 448,
+      hours: '2.5–3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Teis on path 11 by the Nafner Wetterkreuz to the St. Bartholomäus chapel in Nafen, down the old burial path 4 to Albeins, and back up forest road 9 past the Kasseroler and Gufelfelder farms to Teis.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Teis and its church from the air above the start, with the Eisack valley beyond, in April (Syrio, CC BY-SA 4.0), 98 m from the line.',
+        route: 'Official loop 8.5 km from Teis village centre; the stored OSM line (relation 12737724, Albeins-Teis-Nafen) is the same loop, 8.7 km, turned to start where it passes Teis centre (5 m away) and run the board’s way.',
+        routeNumbers: 'Paths 11, 4 and 9: from the centre of Teis on 11 through the lanes of the Untergassl and over meadows to the Nafner Wetterkreuz and the St. Bartholomäus chapel in Nafen, right onto the medieval burial path 4 past the Totenstein and the Eislöcher and through orchards to Albeins, through the village and back on forest road 9 past the Kasseroler Hof and the Gufelfelderhof to Teis.',
+        mapPoints: 'Start in Teis village centre (official start); drinking water in Nafen at km 1.3 (seasonal), in Albeins at km 4.8 and in Teis at the end (OSM nodes 7605802985, 7452719619, 4810096608, 7589458385).',
+        elevation: 'Official 8.5 km, 448 m up and down, 2 h 40 min, highest point 953 m, lowest about 580 m at Albeins (Tourismusverein Villnöss, Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusverein Villnöss, Historische Rundwanderung in Teis (Südtirol.info)',
+          'Gemeinde Villnöss, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 16/2010), Art. 4 and 8',
+          'Stadtgemeinde Brixen, Verordnung über die Haltung und Führung von Tieren (Gemeinderat Nr. 5, 27.01.2011), Art. 5 and 6',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 12737724, road, surface, woodland and farm data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 57,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A short flight of steps down near Nafen, km 1.4', 'Village lanes in Teis, Nafen and Albeins open to cars', 'Forest road 9 used by farm and forestry vehicles', 'Working farms at Kasserol and the Gufelfelderhof, and orchards above Albeins'],
+      terrainType: 'Village lanes, meadow and forest paths, and a forest road',
+      shadeDescription: 'More than half is wooded, mostly the old burial path below Nafen and the forest road back to Teis; the meadows round Teis and the orchards at Albeins are open.',
+      terrainDescription: 'A history walk at 580–960 m on the slope between Teis and Albeins at the mouth of the Villnöss valley, on the medieval path once used to carry the dead to Albeins, past the Totenstein, the ice holes and an ancient settlement site at Kasserol.',
+      waterDescription: 'Drinking water in Nafen (km 1.3, seasonal), a Refill fountain in Albeins (km 4.8) and two in Teis at the start and the end. Inns in Teis and Albeins.',
+      dogNotes: 'Villnöss requires a lead of at most 1.5 m on all public land and a muzzle carried, and dogs may not go on farmed meadows and fields at any time of year; round Albeins (Brixen) dogs must be on a lead in the village and may not enter farmland. The loop passes orchards and working farms, so keep your dog close.',
+      tips: 'Start in Teis and follow path 11 to Nafen, the old burial path 4 down to Albeins and forest road 9 back up: 8.5 km, about 450 m of climbing, close to three hours. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep out of the meadows and orchards. Fill up in Nafen or Albeins; the climb back from Albeins is mostly in the wood.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Historische Rundwanderung in Teis (Tourismusverein Villnöss)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi520af6ed7242950f94a791101d75eae7.historische-rundwanderung-in-teis.teis' },
+        { label: 'Gemeinde Villnöss, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.villnoess.bz.it/system/web/GetDocument.ashx?cts=1789663369&fileId=1048678' },
+        { label: 'Brixen, Verordnung über die Haltung und Führung von Tieren', url: 'https://asmb.it/export/sites/asmb2/.downloads/de/umweltdienste/verordnung_haltung-20und-20fuehrung-20tiere.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12737724' }
+      ],
+      startPoint: { lat: 46.6523, lng: 11.6205, label: 'Teis village centre (official start)' },
+      waterSources: [
+        { km: 1.3, lat: 46.653697, lng: 11.611589, osmId: 'node/7605802985', label: 'Drinking fountain in Nafen (seasonal)' },
+        { km: 4.8, lat: 46.6757049, lng: 11.6328023, osmId: 'node/7452719619', label: 'Refill drinking fountain in Albeins' },
+        { km: 8.6, lat: 46.6530451, lng: 11.619984, osmId: 'node/4810096608', label: 'Refill drinking fountain in Teis' },
+        { km: 8.7, lat: 46.6526253, lng: 11.6205538, osmId: 'node/7589458385', label: 'Refill drinking fountain by the Vereinshaus' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.65214, lng: 11.62003, osmId: 'node/4371772324', name: 'Teiserhof' },
+        { km: 0, lat: 46.65231, lng: 11.62031, osmId: 'node/6404365051', name: 'Gasthof Stern' },
+        { km: 4.6, lat: 46.67575, lng: 11.62939, osmId: 'node/2432920779', name: 'Hofkeller' },
+        { km: 4.8, lat: 46.67529, lng: 11.63284, osmId: 'way/199773101', name: 'Kircherhof' }
+      ],
+      desc: 'A history walk at the mouth of the Villnöss valley: from Teis by the Nafner Wetterkreuz and the chapel of Nafen down the medieval burial path to Albeins, and back through the wood past an ancient settlement site. The official route lists 8.5 km and 448 m of ascent.'
+    },
+    'osm-6401355': {
+      // Hand audit: 24 October 2026, verified on arrival (new-trail batch 9).
+      // The official panoramic loop on the summit of the Kronplatz, marked "A".
+      // The summit plateau is shared by Enneberg (most of the loop), Olang and
+      // Bruneck (about km 1.4–2.1). Enneberg and Olang publish no dog rule, so
+      // the national dog ordinance (6 August 2013, extended to September 2027)
+      // applies; Bruneck's dog regulation (Gemeinderat 65/2008, amended 4/2010)
+      // requires a lead of at most 1.5 m and a muzzle carried (Art. 4) and keeps
+      // dogs off playgrounds and farmland (Art. 8). No biotope, Natura 2000 site
+      // or park on the line.
+      area: 'Kronplatz summit, Enneberg / Plan de Corones, Marebbe',
+      distance: 2.4,
+      elevation: 75,
+      hours: '0.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop round the summit of the Kronplatz at about 2,250 m, marked “A”, past the Concordia 2000 peace bell, the MMM Corones and LUMEN museums and a series of viewpoints.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-24',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Kronplatz summit plateau and its gravel paths above the Pustertal, in October (-wuppertaler, CC BY-SA 4.0).',
+        route: 'Official loop 2.4 km on the Kronplatz summit; the stored OSM line (relation 6401355, Rundweg Concordia) is the same loop, 2.2 km, 35 m from the official start by the cable car top stations.',
+        routeNumbers: 'Marked “A” round the summit: from the top stations of the cable cars from Reischach, Olang or the Furkelpass, past the MMM Corones, the LUMEN museum, the Concordia 2000 peace bell and its panorama relief, and the viewpoints designed by Helmut Pizzinini.',
+        mapPoints: 'Start at the cable car top stations on the Kronplatz summit (official start); no drinking water is mapped on the loop, but several restaurants sit on it.',
+        elevation: 'Official 2.4 km, 75 m up and down, 40 min, highest point 2,275 m (Südtirol.info).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Panoramarundweg Concordia 360° (Südtirol.info)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Enneberg and Olang publish no dog rule)',
+          'Stadtgemeinde Bruneck, Verordnung über die Haltung und das Führen von Hunden (Gemeinderat 65/2008, amended 4/2010), Art. 4 and 8',
+          'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
+          'OpenStreetMap relation 6401355, path and surface data'
+        ],
+        date: '2026-10-24'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['No shade at all on the open summit at 2,250 m, with strong sun and wind', 'Wide gravel tracks shared with ski-area service vehicles', 'Busy round the museums, the peace bell and the giant swing in summer'],
+      terrainType: 'Wide gravel tracks and paths on an open summit plateau; pram-friendly',
+      shadeDescription: 'No shade: the whole loop is on the open summit plateau of the Kronplatz.',
+      terrainDescription: 'An easy, almost level family loop at 2,190–2,275 m round the summit of the Kronplatz, with a 360° view of the Dolomites to the south and the main Alpine ridge to the north, two museums and the Concordia 2000 peace bell.',
+      waterDescription: 'No drinking water is mapped on the loop; bring water for your dog. Several restaurants and the Kronplatzhütte sit on the loop.',
+      dogNotes: 'Enneberg and Olang publish no dog rule, so the Italian national rule applies there: a lead of at most 1.5 m and a muzzle carried in public places. The stretch in Bruneck (about km 1.4–2.1) has its own rule to the same effect, and dogs may not enter playgrounds. You reach the summit by cable car: keep your dog on a short lead and carry a muzzle, as public transport requires.',
+      tips: 'Take a cable car up from Reischach, Olang or the Furkelpass and follow the “A” signs round the summit: 2.4 km, about 75 m of climbing, 40 minutes plus time at the museums and the peace bell. Keep your dog on a short lead (1.5 m at most) and carry a muzzle, also in the cable car. There is no shade and the summit is exposed to sun and wind, so bring water and something warm.',
+      sourceLinks: [
+        { label: 'Südtirol.info, Panoramarundweg Concordia 360°', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi8abfb40f4c78aa85e234ec52885516af.panoramarundweg-concordia-360.reischach' },
+        { label: 'Stadtgemeinde Bruneck, Verordnung über die Haltung und das Führen von Hunden', url: 'https://www.gemeinde.bruneck.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_das_Fuehren_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/6401355' }
+      ],
+      startPoint: { lat: 46.7386, lng: 11.957, label: 'Cable car top stations on the Kronplatz summit (official start)' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.74074, lng: 11.95565, osmId: 'way/983124134', name: 'AlpINN' },
+        { km: 0.1, lat: 46.73926, lng: 11.95819, osmId: 'node/283551188', name: 'Treff Kronplatz' },
+        { km: 0.1, lat: 46.73907, lng: 11.95891, osmId: 'way/42721414', name: 'Gipfel Restaurant Cima' },
+        { km: 0.2, lat: 46.7382, lng: 11.9579, osmId: 'way/150551183', name: 'Corones' },
+        { km: 1.3, lat: 46.73907, lng: 11.96011, osmId: 'way/150551130', name: 'Kron-Restaurant' },
+        { km: 2, lat: 46.74065, lng: 11.95727, osmId: 'way/123838729', name: 'Rifugio CAI Plan de Corones - Kronplatzhütte CAI' }
+      ],
+      desc: 'A short family loop round the summit of the Kronplatz at 2,275 m: past the Concordia 2000 peace bell, the MMM Corones and LUMEN museums and a series of viewpoints, with the Dolomites to the south and the main Alpine ridge to the north. The official route lists 2.4 km and 75 m of ascent.'
     }
   };
 
