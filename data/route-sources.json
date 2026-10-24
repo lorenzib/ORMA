@@ -138,6 +138,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
+    "osm-11775923": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi2a589414c08dcf1a15db8ef9caf919d9.toerggele-rundweg-in-neustift-brixen.neustift",
+      "publisher": "Brixen Tourismus via IDM suedtirol.info",
+      "name": "Törggele-Rundweg in Neustift-Brixen",
+      "quote": "Strecke 6.1 Km Dauer 1h:46 min Aufstieg 215 m Abstieg 215 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T19:00:00.000Z"
+    },
     "osm-11780502": {
       "url": "https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoi17c55fc383bcaf2bebb595bceebe0ab5.sentiero-natura-zannes.s--maddalena---funes",
       "publisher": "Societa Cooperativa Turistica Odles (odlesdolomites.com) via IDM suedtirol.info",
@@ -393,6 +401,22 @@
       "quote": "Rundweg Langfenn · 4,5 km · 141 hm · 1:06 h · leicht",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-12302137": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoib5ebf0e219b99946241c83b6f7fb3efb.mittertaler-rundweg.neunhaeusern",
+      "publisher": "Tourismusgenossenschaft Antholzertal via IDM suedtirol.info",
+      "name": "Mittertaler Rundweg",
+      "quote": "Strecke 4.4 Km Dauer 1h:30 min Aufstieg 150 m Abstieg 150 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T19:00:00.000Z"
+    },
+    "osm-12302182": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi0cbd50c2238da2f63c18f817fffb82c7.niedertaler-rundweg.neunhaeusern",
+      "publisher": "Tourismusgenossenschaft Antholzertal via IDM suedtirol.info",
+      "name": "Niedertaler Rundweg",
+      "quote": "Strecke 3.1 Km Dauer 1h:00 min Aufstieg 30 m Abstieg 30 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T19:00:00.000Z"
     },
     "osm-12302191": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi40a4c9071317de8b470217dd3e65515c.dorfrunde-rasen.neunhaeusern",
