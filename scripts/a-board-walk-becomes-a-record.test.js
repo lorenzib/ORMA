@@ -122,6 +122,27 @@ describe('the line is drawn on OSM ways along the guide', () => {
     expect(drawn.meters / 1000).toBeGreaterThan(1.9);
   });
 
+  test('a side street nearer the guide than the path itself is not walked out and back', () => {
+    // A straight path 1 km long with no node between 500 m and 800 m, and a
+    // side street from its node at 500 m to a corner 20 m off the guide point
+    // at 667 m. The corner is the nearest node to that guide point, but walking
+    // to it and back is a 370 m detour no walker takes: Canazei's streets
+    // added 1.1 km this way.
+    const LAT = 0.0009 / 100;  // one metre north
+    const LNG = 0.0013 / 100;  // one metre east
+    const elements = [];
+    const marks = [0, 100, 200, 300, 400, 500, 800, 900, 1000];
+    for (const m of marks) elements.push({ type: 'node', id: 6000 + m, lat: BASE[0] + m * LAT, lon: BASE[1] });
+    elements.push({ type: 'node', id: 7001, lat: BASE[0] + 500 * LAT, lon: BASE[1] + 20 * LNG });
+    elements.push({ type: 'node', id: 7002, lat: BASE[0] + (2000 / 3) * LAT, lon: BASE[1] + 20 * LNG });
+    elements.push({ type: 'way', id: 910, nodes: marks.map(m => 6000 + m), tags: { highway: 'path' } });
+    elements.push({ type: 'way', id: 911, nodes: [6500, 7001, 7002], tags: { highway: 'residential' } });
+    const guide = [[BASE[0], BASE[1]], [BASE[0] + 1000 * LAT, BASE[1]]];
+    const drawn = matchGuide(buildGraph([{ elements }]), guide);
+    expect(drawn.meters).toBeLessThan(1050);
+    expect(drawn.ways).toEqual([910]);
+  });
+
   test('and nothing drawn is never a walk', () => {
     expect(judge(GUIDE, [], lengthKm)).toMatchObject({ keep: false, reasons: ['nothing was drawn'] });
   });

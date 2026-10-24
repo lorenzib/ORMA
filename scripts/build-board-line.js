@@ -286,12 +286,31 @@ function matchGuide(graph, guide) {
     if (i) along += meters(samples[i - 1], samples[i]);
     const node = nearestNode(graph, samples[i], SNAP_M);
     if (node === null) return { refused: `no OSM path within ${SNAP_M} m of the guide at km ${(along / 1000).toFixed(2)}` };
-    if (waypoints[waypoints.length - 1] !== node) waypoints.push(node);
+    if (waypoints[waypoints.length - 1]?.node !== node) waypoints.push({ node, sample: samples[i] });
   }
-  let nodes = [waypoints[0]];
+  // In a village the nearest node to a guide point is often on a side street,
+  // and routing out to it and back adds a spur longer than any snap: Canazei's
+  // streets added 1.1 km to a 6.3 km walk. A waypoint is not needed when the
+  // way between its neighbours already passes its guide point, so it is
+  // dropped -- and only if that way still passes every guide point dropped
+  // before it there, or a run of drops lets the line wander off the guide.
+  // The tip of a real out-and-back is never dropped, because the way between
+  // its neighbours stays on the stem and never reaches it.
+  for (const waypoint of waypoints) waypoint.dropped = [];
+  for (let i = 1; i + 1 < waypoints.length; i += 1) {
+    const past = cheapest(graph, waypoints[i - 1].node, waypoints[i + 1].node);
+    if (!past) continue;
+    const passed = [...waypoints[i].dropped, waypoints[i].sample, ...waypoints[i + 1].dropped];
+    if (coverage(passed, past.nodes.map(id => graph.nodes.get(id))) === 1) {
+      waypoints[i + 1].dropped = passed;
+      waypoints.splice(i, 1);
+      i -= 1;
+    }
+  }
+  let nodes = [waypoints[0].node];
   let edges = [];
   for (let i = 1; i < waypoints.length; i += 1) {
-    const leg = cheapest(graph, waypoints[i - 1], waypoints[i]);
+    const leg = cheapest(graph, waypoints[i - 1].node, waypoints[i].node);
     if (!leg) return { refused: `the OSM network does not connect the guide between waypoints ${i} and ${i + 1}` };
     nodes = nodes.concat(leg.nodes.slice(1));
     edges = edges.concat(leg.edges);
