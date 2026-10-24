@@ -61,6 +61,9 @@
   let preview = null;
   let selectedCoverage = null;
   let busy = false;
+  // The point the reader clicked, whose small menu is open; -1 for none.
+  let selectedIndex = -1;
+  let draggedSinceClick = false;
   let calculationVersion = 0;
   let editingId = null;
   let finished = false;
@@ -158,9 +161,9 @@
     const element = document.createElement('span');
     const isStart = index === 0;
     const isEnd = !wantsLoop() && total > 1 && index === total - 1;
-    element.className = `planner-marker${isStart ? ' planner-marker--start' : ''}${isEnd ? ' planner-marker--end' : ''}`;
+    element.className = `planner-marker${isStart ? ' planner-marker--start' : ''}${isEnd ? ' planner-marker--end' : ''}${index === selectedIndex ? ' is-selected' : ''}`;
     element.textContent = isStart ? 'S' : isEnd ? 'F' : String(index + 1);
-    element.title = 'Drag to move this point';
+    element.title = 'Click to remove · drag to move';
     element.setAttribute('aria-hidden', 'true');
     return element;
   }
@@ -174,6 +177,19 @@
         element:markerElement(index, points.length),
         draggable:true,
       }).setLngLat([point.lng, point.lat]).addTo(map);
+      // A click selects the point and opens its menu. A drag ends in a click
+      // too, so a drag that just finished is not taken as one.
+      marker.getElement().addEventListener('click', event => {
+        event.stopPropagation();
+        if(draggedSinceClick){ draggedSinceClick = false; return; }
+        if(busy) return;
+        if(selectedIndex === index) clearSelection();
+        else selectPoint(index);
+      });
+      marker.on('dragstart', () => {
+        draggedSinceClick = true;
+        clearSelection();
+      });
       marker.on('dragend', () => {
         if(busy){ marker.setLngLat([points[index].lng, points[index].lat]); return; }
         const moved = marker.getLngLat();
@@ -184,6 +200,77 @@
       });
       return marker;
     });
+  }
+
+  // A clicked point's menu: what it is, Remove, and -- on a loop, where any
+  // point can be where you set off -- Make start. Delete or Backspace removes
+  // the selected point too; Escape or a click on the map closes the menu.
+  const pointPopup = new maplibregl.Popup({
+    anchor:'bottom', offset:24, closeButton:false, closeOnClick:false, className:'planner-point-popup',
+  });
+
+  function pointLabel(index){
+    const isEnd = !wantsLoop() && points.length > 1 && index === points.length - 1;
+    return index === 0 ? 'Start' : isEnd ? 'Finish' : `Point ${index + 1}`;
+  }
+
+  function selectPoint(index){
+    selectedIndex = index;
+    markers.forEach((marker, at) => marker.getElement().classList.toggle('is-selected', at === index));
+    const menu = document.createElement('div');
+    menu.className = 'planner-point-menu';
+    const label = document.createElement('span');
+    label.className = 'planner-point-menu-label';
+    label.textContent = pointLabel(index);
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'planner-point-menu-remove';
+    remove.textContent = 'Remove';
+    remove.addEventListener('click', () => removePoint(index));
+    menu.append(label, remove);
+    if(wantsLoop() && index > 0){
+      const makeStart = document.createElement('button');
+      makeStart.type = 'button';
+      makeStart.textContent = 'Make start';
+      makeStart.addEventListener('click', () => makeStartAt(index));
+      menu.append(makeStart);
+    }
+    pointPopup.setLngLat([points[index].lng, points[index].lat]).setDOMContent(menu).addTo(map);
+    remove.focus();
+  }
+
+  function clearSelection(){
+    if(selectedIndex < 0) return;
+    selectedIndex = -1;
+    pointPopup.remove();
+    markers.forEach(marker => marker.getElement().classList.remove('is-selected'));
+  }
+
+  // Shared by the map menu, the key and the list beside the map. Removing a
+  // point from a finished route reopens it, as Undo does.
+  function removePoint(index){
+    if(busy || index < 0 || index >= points.length) return;
+    clearSelection();
+    points.splice(index, 1);
+    finished = false;
+    preview = null;
+    selectedCoverage = points[0] ? coverageFor(points[0]) : null;
+    drawMarkers();
+    drawPath([]);
+    recalculate(false);
+  }
+
+  // A loop has no fixed start, so any point can become it; the order around
+  // the loop is kept.
+  function makeStartAt(index){
+    if(busy || !wantsLoop() || index <= 0 || index >= points.length) return;
+    clearSelection();
+    points = points.slice(index).concat(points.slice(0, index));
+    finished = false;
+    preview = null;
+    selectedCoverage = coverageFor(points[0]);
+    drawMarkers();
+    recalculate(false);
   }
 
   // Clicking the drawn line inserts a point into that leg, so you can bend a
@@ -526,14 +613,7 @@
       remove.textContent = '×';
       remove.setAttribute('aria-label', `Remove ${index === 0 ? 'start' : `point ${index + 1}`}`);
       remove.disabled = busy;
-      remove.addEventListener('click', () => {
-        points.splice(index, 1);
-        preview = null;
-        selectedCoverage = points[0] ? coverageFor(points[0]) : null;
-        drawMarkers();
-        drawPath([]);
-        recalculate(false);
-      });
+      remove.addEventListener('click', () => removePoint(index));
       item.append(remove);
       pointList.append(item);
     });
@@ -650,6 +730,8 @@
   }
 
   map.on('click', event => {
+    // With a point's menu open, a click on the map just closes it.
+    if(selectedIndex >= 0){ clearSelection(); return; }
     if(busy || finished || points.length >= MAX_POINTS) return;
     const point = { lat:event.lngLat.lat, lng:event.lngLat.lng };
     if(!points.length){
@@ -673,6 +755,7 @@
   });
 
   undoButton.addEventListener('click', () => {
+    clearSelection();
     // Undo on a finished route reopens it for editing before it removes a
     // point, otherwise finishing costs you the last leg you just placed.
     if(finished){ finished = false; recalculate(false); return; }
@@ -748,6 +831,16 @@
     });
   });
   document.addEventListener('keydown', event => {
+    const typing = event.target && /^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName);
+    if(selectedIndex >= 0 && !typing && (event.key === 'Delete' || event.key === 'Backspace')){
+      event.preventDefault();
+      removePoint(selectedIndex);
+      return;
+    }
+    if(event.key === 'Escape' && selectedIndex >= 0){
+      clearSelection();
+      return;
+    }
     if(event.key === 'Escape' && !layersPanel.hidden){
       layersPanel.hidden = true;
       layersButton.textContent = 'Layers';
@@ -755,6 +848,12 @@
       layersButton.focus();
     }
   });
+
+  // The guide says "tap" to a finger and "click" to a mouse.
+  const guide = document.getElementById('plannerGuide');
+  if(guide && window.matchMedia && window.matchMedia('(pointer: coarse)').matches){
+    guide.querySelectorAll('[data-verb]').forEach(verb => { verb.textContent = 'Tap'; });
+  }
 
   map.on('load', () => {
     addPlannerMapContext();
