@@ -10,7 +10,7 @@
         "ascentM": 150,
         "durationHours": 2,
         "source": "ORMA repository route geometry",
-        "verificationStatus": "field-review-required"
+        "verificationStatus": "not-verified"
       },
       "geometry": {
         "type": "LineString",

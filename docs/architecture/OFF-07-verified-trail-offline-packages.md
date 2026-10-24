@@ -1,7 +1,8 @@
 # OFF-07 — Offline packages for every Verified trail
 
-**Status:** Implemented 2026-10-23. Every package still requires a dated field
-review; the physical-device gates are unchanged.
+**Status:** Implemented 2026-10-23. The `field-review-required` label below was
+replaced on 2026-10-24 by OFF-08: an offline map now says what its trail page
+says. The physical-device gates are unchanged.
 
 ## Decision
 

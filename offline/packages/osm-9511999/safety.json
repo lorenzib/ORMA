@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-9511999",
   "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 9.1,
@@ -41,12 +41,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Crossing of the main road at the La Villa start.",
     "Short stretch on the Punt de Altin road bridge.",
     "Strada San Linert and two road crossings in San Leonardo.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

@@ -7,8 +7,9 @@ const vm = require('vm');
 
 const root = path.resolve(__dirname, '..');
 const trailId = process.argv[2];
-if(!trailId || !/^[a-z0-9-]+$/.test(trailId)){
-  throw new Error('Usage: node scripts/build-offline-route.js <trail-id>');
+const verificationStatus = process.argv[3];
+if(!trailId || !/^[a-z0-9-]+$/.test(trailId) || !['source-verified', 'not-verified'].includes(verificationStatus)){
+  throw new Error('Usage: node scripts/build-offline-route.js <trail-id> <source-verified|not-verified>');
 }
 
 const source = fs.readFileSync(path.join(root, 'trails-data.js'), 'utf8');
@@ -30,7 +31,7 @@ const geojson = {
       ascentM:trail.elevation,
       durationHours:Number(duration) || null,
       source:'ORMA repository route geometry',
-      verificationStatus:'field-review-required',
+      verificationStatus,
     },
     geometry:{
       type:'LineString',

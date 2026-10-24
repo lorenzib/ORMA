@@ -411,7 +411,8 @@ OpenAI remains in use for trail verification and for scouting additional trails.
   `overpass-api.de`, builds only the packages that are missing or no longer
   match the trail record, and removes the package of a trail that lost the
   seal. It decides nothing: the seal is already decided, and every package
-  stays `field-review-required`. The result reaches the website the way the
+  carries its trail's status, `source-verified`, the same claim as the
+  Verified badge (OFF-08). The result reaches the website the way the
   warning snapshot does: an automatic pull request whose own quality-gate run
   the workflow approves, merges once it passes, then validates and deploys.
   The two pilots are never rebuilt by it.

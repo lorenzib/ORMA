@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-12737724",
   "generatedAt": "2026-10-24T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 8.5,
@@ -48,12 +48,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "A short flight of steps down near Nafen, km 1.4.",
     "Village lanes in Teis, Nafen and Albeins open to cars.",
     "Forest road 9 used by farm and forestry vehicles.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

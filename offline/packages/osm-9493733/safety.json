@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-9493733",
   "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 7.5,
@@ -41,12 +41,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "60 m along the SS244 main road at the start, with a zebra crossing.",
     "About 2.5 km on village roads with cars, partly asphalt.",
     "Roots and ruts on the forest tracks.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

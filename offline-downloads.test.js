@@ -23,7 +23,7 @@ describe('OFF-03 downloaded-trail management surface', () => {
       version: '2026.07.28-beta.3',
       packageBytes: 35_560,
       installedAt: '28 Jul 2026',
-      verificationStatus: 'field-review-required',
+      verificationStatus: 'source-verified',
       ownership: 'current-account',
       state: 'ready',
       usable: true,
@@ -33,7 +33,9 @@ describe('OFF-03 downloaded-trail management surface', () => {
 
     document.body.innerHTML = markup;
     expect(document.querySelector('.od-card').dataset.trailId).toBe('lago-carezza');
-    expect(document.querySelector('.od-meta').textContent).toContain('Beta field review pending');
+    expect(document.querySelector('.od-meta').textContent).toContain('Verified by ORMA');
+    expect(document.querySelector('.od-route').dataset.status).toBe('source-verified');
+    expect(document.querySelector('.od-route').textContent).not.toMatch(/beta|field review/i);
     expect(document.querySelector('.od-owner').textContent).toContain('current-account');
     expect(document.querySelector('a[href^="/offline/trail.html"]')).not.toBeNull();
     expect(document.querySelector('[data-action="self-test"]')).not.toBeNull();
@@ -51,7 +53,7 @@ describe('OFF-03 downloaded-trail management surface', () => {
       version: 'old',
       packageBytes: 35_560,
       installedAt: '28 Jul 2026',
-      verificationStatus: 'field-review-required',
+      verificationStatus: 'source-verified',
       ownership: 'signed-out-owner-retained',
       state: 'update-available',
       usable: true,
@@ -118,14 +120,15 @@ describe('OFF-03 downloaded-trail management surface', () => {
       version: '1',
       packageBytes: 100,
       installedAt: '29 Jul 2026',
-      verificationStatus: 'verified',
+      verificationStatus: 'not-verified',
       ownership: 'current-account',
       state: 'ready',
       usable: true,
       hasLocalData: true,
     }, true);
 
-    expect(markup).toContain('Vetted by ORMA');
+    // The Alpe di Siusi pilot is the one package whose trail is not Verified.
+    expect(markup).toContain('Not yet verified by ORMA');
     expect(markup).not.toContain('freshness');
   });
 
@@ -138,7 +141,7 @@ describe('OFF-03 downloaded-trail management surface', () => {
       version: null,
       packageBytes: 35_560,
       installedAt: '28 Jul 2026',
-      verificationStatus: 'field-review-required',
+      verificationStatus: 'source-verified',
       ownership: 'legacy-owner-unknown',
       state: 'failed',
       stateMessage: 'Stored map failed its checksum.',
@@ -179,7 +182,7 @@ describe('OFF-03 downloaded-trail management surface', () => {
       version: '2026.07.28-beta.3',
       packageBytes: 35_560,
       installedAt: '28 Jul 2026',
-      verificationStatus: 'field-review-required',
+      verificationStatus: 'source-verified',
       ownership: 'current-account',
       state: 'ready',
       usable: true,
