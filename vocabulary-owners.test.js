@@ -21,8 +21,11 @@ const VOCABULARIES = [
   {
     what: 'where a trail’s evidence came from',
     owner: 'trust/evidence-v1.js',
-    words: ['ORMA route-audited', 'ORMA field-verified', 'Mapped route', 'Imported map data'],
-    retired: [],
+    // "Verified by ORMA" is shared with the trail page's badge on purpose: a
+    // card and the trail it opens now say the same thing. The walked tier
+    // keeps its own words, so a comparison still shows the difference.
+    words: ['Verified and walked by ORMA', 'Mapped route', 'Imported map data'],
+    retired: ['ORMA route-audited', 'ORMA field-verified'],
   },
 ];
 
@@ -111,8 +114,9 @@ describe('one owner per vocabulary', () => {
     // from sources, one ORMA walked. The table used to call both "Verified by
     // ORMA", which is the badge's shorthand -- and a reader opens a comparison
     // precisely to see what the badge leaves out.
-    expect(cell('route-audited')).toBe('ORMA route-audited');
-    expect(cell('field-verified')).toBe('ORMA field-verified');
+    expect(cell('route-audited')).toBe('Verified by ORMA');
+    expect(cell('field-verified')).toBe('Verified and walked by ORMA');
+    expect(cell('route-audited')).not.toBe(cell('field-verified'));
     expect(cell('imported')).toBe('Imported map data');
   });
 
