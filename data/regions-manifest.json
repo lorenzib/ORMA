@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-24T17:27:33.089Z",
+  "generatedAt": "2026-10-24T17:35:57.036Z",
   "regions": {
     "dolomites": {
-      "trailCount": 135,
-      "trails": "data/regions/dolomites-trails.js?v=fc8e652c3db3",
+      "trailCount": 137,
+      "trails": "data/regions/dolomites-trails.js?v=cc976cd12b87",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -140,6 +140,8 @@
         "osm-11791915": "data/trail-details/osm-11791915.js?v=bd924e55c0ac",
         "osm-3707731": "data/trail-details/osm-3707731.js?v=4417b7f6eb47",
         "osm-11833313": "data/trail-details/osm-11833313.js?v=1985dfeb2f71",
+        "osm-12737724": "data/trail-details/osm-12737724.js?v=460a3a55cb5d",
+        "osm-6401355": "data/trail-details/osm-6401355.js?v=febd7b6a1f5d",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -346,6 +348,8 @@
     "osm-11791915": "dolomites",
     "osm-3707731": "dolomites",
     "osm-11833313": "dolomites",
+    "osm-12737724": "dolomites",
+    "osm-6401355": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -553,6 +557,8 @@
     "osm-11791915": "dorfrundweg-aicha",
     "osm-3707731": "gratschenbergrunde",
     "osm-11833313": "roemerweg-kiens",
+    "osm-12737724": "historische-rundwanderung-teis",
+    "osm-6401355": "panoramarundweg-concordia-360",
     "osm-5479112": "chemin-des-diligences",
     "osm-9937537": "le-mont-jovet",
     "osm-10539302": "sentier-eco-sylve-de-poingt-ravier",
@@ -743,6 +749,8 @@
     "dorfrundweg-aicha": "osm-11791915",
     "gratschenbergrunde": "osm-3707731",
     "roemerweg-kiens": "osm-11833313",
+    "historische-rundwanderung-teis": "osm-12737724",
+    "panoramarundweg-concordia-360": "osm-6401355",
     "chemin-des-diligences": "osm-5479112",
     "le-mont-jovet": "osm-9937537",
     "sentier-eco-sylve-de-poingt-ravier": "osm-10539302",

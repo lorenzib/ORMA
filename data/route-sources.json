@@ -482,6 +482,14 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "osm-12737724": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi520af6ed7242950f94a791101d75eae7.historische-rundwanderung-in-teis.teis",
+      "publisher": "Tourismusverein Villnöss via IDM suedtirol.info",
+      "name": "Historische Rundwanderung in Teis",
+      "quote": "Strecke 8.5 Km Dauer 2h:40 min Aufstieg 448 m Abstieg 448 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-25T03:00:00.000Z"
+    },
     "osm-12745924": {
       "url": "https://www.la-norma.fr/en/equipement/les-escaliers-walking-trail-la-norma/",
       "publisher": "Haute Maurienne Vanoise Tourisme (La Norma)",
@@ -849,6 +857,14 @@
       "quote": "Durée 01h00 · Dénivelé 100 D+ · Distance 3,1 km · Les animaux doivent être impérativement tenus en laisse … et sont interdits dans le Lac.",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
+    },
+    "osm-6401355": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi8abfb40f4c78aa85e234ec52885516af.panoramarundweg-concordia-360.reischach",
+      "publisher": "IDM suedtirol.info",
+      "name": "Panoramarundweg Concordia 360°",
+      "quote": "Strecke 2.4 Km Dauer 0h:40 min Aufstieg 75 m Abstieg 75 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-25T03:00:00.000Z"
     },
     "osm-6404258": {
       "url": "https://www.olang.com/de/activity/spaziergang-oberolang-salla-oberolang_5019",
