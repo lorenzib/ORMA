@@ -178,6 +178,14 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "osm-11791915": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi92e369279c97c4f79a64e4ab41f7717f.dorfrundwanderung-in-aicha.aicha",
+      "publisher": "Brixen Tourismus via IDM suedtirol.info",
+      "name": "Dorfrundwanderung in Aicha",
+      "quote": "Strecke 2.3 Km Dauer 0h:45 min Aufstieg 89 m Abstieg 89 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-25T01:00:00.000Z"
+    },
     "osm-11795103": {
       "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425666",
       "publisher": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
@@ -233,6 +241,14 @@
       "quote": "Markierung: Weg Nr. 22, Seerundweg … dem völlig flachen Seerundweg zurück zur Bushaltestelle am südlichen Seeabfluss",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-23T12:00:00.000Z"
+    },
+    "osm-11833313": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi90f372518a16d2b4c4887a38ac32e514.auf-den-spuren-der-alten-roemer-von-kiens-nach-ehrenburg.kiens",
+      "publisher": "IDM suedtirol.info",
+      "name": "Auf den Spuren der alten Römer von Kiens nach Ehrenburg",
+      "quote": "Strecke 3.1 Km Dauer 0h:52 min Aufstieg 70 m Abstieg 81 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-25T01:00:00.000Z"
     },
     "osm-11839597": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoie48a748b7f4497eb984622ba50b6823a.fenn-promenade.sill",
@@ -770,6 +786,14 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "osm-3707731": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi0b1152749ea7c4cbc7d65e2dbf49e64e.gratschenbergrundgang.teis",
+      "publisher": "Tourismusverein Villnöss via IDM suedtirol.info",
+      "name": "Gratschenbergrundgang",
+      "quote": "Strecke 4.9 Km Dauer 1h:30 min Aufstieg 224 m Abstieg 224 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-25T01:00:00.000Z"
+    },
     "osm-3885162": {
       "url": "https://www.merano-suedtirol.it/de/ultental/aktivurlaub/wandern-bergsteigen/wanderwege/121154963-nuovo-percorso-del-lago.html",
       "publisher": "Tourismusgenossenschaft Ultental/Proveis",
@@ -873,6 +897,14 @@
       "quote": "Diese anspruchsvolle Rundwanderung führt Sie von Onach zu uns auf die Munt da Rina Alm (3:00h) und zum schönen Glittner See!",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
+    },
+    "osm-6601608": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi542f0f17dff1b4f72336b94f0a136b23.wanderung-auf-dem-naturerlebnispfad.kematen---sand-in-taufers",
+      "publisher": "IDM suedtirol.info",
+      "name": "Natur-Erlebnispfad Sand in Taufers",
+      "quote": "Strecke 6 Km Dauer 3h:00 min Aufstieg 201 m Abstieg 201 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-25T01:00:00.000Z"
     },
     "osm-6823031": {
       "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425672",

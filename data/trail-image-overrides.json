@@ -392,6 +392,23 @@
       }
     },
     {
+      "id": "osm-11791915",
+      "approvedReviewId": "commons-osm-11791915-on-route",
+      "approvedAt": "2026-10-25T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11791915-aicha-st-nikolaus.jpg",
+        "heroImage": "images/trails/osm-11791915-aicha-st-nikolaus.jpg",
+        "imageAlt": "The tall pointed spire and stone nave of St. Nikolaus church in Aicha beside the village road, wooded slopes behind",
+        "imageCredit": "St. Nikolaus in Aicha",
+        "imageCreditText": "St. Nikolaus in Aicha by Michielverbeek",
+        "imageCreator": "Michielverbeek",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Natz-Schabs-Aicha,_Pfarrkirche_Sankt_Nikolaus_Dm16259_IMG_1054_2019-08-03_14.37.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-11792795",
       "approvedReviewId": "commons-osm-11792795",
       "approvedAt": "2026-09-07T07:35:18.956Z",
@@ -541,6 +558,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:DurnholzerSee2009.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11833313",
+      "approvedReviewId": "commons-osm-11833313-on-route",
+      "approvedAt": "2026-10-25T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11833313-rienz-kiens.jpg",
+        "heroImage": "images/trails/osm-11833313-rienz-kiens.jpg",
+        "imageAlt": "The green, fast-flowing Rienz between wooded banks and a few houses at Kiens, forested mountainsides above",
+        "imageCredit": "The Rienz at Kiens",
+        "imageCreditText": "The Rienz at Kiens by mAyo",
+        "imageCreator": "mAyo",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rienz_bei_Kiens.JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -2078,6 +2112,23 @@
       }
     },
     {
+      "id": "osm-3707731",
+      "approvedReviewId": "commons-osm-3707731-on-route",
+      "approvedAt": "2026-10-25T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-3707731-teis.jpg",
+        "heroImage": "images/trails/osm-3707731-teis.jpg",
+        "imageAlt": "Teis village with its church on a green slope seen from the air, the Eisack valley and distant snowy peaks beyond under a blue sky",
+        "imageCredit": "Teis from the air",
+        "imageCreditText": "Teis from the air by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Tiso_by_drone_03.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-3885162",
       "approvedReviewId": "commons-osm-3885162",
       "approvedAt": "2026-09-07T20:09:33.359Z",
@@ -2290,6 +2341,23 @@
         "imageCreator": "ORMA",
         "imageLicence": "ORMA-owned",
         "imageSourceType": "orma-illustration"
+      }
+    },
+    {
+      "id": "osm-6601608",
+      "approvedReviewId": "commons-osm-6601608-on-route",
+      "approvedAt": "2026-10-25T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-6601608-burg-taufers.jpg",
+        "heroImage": "images/trails/osm-6601608-burg-taufers.jpg",
+        "imageAlt": "Burg Taufers, a large stone castle with towers on a wooded crag, with snow-covered mountains rising behind",
+        "imageCredit": "Burg Taufers",
+        "imageCreditText": "Burg Taufers by Rolf Kranz",
+        "imageCreator": "Rolf Kranz",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Burg_Taufers_(2024).jpg",
+        "imageSourceType": "licensed-source"
       }
     },
     {
