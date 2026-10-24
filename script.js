@@ -3315,23 +3315,6 @@ function initLoggedInShell(){
   wireQuickFilter('liQuickShade', () => { liFilters.shade = liFilters.shade === '60' ? 'any' : '60'; });
   wireQuickFilter('liQuickWater', () => { liFilters.water = !liFilters.water; });
 
-  const paneBody = document.querySelector('#returningCustomerHomepage .li-body');
-  const paneButtons = Array.from(document.querySelectorAll('[data-li-pane]'));
-  const setPane = (pane) => {
-    if(!paneBody) return;
-    paneBody.dataset.pane = pane;
-    paneButtons.forEach(btn => {
-      const selected = btn.dataset.liPane === pane;
-      btn.classList.toggle('on', selected);
-      btn.setAttribute('aria-pressed', String(selected));
-    });
-    if(pane === 'map' && trailMapInstance){
-      requestAnimationFrame(() => trailMapInstance.resize());
-    }
-  };
-  paneButtons.forEach(btn => btn.addEventListener('click', () => setPane(btn.dataset.liPane)));
-  setPane((paneBody && paneBody.dataset.pane) || 'list');
-
   // Greeting avatar = the same Switch dog panel, anchored under the avatar.
   const greetBtn = document.getElementById('liGreetSwitchBtn');
   const greetMenu = document.getElementById('liGreetSwitchMenu');
@@ -3566,17 +3549,6 @@ function renderLiSearchSuggestions(profile){
   }
   suggestions.hidden = false;
   search.setAttribute('aria-expanded', 'true');
-}
-
-function liRevealMapPane(){
-  const body = document.querySelector('#returningCustomerHomepage .li-body');
-  if(body) body.dataset.pane = 'map';
-  document.querySelectorAll('[data-li-pane]').forEach(button => {
-    const selected = button.dataset.liPane === 'map';
-    button.classList.toggle('on', selected);
-    button.setAttribute('aria-pressed', String(selected));
-  });
-  if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
 }
 
 // Match column shared by list rows and the map preview card. Tier steps
