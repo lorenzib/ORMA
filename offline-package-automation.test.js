@@ -80,6 +80,12 @@ describe('the offline-package workflow runs without anyone remembering (OFF-07)'
     expect(runText).toContain('branch="orma-bot/offline-packages"');
     expect(runText).toContain('generated=(offline/packages offline-packages.js trail-routing-coverage.js trail-app.bundle.js)');
     expect(runText).toContain('git add -A -- "${generated[@]}"');
+    // The guard runs after the generated files are staged, so it may only look
+    // at unstaged changes: `git status --porcelain` lists staged files too and
+    // failed every run that had a package to publish (24 Oct 2026).
+    const guard = runText.slice(runText.indexOf('git add -A -- "${generated[@]}"'), runText.indexOf('git commit -m'));
+    expect(guard).toContain('if ! git diff --quiet; then');
+    expect(guard).not.toContain('git status --porcelain');
     expect(runText).toContain('gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/runs/${run}/approve"');
     expect(runText).toContain('gh pr merge "$pr" --auto --squash');
     expect(runText).toContain('gh workflow run validate.yml --ref main');
