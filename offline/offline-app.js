@@ -102,14 +102,19 @@
       : `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   }
 
+  // The offline map says what the trail page says about the same route: a
+  // Verified trail's map is drawn from the line verified against official
+  // sources, so it is Verified here too (OFF-08).
   function verificationLabel(status){
-    if(status === 'field-review-required'){
-      return 'Beta trail information. Check posted signs and local notices.';
-    }
-    if(['verified', 'vetted', 'dolopaws-vetted', 'field-checked'].includes(status)){
-      return 'Vetted by ORMA.';
-    }
+    if(status === 'source-verified') return 'Verified route, same as the trail page.';
+    if(status === 'not-verified') return 'ORMA hasn\u2019t verified this route yet. Follow local signs.';
     return 'Trail review status unavailable.';
+  }
+
+  function routeStatusLabel(status){
+    if(status === 'source-verified') return '\u2713 Verified by ORMA against official sources';
+    if(status === 'not-verified') return 'Not yet verified by ORMA';
+    return '';
   }
 
   function setNetworkState(){
@@ -709,7 +714,7 @@
     const trailId = new URLSearchParams(window.location.search).get('id');
     manifestUrl = packageManifestUrl(trailId);
     if(!manifestUrl){
-      showFailure('No downloaded beta package is configured for this trail.');
+      showFailure('No downloaded package is configured for this trail.');
       return;
     }
 
@@ -783,6 +788,12 @@
       });
       elements.emergency.textContent = `${safety.emergency.number}. ${safety.emergency.note}`;
       elements.verificationNotice.textContent = verificationLabel(manifest.verificationStatus);
+      const routeStatus = document.getElementById('routeStatus');
+      if(routeStatus && routeStatusLabel(manifest.verificationStatus)){
+        routeStatus.textContent = routeStatusLabel(manifest.verificationStatus);
+        routeStatus.dataset.status = manifest.verificationStatus;
+        routeStatus.hidden = false;
+      }
       elements.packageMeta.textContent = `Package ${manifest.version} · scoring ${manifest.scoringVersion || 'not recorded'} · generated ${manifest.generatedAt.slice(0, 10)} · ${manifest.attribution}`;
       elements.licenceLink.href = manifest.licenceUrl;
       elements.locationButton.addEventListener('click', () => startLocation(manifest.bounds));

@@ -48,6 +48,7 @@
     'osm-123162': "Planetenweg - Sentiero dei pianeti",
     'osm-12731853': "Rundweg Laugen Elvas",
     'osm-12736753': "Albeins-Klerant-Milland - Albes-Cleran-Millan",
+    'osm-12737724': "Historische Rundwanderung Teis",
     'osm-12745924': "Circuit des escaliers",
     'osm-12953352': "Archeopfad Brixen",
     'osm-13338113': "Lac de Darbon",
@@ -89,6 +90,7 @@
     'osm-5597577': "Rundweg Gsindboden",
     'osm-6244965': "Steine erzählen",
     'osm-6250300': "Boucle du Lac Vert",
+    'osm-6401355': "Panoramarundweg Concordia 360°",
     'osm-6404258': "Rundweg Salla",
     'osm-6410700': "Dolomitenblickrunde",
     'osm-6453504': "Walderlebnispfad Aschbach",
@@ -736,7 +738,7 @@
 
   function formatPackageVersion(version){
     const beta = String(version || '').match(/beta\.(\d+)$/i);
-    if(beta) return `Beta package ${beta[1]}`;
+    if(beta) return `Package ${beta[1]}`;
     return version ? `Package ${version}` : 'Package revision unavailable';
   }
 
@@ -810,6 +812,14 @@
     // trail.html carried a fixed link to the Carezza pilot, which was right
     // while it was the only package; every trail opens its own map.
     openButton.href = PACKAGES[trailId].offlineUrl;
+
+    // A Verified trail's map is the verified line itself, so the panel says so
+    // beside the trail page's badge rather than leaving it to be guessed.
+    function sameRouteNote(manifest){
+      return manifest && manifest.verificationStatus === 'source-verified'
+        ? ` ${tr('offlinePanel.sameRoute', 'Same verified route, saved to your phone.')}`
+        : '';
+    }
 
     function signedIn(){
       return !!(window.DoloPawsAuth && window.DoloPawsAuth.currentUser);
@@ -913,13 +923,13 @@
         );
       }else if(signedIn()){
         setStatus(
-          tr('offlinePanel.notDownloaded.signedIn', 'Offline map not downloaded.'),
+          `${tr('offlinePanel.notDownloaded.signedIn', 'Offline map not downloaded.')}${sameRouteNote(available)}`,
           'not-downloaded'
         );
         downloadButton.textContent = tr('offlinePanel.action.download', 'Download offline map');
       }else{
         setStatus(
-          tr('offlinePanel.notDownloaded.signedOut', 'Offline map not downloaded.'),
+          `${tr('offlinePanel.notDownloaded.signedOut', 'Offline map not downloaded.')}${sameRouteNote(available)}`,
           'not-downloaded'
         );
         downloadButton.textContent = tr('offlinePanel.action.loginDownload', 'Log in to download');

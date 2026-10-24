@@ -101,7 +101,7 @@ describe('beta readiness ledger', () => {
     ].forEach(boundary => expect(preflight).toContain(boundary));
   });
 
-  test('field-review record covers every downloadable beta package revision', () => {
+  test('field-review record covers both pilot package revisions', () => {
     const gate = readiness.gates.find(item => item.id === 'ROUTE-FIELD-REVIEW');
     expect(gate.status).toBe('pending');
     expect(gate.evidence).toBe('docs/testing/ROUTE-field-review-record.md');
@@ -111,7 +111,8 @@ describe('beta readiness ledger', () => {
       'offline/packages/alpe-siusi/manifest.json',
     ].forEach(file => {
       const manifest = JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
-      expect(manifest.verificationStatus).toBe('field-review-required');
+      // A quality check on the ground, no longer a label walkers read (OFF-08).
+      expect(['source-verified', 'not-verified']).toContain(manifest.verificationStatus);
       expect(record).toContain(`\`${manifest.trailId}\``);
       expect(record).toContain(`\`${manifest.version}\``);
     });

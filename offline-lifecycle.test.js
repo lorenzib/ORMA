@@ -184,7 +184,7 @@ describe('OFF-03 offline package ownership metadata', () => {
     expect(window.DoloPawsOffline.formatInstalledDate(null))
       .toBe('date unavailable');
     expect(window.DoloPawsOffline.formatPackageVersion('2026.07.29-beta.5'))
-      .toBe('Beta package 5');
+      .toBe('Package 5');
   });
 
   test('enables published verified packages and disables imported trail downloads', () => {

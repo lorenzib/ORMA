@@ -47,12 +47,21 @@ describe('controlled offline beta scope (OFF-07)', () => {
     expect(outside).toEqual([]);
   });
 
-  test('every package still requires a dated field review', () => {
+  test('every package says what its trail page says about the route (OFF-08)', () => {
+    // A trail page showing "Verified by ORMA" and an offline map of the same
+    // line saying it was never reviewed contradict each other.
+    const trails = new Map(loadProductionTrails(root).map(trail => [trail.id, trail]));
     for(const [id, manifest] of Object.entries(manifests)){
+      const status = trails.has(id) && isVerified(trails.get(id)) ? 'source-verified' : 'not-verified';
       expect(manifest.trailId).toBe(id);
-      expect(manifest.verificationStatus).toBe('field-review-required');
+      expect(`${id} ${manifest.verificationStatus}`).toBe(`${id} ${status}`);
       const safety = JSON.parse(fs.readFileSync(path.join(packagesDir, id, 'safety.json'), 'utf8'));
-      expect(safety.verificationStatus).toBe('field-review-required');
+      const route = JSON.parse(fs.readFileSync(path.join(packagesDir, id, 'route.geojson'), 'utf8'));
+      expect(safety.verificationStatus).toBe(status);
+      expect(route.features[0].properties.verificationStatus).toBe(status);
+      if(status === 'source-verified'){
+        expect(safety.cautions.join(' ')).not.toMatch(/field review|not yet|beta/i);
+      }
     }
   });
 });
