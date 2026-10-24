@@ -24,10 +24,12 @@ describe('the existing-site verification boundary',()=>{
     // the Sissiweg and the Sonnenberger Panoramaweg arrived verified, each with
     // a licensed photograph, then 167 and 156 with the Algunder and Maiser
     // Waalwege, then 171 and 160 with the Marlinger Waalweg, the Aschbach
-    // forest trail, the Höfeweg and the Gsindboden loop.
+    // forest trail, the Höfeweg and the Gsindboden loop. Then 163 when La Croix
+    // des Salles, Le Mont d'Arbois and La Galoppaz were verified by hand with
+    // licensed photographs in place of an illustration and two unlicensed ones.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
     expect(catalogue).toHaveLength(171);
-    expect(currentSiteTrails(catalogue)).toHaveLength(160);
+    expect(currentSiteTrails(catalogue)).toHaveLength(163);
   });
 
   test('requires the artwork the public trail page needs',()=>{
