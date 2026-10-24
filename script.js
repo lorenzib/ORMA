@@ -203,13 +203,17 @@ let lastFilterKey = '';            // legacy, kept for safety
 // Geography is no longer a set of dropdowns: the unified search and the map
 // are the geography controls, so the homepage loads every region and defaults
 // to "all". A ?region= deep link still narrows the initial view.
-let activeRegion = (() => {
+// The region a ?region= link asked for, kept apart from activeRegion: the
+// page sets activeRegion itself when it opens on a region, and that must not
+// be read back as a link someone shared.
+const LI_LINKED_REGION = (() => {
   try {
     const requested = new URLSearchParams(window.location.search).get('region');
     if(requested === 'savoy' || requested === 'dolomites') return requested;
     return 'all';
   } catch(e) { return 'all'; }
 })();
+let activeRegion = LI_LINKED_REGION;
 let activeCountry = activeRegion === 'savoy' ? 'FR' : activeRegion === 'dolomites' ? 'IT' : 'all';
 let activeValley = 'all';
 // The geography the map replaced, so "Clear map area" puts back the area the
@@ -265,12 +269,43 @@ const LI_WALK_DATE_SESSION_KEY = 'orma-home-walk-date-v1';
 const LI_LOCATION_LABEL_ALIASES = Object.freeze({
   'Alta Pusteria – Tre Cime':'Alta Pusteria',
 });
-// With nothing chosen, the list is the whole catalogue ranked for the dog.
-// This is a real context, not the absence of one: the page never waits for a
-// place before it shows a walk. Choosing "All trails" also forgets any
-// remembered area, which is why it is never written to storage itself.
+// The whole catalogue, for the ?all=1 link only. A walk is planned in one
+// place, so the page itself never opens on the Dolomites and Savoy mixed.
 const LI_ALL_TRAILS_CONTEXT = Object.freeze({ kind:'area', country:'all', region:'all', valley:'all', label:'All ORMA trails', transient:true });
-function liDefaultLocationContext(){ return { ...LI_ALL_TRAILS_CONTEXT }; }
+const LI_REGION_LABELS = Object.freeze({ dolomites:'The Dolomites', savoy:'Savoy' });
+// The last trails opened, kept by trail.js in this browser only. Declared up
+// here because the page's opening region is read from them at load.
+const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';
+
+// One region. `auto` marks a region the page chose for itself, which a
+// location already allowed may still narrow to "near you"; one the reader
+// picked is kept for the visit instead.
+function liRegionContext(region, auto){
+  const context = {
+    kind:'area', country:region === 'savoy' ? 'FR' : 'IT', region, valley:'all',
+    label:LI_REGION_LABELS[region] || region,
+  };
+  if(auto){ context.transient = true; context.auto = true; }
+  return context;
+}
+
+function liCatalogueTrails(){
+  return typeof trails !== 'undefined' && Array.isArray(trails) ? trails : [];
+}
+
+// Where the page opens with nothing chosen: the region of the trail looked at
+// most recently, else the Dolomites, which has the most trails. Location, when
+// already allowed, refines this after load (liProbeLocationPermission).
+function liDefaultLocationContext(){
+  let recent = [];
+  try{ recent = JSON.parse(localStorage.getItem(LI_RECENT_TRAILS_KEY) || '[]'); }catch(error){}
+  const list = liCatalogueTrails();
+  for(const item of Array.isArray(recent) ? recent : []){
+    const trail = item && list.find(candidate => candidate.id === item.id);
+    if(trail && LI_REGION_LABELS[trail.region]) return liRegionContext(trail.region, true);
+  }
+  return liRegionContext('dolomites', true);
+}
 function liIsAllTrailsContext(context){
   return !!context && context.kind === 'area'
     && (context.country || 'all') === 'all' && (context.region || 'all') === 'all' && (context.valley || 'all') === 'all';
@@ -364,8 +399,8 @@ function liValidLocationContext(value){
 function liLoadLocationContext(){
   // A region deep link is already an explicit geographic choice. Keep its
   // scope broad because that is what the shared URL promises.
-  if(activeRegion !== 'all'){
-    return { kind:'area', region:activeRegion, valley:'all', label:activeRegion === 'savoy' ? 'Savoy' : 'The Dolomites', transient:true };
+  if(LI_LINKED_REGION !== 'all'){
+    return { ...liRegionContext(LI_LINKED_REGION), transient:true };
   }
   if(typeof sessionStorage !== 'undefined'){
     const current = liValidLocationContext(liStoredJson(sessionStorage, LI_LOCATION_SESSION_KEY));
@@ -580,7 +615,8 @@ function liRecommendationLocationPhrase(){
     const area = liAreasInView(1)[0];
     return area ? `in ${area.label}` : 'in the map view';
   }
-  return `in ${liDisplayLocationLabel(liLocationContext.label)}`;
+  // "in the Dolomites", not "in The Dolomites".
+  return `in ${liDisplayLocationLabel(liLocationContext.label).replace(/^The /, 'the ')}`;
 }
 
 /**
@@ -760,11 +796,23 @@ function liDismissLocationNudge(){
 // to "near you" when there is something there; a reader at home far from
 // any trail stays on every trail rather than opening on an empty list.
 function liAnyTrailNear(lat, lng, radiusKm){
-  const list = typeof trails !== 'undefined' && Array.isArray(trails) ? trails : [];
-  return list.some(trail => {
+  return liCatalogueTrails().some(trail => {
     const point = liTrailLngLat(trail);
     return point && liDistanceKm(lat, lng, point[1], point[0]) <= radiusKm;
   });
+}
+
+// The region of the trail closest to a position, however far away it is.
+function liNearestTrailRegion(lat, lng){
+  let best = null;
+  let bestKm = Infinity;
+  liCatalogueTrails().forEach(trail => {
+    const point = liTrailLngLat(trail);
+    if(!point || !LI_REGION_LABELS[trail.region]) return;
+    const km = liDistanceKm(lat, lng, point[1], point[0]);
+    if(km < bestKm){ bestKm = km; best = trail.region; }
+  });
+  return best;
 }
 
 // `auto` is the page acting on a permission already granted, not the reader
@@ -785,6 +833,12 @@ function liRequestCurrentLocation(options){
     const lat = Number(position.coords.latitude);
     const lng = Number(position.coords.longitude);
     if(auto && !liAnyTrailNear(lat, lng, LI_LOCATION_RADIUS_KM)){
+      // Nothing within reach: open on the nearer region instead, unless the
+      // reader has picked a place in the meantime.
+      const region = liNearestTrailRegion(lat, lng);
+      if(region && liLocationContext && liLocationContext.auto && region !== liLocationContext.region){
+        liSetLocationContext(liRegionContext(region, true));
+      }
       liRenderLocationNudge();
       return;
     }
@@ -819,7 +873,7 @@ async function liProbeLocationPermission(){
     }
   }catch(error){ state = 'prompt'; }
   liLocationPermission = state;
-  if(state === 'granted' && liIsAllTrailsContext(liLocationContext)) liRequestCurrentLocation({ auto:true });
+  if(state === 'granted' && liLocationContext && liLocationContext.auto) liRequestCurrentLocation({ auto:true });
   else liRenderLocationNudge();
 }
 
@@ -852,9 +906,7 @@ function liRenderLocationNudge(){
   nudge.dataset.state = liLocationRequestPending ? 'pending' : liLocationPermission;
 }
 
-// The last trails opened, kept by trail.js in this browser only. The dog menu
-// lists them as a shortlist, never as a history.
-const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';
+// The dog menu lists the last trails opened as a shortlist, never as a history.
 function liRecentTrails(){
   try{
     const list = JSON.parse(localStorage.getItem(LI_RECENT_TRAILS_KEY) || '[]');
@@ -888,13 +940,29 @@ function liRenderRecentTrails(){
   });
 }
 
+// The two regions in the place menu, each with its trail count, the one in
+// use marked. "Near you" sits inside a region, so neither is marked then.
+function liRenderRegionChoices(){
+  const list = liCatalogueTrails();
+  document.querySelectorAll('[data-li-region]').forEach(button => {
+    const region = button.dataset.liRegion;
+    const count = button.querySelector('[data-li-region-count]');
+    if(count){
+      const n = list.filter(trail => trail.region === region).length;
+      count.textContent = `${region === 'savoy' ? 'France' : 'Italy'} · ${n} ${n === 1 ? 'trail' : 'trails'}`;
+    }
+    const on = !!liLocationContext && liLocationContext.kind === 'area'
+      && liLocationContext.region === region && (liLocationContext.valley || 'all') === 'all';
+    button.setAttribute('aria-pressed', String(on));
+  });
+}
+
 function liRenderLocationContext(profile){
   const toolbar = document.getElementById('liToolbar');
   const workspace = document.querySelector('#returningCustomerHomepage .li-body');
   const summary = document.getElementById('liLocationSummary');
   const summaryLabel = document.getElementById('liLocationSummaryLabel');
   const summaryKick = document.getElementById('liLocationSummaryKick');
-  const showAll = document.getElementById('liShowAllBtn');
   // The list and the map are always there: a place narrows them, it does not
   // unlock them.
   if(toolbar) toolbar.hidden = false;
@@ -904,15 +972,19 @@ function liRenderLocationContext(profile){
     document.body.classList.add('li-location-ready');
   }
   if(summary){
-    summary.hidden = !liLocationContext;
+    // A whole region is already ticked in the list below, so the line naming
+    // it would say the same thing twice; a valley, town or "near you" keeps it.
+    const wholeRegion = !!liLocationContext && liLocationContext.kind === 'area'
+      && !!LI_REGION_LABELS[liLocationContext.region] && (liLocationContext.valley || 'all') === 'all';
+    summary.hidden = !liLocationContext || wholeRegion;
     if(summaryLabel) summaryLabel.textContent = liLocationContextLabel();
     if(summaryKick){
       summaryKick.textContent = !liLocationContext ? '' : liIsAllTrailsContext(liLocationContext)
         ? 'Showing'
         : (liLocationContext.kind === 'current' || liLocationContext.kind === 'town') ? 'Looking near' : 'Looking in';
     }
-    if(showAll) showAll.hidden = !liLocationContext || liIsAllTrailsContext(liLocationContext);
   }
+  liRenderRegionChoices();
   liSyncWalkDateInputs();
   liRenderLocationNudge();
 }
@@ -1006,7 +1078,7 @@ window.DoloPawsHomepageLocation = {
     try{ localStorage.removeItem(LI_LOCATION_NUDGE_DISMISSED_KEY); }catch(error){}
     liRequestCurrentLocation();
   },
-  showAll:() => liSetLocationContext(liDefaultLocationContext()),
+  showAll:() => liSetLocationContext({ ...LI_ALL_TRAILS_CONTEXT }),
 };
 
 // ?near=1 asks for the position, ?all=1 opens the whole catalogue. The Explore
@@ -3151,10 +3223,11 @@ function initLoggedInShell(){
   });
   const changeLocation = document.getElementById('liChangeLocationBtn');
   if(changeLocation) changeLocation.addEventListener('click', liFocusSearchForPlace);
-  const showAll = document.getElementById('liShowAllBtn');
-  if(showAll) showAll.addEventListener('click', () => {
-    liCloseMenus();
-    liSetLocationContext(liDefaultLocationContext());
+  document.querySelectorAll('[data-li-region]').forEach(button => {
+    button.addEventListener('click', () => {
+      liCloseMenus();
+      liSetLocationContext(liRegionContext(button.dataset.liRegion));
+    });
   });
   const nudgeButton = document.getElementById('liLocationNudgeBtn');
   if(nudgeButton) nudgeButton.addEventListener('click', liRequestCurrentLocation);

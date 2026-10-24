@@ -42,7 +42,7 @@ function tForTests(key, params = {}){
 
 function loadHomepageContext(testTrails){
   document.body.innerHTML = `
-    <div id="liToolbar"><span id="liLocationSummary"><small id="liLocationSummaryKick"></small><strong id="liLocationSummaryLabel"></strong><button id="liChangeLocationBtn"></button><button id="liNearMeBtn"></button><button id="liShowAllBtn" hidden></button></span>
+    <div id="liToolbar"><span id="liLocationSummary"><small id="liLocationSummaryKick"></small><strong id="liLocationSummaryLabel"></strong><button id="liChangeLocationBtn"></button><button id="liNearMeBtn"></button><button data-li-region="dolomites"><small data-li-region-count></small></button><button data-li-region="savoy"><small data-li-region-count></small></button></span>
       <div id="liLocationNudge" hidden><strong id="liLocationNudgeTitle"></strong><small id="liLocationNudgeDetail"></small><button id="liLocationNudgeBtn"></button><button id="liLocationNudgeDismiss"></button></div>
       <input id="liRecommendationDate" type="date"><button id="liAdjustRecommendationBtn"></button>
       <strong id="liTodayTitle"></strong><span id="liTodayDetail"></span><div id="liToday" hidden></div>
@@ -496,18 +496,41 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
   });
 
-  test('with nothing chosen the whole catalogue is ranked, with no gate in front of it', async () => {
+  // A walk is planned in one place, so with nothing chosen the page opens on
+  // one region -- the Dolomites when there is nothing to go on -- never on the
+  // Dolomites and Savoy mixed. The list is there at once, with no gate.
+  test('with nothing chosen it opens on one region, with no gate in front of it', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography();', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
 
     expect(document.getElementById('liToolbar').hidden).toBe(false);
+    const ids = [...document.querySelectorAll('#returningTrailList .li-row')].map(row => row.dataset.id).sort();
+    expect(ids).toEqual(['pri', 'vag']);
+    expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('The Dolomites');
+    expect(document.querySelector('[data-li-region="dolomites"]').getAttribute('aria-pressed')).toBe('true');
+    expect(document.querySelector('[data-li-region="savoy"]').getAttribute('aria-pressed')).toBe('false');
+    expect(document.querySelector('[data-li-region="savoy"] [data-li-region-count]').textContent).toBe('France · 3 trails');
+    // The page's own pick is never remembered; only a reader's choice is.
+    expect(context.sessionStorage.getItem('orma-home-selected-area-v1')).toBeNull();
+  });
+
+  test('with nothing chosen it opens on the region of the trail looked at last', () => {
+    const context = loadHomepageContext(sampleTrails);
+    context.localStorage.getItem = key => (key === 'orma-recent-trails-v1'
+      ? JSON.stringify([{ id:'tar', name:'Tarentaise Trail' }, { id:'vag', name:'Val Gardena Trail' }])
+      : null);
+    const opened = vm.runInContext('liLoadLocationContext()', context);
+    expect(opened.region).toBe('savoy');
+    expect(opened.auto).toBe(true);
+  });
+
+  test('the whole catalogue is only for a link that asks for it', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('window.DoloPawsHomepageLocation.showAll();', context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
-    expect(document.getElementById('liLocationSummaryKick').textContent).toBe('Showing');
-    expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('All ORMA trails');
-    expect(document.getElementById('liShowAllBtn').hidden).toBe(true);
-    // The whole catalogue is the absence of a choice, so it is never remembered.
-    expect(context.localStorage.getItem('orma-home-selected-area-v1')).toBeNull();
+    expect(fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8')).not.toContain('All ORMA trails');
   });
 
   test('a typed place is offered before trails and becomes where the list looks', async () => {
@@ -525,7 +548,8 @@ describe('returning homepage region + valley filters', () => {
     await new Promise(resolve => setTimeout(resolve, 0));
     expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('Maurienne');
     expect(document.getElementById('liLocationSummaryKick').textContent).toBe('Looking in');
-    expect(document.getElementById('liShowAllBtn').hidden).toBe(false);
+    // A valley inside Savoy: neither whole region is marked as chosen.
+    expect(document.querySelector('[data-li-region="savoy"]').getAttribute('aria-pressed')).toBe('false');
     expect(search.value).toBe('');
 
     // The place is a word in the headline, and pressing it is how you change it.
@@ -578,7 +602,7 @@ describe('returning homepage region + valley filters', () => {
   });
 
   // The headline names the scope itself, so there is no line under it: "in
-  // Alta Pusteria" for an area, "across all trails" for the whole catalogue.
+  // Alta Pusteria" for an area, "in the Dolomites" for a region.
   test('the headline names the scope, with no line under it', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('liEnsureAreaChoices(); liLocationContext = { kind:"area", country:"IT", region:"dolomites", valley:"Alta Pusteria – Tre Cime", label:"Alta Pusteria – Tre Cime" };', context);
@@ -587,12 +611,12 @@ describe('returning homepage region + valley filters', () => {
 
     vm.runInContext('liLocationContext = liDefaultLocationContext();', context);
     await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
-    expect(document.querySelector('#liToolbarGreeting [data-li-head="area"]').textContent).toBe('across all trails');
+    expect(document.querySelector('#liToolbarGreeting [data-li-head="area"]').textContent).toBe('in the Dolomites');
     expect(fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8')).not.toContain('liToolbarDogContext');
   });
 
-  // A new visit opens on every trail. An area chosen weeks ago used to be
-  // kept for good and reopened every time, ahead of "near you".
+  // A new visit opens on a region chosen afresh. An area chosen weeks ago used
+  // to be kept for good and reopened every time, ahead of "near you".
   test('a new visit forgets an area kept by an older version', () => {
     const context = loadHomepageContext(sampleTrails);
     const durable = new Map([['orma-home-selected-area-v1', JSON.stringify({ kind:'area', country:'IT', region:'dolomites', valley:'Alta Pusteria – Tre Cime', label:'Alta Pusteria – Tre Cime' })]]);
@@ -601,7 +625,7 @@ describe('returning homepage region + valley filters', () => {
       setItem: (key, value) => { durable.set(key, String(value)); },
       removeItem: key => { durable.delete(key); },
     };
-    expect(vm.runInContext('liIsAllTrailsContext(liLoadLocationContext())', context)).toBe(true);
+    expect(vm.runInContext('liLoadLocationContext().label', context)).toBe('The Dolomites');
     expect(durable.has('orma-home-selected-area-v1')).toBe(false);
   });
 
@@ -615,13 +639,12 @@ describe('returning homepage region + valley filters', () => {
     };
     vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
       valley:"Val Gardena", label:"Val Gardena" });`, context);
-    // A fresh page load has no region deep link, so clear the one the area set.
-    expect(vm.runInContext('activeRegion = "all"; liLoadLocationContext().label', context)).toBe('Val Gardena');
+    expect(vm.runInContext('liLoadLocationContext().label', context)).toBe('Val Gardena');
   });
 
-  // Location already allowed moves the page to "near you" only when ORMA has
-  // a trail there; far from every trail it stays on all of them.
-  test('a granted location opens near you only when a trail is close', async () => {
+  // Location already allowed moves the page to "near you" when ORMA has a
+  // trail there; far from every trail it opens on the nearer region instead.
+  test('a granted location opens near you, or else on the nearer region', async () => {
     const at = (lat, lng) => {
       const context = loadHomepageContext(sampleTrails);
       context.navigator.geolocation = { getCurrentPosition: success => success({ coords:{ latitude:lat, longitude:lng } }) };
@@ -631,7 +654,9 @@ describe('returning homepage region + valley filters', () => {
     };
     const london = at(51.5, -0.12);
     await new Promise(resolve => setTimeout(resolve, 0));
-    expect(vm.runInContext('liIsAllTrailsContext(liLocationContext)', london)).toBe(true);
+    // Chamonix is nearer London than any Dolomites trail.
+    expect(vm.runInContext('liLocationContext.region', london)).toBe('savoy');
+    expect(vm.runInContext('liLocationContext.kind', london)).toBe('area');
 
     const gardena = at(46.57, 11.67);
     await new Promise(resolve => setTimeout(resolve, 0));
@@ -743,7 +768,7 @@ describe('returning homepage region + valley filters', () => {
       cautions:[{ message:'No confirmed water on the route, so carry it all.' }],
       hardStops:[], unknowns:[],
     }));
-    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" };', context);
+    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liApplyLocationGeography();', context);
     await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
 
     const panel = document.querySelector('.li-answer-explanation');
@@ -782,7 +807,7 @@ describe('returning homepage region + valley filters', () => {
       cautions:[{ message:'No confirmed water on the route, so carry it all.' }],
       hardStops:[], unknowns:[],
     }));
-    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" };', context);
+    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liApplyLocationGeography();', context);
     await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
 
     const panel = document.querySelector('.li-answer-explanation');
@@ -823,7 +848,7 @@ describe('returning homepage region + valley filters', () => {
     const nudge = document.getElementById('liLocationNudge');
     expect(nudge.hidden).toBe(false);
     expect(document.getElementById('liLocationNudgeTitle').textContent).toBe('See trails near you');
-    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
 
     document.getElementById('liLocationNudgeBtn').click();
     expect(getCurrentPosition).toHaveBeenCalledTimes(1);
@@ -833,7 +858,7 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liLocationNudgeTitle').textContent).toContain('Location is off');
     expect(document.getElementById('liLocationNudgeBtn').hidden).toBe(true);
     expect(document.getElementById('liToolbar').hidden).toBe(false);
-    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
 
     // A granted position narrows the list and retires the offer.
     // Near me moved from the Explore menu to the location summary,

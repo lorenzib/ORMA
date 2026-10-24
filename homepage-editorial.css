@@ -60,6 +60,11 @@
 }
 .li-head-option:hover,.li-head-option:focus-visible{outline:none;background:#F0EDE1;}
 .li-head-option[hidden]{display:none;}
+.li-head-kick{padding:8px 12px 4px;color:#8A9689;font:700 10px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
+.li-head-region small{display:block;margin-top:2px;color:var(--ink-soft);font:500 11.5px 'Inter',sans-serif;}
+.li-head-region[aria-pressed="true"]{background:#E9F0E7;color:#264231;}
+.li-head-region[aria-pressed="true"]::after{content:'✓';float:right;margin-top:-18px;color:#3B6D4B;font-weight:800;}
+.li-head-sep{height:1px;margin:4px 8px;background:#EDE9DD;}
 #returningCustomerHomepage #liToolbar .li-head-menu .li-location-summary{
   display:flex;width:auto;margin:0 0 4px;padding:8px 12px 10px;border:0;border-bottom:1px solid #EDE9DD;border-radius:0;background:none;
 }
