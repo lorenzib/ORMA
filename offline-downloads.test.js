@@ -44,6 +44,40 @@ describe('OFF-03 downloaded-trail management surface', () => {
     expect(document.querySelector('[data-action="confirm-remove"]')).not.toBeNull();
   });
 
+  // Tre Cime downloaded on 23 October still carries the retired label and read
+  // "Review status unavailable" beside a Verified trail.
+  test('a map downloaded before OFF-08 shows its trail\'s current status', () => {
+    const card = currentVerificationStatus => {
+      document.body.innerHTML = window.DoloPawsOfflineDownloads.packageCard({
+        trailId: 'tre-cime',
+        name: 'Tre Cime di Lavaredo classic circuit',
+        trailUrl: '/trail.html?id=tre-cime',
+        offlineUrl: '/offline/trail.html?id=tre-cime',
+        version: '2026.10.23-beta.1',
+        packageBytes: 503_000,
+        installedAt: '24 Oct 2026',
+        verificationStatus: 'field-review-required',
+        currentVerificationStatus,
+        ownership: 'current-account',
+        state: 'update-available',
+        usable: true,
+        hasLocalData: true,
+        updateAvailable: true,
+      }, true);
+      return document.querySelector('.od-meta').textContent;
+    };
+    expect(card('source-verified')).toContain('Verified by ORMA');
+    expect(document.querySelector('.od-route').dataset.status).toBe('source-verified');
+    // Offline, with nothing to ask: no status rather than a wrong one.
+    expect(card(null)).not.toMatch(/Review status unavailable|Verified|field review/i);
+    expect(document.querySelector('.od-route')).toBeNull();
+  });
+
+  test('the listing reads the trail\'s current status from its latest package', () => {
+    const controller = require('fs').readFileSync(require('path').join(__dirname, 'offline-packages.js'), 'utf8');
+    expect(controller).toContain('currentVerificationStatus: available && available.verificationStatus || null');
+  });
+
   test('requires login for updates while retaining local open and remove actions', () => {
     const markup = window.DoloPawsOfflineDownloads.packageCard({
       trailId: 'lago-carezza',
