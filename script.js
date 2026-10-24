@@ -852,16 +852,40 @@ function liRenderRecentTrails(){
     host.append(note);
     return;
   }
+  // One row per trail: a small photo, then the name on one line with the
+  // area under it. Name and area used to sit side by side, each wrapping in
+  // its own narrow column.
+  const catalogue = typeof trails !== 'undefined' && Array.isArray(trails) ? trails : [];
   recent.forEach(item => {
     const link = document.createElement('a');
-    link.className = 'li-menu-item';
+    link.className = 'li-menu-item li-recent-item';
     link.href = liTrailHref(item.id);
-    link.textContent = item.name;
+    const thumb = document.createElement('span');
+    thumb.className = 'li-recent-thumb';
+    thumb.setAttribute('aria-hidden', 'true');
+    const trail = catalogue.find(entry => entry && entry.id === item.id);
+    if(trail && trail.imageIcon){
+      const img = document.createElement('img');
+      img.src = trail.imageIcon;
+      img.alt = '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      thumb.append(img);
+    }
+    const copy = document.createElement('span');
+    copy.className = 'li-recent-copy';
+    const name = document.createElement('span');
+    name.className = 'li-recent-name';
+    name.textContent = item.name;
+    copy.append(name);
     if(item.area){
       const where = document.createElement('small');
+      where.className = 'li-recent-area';
       where.textContent = item.area;
-      link.append(where);
+      copy.append(where);
     }
+    link.title = item.area ? `${item.name}, ${item.area}` : item.name;
+    link.append(thumb, copy);
     host.append(link);
   });
 }
