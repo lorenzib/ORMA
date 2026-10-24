@@ -2076,10 +2076,15 @@ had been published about that walk anywhere.
 The public page has rendered exactly this for a long time -- "Suggested start,
 <place>. Check current access before travelling." Only the gate refused it.
 
-So ORMA may answer those two as ORMA. Every such value ends with "ORMA's own
-suggestion from the walk it recorded, not an operator's recommendation", and
+So ORMA may answer those two as ORMA. Every such value ends with "This is
+ORMA's suggestion, not one published by the trail's operator", and
 the citation is ORMA's own record attributed to ORMA, because no authority was
 found and naming one would be the invention this contract exists to refuse.
+The start is a sentence a walker can use -- the place by name, or "where the
+route begins" when no car park or stop was found -- never the record's raw
+label or its coordinates, which sit on the map beside it (wording changed 24
+October 2026, after "Start at Route start per OpenStreetMap — best
+parking/access not yet verified (45.19398, 6.39891)" went live).
 The start carries "Check current access before travelling"; the numbers do not,
 because access is about whether somebody may begin there today and attaching it
 to a sentence about trail numbers warns about the wrong fact.
