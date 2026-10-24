@@ -37,10 +37,13 @@ describe('the existing-site verification boundary',()=>{
     // never Verified), then 184 and 182 with PanaRaida, the Feldthurns
     // Panoramaweg, the Antholzer See loop and the Poststeig, then 188 and 186
     // with the Sand in Taufers nature trail, the Aicha village walk, the
-    // Gratschenbergrunde and the Römerweg in Kiens.
+    // Gratschenbergrunde and the Römerweg in Kiens. Then 185 when Chalets de
+    // Salvadon, Alpage de Commune and Rundweg Rotwand were removed outright,
+    // and 183 because their photographs went with them: withdrawn, they were
+    // drafts with artwork, which this boundary still counted.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(188);
-    expect(currentSiteTrails(catalogue)).toHaveLength(186);
+    expect(catalogue).toHaveLength(185);
+    expect(currentSiteTrails(catalogue)).toHaveLength(183);
   });
 
   test('requires the artwork the public trail page needs',()=>{

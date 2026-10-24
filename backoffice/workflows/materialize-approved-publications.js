@@ -2,6 +2,7 @@
 
 const { operationalFactsFromClaims, mergeOperationalFacts } = require('./compile-operational-facts');
 const { publicationRequestIsRetryable } = require('./publication-failure-receipts');
+const { removedTrail } = require('../../scripts/removed-trails');
 
 // Savoy and the Dolomites are geographically disjoint, and the website splits
 // its runtime bundles on `trail.region`. The longitude test is the one
@@ -89,6 +90,21 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
     // ledger entry wholesale: on 23 October one would have put St. Magdalena
     // back on its old line and taken the Verified badge off it. Refused, not
     // thrown, for the same reason as a disagreeing distance.
+    // A walk removed from ORMA outright has no override entry left, so an
+    // approval written before the removal would no longer count as already
+    // materialized, and an override for a trail outside the catalogue creates
+    // it. Refused, not thrown, like the two refusals below.
+    const removed = removedTrail(item.targetTrailId);
+    if(removed){
+      refused.push({
+        candidateId:request.candidateId,
+        trailId:item.targetTrailId,
+        requestId:request.id,
+        reason:'trail-removed',
+        message:`${item.targetTrailId} (${removed.name}) was removed from ORMA on ${removed.removedAt}; a publication may not bring it back`,
+      });
+      continue;
+    }
     const prior = priorById.get(item.targetTrailId);
     const verifiedByHand = prior?.tier === 'route-audited' && prior?.graduation?.status === 'verified';
     const lineSetByHand = (overrides?.trails || []).some(entry =>
