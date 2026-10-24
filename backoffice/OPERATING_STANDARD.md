@@ -2143,6 +2143,14 @@ who needs it. Automation health, programme health, the decision queue and the
 receipts moved unchanged to a **System** page; principle 7 still holds, with
 the overview split across the two.
 
+The System page's headline numbers say what they count (24 October 2026).
+**Agent jobs** is the worker's own count of the live lanes (`pipeline-health`),
+not the newest hundred jobs the page loads, and it names the jobs held while
+paid research is off. **Needs you** counts the decision queue and every stopped
+trail marked *You*, and those trails are listed under it -- a stopped trail is
+not a verification decision, but nothing moves it until somebody looks. The
+intake card says when admitted trails will wait because research is paused.
+
 The worker writes the board (`trail-board`) at the end of every pass, from the
 checkout's catalogue and the orchestration, because the hosted backoffice is
 served without `data/` and could never have joined the two itself. The page
