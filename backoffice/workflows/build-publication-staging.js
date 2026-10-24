@@ -280,11 +280,13 @@ const EXISTING_IMAGE_FIELDS=Object.freeze(['imageIcon','imageCredit','heroImage'
  * licence. Every one of the 140 trails that already had a complete record
  * carried both, so this refuses nothing that was passing.
  *
- * An AI illustration is not a photograph. Two walks carry one, honestly
- * labelled as such on the page, and they must not satisfy a check that says
- * this trail has a photograph of it.
+ * An AI illustration is not a photograph, and neither is an ORMA illustration
+ * (scripts/render-trail-illustrations.js draws one from the route and its climb
+ * for a trail with no licensed photograph). Both are labelled as such on the
+ * page, and they must not satisfy a check that says this trail has a
+ * photograph of it: an illustrated trail stays Reviewed.
  */
-const NOT_A_PHOTOGRAPH=Object.freeze(['ai-illustration']);
+const NOT_A_PHOTOGRAPH=Object.freeze(['ai-illustration','orma-illustration']);
 
 function existingImageFields(trail){
   if(!trail||!String(trail.imageIcon||'').trim()||!String(trail.heroImage||'').trim()
@@ -366,7 +368,9 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
     const missingApprovals = [!copyApproved && 'editorial-approval', !visualApproved && 'asset-and-licensing-approval'].filter(Boolean);
     const copyOutput = outputs.get(copyJobId);
     const visualOutput = outputs.get(visualJobId);
-    const hero = visualOutput?.result?.candidates?.find(candidate => candidate.status === 'ready') || null;
+    // A drawn picture never stands in for a photograph, whichever lane brings it.
+    const hero = visualOutput?.result?.candidates?.find(candidate => candidate.status === 'ready'
+      && !NOT_A_PHOTOGRAPH.includes(String(candidate.imageSourceType||candidate.sourceType||''))) || null;
     const about = section(copyOutput?.result, 'About the trail');
     const dog = section(copyOutput?.result, 'Why it suits dogs');
     const practical = section(copyOutput?.result, 'Important practical notes');

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "about": "Trails drawn as an ORMA illustration by scripts/render-trail-illustrations.js, because no licensed photograph of the walk exists or the one it carried showed somewhere else. An illustrated trail stays Reviewed and is never Verified; when a real photograph is uploaded and reviewed it replaces the illustration. Distances are from the old photograph's camera to the walk's line.",
+  "trails": [
+    { "id": "osm-14987412", "reason": "Sentier du Four: carried an AI-generated picture; no licensed photograph found" },
+    { "id": "osm-16363583", "reason": "Le Marais de Pré Lombard: the only picture had no licence; none of the marsh exists on Commons or Panoramax" },
+    { "id": "osm-6529356", "reason": "Anton Schwingshackl Weg: no picture" },
+    { "id": "osm-14381788", "reason": "Marmottes: no picture; only winter ski-slope frames exist" },
+    { "id": "osm-14381930", "reason": "La Plagne (Karellis n°18): no picture" },
+    { "id": "osm-19531872", "reason": "Circuit des Demoiselles Coiffées: no picture within 400 m" },
+    { "id": "osm-12189165", "reason": "Rundweg Schwarzegg: the photo was a Sarntal view 2.1 km away" },
+    { "id": "osm-12018939", "reason": "Steinegger Höhenweg: the photo was Steinegg village from the castle ruin, 1.5 km away" },
+    { "id": "osm-6404634", "reason": "Anello del Bosc: the photo was a Val Canali wood about 15 km away" },
+    { "id": "osm-7546708", "reason": "Anello di Soracrode: the photo was the Somacros meadows above Domegge, 1.1 km away" },
+    { "id": "osm-7548489", "reason": "Anello dei Faggi: the photo was Lake Auronzo, about 5 km away" },
+    { "id": "osm-7548201", "reason": "Anello di Ciampeviei: the photo was Auronzo seen from the Tre Cime, about 15 km away" },
+    { "id": "osm-13337921", "reason": "Au pied du Roc d'Enfer: the photo was La Chèvrerie, 4.1 km away" },
+    { "id": "osm-19661726", "reason": "Sentier pédestre des Graniteurs: the photo was the Combloux slopes, 1.7 km away" },
+    { "id": "osm-14379937", "reason": "Albannette petite boucle: the photo was a flower above Valloire, 4.8 km away" },
+    { "id": "osm-19760372", "reason": "Boucle du Moulin de Cornet: the photo was the Le Morel weirs, 1.5 km away" },
+    { "id": "osm-16490407", "reason": "Circuit des Sallanches: the photo was a Grande Chible peak view, 935 m away" }
+  ]
+}

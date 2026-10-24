@@ -1672,6 +1672,13 @@ function renderTrail(t){
       if(creditEl && creditText && credit){
         creditEl.open=false;
         creditText.replaceChildren();
+        const creditSummary=creditEl.querySelector('summary');
+        if(creditSummary){
+          const label=credit.isIllustration?'About this illustration':'Show photo credit';
+          creditSummary.textContent=credit.isIllustration?'i':'C';
+          creditSummary.setAttribute('aria-label',label);
+          creditSummary.title=credit.isIllustration?label:'Photo credit';
+        }
         // Creative Commons requires the creator and the licence, not just a link to
         // the source. The static generator already renders both; a trail served
         // only by this dynamic page must not be credited more thinly.
@@ -1680,10 +1687,10 @@ function renderTrail(t){
           link.href=credit.url;link.target='_blank';link.rel='noopener nofollow';link.textContent=credit.label;
           creditText.appendChild(link);
         }else creditText.appendChild(document.createTextNode(credit.label));
-        if(t.imageCreator){
+        if(t.imageCreator && !credit.isIllustration){
           creditText.appendChild(document.createTextNode(` by ${t.imageCreator}`));
         }
-        if(t.imageLicence){
+        if(t.imageLicence && !credit.isIllustration){
           creditText.appendChild(document.createTextNode(' · '));
           if(t.imageLicenceUrl){
             const licence=document.createElement('a');
