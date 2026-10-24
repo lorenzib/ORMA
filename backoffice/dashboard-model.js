@@ -129,7 +129,13 @@
     const routeProgress=Number.isFinite(Number(result.routeNumberGuidanceOutstanding))
       ? ` Trail-number guidance remains to be verified for ${Number(result.routeNumberGuidanceOutstanding)} trail(s).`
       : '';
-    return {state:'healthy',label:'Intake active',title:'Catalogue admission is automatic and capacity-limited',message:`The last pass admitted ${Number(result.admitted||0)} trail(s); ${Number(result.remainingQueueable||0)} remain eligible outside the active verification fleet.${routeProgress}`,meta:`Next due check ${next} · no public mutation`,runUrl};
+    const admitted=`The last pass admitted ${Number(result.admitted||0)} trail(s); ${Number(result.remainingQueueable||0)} remain eligible outside the active verification fleet.`;
+    // The intake keeps running while paid research is off -- it is free -- but
+    // what it admits then waits: the specialists are not run. Saying only
+    // "admitted 10" read as ten trails being researched.
+    if(options.paidResearchEnabled===false)return {state:'healthy',label:'Intake active',title:'Trails are admitted, but research on them is paused',
+      message:`${admitted} Paid research is off, so admitted trails wait in the queue; verification is done by hand.${routeProgress}`,meta:`Next due check ${next} · no public mutation`,runUrl};
+    return {state:'healthy',label:'Intake active',title:'Catalogue admission is automatic and capacity-limited',message:`${admitted}${routeProgress}`,meta:`Next due check ${next} · no public mutation`,runUrl};
   }
   function latestPublicationState(history,requests){
     const latest=new Map();
@@ -197,7 +203,12 @@
     const editorialPackets=(input.editorialPackets||[]).filter(packet=>!isPausedSafetyPacket(packet));const editorialReviews=input.editorialReviews||[];const editorialReceipts=input.editorialReceipts||{receipts:[]};const strategyStatus=input.strategyStatus||{};
     const newsletterPacket=input.newsletterPacket||null;const newsletterReviews=input.newsletterReviews||[];const approvedNewsletters=input.approvedNewsletters||{issues:[]};
     const productIdeas=input.productIdeas||{ideas:[]};const analystReviews=input.analystReviews||[];const productInvestigations=input.productInvestigations||{items:[]};const productDesigns=input.productDesigns||{items:[]};
-    const history=input.history||[];const allJobs=input.jobs||[];const timing=input.nowMs==null?{}:{nowMs:input.nowMs};const workerHealth=deriveWorkerHealth(input.workerHealth,timing);const campaignHealth=deriveCampaignHealth(input.campaignHealth,timing);
+    const history=input.history||[];const allJobs=input.jobs||[];const timing=input.nowMs==null?{}:{nowMs:input.nowMs};const workerHealth=deriveWorkerHealth(input.workerHealth,timing);
+    // The worker's own count of every job, written once a pass. The page reads
+    // only the 100 newest jobs, so counting those showed 49 against 131.
+    const pipelineHealth=input.pipelineHealth&&input.pipelineHealth.working?input.pipelineHealth:null;
+    const paidResearchEnabled=typeof pipelineHealth?.working?.paidResearchEnabled==='boolean'?pipelineHealth.working.paidResearchEnabled:undefined;
+    const campaignHealth=deriveCampaignHealth(input.campaignHealth,{...timing,paidResearchEnabled});
     const newsletterParked=String(strategyStatus.summary?.newsletterStatus||'').startsWith('parked');
     const editorialParked=!strategyStatus.summary?.editorialStatus||String(strategyStatus.summary.editorialStatus).startsWith('parked');
     const analystParked=!strategyStatus.summary?.productStatus||String(strategyStatus.summary.productStatus).startsWith('parked');
@@ -335,13 +346,15 @@
       if((ownerWeight[issue.owner]||0)>(ownerWeight[current.owner]||0)){
         current.owner=issue.owner;current.nextAction=issue.nextAction;current.href=issue.href||'';current.external=Boolean(issue.external);
       }
+      // Already a card in the decision queue, so already counted under "Needs you".
+      if(issue.decision)current.decision=true;
       if(!current.reasons.length)current.reasons.push('A blocking issue was recorded without a usable explanation');
       blockedById.set(id,current);
     }
     for(const item of dossierItems){
       if(item.approvalAllowed!==false)continue;
       const id=item.candidateId||item.reviewId;
-      addBlockingIssue(id,{title:item.trailName,reasons:item.blockingReasons||item.blockers||['Evidence findings prevent approval'],owner:'You',nextAction:'Review evidence',href:`trail-verify-desk.html#review-${item.reviewId}`});
+      addBlockingIssue(id,{title:item.trailName,reasons:item.blockingReasons||item.blockers||['Evidence findings prevent approval'],owner:'You',nextAction:'Review evidence',href:`trail-verify-desk.html#review-${item.reviewId}`,decision:true});
     }
     for(const job of jobs){
       if(job.status!=='blocked')continue;
@@ -363,6 +376,17 @@
       const ownerOrder={You:0,System:1,Agents:2};
       return (ownerOrder[a.owner]??3)-(ownerOrder[b.owner]??3)||a.title.localeCompare(b.title);
     });
+
+    // A stopped trail no automation will move is waiting on a person, and its
+    // row says "You"; the headline counted only the decision queue, so it read
+    // 0 beside a row marked You. Counted once: a trail already in the queue is.
+    const stuckItems=blockingIssues.filter(item=>item.owner==='You'&&!item.decision);
+    const stuckOnYou=stuckItems.length;
+    // Agent work from the worker's full count where there is one: the live
+    // lanes' queued and running jobs, and of those, the ones held.
+    const liveLanes=pipelineHealth?(pipelineHealth.lanes||[]).filter(lane=>!lane.laneRetired):[];
+    const agentWork=pipelineHealth?liveLanes.reduce((sum,lane)=>sum+Number(lane.queued||0)+Number(lane.running||0),0):activeJobs.length;
+    const agentHeld=pipelineHealth?liveLanes.reduce((sum,lane)=>sum+Number(lane.queuedHeld||0),0):0;
 
     const activityById=new Map();
     for(const item of history){
@@ -386,7 +410,8 @@
       editorialProgress:{active:editorialParked?0:editorialPackets.length,waiting:editorialItems.length,inFlight:editorialHandoffs,published:(editorialReceipts.receipts||[]).filter(item=>item.status==='published').length,pausedSafetyLibrary:true,status:strategyStatus.summary?.editorialStatus||'parked for MVP'},
       newsletterProgress:{ready:newsletterItem?1:0,inFlight:newsletterHandoffs,approved:(approvedNewsletters.issues||[]).length,status:strategyStatus.summary?.newsletterStatus||'not-run'},
       analystProgress:{ideas:analystParked?0:(productIdeas.ideas||[]).length,waiting:analystIdeaItems.length,mockups:analystMockupItems.length,inFlight:analystHandoffs,developerHandoffs:analystParked?0:allJobs.filter(job=>job.jobType==='product-development-handoff'&&job.status==='ready-for-review').length,status:strategyStatus.summary?.productStatus||'parked for MVP'},
-      summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockingIssues.length,prsReady:prItems.length},
+      summary:{needsYou:decisions.length+stuckOnYou,agentWork,blockers:blockingIssues.length,prsReady:prItems.length},
+      stuckItems,stuckOnYou,agentHeld,paidResearchEnabled,
       pipeline:[
         {number:1,title:'Evidence',owner:dossierItems.length?'You':queuedDossierReviews.length?'System':activeTrailJobs.length?'Agents':'System',status:dossierItems.length?`${plural(dossierItems.length,'decision')} waiting`:queuedDossierReviews.length?`${plural(queuedDossierReviews.length,'decision')} being handed off`:activeTrailJobs.length?`${plural(activeTrailJobs.length,'job')} in progress`:'No decision waiting'},
         {number:2,title:'Agent resolution',owner:'Agents',status:activeTrailJobs.length?`${plural(activeTrailJobs.length,'job')} running or queued`:'No agent work queued'},
