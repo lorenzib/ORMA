@@ -574,10 +574,21 @@
         recent.forEach(item => {
           // menuItem assigns innerHTML; a trail name is data, so it is set as
           // text, exactly as the group this replaced did.
+          // Name on one line, the area under it, as on the homepage menu.
           const a = document.createElement('a');
-          a.className = 'nav-dogmenu-item';
+          a.className = 'nav-dogmenu-item nav-dogmenu-recent';
           a.href = prefix + 'trail.html?id=' + encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(item.id) : (item.id)));
-          a.textContent = item.name;
+          const name = document.createElement('span');
+          name.className = 'nav-dogmenu-recent-name';
+          name.textContent = item.name;
+          a.appendChild(name);
+          if(item.area){
+            const area = document.createElement('small');
+            area.className = 'nav-dogmenu-recent-area';
+            area.textContent = item.area;
+            a.appendChild(area);
+          }
+          a.title = item.area ? item.name + ', ' + item.area : item.name;
           menu.appendChild(a);
         });
       }
