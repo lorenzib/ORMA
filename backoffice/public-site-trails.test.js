@@ -29,10 +29,11 @@ describe('the existing-site verification boundary',()=>{
     // licensed photographs in place of an illustration and two unlicensed ones,
     // then 174 and 166 with the Mühlenweg, the Katharinaberg loop and the
     // Quellenpromenade, then 177 and 169 with the Törggeleweg and the
-    // Niedertal and Mittertal loops in Antholz.
+    // Niedertal and Mittertal loops in Antholz, then 180 and 172 with the
+    // Kulturwanderweg Peter Mitterhofer, the Hinzlweg and the Martinsweg.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(177);
-    expect(currentSiteTrails(catalogue)).toHaveLength(169);
+    expect(catalogue).toHaveLength(180);
+    expect(currentSiteTrails(catalogue)).toHaveLength(172);
   });
 
   test('requires the artwork the public trail page needs',()=>{
