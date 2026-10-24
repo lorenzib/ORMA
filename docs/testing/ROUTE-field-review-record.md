@@ -46,7 +46,7 @@ Complete one record per route and package version.
 | Field | Result |
 |---|---|
 | Trail ID | `lago-carezza` |
-| Package version | `2026.09.05-beta.21` |
+| Package version | `2026.10.23-beta.22` |
 | Reviewed at (ISO date/time and timezone) |  |
 | Reviewer |  |
 | Weather and recent conditions |  |
@@ -68,7 +68,7 @@ Complete one record per route and package version.
 | Field | Result |
 |---|---|
 | Trail ID | `alpe-siusi` |
-| Package version | `2026.10.06-beta.9` |
+| Package version | `2026.10.23-beta.10` |
 | Reviewed at (ISO date/time and timezone) |  |
 | Reviewer |  |
 | Weather and recent conditions |  |
@@ -85,7 +85,7 @@ Complete one record per route and package version.
 | Defect IDs and notes |  |
 | Overall result | Pass / Fail |
 
-Revision `2026.10.06-beta.9` changed only the stated distance and the schematic elevation profile's km marks: the catalogue carried a 7.5 km hand estimate, and the geometry gate measured the approved composite (paths 7, 6 and 30) at 5.5 km. The route line, routing graph and map corridor are unchanged from beta.8. Check the distance shown against your own track as part of "Loop and direction representation accurate".
+Revision `2026.10.23-beta.10` changes no route, map, profile or safety byte: the shared offline reader now finds any trail's package by its id, and leaves out a fact a trail does not record. Revision `2026.10.06-beta.9` changed only the stated distance and the schematic elevation profile's km marks: the catalogue carried a 7.5 km hand estimate, and the geometry gate measured the approved composite (paths 7, 6 and 30) at 5.5 km. The route line, routing graph and map corridor are unchanged from beta.8. Check the distance shown against your own track as part of "Loop and direction representation accurate".
 
 ## Pass and stop rules
 

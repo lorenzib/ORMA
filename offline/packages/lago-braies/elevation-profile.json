@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lago-braies",
+  "distanceKm": 4,
+  "ascentM": 39,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1496
+    },
+    {
+      "km": 1,
+      "elev": 1500
+    },
+    {
+      "km": 2.5,
+      "elev": 1496
+    },
+    {
+      "km": 4,
+      "elev": 1496
+    }
+  ]
+}

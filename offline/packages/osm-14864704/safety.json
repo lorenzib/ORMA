@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-14864704",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.7,
+    "ascentM": 382,
+    "highestPointM": 736,
+    "expectedDuration": "3 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 60
+  },
+  "trailhead": {
+    "lat": 45.8271246,
+    "lng": 6.2025044,
+    "label": "Parking de l'église, Duingt (paid in July and August); free car park on route des Prés Bernard"
+  },
+  "waypoints": [],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "A few rocky, uneven passages along the Taillefer crest.",
+    "About 1.4 km on tarmac, including some 230 m of the D8 road.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

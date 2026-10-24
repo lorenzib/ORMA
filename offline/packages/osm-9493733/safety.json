@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-9493733",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.5,
+    "ascentM": 278,
+    "highestPointM": 1593,
+    "expectedDuration": "2.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 65
+  },
+  "trailhead": {
+    "lat": 46.610127,
+    "lng": 11.893679,
+    "label": "Pedraces bus stop (Pidrô), Strada Pedraces"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6104883,
+      "lng": 11.8935745,
+      "label": "Fountain at the Pedraces bus stop",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6099454,
+      "lng": 11.8935583,
+      "label": "Drinking water at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5960439,
+      "lng": 11.8941968,
+      "label": "Drinking water at Lech da Sompunt",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "60 m along the SS244 main road at the start, with a zebra crossing.",
+    "About 2.5 km on village roads with cars, partly asphalt.",
+    "Roots and ruts on the forest tracks.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

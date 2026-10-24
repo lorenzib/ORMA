@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12118490",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.7,
+    "ascentM": 320,
+    "highestPointM": 1020,
+    "expectedDuration": "2 hours",
+    "difficulty": "Hard",
+    "shadePercent": 65
+  },
+  "trailhead": {
+    "lat": 45.30711,
+    "lng": 6.358698,
+    "label": "Car park in front of the mairie, Le Châtel (official start)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.3077851,
+      "lng": 6.3573001,
+      "label": "Village fountain by the start (not marked as drinking water)",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "About 500 m on village lanes and the D77.",
+    "Small stream crossings without bridges.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}

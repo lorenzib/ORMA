@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12121346",
+  "generatedAt": "2026-10-24T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.1,
+    "ascentM": 410,
+    "highestPointM": 1269,
+    "expectedDuration": "2.5–3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 75
+  },
+  "trailhead": {
+    "lat": 45.284926,
+    "lng": 6.371628,
+    "label": "Montandré village, by the chapel and the old school (official start; park at the chapel)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.2846109,
+      "lng": 6.3711262,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.2832551,
+      "lng": 6.3822771,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "About 1.2 km on the asphalt road to the Col du Sapey, with cars.",
+    "A few fairly steep sections on the climb to Grenis (official).",
+    "Three small fords on seasonal streams; a rock edge beside the path by the Grenis chapel.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-24",
+      "licence": "ODbL"
+    }
+  ]
+}

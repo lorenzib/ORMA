@@ -8,7 +8,15 @@ const routeRefs=require('./trail-route-refs.js');
 
 const ROOT=__dirname;
 const read=file=>fs.readFileSync(path.join(ROOT,file),'utf8');
-const text=html=>html.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+// What a reader sees: tags gone, entities decoded. The page escapes `&`, `<`,
+// `>` and `"`, so comparing the raw sentence with the HTML failed on any of
+// them -- an approved Geotrail Bulla publication was refused that way on every
+// worker pass from 23 October, though the page showed it correctly.
+const ENTITIES={'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'"};
+const text=html=>html.replace(/<[^>]+>/g,' ').replace(/&(amp|lt|gt|quot|#39);/g,entity=>ENTITIES[entity])
+  .replace(/\s+/g,' ').trim();
+// A sentence as written is not HTML: nothing in it is a tag to strip.
+const plain=value=>String(value).replace(/\s+/g,' ').trim();
 
 /**
  * ORMA establishes four answers about following a walk, and they reached only
@@ -30,10 +38,16 @@ describe('the directions reach the crawlable page',()=>{
       expect({id:trail.id,heading:rendered.startsWith('How to follow this route')})
         .toEqual({id:trail.id,heading:true});
       for(const field of ['start','sequence','switches']){
-        expect({id:trail.id,field,present:rendered.includes(text(trail.routeNumberGuidance[field]))})
+        expect({id:trail.id,field,present:rendered.includes(plain(trail.routeNumberGuidance[field]))})
           .toEqual({id:trail.id,field,present:true});
       }
     }
+  });
+
+  test('a sentence with an ampersand, quotes or angle brackets is found as the reader sees it',()=>{
+    const guidance={start:'Start at the church & car park ("Kirchplatz")',sequence:'Follow 4 <then> 4A',switches:"At Pufels' fork keep right"};
+    const rendered=text(directionsSection({routeNumberGuidance:guidance}));
+    for(const field of ['start','sequence','switches'])expect(rendered).toContain(plain(guidance[field]));
   });
 
   test('the numbers shown are the ones the app shows, in the same order',()=>{

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-2376630",
+  "generatedAt": "2026-10-24T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8.2,
+    "ascentM": 514,
+    "highestPointM": 1457,
+    "expectedDuration": "2.5–3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 62
+  },
+  "trailhead": {
+    "lat": 46.6887577,
+    "lng": 10.9359442,
+    "label": "Katharinaberg village centre, free car park, bus 261 stop Katharinaberg (official start)"
+  },
+  "waypoints": [],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "About 3.8 km on the narrow Sonnenberg mountain road (route 10A), open to cars.",
+    "Two short steep, narrow path stretches (about 0.5 m wide) at km 1.6–2.0 and 6.1–6.3.",
+    "A wooden footbridge at km 6.1.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-24",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12173965",
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 1.9,
+    "ascentM": 78,
+    "highestPointM": 1141,
+    "expectedDuration": "0.75 hours",
+    "difficulty": "Easy",
+    "shadePercent": 42
+  },
+  "trailhead": {
+    "lat": 46.75574,
+    "lng": 12.10566,
+    "label": "Welsberg tourist office (official start), 180 m from the loop via the main square"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7560017,
+      "lng": 12.105435,
+      "label": "Fountain at the tourist office",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7579497,
+      "lng": 12.1053116,
+      "label": "Village fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7574635,
+      "lng": 12.1041028,
+      "label": "Main-square fountain, 130 m off the loop",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "This package has not yet had a dated field review; check signs on the ground.",
+    "Village lanes with light traffic.",
+    "Short steep earth zig-zag down the castle hill.",
+    "Mostly asphalt.",
+    "Carry water even though water points are listed.",
+    "Local lead rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-23",
+      "licence": "ODbL"
+    }
+  ]
+}
