@@ -15,6 +15,9 @@ h1,h2{margin:0;letter-spacing:-.035em}
 h1{font-size:clamp(28px,7vw,44px)}
 h2{font-size:21px}
 .state{margin:9px 0 0;color:var(--muted);font-size:13px}
+.route-status{display:inline-flex;align-items:center;gap:6px;margin:10px 0 0;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:700}
+.route-status[data-status="source-verified"]{background:#e4f1e7;color:#2c5c34}
+.route-status[data-status="not-verified"]{background:#fbefd5;color:#6b4a0c}
 .map-card,.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 16px 42px rgba(36,55,45,.07)}
 .map-card{padding:18px}
 .map-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:2px 2px 15px}

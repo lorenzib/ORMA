@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "alpe-siusi",
   "generatedAt": "2026-08-04T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "not-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 7.5,
@@ -27,7 +27,7 @@
     }
   ],
   "cautions": [
-    "This beta package still requires a dated field review.",
+    "ORMA hasn’t verified this route yet. Follow local signs.",
     "The high meadow is exposed to sun and fast-changing mountain weather.",
     "Keep dogs controlled around grazing livestock and follow posted local rules.",
     "Carry water even though a trailhead fountain is listed."

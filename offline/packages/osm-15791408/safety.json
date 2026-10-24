@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-15791408",
   "generatedAt": "2026-10-24T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 3.3,
@@ -27,10 +27,9 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "A short stretch on the Strada di Bedolpian at the start.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

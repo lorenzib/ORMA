@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lago-braies",
   "name": "Lago di Braies Seeweg circuit",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T17:39:38.432Z",
+  "version": "2026.10.24-beta.2",
+  "generatedAt": "2026-10-24T17:44:38.172Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 350260,
+  "verificationStatus": "source-verified",
+  "packageBytes": 351215,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6855,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Lago di Braies Seeweg circuit route",
       "url": "route.geojson",
-      "bytes": 12418,
-      "sha256": "7ccd3a7d1d0b9ee18799b657b7d1612a7691ddebc847b84dc7e7f46055198ab4"
+      "bytes": 12412,
+      "sha256": "8f6121e105144d6b39400f3c38ffc946c493c7d8e8620208fbe3112ef2266ac7"
     },
     {
       "role": "footpath-network",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lago di Braies Seeweg circuit safety information",
       "url": "safety.json",
-      "bytes": 1225,
-      "sha256": "e1ad1df5e8605265e1bdab25b75b3cf9c978e01afdc2ab06edfe9ff3a88b6edf"
+      "bytes": 1137,
+      "sha256": "2ad007c17da8e137852f99bcd50f762bcf737340f9221bc5bb9ad7b03417c2ba"
     }
   ]
 }

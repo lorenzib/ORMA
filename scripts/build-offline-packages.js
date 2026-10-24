@@ -22,9 +22,9 @@
  * seal loses its package with --prune. The two pilots are never rebuilt here:
  * their revisions are named by the physical device-test gates.
  *
- * Every package is still labelled field-review-required. Verified means the
- * route was audited from authority sources, not that someone walked it with
- * this package on a phone.
+ * Every package is labelled `source-verified`, the status its trail page shows:
+ * the map is drawn from the line that was verified against official sources,
+ * so it must not say anything less about it (OFF-08).
  *
  * The raw extracts are not committed. The biggest corridor is 6.7 MB of OSM
  * XML, and 77 of them would add over 100 MB to every clone. They are cached
@@ -54,6 +54,10 @@ const PACKAGES_DIR = path.join(ROOT, 'offline', 'packages');
 const CACHE_DIR = path.join(ROOT, '.cache', 'offline-map-sources');
 const CONTROLLER = path.join(ROOT, 'offline-packages.js');
 const PILOT_IDS = Object.freeze(['alpe-siusi', 'lago-carezza']);
+// What the offline page and the downloads list say about the route. Only
+// Verified trails are built here, so every generated package carries the
+// seal's status; `not-verified` is the Alpe di Siusi pilot's.
+const SOURCE_VERIFIED = 'source-verified';
 const CORRIDOR_PAD_M = 400;
 const MAP_WIDTH = 1200;
 const MIN_HEIGHT = 720;
@@ -295,7 +299,7 @@ function routeFor(trail){
         ascentM:trail.elevation,
         durationHours:Number(duration) || null,
         source:'ORMA repository route geometry',
-        verificationStatus:'field-review-required',
+        verificationStatus:SOURCE_VERIFIED,
       },
       geometry:{
         type:'LineString',
@@ -347,9 +351,7 @@ function safetyFor(trail, profile, retrievedAt){
       label:plainLabel(source.label) || 'Water point',
       reliability:source.seasonal ? 'Seasonal; not field-verified' : 'Not field-verified',
     }));
-  const cautions = [
-    'This package has not yet had a dated field review; check signs on the ground.',
-  ];
+  const cautions = [];
   if(trail.heatRisk === 'high') cautions.push('Heat risk is high on this walk: start early and carry extra water.');
   if(trail.exposure === true) cautions.push('Parts of this walk are exposed; keep your dog close and on a short lead.');
   (Array.isArray(trail.surfaceHazards) ? trail.surfaceHazards : [])
@@ -359,12 +361,12 @@ function safetyFor(trail, profile, retrievedAt){
   cautions.push(water.length
     ? 'Carry water even though water points are listed.'
     : 'No water point is listed on this walk: carry enough for you and your dog.');
-  cautions.push('Local lead rules and temporary closures can change.');
+  cautions.push('Follow local signs, lead rules and temporary closures.');
   return {
     schemaVersion:1,
     trailId:trail.id,
     generatedAt:`${retrievedAt}T00:00:00Z`,
-    verificationStatus:'field-review-required',
+    verificationStatus:SOURCE_VERIFIED,
     facts:{
       routeType:isLoop(trail.path) ? 'Loop' : 'One way',
       distanceKm:trail.distance,
@@ -452,7 +454,7 @@ async function buildPackage(trail, options){
   fs.writeFileSync(path.join(dir, 'map.svg'), svg);
   const graph = buildFootpathNetwork({ trailId:trail.id, xml:extract.xml, route, retrievedAt:extract.retrievedAt });
   writeJson(path.join(dir, 'footpath-network.json'), graph, false);
-  const manifest = buildManifest(trail.id, { name:trail.name, height });
+  const manifest = buildManifest(trail.id, { name:trail.name, height, verificationStatus:SOURCE_VERIFIED });
   if(manifest.packageBytes > PACKAGE_BUDGET_BYTES){
     throw new Error(`${trail.id} is ${manifest.packageBytes} bytes, over the ${PACKAGE_BUDGET_BYTES}-byte package budget`);
   }
