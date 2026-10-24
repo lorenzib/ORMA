@@ -59,20 +59,20 @@ describe('catalogue verification', () => {
 
   test('the headline is a sentence, and says the thing that has not happened', () => {
     // It read "0 verified · 0 ready for editorial" — two fragments and a dot.
-    expect(find(board(),'catalogue-verification').headline).toBe('No trail has finished yet');
+    expect(find(board(),'catalogue-verification').headline).toBe('No trail is Verified yet');
     expect(find(board(),'catalogue-verification').settled).toBe(false);
   });
 
   test('once something finishes, the headline says so and the card settles', () => {
     const done=buildProgrammeBoard({nowMs:NOW,
       programmeHealth:{...health,throughput:{...health.throughput,verified:1}}});
-    expect(find(done,'catalogue-verification').headline).toBe('1 trail verified');
+    expect(find(done,'catalogue-verification').headline).toBe('1 trail Verified on the site');
     expect(find(done,'catalogue-verification').settled).toBe(true);
   });
 
   test('four tiles, not six: the ones that matter cannot look like wallpaper', () => {
     const tiles=find(board(),'catalogue-verification').throughput;
-    expect(tiles.map(tile=>tile.label)).toEqual(['In progress','Finished','Needs you','Stuck']);
+    expect(tiles.map(tile=>tile.label)).toEqual(['In progress','Verified','Needs you','Stuck']);
     // Both gates as one number a person can act on, not two to add up.
     expect(tiles.find(tile=>tile.label==='Needs you').value).toBe(5);
   });
