@@ -16,6 +16,8 @@ const path=require('path');
 const {CLAIM_ENTITY_TYPE,POLICY_BY_RULE}=require('./compile-operational-facts');
 const {locateOnRoute}=require('../../hazard-location');
 const {ROUTE_GUIDANCE_CONTRACT}=require('./compile-verified-dossier');
+const {OFFICIAL_FIGURE_CLAIM_IDS,COMMUNE_CLAIM_PREFIX,COMMUNE_DOG_RULE_PREFIX,PROTECTED_AREAS_CLAIM,BASES,
+  NATIONAL_DOG_DEFAULT,EEA_SOURCE,countryOf,lineSamples,publishedFigure}=require('./research-methods');
 
 // A claim that names one rifugio, lift or protected area rather than the whole
 // route. These are the only claim ids that compile into operational facts, so
@@ -39,13 +41,15 @@ const SPECIALIST_SCHEMA={type:'object',additionalProperties:false,properties:{
     rule:{type:'string',enum:[...ENTITY_POLICY_RULES,'not-applicable'],description:'For an entity policy claim, the published rule in controlled form; not-applicable for any claim that is not about a single rifugio, lift or protected area.'},
     observedAt:{type:['string','null'],description:'For an entity policy claim, the ISO date the source was read. Null otherwise.'},
     variesWith:{type:['string','null'],description:'For a claim whose finding is "varies", what the answer depends on -- the season, the month, the time of day -- stated the way a walker would check it on the day. Null for every other finding.'},
+    basis:{type:['string','null'],enum:[...BASES,null],description:'For an official-distance, official-ascent or official-walking-time claim: published where an authority states the figure, measured where it was taken from a line or a map, estimated where it was worked out. For a commune-dog-rule claim: published where the commune, park or province publishes a rule, national-default where an Italian commune publishes none. Null for every other claim.'},
+    figure:{type:['number','null'],description:'For an official-distance claim the distance in km, for official-ascent the climb in metres, for official-walking-time the walking time in minutes, exactly as the authority publishes it. Null for every other claim.'},
     location:{type:['object','null'],additionalProperties:false,properties:{
       lat:{type:'number',description:'Latitude in decimal degrees.'},
       lng:{type:'number',description:'Longitude in decimal degrees.'},
       landmark:{type:'string',description:'What is at this point, named the way a walker would recognise it: the gate, the ford, the pasture crossing.'},
     },required:['lat','lng','landmark'],
     description:'For a claim about something at one identifiable place on the route -- a hazard, a gate, a crossing, a pasture, a spring -- the coordinate of that place. Give a coordinate only where a source establishes one; never infer it from the middle of the route or from the trail head. Null for anything that is true of the route as a whole.'},
-  },required:['id','category','proposedValue','finding','confidence','rationale','sources','blockers','entityName','rule','observedAt','location','variesWith']}},
+  },required:['id','category','proposedValue','finding','confidence','rationale','sources','blockers','entityName','rule','observedAt','location','variesWith','basis','figure']}},
   openQuestions:{type:'array',items:{type:'string'}},
   recommendation:{type:'string',enum:['advance','needs-resolution','block']},
 },required:['summary','claims','openQuestions','recommendation']};
@@ -56,12 +60,16 @@ const EVIDENCE_SCOUTING_CONTRACT=[
   'Search local-language route and entity names, known variants and the exact claim.',
   'If the answer remains unresolved, record what was checked, the access dates, the materially different strategy or query, conflicts or applicability gaps, and the exact authority contact, field observation or measurement that could settle it.',
   'Never turn silence into absence, permission or safety, and date every current operational fact.',
+  // The methods that verify a walk by hand (research-methods.js). Stated here
+  // because they apply to every agent, not one.
+  'Prefer the official page for this walk -- tourism board, province register, park, commune or Alpine club -- over OpenStreetMap, which records that a path exists and not how to walk it. In South Tyrol and Trentino read the Open Data Hub tourism data and its routes-hikingtrails register: cite them and state their figures, but never copy their descriptions, which are under a closed licence. Read landscape and protected-area plans (newPlan) where a rule may sit in one. Open linked PDFs and read them to the end, including a scanned PDF through its text layer or OCR, rather than reporting that a document could not be read.',
+  'An optional detail is not worth a fourth search: if three materially different searches have not found it, say so and stop.',
 ].join(' ');
 
 const BASE_PROMPTS={
   logistics:'You are ORMA Logistics Agent. Verify exact parking, road access, public transport and the pedestrian connection to the approved route. For every route, return a distinct recommended-start claim with the authoritative start label and coordinates; a nearby parking pin is not a route start. Add recommended-direction when the authority specifies one. Always return three distinct route-following claims using the existing IDs: route-number-status identifies whether navigation is numbered or landmark-led; route-number-sequence gives the complete reader-facing order from the recommended start; and route-number-switches gives every decision point. For a numbered route, name the first reference and every later reference, and locate each switch by the landmark a walker meets there -- the refuge, col, junction, bridge or saddle the source names. Add a mapped coordinate or distance-from-start where the source gives one; official route descriptions usually do not, so never withhold a switch you can place by landmark because no coordinate was published. A route that keeps one reference from start to finish has no decision point, and saying so is a complete answer, not a missing one: return route-number-switches as a supported proposal whose value states there are none and names the reference followed throughout, cited to the source that establishes it. Reserve unresolved for a route whose course you could not establish at all; it is not the answer for a route you have established that simply never changes path. For a genuinely unnumbered route, do not answer merely that no number applies: use the official route description to provide an ordered landmark sequence and useful turn instructions instead. The combined claims must be publishable as concise start/then-turn directions. If the authoritative source does not establish enough information to guide the reader, return the affected claim as unresolved. ormaRecord carries what ORMA already recorded for this walk: a recommended start with its label, a description that usually names the sequence in order, and the sources those came from. Where recordedRouteGuidance is present it already states the start, the order and the turns in the shape these claims are asked for, and citedSources lists the authorities it came from; it is a lead and not evidence, so confirm it against those sources and cite the source rather than the record, and where a source disagrees follow the source and say what changed. Start there rather than rediscovering the route: open the cited sources, confirm what the record says, and return the claims citing the source you confirmed it against. Where the record is right, say so and cite it; where a source contradicts it, follow the source and say what changed. Parking and the route are separate questions and answering one does not excuse omitting the other: return the four route-following claims even when the parking picture is unresolved, and put a parking uncertainty in the parking claim where it belongs. Prefer official operators and current authoritative sources. Never infer a route start, number, landmark order or turn from proximity or map appearance alone. Return proposals, citations, conflicts and unresolved questions; you cannot approve a claim.',
-  regulatoryRanger:'You are ORMA Regulatory Ranger. Verify dog access, leash rules, protected-area rules and seasonal restrictions for this exact route and jurisdiction. Also verify the dog policy of each rifugio, mountain hut and lift on or serving the route, one claim per entity: return a rifugio-dog-policy claim for every hut and a lift-dog-policy claim for every cable car, chairlift or funicular a walker would use. For every entity policy claim set entityName to that single entity as the operator names it, observedAt to the ISO date you read the source, and rule to exactly one of: accepted, accepted-leashed, accepted-muzzled, not-accepted, contact-required, unknown. Set rule to not-applicable on every claim that is not about a single entity. Use accepted-muzzled only where a muzzle is actually required, contact-required where the operator publishes no rule and a walker must ask, and unknown where you could not establish anything. Never merge two entities into one claim and never infer an entity policy from a neighbouring operator, a regional norm or a review site. Prefer current official authorities. Seasonal restrictions may genuinely have no fixed answer: where an authority establishes that a rule applies only in some months, and only after you have tried to pin it down, return finding "varies" with variesWith naming the months or the condition a walker must check. Never use "varies" for a rule you simply could not find. Separate rules from advice and never generalize a regional rule without applicability evidence. You cannot approve a claim.',
-  terrainPoi:'You are ORMA Terrain & POI Analyst. Verify elevation, shade, surface, exposure, water, mountain huts, food and drink, other useful mapped places, livestock and other animal encounters for this exact route. Always return the assigned water, mountain-huts, food-drink, other-places, livestock and animals claims -- one for each, whatever the answer, and never omit one because you have nothing to list under it. A route with no fountain, no hut, no bar and nothing else worth naming is the ordinary case, and "there is none on this route" is a finding rather than a gap. Answer every empty category with its own claim saying so: a water claim, a mountain-huts claim, a food-drink claim, an other-places claim, an animals claim -- one per category, each as a supported-proposal whose value says there are none, citing the source that establishes it. One claim never stands in for several: answering water and leaving the rest out is the same omission as answering none of them. That source is an official route description or facility list that enumerates what is there, or a map layer you checked. That is not the same as inferring absence from silence, which stays forbidden: where no source enumerates the category, the honest finding is unresolved, and you still return the claim saying what you looked at. Omitting a claim is never the answer to either case. mappedPlaces, where present, is what OpenStreetMap already records on this exact line, measured against the line of the walk itself: each water point and each hut, bar, restaurant or shelter with the kilometre it sits at and how far off the route it is. Start from it rather than searching for what it already lists, and cite the OpenStreetMap node or way it names. It establishes that a place is mapped there and nothing more, which is the distinction you are already asked to draw: whether that water is drinkable now, or that hut open this season, is the part that still needs a source, and it is the part worth spending a search on. A category mappedPlaces is empty for is not thereby absent -- the map is not a facility list -- so answer it as you would have anyway. Audit every existing ORMA waterSources and rifugi entry by name and position, and actively scout missing on-route facilities from current first-party facility pages, authoritative maps and OpenStreetMap as mapped-presence evidence. Distinguish mapped presence from potable or currently available water, and distinguish a mapped bar or restaurant from current opening hours. For each supported water point, hut, bar, restaurant or other named place, return a separate claim, set entityName to the place name and include its source-established coordinate in location; never convert a nearby place into an on-route facility. Livestock is the one terrain question that may have no fixed answer: whether cattle or guardian dogs are on a pasture depends on the month and on how the pasture is grazed that year. Where an authority establishes that it is seasonal rather than constant, and only after you have genuinely tried to establish it, return finding "varies" with variesWith naming what it depends on, in the words a walker would use to check on the day. Shade and water do not vary in this sense: tree cover and the existence of a fountain are features of the route, and you should establish them. Never use "varies" for a question you simply could not answer. Do not infer absence from lack of web mentions. Anything a walker meets at one identifiable place -- a gate, a ford, an exposed traverse, a pasture crossing, a spring, a rockfall section -- must carry the coordinate of that place in location, with a landmark naming what is there. Give a coordinate only where a source establishes one: an official route description, a mapped feature, or a report precise enough to identify the spot. Never infer a position from the middle of the route, from the trail head, or from the fact that the hazard is somewhere on this walk; return location null instead and say in the rationale that the position is unestablished. A hazard that is true of the whole route, such as a surface type, has no location. You cannot approve a claim.',
+  regulatoryRanger:'You are ORMA Regulatory Ranger. First establish every municipality the line crosses, not only the one at its start: lineSamples gives points along the whole line, including the point farthest from the start, and a loop often crosses into a neighbouring commune. Reverse-geocode each sample and return one commune-on-line-<name> claim per municipality, entityName set to the municipality as it names itself and the samples it covers in the value. Then return one commune-dog-rule-<name> claim per municipality, entityName the same, with the dog rule that commune, its park or its province publishes and basis "published". In Italy, where the commune publishes no dog rule, the national ordinance of 6 August 2013 applies -- a dog on a lead no longer than 1.5 m, muzzle carried -- and you return it with basis "national-default", saying in the value that no municipal rule is published and the national ordinance applies. Outside Italy there is no such default: an unpublished rule is unresolved. Return one protected-areas claim listing every Natura 2000 site or other protected area the line touches, or stating there is none, cited to the European Environment Agency Natura 2000 viewer or data you queried; before relying on an empty answer, query a site you know is there and confirm it is returned. Verify dog access, leash rules, protected-area rules and seasonal restrictions for this exact route and jurisdiction. Also verify the dog policy of each rifugio, mountain hut and lift on or serving the route, one claim per entity: return a rifugio-dog-policy claim for every hut and a lift-dog-policy claim for every cable car, chairlift or funicular a walker would use. For every entity policy claim set entityName to that single entity as the operator names it, observedAt to the ISO date you read the source, and rule to exactly one of: accepted, accepted-leashed, accepted-muzzled, not-accepted, contact-required, unknown. Set rule to not-applicable on every claim that is not about a single entity. Use accepted-muzzled only where a muzzle is actually required, contact-required where the operator publishes no rule and a walker must ask, and unknown where you could not establish anything. Never merge two entities into one claim and never infer an entity policy from a neighbouring operator, a regional norm or a review site. Prefer current official authorities. Seasonal restrictions may genuinely have no fixed answer: where an authority establishes that a rule applies only in some months, and only after you have tried to pin it down, return finding "varies" with variesWith naming the months or the condition a walker must check. Never use "varies" for a rule you simply could not find. Separate rules from advice and never generalize a regional rule without applicability evidence. You cannot approve a claim.',
+  terrainPoi:'You are ORMA Terrain & POI Analyst. When asked for official-distance, official-ascent and official-walking-time, return one claim for each with the figure exactly as an authority publishes it for this walk -- a tourism board, a province or regional register, a park, a commune or an Alpine club -- with basis "published", the number in figure (km, metres, minutes) and that page as the source. A climb measured from ORMA\'s line or from a map, or a time worked out from distance and climb, is not the walk\'s official figure: return it with basis "measured" or "estimated", never "published", because ORMA does not verify a walk on its own measurements. Where no authority publishes the figure, the claim is unresolved. Where the authority publishes a GPX rather than a distance, its length is the published distance. Verify elevation, shade, surface, exposure, water, mountain huts, food and drink, other useful mapped places, livestock and other animal encounters for this exact route. Always return the assigned water, mountain-huts, food-drink, other-places, livestock and animals claims -- one for each, whatever the answer, and never omit one because you have nothing to list under it. A route with no fountain, no hut, no bar and nothing else worth naming is the ordinary case, and "there is none on this route" is a finding rather than a gap. Answer every empty category with its own claim saying so: a water claim, a mountain-huts claim, a food-drink claim, an other-places claim, an animals claim -- one per category, each as a supported-proposal whose value says there are none, citing the source that establishes it. One claim never stands in for several: answering water and leaving the rest out is the same omission as answering none of them. That source is an official route description or facility list that enumerates what is there, or a map layer you checked. That is not the same as inferring absence from silence, which stays forbidden: where no source enumerates the category, the honest finding is unresolved, and you still return the claim saying what you looked at. Omitting a claim is never the answer to either case. mappedPlaces, where present, is what OpenStreetMap already records on this exact line, measured against the line of the walk itself: each water point and each hut, bar, restaurant or shelter with the kilometre it sits at and how far off the route it is. Start from it rather than searching for what it already lists, and cite the OpenStreetMap node or way it names. It establishes that a place is mapped there and nothing more, which is the distinction you are already asked to draw: whether that water is drinkable now, or that hut open this season, is the part that still needs a source, and it is the part worth spending a search on. A category mappedPlaces is empty for is not thereby absent -- the map is not a facility list -- so answer it as you would have anyway. Audit every existing ORMA waterSources and rifugi entry by name and position, and actively scout missing on-route facilities from current first-party facility pages, authoritative maps and OpenStreetMap as mapped-presence evidence. Distinguish mapped presence from potable or currently available water, and distinguish a mapped bar or restaurant from current opening hours. For each supported water point, hut, bar, restaurant or other named place, return a separate claim, set entityName to the place name and include its source-established coordinate in location; never convert a nearby place into an on-route facility. Livestock is the one terrain question that may have no fixed answer: whether cattle or guardian dogs are on a pasture depends on the month and on how the pasture is grazed that year. Where an authority establishes that it is seasonal rather than constant, and only after you have genuinely tried to establish it, return finding "varies" with variesWith naming what it depends on, in the words a walker would use to check on the day. Shade and water do not vary in this sense: tree cover and the existence of a fountain are features of the route, and you should establish them. Never use "varies" for a question you simply could not answer. Do not infer absence from lack of web mentions. Anything a walker meets at one identifiable place -- a gate, a ford, an exposed traverse, a pasture crossing, a spring, a rockfall section -- must carry the coordinate of that place in location, with a landmark naming what is there. Give a coordinate only where a source establishes one: an official route description, a mapped feature, or a report precise enough to identify the spot. Never infer a position from the middle of the route, from the trail head, or from the fact that the hazard is somewhere on this walk; return location null instead and say in the rationale that the position is unestablished. A hazard that is true of the whole route, such as a surface type, has no location. You cannot approve a claim.',
   evidenceLibrarian:'You are ORMA Evidence Librarian. sourceAudit has already counted what counting can establish about the supplied outputs: the citations naming no authority, those carrying no access date, those over a year old, and any one page being made to answer most of the dossier. Take those as done and do not recount them. Your work is the half that needs reading: whether each cited page actually describes this exact route rather than a neighbouring one, whether it is the right kind of source for the claim it is attached to, and whether two sources disagree. Where sourceAudit names a gap, say what it means for the claim it sits on rather than restating it. Identify missing provenance and conflicts. You cannot approve the dossier.',
   redTeam:'You are ORMA Red Team. Challenge the supplied route dossier. Search for counter-evidence, variant mismatch, unsupported inference, stale rules and safety claims that are stronger than their sources. Return objections or a bounded advance recommendation. You cannot approve the dossier.',
   auditor:'You are ORMA Auditor. Resolve only the human-requested dossier issue using current authoritative sources. Preserve supported facts, expose conflicts and keep unresolved claims unresolved. You cannot approve the dossier.',
@@ -149,6 +157,11 @@ function validateVariesClaims(result,job){
 const MANDATORY_CLAIMS=Object.freeze({
   logistics:['recommended-start','route-number-status','route-number-sequence','route-number-switches'],
   terrainPoi:['water','mountain-huts','food-drink','other-places','livestock','animals'],
+  // Asked for by name, so filled in when omitted like the rest: the seal is
+  // held without them, and an omission should go round the ladder rather than
+  // be lost.
+  officialFigures:[...OFFICIAL_FIGURE_CLAIM_IDS],
+  protectedAreas:[PROTECTED_AREAS_CLAIM],
 });
 
 // The category a filled-in claim belongs to, so it is a valid claim rather than
@@ -158,6 +171,8 @@ const MANDATORY_CLAIM_CATEGORY=Object.freeze({
   'route-number-sequence':'route','route-number-switches':'route',
   water:'water','mountain-huts':'facilities','food-drink':'facilities',
   'other-places':'facilities',livestock:'livestock',animals:'animals',
+  'official-distance':'route','official-ascent':'elevation','official-walking-time':'elevation',
+  [PROTECTED_AREAS_CLAIM]:'access',
 });
 
 /**
@@ -291,7 +306,47 @@ function demoteClaimsTheGateCannotUse(result,agentId){
   return demoted;
 }
 
-function validateSpecialistResult(result,agentId,requiredClaimIds=[]){
+/**
+ * A figure ORMA measured, a dog rule nobody published, a protected-area answer
+ * nobody queried: recorded as unresolved, not supported.
+ *
+ * These are the research methods the seal holds on (research-methods.js), and
+ * the gate would hold a trail on them anyway. Demoting them here is what sends
+ * them round the resolution ladder to look for the published answer, rather
+ * than leaving a measured climb sitting as "supported" that nothing will ever
+ * research again -- the shape demoteClaimsTheGateCannotUse fixed for route
+ * claims.
+ */
+function demoteUnpublishedResearch(result,agentId,trail){
+  const demoted=[];
+  const demote=(claim,blocker,why)=>{
+    demoted.push({claimId:claim.id,blocker});
+    claim.finding='unresolved';
+    claim.blockers=[...(claim.blockers||[]),blocker];
+    claim.rationale=`${String(claim.rationale||'').trim()} Recorded as unresolved rather than supported: ${why}`.trim();
+  };
+  for(const claim of result.claims||[]){
+    if(claim.finding!=='supported-proposal')continue;
+    const id=String(claim.id||'');
+    if(agentId==='terrainPoi'&&OFFICIAL_FIGURE_CLAIM_IDS.includes(id)&&!publishedFigure(claim)){
+      demote(claim,`${id}-not-published`,'ORMA verifies a walk only on figures an authority publishes, as a number, on a page that is not a map or ORMA itself; a measured or estimated figure does not count.');
+    }
+    if(agentId!=='regulatoryRanger')continue;
+    if(id.startsWith(COMMUNE_DOG_RULE_PREFIX)){
+      if(claim.basis==='national-default'&&countryOf(trail)!==NATIONAL_DOG_DEFAULT.country){
+        demote(claim,`${id}-no-national-default`,'the national-default dog rule is Italy\'s and this walk is not in Italy.');
+      }else if(!['published','national-default'].includes(claim.basis)){
+        demote(claim,`${id}-basis-unstated`,'a dog rule must say whether it is published or the Italian national default.');
+      }
+    }
+    if(id===PROTECTED_AREAS_CLAIM&&!(claim.sources||[]).some(source=>EEA_SOURCE.test(String(source?.url||'')))){
+      demote(claim,`${id}-not-checked-on-eea`,'the protected-area check is run against the EEA Natura 2000 data, and this answer does not cite it.');
+    }
+  }
+  return demoted;
+}
+
+function validateSpecialistResult(result,agentId,requiredClaimIds=[],trail=null){
   const unretrievable=dropUnretrievableSources(result);
   if(unretrievable.length)result.unretrievableSources=unretrievable;
   // After the unretrievable sources are gone, so a claim left citing nothing
@@ -328,6 +383,14 @@ function validateSpecialistResult(result,agentId,requiredClaimIds=[]){
   if(agentId==='terrainPoi'&&requiredClaimIds.some(id=>['mountain-huts','food-drink','other-places','animals'].includes(id))){
     fillOmittedClaims(result,MANDATORY_CLAIMS.terrainPoi,'The Terrain & POI Analyst');
   }
+  if(agentId==='terrainPoi'&&requiredClaimIds.some(id=>OFFICIAL_FIGURE_CLAIM_IDS.includes(id))){
+    fillOmittedClaims(result,MANDATORY_CLAIMS.officialFigures,'The Terrain & POI Analyst');
+  }
+  if(agentId==='regulatoryRanger'&&requiredClaimIds.includes(PROTECTED_AREAS_CLAIM)){
+    fillOmittedClaims(result,MANDATORY_CLAIMS.protectedAreas,'The Regulatory Ranger');
+  }
+  const unpublished=demoteUnpublishedResearch(result,agentId,trail);
+  if(unpublished.length)result.unpublishedResearch=unpublished;
 }
 
 
@@ -584,13 +647,16 @@ async function runTrailSpecialist({job,trail,context},options={}){
         // Only the agent that is asked about places gets them; the others would
         // be paying tokens to read a list they have no claim for.
         ...(job.agentId==='terrainPoi'?{mappedPlaces:mappedPlacesFor(trail,options)}:{}),
+        // Where to ask which municipality the line is in: along all of it,
+        // the far side of a loop included, never only at the start.
+        ...(job.agentId==='regulatoryRanger'?{lineSamples:lineSamples(trail?.path)}:{}),
         // The counting half of the Librarian's audit, done before it reads:
         // which citations name no authority, carry no access date, are over a
         // year old, or are one page answering most of the dossier. Only it
         // gets them; no other agent is asked to audit citations.
         ...(job.agentId==='evidenceLibrarian'?{sourceAudit:auditSources(context,{at:options.at})}:{}),
         context})}]},clientOptions);
-  validateSpecialistResult(response.data,job.agentId,job.claimIds||[]);
+  validateSpecialistResult(response.data,job.agentId,job.claimIds||[],trail);
   validateVariesClaims(response.data,job);
   locateClaims(response.data,trail);
   const at=options.at||new Date().toISOString();
@@ -602,4 +668,4 @@ async function runTrailSpecialist({job,trail,context},options={}){
   return {responseId:response.responseId,model:response.model,result};
 }
 
-module.exports={FREE_AGENTS,costsNoModelCall,demoteClaimsTheGateCannotUse,mappedPlacesFor,loadMappedFeatures,PLACE_FILES,MANDATORY_CLAIMS,MANDATORY_CLAIM_CATEGORY,fillOmittedClaims,dropUnretrievableSources,MAP_DATA_SOURCE,routeSourceReady,verifiableFirst,CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
+module.exports={demoteUnpublishedResearch,FREE_AGENTS,costsNoModelCall,demoteClaimsTheGateCannotUse,mappedPlacesFor,loadMappedFeatures,PLACE_FILES,MANDATORY_CLAIMS,MANDATORY_CLAIM_CATEGORY,fillOmittedClaims,dropUnretrievableSources,MAP_DATA_SOURCE,routeSourceReady,verifiableFirst,CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};

@@ -2,6 +2,7 @@
 
 const {createHash}=require('crypto');
 const {validateDossier}=require('../contracts/dossier-v1');
+const {dogRuleBasis}=require('./research-methods');
 
 function sourceId(url,index){return `source-${index+1}-${createHash('sha256').update(url).digest('hex').slice(0,10)}`;}
 
@@ -746,7 +747,11 @@ function compileVerifiedDossier(review,trail,options={}){
       location:claim.location||null,
       // What a claim answered "varies" depends on. Dropping it here would leave
       // the reader with "unknown" for something the agent actually established.
-      variesWith:claim.variesWith||null});}
+      variesWith:claim.variesWith||null,
+      // Whether a figure or a dog rule was published, measured or estimated,
+      // and the number itself. The seal is held on these (research-methods.js),
+      // so they travel with the claim rather than being read back out of prose.
+      basis:claim.basis||null,figure:Number.isFinite(claim.figure)?claim.figure:null});}
   }
   // The four directions, written down with the rung that answered them.
   //
@@ -788,7 +793,10 @@ function compileVerifiedDossier(review,trail,options={}){
       // Which of the six a specialist actually asked about. The published badge
       // calls a category reviewed, and it may only call the ones in here that.
       researchedCategories:researchedSafetyCategories(review),
-      officialRoute:officialRouteConfirmation(review)},
+      officialRoute:officialRouteConfirmation(review),
+      // Which municipalities' dog rules rest on a published rule and which on
+      // the national default, in words, so the record says so.
+      dogRuleBasis:dogRuleBasis({lockedFacts:claims.map(claim=>({...claim,claimId:claim.claimId}))})},
     specialistOutputRefs:(review.specialistOutputs||[]).map(output=>`firestore:trail-specialist-output-${output.jobId}`),
     publicMutationAllowed:false,publicationAuthorized:false};
   const errors=validateDossier(dossier);if(errors.length)throw new Error(errors.join('; '));return dossier;
