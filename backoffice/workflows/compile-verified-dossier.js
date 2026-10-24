@@ -26,8 +26,8 @@ function numberedRouteReference(review,trail){
  * It now asks the question the contract asks everywhere else: is the start
  * established, and is the reader told by whom. An authority still wins where
  * one exists, and every value says in its own words which rung it came from --
- * a record answer carries "ORMA's own suggestion from the walk it recorded, not
- * an operator's recommendation" and tells the reader to check access. Refusing
+ * a record answer carries "This is ORMA's suggestion, not one published by the
+ * trail's operator" and tells the reader to check access. Refusing
  * it outright published nothing at all, which serves a walker worse than an
  * honestly-labelled start.
  *
