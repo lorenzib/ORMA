@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-12142337",
   "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 13,
@@ -48,12 +48,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Steep, loose rock and gravel up to and down from the Peitlerscharte (up to about 35%).",
     "Scree slopes below the Scharte.",
     "Gravel tracks shared with mountain bikes.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

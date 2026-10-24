@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-5512443",
   "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 8.3,
@@ -34,13 +34,12 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Heat risk is high on this walk: start early and carry extra water.",
     "About 2.8 km on village streets and narrow farm roads with cars.",
     "Stony, dry path on the Sonnenberg; short drops beside the path near the Wallburgboden.",
     "Short flights of steps on the Wallburgweg.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

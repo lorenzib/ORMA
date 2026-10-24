@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "giro-del-bulacia",
   "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 8.5,
@@ -48,12 +48,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "About 0.7 km of quiet paved road each way between the gondola and the loop (path 14), plus a short paved stretch in Compatsch, with hotel and service vehicles.",
     "Short stone steps near the Puflatsch top station.",
     "Pasture gates and electric fencing on the plateau.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-19974724",
   "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "One way",
     "distanceKm": 3,
@@ -27,12 +27,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "One crossing of the main road at the Hotel Lake & River.",
     "About 400 m on paved lanes and a service road.",
     "Suspension bridge with a metal grid floor.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",
