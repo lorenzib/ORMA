@@ -36,6 +36,7 @@
  *   node scripts/build-offline-packages.js --trail=a,b   only these
  *   node scripts/build-offline-packages.js --refresh     fetch extracts again
  *   node scripts/build-offline-packages.js --prune       drop unverified ones
+ *   node scripts/build-offline-packages.js --stale       only missing or out of date
  *   node scripts/build-offline-packages.js --registry    only rewrite the list
  */
 
@@ -232,10 +233,17 @@ async function sampledProfile(trail){
   };
 }
 
-async function elevationProfileFor(trail){
-  const stored = Array.isArray(trail.elevationProfile) && trail.elevationProfile.length >= 2
+function storedProfile(trail){
+  return Array.isArray(trail.elevationProfile) && trail.elevationProfile.length >= 2
     ? { source:'ORMA route profile', points:trail.elevationProfile.map(point => ({ km:point.km, elev:point.elev })) }
-    : await sampledProfile(trail);
+    : null;
+}
+
+async function elevationProfileFor(trail){
+  return profileFile(trail, storedProfile(trail) || await sampledProfile(trail));
+}
+
+function profileFile(trail, stored){
   const last = stored.points[stored.points.length - 1];
   return {
     schemaVersion:1,
@@ -358,8 +366,47 @@ function safetyFor(trail, profile, retrievedAt){
   };
 }
 
+function jsonText(value, pretty = true){
+  return pretty ? `${JSON.stringify(value, null, 2)}\n` : JSON.stringify(value);
+}
+
 function writeJson(file, value, pretty = true){
-  fs.writeFileSync(file, pretty ? `${JSON.stringify(value, null, 2)}\n` : JSON.stringify(value));
+  fs.writeFileSync(file, jsonText(value, pretty));
+}
+
+/**
+ * Why a Verified trail's package needs building, or null when it says what the
+ * trail record says. Answered without the network: the route, the stored
+ * elevation profile and the safety facts are compared byte for byte with what
+ * the builder would write, the safety facts at the extract date the package
+ * already carries. A trail whose profile was sampled from Open-Meteo keeps the
+ * sampled one, which only a rebuild of that trail replaces.
+ *
+ * The scheduled workflow builds only these, so a run without the extract cache
+ * fetches the corridors that need one and leaves every other package's bytes,
+ * and so its revision, alone.
+ */
+function staleReason(trail, packagesDir = PACKAGES_DIR){
+  const dir = path.join(packagesDir, trail.id);
+  const read = file => fs.existsSync(path.join(dir, file)) ? fs.readFileSync(path.join(dir, file), 'utf8') : null;
+  if(read('manifest.json') === null) return 'no package';
+  if(read('route.geojson') !== jsonText(routeFor(trail))) return 'route changed';
+  const stored = storedProfile(trail);
+  const profileText = read('elevation-profile.json');
+  if(stored && profileText !== jsonText(profileFile(trail, stored))) return 'elevation profile changed';
+  const safetyText = read('safety.json');
+  if(profileText === null || safetyText === null) return 'files missing';
+  const retrievedAt = String(JSON.parse(safetyText).generatedAt || '').slice(0, 10);
+  if(safetyText !== jsonText(safetyFor(trail, JSON.parse(profileText), retrievedAt))) return 'safety facts changed';
+  return null;
+}
+
+/** The Verified, non-pilot trails whose package is missing or out of date. */
+function stalePackages(trails, packagesDir = PACKAGES_DIR){
+  return verifiedTrails(trails)
+    .filter(trail => !PILOT_IDS.includes(trail.id))
+    .map(trail => ({ id:trail.id, reason:staleReason(trail, packagesDir) }))
+    .filter(entry => entry.reason);
 }
 
 async function buildPackage(trail, options){
@@ -385,12 +432,19 @@ async function buildPackage(trail, options){
   return { manifest, cached:extract.cached };
 }
 
-function packageIds(){
-  if(!fs.existsSync(PACKAGES_DIR)) return [];
-  return fs.readdirSync(PACKAGES_DIR, { withFileTypes:true })
-    .filter(entry => entry.isDirectory() && fs.existsSync(path.join(PACKAGES_DIR, entry.name, 'manifest.json')))
+function packageIds(packagesDir = PACKAGES_DIR){
+  if(!fs.existsSync(packagesDir)) return [];
+  return fs.readdirSync(packagesDir, { withFileTypes:true })
+    .filter(entry => entry.isDirectory() && fs.existsSync(path.join(packagesDir, entry.name, 'manifest.json')))
     .map(entry => entry.name)
     .sort();
+}
+
+/** Remove the package of every trail that is no longer Verified; the pilots stay. */
+function prunePackages(verifiedIds, packagesDir = PACKAGES_DIR){
+  const removed = packageIds(packagesDir).filter(id => !PILOT_IDS.includes(id) && !verifiedIds.has(id));
+  removed.forEach(id => fs.rmSync(path.join(packagesDir, id), { recursive:true, force:true }));
+  return removed;
 }
 
 /** Rewrite the generated list of downloadable trails in offline-packages.js. */
@@ -411,11 +465,12 @@ function writeRegistry(){
 }
 
 function parseArguments(argv){
-  const options = { trailIds:[], refresh:false, prune:false, registryOnly:false };
+  const options = { trailIds:[], refresh:false, prune:false, stale:false, registryOnly:false };
   argv.forEach(argument => {
     if(argument.startsWith('--trail=')) options.trailIds.push(...argument.slice(8).split(',').filter(Boolean));
     else if(argument === '--refresh') options.refresh = true;
     else if(argument === '--prune') options.prune = true;
+    else if(argument === '--stale') options.stale = true;
     else if(argument === '--registry') options.registryOnly = true;
     else throw new Error(`Unknown argument: ${argument}`);
   });
@@ -433,9 +488,7 @@ async function main(){
   const verifiedIds = new Set(verified.map(trail => trail.id));
 
   if(options.prune){
-    for(const id of packageIds()){
-      if(PILOT_IDS.includes(id) || verifiedIds.has(id)) continue;
-      fs.rmSync(path.join(PACKAGES_DIR, id), { recursive:true, force:true });
+    for(const id of prunePackages(verifiedIds)){
       console.log(`[prune] ${id} is no longer Verified; its package was removed.`);
     }
   }
@@ -445,6 +498,11 @@ async function main(){
     const unknown = options.trailIds.filter(id => !verifiedIds.has(id) || PILOT_IDS.includes(id));
     if(unknown.length) throw new Error(`Not a Verified, non-pilot trail: ${unknown.join(', ')}`);
     targets = targets.filter(trail => options.trailIds.includes(trail.id));
+  }
+  if(options.stale){
+    const stale = new Map(stalePackages(trails).map(entry => [entry.id, entry.reason]));
+    targets = targets.filter(trail => stale.has(trail.id));
+    targets.forEach(trail => console.log(`[stale] ${trail.id}: ${stale.get(trail.id)}`));
   }
 
   const failures = [];
@@ -465,7 +523,10 @@ async function main(){
   }
 }
 
-module.exports = { corridorFor, difficultyOf, isVerified, verifiedTrails, safetyFor, PILOT_IDS };
+module.exports = {
+  corridorFor, difficultyOf, isVerified, verifiedTrails, safetyFor, staleReason, stalePackages,
+  prunePackages, parseArguments, PILOT_IDS,
+};
 
 if(require.main === module){
   main().catch(error => {
