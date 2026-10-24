@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-23T18:25:04.499Z",
+  "generatedAt": "2026-10-24T11:02:31.481Z",
   "regions": {
     "dolomites": {
-      "trailCount": 118,
-      "trails": "data/regions/dolomites-trails.js?v=e5ef094ab45a",
+      "trailCount": 121,
+      "trails": "data/regions/dolomites-trails.js?v=1af0f8964966",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -123,6 +123,9 @@
         "osm-6453504": "data/trail-details/osm-6453504.js?v=0fed0ba26429",
         "osm-1671736": "data/trail-details/osm-1671736.js?v=7b1f8dd70b26",
         "osm-5597577": "data/trail-details/osm-5597577.js?v=60908ad76a6d",
+        "osm-12173549": "data/trail-details/osm-12173549.js?v=ebf060d981f2",
+        "osm-2376630": "data/trail-details/osm-2376630.js?v=2c21bfb68d68",
+        "osm-11270309": "data/trail-details/osm-11270309.js?v=ae20a0397dc8",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -312,6 +315,9 @@
     "osm-6453504": "dolomites",
     "osm-1671736": "dolomites",
     "osm-5597577": "dolomites",
+    "osm-12173549": "dolomites",
+    "osm-2376630": "dolomites",
+    "osm-11270309": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -502,6 +508,9 @@
     "osm-6453504": "walderlebnispfad-aschbach",
     "osm-1671736": "hofeweg",
     "osm-5597577": "rundweg-gsindboden",
+    "osm-12173549": "muhlenweg",
+    "osm-2376630": "rundweg-katharinaberg",
+    "osm-11270309": "passeggiata-delle-sorgenti-quellenpromenade",
     "osm-5479112": "chemin-des-diligences",
     "osm-9937537": "le-mont-jovet",
     "osm-10539302": "sentier-eco-sylve-de-poingt-ravier",
@@ -675,6 +684,9 @@
     "walderlebnispfad-aschbach": "osm-6453504",
     "hofeweg": "osm-1671736",
     "rundweg-gsindboden": "osm-5597577",
+    "muhlenweg": "osm-12173549",
+    "rundweg-katharinaberg": "osm-2376630",
+    "passeggiata-delle-sorgenti-quellenpromenade": "osm-11270309",
     "chemin-des-diligences": "osm-5479112",
     "le-mont-jovet": "osm-9937537",
     "sentier-eco-sylve-de-poingt-ravier": "osm-10539302",

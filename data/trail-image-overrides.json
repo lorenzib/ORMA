@@ -221,6 +221,23 @@
       }
     },
     {
+      "id": "osm-11270309",
+      "approvedReviewId": "commons-osm-11270309-on-route",
+      "approvedAt": "2026-10-24T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11270309-salurn.jpg",
+        "heroImage": "images/trails/osm-11270309-salurn.jpg",
+        "imageAlt": "St. Andreas church in Salurn, its tall brick bell tower and pale façade on the village square, a dolphin fountain in the foreground",
+        "imageCredit": "St. Andreas church in Salurn",
+        "imageCreditText": "St. Andreas church in Salurn by HaSt",
+        "imageCreator": "HaSt",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Salurn_-_St._Andreas_4.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-11517208",
       "approvedReviewId": "hand-audit-osm-11517208",
       "approvedAt": "2026-10-24T16:00:00.000Z",
@@ -812,6 +829,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Terento_dal_sentiero_panoramico.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12173549",
+      "approvedReviewId": "commons-osm-12173549-on-route",
+      "approvedAt": "2026-10-24T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12173549-terenten-mill.jpg",
+        "heroImage": "images/trails/osm-12173549-terenten-mill.jpg",
+        "imageAlt": "A wooden corn mill with a water wheel beside the Mühlenweg path in Terenten, the path climbing past a wooden fence into the woods",
+        "imageCredit": "A corn mill on the Mühlenweg in Terenten",
+        "imageCreditText": "A corn mill on the Mühlenweg in Terenten by Rainerhaufe",
+        "imageCreator": "Rainerhaufe",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kornm%C3%BChle_M%C3%BChlensteig_Terenten.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1908,6 +1942,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castelfeder_3294.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-2376630",
+      "approvedReviewId": "commons-osm-2376630-on-route",
+      "approvedAt": "2026-10-24T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-2376630-katharinaberg.jpg",
+        "heroImage": "images/trails/osm-2376630-katharinaberg.jpg",
+        "imageAlt": "The hill village of Katharinaberg in the Schnalstal, houses and a white church with a red spire on a green slope below dense forest",
+        "imageCredit": "Katharinaberg in the Schnalstal",
+        "imageCreditText": "Katharinaberg in the Schnalstal by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Monte_Santa_Caterina_04.jpg",
         "imageSourceType": "licensed-source"
       }
     },
