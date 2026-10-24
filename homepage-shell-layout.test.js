@@ -184,6 +184,23 @@ describe('logged-in discovery workspace layout', () => {
     expect(html).toContain('homepage-mobile.css?v=20260916-1');
   });
 
+  test('the ranked list can be reached between 701 and 1040 px', () => {
+    // The Map / List switch went in August; the CSS that hid the other pane
+    // stayed, so tablets saw a map and no list. With no switch in the page,
+    // no rule may hide a pane by data-pane.
+    expect(html).not.toContain('data-li-pane');
+    expect(html).not.toMatch(/class="li-body"[^>]*data-pane=/);
+    expect(css).not.toMatch(/\[data-pane=/);
+    const start = css.indexOf('@media (min-width:701px) and (max-width:1040px){');
+    expect(start).toBeGreaterThan(-1);
+    const tablet = css.slice(start, css.indexOf('\n}\n', start));
+    expect(tablet).not.toMatch(/\.li-list[^{]*\{[^}]*display:none/);
+    // Stacked, one column: the unconditional two-column .li-body rule later in
+    // the file would put a 480px list beside a squeezed map, so the tablet
+    // rule needs the id to win.
+    expect(tablet).toMatch(/#returningCustomerHomepage \.li-body\{grid-template-columns:1fr;/);
+  });
+
   test('uses a dashed divider instead of a match box and keeps route facts legible', () => {
     expect(css).toMatch(/\.map-callout \.li-match\s*\{[^}]*background:transparent;[^}]*border-left:1px dashed var\(--paper-line\);/s);
     expect(css).toMatch(/\.li-row-meta\s*\{[^}]*color:var\(--ink\);[^}]*font-weight:500;/s);
