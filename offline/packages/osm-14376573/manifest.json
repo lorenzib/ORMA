@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14376573",
   "name": "Crêt de Talière",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T17:58:06.478Z",
+  "version": "2026.10.24-beta.2",
+  "generatedAt": "2026-10-24T12:00:57.466Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 262568,
+  "packageBytes": 262519,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.19973,
@@ -35,7 +35,7 @@
   },
   "elevationProfile": {
     "strategy": "route-profile-v1",
-    "pointCount": 15,
+    "pointCount": 14,
     "distanceKm": 4.1,
     "ascentM": 291,
     "source": "ORMA route profile",
@@ -224,8 +224,8 @@
       "required": true,
       "label": "Crêt de Talière stored route elevation profile",
       "url": "elevation-profile.json",
-      "bytes": 876,
-      "sha256": "0378f3c8338d2638a7803f36bf96fb2ddcb5e4931b2750762c4fd053381dc9c9"
+      "bytes": 827,
+      "sha256": "417f1cc969810455d9ae28f52ab828e75da4e75656c4bb4934c92148dee7e467"
     },
     {
       "role": "safety",
