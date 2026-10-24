@@ -35,10 +35,13 @@ describe('the existing-site verification boundary',()=>{
     // de Pré Lombard, the Anton Schwingshackl Weg, Marmottes, La Plagne and the
     // Demoiselles Coiffées -- gained an ORMA illustration (they stay Reviewed,
     // never Verified), then 184 and 182 with PanaRaida, the Feldthurns
-    // Panoramaweg, the Antholzer See loop and the Poststeig.
+    // Panoramaweg, the Antholzer See loop and the Poststeig. Then 181 when
+    // Chalets de Salvadon, Alpage de Commune and Rundweg Rotwand were removed
+    // outright, and 179 because their photographs went with them: withdrawn,
+    // they were drafts with artwork, which this boundary still counted.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(184);
-    expect(currentSiteTrails(catalogue)).toHaveLength(182);
+    expect(catalogue).toHaveLength(181);
+    expect(currentSiteTrails(catalogue)).toHaveLength(179);
   });
 
   test('requires the artwork the public trail page needs',()=>{

@@ -9,10 +9,10 @@
     "regions-config.js"
   ],
   "totals": {
-    "sourceRecords": 184,
-    "canonicalRecords": 184,
+    "sourceRecords": 181,
+    "canonicalRecords": 181,
     "published": 180,
-    "draft": 4,
+    "draft": 1,
     "errors": 0
   },
   "byOrigin": {
@@ -22,9 +22,9 @@
       "draft": 0
     },
     "osm": {
-      "total": 159,
+      "total": 156,
       "published": 155,
-      "draft": 4
+      "draft": 1
     }
   },
   "excludedFromGeneration": [
@@ -33,27 +33,6 @@
       "slug": "sentiero-alpago-natura",
       "reasons": [
         "distance 71.1 km exceeds the 50 km publication limit"
-      ]
-    },
-    {
-      "id": "osm-12039246",
-      "slug": "rundweg-rotwand",
-      "reasons": [
-        "withdrawn pending review: not-a-walk"
-      ]
-    },
-    {
-      "id": "osm-19095412",
-      "slug": "chalets-de-salvadon",
-      "reasons": [
-        "withdrawn pending review: dogs-not-accepted"
-      ]
-    },
-    {
-      "id": "osm-19095413",
-      "slug": "alpage-de-commune",
-      "reasons": [
-        "withdrawn pending review: dogs-not-accepted"
       ]
     }
   ],
