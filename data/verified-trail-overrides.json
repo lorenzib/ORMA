@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-25T09:36:16.965Z",
+  "updatedAt": "2026-10-25T12:40:14.455Z",
   "trails": [
     {
       "id": "cinque-torri-assisted",
@@ -65308,6 +65308,735 @@
         "region": "dolomites",
         "curated": true,
         "publicationApprovalId": "v27AeBhWQC9SSlxdUfrF"
+      }
+    },
+    {
+      "id": "geotrail-bulla",
+      "candidateId": "geotrail-bulla",
+      "approvalId": "mTshNgUX2OhJOluJbRqL",
+      "generatedAt": "2026-10-25T12:40:14.455Z",
+      "verificationScope": "routeReviewed",
+      "fields": {
+        "name": "Geotrail Bula / Pufels / Bulla",
+        "desc": "A loop from Panider Sattel on the Geotrail, a geology trail with information panels on how the Dolomites formed: across the meadows and into the forest below the Puflatsch, down the old municipal road to the hamlet of Pufels (Bulla), and back past Col da Locia. The official route lists 6.9 km and 345 m of ascent.",
+        "tips": "Bus 172 stops at the Panider Sattel start, or park at the pass. About two hours, half of it in the forest; bring water, as the only fountain is at Pufels church, a short detour at halfway. Keep your dog on a lead of at most 1.5 m and carry a muzzle in the village and other public places (Italian national rule), never leave it unattended and pick up after it (Kastelruth police ordinance). Cows may graze the meadows near the pass.",
+        "imageIcon": "images/trails/geotrail-bulla-pufels-church.jpg",
+        "imageCredit": "Pfarrkirche von Pufels",
+        "heroImage": "images/trails/geotrail-bulla-pufels-church.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pfarrkirche_von_Pufels02.jpg",
+        "imageCreator": "Asia",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageCreditText": "Pfarrkirche von Pufels by Asia",
+        "imageAlt": "The small parish church of Pufels with its pointed spire and walled churchyard, wooded slopes and a pale limestone peak behind, in early summer.",
+        "imageSourceType": "licensed-source",
+        "ormaVerified": false,
+        "routeNumberGuidance": {
+          "mode": "numbered",
+          "start": "Start at Panider Sattel / Passo Pinei, Pas Pinëi bus stop (line 172), by Hotel Pinei Nature & Spirit (46.58020, 11.62280). ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation. Check current access before travelling.",
+          "status": "The mapped route carries trail numbers 3A, 24; look for them at junctions. ORMA has not confirmed how they appear on local signs. ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.",
+          "sequence": "This walk carries no route number of its own. The mapped route runs along waymarked routes 3A, 24 and then 3A, in that order from the start. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
+          "switches": "On the mapped route, waymarked route 3A gives way to waymarked route 24 about 2.9 km from the start. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
+          "establishedBy": {
+            "start": "orma-record",
+            "status": "orma-record",
+            "sequence": "route-relations",
+            "switches": "route-relations"
+          },
+          "sources": [
+            {
+              "label": "OpenStreetMap route 3A",
+              "url": "https://www.openstreetmap.org/relation/9450633",
+              "authority": "OpenStreetMap",
+              "accessedAt": "2026-10-23T18:38:23.413Z"
+            },
+            {
+              "label": "OpenStreetMap route 24",
+              "url": "https://www.openstreetmap.org/relation/9450646",
+              "authority": "OpenStreetMap",
+              "accessedAt": "2026-10-23T18:38:23.413Z"
+            }
+          ]
+        },
+        "area": "Kastelruth / Castelrotto (Pufels / Bulla)",
+        "distance": 7,
+        "elevation": 345,
+        "hours": "2–2.5",
+        "terrainType": "Forest road & meadow path",
+        "terrainRank": 1,
+        "safetyLevel": "moderate",
+        "waterSources": [
+          {
+            "km": 3,
+            "lat": 46.564405,
+            "lng": 11.636588,
+            "osmId": "node/4988589237",
+            "label": "Drinking fountain by Pufels church (about 115 m off the path)",
+            "seasonal": true
+          }
+        ],
+        "startPoint": {
+          "lat": 46.5802,
+          "lng": 11.6228,
+          "label": "Panider Sattel / Passo Pinei, Pas Pinëi bus stop (line 172), by Hotel Pinei Nature & Spirit"
+        },
+        "paid": false,
+        "shadeCoverage": 40,
+        "heatRisk": "moderate",
+        "exposure": false,
+        "reviewedAt": "2026-10-23",
+        "reviewedBy": "ORMA verified-trail workflow",
+        "verified": {
+          "categories": [],
+          "sources": [
+            "Locked ORMA evidence dossier"
+          ],
+          "date": "2026-10-23"
+        },
+        "graduation": {
+          "status": "in-progress",
+          "required": [
+            "photo",
+            "route",
+            "routeNumbers",
+            "mapPoints",
+            "elevation",
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
+          ],
+          "completed": [
+            "photo",
+            "route",
+            "routeNumbers",
+            "mapPoints",
+            "elevation"
+          ],
+          "heldFor": [
+            "official-climb-unpublished",
+            "official-time-unpublished",
+            "official-distance-unpublished",
+            "communes-unchecked",
+            "protected-areas-unchecked",
+            "photo-place-unconfirmed"
+          ]
+        },
+        "verifiedAt": "2026-10-23T18:38:23.413Z",
+        "id": "geotrail-bulla",
+        "path": [
+          [
+            46.58025,
+            11.62282
+          ],
+          [
+            46.58021,
+            11.62267
+          ],
+          [
+            46.5793,
+            11.62314
+          ],
+          [
+            46.57882,
+            11.62323
+          ],
+          [
+            46.5787,
+            11.6229
+          ],
+          [
+            46.57883,
+            11.62278
+          ],
+          [
+            46.57885,
+            11.62249
+          ],
+          [
+            46.57866,
+            11.62199
+          ],
+          [
+            46.57828,
+            11.62151
+          ],
+          [
+            46.57819,
+            11.62088
+          ],
+          [
+            46.5783,
+            11.62006
+          ],
+          [
+            46.57827,
+            11.61879
+          ],
+          [
+            46.57816,
+            11.61945
+          ],
+          [
+            46.57791,
+            11.61983
+          ],
+          [
+            46.57736,
+            11.62028
+          ],
+          [
+            46.57704,
+            11.62028
+          ],
+          [
+            46.57692,
+            11.62049
+          ],
+          [
+            46.57672,
+            11.62059
+          ],
+          [
+            46.57641,
+            11.62054
+          ],
+          [
+            46.57619,
+            11.62029
+          ],
+          [
+            46.57602,
+            11.62025
+          ],
+          [
+            46.57579,
+            11.61969
+          ],
+          [
+            46.57565,
+            11.6196
+          ],
+          [
+            46.57547,
+            11.61974
+          ],
+          [
+            46.57506,
+            11.61985
+          ],
+          [
+            46.57475,
+            11.61924
+          ],
+          [
+            46.57462,
+            11.61919
+          ],
+          [
+            46.57443,
+            11.61927
+          ],
+          [
+            46.57405,
+            11.61922
+          ],
+          [
+            46.57368,
+            11.61945
+          ],
+          [
+            46.57264,
+            11.62075
+          ],
+          [
+            46.57253,
+            11.62141
+          ],
+          [
+            46.57231,
+            11.62182
+          ],
+          [
+            46.57242,
+            11.62215
+          ],
+          [
+            46.57225,
+            11.62291
+          ],
+          [
+            46.57207,
+            11.623
+          ],
+          [
+            46.57197,
+            11.62319
+          ],
+          [
+            46.57186,
+            11.62318
+          ],
+          [
+            46.57176,
+            11.62332
+          ],
+          [
+            46.5715,
+            11.6234
+          ],
+          [
+            46.57131,
+            11.62366
+          ],
+          [
+            46.57108,
+            11.62367
+          ],
+          [
+            46.57066,
+            11.62387
+          ],
+          [
+            46.57041,
+            11.62367
+          ],
+          [
+            46.57027,
+            11.62376
+          ],
+          [
+            46.57014,
+            11.62371
+          ],
+          [
+            46.57001,
+            11.62391
+          ],
+          [
+            46.57016,
+            11.6245
+          ],
+          [
+            46.57008,
+            11.62479
+          ],
+          [
+            46.57023,
+            11.62563
+          ],
+          [
+            46.57014,
+            11.62584
+          ],
+          [
+            46.56982,
+            11.62608
+          ],
+          [
+            46.56981,
+            11.62696
+          ],
+          [
+            46.56961,
+            11.62737
+          ],
+          [
+            46.56967,
+            11.62815
+          ],
+          [
+            46.56956,
+            11.62876
+          ],
+          [
+            46.56927,
+            11.62993
+          ],
+          [
+            46.56893,
+            11.63039
+          ],
+          [
+            46.56892,
+            11.63102
+          ],
+          [
+            46.56914,
+            11.63187
+          ],
+          [
+            46.56894,
+            11.63265
+          ],
+          [
+            46.56822,
+            11.63464
+          ],
+          [
+            46.5677,
+            11.63436
+          ],
+          [
+            46.56722,
+            11.63371
+          ],
+          [
+            46.56746,
+            11.63442
+          ],
+          [
+            46.56743,
+            11.6346
+          ],
+          [
+            46.56701,
+            11.63441
+          ],
+          [
+            46.56685,
+            11.63459
+          ],
+          [
+            46.56676,
+            11.63459
+          ],
+          [
+            46.56622,
+            11.63405
+          ],
+          [
+            46.56595,
+            11.63352
+          ],
+          [
+            46.56537,
+            11.6332
+          ],
+          [
+            46.56484,
+            11.63322
+          ],
+          [
+            46.56429,
+            11.6335
+          ],
+          [
+            46.56395,
+            11.63356
+          ],
+          [
+            46.56425,
+            11.63406
+          ],
+          [
+            46.56454,
+            11.63411
+          ],
+          [
+            46.56482,
+            11.6346
+          ],
+          [
+            46.56513,
+            11.6355
+          ],
+          [
+            46.56594,
+            11.63687
+          ],
+          [
+            46.5663,
+            11.63704
+          ],
+          [
+            46.56667,
+            11.63708
+          ],
+          [
+            46.56742,
+            11.63686
+          ],
+          [
+            46.56793,
+            11.63682
+          ],
+          [
+            46.56843,
+            11.63636
+          ],
+          [
+            46.56887,
+            11.63561
+          ],
+          [
+            46.56908,
+            11.63493
+          ],
+          [
+            46.56891,
+            11.6344
+          ],
+          [
+            46.56969,
+            11.63185
+          ],
+          [
+            46.56977,
+            11.63125
+          ],
+          [
+            46.56974,
+            11.63065
+          ],
+          [
+            46.57014,
+            11.63006
+          ],
+          [
+            46.57019,
+            11.62955
+          ],
+          [
+            46.57041,
+            11.62932
+          ],
+          [
+            46.5707,
+            11.62876
+          ],
+          [
+            46.57078,
+            11.62792
+          ],
+          [
+            46.57124,
+            11.62777
+          ],
+          [
+            46.57128,
+            11.62726
+          ],
+          [
+            46.57158,
+            11.62718
+          ],
+          [
+            46.57202,
+            11.62691
+          ],
+          [
+            46.57162,
+            11.62627
+          ],
+          [
+            46.57145,
+            11.62616
+          ],
+          [
+            46.57088,
+            11.6245
+          ],
+          [
+            46.57064,
+            11.6243
+          ],
+          [
+            46.57038,
+            11.62428
+          ],
+          [
+            46.57047,
+            11.62414
+          ],
+          [
+            46.57032,
+            11.62409
+          ],
+          [
+            46.57054,
+            11.62383
+          ],
+          [
+            46.57066,
+            11.62387
+          ],
+          [
+            46.57108,
+            11.62367
+          ],
+          [
+            46.57131,
+            11.62366
+          ],
+          [
+            46.5715,
+            11.6234
+          ],
+          [
+            46.57176,
+            11.62332
+          ],
+          [
+            46.57186,
+            11.62318
+          ],
+          [
+            46.57197,
+            11.62319
+          ],
+          [
+            46.57207,
+            11.623
+          ],
+          [
+            46.57225,
+            11.62291
+          ],
+          [
+            46.57242,
+            11.62215
+          ],
+          [
+            46.57231,
+            11.62182
+          ],
+          [
+            46.57253,
+            11.62141
+          ],
+          [
+            46.57264,
+            11.62075
+          ],
+          [
+            46.57368,
+            11.61945
+          ],
+          [
+            46.57405,
+            11.61922
+          ],
+          [
+            46.57443,
+            11.61927
+          ],
+          [
+            46.57462,
+            11.61919
+          ],
+          [
+            46.57475,
+            11.61924
+          ],
+          [
+            46.57506,
+            11.61985
+          ],
+          [
+            46.57547,
+            11.61974
+          ],
+          [
+            46.57565,
+            11.6196
+          ],
+          [
+            46.57579,
+            11.61969
+          ],
+          [
+            46.57602,
+            11.62025
+          ],
+          [
+            46.57619,
+            11.62029
+          ],
+          [
+            46.57641,
+            11.62054
+          ],
+          [
+            46.57672,
+            11.62059
+          ],
+          [
+            46.57692,
+            11.62049
+          ],
+          [
+            46.57704,
+            11.62028
+          ],
+          [
+            46.57736,
+            11.62028
+          ],
+          [
+            46.57791,
+            11.61983
+          ],
+          [
+            46.57816,
+            11.61945
+          ],
+          [
+            46.57827,
+            11.61879
+          ],
+          [
+            46.5783,
+            11.62006
+          ],
+          [
+            46.57819,
+            11.62088
+          ],
+          [
+            46.57828,
+            11.62151
+          ],
+          [
+            46.57866,
+            11.62199
+          ],
+          [
+            46.57885,
+            11.62249
+          ],
+          [
+            46.57883,
+            11.62278
+          ],
+          [
+            46.5787,
+            11.6229
+          ],
+          [
+            46.57882,
+            11.62323
+          ],
+          [
+            46.5793,
+            11.62314
+          ],
+          [
+            46.58021,
+            11.62267
+          ],
+          [
+            46.58025,
+            11.62282
+          ]
+        ],
+        "lat": 46.58025,
+        "lng": 11.62282,
+        "region": "dolomites",
+        "curated": true,
+        "publicationApprovalId": "mTshNgUX2OhJOluJbRqL"
       }
     }
   ],
