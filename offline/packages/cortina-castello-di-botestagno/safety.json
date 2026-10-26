@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cortina-castello-di-botestagno",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.6,
+    "ascentM": 80,
+    "highestPointM": 1488,
+    "expectedDuration": "0.75 hours",
+    "difficulty": "Easy",
+    "shadePercent": 99
+  },
+  "trailhead": {
+    "lat": 46.602288,
+    "lng": 12.107192,
+    "label": "Ingresso del Parco Naturale delle Dolomiti d'Ampezzo, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Forest path with roots and loose stones up to the castle hill.",
+    "The start is by the busy road from Cortina to Cimabanche.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}
