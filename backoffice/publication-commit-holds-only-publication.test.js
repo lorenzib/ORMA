@@ -14,7 +14,8 @@ const path=require('path');
 const WORKER=fs.readFileSync(
   path.resolve(__dirname,'..','.github','workflows','orma-backoffice-worker.yml'),'utf8');
 
-const CACHES=['data/elevation-cache-dolomites.json','data/elevation-cache-savoy.json'];
+// The board region's cache arrived with its first walks (batch 10).
+const CACHES=['data/elevation-cache-dolomites.json','data/elevation-cache-savoy.json','data/elevation-cache-board.json'];
 
 // The step that builds the commit, on its own: `git diff --quiet` also appears
 // earlier, where an unrelated step asks whether a publication happened at all.

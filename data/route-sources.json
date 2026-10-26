@@ -10,6 +10,78 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "fassa-antichi-bagnes": {
+      "url": "https://www.fassa.com/it/itinerari/agli-antichi-bagnes-del-principe-vescovo-di-bressanone",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Agli antichi Bagnes",
+      "quote": "Distanza 3 km Durata 0:45 h Salita 48 m Discesa 48 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-borgo-dei-patins": {
+      "url": "https://www.fassa.com/it/itinerari/a-vigo-nel-borgo-diffuso-dei-patins",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Vigo, borgo dei patins",
+      "quote": "Distanza 3,1 km Durata 0:55 h Salita 82 m Discesa 82 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-da-canazei-a-penia": {
+      "url": "https://www.fassa.com/it/itinerari/da-canazei-a-penia",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Da Canazei a Penìa",
+      "quote": "Facile passeggiata ad anello … Distanza 6,3 km Durata 1:35 h Salita 58 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-malga-aloch": {
+      "url": "https://www.fassa.com/it/itinerari/storie-di-vita-contadina-a-malga-aloch-e-masc-aloch",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Malga Aloch e Masc Aloch",
+      "quote": "Distanza 2 km Durata 0:35 h Salita 58 m Discesa 58 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-molin-de-pezol": {
+      "url": "https://www.fassa.com/it/itinerari/ruote-del-tempo-al-molin-de-pezol-ancora-funzionante",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Molin de Pèzol",
+      "quote": "Distanza 3,7 km Durata 0:55 h Salita 38 m Discesa 28 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-passato-ritrovato": {
+      "url": "https://www.fassa.com/it/itinerari/il-passato-ritrovato-tra-antichi-masi-e-restaurati-tobie",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Il passato ritrovato",
+      "quote": "Distanza 6,2 km Durata 2:00 h Salita 152 m Discesa 153 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-prato-di-sorte": {
+      "url": "https://www.fassa.com/it/itinerari/quel-prato-di-sorte",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Prato di Sorte",
+      "quote": "Una passeggiata ad anello … Distanza 5,5 km Durata 1:30 h Salita 61 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-santuario-dei-pellegrini": {
+      "url": "https://www.fassa.com/it/itinerari/al-santuario-medievale-dei-pellegrini-di-fassa-1",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Al santuario di Santa Giuliana",
+      "quote": "Distanza 2,7 km Durata 1:20 h Salita 132 m Discesa 132 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-sentiero-della-foresta": {
+      "url": "https://www.fassa.com/it/itinerari/sentiero-della-foresta",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Sentiero della Foresta",
+      "quote": "Distanza 3 km Durata 0:55 h Salita 6 m Discesa 46 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
     "geotrail-bulla": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi989d38877e70605be1a85f34d9ce0f7c.geotrail-pufels.st--michael---kastelruth",
       "publisher": "Seiser Alm Marketing (via Südtirol.info / IDM Südtirol)",
