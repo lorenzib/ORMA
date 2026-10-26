@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-26T21:00:13.689Z",
+  "generatedAt": "2026-10-26T21:27:56.160Z",
   "regions": {
     "dolomites": {
-      "trailCount": 169,
-      "trails": "data/regions/dolomites-trails.js?v=ed8c87677b11",
+      "trailCount": 170,
+      "trails": "data/regions/dolomites-trails.js?v=15917bc96490",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -174,6 +174,7 @@
         "fiemme-giro-cavalese-castello": "data/trail-details/fiemme-giro-cavalese-castello.js?v=04442e3bd376",
         "fiemme-larici-verso-anterivo": "data/trail-details/fiemme-larici-verso-anterivo.js?v=d0dbf4916cba",
         "fiemme-varena-spianez": "data/trail-details/fiemme-varena-spianez.js?v=a50019de7099",
+        "primiero-malga-ces": "data/trail-details/primiero-malga-ces.js?v=057c73deaddd",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -412,6 +413,7 @@
     "fiemme-giro-cavalese-castello": "dolomites",
     "fiemme-larici-verso-anterivo": "dolomites",
     "fiemme-varena-spianez": "dolomites",
+    "primiero-malga-ces": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -685,6 +687,7 @@
     "fiemme-giro-cavalese-castello": "cavalese-castello-di-fiemme-loop",
     "fiemme-larici-verso-anterivo": "pra-del-manz-to-anterivo",
     "fiemme-varena-spianez": "varena-spianez-loop",
+    "primiero-malga-ces": "malga-ces",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -907,6 +910,7 @@
     "cavalese-castello-di-fiemme-loop": "fiemme-giro-cavalese-castello",
     "pra-del-manz-to-anterivo": "fiemme-larici-verso-anterivo",
     "varena-spianez-loop": "fiemme-varena-spianez",
+    "malga-ces": "primiero-malga-ces",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

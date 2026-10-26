@@ -53,10 +53,11 @@ describe('the existing-site verification boundary',()=>{
     // 216 with the first four Val di Fiemme walks: the Parco della Pieve and
     // the Rio Gambis in Cavalese, Cavalese to Castello and back, and the
     // little waterfalls above Roda. Then 220 and 218 with two more: the larch
-    // woods from Prà del Manz to Anterivo and the meadows of Spianez.
+    // woods from Prà del Manz to Anterivo and the meadows of Spianez. Then 221
+    // and 219 with the forest walk from San Martino di Castrozza to Malga Ces.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(220);
-    expect(currentSiteTrails(catalogue)).toHaveLength(218);
+    expect(catalogue).toHaveLength(221);
+    expect(currentSiteTrails(catalogue)).toHaveLength(219);
   });
 
   test('requires the artwork the public trail page needs',()=>{
