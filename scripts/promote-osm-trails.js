@@ -32,6 +32,7 @@ const fs = require('fs/promises');
 const nodeFs = require('fs');
 const vm = require('vm');
 const path = require('path');
+const { isRemovedRelation, REMOVED_TRAIL_IDS } = require('./removed-trails');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -879,6 +880,12 @@ async function main() {
 
   for (const [n, feature] of routes.features.entries()) {
     const p = feature.properties;
+    // Removed outright on the owner's decision (data/removed-trails.json): the
+    // same list the scout, the importer and publication read.
+    if (isRemovedRelation(p.osm_relation) || REMOVED_TRAIL_IDS.has(p.trail_id)) {
+      console.log(`[promote] Skipping ${p.name} (${p.osm_relation}), removed from ORMA.`);
+      continue;
+    }
     // A walk drawn along the operator's line keeps the operator's start and
     // direction: moving it to the nearest car park, or turning a loop to its
     // gentler side, would make the km on the page disagree with the board's.
