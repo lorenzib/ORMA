@@ -79,17 +79,13 @@
       ? window.DoloPawsMapRuntime.mapOptions(walkMapOptions) : walkMapOptions);
     map.on('load', function(){
       if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(map);
-      // Same walkable-network detail as every other ORMA map: marked
-      // hiking routes plus subtle relief, under the recording trace.
+      // Same walkable-network detail as every other ORMA map: the marked
+      // hiking routes as dashed grey lines with their numbers (Waymarked's
+      // raster if our tiles cannot load), plus subtle relief, with the
+      // recording trace over the lines and under the numbers.
+      var style = window.ORMAMapStyle;
       var firstLabel = map.getStyle().layers.find(function(l){ return l.type === 'symbol'; });
-      map.addSource('waymarked-hiking', {
-        type: 'raster',
-        tiles: ['https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'],
-        tileSize: 256,
-        attribution: '© Sarah Hoffmann (CC-BY-SA), waymarkedtrails.org',
-      });
-      map.addLayer({ id: 'waymarked-hiking-layer', type: 'raster', source: 'waymarked-hiking',
-        paint: { 'raster-opacity': 1, 'raster-resampling': 'linear' } }, firstLabel ? firstLabel.id : undefined);
+      style.addHikingRoutes(map, { beforeId: firstLabel ? firstLabel.id : undefined });
       map.addSource('terrain-dem', {
         type: 'raster-dem',
         tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
@@ -97,11 +93,11 @@
       });
       map.addLayer({ id: 'base-hillshade', type: 'hillshade', source: 'terrain-dem',
         paint: { 'hillshade-exaggeration': 0.25, 'hillshade-shadow-color': '#5A5548', 'hillshade-method': 'igor' } },
-        'waymarked-hiking-layer');
+        style.networkLayerId(map));
       map.addSource('walk', { type: 'geojson', data: routeGeo() });
       map.addLayer({ id: 'walk-line', type: 'line', source: 'walk',
         paint: { 'line-color': '#C4652F', 'line-width': 4 },
-        layout: { 'line-cap': 'round', 'line-join': 'round' } }, 'waymarked-hiking-layer');
+        layout: { 'line-cap': 'round', 'line-join': 'round' } }, style.walkLineBeforeId(map));
       map.addSource('walk-position', { type: 'geojson', data: positionGeo(latestFix) });
       map.addLayer({ id: 'walk-position-accuracy', type: 'fill', source: 'walk-position',
         filter: ['==', ['geometry-type'], 'Polygon'],
@@ -291,7 +287,7 @@
       });
       panel.appendChild(chip);
     }
-    layerChip('Marked hiking routes', ['waymarked-hiking-layer'], true);
+    layerChip('Marked hiking routes', window.ORMAMapStyle.HIKING_LAYER_IDS, true);
 
     function lazyLayerChip(label, loader){
       var on = false;
@@ -352,7 +348,7 @@
       });
       map.addLayer({ id:'satellite-layer', type:'raster', source:'satellite', layout:{ visibility:'none' },
         paint:{ 'raster-resampling':'linear', 'raster-fade-duration':100 } },
-        map.getLayer('waymarked-hiking-layer') ? 'waymarked-hiking-layer' : undefined);
+        window.ORMAMapStyle.networkLayerId(map));
       return true;
     }
 

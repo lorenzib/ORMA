@@ -33,13 +33,13 @@ describe('logged-in homepage mapped-route hierarchy', () => {
     expect(script).toContain('rankWidth([5, 10, 15, 20]');
   });
 
-  test('leaves route numbers to the Waymarked raster it no longer masks', () => {
-    // The catalogue rails sit UNDER the hiking raster now, so Waymarked's own
-    // numbered shields are visible on them. Reprinting our own would just be
-    // duplicates fighting the real ones for space.
+  test('leaves route numbers to the hiking network', () => {
+    // The catalogue rails sit under the hiking network's route numbers, so
+    // the network numbers the routes itself. Reprinting our own shields would
+    // just be duplicates fighting those for space.
     expect(script).not.toContain("id:'trail-paths-route-number'");
     expect(script).not.toContain('addShieldLayer');
     expect(script).not.toContain("addSource('trail-route-refs'");
-    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?\}, railsBeforeId\);/);
   });
 });
