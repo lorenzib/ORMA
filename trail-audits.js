@@ -39932,6 +39932,210 @@
         { km: 2.6, lat: 46.43046, lng: 11.69158, osmId: 'way/58429469', name: 'Ristorante Al vecchio mulino' }
       ],
       desc: 'A level family loop from Pozza over the Ciancoal meadows to Pera, with its dairy, and back past the Molin de Pèzol, the last working watermill in the Val di Fassa. The APT lists 3.7 km and 38 m of ascent.'
+    },
+    'fassa-pastori-erranti': {
+      // Hand audit: 26 October 2026, verified on arrival (new-trail batch 11).
+      // APT Val di Fassa’s walk “Sulla via degli antichi pastori erranti”, tagged “animali accettati”. The line
+      // is drawn on 52 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // San Giovanni di Fassa publishes no dog rule, so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
+      // dog standard; Trentino’s animal law leaves leads and muzzles to it.
+      // No Natura 2000 site or nature park on the line.
+      area: 'Vigo – Vallonga – Tamion, San Giovanni di Fassa / Sèn Jan',
+      distance: 7.2,
+      elevation: 245,
+      hours: '2.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Strada Rezia in Vigo up to the hamlets of Vallonga and Tamion on the old shepherds’ tracks, and back down to Vigo.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A fenced lane through Tamion on the walk, looking across the valley, in August (nicola_yubo on Mapillary, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official loop 7.2 km from Vigo di Fassa (Strada Rezia), as APT Val di Fassa publishes it; the stored line is drawn on 52 OSM ways along the APT’s published line, 7.2 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Strada Rezia in Vigo up on farm tracks to Vallonga, where the church of San Giovanni Nepomuceno was built in 1750 at the end of the old procession from Welschnofen, and on to Tamion, whose barns have been restored, then back down to Vigo.',
+        mapPoints: 'Start at Vigo di Fassa (Strada Rezia), the APT’s start; drinking water at the start, at km 2.3, at km 5.1 and at km 6.4 (OSM nodes 2405075281, 453286398, 4304787435, 6278639064).',
+        elevation: 'Official 7.2 km, 245 m up and 245 m down, 2 h 20 min, highest point 1,545 m, lowest 1,350 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Sulla via degli antichi pastori erranti (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the APT line (52 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 32,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 1 km on tarmac, mostly quiet lanes in the hamlets, open to cars', 'Steady climbs on gravel farm tracks; the APT suggests walking poles', 'Working farms and barns at Vallonga and Tamion'],
+      terrainType: 'Gravel farm tracks and hamlet lanes; trekking-pram friendly',
+      shadeDescription: 'About a third is under trees on the tracks between the hamlets; the meadows round Vallonga and Tamion are open.',
+      terrainDescription: 'A walk at 1,350–1,545 m from Vigo to the hamlets of Vallonga and Tamion, where shepherds built the first huts in the Middle Ages, with one of the widest views of the valley.',
+      waterDescription: 'Drinking fountains at the start, at km 2.3, at km 5.1 and at km 6.4; bars and inns at the start.',
+      dogNotes: 'San Giovanni di Fassa publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses.',
+      tips: 'Start in Strada Rezia in Vigo: 7.2 km, about 250 m of climbing, two hours and a quarter. Keep your dog on a short lead (1.5 m at most) past the farms and carry a muzzle. Fountains in Vigo and in the hamlets.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Sulla via degli antichi pastori erranti', url: 'https://www.fassa.com/it/itinerari/sulla-via-degli-antichi-pastori-erranti-1' },
+        { label: 'Outdooractive, Sulla via degli antichi pastori erranti (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/38000950' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.420107, lng: 11.672805, label: 'Vigo di Fassa (Strada Rezia), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.4193159, lng: 11.673558, osmId: 'node/2405075281', label: 'Drinking fountain at the start' },
+        { km: 2.3, lat: 46.4122897, lng: 11.6586962, osmId: 'node/453286398', label: 'Drinking fountain' },
+        { km: 5.1, lat: 46.4125795, lng: 11.6687089, osmId: 'node/4304787435', label: 'Drinking fountain' },
+        { km: 6.4, lat: 46.4172331, lng: 11.6700832, osmId: 'node/6278639064', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.42029, lng: 11.67569, osmId: 'node/305506310', name: 'Bar Mirella' },
+        { km: 0, lat: 46.42006, lng: 11.67188, osmId: 'node/1211103522', name: 'Bar Bianco' }
+      ],
+      desc: 'A loop from Vigo di Fassa on the old shepherds’ tracks to the hamlets of Vallonga and Tamion, with their 18th-century church and restored barns. The APT lists 7.2 km and 245 m of ascent.'
+    },
+    'fassa-segreti-di-una-volta': {
+      // Hand audit: 26 October 2026, verified on arrival (new-trail batch 11).
+      // APT Val di Fassa’s walk “I segreti di una volta della tradizione contadina di montagna”, tagged “animali accettati”. The line
+      // is drawn on 66 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // San Giovanni di Fassa publishes no dog rule, so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
+      // dog standard; Trentino’s animal law leaves leads and muzzles to it.
+      // No Natura 2000 site or nature park on the line.
+      area: 'Vigo – Pozza – Pera, San Giovanni di Fassa / Sèn Jan',
+      distance: 7.9,
+      elevation: 176,
+      hours: '2.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Strada de Piz in Vigo along the top of the meadows above Pozza to Pera, between the wood and the fields, and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Pozza and the meadows above it, which the walk follows, from the Buffaure cable car in July (Bbruno, CC BY-SA 3.0), 155 m from the line.',
+        route: 'Official loop 7.9 km from Vigo di Fassa (Strada de Piz), as APT Val di Fassa publishes it; the stored line is drawn on 66 OSM ways along the APT’s published line, 8.1 km, with 99% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Strada de Piz in Vigo along the edge of the wood above the meadows of Pozza, once fields of barley, rye and potatoes divided among every heir, to Pera, and back, facing the Costabella ridge and the Vallaccia group.',
+        mapPoints: 'Start at Vigo di Fassa (Strada de Piz), the APT’s start; drinking water at the start, at km 3, at km 3.5 and at km 5.2 (OSM nodes 2405075281, 10111574534, 302580832, 11067225731).',
+        elevation: 'Official 7.9 km, 176 m up and 176 m down, 2 h 20 min, highest point 1,424 m, lowest 1,287 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, I segreti di una volta della tradizione contadina di montagna (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the APT line (66 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 21,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 2.9 km on tarmac, partly village streets open to cars', 'Meadow paths along the edge of the wood; the APT suggests walking poles', 'Mown hay meadows: keep to the path'],
+      terrainType: 'Meadow and forest-edge paths, farm tracks and village lanes',
+      shadeDescription: 'Mostly open: about a fifth runs under the edge of the wood; the meadows above Pozza face the sun.',
+      terrainDescription: 'A gentle walk at 1,290–1,420 m above the meadows of Pozza between Vigo and Pera, on the old farmland of the Ladin valley.',
+      waterDescription: 'Drinking fountains at the start, at km 3, at km 3.5 and at km 5.2; bars and inns at the start and on the way.',
+      dogNotes: 'San Giovanni di Fassa publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses.',
+      tips: 'Start in Strada de Piz in Vigo: 7.9 km, about 180 m of climbing, two hours and a quarter. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep out of the mown meadows. Fountains in Vigo, Pozza and Pera.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, I segreti di una volta della tradizione contadina di montagna', url: 'https://www.fassa.com/it/itinerari/i-segreti-di-una-volta-della-tradizione-contadina-di-montagna' },
+        { label: 'Outdooractive, I segreti di una volta della tradizione contadina di montagna (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/38024391' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.419938, lng: 11.672447, label: 'Vigo di Fassa (Strada de Piz), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.4193159, lng: 11.673558, osmId: 'node/2405075281', label: 'Drinking fountain at the start' },
+        { km: 3, lat: 46.438593, lng: 11.6919887, osmId: 'node/10111574534', label: 'Drinking fountain' },
+        { km: 3.5, lat: 46.4422445, lng: 11.6930297, osmId: 'node/302580832', label: 'Drinking fountain' },
+        { km: 5.2, lat: 46.4318492, lng: 11.6875602, osmId: 'node/11067225731', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.42006, lng: 11.67188, osmId: 'node/1211103522', name: 'Bar Bianco' },
+        { km: 0, lat: 46.42102, lng: 11.67379, osmId: 'node/1915825371', name: 'La Grotta' },
+        { km: 2.7, lat: 46.43589, lng: 11.69011, osmId: 'node/1230287511', name: 'Pizzeria Da Salin' },
+        { km: 3.2, lat: 46.44035, lng: 11.69256, osmId: 'node/3284937023', name: 'Ristorante Pizzeria Picola Majon' },
+        { km: 3.8, lat: 46.44063, lng: 11.69868, osmId: 'way/255840627', name: 'Agritur Agua Biencia' }
+      ],
+      desc: 'A gentle loop from Vigo along the meadows above Pozza to Pera, on the old Ladin farmland, facing the Costabella and the Vallaccia. The APT lists 7.9 km and 176 m of ascent.'
+    },
+    'fassa-alpe-di-fuciade': {
+      // Hand audit: 26 October 2026, verified on arrival (new-trail batch 11).
+      // APT Val di Fassa’s walk “Dal Passo all’Alpe di Fuciade, inseguendo i sapori ladini”, tagged “animali accettati”. The line
+      // is drawn on 15 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // The start is in Moena, whose dog rules (August 2026) apply; Soraga
+      // publishes no general dog rule (only one for its fenced dog area), so the
+      // national dog ordinance applies there under ORMA’s Italian dog standard.
+      // No Natura 2000 site or nature park on the line.
+      area: 'Passo San Pellegrino – Fuciade, Moena / Soraga di Fassa',
+      distance: 6.9,
+      elevation: 94,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Passo San Pellegrino across the open basin to the Fuciade alp, with its old hay barns, chapels and refuge, and back to the pass.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The track to Fuciade past its old hay barns, the Costabella behind, in September (Syrio, CC BY-SA 4.0).',
+        route: 'Official loop 6.9 km from Passo San Pellegrino (Moena), as APT Val di Fassa publishes it; the stored line is drawn on 15 OSM ways along the APT’s published line, 6.9 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Passo San Pellegrino across the wide open basin to the Fuciade alp, past wooden hay barns (“tabià”), chapels, altars and carved gnomes, with the Marmolada ahead and the Pale di San Martino on the horizon, to the Rifugio Fuciade and back.',
+        mapPoints: 'Start at Passo San Pellegrino (Moena), the APT’s start; drinking water at km 2.5 and at km 3.3 (OSM nodes 5960811423, 459953579).',
+        elevation: 'Official 6.9 km, 94 m up and 94 m down, 2 h, highest point 1,973 m, lowest 1,894 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Dal Passo all’Alpe di Fuciade, inseguendo i sapori ladini (fassa.com and its Outdooractive page)',
+          'Comune di Moena, Regole per la conduzione dei cani nel territorio comunale (August 2026); Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Soraga di Fassa publishes no dog rule beyond its fenced dog area)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the APT line (15 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 40,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Open alpine pasture at about 1,900–1,970 m with cattle in summer: keep your distance', 'Gravel track shared with the refuge’s vehicles and, in some years, a horse-drawn carriage', 'No shade on the open basin, strong sun and wind'],
+      terrainType: 'Wide gravel track and natural paths across alpine pasture; pram-friendly',
+      shadeDescription: 'About two fifths passes larch and stone pine near the pass; the Fuciade basin itself is open.',
+      terrainDescription: 'An almost level walk at 1,890–1,970 m from the San Pellegrino pass to the Fuciade alp, a wide pasture of wooden barns facing the Marmolada.',
+      waterDescription: 'Drinking fountains at km 2.5 and at km 3.3; bars and inns at the start and on the way.',
+      dogNotes: 'Moena requires a lead in public places, bags to pick up after your dog, a bottle of water to rinse urine off pavements, and a muzzle when it is crowded; dogs may not enter places signed as closed to them. Most of the walk is in Soraga, which publishes no dog rule, so the Italian national rule applies there: a lead of at most 1.5 m and a muzzle carried. Keep your distance from the cattle on the Fuciade pasture.',
+      tips: 'Start at Passo San Pellegrino: 6.9 km, almost level, about two hours, with food at the Rifugio Fuciade. Keep your dog on a short lead past the cattle, carry bags, a bottle of water and a muzzle as Moena asks. Fountains near Fuciade, about 2.5 and 3.3 km in.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Dal Passo all’Alpe di Fuciade, inseguendo i sapori ladini', url: 'https://www.fassa.com/it/itinerari/dal-passo-all-alpe-di-fuciade-inseguendo-i-sapori-ladini' },
+        { label: 'Outdooractive, Dal Passo all’Alpe di Fuciade, inseguendo i sapori ladini (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/37940398' },
+        { label: 'Comune di Moena, Regole per la conduzione dei cani', url: 'https://www.comune.moena.tn.it/ocmultibinary/download/4674/72838/4/6d6402a9f76531cb63cb42cee6b639e4.pdf/file/regole%2Bper%2Bconduzione%2Bcani.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.37846, lng: 11.796859, label: 'Passo San Pellegrino (Moena), the APT’s start' },
+      waterSources: [
+        { km: 2.5, lat: 46.3877621, lng: 11.8216465, osmId: 'node/5960811423', label: 'Drinking fountain' },
+        { km: 3.3, lat: 46.3927358, lng: 11.8277933, osmId: 'node/459953579', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.37874, lng: 11.79567, osmId: 'way/254644928', name: 'Chalet Isabella' },
+        { km: 0.3, lat: 46.38064, lng: 11.80295, osmId: 'way/363001211', name: 'Rifugio Albergo Miralago' },
+        { km: 3.2, lat: 46.3927, lng: 11.82806, osmId: 'way/199553709', name: 'Rifugio Fuciade' }
+      ],
+      desc: 'An almost level walk from the San Pellegrino pass to the Fuciade alp, a wide pasture of old wooden hay barns and chapels facing the Marmolada. The APT lists 6.9 km and 94 m of ascent.'
     }
   };
 

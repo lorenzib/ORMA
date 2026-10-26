@@ -43,10 +43,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 196 when Chalets de Salvadon, Alpage de Commune and Rundweg Rotwand
     // were removed outright, and 194 because their photographs went with them:
     // withdrawn, they were drafts with artwork, which this boundary still
-    // counted.
+    // counted. Then 199 and 197 with three more Val di Fassa walks: the
+    // shepherds' walk from Vigo, the meadows above Pozza and the Fuciade alp.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(196);
-    expect(currentSiteTrails(catalogue)).toHaveLength(194);
+    expect(catalogue).toHaveLength(199);
+    expect(currentSiteTrails(catalogue)).toHaveLength(197);
   });
 
   test('requires the artwork the public trail page needs',()=>{

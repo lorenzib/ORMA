@@ -37,6 +37,23 @@
       }
     },
     {
+      "id": "fassa-alpe-di-fuciade",
+      "approvedReviewId": "commons-fassa-alpe-di-fuciade-on-route",
+      "approvedAt": "2026-10-26T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-alpe-di-fuciade-fuciade.jpg",
+        "heroImage": "images/trails/fassa-alpe-di-fuciade-fuciade.jpg",
+        "imageAlt": "A gravel track across green pasture to the wooden hay barns of Fuciade, a snow-dusted rocky ridge behind",
+        "imageCredit": "The track to Fuciade",
+        "imageCreditText": "The track to Fuciade by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Fuchiade_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fassa-antichi-bagnes",
       "approvedReviewId": "commons-fassa-antichi-bagnes-on-route",
       "approvedAt": "2026-10-24T21:00:00.000Z",
@@ -139,6 +156,23 @@
       }
     },
     {
+      "id": "fassa-pastori-erranti",
+      "approvedReviewId": "commons-fassa-pastori-erranti-on-route",
+      "approvedAt": "2026-10-26T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-pastori-erranti-tamion.jpg",
+        "heroImage": "images/trails/fassa-pastori-erranti-tamion.jpg",
+        "imageAlt": "A narrow tarmac lane in Tamion beside a wooden barn with a red letterbox and a rail fence, wooded slopes and peaks across the valley under cloud",
+        "imageCredit": "A lane in Tamion",
+        "imageCreditText": "A lane in Tamion by nicola_yubo",
+        "imageCreator": "nicola_yubo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1815410369676938",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fassa-prato-di-sorte",
       "approvedReviewId": "commons-fassa-prato-di-sorte-on-route",
       "approvedAt": "2026-10-24T21:00:00.000Z",
@@ -169,6 +203,23 @@
         "imageLicence": "CC BY 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:S._Giuliana_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-segreti-di-una-volta",
+      "approvedReviewId": "commons-fassa-segreti-di-una-volta-on-route",
+      "approvedAt": "2026-10-26T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-segreti-di-una-volta-pozza-meadows.jpg",
+        "heroImage": "images/trails/fassa-segreti-di-una-volta-pozza-meadows.jpg",
+        "imageAlt": "Pozza di Fassa among green meadows and woods seen from a cable car, the mountains of the valley behind",
+        "imageCredit": "Pozza and its meadows",
+        "imageCreditText": "Pozza and its meadows by Bbruno",
+        "imageCreator": "Bbruno",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pozza_di_Fassa_da_cabinovia_Buffaure.jpg",
         "imageSourceType": "licensed-source"
       }
     },
