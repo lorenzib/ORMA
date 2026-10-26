@@ -10,6 +10,46 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "cortina-castello-di-botestagno": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/al-castello-di-botestagno/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org, Outdooractive)",
+      "name": "Castello di Botestagno",
+      "quote": "Tempo 0h 45’ · Lunghezza 2,6 km · Dislivello positivo 80 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T20:00:00.000Z"
+    },
+    "cortina-malga-ra-stua": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/verso-malga-ra-stua/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org, Outdooractive)",
+      "name": "Malga Ra Stua",
+      "quote": "Tempo 2 h 30’ · Lunghezza 6,3 km · Dislivello positivo 332 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T20:00:00.000Z"
+    },
+    "cortina-mortisa-e-le-grotte-di-volpera": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/mortisa-e-le-grotte-di-volpera/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org, Outdooractive)",
+      "name": "Mortisa e le Grotte di Volpera",
+      "quote": "Tempo 2 h 30’ · Lunghezza 5,9 km · Dislivello positivo 221 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T20:00:00.000Z"
+    },
+    "cortina-passeggiata-gourmet": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/passeggiata-gourmet/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org, Outdooractive)",
+      "name": "Passeggiata gourmet",
+      "quote": "Tempo 2 h 15’ · Lunghezza 4,3 km · Dislivello positivo 185 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T20:00:00.000Z"
+    },
+    "cortina-sotecordes": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/escursione-di-sotecordes/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org, Outdooractive)",
+      "name": "Escursione di Sotecordes",
+      "quote": "Tempo 3 h 30’ · Lunghezza 7,6 km · Dislivello positivo 489 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T20:00:00.000Z"
+    },
     "fassa-alpe-di-fuciade": {
       "url": "https://www.fassa.com/it/itinerari/dal-passo-all-alpe-di-fuciade-inseguendo-i-sapori-ladini",
       "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
@@ -1081,6 +1121,14 @@
       "quote": "Dauer 2:30 h · Länge 8,4 km · Höhenmeter bergauf 368 hm",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
+    "osm-7547653": {
+      "url": "https://www.lozzodicadore.eu/sito/node/192",
+      "publisher": "Comune di Lozzo di Cadore / CAI",
+      "name": "50 - Anello dei Forti",
+      "quote": "Dislivello in salita: 130 m; lunghezza: circa 3 km; tempo medio di percorrenza: 1 h 30'; difficoltà: percorso di tipo E (escursionistico).",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T20:00:00.000Z"
     },
     "osm-7547983": {
       "url": "https://www.lozzodicadore.eu/sito/node/186",
