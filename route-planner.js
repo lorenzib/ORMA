@@ -443,6 +443,61 @@
     }, beforeId);
   }
 
+  // The planner will route from anywhere, including a hillside with no road
+  // to it. Said when the start is chosen, not in the small print: begin where
+  // you can actually arrive.
+  const START_ADVICE = 'Tap the map to choose your start. Pick somewhere you can reach easily: a car park, bus stop, village or lift station.';
+
+  // Car parks, bus stops, stations and lift stations, from the base map's own
+  // points of interest, so this layer needs no data file and works in every
+  // region the map covers.
+  const ACCESS_CLASSES = ['parking', 'bus', 'rail', 'railway', 'aerialway'];
+  const ACCESS_LABEL = ['match', ['get', 'class'],
+    'parking', 'P', 'bus', 'Bus', 'rail', 'Train', 'railway', 'Train', 'aerialway', 'Lift', ''];
+
+  function vectorSourceId(){
+    const sources = map.getStyle().sources || {};
+    return Object.keys(sources).find(id => sources[id].type === 'vector') || 'openmaptiles';
+  }
+
+  function ensureAccessLayers(){
+    if(map.getLayer('planner-poi-access-points')) return;
+    const source = vectorSourceId();
+    const filter = ['all',
+      ['in', ['get', 'class'], ['literal', ACCESS_CLASSES]],
+      ['!=', ['get', 'subclass'], 'bicycle_parking'],
+      ['match', ['geometry-type'], ['Point', 'MultiPoint'], true, false]];
+    const beforeId = firstLabelLayer();
+    map.addLayer({
+      id:'planner-poi-access-points', type:'circle', source, 'source-layer':'poi', minzoom:12, filter,
+      layout:{ visibility:'none' },
+      paint:{
+        'circle-color':['match', ['get', 'class'], 'parking', '#2F5D8A', '#5B4A8A'],
+        'circle-radius':['interpolate', ['linear'], ['zoom'], 12, 6, 15, 9],
+        'circle-stroke-color':'#fff', 'circle-stroke-width':2, 'circle-opacity':.95,
+      },
+    }, beforeId && beforeId.id);
+    map.addLayer({
+      id:'planner-poi-access-labels', type:'symbol', source, 'source-layer':'poi', minzoom:12, filter,
+      layout:{
+        visibility:'none',
+        'text-field':['step', ['zoom'], ACCESS_LABEL, 15,
+          ['case', ['has', 'name'], ['concat', ACCESS_LABEL, ' · ', ['get', 'name']], ACCESS_LABEL]],
+        'text-font':window.ORMAMapStyle && window.ORMAMapStyle.FONT_BOLD ? window.ORMAMapStyle.FONT_BOLD : ['Noto Sans Bold'],
+        'text-size':['step', ['zoom'], 9, 15, 11],
+        'text-offset':['step', ['zoom'], ['literal', [0, 0]], 15, ['literal', [0, 1.4]]],
+        'text-anchor':['step', ['zoom'], 'center', 15, 'top'],
+        'text-allow-overlap':['step', ['zoom'], true, 15, false],
+        'text-max-width':12,
+      },
+      paint:{
+        'text-color':['step', ['zoom'], '#ffffff', 15, '#2E4034'],
+        'text-halo-color':['step', ['zoom'], 'rgba(0,0,0,0)', 15, 'rgba(255,255,252,.96)'],
+        'text-halo-width':1.3,
+      },
+    });
+  }
+
   function loadPoiData(kind){
     const dataKind = kind === 'water' ? 'water' : 'huts-bars';
     if(!poiDataCache.has(dataKind)){
@@ -467,6 +522,7 @@
   }
 
   async function ensurePoiLayers(kind){
+    if(kind === 'access'){ ensureAccessLayers(); return; }
     const sourceId = kind === 'water' ? 'planner-poi-water' : 'planner-poi-huts-bars';
     if(!map.getSource(sourceId)) map.addSource(sourceId, { type:'geojson', data:await loadPoiData(kind) });
     const pointLayer = `planner-poi-${kind}-points`;
@@ -650,7 +706,7 @@
       preview = null;
       finished = false;
       busy = false;
-      status.textContent = points.length ? config.hint : 'Tap the map to choose your start.';
+      status.textContent = points.length ? config.hint : START_ADVICE;
       drawPath([]);
       render();
       return;
@@ -701,7 +757,7 @@
     busy = false;
     drawMarkers();
     drawPath([]);
-    status.textContent = 'Tap the map to choose your start.';
+    status.textContent = START_ADVICE;
     render();
   }
 
