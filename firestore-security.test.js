@@ -18,7 +18,19 @@ describe('SEC-01 Firestore configuration contract', () => {
     });
     expect(rules).toContain("rules_version = '2';");
     // JOURNAL-03: walk photos live in Storage, under their own rules file.
-    expect(firebaseConfig.storage).toEqual({ rules: 'storage.rules' });
+    // The bucket is named, through a deploy target in .firebaserc, so a deploy
+    // releases straight to it: looking up the default bucket needs a
+    // permission the deploy account does not have.
+    expect(firebaseConfig.storage).toEqual([
+      { target: 'journal-photos', rules: 'storage.rules' },
+    ]);
+    const firebaserc = JSON.parse(fs.readFileSync(path.join(root, '.firebaserc'), 'utf8'));
+    ['dolopaws', 'demo-dolopaws'].forEach(project => {
+      expect(firebaserc.targets[project].storage).toEqual({
+        'journal-photos': ['dolopaws.firebasestorage.app'],
+      });
+    });
+    expect(client).toContain('storageBucket: "dolopaws.firebasestorage.app"');
   });
 
   test('the trail-photo staging and review collections are gone',()=>{

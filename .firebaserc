@@ -8,6 +8,18 @@
         "backoffice": [
           "dolopaws-backoffice"
         ]
+      },
+      "storage": {
+        "journal-photos": [
+          "dolopaws.firebasestorage.app"
+        ]
+      }
+    },
+    "demo-dolopaws": {
+      "storage": {
+        "journal-photos": [
+          "dolopaws.firebasestorage.app"
+        ]
       }
     }
   }
