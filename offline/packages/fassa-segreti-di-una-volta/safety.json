@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-segreti-di-una-volta",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.9,
+    "ascentM": 176,
+    "highestPointM": 1453,
+    "expectedDuration": "2.25 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 21
+  },
+  "trailhead": {
+    "lat": 46.419938,
+    "lng": 11.672447,
+    "label": "Vigo di Fassa (Strada de Piz), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.4193159,
+      "lng": 11.673558,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.438593,
+      "lng": 11.6919887,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4422445,
+      "lng": 11.6930297,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4318492,
+      "lng": 11.6875602,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 2.9 km on tarmac, partly village streets open to cars.",
+    "Meadow paths along the edge of the wood; the APT suggests walking poles.",
+    "Mown hay meadows: keep to the path.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}
