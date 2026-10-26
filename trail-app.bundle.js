@@ -47259,6 +47259,372 @@ function effectiveOverrides(profile, adjustOverride){
       ],
       rifugi: [],
       desc: 'A loop above Mezzano along the beech-wooded crest of Monte Cordognè to the meadows and old chapel of San Giovanni, with views of the Vette Feltrine and the Val Noana lake. The APT lists 5 km and 181 m of ascent.'
+    },
+    'cortina-castello-di-botestagno': {
+      // Hand audit: 26 October 2026, verified on arrival (new-trail Belluno batch 1).
+      // Cortina Marketing’s walk “Al Castello di Botestagno”, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Cortina’s Polizia Urbana Art. 36 requires a lead. The Ampezzo
+      // Dolomites park asks for dogs on a lead (rule 7).
+      // Natura 2000: IT3230071 Dolomiti di Ampezzo (about half the line); Veneto’s measures (DGR 786/2016 Art. 99) apply the national rule.
+      // The board’s Outdooractive page gives the same 2.6 km, 80 m and 45 min.
+      area: 'Sant’Uberto – Botestagno, Cortina d’Ampezzo',
+      distance: 2.6,
+      elevation: 80,
+      hours: '0.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from Sant’Uberto, at the entrance to the Ampezzo Dolomites park north of Cortina, up to the ruins of the medieval castle of Botestagno and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The castle hill of Botestagno in the forest, the walk’s goal, in August (Llorenzi, CC BY-SA 3.0).',
+        route: 'Official loop 2.6 km from Ingresso del Parco Naturale delle Dolomiti d\'Ampezzo, as Cortina Marketing publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 2.5 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'No route number: from Sant’Uberto, at the park entrance on the road from Cortina to Cimabanche, up a forest path to the hill where the medieval castle of Botestagno (Peutelstein, “rock on the Boite”) stood, with boards telling its story and a view down the Boite valley to Cortina, and back.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 2.6 km, 80 m up and 75 m down, 45 min, highest point 1,501 m, lowest 1,421 m (Cortina Marketing). The board’s Outdooractive page gives the same 2.6 km, 80 m and 45 min.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Cortina Marketing, Al Castello di Botestagno (cortina.dolomiti.org and its Outdooractive page)',
+          'Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana, Art. 36 (dogs on a lead; large dogs also muzzled on public roads and public transport) and Art. 35 (clean up after your dog)',
+          'Parco Naturale delle Dolomiti d’Ampezzo, park rules, rule 7: keep dogs on a lead',
+          'Regione del Veneto, DGR 786/2016 Allegato A (conservation measures for the Alpine Natura 2000 sites), Art. 99: the national dog ordinance applies; no ban on walking with a dog; the line is in IT3230071 Dolomiti di Ampezzo (about half the line)',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 99,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Forest path with roots and loose stones up to the castle hill', 'The start is by the busy road from Cortina to Cimabanche'],
+      terrainType: 'Forest paths',
+      shadeDescription: 'Shaded almost all the way: the loop runs through spruce and larch forest.',
+      terrainDescription: 'An easy history walk at 1,420–1,500 m in the forest north of Cortina, inside the Ampezzo Dolomites nature park, to the ruins of a medieval stronghold over the Boite valley.',
+      waterDescription: 'No drinking water is mapped on the way; bring water for your dog.',
+      dogNotes: 'Cortina requires dogs on a lead, and large dogs must also wear a muzzle on public roads and public transport; clean up after your dog. The Ampezzo Dolomites nature park also asks for dogs on a lead, to protect its wildlife. The walk is in a Natura 2000 site, where Veneto applies the national dog rule (lead of at most 1.5 m, muzzle carried).',
+      tips: 'Start at Sant’Uberto: 2.6 km, about 80 m of climbing, three quarters of an hour. Keep your dog on a lead, as Cortina and the park require; large dogs also need a muzzle on public roads. Carry water: none is mapped on the loop.',
+      sourceLinks: [
+        { label: 'Cortina Marketing, Al Castello di Botestagno', url: 'https://cortina.dolomiti.org/it/escursioni/al-castello-di-botestagno/' },
+        { label: 'Outdooractive, Al Castello di Botestagno (Cortina Marketing)', url: 'https://www.outdooractive.com/it/r/805071171' },
+        { label: 'Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana (PDF)', url: 'https://www.comune.cortinadampezzo.bl.it/content/download/1385/36228/1/N.+42+REGOLAMENTO+POLIZIA+URBANA.pdf' },
+        { label: 'Parco Naturale delle Dolomiti d’Ampezzo, Regolamenti', url: 'https://www.dolomitiparco.com/Ita/Misc/regolamenti.php' },
+        { label: 'Regione del Veneto, DGR 786/2016, Allegato A (Alpine Natura 2000 measures)', url: 'https://bur.regione.veneto.it/BurvServices/pubblica/Download.aspx?name=AllegatoA_RegioneBiogeograficaAlpina_324054.pdf&type=9&storico=False' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.602288, lng: 12.107192, label: 'Ingresso del Parco Naturale delle Dolomiti d\'Ampezzo, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'A short history walk from Sant’Uberto, at the entrance to the Ampezzo Dolomites park, up to the ruins of the medieval castle of Botestagno over the Boite valley. The board lists 2.6 km and 80 m of ascent.'
+    },
+    'cortina-malga-ra-stua': {
+      // Hand audit: 26 October 2026, verified on arrival (new-trail Belluno batch 1).
+      // Cortina Marketing’s walk “Verso Malga Ra Stua”, drawn on 15 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Cortina’s Polizia Urbana Art. 36 requires a lead. The Ampezzo
+      // Dolomites park asks for dogs on a lead (rule 7).
+      // Natura 2000: IT3230071 Dolomiti di Ampezzo (most of the line); Veneto’s measures (DGR 786/2016 Art. 99) apply the national rule.
+      // The board’s Outdooractive page gives 6.3 km, 283 m and 2 h 30; the record carries the board page’s 332 m.
+      area: 'Sant’Uberto – Malga Ra Stua, Cortina d’Ampezzo',
+      distance: 6.3,
+      elevation: 332,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Sant’Uberto car park (“tornichè”) up path 6 through the forest and the gorge of the Boite to Malga Ra Stua, and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Malga Ra Stua and its pasture, the walk’s goal, in August (Marie-Lan Taÿ Pamart, CC BY 4.0), 10 m from the line.',
+        route: 'Official loop 6.3 km from Parcheggio Sant Hubertus, as Cortina Marketing publishes it; the stored line is drawn on 15 OSM ways along the board’s published line, 6.3 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 6: from the Sant’Uberto car park, known as the “tornichè”, on path 6 left of the road, gently up through spruce, pine and larch to the Boite, then through the “Souto de Ra Stua” gorge on a series of bridges past waterfalls and canyons, to the meadow and the hut of Malga Ra Stua, and back.',
+        mapPoints: 'Start at the board’s start; drinking water at km 2 (OSM nodes 10035808374).',
+        elevation: 'Official 6.3 km, 332 m up and 331 m down, 2 h 30 min, highest point 1,686 m, lowest 1,440 m (Cortina Marketing). The board’s Outdooractive page gives 6.3 km, 283 m and 2 h 30; the record carries the board page’s 332 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Cortina Marketing, Verso Malga Ra Stua (cortina.dolomiti.org and its Outdooractive page)',
+          'Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana, Art. 36 (dogs on a lead; large dogs also muzzled on public roads and public transport) and Art. 35 (clean up after your dog)',
+          'Parco Naturale delle Dolomiti d’Ampezzo, park rules, rule 7: keep dogs on a lead',
+          'Regione del Veneto, DGR 786/2016 Allegato A (conservation measures for the Alpine Natura 2000 sites), Art. 99: the national dog ordinance applies; no ban on walking with a dog; the line is in IT3230071 Dolomiti di Ampezzo (most of the line)',
+          'OpenStreetMap ways along the board’s line (15 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 87,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Bridges and wet rock beside the waterfalls in the Souto de Ra Stua gorge', 'Cows and horses graze round Malga Ra Stua in summer: keep your distance', 'The road to Ra Stua carries a shuttle bus in summer'],
+      terrainType: 'Forest path and gorge path with bridges',
+      shadeDescription: 'Mostly shaded: almost nine tenths runs through forest; the meadow at Malga Ra Stua is open.',
+      terrainDescription: 'A walk at 1,440–1,690 m in the Ampezzo Dolomites nature park, up the forest and the gorge of the Boite with its waterfalls to Malga Ra Stua, a pasture where cows and horses graze.',
+      waterDescription: 'Drinking fountain at km 2; places to eat on the way.',
+      dogNotes: 'Cortina requires dogs on a lead, and large dogs must also wear a muzzle on public roads and public transport; clean up after your dog. The Ampezzo Dolomites nature park also asks for dogs on a lead, to protect its wildlife. The walk is in a Natura 2000 site, where Veneto applies the national dog rule (lead of at most 1.5 m, muzzle carried).',
+      tips: 'Start at the Sant’Uberto car park: 6.3 km, about 330 m of climbing, two and a half hours. Keep your dog on a lead, as Cortina and the park require, and keep your distance from the cows and horses at Ra Stua. The gorge has bridges and wet rock: take it slowly.',
+      sourceLinks: [
+        { label: 'Cortina Marketing, Verso Malga Ra Stua', url: 'https://cortina.dolomiti.org/it/escursioni/verso-malga-ra-stua/' },
+        { label: 'Outdooractive, Verso Malga Ra Stua (Cortina Marketing)', url: 'https://www.outdooractive.com/it/r/50620094' },
+        { label: 'Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana (PDF)', url: 'https://www.comune.cortinadampezzo.bl.it/content/download/1385/36228/1/N.+42+REGOLAMENTO+POLIZIA+URBANA.pdf' },
+        { label: 'Parco Naturale delle Dolomiti d’Ampezzo, Regolamenti', url: 'https://www.dolomitiparco.com/Ita/Misc/regolamenti.php' },
+        { label: 'Regione del Veneto, DGR 786/2016, Allegato A (Alpine Natura 2000 measures)', url: 'https://bur.regione.veneto.it/BurvServices/pubblica/Download.aspx?name=AllegatoA_RegioneBiogeograficaAlpina_324054.pdf&type=9&storico=False' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.603033, lng: 12.106326, label: 'Parcheggio Sant Hubertus, the board’s start' },
+      waterSources: [
+        { km: 2, lat: 46.6182662, lng: 12.0973018, osmId: 'node/10035808374', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 3, lat: 46.62575, lng: 12.09885, osmId: 'way/186517562', name: 'Rifugio Malga Ra Stua' }
+      ],
+      desc: 'A walk from Sant’Uberto up the forest and the waterfalls of the Boite to Malga Ra Stua, in the Ampezzo Dolomites park. The board lists 6.3 km and 332 m of ascent.'
+    },
+    'cortina-passeggiata-gourmet': {
+      // Hand audit: 26 October 2026, verified on arrival (new-trail Belluno batch 1).
+      // Cortina Marketing’s walk “Passeggiata gourmet”, drawn on 16 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Cortina’s Polizia Urbana Art. 36 requires a lead.
+      // No Natura 2000 site on the line (Veneto layer).
+      // The board’s Outdooractive page gives 4.3 km, 157 m and 1 h 45; the record carries the board page’s 185 m and 2 h 15.
+      area: 'Peziè de Parù – Cantoniere – Resch, Cortina d’Ampezzo',
+      distance: 4.3,
+      elevation: 185,
+      hours: '2.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Malga Peziè de Parù on path 406 (Sentiero Allaria) to the Locanda del Cantoniere, on to Baita Resch and back on path 406, past three places to eat.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Punta Marietta seen from Vervei on the walk, in October (Ximonic, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official loop 4.3 km from Malga Pezié de Parù, as Cortina Marketing publishes it; the stored line is drawn on 16 OSM ways along the board’s published line, 4.6 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 406 and 403: from the car park by Malga Peziè de Parù on path 406, the Sentiero Allaria, to the Locanda del Cantoniere on the Dolomites road (about 30 minutes), on to the junction with path 403 and right to Baita Resch, then back on path 406 to the start.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.1 (OSM nodes 5829868885).',
+        elevation: 'Official 4.3 km, 185 m up and 185 m down, 2 h 15 min, highest point 1,687 m, lowest 1,533 m (Cortina Marketing). The board’s Outdooractive page gives 4.3 km, 157 m and 1 h 45; the record carries the board page’s 185 m and 2 h 15.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Cortina Marketing, Passeggiata gourmet (cortina.dolomiti.org and its Outdooractive page)',
+          'Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana, Art. 36 (dogs on a lead; large dogs also muzzled on public roads and public transport) and Art. 35 (clean up after your dog)',
+          'Regione del Veneto Natura 2000 layer (rv:c1101121_natura_2000): no site on the line',
+          'OpenStreetMap ways along the board’s line (16 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 70,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The Locanda del Cantoniere is on the Dolomites road to Passo Giau: keep your dog close there', 'Forest paths with roots'],
+      terrainType: 'Forest paths and meadow tracks',
+      shadeDescription: 'Mostly shaded: about seven tenths runs through forest; the meadows round Baita Resch are open.',
+      terrainDescription: 'A gentle walk at 1,530–1,690 m on the wooded slope west of Cortina, linking three traditional places to eat with views over the Ampezzo basin.',
+      waterDescription: 'Drinking fountain at km 0.1; places to eat at the start and on the way.',
+      dogNotes: 'Cortina requires dogs on a lead, and large dogs must also wear a muzzle on public roads and public transport; clean up after your dog.',
+      tips: 'Start at Malga Peziè de Parù: 4.3 km, about 190 m of climbing, two hours and a quarter, with three places to eat on the way. Keep your dog on a lead, as Cortina requires, and close where the path meets the Passo Giau road.',
+      sourceLinks: [
+        { label: 'Cortina Marketing, Passeggiata gourmet', url: 'https://cortina.dolomiti.org/it/escursioni/passeggiata-gourmet/' },
+        { label: 'Outdooractive, Passeggiata gourmet (Cortina Marketing)', url: 'https://www.outdooractive.com/it/r/50643108' },
+        { label: 'Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana (PDF)', url: 'https://www.comune.cortinadampezzo.bl.it/content/download/1385/36228/1/N.+42+REGOLAMENTO+POLIZIA+URBANA.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.515833, lng: 12.09111, label: 'Malga Pezié de Parù, the board’s start' },
+      waterSources: [
+        { km: 0.1, lat: 46.5171165, lng: 12.0935854, osmId: 'node/5829868885', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.51597, lng: 12.09123, osmId: 'node/712650916', name: 'Peziè de Parù' },
+        { km: 0.9, lat: 46.52074, lng: 12.09444, osmId: 'way/201017359', name: 'La Locanda del Cantoniere' },
+        { km: 2.3, lat: 46.52329, lng: 12.10017, osmId: 'way/200799759', name: 'Baita Resch' }
+      ],
+      desc: 'A gentle loop on the wooded slope west of Cortina from Malga Peziè de Parù to the Locanda del Cantoniere and Baita Resch, three traditional places to eat. The board lists 4.3 km and 185 m of ascent.'
+    },
+    'cortina-mortisa-e-le-grotte-di-volpera': {
+      // Hand audit: 26 October 2026, verified on arrival (new-trail Belluno batch 1).
+      // Cortina Marketing’s walk “Mortisa e le Grotte di Volpera”, drawn on 27 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Cortina’s Polizia Urbana Art. 36 requires a lead.
+      // No Natura 2000 site on the line (Veneto layer).
+      // The board’s Outdooractive page gives 5.9 km, 201 m and 2 h 30; the record carries the board page’s 221 m.
+      area: 'Crignes – Mortisa – Volpera, Cortina d’Ampezzo',
+      distance: 5.9,
+      elevation: 221,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Crignes car park in Cortina up through the hamlets of Crignes and Mortisa, into the forest of boulders and small caves at Volpera on path 428, and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Cortina and the Tofana from the start of the walk, in June (Tiia Monto, CC BY-SA 3.0), 8 m from the line.',
+        route: 'Official loop 5.9 km from Parcheggio di Crignes, as Cortina Marketing publishes it; the stored line is drawn on 27 OSM ways along the board’s published line, 6 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 428 and 451: from the Crignes car park up the lane through Crignes, left and left again towards Mortisa, through the hamlet to its last houses and the meadow facing the Cristallo, Sorapis and Antelao, then on the wide track 428 into the forest of fallen boulders and small caves at Volpera, left on path 451 and back to Cortina.',
+        mapPoints: 'Start at the board’s start; drinking water at km 5.2 and at km 5.8 (OSM nodes 13018796309, 2721631662).',
+        elevation: 'Official 5.9 km, 221 m up and 218 m down, 2 h 30 min, highest point 1,306 m, lowest 1,124 m (Cortina Marketing). The board’s Outdooractive page gives 5.9 km, 201 m and 2 h 30; the record carries the board page’s 221 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Cortina Marketing, Mortisa e le Grotte di Volpera (cortina.dolomiti.org and its Outdooractive page)',
+          'Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana, Art. 36 (dogs on a lead; large dogs also muzzled on public roads and public transport) and Art. 35 (clean up after your dog)',
+          'Regione del Veneto Natura 2000 layer (rv:c1101121_natura_2000): no site on the line',
+          'OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 28,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About the first kilometre on lanes through Crignes and Mortisa, open to cars', 'The Volpera boulders are a climbing area: keep your dog close to the path'],
+      terrainType: 'Hamlet lanes, a wide gravel track and forest paths',
+      shadeDescription: 'About a quarter is in the forest at Volpera; the lanes and meadows of Crignes and Mortisa are open.',
+      terrainDescription: 'An easy walk at 1,120–1,310 m just above the centre of Cortina, through the old hamlets of Crignes and Mortisa to a forest of great fallen boulders with small caves.',
+      waterDescription: 'Drinking fountains at km 5.2 and at km 5.8; places to eat at the start and on the way.',
+      dogNotes: 'Cortina requires dogs on a lead, and large dogs must also wear a muzzle on public roads and public transport; clean up after your dog.',
+      tips: 'Start at the Crignes car park, a few hundred metres from Corso Italia: 5.9 km, about 220 m of climbing, two and a half hours. Keep your dog on a lead, as Cortina requires, and close on the lanes through the hamlets.',
+      sourceLinks: [
+        { label: 'Cortina Marketing, Mortisa e le Grotte di Volpera', url: 'https://cortina.dolomiti.org/it/escursioni/mortisa-e-le-grotte-di-volpera/' },
+        { label: 'Outdooractive, Mortisa e le Grotte di Volpera (Cortina Marketing)', url: 'https://www.outdooractive.com/it/r/50621938' },
+        { label: 'Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana (PDF)', url: 'https://www.comune.cortinadampezzo.bl.it/content/download/1385/36228/1/N.+42+REGOLAMENTO+POLIZIA+URBANA.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.536528, lng: 12.134334, label: 'Parcheggio di Crignes, the board’s start' },
+      waterSources: [
+        { km: 5.2, lat: 46.5344776, lng: 12.137289, osmId: 'node/13018796309', label: 'Drinking fountain' },
+        { km: 5.8, lat: 46.5390025, lng: 12.1351031, osmId: 'node/2721631662', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.53824, lng: 12.13612, osmId: 'node/2721631633', name: 'Caffè Royal' },
+        { km: 0, lat: 46.5386, lng: 12.13558, osmId: 'node/2721631636', name: 'Caffè Sport' },
+        { km: 0.1, lat: 46.53872, lng: 12.13614, osmId: 'node/2720943874', name: 'Ristorante Pizzeria 5 Torri' },
+        { km: 3.5, lat: 46.52192, lng: 12.13451, osmId: 'node/12029546560', name: 'Pizzeria Cortina' },
+        { km: 5.5, lat: 46.53683, lng: 12.13772, osmId: 'node/5722932864', name: 'La Piazzetta' }
+      ],
+      desc: 'An easy walk from the centre of Cortina through the old hamlets of Crignes and Mortisa to the boulders and small caves of Volpera. The board lists 5.9 km and 221 m of ascent.'
+    },
+    'cortina-sotecordes': {
+      // Hand audit: 26 October 2026, verified on arrival (new-trail Belluno batch 1).
+      // Cortina Marketing’s walk “Escursione di Sotecordes”, drawn on 21 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Cortina’s Polizia Urbana Art. 36 requires a lead. The Ampezzo
+      // Dolomites park asks for dogs on a lead (rule 7).
+      // Natura 2000: IT3230071 Dolomiti di Ampezzo (most of the line); Veneto’s measures (DGR 786/2016 Art. 99) apply the national rule.
+      // The board’s Outdooractive page gives 7.6 km, 404 m and 3 h 05; the record carries the board page’s 489 m and 3 h 30.
+      area: 'Rifugio Dibona – Forcella Col dei Bos, Cortina d’Ampezzo',
+      distance: 7.6,
+      elevation: 489,
+      hours: '3.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Rifugio Dibona on paths 403 and 404 under the south face of the Tofana di Rozes to Forcella Col dei Bos, and back down on path 402.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Rifugio Dibona at the start, below the Tofana di Rozes, in August (Lorenzo Colombo, CC BY-SA 3.0).',
+        route: 'Official loop 7.6 km from the board’s start, as Cortina Marketing publishes it; the stored line is drawn on 21 OSM ways along the board’s published line, 7.6 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 403, 404 and 402: from Rifugio Dibona (reached by road) on path 403 towards Rifugio Giussani, then path 404 climbing in zigzags to the foot of the south face of the Tofana di Rozes and along it to Forcella Col dei Bos, with remains of the First World War, then down on path 402 back to the start.',
+        mapPoints: 'Start at the board’s start; drinking water at km 4.5, at km 5.4 and at km 5.9 (OSM nodes 452468398, 6636575771, 6636579008).',
+        elevation: 'Official 7.6 km, 489 m up and 489 m down, 3 h 30 min, highest point 2,382 m, lowest 2,033 m (Cortina Marketing). The board’s Outdooractive page gives 7.6 km, 404 m and 3 h 05; the record carries the board page’s 489 m and 3 h 30.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Cortina Marketing, Escursione di Sotecordes (cortina.dolomiti.org and its Outdooractive page)',
+          'Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana, Art. 36 (dogs on a lead; large dogs also muzzled on public roads and public transport) and Art. 35 (clean up after your dog)',
+          'Parco Naturale delle Dolomiti d’Ampezzo, park rules, rule 7: keep dogs on a lead',
+          'Regione del Veneto, DGR 786/2016 Allegato A (conservation measures for the Alpine Natura 2000 sites), Art. 99: the national dog ordinance applies; no ban on walking with a dog; the line is in IT3230071 Dolomiti di Ampezzo (most of the line)',
+          'OpenStreetMap ways along the board’s line (21 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 36,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Mountain paths with scree at 2,000–2,400 m', 'No shade above the tree line and strong sun at altitude', 'Remains of First World War works at Forcella Col dei Bos: keep your dog out of the tunnels'],
+      terrainType: 'Mountain paths and scree',
+      shadeDescription: 'About a third is in larch and dwarf pine near the start; the climb under the Tofana is open.',
+      terrainDescription: 'A mountain loop at 2,030–2,380 m in the Ampezzo Dolomites park under the south face of the Tofana di Rozes, through some of the richest habitats in the Ampezzo Dolomites.',
+      waterDescription: 'Drinking fountains at km 4.5, at km 5.4 and at km 5.9; places to eat at the start.',
+      dogNotes: 'Cortina requires dogs on a lead, and large dogs must also wear a muzzle on public roads and public transport; clean up after your dog. The Ampezzo Dolomites nature park also asks for dogs on a lead, to protect its wildlife. The walk is in a Natura 2000 site, where Veneto applies the national dog rule (lead of at most 1.5 m, muzzle carried).',
+      tips: 'Start at Rifugio Dibona: 7.6 km, about 490 m of climbing, three and a half hours on mountain paths. Keep your dog on a lead, as Cortina and the park require. Bring water and something warm: the walk reaches 2,380 m and is open to sun and wind.',
+      sourceLinks: [
+        { label: 'Cortina Marketing, Escursione di Sotecordes', url: 'https://cortina.dolomiti.org/it/escursioni/escursione-di-sotecordes/' },
+        { label: 'Outdooractive, Escursione di Sotecordes (Cortina Marketing)', url: 'https://www.outdooractive.com/it/r/805072639' },
+        { label: 'Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana (PDF)', url: 'https://www.comune.cortinadampezzo.bl.it/content/download/1385/36228/1/N.+42+REGOLAMENTO+POLIZIA+URBANA.pdf' },
+        { label: 'Parco Naturale delle Dolomiti d’Ampezzo, Regolamenti', url: 'https://www.dolomitiparco.com/Ita/Misc/regolamenti.php' },
+        { label: 'Regione del Veneto, DGR 786/2016, Allegato A (Alpine Natura 2000 measures)', url: 'https://bur.regione.veneto.it/BurvServices/pubblica/Download.aspx?name=AllegatoA_RegioneBiogeograficaAlpina_324054.pdf&type=9&storico=False' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.532274, lng: 12.070084, label: 'Start, the board’s start' },
+      waterSources: [
+        { km: 4.5, lat: 46.5276553, lng: 12.0400064, osmId: 'node/452468398', label: 'Drinking fountain' },
+        { km: 5.4, lat: 46.52808, lng: 12.0512867, osmId: 'node/6636575771', label: 'Drinking fountain' },
+        { km: 5.9, lat: 46.5301361, lng: 12.0562048, osmId: 'node/6636579008', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.53244, lng: 12.06989, osmId: 'node/9043711319', name: 'Angelo Dibona' },
+        { km: 0, lat: 46.5324, lng: 12.06991, osmId: 'way/200336783', name: 'Rifugio Angelo Dibona' }
+      ],
+      desc: 'A mountain loop from Rifugio Dibona under the south face of the Tofana di Rozes to Forcella Col dei Bos and back. The board lists 7.6 km and 489 m of ascent.'
+    },
+    'osm-7547653': {
+      // Hand audit: 26 October 2026 (Belluno batch 1). Route, figures and start from the Lozzo di Cadore / CAI ring sheet no. 50
+      // (lozzodicadore.eu node 192) and the 1:25,000 ring map; the OSM relation (ref 50, website node 192) is the same loop, 3.0 km.
+      // Whole line in Lozzo di Cadore (Nominatim); its police regulation (2018) Art. 39 requires a lead on all public places, paths
+      // included. No Natura 2000 site on the line (Veneto layer). The start is reached by car on the Strada del Genio.
+      area: 'Col Vidal, Pian dei Buoi, Lozzo di Cadore',
+      distance: 3,
+      elevation: 130,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'Ring 50 of the Lozzo di Cadore network, waymarked green-white-green: a loop from just above the Forte Basso di Col Vidal on the Pian dei Buoi plateau, past the First World War positions of the “Cinque Imbocchi”, and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Forte Basso di Col Vidal, just below the start of the loop, in September (Ddm-dolomitico, CC BY-SA 4.0).',
+        route: 'Official sheet circa 3 km; the stored OSM line (relation 7547653, Anello dei Forti, ref 50) is 3.0 km and matches the ring on the official 1:25,000 map.',
+        routeNumbers: 'Ring 50, green-white-green (Lozzo di Cadore / CAI): from just above the Forte Basso, along the military road towards the “Cinque Imbocchi” tunnels, round the fortified hill of Col Vidal and back to the Forte Basso.',
+        mapPoints: 'Start just above the Forte Basso di Col Vidal (official start), reached by car on the Strada del Genio, 18 km from Lozzo, with alternating one-way traffic from 1 July to 31 August; no water mapped on the line.',
+        elevation: 'Official 130 m of climb (was 199), about 3 km and 1 h 30, grade E (Lozzo di Cadore / CAI ring sheet no. 50).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Comune di Lozzo di Cadore / CAI, ring sheet no. 50 Anello dei Forti and the 1:25,000 ring map',
+          'Lozzo di Cadore police regulation (2018) Art. 39: dogs on a lead on all public places, paths included',
+          'Regione del Veneto Natura 2000 layer (rv:c1101121_natura_2000): no site on the line',
+          'OpenStreetMap relation 7547653: paths, tracks, forest and water'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 92,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Mountain path (CAI grade E) and old military tracks at about 1,800 m', 'The First World War tunnels of the “Cinque Imbocchi” are unsafe: the official sheet advises visiting only their entrances, so keep your dog out', 'The Strada del Genio to the start is narrow, with alternating traffic in July and August'],
+      terrainType: 'Mountain path and old military tracks',
+      shadeDescription: 'Shaded almost all the way: the loop runs through larch and spruce on the Pian dei Buoi plateau.',
+      terrainDescription: 'A short loop at about 1,800 m on the Pian dei Buoi plateau above Lozzo di Cadore, in the Parco della Memoria round the First World War forts of Col Vidal, facing the Marmarole.',
+      waterDescription: 'No drinking water is mapped on the loop; bring water for your dog. Rifugio Ciareido is on the same plateau.',
+      dogNotes: 'Lozzo di Cadore requires dogs on a lead on all public places, paths included. The tunnels of the Cinque Imbocchi are unsafe: keep your dog out of them.',
+      tips: 'Drive up the Strada del Genio to Col Vidal (alternating one-way traffic in July and August) and start just above the Forte Basso: 3 km, about 130 m of climbing, an hour and a half. Keep your dog on a lead throughout and out of the old tunnels. Carry water.',
+      sourceLinks: [
+        { label: 'Lozzo di Cadore, Anello dei Forti (ring 50)', url: 'https://www.lozzodicadore.eu/sito/node/192' },
+        { label: 'Official route sheet (image)', url: 'https://www.lozzodicadore.eu/sito/sites/fotoanelli/001_an50.jpg' },
+        { label: 'Official ring map, 1:25,000 (PDF)', url: 'https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-carta-25000.pdf' },
+        { label: 'Lozzo di Cadore police regulation (PDF)', url: 'https://lozzo-di-cadore-api.municipiumapp.it/s3/3676/allegati/regolamento-polizia-urbana-2018.pdf' },
+        { label: 'OpenStreetMap relation 7547653', url: 'https://www.openstreetmap.org/relation/7547653' }
+      ],
+      startPoint: { lat: 46.5140511, lng: 12.4291276, label: 'Just above the Forte Basso di Col Vidal, Pian dei Buoi (official start)' },
+      desc: 'Ring 50 of the Lozzo di Cadore network: a short loop on the Pian dei Buoi plateau from the Forte Basso di Col Vidal past the First World War positions of the Cinque Imbocchi, facing the Marmarole. The official sheet gives about 3 km, 130 m of climb and 1 h 30.'
     }
   };
 
