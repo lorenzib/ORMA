@@ -1,5 +1,7 @@
 'use strict';
 
+const {applyVerifiedTrailOverrides}=require('../scripts/verified-trail-overrides');
+
 const path=require('path');
 const {existingCopyFields,RETAINED_COPY_FIELDS,buildVerifiedEditorialHandoff}
   =require('./workflows/verified-editorial-handoff');
@@ -132,6 +134,27 @@ describe('the lane runs end to end without a model call',()=>{
       overrides:{contractVersion:'1.0.0',trails:[{id:item.targetTrailId,verificationScope:'routeReviewed',
         fields:{ormaVerified:false,withdrawal}}]},operationalFacts:{trails:[]},at:AT});
     expect(result.overrides.trails[0].fields.withdrawal).toEqual(withdrawal);
+  });
+
+  test('a publication keeps the route numbers checked along the walk',()=>{
+    // osm-9511973 carried its 15A segments in a routeRefs entry; on 26 October
+    // its publication replaced that entry and the page lost them.
+    const routeRefSegments=[{ref:'15A',path:[[46.5,11.8],[46.51,11.81]],
+      source:{url:'https://api.openstreetmap.org/api/0.6/relation/9511973/full',checkedAt:'2026-09-01'}}];
+    const publish=prior=>materializeApprovedPublications({
+      requests:{requests:[{id:'pub-3',candidateId:trail.candidateId,
+        status:'approved-for-pr-creation',approvedBy:'benedetta',approvedAt:AT}]},
+      staging:{items:[item]},routesByCandidate:{[trail.candidateId]:{geometry:survey.geometry}},
+      overrides:{contractVersion:'1.0.0',trails:prior},operationalFacts:{trails:[]},at:AT}).overrides.trails;
+    const [entry]=publish([{id:item.targetTrailId,verificationScope:'routeRefs',reviewedAt:'2026-09-01',
+      fields:{routeRefSegments}}]);
+    expect(entry.verificationScope).toBe('routeReviewed');
+    expect(entry.fields.routeRefSegments).toEqual(routeRefSegments);
+    // And the published record reads them.
+    const [applied]=applyVerifiedTrailOverrides([{id:item.targetTrailId}],{trails:[entry]});
+    expect(applied.routeRefSegments).toEqual(routeRefSegments);
+    // A trail that had none gains none.
+    expect(publish([])[0].fields.routeRefSegments).toBeUndefined();
   });
 
   // A copywriter that did run still wins: this is about not paying for words

@@ -1033,6 +1033,12 @@ hand (`tier: 'route-audited'`, graduation `verified`) or that carries a
 Like a disagreeing distance it is refused, not thrown: the rest of the batch
 still publishes. Changing such a trail is a human edit.
 
+Two things a trail carries apart from its dossier survive a republication
+instead: a person's withdrawal, and the route numbers checked along the walk
+(`routeRefSegments`, a `routeRefs` verification with its own source and date),
+unless the publication brings segments of its own. On 26 October publishing
+osm-9511973 dropped its 15A segments and failed the worker's validation.
+
 ## A walk verified by hand is recorded in the backoffice
 
 > Proposed 24 October 2026; takes effect when merged.

@@ -172,6 +172,15 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
     // withdrawn walk back on the site.
     const withdrawal = index >= 0 ? next.trails[index]?.fields?.withdrawal : null;
     if(withdrawal && !entry.fields.withdrawal) entry.fields = { ...entry.fields, withdrawal };
+    // The same for route numbers checked along the walk. They are their own
+    // verification (`routeRefs`, from the OSM relation, with its source and
+    // date), not part of the dossier a publication carries, so replacing the
+    // entry dropped them: on 26 October publishing osm-9511973 took its 15A
+    // segments off the page and failed the worker's validation. Kept unless
+    // the publication brings segments of its own.
+    const segments = index >= 0 ? next.trails[index]?.fields?.routeRefSegments : null;
+    if(Array.isArray(segments) && segments.length && !entry.fields.routeRefSegments)
+      entry.fields = { ...entry.fields, routeRefSegments:segments };
     if(index >= 0) next.trails[index] = entry;
     else next.trails.push(entry);
     entries.push(entry);
