@@ -160,9 +160,12 @@ describe('trail page map controls', () => {
     const toggle = document.getElementById('routesToggle');
     expect(toggle.getAttribute('aria-pressed')).toBe('true');
     expect(toggle.className).toContain('on');
-    // The waymarked overlay starts visible on both interactive maps (via the
-    // shared map-style.js helper), and both carry the always-on hillshade.
-    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map');
+    // The hiking network starts visible on both interactive maps (via the
+    // shared map-style.js helpers: our own routes on the trail page, the
+    // Waymarked raster on the homepage until it switches over), and both
+    // carry the always-on hillshade. The chip hides whichever is drawn.
+    expect(trail).toContain('ORMAMapStyle.addHikingRoutes(map');
+    expect(trail).toContain('window.ORMAMapStyle.setHikingRoutesVisible(map, showing);');
     expect(home).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
     expect(fs.readFileSync(path.join(__dirname, 'map-style.js'), 'utf8'))
       .toContain("visibility: config.visible === false ? 'none' : 'visible'");
@@ -704,8 +707,9 @@ describe('trail page map controls', () => {
     // route made the route the least visible thing on the map.
     expect(detailPois).toContain("'icon-allow-overlap': false");
     expect(detailPois).toContain("'icon-padding': 12");
-    // Waymarked overlay is drawn by the shared helper, in its own colours.
-    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId })');
+    // The hiking network is drawn by the shared helper, our own routes with
+    // Waymarked's raster as the fallback.
+    expect(trail).toMatch(/ORMAMapStyle\.addHikingRoutes\(map, \{\s*beforeId: firstLabelId,/);
     expect(trail).toContain('ORMAMapStyle.quietBasemap(map)');
     expect(trail).not.toContain("'raster-saturation': -0.90");
     expect(trail).not.toContain("'raster-contrast': 0.38");
@@ -714,23 +718,22 @@ describe('trail page map controls', () => {
     expect(trail).toContain('window.ORMAMapStyle.matchColour(score)');
     expect(trail).toContain('applyDetailRouteColor(detailRouteColorForScore(guestMatchScore(t)))');
     expect(trail).not.toContain('function safetyColor(');
-    // The route contours the marked path instead of covering it: it goes in
-    // BELOW the waymarked raster, so that raster draws down its middle.
+    // The route sits over the dashed routes and under their numbers (under
+    // the Waymarked raster when the page has fallen back to it).
     expect(trail).toContain("ORMAMapStyle.addRouteLine(map, {");
     expect(trail).toContain("id: 'single-trail-path-line',");
     expect(trail).toContain('color: selectedRouteColor,');
-    expect(trail).toContain('beforeId: window.ORMAMapStyle.WAYMARKED_LAYER,');
+    expect(trail).toContain('beforeId: window.ORMAMapStyle.walkLineBeforeId(map),');
     expect(trail).toContain("'line-color': '#858D88'");
-    // No ORMA route-number shields on the detail map. The route now
-    // highlights the marked path from underneath, so Waymarked's own numbers
-    // are visible on it and ours would only be duplicates fighting for space.
+    // No route-number shields on the detail map: the hiking network numbers
+    // every route itself, and shields would only fight those for space.
     expect(trail).not.toContain("id:'single-trail-route-number'");
     expect(trail).not.toContain('window.DoloPawsTrailRouteRefs.addShieldLayer');
     expect(html).toContain('.td2-hero{background:#243128;color:#EAF1E8;position:relative;overflow:visible;z-index:2;}');
     // Overlays still slot in below the first label layer so place names
     // stay on top in flat and 3D alike.
     expect(trail).toContain('const firstLabelId = window.ORMAMapStyle.firstLabelLayerId(map)');
-    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId })');
+    expect(trail).toMatch(/ORMAMapStyle\.addHikingRoutes\(map, \{\s*beforeId: firstLabelId,/);
     const mapStyle = fs.readFileSync(path.join(__dirname, 'map-style.js'), 'utf8');
     expect(mapStyle).toContain("'raster-resampling': 'linear'");
     expect(mapStyle).toContain("'raster-fade-duration': 120");

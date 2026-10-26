@@ -1258,7 +1258,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).not.toContain("trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id)");
     // The selected route is now a zoom-scaled cased pair from map-style.js.
     expect(trailScript).toContain('ORMAMapStyle.addRouteLine(map, {');
-    expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, window\.ORMAMapStyle\.networkLayerId\(map\)\);/);
     // Both homepage maps now share one Waymarked treatment instead of two
     // hand-tuned desaturation blocks that greyed the network into mush.
     expect(script).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
@@ -1269,7 +1269,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).not.toContain("id: 'trail-cluster-count'");
     expect(script).not.toContain('clusterMinPoints');
     expect(script).not.toContain('getClusterExpansionZoom(feature.properties.cluster_id)');
-    expect(trailScript).toContain('ORMAMapStyle.addWaymarkedHiking(map');
+    expect(trailScript).toContain('ORMAMapStyle.addHikingRoutes(map');
     expect(trailScript).not.toContain("'raster-saturation': -0.90");
     expect(trailScript).not.toContain("'raster-contrast': 0.38");
     const mapStyle = fs.readFileSync(path.join(__dirname, 'map-style.js'), 'utf8');

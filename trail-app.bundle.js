@@ -337,6 +337,296 @@
     map.setLayoutProperty(WAYMARKED_LAYER, 'visibility', visible ? 'visible' : 'none');
   }
 
+  // ── Our own hiking network ──────────────────────────────────────────────
+  // Waymarked's raster is a finished picture in their colours -- purple,
+  // yellow, orange and red lines, red and blue shields -- and on a trail page
+  // it put four colours around the one line that matters, the walk. These
+  // layers draw the same OSM route relations ourselves (built weekly by
+  // scripts/build-hiking-route-tiles.sh, published under data/hiking-routes/):
+  // every route a thin dashed grey line with its number, so the walk is the
+  // only coloured line on the map. Approved on renders, 26 Oct 2026.
+  //
+  // Waymarked stays as the fallback: if the tiles are missing or fail to
+  // load, the raster is put back in their place.
+  const HIKING_SOURCE = 'orma-hiking-routes';
+  const HIKING_LINE_LAYER = 'orma-hiking-routes-line';
+  const HIKING_REF_LAYER = 'orma-hiking-routes-ref';
+  const HIKING_WALK_SOURCE = 'orma-hiking-walk-refs';
+  const HIKING_WALK_REF_LAYER = 'orma-hiking-routes-ref-walk';
+  const HIKING_TILES_PATH = '/data/hiking-routes/{z}/{x}/{y}.pbf';
+  const HIKING_METADATA_PATH = '/data/hiking-routes/metadata.json';
+  // Both regions' padded extents (REGIONS in build-hiking-routes.js), so the
+  // map does not ask for tiles across the rest of Europe.
+  const HIKING_BOUNDS = [5.65, 45.06, 12.66, 47.03];
+  const HIKING_LINE_COLOUR = '#5F665F';
+  const HIKING_REF_COLOUR = '#4D554E';
+  const HIKING_WALK_REF_COLOUR = '#2E4034';
+  // How close (metres) the walk must run to a route to be walking on it.
+  const WALK_ROUTE_TOLERANCE_M = 25;
+  // Shorter shared stretches are crossings, not the walk following a route.
+  const WALK_ROUTE_MIN_STRETCH_M = 120;
+
+  function hikingTilesUrl() {
+    const origin = global.location && global.location.origin;
+    // A file:// page has no origin to serve tiles from.
+    if (!origin || origin === 'null') return null;
+    return origin + HIKING_TILES_PATH;
+  }
+
+  function metresBetween(a, b) {
+    const lat = (a[1] + b[1]) / 2 * Math.PI / 180;
+    const dx = (b[0] - a[0]) * 111320 * Math.cos(lat);
+    const dy = (b[1] - a[1]) * 110570;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  // Metres from point p to segment a-b, on a local flat projection.
+  function metresToSegment(p, a, b) {
+    const kx = 111320 * Math.cos(p[1] * Math.PI / 180);
+    const ky = 110570;
+    const ax = (a[0] - p[0]) * kx, ay = (a[1] - p[1]) * ky;
+    const bx = (b[0] - p[0]) * kx, by = (b[1] - p[1]) * ky;
+    const dx = bx - ax, dy = by - ay;
+    const lengthSq = dx * dx + dy * dy;
+    const t = lengthSq ? Math.max(0, Math.min(1, -(ax * dx + ay * dy) / lengthSq)) : 0;
+    const x = ax + t * dx, y = ay + t * dy;
+    return Math.sqrt(x * x + y * y);
+  }
+
+  function featureLines(geometry) {
+    if (!geometry) return [];
+    if (geometry.type === 'LineString') return [geometry.coordinates];
+    if (geometry.type === 'MultiLineString') return geometry.coordinates;
+    return [];
+  }
+
+  /**
+   * The stretches of the walk that run on a numbered route, one line per
+   * route per stretch, so the walk's own numbers are set along the part it
+   * shares with each route and nowhere else.
+   *
+   * `walk` is [[lng, lat], ...]; `routes` are GeoJSON features with `id` and
+   * `ref` properties, e.g. from querySourceFeatures (one route can arrive as
+   * many tile pieces). Returns the ids of the routes the walk uses and the
+   * label lines.
+   */
+  function walkRouteStretches(walk, routes, options) {
+    const config = options || {};
+    const tolerance = config.tolerance || WALK_ROUTE_TOLERANCE_M;
+    const minStretch = config.minStretch || WALK_ROUTE_MIN_STRETCH_M;
+    // Segments are filed under every grid cell their box touches, padded by
+    // more than the tolerance (~40 m), so a walk vertex finds every segment
+    // near it by looking in its own cell alone.
+    const cell = 0.002;
+    const pad = 0.0005;
+    const index = value => Math.floor(value / cell);
+    const grid = new Map();
+    const refs = new Map();
+    (routes || []).forEach(feature => {
+      const props = feature.properties || {};
+      const id = Number(props.id);
+      if (!props.ref || !Number.isFinite(id)) return;
+      refs.set(id, props.ref);
+      featureLines(feature.geometry).forEach(line => {
+        for (let i = 1; i < line.length; i++) {
+          const a = line[i - 1], b = line[i];
+          for (let x = index(Math.min(a[0], b[0]) - pad); x <= index(Math.max(a[0], b[0]) + pad); x++) {
+            for (let y = index(Math.min(a[1], b[1]) - pad); y <= index(Math.max(a[1], b[1]) + pad); y++) {
+              const k = `${x},${y}`;
+              if (!grid.has(k)) grid.set(k, []);
+              grid.get(k).push({ id, a, b });
+            }
+          }
+        }
+      });
+    });
+    const key = point => `${index(point[0])},${index(point[1])}`;
+    // Which routes each walk vertex sits on.
+    const onRoutes = (walk || []).map(point => {
+      const ids = new Set();
+      (grid.get(key(point)) || []).forEach(segment => {
+        if (!ids.has(segment.id) && metresToSegment(point, segment.a, segment.b) <= tolerance) ids.add(segment.id);
+      });
+      return ids;
+    });
+    const used = new Set();
+    const features = [];
+    refs.forEach((ref, id) => {
+      let run = [];
+      const close = () => {
+        let length = 0;
+        for (let i = 1; i < run.length; i++) length += metresBetween(run[i - 1], run[i]);
+        if (run.length >= 2 && length >= minStretch) {
+          used.add(id);
+          features.push({ type: 'Feature', properties: { id, ref }, geometry: { type: 'LineString', coordinates: run } });
+        }
+        run = [];
+      };
+      onRoutes.forEach((ids, index) => {
+        if (ids.has(id)) run.push(walk[index]);
+        else close();
+      });
+      close();
+    });
+    return { ids: [...used], features };
+  }
+
+  function hikingLayersPresent(map) {
+    return !!(map && map.getLayer(HIKING_LINE_LAYER));
+  }
+
+  /** Swap our layers for Waymarked's raster, keeping their place and visibility. */
+  function fallBackToWaymarked(map) {
+    if (!hikingLayersPresent(map)) return;
+    const visible = map.getLayoutProperty(HIKING_LINE_LAYER, 'visibility') !== 'none';
+    addWaymarkedHiking(map, { beforeId: HIKING_REF_LAYER, visible });
+    [HIKING_WALK_REF_LAYER, HIKING_REF_LAYER, HIKING_LINE_LAYER].forEach(id => {
+      if (map.getLayer(id)) map.removeLayer(id);
+    });
+    [HIKING_WALK_SOURCE, HIKING_SOURCE].forEach(id => {
+      if (map.getSource(id)) map.removeSource(id);
+    });
+  }
+
+  /**
+   * Draw the hiking network from our own tiles: dashed grey lines, every
+   * route's number from trail zoom (12) up, ranked international first when
+   * they crowd. Pass `walk` ([[lng, lat], ...]) on a single-walk map and the
+   * routes the walk follows get bigger, darker numbers beside the walk, only
+   * along the stretch it shares with them.
+   *
+   * Falls back to Waymarked's raster when the tiles cannot be served.
+   */
+  function addHikingRoutes(map, options) {
+    const config = options || {};
+    if (!map || hikingLayersPresent(map)) return HIKING_LINE_LAYER;
+    const tiles = hikingTilesUrl();
+    if (!tiles) return addWaymarkedHiking(map, config);
+    const beforeId = config.beforeId !== undefined ? config.beforeId : firstLabelLayerId(map);
+    const target = beforeId && map.getLayer(beforeId) ? beforeId : undefined;
+    const visibility = config.visible === false ? 'none' : 'visible';
+    map.addSource(HIKING_SOURCE, {
+      type: 'vector', tiles: [tiles], minzoom: 10, maxzoom: 14, bounds: HIKING_BOUNDS,
+    });
+    map.addSource(HIKING_WALK_SOURCE, { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+    map.addLayer({
+      id: HIKING_LINE_LAYER, type: 'line', source: HIKING_SOURCE, 'source-layer': 'routes',
+      layout: { visibility, 'line-join': 'round', 'line-cap': 'butt' },
+      paint: {
+        'line-color': HIKING_LINE_COLOUR,
+        'line-opacity': 0.75,
+        // Dashed so a route never reads as a contour line.
+        'line-dasharray': [2, 1.6],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.8, 13, 1.4, 16, 2.4],
+      },
+    }, target);
+    map.addLayer({
+      id: HIKING_REF_LAYER, type: 'symbol', source: HIKING_SOURCE, 'source-layer': 'routes',
+      minzoom: 12,
+      filter: ['!=', ['get', 'ref'], ''],
+      layout: {
+        visibility,
+        'symbol-placement': 'line',
+        'symbol-spacing': 300,
+        // International before national, regional, then local.
+        'symbol-sort-key': ['get', 'rank'],
+        'text-field': ['get', 'ref'],
+        'text-font': FONT_BOLD,
+        'text-size': 11,
+        'text-padding': 6,
+        'text-rotation-alignment': 'viewport',
+        'text-keep-upright': true,
+      },
+      paint: { 'text-color': HIKING_REF_COLOUR, 'text-halo-color': '#FFFFFF', 'text-halo-width': 2 },
+    }, target);
+    // Above the grey numbers, so the walk's own win where they collide.
+    map.addLayer({
+      id: HIKING_WALK_REF_LAYER, type: 'symbol', source: HIKING_WALK_SOURCE,
+      minzoom: 12,
+      layout: {
+        visibility,
+        'symbol-placement': 'line',
+        // Wide enough that a loop on one route is not numbered at every bend.
+        'symbol-spacing': 320,
+        'text-field': ['get', 'ref'],
+        'text-font': FONT_BOLD,
+        'text-size': 13,
+        // Beside the walk line, never under it.
+        'text-offset': [0, -1.6],
+        'text-rotation-alignment': 'viewport',
+        'text-keep-upright': true,
+      },
+      paint: { 'text-color': HIKING_WALK_REF_COLOUR, 'text-halo-color': '#FFFFFF', 'text-halo-width': 2.6 },
+    }, target);
+
+    // A failed tile (not a 404, which is only an empty patch of map) or a
+    // site deployed without the tiles puts Waymarked back.
+    const onError = event => {
+      if (!event || event.sourceId !== HIKING_SOURCE) return;
+      const status = event.error && event.error.status;
+      if (status === 404) return;
+      map.off('error', onError);
+      fallBackToWaymarked(map);
+    };
+    map.on('error', onError);
+    if (typeof global.fetch === 'function') {
+      global.fetch(global.location.origin + HIKING_METADATA_PATH, { method: 'HEAD' })
+        .then(response => { if (!response.ok) fallBackToWaymarked(map); })
+        .catch(() => { /* offline: Waymarked could not load either */ });
+    }
+
+    const walk = Array.isArray(config.walk) ? config.walk : null;
+    if (walk && walk.length > 1) {
+      // Route pieces arrive tile by tile, and a closer zoom has the exact
+      // lines, so measure again each time a closer zoom has loaded.
+      let measuredZoom = -1;
+      const measure = () => {
+        if (!map.getSource(HIKING_SOURCE)) { map.off('idle', measure); return; }
+        const zoom = Math.min(14, Math.floor(map.getZoom()));
+        if (zoom <= measuredZoom) return;
+        const routes = map.querySourceFeatures(HIKING_SOURCE, { sourceLayer: 'routes' });
+        if (!routes.length) return;
+        measuredZoom = zoom;
+        const { ids, features } = walkRouteStretches(walk, routes);
+        map.getSource(HIKING_WALK_SOURCE).setData({ type: 'FeatureCollection', features });
+        // The walk's routes are numbered beside the walk instead.
+        map.setFilter(HIKING_REF_LAYER, ['all',
+          ['!=', ['get', 'ref'], ''],
+          ['!', ['in', ['get', 'id'], ['literal', ids]]],
+        ]);
+      };
+      map.on('idle', measure);
+    }
+    return HIKING_LINE_LAYER;
+  }
+
+  /** Show or hide the hiking network, ours or the Waymarked fallback. */
+  function setHikingRoutesVisible(map, visible) {
+    if (!map) return;
+    const visibility = visible ? 'visible' : 'none';
+    [HIKING_LINE_LAYER, HIKING_REF_LAYER, HIKING_WALK_REF_LAYER].forEach(id => {
+      if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visibility);
+    });
+    setWaymarkedVisible(map, visible);
+  }
+
+  /** The bottom of the hiking network: relief and neighbours go below this. */
+  function networkLayerId(map) {
+    if (map && map.getLayer(HIKING_LINE_LAYER)) return HIKING_LINE_LAYER;
+    if (map && map.getLayer(WAYMARKED_LAYER)) return WAYMARKED_LAYER;
+    return firstLabelLayerId(map);
+  }
+
+  /**
+   * Where a walk's own line goes: above our dashed routes but below their
+   * numbers, or under Waymarked's raster as before.
+   */
+  function walkLineBeforeId(map) {
+    if (map && map.getLayer(HIKING_REF_LAYER)) return HIKING_REF_LAYER;
+    if (map && map.getLayer(WAYMARKED_LAYER)) return WAYMARKED_LAYER;
+    return firstLabelLayerId(map);
+  }
+
   /**
    * Turn down the base style so the hiking network can be the loudest thing
    * on the map. Shops, ATMs, road shields and aerodromes are not why anyone
@@ -568,9 +858,10 @@
     const id = config.id;
     if (!map || !source || !id || map.getLayer(id)) return null;
     const paint = routeLinePaint(config.color || '#2E4034', config);
-    // Default to sitting under the hiking network when it is present, so the
-    // route highlights the marked path instead of covering it.
-    const fallbackBefore = map.getLayer(WAYMARKED_LAYER) ? WAYMARKED_LAYER : firstLabelLayerId(map);
+    // Default to sitting under Waymarked's raster, so the route highlights the
+    // marked path instead of covering it; with our own network, between the
+    // dashed routes and their numbers.
+    const fallbackBefore = walkLineBeforeId(map);
     const beforeId = config.beforeId !== undefined ? config.beforeId : fallbackBefore;
     const target = beforeId && map.getLayer(beforeId) ? beforeId : undefined;
     const layout = { 'line-join': 'round', 'line-cap': 'round' };
@@ -629,7 +920,7 @@
       // Lines sit UNDER the marked network. The waymarked raster is mostly
       // transparent, so contours read everywhere except directly beneath a
       // trail line -- which is the right order, the path draws over the relief.
-      const belowNetwork = map.getLayer(WAYMARKED_LAYER) ? WAYMARKED_LAYER : firstLabelLayerId(map);
+      const belowNetwork = networkLayerId(map);
       map.addLayer({
         id: CONTOUR_LINE_LAYER, type: 'line', source: CONTOUR_SOURCE, 'source-layer': 'contours',
         minzoom,
@@ -687,6 +978,15 @@
     matchColourExpression,
     addWaymarkedHiking,
     setWaymarkedVisible,
+    HIKING_SOURCE,
+    HIKING_LINE_LAYER,
+    HIKING_REF_LAYER,
+    HIKING_WALK_REF_LAYER,
+    addHikingRoutes,
+    setHikingRoutesVisible,
+    walkRouteStretches,
+    networkLayerId,
+    walkLineBeforeId,
     quietBasemap,
     calmBasemap,
     routeLinePaint,
@@ -55762,9 +56062,7 @@ function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
       };
       map.setTerrain({ source: 'terrain-dem-3d', exaggeration });
       if(!map.getLayer('hillshade-layer')){
-        const beforeLayer = map.getLayer('waymarked-hiking-layer')
-          ? 'waymarked-hiking-layer'
-          : (map.getStyle().layers.find(layer => layer.type === 'symbol') || {}).id;
+        const beforeLayer = window.ORMAMapStyle.networkLayerId(map);
         map.addLayer({
           id: 'hillshade-layer',
           type: 'hillshade',
@@ -57020,19 +57318,20 @@ function renderTrail(t){
       }
 
 
-      // Waymarked Trails' own public hiking overlay, same underlying OSM
-      // data as our base map, but with their dedicated trail-route styling
-      // (numbered routes, waymarking) that a general basemap doesn't draw.
-      //
-      // Drawn in Waymarked's own colours by map-style.js. The previous
-      // treatment desaturated it by -0.90 and pushed contrast, which turned
-      // their red route lines and route-number shields into unreadable grey
-      // smudges, the "illegible signs" complaint. Inserting before the first
-      // label layer keeps it above roads and fills but below every place name.
+      // The marked hiking network, drawn by us from OSM route data: every
+      // route a dashed grey line with its number, so the walk is the only
+      // coloured line on the map. Waymarked's raster used to sit here in its
+      // own colours; map-style.js puts it back if our tiles cannot load.
+      // The walk's path lets the routes it follows be numbered beside it.
+      // Inserting before the first label layer keeps the network above roads
+      // and fills but below every place name.
       const firstLabelId = window.ORMAMapStyle.firstLabelLayerId(map);
       window.ORMAMapStyle.quietBasemap(map);
-      window.ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId });
-      if (typeof addBaseHillshade === 'function') addBaseHillshade(map, 'waymarked-hiking-layer');
+      window.ORMAMapStyle.addHikingRoutes(map, {
+        beforeId: firstLabelId,
+        walk: Array.isArray(t.path) ? t.path.map(([lat, lng]) => [lng, lat]) : null,
+      });
+      if (typeof addBaseHillshade === 'function') addBaseHillshade(map, window.ORMAMapStyle.networkLayerId(map));
       // Elevation contours from the same DEM -- the detail a street basemap
       // lacks. Lazy-loaded and fully guarded: if the plugin fails, the map is
       // unchanged.
@@ -57048,9 +57347,7 @@ function renderTrail(t){
         routesToggleBtn.addEventListener('click', () => {
           const showing = routesToggleBtn.classList.toggle('on');
           routesToggleBtn.setAttribute('aria-pressed', showing ? 'true' : 'false');
-          if (map.getLayer('waymarked-hiking-layer')) {
-            map.setLayoutProperty('waymarked-hiking-layer', 'visibility', showing ? 'visible' : 'none');
-          }
+          window.ORMAMapStyle.setHikingRoutesVisible(map, showing);
         });
       }
 
@@ -57115,7 +57412,7 @@ function renderTrail(t){
               'line-opacity': 0.52,
               'line-dasharray': [1.5, 1.25],
             },
-          }, 'waymarked-hiking-layer');
+          }, window.ORMAMapStyle.networkLayerId(map));
           // Wide invisible twin so the thin neighbour lines are easy to hit.
           map.addLayer({
             id: 'other-trails-hit',
@@ -57124,7 +57421,7 @@ function renderTrail(t){
             minzoom: 9,
             layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
             paint: { 'line-color': '#000', 'line-width': 16, 'line-opacity': 0.01 },
-          }, 'waymarked-hiking-layer');
+          }, window.ORMAMapStyle.networkLayerId(map));
           map.addSource('nearby-trail-points', {
             type: 'geojson',
             data: {
@@ -57248,17 +57545,15 @@ function renderTrail(t){
             geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
           },
         });
-        // The route is a highlight UNDER the hiking network, not a line over
-        // it: a translucent match-colour corridor with a white casing, with
-        // the waymarked raster drawing on top. Waymarked's own route line and
-        // its numbered shields then run down the middle of the highlight, so
-        // the numbers a walker actually follows stay visible and we no longer
-        // reprint them ourselves.
+        // The route is a translucent match-colour corridor with a white
+        // casing, over the dashed grey routes and under their numbers, so the
+        // numbers a walker follows stay readable. (Under Waymarked's raster
+        // instead, when the page has fallen back to it.)
         window.ORMAMapStyle.addRouteLine(map, {
           id: 'single-trail-path-line',
           source: 'single-trail-path',
           color: selectedRouteColor,
-          beforeId: window.ORMAMapStyle.WAYMARKED_LAYER,
+          beforeId: window.ORMAMapStyle.walkLineBeforeId(map),
         });
 
         // Closed loops are intentionally direction-neutral: hikers can join
@@ -57289,12 +57584,10 @@ function renderTrail(t){
           // they never sit on a place name.
           }, firstLabelId);
         }
-        // No ORMA route-number shields here any more. They existed only
-        // because the old opaque route line hid Waymarked's baked-in numbers;
-        // now the raster draws above the highlight and those real numbers are
-        // visible, so a second set of our own would just be duplicates
-        // fighting them for space. The reference list still renders as text in
-        // the trail details column via trail-blueprint.js.
+        // No route-number shields here: the hiking network's own layers number
+        // every route, and the walk's routes beside the walk (map-style.js).
+        // The reference list still renders as text in the trail details column
+        // via trail-blueprint.js.
         const bounds = new maplibregl.LngLatBounds();
         t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
         map.fitBounds(bounds, { padding: 60, maxZoom: 17 });

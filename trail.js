@@ -955,9 +955,7 @@ function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
       };
       map.setTerrain({ source: 'terrain-dem-3d', exaggeration });
       if(!map.getLayer('hillshade-layer')){
-        const beforeLayer = map.getLayer('waymarked-hiking-layer')
-          ? 'waymarked-hiking-layer'
-          : (map.getStyle().layers.find(layer => layer.type === 'symbol') || {}).id;
+        const beforeLayer = window.ORMAMapStyle.networkLayerId(map);
         map.addLayer({
           id: 'hillshade-layer',
           type: 'hillshade',
@@ -2213,19 +2211,20 @@ function renderTrail(t){
       }
 
 
-      // Waymarked Trails' own public hiking overlay, same underlying OSM
-      // data as our base map, but with their dedicated trail-route styling
-      // (numbered routes, waymarking) that a general basemap doesn't draw.
-      //
-      // Drawn in Waymarked's own colours by map-style.js. The previous
-      // treatment desaturated it by -0.90 and pushed contrast, which turned
-      // their red route lines and route-number shields into unreadable grey
-      // smudges, the "illegible signs" complaint. Inserting before the first
-      // label layer keeps it above roads and fills but below every place name.
+      // The marked hiking network, drawn by us from OSM route data: every
+      // route a dashed grey line with its number, so the walk is the only
+      // coloured line on the map. Waymarked's raster used to sit here in its
+      // own colours; map-style.js puts it back if our tiles cannot load.
+      // The walk's path lets the routes it follows be numbered beside it.
+      // Inserting before the first label layer keeps the network above roads
+      // and fills but below every place name.
       const firstLabelId = window.ORMAMapStyle.firstLabelLayerId(map);
       window.ORMAMapStyle.quietBasemap(map);
-      window.ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId });
-      if (typeof addBaseHillshade === 'function') addBaseHillshade(map, 'waymarked-hiking-layer');
+      window.ORMAMapStyle.addHikingRoutes(map, {
+        beforeId: firstLabelId,
+        walk: Array.isArray(t.path) ? t.path.map(([lat, lng]) => [lng, lat]) : null,
+      });
+      if (typeof addBaseHillshade === 'function') addBaseHillshade(map, window.ORMAMapStyle.networkLayerId(map));
       // Elevation contours from the same DEM -- the detail a street basemap
       // lacks. Lazy-loaded and fully guarded: if the plugin fails, the map is
       // unchanged.
@@ -2241,9 +2240,7 @@ function renderTrail(t){
         routesToggleBtn.addEventListener('click', () => {
           const showing = routesToggleBtn.classList.toggle('on');
           routesToggleBtn.setAttribute('aria-pressed', showing ? 'true' : 'false');
-          if (map.getLayer('waymarked-hiking-layer')) {
-            map.setLayoutProperty('waymarked-hiking-layer', 'visibility', showing ? 'visible' : 'none');
-          }
+          window.ORMAMapStyle.setHikingRoutesVisible(map, showing);
         });
       }
 
@@ -2308,7 +2305,7 @@ function renderTrail(t){
               'line-opacity': 0.52,
               'line-dasharray': [1.5, 1.25],
             },
-          }, 'waymarked-hiking-layer');
+          }, window.ORMAMapStyle.networkLayerId(map));
           // Wide invisible twin so the thin neighbour lines are easy to hit.
           map.addLayer({
             id: 'other-trails-hit',
@@ -2317,7 +2314,7 @@ function renderTrail(t){
             minzoom: 9,
             layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
             paint: { 'line-color': '#000', 'line-width': 16, 'line-opacity': 0.01 },
-          }, 'waymarked-hiking-layer');
+          }, window.ORMAMapStyle.networkLayerId(map));
           map.addSource('nearby-trail-points', {
             type: 'geojson',
             data: {
@@ -2441,17 +2438,15 @@ function renderTrail(t){
             geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
           },
         });
-        // The route is a highlight UNDER the hiking network, not a line over
-        // it: a translucent match-colour corridor with a white casing, with
-        // the waymarked raster drawing on top. Waymarked's own route line and
-        // its numbered shields then run down the middle of the highlight, so
-        // the numbers a walker actually follows stay visible and we no longer
-        // reprint them ourselves.
+        // The route is a translucent match-colour corridor with a white
+        // casing, over the dashed grey routes and under their numbers, so the
+        // numbers a walker follows stay readable. (Under Waymarked's raster
+        // instead, when the page has fallen back to it.)
         window.ORMAMapStyle.addRouteLine(map, {
           id: 'single-trail-path-line',
           source: 'single-trail-path',
           color: selectedRouteColor,
-          beforeId: window.ORMAMapStyle.WAYMARKED_LAYER,
+          beforeId: window.ORMAMapStyle.walkLineBeforeId(map),
         });
 
         // Closed loops are intentionally direction-neutral: hikers can join
@@ -2482,12 +2477,10 @@ function renderTrail(t){
           // they never sit on a place name.
           }, firstLabelId);
         }
-        // No ORMA route-number shields here any more. They existed only
-        // because the old opaque route line hid Waymarked's baked-in numbers;
-        // now the raster draws above the highlight and those real numbers are
-        // visible, so a second set of our own would just be duplicates
-        // fighting them for space. The reference list still renders as text in
-        // the trail details column via trail-blueprint.js.
+        // No route-number shields here: the hiking network's own layers number
+        // every route, and the walk's routes beside the walk (map-style.js).
+        // The reference list still renders as text in the trail details column
+        // via trail-blueprint.js.
         const bounds = new maplibregl.LngLatBounds();
         t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
         map.fitBounds(bounds, { padding: 60, maxZoom: 17 });

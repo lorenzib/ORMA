@@ -1,25 +1,29 @@
 name: ORMA hiking route tiles
 
 # Builds the hiking network we draw ourselves in place of Waymarked Trails'
-# raster: every OSM hiking route in each region, as vector tiles in one
-# PMTiles file per region, with its number, name and network.
+# raster: every OSM hiking route in each region, as one folder of vector
+# tiles carrying each route's number, name and network.
 #
-# Phase 1 of the map restyle: this only builds and measures. The files are
-# kept as a run artifact and nothing is published or committed yet.
+# The tiles are not committed. This saves them in the Actions cache, and the
+# Pages deploy (deploy-pages.yml) copies the newest saved set into
+# data/hiking-routes/ on every deploy. On a schedule or by hand it then asks
+# for a deploy, so the refreshed routes go live the same morning.
 #
 # The tools are Ubuntu's own packages (osmium-tool, tippecanoe), so nothing is
-# built from source and the same job can run the weekly refresh later.
+# built from source.
 on:
   workflow_dispatch: {}
   pull_request:
     paths:
       - scripts/build-hiking-routes.js
+      - scripts/build-hiking-route-tiles.sh
       - .github/workflows/orma-hiking-route-tiles.yml
   schedule:
     - cron: '0 3 * * 1'        # Mondays; Geofabrik refreshes its extracts daily
 
 permissions:
   contents: read
+  actions: write               # ask deploy-pages.yml to run
 
 concurrency:
   group: orma-hiking-route-tiles-${{ github.ref }}
@@ -29,14 +33,6 @@ jobs:
   tiles:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - region: dolomites
-            extract: europe/italy/nord-est
-          - region: savoy
-            extract: europe/france/rhone-alpes
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -50,81 +46,61 @@ jobs:
           osmium --version | head -1
           tippecanoe --version
 
-      - name: Week of the extract
+      - name: Week of the extracts
         id: week
         run: echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
 
-      # One download a week per region; reruns inside the week reuse it.
-      - name: Cache the Geofabrik extract
+      # One download a week; reruns inside the week reuse it.
+      - name: Cache the Geofabrik extracts
         uses: actions/cache@v6
         with:
-          path: extract.osm.pbf
-          key: geofabrik-${{ matrix.region }}-${{ steps.week.outputs.week }}
+          path: hiking-work/*.osm.pbf
+          key: geofabrik-extracts-${{ steps.week.outputs.week }}
 
-      - name: Download the Geofabrik extract
-        run: |
-          if [ ! -s extract.osm.pbf ]; then
-            curl -fsSL --retry 3 -A "ORMA hiking route tiles (github.com/${GITHUB_REPOSITORY})" \
-              -o extract.osm.pbf "https://download.geofabrik.de/${{ matrix.extract }}-latest.osm.pbf"
-          fi
-          ls -l extract.osm.pbf
-
-      - name: Keep the region's hiking routes
-        run: |
-          set -euo pipefail
-          bbox="$(node -p "require('./scripts/build-hiking-routes').REGIONS['${{ matrix.region }}'].bbox.join(',')")"
-          echo "BBOX=$bbox" >> "$GITHUB_ENV"
-          osmium extract --bbox "$bbox" --strategy complete_ways extract.osm.pbf -o region.osm.pbf --overwrite
-          osmium tags-filter region.osm.pbf r/route=hiking,foot -o hiking.osm.pbf --overwrite
-          # Untagged nodes go once their coordinates are on the ways.
-          osmium add-locations-to-ways hiking.osm.pbf -o located.osm.pbf --overwrite
-          # OPL leaves the coordinates off the ways unless asked for them.
-          osmium cat located.osm.pbf -f opl,locations_on_ways=true -o routes.opl --overwrite
-          head -c 600 routes.opl; echo
-          grep -m2 '^r' routes.opl | cut -c1-400
-          ls -l region.osm.pbf hiking.osm.pbf routes.opl
-
-      - name: Build one feature per route
-        run: node scripts/build-hiking-routes.js routes.opl "${{ matrix.region }}-hiking-routes.geojsonseq" | tee counts.json
-
-      - name: Pack into tiles
-        run: |
-          set -euo pipefail
-          name="${{ matrix.region }}-hiking-routes"
-          # z10 is the widest a trail page opens; MapLibre overzooms past 14.
-          # No tile size limit, so nothing is silently dropped while we measure.
-          tippecanoe -o "$name.mbtiles" -l routes -Z10 -z14 \
-            --clip-bounding-box="$BBOX" --no-tile-size-limit --force --quiet \
-            -y id -y ref -y name -y network -y rank \
-            "$name.geojsonseq"
-          tile-join -o "$name.pmtiles" --force --no-tile-size-limit "$name.mbtiles"
+      - name: Build the tiles
+        run: bash scripts/build-hiking-route-tiles.sh hiking-work hiking-routes
 
       - name: Measure
         run: |
           set -euo pipefail
-          name="${{ matrix.region }}-hiking-routes"
           {
-            echo "### ${{ matrix.region }}"
+            echo "### Hiking route tiles"
             echo
-            echo "Routes: \`$(cat counts.json)\`"
-            echo
-            echo "| File | Size |"
-            echo "|---|---|"
-            for file in "$name.geojsonseq" "$name.pmtiles"; do
-              echo "| $file | $(du -h "$file" | cut -f1) ($(stat -c %s "$file") bytes) |"
+            echo "All regions: $(find hiking-routes -name '*.pbf' | wc -l) tiles, $(du -sh hiking-routes | cut -f1) uncompressed"
+            for counts in hiking-work/*-counts.json; do
+              region="$(basename "$counts" -counts.json)"
+              echo
+              echo "#### $region: \`$(cat "$counts")\`"
+              echo
+              echo "| Zoom | Tiles | Total KB | Largest KB | Average KB |"
+              echo "|---|---|---|---|---|"
+              # Sizes as stored compressed in the .mbtiles, roughly what a
+              # browser downloads when the server compresses.
+              sqlite3 -separator ' | ' "hiking-work/$region.mbtiles" \
+                "SELECT '| ' || zoom_level, count(*), round(sum(length(tile_data))/1024.0,1), round(max(length(tile_data))/1024.0,1), round(avg(length(tile_data))/1024.0,1) || ' |' FROM tiles GROUP BY zoom_level ORDER BY zoom_level;"
             done
-            echo
-            echo "| Zoom | Tiles | Total KB | Largest KB | Average KB |"
-            echo "|---|---|---|---|---|"
-            sqlite3 -separator ' | ' "$name.mbtiles" \
-              "SELECT '| ' || zoom_level, count(*), round(sum(length(tile_data))/1024.0,1), round(max(length(tile_data))/1024.0,1), round(avg(length(tile_data))/1024.0,1) || ' |' FROM tiles GROUP BY zoom_level ORDER BY zoom_level;"
           } >> "$GITHUB_STEP_SUMMARY"
           cat "$GITHUB_STEP_SUMMARY"
 
+      # A new key every run; the deploy restores the newest by prefix.
+      - name: Save the tiles for the deploy
+        if: github.event_name != 'pull_request'
+        uses: actions/cache/save@v6
+        with:
+          path: hiking-routes
+          key: hiking-route-tiles-${{ github.run_id }}
+
+      - name: Ask for a deploy
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy-pages.yml --ref "${GITHUB_REF_NAME}"
+
+      - name: Pack the tiles for inspection
+        run: tar -czf hiking-routes.tar.gz hiking-routes
+
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.region }}-hiking-routes
-          path: |
-            ${{ matrix.region }}-hiking-routes.pmtiles
-            ${{ matrix.region }}-hiking-routes.geojsonseq
+          name: hiking-routes
+          path: hiking-routes.tar.gz
           retention-days: 14
