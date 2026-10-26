@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cortina-passeggiata-gourmet",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.3,
+    "ascentM": 185,
+    "highestPointM": 1695,
+    "expectedDuration": "2.25 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 70
+  },
+  "trailhead": {
+    "lat": 46.515833,
+    "lng": 12.09111,
+    "label": "Malga Pezié de Parù, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5171165,
+      "lng": 12.0935854,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The Locanda del Cantoniere is on the Dolomites road to Passo Giau: keep your dog close there.",
+    "Forest paths with roots.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cortina-sotecordes",
+  "distanceKm": 7.6,
+  "ascentM": 489,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 2037
+    },
+    {
+      "km": 0.6,
+      "elev": 2109
+    },
+    {
+      "km": 1.2,
+      "elev": 2214
+    },
+    {
+      "km": 1.7,
+      "elev": 2315
+    },
+    {
+      "km": 2.3,
+      "elev": 2323
+    },
+    {
+      "km": 2.9,
+      "elev": 2404
+    },
+    {
+      "km": 3.5,
+      "elev": 2351
+    },
+    {
+      "km": 4,
+      "elev": 2312
+    },
+    {
+      "km": 4.6,
+      "elev": 2165
+    },
+    {
+      "km": 5.2,
+      "elev": 2151
+    },
+    {
+      "km": 5.8,
+      "elev": 2106
+    },
+    {
+      "km": 6.3,
+      "elev": 2097
+    },
+    {
+      "km": 6.9,
+      "elev": 2103
+    },
+    {
+      "km": 7.5,
+      "elev": 2048
+    },
+    {
+      "km": 7.6,
+      "elev": 2037
+    }
+  ]
+}
