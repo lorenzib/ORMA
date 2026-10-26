@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-26T21:45:27.772Z",
+  "generatedAt": "2026-10-26T21:51:38.666Z",
   "regions": {
     "dolomites": {
-      "trailCount": 173,
-      "trails": "data/regions/dolomites-trails.js?v=299a83bcc14d",
+      "trailCount": 175,
+      "trails": "data/regions/dolomites-trails.js?v=8b9416720f6d",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -178,6 +178,8 @@
         "fiemme-pradi-da-le-fior": "data/trail-details/fiemme-pradi-da-le-fior.js?v=2dbdab6f9bb6",
         "fiemme-passo-oclini": "data/trail-details/fiemme-passo-oclini.js?v=1ba1357e1c97",
         "fiemme-masi-comunicanti": "data/trail-details/fiemme-masi-comunicanti.js?v=876907fd555a",
+        "primiero-monte-vederna": "data/trail-details/primiero-monte-vederna.js?v=18784533ea2e",
+        "primiero-malga-crel": "data/trail-details/primiero-malga-crel.js?v=f592a897f9a1",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -420,6 +422,8 @@
     "fiemme-pradi-da-le-fior": "dolomites",
     "fiemme-passo-oclini": "dolomites",
     "fiemme-masi-comunicanti": "dolomites",
+    "primiero-monte-vederna": "dolomites",
+    "primiero-malga-crel": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -697,6 +701,8 @@
     "fiemme-pradi-da-le-fior": "pradi-da-le-fior",
     "fiemme-passo-oclini": "passo-oclini-gurndin-isi",
     "fiemme-masi-comunicanti": "masi-comunicanti-capriana",
+    "primiero-monte-vederna": "monte-vederna",
+    "primiero-malga-crel": "malga-crel",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -923,6 +929,8 @@
     "pradi-da-le-fior": "fiemme-pradi-da-le-fior",
     "passo-oclini-gurndin-isi": "fiemme-passo-oclini",
     "masi-comunicanti-capriana": "fiemme-masi-comunicanti",
+    "monte-vederna": "primiero-monte-vederna",
+    "malga-crel": "primiero-malga-crel",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
