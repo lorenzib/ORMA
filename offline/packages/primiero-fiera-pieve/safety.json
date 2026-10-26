@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-fiera-pieve",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.6,
+    "ascentM": 22,
+    "highestPointM": 759,
+    "expectedDuration": "0.75 hours",
+    "difficulty": "Easy",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.173524,
+    "lng": 11.827269,
+    "label": "Autostazione delle Corriere, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.1731412,
+      "lng": 11.8282878,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1750389,
+      "lng": 11.831555,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1798578,
+      "lng": 11.8299134,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1756702,
+      "lng": 11.8282751,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Mostly tarmac and stone setts in the town, open to cars.",
+    "Several crossings of the busy main road through Fiera, as the APT warns.",
+    "Playgrounds on the way, where dogs may not go.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}
