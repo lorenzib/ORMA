@@ -127,6 +127,39 @@ describe('the network is drawn from our own tiles', () => {
   });
 });
 
+describe('browse maps', () => {
+  test('a minzoom holds the whole network back, numbers no earlier than trail zoom', () => {
+    const map = fakeMap();
+    style.addHikingRoutes(map, { beforeId: 'place-labels', minzoom: 13.5 });
+    expect(map.getLayer(style.HIKING_LINE_LAYER).minzoom).toBe(13.5);
+    expect(map.getLayer(style.HIKING_REF_LAYER).minzoom).toBe(13.5);
+    expect(map.getLayer(style.HIKING_WALK_REF_LAYER).minzoom).toBe(13.5);
+  });
+
+  test('the fallback keeps the minzoom', () => {
+    const map = fakeMap();
+    style.addHikingRoutes(map, { beforeId: 'place-labels', minzoom: 12.5 });
+    map.fire('error', { sourceId: style.HIKING_SOURCE, error: { status: 500 } });
+    expect(map.getLayer('waymarked-hiking-layer').minzoom).toBe(12.5);
+  });
+
+  test('a walk chosen later is numbered beside it, and clearing it puts every number back', () => {
+    const map = fakeMap({ routes: [ROUTE_7, ROUTE_9] });
+    style.addHikingRoutes(map, { beforeId: 'place-labels' });
+    style.setHikingWalk(map, WALK);
+    expect(map.getSource('orma-hiking-walk-refs').data.features.map(f => f.properties.ref)).toEqual(['7']);
+    style.setHikingWalk(map, null);
+    expect(map.getSource('orma-hiking-walk-refs').data.features).toEqual([]);
+    expect(map.getLayer(style.HIKING_REF_LAYER).filter).toEqual(['!=', ['get', 'ref'], '']);
+  });
+
+  test('the Layers chip lists our layers and the fallback raster', () => {
+    expect(style.HIKING_LAYER_IDS).toEqual([
+      style.HIKING_LINE_LAYER, style.HIKING_REF_LAYER, style.HIKING_WALK_REF_LAYER, 'waymarked-hiking-layer',
+    ]);
+  });
+});
+
 describe('Waymarked comes back when our tiles cannot', () => {
   test('a failed tile puts the raster back in their place, keeping the chip\'s state', () => {
     const map = fakeMap();

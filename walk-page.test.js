@@ -231,7 +231,11 @@ describe('walk recorder authentication restoration', () => {
     expect(source).toContain('Satellite');
     expect(source).toContain('data-wr-3d');
     expect(source).toContain('Centre map on my position');
-    expect(source).toContain("'raster-opacity': 1");
-    expect(source).toMatch(/id: 'walk-line'[\s\S]*?}, 'waymarked-hiking-layer'\);/);
+    // The shared hiking network, with the trace over its lines and under its
+    // numbers; the chip hides whichever network is drawn.
+    expect(source).toContain('style.addHikingRoutes(map, { beforeId: firstLabel ? firstLabel.id : undefined });');
+    expect(source).toMatch(/id: 'walk-line'[\s\S]*?}, style\.walkLineBeforeId\(map\)\);/);
+    expect(source).toContain("layerChip('Marked hiking routes', window.ORMAMapStyle.HIKING_LAYER_IDS, true);");
+    expect(source).not.toContain('tile.waymarkedtrails.org');
   });
 });

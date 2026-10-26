@@ -288,20 +288,20 @@
           geometry:{ type:'LineString', coordinates:trail.path.map(([lat,lng]) => [Number(lng),Number(lat)]) },
         }));
         // Same cartography as every other ORMA map: the marked hiking network
-        // in its own colours, a quietened base, and each collection route as a
-        // cased corridor UNDERNEATH the raster so the marked path and its real
-        // numbers read down the middle. This map previously had no hiking
-        // network at all.
+        // as dashed grey routes with their numbers, a quietened base, and each
+        // collection route as a cased corridor over the dashed lines and under
+        // their numbers, so the routes stay the only colour on the map.
         const style = window.ORMAMapStyle;
         if(style) style.quietBasemap(map);
-        const beneath = style ? style.addWaymarkedHiking(map, {
+        if(style) style.addHikingRoutes(map, {
             beforeId: style.firstLabelLayerId(map),
             // This map opens at zoom 9 to frame a whole collection, and has no
             // layers control. Holding the network back until you zoom in keeps
             // the browse view calm without hiding anything behind a control
             // that does not exist here, zooming in is the affordance.
             minzoom: NETWORK_MIN_ZOOM,
-          }) : undefined;
+          });
+        const beneath = style ? style.walkLineBeforeId(map) : undefined;
         const mapMarkerElements = [];
         map.addSource('collection-inline-routes', { type:'geojson', data:{ type:'FeatureCollection', features } });
         // If the dog profile lands after this map is drawn, restyle it in place

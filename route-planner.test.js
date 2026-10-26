@@ -93,9 +93,11 @@ describe('standalone draft route planner', () => {
     expect(plannerSource).toContain('DoloPawsMapRuntime.mapOptions');
     expect(plannerSource).toContain('DoloPawsMapRuntime.enhance(map)');
     expect(plannerSource).toContain('new maplibregl.GeolocateControl');
-    expect(plannerSource).toContain('tile.waymarkedtrails.org/hiking');
-    expect(plannerSource).toContain("'raster-opacity':['interpolate',['linear'],['zoom'],7,.48,10,.66,12,.84,14,1]");
-    expect(plannerSource).toContain("'raster-saturation':0");
+    // The shared hiking network (our own routes, Waymarked as the fallback),
+    // toggled by the Marked routes chip.
+    expect(plannerSource).toContain('window.ORMAMapStyle.addHikingRoutes(map, {');
+    expect(plannerSource).toContain('window.ORMAMapStyle.setHikingRoutesVisible(map, enabled);');
+    expect(plannerSource).not.toContain('tile.waymarkedtrails.org');
     expect(plannerSource).toContain("id:'planner-orma-trails-line'");
     expect(plannerHtml).toContain('data-planner-poi="water"');
     expect(plannerHtml).toContain('data-planner-poi="huts"');

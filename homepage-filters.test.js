@@ -1242,15 +1242,15 @@ describe('map-first returning homepage layout contract', () => {
   test('keeps route shields above a stronger ORMA highlight and only clusters five or more trails', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     const trailScript = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
-    expect(script).toMatch(/id: 'trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': rankWidth\(\[3\.5, 8, 10, 10\][\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    // Halo is a white casing beneath the raster now, not a cream halo above it.
-    expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFFFF'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(script).toMatch(/id: 'trail-paths-line'[\s\S]*?\}, railsBeforeId\);/);
+    expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': rankWidth\(\[3\.5, 8, 10, 10\][\s\S]*?\}, railsBeforeId\);/);
+    // Halo is a white casing beneath the route numbers, not a cream halo above them.
+    expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFFFF'[\s\S]*?\}, railsBeforeId\);/);
     // The corridor is the shortlist's, not every trail's. An unmatched walk
     // used to get the same 14px white halo and 10px band with its colour
     // dropped to 0.12 -- a wide white smear with nothing inside it. It is a
     // hairline now, and a hairline can afford to be seen at 0.5.
-    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': rankWidth\(\[5, 10, 15, 20\], \[1\.2, 1\.8, 2\.4, 3\]\)[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': rankWidth\(\[5, 10, 15, 20\], \[1\.2, 1\.8, 2\.4, 3\]\)[\s\S]*?\}, railsBeforeId\);/);
     expect(script).not.toContain('0.5, 0.12');
     expect(script).not.toContain("id: 'trail-paths-match-outline'");
     // The guest map is coloured by match score against the medium-dog profile,
@@ -1259,9 +1259,10 @@ describe('map-first returning homepage layout contract', () => {
     // The selected route is now a zoom-scaled cased pair from map-style.js.
     expect(trailScript).toContain('ORMAMapStyle.addRouteLine(map, {');
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, window\.ORMAMapStyle\.networkLayerId\(map\)\);/);
-    // Both homepage maps now share one Waymarked treatment instead of two
-    // hand-tuned desaturation blocks that greyed the network into mush.
-    expect(script).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
+    // Both maps share one hiking-network treatment from map-style.js instead
+    // of hand-tuned raster blocks per map.
+    expect(script).toContain('ORMAMapStyle.addHikingRoutes(trailMapInstance');
+    expect(script).toContain('const railsBeforeId = window.ORMAMapStyle.walkLineBeforeId(trailMapInstance);');
     expect(script).not.toContain("'raster-saturation': -1");
     expect(script).not.toContain("'raster-contrast': 0.20");
     expect(script).not.toContain("id: 'trail-paths-mapped-line'");
