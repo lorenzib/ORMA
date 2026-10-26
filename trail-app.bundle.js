@@ -52836,7 +52836,10 @@ function initTrailReports(map, trail){
   const SOURCES = [
     {
       key: 'orma',
-      sentences: ['This is ORMA’s suggestion, not one published by the trail’s operator.'],
+      sentences: [
+        'This is ORMA’s suggestion, not one published by the trail’s operator.',
+        'ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.',
+      ],
       one: 'is ORMA’s suggestion',
       many: 'are ORMA’s suggestion',
     },

@@ -30,6 +30,9 @@ const ORMA_AUTHORITY = 'ORMA';
 // In the value, like the map's own line, because a value is quoted far from
 // its citation.
 const ORMA_SUGGESTION = 'This is ORMA’s suggestion, not one published by the trail’s operator.';
+// The line every record answer carried before 24 October 2026. A dossier
+// approved before then still holds it, and publishes it unless rewritten.
+const LEGACY_ORMA_SUGGESTION = 'ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.';
 // Only the start carries it. Access is about whether somebody may begin here
 // today -- a barrier, a closed car park, a seasonal road -- and saying it after
 // a sentence about trail numbers attaches a warning to the wrong fact.
@@ -180,6 +183,32 @@ function startSentence(start){
 }
 
 /**
+ * Directions in today's wording, whenever they were approved.
+ *
+ * A record answer is written when the dossier is compiled, and published when
+ * the publication is approved, which can be days later. Geotrail Bulla was
+ * approved before the start became a sentence and went live on 25 October as
+ * "Start at … (46.58020, 11.62280). ORMA’s own suggestion from the walk it
+ * recorded, …". So the publisher rewrites what ORMA said itself: the start, if
+ * ORMA's record answered it, is rebuilt from the start point; the old
+ * suggestion line becomes the new one wherever it appears. An answer from an
+ * operator or the map is never touched here; the map's own words are brought
+ * up to date by route-guidance-from-map's mapInCurrentWording.
+ */
+function inCurrentWording(guidance, startPoint){
+  if(!guidance || typeof guidance !== 'object') return guidance;
+  const next = { ...guidance };
+  for(const field of ['start', 'status', 'sequence', 'switches']){
+    if(typeof next[field] === 'string') next[field] = next[field].split(LEGACY_ORMA_SUGGESTION).join(ORMA_SUGGESTION);
+  }
+  const fromRecord = guidance.establishedBy?.start === 'orma-record'
+    || String(guidance.start || '').includes(LEGACY_ORMA_SUGGESTION);
+  const start = fromRecord ? recordedStart({ startPoint }) : null;
+  if(start) next.start = startSentence(start);
+  return next;
+}
+
+/**
  * The claims ORMA can answer about itself.
  *
  * `url` is where the suggestion is published, so the citation points at
@@ -224,5 +253,5 @@ function routeGuidanceFromRecord(trail, options = {}){
   return claims;
 }
 
-module.exports = { ORMA_AUTHORITY, ORMA_SUGGESTION, CHECK_ACCESS, recordedStart, startSentence, recordedStatus,
+module.exports = { ORMA_AUTHORITY, ORMA_SUGGESTION, LEGACY_ORMA_SUGGESTION, CHECK_ACCESS, recordedStart, startSentence, inCurrentWording, recordedStatus,
   recordedLandmarks, landmarkRun, followedByLandmark, routeGuidanceFromRecord };

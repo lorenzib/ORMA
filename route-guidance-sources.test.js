@@ -1,6 +1,6 @@
 const { splitSources, SOURCES } = require('./route-guidance-sources.js');
 const { READ_FROM_MAP } = require('./backoffice/workflows/route-guidance-from-map');
-const { ORMA_SUGGESTION } = require('./backoffice/workflows/route-guidance-from-record');
+const { ORMA_SUGGESTION, LEGACY_ORMA_SUGGESTION } = require('./backoffice/workflows/route-guidance-from-record');
 
 describe('route directions say where they came from once per card', () => {
   const OLD_MAP = 'Read from the OpenStreetMap route relations this walk is built from, not from a published route description.';
@@ -10,6 +10,7 @@ describe('route directions say where they came from once per card', () => {
     expect(known).toContain(READ_FROM_MAP);
     expect(known).toContain(ORMA_SUGGESTION);
     expect(known).toContain(OLD_MAP);
+    expect(known).toContain(LEGACY_ORMA_SUGGESTION);
   });
 
   test('takes the sentence off every line and names what each source covers', () => {

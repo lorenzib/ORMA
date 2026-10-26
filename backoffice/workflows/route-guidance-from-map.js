@@ -27,6 +27,9 @@ const MAP_AUTHORITY = 'OpenStreetMap';
 // Plain words since 26 October 2026; the trail page prints it once per card
 // (route-guidance-sources.js), which also knows the sentence it replaced.
 const READ_FROM_MAP = 'Read off the map (OpenStreetMap), not from directions the trail’s operator published.';
+// What every map answer said before 26 October 2026. A dossier approved before
+// then still holds it, and publishes it unless rewritten.
+const LEGACY_READ_FROM_MAP = 'Read from the OpenStreetMap route relations this walk is built from, not from a published route description.';
 
 function relationUrl(externalRelationId){
   const id = String(externalRelationId || '').replace(/^relation\//, '');
@@ -163,4 +166,31 @@ function singleRelationGuidance(relation){
   return { sequence: [String(ref)], switches: [], segments: [] };
 }
 
-module.exports = { MAP_AUTHORITY, READ_FROM_MAP, relationUrl, mapSources, sequenceValue, switchesValue, singleRelationGuidance, routeGuidanceFromMap };
+/**
+ * A map answer in today's words, whenever it was approved.
+ *
+ * The counterpart of route-guidance-from-record's inCurrentWording: the
+ * publisher runs both on the way out. Only the words change -- "waymarked
+ * route 7" becomes "trail 7" and the source line becomes the plain one -- never
+ * a number, a distance or the order, so what the map measured is what is
+ * published.
+ */
+function mapInCurrentWording(guidance){
+  if(!guidance || typeof guidance !== 'object') return guidance;
+  const next = { ...guidance };
+  for(const field of ['sequence', 'switches']){
+    if(typeof next[field] !== 'string') continue;
+    // A sentence may open on the phrase, so the capital is kept.
+    const cased = (match, said) => /^W/.test(match) ? said.charAt(0).toUpperCase() + said.slice(1) : said;
+    next[field] = next[field]
+      .split(LEGACY_READ_FROM_MAP).join(READ_FROM_MAP)
+      .replace(/waymarked route (\S+) gives way to waymarked route (\S+)/gi,
+        (match, from, to) => cased(match, `trail ${from} gives way to trail ${to}`))
+      .replace(/waymarked routes /gi, match => cased(match, 'numbered trails '))
+      .replace(/waymarked route /gi, match => cased(match, 'numbered trail '))
+      .replace('with no change of waymark recorded', 'with no change of number recorded');
+  }
+  return next;
+}
+
+module.exports = { MAP_AUTHORITY, READ_FROM_MAP, LEGACY_READ_FROM_MAP, mapInCurrentWording, relationUrl, mapSources, sequenceValue, switchesValue, singleRelationGuidance, routeGuidanceFromMap };

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-26T14:37:27.276Z",
+  "generatedAt": "2026-10-26T16:30:45.433Z",
   "regions": {
     "dolomites": {
       "trailCount": 145,
-      "trails": "data/regions/dolomites-trails.js?v=f6a2f217380a",
+      "trails": "data/regions/dolomites-trails.js?v=169519d96a23",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -19,7 +19,7 @@
         "lago-sorapis": "data/trail-details/lago-sorapis.js?v=c61fe779f16b",
         "valley-view": "data/trail-details/valley-view.js?v=9611d5921a8e",
         "piancavallo": "data/trail-details/piancavallo.js?v=d6875e7a1bdb",
-        "geotrail-bulla": "data/trail-details/geotrail-bulla.js?v=5f00d1bf7781",
+        "geotrail-bulla": "data/trail-details/geotrail-bulla.js?v=28e241191dba",
         "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=2cf323a8820d",
         "sentiero-hans-e-paula-steger": "data/trail-details/sentiero-hans-e-paula-steger.js?v=528a743b999c",
         "sentiero-del-trenino": "data/trail-details/sentiero-del-trenino.js?v=07ab452c84eb",

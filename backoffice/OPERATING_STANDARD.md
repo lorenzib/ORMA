@@ -1837,7 +1837,9 @@ relation itself, attributed to OpenStreetMap. The words are a walker's, not a
 mapper's: the paths are "numbered trails", never "waymarked routes", and no
 value names a "route relation" (changed 26 October 2026; the earlier sentence,
 "Read from the OpenStreetMap route relations this walk is built from, not from
-a published route description", is still recognised where a record holds it).
+a published route description", is still recognised where a record holds it,
+and the publisher brings a map answer approved in the old words up to date --
+the same numbers and distances, today's words -- as it does ORMA's own).
 
 **The trail page says it once.** On "How to follow this route" each line's
 source sentence comes off the line and the card ends with one note naming what
