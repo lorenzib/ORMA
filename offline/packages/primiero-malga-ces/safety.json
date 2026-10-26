@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-malga-ces",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.8,
+    "ascentM": 218,
+    "highestPointM": 1672,
+    "expectedDuration": "2.25 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 67
+  },
+  "trailhead": {
+    "lat": 46.261961,
+    "lng": 11.801866,
+    "label": "San Martino di Castrozza, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.2607224,
+      "lng": 11.7994777,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Village streets and road crossings in San Martino at the start and end.",
+    "Gravel forest road, shared with forestry vehicles.",
+    "A forest path up the side of the valley.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}

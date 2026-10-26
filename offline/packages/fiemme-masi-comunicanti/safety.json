@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fiemme-masi-comunicanti",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.4,
+    "ascentM": 400,
+    "highestPointM": 1019,
+    "expectedDuration": "4 hours",
+    "difficulty": "Hard",
+    "shadePercent": 49
+  },
+  "trailhead": {
+    "lat": 46.262794,
+    "lng": 11.339053,
+    "label": "Capriana (Piazza Roma), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.2621115,
+      "lng": 11.3374814,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.264359,
+      "lng": 11.3482051,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.2687897,
+      "lng": 11.3479361,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.2648652,
+      "lng": 11.337539,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 460 m on the Capriana provincial road (SP51) and two crossings of the busy Val di Cembra state road (SS612): lead short, cross with care.",
+    "A path along the Avisio: keep your dog out of the river, which can rise fast.",
+    "A few metal steps by the Meneghina mill and a steep concrete ramp up to Carbonare.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}

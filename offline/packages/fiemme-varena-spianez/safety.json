@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fiemme-varena-spianez",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8.6,
+    "ascentM": 120,
+    "highestPointM": 1200,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 12
+  },
+  "trailhead": {
+    "lat": 46.303873,
+    "lng": 11.456747,
+    "label": "Varena (the village square), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.3050704,
+      "lng": 11.4571989,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3029322,
+      "lng": 11.4649028,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Quiet village lanes at the start and end, open to cars, and a few metres on the Lavazè pass road (SS620) in the village: keep your dog close.",
+    "Loose small stones on the last stretch, which the APT warns can stop small pram wheels.",
+    "Open meadows: in summer stay on the track and keep your dog off the hay.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}
