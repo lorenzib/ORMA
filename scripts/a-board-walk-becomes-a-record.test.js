@@ -259,6 +259,9 @@ describe('the promoter makes it the same kind of record', () => {
     fs.mkdirSync(path.join(tmp, 'scripts'));
     fs.mkdirSync(path.join(tmp, 'data'));
     fs.copyFileSync(path.join(ROOT, 'scripts', 'promote-osm-trails.js'), path.join(tmp, 'scripts', 'promote-osm-trails.js'));
+    // The promoter skips walks removed from ORMA, so it reads that list too.
+    fs.copyFileSync(path.join(ROOT, 'scripts', 'removed-trails.js'), path.join(tmp, 'scripts', 'removed-trails.js'));
+    fs.copyFileSync(path.join(ROOT, 'data', 'removed-trails.json'), path.join(tmp, 'data', 'removed-trails.json'));
     fs.copyFileSync(path.join(ROOT, 'regions-config.js'), path.join(tmp, 'regions-config.js'));
     const empty = JSON.stringify({ type: 'FeatureCollection', features: [] });
     fs.writeFileSync(path.join(tmp, 'water-sources-all-regions.geojson'), empty);

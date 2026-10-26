@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "note": "Walks removed from ORMA outright, not held as drafts. Nothing may import, scout or publish them again. Putting one back is a human edit to this file.",
+  "trails": [
+    {
+      "id": "osm-19095412",
+      "osmRelation": 19095412,
+      "name": "Chalets de Salvadon",
+      "slug": "chalets-de-salvadon",
+      "area": "Sixt-Fer-à-Cheval – Haut-Giffre",
+      "reason": "dogs-not-accepted",
+      "note": "Runs 1.6 of 5.5 km inside the Sixt-Passy national nature reserve, where dogs are banned even on a lead (Décret 2019-1218, art. 5-III).",
+      "withdrawnAt": "2026-10-22",
+      "removedAt": "2026-10-24"
+    },
+    {
+      "id": "osm-19095413",
+      "osmRelation": 19095413,
+      "name": "Alpage de Commune",
+      "slug": "alpage-de-commune",
+      "area": "Sixt-Fer-à-Cheval – Haut-Giffre",
+      "reason": "dogs-not-accepted",
+      "note": "Runs 2.7 of 5.6 km inside the Sixt-Passy national nature reserve, where dogs are banned even on a lead (Décret 2019-1218, art. 5-III).",
+      "withdrawnAt": "2026-10-22",
+      "removedAt": "2026-10-24"
+    },
+    {
+      "id": "osm-12039246",
+      "osmRelation": 12039246,
+      "name": "Rundweg Rotwand",
+      "slug": "rundweg-rotwand",
+      "area": "Cavalese",
+      "reason": "not-a-walk",
+      "note": "A 930 m one-way connecting path (route 8A) between two tracks in Altrei, inside Naturpark Trudner Horn.",
+      "withdrawnAt": "2026-10-22",
+      "removedAt": "2026-10-24"
+    }
+  ]
+}
