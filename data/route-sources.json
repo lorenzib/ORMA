@@ -178,6 +178,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-26T23:00:00.000Z"
     },
+    "fiemme-masi-comunicanti": {
+      "url": "https://www.visitfiemme.it/it/activity/masi-comunicanti_9726",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Masi Comunicanti",
+      "quote": "Lunghezza 7,4 km Durata 4 h 00 min Salita 400 m Discesa 400 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T23:30:00.000Z"
+    },
     "fiemme-passeggiata-insolita": {
       "url": "https://www.visitfiemme.it/it/activity/montagna-senza-limiti-passeggiata-insolita-lungo-il-rio-gambis_38529",
       "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
@@ -185,6 +193,22 @@
       "quote": "Lunghezza 3,0 km Durata 1 h 00 min Salita 42 m Discesa 42 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "fiemme-passo-oclini": {
+      "url": "https://www.visitfiemme.it/it/activity/passo-oclini-tra-il-corno-nero-e-il-corno-bianco_10468",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Passo Oclini, tra il Corno Nero e il Corno Bianco",
+      "quote": "Lunghezza 4,7 km Durata 1 h 30 min Salita 160 m Discesa 160 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T23:30:00.000Z"
+    },
+    "fiemme-pradi-da-le-fior": {
+      "url": "https://www.visitfiemme.it/it/activity/i-pradi-da-le-fior_63416",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "I Pradi da le Fior",
+      "quote": "Lunghezza 3,1 km Durata 55 min Salita 103 m Discesa 103 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T23:30:00.000Z"
     },
     "fiemme-varena-spianez": {
       "url": "https://www.visitfiemme.it/it/activity/col-passeggino-tra-varena-e-spianez_9861",
@@ -1375,6 +1399,22 @@
       "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
       "name": "San Martino di Castrozza - Malga Ces",
       "quote": "Distanza 7,8 km Durata 2:10 h Salita 218 m Discesa 218 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-malga-crel": {
+      "url": "https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-malga-crel",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "San Martino di Castrozza - Malga Crel",
+      "quote": "Distanza 9,2 km Durata 2:30 h Salita 260 m Discesa 264 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-monte-vederna": {
+      "url": "https://www.sanmartino.com/it/itinerari/passeggiata-a-monte-vederna-croce-degli-alpini",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Passeggiata a Monte Vederna – Croce degli Alpini",
+      "quote": "Distanza 8,2 km Durata 2:00 h Salita 300 m Discesa 300 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-26T21:00:00.000Z"
     },

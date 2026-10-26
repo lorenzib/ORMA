@@ -394,6 +394,23 @@
       }
     },
     {
+      "id": "fiemme-masi-comunicanti",
+      "approvedReviewId": "commons-fiemme-masi-comunicanti-on-route",
+      "approvedAt": "2026-10-26T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-masi-comunicanti-carbonare.jpg",
+        "heroImage": "images/trails/fiemme-masi-comunicanti-carbonare.jpg",
+        "imageAlt": "The stone church of the Immacolata in Carbonare with its tall slim bell tower, steps and cypresses in front, under a hazy summer sky",
+        "imageCredit": "The church at Carbonare",
+        "imageCreditText": "The church at Carbonare by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Carbonare,_chiesa_dell'Immacolata_05.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fiemme-passeggiata-insolita",
       "approvedReviewId": "mapillary-fiemme-passeggiata-insolita-on-route",
       "approvedAt": "2026-10-26T18:00:00.000Z",
@@ -407,6 +424,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=6280350195352867",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fiemme-passo-oclini",
+      "approvedReviewId": "commons-fiemme-passo-oclini-on-route",
+      "approvedAt": "2026-10-26T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-passo-oclini-chapel.jpg",
+        "heroImage": "images/trails/fiemme-passo-oclini-chapel.jpg",
+        "imageAlt": "A small old stone chapel with a shingle roof and a wooden bell turret beside a hotel at the Passo Oclini, the rocky top of the Corno Bianco against a deep blue sky behind",
+        "imageCredit": "Maria Schnee chapel, Passo Oclini",
+        "imageCreditText": "Maria Schnee chapel, Passo Oclini by HaSt",
+        "imageCreator": "HaSt",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Jochgrimm_-_Maria_Schnee_-_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fiemme-pradi-da-le-fior",
+      "approvedReviewId": "commons-fiemme-pradi-da-le-fior-on-route",
+      "approvedAt": "2026-10-26T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-pradi-da-le-fior-view.jpg",
+        "heroImage": "images/trails/fiemme-pradi-da-le-fior-view.jpg",
+        "imageAlt": "Snow-streaked peaks of the Brenta Dolomites above blue valleys, with green larch woods and a single larch in the foreground under a clear summer sky",
+        "imageCredit": "The Brenta from Valfloriana",
+        "imageCreditText": "The Brenta from Valfloriana by giovanni bidi",
+        "imageCreator": "giovanni bidi",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:38040_Valfloriana,_Province_of_Trento,_Italy_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -3439,6 +3490,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=819420726101507",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "primiero-malga-crel",
+      "approvedReviewId": "mapillary-primiero-malga-crel-on-route",
+      "approvedAt": "2026-10-26T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-malga-crel-san-martino.jpg",
+        "heroImage": "images/trails/primiero-malga-crel-san-martino.jpg",
+        "imageAlt": "A road junction in San Martino di Castrozza with signs to Passo Rolle, chalets with flower boxes and walkers, the jagged pale towers of the Pale di San Martino rising above the forest",
+        "imageCredit": "San Martino di Castrozza and the Pale",
+        "imageCreditText": "San Martino di Castrozza and the Pale by laniuscollurio",
+        "imageCreator": "laniuscollurio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=603659257922904",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "primiero-monte-vederna",
+      "approvedReviewId": "commons-primiero-monte-vederna-on-route",
+      "approvedAt": "2026-10-26T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-monte-vederna-casine.jpg",
+        "heroImage": "images/trails/primiero-monte-vederna-casine.jpg",
+        "imageAlt": "Wooden mountain huts on a steep green meadow with vegetable gardens and fenced plots, fir forest above, in bright summer light",
+        "imageCredit": "The huts of Vederna",
+        "imageCreditText": "The huts of Vederna by Tn4196",
+        "imageCreator": "Tn4196",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Casine.JPG",
         "imageSourceType": "licensed-source"
       }
     },
