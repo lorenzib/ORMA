@@ -443,6 +443,11 @@
       "name": "Col passeggino tra Varena e Spianez",
       "slug": "varena-spianez-loop",
       "gloss": "the meadow walk from Varena to Spianez"
+    },
+    "primiero-malga-ces": {
+      "name": "San Martino di Castrozza - Malga Ces",
+      "slug": "malga-ces",
+      "gloss": "the forest walk from San Martino to Malga Ces"
     }
   }
 }
