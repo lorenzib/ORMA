@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fiemme-cascatelle-di-ziano",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.2,
+    "ascentM": 100,
+    "highestPointM": 1046,
+    "expectedDuration": "1 hour",
+    "difficulty": "Moderate",
+    "shadePercent": 73
+  },
+  "trailhead": {
+    "lat": 46.285777,
+    "lng": 11.576342,
+    "label": "Ziano di Fiemme (Roda), the APT’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The last stretch down from the Cercenai junction is bare earth and very muddy after rain.",
+    "Several small streams to cross in the wood.",
+    "Two crossings of the valley cycle path: watch for bikes.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}
