@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fiemme-sentiero-botanico",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 11.8,
+    "ascentM": 300,
+    "highestPointM": 1308,
+    "expectedDuration": "4.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 90
+  },
+  "trailhead": {
+    "lat": 46.231369,
+    "lng": 11.298839,
+    "label": "Grauno (the church of San Martino), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.2306141,
+      "lng": 11.2986429,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.2621115,
+      "lng": 11.3374814,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Mostly forest tracks and paths, with about 560 m of village streets in Capriana.",
+    "A long cobbled descent back to Grauno, slippery when wet.",
+    "Few fountains on the long wooded stretches: carry water for your dog.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}
