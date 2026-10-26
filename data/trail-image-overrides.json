@@ -3494,6 +3494,40 @@
       }
     },
     {
+      "id": "primiero-malga-crel",
+      "approvedReviewId": "mapillary-primiero-malga-crel-on-route",
+      "approvedAt": "2026-10-26T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-malga-crel-san-martino.jpg",
+        "heroImage": "images/trails/primiero-malga-crel-san-martino.jpg",
+        "imageAlt": "A road junction in San Martino di Castrozza with signs to Passo Rolle, chalets with flower boxes and walkers, the jagged pale towers of the Pale di San Martino rising above the forest",
+        "imageCredit": "San Martino di Castrozza and the Pale",
+        "imageCreditText": "San Martino di Castrozza and the Pale by laniuscollurio",
+        "imageCreator": "laniuscollurio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=603659257922904",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "primiero-monte-vederna",
+      "approvedReviewId": "commons-primiero-monte-vederna-on-route",
+      "approvedAt": "2026-10-26T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-monte-vederna-casine.jpg",
+        "heroImage": "images/trails/primiero-monte-vederna-casine.jpg",
+        "imageAlt": "Wooden mountain huts on a steep green meadow with vegetable gardens and fenced plots, fir forest above, in bright summer light",
+        "imageCredit": "The huts of Vederna",
+        "imageCreditText": "The huts of Vederna by Tn4196",
+        "imageCreator": "Tn4196",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Casine.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "primiero-percorso-verde",
       "approvedReviewId": "mapillary-primiero-percorso-verde-on-route",
       "approvedAt": "2026-10-26T18:00:00.000Z",
