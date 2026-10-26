@@ -1,6 +1,7 @@
 'use strict';
 
 const {DEFAULT_POLICY}=require('./regional-coverage');
+const {isRemovedRelation}=require('../../scripts/removed-trails');
 
 const HARD_DIFFICULTIES = new Set(['alpine_hiking', 'demanding_alpine_hiking', 'difficult_alpine_hiking']);
 
@@ -86,6 +87,8 @@ function compareScoutingCandidates(a,b,primaryRegion='dolomites'){
 function buildCandidate(feature, region, trails, existingRelations, context={}){
   const properties=feature.properties||{};const relation=relationId(feature);const center=centerOf(feature.geometry);if(!relation||!center)return null;
   if(existingRelations.has(relation))return null;
+  // A walk removed from ORMA is not new: it left the catalogue on purpose.
+  if(isRemovedRelation(relation))return null;
   const distanceKm=Number(properties.distance_km);const closure=closureMeters(feature.geometry);
   const blockers=[];
   if(!Number.isFinite(distanceKm)||distanceKm<=0||distanceKm>12)blockers.push('outside-distance-policy');

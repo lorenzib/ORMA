@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-da-canazei-a-penia",
+  "distanceKm": 6.4,
+  "ascentM": 58,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1477
+    },
+    {
+      "km": 0.5,
+      "elev": 1439
+    },
+    {
+      "km": 1,
+      "elev": 1446
+    },
+    {
+      "km": 1.5,
+      "elev": 1453
+    },
+    {
+      "km": 2,
+      "elev": 1470
+    },
+    {
+      "km": 2.4,
+      "elev": 1474
+    },
+    {
+      "km": 3,
+      "elev": 1491
+    },
+    {
+      "km": 3.4,
+      "elev": 1485
+    },
+    {
+      "km": 3.9,
+      "elev": 1474
+    },
+    {
+      "km": 4.4,
+      "elev": 1469
+    },
+    {
+      "km": 4.9,
+      "elev": 1453
+    },
+    {
+      "km": 5.3,
+      "elev": 1446
+    },
+    {
+      "km": 5.8,
+      "elev": 1442
+    },
+    {
+      "km": 6.3,
+      "elev": 1444
+    },
+    {
+      "km": 6.4,
+      "elev": 1441
+    }
+  ]
+}
