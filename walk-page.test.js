@@ -185,7 +185,7 @@ describe('walk recorder authentication restoration', () => {
       const entry = recordWith(send => {
         for(let i = 1; i <= 30; i++) send(46.5 + i * 0.0001, 11.6, T0 + i * 2000);
       });
-      expect(entry.id).toMatch(/^w\d+-[0-9a-f]{6}$/);
+      expect(entry.id).toMatch(/^w\d+-[0-9a-f]{12}(\.[0-9a-z]+)?$/);
       expect(entry.updatedAt).toBe(T0 + 30 * 2000);
       expect(window.DoloPawsJournalStore.entriesToPush([entry], [])).toEqual([entry]);
     });
