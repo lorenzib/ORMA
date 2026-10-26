@@ -62937,8 +62937,8 @@
         "ormaVerified": false,
         "routeNumberGuidance": {
           "mode": "numbered",
-          "start": "Start at Panider Sattel / Passo Pinei, Pas Pinëi bus stop (line 172), by Hotel Pinei Nature & Spirit (46.58020, 11.62280). ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation. Check current access before travelling.",
-          "status": "The mapped route carries trail numbers 3A, 24; look for them at junctions. ORMA has not confirmed how they appear on local signs. ORMA’s own suggestion from the walk it recorded, not an operator’s recommendation.",
+          "start": "Start at Panider Sattel / Passo Pinei, Pas Pinëi bus stop (line 172), by Hotel Pinei Nature & Spirit, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.",
+          "status": "The mapped route carries trail numbers 3A, 24; look for them at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.",
           "sequence": "This walk carries no route number of its own. The mapped route runs along waymarked routes 3A, 24 and then 3A, in that order from the start. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
           "switches": "On the mapped route, waymarked route 3A gives way to waymarked route 24 about 2.9 km from the start. Read from the OpenStreetMap route relations this walk is built from, not from a published route description.",
           "establishedBy": {
