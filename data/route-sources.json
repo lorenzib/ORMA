@@ -170,6 +170,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-26T18:00:00.000Z"
     },
+    "fiemme-larici-verso-anterivo": {
+      "url": "https://www.visitfiemme.it/it/activity/passeggiata-col-passeggino-tra-i-larici-verso-anterivo_9806",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Passeggiata col passeggino tra i larici verso Anterivo",
+      "quote": "Lunghezza 5,5 km Durata 2 h 00 min Salita 60 m Discesa 60 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T23:00:00.000Z"
+    },
     "fiemme-passeggiata-insolita": {
       "url": "https://www.visitfiemme.it/it/activity/montagna-senza-limiti-passeggiata-insolita-lungo-il-rio-gambis_38529",
       "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
@@ -177,6 +185,14 @@
       "quote": "Lunghezza 3,0 km Durata 1 h 00 min Salita 42 m Discesa 42 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "fiemme-varena-spianez": {
+      "url": "https://www.visitfiemme.it/it/activity/col-passeggino-tra-varena-e-spianez_9861",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Col passeggino tra Varena e Spianez",
+      "quote": "Lunghezza 8,6 km Durata 2 h 00 min Salita 120 m Discesa 120 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T23:00:00.000Z"
     },
     "geotrail-bulla": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi989d38877e70605be1a85f34d9ce0f7c.geotrail-pufels.st--michael---kastelruth",

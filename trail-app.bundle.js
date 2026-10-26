@@ -47892,6 +47892,128 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 2.7, lat: 46.28037, lng: 11.43497, osmId: 'node/261081650', name: 'Bar La Torre' }
       ],
       desc: 'An easy loop from Cavalese to Castello di Fiemme and back, along a sunny terrace facing the Lagorai, laid out by the APT for wheelchairs. The APT lists 4.8 km and 65 m of ascent.'
+    },
+    'fiemme-larici-verso-anterivo': {
+      // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 2).
+      // APT Val di Fiemme’s walk “Passeggiata col passeggino tra i larici verso Anterivo”. The line is drawn on 33 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Neither Capriana nor Anterivo / Altrei publishes a dog rule: none among Capriana’s 72 published bylaws, and Altrei was checked for an earlier ORMA walk, so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard. Communes: Capriana (Trentino, about 0.6 km) and Anterivo / Altrei (South Tyrol, the rest).
+      // In Anterivo the road runs inside Naturpark Trudner Horn / Parco Naturale Monte Corno, also Natura 2000 site IT3110036 (Ministry of the Environment layer): dogs on a lead and never roaming. No Natura 2000 site, park or provincial reserve on the Trentino part (Province of Trento boundaries).
+      area: 'Prà del Manz – Anterivo / Altrei',
+      distance: 5.5,
+      elevation: 60,
+      hours: '2',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back: from the Prà del Manz car park above Capriana east along the quiet road through the larch woods into the village of Anterivo / Altrei, and back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A traditional house with wooden balconies and geraniums in Anterivo / Altrei, where the walk turns round, in August (Ian Alexander, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official out-and-back walk 5.5 km from Prà del Manz car park above Capriana, as APT Val di Fiemme publishes it; the stored line is drawn on 33 OSM ways along the APT’s published line, 5.5 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the Prà del Manz car park and children’s playground east along Via Gottschalk / Gottschalkstraße through the larch woods, over two small bridges, into Anterivo / Altrei to the Rathausplatz, the village square (the Kneipp water path is near the Hotel Waldheim), then back the same way. The APT describes the way as a dirt road for prams; OpenStreetMap maps it as a quiet tarred road.',
+        mapPoints: 'Start at Prà del Manz car park above Capriana, the APT’s start; drinking water at km 2 and at km 2.6 (OSM nodes 544488839, 457206189).',
+        elevation: 'Official 5.5 km, 60 m up and 60 m down, 2 h, highest point 1,224 m, lowest 1,177 m (APT Val di Fiemme).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fiemme, Passeggiata col passeggino tra i larici verso Anterivo (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Neither Capriana nor Anterivo / Altrei publishes a dog rule: none among Capriana’s 72 published bylaws, and Altrei was checked for an earlier ORMA walk)',
+          'Amt für Natur, rules of conduct in the South Tyrol nature parks: dogs only under the strictest supervision, on a lead, never roaming (Naturpark Trudner Horn, also Natura 2000 site IT3110036 Parco Naturale Monte Corno)',
+          'Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): the Anterivo part lies in IT3110036 Parco Naturale Monte Corno; Province of Trento boundaries: no Natura 2000 site, park or reserve on the Trentino part',
+          'OpenStreetMap ways along the APT line (33 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 68,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The whole walk is on a quiet tarred road open to cars (signed 50 km/h), with no pavement: keep your dog close and on the inside', 'Two small road bridges', 'Village streets and the cobbled square in Anterivo'],
+      terrainType: 'A quiet tarred road and village streets; pram-friendly',
+      shadeDescription: 'Mostly shaded: about two thirds of the way runs through larch and spruce woods.',
+      terrainDescription: 'A level walk at 1,180–1,225 m through larch woods on the border between Trentino and South Tyrol, from the Prà del Manz meadows above Capriana to the hill village of Anterivo / Altrei.',
+      waterDescription: 'Drinking fountains at km 2 and at km 2.6.',
+      dogNotes: 'No commune on this walk publishes a dog rule, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. In Anterivo the road runs inside the Trudner Horn nature park, where dogs must stay on a lead under close supervision and never roam.',
+      tips: 'Start at the Prà del Manz car park above Capriana: 5.5 km there and back, 60 m of climbing, two hours. No commune rule here, so the Italian rule applies: a lead of at most 1.5 m and a muzzle carried. In Anterivo you are in the Trudner Horn nature park: keep your dog on the lead. The whole way is a quiet road open to cars. Fountains in Anterivo, halfway.',
+      sourceLinks: [
+        { label: 'APT Val di Fiemme, Passeggiata col passeggino tra i larici verso Anterivo', url: 'https://www.visitfiemme.it/it/activity/passeggiata-col-passeggino-tra-i-larici-verso-anterivo_9806' },
+        { label: 'Outdooractive, Passeggiata col passeggino tra i larici verso Anterivo (APT Val di Fiemme)', url: 'https://www.outdooractive.com/it/r/18830621' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'South Tyrol nature parks, rules of conduct', url: 'https://naturparks.provinz.bz.it/de/verhaltensregeln-im-naturpark' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.276165, lng: 11.351995, label: 'Prà del Manz car park above Capriana, the APT’s start' },
+      waterSources: [
+        { km: 2, lat: 46.27997, lng: 11.3599612, osmId: 'node/544488839', label: 'Drinking fountain' },
+        { km: 2.6, lat: 46.277594, lng: 11.366801, osmId: 'node/457206189', label: 'Drinking fountain' }
+      ],
+      rifugi: [],
+      desc: 'A level stroll from the Prà del Manz meadows above Capriana through the larch woods to the hill village of Anterivo / Altrei in South Tyrol, and back the same way. The APT lists 5.5 km and 60 m of ascent.'
+    },
+    'fiemme-varena-spianez': {
+      // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 2).
+      // APT Val di Fiemme’s walk “Col passeggino tra Varena e Spianez”. The line is drawn on 25 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Ville di Fiemme publishes no dog rule, so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard. Communes: Ville di Fiemme (Varena).
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer).
+      area: 'Varena – Spianez, Ville di Fiemme, Val di Fiemme',
+      distance: 8.6,
+      elevation: 120,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the square in Varena down past the church and out across the sunny meadows on the Passeggiata Spianez to the Maso Spianez farm, and back by the same track and then the lanes through the lower village.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The meadows below Varena with the bell tower of the Pieve of Cavalese behind, in August (temporali, CC BY 3.0), 4 m from the line.',
+        route: 'Official loop 8.6 km from Varena (the village square), as APT Val di Fiemme publishes it; the stored line is drawn on 25 OSM ways along the APT’s published line, 8.5 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the square in Varena (Via Mercato, Via Scuole Vecchie, Via Scarian) down past the church of Santi Pietro e Paolo and along the level lane by the cemetery, then on the Passeggiata Spianez, a gravel track across open meadows, for about two and a half kilometres to the Maso Spianez farm. Back along the same track, then by Via Copara and Via Borgonuovo through the lower village, with a few metres on the Lavazè pass road (SS620), to the square.',
+        mapPoints: 'Start at Varena (the village square), the APT’s start; drinking water at the start and at km 1.2 (OSM nodes 7120336090, 284761499).',
+        elevation: 'Official 8.6 km, 120 m up and 120 m down, 2 h, highest point 1,194 m, lowest 1,068 m (APT Val di Fiemme).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fiemme, Col passeggino tra Varena e Spianez (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Ville di Fiemme publishes no dog rule)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves, and the Ministry of the Environment Natura 2000 layer (none on the line)',
+          'OpenStreetMap ways along the APT line (25 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 12,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Quiet village lanes at the start and end, open to cars, and a few metres on the Lavazè pass road (SS620) in the village: keep your dog close', 'Loose small stones on the last stretch, which the APT warns can stop small pram wheels', 'Open meadows: in summer stay on the track and keep your dog off the hay'],
+      terrainType: 'Gravel tracks and quiet lanes; pram-friendly with a country pram',
+      shadeDescription: 'Almost no shade: about 12% of the line is under trees; the meadows of Spianez are open and sunny.',
+      terrainDescription: 'An easy walk at 1,070–1,195 m from the village of Varena across the sunny meadows of Spianez, a balcony over the lower Val di Fiemme facing the Lagorai.',
+      waterDescription: 'Drinking fountains at the start and at km 1.2; bars and cafés at the start and on the way.',
+      dogNotes: 'No commune on this walk publishes a dog rule, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried.',
+      tips: 'Start in the square in Varena: 8.6 km, 120 m of climbing, two hours. Ville di Fiemme has no dog rule of its own, so the Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Little shade, so avoid midday in summer. Fountains and bars in Varena at the start; none on the meadows, so bring water.',
+      sourceLinks: [
+        { label: 'APT Val di Fiemme, Col passeggino tra Varena e Spianez', url: 'https://www.visitfiemme.it/it/activity/col-passeggino-tra-varena-e-spianez_9861' },
+        { label: 'Outdooractive, Col passeggino tra Varena e Spianez (APT Val di Fiemme)', url: 'https://www.outdooractive.com/it/r/12575463' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.303873, lng: 11.456747, label: 'Varena (the village square), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.3050704, lng: 11.4571989, osmId: 'node/7120336090', label: 'Drinking fountain at the start' },
+        { km: 1.2, lat: 46.3029322, lng: 11.4649028, osmId: 'node/284761499', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.30358, lng: 11.45607, osmId: 'node/5352766111', name: 'Caffè Varena' },
+        { km: 0, lat: 46.30276, lng: 11.45587, osmId: 'node/5352766112', name: 'Bar al Drago' },
+        { km: 7.5, lat: 46.30537, lng: 11.46261, osmId: 'way/396222407', name: 'Pizzeria La Marisana' }
+      ],
+      desc: 'An easy walk from Varena across the open meadows of Spianez, a sunny balcony over the lower Val di Fiemme, out on a gravel track and back through the lower village. The APT lists 8.6 km and 120 m of ascent.'
     }
   };
 
