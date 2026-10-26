@@ -473,6 +473,11 @@
       "name": "Passeggiata a Monte Vederna – Croce degli Alpini",
       "slug": "monte-vederna",
       "gloss": "the walk from the Rifugio Vederna to the Croce degli Alpini"
+    },
+    "fiemme-sentiero-botanico": {
+      "name": "Sentiero botanico naturalistico",
+      "slug": "sentiero-botanico-grauno-capriana",
+      "gloss": "the botanical path from Grauno to Capriana"
     }
   }
 }

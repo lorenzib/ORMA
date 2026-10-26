@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-26T21:51:38.666Z",
+  "generatedAt": "2026-10-26T22:01:10.027Z",
   "regions": {
     "dolomites": {
-      "trailCount": 175,
-      "trails": "data/regions/dolomites-trails.js?v=8b9416720f6d",
+      "trailCount": 176,
+      "trails": "data/regions/dolomites-trails.js?v=ff68399ef875",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -180,6 +180,7 @@
         "fiemme-masi-comunicanti": "data/trail-details/fiemme-masi-comunicanti.js?v=876907fd555a",
         "primiero-monte-vederna": "data/trail-details/primiero-monte-vederna.js?v=18784533ea2e",
         "primiero-malga-crel": "data/trail-details/primiero-malga-crel.js?v=f592a897f9a1",
+        "fiemme-sentiero-botanico": "data/trail-details/fiemme-sentiero-botanico.js?v=a6df85c7a394",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -424,6 +425,7 @@
     "fiemme-masi-comunicanti": "dolomites",
     "primiero-monte-vederna": "dolomites",
     "primiero-malga-crel": "dolomites",
+    "fiemme-sentiero-botanico": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -703,6 +705,7 @@
     "fiemme-masi-comunicanti": "masi-comunicanti-capriana",
     "primiero-monte-vederna": "monte-vederna",
     "primiero-malga-crel": "malga-crel",
+    "fiemme-sentiero-botanico": "sentiero-botanico-grauno-capriana",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -931,6 +934,7 @@
     "masi-comunicanti-capriana": "fiemme-masi-comunicanti",
     "monte-vederna": "primiero-monte-vederna",
     "malga-crel": "primiero-malga-crel",
+    "sentiero-botanico-grauno-capriana": "fiemme-sentiero-botanico",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
