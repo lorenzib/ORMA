@@ -1,7 +1,7 @@
 {
   "contractVersion": "1.0.0",
   "valley": "Val di Fiemme – Latemar",
-  "trailCount": 27,
+  "trailCount": 26,
   "categoriesNeeded": {
     "water": 27,
     "heat": 27,
@@ -132,18 +132,6 @@
     {
       "id": "osm-12027153",
       "name": "GEOWeg - Sentiero GEOlogico",
-      "needs": [
-        "water",
-        "heat",
-        "exposure",
-        "livestock",
-        "surfaceHazards",
-        "access"
-      ]
-    },
-    {
-      "id": "osm-12039246",
-      "name": "Rundweg Rotwand",
       "needs": [
         "water",
         "heat",

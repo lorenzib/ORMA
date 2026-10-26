@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-prato-di-sorte",
+  "distanceKm": 5.4,
+  "ascentM": 61,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1175
+    },
+    {
+      "km": 0.4,
+      "elev": 1195
+    },
+    {
+      "km": 0.9,
+      "elev": 1201
+    },
+    {
+      "km": 1.2,
+      "elev": 1207
+    },
+    {
+      "km": 1.7,
+      "elev": 1178
+    },
+    {
+      "km": 2.1,
+      "elev": 1141
+    },
+    {
+      "km": 2.5,
+      "elev": 1136
+    },
+    {
+      "km": 2.9,
+      "elev": 1138
+    },
+    {
+      "km": 3.3,
+      "elev": 1138
+    },
+    {
+      "km": 3.7,
+      "elev": 1146
+    },
+    {
+      "km": 4.1,
+      "elev": 1149
+    },
+    {
+      "km": 4.5,
+      "elev": 1161
+    },
+    {
+      "km": 4.9,
+      "elev": 1165
+    },
+    {
+      "km": 5.3,
+      "elev": 1174
+    },
+    {
+      "km": 5.4,
+      "elev": 1174
+    }
+  ]
+}
