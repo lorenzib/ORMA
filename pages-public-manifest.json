@@ -135,6 +135,7 @@
     "reviews.html",
     "robots.txt",
     "route-drafts.js",
+    "route-guidance-sources.js",
     "route-operational-facts.js",
     "route-planner-routing.js",
     "route-planner.html",

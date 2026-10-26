@@ -709,15 +709,28 @@
       const text = String(sentence || '').trim();
       return /^Start\b/.test(text) ? `<b>Start</b>${esc(text.slice(5))}` : `<b>Start:</b> ${esc(text)}`;
     };
-    const routeRefMarkup = verifiedRouteGuidance
-      ? `${routeBadges}<div class="s"><p>${startLine(verifiedRouteGuidance.start)}</p>${
-        guidanceStatus ? `<p><b>Trail numbers:</b> ${esc(guidanceStatus)}</p>` : ''
-      }<p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
+    // Each value ends with where it came from; the card says that once, under
+    // the lines, instead of after every one of them (route-guidance-sources.js).
+    const guidanceSplit = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
+      ? window.DoloPawsRouteGuidanceSources.splitSources([
+        ['Start', verifiedRouteGuidance.start],
+        ...(guidanceStatus ? [['Trail numbers', guidanceStatus]] : []),
+        [guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route', verifiedRouteGuidance.sequence],
+        [guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch', verifiedRouteGuidance.switches],
+      ])
+      : null;
+    const guidanceLines = guidanceSplit ? guidanceSplit.lines : [];
+    const routeRefMarkup = verifiedRouteGuidance && guidanceSplit
+      ? `${routeBadges}<div class="s">${guidanceLines.map(([label, text]) => label === 'Start'
+        ? `<p>${startLine(text)}</p>`
+        : `<p><b>${esc(label)}:</b> ${esc(text)}</p>`).join('')}${
+        guidanceSplit.note ? `<p class="td2-route-source">${esc(guidanceSplit.note)}</p>` : ''
+      }</div>`
       : routeRefs.length
       ? `${routeBadges}${switchGuidance || `<div class="s">${hasSectionOnlyRefs
           ? `${routeRefs.length === 1 ? 'Trail' : 'Trails'} ${esc(routeSequence)} ${routeRefs.length === 1 ? 'is' : 'are'} marked only on the verified section${routeRefs.length === 1 ? '' : 's'} shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.`
           : routeRefs.length === 1
-            ? `Follow waymarked trail <b>${esc(routeRefs[0])}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.`
+            ? `Follow trail <b>${esc(routeRefs[0])}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.`
             : `This hike uses trails ${esc(routeSequence)}, but the exact numbered switch point${routeRefs.length > 2 ? 's are' : ' is'} still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.`}</div>`}`
       // Nothing sourced to say about following this route. This card used to
       // fall back to the first paragraph of t.desc, which "About this trail"
@@ -727,7 +740,7 @@
       : noRouteNumbers;
     const routeCard = {
       ic:'',
-      t:verifiedRouteGuidance ? 'How to follow this route' : (routeSwitches.length ? 'Waymarked trail numbers and switches' : (routeRefs.length ? 'Waymarked trail numbers' : 'Following the route')),
+      t:verifiedRouteGuidance ? 'How to follow this route' : (routeSwitches.length ? 'Trail numbers and switches' : (routeRefs.length ? 'Trail numbers' : 'Following the route')),
       s:routeRefMarkup,
       routeRefs:true,
     };

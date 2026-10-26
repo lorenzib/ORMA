@@ -2,7 +2,7 @@
 
 const {numbersAlongTheWalk,numberedWalkingRoute,isWalkingRoute,
   WALKING_ROUTES}=require('./workflows/numbers-along-the-walk');
-const {routeGuidanceFromMap}=require('./workflows/route-guidance-from-map');
+const {routeGuidanceFromMap,READ_FROM_MAP}=require('./workflows/route-guidance-from-map');
 const {supportedRouteGuidance,routeGuidanceBlockingReasons}=require('./workflows/compile-verified-dossier');
 
 // ORMA refused seven trails for want of route guidance after reading `ref` on
@@ -100,7 +100,7 @@ describe('the numbers running along a walk that carries none of its own',()=>{
     // "Waymarked" is not a word a reader knows; the page calls them trails.
     expect(sequence).not.toMatch(/waymark/i);
     expect(sequence).not.toMatch(/^Follow/);
-    expect(sequence).toContain('Read from the OpenStreetMap route relations');
+    expect(sequence).toContain(READ_FROM_MAP);
     expect(claims['route-number-switches'].proposedValue).toContain('trail 9 gives way to trail 56');
     expect(claims['route-number-switches'].proposedValue).not.toMatch(/waymark/i);
     expect(claims['route-number-sequence'].rationale).toContain('carries no number of its own');
@@ -112,7 +112,7 @@ describe('the numbers running along a walk that carries none of its own',()=>{
     const repeated=routeGuidanceFromMap({sequence:['3','3'],switches:[],segments:[],alongOtherRoutes:true},
       [{externalRelationId:'relation/1',ref:'3'}]);
     expect(repeated['route-number-sequence'].proposedValue)
-      .toContain('The mapped route runs along numbered trail 3. Read from');
+      .toContain(`The mapped route runs along numbered trail 3. ${READ_FROM_MAP}`);
     expect(repeated['route-number-switches'].proposedValue)
       .toContain('runs along numbered trail 3 throughout, with no change of number recorded');
   });
@@ -122,7 +122,7 @@ describe('the numbers running along a walk that carries none of its own',()=>{
       [{externalRelationId:'relation/11839597',ref:'20'}]);
     expect(own['route-number-sequence'].proposedValue)
       .toBe('The mapped route follows route 20 from end to end. '
-        +'Read from the OpenStreetMap route relations this walk is built from, not from a published route description.');
+        +READ_FROM_MAP);
     expect(own['route-number-switches'].proposedValue).toContain('stays on route 20 throughout');
   });
 

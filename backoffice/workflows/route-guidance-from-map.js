@@ -24,7 +24,9 @@
 const MAP_AUTHORITY = 'OpenStreetMap';
 // Said in the value itself, not only in the citation, because a value is quoted
 // and summarised far from its source and has to carry its own provenance.
-const READ_FROM_MAP = 'Read from the OpenStreetMap route relations this walk is built from, not from a published route description.';
+// Plain words since 26 October 2026; the trail page prints it once per card
+// (route-guidance-sources.js), which also knows the sentence it replaced.
+const READ_FROM_MAP = 'Read off the map (OpenStreetMap), not from directions the trail’s operator published.';
 
 function relationUrl(externalRelationId){
   const id = String(externalRelationId || '').replace(/^relation\//, '');

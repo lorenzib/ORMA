@@ -27,6 +27,7 @@ const { loadSlugOverrides, allRetiredSlugs, validateSlugOverrides } = require('.
 // The same module the app reads its trail numbers from, so a page and a card
 // show the same numbers in the same order for the same walk.
 const routeRefs = require('../trail-route-refs.js');
+const routeGuidanceSources = require('../route-guidance-sources.js');
 
 const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'trails');
@@ -266,19 +267,22 @@ function directionsSection(t) {
       `${index ? '<span class="sp-route-ref-arrow" aria-hidden="true">\u2192</span>' : ''}`
       + `<span class="sp-route-ref">${escapeHtml(ref)}</span>`).join('')}</div>`
     : '';
-  const lines = [
+  // Each value ends with where it came from; the page says that once, under
+  // the lines, instead of after every one of them.
+  const { lines, note } = routeGuidanceSources.splitSources([
     ['Start', start],
     ...(status ? [['Trail numbers', status]] : []),
     [landmarkLed ? 'Route' : 'Trail numbers and route', sequence],
     [landmarkLed ? 'Key turns' : 'Where to switch', switches],
-  ];
+  ]);
   return `<h2>How to follow this route</h2>
     ${shields}
     ${lines.map(([label, text]) => label === 'Start' && /^Start\b/.test(text)
     // "Start: Start at …" read the word twice; the sentence's own first word
     // takes the bold instead (trail-blueprint.js does the same in the app).
     ? `<p><b>Start</b>${escapeHtml(text.slice(5))}</p>`
-    : `<p><b>${escapeHtml(label)}:</b> ${escapeHtml(text)}</p>`).join('\n    ')}`;
+    : `<p><b>${escapeHtml(label)}:</b> ${escapeHtml(text)}</p>`).join('\n    ')}${
+    note ? `\n    <p class="sp-route-source">${escapeHtml(note)}</p>` : ''}`;
 }
 
 // Valley hub guides (add here as new area guides are published)
@@ -637,6 +641,7 @@ function trailPage(t, slug, all) {
   .sp-route-refs{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 4px;}
   .sp-route-ref{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;box-sizing:border-box;padding:5px 10px;border:3px solid #B54835;border-radius:8px;background:#fff;color:#202821;font:800 15px/1 'Inter',sans-serif;box-shadow:0 1px 2px rgba(32,40,33,.08);}
   .sp-route-ref-arrow{color:#657369;font-size:17px;font-weight:800;}
+  .sp-route-source{margin-top:4px;color:#657369;font-size:13px;line-height:1.5;}
   /* The photo is lazy-loaded and the credit toggle is pinned to the figure's
      corner, so the figure reserves its height up front; otherwise the toggle
      floats over whatever sits above until the image arrives. */
