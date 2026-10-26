@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-anello-molaren-via-nova-marine",
+  "distanceKm": 5.8,
+  "ascentM": 176,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 644
+    },
+    {
+      "km": 0.5,
+      "elev": 676
+    },
+    {
+      "km": 0.9,
+      "elev": 718
+    },
+    {
+      "km": 1.3,
+      "elev": 729
+    },
+    {
+      "km": 1.8,
+      "elev": 733
+    },
+    {
+      "km": 2.2,
+      "elev": 765
+    },
+    {
+      "km": 2.6,
+      "elev": 711
+    },
+    {
+      "km": 3.1,
+      "elev": 776
+    },
+    {
+      "km": 3.5,
+      "elev": 786
+    },
+    {
+      "km": 4,
+      "elev": 820
+    },
+    {
+      "km": 4.4,
+      "elev": 799
+    },
+    {
+      "km": 4.8,
+      "elev": 791
+    },
+    {
+      "km": 5.3,
+      "elev": 719
+    },
+    {
+      "km": 5.7,
+      "elev": 639
+    },
+    {
+      "km": 5.8,
+      "elev": 644
+    }
+  ]
+}
