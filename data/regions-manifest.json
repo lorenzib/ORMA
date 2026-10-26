@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-26T17:49:01.573Z",
+  "generatedAt": "2026-10-26T18:43:05.095Z",
   "regions": {
     "dolomites": {
-      "trailCount": 154,
-      "trails": "data/regions/dolomites-trails.js?v=d19af576e5c0",
+      "trailCount": 158,
+      "trails": "data/regions/dolomites-trails.js?v=619ddbd752da",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -159,6 +159,10 @@
         "primiero-siror": "data/trail-details/primiero-siror.js?v=17dc10a551ea",
         "primiero-la-guana-di-primiero": "data/trail-details/primiero-la-guana-di-primiero.js?v=e9362af5f291",
         "primiero-percorso-verde": "data/trail-details/primiero-percorso-verde.js?v=6195f2f6c36e",
+        "primiero-anello-di-valpiana": "data/trail-details/primiero-anello-di-valpiana.js?v=f39eb7ba3016",
+        "primiero-anello-molaren-via-nova-marine": "data/trail-details/primiero-anello-molaren-via-nova-marine.js?v=7fd18694783e",
+        "primiero-san-martino-di-castrozza-val-di-roda-prati-col": "data/trail-details/primiero-san-martino-di-castrozza-val-di-roda-prati-col.js?v=833ec83e542b",
+        "primiero-anello-poit-cordogne-san-giovanni": "data/trail-details/primiero-anello-poit-cordogne-san-giovanni.js?v=d58dfd06d857",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -382,6 +386,10 @@
     "primiero-siror": "dolomites",
     "primiero-la-guana-di-primiero": "dolomites",
     "primiero-percorso-verde": "dolomites",
+    "primiero-anello-di-valpiana": "dolomites",
+    "primiero-anello-molaren-via-nova-marine": "dolomites",
+    "primiero-san-martino-di-castrozza-val-di-roda-prati-col": "dolomites",
+    "primiero-anello-poit-cordogne-san-giovanni": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -640,6 +648,10 @@
     "primiero-siror": "siror",
     "primiero-la-guana-di-primiero": "la-guana-di-primiero",
     "primiero-percorso-verde": "percorso-verde-primiero",
+    "primiero-anello-di-valpiana": "anello-di-valpiana",
+    "primiero-anello-molaren-via-nova-marine": "anello-molaren-via-nova-marine",
+    "primiero-san-martino-di-castrozza-val-di-roda-prati-col": "val-di-roda-prati-col",
+    "primiero-anello-poit-cordogne-san-giovanni": "anello-poit-cordogne-san-giovanni",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -847,6 +859,10 @@
     "siror": "primiero-siror",
     "la-guana-di-primiero": "primiero-la-guana-di-primiero",
     "percorso-verde-primiero": "primiero-percorso-verde",
+    "anello-di-valpiana": "primiero-anello-di-valpiana",
+    "anello-molaren-via-nova-marine": "primiero-anello-molaren-via-nova-marine",
+    "val-di-roda-prati-col": "primiero-san-martino-di-castrozza-val-di-roda-prati-col",
+    "anello-poit-cordogne-san-giovanni": "primiero-anello-poit-cordogne-san-giovanni",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

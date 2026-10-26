@@ -1234,6 +1234,30 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "primiero-anello-di-valpiana": {
+      "url": "https://www.sanmartino.com/it/itinerari/anello-di-valpiana",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Anello di Valpiana",
+      "quote": "Distanza 5,2 km Durata 1:35 h Salita 184 m Discesa 182 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-anello-molaren-via-nova-marine": {
+      "url": "https://www.sanmartino.com/it/itinerari/anello-molaren-via-nova-marine",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Anello Molaren - Via Nova - Marine",
+      "quote": "Distanza 5,8 km Durata 1:40 h Salita 176 m Discesa 176 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-anello-poit-cordogne-san-giovanni": {
+      "url": "https://www.sanmartino.com/it/itinerari/anello-poit-cordogne-san-giovanni",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Anello Poit - Cordognè - San Giovanni",
+      "quote": "Distanza 5 km Durata 2:00 h Salita 181 m Discesa 179 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
     "primiero-fiera-pieve": {
       "url": "https://www.sanmartino.com/it/itinerari/fiera-pieve",
       "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
@@ -1257,6 +1281,14 @@
       "quote": "Distanza 1,6 km Durata 0:30 h Salita 23 m Discesa 23 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-san-martino-di-castrozza-val-di-roda-prati-col": {
+      "url": "https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-val-di-roda-prati-col",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "San Martino di Castrozza - Val di Roda - Prati Col",
+      "quote": "Distanza 5,9 km Durata 1:45 h Salita 154 m Discesa 173 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
     },
     "primiero-siror": {
       "url": "https://www.sanmartino.com/it/itinerari/siror",

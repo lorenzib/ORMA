@@ -46992,6 +46992,273 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 1.5, lat: 46.17565, lng: 11.82815, osmId: 'node/2394661697', name: 'La Caffetteria' }
       ],
       desc: 'A short, step-free loop from the Parco Clarofonte in Fiera di Primiero along Via Lungo Canali, with one of the best views of the Pale di San Martino from the valley. The APT lists 1.6 km and 23 m of ascent.'
+    },
+    'primiero-anello-molaren-via-nova-marine': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 2).
+      // APT San Martino di Castrozza’s walk “Anello Molaren - Via Nova - Marine”, marked Dog-friendly.
+      // The line is drawn on 37 OSM ways along the line the APT publishes
+      // (data/board-line-routes.geojson).
+      // Mezzano (Art. 28) and Primiero San Martino di Castrozza (Art. 28) have the
+      // same rule: dogs on every public place on a lead of at most 1.5 m, a muzzle
+      // in public buildings and crowds, none in playgrounds, schools, places of care
+      // or worship; nothing on the line bans them. No Natura 2000 site, park or
+      // reserve on the line; the nearest, the Sorive local reserve, is 330 m away.
+      area: 'Mezzano – Pieve, Primiero',
+      distance: 5.8,
+      elevation: 176,
+      hours: '1.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the tourist office in Mezzano along the cycle and foot path of Via Molaren to Pieve, back on the old Via Nova track above the valley, and down the SAT path E379 into Mezzano.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Mezzano’s town hall, where the tourist office and the start are, in July (Cristian Cenci, CC BY-SA 4.0), 15 m from the line.',
+        route: 'Official loop 5.8 km from Mezzano (Info Point), as the APT San Martino di Castrozza publishes it; the stored line is drawn on 37 OSM ways along the APT’s published line, 5.8 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'Signposted in part as SAT trail E379: from the tourist office in Piazza Mons. Orler in Mezzano up to Via Molaren and along the panoramic cycle and foot path to Pieve; after the cemetery up Via San Rocco and left onto the Via Nova, a gravel track back towards Mezzano; at Frontàl down the second road on the left on trail E379 into Mezzano, and by Via Don Luigi Bonat and Piazza Fontana back to the start.',
+        mapPoints: 'Start at Mezzano (Info Point), the APT’s start; drinking water at the start, at km 1.3, at km 2.4 and at km 4 (OSM nodes 2425685566, 2500542624, 5735811691, 1563103883).',
+        elevation: 'Official 5.8 km, 176 m up and 176 m down, 1 h 40 min, highest point 811 m, lowest 636 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Anello Molaren - Via Nova - Marine (sanmartino.com and its Outdooractive page, marked Dog-friendly)',
+          'Comune di Mezzano, Regolamento di Polizia Urbana (March 2021), Art. 26 and 28',
+          'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (2016, amended 2018), Art. 26 and 28',
+          'Natura 2000 sites (Ministry of the Environment register and the Province of Trento’s ZSC and ZPS layers), the Paneveggio – Pale di San Martino nature park and Trentino’s provincial and local reserves (none on the line)',
+          'OpenStreetMap ways along the APT line (37 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 13,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 1.4 km on tarmac, partly the cycle and foot path shared with bikes', 'Gravel tracks and paths on the Via Nova; the APT notes it is ridden by mountain bikes too', 'Road crossings in Mezzano and Pieve'],
+      terrainType: 'Cycle and foot path, gravel tracks and paths',
+      shadeDescription: 'Mostly open: about an eighth runs under trees, on the Via Nova.',
+      terrainDescription: 'A loop at 636–811 m on the valley side between Mezzano, one of the “Borghi più belli d’Italia”, and Pieve, with wide views of the Pale di San Martino.',
+      waterDescription: 'Drinking fountains at the start, at km 1.3, at km 2.4 and at km 4; bars and cafés at the start and on the way.',
+      dogNotes: 'Mezzano and Primiero San Martino di Castrozza have the same rules: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches.',
+      tips: 'Start at the tourist office in Piazza Mons. Orler in Mezzano: 5.8 km, 176 m of climbing, about an hour and three quarters. Keep your dog on a short lead (1.5 m at most) on the shared cycle path and in the villages. Fountains in Mezzano and Pieve; go early or late in summer.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, Anello Molaren - Via Nova - Marine', url: 'https://www.sanmartino.com/it/itinerari/anello-molaren-via-nova-marine' },
+        { label: 'Outdooractive, Anello Molaren - Via Nova - Marine (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/811787705' },
+        { label: 'Comune di Mezzano, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.mezzano.tn.it/content/download/499/7253/3/regolamento%2Bpolizia%2Burbana%2Bmarzo%2B2021.pdf' },
+        { label: 'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.154344, lng: 11.80667, label: 'Mezzano (Info Point), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.1536742, lng: 11.8073117, osmId: 'node/2425685566', label: 'Drinking fountain at the start' },
+        { km: 1.3, lat: 46.1623985, lng: 11.8184807, osmId: 'node/2500542624', label: 'Drinking fountain' },
+        { km: 2.4, lat: 46.1716918, lng: 11.8234505, osmId: 'node/5735811691', label: 'Drinking fountain' },
+        { km: 4, lat: 46.1648772, lng: 11.812227, osmId: 'node/1563103883', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.15477, lng: 11.80629, osmId: 'node/2425685545', name: 'Bar Centrale' },
+        { km: 0, lat: 46.15498, lng: 11.80495, osmId: 'node/3283742250', name: 'Bar Ceccato' },
+        { km: 2.7, lat: 46.17465, lng: 11.82605, osmId: 'node/1563104824', name: 'La Boteghina' }
+      ],
+      desc: 'A loop from Mezzano along the panoramic Via Molaren path to Pieve and back on the old Via Nova track, with wide views of the Pale di San Martino. The APT lists 5.8 km and 176 m of ascent.'
+    },
+    'primiero-san-martino-di-castrozza-val-di-roda-prati-col': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 2).
+      // APT San Martino di Castrozza’s walk “San Martino di Castrozza - Val di Roda - Prati Col”, marked Dog-friendly.
+      // The line is drawn on 34 OSM ways along the line the APT publishes
+      // (data/board-line-routes.geojson).
+      // Primiero San Martino di Castrozza’s Regolamento di Polizia Urbana (Art. 28)
+      // applies in the village. The walk is inside the Paneveggio – Pale di San
+      // Martino park, whose plan (Norme di Attuazione, Art. 54 c. 2) keeps dogs on a
+      // lead everywhere and bans them nowhere. It is in ZSC IT3120178 Pale di San
+      // Martino and ZPS IT3120160 Lagorai; their measures set no rule on dogs.
+      area: 'San Martino di Castrozza – Val di Roda – Prati Col, Primiero San Martino di Castrozza',
+      distance: 5.9,
+      elevation: 154,
+      hours: '1.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the centre of San Martino di Castrozza up the Val di Roda forest road from the Colverde lift station, down a path to the Prati Col meadows and back into the village on Via Fontanelle or Via Pez Gajard. The walk uses no lift.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A street in San Martino di Castrozza on the walk, the Pale di San Martino above it, in August (laniuscollurio on Mapillary, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official loop 5.9 km from San Martino di Castrozza, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 34 OSM ways along the APT’s published line, 5.8 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the centre of San Martino to the Colverde lift station, up the Val di Roda forest road past its waterfall, then down the signed path to the Prati Col meadows and back on the tarmac of Via Fontanelle or Via Pez Gajard to the centre.',
+        mapPoints: 'Start at San Martino di Castrozza, the APT’s start; drinking water at the start and at km 5 (OSM nodes 4336791235, 5908182055).',
+        elevation: 'Official 5.9 km, 154 m up and 173 m down, 1 h 45 min, highest point 1,591 m, lowest 1,444 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, San Martino di Castrozza - Val di Roda - Prati Col (sanmartino.com and its Outdooractive page, marked Dog-friendly)',
+          'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (2016, amended 2018), Art. 26 and 28',
+          'Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco, Norme di Attuazione (2016), Art. 54 c. 2: dogs always on a lead in the park',
+          'Paneveggio – Pale di San Martino nature park (dogs on a lead); Natura 2000 ZSC IT3120178 Pale di San Martino and ZPS IT3120160 Lagorai (Ministry of the Environment register and the Province of Trento’s layers), whose conservation measures (the park’s measures and Del. G.P. 632/2013) set no rule on dogs',
+          'OpenStreetMap ways along the APT line (34 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 46,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 4 km on a gravel forest road, shared with forestry vehicles', 'A short path down to Prati Col, icy in spring and autumn, as the APT warns', 'About 900 m on tarmac in the village'],
+      terrainType: 'Gravel forest road, a short path and village streets',
+      shadeDescription: 'Part shade: just under half runs through the forest of the Val di Roda; the Prati Col meadows and the village are open.',
+      terrainDescription: 'A half-day walk at 1,444–1,591 m from San Martino di Castrozza into the Val di Roda, with its waterfall, and back over the sunny Prati Col meadows below the Pale di San Martino.',
+      waterDescription: 'Drinking fountains at the start and at km 5; bars and cafés at the start and on the way.',
+      dogNotes: 'The walk is in the Paneveggio – Pale di San Martino nature park, where dogs must always be on a lead. In the village Primiero San Martino di Castrozza’s rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches.',
+      tips: 'Start in the centre of San Martino: 5.9 km, about 150 m of climbing, an hour and three quarters. You are in the nature park from the Val di Roda: keep your dog on a lead the whole way. Fountains in the village; take water for your dog on the forest road.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, San Martino di Castrozza - Val di Roda - Prati Col', url: 'https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-val-di-roda-prati-col' },
+        { label: 'Outdooractive, San Martino di Castrozza - Val di Roda - Prati Col (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/810399072' },
+        { label: 'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf' },
+        { label: 'Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco (Norme di Attuazione, Art. 54)', url: 'https://parcopan.org/ente-parco/il-piano-del-parco/' },
+        { label: 'Provincia autonoma di Trento, Natura 2000 conservation measures (Del. G.P. 632/2013)', url: 'https://www.provincia.tn.it/Amministrazione/Documenti/Deliberazione-della-Giunta-Provinciale-n.-632-del-12-04-2013' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.262562, lng: 11.802902, label: 'San Martino di Castrozza, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.2633779, lng: 11.8017222, osmId: 'node/4336791235', label: 'Drinking fountain at the start' },
+        { km: 5, lat: 46.2598804, lng: 11.8087873, osmId: 'node/5908182055', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.26243, lng: 11.80257, osmId: 'node/3283832442', name: 'Bar Margherita' },
+        { km: 0, lat: 46.26174, lng: 11.80118, osmId: 'node/3283832444', name: 'Caffè Centrale' },
+        { km: 0.1, lat: 46.26486, lng: 11.80478, osmId: 'node/3046567181', name: 'Ristorante Bar Da Meto' },
+        { km: 2.3, lat: 46.25191, lng: 11.82228, osmId: 'way/81084047', name: 'Rifugio Forestale' }
+      ],
+      desc: 'A half-day loop from San Martino di Castrozza up the Val di Roda forest road past a waterfall and back over the Prati Col meadows, with views of the Pale di San Martino. The APT lists 5.9 km and 154 m of ascent.'
+    },
+    'primiero-anello-di-valpiana': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 2).
+      // APT San Martino di Castrozza’s walk “Anello di Valpiana”, marked Dog-friendly.
+      // The line is drawn on 14 OSM ways along the line the APT publishes
+      // (data/board-line-routes.geojson).
+      // Mezzano’s Regolamento di Polizia Urbana (Art. 28) applies: dogs on a lead of
+      // at most 1.5 m in public places, a muzzle in public buildings and crowds.
+      // The walk is in ZSC and ZPS IT3120126 Val Noana, whose measures (Del. G.P.
+      // 632/2013, annex B) concern grazing and forestry and set no rule on dogs.
+      // Outside the Paneveggio – Pale di San Martino park.
+      area: 'Rifugio Fonteghi – Valpiana, Val Noana, Mezzano',
+      distance: 5.2,
+      elevation: 184,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Rifugio Fonteghi in the Val Noana up the Valpiana Aie forest road to Malga Valpiana, past the Casina Forestale di Valpiana and the meadows of Valpiana di Sopra, and down a path back to the rifugio.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The signpost at the Rifugio Fonteghi, where the walk starts, in July (501ghost, CC0), 14 m from the line.',
+        route: 'Official loop 5.2 km from Rifugio Fonteghi, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 14 OSM ways along the APT’s published line, 5.2 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the Rifugio Fonteghi right along the road, after about ten minutes right onto the Valpiana Aie forest road, which zigzags up to Malga Valpiana; down the gravel road to the right to the Casina Forestale di Valpiana, right again on the level gravel road along Monte Piadochìn above the meadows of Valpiana di Sotto, through the meadows and huts of Valpiana di Sopra, and down a path to the Rifugio Fonteghi.',
+        mapPoints: 'Start at Rifugio Fonteghi, the APT’s start; drinking water at the start and at km 4.8 (OSM nodes 2434545143, 11281806381).',
+        elevation: 'Official 5.2 km, 184 m up and 182 m down, 1 h 35 min, highest point 1,239 m, lowest 1,095 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Anello di Valpiana (sanmartino.com and its Outdooractive page, marked Dog-friendly)',
+          'Comune di Mezzano, Regolamento di Polizia Urbana (March 2021), Art. 26 and 28',
+          'Natura 2000 ZSC and ZPS IT3120126 Val Noana (Ministry of the Environment register and the Province of Trento’s layers), whose conservation measures (Del. G.P. 632/2013, annex B) concern grazing and forestry and set no rule on dogs; outside the nature park',
+          'OpenStreetMap ways along the APT line (14 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 84,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Gravel forest roads, shared with forestry vehicles', 'A path down to the Rifugio Fonteghi at the end', 'Cattle may graze at Malga Valpiana in summer'],
+      terrainType: 'Gravel forest roads and a forest path',
+      shadeDescription: 'Mostly shaded: about five sixths runs through the fir and beech forest of the Val Noana.',
+      terrainDescription: 'A forest loop at 1,095–1,239 m in the quiet Val Noana above Mezzano, a Natura 2000 site known for its great silver firs, past Malga Valpiana and the meadows of Valpiana.',
+      waterDescription: 'Drinking fountains at the start and at km 4.8; bars and cafés at the start.',
+      dogNotes: 'Mezzano’s rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches. The walk is in the Val Noana Natura 2000 site: keep your dog on the forest roads and paths and away from grazing cattle at Malga Valpiana.',
+      tips: 'Start at the Rifugio Fonteghi in the Val Noana: 5.2 km, about 180 m of climbing, an hour and a half. Keep your dog on a lead near the malga and any grazing cattle. Water at the rifugio and near the end.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, Anello di Valpiana', url: 'https://www.sanmartino.com/it/itinerari/anello-di-valpiana' },
+        { label: 'Outdooractive, Anello di Valpiana (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/811789531' },
+        { label: 'Comune di Mezzano, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.mezzano.tn.it/content/download/499/7253/3/regolamento%2Bpolizia%2Burbana%2Bmarzo%2B2021.pdf' },
+        { label: 'Provincia autonoma di Trento, Natura 2000 conservation measures (Del. G.P. 632/2013)', url: 'https://www.provincia.tn.it/Amministrazione/Documenti/Deliberazione-della-Giunta-Provinciale-n.-632-del-12-04-2013' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.139294, lng: 11.856855, label: 'Rifugio Fonteghi, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.1394886, lng: 11.8561655, osmId: 'node/2434545143', label: 'Drinking fountain at the start' },
+        { km: 4.8, lat: 46.1377388, lng: 11.8548763, osmId: 'node/11281806381', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.13922, lng: 11.85728, osmId: 'way/303193375', name: 'Rifugio Fonteghi' }
+      ],
+      desc: 'A shaded forest loop in the Val Noana from the Rifugio Fonteghi to Malga Valpiana and the meadows of Valpiana, among great firs and beeches. The APT lists 5.2 km and 184 m of ascent.'
+    },
+    'primiero-anello-poit-cordogne-san-giovanni': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 2).
+      // APT San Martino di Castrozza’s walk “Anello Poit - Cordognè - San Giovanni”.
+      // The line is drawn on 13 OSM ways along the line the APT publishes
+      // (data/board-line-routes.geojson).
+      // Mezzano’s Regolamento di Polizia Urbana (Art. 28) applies: dogs on a lead of
+      // at most 1.5 m in public places, a muzzle in public buildings and crowds.
+      // No Natura 2000 site, park or reserve on the line (the Val Noana ZSC is close
+      // but not crossed). The drawn line is 5.5 km, 10% over the APT’s 5 km, the
+      // most the builder allows; 99% of the APT line is within 25 m of it.
+      area: 'Poit – Monte Cordognè – San Giovanni, Mezzano',
+      distance: 5,
+      elevation: 181,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car park at Fedai near Poit along the wooded crest of Monte Cordognè, down towards Falasorni, over the meadows of San Giovanni below its old chapel, and back by Poit.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The old chapel of San Giovanni above the meadows the walk crosses, in August (Nick Savchenko, CC BY-SA 2.0), 47 m from the line.',
+        route: 'Official loop 5 km from Poit, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 13 OSM ways along the APT’s published line, 5.5 km, with 99% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the car park at Fedai along the signed path up the crest of Monte Cordognè, with views of the Vette Feltrine, San Giovanni, the Val Noana lake and the Primiero valley, down towards Falasorni; left on the road and then a path onto the San Giovanni meadows, where a short climb leads to the old chapel, then along the road to Poit and down to the car park.',
+        mapPoints: 'Start at Poit, the APT’s start; drinking water at km 2.4 and at km 4.4 (OSM nodes 3326240920, 7684807194).',
+        elevation: 'Official 5 km, 181 m up and 179 m down, 2 h, highest point 1,301 m, lowest 1,157 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Anello Poit - Cordognè - San Giovanni (sanmartino.com and its Outdooractive page)',
+          'Comune di Mezzano, Regolamento di Polizia Urbana (March 2021), Art. 26 and 28',
+          'Natura 2000 sites (Ministry of the Environment register and the Province of Trento’s ZSC and ZPS layers), the Paneveggio – Pale di San Martino nature park and Trentino’s provincial and local reserves (none on the line)',
+          'OpenStreetMap ways along the APT line (13 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 69,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A narrow wooded crest path with some short climbs and descents', 'About 1 km on quiet tarmac roads', 'Hay meadows at San Giovanni: keep to the path'],
+      terrainType: 'Forest paths, meadow paths and quiet roads',
+      shadeDescription: 'Mostly shaded: about two thirds runs through the beech woods of Monte Cordognè; the San Giovanni meadows are open.',
+      terrainDescription: 'A loop at 1,157–1,301 m above Mezzano along the beech-wooded crest of Monte Cordognè to the meadows and old chapel of San Giovanni, facing the Vette Feltrine.',
+      waterDescription: 'Drinking fountains at km 2.4 and at km 4.4.',
+      dogNotes: 'Mezzano’s rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches. Keep your dog close on the San Giovanni meadows, which are mown for hay.',
+      tips: 'Start at the car park at Fedai near Poit: 5 km, about 180 m of climbing, two hours. Keep your dog on a short lead on the roads and across the hay meadows. Fountains are few: carry water for your dog. Best in autumn, when the beeches turn.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, Anello Poit - Cordognè - San Giovanni', url: 'https://www.sanmartino.com/it/itinerari/anello-poit-cordogne-san-giovanni' },
+        { label: 'Outdooractive, Anello Poit - Cordognè - San Giovanni (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/29921340' },
+        { label: 'Comune di Mezzano, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.mezzano.tn.it/content/download/499/7253/3/regolamento%2Bpolizia%2Burbana%2Bmarzo%2B2021.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.147876, lng: 11.844815, label: 'Poit, the APT’s start' },
+      waterSources: [
+        { km: 2.4, lat: 46.1374758, lng: 11.8212931, osmId: 'node/3326240920', label: 'Drinking fountain' },
+        { km: 4.4, lat: 46.1420292, lng: 11.8391777, osmId: 'node/7684807194', label: 'Drinking fountain' }
+      ],
+      rifugi: [],
+      desc: 'A loop above Mezzano along the beech-wooded crest of Monte Cordognè to the meadows and old chapel of San Giovanni, with views of the Vette Feltrine and the Val Noana lake. The APT lists 5 km and 181 m of ascent.'
     }
   };
 

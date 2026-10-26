@@ -3154,6 +3154,57 @@
       }
     },
     {
+      "id": "primiero-anello-di-valpiana",
+      "approvedReviewId": "commons-primiero-anello-di-valpiana-on-route",
+      "approvedAt": "2026-10-26T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-anello-di-valpiana-fonteghi-signpost.jpg",
+        "heroImage": "images/trails/primiero-anello-di-valpiana-fonteghi-signpost.jpg",
+        "imageAlt": "Red and white trail signs on a wooden post at the Rifugio Fonteghi, pointing to Ponte su Funi, Val de Riva, Poit – San Giovanni and Caltene, green forest behind",
+        "imageCredit": "The signpost at the Rifugio Fonteghi",
+        "imageCreditText": "The signpost at the Rifugio Fonteghi by 501ghost",
+        "imageCreator": "501ghost",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Guidepost_Rifugio_Fonteghi.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "primiero-anello-molaren-via-nova-marine",
+      "approvedReviewId": "commons-primiero-anello-molaren-via-nova-marine-on-route",
+      "approvedAt": "2026-10-26T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-anello-molaren-via-nova-marine-mezzano.jpg",
+        "heroImage": "images/trails/primiero-anello-molaren-via-nova-marine-mezzano.jpg",
+        "imageAlt": "The pale pink town hall of Mezzano with its tourist-information sign, a cobbled square and a wooden sculpture in front, wooded green slopes behind under cloud",
+        "imageCredit": "Mezzano’s town hall",
+        "imageCreditText": "Mezzano’s town hall by Cristian Cenci",
+        "imageCreator": "Cristian Cenci",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Municipio_di_Mezzano_(1).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "primiero-anello-poit-cordogne-san-giovanni",
+      "approvedReviewId": "commons-primiero-anello-poit-cordogne-san-giovanni-on-route",
+      "approvedAt": "2026-10-26T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-anello-poit-cordogne-san-giovanni-chapel.jpg",
+        "heroImage": "images/trails/primiero-anello-poit-cordogne-san-giovanni-chapel.jpg",
+        "imageAlt": "A small white chapel with a shingled roof and a wooden spire on a green meadow, firs beside it and pale Dolomite peaks on the horizon under clear blue sky",
+        "imageCredit": "The chapel of San Giovanni",
+        "imageCreditText": "The chapel of San Giovanni by Nick Savchenko",
+        "imageCreator": "Nick Savchenko",
+        "imageLicence": "CC BY-SA 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Dolomites_(29107032121).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "primiero-fiera-pieve",
       "approvedReviewId": "mapillary-primiero-fiera-pieve-on-route",
       "approvedAt": "2026-10-26T18:00:00.000Z",
@@ -3201,6 +3252,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=1665897057129367",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "primiero-san-martino-di-castrozza-val-di-roda-prati-col",
+      "approvedReviewId": "mapillary-primiero-san-martino-di-castrozza-val-di-roda-prati-col-on-route",
+      "approvedAt": "2026-10-26T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-san-martino-di-castrozza-val-di-roda-prati-col-san-martino.jpg",
+        "heroImage": "images/trails/primiero-san-martino-di-castrozza-val-di-roda-prati-col-san-martino.jpg",
+        "imageAlt": "A sunny street in San Martino di Castrozza with wooden balconied hotels and walkers, the jagged pale rock towers of the Pale di San Martino above",
+        "imageCredit": "San Martino di Castrozza and the Pale",
+        "imageCreditText": "San Martino di Castrozza and the Pale by laniuscollurio",
+        "imageCreator": "laniuscollurio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=478044334140139",
         "imageSourceType": "licensed-source"
       }
     },
