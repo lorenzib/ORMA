@@ -388,6 +388,51 @@
       "name": "Anello Poit - Cordognè - San Giovanni",
       "slug": "anello-poit-cordogne-san-giovanni",
       "gloss": "the Cordognè loop to San Giovanni"
+    },
+    "cortina-castello-di-botestagno": {
+      "name": "Castello di Botestagno",
+      "slug": "castello-di-botestagno",
+      "gloss": "the castle walk at Botestagno"
+    },
+    "cortina-malga-ra-stua": {
+      "name": "Malga Ra Stua",
+      "slug": "malga-ra-stua",
+      "gloss": "the gorge walk to Malga Ra Stua"
+    },
+    "cortina-passeggiata-gourmet": {
+      "name": "Passeggiata gourmet",
+      "slug": "passeggiata-gourmet-cortina",
+      "gloss": "the three-huts walk above Cortina"
+    },
+    "cortina-mortisa-e-le-grotte-di-volpera": {
+      "name": "Mortisa e le Grotte di Volpera",
+      "slug": "mortisa-grotte-di-volpera",
+      "gloss": "the hamlets and boulders walk above Cortina"
+    },
+    "cortina-sotecordes": {
+      "name": "Escursione di Sotecordes",
+      "slug": "sotecordes",
+      "gloss": "the Tofana di Rozes loop from Rifugio Dibona"
+    },
+    "fiemme-cavalese-passeggiata-panoramica": {
+      "name": "Cavalese - Passeggiata panoramica",
+      "slug": "cavalese-panoramic-walk",
+      "gloss": "the panoramic walk round the Parco della Pieve"
+    },
+    "fiemme-passeggiata-insolita": {
+      "name": "Passeggiata insolita lungo il Rio Gambis",
+      "slug": "rio-gambis-cavalese",
+      "gloss": "the town walk along the Rio Gambis"
+    },
+    "fiemme-cascatelle-di-ziano": {
+      "name": "Le Cascatelle di Ziano di Fiemme",
+      "slug": "cascatelle-di-ziano",
+      "gloss": "the little waterfalls walk above Roda"
+    },
+    "fiemme-giro-cavalese-castello": {
+      "name": "Giro ad anello Cavalese - Castello di Fiemme",
+      "slug": "cavalese-castello-di-fiemme-loop",
+      "gloss": "the loop from Cavalese to Castello di Fiemme"
     }
   }
 }

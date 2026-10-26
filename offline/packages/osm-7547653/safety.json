@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-7547653",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 3,
+    "ascentM": 130,
+    "highestPointM": 1849,
+    "expectedDuration": "1.5 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 92
+  },
+  "trailhead": {
+    "lat": 46.5140511,
+    "lng": 12.4291276,
+    "label": "Just above the Forte Basso di Col Vidal, Pian dei Buoi (official start)"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Mountain path (CAI grade E) and old military tracks at about 1,800 m.",
+    "The First World War tunnels of the “Cinque Imbocchi” are unsafe: the official sheet advises visiting only their entrances, so keep your dog out.",
+    "The Strada del Genio to the start is narrow, with alternating traffic in July and August.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}

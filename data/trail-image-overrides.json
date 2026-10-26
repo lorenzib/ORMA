@@ -37,6 +37,91 @@
       }
     },
     {
+      "id": "cortina-castello-di-botestagno",
+      "approvedReviewId": "commons-cortina-castello-di-botestagno-on-route",
+      "approvedAt": "2026-10-26T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cortina-castello-di-botestagno-botestagno.jpg",
+        "heroImage": "images/trails/cortina-castello-di-botestagno-botestagno.jpg",
+        "imageAlt": "A mossy rocky hill among tall spruce trees where the medieval castle of Botestagno stood, a path at its foot",
+        "imageCredit": "The castle hill of Botestagno",
+        "imageCreditText": "The castle hill of Botestagno by Llorenzi",
+        "imageCreator": "Llorenzi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castello_di_Botestagno1.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cortina-malga-ra-stua",
+      "approvedReviewId": "commons-cortina-malga-ra-stua-on-route",
+      "approvedAt": "2026-10-26T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cortina-malga-ra-stua-ra-stua.jpg",
+        "heroImage": "images/trails/cortina-malga-ra-stua-ra-stua.jpg",
+        "imageAlt": "The wooden hut of Malga Ra Stua on a green pasture below wooded slopes and pale Dolomite peaks",
+        "imageCredit": "Malga Ra Stua",
+        "imageCreditText": "Malga Ra Stua by Marie-Lan Taÿ Pamart",
+        "imageCreator": "Marie-Lan Taÿ Pamart",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Malga_Ra_Stua_Cortina.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cortina-mortisa-e-le-grotte-di-volpera",
+      "approvedReviewId": "commons-cortina-mortisa-e-le-grotte-di-volpera-on-route",
+      "approvedAt": "2026-10-26T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cortina-mortisa-e-le-grotte-di-volpera-cortina.jpg",
+        "heroImage": "images/trails/cortina-mortisa-e-le-grotte-di-volpera-cortina.jpg",
+        "imageAlt": "The roofs and bell tower of Cortina d’Ampezzo below wooded slopes, the Tofana rising on the left under a blue sky",
+        "imageCredit": "Cortina in June",
+        "imageCreditText": "Cortina in June by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cortina_d'Ampezzo_2019.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cortina-passeggiata-gourmet",
+      "approvedReviewId": "commons-cortina-passeggiata-gourmet-on-route",
+      "approvedAt": "2026-10-26T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cortina-passeggiata-gourmet-vervei.jpg",
+        "heroImage": "images/trails/cortina-passeggiata-gourmet-vervei.jpg",
+        "imageAlt": "The sheer grey walls of Punta Marietta, lightly dusted with snow, above a dark green forest",
+        "imageCredit": "Punta Marietta from Vervei",
+        "imageCreditText": "Punta Marietta from Vervei by Ximonic (Simo Räsänen)",
+        "imageCreator": "Ximonic (Simo Räsänen)",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Punta_Marietta_from_southeast,_Cortina_d'Ampezzo,_Veneto,_Italy,_2025_October.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cortina-sotecordes",
+      "approvedReviewId": "commons-cortina-sotecordes-on-route",
+      "approvedAt": "2026-10-26T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cortina-sotecordes-dibona.jpg",
+        "heroImage": "images/trails/cortina-sotecordes-dibona.jpg",
+        "imageAlt": "Rifugio Dibona with its wooden balconies on a grassy slope below the grey cliffs of the Tofana di Rozes",
+        "imageCredit": "Rifugio Dibona",
+        "imageCreditText": "Rifugio Dibona by Lorenzo Colombo (Olonia)",
+        "imageCreator": "Lorenzo Colombo (Olonia)",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rifugio_Dibona.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fassa-alpe-di-fuciade",
       "approvedReviewId": "commons-fassa-alpe-di-fuciade-on-route",
       "approvedAt": "2026-10-26T15:00:00.000Z",
@@ -237,6 +322,74 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gruppo_del_Catinaccio_-_Ciampedie2.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fiemme-cascatelle-di-ziano",
+      "approvedReviewId": "commons-fiemme-cascatelle-di-ziano-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-cascatelle-di-ziano-shrine.jpg",
+        "heroImage": "images/trails/fiemme-cascatelle-di-ziano-shrine.jpg",
+        "imageAlt": "A white wayside shrine with a copper roof by a lane near Roda, a meadow, a rail fence and a wooded slope behind under a summer sky",
+        "imageCredit": "A shrine near Roda",
+        "imageCreditText": "A shrine near Roda by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ziano_di_Fiemme_-_Capitello_in_via_Imana_04.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fiemme-cavalese-passeggiata-panoramica",
+      "approvedReviewId": "commons-fiemme-cavalese-passeggiata-panoramica-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-cavalese-passeggiata-panoramica-valley.jpg",
+        "heroImage": "images/trails/fiemme-cavalese-passeggiata-panoramica-valley.jpg",
+        "imageAlt": "The Val di Fiemme seen from a wooded slope above Cavalese, green fields and the river below and mountains under a blue summer sky",
+        "imageCredit": "The valley from the Parco della Pieve",
+        "imageCreditText": "The valley from the Parco della Pieve by Mario Penner",
+        "imageCreator": "Mario Penner",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Una_valle_speciale_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fiemme-giro-cavalese-castello",
+      "approvedReviewId": "commons-fiemme-giro-cavalese-castello-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-giro-cavalese-castello-cavalese.jpg",
+        "heroImage": "images/trails/fiemme-giro-cavalese-castello-cavalese.jpg",
+        "imageAlt": "The roofs of Cavalese and its bell tower among green trees, a forested mountain and a rocky peak behind under a summer sky",
+        "imageCredit": "Cavalese from the hospital",
+        "imageCreditText": "Cavalese from the hospital by Mario Penner",
+        "imageCreator": "Mario Penner",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vista_di_Cavalese_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fiemme-passeggiata-insolita",
+      "approvedReviewId": "mapillary-fiemme-passeggiata-insolita-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-passeggiata-insolita-san-sebastiano.jpg",
+        "heroImage": "images/trails/fiemme-passeggiata-insolita-san-sebastiano.jpg",
+        "imageAlt": "The stone church of San Sebastiano in Cavalese with its tall ochre and white bell tower, a wrought-iron lamp post and pink houses on a cobbled square under a cloudy summer sky",
+        "imageCredit": "San Sebastiano, Cavalese",
+        "imageCreditText": "San Sebastiano, Cavalese by peterleth",
+        "imageCreator": "peterleth",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=6280350195352867",
         "imageSourceType": "licensed-source"
       }
     },
@@ -2768,18 +2921,18 @@
     },
     {
       "id": "osm-7547653",
-      "approvedReviewId": "commons-osm-7547653",
-      "approvedAt": "2026-09-06T08:52:09.690Z",
+      "approvedReviewId": "commons-osm-7547653-on-route",
+      "approvedAt": "2026-10-26T20:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-7547653-commons.jpg",
-        "heroImage": "images/trails/osm-7547653-commons.jpg",
-        "imageAlt": "Mountains above Auronzo di Cadore",
-        "imageCredit": "Auronzo di Cadore - mountain",
-        "imageCreditText": "Auronzo di Cadore - mountain by Tiia Monto",
-        "imageCreator": "Tiia Monto",
-        "imageLicence": "CC BY-SA 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Auronzo_di_Cadore_-_mountain.jpg",
+        "imageIcon": "images/trails/osm-7547653-forte-basso.jpg",
+        "heroImage": "images/trails/osm-7547653-forte-basso.jpg",
+        "imageAlt": "The roofless stone shell of the Forte Basso di Col Vidal on a meadow before a dark spruce forest",
+        "imageCredit": "The Forte Basso di Col Vidal",
+        "imageCreditText": "The Forte Basso di Col Vidal by Ddm-dolomitico",
+        "imageCreator": "Ddm-dolomitico",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Forte_Basso_di_Col_Vidal.jpg",
         "imageSourceType": "licensed-source"
       }
     },

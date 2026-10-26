@@ -48,10 +48,14 @@ describe('the existing-site verification boundary',()=>{
     // 205 and 203 with six village walks in Primiero drawn on OSM along the APT
     // San Martino di Castrozza's line. Then 209 and 207 with four more: the Via
     // Nova loop from Mezzano, the Val di Roda from San Martino, the Valpiana
-    // forest loop and the Cordognè loop to San Giovanni.
+    // forest loop and the Cordognè loop to San Giovanni. Then 214 and 212
+    // with five Cortina walks drawn on Cortina Marketing's line. Then 218 and
+    // 216 with the first four Val di Fiemme walks: the Parco della Pieve and
+    // the Rio Gambis in Cavalese, Cavalese to Castello and back, and the
+    // little waterfalls above Roda.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(209);
-    expect(currentSiteTrails(catalogue)).toHaveLength(207);
+    expect(catalogue).toHaveLength(218);
+    expect(currentSiteTrails(catalogue)).toHaveLength(216);
   });
 
   test('requires the artwork the public trail page needs',()=>{

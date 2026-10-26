@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-anello-poit-cordogne-san-giovanni",
+  "distanceKm": 5.5,
+  "ascentM": 181,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1167
+    },
+    {
+      "km": 0.4,
+      "elev": 1218
+    },
+    {
+      "km": 0.8,
+      "elev": 1261
+    },
+    {
+      "km": 1.3,
+      "elev": 1286
+    },
+    {
+      "km": 1.7,
+      "elev": 1216
+    },
+    {
+      "km": 2.1,
+      "elev": 1256
+    },
+    {
+      "km": 2.5,
+      "elev": 1256
+    },
+    {
+      "km": 2.9,
+      "elev": 1246
+    },
+    {
+      "km": 3.3,
+      "elev": 1238
+    },
+    {
+      "km": 3.8,
+      "elev": 1211
+    },
+    {
+      "km": 4.2,
+      "elev": 1204
+    },
+    {
+      "km": 4.6,
+      "elev": 1187
+    },
+    {
+      "km": 5,
+      "elev": 1200
+    },
+    {
+      "km": 5.4,
+      "elev": 1196
+    },
+    {
+      "km": 5.5,
+      "elev": 1184
+    }
+  ]
+}
