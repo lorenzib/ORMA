@@ -341,6 +341,26 @@ describe('the walk journal belongs to its account', () => {
     await assertFails(setDoc(doc(owner, path), validJournalEntry({ walkedWith:['Teo'] })));
     await assertFails(setDoc(doc(owner, path), validJournalEntry({ walkedWith:'x'.repeat(401) })));
   });
+
+  test('a walk lists up to six stored photos by id, and nothing else', async () => {
+    const owner = ordinaryDb('owner-1');
+    const photos = require('./journal-photos.js');
+    const ids = Array.from({ length:7 }, () => photos.newPhotoId(1770000000000));
+    // What the client sends, built by the client's own code.
+    const withPhotos = journalStore.toRemote({ ...recordedWalkEntry(), photoIds:ids.slice(0, 6) }, { now:1770000000000 });
+    expect(withPhotos.photoIds).toHaveLength(6);
+    await assertSucceeds(setDoc(doc(owner, path), withPhotos));
+    // An older walk with its inline photo still saves beside stored ones.
+    await assertSucceeds(setDoc(doc(owner, path), validJournalEntry({
+      photo:'data:image/jpeg;base64,AAAA', photoIds:ids.slice(0, 5),
+    })));
+
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ photoIds:ids })));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ photoIds:'p000000aa' })));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ photoIds:['../../other/p000000aa'] })));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ photoIds:[ids[0], 'https://example.com/dog.jpg'] })));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ photoIds:[ids[0], ids[1], ids[2], ids[3], ids[4], 42] })));
+  });
 });
 
 describe('private post-hike outcomes', () => {

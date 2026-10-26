@@ -16,6 +16,10 @@
   var MAX_COMPANIONS = 12;
   var MAX_COMPANION_CHARS = 40;
   var MAX_WALKED_WITH_CHARS = 400;
+  // JOURNAL-03: a walk's photos are files in Firebase Storage; the walk keeps
+  // only their ids. The old inline `photo` still counts towards the six.
+  var MAX_PHOTOS = 6;
+  var PHOTO_ID = /^p[a-z0-9]{6,32}$/;
   var COORD_PRECISION = 1e5;      // ~1 m, the precision the recorder stores
 
   function text(value, limit){
@@ -123,6 +127,9 @@
     // companions writes exactly the fields older rules already accept.
     var companions = walkedWithOf(entry);
     if(companions.length) remote.walkedWith = companions.join('\n');
+    // Same for photos kept in Storage: only sent when there are some.
+    var photoIds = photoIdsOf(entry, photo ? 1 : 0);
+    if(photoIds.length) remote.photoIds = photoIds;
     return remote;
   }
 
@@ -143,6 +150,19 @@
     });
     while(clean.join('\n').length > MAX_WALKED_WITH_CHARS) clean.pop();
     return clean;
+  }
+
+  // The stored photo ids a walk carries: valid, de-duplicated, and no more
+  // than fit beside `reserved` other photos (the old inline one).
+  function photoIdsOf(entry, reserved){
+    var list = entry && entry.photoIds;
+    if(!Array.isArray(list)) return [];
+    var seen = new Set();
+    return list.filter(function(id){
+      if(typeof id !== 'string' || !PHOTO_ID.test(id) || seen.has(id)) return false;
+      seen.add(id);
+      return true;
+    }).slice(0, Math.max(0, MAX_PHOTOS - (finite(reserved) || 0)));
   }
 
   function taleOf(entry){
@@ -177,6 +197,7 @@
       gaps: finite(remote.gaps) || 0,
       tale: taleOf(remote),
       walkedWith: walkedWithOf(remote),
+      photoIds: photoIdsOf(remote, typeof remote.photo === 'string' ? 1 : 0),
       updatedAt: finite(remote.updatedAt) || 0,
     };
   }
@@ -248,6 +269,8 @@
     toRemote: toRemote,
     walkedWithOf: walkedWithOf,
     MAX_COMPANIONS: MAX_COMPANIONS,
+    MAX_PHOTOS: MAX_PHOTOS,
+    photoIdsOf: photoIdsOf,
     fromRemote: fromRemote,
     mergeEntries: mergeEntries,
     entriesToPush: entriesToPush,
