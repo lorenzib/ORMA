@@ -55,14 +55,22 @@ function km(value){
  * what they need; what they must not read is that this walk *is* route 23,
  * because it would send them along 23 at the point the walk leaves it.
  */
+// "Waymarked" is a walker's word, not a reader's: a walk along other paths
+// names them the way the trail page's badges do, as numbered trails.
+// Back-to-back repeats are one stretch, not two: "routes 3 and then 3" read
+// as a typo.
+function distinctInOrder(sequence){
+  return (sequence || []).filter(Boolean).filter((ref, index, refs) => !index || ref !== refs[index - 1]);
+}
+
 function sequenceValue(sequence, alongOtherRoutes){
-  const refs = (sequence || []).filter(Boolean);
+  const refs = distinctInOrder(sequence);
   if(!refs.length) return null;
   // One number has no order to be in, and saying "in that order" of a single
   // route reads as though something were missing from the sentence.
   const said = refs.length === 1
-    ? (alongOtherRoutes ? `waymarked route ${refs[0]}` : `route ${refs[0]} from end to end`)
-    : `${alongOtherRoutes ? 'waymarked routes' : 'routes'} ${refs.slice(0, -1).join(', ')}`
+    ? (alongOtherRoutes ? `numbered trail ${refs[0]}` : `route ${refs[0]} from end to end`)
+    : `${alongOtherRoutes ? 'numbered trails' : 'routes'} ${refs.slice(0, -1).join(', ')}`
       + ` and then ${refs[refs.length - 1]}, in that order from the start`;
   return alongOtherRoutes
     ? `This walk carries no route number of its own. The mapped route runs along ${said}. ${READ_FROM_MAP}`
@@ -77,18 +85,18 @@ function sequenceValue(sequence, alongOtherRoutes){
  * decision point -- so it is written out rather than left null.
  */
 function switchesValue(switches, sequence, alongOtherRoutes){
-  const refs = (sequence || []).filter(Boolean);
+  const refs = distinctInOrder(sequence);
   if(!refs.length) return null;
   const changes = (switches || []).filter(change => change && change.from && change.to);
   const named = refs.length === 1
-    ? `${alongOtherRoutes ? 'waymarked route' : 'route'} ${refs[0]}`
-    : `${alongOtherRoutes ? 'waymarked routes' : 'routes'} ${refs.join(' and ')}`;
+    ? `${alongOtherRoutes ? 'numbered trail' : 'route'} ${refs[0]}`
+    : `${alongOtherRoutes ? 'numbered trails' : 'routes'} ${refs.join(' and ')}`;
   if(!changes.length){
     return alongOtherRoutes
-      ? `The mapped route runs along ${named} throughout, with no change of waymark recorded along it. ${READ_FROM_MAP}`
+      ? `The mapped route runs along ${named} throughout, with no change of number recorded along it. ${READ_FROM_MAP}`
       : `The mapped route stays on ${named} throughout, with no change of number recorded along it. ${READ_FROM_MAP}`;
   }
-  const said = alongOtherRoutes ? 'waymarked route' : 'route';
+  const said = alongOtherRoutes ? 'trail' : 'route';
   const sentences = changes.map(change => {
     const where = km(change.km);
     const near = change.landmark ? `, near ${change.landmark}` : '';

@@ -96,13 +96,25 @@ describe('the numbers running along a walk that carries none of its own',()=>{
     const claims=routeGuidanceFromMap(measured,measured.relations,{at:'2026-10-15T12:00:00Z'});
     const sequence=claims['route-number-sequence'].proposedValue;
     expect(sequence).toContain('carries no route number of its own');
-    expect(sequence).toContain('runs along waymarked routes 9 and then 56');
+    expect(sequence).toContain('runs along numbered trails 9 and then 56');
+    // "Waymarked" is not a word a reader knows; the page calls them trails.
+    expect(sequence).not.toMatch(/waymark/i);
     expect(sequence).not.toMatch(/^Follow/);
     expect(sequence).toContain('Read from the OpenStreetMap route relations');
-    expect(claims['route-number-switches'].proposedValue).toContain('waymarked route 9 gives way');
+    expect(claims['route-number-switches'].proposedValue).toContain('trail 9 gives way to trail 56');
+    expect(claims['route-number-switches'].proposedValue).not.toMatch(/waymark/i);
     expect(claims['route-number-sequence'].rationale).toContain('carries no number of its own');
     expect(claims['route-number-sequence'].sources[0]).toMatchObject({authority:'OpenStreetMap',
       url:'https://www.openstreetmap.org/relation/1'});
+  });
+
+  test('a number met twice in a row is one stretch, not "3 and then 3"',()=>{
+    const repeated=routeGuidanceFromMap({sequence:['3','3'],switches:[],segments:[],alongOtherRoutes:true},
+      [{externalRelationId:'relation/1',ref:'3'}]);
+    expect(repeated['route-number-sequence'].proposedValue)
+      .toContain('The mapped route runs along numbered trail 3. Read from');
+    expect(repeated['route-number-switches'].proposedValue)
+      .toContain('runs along numbered trail 3 throughout, with no change of number recorded');
   });
 
   test('a walk that is itself numbered still reads as being that route',()=>{
@@ -125,4 +137,12 @@ describe('the numbers running along a walk that carries none of its own',()=>{
     expect(supportedRouteGuidance({specialistOutputs:outputs},'route-number-sequence').derivedFrom)
       .toBe('route-relations');
   });
+});
+
+test('no published route directions say "waymarked"',()=>{
+  // The trail page prints these sentences as they are stored.
+  const overrides=JSON.parse(require('fs').readFileSync(require('path').join(__dirname,'..','data','verified-trail-overrides.json'),'utf8'));
+  const said=JSON.stringify(overrides,(key,value)=>key==='sources'?undefined:value)
+    .match(/"(?:start|status|sequence|switches)":"[^"]*waymark[^"]*"/gi);
+  expect(said).toBeNull();
 });
