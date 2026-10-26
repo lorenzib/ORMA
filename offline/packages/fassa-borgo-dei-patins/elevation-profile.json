@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-borgo-dei-patins",
+  "distanceKm": 3,
+  "ascentM": 82,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1406
+    },
+    {
+      "km": 0.2,
+      "elev": 1410
+    },
+    {
+      "km": 0.5,
+      "elev": 1401
+    },
+    {
+      "km": 0.7,
+      "elev": 1425
+    },
+    {
+      "km": 0.9,
+      "elev": 1425
+    },
+    {
+      "km": 1.2,
+      "elev": 1406
+    },
+    {
+      "km": 1.4,
+      "elev": 1390
+    },
+    {
+      "km": 1.6,
+      "elev": 1379
+    },
+    {
+      "km": 1.8,
+      "elev": 1362
+    },
+    {
+      "km": 2.1,
+      "elev": 1374
+    },
+    {
+      "km": 2.3,
+      "elev": 1387
+    },
+    {
+      "km": 2.5,
+      "elev": 1374
+    },
+    {
+      "km": 2.8,
+      "elev": 1405
+    },
+    {
+      "km": 3,
+      "elev": 1406
+    }
+  ]
+}

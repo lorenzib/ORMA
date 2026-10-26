@@ -832,23 +832,6 @@
       }
     },
     {
-      "id": "osm-12039246",
-      "approvedReviewId": "commons-osm-12039246",
-      "approvedAt": "2026-09-08T10:23:15.166Z",
-      "fields": {
-        "imageIcon": "images/trails/osm-12039246-lago-di-stramentizzo.jpg",
-        "heroImage": "images/trails/osm-12039246-lago-di-stramentizzo.jpg",
-        "imageAlt": "The turquoise water of the Lago di Stramentizzo between wooded slopes, willows and flowering elder on the near bank.",
-        "imageCredit": "Lago di Stramentizzo",
-        "imageCreditText": "Lago di Stramentizzo by Syrio",
-        "imageCreator": "Syrio",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Stramentizzo_03.jpg",
-        "imageSourceType": "licensed-source"
-      }
-    },
-    {
       "id": "osm-12044077",
       "approvedReviewId": "commons-osm-12044077",
       "approvedAt": "2026-09-06T14:27:06.592Z",
@@ -2014,40 +1997,6 @@
         "imageLicence": "CC BY 2.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0/",
         "imageSourcePage": "https://www.flickr.com/photos/22539273@N00/52084687638/",
-        "imageSourceType": "licensed-source"
-      }
-    },
-    {
-      "id": "osm-19095412",
-      "approvedReviewId": "commons-osm-19095412",
-      "approvedAt": "2026-09-07T15:32:21.875Z",
-      "fields": {
-        "imageIcon": "images/trails/osm-19095412-fer-a-cheval.jpg",
-        "heroImage": "images/trails/osm-19095412-fer-a-cheval.jpg",
-        "imageAlt": "A flowering summer meadow below the limestone walls of the Cirque du Fer-a-Cheval, with waterfalls falling from the rim.",
-        "imageCredit": "Cirque du Fer-a-Cheval",
-        "imageCreditText": "Cirque du Fer-a-Cheval by Frank Miramand",
-        "imageCreator": "Frank Miramand",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cirque_du_Fer-%C3%A0-Cheval_-_Paysage.jpg",
-        "imageSourceType": "licensed-source"
-      }
-    },
-    {
-      "id": "osm-19095413",
-      "approvedReviewId": "commons-osm-19095413",
-      "approvedAt": "2026-09-07T15:32:21.875Z",
-      "fields": {
-        "imageIcon": "images/trails/osm-19095413-sixt-passy.jpg",
-        "heroImage": "images/trails/osm-19095413-sixt-passy.jpg",
-        "imageAlt": "A green valley running between limestone walls in the Sixt-Passy reserve, with an alpage on the shelf above it.",
-        "imageCredit": "Sixt-Passy national nature reserve",
-        "imageCreditText": "Sixt-Passy national nature reserve by 0x010C",
-        "imageCreator": "0x010C",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2018-06_R%C3%A9serve_naturelle_nationale_de_Sixt-Passy_32.jpg",
         "imageSourceType": "licensed-source"
       }
     },

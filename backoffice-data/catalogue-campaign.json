@@ -881,30 +881,6 @@
       }
     },
     {
-      "trailId": "osm-19095413",
-      "name": "Alpage de Commune",
-      "origin": "imported",
-      "publicRecordPresent": true,
-      "modernGraduationVerified": false,
-      "externalRelationId": "relation/19095413",
-      "campaignState": "identity-check-queued",
-      "priorityScore": 221,
-      "baselineBlockers": [
-        "review-date-missing",
-        "claim-sources-missing",
-        "shadeCoverage-unknown",
-        "heatRisk-unknown",
-        "exposure-unknown",
-        "category-review-incomplete"
-      ],
-      "existing": {
-        "reviewedAt": null,
-        "sourceCount": 0,
-        "pathPointCount": 107,
-        "reviewedCategories": []
-      }
-    },
-    {
       "trailId": "osm-7388748",
       "name": "Anello dei Colli",
       "origin": "imported",
@@ -1429,30 +1405,6 @@
         "reviewedAt": null,
         "sourceCount": 0,
         "pathPointCount": 70,
-        "reviewedCategories": []
-      }
-    },
-    {
-      "trailId": "osm-19095412",
-      "name": "Chalets de Salvadon",
-      "origin": "imported",
-      "publicRecordPresent": true,
-      "modernGraduationVerified": false,
-      "externalRelationId": "relation/19095412",
-      "campaignState": "identity-check-queued",
-      "priorityScore": 221,
-      "baselineBlockers": [
-        "review-date-missing",
-        "claim-sources-missing",
-        "shadeCoverage-unknown",
-        "heatRisk-unknown",
-        "exposure-unknown",
-        "category-review-incomplete"
-      ],
-      "existing": {
-        "reviewedAt": null,
-        "sourceCount": 0,
-        "pathPointCount": 132,
         "reviewedCategories": []
       }
     },
@@ -3071,30 +3023,6 @@
       "publicRecordPresent": true,
       "modernGraduationVerified": false,
       "externalRelationId": "relation/12174210",
-      "campaignState": "identity-check-queued",
-      "priorityScore": 221,
-      "baselineBlockers": [
-        "review-date-missing",
-        "claim-sources-missing",
-        "shadeCoverage-unknown",
-        "heatRisk-unknown",
-        "exposure-unknown",
-        "category-review-incomplete"
-      ],
-      "existing": {
-        "reviewedAt": null,
-        "sourceCount": 0,
-        "pathPointCount": 16,
-        "reviewedCategories": []
-      }
-    },
-    {
-      "trailId": "osm-12039246",
-      "name": "Rundweg Rotwand",
-      "origin": "imported",
-      "publicRecordPresent": true,
-      "modernGraduationVerified": false,
-      "externalRelationId": "relation/12039246",
       "campaignState": "identity-check-queued",
       "priorityScore": 221,
       "baselineBlockers": [

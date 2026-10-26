@@ -1234,21 +1234,6 @@
       "officialDistanceKm": 7.3,
       "distanceDeltaPercent": -10
     },
-    "osm-12039246": {
-      "pathContainmentPercent": 100,
-      "externalRelationId": "relation/12039246",
-      "checkedAt": "2026-09-06T09:26:20.650Z",
-      "reviewState": "blocked",
-      "blockers": [
-        "not-closed-loop"
-      ],
-      "closedLoop": false,
-      "relationName": "Rundweg Rotwand",
-      "componentCount": 1,
-      "reconstructedDistanceKm": 0.93,
-      "officialDistanceKm": 0.9,
-      "distanceDeltaPercent": 3.3
-    },
     "osm-12044077": {
       "pathContainmentPercent": 100,
       "externalRelationId": "relation/12044077",
@@ -2187,36 +2172,6 @@
       "reconstructedDistanceKm": 4.54,
       "officialDistanceKm": 4.5,
       "distanceDeltaPercent": 0.9
-    },
-    "osm-19095412": {
-      "pathContainmentPercent": 100,
-      "externalRelationId": "relation/19095412",
-      "checkedAt": "2026-09-06T09:27:50.969Z",
-      "reviewState": "blocked",
-      "blockers": [
-        "not-closed-loop"
-      ],
-      "closedLoop": false,
-      "relationName": "Chalets de Salvadon",
-      "componentCount": 1,
-      "reconstructedDistanceKm": 5.46,
-      "officialDistanceKm": 5.4,
-      "distanceDeltaPercent": 1.1
-    },
-    "osm-19095413": {
-      "pathContainmentPercent": 100,
-      "externalRelationId": "relation/19095413",
-      "checkedAt": "2026-09-06T09:27:52.416Z",
-      "reviewState": "blocked",
-      "blockers": [
-        "not-closed-loop"
-      ],
-      "closedLoop": false,
-      "relationName": "Alpage de Commune",
-      "componentCount": 1,
-      "reconstructedDistanceKm": 5.61,
-      "officialDistanceKm": 5.5,
-      "distanceDeltaPercent": 2
     },
     "osm-19531872": {
       "pathContainmentPercent": 100,

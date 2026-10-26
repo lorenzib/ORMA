@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-passato-ritrovato",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.2,
+    "ascentM": 152,
+    "highestPointM": 1516,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 18
+  },
+  "trailhead": {
+    "lat": 46.476626,
+    "lng": 11.770951,
+    "label": "Canazei (Piaz G. Marconi), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.4765179,
+      "lng": 11.7698895,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4763601,
+      "lng": 11.7471697,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4777444,
+      "lng": 11.7406223,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.478559,
+      "lng": 11.76233,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 3.3 km on tarmac, mostly quiet lanes between the hamlets, open to cars.",
+    "Short forest paths; the APT suggests walking poles.",
+    "Working farms and barns at Pian.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}
