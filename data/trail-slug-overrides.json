@@ -433,6 +433,16 @@
       "name": "Giro ad anello Cavalese - Castello di Fiemme",
       "slug": "cavalese-castello-di-fiemme-loop",
       "gloss": "the loop from Cavalese to Castello di Fiemme"
+    },
+    "fiemme-larici-verso-anterivo": {
+      "name": "Passeggiata col passeggino tra i larici verso Anterivo",
+      "slug": "pra-del-manz-to-anterivo",
+      "gloss": "the larch-wood walk from Prà del Manz to Anterivo"
+    },
+    "fiemme-varena-spianez": {
+      "name": "Col passeggino tra Varena e Spianez",
+      "slug": "varena-spianez-loop",
+      "gloss": "the meadow walk from Varena to Spianez"
     }
   }
 }

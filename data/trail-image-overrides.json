@@ -377,6 +377,23 @@
       }
     },
     {
+      "id": "fiemme-larici-verso-anterivo",
+      "approvedReviewId": "commons-fiemme-larici-verso-anterivo-on-route",
+      "approvedAt": "2026-10-26T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-larici-verso-anterivo-anterivo.jpg",
+        "heroImage": "images/trails/fiemme-larici-verso-anterivo-anterivo.jpg",
+        "imageAlt": "A traditional white farmhouse in Anterivo with carved wooden balconies, red geraniums, an outside wooden staircase and an archway, under a blue summer sky",
+        "imageCredit": "A house in Anterivo",
+        "imageCreditText": "A house in Anterivo by Ian Alexander",
+        "imageCreator": "Ian Alexander",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Traditional_Südtirol_house_in_Anterivo.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fiemme-passeggiata-insolita",
       "approvedReviewId": "mapillary-fiemme-passeggiata-insolita-on-route",
       "approvedAt": "2026-10-26T18:00:00.000Z",
@@ -390,6 +407,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=6280350195352867",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fiemme-varena-spianez",
+      "approvedReviewId": "commons-fiemme-varena-spianez-on-route",
+      "approvedAt": "2026-10-26T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-varena-spianez-pieve.jpg",
+        "heroImage": "images/trails/fiemme-varena-spianez-pieve.jpg",
+        "imageAlt": "Green summer meadows with leafy trees below Varena and the tall bell tower of the Pieve of Cavalese against wooded mountains behind",
+        "imageCredit": "Meadows below Varena",
+        "imageCreditText": "Meadows below Varena by temporali",
+        "imageCreator": "temporali",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:La_Pieve_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
