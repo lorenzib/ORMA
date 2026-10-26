@@ -3,9 +3,12 @@
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
-  "storage": {
-    "rules": "storage.rules"
-  },
+  "storage": [
+    {
+      "target": "journal-photos",
+      "rules": "storage.rules"
+    }
+  ],
   "hosting": {
     "target": "backoffice",
     "public": "dist/backoffice",

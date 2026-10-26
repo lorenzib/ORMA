@@ -9,6 +9,8 @@ on:
     branches: [main]
     paths:
       - storage.rules
+      - firebase.json
+      - .firebaserc
   workflow_dispatch: {}
 
 permissions:
@@ -44,5 +46,8 @@ jobs:
         run: |
           printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/firebase-sa.json"
           export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/firebase-sa.json"
-          npx firebase-tools deploy --only storage --project dolopaws --non-interactive
+          # Pinned: with the bucket named (firebase.json target, .firebaserc),
+          # this version skips the default-bucket lookup the deploy account
+          # is not allowed to do.
+          npx --yes firebase-tools@15.26.0 deploy --only storage --project dolopaws --non-interactive
           rm -f "$RUNNER_TEMP/firebase-sa.json"
