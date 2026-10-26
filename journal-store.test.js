@@ -132,4 +132,19 @@ describe('JOURNAL-02 account journal store', () => {
     // Every id is usable as a Firestore document id.
     ids.forEach(id => expect(id).toMatch(/^[A-Za-z0-9._:-]{1,120}$/));
   });
+
+  test('same-millisecond ids stay distinct even when the random part repeats', () => {
+    const realRandom = Math.random;
+    const realCrypto = global.crypto;
+    try {
+      Object.defineProperty(global, 'crypto', { value: undefined, configurable: true });
+      Math.random = () => 0.5;
+      const ids = new Set();
+      for(let i = 0; i < 50; i++) ids.add(store.newId(T0 + 7));
+      expect(ids.size).toBe(50);
+    } finally {
+      Math.random = realRandom;
+      Object.defineProperty(global, 'crypto', { value: realCrypto, configurable: true });
+    }
+  });
 });
