@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-26T20:19:21.839Z",
+  "generatedAt": "2026-10-26T20:26:17.151Z",
   "regions": {
     "dolomites": {
-      "trailCount": 163,
-      "trails": "data/regions/dolomites-trails.js?v=bd4234cdb24b",
+      "trailCount": 167,
+      "trails": "data/regions/dolomites-trails.js?v=0e1fbbc9be9f",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -168,6 +168,10 @@
         "cortina-passeggiata-gourmet": "data/trail-details/cortina-passeggiata-gourmet.js?v=450cb683c2fa",
         "cortina-mortisa-e-le-grotte-di-volpera": "data/trail-details/cortina-mortisa-e-le-grotte-di-volpera.js?v=d2a920d208f1",
         "cortina-sotecordes": "data/trail-details/cortina-sotecordes.js?v=6bb8cac35920",
+        "fiemme-cavalese-passeggiata-panoramica": "data/trail-details/fiemme-cavalese-passeggiata-panoramica.js?v=54d1f7cfed1a",
+        "fiemme-passeggiata-insolita": "data/trail-details/fiemme-passeggiata-insolita.js?v=111701dc9e7b",
+        "fiemme-cascatelle-di-ziano": "data/trail-details/fiemme-cascatelle-di-ziano.js?v=3880870580c9",
+        "fiemme-giro-cavalese-castello": "data/trail-details/fiemme-giro-cavalese-castello.js?v=04442e3bd376",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -400,6 +404,10 @@
     "cortina-passeggiata-gourmet": "dolomites",
     "cortina-mortisa-e-le-grotte-di-volpera": "dolomites",
     "cortina-sotecordes": "dolomites",
+    "fiemme-cavalese-passeggiata-panoramica": "dolomites",
+    "fiemme-passeggiata-insolita": "dolomites",
+    "fiemme-cascatelle-di-ziano": "dolomites",
+    "fiemme-giro-cavalese-castello": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -667,6 +675,10 @@
     "cortina-passeggiata-gourmet": "passeggiata-gourmet-cortina",
     "cortina-mortisa-e-le-grotte-di-volpera": "mortisa-grotte-di-volpera",
     "cortina-sotecordes": "sotecordes",
+    "fiemme-cavalese-passeggiata-panoramica": "cavalese-panoramic-walk",
+    "fiemme-passeggiata-insolita": "rio-gambis-cavalese",
+    "fiemme-cascatelle-di-ziano": "cascatelle-di-ziano",
+    "fiemme-giro-cavalese-castello": "cavalese-castello-di-fiemme-loop",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -883,6 +895,10 @@
     "passeggiata-gourmet-cortina": "cortina-passeggiata-gourmet",
     "mortisa-grotte-di-volpera": "cortina-mortisa-e-le-grotte-di-volpera",
     "sotecordes": "cortina-sotecordes",
+    "cavalese-panoramic-walk": "fiemme-cavalese-passeggiata-panoramica",
+    "rio-gambis-cavalese": "fiemme-passeggiata-insolita",
+    "cascatelle-di-ziano": "fiemme-cascatelle-di-ziano",
+    "cavalese-castello-di-fiemme-loop": "fiemme-giro-cavalese-castello",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

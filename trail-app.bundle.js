@@ -47629,6 +47629,259 @@ function effectiveOverrides(profile, adjustOverride){
       ],
       startPoint: { lat: 46.5140511, lng: 12.4291276, label: 'Just above the Forte Basso di Col Vidal, Pian dei Buoi (official start)' },
       desc: 'Ring 50 of the Lozzo di Cadore network: a short loop on the Pian dei Buoi plateau from the Forte Basso di Col Vidal past the First World War positions of the Cinque Imbocchi, facing the Marmarole. The official sheet gives about 3 km, 130 m of climb and 1 h 30.'
+    },
+    'fiemme-cavalese-passeggiata-panoramica': {
+      // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 1).
+      // APT Val di Fiemme’s walk “Cavalese - Passeggiata panoramica”. The line is drawn on 31 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Cavalese publishes dog rules in its police bylaw (articles 46 and 48): a lead and a muzzle or other safety device in all public places, parks included unless a sign bans dogs; no dogs in playgrounds, schools or churches; carry bags and pick up after your dog, and do not let it urinate on buildings, monuments, parked cars or flowerbeds.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries).
+      area: 'Parco della Pieve, Cavalese, Val di Fiemme',
+      distance: 3,
+      elevation: 100,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Piazza Verdi in Cavalese down through the old railway tunnel under the Parco della Pieve, across the meadows to the ice stadium and back up through the park past the parish church.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The valley seen from the Parco della Pieve belvedere on the walk, in July (Mario Penner, CC BY 3.0), 39 m from the line.',
+        route: 'Official loop 3 km from Cavalese (Piazza Verdi), as APT Val di Fiemme publishes it; the stored line is drawn on 31 OSM ways along the APT’s published line, 2.9 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Piazza Verdi along Viale Mendini, Via della Pieve and Via Bresadola onto the bed of the Fiemme railway, closed in 1963, through its tunnel under the Parco della Pieve and across the meadows to the Hotel Panorama, up Via Cavazal to the ice stadium, up the steps to the park belvedere and along the panoramic path past the parish church of Santa Maria Assunta, then back down the avenue of old lime trees to the start.',
+        mapPoints: 'Start at Cavalese (Piazza Verdi), the APT’s start; drinking water at the start, at km 0.4 and at km 0.8 (OSM nodes 274303877, 274301855, 4572848719).',
+        elevation: 'Official 3 km, 100 m up and 100 m down, 1 h, highest point 998 m, lowest 935 m (APT Val di Fiemme).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fiemme, Cavalese - Passeggiata panoramica (visitfiemme.it and its Outdooractive page)',
+          'Comune di Cavalese, Regolamento di Polizia Urbana (council resolution 15 of 27 May 2003), articles 46 and 48',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves (none on the line)',
+          'OpenStreetMap ways along the APT line (31 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Town streets and pavements at the start and end, open to cars', 'An unlit former railway tunnel under the park', 'Steps up to the park belvedere'],
+      terrainType: 'Town pavements, a gravel railway path and park paths; pram-friendly',
+      shadeDescription: 'The park’s old lime trees shade the second half in summer, which OpenStreetMap barely maps (3% of the line); the meadows on the old railway are open.',
+      terrainDescription: 'An easy loop at 935–1,000 m round the Parco della Pieve, Cavalese’s historic park of century-old lime trees, partly on the bed of the old Fiemme railway.',
+      waterDescription: 'Drinking fountains at the start, at km 0.4 and at km 0.8; bars and cafés at the start and on the way.',
+      dogNotes: 'Cavalese requires a lead and a muzzle or other safety device in public places, parks included unless a sign bans dogs; dogs may not enter playgrounds, schools or churches. Carry bags and pick up after your dog, and do not let it urinate on buildings, monuments or parked cars.',
+      tips: 'Start in Piazza Verdi in Cavalese: 3 km, 100 m of climbing, an hour. Cavalese requires a lead and a muzzle (or other safety device) in public places, the park included, and bags to pick up after your dog. Drinking fountains at the start and in the park.',
+      sourceLinks: [
+        { label: 'APT Val di Fiemme, Cavalese - Passeggiata panoramica', url: 'https://www.visitfiemme.it/it/activity/cavalese-passeggiata-panoramica_9752' },
+        { label: 'Outdooractive, Cavalese - Passeggiata panoramica (APT Val di Fiemme)', url: 'https://www.outdooractive.com/it/r/14462737' },
+        { label: 'Comune di Cavalese, Regolamento di Polizia Urbana (articles 46 and 48)', url: 'https://www.comune.cavalese.tn.it/content/download/1000/21954/2/Regolamento%2Bdi%2BPolizia%2BUrbana.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.290259, lng: 11.460627, label: 'Cavalese (Piazza Verdi), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.2910942, lng: 11.4592135, osmId: 'node/274303877', label: 'Drinking fountain at the start' },
+        { km: 0.4, lat: 46.2876993, lng: 11.4585232, osmId: 'node/274301855', label: 'Drinking fountain' },
+        { km: 0.8, lat: 46.2856835, lng: 11.4634778, osmId: 'node/4572848719', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.28861, lng: 11.46152, osmId: 'node/3244177632', name: 'La Pieve' },
+        { km: 0, lat: 46.2908, lng: 11.45888, osmId: 'node/2967729897', name: 'Osteria la Segosta' },
+        { km: 0.1, lat: 46.28806, lng: 11.46362, osmId: 'node/3245940264', name: 'Bar Stazione' },
+        { km: 0.6, lat: 46.28559, lng: 11.46242, osmId: 'node/4570658880', name: 'Al Parco' },
+        { km: 1.3, lat: 46.28901, lng: 11.46661, osmId: 'node/4586519626', name: 'Fitness Bar' }
+      ],
+      desc: 'An easy loop from the centre of Cavalese through the old railway tunnel and round the Parco della Pieve, with its century-old lime trees and its views over the Val di Fiemme. The APT lists 3 km and 100 m of ascent.'
+    },
+    'fiemme-passeggiata-insolita': {
+      // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 1).
+      // APT Val di Fiemme’s walk “Montagna Senza Limiti - Passeggiata insolita lungo il Rio Gambis”. The line is drawn on 55 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Cavalese publishes dog rules in its police bylaw (articles 46 and 48): a lead and a muzzle or other safety device in all public places, parks included unless a sign bans dogs; no dogs in playgrounds, schools or churches; carry bags and pick up after your dog, and do not let it urinate on buildings, monuments, parked cars or flowerbeds.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries).
+      area: 'Rio Gambis, Cavalese, Val di Fiemme',
+      distance: 3,
+      elevation: 42,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the ice stadium car park in Cavalese along Viale Mendini and the Rio Gambis promenade, up to Via Paradisi and back by the Palafiemme and the bus station.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of San Sebastiano and its tall coloured bell tower, which the walk passes, in July (peterleth on Mapillary, CC BY-SA 4.0, a view taken from a 360° image), 7 m from the line.',
+        route: 'Official loop 3 km from Cavalese (ice stadium car park), as APT Val di Fiemme publishes it; the stored line is drawn on 55 OSM ways along the APT’s published line, 2.9 km, with 97% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: one of the APT’s “Montagna Senza Limiti” walks, laid out for wheelchairs. From the ice stadium car park along Via Cermis and Via Firmian to Viale Mendini, the finish of the Marcialonga, then Via Ress and the Don Bruno Bonelli promenade along the Rio Gambis, under the old railway bridge, past the bell tower of San Sebastiano and an old mill wheel, then up Via Montebello and Via Paradisi, with a view of the Lagorai, down to the Palafiemme and back past the bus station.',
+        mapPoints: 'Start at Cavalese (ice stadium car park), the APT’s start; drinking water at the start, at km 0.5, at km 0.9 and at km 1.3 (OSM nodes 4572848719, 274303876, 487270792, 1256563364).',
+        elevation: 'Official 3 km, 42 m up and 42 m down, 1 h, highest point 1,017 m, lowest 975 m (APT Val di Fiemme).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fiemme, Montagna Senza Limiti - Passeggiata insolita lungo il Rio Gambis (visitfiemme.it and its Outdooractive page)',
+          'Comune di Cavalese, Regolamento di Polizia Urbana (council resolution 15 of 27 May 2003), articles 46 and 48',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves (none on the line)',
+          'OpenStreetMap ways along the APT line (55 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 2,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Town pavements and streets throughout, open to cars; cross the Strada Statale at the Palafiemme with care', 'A short promenade beside the Rio Gambis: keep your dog out of the stream', 'Busy streets in the centre in summer and on market days'],
+      terrainType: 'Town pavements and a paved promenade; wheelchair- and pram-friendly',
+      shadeDescription: 'Almost no shade: about 2% of the line is under trees; the streets and the promenade are open.',
+      terrainDescription: 'A level town walk at 975–1,020 m through the centre of Cavalese, along the Rio Gambis stream, the town’s main watercourse, on a promenade restored after years of neglect.',
+      waterDescription: 'Drinking fountains at the start, at km 0.5, at km 0.9 and at km 1.3; bars and cafés at the start and on the way.',
+      dogNotes: 'Cavalese requires a lead and a muzzle or other safety device in public places, parks included unless a sign bans dogs; dogs may not enter playgrounds, schools or churches. Carry bags and pick up after your dog, and do not let it urinate on buildings, monuments or parked cars.',
+      tips: 'Start at the ice stadium car park in Cavalese: 3 km, about 40 m of climbing, an hour, all on pavements. Cavalese requires a lead and a muzzle (or other safety device) in public places and bags to pick up after your dog. Plenty of fountains and bars on the way.',
+      sourceLinks: [
+        { label: 'APT Val di Fiemme, Montagna Senza Limiti - Passeggiata insolita lungo il Rio Gambis', url: 'https://www.visitfiemme.it/it/activity/montagna-senza-limiti-passeggiata-insolita-lungo-il-rio-gambis_38529' },
+        { label: 'Outdooractive, Montagna Senza Limiti - Passeggiata insolita lungo il Rio Gambis (APT Val di Fiemme)', url: 'https://www.outdooractive.com/it/r/807072839' },
+        { label: 'Comune di Cavalese, Regolamento di Polizia Urbana (articles 46 and 48)', url: 'https://www.comune.cavalese.tn.it/content/download/1000/21954/2/Regolamento%2Bdi%2BPolizia%2BUrbana.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.285892, lng: 11.46452, label: 'Cavalese (ice stadium car park), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.2856835, lng: 11.4634778, osmId: 'node/4572848719', label: 'Drinking fountain at the start' },
+        { km: 0.5, lat: 46.2902658, lng: 11.4608402, osmId: 'node/274303876', label: 'Drinking fountain' },
+        { km: 0.9, lat: 46.2938299, lng: 11.4601832, osmId: 'node/487270792', label: 'Drinking fountain' },
+        { km: 1.3, lat: 46.2904763, lng: 11.4641993, osmId: 'node/1256563364', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.28559, lng: 11.46242, osmId: 'node/4570658880', name: 'Al Parco' },
+        { km: 0, lat: 46.28533, lng: 11.46527, osmId: 'way/461838635', name: 'El Calderon' },
+        { km: 0.2, lat: 46.28861, lng: 11.46152, osmId: 'node/3244177632', name: 'La Pieve' },
+        { km: 0.5, lat: 46.29089, lng: 11.46308, osmId: 'node/2967727728', name: 'Kiss' },
+        { km: 0.8, lat: 46.29292, lng: 11.45707, osmId: 'way/96829016', name: 'Vecchia Osteria' }
+      ],
+      desc: 'A level loop through Cavalese along the Rio Gambis promenade, past the bell tower of San Sebastiano and the Marcialonga finish, laid out by the APT for wheelchairs. The APT lists 3 km and 42 m of ascent.'
+    },
+    'fiemme-cascatelle-di-ziano': {
+      // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 1).
+      // APT Val di Fiemme’s walk “Le Cascatelle di Ziano di Fiemme”. The line is drawn on 6 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Ziano di Fiemme publishes dog rules in its police bylaw (articles 46 and 48): a lead and a muzzle or other safety device in all public places, parks included unless a sign bans dogs; no dogs in playgrounds, schools or churches; carry bags and pick up after your dog, and do not let it urinate on buildings, monuments, parked cars or flowerbeds.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries). The Ziano local reserve lies along the Avisio, about 240 m below the line at its closest.
+      area: 'Roda – Bosin, Ziano di Fiemme, Val di Fiemme',
+      distance: 2.2,
+      elevation: 100,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the hamlet of Roda up through the wood above the valley cycle path to the Rio Sadole stream, and back down past the Mas del Marino.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A wayside shrine in Via Inama by the valley cycle path near Roda, with the wooded slope the walk climbs behind it, in August (Syrio, CC BY-SA 4.0), 96 m from the line.',
+        route: 'Official loop 2.2 km from Ziano di Fiemme (Roda), as APT Val di Fiemme publishes it; the stored line is drawn on 6 OSM ways along the APT’s published line, 2 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Roda up Via Baster, across the valley cycle path and along a path towards Bosin, then a sharp left up towards the Cercenai road through a damp wood of mossy dry-stone walls, ferns and wild strawberries, over several small streams, to the Rio Sadole, which comes down from Monte Cauriol; back down a dirt track past the Mas del Marino to the cycle path and Roda.',
+        mapPoints: 'Start at Ziano di Fiemme (Roda), the APT’s start; drinking water none mapped.',
+        elevation: 'Official 2.2 km, 100 m up and 100 m down, 1 h, highest point 1,048 m, lowest 973 m (APT Val di Fiemme).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fiemme, Le Cascatelle di Ziano di Fiemme (visitfiemme.it and its Outdooractive page)',
+          'Comune di Ziano di Fiemme, Regolamento di Polizia Urbana (council resolution 40 of 28 June 2005, amended by resolution 16 of 30 April 2021), articles 46 and 48',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves (none on the line)',
+          'OpenStreetMap ways along the APT line (6 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 73,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The last stretch down from the Cercenai junction is bare earth and very muddy after rain', 'Several small streams to cross in the wood', 'Two crossings of the valley cycle path: watch for bikes'],
+      terrainType: 'Forest paths and a dirt track',
+      shadeDescription: 'Mostly shaded: about three quarters runs through the wood above Roda and Bosin.',
+      terrainDescription: 'A short wooded loop at 975–1,050 m above Ziano di Fiemme, through a damp wood of streams and mossy dry-stone walls to the Rio Sadole.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water.',
+      dogNotes: 'Ziano di Fiemme requires a lead and a muzzle or other safety device in public places, parks included unless a sign bans dogs; dogs may not enter playgrounds, schools or churches. Carry bags and pick up after your dog, and do not let it urinate on buildings, monuments or parked cars.',
+      tips: 'Start in Roda, Ziano di Fiemme: 2.2 km, 100 m of climbing, an hour. Ziano requires a lead and a muzzle (or other safety device) in public places and bags to pick up after your dog. No fountain is mapped on the way, so bring water; wear shoes with a good grip after rain.',
+      sourceLinks: [
+        { label: 'APT Val di Fiemme, Le Cascatelle di Ziano di Fiemme', url: 'https://www.visitfiemme.it/it/activity/le-cascatelle-di-ziano-di-fiemme_9658' },
+        { label: 'Outdooractive, Le Cascatelle di Ziano di Fiemme (APT Val di Fiemme)', url: 'https://www.outdooractive.com/it/r/14463016' },
+        { label: 'Comune di Ziano di Fiemme, Regolamento di Polizia Urbana (articles 46 and 48)', url: 'https://www.comune.ziano.tn.it/content/download/873/14803/2/REGOLAMENTO+DI+POLIZIA+URBANA++del.+C.C.+40-2005+-+mod.+16-2021.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.285777, lng: 11.576342, label: 'Ziano di Fiemme (Roda), the APT’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'A short loop from Roda through the damp wood above Ziano di Fiemme, crossing little mountain streams to the Rio Sadole. The APT lists 2.2 km and 100 m of ascent.'
+    },
+    'fiemme-giro-cavalese-castello': {
+      // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 1).
+      // APT Val di Fiemme’s walk “Montagna Senza Limiti - Giro ad anello Cavalese - Castello di Fiemme”. The line is drawn on 33 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Cavalese and Castello-Molina di Fiemme publish dog rules in their police bylaw (articles 46 and 48): a lead and a muzzle or other safety device in all public places, parks included unless a sign bans dogs; no dogs in playgrounds, schools or churches; carry bags and pick up after your dog, and do not let it urinate on buildings, monuments, parked cars or flowerbeds. About 0.9 km crosses Ville di Fiemme (Carano), which publishes no dog rule, so the national dog ordinance (6 August 2013, extended to September 2027) applies there under ORMA’s Italian dog standard.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries); the Molina–Castello biotope is 80 m off the line and not entered.
+      area: 'Cavalese – Castello di Fiemme, Val di Fiemme',
+      distance: 4.8,
+      elevation: 65,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the hospital in Cavalese along the cycle and foot path above the meadows of Carano, down to Castello di Fiemme, and back up by quiet lanes to Cavalese.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Cavalese, its bell tower and the mountains behind, seen from beside the hospital where the walk starts, in June (Mario Penner, CC BY 3.0), 59 m from the line.',
+        route: 'Official loop 4.8 km from Cavalese (hospital car park), as APT Val di Fiemme publishes it; the stored line is drawn on 33 OSM ways along the APT’s published line, 5 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: one of the APT’s “Montagna Senza Limiti” walks, laid out for wheelchairs, all on tarmac. From the hospital down Via Dossi and up Via Val di Ronco to Via Trento, along the level cycle and foot path past the Hotel Garden and the dairy, a terrace facing the Lagorai, across the Strada Statale and down to Via Latemar and Via Dolomiti in Castello di Fiemme, past the Roman village remains seen under glass, then back over a wooden bridge, a short 11% climb to a wayside shrine, Via Marmolaia and Via Dossi to the hospital.',
+        mapPoints: 'Start at Cavalese (hospital car park), the APT’s start; drinking water at the start and at km 2.7 (OSM nodes 288480079, 261081761).',
+        elevation: 'Official 4.8 km, 65 m up and 65 m down, 1 h 30 min, highest point 1,008 m, lowest 945 m (APT Val di Fiemme).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fiemme, Montagna Senza Limiti - Giro ad anello Cavalese - Castello di Fiemme (visitfiemme.it and its Outdooractive page)',
+          'Comune di Cavalese, Regolamento di Polizia Urbana (council resolution 15 of 27 May 2003), articles 46 and 48',
+          'Comune di Castello-Molina di Fiemme, Regolamento di Polizia Urbana, articles 46 and 48',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Ville di Fiemme publishes no dog rule)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves (none on the line)',
+          'OpenStreetMap ways along the APT line (33 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['All on tarmac, mostly pavements and a cycle and foot path; two crossings of the Strada Statale', 'A quiet lane open to cars on the way back, with short steep climbs', 'Pavement dips on the long descent to Castello: watch your footing'],
+      terrainType: 'Pavements, a cycle and foot path and quiet lanes; wheelchair- and pram-friendly',
+      shadeDescription: 'No shade: the whole loop is on open pavements and lanes between Cavalese and Castello.',
+      terrainDescription: 'An easy loop at 945–1,010 m between Cavalese and Castello di Fiemme, along a terrace above the meadows of Carano facing the Lagorai, where a Roman-era alpine village was found.',
+      waterDescription: 'Drinking fountains at the start and at km 2.7; bars and cafés at the start and on the way.',
+      dogNotes: 'Cavalese and Castello-Molina di Fiemme require a lead and a muzzle or other safety device in public places, parks included unless a sign bans dogs; dogs may not enter playgrounds, schools or churches. Carry bags and pick up after your dog, and do not let it urinate on buildings, monuments or parked cars. The short stretch in Ville di Fiemme (Carano) has no commune rule, so the Italian national rule applies there: a lead of at most 1.5 m and a muzzle carried.',
+      tips: 'Start at the hospital car park in Cavalese: 4.8 km, 65 m of climbing, an hour and a half, all on tarmac. Cavalese and Castello-Molina require a lead and a muzzle (or other safety device) in public places and bags to pick up after your dog. No shade, so avoid midday in summer; fountains in Cavalese and in Castello.',
+      sourceLinks: [
+        { label: 'APT Val di Fiemme, Montagna Senza Limiti - Giro ad anello Cavalese - Castello di Fiemme', url: 'https://www.visitfiemme.it/it/activity/montagna-senza-limiti-giro-ad-anello-cavalese-castello-di-fiemme_36616' },
+        { label: 'Outdooractive, Montagna Senza Limiti - Giro ad anello Cavalese - Castello di Fiemme (APT Val di Fiemme)', url: 'https://www.outdooractive.com/it/r/806626824' },
+        { label: 'Comune di Cavalese, Regolamento di Polizia Urbana (articles 46 and 48)', url: 'https://www.comune.cavalese.tn.it/content/download/1000/21954/2/Regolamento%2Bdi%2BPolizia%2BUrbana.pdf' },
+        { label: 'Comune di Castello-Molina di Fiemme, Regolamento di Polizia Urbana (articles 46 and 48)', url: 'https://www.comune.castellomolinadifiemme.tn.it/content/download/744/15102/3/regolamento_polizia_urbana.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.288914, lng: 11.454965, label: 'Cavalese (hospital car park), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.2894011, lng: 11.4550064, osmId: 'node/288480079', label: 'Drinking fountain at the start' },
+        { km: 2.7, lat: 46.2814156, lng: 11.4351204, osmId: 'node/261081761', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.28893, lng: 11.45448, osmId: 'way/95708700', name: 'Bar Trento' },
+        { km: 0.2, lat: 46.29211, lng: 11.45862, osmId: 'node/1257221027', name: 'Cheers' },
+        { km: 1.8, lat: 46.28717, lng: 11.4403, osmId: 'way/65769944', name: 'Bar al Bivio' },
+        { km: 2.7, lat: 46.28037, lng: 11.43497, osmId: 'node/261081650', name: 'Bar La Torre' }
+      ],
+      desc: 'An easy loop from Cavalese to Castello di Fiemme and back, along a sunny terrace facing the Lagorai, laid out by the APT for wheelchairs. The APT lists 4.8 km and 65 m of ascent.'
     }
   };
 
