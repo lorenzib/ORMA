@@ -412,6 +412,10 @@ describe('drawing interactions', () => {
     expect(plannerHtml).toContain('<span>Drag a dot to move it</span>');
     expect(plannerHtml).toContain('<span><span data-verb>Click</span> a dot to remove it</span>');
     expect(plannerSource).toContain("window.matchMedia('(pointer: coarse)').matches");
+    // Spacing, not dots, between the phrases: a separator dot was stranded at
+    // the start of the second line whenever the guide wrapped.
+    expect(plannerHtml).not.toMatch(/\.planner-guide>span\+span::before\{content:'·'/);
+    expect(plannerHtml).toContain('display:flex;gap:4px 22px;flex-wrap:wrap;');
   });
 
   test('a click away from the line appends a point to the end', async () => {
