@@ -45,7 +45,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-ser
       <button type="button" class="planner-shape" data-planner-shape="point-to-point" aria-pressed="false">Point to point</button>
       <button type="button" class="planner-shape" data-planner-shape="out-and-back" aria-pressed="false">Out &amp; back</button>
     </div>
-    <p id="plannerStatus" class="planner-status" role="status" aria-live="polite">Tap the map to choose your start.</p>
+    <p id="plannerStatus" class="planner-status" role="status" aria-live="polite">Tap the map to choose your start. Pick somewhere you can reach easily: a car park, bus stop, village or lift station.</p>
     <div class="planner-summary"><span>Distance<strong id="plannerDistance">, </strong></span><span>Ascent<strong id="plannerAscent">, </strong></span><span>Points<strong id="plannerPointCount">0 / 25</strong></span></div>
     <ol id="plannerPointList" class="planner-points" aria-label="Selected route points"></ol>
     <div class="planner-actions">
@@ -66,6 +66,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-ser
     </p>
     <div id="plannerLayersPanel" class="planner-layers-panel" hidden>
       <button id="plannerMarkedRoutes" class="planner-layer-chip" type="button" aria-pressed="true">Marked hiking routes</button>
+      <button class="planner-layer-chip" type="button" data-planner-poi="access" aria-pressed="false">Parking &amp; bus stops</button>
       <button class="planner-layer-chip" type="button" data-planner-poi="water" aria-pressed="false">Water stops</button>
       <button class="planner-layer-chip" type="button" data-planner-poi="huts" aria-pressed="false">Rifugi</button>
       <button class="planner-layer-chip" type="button" data-planner-poi="food" aria-pressed="false">Bars &amp; restaurants</button>
