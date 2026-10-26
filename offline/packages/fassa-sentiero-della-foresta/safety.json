@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-sentiero-della-foresta",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 3,
+    "ascentM": 6,
+    "highestPointM": 1985,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 71
+  },
+  "trailhead": {
+    "lat": 46.434284,
+    "lng": 11.664402,
+    "label": "Vigo di Fassa (stazione a monte funivia Ciampedie), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.4470125,
+      "lng": 11.6399078,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Wide gravel forest track at about 1,950–2,000 m.",
+    "You reach the start by the Catinaccio cable car from Vigo: a lead and muzzle are required on board.",
+    "Busy with families round Ciampedie and Gardeccia in summer.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}
