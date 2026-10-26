@@ -5,6 +5,7 @@ const path=require('path');
 const {directionsSection}=require('./scripts/generate-trail-pages');
 const {loadProductionTrails}=require('./scripts/load-production-trails');
 const routeRefs=require('./trail-route-refs.js');
+const {SOURCES}=require('./route-guidance-sources.js');
 
 const ROOT=__dirname;
 const read=file=>fs.readFileSync(path.join(ROOT,file),'utf8');
@@ -38,7 +39,17 @@ describe('the directions reach the crawlable page',()=>{
       expect({id:trail.id,heading:rendered.startsWith('How to follow this route')})
         .toEqual({id:trail.id,heading:true});
       for(const field of ['start','sequence','switches']){
-        expect({id:trail.id,field,present:rendered.includes(plain(trail.routeNumberGuidance[field]))})
+        // The source sentence a value ends with is said once under the lines
+        // rather than after each one, so the line is the value without it and
+        // the note naming that source must be on the page.
+        let said=plain(trail.routeNumberGuidance[field]);
+        for(const source of SOURCES)for(const sentence of source.sentences){
+          if(!said.includes(sentence))continue;
+          said=plain(said.replace(sentence,''));
+          expect({id:trail.id,field,note:rendered.includes(source.many.replace(/^are /,''))})
+            .toEqual({id:trail.id,field,note:true});
+        }
+        expect({id:trail.id,field,present:rendered.includes(said)})
           .toEqual({id:trail.id,field,present:true});
       }
     }

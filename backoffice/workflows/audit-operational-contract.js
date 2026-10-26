@@ -246,7 +246,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   // start point quietly answered from a relation that publishes none, would
   // both read to a walker as an authority's directions.
   add('map-read-guidance-says-so',
-    mapGuidance.includes('not from a published route description')
+    mapGuidance.includes('not from directions the trail\u2019s operator published')
     &&mapGuidance.includes('The mapped route follows')
     &&!mapGuidance.includes('`Follow route')
     &&mapGuidance.includes("authority: MAP_AUTHORITY")

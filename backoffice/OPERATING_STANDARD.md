@@ -1828,12 +1828,26 @@ is better evidence than a measurement of the ways: it says what somebody
 recommends, where the map only says what is drawn.
 
 **And it says so, in the value itself.** Every map-read value ends with "Read
-from the OpenStreetMap route relations this walk is built from, not from a
-published route description", and is written descriptively -- "the mapped route
-follows 101, then 105" rather than "follow 101, then 105" -- because a relation
-recommends nothing. The provenance travels in the value and not only in the
-citation, since a value is quoted and summarised far from its source. The
-citation is the relation itself, attributed to OpenStreetMap.
+off the map (OpenStreetMap), not from directions the trail's operator
+published", and is written descriptively -- "the mapped route follows 101, then
+105" rather than "follow 101, then 105" -- because a relation recommends
+nothing. The provenance travels in the value and not only in the citation,
+since a value is quoted and summarised far from its source. The citation is the
+relation itself, attributed to OpenStreetMap. The words are a walker's, not a
+mapper's: the paths are "numbered trails", never "waymarked routes", and no
+value names a "route relation" (changed 26 October 2026; the earlier sentence,
+"Read from the OpenStreetMap route relations this walk is built from, not from
+a published route description", is still recognised where a record holds it,
+and the publisher brings a map answer approved in the old words up to date --
+the same numbers and distances, today's words -- as it does ORMA's own).
+
+**The trail page says it once.** On "How to follow this route" each line's
+source sentence comes off the line and the card ends with one note naming what
+each source covers -- "The start and the trail numbers are ORMA's suggestion.
+The route and where to switch are read off the map (OpenStreetMap). None of it
+was published by the trail's operator." Every line is still covered; the page
+just does not repeat the same sentence after each one. The rule lives in
+`route-guidance-sources.js`, shared by the trail page generator and the app.
 
 A reader is therefore always told which of the two they have, and the
 difference between a walk whose directions an operator published and one whose
@@ -2138,7 +2152,8 @@ The public page has rendered exactly this for a long time -- "Suggested start,
 <place>. Check current access before travelling." Only the gate refused it.
 
 So ORMA may answer those two as ORMA. Every such value ends with "This is
-ORMA's suggestion, not one published by the trail's operator", and
+ORMA's suggestion, not one published by the trail's operator" (said once per
+card on the trail page, like the map's sentence), and
 the citation is ORMA's own record attributed to ORMA, because no authority was
 found and naming one would be the invention this contract exists to refuse.
 The start is a sentence a walker can use -- the place by name, or "where the

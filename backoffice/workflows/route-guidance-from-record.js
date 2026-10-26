@@ -192,7 +192,8 @@ function startSentence(start){
  * recorded, …". So the publisher rewrites what ORMA said itself: the start, if
  * ORMA's record answered it, is rebuilt from the start point; the old
  * suggestion line becomes the new one wherever it appears. An answer from an
- * operator or the map is never touched.
+ * operator or the map is never touched here; the map's own words are brought
+ * up to date by route-guidance-from-map's mapInCurrentWording.
  */
 function inCurrentWording(guidance, startPoint){
   if(!guidance || typeof guidance !== 'object') return guidance;

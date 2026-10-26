@@ -187,5 +187,20 @@ describe('directions approved in the old wording are published in the new one',(
     const guidance=result.overrides.trails[0].fields.routeNumberGuidance;
     expect(guidance.start).toBe(startSentence({label:startPoint.label,lat:startPoint.lat,lng:startPoint.lng}));
     expect(JSON.stringify(guidance)).not.toContain(LEGACY_ORMA_SUGGESTION);
+    // The map's answer keeps its numbers and distances, in today's words.
+    expect(guidance.sequence).toBe('The mapped route runs along numbered trails 3A, 24 and then 3A, in that order from the start.');
+    expect(guidance.switches).toBe('Trail 3A gives way to trail 24 about 2.9 km from the start.');
+  });
+
+  test('a map answer approved in the old wording gets the plain source line and no "waymarked"',()=>{
+    const {mapInCurrentWording,READ_FROM_MAP,LEGACY_READ_FROM_MAP}=require('./workflows/route-guidance-from-map');
+    const old={...bulla,
+      sequence:`This walk carries no route number of its own. The mapped route runs along waymarked routes 7, 7A, 16 and then 15A, in that order from the start. ${LEGACY_READ_FROM_MAP}`,
+      switches:`The mapped route runs along waymarked route 9 throughout, with no change of waymark recorded along it. ${LEGACY_READ_FROM_MAP}`};
+    const next=mapInCurrentWording(old);
+    expect(next.sequence).toBe(`This walk carries no route number of its own. The mapped route runs along numbered trails 7, 7A, 16 and then 15A, in that order from the start. ${READ_FROM_MAP}`);
+    expect(next.switches).toBe(`The mapped route runs along numbered trail 9 throughout, with no change of number recorded along it. ${READ_FROM_MAP}`);
+    expect(next.start).toBe(old.start);
+    expect(next.establishedBy).toEqual(old.establishedBy);
   });
 });
