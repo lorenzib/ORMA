@@ -78,7 +78,10 @@ jobs:
           osmium tags-filter region.osm.pbf r/route=hiking,foot -o hiking.osm.pbf --overwrite
           # Untagged nodes go once their coordinates are on the ways.
           osmium add-locations-to-ways hiking.osm.pbf -o located.osm.pbf --overwrite
-          osmium cat located.osm.pbf -f opl -o routes.opl --overwrite
+          # OPL leaves the coordinates off the ways unless asked for them.
+          osmium cat located.osm.pbf -f opl,locations_on_ways=true -o routes.opl --overwrite
+          head -c 600 routes.opl; echo
+          grep -m2 '^r' routes.opl | cut -c1-400
           ls -l region.osm.pbf hiking.osm.pbf routes.opl
 
       - name: Build one feature per route

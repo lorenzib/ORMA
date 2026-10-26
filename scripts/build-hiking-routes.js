@@ -173,6 +173,11 @@ async function main(){
   }
   await new Promise(resolve => out.end(resolve));
   console.log(JSON.stringify({ routes, numbered }));
+  // An empty network would replace Waymarked with nothing; never pass it on.
+  if(!routes){
+    console.error('No hiking routes came out. Were the ways written with locations (-f opl,locations_on_ways=true)?');
+    process.exit(1);
+  }
 }
 
 if(require.main === module){
