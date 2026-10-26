@@ -48388,6 +48388,187 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 3.6, lat: 46.2707, lng: 11.77323, osmId: 'node/722739772', name: 'Malga Ces' }
       ],
       desc: 'A walk from the centre of San Martino di Castrozza through the forest to Malga Ces and back the same way, with views of the Pale di San Martino. The APT lists 7.8 km and 218 m of ascent.'
+    },
+    'fiemme-pradi-da-le-fior': {
+      // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 3).
+      // APT Val di Fiemme’s walk “I Pradi da le Fior”. The line is drawn on 7 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Valfloriana publishes a dog bylaw (council resolution 33 of 29 November 2017): dogs may use all public areas except children’s playgrounds, public offices and schools; a lead of at most 1.5 m in towns and public places; a muzzle when there is a risk or the authorities ask; carry bags and pick up.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer).
+      area: 'Malga Sass, Valfloriana, Val di Fiemme',
+      distance: 3.1,
+      elevation: 103,
+      hours: '1',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back: from the Malga Sass car park along the whole of the “Prai de le Fior” forest road through larch woods and flower meadows, and back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Brenta Dolomites seen across the valley from the larch slopes on the walk, in July (giovanni bidi, CC BY 3.0), 19 m from the line.',
+        route: 'Official out-and-back walk 3.1 km from Malga Sass car park, Valfloriana, as APT Val di Fiemme publishes it; the stored line is drawn on 7 OSM ways along the APT’s published line, 3.1 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the car park at Malga Sass, reached by the tarred road from Sicina, the highest hamlet of Valfloriana, past the Bait del Manz, along the “Prai de le Fior” forest road for about a kilometre and a half through larch woods and meadows full of flowers, then back the same way.',
+        mapPoints: 'Start at Malga Sass car park, Valfloriana, the APT’s start; drinking water at km 0.5 (OSM nodes 1819541406).',
+        elevation: 'Official 3.1 km, 103 m up and 103 m down, 55 min, highest point 2,011 m, lowest 1,908 m (APT Val di Fiemme).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fiemme, I Pradi da le Fior (visitfiemme.it and its Outdooractive page)',
+          'Comune di Valfloriana, Regolamento per la detenzione, possesso, conduzione e circolazione dei cani (council resolution 33 of 29 November 2017), articles 7, 9 and 13',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves, and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (7 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 71,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A gravel forest road and a grassy path; the road may see the odd forestry vehicle', 'Mountain meadows where cattle may graze in summer: keep your dog on the lead and close'],
+      terrainType: 'A gravel forest road and a grassy path',
+      shadeDescription: 'Mostly shaded: about 70% of the way runs through larch woods.',
+      terrainDescription: 'A short, gentle walk at 1,910–2,010 m above Valfloriana, on a forest road through larch woods and flowering mountain meadows, with views to the Brenta and the Adamello.',
+      waterDescription: 'Drinking fountain at km 0.5; bars and cafés at the start.',
+      dogNotes: 'Valfloriana’s dog bylaw lets dogs use all public areas except children’s playgrounds, public offices and schools. Keep your dog on a lead of at most 1.5 m, carry a muzzle for when there is a risk or an official asks, and carry bags to pick up after it.',
+      tips: 'Start at the Malga Sass car park above Valfloriana: 3.1 km there and back, about 100 m of climbing, under an hour. Valfloriana requires a lead of at most 1.5 m and bags to pick up after your dog. Cows may graze the meadows in summer. The Malga Sass farm restaurant is at the start.',
+      sourceLinks: [
+        { label: 'APT Val di Fiemme, I Pradi da le Fior', url: 'https://www.visitfiemme.it/it/activity/i-pradi-da-le-fior_63416' },
+        { label: 'Outdooractive, I Pradi da le Fior (APT Val di Fiemme)', url: 'https://www.outdooractive.com/it/r/811025075' },
+        { label: 'Comune di Valfloriana, dog bylaw (council resolution 33/2017)', url: 'https://www.comune.valfloriana.tn.it/content/download/802/13676/1/33%2C17%2Ballegato%2Bregolamento%2Bcomunale%2Bdeiezioni%2Bdei%2Bcani.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.200892, lng: 11.378738, label: 'Malga Sass car park, Valfloriana, the APT’s start' },
+      waterSources: [
+        { km: 0.5, lat: 46.2037698, lng: 11.385233, osmId: 'node/1819541406', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.20149, lng: 11.37932, osmId: 'way/105481834', name: 'Agritur Malga Sass' }
+      ],
+      desc: 'A short, gentle walk from Malga Sass above Valfloriana along the Prai de le Fior forest road, through larch woods and flowering meadows with wide views, and back the same way. The APT lists 3.1 km and 103 m of ascent.'
+    },
+    'fiemme-passo-oclini': {
+      // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 3).
+      // APT Val di Fiemme’s walk “Passo Oclini, tra il Corno Nero e il Corno Bianco”. The line is drawn on 15 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // The whole line is in Aldein / Aldino (South Tyrol), whose dog regulation (council resolution 2 of 2 February 2010) requires a lead of at most 1.5 m on all public ground, a muzzle carried, and keeps dogs off farmed meadows during the growing season.
+      // No Natura 2000 site, nature park or biotope on the line (Ministry of the Environment Natura 2000 layer; South Tyrol landscape plan biotopes and nature parks, positive control in the same area).
+      area: 'Passo Oclini / Jochgrimm, Aldein / Aldino',
+      distance: 4.7,
+      elevation: 160,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Passo Oclini car park along the level forest road to Malga Gurndin and on to the Isi Hütte, then back to the pass on a path across the pasture.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The little Maria Schnee chapel of 1911 by the Berghotel Jochgrimm at the start, with the Corno Bianco / Weißhorn behind, in September (HaSt, CC BY-SA 4.0), 30 m from the line.',
+        route: 'Official loop 4.7 km from Passo Oclini / Jochgrimm car park, as APT Val di Fiemme publishes it; the stored line is drawn on 15 OSM ways along the APT’s published line, 4.9 km, with 99% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the car park at Passo Oclini / Jochgrimm, between the Corno Nero and the Corno Bianco, along the level forest road (Forststraße Oberradein – Gurndin – Jochgrimm, closed to private cars) for about 45 minutes to Malga Gurndin, on along the road following the signs for the Isi Hütte (Kalditscher Wirt), then back to the pass on a path across the pasture, following the signs for Passo Oclini.',
+        mapPoints: 'Start at Passo Oclini / Jochgrimm car park, the APT’s start; drinking water none mapped.',
+        elevation: 'Official 4.7 km, 160 m up and 160 m down, 1 h 30 min, highest point 1,991 m, lowest 1,834 m (APT Val di Fiemme).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fiemme, Passo Oclini, tra il Corno Nero e il Corno Bianco (visitfiemme.it and its Outdooractive page)',
+          'Gemeinde Aldein / Comune di Aldino, Verordnung über die Haltung und Führung von Hunden (council resolution 2 of 2 February 2010), articles 4 and 8',
+          'Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites); Autonome Provinz Bozen, landscape plan biotopes and nature parks (39 biotopes and 2 parks in the surrounding area as a control): none on the line',
+          'OpenStreetMap ways along the APT line (15 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 27,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A forest road closed to private cars, but used by farm and hut vehicles', 'The way back crosses open pasture where cows graze in summer: keep your dog on the lead and give the herd room', 'About 160 m on the pass road at the start and end'],
+      terrainType: 'Forest roads, a grassy track and a pasture path; pram-friendly with a country pram',
+      shadeDescription: 'Mostly open: about a quarter of the way is under trees; the pastures are exposed to sun and wind.',
+      terrainDescription: 'An easy loop at 1,830–1,990 m from the Passo Oclini / Jochgrimm, on the border of Trentino and South Tyrol, through larch woods and alpine pastures under the Corno Nero and the Corno Bianco, with two huts on the way.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bars and cafés at the start and on the way; bring water.',
+      dogNotes: 'Aldein’s dog regulation requires a lead of at most 1.5 m on all public ground and a muzzle carried. Dogs may not go onto farmed meadows during the growing season, so keep to the road and the path.',
+      tips: 'Start at the Passo Oclini / Jochgrimm car park: 4.7 km, 160 m of climbing, an hour and a half. Aldein requires a lead of at most 1.5 m and a muzzle carried, and dogs must stay off the farmed meadows. Cows graze the pasture on the way back in summer. Malga Gurndin and the Isi Hütte serve food and water on the way; little shade.',
+      sourceLinks: [
+        { label: 'APT Val di Fiemme, Passo Oclini, tra il Corno Nero e il Corno Bianco', url: 'https://www.visitfiemme.it/it/activity/passo-oclini-tra-il-corno-nero-e-il-corno-bianco_10468' },
+        { label: 'Outdooractive, Passo Oclini, tra il Corno Nero e il Corno Bianco (APT Val di Fiemme)', url: 'https://www.outdooractive.com/it/r/11308608' },
+        { label: 'Gemeinde Aldein, Haltung und Führung von Hunden (dog regulation, 2010)', url: 'https://www.gemeinde.aldein.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.347321, lng: 11.451607, label: 'Passo Oclini / Jochgrimm car park, the APT’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.34629, lng: 11.45319, osmId: 'node/3247441691', name: 'Self Service Restaurant Hotel Schwarzhorn' },
+        { km: 0, lat: 46.34663, lng: 11.45274, osmId: 'node/3247441695', name: 'Bar Hotel Schwarzhorn' },
+        { km: 1.4, lat: 46.34732, lng: 11.43117, osmId: 'node/1416673633', name: 'Gurndin Alm - Malga Gurndin' },
+        { km: 3.2, lat: 46.3431, lng: 11.4369, osmId: 'node/1474883150', name: 'Isi Hütte - Kalditscher Wirt - Malga Isi' }
+      ],
+      desc: 'An easy loop from the Passo Oclini / Jochgrimm through larch woods and alpine pastures to Malga Gurndin and the Isi Hütte, under the Corno Nero and the Corno Bianco. The APT lists 4.7 km and 160 m of ascent.'
+    },
+    'fiemme-masi-comunicanti': {
+      // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 3).
+      // APT Val di Fiemme’s walk “Masi Comunicanti”. The line is drawn on 38 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Capriana publishes no dog rule (none among its 72 published bylaws), so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer).
+      area: 'Capriana – Rover – Carbonare, Val di Fiemme',
+      distance: 7.4,
+      elevation: 400,
+      hours: '4',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Capriana down to the Avisio, along the river past the old farmsteads of Maso Lio, Le Caneve, Maso Ponte and Rover, up to the hamlet of Carbonare and back to Capriana past the Meneghina mill.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of the Immacolata in Carbonare, which the walk passes, in July (Syrio, CC BY-SA 4.0), 11 m from the line.',
+        route: 'Official loop 7.4 km from Capriana (Piazza Roma), as APT Val di Fiemme publishes it; the stored line is drawn on 38 OSM ways along the APT’s published line, 7.4 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Piazza Roma in Capriana down to the Val di Cembra road (SS612) by the Ristorante Miravalle and the turning for Maso Lio, to Maso Lio and Le Caneve, then a path along the Avisio to Maso Ponte and Maso Rover. From the fountain at Rover up the road to cross the SS612 again, up the concrete ramp opposite to the path for Carbonare, then back to Capriana on the tarred road to the Meneghina mill and the path beside the road into the village.',
+        mapPoints: 'Start at Capriana (Piazza Roma), the APT’s start; drinking water at the start, at km 3.8, at km 5.2 and at km 6.9 (OSM nodes 1239897159, 7540293505, 1886719937, 1239897166).',
+        elevation: 'Official 7.4 km, 400 m up and 400 m down, 4 h, highest point 1,018 m, lowest 688 m (APT Val di Fiemme).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fiemme, Masi Comunicanti (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Capriana publishes no dog rule: none among its 72 published bylaws)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves, and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (38 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 49,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 460 m on the Capriana provincial road (SP51) and two crossings of the busy Val di Cembra state road (SS612): lead short, cross with care', 'A path along the Avisio: keep your dog out of the river, which can rise fast', 'A few metal steps by the Meneghina mill and a steep concrete ramp up to Carbonare', 'A long climb of 400 m back up to Capriana'],
+      terrainType: 'Paths, forest tracks, cobbled lanes and quiet roads',
+      shadeDescription: 'About half the way is shaded, in the woods along the Avisio and below Carbonare; the lanes between the hamlets are open.',
+      terrainDescription: 'A walk at 690–1,020 m below Capriana, through the old farmsteads and hamlets above the Avisio, where houses were built close so neighbours could talk from one to the next; across the valley lie Maso and Ischiazza, abandoned after the 1966 flood.',
+      waterDescription: 'Drinking fountains at the start, at km 3.8, at km 5.2 and at km 6.9; bars and cafés at the start.',
+      dogNotes: 'Capriana has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried.',
+      tips: 'Start in Piazza Roma, Capriana: 7.4 km, 400 m of climbing, about four hours. Capriana has no dog rule of its own, so the Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog close on the provincial road and at the two crossings of the SS612. Fountains in Capriana, at Rover and in Carbonare.',
+      sourceLinks: [
+        { label: 'APT Val di Fiemme, Masi Comunicanti', url: 'https://www.visitfiemme.it/it/activity/masi-comunicanti_9726' },
+        { label: 'Outdooractive, Masi Comunicanti (APT Val di Fiemme)', url: 'https://www.outdooractive.com/it/r/36900242' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.262794, lng: 11.339053, label: 'Capriana (Piazza Roma), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.2621115, lng: 11.3374814, osmId: 'node/1239897159', label: 'Drinking fountain at the start' },
+        { km: 3.8, lat: 46.264359, lng: 11.3482051, osmId: 'node/7540293505', label: 'Drinking fountain' },
+        { km: 5.2, lat: 46.2687897, lng: 11.3479361, osmId: 'node/1886719937', label: 'Drinking fountain' },
+        { km: 6.9, lat: 46.2648652, lng: 11.337539, osmId: 'node/1239897166', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.26237, lng: 11.33848, osmId: 'node/937259699', name: 'Bar Posta' }
+      ],
+      desc: 'A walk from Capriana down through the old farmsteads by the Avisio, Maso Lio, Le Caneve, Maso Ponte and Rover, and back up through the hamlet of Carbonare. The APT lists 7.4 km and 400 m of ascent.'
     }
   };
 
@@ -48444,6 +48625,12 @@ function effectiveOverrides(profile, adjustOverride){
     ['Nova Levante / Carezza', 46.4300, 11.5380, 'Val di Fiemme – Latemar', 'dolomites', 'alto-adige'],
     ['Predazzo / Val di Fiemme', 46.3110, 11.6010, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
     ['Cavalese', 46.2910, 11.4600, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
+    // The lower Val di Fiemme and its South Tyrol neighbour. Without them
+    // Capriana fell through to Montan and Altrei to Cavalese, each across the
+    // provincial border.
+    ['Capriana', 46.2620, 11.3390, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
+    ['Valfloriana', 46.2500, 11.3430, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
+    ['Anterivo / Altrei', 46.2780, 11.3670, 'Oltradige – Bassa Atesina', 'dolomites', 'alto-adige'],
     ['San Martino di Castrozza', 46.2612, 11.8022, 'Primiero – Pale', 'dolomites', 'trentino'],
     ['Fiera di Primiero', 46.1770, 11.8290, 'Primiero – Pale', 'dolomites', 'trentino'],
     ['Falcade / Val Biois', 46.3576, 11.8712, 'Belluno – Agordino', 'dolomites', 'belluno'],

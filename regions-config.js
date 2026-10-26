@@ -30,6 +30,12 @@
     ['Nova Levante / Carezza', 46.4300, 11.5380, 'Val di Fiemme – Latemar', 'dolomites', 'alto-adige'],
     ['Predazzo / Val di Fiemme', 46.3110, 11.6010, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
     ['Cavalese', 46.2910, 11.4600, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
+    // The lower Val di Fiemme and its South Tyrol neighbour. Without them
+    // Capriana fell through to Montan and Altrei to Cavalese, each across the
+    // provincial border.
+    ['Capriana', 46.2620, 11.3390, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
+    ['Valfloriana', 46.2500, 11.3430, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
+    ['Anterivo / Altrei', 46.2780, 11.3670, 'Oltradige – Bassa Atesina', 'dolomites', 'alto-adige'],
     ['San Martino di Castrozza', 46.2612, 11.8022, 'Primiero – Pale', 'dolomites', 'trentino'],
     ['Fiera di Primiero', 46.1770, 11.8290, 'Primiero – Pale', 'dolomites', 'trentino'],
     ['Falcade / Val Biois', 46.3576, 11.8712, 'Belluno – Agordino', 'dolomites', 'belluno'],
