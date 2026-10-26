@@ -338,6 +338,36 @@
       "name": "Alpe di Fuciade",
       "slug": "alpe-di-fuciade",
       "gloss": "the walk to the Fuciade alp"
+    },
+    "primiero-fiera-pieve": {
+      "name": "Fiera-Pieve",
+      "slug": "fiera-pieve",
+      "gloss": "the old-town walk from Fiera to Pieve"
+    },
+    "primiero-transacqua": {
+      "name": "Transacqua",
+      "slug": "transacqua",
+      "gloss": "the village walk round Transacqua"
+    },
+    "primiero-tonadico": {
+      "name": "Tonadico",
+      "slug": "tonadico",
+      "gloss": "the village walk round Tonadico"
+    },
+    "primiero-siror": {
+      "name": "Siror",
+      "slug": "siror",
+      "gloss": "the village walk to Siror"
+    },
+    "primiero-la-guana-di-primiero": {
+      "name": "La Guana di Primiero",
+      "slug": "la-guana-di-primiero",
+      "gloss": "the walk to the Guana at Navoi"
+    },
+    "primiero-percorso-verde": {
+      "name": "Percorso Verde (I percorsi del benessere)",
+      "slug": "percorso-verde-primiero",
+      "gloss": "the step-free loop along the Canali"
     }
   }
 }
