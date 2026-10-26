@@ -323,6 +323,21 @@
       "name": "Molin de Pèzol",
       "slug": "molin-de-pezol",
       "gloss": "the mill walk to the Molin de Pèzol"
+    },
+    "fassa-pastori-erranti": {
+      "name": "Sulla via degli antichi pastori erranti",
+      "slug": "antichi-pastori-erranti-vigo",
+      "gloss": "the shepherds’ walk to Vallonga and Tamion"
+    },
+    "fassa-segreti-di-una-volta": {
+      "name": "I segreti di una volta",
+      "slug": "segreti-di-una-volta-pozza",
+      "gloss": "the old farmland walk above Pozza"
+    },
+    "fassa-alpe-di-fuciade": {
+      "name": "Alpe di Fuciade",
+      "slug": "alpe-di-fuciade",
+      "gloss": "the walk to the Fuciade alp"
     }
   }
 }

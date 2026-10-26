@@ -10,6 +10,14 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "fassa-alpe-di-fuciade": {
+      "url": "https://www.fassa.com/it/itinerari/dal-passo-all-alpe-di-fuciade-inseguendo-i-sapori-ladini",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Alpe di Fuciade",
+      "quote": "Distanza 6,9 km Durata 2:01 h Salita 94 m Discesa 94 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T15:00:00.000Z"
+    },
     "fassa-antichi-bagnes": {
       "url": "https://www.fassa.com/it/itinerari/agli-antichi-bagnes-del-principe-vescovo-di-bressanone",
       "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
@@ -58,6 +66,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T21:00:00.000Z"
     },
+    "fassa-pastori-erranti": {
+      "url": "https://www.fassa.com/it/itinerari/sulla-via-degli-antichi-pastori-erranti-1",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Sulla via degli antichi pastori erranti",
+      "quote": "Distanza 7,2 km Durata 2:20 h Salita 245 m Discesa 245 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T15:00:00.000Z"
+    },
     "fassa-prato-di-sorte": {
       "url": "https://www.fassa.com/it/itinerari/quel-prato-di-sorte",
       "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
@@ -73,6 +89,14 @@
       "quote": "Distanza 2,7 km Durata 1:20 h Salita 132 m Discesa 132 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-segreti-di-una-volta": {
+      "url": "https://www.fassa.com/it/itinerari/i-segreti-di-una-volta-della-tradizione-contadina-di-montagna",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "I segreti di una volta",
+      "quote": "Distanza 7,9 km Durata 2:20 h Salita 176 m Discesa 176 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T15:00:00.000Z"
     },
     "fassa-sentiero-della-foresta": {
       "url": "https://www.fassa.com/it/itinerari/sentiero-della-foresta",

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-26T16:30:45.433Z",
+  "generatedAt": "2026-10-26T17:09:54.956Z",
   "regions": {
     "dolomites": {
-      "trailCount": 145,
-      "trails": "data/regions/dolomites-trails.js?v=169519d96a23",
+      "trailCount": 148,
+      "trails": "data/regions/dolomites-trails.js?v=72414e70b844",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -150,6 +150,9 @@
         "fassa-santuario-dei-pellegrini": "data/trail-details/fassa-santuario-dei-pellegrini.js?v=2c78c44b111f",
         "fassa-malga-aloch": "data/trail-details/fassa-malga-aloch.js?v=0f4dd250c865",
         "fassa-molin-de-pezol": "data/trail-details/fassa-molin-de-pezol.js?v=7b3d694d7018",
+        "fassa-pastori-erranti": "data/trail-details/fassa-pastori-erranti.js?v=920e34f19718",
+        "fassa-segreti-di-una-volta": "data/trail-details/fassa-segreti-di-una-volta.js?v=421767f97de8",
+        "fassa-alpe-di-fuciade": "data/trail-details/fassa-alpe-di-fuciade.js?v=a32c7ef7b6df",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -364,6 +367,9 @@
     "fassa-santuario-dei-pellegrini": "dolomites",
     "fassa-malga-aloch": "dolomites",
     "fassa-molin-de-pezol": "dolomites",
+    "fassa-pastori-erranti": "dolomites",
+    "fassa-segreti-di-una-volta": "dolomites",
+    "fassa-alpe-di-fuciade": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -613,6 +619,9 @@
     "fassa-santuario-dei-pellegrini": "santuario-santa-giuliana",
     "fassa-malga-aloch": "malga-aloch-pozza",
     "fassa-molin-de-pezol": "molin-de-pezol",
+    "fassa-pastori-erranti": "antichi-pastori-erranti-vigo",
+    "fassa-segreti-di-una-volta": "segreti-di-una-volta-pozza",
+    "fassa-alpe-di-fuciade": "alpe-di-fuciade",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -811,6 +820,9 @@
     "santuario-santa-giuliana": "fassa-santuario-dei-pellegrini",
     "malga-aloch-pozza": "fassa-malga-aloch",
     "molin-de-pezol": "fassa-molin-de-pezol",
+    "antichi-pastori-erranti-vigo": "fassa-pastori-erranti",
+    "segreti-di-una-volta-pozza": "fassa-segreti-di-una-volta",
+    "alpe-di-fuciade": "fassa-alpe-di-fuciade",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
