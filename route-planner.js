@@ -342,11 +342,10 @@
     const source = map.getSource('draft-route');
     if(source){ source.setData(data); return; }
     const label = firstLabelLayer();
-    // The draft is a highlight under the marked network, not a line over it:
-    // while you are drawing, the paths you are snapping to have to stay
-    // visible, including their numbers, or you are tracing blind.
-    const under = map.getLayer('planner-waymarked-hiking-layer')
-      ? 'planner-waymarked-hiking-layer' : (label && label.id);
+    // The draft goes over the dashed routes but under their numbers: while
+    // you are drawing, the numbers of the paths you are snapping to have to
+    // stay visible, or you are tracing blind.
+    const under = window.ORMAMapStyle ? window.ORMAMapStyle.walkLineBeforeId(map) : (label && label.id);
     map.addSource('draft-route', { type:'geojson', data });
     map.addLayer({ id:'draft-route-case', type:'line', source:'draft-route', layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#fff','line-width':['interpolate',['linear'],['zoom'],8,10,12,16,14,23,17,33],'line-opacity':.9} }, under);
     map.addLayer({ id:'draft-route-line', type:'line', source:'draft-route', layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#2E684F','line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26],'line-opacity':.55} }, under);
@@ -386,24 +385,15 @@
     // Shops, ATMs and road shields compete with the very paths you are
     // tracing along. Turn them down; keep peaks, huts, water, place names.
     if(window.ORMAMapStyle) window.ORMAMapStyle.quietBasemap(map);
-    map.addSource('planner-waymarked-hiking', {
-      type:'raster',
-      tiles:['https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'],
-      tileSize:256,
-      attribution:'© Sarah Hoffmann (CC-BY-SA), waymarkedtrails.org',
-    });
-    map.addLayer({
-      id:'planner-waymarked-hiking-layer',
-      type:'raster',
-      source:'planner-waymarked-hiking',
-      layout:{ visibility:'visible' },
-      paint:{
-        'raster-opacity':['interpolate',['linear'],['zoom'],7,.48,10,.66,12,.84,14,1],
-        'raster-saturation':0,
-        'raster-contrast':0,
-        'raster-resampling':'linear',
-      },
-    }, label && label.id);
+    // The marked hiking network you snap to: dashed grey routes with their
+    // numbers, drawn by us from OSM route data like every other ORMA map
+    // (Waymarked's raster if our tiles cannot load).
+    if(window.ORMAMapStyle){
+      window.ORMAMapStyle.addHikingRoutes(map, {
+        beforeId: label && label.id,
+        visible: !markedRoutesButton || markedRoutesButton.getAttribute('aria-pressed') !== 'false',
+      });
+    }
     addOrmaTrailContext();
   }
 
@@ -416,7 +406,7 @@
     }));
     if(!features.length || map.getSource('planner-orma-trails')) return;
     map.addSource('planner-orma-trails', { type:'geojson', data:{ type:'FeatureCollection', features } });
-    const beforeId = map.getLayer('planner-waymarked-hiking-layer') ? 'planner-waymarked-hiking-layer' : (firstLabelLayer() || {}).id;
+    const beforeId = window.ORMAMapStyle ? window.ORMAMapStyle.walkLineBeforeId(map) : (firstLabelLayer() || {}).id;
     map.addLayer({
       id:'planner-orma-trails-halo',
       type:'line',
@@ -866,9 +856,7 @@
   markedRoutesButton.addEventListener('click', () => {
     const enabled = markedRoutesButton.getAttribute('aria-pressed') !== 'true';
     markedRoutesButton.setAttribute('aria-pressed', String(enabled));
-    if(map.getLayer('planner-waymarked-hiking-layer')){
-      map.setLayoutProperty('planner-waymarked-hiking-layer', 'visibility', enabled ? 'visible' : 'none');
-    }
+    if(window.ORMAMapStyle) window.ORMAMapStyle.setHikingRoutesVisible(map, enabled);
   });
   poiButtons.forEach(button => {
     button.addEventListener('click', async () => {

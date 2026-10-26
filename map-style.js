@@ -149,6 +149,8 @@
   const WALK_ROUTE_TOLERANCE_M = 25;
   // Shorter shared stretches are crossings, not the walk following a route.
   const WALK_ROUTE_MIN_STRETCH_M = 120;
+  // Every numbered route, before a walk takes its own routes' numbers.
+  const ALL_ROUTE_NUMBERS = ['!=', ['get', 'ref'], ''];
 
   function hikingTilesUrl() {
     const origin = global.location && global.location.origin;
@@ -255,6 +257,10 @@
     return { ids: [...used], features };
   }
 
+  // Per map: the minzoom the network was asked for (so a fallback keeps it)
+  // and the walk whose routes are numbered beside it.
+  const hikingState = new WeakMap();
+
   function hikingLayersPresent(map) {
     return !!(map && map.getLayer(HIKING_LINE_LAYER));
   }
@@ -263,7 +269,8 @@
   function fallBackToWaymarked(map) {
     if (!hikingLayersPresent(map)) return;
     const visible = map.getLayoutProperty(HIKING_LINE_LAYER, 'visibility') !== 'none';
-    addWaymarkedHiking(map, { beforeId: HIKING_REF_LAYER, visible });
+    const state = hikingState.get(map) || {};
+    addWaymarkedHiking(map, { beforeId: HIKING_REF_LAYER, visible, minzoom: state.minzoom });
     [HIKING_WALK_REF_LAYER, HIKING_REF_LAYER, HIKING_LINE_LAYER].forEach(id => {
       if (map.getLayer(id)) map.removeLayer(id);
     });
@@ -277,7 +284,9 @@
    * route's number from trail zoom (12) up, ranked international first when
    * they crowd. Pass `walk` ([[lng, lat], ...]) on a single-walk map and the
    * routes the walk follows get bigger, darker numbers beside the walk, only
-   * along the stretch it shares with them.
+   * along the stretch it shares with them; on a map where the walk is chosen
+   * later, call setHikingWalk instead. `minzoom` holds the whole network back
+   * on browse maps, as it did for the raster.
    *
    * Falls back to Waymarked's raster when the tiles cannot be served.
    */
@@ -289,12 +298,15 @@
     const beforeId = config.beforeId !== undefined ? config.beforeId : firstLabelLayerId(map);
     const target = beforeId && map.getLayer(beforeId) ? beforeId : undefined;
     const visibility = config.visible === false ? 'none' : 'visible';
+    const minzoom = Number.isFinite(config.minzoom) ? config.minzoom : undefined;
+    hikingState.set(map, { minzoom, walk: null, measure: null });
     map.addSource(HIKING_SOURCE, {
       type: 'vector', tiles: [tiles], minzoom: 10, maxzoom: 14, bounds: HIKING_BOUNDS,
     });
     map.addSource(HIKING_WALK_SOURCE, { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
     map.addLayer({
       id: HIKING_LINE_LAYER, type: 'line', source: HIKING_SOURCE, 'source-layer': 'routes',
+      ...(minzoom !== undefined ? { minzoom } : {}),
       layout: { visibility, 'line-join': 'round', 'line-cap': 'butt' },
       paint: {
         'line-color': HIKING_LINE_COLOUR,
@@ -306,8 +318,8 @@
     }, target);
     map.addLayer({
       id: HIKING_REF_LAYER, type: 'symbol', source: HIKING_SOURCE, 'source-layer': 'routes',
-      minzoom: 12,
-      filter: ['!=', ['get', 'ref'], ''],
+      minzoom: Math.max(12, minzoom || 0),
+      filter: ALL_ROUTE_NUMBERS,
       layout: {
         visibility,
         'symbol-placement': 'line',
@@ -326,7 +338,7 @@
     // Above the grey numbers, so the walk's own win where they collide.
     map.addLayer({
       id: HIKING_WALK_REF_LAYER, type: 'symbol', source: HIKING_WALK_SOURCE,
-      minzoom: 12,
+      minzoom: Math.max(12, minzoom || 0),
       layout: {
         visibility,
         'symbol-placement': 'line',
@@ -359,29 +371,48 @@
         .catch(() => { /* offline: Waymarked could not load either */ });
     }
 
-    const walk = Array.isArray(config.walk) ? config.walk : null;
-    if (walk && walk.length > 1) {
-      // Route pieces arrive tile by tile, and a closer zoom has the exact
-      // lines, so measure again each time a closer zoom has loaded.
-      let measuredZoom = -1;
-      const measure = () => {
-        if (!map.getSource(HIKING_SOURCE)) { map.off('idle', measure); return; }
-        const zoom = Math.min(14, Math.floor(map.getZoom()));
-        if (zoom <= measuredZoom) return;
-        const routes = map.querySourceFeatures(HIKING_SOURCE, { sourceLayer: 'routes' });
-        if (!routes.length) return;
-        measuredZoom = zoom;
-        const { ids, features } = walkRouteStretches(walk, routes);
-        map.getSource(HIKING_WALK_SOURCE).setData({ type: 'FeatureCollection', features });
-        // The walk's routes are numbered beside the walk instead.
-        map.setFilter(HIKING_REF_LAYER, ['all',
-          ['!=', ['get', 'ref'], ''],
-          ['!', ['in', ['get', 'id'], ['literal', ids]]],
-        ]);
-      };
-      map.on('idle', measure);
-    }
+    if (Array.isArray(config.walk)) setHikingWalk(map, config.walk);
     return HIKING_LINE_LAYER;
+  }
+
+  /**
+   * Number the routes `walk` ([[lng, lat], ...]) follows beside it, along
+   * the stretch they share; null or an empty walk puts every number back on
+   * its own route. For maps where the walk is chosen after the map loads.
+   */
+  function setHikingWalk(map, walk) {
+    const state = hikingState.get(map);
+    if (!state || !hikingLayersPresent(map)) return;
+    if (state.measure) map.off('idle', state.measure);
+    state.measure = null;
+    state.walk = Array.isArray(walk) && walk.length > 1 ? walk : null;
+    if (!state.walk) {
+      map.getSource(HIKING_WALK_SOURCE).setData({ type: 'FeatureCollection', features: [] });
+      map.setFilter(HIKING_REF_LAYER, ALL_ROUTE_NUMBERS);
+      return;
+    }
+    // Route pieces arrive tile by tile, and a closer zoom has the exact
+    // lines, so measure again each time a closer zoom has loaded.
+    let measuredZoom = -1;
+    const measure = () => {
+      if (!map.getSource(HIKING_SOURCE)) { map.off('idle', measure); return; }
+      const zoom = Math.min(14, Math.floor(map.getZoom()));
+      if (zoom <= measuredZoom) return;
+      const routes = map.querySourceFeatures(HIKING_SOURCE, { sourceLayer: 'routes' });
+      if (!routes.length) return;
+      measuredZoom = zoom;
+      const { ids, features } = walkRouteStretches(state.walk, routes);
+      map.getSource(HIKING_WALK_SOURCE).setData({ type: 'FeatureCollection', features });
+      // The walk's routes are numbered beside the walk instead.
+      map.setFilter(HIKING_REF_LAYER, ['all',
+        ALL_ROUTE_NUMBERS,
+        ['!', ['in', ['get', 'id'], ['literal', ids]]],
+      ]);
+    };
+    state.measure = measure;
+    map.on('idle', measure);
+    // A walk chosen on an already-idle map should not wait for the next pan.
+    measure();
   }
 
   /** Show or hide the hiking network, ours or the Waymarked fallback. */
@@ -766,7 +797,9 @@
     HIKING_LINE_LAYER,
     HIKING_REF_LAYER,
     HIKING_WALK_REF_LAYER,
+    HIKING_LAYER_IDS: [HIKING_LINE_LAYER, HIKING_REF_LAYER, HIKING_WALK_REF_LAYER, WAYMARKED_LAYER],
     addHikingRoutes,
+    setHikingWalk,
     setHikingRoutesVisible,
     walkRouteStretches,
     networkLayerId,

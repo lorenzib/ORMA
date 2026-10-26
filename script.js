@@ -1315,7 +1315,8 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   }
 
   const LAYER_SETS = {
-    routes:   ['waymarked-hiking-layer'],
+    // Our own routes, or Waymarked's raster where the page fell back to it.
+    routes:   window.ORMAMapStyle.HIKING_LAYER_IDS,
     lifts:    ['trailmap-gondolas-line', 'trailmap-gondolas-labels'],
     fountains:['water-sources-layer-lowzoom', 'water-sources-layer', 'water-sources-cluster', 'water-sources-cluster-count'],
     huts:     ['mountain-huts-layer-lowzoom', 'mountain-huts-layer', 'mountain-huts-cluster', 'mountain-huts-cluster-count'],
@@ -1593,7 +1594,7 @@ function renderGondolas(map, sourceId, options){
 // The guest preview map used to live here. Its container #guestPreviewMap was
 // removed from index.html in 784afd0b (2026-07-17) and never replaced, so
 // initGuestMap() returned on its first line and roughly 160 lines of map
-// setup, terrain, waymarked overlay, route rails, lift markers, POI layers, // could not run. Signed-out visitors see no map on the homepage at all.
+// setup, terrain, hiking network, route rails, lift markers, POI layers, // could not run. Signed-out visitors see no map on the homepage at all.
 //
 // It was still being maintained: the recent cartography work restyled layers
 // in here that nothing renders. Deleted rather than left to collect edits.
@@ -1739,9 +1740,10 @@ function initTrailMap(){
     // that join later without rebuilding the controls.
     const allLiftMarkers = [];
     
-    // Public marked routes in their own colours, this network is what the
-    // hiking paths are actually based on, so it has to be readable rather
-    // than washed to grey. See map-style.js.
+    // The marked hiking network, drawn by us from OSM route data: dashed grey
+    // routes with their numbers, so the match-coloured rails are the only
+    // colour on the map. Waymarked's raster comes back if our tiles cannot
+    // load. See map-style.js.
     const firstLabelLayer = { id: window.ORMAMapStyle.firstLabelLayerId(trailMapInstance) };
     window.ORMAMapStyle.quietBasemap(trailMapInstance);
     // `minzoom` is the density lever, not opacity: at region zoom the full
@@ -1750,10 +1752,13 @@ function initTrailMap(){
     // unreadable. The chip still turns the network off; this decides when it
     // is worth drawing at all. The trail detail map keeps no threshold -- that
     // was measured and rejected there.
-    window.ORMAMapStyle.addWaymarkedHiking(trailMapInstance, {
+    window.ORMAMapStyle.addHikingRoutes(trailMapInstance, {
       beforeId: firstLabelLayer.id, visible: true, minzoom: BROWSE_NETWORK_MIN_ZOOM,
     });
-    addBaseHillshade(trailMapInstance, 'waymarked-hiking-layer');
+    addBaseHillshade(trailMapInstance, window.ORMAMapStyle.networkLayerId(trailMapInstance));
+    // Rails and the chosen walk go over the dashed routes and under their
+    // numbers (under the raster, if the page has fallen back to it).
+    const railsBeforeId = window.ORMAMapStyle.walkLineBeforeId(trailMapInstance);
     
     trailMapInstance.addSource('trail-paths', {
       type: 'geojson',
@@ -1770,7 +1775,7 @@ function initTrailMap(){
         'line-width': rankWidth([3.5, 8, 10, 10], [1.6, 3, 5, 7]),
         'line-opacity': 0.9,
       },
-    }, 'waymarked-hiking-layer');
+    }, railsBeforeId);
     trailMapInstance.addLayer({
       id: 'trail-paths-line',
       type: 'line',
@@ -1781,10 +1786,10 @@ function initTrailMap(){
         'line-color': '#858D88',
         'line-width': rankWidth([2, 5, 6, 6], [0.8, 1.6, 2.8, 3.6]),
       },
-    }, 'waymarked-hiking-layer');
+    }, railsBeforeId);
     // Catalogue rails, same treatment as the detail map: a white casing and a
-    // translucent match-tier corridor drawn BENEATH the hiking raster, so the
-    // marked routes and their real numbers read down the middle of each rail.
+    // translucent match-tier corridor drawn beneath the route numbers, so the
+    // numbers read on top of each rail.
     //
     // This replaces four stacked layers (halo, line, mapped-casing,
     // mapped-line) whose only job was to mask the raster's own symbology, plus
@@ -1803,7 +1808,7 @@ function initTrailMap(){
         'line-width': rankWidth([8, 14, 20, 26], [2.5, 4, 5.5, 6.5]),
         'line-opacity': ['case', TOP_MATCH_TEST, 0.9, 0.5],
       },
-    }, 'waymarked-hiking-layer');
+    }, railsBeforeId);
     trailMapInstance.addLayer({
       id: 'trail-paths-orma-line',
       type: 'line',
@@ -1817,25 +1822,23 @@ function initTrailMap(){
         // it could not.
         'line-opacity': 0.5,
       },
-    }, 'waymarked-hiking-layer');
+    }, railsBeforeId);
     // Once a visitor chooses a trail, give it the same clear, route-first
     // treatment used by a detail page. The wider catalogue stays underneath
     // as quiet context instead of competing with the chosen walk.
     trailMapInstance.addSource('trail-selected-route', {
       type:'geojson', data:{ type:'FeatureCollection', features:[] },
     });
-    // The chosen walk is a highlight UNDER the hiking network, matching the
-    // detail page: a white casing and a translucent match-colour corridor,
-    // with the waymarked raster drawing on top. Waymarked's own line and its
-    // numbered shields then run down the middle, so the numbers a walker
-    // actually follows stay readable instead of being covered and reprinted.
+    // The chosen walk matches the detail page: a white casing and a
+    // translucent match-colour corridor under the route numbers, and the
+    // routes it follows numbered beside it (setSelectedTrailRoute).
     // The catalogue rails above remain subdued; the selected route is the
     // only corridor that should read as the walk the owner has chosen.
     trailMapInstance.addLayer({
       id:'trail-selected-route-casing', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
       paint:{ 'line-color':'#FFFFFF', 'line-width':['interpolate',['linear'],['zoom'],8,10,12,16,14,23,17,33], 'line-opacity':0.9 },
-    }, 'waymarked-hiking-layer');
+    }, railsBeforeId);
     trailMapInstance.addLayer({
       id:'trail-selected-route-line', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
@@ -1843,7 +1846,7 @@ function initTrailMap(){
         'line-color':['coalesce',['get','routeColor'],'#4A7856'],
         'line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26], 'line-opacity':0.55,
       },
-    }, 'waymarked-hiking-layer');
+    }, railsBeforeId);
     trailMapInstance.addLayer({
       id:'trail-selected-route-arrows', type:'symbol', source:'trail-selected-route',
       layout:{
@@ -1857,9 +1860,8 @@ function initTrailMap(){
         'text-halo-width':2,
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
-    // No ORMA shields on the selected route: the raster now draws above the
-    // highlight, so Waymarked's real route numbers are visible on it and a
-    // second set of ours would only fight them for space.
+    // No ORMA shields on the selected route: the hiking network numbers the
+    // routes it follows beside it, and shields would only fight those.
     // Wide, near-invisible twin of the route line so a fingertip (or a
     // slightly-off cursor) still hits the trail, 3px is too thin a target.
     trailMapInstance.addLayer({
@@ -1869,7 +1871,7 @@ function initTrailMap(){
       minzoom: 10,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: { 'line-color': '#000', 'line-width': 18, 'line-opacity': 0.01 },
-    }, 'waymarked-hiking-layer');
+    }, railsBeforeId);
 
     // Keep the six decision candidates prominent and numbered. The rest of
     // the catalogue remains available as quiet geographic context instead of
@@ -2256,6 +2258,7 @@ function setSelectedTrailRoute(trail, options){
   ['trail-selected-route-casing','trail-selected-route-line'].forEach(layerId => {
     if(trailMapInstance.getLayer(layerId)) trailMapInstance.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
   });
+  window.ORMAMapStyle.setHikingWalk(trailMapInstance, visible ? route.map(([lat, lng]) => [lng, lat]) : null);
   const isLoop = visible && liRouteDistanceMeters(route[0], route[route.length - 1]) <= 75;
   if(trailMapInstance.getLayer('trail-selected-route-arrows')){
     trailMapInstance.setLayoutProperty('trail-selected-route-arrows', 'visibility', visible && !isLoop ? 'visible' : 'none');
