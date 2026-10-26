@@ -3426,6 +3426,23 @@
       }
     },
     {
+      "id": "primiero-malga-ces",
+      "approvedReviewId": "mapillary-primiero-malga-ces-on-route",
+      "approvedAt": "2026-10-26T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-malga-ces-san-martino.jpg",
+        "heroImage": "images/trails/primiero-malga-ces-san-martino.jpg",
+        "imageAlt": "The main street of San Martino di Castrozza in summer, a small church with a cross on its gable, hotels and walkers, the grey rock towers of the Pale di San Martino above wooded slopes",
+        "imageCredit": "The centre of San Martino di Castrozza",
+        "imageCreditText": "The centre of San Martino di Castrozza by laniuscollurio",
+        "imageCreator": "laniuscollurio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=819420726101507",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "primiero-percorso-verde",
       "approvedReviewId": "mapillary-primiero-percorso-verde-on-route",
       "approvedAt": "2026-10-26T18:00:00.000Z",
