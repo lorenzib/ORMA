@@ -56,7 +56,7 @@ jobs:
 
       # One download a week per region; reruns inside the week reuse it.
       - name: Cache the Geofabrik extract
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: extract.osm.pbf
           key: geofabrik-${{ matrix.region }}-${{ steps.week.outputs.week }}
