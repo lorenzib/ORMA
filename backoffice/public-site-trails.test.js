@@ -46,10 +46,12 @@ describe('the existing-site verification boundary',()=>{
     // counted. Then 199 and 197 with three more Val di Fassa walks: the
     // shepherds' walk from Vigo, the meadows above Pozza and the Fuciade alp. Then
     // 205 and 203 with six village walks in Primiero drawn on OSM along the APT
-    // San Martino di Castrozza's line.
+    // San Martino di Castrozza's line. Then 209 and 207 with four more: the Via
+    // Nova loop from Mezzano, the Val di Roda from San Martino, the Valpiana
+    // forest loop and the Cordognè loop to San Giovanni.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(205);
-    expect(currentSiteTrails(catalogue)).toHaveLength(203);
+    expect(catalogue).toHaveLength(209);
+    expect(currentSiteTrails(catalogue)).toHaveLength(207);
   });
 
   test('requires the artwork the public trail page needs',()=>{

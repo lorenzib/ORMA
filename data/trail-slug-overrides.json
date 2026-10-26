@@ -368,6 +368,26 @@
       "name": "Percorso Verde (I percorsi del benessere)",
       "slug": "percorso-verde-primiero",
       "gloss": "the step-free loop along the Canali"
+    },
+    "primiero-anello-molaren-via-nova-marine": {
+      "name": "Anello Molaren - Via Nova - Marine",
+      "slug": "anello-molaren-via-nova-marine",
+      "gloss": "the Via Nova loop from Mezzano"
+    },
+    "primiero-san-martino-di-castrozza-val-di-roda-prati-col": {
+      "name": "San Martino di Castrozza - Val di Roda - Prati Col",
+      "slug": "val-di-roda-prati-col",
+      "gloss": "the Val di Roda loop from San Martino"
+    },
+    "primiero-anello-di-valpiana": {
+      "name": "Anello di Valpiana",
+      "slug": "anello-di-valpiana",
+      "gloss": "the forest loop to Malga Valpiana"
+    },
+    "primiero-anello-poit-cordogne-san-giovanni": {
+      "name": "Anello Poit - Cordognè - San Giovanni",
+      "slug": "anello-poit-cordogne-san-giovanni",
+      "gloss": "the Cordognè loop to San Giovanni"
     }
   }
 }
