@@ -462,6 +462,23 @@
       }
     },
     {
+      "id": "fiemme-sentiero-botanico",
+      "approvedReviewId": "commons-fiemme-sentiero-botanico-on-route",
+      "approvedAt": "2026-10-26T23:50:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-sentiero-botanico-grauno.jpg",
+        "heroImage": "images/trails/fiemme-sentiero-botanico-grauno.jpg",
+        "imageAlt": "The pale church of San Martino in Grauno with its slim bell tower and onion-shaped spire, wooded mountains of the Val di Cembra behind under a cloudy summer sky",
+        "imageCredit": "San Martino, Grauno",
+        "imageCreditText": "San Martino, Grauno by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Grauno_-_Chiesa_di_san_Martino_01.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fiemme-varena-spianez",
       "approvedReviewId": "commons-fiemme-varena-spianez-on-route",
       "approvedAt": "2026-10-26T23:00:00.000Z",

@@ -57,10 +57,11 @@ describe('the existing-site verification boundary',()=>{
     // and 219 with the forest walk from San Martino di Castrozza to Malga Ces. Then 224 and
     // 222 with three more Fiemme walks: the Prai de le Fior above Valfloriana,
     // the Passo Oclini loop and the old farmsteads below Capriana. Then 226 and
-    // 224 with the forest walk to Malga Crel and the Croce degli Alpini on Vederna.
+    // 224 with the forest walk to Malga Crel and the Croce degli Alpini on Vederna. Then 227 and
+    // 225 with the botanical path from Grauno to Capriana.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(226);
-    expect(currentSiteTrails(catalogue)).toHaveLength(224);
+    expect(catalogue).toHaveLength(227);
+    expect(currentSiteTrails(catalogue)).toHaveLength(225);
   });
 
   test('requires the artwork the public trail page needs',()=>{
