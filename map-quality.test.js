@@ -112,13 +112,16 @@ describe('shared map quality profile', () => {
     expect(style).toContain("'line-opacity': 0.55");
     expect(style).toContain('widthRamp(10, 16, 23, 33, scale)');
     expect(style).toContain('widthRamp(7, 12, 18, 26, scale)');
-    // Default insertion point is the waymarked layer when one is present.
-    expect(style).toContain("map.getLayer(WAYMARKED_LAYER) ? WAYMARKED_LAYER : firstLabelLayerId(map)");
+    // Default insertion point: under the Waymarked raster where a map still
+    // draws it, between our dashed routes and their numbers where it draws
+    // our own network.
+    expect(style).toContain('const fallbackBefore = walkLineBeforeId(map);');
+    expect(style).toMatch(/function walkLineBeforeId\(map\) \{\s*if \(map && map.getLayer\(HIKING_REF_LAYER\)\) return HIKING_REF_LAYER;\s*if \(map && map.getLayer\(WAYMARKED_LAYER\)\) return WAYMARKED_LAYER;/);
     // The opaque-on-top treatment stays available for maps with no raster.
     expect(style).toContain("config.mode === 'overlay'");
 
     const trail = read('trail.js');
-    expect(trail).toContain('beforeId: window.ORMAMapStyle.WAYMARKED_LAYER,');
+    expect(trail).toContain('beforeId: window.ORMAMapStyle.walkLineBeforeId(map),');
     // Direction arrows stay above the raster but below place names.
     expect(trail).toMatch(/id: 'single-trail-direction-arrows'[\s\S]*?\}, firstLabelId\);/);
 
@@ -262,7 +265,7 @@ describe('shared map quality profile', () => {
     // zoom threshold there would show the network on some trails and not
     // others with no explanation, worse than either choice.
     const trail = read('trail.js');
-    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId })');
+    expect(trail).toMatch(/ORMAMapStyle\.addHikingRoutes\(map, \{\s*beforeId: firstLabelId,/);
     expect(trail).not.toContain('minzoom: NETWORK_MIN_ZOOM');
   });
 

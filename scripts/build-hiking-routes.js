@@ -12,7 +12,7 @@
  *
  * Input is osmium's OPL text, after the build server has cut the region out
  * of a Geofabrik extract, kept the hiking relations and put coordinates on
- * their ways (see .github/workflows/orma-hiking-route-tiles.yml):
+ * their ways (see scripts/build-hiking-route-tiles.sh):
  *
  *   node scripts/build-hiking-routes.js routes.opl routes.geojsonseq
  *
@@ -29,9 +29,10 @@ const NETWORK_RANK = { iwn: 1, nwn: 2, rwn: 3, lwn: 4 };
 
 // Padded around each region's mapped trails (the trail bounds, measured
 // 26 Oct 2026, plus ~0.1 degrees) so routes leaving the edge walks still draw.
+// `extract` is the Geofabrik extract that covers the region.
 const REGIONS = {
-  dolomites: { bbox: [10.83, 45.96, 12.66, 47.03] },
-  savoy: { bbox: [5.65, 45.06, 7.05, 46.45] },
+  dolomites: { bbox: [10.83, 45.96, 12.66, 47.03], extract: 'europe/italy/nord-est' },
+  savoy: { bbox: [5.65, 45.06, 7.05, 46.45], extract: 'europe/france/rhone-alpes' },
 };
 
 // OPL escapes awkward characters as %<hex codepoint>%.

@@ -22,3 +22,8 @@ _site/
 
 # Written by scripts/report-route-gaps.js so a cancelled run keeps its answers.
 route-gap-report.json
+
+# Built by scripts/build-hiking-route-tiles.sh into the deploy, never committed.
+data/hiking-routes/
+hiking-work/
+hiking-routes/
