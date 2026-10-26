@@ -51059,20 +51059,37 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
 
   // Entries now sync to the account, so two phones must never mint the same id
   // for two different walks in the same millisecond: one walk would overwrite
-  // the other in the account and be lost.
-  function newId(now){
-    var suffix = '';
+  // the other in the account and be lost. Six random bytes keep two devices
+  // apart; a counter keeps ids minted by this page in the same millisecond
+  // apart, so they cannot collide by chance at all. Ids are only ever compared
+  // whole, so older `w<ms>-<6 hex>` ids stay valid alongside these.
+  var ID_RANDOM_BYTES = 6;
+  var lastIdTime = null;
+  var sameTimeCount = 0;
+
+  function randomHex(byteCount){
     try {
       if(global.crypto && typeof global.crypto.getRandomValues === 'function'){
-        var bytes = new Uint8Array(3);
+        var bytes = new Uint8Array(byteCount);
         global.crypto.getRandomValues(bytes);
-        suffix = Array.prototype.map.call(bytes, function(byte){
+        return Array.prototype.map.call(bytes, function(byte){
           return ('0' + byte.toString(16)).slice(-2);
         }).join('');
       }
     } catch(e){}
-    if(!suffix) suffix = ('00000' + Math.floor(Math.random() * 16777216).toString(16)).slice(-6);
-    return 'w' + (finite(now) || 0) + '-' + suffix;
+    var hex = '';
+    for(var i = 0; i < byteCount; i++){
+      hex += ('0' + Math.floor(Math.random() * 256).toString(16)).slice(-2);
+    }
+    return hex;
+  }
+
+  function newId(now){
+    var time = finite(now) || 0;
+    if(time === lastIdTime) sameTimeCount += 1;
+    else { lastIdTime = time; sameTimeCount = 0; }
+    var id = 'w' + time + '-' + randomHex(ID_RANDOM_BYTES);
+    return sameTimeCount ? id + '.' + sameTimeCount.toString(36) : id;
   }
 
   function stamp(entry, now){
