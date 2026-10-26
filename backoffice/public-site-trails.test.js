@@ -56,10 +56,11 @@ describe('the existing-site verification boundary',()=>{
     // woods from Prà del Manz to Anterivo and the meadows of Spianez. Then 221
     // and 219 with the forest walk from San Martino di Castrozza to Malga Ces. Then 224 and
     // 222 with three more Fiemme walks: the Prai de le Fior above Valfloriana,
-    // the Passo Oclini loop and the old farmsteads below Capriana.
+    // the Passo Oclini loop and the old farmsteads below Capriana. Then 226 and
+    // 224 with the forest walk to Malga Crel and the Croce degli Alpini on Vederna.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(224);
-    expect(currentSiteTrails(catalogue)).toHaveLength(222);
+    expect(catalogue).toHaveLength(226);
+    expect(currentSiteTrails(catalogue)).toHaveLength(224);
   });
 
   test('requires the artwork the public trail page needs',()=>{

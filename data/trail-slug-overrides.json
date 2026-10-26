@@ -463,6 +463,16 @@
       "name": "Masi Comunicanti",
       "slug": "masi-comunicanti-capriana",
       "gloss": "the walk through the old farmsteads below Capriana"
+    },
+    "primiero-malga-crel": {
+      "name": "San Martino di Castrozza - Malga Crel",
+      "slug": "malga-crel",
+      "gloss": "the forest walk from San Martino to Malga Crel"
+    },
+    "primiero-monte-vederna": {
+      "name": "Passeggiata a Monte Vederna – Croce degli Alpini",
+      "slug": "monte-vederna",
+      "gloss": "the walk from the Rifugio Vederna to the Croce degli Alpini"
     }
   }
 }

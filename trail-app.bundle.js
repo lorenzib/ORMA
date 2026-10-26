@@ -48569,6 +48569,146 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 0, lat: 46.26237, lng: 11.33848, osmId: 'node/937259699', name: 'Bar Posta' }
       ],
       desc: 'A walk from Capriana down through the old farmsteads by the Avisio, Maso Lio, Le Caneve, Maso Ponte and Rover, and back up through the hamlet of Carbonare. The APT lists 7.4 km and 400 m of ascent.'
+    },
+    'primiero-malga-crel': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 4).
+      // APT San Martino di Castrozza’s walk “San Martino di Castrozza - Malga Crel”.
+      // The line is drawn on 36 OSM ways along the line the APT publishes
+      // (data/board-line-routes.geojson).
+      // Primiero San Martino di Castrozza’s Regolamento di Polizia Urbana (Art. 28)
+      // applies in the village. Above it 0.93 km are in the Paneveggio – Pale di San
+      // Martino park (Art. 54 c. 2: dogs on a lead); on the park’s zone map they are
+      // in zones B and C, 1.1 km from the nearest integral reserve and clear of the
+      // special reserves. The line skirts the Prà delle Nasse provincial reserve 65 m
+      // outside it (there dogs may not run loose). In ZSC IT3120168 and ZPS
+      // IT3120160, whose measures set no rule on dogs. Out and back: the line
+      // retraces 97% of itself; the APT returns by the campsite for the last stretch.
+      area: 'San Martino di Castrozza – Malga Crel, Primiero San Martino di Castrozza',
+      distance: 9.2,
+      elevation: 260,
+      hours: '2.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back: from the Prà delle Nasse car park in San Martino di Castrozza along the path beside the Prà delle Nasse bog to the Ces lift station, up the forest road towards the Lago di Calaita and the last climb to Malga Crel, and back the same way, the APT returning past the campsite and the sports hall for the last stretch.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The road junction in San Martino di Castrozza by the start, the towers of the Pale di San Martino above, in August (laniuscollurio on Mapillary, CC BY-SA 4.0), 24 m from the line.',
+        route: 'Official out-and-back walk 9.2 km from the Prà delle Nasse car park, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 36 OSM ways along the APT’s published line, 9 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the Prà delle Nasse car park take the road towards Malga Ces for a few metres, then left on the path signed “O piccolo” beside the Prà delle Nasse bog to the Ces lift station; on towards the Ostello San Martino and up the forest road to the right; at the top follow the signs for the Lago di Calaita to the fork for Malga Crel, and the last climb to the malga. Back on the forest road to the campsite and past the sports hall to the start.',
+        mapPoints: 'Start at the Prà delle Nasse car park, the APT’s start; drinking water at the start and at km 0.4 (OSM nodes 4336791235, 7775478912).',
+        elevation: 'Official 9.2 km, 260 m up and 264 m down, 2 h 30 min, highest point 1,608 m, lowest 1,464 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, San Martino di Castrozza - Malga Crel (sanmartino.com and its Outdooractive page)',
+          'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (2016, amended 2018), Art. 26 and 28',
+          'Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco, Norme di Attuazione (2016), Art. 54 c. 2: dogs always on a lead in the park',
+          'Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco zoning shapefiles (Riserve_ABC and Riserve_speciali, plan in force since 3 February 2016): the line’s 0.93 km in the park are in zones B and C (riserva guidata and controllata), 1.1 km from the nearest integral reserve and clear of the five special reserves',
+          'Provincia autonoma di Trento, Riserva naturale provinciale and ZSC IT3120028 Prà delle Nasse (Del. G.P. 60/1994, amended by 1816/2017): dogs may not be let loose and walkers must keep to the paths; the line skirts it 65 m outside',
+          'Paneveggio – Pale di San Martino nature park (dogs on a lead); Natura 2000 ZSC IT3120168 Lagorai Orientale – Cima Bocche and ZPS IT3120160 Lagorai (Ministry of the Environment register and the Province of Trento’s layers), whose conservation measures (Del. G.P. 632/2013 and the park’s measures) set no rule on dogs; the nearest local reserve, Villa Savoia, is 555 m from the line',
+          'OpenStreetMap ways along the APT line (36 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 60,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 1.8 km on tarmac, with road crossings in San Martino', 'Gravel forest roads, shared with forestry vehicles', 'A path beside the Prà delle Nasse bog: keep to it'],
+      terrainType: 'Forest roads and paths, with some tarmac in the village',
+      shadeDescription: 'Mostly shaded: about three fifths runs through the forest west of San Martino.',
+      terrainDescription: 'A half-day walk at 1,464–1,608 m from San Martino di Castrozza past the Prà delle Nasse bog and through the forest to Malga Crel, with views of the Pale di San Martino.',
+      waterDescription: 'Drinking fountains at the start and at km 0.4; bars and cafés at the start, Malga Fratazza at km 2.5 and Malga Crel at km 4.',
+      dogNotes: 'Above the village the walk is in the Paneveggio – Pale di San Martino nature park, where dogs must always be on a lead. It skirts the Prà delle Nasse bog reserve, where dogs may not run loose and walkers keep to the paths. In the village Primiero San Martino di Castrozza’s rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches.',
+      tips: 'Start at the Prà delle Nasse car park in San Martino: 9.2 km there and back, about 260 m of climbing, two and a half hours. Keep your dog on a lead in the park and on the path past the bog. Fountains at the start; Malga Fratazza and Malga Crel are on the way.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, San Martino di Castrozza - Malga Crel', url: 'https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-malga-crel' },
+        { label: 'Outdooractive, San Martino di Castrozza - Malga Crel (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/37204797' },
+        { label: 'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf' },
+        { label: 'Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco (Norme di Attuazione, Art. 54)', url: 'https://parcopan.org/ente-parco/il-piano-del-parco/' },
+        { label: 'Parco Naturale Paneveggio – Pale di San Martino, the Piano del Parco shapefiles (reserve zones)', url: 'https://www.parcopan.org/ente-parco/il-piano-del-parco/gli-shapefiles-del-piano/' },
+        { label: 'Provincia autonoma di Trento, Prà delle Nasse provincial reserve', url: 'https://www.provincia.tn.it/en/Administration/Locations/Protected-areas/Pra-delle-Nasse' },
+        { label: 'Provincia autonoma di Trento, Natura 2000 conservation measures (Del. G.P. 632/2013)', url: 'https://www.provincia.tn.it/Amministrazione/Documenti/Deliberazione-della-Giunta-Provinciale-n.-632-del-12-04-2013' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.262756, lng: 11.803396, label: 'The Prà delle Nasse car park, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.2633779, lng: 11.8017222, osmId: 'node/4336791235', label: 'Drinking fountain at the start' },
+        { km: 0.4, lat: 46.2607224, lng: 11.7994777, osmId: 'node/7775478912', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.26243, lng: 11.80257, osmId: 'node/3283832442', name: 'Bar Margherita' },
+        { km: 0.1, lat: 46.26045, lng: 11.80143, osmId: 'node/758777435', name: 'Sass Maor' },
+        { km: 0.5, lat: 46.26318, lng: 11.7974, osmId: 'node/5939189358', name: 'Ristorante da Anita' },
+        { km: 2.5, lat: 46.25442, lng: 11.79514, osmId: 'way/229447409', name: 'Malga Fratazza' },
+        { km: 4, lat: 46.24153, lng: 11.79633, osmId: 'way/765413904', name: 'Malga Crel' }
+      ],
+      desc: 'A walk from San Martino di Castrozza past the Prà delle Nasse bog and through the forest to Malga Crel and back, with views of the Pale di San Martino. The APT lists 9.2 km and 260 m of ascent.'
+    },
+    'primiero-monte-vederna': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 4).
+      // APT San Martino di Castrozza’s walk “Passeggiata a Monte Vederna – Croce degli Alpini”.
+      // The line is drawn on 6 OSM ways along the line the APT publishes
+      // (data/board-line-routes.geojson).
+      // Imer’s Regolamento di Polizia Urbana (Art. 28) applies: dogs on a lead of
+      // at most 1.5 m in public places, a muzzle in public buildings and crowds.
+      // No Natura 2000 site, park or reserve on the line. Out and back: the APT
+      // returns the same way, and the line retraces 97% of itself.
+      area: 'Monte Vederna – Croce degli Alpini, Imer',
+      distance: 8.2,
+      elevation: 300,
+      hours: '2',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back: from the Rifugio Vederna up the forest road signed for the Croce degli Alpini to the meadows by Cima Vederna, a short marked path to the great metal cross above the Primiero valley, and back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The huts of Vederna in July, below the forest road the walk takes (Tn4196, CC BY-SA 3.0), 60 m from the line.',
+        route: 'Official out-and-back walk 8.2 km from the Rifugio Vederna (1,324 m), as the APT San Martino di Castrozza publishes it; the stored line is drawn on 6 OSM ways along the APT’s published line, 8 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the Rifugio Vederna take the forest road signed “Croce degli Alpini” on a gentle climb to the meadows near Cima Vederna, keeping to the left of the clearing; on the level meadow follow the comfortable marked path to the right to the great metal cross, the Croce degli Alpini, above the Primiero valley. Back the same way.',
+        mapPoints: 'Start at the Rifugio Vederna (1,324 m), the APT’s start; drinking water at the start (OSM nodes 2184716287).',
+        elevation: 'Official 8.2 km, 300 m up and 300 m down, 2 h, highest point 1,535 m, lowest 1,332 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Passeggiata a Monte Vederna – Croce degli Alpini (sanmartino.com and its Outdooractive page)',
+          'Comune di Imer, Regolamento di Polizia Urbana (2018), Art. 26 and 28',
+          'Natura 2000 sites (Ministry of the Environment register and the Province of Trento’s ZSC and ZPS layers), the Paneveggio – Pale di San Martino nature park and Trentino’s provincial and local reserves (none on the line)',
+          'OpenStreetMap ways along the APT line (6 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 57,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Gravel forest road, shared with forestry vehicles', 'A short grassy path to the cross', 'An open viewpoint at the Croce degli Alpini'],
+      terrainType: 'Gravel forest road and a short meadow path',
+      shadeDescription: 'Part shade: just over half runs through forest; the meadows of Vederna and the cross are open.',
+      terrainDescription: 'A walk at 1,332–1,535 m from the Rifugio Vederna, below Monte Pavione and the Vette Feltrine, to the Croce degli Alpini with its view over the Primiero valley and the Pale di San Martino.',
+      waterDescription: 'Drinking fountain and the Rifugio Vederna at the start; none on the way.',
+      dogNotes: 'Imer’s rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches. Keep your dog close at the Croce degli Alpini, a viewpoint above the valley.',
+      tips: 'Start at the Rifugio Vederna, reached by long forest roads from Pontet or the Val Noana (ask the rifugio about their state): 8.2 km there and back, 300 m of climbing, two hours. Water at the rifugio; carry some for your dog on the way.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, Passeggiata a Monte Vederna – Croce degli Alpini', url: 'https://www.sanmartino.com/it/itinerari/passeggiata-a-monte-vederna-croce-degli-alpini' },
+        { label: 'Outdooractive, Passeggiata a Monte Vederna – Croce degli Alpini (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/21373844' },
+        { label: 'Comune di Imer, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.imer.tn.it/content/download/640/11590/2/regolamento+polizia+urbana.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.121597, lng: 11.795056, label: 'The Rifugio Vederna (1,324 m), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.1214665, lng: 11.7949761, osmId: 'node/2184716287', label: 'Drinking fountain at the start' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.121, lng: 11.79517, osmId: 'way/59721521', name: 'Rifugio Vederna' }
+      ],
+      desc: 'A walk from the Rifugio Vederna along a forest road and meadows to the Croce degli Alpini, a great cross above the Primiero valley with views of the Pale di San Martino and the Vette Feltrine. The APT lists 8.2 km and 300 m of ascent.'
     }
   };
 
