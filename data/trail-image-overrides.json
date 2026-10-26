@@ -326,6 +326,74 @@
       }
     },
     {
+      "id": "fiemme-cascatelle-di-ziano",
+      "approvedReviewId": "commons-fiemme-cascatelle-di-ziano-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-cascatelle-di-ziano-shrine.jpg",
+        "heroImage": "images/trails/fiemme-cascatelle-di-ziano-shrine.jpg",
+        "imageAlt": "A white wayside shrine with a copper roof by a lane near Roda, a meadow, a rail fence and a wooded slope behind under a summer sky",
+        "imageCredit": "A shrine near Roda",
+        "imageCreditText": "A shrine near Roda by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ziano_di_Fiemme_-_Capitello_in_via_Imana_04.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fiemme-cavalese-passeggiata-panoramica",
+      "approvedReviewId": "commons-fiemme-cavalese-passeggiata-panoramica-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-cavalese-passeggiata-panoramica-valley.jpg",
+        "heroImage": "images/trails/fiemme-cavalese-passeggiata-panoramica-valley.jpg",
+        "imageAlt": "The Val di Fiemme seen from a wooded slope above Cavalese, green fields and the river below and mountains under a blue summer sky",
+        "imageCredit": "The valley from the Parco della Pieve",
+        "imageCreditText": "The valley from the Parco della Pieve by Mario Penner",
+        "imageCreator": "Mario Penner",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Una_valle_speciale_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fiemme-giro-cavalese-castello",
+      "approvedReviewId": "commons-fiemme-giro-cavalese-castello-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-giro-cavalese-castello-cavalese.jpg",
+        "heroImage": "images/trails/fiemme-giro-cavalese-castello-cavalese.jpg",
+        "imageAlt": "The roofs of Cavalese and its bell tower among green trees, a forested mountain and a rocky peak behind under a summer sky",
+        "imageCredit": "Cavalese from the hospital",
+        "imageCreditText": "Cavalese from the hospital by Mario Penner",
+        "imageCreator": "Mario Penner",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vista_di_Cavalese_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fiemme-passeggiata-insolita",
+      "approvedReviewId": "mapillary-fiemme-passeggiata-insolita-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-passeggiata-insolita-san-sebastiano.jpg",
+        "heroImage": "images/trails/fiemme-passeggiata-insolita-san-sebastiano.jpg",
+        "imageAlt": "The stone church of San Sebastiano in Cavalese with its tall ochre and white bell tower, a wrought-iron lamp post and pink houses on a cobbled square under a cloudy summer sky",
+        "imageCredit": "San Sebastiano, Cavalese",
+        "imageCreditText": "San Sebastiano, Cavalese by peterleth",
+        "imageCreator": "peterleth",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=6280350195352867",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "geotrail-bulla",
       "approvedReviewId": "commons-geotrail-bulla-on-route",
       "approvedAt": "2026-10-23T20:00:00.000Z",
