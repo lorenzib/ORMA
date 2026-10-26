@@ -21,6 +21,7 @@
     "validate:evidence-contract": "jest --runInBand evidence-contract.test.js",
     "validate:firestore-contract": "jest --runInBand firestore-security.test.js",
     "test:firestore-rules": "node scripts/run-firestore-rules-tests.cjs",
+    "test:storage-rules": "node scripts/run-storage-rules-tests.cjs",
     "perf:mobile": "node scripts/run-mobile-performance.mjs --check",
     "perf:mobile:baseline": "node scripts/run-mobile-performance.mjs --write-baseline",
     "check:beta-readiness": "node scripts/check-beta-readiness.js",

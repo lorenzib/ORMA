@@ -14,7 +14,7 @@ describe('Trail Tales journal experience', () => {
     expect(journal).toContain("translate('journal.stats.outdoors', 'Outdoors', {})");
     expect(journal).toContain("translate('journal.stats.trails', 'Trails', {})");
     // Each walk: its photo, or its route, or a prompt to add a photo.
-    expect(journal).toContain("var route = e.photo ? '' : routeThumb(activeSegments(e));");
+    expect(journal).toContain("var route = hasPhoto ? '' : routeThumb(activeSegments(e));");
     expect(journal).toContain("translate('journal.after.addPhotos', 'Add photos', {})");
     expect(journal).toContain('data-jn-tale=');
     expect(journal).toContain('data-jn-share=');

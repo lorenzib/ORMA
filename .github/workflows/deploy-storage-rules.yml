@@ -1,0 +1,48 @@
+name: Deploy Storage rules
+
+# JOURNAL-03 put walk photos in Firebase Storage. Its security rules live in
+# Firebase like the Firestore ones, so they need their own deploy. Kept apart
+# from deploy-firestore-rules.yml: a Storage problem (no bucket yet, a missing
+# role) must never hold back a Firestore rules change.
+on:
+  push:
+    branches: [main]
+    paths:
+      - storage.rules
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-storage-rules
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Check deploy credentials
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          if [ -z "$FIREBASE_SERVICE_ACCOUNT" ]; then
+            echo "::error::Missing FIREBASE_SERVICE_ACCOUNT repository secret."
+            exit 1
+          fi
+
+      - name: Deploy Storage rules
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/firebase-sa.json"
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/firebase-sa.json"
+          npx firebase-tools deploy --only storage --project dolopaws --non-interactive
+          rm -f "$RUNNER_TEMP/firebase-sa.json"

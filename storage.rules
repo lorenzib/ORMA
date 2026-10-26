@@ -1,0 +1,29 @@
+rules_version = '2';
+
+// JOURNAL-03 — the photos of a walk in someone's journal. Private: only the
+// account that owns the walk may read, add or remove them. One JPEG per file,
+// named by the photo id the walk lists (see journal-photos.js), and small:
+// the journal downscales before it uploads. Nothing else lives in this bucket,
+// so everything else is closed.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /users/{uid}/journal/{entryId}/{photoFile} {
+      allow get, delete: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null && request.auth.uid == uid
+        && entryId.matches('^[A-Za-z0-9._:-]{1,120}$')
+        && photoFile.matches('^p[a-z0-9]{6,32}[.]jpg$')
+        && request.resource.size > 0
+        && request.resource.size <= 2 * 1024 * 1024
+        && request.resource.contentType == 'image/jpeg';
+    }
+
+    // Listing a walk's folder, which account deletion needs to find every photo.
+    match /users/{uid}/journal/{path=**} {
+      allow list: if request.auth != null && request.auth.uid == uid;
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

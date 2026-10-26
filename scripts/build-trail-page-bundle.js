@@ -39,6 +39,8 @@ const SOURCES = [
   'hike-session.js',
   // The journal's own storage shape. hike-mode.js saves a walk through it.
   'journal-store.js',
+  // Where a walk's photos wait before they reach the account.
+  'journal-photos.js',
   'hike-completions.js',
   'post-hike-outcomes.js',
   'hike-mode.js',

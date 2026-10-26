@@ -937,6 +937,8 @@ function initHikeMode(map, trail, options){
     const matchPct = scoreEl ? parseInt(scoreEl.textContent, 10) : NaN;
 
     const photos = [];       // { file, url }
+    // As many as a journal walk keeps (JOURNAL-03).
+    const maxPhotos = window.DoloPawsJournalPhotos ? window.DoloPawsJournalPhotos.MAX_PHOTOS : 4;
     let cond = 'Comfortable';
     let shareOn = true;
     let outcomeResponse = '';
@@ -1201,7 +1203,7 @@ function initHikeMode(map, trail, options){
         cell.appendChild(rm);
         grid.appendChild(cell);
       });
-      if (photos.length < 4){
+      if (photos.length < maxPhotos){
         const add = document.createElement('button');
         add.type = 'button';
         add.className = 'hk-add';
@@ -1214,7 +1216,7 @@ function initHikeMode(map, trail, options){
     }
 
     q('#hkPhotoInput').addEventListener('change', (e) => {
-      Array.from(e.target.files || []).slice(0, 4 - photos.length).forEach(file => {
+      Array.from(e.target.files || []).slice(0, maxPhotos - photos.length).forEach(file => {
         if (!/^image\//.test(file.type)) return;
         photos.push({ file, url: URL.createObjectURL(file) });
       });
@@ -1271,10 +1273,38 @@ function initHikeMode(map, trail, options){
       // since (how it felt, the photos, sharing them) and opens the journal
       // on this walk, which asks for a photo and who came along.
       const id = savedEntryId || saveWalkNow(user);
-      if(id && savedEntryId) writeJournalEntry(user, buildJournalEntry(id, Date.now()));
-      closeOverlay();
-      window.location.href = id ? `journal.html?saved=${encodeURIComponent(id)}` : 'journal.html';
+      const saveBtn = q('#hkSaveBtn');
+      saveBtn.disabled = true;
+      // The photos picked here go into this browser's photo store under the
+      // walk; the journal sends them to the account. Only the ones kept are
+      // listed, so a photo that could not be read is not promised.
+      keepPhotos(user, id).then(photoIds => {
+        if(id){
+          const entry = buildJournalEntry(id, Date.now());
+          if(photoIds.length) entry.photoIds = photoIds;
+          entry.photos = photoIds.length;
+          entry.shareToTrail = photoIds.length > 0 && shareOn;
+          writeJournalEntry(user, entry);
+        }
+        closeOverlay();
+        window.location.href = id ? `journal.html?saved=${encodeURIComponent(id)}` : 'journal.html';
+      });
     });
+
+    function keepPhotos(user, entryId){
+      const journalPhotos = window.DoloPawsJournalPhotos;
+      if(!journalPhotos || !entryId || !photos.length) return Promise.resolve([]);
+      const store = journalPhotos.createLocalStore();
+      const kept = [];
+      // One at a time: full-size phone photos are heavy to decode together.
+      return photos.slice(0, maxPhotos).reduce((chain, photo) => chain.then(() =>
+        journalPhotos.downscale(photo.file).then(blob => {
+          if(!blob) return;
+          const photoId = journalPhotos.newPhotoId(Date.now());
+          return store.add(user.uid, entryId, photoId, blob).then(() => { kept.push(photoId); });
+        }).catch(() => {})
+      ), Promise.resolve()).then(() => kept);
+    }
 
     // ---- Saved the moment the walk ends ----------------------------------
     // A walk used to reach the journal only if "Save to journal" was pressed
