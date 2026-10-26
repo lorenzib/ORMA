@@ -147,3 +147,45 @@ describe('the ladder the gate climbs',()=>{
     }
   });
 });
+
+describe('directions approved in the old wording are published in the new one',()=>{
+  const {inCurrentWording,LEGACY_ORMA_SUGGESTION,startSentence}=require('./workflows/route-guidance-from-record');
+  const {materializeApprovedPublications}=require('./workflows/materialize-approved-publications');
+  // Geotrail Bulla as it went live on 25 October 2026.
+  const startPoint={lat:46.5802,lng:11.6228,label:'Panider Sattel / Passo Pinei, Pas Pinëi bus stop (line 172), by Hotel Pinei Nature & Spirit'};
+  const bulla={mode:'numbered',
+    start:`Start at ${startPoint.label} (46.58020, 11.62280). ${LEGACY_ORMA_SUGGESTION} ${CHECK_ACCESS}`,
+    status:`The mapped route carries trail numbers 3A, 24; look for them at junctions. ORMA has not confirmed how they appear on local signs. ${LEGACY_ORMA_SUGGESTION}`,
+    sequence:'The mapped route runs along waymarked routes 3A, 24 and then 3A, in that order from the start.',
+    switches:'Waymarked route 3A gives way to waymarked route 24 about 2.9 km from the start.',
+    establishedBy:{start:'orma-record',status:'orma-record',sequence:'route-relations',switches:'route-relations'}};
+
+  test('ORMA’s own start is rebuilt as a sentence, and the old suggestion line is replaced everywhere',()=>{
+    const next=inCurrentWording(bulla,startPoint);
+    expect(next.start).toBe(`Start at Panider Sattel / Passo Pinei, Pas Pinëi bus stop (line 172), by Hotel Pinei Nature & Spirit, marked on the map. ${ORMA_SUGGESTION} ${CHECK_ACCESS}`);
+    expect(next.status).toContain(ORMA_SUGGESTION);
+    expect(JSON.stringify(next)).not.toContain(LEGACY_ORMA_SUGGESTION);
+    expect(next.start).not.toMatch(/46\.58020/);
+    // What the map answered is left as it was.
+    expect(next.sequence).toBe(bulla.sequence);
+    expect(next.establishedBy).toEqual(bulla.establishedBy);
+  });
+
+  test('a start an operator or an agent answered is never rewritten',()=>{
+    const official={...bulla,start:'Start at the Seiser Alm gondola (official start).',establishedBy:{...bulla.establishedBy,start:'agent-evidence'}};
+    expect(inCurrentWording(official,startPoint).start).toBe(official.start);
+  });
+
+  test('the publisher writes the new wording even from a dossier approved in the old one',()=>{
+    const path=[[46.58,11.62],[46.59,11.63],[46.58,11.62]];
+    const result=materializeApprovedPublications({
+      requests:{requests:[{id:'pub-1',candidateId:'geotrail-bulla',status:'approved-for-pr-creation'}]},
+      staging:{items:[{candidateId:'geotrail-bulla',targetTrailId:'geotrail-bulla',state:'ready-for-publication-preview',
+        proposedWebsiteFields:{name:'Geotrail Bulla',distance:2.6,startPoint,routeNumberGuidance:bulla,ormaVerified:false}}]},
+      routesByCandidate:{'geotrail-bulla':{geometry:{type:'LineString',coordinates:path.map(([lat,lng])=>[lng,lat])}}},
+      overrides:{contractVersion:'1.0.0',trails:[]},operationalFacts:{trails:[]},at:'2026-10-26T15:00:00Z'});
+    const guidance=result.overrides.trails[0].fields.routeNumberGuidance;
+    expect(guidance.start).toBe(startSentence({label:startPoint.label,lat:startPoint.lat,lng:startPoint.lng}));
+    expect(JSON.stringify(guidance)).not.toContain(LEGACY_ORMA_SUGGESTION);
+  });
+});

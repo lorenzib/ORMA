@@ -1,5 +1,6 @@
 'use strict';
 
+const { inCurrentWording } = require('./route-guidance-from-record');
 const { operationalFactsFromClaims, mergeOperationalFacts } = require('./compile-operational-facts');
 const { publicationRequestIsRetryable } = require('./publication-failure-receipts');
 const { removedTrail } = require('../../scripts/removed-trails');
@@ -132,6 +133,12 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
       publicationApprovalId:request.id,
     };
     delete fields.routeRef;
+    // A dossier approved before the wording changed still publishes in the old
+    // one; ORMA's own answers are rewritten on the way out.
+    if(fields.routeNumberGuidance){
+      fields.routeNumberGuidance = inCurrentWording(fields.routeNumberGuidance,
+        fields.startPoint || priorById.get(item.targetTrailId)?.startPoint);
+    }
     const disagreement = introducedDisagreement(fields,{
       priorTrail:priorById.get(item.targetTrailId),
       outAndBack:declaredOutAndBack(overrides,item.targetTrailId),
