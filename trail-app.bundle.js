@@ -48748,6 +48748,66 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 0, lat: 46.121, lng: 11.79517, osmId: 'way/59721521', name: 'Rifugio Vederna' }
       ],
       desc: 'A walk from the Rifugio Vederna along a forest road and meadows to the Croce degli Alpini, a great cross above the Primiero valley with views of the Pale di San Martino and the Vette Feltrine. The APT lists 8.2 km and 300 m of ascent.'
+    },
+    'fiemme-sentiero-botanico': {
+      // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 4).
+      // APT Val di Fiemme’s walk “Sentiero botanico naturalistico”. The line is drawn on 16 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Neither Altavalle (Grauno) nor Capriana publishes a dog rule: none among Altavalle’s 270 published documents or Capriana’s 72 bylaws. So the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer); the nearest local reserves, Acqua della Rossa and Prati del Toro, are about 770–800 m away.
+      area: 'Grauno – Capriana – Fontana d’Ao, Val di Fiemme and Val di Cembra',
+      distance: 11.8,
+      elevation: 300,
+      hours: '4.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the church in Grauno along the botanical path through the woods to Capriana, then by Cao de Villa on paths and forest roads up to the Fontana d’Ao hut and back down the old cobbled road to Grauno.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of San Martino in Grauno, where the walk starts, with the Val di Cembra behind, in August (Syrio, CC BY-SA 4.0); the church is 57 m from the line.',
+        route: 'Official loop 11.8 km from Grauno (the church of San Martino), as APT Val di Fiemme publishes it; the stored line is drawn on 16 OSM ways along the APT’s published line, 11.8 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the church in Grauno up the cobbled lane, then right after about 100 m onto the level track signed for Capriana, and on along the same signed botanical path to Capriana. Back by the signs for Cao de Villa, on paths and forest roads up to the Fontana d’Ao hut, then down the cobbled road to Grauno. A shorter walk can keep to the lower part and skip the climb to Fontana d’Ao.',
+        mapPoints: 'Start at Grauno (the church of San Martino), the APT’s start; drinking water at the start and at km 5.5 (OSM nodes 10093184783, 1239897159).',
+        elevation: 'Official 11.8 km, 300 m up and 300 m down, 4 h 30 min, highest point 1,297 m, lowest 904 m (APT Val di Fiemme).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fiemme, Sentiero botanico naturalistico (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (neither Altavalle nor Capriana publishes a dog rule)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves, and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (16 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 90,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Mostly forest tracks and paths, with about 560 m of village streets in Capriana', 'A long cobbled descent back to Grauno, slippery when wet', 'Few fountains on the long wooded stretches: carry water for your dog'],
+      terrainType: 'Forest tracks, woodland paths and a cobbled road',
+      shadeDescription: 'Almost all shaded: about 90% of the way runs through woods.',
+      terrainDescription: 'A long, gentle loop at 900–1,300 m through the woods between Grauno in the Val di Cembra and Capriana in the lower Val di Fiemme, on a botanical path with notable trees, up to the Fontana d’Ao hut.',
+      waterDescription: 'Drinking fountains at the start and at km 5.5; bars and cafés on the way.',
+      dogNotes: 'Neither Altavalle nor Capriana has a dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried.',
+      tips: 'Start at the church in Grauno: 11.8 km, 300 m of climbing, about four and a half hours. No commune rule here, so the Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Almost all in the woods, so it stays cool. Fountains in Grauno and Capriana only, so carry water for your dog; Bar Posta in Capriana is halfway.',
+      sourceLinks: [
+        { label: 'APT Val di Fiemme, Sentiero botanico naturalistico', url: 'https://www.visitfiemme.it/it/activity/sentiero-botanico-naturalistico_9640' },
+        { label: 'Outdooractive, Sentiero botanico naturalistico (APT Val di Fiemme)', url: 'https://www.outdooractive.com/it/r/36860671' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.231369, lng: 11.298839, label: 'Grauno (the church of San Martino), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.2306141, lng: 11.2986429, osmId: 'node/10093184783', label: 'Drinking fountain at the start' },
+        { km: 5.5, lat: 46.2621115, lng: 11.3374814, osmId: 'node/1239897159', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 5.5, lat: 46.26237, lng: 11.33848, osmId: 'node/937259699', name: 'Bar Posta' }
+      ],
+      desc: 'A long, gentle loop through the woods from Grauno in the Val di Cembra to Capriana on a botanical path, then up to the Fontana d’Ao hut and back down an old cobbled road. The APT lists 11.8 km and 300 m of ascent.'
     }
   };
 
