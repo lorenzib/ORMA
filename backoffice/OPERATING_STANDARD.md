@@ -1526,6 +1526,15 @@ and job records, recorded here before the per-pass limit is raised.
 - **A withdrawn walk is a draft.** The publication carries `withdrawal`; the
   trail adapter reads it as an exclusion reason, so the walk leaves the site by
   the path every held trail takes. Lifting it is a human edit to the override.
+- **A removed walk is gone.** When the owner decides a withdrawn walk has
+  nothing left to review, it is removed outright rather than held as a draft:
+  it joins `data/removed-trails.json` and leaves the catalogue, the trail
+  board, its override and photo entries, its page and the backoffice
+  worksheets. Promotion, the new-trail scout, the scouted-walk importer and a
+  retried publication all read that one list and refuse it (the publication
+  with reason `trail-removed`). Putting one back is a human edit to that file.
+  First used 24 October 2026 for Chalets de Salvadon, Alpage de Commune and
+  Rundweg Rotwand.
 - **The trail board** flags *Off the site* and *Hand audit*, and lists the
   address of each document nobody could read.
 - **Switch:** `ORMA_SAFETY_RESEARCH_ENABLED` (repository variable, on unless
