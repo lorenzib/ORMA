@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fiemme-passo-oclini",
+  "distanceKm": 4.9,
+  "ascentM": 160,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1995
+    },
+    {
+      "km": 0.4,
+      "elev": 2004
+    },
+    {
+      "km": 0.8,
+      "elev": 2027
+    },
+    {
+      "km": 1.1,
+      "elev": 1998
+    },
+    {
+      "km": 1.5,
+      "elev": 1950
+    },
+    {
+      "km": 1.9,
+      "elev": 1946
+    },
+    {
+      "km": 2.2,
+      "elev": 1896
+    },
+    {
+      "km": 2.6,
+      "elev": 1866
+    },
+    {
+      "km": 3,
+      "elev": 1849
+    },
+    {
+      "km": 3.3,
+      "elev": 1857
+    },
+    {
+      "km": 3.7,
+      "elev": 1883
+    },
+    {
+      "km": 4.1,
+      "elev": 1896
+    },
+    {
+      "km": 4.4,
+      "elev": 1965
+    },
+    {
+      "km": 4.8,
+      "elev": 1995
+    },
+    {
+      "km": 4.9,
+      "elev": 1995
+    }
+  ]
+}

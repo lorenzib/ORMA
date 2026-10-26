@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fiemme-larici-verso-anterivo",
+  "generatedAt": "2026-10-26T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.5,
+    "ascentM": 60,
+    "highestPointM": 1249,
+    "expectedDuration": "2 hours",
+    "difficulty": "Easy",
+    "shadePercent": 68
+  },
+  "trailhead": {
+    "lat": 46.276165,
+    "lng": 11.351995,
+    "label": "Prà del Manz car park above Capriana, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.27997,
+      "lng": 11.3599612,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.277594,
+      "lng": 11.366801,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The whole walk is on a quiet tarred road open to cars (signed 50 km/h), with no pavement: keep your dog close and on the inside.",
+    "Two small road bridges.",
+    "Village streets and the cobbled square in Anterivo.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-26",
+      "licence": "ODbL"
+    }
+  ]
+}
