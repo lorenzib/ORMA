@@ -36,7 +36,7 @@ function survey(trail){
     assessment:{issues:[],pointCount:trail.path.length,distanceKm:trail.distance}};
 }
 
-function walkTheLane(){
+function walkTheLane(overrides={contractVersion:'1.0.0',trails:[]}){
   const trail=fastLaneTrail();
   const result=survey(trail);
   const review={reviewId:'r',approvalAllowed:true,blockingReasons:[],
@@ -59,7 +59,7 @@ function walkTheLane(){
     status:'approved-for-pr-creation',approvedBy:'benedetta',approvedAt:AT}]};
   const materialized=materializeApprovedPublications({requests,staging,
     routesByCandidate:{[trail.candidateId]:{geometry:result.geometry}},
-    overrides:{contractVersion:'1.0.0',trails:[]},operationalFacts:{trails:[]},at:AT});
+    overrides,operationalFacts:{trails:[]},at:AT});
   return {trail,dossier,handoff,staging,materialized};
 }
 
@@ -138,5 +138,35 @@ describe('a reviewed walk reaches the page',()=>{
       overrides:{contractVersion:'1.0.0',trails:[{id:trail.trailId,approvalId:'older',
         fields:{ormaVerified:true}}]},operationalFacts:{trails:[]},at:AT}))
       .toThrow(/would remove the ORMA Verified seal/);
+  });
+});
+
+describe('a publication keeps what a person established on the entry it replaces',()=>{
+  // Roda de Armentara, 26 October 2026: a hand-checked `routeRefs` entry was
+  // replaced wholesale and its numbered section would have left the page.
+  const segments=[{ref:'15A',path:[[46.5,11.8],[46.51,11.81]],
+    source:{url:'https://api.openstreetmap.org/api/0.6/relation/9511973/full',checkedAt:'2026-09-01'}}];
+  const prior=id=>({contractVersion:'1.0.0',trails:[{id,verificationScope:'routeRefs',reviewedAt:'2026-09-01',
+    fields:{routeRefSegments:segments}}]});
+
+  test('a field the publication does not supply is kept',()=>{
+    const id=fastLaneTrail().trailId;
+    const {materialized}=walkTheLane(prior(id));
+    const entry=materialized.overrides.trails.find(item=>item.id===id);
+    expect(materialized.overrides.trails.filter(item=>item.id===id)).toHaveLength(1);
+    expect(entry.verificationScope).toBe('routeReviewed');
+    expect(entry.fields.routeRefSegments).toEqual(segments);
+    // And the record the site reads still has it.
+    const applied=applyVerifiedTrailOverrides([{id,name:'x'}],materialized.overrides).find(item=>item.id===id);
+    expect(applied.routeRefSegments).toEqual(segments);
+  });
+
+  test('a field the publication does supply is the publication’s to set',()=>{
+    const id=fastLaneTrail().trailId;
+    const old={contractVersion:'1.0.0',trails:[{id,verificationScope:'routeRefs',reviewedAt:'2026-09-01',
+      fields:{routeRefSegments:segments,routeNumberGuidance:{start:'an old start'}}}]};
+    const {materialized}=walkTheLane(old);
+    const entry=materialized.overrides.trails.find(item=>item.id===id);
+    expect(entry.fields.routeNumberGuidance.start).not.toBe('an old start');
   });
 });

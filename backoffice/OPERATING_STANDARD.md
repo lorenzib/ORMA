@@ -1033,6 +1033,14 @@ hand (`tier: 'route-audited'`, graduation `verified`) or that carries a
 Like a disagreeing distance it is refused, not thrown: the rest of the batch
 still publishes. Changing such a trail is a human edit.
 
+A narrower hand edit is kept the same way. A publication replaces the trail's
+ledger entry, so anything a person set on the old entry that the publication
+does not supply -- a `routeRefs` entry's checked trail-number sections, a
+declared route shape, a withdrawal -- is carried into the new one. A field the
+publication does supply is its to set. On 26 October a publication would have
+taken Roda de Armentara's checked 15A section off the page; only a page test
+stopped it, and the worker failed every pass until this rule existed.
+
 ## A walk verified by hand is recorded in the backoffice
 
 > Proposed 24 October 2026; takes effect when merged.

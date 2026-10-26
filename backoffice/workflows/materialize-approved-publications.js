@@ -172,6 +172,18 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
     // withdrawn walk back on the site.
     const withdrawal = index >= 0 ? next.trails[index]?.fields?.withdrawal : null;
     if(withdrawal && !entry.fields.withdrawal) entry.fields = { ...entry.fields, withdrawal };
+    // The same holds for anything else a person established on the entry this
+    // replaces. Roda de Armentara carried a hand-checked `routeRefSegments`
+    // (where trail 15A runs along it) in a `routeRefs` entry; the publication
+    // that replaced it had no such field, and the walk would have lost its
+    // numbered section -- caught only by a page test, which then failed every
+    // worker pass from 26 October. A field the publication does not supply is
+    // kept; one it does supply is its to set.
+    const replaced = index >= 0 ? next.trails[index]?.fields : null;
+    if(replaced){
+      const kept = Object.keys(replaced).filter(key => !(key in entry.fields));
+      if(kept.length) entry.fields = { ...Object.fromEntries(kept.map(key => [key, replaced[key]])), ...entry.fields };
+    }
     if(index >= 0) next.trails[index] = entry;
     else next.trails.push(entry);
     entries.push(entry);
