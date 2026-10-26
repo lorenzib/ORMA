@@ -28,8 +28,8 @@ describe('what ORMA can say about its own record',()=>{
   test('the start it already published, said to be its own suggestion',()=>{
     const claim=routeGuidanceFromRecord(RECORD)['recommended-start'];
     expect(claim.proposedValue).toContain('loop edge nearest the Plaine-Joux parking');
-    // The coordinates, so a reader can go there.
-    expect(claim.proposedValue).toContain('45.93120');
+    // The point is pinned on the map beside the words; coordinates are noise.
+    expect(claim.proposedValue).not.toContain('45.93120');
     expect(claim.proposedValue).toContain(ORMA_SUGGESTION);
     expect(claim.proposedValue).toContain(CHECK_ACCESS);
     expect(claim.sources[0].authority).toBe(ORMA_AUTHORITY);
@@ -74,6 +74,29 @@ describe('what ORMA can say about its own record',()=>{
   test('"Start here," is a phrasing of the record, not part of the place',()=>{
     expect(recordedStart({startPoint:{label:'Start here, Lift station',lat:1,lng:2}}).label)
       .toBe('Lift station');
+  });
+});
+
+describe('the start reads as a sentence for walkers',()=>{
+  const start=label=>routeGuidanceFromRecord({id:'x',startPoint:{label,lat:45.19398,lng:6.39891}})['recommended-start'].proposedValue;
+
+  test('a start with no access point found says so plainly, not how ORMA searched',()=>{
+    // Live on Circuit des Sallanches on 24 October 2026.
+    const value=start('Route start per OpenStreetMap — best parking/access not yet verified');
+    expect(value).toBe(`Start where the route begins, marked on the map. No car park or bus stop has been confirmed nearby. ${ORMA_SUGGESTION} ${CHECK_ACCESS}`);
+    expect(value).not.toMatch(/OpenStreetMap|45\.19398|not yet verified/);
+  });
+
+  test('an access point is named as a walker would say it',()=>{
+    expect(start('Start here — Parking, 47 m from the route (OSM-verified access point)'))
+      .toBe(`Start at the car park, 47 m from the route, marked on the map. ${ORMA_SUGGESTION} ${CHECK_ACCESS}`);
+    expect(start('Start here — Bus stop Kirchplatz, 10 m from the route (OSM-verified access point)'))
+      .toMatch(/^Start at the bus stop Kirchplatz, 10 m from the route, marked on the map\./);
+  });
+
+  test('a named place keeps its name',()=>{
+    expect(start('Karersee car park, Welschnofen (official start)'))
+      .toMatch(/^Start at Karersee car park, Welschnofen \(official start\), marked on the map\./);
   });
 });
 

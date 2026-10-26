@@ -5,25 +5,26 @@
     "trails-data.js",
     "osm-trails-data.js",
     "osm-trails-savoy-data.js",
+    "board-trails-data.js",
     "trail-audits.js",
     "regions-config.js"
   ],
   "totals": {
-    "sourceRecords": 185,
-    "canonicalRecords": 185,
-    "published": 184,
+    "sourceRecords": 196,
+    "canonicalRecords": 196,
+    "published": 195,
     "draft": 1,
     "errors": 0
   },
   "byOrigin": {
     "curated": {
-      "total": 25,
-      "published": 25,
+      "total": 34,
+      "published": 34,
       "draft": 0
     },
     "osm": {
-      "total": 160,
-      "published": 159,
+      "total": 162,
+      "published": 161,
       "draft": 1
     }
   },

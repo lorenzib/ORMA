@@ -587,7 +587,8 @@ service cloud.firestore {
         && data.keys().hasOnly([
           'schemaVersion', 'entryId', 'date', 'trail', 'trailId', 'region',
           'dist', 'dur', 'cond', 'rating', 'note', 'photo', 'photos',
-          'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt'
+          'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt',
+          'walkedWith'
         ])
         && data.schemaVersion == 1
         && isShortString(data.entryId, 120)
@@ -612,6 +613,10 @@ service cloud.firestore {
         && data.gaps is number && data.gaps >= 0 && data.gaps <= 500
         && data.tale is map
         && data.tale.keys().hasOnly(['paws', 'energy', 'moment'])
+        // Who came along, by name, one per line. Optional: a walk with no
+        // companions does not carry the key, so older pages still write.
+        && (!('walkedWith' in data)
+          || (data.walkedWith is string && data.walkedWith.size() <= 400))
         && data.updatedAt is number && data.updatedAt >= 0;
     }
 

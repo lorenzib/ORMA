@@ -17,7 +17,7 @@ describe('Alpe di Siusi offline package', () => {
   test('is a complete, bounded second pilot package', () => {
     expect(manifest.trailId).toBe('alpe-siusi');
     expect(manifest.name).toBe('Alpe di Siusi Meadow Loop');
-    expect(manifest.verificationStatus).toBe('field-review-required');
+    expect(manifest.verificationStatus).toBe('not-verified');
     expect(manifest.resources).toHaveLength(16);
     expect(manifest.packageBytes).toBeLessThanOrEqual(manifest.packageBudgetBytes);
     expect(manifest.bounds).toEqual(graph.bounds);

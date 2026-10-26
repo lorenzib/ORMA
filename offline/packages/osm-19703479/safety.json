@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-19703479",
   "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 3.7,
@@ -27,12 +27,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "About 600 m on the provincial road SP98 (Vöraner Straße), 147 m of it signed 90 km/h with no pavement.",
     "Village and farm roads with cars, about 600 m.",
     "Bare porphyry rock on the summit, dropping steeply towards the village.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

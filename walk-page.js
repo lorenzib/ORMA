@@ -568,7 +568,8 @@
       localStorage.setItem(journalKey(), JSON.stringify(entries));
     } catch(e){}
     clearDraft();
-    window.location.href = 'journal.html?recorded=1';
+    // The journal opens on this walk, asking for a photo and who came along.
+    window.location.href = 'journal.html?saved=' + encodeURIComponent(entry.id);
   }
 
   // ---- Controls ------------------------------------------------------

@@ -274,8 +274,11 @@ function directionsSection(t) {
   ];
   return `<h2>How to follow this route</h2>
     ${shields}
-    ${lines.map(([label, text]) =>
-    `<p><b>${escapeHtml(label)}:</b> ${escapeHtml(text)}</p>`).join('\n    ')}`;
+    ${lines.map(([label, text]) => label === 'Start' && /^Start\b/.test(text)
+    // "Start: Start at …" read the word twice; the sentence's own first word
+    // takes the bold instead (trail-blueprint.js does the same in the app).
+    ? `<p><b>Start</b>${escapeHtml(text.slice(5))}</p>`
+    : `<p><b>${escapeHtml(label)}:</b> ${escapeHtml(text)}</p>`).join('\n    ')}`;
 }
 
 // Valley hub guides (add here as new area guides are published)

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-1671736",
   "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "One way",
     "distanceKm": 8,
@@ -41,12 +41,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "A steep climb up through a meadow to the Hoferhof (the board warns of it).",
     "About 3.5 km on farm roads and lanes open to cars.",
     "Narrow paths (about 0.8 m) on the Höfeweg itself.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

@@ -268,6 +268,61 @@
       "name": "Römerweg Kiens",
       "slug": "roemerweg-kiens",
       "gloss": "the Roman road walk"
+    },
+    "osm-12737724": {
+      "name": "Historische Rundwanderung Teis",
+      "slug": "historische-rundwanderung-teis",
+      "gloss": "the Teis history walk"
+    },
+    "osm-6401355": {
+      "name": "Panoramarundweg Concordia 360°",
+      "slug": "panoramarundweg-concordia-360",
+      "gloss": "the Kronplatz summit panorama loop"
+    },
+    "fassa-da-canazei-a-penia": {
+      "name": "Da Canazei a Penìa",
+      "slug": "da-canazei-a-penia",
+      "gloss": "the Avisio loop to Penìa"
+    },
+    "fassa-sentiero-della-foresta": {
+      "name": "Sentiero della Foresta",
+      "slug": "sentiero-della-foresta",
+      "gloss": "the forest trail from Ciampedie to Gardeccia"
+    },
+    "fassa-antichi-bagnes": {
+      "name": "Agli antichi Bagnes",
+      "slug": "antichi-bagnes-pozza",
+      "gloss": "the old baths walk in Pozza"
+    },
+    "fassa-borgo-dei-patins": {
+      "name": "Vigo, borgo dei patins",
+      "slug": "vigo-borgo-dei-patins",
+      "gloss": "the Vigo hamlets walk"
+    },
+    "fassa-prato-di-sorte": {
+      "name": "Prato di Sorte",
+      "slug": "prato-di-sorte-moena",
+      "gloss": "the Prato di Sorte loop in Moena"
+    },
+    "fassa-passato-ritrovato": {
+      "name": "Il passato ritrovato",
+      "slug": "passato-ritrovato-pian",
+      "gloss": "the old farms walk to Pian"
+    },
+    "fassa-santuario-dei-pellegrini": {
+      "name": "Al santuario di Santa Giuliana",
+      "slug": "santuario-santa-giuliana",
+      "gloss": "the pilgrims’ walk to Santa Giuliana"
+    },
+    "fassa-malga-aloch": {
+      "name": "Malga Aloch e Masc Aloch",
+      "slug": "malga-aloch-pozza",
+      "gloss": "the farm walk to Malga Aloch"
+    },
+    "fassa-molin-de-pezol": {
+      "name": "Molin de Pèzol",
+      "slug": "molin-de-pezol",
+      "gloss": "the mill walk to the Molin de Pèzol"
     }
   }
 }

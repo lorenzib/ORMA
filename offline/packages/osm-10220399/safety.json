@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-10220399",
   "generatedAt": "2026-10-24T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 4.3,
@@ -41,12 +41,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Forest roads and tracks used by forestry and farm vehicles.",
     "A barrier across the track just after the car park.",
     "A short stretch of narrower path near km 3.7–4.0.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

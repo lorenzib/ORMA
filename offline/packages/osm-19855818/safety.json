@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-19855818",
   "generatedAt": "2026-10-24T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 8.3,
@@ -19,12 +19,11 @@
   },
   "waypoints": [],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Stone steps up to Plan Salin and a long switchback descent ('Les 51 virages').",
     "Wet, shaded ground by the waterfalls; strongly advised against in rain or storms (official).",
     "Mountain bikes may cross the path in the forest (official).",
     "No water point is listed on this walk: carry enough for you and your dog.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

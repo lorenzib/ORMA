@@ -55,6 +55,17 @@
           "notes": "The loop stays on the Cherz plateau at about 2,100 m and rides no lift. Reach it on foot from Passo Campolongo, a path from beside the Cherz I bottom station climbs about 220 m, or by the Cherz I chairlift (4-seat, open chairs) when it operates; the Vizza chairlift (2-seat, open) tops out 90 m from the start. The start point is named after a lift station as an access landmark, not because the route depends on it."
         }
       }
+    },
+    {
+      "id": "fassa-sentiero-della-foresta",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Catinaccio cable car (Vigo – Ciampedie)",
+          "notes": "The walk starts and ends on the Ciampedie plateau, which you reach by the closed cabins of the Catinaccio cable car from Vigo. The APT asks for a lead and a muzzle on lifts."
+        }
+      }
     }
   ]
 }

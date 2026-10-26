@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "osm-9492594",
   "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 7.7,
@@ -41,13 +41,12 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Heat risk is high on this walk: start early and carry extra water.",
     "79 m on the SP139 Lajen road without a pavement.",
     "Two crossings of the busy Grödner Straße (SS242dir) in Ried, no pavement.",
     "Crossing of the SP139 above Ried.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",

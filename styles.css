@@ -3928,7 +3928,7 @@ html.early-member .topnav{display:none;}
 }
 
 @media (min-width:701px) and (max-width:1040px){
-  #returningCustomerHomepage{height:100vh;height:100dvh;}
+  #returningCustomerHomepage{height:auto;min-height:100vh;}
   .li-toolbar{display:flex;flex-wrap:wrap;padding:9px 16px;gap:9px;}
   .li-mobile-actions{display:contents;}
   .li-toolbar-greet{display:flex;flex:1 1 100%;order:-1;}
@@ -3940,13 +3940,12 @@ html.early-member .topnav{display:none;}
   .li-quick-filters{order:5;border-inline:0;padding-inline:0;}
   .li-saved-only{order:6;}
   .li-plan-route{order:7;}
-  .li-body{display:block;min-height:0;}
+  /* No Map/List switch since August, so both panes show: the map on top,
+     the ranked list under it, the way the desktop shows them side by side. */
+  #returningCustomerHomepage .li-body{grid-template-columns:1fr;height:auto;min-height:0;}
   .li-list-title-row{padding-right:0;}
-  .li-body[data-pane="list"] .li-map,
-  .li-body[data-pane="map"] .li-list{display:none;}
-  .li-map,
-  .li-list{height:100%;min-height:0;}
-  .li-list{border-left:0;overflow-y:auto;}
+  .li-map{height:52vh;min-height:340px;}
+  .li-list{border-left:0;border-top:1px solid var(--paper-line);overflow:visible;}
   .li-filters-menu{right:auto;left:0;}
 }
 
@@ -4064,6 +4063,8 @@ html.early-member .topnav{display:none;}
 .hk-share[hidden]{display:none;}
 .hk-share b{font-size:13px;display:block;color:var(--ink);}
 .hk-share small{display:block;font-size:12px;color:var(--ink-soft);line-height:1.5;margin-top:2px;}
+.hk-saved-note{margin:18px 0 0;color:#2C5C34;font:700 13px 'Inter',sans-serif;}
+.hk-saved-note[hidden]{display:none;}
 .hk-actions{display:flex;gap:10px;margin-top:20px;}
 .hk-actions[hidden]{display:none;}
 .hk-ghost{padding:12px 18px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:transparent;color:var(--ink-soft);font:600 13px 'Inter',sans-serif;cursor:pointer;}
