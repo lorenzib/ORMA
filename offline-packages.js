@@ -12,6 +12,7 @@
     'fassa-borgo-dei-patins': "Vigo, borgo dei patins",
     'fassa-da-canazei-a-penia': "Da Canazei a Penìa",
     'fassa-malga-aloch': "Malga Aloch e Masc Aloch",
+    'fassa-molin-de-pezol': "Molin de Pèzol",
     'fassa-passato-ritrovato': "Il passato ritrovato",
     'fassa-prato-di-sorte': "Prato di Sorte",
     'fassa-santuario-dei-pellegrini': "Al santuario di Santa Giuliana",
