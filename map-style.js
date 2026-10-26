@@ -330,7 +330,8 @@
       layout: {
         visibility,
         'symbol-placement': 'line',
-        'symbol-spacing': 240,
+        // Wide enough that a loop on one route is not numbered at every bend.
+        'symbol-spacing': 320,
         'text-field': ['get', 'ref'],
         'text-font': FONT_BOLD,
         'text-size': 13,
