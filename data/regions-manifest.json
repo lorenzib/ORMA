@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T09:37:38.278Z",
+  "generatedAt": "2026-10-27T09:59:13.612Z",
   "regions": {
     "dolomites": {
-      "trailCount": 176,
-      "trails": "data/regions/dolomites-trails.js?v=c6870eb73dfc",
+      "trailCount": 178,
+      "trails": "data/regions/dolomites-trails.js?v=552a4de5e0d7",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -181,6 +181,8 @@
         "primiero-monte-vederna": "data/trail-details/primiero-monte-vederna.js?v=18784533ea2e",
         "primiero-malga-crel": "data/trail-details/primiero-malga-crel.js?v=f592a897f9a1",
         "fiemme-sentiero-botanico": "data/trail-details/fiemme-sentiero-botanico.js?v=a6df85c7a394",
+        "primiero-ponte-su-funi": "data/trail-details/primiero-ponte-su-funi.js?v=677694996ff4",
+        "primiero-via-della-frutta-antica": "data/trail-details/primiero-via-della-frutta-antica.js?v=c517c7fb4ef0",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -426,6 +428,8 @@
     "primiero-monte-vederna": "dolomites",
     "primiero-malga-crel": "dolomites",
     "fiemme-sentiero-botanico": "dolomites",
+    "primiero-ponte-su-funi": "dolomites",
+    "primiero-via-della-frutta-antica": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -706,6 +710,8 @@
     "primiero-monte-vederna": "monte-vederna",
     "primiero-malga-crel": "malga-crel",
     "fiemme-sentiero-botanico": "sentiero-botanico-grauno-capriana",
+    "primiero-ponte-su-funi": "ponte-su-funi",
+    "primiero-via-della-frutta-antica": "via-della-frutta-antica",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -935,6 +941,8 @@
     "monte-vederna": "primiero-monte-vederna",
     "malga-crel": "primiero-malga-crel",
     "sentiero-botanico-grauno-capriana": "fiemme-sentiero-botanico",
+    "ponte-su-funi": "primiero-ponte-su-funi",
+    "via-della-frutta-antica": "primiero-via-della-frutta-antica",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

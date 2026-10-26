@@ -478,6 +478,16 @@
       "name": "Sentiero botanico naturalistico",
       "slug": "sentiero-botanico-grauno-capriana",
       "gloss": "the botanical path from Grauno to Capriana"
+    },
+    "primiero-ponte-su-funi": {
+      "name": "Ponte su Funi Rio San Piero da Mezzano",
+      "slug": "ponte-su-funi",
+      "gloss": "the rope-bridge loop from Mezzano to Imer"
+    },
+    "primiero-via-della-frutta-antica": {
+      "name": "La via della frutta antica",
+      "slug": "via-della-frutta-antica",
+      "gloss": "the old-fruit walk from Pieve to Passo Gobbera"
     }
   }
 }

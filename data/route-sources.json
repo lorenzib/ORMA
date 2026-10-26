@@ -1434,6 +1434,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-26T18:00:00.000Z"
     },
+    "primiero-ponte-su-funi": {
+      "url": "https://www.sanmartino.com/it/itinerari/ponte-su-funi-rio-san-piero-da-mezzano",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Ponte su Funi Rio San Piero da Mezzano",
+      "quote": "Distanza 6,2 km Durata 2:05 h Salita 240 m Discesa 243 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
     "primiero-san-martino-di-castrozza-val-di-roda-prati-col": {
       "url": "https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-val-di-roda-prati-col",
       "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
@@ -1465,6 +1473,14 @@
       "quote": "Distanza 2,3 km Durata 0:36 h Salita 37 m Discesa 41 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-via-della-frutta-antica": {
+      "url": "https://www.sanmartino.com/it/itinerari/la-via-della-frutta-antica",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "La via della frutta antica",
+      "quote": "Distanza 8 km Durata 3:00 h Salita 321 m Discesa 52 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
     },
     "santa-maddalena": {
       "url": "https://www.odlesdolomites.com/en/activities/48ACC63FE1421483734B750F6788CED9",
