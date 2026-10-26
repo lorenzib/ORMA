@@ -448,6 +448,21 @@
       "name": "San Martino di Castrozza - Malga Ces",
       "slug": "malga-ces",
       "gloss": "the forest walk from San Martino to Malga Ces"
+    },
+    "fiemme-pradi-da-le-fior": {
+      "name": "I Pradi da le Fior",
+      "slug": "pradi-da-le-fior",
+      "gloss": "the flower meadows walk from Malga Sass"
+    },
+    "fiemme-passo-oclini": {
+      "name": "Passo Oclini, tra il Corno Nero e il Corno Bianco",
+      "slug": "passo-oclini-gurndin-isi",
+      "gloss": "the loop from Passo Oclini to Malga Gurndin and the Isi Hütte"
+    },
+    "fiemme-masi-comunicanti": {
+      "name": "Masi Comunicanti",
+      "slug": "masi-comunicanti-capriana",
+      "gloss": "the walk through the old farmsteads below Capriana"
     }
   }
 }

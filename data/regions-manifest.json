@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-26T21:27:56.160Z",
+  "generatedAt": "2026-10-26T21:45:27.772Z",
   "regions": {
     "dolomites": {
-      "trailCount": 170,
-      "trails": "data/regions/dolomites-trails.js?v=15917bc96490",
+      "trailCount": 173,
+      "trails": "data/regions/dolomites-trails.js?v=299a83bcc14d",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -108,7 +108,7 @@
         "osm-14058492": "data/trail-details/osm-14058492.js?v=1f5c4baeb290",
         "osm-14058632": "data/trail-details/osm-14058632.js?v=b9556ad9e0a1",
         "osm-15791408": "data/trail-details/osm-15791408.js?v=9452bcb73880",
-        "osm-19330972": "data/trail-details/osm-19330972.js?v=3e0bb0aaa8ee",
+        "osm-19330972": "data/trail-details/osm-19330972.js?v=9bf9501bf042",
         "osm-19697977": "data/trail-details/osm-19697977.js?v=67f3521c1b74",
         "osm-19703479": "data/trail-details/osm-19703479.js?v=0b8078177149",
         "osm-19974724": "data/trail-details/osm-19974724.js?v=5c83490a17bb",
@@ -172,9 +172,12 @@
         "fiemme-passeggiata-insolita": "data/trail-details/fiemme-passeggiata-insolita.js?v=111701dc9e7b",
         "fiemme-cascatelle-di-ziano": "data/trail-details/fiemme-cascatelle-di-ziano.js?v=3880870580c9",
         "fiemme-giro-cavalese-castello": "data/trail-details/fiemme-giro-cavalese-castello.js?v=04442e3bd376",
-        "fiemme-larici-verso-anterivo": "data/trail-details/fiemme-larici-verso-anterivo.js?v=d0dbf4916cba",
+        "fiemme-larici-verso-anterivo": "data/trail-details/fiemme-larici-verso-anterivo.js?v=9027b1463c5e",
         "fiemme-varena-spianez": "data/trail-details/fiemme-varena-spianez.js?v=a50019de7099",
         "primiero-malga-ces": "data/trail-details/primiero-malga-ces.js?v=057c73deaddd",
+        "fiemme-pradi-da-le-fior": "data/trail-details/fiemme-pradi-da-le-fior.js?v=2dbdab6f9bb6",
+        "fiemme-passo-oclini": "data/trail-details/fiemme-passo-oclini.js?v=1ba1357e1c97",
+        "fiemme-masi-comunicanti": "data/trail-details/fiemme-masi-comunicanti.js?v=876907fd555a",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -414,6 +417,9 @@
     "fiemme-larici-verso-anterivo": "dolomites",
     "fiemme-varena-spianez": "dolomites",
     "primiero-malga-ces": "dolomites",
+    "fiemme-pradi-da-le-fior": "dolomites",
+    "fiemme-passo-oclini": "dolomites",
+    "fiemme-masi-comunicanti": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -688,6 +694,9 @@
     "fiemme-larici-verso-anterivo": "pra-del-manz-to-anterivo",
     "fiemme-varena-spianez": "varena-spianez-loop",
     "primiero-malga-ces": "malga-ces",
+    "fiemme-pradi-da-le-fior": "pradi-da-le-fior",
+    "fiemme-passo-oclini": "passo-oclini-gurndin-isi",
+    "fiemme-masi-comunicanti": "masi-comunicanti-capriana",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -911,6 +920,9 @@
     "pra-del-manz-to-anterivo": "fiemme-larici-verso-anterivo",
     "varena-spianez-loop": "fiemme-varena-spianez",
     "malga-ces": "primiero-malga-ces",
+    "pradi-da-le-fior": "fiemme-pradi-da-le-fior",
+    "passo-oclini-gurndin-isi": "fiemme-passo-oclini",
+    "masi-comunicanti-capriana": "fiemme-masi-comunicanti",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
