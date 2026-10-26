@@ -1234,6 +1234,54 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "primiero-fiera-pieve": {
+      "url": "https://www.sanmartino.com/it/itinerari/fiera-pieve",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Fiera-Pieve",
+      "quote": "Distanza 2,6 km Durata 0:41 h Salita 22 m Discesa 22 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-la-guana-di-primiero": {
+      "url": "https://www.sanmartino.com/it/itinerari/la-guana-di-primiero",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "La Guana di Primiero",
+      "quote": "Distanza 3 km Durata 0:45 h Salita 47 m Discesa 47 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-percorso-verde": {
+      "url": "https://www.sanmartino.com/it/itinerari/percorso-verde-i-percorsi-del-benessere",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Percorso Verde (I percorsi del benessere)",
+      "quote": "Distanza 1,6 km Durata 0:30 h Salita 23 m Discesa 23 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-siror": {
+      "url": "https://www.sanmartino.com/it/itinerari/siror",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Siror",
+      "quote": "Distanza 3,9 km Durata 1:00 h Salita 69 m Discesa 69 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-tonadico": {
+      "url": "https://www.sanmartino.com/it/itinerari/tonadico",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Tonadico",
+      "quote": "Distanza 4 km Durata 1:00 h Salita 57 m Discesa 61 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-transacqua": {
+      "url": "https://www.sanmartino.com/it/itinerari/transacqua",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Transacqua",
+      "quote": "Distanza 2,3 km Durata 0:36 h Salita 37 m Discesa 41 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
     "santa-maddalena": {
       "url": "https://www.odlesdolomites.com/en/activities/48ACC63FE1421483734B750F6788CED9",
       "publisher": "Tourismusgenossenschaft Odles",

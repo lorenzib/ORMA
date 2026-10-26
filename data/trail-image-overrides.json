@@ -3154,6 +3154,108 @@
       }
     },
     {
+      "id": "primiero-fiera-pieve",
+      "approvedReviewId": "mapillary-primiero-fiera-pieve-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-fiera-pieve-fiera-square.jpg",
+        "heroImage": "images/trails/primiero-fiera-pieve-fiera-square.jpg",
+        "imageAlt": "A street corner in Fiera di Primiero in sunshine, a pale pink palazzo with arched shopfronts, flowers and parked cars, a rocky peak and wooded slope behind",
+        "imageCredit": "The centre of Fiera di Primiero",
+        "imageCreditText": "The centre of Fiera di Primiero by laniuscollurio",
+        "imageCreator": "laniuscollurio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=410664677833321",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "primiero-la-guana-di-primiero",
+      "approvedReviewId": "commons-primiero-la-guana-di-primiero-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-la-guana-di-primiero-canali-fiera.jpg",
+        "heroImage": "images/trails/primiero-la-guana-di-primiero-canali-fiera.jpg",
+        "imageAlt": "A clear mountain river between grassy banks in Fiera di Primiero, a large hotel and houses on the left, a footbridge and green wooded mountains behind under blue sky",
+        "imageCredit": "The Canali in Fiera di Primiero",
+        "imageCreditText": "The Canali in Fiera di Primiero by Nick Savchenko",
+        "imageCreator": "Nick Savchenko",
+        "imageLicence": "CC BY-SA 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Fiera_di_Primero_(28539796873).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "primiero-percorso-verde",
+      "approvedReviewId": "mapillary-primiero-percorso-verde-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-percorso-verde-dolomite-spire.jpg",
+        "heroImage": "images/trails/primiero-percorso-verde-dolomite-spire.jpg",
+        "imageAlt": "A road past a yellow hotel with flower-filled balconies and lavender beds, a rocky Dolomite spire above wooded slopes under blue sky",
+        "imageCredit": "The Percorso Verde in Tonadico",
+        "imageCreditText": "The Percorso Verde in Tonadico by laniuscollurio",
+        "imageCreator": "laniuscollurio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1665897057129367",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "primiero-siror",
+      "approvedReviewId": "mapillary-primiero-siror-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-siror-church.jpg",
+        "heroImage": "images/trails/primiero-siror-church.jpg",
+        "imageAlt": "A road into Siror between wooden balconied houses, the green onion-domed bell tower of the church and pale Dolomite walls behind",
+        "imageCredit": "A street in Siror",
+        "imageCreditText": "A street in Siror by laniuscollurio",
+        "imageCreator": "laniuscollurio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1681761848873662",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "primiero-tonadico",
+      "approvedReviewId": "mapillary-primiero-tonadico-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-tonadico-dolomite-spire.jpg",
+        "heroImage": "images/trails/primiero-tonadico-dolomite-spire.jpg",
+        "imageAlt": "A village street in Tonadico with balconied houses and flower boxes, a jagged Dolomite spire rising above a wooded slope under blue sky",
+        "imageCredit": "A street in Tonadico",
+        "imageCreditText": "A street in Tonadico by laniuscollurio",
+        "imageCreator": "laniuscollurio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=545203820694799",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "primiero-transacqua",
+      "approvedReviewId": "mapillary-primiero-transacqua-on-route",
+      "approvedAt": "2026-10-26T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-transacqua-viale-fiera.jpg",
+        "heroImage": "images/trails/primiero-transacqua-viale-fiera.jpg",
+        "imageAlt": "A tree-lined pedestrian avenue beside a road in Fiera di Primiero, ornate lamp posts and pink flowers, people walking, mountains behind",
+        "imageCredit": "The avenue in Fiera di Primiero",
+        "imageCreditText": "The avenue in Fiera di Primiero by laniuscollurio",
+        "imageCreator": "laniuscollurio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=826679942046531",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "santa-maddalena",
       "approvedReviewId": "commons-santa-maddalena",
       "approvedAt": "2026-09-06T14:27:06.592Z",

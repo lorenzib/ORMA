@@ -46566,6 +46566,426 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 3.2, lat: 46.3927, lng: 11.82806, osmId: 'way/199553709', name: 'Rifugio Fuciade' }
       ],
       desc: 'An almost level walk from the San Pellegrino pass to the Fuciade alp, a wide pasture of old wooden hay barns and chapels facing the Marmolada. The APT lists 6.9 km and 94 m of ascent.'
+    },
+    'primiero-fiera-pieve': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
+      // APT San Martino di Castrozza’s walk “Fiera-Pieve”, marked Dog-friendly on its
+      // Outdooractive page. The line is drawn on 37 OSM ways along the line the APT
+      // publishes (data/board-line-routes.geojson).
+      // Primiero San Martino di Castrozza’s Regolamento di Polizia Urbana (Art. 28)
+      // lets dogs on every public place on a lead of at most 1.5 m, a muzzle in
+      // public buildings and crowds, and keeps them out of playgrounds, schools,
+      // places of care and worship; nothing on the line bans them.
+      // No Natura 2000 site, park or reserve on the line (Ministry WMS, checked
+      // against Lagorai, and the Province’s ZSC, ZPS, park and reserve layers).
+      area: 'Fiera di Primiero and Pieve, Primiero San Martino di Castrozza',
+      distance: 2.6,
+      elevation: 22,
+      hours: '0.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the bus station in Fiera di Primiero through the old town to Pieve, the parish church and the cemetery, and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A street corner in the centre of Fiera di Primiero on the walk, a Dolomite peak behind, in August (laniuscollurio on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official loop 2.6 km from Autostazione delle Corriere, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 37 OSM ways along the APT’s published line, 2.6 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the bus station in Fiera through the old mining town, past Palazzo Welsperg, the Palazzo delle Miniere and the church of San Martino, to Pieve and its parish church of Santa Maria Assunta and monumental cemetery, and back.',
+        mapPoints: 'Start at Autostazione delle Corriere, the APT’s start; drinking water at the start, at km 0.4, at km 1 and at km 1.5 (OSM nodes 2394792821, 1358269069, 463603447, 804127875).',
+        elevation: 'Official 2.6 km, 22 m up and 22 m down, 41 min, highest point 724 m, lowest 701 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Fiera-Pieve (sanmartino.com and its Outdooractive page, marked Dog-friendly)',
+          'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (2016, amended 2018), Art. 26 and 28',
+          'Natura 2000 sites (Ministry of the Environment register and the Province of Trento’s ZSC and ZPS layers), the Paneveggio – Pale di San Martino nature park and Trentino’s provincial and local reserves (none on the line or within 800 m)',
+          'OpenStreetMap ways along the APT line (37 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Mostly tarmac and stone setts in the town, open to cars', 'Several crossings of the busy main road through Fiera, as the APT warns', 'Playgrounds on the way, where dogs may not go'],
+      terrainType: 'Town streets, pavements and stone setts; pram-friendly',
+      shadeDescription: 'Open: almost no tree cover is mapped on the line, apart from the avenue trees along the main street.',
+      terrainDescription: 'A level stroll at 700–724 m through Fiera di Primiero, once the valley’s mining town, and the old parish village of Pieve, on the valley floor below the Pale di San Martino.',
+      waterDescription: 'Drinking fountains at the start, at km 0.4, at km 1 and at km 1.5; bars and cafés at the start and on the way.',
+      dogNotes: 'Primiero San Martino di Castrozza’s own rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches.',
+      tips: 'Start at the bus station: 2.6 km, level, about 40 minutes. Keep your dog on a short lead (1.5 m at most) in the streets and at the road crossings. Plenty of fountains and cafés; on a summer afternoon go early or late.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, Fiera-Pieve', url: 'https://www.sanmartino.com/it/itinerari/fiera-pieve' },
+        { label: 'Outdooractive, Fiera-Pieve (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/23513958' },
+        { label: 'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.173524, lng: 11.827269, label: 'Autostazione delle Corriere, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.1731412, lng: 11.8282878, osmId: 'node/2394792821', label: 'Drinking fountain at the start' },
+        { km: 0.4, lat: 46.1750389, lng: 11.831555, osmId: 'node/1358269069', label: 'Drinking fountain' },
+        { km: 1, lat: 46.1798578, lng: 11.8299134, osmId: 'node/463603447', label: 'Drinking fountain' },
+        { km: 1.5, lat: 46.1756702, lng: 11.8282751, osmId: 'node/804127875', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.17465, lng: 11.82605, osmId: 'node/1563104824', name: 'La Boteghina' },
+        { km: 0, lat: 46.17457, lng: 11.827, osmId: 'node/2394661692', name: 'La terrazza' },
+        { km: 0.2, lat: 46.17304, lng: 11.83161, osmId: 'node/13121145001', name: 'Bar fossi' },
+        { km: 0.5, lat: 46.17685, lng: 11.82947, osmId: 'node/1820559440', name: 'Bar Aquila nera' },
+        { km: 1, lat: 46.18038, lng: 11.83191, osmId: 'way/394984768', name: 'Ristorante Bar Pizzeria Capriccio' }
+      ],
+      desc: 'A short, level loop through the old mining town of Fiera di Primiero and the parish village of Pieve, past palaces, chapels and the church of Santa Maria Assunta. The APT lists 2.6 km and 22 m of ascent.'
+    },
+    'primiero-transacqua': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
+      // APT San Martino di Castrozza’s walk “Transacqua”, marked Dog-friendly on its
+      // Outdooractive page. The line is drawn on 33 OSM ways along the line the APT
+      // publishes (data/board-line-routes.geojson).
+      // Primiero San Martino di Castrozza’s Regolamento di Polizia Urbana (Art. 28)
+      // lets dogs on every public place on a lead of at most 1.5 m, a muzzle in
+      // public buildings and crowds, and keeps them out of playgrounds, schools,
+      // places of care and worship; nothing on the line bans them.
+      // No Natura 2000 site, park or reserve on the line (Ministry WMS, checked
+      // against Lagorai, and the Province’s ZSC, ZPS, park and reserve layers).
+      area: 'Transacqua, Primiero San Martino di Castrozza',
+      distance: 2.3,
+      elevation: 37,
+      hours: '0.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the bus station in Fiera di Primiero across the river into Transacqua, round its old streets and square, and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The tree-lined avenue in Fiera di Primiero where the walk starts, in August (laniuscollurio on Mapillary, CC BY-SA 4.0), 11 m from the line.',
+        route: 'Official loop 2.3 km from Autostazione delle Corriere, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 33 OSM ways along the APT’s published line, 2.2 km, with 98% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the bus station in Fiera across the river into Transacqua, past Palazzo Someda, the Ferrarezza, wayside shrines and old houses with arches, to Piazza San Marco and the church of San Marco, and back by Villa Caneva.',
+        mapPoints: 'Start at Autostazione delle Corriere, the APT’s start; drinking water at the start, at km 0.6 and at km 1.1 (OSM nodes 2394661691, 11155288749, 13192482108).',
+        elevation: 'Official 2.3 km, 37 m up and 41 m down, 36 min, highest point 741 m, lowest 702 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Transacqua (sanmartino.com and its Outdooractive page, marked Dog-friendly)',
+          'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (2016, amended 2018), Art. 26 and 28',
+          'Natura 2000 sites (Ministry of the Environment register and the Province of Trento’s ZSC and ZPS layers), the Paneveggio – Pale di San Martino nature park and Trentino’s provincial and local reserves (none on the line or within 800 m)',
+          'OpenStreetMap ways along the APT line (33 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 2,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Mostly tarmac in the village streets, open to cars', 'Crossings of busy roads, as the APT warns', 'A short climb into the upper village'],
+      terrainType: 'Village streets and lanes; pram-friendly',
+      shadeDescription: 'Open: very little tree cover is mapped on the line.',
+      terrainDescription: 'A short walk at 702–741 m round the old village of Transacqua, across the river from Fiera di Primiero, with its frescoed houses, shrines and the church of San Marco.',
+      waterDescription: 'Drinking fountains at the start, at km 0.6 and at km 1.1; bars and cafés at the start and on the way.',
+      dogNotes: 'Primiero San Martino di Castrozza’s own rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches.',
+      tips: 'Start at the bus station in Fiera: 2.3 km, gently up and down, just over half an hour. Keep your dog on a short lead (1.5 m at most) in the streets. Fountains in both villages; go early or late in summer.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, Transacqua', url: 'https://www.sanmartino.com/it/itinerari/transacqua' },
+        { label: 'Outdooractive, Transacqua (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/23514265' },
+        { label: 'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.174019, lng: 11.829464, label: 'Autostazione delle Corriere, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.1744118, lng: 11.8287823, osmId: 'node/2394661691', label: 'Drinking fountain at the start' },
+        { km: 0.6, lat: 46.1768901, lng: 11.8355232, osmId: 'node/11155288749', label: 'Drinking fountain' },
+        { km: 1.1, lat: 46.1766717, lng: 11.838318, osmId: 'node/13192482108', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.17457, lng: 11.827, osmId: 'node/2394661692', name: 'La terrazza' },
+        { km: 0, lat: 46.17565, lng: 11.82815, osmId: 'node/2394661697', name: 'La Caffetteria' },
+        { km: 0.1, lat: 46.17685, lng: 11.82947, osmId: 'node/1820559440', name: 'Bar Aquila nera' },
+        { km: 1.4, lat: 46.17365, lng: 11.83409, osmId: 'node/3229951011', name: 'Bivacco Bar' }
+      ],
+      desc: 'A short loop from Fiera di Primiero into the old village of Transacqua, past frescoed houses, wayside shrines and Piazza San Marco. The APT lists 2.3 km and 37 m of ascent.'
+    },
+    'primiero-tonadico': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
+      // APT San Martino di Castrozza’s walk “Tonadico”, marked Dog-friendly on its
+      // Outdooractive page. The line is drawn on 49 OSM ways along the line the APT
+      // publishes (data/board-line-routes.geojson).
+      // Primiero San Martino di Castrozza’s Regolamento di Polizia Urbana (Art. 28)
+      // lets dogs on every public place on a lead of at most 1.5 m, a muzzle in
+      // public buildings and crowds, and keeps them out of playgrounds, schools,
+      // places of care and worship; nothing on the line bans them.
+      // No Natura 2000 site, park or reserve on the line (Ministry WMS, checked
+      // against Lagorai, and the Province’s ZSC, ZPS, park and reserve layers).
+      area: 'Tonadico, Primiero San Martino di Castrozza',
+      distance: 4,
+      elevation: 57,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car parks by the Vallombrosa park round the village of Tonadico and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A street in Tonadico on the walk, a Dolomite spire above it, in August (laniuscollurio on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official loop 4 km from Parcheggi in prossimità del parco Vallombrosa, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 49 OSM ways along the APT’s published line, 3.8 km, with 99% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the car parks by the Vallombrosa park up into Tonadico, round the village past Palazzo Scopoli, painted houses and the churches of San Vittore and San Sebastiano, and back down.',
+        mapPoints: 'Start at Parcheggi in prossimità del parco Vallombrosa, the APT’s start; drinking water at the start, at km 1.5, at km 2 and at km 3 (OSM nodes 463603447, 2177503747, 2175692593, 11155288749).',
+        elevation: 'Official 4 km, 57 m up and 61 m down, 1 h, highest point 768 m, lowest 712 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Tonadico (sanmartino.com and its Outdooractive page, marked Dog-friendly)',
+          'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (2016, amended 2018), Art. 26 and 28',
+          'Natura 2000 sites (Ministry of the Environment register and the Province of Trento’s ZSC and ZPS layers), the Paneveggio – Pale di San Martino nature park and Trentino’s provincial and local reserves (none on the line or within 800 m)',
+          'OpenStreetMap ways along the APT line (49 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About three quarters on tarmac, village streets open to cars', 'Crossings of busy roads, as the APT warns', 'About 700 m on a natural path'],
+      terrainType: 'Village streets and lanes with a stretch of natural path',
+      shadeDescription: 'Open: almost no tree cover is mapped on the line.',
+      terrainDescription: 'A gentle loop at 712–768 m round Tonadico, at the foot of the Pale di San Martino, with the Dolomite spires of the Pale above the roofs.',
+      waterDescription: 'Drinking fountains at the start, at km 1.5, at km 2 and at km 3; bars and cafés at the start and on the way.',
+      dogNotes: 'Primiero San Martino di Castrozza’s own rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches.',
+      tips: 'Start at the car parks by the Vallombrosa park: 4 km, gentle, about an hour. Keep your dog on a short lead (1.5 m at most) in the streets. Fountains in the village; go early or late in summer.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, Tonadico', url: 'https://www.sanmartino.com/it/itinerari/tonadico' },
+        { label: 'Outdooractive, Tonadico (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/23514755' },
+        { label: 'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.179716, lng: 11.830565, label: 'Parcheggi in prossimità del parco Vallombrosa, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.1798578, lng: 11.8299134, osmId: 'node/463603447', label: 'Drinking fountain at the start' },
+        { km: 1.5, lat: 46.1835128, lng: 11.8397362, osmId: 'node/2177503747', label: 'Drinking fountain' },
+        { km: 2, lat: 46.1822938, lng: 11.8390185, osmId: 'node/2175692593', label: 'Drinking fountain' },
+        { km: 3, lat: 46.1768901, lng: 11.8355232, osmId: 'node/11155288749', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.18038, lng: 11.83191, osmId: 'way/394984768', name: 'Ristorante Bar Pizzeria Capriccio' },
+        { km: 0, lat: 46.17725, lng: 11.83023, osmId: 'node/12068758610', name: 'La Doga' },
+        { km: 0.1, lat: 46.17685, lng: 11.82947, osmId: 'node/1820559440', name: 'Bar Aquila nera' },
+        { km: 1.5, lat: 46.18195, lng: 11.8403, osmId: 'node/2175692184', name: 'Bar Putiki' },
+        { km: 1.9, lat: 46.1807, lng: 11.84175, osmId: 'node/9025170168', name: 'Lanterna Verde' }
+      ],
+      desc: 'A gentle loop round the village of Tonadico, below the Pale di San Martino, past Palazzo Scopoli, painted houses and the church of San Vittore. The APT lists 4 km and 57 m of ascent.'
+    },
+    'primiero-siror': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
+      // APT San Martino di Castrozza’s walk “Siror”, marked Dog-friendly on its
+      // Outdooractive page. The line is drawn on 34 OSM ways along the line the APT
+      // publishes (data/board-line-routes.geojson).
+      // Primiero San Martino di Castrozza’s Regolamento di Polizia Urbana (Art. 28)
+      // lets dogs on every public place on a lead of at most 1.5 m, a muzzle in
+      // public buildings and crowds, and keeps them out of playgrounds, schools,
+      // places of care and worship; nothing on the line bans them.
+      // No Natura 2000 site, park or reserve on the line (Ministry WMS, checked
+      // against Lagorai, and the Province’s ZSC, ZPS, park and reserve layers).
+      area: 'Siror, Primiero San Martino di Castrozza',
+      distance: 3.9,
+      elevation: 69,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car parks by the Vallombrosa park up to the village of Siror, round its streets and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A street in Siror on the walk, the church’s onion-domed bell tower and pale Dolomite walls behind, in August (laniuscollurio on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official loop 3.9 km from Parcheggi in prossimità del parco Vallombrosa, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 34 OSM ways along the APT’s published line, 3.9 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the car parks by the Vallombrosa park up to Siror, past its octagonal fountains, painted houses and old haylofts (tabià), to the church of Sant’Andrea, and back.',
+        mapPoints: 'Start at Parcheggi in prossimità del parco Vallombrosa, the APT’s start; drinking water at the start, at km 1.2 and at km 2.1 (OSM nodes 804128022, 2177503862, 4397271096).',
+        elevation: 'Official 3.9 km, 69 m up and 69 m down, 1 h, highest point 786 m, lowest 719 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Siror (sanmartino.com and its Outdooractive page, marked Dog-friendly)',
+          'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (2016, amended 2018), Art. 26 and 28',
+          'Natura 2000 sites (Ministry of the Environment register and the Province of Trento’s ZSC and ZPS layers), the Paneveggio – Pale di San Martino nature park and Trentino’s provincial and local reserves (none on the line or within 800 m)',
+          'OpenStreetMap ways along the APT line (34 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 17,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Mostly tarmac and stone setts, village streets open to cars', 'Crossings of busy roads, as the APT warns', 'A short climb into Siror'],
+      terrainType: 'Village streets and lanes; pram-friendly',
+      shadeDescription: 'Mostly open: about a sixth runs under trees, on the way up to Siror.',
+      terrainDescription: 'A gentle loop at 719–786 m from the valley floor up to Siror, the highest of Primiero’s old villages, with its fountains, haylofts and the church of Sant’Andrea.',
+      waterDescription: 'Drinking fountains at the start, at km 1.2 and at km 2.1; bars and cafés at the start and on the way.',
+      dogNotes: 'Primiero San Martino di Castrozza’s own rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches.',
+      tips: 'Start at the car parks by the Vallombrosa park: 3.9 km, gentle, about an hour. Keep your dog on a short lead (1.5 m at most) in the streets. Octagonal fountains in Siror; go early or late in summer.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, Siror', url: 'https://www.sanmartino.com/it/itinerari/siror' },
+        { label: 'Outdooractive, Siror (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/23515939' },
+        { label: 'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.178029, lng: 11.830655, label: 'Parcheggi in prossimità del parco Vallombrosa, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.1772056, lng: 11.8304896, osmId: 'node/804128022', label: 'Drinking fountain at the start' },
+        { km: 1.2, lat: 46.1883101, lng: 11.831476, osmId: 'node/2177503862', label: 'Drinking fountain' },
+        { km: 2.1, lat: 46.1890517, lng: 11.8282717, osmId: 'node/4397271096', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.17685, lng: 11.82947, osmId: 'node/1820559440', name: 'Bar Aquila nera' },
+        { km: 0, lat: 46.17675, lng: 11.82913, osmId: 'node/1820559465', name: 'Bar Diana' },
+        { km: 0.1, lat: 46.18038, lng: 11.83191, osmId: 'way/394984768', name: 'Ristorante Bar Pizzeria Capriccio' },
+        { km: 1, lat: 46.18868, lng: 11.83022, osmId: 'node/14159259783', name: 'Bar Caffè Ero' },
+        { km: 1.8, lat: 46.19147, lng: 11.82775, osmId: 'node/11035693038', name: 'Bar al Molin' }
+      ],
+      desc: 'A gentle loop up to the old village of Siror, past octagonal fountains, painted houses and haylofts to the church of Sant’Andrea. The APT lists 3.9 km and 69 m of ascent.'
+    },
+    'primiero-la-guana-di-primiero': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
+      // APT San Martino di Castrozza’s walk “La Guana di Primiero”, marked Dog-friendly on its
+      // Outdooractive page. The line is drawn on 43 OSM ways along the line the APT
+      // publishes (data/board-line-routes.geojson).
+      // Primiero San Martino di Castrozza’s Regolamento di Polizia Urbana (Art. 28)
+      // lets dogs on every public place on a lead of at most 1.5 m, a muzzle in
+      // public buildings and crowds, and keeps them out of playgrounds, schools,
+      // places of care and worship; nothing on the line bans them.
+      // No Natura 2000 site, park or reserve on the line (Ministry WMS, checked
+      // against Lagorai, and the Province’s ZSC, ZPS, park and reserve layers).
+      area: 'Fiera di Primiero – Navoi – Transacqua, Primiero San Martino di Castrozza',
+      distance: 3,
+      elevation: 47,
+      hours: '0.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car park by the bus station in Fiera di Primiero along the cycle and foot path, up to Navoi and the Guana, and back through Transacqua.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Canali stream in Fiera di Primiero, near the start, in August (Nick Savchenko, CC BY-SA 2.0), 31 m from the line.',
+        route: 'Official loop 3 km from Fiera di Primiero, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 43 OSM ways along the APT’s published line, 3 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the car park by the bus station in Fiera over the wooden bridge and along the cycle and foot path towards Navoi; where the path to Mezzano drops away, left up the commune road to Navoi and the Guana, Marco Martalar’s giant lizard built from wood felled by storm Vaia, by the Biolago; then round Navoi and down through Transacqua to Fiera.',
+        mapPoints: 'Start at Fiera di Primiero, the APT’s start; drinking water at the start, at km 0.9 and at km 2 (OSM nodes 2394661691, 13957421401, 1358269065).',
+        elevation: 'Official 3 km, 47 m up and 47 m down, 45 min, highest point 747 m, lowest 700 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, La Guana di Primiero (sanmartino.com and its Outdooractive page, marked Dog-friendly)',
+          'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (2016, amended 2018), Art. 26 and 28',
+          'Natura 2000 sites (Ministry of the Environment register and the Province of Trento’s ZSC and ZPS layers), the Paneveggio – Pale di San Martino nature park and Trentino’s provincial and local reserves (none on the line or within 800 m)',
+          'OpenStreetMap ways along the APT line (43 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 2 km on tarmac, partly a cycle and foot path shared with bikes', 'A short stretch on a quiet commune road up to Navoi', 'Busy at the Guana in summer; the APT advises not to drive there'],
+      terrainType: 'Cycle and foot path, quiet lanes and short paths; pram-friendly',
+      shadeDescription: 'Open: almost no tree cover is mapped on the line.',
+      terrainDescription: 'An easy loop at 700–747 m from Fiera di Primiero to the panoramic meadows of Navoi, where the Guana, a giant wooden lizard made from storm-felled trees, looks out over the valley.',
+      waterDescription: 'Drinking fountains at the start, at km 0.9 and at km 2; bars and cafés at the start and on the way.',
+      dogNotes: 'Primiero San Martino di Castrozza’s own rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches.',
+      tips: 'Start at the car park by the bus station in Fiera: 3 km, easy, about 45 minutes. Keep your dog on a short lead (1.5 m at most) on the shared cycle path and in the streets. Fountains at the start and in Transacqua; go early or late in summer.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, La Guana di Primiero', url: 'https://www.sanmartino.com/it/itinerari/la-guana-di-primiero' },
+        { label: 'Outdooractive, La Guana di Primiero (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/810318018' },
+        { label: 'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.174266, lng: 11.828976, label: 'Fiera di Primiero, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.1744118, lng: 11.8287823, osmId: 'node/2394661691', label: 'Drinking fountain at the start' },
+        { km: 0.9, lat: 46.1676592, lng: 11.8263064, osmId: 'node/13957421401', label: 'Drinking fountain' },
+        { km: 2, lat: 46.172313, lng: 11.8337975, osmId: 'node/1358269065', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.17465, lng: 11.82605, osmId: 'node/1563104824', name: 'La Boteghina' },
+        { km: 0, lat: 46.17457, lng: 11.827, osmId: 'node/2394661692', name: 'La terrazza' },
+        { km: 2, lat: 46.17365, lng: 11.83409, osmId: 'node/3229951011', name: 'Bivacco Bar' },
+        { km: 2.7, lat: 46.17685, lng: 11.82947, osmId: 'node/1820559440', name: 'Bar Aquila nera' }
+      ],
+      desc: 'An easy loop from Fiera di Primiero to Navoi to see the Guana, a giant wooden lizard by Marco Martalar built from trees felled by storm Vaia, and back through Transacqua. The APT lists 3 km and 47 m of ascent.'
+    },
+    'primiero-percorso-verde': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
+      // APT San Martino di Castrozza’s walk “Percorso Verde (I percorsi del benessere)”, marked Dog-friendly on its
+      // Outdooractive page. The line is drawn on 19 OSM ways along the line the APT
+      // publishes (data/board-line-routes.geojson).
+      // Primiero San Martino di Castrozza’s Regolamento di Polizia Urbana (Art. 28)
+      // lets dogs on every public place on a lead of at most 1.5 m, a muzzle in
+      // public buildings and crowds, and keeps them out of playgrounds, schools,
+      // places of care and worship; nothing on the line bans them.
+      // No Natura 2000 site, park or reserve on the line (Ministry WMS, checked
+      // against Lagorai, and the Province’s ZSC, ZPS, park and reserve layers).
+      area: 'Parco Clarofonte, Fiera di Primiero – Tonadico, Primiero San Martino di Castrozza',
+      distance: 1.6,
+      elevation: 23,
+      hours: '0.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the Parco Clarofonte in Fiera over the Cismon, along the pavement towards Tonadico, over the Canali and back along Via Lungo Canali. About half of it is also on the Tonadico village walk.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The road past the Brunet hotel on the walk, a Dolomite spire above it, in August (laniuscollurio on Mapillary, CC BY-SA 4.0), 12 m from the line.',
+        route: 'Official loop 1.6 km from Parco Clarofonte, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 1.6 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the Parco Clarofonte towards the bridge over the Cismon, keeping right to the Brunet hotels junction, then on the pavement towards the Tonadico sports field to the Hotel Tre Ponti junction; right over the bridge on the Canali, right again and down Via Lungo Canali back to the Parco Clarofonte.',
+        mapPoints: 'Start at Parco Clarofonte, the APT’s start; drinking water at the start, at km 0.7 and at km 1.1 (OSM nodes 804128022, 2175692335, 11155288749).',
+        elevation: 'Official 1.6 km, 23 m up and 23 m down, 30 min, highest point 735 m, lowest 711 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Percorso Verde (I percorsi del benessere) (sanmartino.com and its Outdooractive page, marked Dog-friendly)',
+          'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (2016, amended 2018), Art. 26 and 28',
+          'Natura 2000 sites (Ministry of the Environment register and the Province of Trento’s ZSC and ZPS layers), the Paneveggio – Pale di San Martino nature park and Trentino’s provincial and local reserves (none on the line or within 800 m)',
+          'OpenStreetMap ways along the APT line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['All tarmac and pavement, beside a road for part of it', 'Two bridges and road junctions in town', 'Busy with cars round the hotels in summer'],
+      terrainType: 'Pavements and a riverside lane; step-free and pram-friendly',
+      shadeDescription: 'Open: almost no tree cover is mapped on the line.',
+      terrainDescription: 'A step-free stroll at 711–735 m, one of Primiero’s “wellness walks”, along Via Lungo Canali with one of the best views of the Pale di San Martino from the valley.',
+      waterDescription: 'Drinking fountains at the start, at km 0.7 and at km 1.1; bars and cafés at the start and on the way.',
+      dogNotes: 'Primiero San Martino di Castrozza’s own rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches.',
+      tips: 'Start at the Parco Clarofonte: 1.6 km, level and step-free, half an hour. Keep your dog on a short lead (1.5 m at most) on the pavement beside the road. Fountains and cafés at the start.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, Percorso Verde (I percorsi del benessere)', url: 'https://www.sanmartino.com/it/itinerari/percorso-verde-i-percorsi-del-benessere' },
+        { label: 'Outdooractive, Percorso Verde (I percorsi del benessere) (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/810847366' },
+        { label: 'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.176769, lng: 11.831113, label: 'Parco Clarofonte, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.1772056, lng: 11.8304896, osmId: 'node/804128022', label: 'Drinking fountain at the start' },
+        { km: 0.7, lat: 46.1811524, lng: 11.8390282, osmId: 'node/2175692335', label: 'Drinking fountain' },
+        { km: 1.1, lat: 46.1768901, lng: 11.8355232, osmId: 'node/11155288749', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.17685, lng: 11.82947, osmId: 'node/1820559440', name: 'Bar Aquila nera' },
+        { km: 0, lat: 46.17675, lng: 11.82913, osmId: 'node/1820559465', name: 'Bar Diana' },
+        { km: 0.2, lat: 46.18038, lng: 11.83191, osmId: 'way/394984768', name: 'Ristorante Bar Pizzeria Capriccio' },
+        { km: 0.6, lat: 46.17988, lng: 11.839, osmId: 'way/395524072', name: 'Il Caminetto' },
+        { km: 1.5, lat: 46.17565, lng: 11.82815, osmId: 'node/2394661697', name: 'La Caffetteria' }
+      ],
+      desc: 'A short, step-free loop from the Parco Clarofonte in Fiera di Primiero along Via Lungo Canali, with one of the best views of the Pale di San Martino from the valley. The APT lists 1.6 km and 23 m of ascent.'
     }
   };
 
