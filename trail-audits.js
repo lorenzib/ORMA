@@ -42168,6 +42168,79 @@
         { km: 7.8, lat: 46.14754, lng: 11.75822, osmId: 'node/748752268', name: 'Ristorante Pizzeria Passo Gobbera' }
       ],
       desc: 'A one-way walk along the old Via Nova from Pieve to Passo Gobbera, past more than forty old fruit trees and over a 70 m rope suspension bridge above the Rio San Piero. The APT lists 8 km and 321 m of ascent.'
+    },
+    'primiero-malga-valcigolera': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 6).
+      // APT San Martino di Castrozza’s walk “San Martino di Castrozza - Malga Valcigolera”.
+      // The line is drawn on 35 OSM ways along the line the APT publishes
+      // (data/board-line-routes.geojson).
+      // Primiero San Martino di Castrozza’s Regolamento di Polizia Urbana (Art. 28)
+      // applies in the village. Above it 2.87 km are in the Paneveggio – Pale di San
+      // Martino park (Art. 54 c. 2: dogs on a lead); on the park’s zone map they are
+      // all in zone C, 516 m from the nearest integral reserve and 2.2 km from the
+      // nearest special reserve. In ZSC IT3120168, whose measures set no rule on
+      // dogs (checked on the Province’s layers; the Ministry’s service was failing).
+      // Out and back: the line retraces 98% of itself.
+      area: 'San Martino di Castrozza – Malga Valcigolera, Primiero San Martino di Castrozza',
+      distance: 9.1,
+      elevation: 431,
+      hours: '3',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back: from the centre of San Martino di Castrozza past the sports hall and the Plank pond to Scacciapensieri, up the forest road through the woods of the Val Cigolera to Malga Valcigolera, and back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The centre of San Martino di Castrozza at the start, the Pale di San Martino above the little church, in August (laniuscollurio on Mapillary, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official out-and-back walk 9.1 km from San Martino di Castrozza, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 35 OSM ways along the APT’s published line, 9.1 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the centre of San Martino di Castrozza towards Scacciapensieri, past the sports hall and the Plank pond; from Scacciapensieri follow the signs for Malga Valcigolera on the forest road up through the woods of the valley. After the first stretch you can stay on the forest road to the malga or take the path, a little steeper and about ten minutes shorter. Back the same way.',
+        mapPoints: 'Start at San Martino di Castrozza, the APT’s start; drinking water at the start (OSM nodes 4336791235).',
+        elevation: 'Official 9.1 km, 431 m up and 432 m down, 3 h, highest point 1,884 m, lowest 1,458 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, San Martino di Castrozza - Malga Valcigolera (sanmartino.com and its Outdooractive page)',
+          'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (2016, amended 2018), Art. 26 and 28',
+          'Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco, Norme di Attuazione (2016), Art. 54 c. 2: dogs always on a lead in the park',
+          'Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco zoning shapefiles (Riserve_ABC and Riserve_speciali, plan in force since 3 February 2016): the line’s 2.87 km in the park are all in zone C (riserva controllata), 516 m from the nearest integral reserve and 2.2 km from the nearest special reserve',
+          'Paneveggio – Pale di San Martino nature park (dogs on a lead); Natura 2000 ZSC IT3120168 Lagorai Orientale – Cima Bocche (the Province of Trento’s ZSC and ZPS layers, Lagorai control passing), whose conservation measures (Del. G.P. 632/2013 and the park’s measures) set no rule on dogs; the nearest local reserve, Villa Savoia, is 591 m from the line',
+          'OpenStreetMap ways along the APT line (35 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 64,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Village streets and road crossings in San Martino at the start and end', 'Forest road shared with forestry vehicles', 'An optional steeper path on the way up'],
+      terrainType: 'Village streets, forest road and woodland path',
+      shadeDescription: 'Mostly shaded: almost all of it runs through forest, which the APT recommends in summer for the shade.',
+      terrainDescription: 'A half-day walk at 1,458–1,884 m from San Martino di Castrozza through the woods of the Val Cigolera to Malga Valcigolera, with a wide view of the Pale di San Martino from the malga.',
+      waterDescription: 'Drinking fountain at the start; bars and cafés at the start and on the way.',
+      dogNotes: 'Above the village the walk is in the Paneveggio – Pale di San Martino nature park, where dogs must always be on a lead. In the village Primiero San Martino di Castrozza’s rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches.',
+      tips: 'Start in the centre of San Martino: 9.1 km there and back, about 430 m of climbing, three hours. Above the village you are in the nature park: keep your dog on a lead. Fountains at the start; Malga Valcigolera serves food and drink and is open in winter too.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, San Martino di Castrozza - Malga Valcigolera', url: 'https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-malga-valcigolera' },
+        { label: 'Outdooractive, San Martino di Castrozza - Malga Valcigolera (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/812093313' },
+        { label: 'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf' },
+        { label: 'Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco (Norme di Attuazione, Art. 54)', url: 'https://parcopan.org/ente-parco/il-piano-del-parco/' },
+        { label: 'Parco Naturale Paneveggio – Pale di San Martino, the Piano del Parco shapefiles (reserve zones)', url: 'https://www.parcopan.org/ente-parco/il-piano-del-parco/gli-shapefiles-del-piano/' },
+        { label: 'Provincia autonoma di Trento, Natura 2000 conservation measures (Del. G.P. 632/2013)', url: 'https://www.provincia.tn.it/Amministrazione/Documenti/Deliberazione-della-Giunta-Provinciale-n.-632-del-12-04-2013' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.262093, lng: 11.802128, label: 'San Martino di Castrozza, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.2633779, lng: 11.8017222, osmId: 'node/4336791235', label: 'Drinking fountain at the start' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.26045, lng: 11.80143, osmId: 'node/758777435', name: 'Sass Maor' },
+        { km: 0, lat: 46.26243, lng: 11.80257, osmId: 'node/3283832442', name: 'Bar Margherita' },
+        { km: 0.3, lat: 46.26318, lng: 11.7974, osmId: 'node/5939189358', name: 'Ristorante da Anita' },
+        { km: 4.4, lat: 46.26138, lng: 11.76083, osmId: 'node/722738557', name: 'Malga Valcigolera' }
+      ],
+      desc: 'A walk from the centre of San Martino di Castrozza through the forest of the Val Cigolera to Malga Valcigolera and back, with a wide view of the Pale di San Martino at the top. The APT lists 9.1 km and 431 m of ascent.'
     }
   };
 

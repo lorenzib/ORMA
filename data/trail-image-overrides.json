@@ -3528,6 +3528,23 @@
       }
     },
     {
+      "id": "primiero-malga-valcigolera",
+      "approvedReviewId": "mapillary-primiero-malga-valcigolera-on-route",
+      "approvedAt": "2026-10-26T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-malga-valcigolera-san-martino.jpg",
+        "heroImage": "images/trails/primiero-malga-valcigolera-san-martino.jpg",
+        "imageAlt": "The centre of San Martino di Castrozza with a small chapel, hotels and a railing by the road, the grey rock walls of the Pale di San Martino above dark green forest",
+        "imageCredit": "San Martino di Castrozza and the Pale",
+        "imageCreditText": "San Martino di Castrozza and the Pale by laniuscollurio",
+        "imageCreator": "laniuscollurio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1228361281295468",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "primiero-monte-vederna",
       "approvedReviewId": "commons-primiero-monte-vederna-on-route",
       "approvedAt": "2026-10-26T21:00:00.000Z",
