@@ -188,3 +188,39 @@ describe('Waymarked comes back when our tiles cannot', () => {
     expect(map.getLayer(style.HIKING_LINE_LAYER)).toBeUndefined();
   });
 });
+
+describe('satellite and 3D stay under the walk', () => {
+  // The first symbol layer is now our route numbers, which sit above the
+  // walk, so imagery placed below it covered the walk and the routes.
+  const fs = require('fs');
+  const path = require('path');
+  const source = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
+  const insertedBefore = (text, id) => {
+    const at = text.indexOf(`id: '${id}'`) >= 0 ? text.indexOf(`id: '${id}'`) : text.indexOf(`id:'${id}'`);
+    expect(at).toBeGreaterThan(-1);
+    return text.slice(at, text.indexOf(');', at));
+  };
+
+  test.each(['trail.js', 'script.js', 'walk-page.js'])('%s puts the satellite imagery below our routes', file => {
+    expect(insertedBefore(source(file), 'satellite-layer')).toMatch(/networkLayerId\(map\)|belowRoutes/);
+  });
+
+  test.each(['trail.js', 'script.js'])('%s puts the 3D hillshade below our routes', file => {
+    const text = source(file);
+    let at = 0;
+    let count = 0;
+    while ((at = text.indexOf("id: 'hillshade-layer'", at)) >= 0) {
+      const call = text.slice(at, text.indexOf(');', at));
+      expect(call).toMatch(/networkLayerId\(map\)|beforeLayer/);
+      at += 1;
+      count += 1;
+    }
+    expect(count).toBeGreaterThan(0);
+  });
+
+  test('no map places imagery under the first symbol layer', () => {
+    ['trail.js', 'script.js', 'walk-page.js'].forEach(file => {
+      expect(source(file)).not.toMatch(/firstSymbol && firstSymbol\.id/);
+    });
+  });
+});
