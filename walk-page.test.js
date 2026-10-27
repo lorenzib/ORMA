@@ -234,6 +234,8 @@ describe('walk recorder authentication restoration', () => {
     // The shared hiking network, with the trace over its lines and under its
     // numbers; the chip hides whichever network is drawn.
     expect(source).toContain('style.addHikingRoutes(map, { beforeId: firstLabel ? firstLabel.id : undefined });');
+    // Calmed like every other map, so base labels do not double our numbers.
+    expect(source).toMatch(/style\.quietBasemap\(map\);\s*style\.addHikingRoutes\(map/);
     expect(source).toMatch(/id: 'walk-line'[\s\S]*?}, style\.walkLineBeforeId\(map\)\);/);
     expect(source).toContain("layerChip('Marked hiking routes', window.ORMAMapStyle.HIKING_LAYER_IDS, true);");
     expect(source).not.toContain('tile.waymarkedtrails.org');

@@ -332,6 +332,7 @@ describe('shared map quality profile', () => {
       expect(source).not.toContain("'raster-saturation': -1");
     });
     expect(read('route-planner.js')).toContain('ORMAMapStyle.quietBasemap(map)');
+    expect(read('walk-page.js')).toContain('style.quietBasemap(map)');
     // Our own routes everywhere; only map-style.js knows Waymarked's address,
     // for the fallback.
     ['trail.js', 'script.js', 'collections-page.js', 'route-planner.js', 'walk-page.js'].forEach(file => {

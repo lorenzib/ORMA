@@ -85,6 +85,10 @@
       // recording trace over the lines and under the numbers.
       var style = window.ORMAMapStyle;
       var firstLabel = map.getStyle().layers.find(function(l){ return l.type === 'symbol'; });
+      // The same calm base as every other ORMA map: the base style's own
+      // path-number labels ("25;29") and shop, parking and info icons
+      // otherwise sit beside our route numbers and compete with them.
+      style.quietBasemap(map);
       style.addHikingRoutes(map, { beforeId: firstLabel ? firstLabel.id : undefined });
       map.addSource('terrain-dem', {
         type: 'raster-dem',
