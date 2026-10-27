@@ -7,6 +7,12 @@
   // <offline-package-registry>
   const PACKAGE_NAMES = {
     'alpe-siusi': "Alpe di Siusi Meadow Loop",
+    'cembra-dos-paion': "Passeggiata al belvedere del Dos Paion sul Monte Corona",
+    'cembra-lago-lases-buse-giaz': "Il Lago di Lases e le buse del giaz",
+    'cembra-lago-santo': "Il Lago Santo",
+    'cembra-pietra-del-futuro': "La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases",
+    'cembra-rifugio-potzmauer': "Al Rifugio Potzmauer",
+    'cembra-san-leonardo-lisignago': "San Leonardo e le campagne di Lisignago",
     'cinque-torri-assisted': "Cinque Torri three-refuges assisted circuit",
     'cortina-castello-di-botestagno': "Castello di Botestagno",
     'cortina-malga-ra-stua': "Malga Ra Stua",
