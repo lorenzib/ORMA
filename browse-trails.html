@@ -1009,7 +1009,7 @@
     // the trail page itself, at the moment it's actually wanted.
     const PER_PAGE = 15;
     const allowedCountries = ['all', 'italy', 'france'];
-    const allowedRegions = ['all', 'dolomites', 'savoy', 'lombardy', 'friuli'];
+    const allowedRegions = ['all', 'dolomites', 'savoy', 'lombardy', 'friuli', 'aosta'];
     const allowedRisks = ['all', 'low-risk', 'moderate', 'caution'];
     const allowedDistances = ['all', '3', '5', '6', '10', '20', 'u5', '5to10', '10p'];
     let page = 1;
@@ -1063,7 +1063,7 @@
       countryValue = allowedCountries.includes(canonical.country) ? canonical.country : 'all';
       regionValue = allowedRegions.includes(canonical.region) ? canonical.region : 'all';
       valleyValue = canonical.valley || 'all';
-      if(regionValue === 'dolomites' || regionValue === 'lombardy' || regionValue === 'friuli') countryValue = 'italy';
+      if(regionValue === 'dolomites' || regionValue === 'lombardy' || regionValue === 'friuli' || regionValue === 'aosta') countryValue = 'italy';
       if(regionValue === 'savoy') countryValue = 'france';
       risk.value = allowedRisks.includes(canonical.risk) ? canonical.risk : 'all';
       distance.value = allowedDistances.includes(canonical.distance) ? canonical.distance : 'all';
@@ -1284,6 +1284,7 @@
       { value: 'savoy', label: bt('browse.geo.savoy', 'Savoy'), country:'france', match: t => t.region === 'savoy' },
       { value: 'lombardy', label: bt('browse.geo.lombardy', 'Lombardy'), country:'italy', match: t => t.region === 'lombardy' },
       { value: 'friuli', label: bt('browse.geo.friuli', 'Friuli Venezia Giulia'), country:'italy', match: t => t.region === 'friuli' },
+      { value: 'aosta', label: bt('browse.geo.aosta', 'Valle d’Aosta'), country:'italy', match: t => t.region === 'aosta' },
     ];
     function renderBreadcrumb(){
       if(!breadcrumb) return;
