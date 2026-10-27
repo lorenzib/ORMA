@@ -3562,6 +3562,23 @@
       }
     },
     {
+      "id": "primiero-ponte-su-funi",
+      "approvedReviewId": "commons-primiero-ponte-su-funi-on-route",
+      "approvedAt": "2026-10-26T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-ponte-su-funi-san-giorgio.jpg",
+        "heroImage": "images/trails/primiero-ponte-su-funi-san-giorgio.jpg",
+        "imageAlt": "The white gabled church of San Giorgio in Mezzano with its tall bell tower and onion dome, a cobbled square and old houses around it, wooded slopes behind",
+        "imageCredit": "The church of San Giorgio in Mezzano",
+        "imageCreditText": "The church of San Giorgio in Mezzano by Cristian Cenci",
+        "imageCreator": "Cristian Cenci",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chiesa_di_San_Giorgio_Mezzano_(1).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "primiero-san-martino-di-castrozza-val-di-roda-prati-col",
       "approvedReviewId": "mapillary-primiero-san-martino-di-castrozza-val-di-roda-prati-col-on-route",
       "approvedAt": "2026-10-26T21:00:00.000Z",
@@ -3626,6 +3643,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=826679942046531",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "primiero-via-della-frutta-antica",
+      "approvedReviewId": "mapillary-primiero-via-della-frutta-antica-on-route",
+      "approvedAt": "2026-10-26T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-via-della-frutta-antica-fiera.jpg",
+        "heroImage": "images/trails/primiero-via-della-frutta-antica-fiera.jpg",
+        "imageAlt": "The main street of Fiera di Primiero with tall white houses with balconies and a road sign to Passo Rolle, a pale Dolomite peak against blue sky at the end",
+        "imageCredit": "Fiera di Primiero by the start",
+        "imageCreditText": "Fiera di Primiero by the start by laniuscollurio",
+        "imageCreator": "laniuscollurio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1312574056239622",
         "imageSourceType": "licensed-source"
       }
     },
