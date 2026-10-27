@@ -7,6 +7,10 @@
   // <offline-package-registry>
   const PACKAGE_NAMES = {
     'alpe-siusi': "Alpe di Siusi Meadow Loop",
+    'altabadia-escursione-corvara-colfosco': "Corvara – Colfosco",
+    'altabadia-escursione-corvara-la-villa': "Corvara – La Villa",
+    'altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt': "La Villa – Lech da Sompunt",
+    'altabadia-sentiero-degli-artisti-tru-di-artisc': "Tru di artisć",
     'cembra-castello-segonzano': "Il Castello di Segonzano e il canyon del Prà",
     'cembra-dos-paion': "Passeggiata al belvedere del Dos Paion sul Monte Corona",
     'cembra-erbe-della-salute': "Le erbe della salute",
