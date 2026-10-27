@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T09:59:13.612Z",
+  "generatedAt": "2026-10-27T10:23:44.125Z",
   "regions": {
     "dolomites": {
-      "trailCount": 178,
-      "trails": "data/regions/dolomites-trails.js?v=552a4de5e0d7",
+      "trailCount": 179,
+      "trails": "data/regions/dolomites-trails.js?v=c05f6c678fd4",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -183,6 +183,7 @@
         "fiemme-sentiero-botanico": "data/trail-details/fiemme-sentiero-botanico.js?v=a6df85c7a394",
         "primiero-ponte-su-funi": "data/trail-details/primiero-ponte-su-funi.js?v=677694996ff4",
         "primiero-via-della-frutta-antica": "data/trail-details/primiero-via-della-frutta-antica.js?v=c517c7fb4ef0",
+        "primiero-malga-valcigolera": "data/trail-details/primiero-malga-valcigolera.js?v=1ece396e97fb",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -430,6 +431,7 @@
     "fiemme-sentiero-botanico": "dolomites",
     "primiero-ponte-su-funi": "dolomites",
     "primiero-via-della-frutta-antica": "dolomites",
+    "primiero-malga-valcigolera": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -712,6 +714,7 @@
     "fiemme-sentiero-botanico": "sentiero-botanico-grauno-capriana",
     "primiero-ponte-su-funi": "ponte-su-funi",
     "primiero-via-della-frutta-antica": "via-della-frutta-antica",
+    "primiero-malga-valcigolera": "malga-valcigolera",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -943,6 +946,7 @@
     "sentiero-botanico-grauno-capriana": "fiemme-sentiero-botanico",
     "ponte-su-funi": "primiero-ponte-su-funi",
     "via-della-frutta-antica": "primiero-via-della-frutta-antica",
+    "malga-valcigolera": "primiero-malga-valcigolera",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
