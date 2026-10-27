@@ -703,6 +703,21 @@
       "name": "Da Moena a Soraga, dove l'acqua ha segnato la storia",
       "slug": "moena-soraga-avisio",
       "gloss": "the riverside walk from Moena to Soraga"
+    },
+    "fassa-dipinti-del-giotto": {
+      "name": "Sulle tracce dei dipinti del Giotto della Val di Fassa",
+      "slug": "giotto-della-val-di-fassa-mazzin-pera",
+      "gloss": "the walk from Mazzin over Ronch to Pera"
+    },
+    "fassa-ciajeole-malga-roncac": {
+      "name": "Passi nella storia: da Ciajeole a Malga Roncac",
+      "slug": "ciajeole-malga-roncac-moena",
+      "gloss": "the climb from Moena to Malga Roncac"
+    },
+    "fassa-moena-soraga-someda": {
+      "name": "Da Moena a Soraga, la natura a due passi da casa",
+      "slug": "moena-soraga-someda",
+      "gloss": "the walk from Moena over Someda to Soraga Alta"
     }
   }
 }

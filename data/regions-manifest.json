@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T22:15:53.987Z",
+  "generatedAt": "2026-10-27T22:21:15.883Z",
   "regions": {
     "dolomites": {
-      "trailCount": 221,
-      "trails": "data/regions/dolomites-trails.js?v=546d37b1a0a8",
+      "trailCount": 224,
+      "trails": "data/regions/dolomites-trails.js?v=6ce340327814",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -226,6 +226,9 @@
         "fassa-da-alba-a-penia": "data/trail-details/fassa-da-alba-a-penia.js?v=a115d45cc2da",
         "fassa-val-freida": "data/trail-details/fassa-val-freida.js?v=cde711157fca",
         "fassa-moena-soraga-acqua": "data/trail-details/fassa-moena-soraga-acqua.js?v=87b5a566075a",
+        "fassa-dipinti-del-giotto": "data/trail-details/fassa-dipinti-del-giotto.js?v=d647157bc737",
+        "fassa-ciajeole-malga-roncac": "data/trail-details/fassa-ciajeole-malga-roncac.js?v=808bb9b37f23",
+        "fassa-moena-soraga-someda": "data/trail-details/fassa-moena-soraga-someda.js?v=63e6685ce941",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -534,6 +537,9 @@
     "fassa-da-alba-a-penia": "dolomites",
     "fassa-val-freida": "dolomites",
     "fassa-moena-soraga-acqua": "dolomites",
+    "fassa-dipinti-del-giotto": "dolomites",
+    "fassa-ciajeole-malga-roncac": "dolomites",
+    "fassa-moena-soraga-someda": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -859,6 +865,9 @@
     "fassa-da-alba-a-penia": "alba-penia",
     "fassa-val-freida": "val-freida-san-pellegrino",
     "fassa-moena-soraga-acqua": "moena-soraga-avisio",
+    "fassa-dipinti-del-giotto": "giotto-della-val-di-fassa-mazzin-pera",
+    "fassa-ciajeole-malga-roncac": "ciajeole-malga-roncac-moena",
+    "fassa-moena-soraga-someda": "moena-soraga-someda",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1133,6 +1142,9 @@
     "alba-penia": "fassa-da-alba-a-penia",
     "val-freida-san-pellegrino": "fassa-val-freida",
     "moena-soraga-avisio": "fassa-moena-soraga-acqua",
+    "giotto-della-val-di-fassa-mazzin-pera": "fassa-dipinti-del-giotto",
+    "ciajeole-malga-roncac-moena": "fassa-ciajeole-malga-roncac",
+    "moena-soraga-someda": "fassa-moena-soraga-someda",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

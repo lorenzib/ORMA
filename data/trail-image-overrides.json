@@ -598,6 +598,23 @@
       }
     },
     {
+      "id": "fassa-ciajeole-malga-roncac",
+      "approvedReviewId": "mapillary-fassa-ciajeole-malga-roncac-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-ciajeole-malga-roncac-malga.jpg",
+        "heroImage": "images/trails/fassa-ciajeole-malga-roncac-malga.jpg",
+        "imageAlt": "Malga Roncac, a stone and dark-timber house with a sun terrace, on a steep mown meadow at the edge of a larch wood",
+        "imageCredit": "Malga Roncac",
+        "imageCreditText": "Malga Roncac by fciarniello",
+        "imageCreator": "fciarniello",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=300326195045392",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fassa-da-alba-a-penia",
       "approvedReviewId": "mapillary-fassa-da-alba-a-penia-on-route",
       "approvedAt": "2026-10-27T22:00:00.000Z",
@@ -632,6 +649,23 @@
       }
     },
     {
+      "id": "fassa-dipinti-del-giotto",
+      "approvedReviewId": "mapillary-fassa-dipinti-del-giotto-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-dipinti-del-giotto-ronch.jpg",
+        "heroImage": "images/trails/fassa-dipinti-del-giotto-ronch.jpg",
+        "imageAlt": "The hamlet of Ronch on its green slope above Pera and Mazzin, below the pale rock towers of the Larséch and the Catinaccio, a crossing on the valley road in front",
+        "imageCredit": "Ronch below the Larséch",
+        "imageCreditText": "Ronch below the Larséch by thetornado76",
+        "imageCreator": "thetornado76",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=292213393727978",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fassa-malga-aloch",
       "approvedReviewId": "commons-fassa-malga-aloch-on-route",
       "approvedAt": "2026-10-24T21:00:00.000Z",
@@ -662,6 +696,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Soraga_001.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-moena-soraga-someda",
+      "approvedReviewId": "commons-fassa-moena-soraga-someda-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-moena-soraga-someda-church.jpg",
+        "heroImage": "images/trails/fassa-moena-soraga-someda-church.jpg",
+        "imageAlt": "The small white church of Santi Rocco, Fabiano e Sebastiano in Someda with its pointed spire, between old houses, autumn larches and rock behind",
+        "imageCredit": "Someda church",
+        "imageCreditText": "Someda church by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Someda,_chiesa_dei_Santi_Rocco,_Fabiano_e_Sebastiano_06.jpg",
         "imageSourceType": "licensed-source"
       }
     },

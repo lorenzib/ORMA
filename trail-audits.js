@@ -40410,6 +40410,211 @@
       ],
       desc: 'An easy walk from Moena over the farmland above the Soraga reservoir to Soraga and its riverside park, past the El Mas farm and a covered footbridge, facing the Catinaccio and the Sassolungo. The APT lists 4.8 km and 139 m of ascent, there and back.'
     },
+    'fassa-dipinti-del-giotto': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 13).
+      // APT Val di Fassa’s walk “Sulle tracce dei dipinti del Giotto della Val di Fassa”, tagged “animali accettati”. The line
+      // is drawn on 30 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // Mazzin and San Giovanni di Fassa publish no general dog rule (Mazzin only one for
+      // its dog area), so the national dog ordinance (6 August 2013, extended to September
+      // 2027) applies under ORMA’s Italian dog standard; Trentino’s animal law leaves leads
+      // and muzzles to it. No Natura 2000 site, park or provincial reserve on or near the line;
+      // the nearest local reserve (Resconei) is 580 m away (Province of Trento layers).
+      area: 'Mazzin – Ronch – Pera, Mazzin / San Giovanni di Fassa',
+      distance: 4.7,
+      elevation: 152,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Mazzin up a farm track to the hamlet of Ronch below Muncion, across the meadows and down the old Via Crucis to Pera, and back to Mazzin along the Avisio.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Ronch on its slope above Pera and Mazzin, below the Larséch towers, in October (thetornado76 on Mapillary, CC BY-SA 4.0), 14 m from the line.',
+        route: 'Official loop 4.7 km from Mazzin (Strèda de Capitel del Moro), as APT Val di Fassa publishes it; the stored line is drawn on 30 OSM ways along the APT’s published line, 4.7 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number (the APT numbers it 50 in its walks list): from Mazzin over the Ruf de Udai and up a gravel track to the bend of the Muncion road, up to Ronch, along a level lane through meadows and spruce, down beside the Via Crucis to Rualp in Pera, across the main road and the Avisio, and back to Mazzin on the lane along the river.',
+        mapPoints: 'Start at Mazzin (Strèda de Capitel del Moro), the APT’s start; drinking water at the start, at km 0.9, at km 1.9 and at km 4.2 (OSM nodes 2997205620, 302580698, 302580832, 10003029604).',
+        elevation: 'Official 4.7 km, 152 m up and 153 m down, 1 h 25 min, highest point 1,473 m, lowest 1,323 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Sulle tracce dei dipinti del Giotto della Val di Fassa (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Mazzin and San Giovanni di Fassa publish no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'Provincia autonoma di Trento, Natura 2000 ZSC and ZPS, parks, provincial and local reserves (none on or near the line)',
+          'OpenStreetMap ways along the APT line (30 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 28,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A crossing of the main valley road (SS48) in Pera', 'A short, steep ramp on the lane by the Avisio; the APT suggests walking poles', 'The track below Ronch crosses a slope that slid in the 1950s', 'Hay meadows around Ronch and Muncion: keep to the track'],
+      terrainType: 'Gravel farm tracks and paths, then village lanes and a tarmac riverside lane (about three fifths gravel)',
+      shadeDescription: 'About a quarter passes spruce woods between Ronch and Pera; the meadows and the riverside lane are open.',
+      terrainDescription: 'A gentle loop at 1,320–1,470 m between Mazzin and Pera, past roofed village fountains, the hamlet of Ronch and the church of San Lorenzo with the paintings of Franzeleto Bernard.',
+      waterDescription: 'Drinking fountains in Mazzin at the start and the end, at km 0.9 and in Pera at km 1.9; bars and inns in Pera.',
+      dogNotes: 'Mazzin and San Giovanni di Fassa publish no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses. Keep your dog on a short lead crossing the main road in Pera.',
+      tips: 'Start in Mazzin: 4.7 km, about 150 m of climbing, an hour and a half. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep out of the hay meadows. Fountains in Mazzin and Pera.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Sulle tracce dei dipinti del Giotto della Val di Fassa', url: 'https://www.fassa.com/it/itinerari/sulle-tracce-dei-dipinti-del-giotto-della-val-di-fassa' },
+        { label: 'Outdooractive, Sulle tracce dei dipinti del Giotto della Val di Fassa (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/38039594' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.457593, lng: 11.701138, label: 'Mazzin (Strèda de Capitel del Moro), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.4576261, lng: 11.7003849, osmId: 'node/2997205620', label: 'Drinking fountain at the start' },
+        { km: 0.9, lat: 46.450265, lng: 11.6933282, osmId: 'node/302580698', label: 'Drinking fountain' },
+        { km: 1.9, lat: 46.4422445, lng: 11.6930297, osmId: 'node/302580832', label: 'Drinking fountain in Pera' },
+        { km: 4.2, lat: 46.4559287, lng: 11.7017303, osmId: 'node/10003029604', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.45757, lng: 11.70064, osmId: 'node/5625483108', name: 'Val Udai' },
+        { km: 2.1, lat: 46.44035, lng: 11.69256, osmId: 'node/3284937023', name: 'Ristorante Pizzeria Picola Majon' },
+        { km: 2.3, lat: 46.44063, lng: 11.69868, osmId: 'way/255840627', name: 'Agritur Agua Biencia' }
+      ],
+      desc: 'A gentle loop from Mazzin past roofed village fountains to the hamlet of Ronch, down the old Via Crucis to Pera and its church of San Lorenzo, and back along the Avisio. The APT lists 4.7 km and 152 m of ascent.'
+    },
+    'fassa-ciajeole-malga-roncac': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 13).
+      // APT Val di Fassa’s walk “Passi nella storia: dall’antico rione di Ciajeole a Malga Roncac”, tagged “animali accettati”. The line
+      // is drawn on 14 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // The APT files it as a winter walk open all year; its own figures are used.
+      // The whole walk is in Moena, whose dog rules (August 2026) apply. No Natura 2000 site,
+      // park or provincial or local reserve on or near the line (Province of Trento layers).
+      area: 'Moena – Ciajeole – Malga Roncac, Moena',
+      distance: 3,
+      elevation: 137,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'Up from the centre of Moena through the old quarter of Ciajeole to Malga Roncac at the edge of the larch wood, then back down, mostly the same way and for the last stretch by Strada de Rancolin, Strada Saslonch and Strada de Moene.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Malga Roncac, where the walk turns, in August (fciarniello on Mapillary, CC BY-SA 4.0), 30 m from the hut and 10 m from the line.',
+        route: 'Official loop 3 km from Moena (Piaz de Sotegrava), as APT Val di Fassa publishes it; the stored line is drawn on 14 OSM ways along the APT’s published line, 3.0 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Piaz de Sotegrava up Strada Salejada and Strada de la Madonina past the Dante fountain and the chapel of Ciajeole, up Strada de Even and Strada de Roncac to Malga Roncac, and back down.',
+        mapPoints: 'Start at Moena (Piaz de Sotegrava), the APT’s start; drinking fountains in Moena in the first 200 m (OSM nodes 1884458673, 3780887514, 9048236785); food at Malga Roncac, km 1.1.',
+        elevation: 'Official 3 km, 137 m up and 137 m down, 1 h, highest point 1,306 m, lowest 1,170 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Passi nella storia: dall’antico rione di Ciajeole a Malga Roncac (fassa.com and its Outdooractive page)',
+          'Comune di Moena, Regole per la conduzione dei cani nel territorio comunale (August 2026)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'Provincia autonoma di Trento, Natura 2000 ZSC and ZPS, parks, provincial and local reserves (none on or near the line)',
+          'OpenStreetMap ways along the APT line (14 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 6,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Almost all on tarmac: steep village streets in Moena open to cars, then the lane to Malga Roncac', 'Hay meadows by the malga: keep to the lane'],
+      terrainType: 'Village streets and a tarmac lane; pram-friendly',
+      shadeDescription: 'Almost no tree cover until the edge of the larch wood at Malga Roncac.',
+      terrainDescription: 'A short climb from Moena at 1,170 m through its oldest quarter, Ciajeole, to Malga Roncac at about 1,300 m, with the whole of Moena below and the Catinaccio across the valley.',
+      waterDescription: 'Drinking fountains in Moena at the start; food and drink at Malga Roncac. No fountain higher up, so carry water for your dog.',
+      dogNotes: 'Moena requires a lead in public places, bags to pick up after your dog, a bottle of water to rinse urine off pavements, and a muzzle when it is crowded; dogs may not enter places signed as closed to them. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses.',
+      tips: 'Start in Piaz de Sotegrava in Moena: 3 km, about 140 m of climbing, an hour. Keep your dog on a lead, carry bags, a bottle of water and a muzzle as Moena asks. Fill up at the fountains in Moena.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Passi nella storia: dall’antico rione di Ciajeole a Malga Roncac', url: 'https://www.fassa.com/it/itinerari/passi-nella-storia-dall-antico-rione-di-ciajeole-a-malga-roncac' },
+        { label: 'Outdooractive, Passi nella storia: dall’antico rione di Ciajeole a Malga Roncac (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/65358337' },
+        { label: 'Comune di Moena, Regole per la conduzione dei cani', url: 'https://www.comune.moena.tn.it/ocmultibinary/download/4674/72838/4/6d6402a9f76531cb63cb42cee6b639e4.pdf/file/regole%2Bper%2Bconduzione%2Bcani.pdf' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.376718, lng: 11.659822, label: 'Moena (Piaz de Sotegrava), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.3768022, lng: 11.659712, osmId: 'node/1884458673', label: 'Drinking fountain at the start' },
+        { km: 0.1, lat: 46.3779003, lng: 11.6579709, osmId: 'node/3780887514', label: 'Drinking fountain' },
+        { km: 0.2, lat: 46.3784021, lng: 11.6569577, osmId: 'node/9048236785', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.37704, lng: 11.65966, osmId: 'node/3786688685', name: 'Bar Mancin' },
+        { km: 1.1, lat: 46.38214, lng: 11.6511, osmId: 'node/2957454881', name: 'Malga Roncac' }
+      ],
+      desc: 'A short climb from Moena through Ciajeole, its oldest quarter, to Malga Roncac at the edge of the larch wood, with the whole of Moena below and the Catinaccio across the valley. The APT lists 3 km and 137 m of ascent.'
+    },
+    'fassa-moena-soraga-someda': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 13).
+      // APT Val di Fassa’s walk “Da Moena a Soraga, la natura a due passi da casa”, tagged “animali accettati”. The line
+      // is drawn on 59 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // The APT files it as a winter walk open all year; its own figures are used. It is
+      // the upper way to Soraga, through Someda, not the riverside walk of batch 12.
+      // The start is in Moena, whose dog rules (August 2026) apply; Soraga publishes no
+      // general dog rule (only one for its fenced dog area), so the national dog ordinance
+      // applies there under ORMA’s Italian dog standard. No Natura 2000 site, park or
+      // provincial or local reserve on or near the line (Province of Trento layers).
+      area: 'Moena – Someda – Soraga, Moena / Soraga di Fassa',
+      distance: 6.1,
+      elevation: 175,
+      hours: '1.75',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'From Piaz de Ramon in Moena up to Someda and its church, along Strada del Termen and Strada de Roisc above the reservoir past the boundary stone of 1551 to Soraga Alta and down into Soraga, then back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of Santi Rocco, Fabiano e Sebastiano in Someda, on the walk, in October (Syrio, CC BY-SA 4.0), 25 m from the line.',
+        route: 'Official out-and-back 6.1 km from Moena (Piaz de Ramon), as APT Val di Fassa publishes it; the stored line is drawn on 59 OSM ways along the APT’s published line, 6.2 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number (the APT numbers it 14 in its winter-walk list): from Piaz de Ramon past the old cooper’s workshop up the Cernadoi steps (or the pavement beside them) to Someda and its church, along Strada Frate E. Chiocchetti-Lenz, Strada del Termen and Strada de Roisc past the boundary stone of 1551 between the prince-bishoprics of Brixen and Trento, to Soraga Alta and Soraga, and back.',
+        mapPoints: 'Start at Moena (Piaz de Ramon), the APT’s start; drinking water in Moena, in Someda at km 0.7, at km 1.5, km 2.1 and km 2.5, and in Soraga at km 3.1 (OSM nodes 1884458673, 3778675477, 6452561225, 4314641273, 1660548569, 6453004674).',
+        elevation: 'Official 6.1 km, 175 m up and 175 m down, 1 h 50 min, highest point 1,272 m, lowest 1,169 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Da Moena a Soraga, la natura a due passi da casa (fassa.com and its Outdooractive page)',
+          'Comune di Moena, Regole per la conduzione dei cani nel territorio comunale (August 2026); Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Soraga di Fassa publishes no dog rule beyond its fenced dog area)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'Provincia autonoma di Trento, Natura 2000 ZSC and ZPS, parks, provincial and local reserves (none on or near the line)',
+          'OpenStreetMap ways along the APT line (59 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 6,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A flight of steps up to Someda at the start (the APT gives a pavement detour beside it)', 'Mostly tarmac: village streets and farm lanes open to local traffic', 'Hay meadows between Someda and Soraga Alta: keep to the lane'],
+      terrainType: 'Village streets, farm lanes and a short flight of steps; mostly tarmac',
+      shadeDescription: 'Almost no tree cover: the lane above the reservoir runs across open meadows.',
+      terrainDescription: 'A gentle walk at 1,170–1,270 m from Moena up to the hamlet of Someda below the Piz Meda, then across the meadows above the Soraga reservoir to Soraga, facing the Catinaccio, the Latemar and the Monzoni.',
+      waterDescription: 'Fountains all the way: in Moena, in Someda, along the lane at km 1.5, 2.1 and 2.5, and in Soraga at the turn. The APT notes no food on the way; bars in Moena and Soraga.',
+      dogNotes: 'Moena requires a lead in public places, bags to pick up after your dog, a bottle of water to rinse urine off pavements, and a muzzle when it is crowded; dogs may not enter places signed as closed to them. Soraga publishes no dog rule, so the Italian national rule applies there: a lead of at most 1.5 m and a muzzle carried.',
+      tips: 'Start in Piaz de Ramon in Moena: 6.1 km there and back, about 175 m of climbing, under two hours. If your dog dislikes steps, take the pavement on the left past the narrows, as the APT suggests. Keep your dog on a lead, carry bags, a bottle of water and a muzzle as Moena asks.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Da Moena a Soraga, la natura a due passi da casa', url: 'https://www.fassa.com/it/itinerari/da-moena-a-soraga-la-natura-a-due-passi-da-casa' },
+        { label: 'Outdooractive, Da Moena a Soraga, la natura a due passi da casa (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/803917703' },
+        { label: 'Comune di Moena, Regole per la conduzione dei cani', url: 'https://www.comune.moena.tn.it/ocmultibinary/download/4674/72838/4/6d6402a9f76531cb63cb42cee6b639e4.pdf/file/regole%2Bper%2Bconduzione%2Bcani.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.376572, lng: 11.660212, label: 'Moena (Piaz de Ramon), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.3768022, lng: 11.659712, osmId: 'node/1884458673', label: 'Drinking fountain at the start' },
+        { km: 0.7, lat: 46.3769075, lng: 11.6687426, osmId: 'node/3778675477', label: 'Drinking fountain in Someda' },
+        { km: 1.5, lat: 46.3831519, lng: 11.6672058, osmId: 'node/6452561225', label: 'Fontana - Ciasa Lino Defrancesco' },
+        { km: 2.1, lat: 46.3881017, lng: 11.6689197, osmId: 'node/4314641273', label: 'Drinking fountain' },
+        { km: 2.5, lat: 46.3914494, lng: 11.6686005, osmId: 'node/1660548569', label: 'Drinking fountain' },
+        { km: 3.1, lat: 46.3943923, lng: 11.6652318, osmId: 'node/6453004674', label: 'Drinking fountain in Soraga' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.37704, lng: 11.65966, osmId: 'node/3786688685', name: 'Bar Mancin' }
+      ],
+      desc: 'From Moena up to the hamlet of Someda and its little church, then across the meadows above the Soraga reservoir, past a boundary stone of 1551, to Soraga, facing the Catinaccio and the Latemar. The APT lists 6.1 km and 175 m of ascent, there and back.'
+    },
     'primiero-fiera-pieve': {
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “Fiera-Pieve”, marked Dog-friendly on its

@@ -80,9 +80,11 @@ describe('the existing-site verification boundary',()=>{
     // Maistatt loop, St. Magdalena in Moos and the Grünwaldalm above the Pragser Wildsee.
     // Then 272 and 270 with four more Val di Fassa walks: Soraga to Tamion, Alba to
     // Penìa, Val Freida and Moena to Soraga.
+    // Then 275 and 273 with three more Val di Fassa walks: Mazzin to Pera over
+    // Ronch, Moena to Malga Roncac and Moena to Soraga over Someda.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(272);
-    expect(currentSiteTrails(catalogue)).toHaveLength(270);
+    expect(catalogue).toHaveLength(275);
+    expect(currentSiteTrails(catalogue)).toHaveLength(273);
   });
 
   test('requires the artwork the public trail page needs',()=>{
