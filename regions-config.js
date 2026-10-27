@@ -163,13 +163,47 @@
     ['Breno', 45.9570, 10.3040, 'Val Camonica', 'lombardy', 'brescia'],
     ['Capo di Ponte', 46.0310, 10.3450, 'Val Camonica', 'lombardy', 'brescia'],
     ['Edolo', 46.1780, 10.3330, 'Val Camonica', 'lombardy', 'brescia'],
-    ['Ponte di Legno', 46.2590, 10.5100, 'Val Camonica', 'lombardy', 'brescia']
+    ['Ponte di Legno', 46.2590, 10.5100, 'Val Camonica', 'lombardy', 'brescia'],
+    // ---- Friuli Venezia Giulia ----
+    // Carnia, Sappada, the Tarvisio and Julian Alps valleys, the Friulian
+    // Dolomites and Piancavallo.
+    ['Sappada', 46.5667, 12.6847, 'Sappada', 'friuli', 'udine'],
+    ['Forni di Sopra', 46.4236, 12.5839, 'Dolomiti Friulane', 'friuli', 'udine'],
+    ['Forni di Sotto', 46.3929, 12.6716, 'Dolomiti Friulane', 'friuli', 'udine'],
+    ['Sauris', 46.4665, 12.7080, 'Carnia', 'friuli', 'udine'],
+    ['Ampezzo (Carnia)', 46.4168, 12.7966, 'Carnia', 'friuli', 'udine'],
+    ['Ovaro / Val Degano', 46.4836, 12.8656, 'Carnia', 'friuli', 'udine'],
+    ['Forni Avoltri', 46.5865, 12.7754, 'Carnia', 'friuli', 'udine'],
+    ['Ravascletto / Zoncolan', 46.5237, 12.9226, 'Carnia', 'friuli', 'udine'],
+    ['Paluzza / Timau', 46.5326, 13.0155, 'Carnia', 'friuli', 'udine'],
+    ['Arta Terme', 46.4797, 13.0177, 'Carnia', 'friuli', 'udine'],
+    ['Paularo', 46.5310, 13.1186, 'Carnia', 'friuli', 'udine'],
+    ['Tolmezzo', 46.4057, 13.0131, 'Carnia', 'friuli', 'udine'],
+    ['Pontebba', 46.5058, 13.3060, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Malborghetto-Valbruna', 46.5072, 13.4405, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Tarvisio', 46.5054, 13.5785, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Fusine in Valromana', 46.4794, 13.6655, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Sella Nevea', 46.3893, 13.4752, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Dogna', 46.4482, 13.3155, 'Canal del Ferro – Val Resia', 'friuli', 'udine'],
+    ['Chiusaforte / Canal del Ferro', 46.4073, 13.3089, 'Canal del Ferro – Val Resia', 'friuli', 'udine'],
+    ['Moggio Udinese', 46.4090, 13.1993, 'Canal del Ferro – Val Resia', 'friuli', 'udine'],
+    ['Resia / Val Resia', 46.3741, 13.3050, 'Canal del Ferro – Val Resia', 'friuli', 'udine'],
+    ['Venzone', 46.3326, 13.1383, 'Gemonese – Prealpi Giulie', 'friuli', 'udine'],
+    ['Gemona del Friuli', 46.2757, 13.1385, 'Gemonese – Prealpi Giulie', 'friuli', 'udine'],
+    ['Claut / Valcellina', 46.2690, 12.5140, 'Dolomiti Friulane', 'friuli', 'pordenone'],
+    ['Cimolais', 46.2884, 12.4382, 'Dolomiti Friulane', 'friuli', 'pordenone'],
+    ['Erto e Casso', 46.2755, 12.3713, 'Dolomiti Friulane', 'friuli', 'pordenone'],
+    // Piancavallo stays in the Dolomites region: its curated loop is part of the
+    // Dolomites lake-loops collection, and a collection holds one region.
+    ['Barcis', 46.1908, 12.5605, 'Valcellina – Piancavallo', 'dolomites', 'pordenone'],
+    ['Piancavallo', 46.1060, 12.5230, 'Valcellina – Piancavallo', 'dolomites', 'pordenone']
   ];
 
   const REGIONS = {
     dolomites: { label: 'Dolomites', country: 'Italy', countryCode: 'IT' },
     savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' },
-    lombardy: { label: 'Lombardy', country: 'Italy', countryCode: 'IT' }
+    lombardy: { label: 'Lombardy', country: 'Italy', countryCode: 'IT' },
+    friuli: { label: 'Friuli Venezia Giulia', country: 'Italy', countryCode: 'IT' }
   };
 
   function countryForRegion(region) {

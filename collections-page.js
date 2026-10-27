@@ -112,6 +112,7 @@
     { value:'dolomites', label:'Dolomites', countryCode:'IT' },
     { value:'savoy', label:'Savoy', countryCode:'FR' },
     { value:'lombardy', label:'Lombardy', countryCode:'IT' },
+    { value:'friuli', label:'Friuli Venezia Giulia', countryCode:'IT' },
   ];
 
   const THEME_MATCHERS = {
