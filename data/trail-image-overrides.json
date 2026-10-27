@@ -1091,6 +1091,57 @@
       }
     },
     {
+      "id": "giudicarie-san-martino-bosco-scolpito",
+      "approvedReviewId": "mapillary-giudicarie-san-martino-bosco-scolpito-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/giudicarie-san-martino-bosco-scolpito-valle-del-chiese.jpg",
+        "heroImage": "images/trails/giudicarie-san-martino-bosco-scolpito-valle-del-chiese.jpg",
+        "imageAlt": "A quiet lane with wooden guardrails and old street lamps leading past a house into the green Valle del Chiese, steep wooded slopes under a blue sky",
+        "imageCredit": "The lane by the start in Pieve di Bono-Prezzo",
+        "imageCreditText": "The lane by the start in Pieve di Bono-Prezzo by zonta72",
+        "imageCreator": "zonta72",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1109854742824287",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "giudicarie-san-vigilio-senter-dei-cavai",
+      "approvedReviewId": "commons-giudicarie-san-vigilio-senter-dei-cavai-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/giudicarie-san-vigilio-senter-dei-cavai-san-vigilio.jpg",
+        "heroImage": "images/trails/giudicarie-san-vigilio-senter-dei-cavai-san-vigilio.jpg",
+        "imageAlt": "A small white stone church with a square bell tower and a grey shingle roof among dense green trees beside the clear Sarca river, seen from above",
+        "imageCredit": "The church of San Vigilio by the Sarca, Tione",
+        "imageCreditText": "The church of San Vigilio by the Sarca, Tione by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Tione_di_Trento,_chiesa_di_San_Vigilio_04.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "giudicarie-tione-bolbeno-madonna-del-lares",
+      "approvedReviewId": "mapillary-giudicarie-tione-bolbeno-madonna-del-lares-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/giudicarie-tione-bolbeno-madonna-del-lares-sanctuary.jpg",
+        "heroImage": "images/trails/giudicarie-tione-bolbeno-madonna-del-lares-sanctuary.jpg",
+        "imageAlt": "The portico of the Madonna del Lares chapel with four granite columns, geranium boxes and a checkered floor, the lit altar seen through the open door, a meadow and spruces around it",
+        "imageCredit": "The Madonna del Lares sanctuary",
+        "imageCreditText": "The Madonna del Lares sanctuary by zonta72",
+        "imageCreator": "zonta72",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=838669567007655",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "lago-carezza",
       "approvedAt": "2026-10-19T14:27:29.317Z",
       "fields": {
@@ -4225,6 +4276,23 @@
       }
     },
     {
+      "id": "rendena-ciclabile-javre-dare-vigo-pelugo",
+      "approvedReviewId": "commons-rendena-ciclabile-javre-dare-vigo-pelugo-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/rendena-ciclabile-javre-dare-vigo-pelugo-cycle-path.jpg",
+        "heroImage": "images/trails/rendena-ciclabile-javre-dare-vigo-pelugo-cycle-path.jpg",
+        "imageAlt": "A narrow paved path between wooden fences beside the river Sarca, green meadows and wooded mountains under a blue sky with white clouds",
+        "imageCredit": "The Val Rendena cycle path",
+        "imageCreditText": "The Val Rendena cycle path by Adert",
+        "imageCreator": "Adert",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ciclopista_Val_Rendena.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "santa-maddalena",
       "approvedReviewId": "commons-santa-maddalena",
       "approvedAt": "2026-09-06T14:27:06.592Z",
@@ -4425,6 +4493,91 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villabassa_-_Comune_di_Villabassa_-_2023-09-10_03-11-35_001.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-bivacco-malga-baselga",
+      "approvedReviewId": "commons-valdisole-bivacco-malga-baselga-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-bivacco-malga-baselga-lake-south.jpg",
+        "heroImage": "images/trails/valdisole-bivacco-malga-baselga-lake-south.jpg",
+        "imageAlt": "A rushing stream running into Lago dei Caprioli, spruces and a wooden hut on the far shore, cloudy mountains behind",
+        "imageCredit": "Lago dei Caprioli from the south",
+        "imageCreditText": "Lago dei Caprioli from the south by Matteo Ianeselli",
+        "imageCreator": "Matteo Ianeselli",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pellizzano-lago_dei_Caprioli-south.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-fazzon-lago-dei-caprioli",
+      "approvedReviewId": "commons-valdisole-fazzon-lago-dei-caprioli-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-fazzon-lago-dei-caprioli-lake-north.jpg",
+        "heroImage": "images/trails/valdisole-fazzon-lago-dei-caprioli-lake-north.jpg",
+        "imageAlt": "The green Lago dei Caprioli with a tiny wooded island, larches and spruces rising on the slopes behind and a grassy shore in front",
+        "imageCredit": "Lago dei Caprioli from the north",
+        "imageCreditText": "Lago dei Caprioli from the north by Matteo Ianeselli",
+        "imageCreator": "Matteo Ianeselli",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pellizzano-lago_dei_Caprioli-north.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-lago-dei-caprioli-malga-alta-di-fazzon",
+      "approvedReviewId": "commons-valdisole-lago-dei-caprioli-malga-alta-di-fazzon-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-lago-dei-caprioli-malga-alta-di-fazzon-lake-summer.jpg",
+        "heroImage": "images/trails/valdisole-lago-dei-caprioli-malga-alta-di-fazzon-lake-summer.jpg",
+        "imageAlt": "A wide summer view of Lago dei Caprioli, a green lake ringed by grass and spruce forest with stepping stones along the shore",
+        "imageCredit": "Lago dei Caprioli in July",
+        "imageCreditText": "Lago dei Caprioli in July by Mauro Cavallo",
+        "imageCreator": "Mauro Cavallo",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Trentino_-_Val_di_Sole_-_Lago_dei_Caprioli,_panoramica_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-marilleva-1400-malga-alta-di-fazzon",
+      "approvedReviewId": "commons-valdisole-marilleva-1400-malga-alta-di-fazzon-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-marilleva-1400-malga-alta-di-fazzon-lake-autumn.jpg",
+        "heroImage": "images/trails/valdisole-marilleva-1400-malga-alta-di-fazzon-lake-autumn.jpg",
+        "imageAlt": "Lago dei Caprioli mirror-still in autumn, golden larches and dark spruces reflected in blue water, a wooden hut on the far shore and snowy peaks in the distance",
+        "imageCredit": "Lago dei Caprioli in autumn",
+        "imageCreditText": "Lago dei Caprioli in autumn by Luigi Mengato",
+        "imageCreator": "Luigi Mengato",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_dei_Caprioli_(6295703583).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-rifugio-stavel-denza",
+      "approvedReviewId": "commons-valdisole-rifugio-stavel-denza-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-rifugio-stavel-denza-hut.jpg",
+        "heroImage": "images/trails/valdisole-rifugio-stavel-denza-hut.jpg",
+        "imageAlt": "The stone Rifugio Denza with its wooden upper floor on a rocky alpine meadow, the glaciers and grey peaks of the Presanella behind under a blue sky",
+        "imageCredit": "Rifugio Denza",
+        "imageCreditText": "Rifugio Denza by nardi1987",
+        "imageCreator": "nardi1987",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rifugio_Denza_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },

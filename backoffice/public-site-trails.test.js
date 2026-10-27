@@ -82,9 +82,13 @@ describe('the existing-site verification boundary',()=>{
     // Penìa, Val Freida and Moena to Soraga.
     // Then 275 and 273 with three more Val di Fassa walks: Mazzin to Pera over
     // Ronch, Moena to Malga Roncac and Moena to Soraga over Someda.
+    // Then 284 and 282 with the first nine western Trentino walks: five around the
+    // Lago dei Caprioli and Rifugio Denza in the Val di Sole, the Javrè – Pelugo
+    // cycle path loop, and Madonna del Lares, San Vigilio and San Martino in the
+    // Giudicarie.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(275);
-    expect(currentSiteTrails(catalogue)).toHaveLength(273);
+    expect(catalogue).toHaveLength(284);
+    expect(currentSiteTrails(catalogue)).toHaveLength(282);
   });
 
   test('requires the artwork the public trail page needs',()=>{
