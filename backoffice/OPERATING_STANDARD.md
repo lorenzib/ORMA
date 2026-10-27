@@ -1172,7 +1172,8 @@ operator documents them.
 
 `scripts/build-board-line.js` lets such a walk in. It reads the line the
 operator publishes on a page anyone can open (an Outdooractive tour page's
-schema.org data, for the Trentino boards) and draws the walk on OSM ways
+schema.org data, for the Trentino boards, or the GPX a path register exports,
+saved with `--guidefile` when it has no stable address) and draws the walk on OSM ways
 along it. The published line is a **guide and is never stored or published**,
 for the reason the official GPX never is: its licence is rarely stated. What is
 stored, in `data/board-line-routes.geojson`, is the line drawn on OSM ways, the
