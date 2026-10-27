@@ -43458,6 +43458,133 @@
         { km: 4.8, lat: 46.58284, lng: 11.90387, osmId: 'node/2980829322', name: 'Aurora' }
       ],
       desc: 'A gentle walk down the valley from Corvara to La Villa beside the stream, on the “Tru dl’ega”. The board lists 5.1 km, 21 m up and 132 m down, one way.'
+    },
+    'altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 2).
+      // The Alta Badia tourist board’s walk “Da Pederoa ai masi Picedac, Aiarëi e Costa fino a Pederoa”, drawn on 35 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: La Val (no regulation, national rule); Badia (own dog regulation, lead and muzzle).
+      // No Natura 2000 site, park or natural monument on the line (Province of Bolzano landscape-plan layers).
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Pederoa – Picedac – Aiarëi – Costa, La Val',
+      distance: 13.5,
+      elevation: 407,
+      hours: '3.8',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Pederoa in the lower Val Badia up a quiet road to the farms of Picedac, on path 8 past Aiarëi to Costa, and back down path 8A beside the river.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Forest and high farms above La Val from the meadows on the loop, in June (Amelia Pridgeon, CC BY 4.0), 7 m from the line.',
+        route: 'Official loop 13.5 km from Pederoa, opposite the Pizzeria Traföi, as the Alta Badia tourist board publishes it; the stored line is drawn on 35 OSM ways along the board’s published line, 14.4 km, with 99% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 8 and 8A: from Pederoa, opposite the Pizzeria Traföi, along a road with little traffic towards Picedac for about 3.5 km; from Picedac on path 8 past the farms of Aiarëi to Costa, then path 8A down beside the river back to Pederoa.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 13.5 km, 407 m up and 407 m down, 3 h 50 min, highest point 1,546 m, lowest 1,140 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Società Cooperativa Turistica Alta Badia, Da Pederoa ai masi Picedac, Aiarëi e Costa fino a Pederoa (altabadia.org and its Outdooractive tour)',
+          'Gemeinde Abtei / Comune di Badia, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 7, 22.02.2010), Art. 4 and 8: a lead of at most 1.5 m everywhere and a muzzle carried; no dogs on farmed meadows in the growing season',
+          'Comune di La Valle / La Val publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line, only landscape protection zones, which set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (35 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 64,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 3.5 km on a road with little traffic up to Picedac: keep your dog close', 'Farm tracks past working farms: watch for tractors and farm dogs', 'The path back runs beside the river'],
+      terrainType: 'Quiet road, farm tracks and forest paths',
+      shadeDescription: 'Mostly shaded: nearly two thirds of the loop runs through forest; the road to Picedac and the meadows at the farms are open.',
+      terrainDescription: 'A long, steady loop at 1,140–1,550 m in the lower Val Badia, linking the scattered farms of Picedac, Aiarëi and Costa on the slopes above Pederoa.',
+      waterDescription: 'No drinking water is mapped on the way; bring water for your dog. Places to eat on the way.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. La Val has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start in Pederoa opposite the Pizzeria Traföi: 13.5 km, about 410 m of climbing, nearly four hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle: that is the national rule in La Val and Badia’s own rule on its stretch. Keep off the hay meadows round the farms and carry water for the long middle section.',
+      sourceLinks: [
+        { label: 'Alta Badia, Da Pederoa ai masi Picedac, Aiarëi e Costa fino a Pederoa', url: 'https://www.altabadia.org/it/tour/oadetail/oa/da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa' },
+        { label: 'Outdooractive, Da Pederoa ai masi Picedac, Aiarëi e Costa fino a Pederoa (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/810055803' },
+        { label: 'Gemeinde Abtei, dog regulation', url: 'https://www.gemeinde.abtei.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.657632, lng: 11.908964, label: 'Pederoa, opposite the Pizzeria Traföi, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 11.9, lat: 46.65033, lng: 11.90616, osmId: 'way/237409473', name: 'La Ciasota' }
+      ],
+      desc: 'A long loop from Pederoa up to the farms of Picedac, Aiarëi and Costa and back beside the river, in the quiet lower Val Badia. The board lists 13.5 km and 407 m of ascent.'
+    },
+    'altabadia-da-furnacia-a-la-crusc': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 2).
+      // The Alta Badia tourist board’s walk “Da Furnacia a La Crusc”, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: La Val (no regulation, national rule); Badia (own dog regulation, lead and muzzle).
+      // Natura 2000: about half in IT3110048 Prati dell’Armentara (no dog rule in its 2025 measures or LP 6/2010 Art. 21) and a quarter in IT3110049, the Fanes-Sennes-Prags nature park (dogs on a lead).
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Furnacia – Ütia Ranch da André – La Crusc, La Val and Badia',
+      distance: 4.2,
+      elevation: 324,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Furnacia car park above La Val up path 15A past the Ütia Ranch da André to the La Crusc hut beside the sanctuary of Santa Croce; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The sanctuary of La Crusc / Santa Croce, where the walk ends, with Dolomite peaks behind, in September (mapillary_service on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official one-way walk 4.2 km from Furnacia car park, above La Val, as the Alta Badia tourist board publishes it; the stored line is drawn on 9 OSM ways along the board’s published line, 4.2 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 15A: from the Furnacia car park, about 3 km above La Val, up path 15A; after 20 minutes the Ütia Ranch da André, then about an hour and a half more across the Armentara meadows to the La Crusc hut beside the sanctuary of Santa Croce (2,045 m). Back the same way. No lift is used: the La Crusc chairlift is nearby but the walk is on foot both ways.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.2 km, 324 m up and 2 m down, 1 h 30 min, highest point 2,048 m, lowest 1,724 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Società Cooperativa Turistica Alta Badia, Da Furnacia a La Crusc (altabadia.org and its Outdooractive tour)',
+          'Gemeinde Abtei / Comune di Badia, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 7, 22.02.2010), Art. 4 and 8: a lead of at most 1.5 m everywhere and a muzzle carried; no dogs on farmed meadows in the growing season',
+          'Comune di La Valle / La Val publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Natura 2000 IT3110048 Prati dell’Armentara: the Province’s objectives and conservation measures (Giunta provinciale, 19 December 2025) and Legge provinciale 12 May 2010, n. 6, Art. 21 set no rule on dogs; the measures cover fertiliser, drainage and drones',
+          'Naturpark Fanes-Sennes-Prags (Natura 2000 IT3110049), decree DLH 72/V/LS of 4 March 1980, Art. 5 and 7, and the Province’s code of conduct for the nature parks: dogs on a lead',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks): the line is about 53% in IT3110048 and 24% in IT3110049',
+          'OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 39,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The Armentara meadows are protected hay meadows: stay on the path and keep your dog off the grass', 'Cattle may graze near the huts in summer', 'Paths shared with mountain bikes'],
+      terrainType: 'Forest and meadow paths',
+      shadeDescription: 'Partly shaded: about two fifths of the climb runs through larch and spruce; the Armentara meadows near the top are open.',
+      terrainDescription: 'A steady climb at 1,720–2,050 m from Furnacia across the edge of the Armentara meadows, protected for their flower-rich hay meadows and fens, to the pilgrimage church of Santa Croce below the Sas dla Crusc.',
+      waterDescription: 'No drinking water is mapped on the way; bring water for your dog. Places to eat on the way.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. La Val has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Near the sanctuary the walk enters the Fanes-Sennes-Prags nature park, where dogs must be on a lead. The Armentara meadows are a Natura 2000 site with no dog rule of its own: stay on the path. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start at the Furnacia car park above La Val: 4.2 km and about 325 m of climbing one way, an hour and a half up, then the same way down. Keep your dog on a lead of at most 1.5 m and carry a muzzle; the Fanes-Sennes-Prags nature park near the sanctuary also asks for a lead. Stay on the path across the protected Armentara meadows. Water and food at the Ütia Ranch da André and the La Crusc hut.',
+      sourceLinks: [
+        { label: 'Alta Badia, Da Furnacia a La Crusc', url: 'https://www.altabadia.org/it/tour/oadetail/oa/da-furnacia-a-la-crusc' },
+        { label: 'Outdooractive, Da Furnacia a La Crusc (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/17277225' },
+        { label: 'Gemeinde Abtei, dog regulation', url: 'https://www.gemeinde.abtei.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, Prati dell’Armentara (IT3110048): objectives and conservation measures (PDF)', url: 'https://assets-eu-01.kc-usercontent.com:443/e90ea1ed-9101-0155-579f-5243d49e1f43/91d013bd-e72c-48c1-82ab-645a71bc4616/PAB_IT3110048%20-%20obiettivi%20e%20misure.pdf' },
+        { label: 'Province of Bolzano, nature parks code of conduct', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.64186, lng: 11.922598, label: 'Furnacia car park, above La Val, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 3.9, lat: 46.6145, lng: 11.93846, osmId: 'way/42321524', name: 'Heiligkreuz-Hospitz' }
+      ],
+      desc: 'A climb from Furnacia above La Val across the edge of the Armentara meadows to the sanctuary of Santa Croce below the Sas dla Crusc. The board lists 4.2 km and 324 m of ascent, one way.'
     }
   };
 
