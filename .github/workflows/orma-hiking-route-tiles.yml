@@ -24,6 +24,7 @@ on:
 permissions:
   contents: read
   actions: write               # ask deploy-pages.yml to run
+  issues: write                # say so when the weekly build fails
 
 concurrency:
   group: orma-hiking-route-tiles-${{ github.ref }}
@@ -104,3 +105,17 @@ jobs:
           name: hiking-routes
           path: hiking-routes.tar.gz
           retention-days: 14
+
+      # A failed build changes nothing anyone can see: the site keeps last
+      # week's tiles. So it opens an issue, and the next good build closes it.
+      - name: Say so when the weekly build fails
+        if: always() && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          if [ "$JOB_STATUS" = "success" ]; then
+            bash scripts/hiking-route-tiles-alert.sh clear "the weekly build succeeded on $(date -u +%F)."
+          elif [ "$JOB_STATUS" = "failure" ]; then
+            bash scripts/hiking-route-tiles-alert.sh raise "The weekly hiking route build failed on $(date -u +%F), so the maps' route tiles were not refreshed."
+          fi

@@ -46,4 +46,7 @@ rm -rf "$OUT"
 # The regions never share a tile, so they join into one folder and one source.
 tile-join -e "$OUT" --no-tile-compression --no-tile-size-limit --force \
   $(for region in $regions; do echo "$WORK/$region.mbtiles"; done)
+# When this set was built, so the deploy can tell a stale set from a fresh one
+# (check-hiking-route-tiles.js).
+date -u +%FT%TZ > "$OUT/built-at.txt"
 echo "Tiles: $(find "$OUT" -name '*.pbf' | wc -l) files, $(du -sh "$OUT" | cut -f1)"
