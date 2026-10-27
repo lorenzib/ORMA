@@ -88,9 +88,12 @@ describe('the existing-site verification boundary',()=>{
     // Giudicarie.
     // Then 288 and 286 with four more Val Gardena walks: the Vallunga, the Sëurasas,
     // the farms path above Santa Cristina and the Raida dl luech.
+    // Then 293 and 291 with five more Hochpustertal walks: Innichen – Waldkapelle –
+    // Sexten, Niederdorf – Bellavista, the Pragser Wildsee to the Rossalm, Schluderbach
+    // to the Dürrensteinhütte, and down from the Helm to Vierschach.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(288);
-    expect(currentSiteTrails(catalogue)).toHaveLength(286);
+    expect(catalogue).toHaveLength(293);
+    expect(currentSiteTrails(catalogue)).toHaveLength(291);
   });
 
   test('requires the artwork the public trail page needs',()=>{
