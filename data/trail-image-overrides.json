@@ -20,6 +20,74 @@
       }
     },
     {
+      "id": "altabadia-escursione-corvara-colfosco",
+      "approvedReviewId": "commons-altabadia-escursione-corvara-colfosco-on-route",
+      "approvedAt": "2026-10-27T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/altabadia-escursione-corvara-colfosco-walkway.jpg",
+        "heroImage": "images/trails/altabadia-escursione-corvara-colfosco-walkway.jpg",
+        "imageAlt": "A gravel footpath beside a forest and a meadow above Corvara, a pedestrian sign and a wooden barn, the grey cliffs of the Sassongher behind",
+        "imageCredit": "The footpath above Corvara",
+        "imageCreditText": "The footpath above Corvara by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Corvara_walkway.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "altabadia-escursione-corvara-la-villa",
+      "approvedReviewId": "mapillary-altabadia-escursione-corvara-la-villa-on-route",
+      "approvedAt": "2026-10-27T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/altabadia-escursione-corvara-la-villa-la-villa-path.jpg",
+        "heroImage": "images/trails/altabadia-escursione-corvara-la-villa-la-villa-path.jpg",
+        "imageAlt": "A gravel path curving beside a wooden fence and a green verge into La Villa, chalets and parked cars behind",
+        "imageCredit": "The path into La Villa",
+        "imageCreditText": "The path into La Villa by mapillary_service",
+        "imageCreator": "mapillary_service",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1466783703713854",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt",
+      "approvedReviewId": "commons-altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt-on-route",
+      "approvedAt": "2026-10-27T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt-pedraces.jpg",
+        "heroImage": "images/trails/altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt-pedraces.jpg",
+        "imageAlt": "The village of Pedraces in Badia on a sunny June day, houses and a road junction with signposts, a rocky ridge and spruce trees behind",
+        "imageCredit": "Pedraces in Badia",
+        "imageCreditText": "Pedraces in Badia by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Badia_Abtei.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "altabadia-sentiero-degli-artisti-tru-di-artisc",
+      "approvedReviewId": "commons-altabadia-sentiero-degli-artisti-tru-di-artisc-on-route",
+      "approvedAt": "2026-10-27T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/altabadia-sentiero-degli-artisti-tru-di-artisc-san-cassiano.jpg",
+        "heroImage": "images/trails/altabadia-sentiero-degli-artisti-tru-di-artisc-san-cassiano.jpg",
+        "imageAlt": "Green meadows with old wooden barns and a white farmhouse at San Cassiano, the cliffs of the Sas dla Crusc partly in cloud behind",
+        "imageCredit": "San Cassiano",
+        "imageCreditText": "San Cassiano by Sjaak Kempe from Groningen, The Netherlands",
+        "imageCreator": "Sjaak Kempe from Groningen, The Netherlands",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:20130704_16_San_Cassiano_(9227402473).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cadini",
       "approvedReviewId": "commons-cadini",
       "approvedAt": "2026-09-06T12:22:30.979Z",
