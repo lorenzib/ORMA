@@ -563,6 +563,16 @@
       "name": "Il Sentiero dei vecchi mestieri – da Grumes",
       "slug": "sentiero-vecchi-mestieri-grumes",
       "gloss": "the old-trades path down the Rio dei Molini from Grumes"
+    },
+    "cembra-monte-pat-malga-vernera": {
+      "name": "Dalla Baita Monte Pat a Malga Vernera",
+      "slug": "baita-monte-pat-malga-vernera",
+      "gloss": "the forest-road walk from the Baita Monte Pat to Malga Vernera"
+    },
+    "cembra-pascoli-malga-vernera": {
+      "name": "Sui Pascoli di Malga Vernera",
+      "slug": "sui-pascoli-di-malga-vernera",
+      "gloss": "the pasture loop at Malga Vernera"
     }
   }
 }

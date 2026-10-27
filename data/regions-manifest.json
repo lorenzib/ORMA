@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T14:06:55.548Z",
+  "generatedAt": "2026-10-27T14:46:06.526Z",
   "regions": {
     "dolomites": {
-      "trailCount": 193,
-      "trails": "data/regions/dolomites-trails.js?v=11b7594c6a8a",
+      "trailCount": 195,
+      "trails": "data/regions/dolomites-trails.js?v=b62f7a51a1b3",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -175,7 +175,7 @@
         "fiemme-larici-verso-anterivo": "data/trail-details/fiemme-larici-verso-anterivo.js?v=9027b1463c5e",
         "fiemme-varena-spianez": "data/trail-details/fiemme-varena-spianez.js?v=a50019de7099",
         "primiero-malga-ces": "data/trail-details/primiero-malga-ces.js?v=057c73deaddd",
-        "fiemme-pradi-da-le-fior": "data/trail-details/fiemme-pradi-da-le-fior.js?v=2dbdab6f9bb6",
+        "fiemme-pradi-da-le-fior": "data/trail-details/fiemme-pradi-da-le-fior.js?v=f961bfa26002",
         "fiemme-passo-oclini": "data/trail-details/fiemme-passo-oclini.js?v=1ba1357e1c97",
         "fiemme-masi-comunicanti": "data/trail-details/fiemme-masi-comunicanti.js?v=876907fd555a",
         "primiero-monte-vederna": "data/trail-details/primiero-monte-vederna.js?v=18784533ea2e",
@@ -198,6 +198,8 @@
         "fiemme-scalata-alle-malghette": "data/trail-details/fiemme-scalata-alle-malghette.js?v=9616575fabcd",
         "cembra-piz-de-le-agole": "data/trail-details/cembra-piz-de-le-agole.js?v=d0f0fb067623",
         "cembra-vecchi-mestieri-grumes": "data/trail-details/cembra-vecchi-mestieri-grumes.js?v=1e0d9d4ec5b1",
+        "cembra-monte-pat-malga-vernera": "data/trail-details/cembra-monte-pat-malga-vernera.js?v=a281b4b35d53",
+        "cembra-pascoli-malga-vernera": "data/trail-details/cembra-pascoli-malga-vernera.js?v=00030517228d",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -460,6 +462,8 @@
     "fiemme-scalata-alle-malghette": "dolomites",
     "cembra-piz-de-le-agole": "dolomites",
     "cembra-vecchi-mestieri-grumes": "dolomites",
+    "cembra-monte-pat-malga-vernera": "dolomites",
+    "cembra-pascoli-malga-vernera": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -757,6 +761,8 @@
     "fiemme-scalata-alle-malghette": "scalata-alle-malghette",
     "cembra-piz-de-le-agole": "piz-de-le-agole-lisignago",
     "cembra-vecchi-mestieri-grumes": "sentiero-vecchi-mestieri-grumes",
+    "cembra-monte-pat-malga-vernera": "baita-monte-pat-malga-vernera",
+    "cembra-pascoli-malga-vernera": "sui-pascoli-di-malga-vernera",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1003,6 +1009,8 @@
     "scalata-alle-malghette": "fiemme-scalata-alle-malghette",
     "piz-de-le-agole-lisignago": "cembra-piz-de-le-agole",
     "sentiero-vecchi-mestieri-grumes": "cembra-vecchi-mestieri-grumes",
+    "baita-monte-pat-malga-vernera": "cembra-monte-pat-malga-vernera",
+    "sui-pascoli-di-malga-vernera": "cembra-pascoli-malga-vernera",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
