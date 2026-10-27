@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T13:46:30.637Z",
+  "generatedAt": "2026-10-27T14:06:55.548Z",
   "regions": {
     "dolomites": {
-      "trailCount": 190,
-      "trails": "data/regions/dolomites-trails.js?v=b99cba8ff32c",
+      "trailCount": 193,
+      "trails": "data/regions/dolomites-trails.js?v=11b7594c6a8a",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -195,6 +195,9 @@
         "cembra-erbe-della-salute": "data/trail-details/cembra-erbe-della-salute.js?v=66ab2854e039",
         "cembra-castello-segonzano": "data/trail-details/cembra-castello-segonzano.js?v=9569dbd66b94",
         "cembra-paese-beghei": "data/trail-details/cembra-paese-beghei.js?v=35e5bc55bfba",
+        "fiemme-scalata-alle-malghette": "data/trail-details/fiemme-scalata-alle-malghette.js?v=9616575fabcd",
+        "cembra-piz-de-le-agole": "data/trail-details/cembra-piz-de-le-agole.js?v=d0f0fb067623",
+        "cembra-vecchi-mestieri-grumes": "data/trail-details/cembra-vecchi-mestieri-grumes.js?v=1e0d9d4ec5b1",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -454,6 +457,9 @@
     "cembra-erbe-della-salute": "dolomites",
     "cembra-castello-segonzano": "dolomites",
     "cembra-paese-beghei": "dolomites",
+    "fiemme-scalata-alle-malghette": "dolomites",
+    "cembra-piz-de-le-agole": "dolomites",
+    "cembra-vecchi-mestieri-grumes": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -748,6 +754,9 @@
     "cembra-erbe-della-salute": "erbe-della-salute-grauno",
     "cembra-castello-segonzano": "castello-di-segonzano-canyon-del-pra",
     "cembra-paese-beghei": "paese-dei-beghei-sevignano",
+    "fiemme-scalata-alle-malghette": "scalata-alle-malghette",
+    "cembra-piz-de-le-agole": "piz-de-le-agole-lisignago",
+    "cembra-vecchi-mestieri-grumes": "sentiero-vecchi-mestieri-grumes",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -991,6 +1000,9 @@
     "erbe-della-salute-grauno": "cembra-erbe-della-salute",
     "castello-di-segonzano-canyon-del-pra": "cembra-castello-segonzano",
     "paese-dei-beghei-sevignano": "cembra-paese-beghei",
+    "scalata-alle-malghette": "fiemme-scalata-alle-malghette",
+    "piz-de-le-agole-lisignago": "cembra-piz-de-le-agole",
+    "sentiero-vecchi-mestieri-grumes": "cembra-vecchi-mestieri-grumes",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

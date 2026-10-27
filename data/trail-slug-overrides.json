@@ -548,6 +548,21 @@
       "name": "Il Giro dei Masi di Grumes",
       "slug": "giro-dei-masi-di-grumes",
       "gloss": "the walk up to the Masi di Grumes"
+    },
+    "fiemme-scalata-alle-malghette": {
+      "name": "La “scalata” alle Malghette",
+      "slug": "scalata-alle-malghette",
+      "gloss": "the forest-road walk to the Malghette hut"
+    },
+    "cembra-piz-de-le-agole": {
+      "name": "Il Piz de le Agole, balcone sulla valle",
+      "slug": "piz-de-le-agole-lisignago",
+      "gloss": "the loop from Lisignago to the Piz de le Agole"
+    },
+    "cembra-vecchi-mestieri-grumes": {
+      "name": "Il Sentiero dei vecchi mestieri – da Grumes",
+      "slug": "sentiero-vecchi-mestieri-grumes",
+      "gloss": "the old-trades path down the Rio dei Molini from Grumes"
     }
   }
 }

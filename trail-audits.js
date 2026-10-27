@@ -42892,6 +42892,185 @@
         { km: 2.2, lat: 46.22216, lng: 11.2718, osmId: 'way/690380723', name: 'El Casèl dei Masi' }
       ],
       desc: 'A walk from Grumes up the quiet lanes to the Masi di Grumes, old farmsteads on the sunny slopes of the upper Val di Cembra, and back the same way. The APT lists 6.8 km and 250 m of ascent.'
+    },
+    'fiemme-scalata-alle-malghette': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 3).
+      // APT Val di Fiemme’s walk “Montagna Senza Limiti - La “scalata” alle Malghette”. The line is drawn on 22 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Ville di Fiemme and Anterivo / Altrei publish no dog rule, so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard. The walk passes the Palù Longa provincial reserve (also ZSC IT3120020), whose rules ban leaving dogs to roam and walking off the marked paths, and runs inside Naturpark Trudner Horn (IT3110036), where dogs must stay on a lead.
+      // The walk passes the Palù Longa provincial nature reserve and Natura 2000 site IT3120020, whose rules ban leaving dogs to roam and leaving the marked paths, and about half of it lies in Naturpark Trudner Horn / Monte Corno (IT3110036), where dogs must be on a lead; it passes 44 m from the Langes Moos biotope without entering it.
+      area: 'Solaiolo – Malghette, Ville di Fiemme and Anterivo / Altrei',
+      distance: 3.9,
+      elevation: 163,
+      hours: '2',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back: from the Solaiolo car park up a gravel forest road past the Palù Longa biotope to the meadow and hut of Le Malghette (Krabes Alm), and back mostly the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The meadow and hut of Le Malghette (Krabes Alm), where the walk turns round, in August (Mario Penner, CC BY 3.0), 12 m from the line.',
+        route: 'Official out-and-back walk 3.9 km from Solaiolo car park, as APT Val di Fiemme publishes it; the stored line is drawn on 22 OSM ways along the APT’s published line, 3.9 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: one of the APT’s “Montagna Senza Limiti” walks, laid out for all-terrain wheelchairs. From the Solaiolo car park (reached from the Passo San Lugano road towards Anterivo) up the compacted gravel road in three climbs of up to 18%, past a gravel lane on the left to the small lake of the Palù Longa biotope with its water lilies, on past a little stone hut with nature boards, then right at the big meadow up to the hut of Le Malghette by the cobbled lane (up to 20%) or the gravel road. Back the same way, by the gravel road for the first stretch.',
+        mapPoints: 'Start at Solaiolo car park, the APT’s start; drinking water at km 1.6 (OSM nodes 13075995675).',
+        elevation: 'Official 3.9 km, 163 m up and 163 m down, 2 h, highest point 1,541 m, lowest 1,378 m (APT Val di Fiemme).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fiemme, Montagna Senza Limiti - La “scalata” alle Malghette (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Ville di Fiemme and Altrei publish no dog rule)',
+          'Provincia autonoma di Trento, Riserva naturale provinciale Palu’ Longa (Ville di Fiemme), permitted activities and bans: dogs may not be left to roam; walkers stay on the marked paths',
+          'Amt für Natur, rules of conduct in the South Tyrol nature parks: dogs only under the strictest supervision, on a lead, never roaming (Naturpark Trudner Horn)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves, the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites), and the South Tyrol landscape plan biotopes and nature parks: Palù Longa reserve and ZSC IT3120020 beside the line, Naturpark Trudner Horn (IT3110036) on about half of it',
+          'OpenStreetMap ways along the APT line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 47,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Three steep climbs of up to 18–20% on gravel and cobbles', 'Water channels across the road on the first descent', 'Inside the Palù Longa reserve and the Trudner Horn park: dogs on a lead, on the marked paths only'],
+      terrainType: 'A compacted gravel forest road and a short cobbled lane',
+      shadeDescription: 'About half the way is shaded, in the spruce and larch woods below the meadow.',
+      terrainDescription: 'A walk at 1,380–1,540 m from Solaiolo through the woods past the Palù Longa bog lake, with its water lilies and carnivorous sundews, to the meadow and hut of Le Malghette on the border with South Tyrol.',
+      waterDescription: 'Drinking fountain at km 1.6; bars and cafés on the way.',
+      dogNotes: 'Ville di Fiemme and Altrei have no dog rule of their own, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. The walk passes the Palù Longa reserve and runs through the Trudner Horn nature park: keep your dog on the lead, on the marked paths, and never let it roam.',
+      tips: 'Start at the Solaiolo car park: 3.9 km there and back, 163 m of climbing, about two hours. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried; in the reserve and the nature park keep your dog on the lead and on the path. The Malghette hut serves food at the turn; a fountain near it.',
+      sourceLinks: [
+        { label: 'APT Val di Fiemme, Montagna Senza Limiti - La “scalata” alle Malghette', url: 'https://www.visitfiemme.it/it/activity/montagna-senza-limiti-la-scalata-alle-malghette_46674' },
+        { label: 'Outdooractive, Montagna Senza Limiti - La “scalata” alle Malghette (APT Val di Fiemme)', url: 'https://www.outdooractive.com/it/r/808275016' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, Riserva naturale provinciale Palu’ Longa: attività ammesse e divieti', url: 'https://www.provincia.tn.it/News/Approfondimenti/Riserva-naturale-provinciale-Palu-Longa-Ville-di-Fiemme-attivita-ammesse-e-divieti' },
+        { label: 'South Tyrol nature parks, rules of conduct', url: 'https://naturparks.provinz.bz.it/de/verhaltensregeln-im-naturpark' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.298644, lng: 11.373053, label: 'Solaiolo car park, the APT’s start' },
+      waterSources: [
+        { km: 1.6, lat: 46.2941302, lng: 11.360073, osmId: 'node/13075995675', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 1.1, lat: 46.29384, lng: 11.36025, osmId: 'way/110073466', name: 'Krabes Alm - Le Malghette' }
+      ],
+      desc: 'A walk from Solaiolo up a forest road past the Palù Longa bog lake to the meadow and hut of Le Malghette, laid out by the APT for all-terrain wheelchairs, and back the same way. The APT lists 3.9 km and 163 m of ascent.'
+    },
+    'cembra-piz-de-le-agole': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 3).
+      // APT Fiemme Cembra’s walk “Il Piz de le Agole, balcone sulla valle”. The line is drawn on 48 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Cembra Lisignago publishes no general dog bylaw (only an order for the shores of the Lago Santo, not on this walk), so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer); the nearest local reserve, Palù della Stua, is about 230 m away.
+      area: 'Lisignago – Maderlina – Piz de le Agole, Cembra Lisignago, Val di Cembra',
+      distance: 10.2,
+      elevation: 600,
+      hours: '3.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the church of San Biagio in Lisignago up forest roads to Maderlina and the Piz de le Agole viewpoint, and back down SAT path 416 to the village.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of San Biagio in Lisignago, where the walk starts, in July (Niccolò Caranti, CC BY-SA 4.0); the church is 29 m from the line.',
+        route: 'Official loop 10.2 km from Lisignago (church of San Biagio), as APT Fiemme Cembra publishes it; the stored line is drawn on 48 OSM ways along the APT’s published line, 10.1 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'Up through Lisignago, then SAT 416 back down: from the church of San Biagio up through the arches and lanes of Lisignago to the top of the village, then following the signs for Maderlina up forest roads to Maderlina and its little church, and on by the signs to the Piz de le Agole, a viewpoint over the valley. Back briefly the same way, then SAT path 416, which drops fairly steeply to the centre of Lisignago.',
+        mapPoints: 'Start at Lisignago (church of San Biagio), the APT’s start; drinking water at km 3.3 (OSM nodes 544481112).',
+        elevation: 'Official 10.2 km, 600 m up and 600 m down, 3 h 30 min, highest point 1,081 m, lowest 575 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Il Piz de le Agole, balcone sulla valle (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Cembra Lisignago publishes no general dog bylaw)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (48 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 85,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A long climb of 600 m on forest roads', 'SAT path 416 drops steeply back to the village: take it slowly with your dog', 'The viewpoint is above steep ground: keep your dog on a short lead there'],
+      terrainType: 'Forest roads, mountain paths and village lanes',
+      shadeDescription: 'Mostly shaded: about 85% of the loop runs through woods.',
+      terrainDescription: 'A loop at 575–1,080 m from Lisignago through the woods above the lower Val di Cembra to Maderlina and the Piz de le Agole, a balcony over the valley.',
+      waterDescription: 'Drinking fountain at km 3.3.',
+      dogNotes: 'Cembra Lisignago has no general dog rule, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried.',
+      tips: 'Start at the church of San Biagio in Lisignago: 10.2 km, 600 m of climbing, about three and a half hours. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Mostly shaded; one fountain on the way up, so carry water for your dog. The descent on path 416 is steep.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Il Piz de le Agole, balcone sulla valle', url: 'https://www.visitfiemme.it/it/activity/il-piz-de-le-agole-balcone-sulla-valle_9623' },
+        { label: 'Outdooractive, Il Piz de le Agole, balcone sulla valle (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/59999551' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.160373, lng: 11.185843, label: 'Lisignago (church of San Biagio), the APT’s start' },
+      waterSources: [
+        { km: 3.3, lat: 46.1848232, lng: 11.1854647, osmId: 'node/544481112', label: 'Drinking fountain' }
+      ],
+      rifugi: [],
+      desc: 'A loop from Lisignago up through the woods to Maderlina and the Piz de le Agole, a balcony over the Val di Cembra, and back down a steep SAT path. The APT lists 10.2 km and 600 m of ascent.'
+    },
+    'cembra-vecchi-mestieri-grumes': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 3).
+      // APT Fiemme Cembra’s walk “Il Sentiero dei vecchi mestieri – da Grumes”. The line is drawn on 21 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Altavalle publishes no dog rule (none among its 270 published documents), so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer).
+      area: 'Grumes – Rio dei Molini, Altavalle, Val di Cembra',
+      distance: 5.3,
+      elevation: 400,
+      hours: '3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Grumes across the SS 612 and through the woods to the Rio dei Molini, down the stream past the old mills, the Venetian sawmill and the forge, and back up to the village by road.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of Santa Lucia in Grumes, near the start of the walk, in May (Syrio, CC BY-SA 4.0); the church is 76 m from the line.',
+        route: 'Official loop 5.3 km from Grumes (Piazza Municipio), as APT Fiemme Cembra publishes it; the stored line is drawn on 21 OSM ways along the APT’s published line, 5.5 km, with 97% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Piazza Municipio in Grumes up the lane opposite the hostel and the village shop, across the SS 612 and up the road into the woods, straight on to the junction signed Mulino Cristofori – Grauno – Sentiero dei Vecchi Mestieri, then to the Rio dei Molini and the Cristofori mill. From there the path follows the stream down on paths and footbridges past the ruins of old mills and sawmills, the Venetian sawmill, the Cristofori forge and the Nones mill, crossing the stream several times, to a tarred road; back up the road to Grumes.',
+        mapPoints: 'Start at Grumes (Piazza Municipio), the APT’s start; drinking water at the start (OSM nodes 10935265406).',
+        elevation: 'Official 5.3 km, 400 m up and 400 m down, 3 h, highest point 1,011 m, lowest 702 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Il Sentiero dei vecchi mestieri – da Grumes (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Altavalle publishes no dog rule)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (21 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 68,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['One crossing of the busy SS 612: lead short', 'A path down the stream with footbridges and several crossings of the Rio dei Molini: slippery when wet, keep your dog out of the water after rain', 'About 1 km back up a quiet tarred road open to cars'],
+      terrainType: 'Woodland paths with footbridges, forest tracks and quiet roads',
+      shadeDescription: 'Mostly shaded: about two thirds of the loop runs through the woods along the stream.',
+      terrainDescription: 'A loop at 700–1,010 m below Grumes, down the Rio dei Molini past the restored water mills, sawmill and forge of an old craft valley, part of the Rete di Riserve Alta Val di Cembra.',
+      waterDescription: 'Drinking fountain at the start; bars and cafés at the start.',
+      dogNotes: 'Altavalle has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried.',
+      tips: 'Start in Piazza Municipio, Grumes: 5.3 km, 400 m of climbing, about three hours. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog close crossing the SS 612 and on the footbridges by the stream. Fountains and a bar in Grumes at the start.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Il Sentiero dei vecchi mestieri – da Grumes', url: 'https://www.visitfiemme.it/it/activity/il-sentiero-dei-vecchi-mestieri-da-grumes_9859' },
+        { label: 'Outdooractive, Il Sentiero dei vecchi mestieri – da Grumes (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/36923488' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.22144, lng: 11.29435, label: 'Grumes (Piazza Municipio), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.221202, lng: 11.2948894, osmId: 'node/10935265406', label: 'Drinking fountain at the start' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.22163, lng: 11.29371, osmId: 'way/253472677', name: 'Bar risortante Stella Alpina' }
+      ],
+      desc: 'A loop from Grumes down the Rio dei Molini past old water mills, a Venetian sawmill and a forge, on woodland paths and footbridges, and back up to the village. The APT lists 5.3 km and 400 m of ascent.'
     }
   };
 
