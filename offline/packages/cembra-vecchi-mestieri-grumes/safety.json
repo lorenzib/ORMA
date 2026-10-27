@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cembra-vecchi-mestieri-grumes",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.3,
+    "ascentM": 400,
+    "highestPointM": 1034,
+    "expectedDuration": "3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 68
+  },
+  "trailhead": {
+    "lat": 46.22144,
+    "lng": 11.29435,
+    "label": "Grumes (Piazza Municipio), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.221202,
+      "lng": 11.2948894,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "One crossing of the busy SS 612: lead short.",
+    "A path down the stream with footbridges and several crossings of the Rio dei Molini: slippery when wet, keep your dog out of the water after rain.",
+    "About 1 km back up a quiet tarred road open to cars.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}
