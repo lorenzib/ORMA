@@ -3,8 +3,12 @@
 Research note, 27 October 2026. Scope: East Tyrol (Osttirol) first, then
 Carinthia's Gailtal and Lesachtal. Nothing here changes a seal rule on its own.
 The dog default at the end needs the owner's decision, and Austria itself is
-outside the planning catalogue scope the charter amendment of 27 October
-accepted (Dolomites and Savoy only).
+was outside the planning catalogue scope until the charter's catalogue area
+amendment of the same day.
+
+**Owner's decision, 27 October 2026:** the Austrian dog standard in section 3
+is approved as proposed, and the charter scope is amended to include East
+Tyrol and Carinthia.
 
 ## 1. Walk sources
 
@@ -165,7 +169,11 @@ named.
 - Cable-car companies (Lienzer Bergbahnen, Großglockner Resort) publish no dog
   rule. Treat "carry a muzzle" as the safe instruction.
 
-## 3. Proposed Austrian default (needs the owner's decision)
+## 3. Austrian dog standard (approved by the owner, 27 October 2026)
+
+The owner's words: "commune rule first; Tyrol and Carinthia defaults, pasture
+short-lead rule, hunting warning, 'lead for the whole walk, carry a muzzle';
+hold on a dog ban or Lavant-style unpublished rules". State it in each PR.
 
 Where the commune's own rule is found, it wins. Where it is not:
 
