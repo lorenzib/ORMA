@@ -1409,7 +1409,7 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
           type: 'hillshade',
           source: 'terrain-dem',
           paint: { 'hillshade-exaggeration': 0.3 },
-        }, map.getLayer('trail-paths-line') ? 'trail-paths-line' : undefined);
+        }, window.ORMAMapStyle.networkLayerId(map));
       }
       map.easeTo({ pitch: 38, zoom: Math.min(currentZoom, 12.25), duration: 500 });
     } else {
@@ -1428,14 +1428,16 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
       maxzoom: 19,
       attribution: 'Imagery © Esri',
     });
-    const firstSymbol = map.getStyle().layers.find(l => l.type === 'symbol');
+    // Below our hiking routes: the first symbol layer is now their numbers,
+    // which sit above the walk, so the photo would cover the walk itself.
+    const belowRoutes = window.ORMAMapStyle.networkLayerId(map);
     map.addLayer({
       id: 'satellite-layer',
       type: 'raster',
       source: 'satellite',
       layout: { visibility: 'none' },
       paint: { 'raster-resampling': 'linear', 'raster-fade-duration': 100 },
-    }, firstSymbol && firstSymbol.id);
+    }, belowRoutes);
     return true;
   }
   (function buildLayerSwitch(){
@@ -2145,7 +2147,7 @@ function addTerrainToggle(map, containerId, exaggeration, defaultPitch){
           type: 'hillshade',
           source: 'terrain-dem',
           paint: { 'hillshade-exaggeration': 0.3 },
-        }, map.getLayer('trail-paths-line') ? 'trail-paths-line' : undefined);
+        }, window.ORMAMapStyle.networkLayerId(map));
       }
       map.easeTo({ pitch: defaultPitch || 0, duration: 500 });
       btn.textContent = '2D';

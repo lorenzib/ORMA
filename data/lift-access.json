@@ -77,6 +77,28 @@
           "notes": "The walk starts at the top of the Piz Sorega gondola from San Cassiano; its cabins are closed. It ends on foot in Corvara."
         }
       }
+    },
+    {
+      "id": "valgardena-escursione-al-resciesa",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Resciesa funicular (Ortisei)",
+          "notes": "The walk starts at the top of the Resciesa funicular from Ortisei, a railway with closed cars. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "valgardena-escursione-dalla-cappella-santa-croce-al-brogles",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Resciesa funicular (Ortisei)",
+          "notes": "The walk starts at the top of the Resciesa funicular from Ortisei, a railway with closed cars. Dogs ride on a lead and muzzled."
+        }
+      }
     }
   ]
 }
