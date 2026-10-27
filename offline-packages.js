@@ -7,9 +7,14 @@
   // <offline-package-registry>
   const PACKAGE_NAMES = {
     'alpe-siusi': "Alpe di Siusi Meadow Loop",
+    'cembra-castello-segonzano': "Il Castello di Segonzano e il canyon del Prà",
     'cembra-dos-paion': "Passeggiata al belvedere del Dos Paion sul Monte Corona",
+    'cembra-erbe-della-salute': "Le erbe della salute",
+    'cembra-giro-masi-grumes': "Il Giro dei Masi di Grumes",
+    'cembra-giro-monte-corona': "Giro panoramico sul Monte Corona",
     'cembra-lago-lases-buse-giaz': "Il Lago di Lases e le buse del giaz",
     'cembra-lago-santo': "Il Lago Santo",
+    'cembra-paese-beghei': "Il paese dei “Beghei”",
     'cembra-pietra-del-futuro': "La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases",
     'cembra-rifugio-potzmauer': "Al Rifugio Potzmauer",
     'cembra-san-leonardo-lisignago': "San Leonardo e le campagne di Lisignago",

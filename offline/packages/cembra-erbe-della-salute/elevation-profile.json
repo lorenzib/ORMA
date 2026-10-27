@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cembra-erbe-della-salute",
+  "distanceKm": 2,
+  "ascentM": 100,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 989
+    },
+    {
+      "km": 0.2,
+      "elev": 1010
+    },
+    {
+      "km": 0.3,
+      "elev": 1034
+    },
+    {
+      "km": 0.5,
+      "elev": 1029
+    },
+    {
+      "km": 0.6,
+      "elev": 1055
+    },
+    {
+      "km": 0.8,
+      "elev": 1013
+    },
+    {
+      "km": 0.9,
+      "elev": 1013
+    },
+    {
+      "km": 1.1,
+      "elev": 1033
+    },
+    {
+      "km": 1.3,
+      "elev": 995
+    },
+    {
+      "km": 1.4,
+      "elev": 972
+    },
+    {
+      "km": 1.5,
+      "elev": 982
+    },
+    {
+      "km": 1.7,
+      "elev": 973
+    },
+    {
+      "km": 1.9,
+      "elev": 975
+    },
+    {
+      "km": 2,
+      "elev": 994
+    }
+  ]
+}
