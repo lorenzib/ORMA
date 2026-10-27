@@ -50607,6 +50607,397 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 0, lat: 46.54854, lng: 11.87208, osmId: 'node/1623822137', name: 'Corf' }
       ],
       desc: 'A short walk from Corvara up the Rü de Pisciadú stream to the Pisciadú waterfall at the foot of the Sella. The board lists 3.7 km and 204 m of ascent, one way.'
+    },
+    'valgardena-tour-alla-volta-del-lech-sant': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
+      // The Alta Badia tourist board’s walk “Tour alla volta del Lech Sant”, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Santa Cristina Valgardena (no dog regulation found, national rule).
+      // No Natura 2000 site or park; about a quarter is in landscape protection areas (Pic), which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Cristauta – Troi dla Schirlates – Lech Sant, Santa Cristina',
+      distance: 7.7,
+      elevation: 349,
+      hours: '2.7',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Cristauta car park on the squirrel path, the Troi dla Schirlates, through clearings and conifer forest past small lakes to the Lech Sant on the Mastlé alp, and back through the forest.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A walker on the track near Cristauta, with the Odle peaks in cloud behind, in September (ursus on Mapillary, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official loop 7.7 km from Cristauta car park, above Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 9 OSM ways along the board’s published line, 7.7 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'From the Cristauta car park first on the squirrel path, the “Troi dla Schirlates”, then on another path to a clearing and through the typical Val Gardena conifer forest; past several small lakes to the large pool on the Mastlé alp, the Lech Sant (“holy lake” in Ladin), and back to the start on a forest path.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 7.7 km, 349 m up and 349 m down, 2 h 40 min, highest point 2,100 m, lowest 1,752 m (Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Dolomites Val Gardena tourist board, Tour alla volta del Lech Sant (valgardena.it and its Outdooractive tour)',
+          'Comune di Santa Cristina Valgardena publishes no dog regulation (none found on its website or by search), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park or natural monument on the line; about 28% is in landscape protection areas, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 62,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Cattle graze the Mastlé alp in summer: keep your distance', 'Early in the season some stretches may still hold snow', 'Forest paths with roots'],
+      terrainType: 'Forest and alpine meadow paths',
+      shadeDescription: 'Mostly shaded: about three fifths of the loop runs through larch and spruce; the Mastlé alp round the lake is open.',
+      terrainDescription: 'A gentle loop at 1,750–2,100 m above Santa Cristina, through forest and clearings to a small mountain lake on the Mastlé alp below the Odle.',
+      waterDescription: 'No drinking water is mapped on the way; bring water for your dog. Places to eat on the way.',
+      dogNotes: 'Santa Cristina Valgardena publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; dogs ride the lifts on a lead and muzzled.',
+      tips: 'Start at the Cristauta car park above Santa Cristina: 7.7 km and about 350 m of climbing, two hours and forty minutes. Santa Cristina has no dog regulation of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m and carry a muzzle. Cattle graze round the lake in summer. Carry water: none is mapped on the loop.',
+      sourceLinks: [
+        { label: 'Val Gardena, Tour alla volta del Lech Sant', url: 'https://www.valgardena.it/it/outdoor/base/outdoor/tour-alla-volta-del-lech-sant/49659382/' },
+        { label: 'Outdooractive, Tour alla volta del Lech Sant (Dolomites Val Gardena tourist board)', url: 'https://www.outdooractive.com/it/r/49659382' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Val Gardena, holidays with your dog', url: 'https://www.valgardena.it/de/ferien-mit-hund/' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.566536, lng: 11.724877, label: 'Cristauta car park, above Santa Cristina, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 2.2, lat: 46.58124, lng: 11.73991, osmId: 'way/152231018', name: 'Gamsblut Hütte' },
+        { km: 2.9, lat: 46.58595, lng: 11.74012, osmId: 'way/237592903', name: 'Nëidia' },
+        { km: 3.7, lat: 46.58554, lng: 11.72941, osmId: 'way/427686663', name: 'Lech Sant' }
+      ],
+      desc: 'A gentle loop from Cristauta above Santa Cristina through the forest to the Lech Sant, a small lake on the Mastlé alp below the Odle. The board lists 7.7 km and 349 m of ascent.'
+    },
+    'valgardena-passeggiata-da-ortisei-a-s-cristina': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
+      // The Alta Badia tourist board’s walk “Passeggiata da Ortisei a S. Cristina”, drawn on 47 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Ortisei, Santa Cristina Valgardena, Castelrotto (no dog regulation found, national rule).
+      // No Natura 2000 site or park; it passes an ensemble-protection area in the village (building rules only).
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Ortisei – Coi – Mulin d’Odum – Alpe di Siusi cable car, Ortisei',
+      distance: 7.2,
+      elevation: 147,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A valley loop from the parish church of Ortisei along the Luis Trenker promenade to Coi, across the stream at the Mulin d’Odum, along the valley floor past the Mar Dolomit pool to the Alpe di Siusi cable car valley station, and back over the footbridge.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Luis Trenker promenade in Ortisei, on the loop, in August (maxxzor on Mapillary, CC BY-SA 4.0), 13 m from the line.',
+        route: 'Official loop 7.2 km from Ortisei parish church, as the Val Gardena tourist board publishes it; the stored line is drawn on 47 OSM ways along the board’s published line, 7.2 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'From the parish church of Ortisei along the Luis Trenker promenade up the valley to Coi; at a small supermarket right on the tarred road to the Mulin d’Odum house, across the stream to the other side of the valley, along the road down the valley past the Minert farm and the Mar Dolomit indoor and outdoor pool to the valley station of the Alpe di Siusi cable car; back to the start over the footbridge on the right.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.7, at km 3.2 and at km 6.9 (OSM nodes 7831444285, 6652727098, 7823639986, 12001148483).',
+        elevation: 'Official 7.2 km, 147 m up and 147 m down, 1 h 57 min, highest point 1,342 m, lowest 1,213 m (Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Dolomites Val Gardena tourist board, Passeggiata da Ortisei a S. Cristina (valgardena.it and its Outdooractive tour)',
+          'Comune di Ortisei publishes no dog regulation (none found on its website or by search), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Comune di Santa Cristina Valgardena publishes no dog regulation (none found on its website or by search), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Comune di Castelrotto publishes no dog regulation (none found on its website or by search), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park or natural monument on the line; about a fifth is in a village ensemble-protection area, which sets building rules only',
+          'OpenStreetMap ways along the board’s line (47 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 4,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Village streets and quiet roads with some traffic: keep your dog close', 'Paths shared with cyclists', 'Icy in winter'],
+      terrainType: 'Promenade, village lanes and quiet roads',
+      shadeDescription: 'Almost no shade: the loop runs through the village and along the open valley floor.',
+      terrainDescription: 'An easy valley loop at 1,210–1,340 m in and around Ortisei, on the Luis Trenker promenade and quiet lanes beside the stream.',
+      waterDescription: 'Drinking fountains at the start, at km 0.7, at km 3.2 and at km 6.9; places to eat at the start and on the way.',
+      dogNotes: 'Ortisei, Santa Cristina Valgardena and Castelrotto publish no dog regulation of their own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; dogs ride the lifts on a lead and muzzled.',
+      tips: 'Start at the parish church of Ortisei: 7.2 km and about 150 m of climbing, two hours. Ortisei, Santa Cristina and Castelrotto have no dog regulation of their own, so the national rule applies: keep your dog on a lead of at most 1.5 m and carry a muzzle. There is little shade: walk early or late on hot days. Fountains and cafés along the way.',
+      sourceLinks: [
+        { label: 'Val Gardena, Passeggiata da Ortisei a S. Cristina', url: 'https://www.valgardena.it/it/outdoor/base/outdoor/passeggiata-da-ortisei-a-s-cristina/16420476/' },
+        { label: 'Outdooractive, Passeggiata da Ortisei a S. Cristina (Dolomites Val Gardena tourist board)', url: 'https://www.outdooractive.com/it/r/16420476' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Val Gardena, holidays with your dog', url: 'https://www.valgardena.it/de/ferien-mit-hund/' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.575303, lng: 11.672271, label: 'Ortisei parish church, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.5750854, lng: 11.6716411, osmId: 'node/7831444285', label: 'Drinking fountain at the start' },
+        { km: 0.7, lat: 46.571844, lng: 11.6810386, osmId: 'node/6652727098', label: 'Drinking fountain' },
+        { km: 3.2, lat: 46.5613264, lng: 11.7066981, osmId: 'node/7823639986', label: 'Drinking fountain' },
+        { km: 6.9, lat: 46.574734, lng: 11.6704661, osmId: 'node/12001148483', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.57386, lng: 11.673, osmId: 'node/1594790717', name: 'Corso' },
+        { km: 0, lat: 46.57578, lng: 11.67149, osmId: 'node/1636849143', name: 'Terrazza' },
+        { km: 0.1, lat: 46.57378, lng: 11.67558, osmId: 'node/6012930685', name: 'Ustaria Da Checco - Restaurant' },
+        { km: 0.4, lat: 46.57185, lng: 11.67689, osmId: 'node/4243220840', name: 'Loungebar Fever' },
+        { km: 1.7, lat: 46.56546, lng: 11.69106, osmId: 'node/12425251143', name: 'Bar Sport Val Gardena' }
+      ],
+      desc: 'An easy valley loop from the church of Ortisei along the Luis Trenker promenade and the stream to the Alpe di Siusi cable car and back. The board lists 7.2 km and 147 m of ascent.'
+    },
+    'valgardena-escursione-al-resciesa': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
+      // The Alta Badia tourist board’s walk “Escursione al Resciesa”, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Ortisei (no dog regulation found, national rule).
+      // Puez-Odle nature park and Natura 2000 IT3110026 (about 90%): the park asks for a lead; the site’s 2025 measures and the ZPS measures set no dog rule.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Resciesa – Costa dl Cason – Resciesa di Fuori – Santa Croce, Ortisei',
+      distance: 5,
+      elevation: 197,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A high loop from the top of the Resciesa funicular above Ortisei across the Costa dl Cason to the summit cross of the Resciesa di Fuori and down past the chapel of Santa Croce.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Rifugio Resciesa beside the path on the plateau, in June (dsmm on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official loop 5 km from Resciesa funicular top station, above Ortisei, as the Val Gardena tourist board publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 4.9 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 31: from the top station of the Resciesa funicular from Ortisei north-east across the Costa dl Cason among meadows; at the junction towards “Resciesa di Fuori” to the summit cross at 2,281 m, with views from the Isarco valley and the Val di Funes to the Sciliar and the Passo Sella; down to the chapel of Santa Croce, built in 1755 above 2,200 m and restored in 2012, and back to the funicular.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 5 km, 197 m up and 197 m down, 1 h 29 min, highest point 2,281 m, lowest 2,096 m (Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Dolomites Val Gardena tourist board, Escursione al Resciesa (valgardena.it and its Outdooractive tour)',
+          'Comune di Ortisei publishes no dog regulation (none found on its website or by search), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Naturpark Puez-Geisler / Parco naturale Puez-Odle (Natura 2000 IT3110026), decree D.P.G.P. 31 October 1977, n. 29/V/LS, and the Province of Bolzano code of conduct for the nature parks: dogs on a lead. The site’s objectives and conservation measures (Giunta provinciale, 19 December 2025) and the Province’s ZPS measures (DGP 229/2008) set no rule on dogs or on walking the paths',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): about 92% in the Puez-Geisler nature park and 90% in IT3110026',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Open high ground with no shade: storms build fast in summer afternoons', 'Cattle graze the Resciesa meadows in summer', 'Check the funicular’s last run before setting out'],
+      terrainType: 'Meadow paths on a high ridge',
+      shadeDescription: 'No shade: the loop runs over open alpine meadows above the tree line.',
+      terrainDescription: 'A short high loop at 2,100–2,280 m on the Resciesa ridge above Ortisei, inside the Puez-Odle nature park, with wide views of the Odle, the Sassolungo and the Sciliar.',
+      waterDescription: 'No drinking water is mapped on the way; bring water for your dog. Places to eat at the start.',
+      dogNotes: 'Ortisei publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The loop is inside the Puez-Odle nature park, where dogs must be on a lead. The tourist board asks you to clean up after your dog; dogs ride the lifts on a lead and muzzled.',
+      tips: 'Ride the Resciesa funicular up from Ortisei (closed cars; dogs on a lead and muzzled): 5 km and about 200 m of climbing, an hour and a half. Ortisei has no dog regulation of its own, so the national rule applies, and the Puez-Odle nature park asks for a lead: keep your dog on a lead of at most 1.5 m and carry a muzzle. There is no shade or water on the loop: carry water for your dog. Check the funicular’s last run.',
+      sourceLinks: [
+        { label: 'Val Gardena, Escursione al Resciesa', url: 'https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-resciesa/16420468/' },
+        { label: 'Outdooractive, Escursione al Resciesa (Dolomites Val Gardena tourist board)', url: 'https://www.outdooractive.com/it/r/16420468' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, nature parks code of conduct', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano, IT3110026 objectives and conservation measures (PDF)', url: 'https://assets-eu-01.kc-usercontent.com:443/e90ea1ed-9101-0155-579f-5243d49e1f43/9da130eb-9aa6-4593-8156-ca6ed78a68f2/PAB_IT3110026%20-%20obiettivi%20e%20misure.pdf' },
+        { label: 'Val Gardena, holidays with your dog', url: 'https://www.valgardena.it/de/ferien-mit-hund/' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.597817, lng: 11.67928, label: 'Resciesa funicular top station, above Ortisei, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.59862, lng: 11.68174, osmId: 'way/41878008', name: 'Cason' },
+        { km: 3.3, lat: 46.60045, lng: 11.66215, osmId: 'way/41875349', name: 'Utia Resciesa - Schutzhütte Raschötz - Rifugio Resciesa' }
+      ],
+      desc: 'A short high loop from the top of the Resciesa funicular above Ortisei to the summit cross and the chapel of Santa Croce, in the Puez-Odle nature park. The board lists 5 km and 197 m of ascent.'
+    },
+    'valgardena-escursione-dalla-cappella-santa-croce-al-brogles': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
+      // The Alta Badia tourist board’s walk “Escursione dalla Cappella Santa Croce al Brogles”, drawn on 25 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Ortisei (no dog regulation found, national rule).
+      // Puez-Odle nature park and Natura 2000 IT3110026 (about 97%): the park asks for a lead; the site’s 2025 measures and the ZPS measures set no dog rule.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Resciesa – Santa Croce – Passo Valluzza – Brogles, Ortisei',
+      distance: 13,
+      elevation: 422,
+      hours: '3.8',
+      routeShape: 'loop',
+      routeShapeNote: 'A long high loop from the top of the Resciesa funicular past the Rifugio Resciesa and the chapel of Santa Croce to the summit cross, along the ridge to the Passo Valluzza and the Brogles alp, and back across the Costa dl Cason.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path towards the Brogles alp below the Odle peaks, on the walk, in July (highlander on Mapillary, CC BY-SA 4.0), 10 m from the line.',
+        route: 'Official loop 13 km from Resciesa funicular top station, above Ortisei, as the Val Gardena tourist board publishes it; the stored line is drawn on 25 OSM ways along the board’s published line, 13 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 35, 10 and 31: from the top station of the Resciesa funicular on path 35 to the Rifugio Resciesa and on to the chapel of Santa Croce; path 10 to the summit cross (2,281 m), the highest point; path 31 to the Passo Valluzza, with views from the Isarco valley to the Sciliar and the Passo Sella; then path 35 past the Ega Ciajiarines spring to the Brogles alp, and back along the Costa dl Cason (path 35) to the funicular.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 13 km, 422 m up and 422 m down, 3 h 48 min, highest point 2,282 m, lowest 2,012 m (Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Dolomites Val Gardena tourist board, Escursione dalla Cappella Santa Croce al Brogles (valgardena.it and its Outdooractive tour)',
+          'Comune di Ortisei publishes no dog regulation (none found on its website or by search), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Naturpark Puez-Geisler / Parco naturale Puez-Odle (Natura 2000 IT3110026), decree D.P.G.P. 31 October 1977, n. 29/V/LS, and the Province of Bolzano code of conduct for the nature parks: dogs on a lead. The site’s objectives and conservation measures (Giunta provinciale, 19 December 2025) and the Province’s ZPS measures (DGP 229/2008) set no rule on dogs or on walking the paths',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): about 97% in the Puez-Geisler nature park and in IT3110026',
+          'OpenStreetMap ways along the board’s line (25 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['A long high walk with no shade: storms build fast in summer afternoons', 'Cattle graze the alps in summer: keep your distance', 'Check the funicular’s last run before setting out'],
+      terrainType: 'Alpine meadow paths and tracks',
+      shadeDescription: 'No shade: the loop runs over open alpine meadows above the tree line.',
+      terrainDescription: 'A long high loop at 2,010–2,280 m from the Resciesa ridge above Ortisei to the Brogles alp at the foot of the Odle, almost entirely inside the Puez-Odle nature park.',
+      waterDescription: 'No drinking water is mapped on the way; bring water for your dog. Places to eat at the start.',
+      dogNotes: 'Ortisei publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Almost the whole loop is inside the Puez-Odle nature park, where dogs must be on a lead. The tourist board asks you to clean up after your dog; dogs ride the lifts on a lead and muzzled.',
+      tips: 'Ride the Resciesa funicular up from Ortisei (closed cars; dogs on a lead and muzzled): 13 km and about 420 m of climbing, nearly four hours. Ortisei has no dog regulation of its own, so the national rule applies, and the Puez-Odle nature park asks for a lead: keep your dog on a lead of at most 1.5 m and carry a muzzle. Carry plenty of water for your dog and check the funicular’s last run.',
+      sourceLinks: [
+        { label: 'Val Gardena, Escursione dalla Cappella Santa Croce al Brogles', url: 'https://www.valgardena.it/it/outdoor/base/outdoor/escursione-dalla-cappella-santa-croce-al-brogles/800791260/' },
+        { label: 'Outdooractive, Escursione dalla Cappella Santa Croce al Brogles (Dolomites Val Gardena tourist board)', url: 'https://www.outdooractive.com/it/r/800791260' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, nature parks code of conduct', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano, IT3110026 objectives and conservation measures (PDF)', url: 'https://assets-eu-01.kc-usercontent.com:443/e90ea1ed-9101-0155-579f-5243d49e1f43/9da130eb-9aa6-4593-8156-ca6ed78a68f2/PAB_IT3110026%20-%20obiettivi%20e%20misure.pdf' },
+        { label: 'Val Gardena, holidays with your dog', url: 'https://www.valgardena.it/de/ferien-mit-hund/' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.597817, lng: 11.67928, label: 'Resciesa funicular top station, above Ortisei, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.59862, lng: 11.68174, osmId: 'way/41878008', name: 'Cason' },
+        { km: 1.2, lat: 46.60045, lng: 11.66215, osmId: 'way/41875349', name: 'Utia Resciesa - Schutzhütte Raschötz - Rifugio Resciesa' }
+      ],
+      desc: 'A long high loop from the Resciesa above Ortisei past the chapel of Santa Croce and the Passo Valluzza to the Brogles alp below the Odle, in the Puez-Odle nature park. The board lists 13 km and 422 m of ascent.'
+    },
+    'valgardena-giro-della-via-crucis': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
+      // The Alta Badia tourist board’s walk “Giro della Via Crucis”, drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Santa Cristina Valgardena (no dog regulation found, national rule).
+      // No Natura 2000 site or park; about a fifth is in a landscape protection zone (building rules only).
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Santa Cristina – Col da Mëssa – Plesdinaz, Santa Cristina',
+      distance: 3.3,
+      elevation: 138,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop above Santa Cristina along the Way of the Cross with its fourteen bronze stations over the Col da Mëssa to Plesdinaz, and back by the Cisles road and the old railway path.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A bench above Santa Cristina looking over the village, on the loop, in July (highlander on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official loop 3.3 km from Casa Orchidee above the parish church, Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 3.3 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'From the Casa Orchidee above the parish church of Santa Cristina along the Way of the Cross over the Col da Mëssa to the hamlet of Plesdinaz; down the Plesdinaz road to the junction with the Cisles road, along the Cisles road to the old railway path (Sentiero del Trenino), and back to the start.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.8, at km 2.1 and at km 2.6 (OSM nodes 6693914655, 7872975485, 7823594185, 7872979185).',
+        elevation: 'Official 3.3 km, 138 m up and 138 m down, 1 h, highest point 1,559 m, lowest 1,421 m (Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Dolomites Val Gardena tourist board, Giro della Via Crucis (valgardena.it and its Outdooractive tour)',
+          'Comune di Santa Cristina Valgardena publishes no dog regulation (none found on its website or by search), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park or natural monument on the line; about 23% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Village lanes and a short stretch of road: keep your dog close', 'Paths shared with cyclists on the old railway path'],
+      terrainType: 'Village lanes, meadow paths and the old railway path',
+      shadeDescription: 'Almost no shade: the loop runs across open meadows above the village.',
+      terrainDescription: 'A short loop at 1,420–1,560 m above Santa Cristina along a Way of the Cross with fourteen bronze stations, with views of the Sassolungo and the village.',
+      waterDescription: 'Drinking fountains at the start, at km 0.8, at km 2.1 and at km 2.6; places to eat at the start and on the way.',
+      dogNotes: 'Santa Cristina Valgardena publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; dogs ride the lifts on a lead and muzzled.',
+      tips: 'Start at the Casa Orchidee above the church of Santa Cristina: 3.3 km and about 140 m of climbing, an hour. Santa Cristina has no dog regulation of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m and carry a muzzle. There is little shade: walk early on hot days. Fountains in the village.',
+      sourceLinks: [
+        { label: 'Val Gardena, Giro della Via Crucis', url: 'https://www.valgardena.it/it/outdoor/base/outdoor/giro-della-via-crucis/810054903/' },
+        { label: 'Outdooractive, Giro della Via Crucis (Dolomites Val Gardena tourist board)', url: 'https://www.outdooractive.com/it/r/810054903' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Val Gardena, holidays with your dog', url: 'https://www.valgardena.it/de/ferien-mit-hund/' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.559608, lng: 11.71588, label: 'Casa Orchidee above the parish church, Santa Cristina, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.5591964, lng: 11.7161458, osmId: 'node/6693914655', label: 'Drinking fountain at the start' },
+        { km: 0.8, lat: 46.559008, lng: 11.72348, osmId: 'node/7872975485', label: 'Drinking fountain' },
+        { km: 2.1, lat: 46.559089, lng: 11.72856, osmId: 'node/7823594185', label: 'Drinking fountain' },
+        { km: 2.6, lat: 46.558211, lng: 11.721892, osmId: 'node/7872979185', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.55898, lng: 11.71737, osmId: 'node/5773965256', name: 'da Peppi' },
+        { km: 0.2, lat: 46.55918, lng: 11.71916, osmId: 'node/5773965457', name: 'Calès' },
+        { km: 0.5, lat: 46.55793, lng: 11.72095, osmId: 'node/2612906760', name: 'Bar 2000' },
+        { km: 0.9, lat: 46.55848, lng: 11.72626, osmId: 'node/13438271593', name: 'Velù' },
+        { km: 1.6, lat: 46.56201, lng: 11.7341, osmId: 'node/2612833802', name: 'Villa Sella' }
+      ],
+      desc: 'A short loop above Santa Cristina along the Way of the Cross with its fourteen bronze stations, over the Col da Mëssa to Plesdinaz and back. The board lists 3.3 km and 138 m of ascent.'
+    },
+    'valgardena-passeggiata-alla-chiesetta-di-san-giacomo': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
+      // The Alta Badia tourist board’s walk “Passeggiata alla chiesetta di San Giacomo”, drawn on 25 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Ortisei (no dog regulation found, national rule).
+      // No Natura 2000 site or park; about half is in landscape protection areas (building rules only).
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Ortisei – Col de Flam – San Giacomo, Ortisei',
+      distance: 6,
+      elevation: 330,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the parish church of Ortisei on the Via del Dialogo to the Col de Flam, up a forest path to the little church of San Giacomo, and back by the Val d’Anna past the Seceda cable car valley station.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The rest area at Col de Flam on the Via del Dialogo, on the walk, in July (highlander on Mapillary, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official loop 6 km from Ortisei parish church, as the Val Gardena tourist board publishes it; the stored line is drawn on 25 OSM ways along the board’s published line, 5.7 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'From the parish church of Ortisei follow the signs for the Via del Dialogo to the Col de Flam, then the signs for San Giacomo up a forest path; at the end turn right and walk level to the little church of San Giacomo, patron of walkers and pilgrims. Back down the same path to the junction with a wayside shrine, then follow “Val d’Anna” to the right past the valley station of the Seceda cable car to the start.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.5, at km 0.9 and at km 2.8 (OSM nodes 7831444285, 4394598708, 8193286417, 6445451449).',
+        elevation: 'Official 6 km, 330 m up and 330 m down, 2 h, highest point 1,566 m, lowest 1,231 m (Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Dolomites Val Gardena tourist board, Passeggiata alla chiesetta di San Giacomo (valgardena.it and its Outdooractive tour)',
+          'Comune di Ortisei publishes no dog regulation (none found on its website or by search), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park or natural monument on the line; about 55% is in landscape protection areas, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (25 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 84,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Forest path with roots and a steady climb', 'Village streets in Ortisei: keep your dog close'],
+      terrainType: 'Forest paths and village lanes',
+      shadeDescription: 'Mostly shaded: most of the walk runs through larch and pine forest; only the streets of Ortisei are open.',
+      terrainDescription: 'A walk at 1,230–1,570 m from Ortisei up through the forest to the little church of San Giacomo, with views over Ortisei and the Sassolungo.',
+      waterDescription: 'Drinking fountains at the start, at km 0.5, at km 0.9 and at km 2.8; places to eat at the start and on the way.',
+      dogNotes: 'Ortisei publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; dogs ride the lifts on a lead and muzzled.',
+      tips: 'Start at the parish church of Ortisei: 6 km and about 330 m of climbing, two hours. Ortisei has no dog regulation of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m and carry a muzzle. Water at the fountains in Ortisei; take some for the climb.',
+      sourceLinks: [
+        { label: 'Val Gardena, Passeggiata alla chiesetta di San Giacomo', url: 'https://www.valgardena.it/it/outdoor/base/outdoor/passeggiata-alla-chiesetta-di-san-giacomo/16570805/' },
+        { label: 'Outdooractive, Passeggiata alla chiesetta di San Giacomo (Dolomites Val Gardena tourist board)', url: 'https://www.outdooractive.com/it/r/16570805' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Val Gardena, holidays with your dog', url: 'https://www.valgardena.it/de/ferien-mit-hund/' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.575385, lng: 11.671595, label: 'Ortisei parish church, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.5750854, lng: 11.6716411, osmId: 'node/7831444285', label: 'Drinking fountain at the start' },
+        { km: 0.5, lat: 46.5769834, lng: 11.6754494, osmId: 'node/4394598708', label: 'Drinking fountain' },
+        { km: 0.9, lat: 46.577123, lng: 11.67535, osmId: 'node/8193286417', label: 'Drinking fountain' },
+        { km: 2.8, lat: 46.5734059, lng: 11.6946714, osmId: 'node/6445451449', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.57386, lng: 11.673, osmId: 'node/1594790717', name: 'Corso' },
+        { km: 0, lat: 46.57578, lng: 11.67149, osmId: 'node/1636849143', name: 'Terrazza' },
+        { km: 0.1, lat: 46.57335, lng: 11.67363, osmId: 'node/1636849149', name: 'Haiti' }
+      ],
+      desc: 'A walk from Ortisei by the Via del Dialogo and the Col de Flam up through the forest to the little church of San Giacomo, and back by the Val d’Anna. The board lists 6 km and 330 m of ascent.'
     }
   };
 
@@ -59469,14 +59860,16 @@ function renderTrail(t){
           maxzoom: 19,
           attribution: 'Imagery © Esri',
         });
-        const firstSymbol = map.getStyle().layers.find(l => l.type === 'symbol');
+        // Below our hiking routes: the first symbol layer is now their numbers,
+        // which sit above the walk, so the photo would cover the walk itself.
+        const belowRoutes = window.ORMAMapStyle.networkLayerId(map);
         map.addLayer({
           id: 'satellite-layer',
           type: 'raster',
           source: 'satellite',
           layout: { visibility: 'none' },
           paint: { 'raster-resampling': 'linear', 'raster-fade-duration': 100 },
-        }, firstSymbol && firstSymbol.id);
+        }, belowRoutes);
         return true;
       };
       layerSwitch.addEventListener('click', (e) => {

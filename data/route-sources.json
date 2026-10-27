@@ -1714,6 +1714,54 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
+    "valgardena-escursione-al-resciesa": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-resciesa/16420468/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione al Resciesa",
+      "quote": "Distanza 5,0 km · Salita 197 m · Durata 1:29 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-dalla-cappella-santa-croce-al-brogles/800791260/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione dalla Cappella Santa Croce al Brogles",
+      "quote": "Distanza 13,0 km · Salita 422 m · Durata 3:48 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-giro-della-via-crucis": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/giro-della-via-crucis/810054903/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Giro della Via Crucis",
+      "quote": "Distanza 3,3 km · Salita 138 m · Durata 1:00 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-passeggiata-alla-chiesetta-di-san-giacomo": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/passeggiata-alla-chiesetta-di-san-giacomo/16570805/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Passeggiata alla chiesetta di San Giacomo",
+      "quote": "Distanza 6,0 km · Salita 330 m · Durata 2:00 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-passeggiata-da-ortisei-a-s-cristina": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/passeggiata-da-ortisei-a-s-cristina/16420476/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Passeggiata da Ortisei a S. Cristina",
+      "quote": "Distanza 7,2 km · Salita 147 m · Durata 1:57 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-tour-alla-volta-del-lech-sant": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/tour-alla-volta-del-lech-sant/49659382/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Tour alla volta del Lech Sant",
+      "quote": "Distanza 7,7 km · Salita 349 m · Durata 2:40 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
     "valley-view": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi4d53fc3760a30cad25696849c7669dd5.sonnseitenweg-panoramaweg.st--peter---villnoess",
       "publisher": "Tourismusgenossenschaft Odles, via Südtirol.info (IDM Südtirol)",
