@@ -8,10 +8,13 @@
   const PACKAGE_NAMES = {
     'alpe-siusi': "Alpe di Siusi Meadow Loop",
     'altabadia-da-furnacia-a-la-crusc': "Furnacia – La Crusc",
+    'altabadia-da-la-val-ai-prati-di-rit': "La Val – Prati di Rit",
     'altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa': "Pederoa – Picedac – Costa",
+    'altabadia-da-san-cassiano-al-pralongia-fino-a-corvara': "San Cassiano – Pralongiá – Corvara",
     'altabadia-escursione-corvara-colfosco': "Corvara – Colfosco",
     'altabadia-escursione-corvara-la-villa': "Corvara – La Villa",
     'altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt': "La Villa – Lech da Sompunt",
+    'altabadia-passeggiata-borest-cascate-del-pisciadu': "Borest – Pisciadú waterfall",
     'altabadia-sentiero-degli-artisti-tru-di-artisc': "Tru di artisć",
     'cembra-castello-segonzano': "Il Castello di Segonzano e il canyon del Prà",
     'cembra-dos-paion': "Passeggiata al belvedere del Dos Paion sul Monte Corona",
