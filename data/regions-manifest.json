@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T22:00:24.206Z",
+  "generatedAt": "2026-10-27T22:31:35.845Z",
   "regions": {
     "dolomites": {
       "trailCount": 210,
-      "trails": "data/regions/dolomites-trails.js?v=3b877011ac6c",
+      "trails": "data/regions/dolomites-trails.js?v=7ac886a07eb9",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -126,14 +126,14 @@
         "osm-2376630": "data/trail-details/osm-2376630.js?v=2c21bfb68d68",
         "osm-11270309": "data/trail-details/osm-11270309.js?v=ae20a0397dc8",
         "osm-11775923": "data/trail-details/osm-11775923.js?v=f281fe1b3b91",
-        "osm-12302182": "data/trail-details/osm-12302182.js?v=7fe2a20cb9f1",
-        "osm-12302137": "data/trail-details/osm-12302137.js?v=7fd98ffef944",
+        "osm-12302182": "data/trail-details/osm-12302182.js?v=30a2d11e1b27",
+        "osm-12302137": "data/trail-details/osm-12302137.js?v=229625b5e41b",
         "osm-8396539": "data/trail-details/osm-8396539.js?v=c6e3161fe7e0",
         "osm-20380913": "data/trail-details/osm-20380913.js?v=183c9909b523",
         "osm-10220399": "data/trail-details/osm-10220399.js?v=6445e8023d34",
         "osm-9648632": "data/trail-details/osm-9648632.js?v=ee65535625f8",
         "osm-11768853": "data/trail-details/osm-11768853.js?v=4399fcf5a273",
-        "osm-7567918": "data/trail-details/osm-7567918.js?v=1edbc8399ee8",
+        "osm-7567918": "data/trail-details/osm-7567918.js?v=0ebbb205ed79",
         "osm-9450411": "data/trail-details/osm-9450411.js?v=559026df0557",
         "osm-6601608": "data/trail-details/osm-6601608.js?v=4f1e88250dc0",
         "osm-11791915": "data/trail-details/osm-11791915.js?v=bd924e55c0ac",
@@ -293,9 +293,14 @@
       "optional": []
     },
     "tyrol": {
-      "trailCount": 0,
-      "trails": "data/regions/tyrol-trails.js?v=5c23f1a8921e",
-      "details": {},
+      "trailCount": 4,
+      "trails": "data/regions/tyrol-trails.js?v=e4dd4cdd06e4",
+      "details": {
+        "osttirol-rundwanderung-schloss-weissenstein": "data/trail-details/osttirol-rundwanderung-schloss-weissenstein.js?v=505f9f1fa778",
+        "osttirol-naturkraftweg-umbalfaelle": "data/trail-details/osttirol-naturkraftweg-umbalfaelle.js?v=40335ca2a8f1",
+        "osttirol-kulturweg-koednitz": "data/trail-details/osttirol-kulturweg-koednitz.js?v=8daab1982604",
+        "osttirol-rundwanderung-am-staller-sattel": "data/trail-details/osttirol-rundwanderung-am-staller-sattel.js?v=ad400270d9b1"
+      },
       "water": "data/regions/tyrol-water.geojson",
       "hutsBars": "data/regions/tyrol-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
@@ -563,7 +568,11 @@
     "osm-19661726": "savoy",
     "osm-19760372": "savoy",
     "osm-19855818": "savoy",
-    "osm-21021130": "savoy"
+    "osm-21021130": "savoy",
+    "osttirol-rundwanderung-schloss-weissenstein": "tyrol",
+    "osttirol-naturkraftweg-umbalfaelle": "tyrol",
+    "osttirol-kulturweg-koednitz": "tyrol",
+    "osttirol-rundwanderung-am-staller-sattel": "tyrol"
   },
   "trailSlug": {
     "alpe-siusi": "alpe-di-siusi-meadow-loop",
@@ -826,6 +835,10 @@
     "valgardena-giro-della-via-crucis": "via-crucis-santa-cristina",
     "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": "santa-croce-brogles",
     "valgardena-passeggiata-alla-chiesetta-di-san-giacomo": "san-giacomo-ortisei",
+    "osttirol-rundwanderung-schloss-weissenstein": "schloss-weissenstein-matrei",
+    "osttirol-naturkraftweg-umbalfaelle": "umbal-falls-nature-walk",
+    "osttirol-kulturweg-koednitz": "koednitz-culture-walk-kals",
+    "osttirol-rundwanderung-am-staller-sattel": "obersee-staller-sattel-loop",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1089,6 +1102,10 @@
     "via-crucis-santa-cristina": "valgardena-giro-della-via-crucis",
     "santa-croce-brogles": "valgardena-escursione-dalla-cappella-santa-croce-al-brogles",
     "san-giacomo-ortisei": "valgardena-passeggiata-alla-chiesetta-di-san-giacomo",
+    "schloss-weissenstein-matrei": "osttirol-rundwanderung-schloss-weissenstein",
+    "umbal-falls-nature-walk": "osttirol-naturkraftweg-umbalfaelle",
+    "koednitz-culture-walk-kals": "osttirol-kulturweg-koednitz",
+    "obersee-staller-sattel-loop": "osttirol-rundwanderung-am-staller-sattel",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

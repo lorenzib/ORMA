@@ -648,6 +648,26 @@
       "name": "San Giacomo from Ortisei",
       "slug": "san-giacomo-ortisei",
       "gloss": "the forest walk to the church of San Giacomo"
+    },
+    "osttirol-rundwanderung-schloss-weissenstein": {
+      "name": "Schloss Weißenstein loop, Matrei",
+      "slug": "schloss-weissenstein-matrei",
+      "gloss": "the castle-park loop from the centre of Matrei in Osttirol"
+    },
+    "osttirol-naturkraftweg-umbalfaelle": {
+      "name": "Umbal Falls nature walk",
+      "slug": "umbal-falls-nature-walk",
+      "gloss": "the loop along the Isel cascades above Ströden in the Virgental"
+    },
+    "osttirol-kulturweg-koednitz": {
+      "name": "Ködnitz culture walk, Kals",
+      "slug": "koednitz-culture-walk-kals",
+      "gloss": "the short heritage loop round the church and village of Kals-Ködnitz"
+    },
+    "osttirol-rundwanderung-am-staller-sattel": {
+      "name": "Obersee loop at the Staller Sattel",
+      "slug": "obersee-staller-sattel-loop",
+      "gloss": "the lake loop below the Staller Sattel pass at the head of the Defereggental"
     }
   }
 }

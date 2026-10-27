@@ -75,9 +75,12 @@ describe('the existing-site verification boundary',()=>{
     // waterfall from Corvara. Then 261 and 259 with six Val Gardena walks: the Lech
     // Sant, the Ortisei valley promenade, the Resciesa summit loop, Santa Croce –
     // Brogles, the Via Crucis above Santa Cristina and San Giacomo from Ortisei.
+    // Then 265 and 263 with the first Austrian walks, in East Tyrol: the Schloss
+    // Weißenstein loop at Matrei, the Umbal Falls, the Ködnitz culture walk at Kals
+    // and the Obersee loop at the Staller Sattel.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(261);
-    expect(currentSiteTrails(catalogue)).toHaveLength(259);
+    expect(catalogue).toHaveLength(265);
+    expect(currentSiteTrails(catalogue)).toHaveLength(263);
   });
 
   test('requires the artwork the public trail page needs',()=>{

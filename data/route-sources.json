@@ -1769,6 +1769,38 @@
       "quote": "Vom Bühlerhof läuft man leicht ansteigend bis zum Beginn des Panoramaweges (1389 m), der mit Berg-Symbolen markiert ist. Der Panoramaweg verläuft relativ eben bis zur Wegkreuzung mit Weg Nr. 11.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T19:40:50.460Z"
+    },
+    "osttirol-rundwanderung-schloss-weissenstein": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/rundwanderung-schloss-weissenstein",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Rundwanderung Schloss Weißenstein",
+      "quote": "Streckenlänge 3.21 km · Höhenmeter Bergauf 88 hm · Bergab 88 hm · Gehzeit Gesamt 1 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-naturkraftweg-umbalfaelle": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/naturkraftweg-umbalfaelle",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "NaturKraftWeg Umbalfälle",
+      "quote": "Streckenlänge 5.97 km · Höhenmeter Bergauf 257 hm · Bergab 257 hm · Gehzeit Gesamt 2:30 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-kulturweg-koednitz": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/kulturweg-koednitz",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Kulturweg Ködnitz",
+      "quote": "Streckenlänge 1.7 km · Höhenmeter Bergauf 34 hm · Bergab 33 hm · Gehzeit Gesamt 1 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-rundwanderung-am-staller-sattel": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/rundwanderung-am-staller-sattel",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Rundwanderung am Staller Sattel",
+      "quote": "Streckenlänge 4.7 km · Höhenmeter Bergauf 70 hm · Bergab 70 hm · Gehzeit Gesamt 1:20 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
     }
   }
 }
