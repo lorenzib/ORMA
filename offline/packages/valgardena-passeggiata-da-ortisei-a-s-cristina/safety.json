@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-passeggiata-da-ortisei-a-s-cristina",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.2,
+    "ascentM": 147,
+    "highestPointM": 1370,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 4
+  },
+  "trailhead": {
+    "lat": 46.575303,
+    "lng": 11.672271,
+    "label": "Ortisei parish church, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5750854,
+      "lng": 11.6716411,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.571844,
+      "lng": 11.6810386,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5613264,
+      "lng": 11.7066981,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.574734,
+      "lng": 11.6704661,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Village streets and quiet roads with some traffic: keep your dog close.",
+    "Paths shared with cyclists.",
+    "Icy in winter.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}
