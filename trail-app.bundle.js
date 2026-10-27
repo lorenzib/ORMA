@@ -48811,6 +48811,155 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 5.5, lat: 46.26237, lng: 11.33848, osmId: 'node/937259699', name: 'Bar Posta' }
       ],
       desc: 'A long, gentle loop through the woods from Grauno in the Val di Cembra to Capriana on a botanical path, then up to the Fontana d’Ao hut and back down an old cobbled road. The APT lists 11.8 km and 300 m of ascent.'
+    },
+    'primiero-ponte-su-funi': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 5).
+      // APT San Martino di Castrozza’s walk “Ponte su Funi Rio San Piero da Mezzano”, marked Dog-friendly.
+      // The line is drawn on 54 OSM ways along the line the APT publishes
+      // (data/board-line-routes.geojson).
+      // Mezzano (Art. 28) and Imer (Art. 28) have the same rule: dogs on every
+      // public place on a lead of at most 1.5 m, a muzzle in public buildings and
+      // crowds, none in playgrounds, schools, places of care or worship. No Natura
+      // 2000 site, park or reserve on the line (Sorive local reserve 510 m away).
+      // ROPE BRIDGE at km 3.4: the 70 m suspension bridge 30 m above the Rio San
+      // Piero (OSM way 961926708, bridge:structure=simple-suspension, metal floor).
+      // Allowed under the owner’s 26 Oct rule, flagged in hazards, dog notes and
+      // tips, and exposure set to true.
+      area: 'Mezzano – Ponte su Funi – Imer, Primiero',
+      distance: 6.2,
+      elevation: 240,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the tourist office in Mezzano up Via Molaren and Via delle Strente to Frontàl, along the old Via Nova track, over the rope suspension bridge above the Rio San Piero into Imer, across the Colladina meadows to Imer church, and back on a meadow path among fruit trees into Mezzano.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of San Giorgio in Mezzano, by the end of the loop, in July (Cristian Cenci, CC BY-SA 4.0), 88 m from the line.',
+        route: 'Official loop 6.2 km from the tourist office in Mezzano, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 54 OSM ways along the APT’s published line, 6.1 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'Partly signposted (SAT E378): from the tourist office in Piazza Mons. Orler in Mezzano up the street between the town hall and the Cassa Rurale to Via Molaren; out of the village and over a bridge, up the third street on the left, Via delle Strente, to Frontàl (fountain); left on the Via Nova, a gravel track along Monte Bedolè, to the tarmac road; across it, the path leads in ten minutes to the rope bridge. Over the bridge, along the level track to the SAT E378 sign for the Colladina meadows, down the road to Imer church; just below it over a small wooden bridge, up between the last houses to the sign for Mezzano, and on a meadow path among fields and fruit trees into Mezzano’s old centre and back to the tourist office.',
+        mapPoints: 'Start at the tourist office in Mezzano, the APT’s start; drinking water at the start, at km 0.6, at km 1.4 and at km 3.1 (OSM nodes 2425685566, 4394499288, 1563103883, 820911498).',
+        elevation: 'Official 6.2 km, 240 m up and 243 m down, 2 h 05 min, highest point 878 m, lowest 638 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Ponte su Funi Rio San Piero da Mezzano (sanmartino.com and its Outdooractive page, marked Dog-friendly)',
+          'Comune di Mezzano, Regolamento di Polizia Urbana (March 2021), Art. 26 and 28',
+          'Comune di Imer, Regolamento di Polizia Urbana (2018), Art. 26 and 28',
+          'Natura 2000 sites (Ministry of the Environment register and the Province of Trento’s ZSC and ZPS layers), the Paneveggio – Pale di San Martino nature park and Trentino’s provincial and local reserves (none on the line)',
+          'OpenStreetMap ways along the APT line (54 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 48,
+      heatRisk: 'high',
+      exposure: true,
+      surfaceHazards: ['The rope suspension bridge over the Rio San Piero at km 3.4: about 70 m long, 30 m up, swaying, with a see-through metal grating floor', 'About 2.3 km on tarmac, the first climb out of Mezzano in full sun', 'Road crossings in Mezzano and Imer'],
+      terrainType: 'Village streets, gravel track, paths and a rope suspension bridge',
+      shadeDescription: 'Part shade: about half runs under trees, mostly along the Via Nova; the climb out of Mezzano is in full sun.',
+      terrainDescription: 'A loop at 638–878 m from Mezzano, one of the “Borghi più belli d’Italia”, along the old Via Nova and over the rope bridge high above the Rio San Piero to Imer, with views of the Pale di San Martino.',
+      waterDescription: 'OpenStreetMap marks fountains in Mezzano and Imer, but the APT counts only one with drinking water on the way, at Frontàl, besides those in Mezzano: carry water for your dog.',
+      dogNotes: 'The walk crosses the rope suspension bridge over the Rio San Piero, about 70 m long and 30 m above the stream, with a metal grating floor, at km 3.4. It sways and you can see through the floor: some dogs refuse it. Cross slowly with your dog on a short lead, carry a small dog if it hesitates, and be ready to turn back. Mezzano and Imer have the same rules: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches.',
+      tips: 'Start at the tourist office in Mezzano: 6.2 km, 240 m of climbing, about two hours. It sways and you can see through the floor: some dogs refuse it. Cross slowly with your dog on a short lead, carry a small dog if it hesitates, and be ready to turn back. The APT warns there is only one drinking fountain on the way, at Frontàl, besides those in Mezzano at the end, and that the first climb is on sunny tarmac: avoid the hottest hours.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, Ponte su Funi Rio San Piero da Mezzano', url: 'https://www.sanmartino.com/it/itinerari/ponte-su-funi-rio-san-piero-da-mezzano' },
+        { label: 'Outdooractive, Ponte su Funi Rio San Piero da Mezzano (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/811789417' },
+        { label: 'Comune di Mezzano, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.mezzano.tn.it/content/download/499/7253/3/regolamento%2Bpolizia%2Burbana%2Bmarzo%2B2021.pdf' },
+        { label: 'Comune di Imer, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.imer.tn.it/content/download/640/11590/2/regolamento+polizia+urbana.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.154483, lng: 11.806652, label: 'The tourist office in Mezzano, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.1536742, lng: 11.8073117, osmId: 'node/2425685566', label: 'Drinking fountain at the start' },
+        { km: 0.6, lat: 46.1567982, lng: 11.8122787, osmId: 'node/4394499288', label: 'Drinking fountain' },
+        { km: 1.4, lat: 46.1648772, lng: 11.812227, osmId: 'node/1563103883', label: 'Drinking fountain' },
+        { km: 3.1, lat: 46.1566324, lng: 11.7970164, osmId: 'node/820911498', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.15477, lng: 11.80629, osmId: 'node/2425685545', name: 'Bar Centrale' },
+        { km: 0, lat: 46.15498, lng: 11.80495, osmId: 'node/3283742250', name: 'Bar Ceccato' },
+        { km: 4.6, lat: 46.15107, lng: 11.79544, osmId: 'node/739371721', name: 'Bar Caffe Obber' }
+      ],
+      desc: 'A loop from Mezzano along the old Via Nova and over a 70 m rope suspension bridge high above the Rio San Piero to Imer, back through meadows and fruit trees. The APT lists 6.2 km and 240 m of ascent.'
+    },
+    'primiero-via-della-frutta-antica': {
+      // Hand audit: 26 October 2026, verified on arrival (Primiero batch 5).
+      // APT San Martino di Castrozza’s walk “La via della frutta antica”.
+      // The line is drawn on 30 OSM ways along the line the APT publishes
+      // (data/board-line-routes.geojson).
+      // Primiero San Martino di Castrozza, Mezzano and Imer (Art. 28) and Canal San
+      // Bovo (Art. 32, which also keeps dogs out of cemeteries and sports grounds)
+      // share the model rule: lead of at most 1.5 m, muzzle in public buildings and
+      // crowds. No Natura 2000 site, park or reserve on the line. One way: the APT
+      // suggests the bus back from Passo Gobbera. ROPE BRIDGE at km 3.7: the same
+      // 70 m suspension bridge over the Rio San Piero as Ponte su Funi, named in the
+      // APT’s own directions; flagged in hazards, dog notes and tips, exposure true.
+      area: 'Pieve – Mezzano – Imer – Passo Gobbera, Primiero',
+      distance: 8,
+      elevation: 321,
+      hours: '3',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A one-way walk from Pieve along the old Via Nova above Mezzano and Imer to Passo Gobbera, past more than forty old fruit trees. Back the same way, by the bus that passes Passo Gobbera, or on the signed paths down to Mezzano or Imer.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-26',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The main street of Fiera di Primiero by Pieve, near the start, the Pale di San Martino behind, in August (laniuscollurio on Mapillary, CC BY-SA 4.0), 69 m from the line.',
+        route: 'Official one-way walk 8 km from Pieve, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 30 OSM ways along the APT’s published line, 8.1 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'SAT trail 357 for much of the way: from the church of Santa Maria Assunta in Pieve along Via San Rocco south-west to the Capitello della Peste and the signed start; up the mule track (357) to the Piani di Molaren; following the signs for Passo Gobbera to the road to Camp; across it, the path leads shortly to the rope bridge over the Rio San Piero. Over it, on path and then road to Solàn and the Col dei Fagheri fork; right to Solàn Grant and its great beech, left on a gravel road and a woodland path, across a small valley and up right to the Col dei Betteghe, then down to Passo Gobbera.',
+        mapPoints: 'Start at Pieve church, the APT’s start; drinking water at the start, at km 0.4, at km 1.5 and at km 3.2 (OSM nodes 804127875, 5735811691, 1563103883, 820911498).',
+        elevation: 'Official 8 km, 321 m up and 52 m down, 3 h, highest point 1,038 m, lowest 717 m (APT San Martino di Castrozza).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, La via della frutta antica (sanmartino.com and its Outdooractive page)',
+          'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (2016, amended 2018), Art. 26 and 28',
+          'Comune di Mezzano, Regolamento di Polizia Urbana (March 2021), Art. 26 and 28',
+          'Comune di Imer, Regolamento di Polizia Urbana (2018), Art. 26 and 28',
+          'Comune di Canal San Bovo, Regolamento di Polizia Urbana (2022), Art. 32',
+          'Natura 2000 sites (Ministry of the Environment register and the Province of Trento’s ZSC and ZPS layers), the Paneveggio – Pale di San Martino nature park and Trentino’s provincial and local reserves (none on the line)',
+          'OpenStreetMap ways along the APT line (30 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-26'
+      },
+      shadeCoverage: 69,
+      heatRisk: 'moderate',
+      exposure: true,
+      surfaceHazards: ['The rope suspension bridge over the Rio San Piero at km 3.7: about 70 m long, 30 m up, swaying, with a see-through metal grating floor', 'About 2.9 km on tarmac, with road crossings', 'Mule tracks and woodland paths'],
+      terrainType: 'Mule track, paths, gravel and tarmac roads and a rope suspension bridge',
+      shadeDescription: 'Mostly shaded: about two thirds runs under trees, though the APT calls the Via Nova almost entirely sunny.',
+      terrainDescription: 'A one-way walk at 717–1,038 m along the old Via Nova from Pieve to Passo Gobbera, a treasure hunt for more than forty old pear, apple and cherry trees with QR-coded panels, over the rope bridge high above the Rio San Piero.',
+      waterDescription: 'Drinking fountains at the start, at km 0.4, at km 1.5 and at km 3.2; bars and cafés at the start and on the way.',
+      dogNotes: 'The walk crosses the rope suspension bridge over the Rio San Piero, about 70 m long and 30 m above the stream, with a metal grating floor, at km 3.7. It sways and you can see through the floor: some dogs refuse it. Cross slowly with your dog on a short lead, carry a small dog if it hesitates, and be ready to turn back. Primiero San Martino di Castrozza, Mezzano, Imer and Canal San Bovo have the same rules: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches.',
+      tips: 'Start at Pieve church: 8 km one way, 321 m of climbing, about three hours. It sways and you can see through the floor: some dogs refuse it. Cross slowly with your dog on a short lead, carry a small dog if it hesitates, and be ready to turn back. To come back, walk the same way, take the bus that passes Passo Gobbera, or turn down to Mezzano or Imer on the signed paths. Fountains in Pieve and at points along the way.',
+      sourceLinks: [
+        { label: 'APT San Martino di Castrozza, La via della frutta antica', url: 'https://www.sanmartino.com/it/itinerari/la-via-della-frutta-antica' },
+        { label: 'Outdooractive, La via della frutta antica (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/804368222' },
+        { label: 'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf' },
+        { label: 'Comune di Mezzano, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.mezzano.tn.it/content/download/499/7253/3/regolamento%2Bpolizia%2Burbana%2Bmarzo%2B2021.pdf' },
+        { label: 'Comune di Imer, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.imer.tn.it/content/download/640/11590/2/regolamento+polizia+urbana.pdf' },
+        { label: 'Comune di Canal San Bovo, Regolamento di Polizia Urbana (dogs: Art. 32)', url: 'https://www.comune.canalsanbovo.tn.it/content/download/549/9160/3/2022%2BNuovo%2Bregolamento%2BPolizia%2BUrbana.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.174766, lng: 11.827008, label: 'Pieve, by the church of Santa Maria Assunta, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.1756702, lng: 11.8282751, osmId: 'node/804127875', label: 'Drinking fountain at the start' },
+        { km: 0.4, lat: 46.1716918, lng: 11.8234505, osmId: 'node/5735811691', label: 'Drinking fountain' },
+        { km: 1.5, lat: 46.1648772, lng: 11.812227, osmId: 'node/1563103883', label: 'Drinking fountain' },
+        { km: 3.2, lat: 46.1566324, lng: 11.7970164, osmId: 'node/820911498', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.17465, lng: 11.82605, osmId: 'node/1563104824', name: 'La Boteghina' },
+        { km: 0, lat: 46.17457, lng: 11.827, osmId: 'node/2394661692', name: 'La terrazza' },
+        { km: 7.8, lat: 46.14754, lng: 11.75822, osmId: 'node/748752268', name: 'Ristorante Pizzeria Passo Gobbera' }
+      ],
+      desc: 'A one-way walk along the old Via Nova from Pieve to Passo Gobbera, past more than forty old fruit trees and over a 70 m rope suspension bridge above the Rio San Piero. The APT lists 8 km and 321 m of ascent.'
     }
   };
 
