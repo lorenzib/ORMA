@@ -149,8 +149,18 @@
   }
 
   function regionForFix(fix){
-    // ORMA currently covers Savoy (west of 9°E) and the Dolomites.
-    return fix && fix.lng < 9 ? 'savoy' : 'dolomites';
+    // Savoy lies west of 9°E. East of it the walker is in the region of the
+    // nearest trail ORMA knows, which is how the water and hut layers are split.
+    if(!fix) return 'dolomites';
+    if(fix.lng < 9) return 'savoy';
+    var best = 'dolomites';
+    var bestD = Infinity;
+    (Array.isArray(window.trails) ? window.trails : []).forEach(function(trail){
+      if(!trail || trail.region === 'savoy' || typeof trail.lat !== 'number' || typeof trail.lng !== 'number') return;
+      var d = Math.pow(trail.lat - fix.lat, 2) + Math.pow((trail.lng - fix.lng) * Math.cos(fix.lat * Math.PI / 180), 2);
+      if(d < bestD){ bestD = d; best = trail.region || 'dolomites'; }
+    });
+    return best;
   }
 
   function regionAsset(key){
