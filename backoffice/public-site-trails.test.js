@@ -75,9 +75,12 @@ describe('the existing-site verification boundary',()=>{
     // waterfall from Corvara. Then 261 and 259 with six Val Gardena walks: the Lech
     // Sant, the Ortisei valley promenade, the Resciesa summit loop, Santa Croce –
     // Brogles, the Via Crucis above Santa Cristina and San Giacomo from Ortisei.
+    // Then 268 and 266 with the first seven Hochpustertal walks: the Toblacher See,
+    // the Gustav Mahler path, Innichen – Haselsberg – Toblach, Wildbad Innichen, the
+    // Maistatt loop, St. Magdalena in Moos and the Grünwaldalm above the Pragser Wildsee.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(261);
-    expect(currentSiteTrails(catalogue)).toHaveLength(259);
+    expect(catalogue).toHaveLength(268);
+    expect(currentSiteTrails(catalogue)).toHaveLength(266);
   });
 
   test('requires the artwork the public trail page needs',()=>{

@@ -44178,6 +44178,491 @@
         { km: 0.1, lat: 46.57335, lng: 11.67363, osmId: 'node/1636849149', name: 'Haiti' }
       ],
       desc: 'A walk from Ortisei by the Via del Dialogo and the Col de Flam up through the forest to the little church of San Giacomo, and back by the Val d’Anna. The board lists 6 km and 330 m of ascent.'
+    },
+    'trecime-dobbiaco-lago-di-dobbiaco': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
+      // The Tre Cime Dolomites tourist board’s walk “Dobbiaco – Lago di Dobbiaco, percorso naturalistico attorno al lago”, drawn on 65 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Toblach (own regulation).
+      // About a quarter of the line is in the Fanes-Sennes-Prags nature park (IT3110049, dogs on a lead); it runs along the Toblacher See natural monument and passes 19 m from the Rienz Au biotope without entering it.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Toblach – Neu-Toblach – Toblacher See, Toblach',
+      distance: 7.9,
+      elevation: 61,
+      hours: '2.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out from the Toblach tourist office past the Nordic Arena and the Säge to the Toblacher See, along the nature trail on the west shore, and back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The flowering meadow and the nature trail on the west shore of the Toblacher See, on the walk, in June (Samuel Boatto, CC BY-SA 4.0); the photo carries no geotag and shows the west shore below the Sarlkofel.',
+        route: 'Official walk 7.9 km from the Toblach tourist office, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 65 OSM ways along the GPX on the board’s page, 7.9 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'The board names no path numbers and gives the way instead: from the Toblach tourist office south on the pavement, right just after the level crossing and left after about 100 m, along the paved road to the Nordic Arena and on to the Säge; there a gravel road leads to the Toblacher See. On the west shore the nature trail follows the lake past 11 information stations to an observation platform with a rest area. Back the same way to the tourist office.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.4, at km 1, at km 2.6 and at km 2.7 (OSM nodes 5853149021, 9864182196, 8270260719, 13118936072, 13118936073).',
+        elevation: 'Official 7.9 km, 61 m up and 61 m down, 2 h 30 min, highest point 1,264 m, lowest 1,209 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Dobbiaco – Lago di Dobbiaco, percorso naturalistico attorno al lago (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden (January 2010 text), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); the Fanes-Sennes-Prags protection decree (no. 72/V/LS of 4 March 1980) sets no reserve zone and no other rule on dogs',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): about a quarter of the line is in the Fanes-Sennes-Prags nature park and Natura 2000 site IT3110049; the lake shore is the Toblacher See natural monument; the Rienz Au biotope (IT3110022) is 19 m from the line and not entered',
+          'OpenStreetMap ways along the board’s line (65 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 30,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Paved road and cycle path from Toblach to the lake: share it with bikes', 'Keep your dog out of the lake, a protected natural monument', 'A level crossing at the start'],
+      terrainType: 'Pavement, paved road, gravel road and lakeside nature trail',
+      shadeDescription: 'Partly shaded: the road from Toblach is open; the lake shore has forest on the west side.',
+      terrainDescription: 'A level walk at 1,210–1,265 m from Toblach south to the Toblacher See and along its west shore, with views to the Sarlkofel and the mouth of the Höhlensteintal.',
+      waterDescription: 'Drinking fountains at the start, at km 0.4 and at km 1, and by the lake at km 2.6 and 2.7; restaurants at the lake.',
+      dogNotes: 'Toblach’s dog regulation requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs off farmed meadows and fields. The lake end is in the Fanes-Sennes-Prags nature park, where dogs must be on a lead at all times. Keep your dog out of the lake.',
+      tips: 'Start at the Toblach tourist office: 7.9 km there and back, about 60 m of climbing, two and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Toblach requires. The nature trail on the west shore has 11 information stations and an observation platform. Keep your dog out of the lake.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Dobbiaco – Lago di Dobbiaco, percorso naturalistico attorno al lago', url: 'https://www.dreizinnen.com/it/activity/sentiero-tematico-dobbiaco-lago-di-dobbiaco-percorso-naturalistico-attorno-al-lago-dobbiaco_553' },
+        { label: 'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.toblach.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.72853, lng: 12.22362, label: 'Toblach tourist office, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.72862, lng: 12.223758, osmId: 'node/5853149021', label: 'Drinking fountain at the start' },
+        { km: 0.4, lat: 46.7246325, lng: 12.2247724, osmId: 'node/9864182196', label: 'Drinking fountain' },
+        { km: 1, lat: 46.7187993, lng: 12.2221565, osmId: 'node/8270260719', label: 'Drinking fountain' },
+        { km: 2.6, lat: 46.706231, lng: 12.2173443, osmId: 'node/13118936072', label: 'Drinking fountain' },
+        { km: 2.7, lat: 46.7057405, lng: 12.2170224, osmId: 'node/13118936073', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.72899, lng: 12.22214, osmId: 'node/2756025928', name: 'Pizzeria Hans' },
+        { km: 0.2, lat: 46.72487, lng: 12.22502, osmId: 'node/4127963295', name: 'Bahnhof Bar - Bar Stazione' },
+        { km: 0.4, lat: 46.72335, lng: 12.22426, osmId: 'way/236276410', name: 'Restaurant & Lounge Tilia' },
+        { km: 2.5, lat: 46.70633, lng: 12.21783, osmId: 'way/217048792', name: 'Restaurant Seeschupfe' },
+        { km: 2.6, lat: 46.70557, lng: 12.21748, osmId: 'way/217048775', name: 'Restaurant am See' }
+      ],
+      desc: 'A level walk from Toblach to the Toblacher See and along the nature trail on its west shore, and back. The board lists 7.9 km and 61 m of ascent.'
+    },
+    'trecime-sentiero-gustav-mahler': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
+      // The Tre Cime Dolomites tourist board’s walk “Sentiero Gustav Mahler”, drawn on 36 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Toblach (own regulation).
+      // No Natura 2000 site or park on the line; it passes 57 m from the Rienz Au biotope and crosses the edge of the Letteau natural monument (riverside scrub) for 49 m.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Neu-Toblach – Rienz – Altschluderbach, Toblach',
+      distance: 4.7,
+      elevation: 72,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the former Grand Hotel at Neu-Toblach on path 27 through the forest to Altschluderbach, where Gustav Mahler spent his summers, and back on path 27A, the paved cycle path.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The former Grand Hotel at Neu-Toblach, where the loop starts, in July (Ermell, CC BY-SA 4.0), 23 m from the line.',
+        route: 'Official loop 4.7 km from the former Grand Hotel at Neu-Toblach, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 36 OSM ways along the GPX on the board’s page, 4.7 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 27 and 27A: from the former Grand Hotel at Neu-Toblach on path 27 to the Rienz area, up beside the lower part of the ski lift (the lift is not used), then level through the forest to Altschluderbach, where Mahler’s summer house and composing hut stand (seen from outside only). Back on path 27A, which is also the paved cycle path, to the start.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and at km 2.1 (OSM nodes 4426202508, 9864182196, 8270256872).',
+        elevation: 'Official 4.7 km, 72 m up and 72 m down, 2 h, highest point 1,239 m, lowest 1,190 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Sentiero Gustav Mahler (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden (January 2010 text), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site or park on the line; the Rienz Au biotope (IT3110022) is 57 m away and not entered; 49 m cross the edge of the Letteau natural monument, a riverside scrub, for which the layer gives no dog rule',
+          'OpenStreetMap ways along the board’s line (36 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The way back is the paved cycle path: share it with bikes', 'A short climb beside a ski slope near the start'],
+      terrainType: 'Forest path, paved road and cycle path',
+      shadeDescription: 'About half shaded: the outward path runs through forest; the cycle path back is mostly open.',
+      terrainDescription: 'A short, almost level loop at 1,190–1,240 m south of Toblach through forest to Altschluderbach, where Gustav Mahler wrote his Ninth Symphony and Das Lied von der Erde, and back on the Pustertal cycle path.',
+      waterDescription: 'Drinking fountains at the start and at km 2.1; cafés at the start by the station.',
+      dogNotes: 'Toblach’s dog regulation requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs off farmed meadows and fields. The cycle path back is busy in summer: keep your dog close.',
+      tips: 'Start at the former Grand Hotel by Toblach station: 4.7 km, about 70 m of climbing, two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Toblach requires. Mahler’s summer house and composing hut at Altschluderbach can only be seen from outside.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Sentiero Gustav Mahler', url: 'https://www.dreizinnen.com/it/activity/sentiero-tematico-sentiero-gustav-mahler_50104' },
+        { label: 'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.toblach.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.723306, lng: 12.225306, label: 'Former Grand Hotel, Neu-Toblach, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.7244305, lng: 12.2254734, osmId: 'node/4426202508', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.7246325, lng: 12.2247724, osmId: 'node/9864182196', label: 'Drinking fountain at the start' },
+        { km: 2.1, lat: 46.72784, lng: 12.201692, osmId: 'node/8270256872', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.72487, lng: 12.22502, osmId: 'node/4127963295', name: 'Bahnhof Bar - Bar Stazione' },
+        { km: 0, lat: 46.72335, lng: 12.22426, osmId: 'way/236276410', name: 'Restaurant & Lounge Tilia' }
+      ],
+      desc: 'A short loop from Neu-Toblach through the forest to Altschluderbach, where Gustav Mahler spent his last summers, and back on the cycle path. The board lists 4.7 km and 72 m of ascent.'
+    },
+    'trecime-san-candido-costa-dei-nosellari-dobbiaco': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
+      // The Tre Cime Dolomites tourist board’s walk “San Candido – Costa dei Nosellari – Dobbiaco”, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Innichen and Toblach (both own regulations).
+      // No Natura 2000 site, park or biotope on the line; it passes 97 m from a natural monument.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Innichen – Schlosstal – Haselsberg – Toblach',
+      distance: 4.8,
+      elevation: 161,
+      hours: '1.8',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the petrol station on the SS 49 at Innichen up the Schlosstal to the Haselsberg farms and along a narrow lane past the Eggemann and Kugler farms down to Toblach. Back by train or bus.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church square in Toblach with the parish church of St. John, where the walk comes down, in September (Jörg Blobelt, CC BY-SA 4.0), 19 m from the line.',
+        route: 'Official one-way walk 4.8 km from the SS 49 petrol station at Innichen, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 19 OSM ways along the GPX on the board’s page, 4.9 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 26 throughout: from the petrol station on the SS 49 towards Toblach, up the lane through the Schlosstal to the Haselsberg, where the Schopfenhof and Feichter farms serve food, then along a narrow lane, still path 26, past the Eggemann and Kugler farms down into Toblach. The board suggests the train or bus back, or the level path 28A through the larch wood below the Drau springs to Innichen.',
+        mapPoints: 'Start at the board’s start; drinking water at km 4.2, at km 4.3 and at km 4.5 (OSM nodes 8270213517, 8270197717, 2432397651, 5852295210, 7645814385, 8270082817).',
+        elevation: 'Official 4.8 km, 161 m up and 97 m down, 1 h 50 min, highest point 1,343 m, lowest 1,175 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), San Candido – Costa dei Nosellari – Dobbiaco (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Innichen, Haltung und Führung von Hunden (council resolution no. 4 of 3 March 2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields in the growing season',
+          'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden (January 2010 text), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park or biotope on the line, only ensemble and landscape protection zones, which limit building, not dogs',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 15,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Mostly on narrow paved farm lanes: watch for farm traffic', 'Open meadows with little shade: carry water on hot days', 'Farmed meadows either side: keep your dog on the lane'],
+      terrainType: 'Paved farm lanes and village streets',
+      shadeDescription: 'Little shade: the lane crosses open meadows on the Haselsberg.',
+      terrainDescription: 'A walk at 1,175–1,345 m over the Haselsberg, the meadow terrace between Innichen and Toblach, past old farms with views of the Haunold and the Toblach basin.',
+      waterDescription: 'No fountain is mapped until Toblach, where there are several from km 4.2; the Kugler farm at km 2.5 and cafés in Toblach serve food.',
+      dogNotes: 'Innichen and Toblach both require a lead of at most 1.5 m on all public ground and a muzzle carried, and keep dogs off farmed meadows and fields (in Innichen in the growing season). Most of this walk runs between farmed meadows: keep your dog on the lane.',
+      tips: 'Start at the petrol station on the SS 49 at Innichen: 4.8 km one way, about 160 m of climbing, under two hours, then the train or bus back from Toblach. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as both communes require, and keep off the meadows. Carry water: none is mapped before Toblach.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, San Candido – Costa dei Nosellari – Dobbiaco', url: 'https://www.dreizinnen.com/it/activity/escursione-san-candido-costa-dei-nosellari-dobbiaco_628' },
+        { label: 'Gemeinde Innichen, Haltung und Führung von Hunden', url: 'https://www.gemeinde.innichen.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden_1' },
+        { label: 'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.toblach.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.730995, lng: 12.267263, label: 'Petrol station on the SS 49 at Innichen, the board’s start' },
+      waterSources: [
+        { km: 4.2, lat: 46.736298, lng: 12.22838, osmId: 'node/8270213517', label: 'Drinking fountain' },
+        { km: 4.3, lat: 46.73559, lng: 12.22452, osmId: 'node/8270197717', label: 'Drinking fountain' },
+        { km: 4.5, lat: 46.735466, lng: 12.2229797, osmId: 'node/2432397651', label: 'Drinking fountain' },
+        { km: 4.5, lat: 46.7350678, lng: 12.222587, osmId: 'node/5852295210', label: 'Drinking fountain' },
+        { km: 4.5, lat: 46.7350776, lng: 12.2225938, osmId: 'node/7645814385', label: 'Drinking fountain' },
+        { km: 4.5, lat: 46.7343913, lng: 12.2227053, osmId: 'node/8270082817', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 2.5, lat: 46.73028, lng: 12.24185, osmId: 'way/528680504', name: 'Kugler Speckstube' },
+        { km: 4.1, lat: 46.73486, lng: 12.22419, osmId: 'node/279714466', name: 'Cafe Marlen' },
+        { km: 4.1, lat: 46.73593, lng: 12.22369, osmId: 'node/6161368597', name: 'Restaurant Schlosskeller' },
+        { km: 4.1, lat: 46.73384, lng: 12.22361, osmId: 'node/6712012850', name: 'Bar Drei Zinnen' },
+        { km: 4.1, lat: 46.73595, lng: 12.22389, osmId: 'node/8886897971', name: 'Café Annelies' },
+        { km: 4.1, lat: 46.7361, lng: 12.22414, osmId: 'node/14133812441', name: 'Restaurant Urthaler' },
+        { km: 4.3, lat: 46.73519, lng: 12.22306, osmId: 'node/7900519340', name: 'Eirisch Grill' },
+        { km: 4.4, lat: 46.73561, lng: 12.22235, osmId: 'node/2443172124', name: 'Ariston - Restaurant/Bar/Pizzeria' },
+        { km: 4.5, lat: 46.73563, lng: 12.22193, osmId: 'node/5781706165', name: 'Caffè Engloes' },
+        { km: 4.5, lat: 46.7357, lng: 12.22083, osmId: 'node/2432397622', name: 'Winkelkeller' }
+      ],
+      desc: 'A walk from Innichen up the Schlosstal and over the Haselsberg farms to Toblach, back by train or bus. The board lists 4.8 km and 161 m of ascent, one way.'
+    },
+    'trecime-bagni-di-san-candido': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
+      // The Tre Cime Dolomites tourist board’s walk “Escursione a tema: Bagni di San Candido”, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Innichen (own regulation).
+      // About a fifth of the line, near Wildbad, is in the Drei Zinnen nature park (IT3110050, dogs on a lead); biotopes and the Wildbad mineral springs natural monument lie 97–120 m from the line.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Innichen – Wildbad Innichen, Innichen',
+      distance: 3.3,
+      elevation: 145,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Haunold lift valley station in Innichen along the cycle path towards Sexten and up through forest and meadows to the old spa at Wildbad Innichen; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The ruined spa buildings at Wildbad Innichen, where the walk ends, in July (Renate007, CC BY-SA 3.0); the photo carries no geotag; the spa stands beside the end of the line.',
+        route: 'Official one-way walk 3.3 km from the Haunold lift valley station, Innichen, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 19 OSM ways along the GPX on the board’s page, 3.3 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'The board names no path numbers here: from the Haunold lift valley station along the cycle path towards Sexten to the turning signed “Wildbad Innichen”, then right on the forest road through woods and meadows to the old spa. No lift is used: the walk only starts at the valley station. From Wildbad a forest road continues to the Haunold hut at the top of the chairlift; that extension is not part of this walk.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.2, at km 0.3, at km 0.4, at km 3.1 and at km 3.2 (OSM nodes 7318188902, 11030388252, 2940422371, 1969210006, 7321737085, 1790247000, 1825705456, 9864046226).',
+        elevation: 'Official 3.3 km, 145 m up and 57 m down, 1 h, highest point 1,322 m, lowest 1,175 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Escursione a tema: Bagni di San Candido (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Innichen, Haltung und Führung von Hunden (council resolution no. 4 of 3 March 2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields in the growing season',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); the Drei Zinnen protection decree (no. 103/V/81 of 22 December 1981) sets no reserve zone and no other rule on dogs',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): about a fifth of the line is in the Drei Zinnen nature park and Natura 2000 site IT3110050; two biotopes and the Wildbad mineral springs natural monument are 97–120 m away and not entered',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The first stretch is the Pustertal cycle path: share it with bikes', 'The spa buildings are ruins: keep out of the fenced area', 'Forest road: watch for forestry traffic'],
+      terrainType: 'Cycle path and forest road',
+      shadeDescription: 'Over half shaded: after the cycle path the forest road climbs through spruce and larch.',
+      terrainDescription: 'A short climb at 1,175–1,320 m from Innichen to Wildbad Innichen, a nineteenth-century spa built over mineral springs, now a fenced ruin in the forest at the edge of the Drei Zinnen nature park.',
+      waterDescription: 'Drinking fountains near the start at km 0.2 to 0.4, and at Wildbad at km 3.1 and 3.2; cafés at the start.',
+      dogNotes: 'Innichen requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs off farmed meadows in the growing season. The last stretch is in the Drei Zinnen nature park, where dogs must be on a lead at all times.',
+      tips: 'Start at the Haunold lift valley station in Innichen: 3.3 km and about 145 m of climbing one way, an hour to Wildbad, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Innichen requires. The board mentions going on to the Haunold hut and riding the chairlift down: an open chairlift is no place for a dog, so walk back the way you came.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Escursione a tema: Bagni di San Candido', url: 'https://www.dreizinnen.com/it/activity/escursione-a-tema-bagni-di-san-candido_630' },
+        { label: 'Gemeinde Innichen, Haltung und Führung von Hunden', url: 'https://www.gemeinde.innichen.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden_1' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.730243, lng: 12.277775, label: 'Haunold lift valley station, Innichen, the board’s start' },
+      waterSources: [
+        { km: 0.2, lat: 46.729349, lng: 12.28146, osmId: 'node/7318188902', label: 'Drinking fountain' },
+        { km: 0.2, lat: 46.7290808, lng: 12.2814727, osmId: 'node/11030388252', label: 'Drinking fountain' },
+        { km: 0.3, lat: 46.731215, lng: 12.281462, osmId: 'node/2940422371', label: 'Drinking fountain' },
+        { km: 0.4, lat: 46.7290415, lng: 12.2829585, osmId: 'node/1969210006', label: 'Drinking fountain' },
+        { km: 0.4, lat: 46.729136, lng: 12.283203, osmId: 'node/7321737085', label: 'Drinking fountain' },
+        { km: 3.1, lat: 46.7174043, lng: 12.2950559, osmId: 'node/1790247000', label: 'Drinking fountain' },
+        { km: 3.2, lat: 46.7171174, lng: 12.294039, osmId: 'node/1825705456', label: 'Drinking fountain' },
+        { km: 3.2, lat: 46.7170495, lng: 12.2941779, osmId: 'node/9864046226', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.72911, lng: 12.27783, osmId: 'node/2749766832', name: 'Pizzeria Ristorante Sportzentrum' },
+        { km: 0, lat: 46.73078, lng: 12.27754, osmId: 'node/5820410985', name: 'Caffe Haunold' },
+        { km: 0, lat: 46.7303, lng: 12.27906, osmId: 'way/216271263', name: 'Bar Minigolf' },
+        { km: 0, lat: 46.73036, lng: 12.28054, osmId: 'node/2749766494', name: 'In`s Kupferdachl' },
+        { km: 0.1, lat: 46.73136, lng: 12.28173, osmId: 'node/2333490989', name: 'Rose' }
+      ],
+      desc: 'A short forest walk from Innichen up to the old spa at Wildbad Innichen on the edge of the Drei Zinnen nature park. The board lists 3.3 km and 145 m of ascent, one way.'
+    },
+    'trecime-circolare-maistatt': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
+      // The Tre Cime Dolomites tourist board’s walk “Escursione circolare Maistatt”, drawn on 67 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Niederdorf (own regulation).
+      // No Natura 2000 site, park or natural monument on the line; a biotope lies 33 m from the line and is not entered.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Niederdorf – Maistatt, Niederdorf',
+      distance: 4.8,
+      elevation: 133,
+      hours: '1.35',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the primary school in Niederdorf through the village and under the railway to the Maistatt meadows and the warm spring at Maistatt, through the forest to the Reahwinkl forest road, and back by the Maistatt road.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Holy Trinity hospital church by the Rienz in Niederdorf, where the loop starts, in July (Mattana, CC BY-SA 3.0); the church stands 17 m from the line.',
+        route: 'Official loop 4.8 km from the primary school in Niederdorf, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 67 OSM ways along the GPX on the board’s page, 4.8 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'The board names no path numbers and gives the way: from the primary school over the bridge to the Von-Kurz-Platz, east on Jakob-Traunsteiner-Straße and a short stretch of Johann-Jaeger-Straße to the Roda square, under the railway and gently up to the first rise at Maistatt; left and down beside the railway, under a second underpass to Graapach, then right and south back to the Maistatt road and the Maistatt bridge. Along the road across the Maistatt meadows to the wayside shrine of the Fourteen Holy Helpers and the house at Maistatt with its chapel and warm spring; a narrow path follows the spring west into the forest, past a game feeder, and left to the Reahwinkl forest road. Back down to the Maistatt bridge and left along the Maistatt road, past the cow pasture gate, under the railway and through the village to the school.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.1, at km 0.3 and at km 0.5 (OSM nodes 7597331186, 7597331187, 13134731994, 13134734620, 13134757751, 279716575, 12434334285, 279716583, 279716589).',
+        elevation: 'Official 4.8 km, 133 m up and 133 m down, 1 h 21 min, highest point 1,263 m, lowest 1,147 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Escursione circolare Maistatt (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Niederdorf, Verordnung über die Haltung und das Führen von Hunden (resolution 3/R/10 of 21 January 2010), Art. 5 and 9: a lead of at most 1.5 m on all public ground, a muzzle carried, no dogs on farmed land from 1 April to 31 October and none in the spa park',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park or natural monument on the line; a biotope is 33 m away and not entered',
+          'OpenStreetMap ways along the board’s line (67 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 30,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A fenced cow pasture on the Maistatt road: keep your dog close past the cattle', 'Two railway underpasses and village streets', 'Farmed meadows either side: Niederdorf bans dogs from farmed land from April to October'],
+      terrainType: 'Village streets, paved farm roads and forest paths',
+      shadeDescription: 'Partly shaded: the meadows and village are open; the stretch from the Maistatt spring to the Reahwinkl road is in forest.',
+      terrainDescription: 'A gentle loop at 1,145–1,265 m from Niederdorf across the Maistatt meadows to a warm spring and a small chapel, with views to the Ratsberg and the Santa Maria sanctuary.',
+      waterDescription: 'Drinking fountains throughout Niederdorf in the first half kilometre, and the Maistatt healing spring at km 2.3; cafés in the village.',
+      dogNotes: 'Niederdorf’s dog regulation requires a lead of at most 1.5 m on all public ground and a muzzle carried; dogs are not allowed on farmed land from 1 April to 31 October, even where no sign says so, nor in the spa park. Cows graze in the fenced pasture by the Maistatt road.',
+      tips: 'Start at the primary school in Niederdorf: 4.8 km, about 130 m of climbing, under an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Niederdorf requires, and keep off the meadows. Pass the cow pasture quietly.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Escursione circolare Maistatt', url: 'https://www.dreizinnen.com/it/activity/escursione-circolare-maistatt-_50004' },
+        { label: 'Gemeinde Niederdorf, Gemeindeverordnung über die Haltung und das Führen von Hunden', url: 'https://www.gemeinde.niederdorf.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_das_Fuehren_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.7391, lng: 12.169371, label: 'Primary school, Niederdorf, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.7392099, lng: 12.1693947, osmId: 'node/7597331186', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.739645, lng: 12.1692, osmId: 'node/7597331187', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.739905, lng: 12.1692956, osmId: 'node/13134731994', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.7393608, lng: 12.1701046, osmId: 'node/13134734620', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.7398167, lng: 12.1705283, osmId: 'node/13134757751', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.7378158, lng: 12.1707811, osmId: 'node/279716575', label: 'Drinking fountain at the start' },
+        { km: 0.1, lat: 46.7377544, lng: 12.1709318, osmId: 'node/12434334285', label: 'Drinking fountain' },
+        { km: 0.3, lat: 46.7373634, lng: 12.1727685, osmId: 'node/279716583', label: 'Drinking fountain' },
+        { km: 0.5, lat: 46.7370893, lng: 12.1744934, osmId: 'node/279716589', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.739, lng: 12.16835, osmId: 'node/12232848024', name: 'Mexico City' },
+        { km: 0, lat: 46.73819, lng: 12.16752, osmId: 'node/12521029437', name: 'Apfel Caffè' },
+        { km: 0, lat: 46.73739, lng: 12.16918, osmId: 'way/217502350', name: 'Wunderbar' },
+        { km: 0, lat: 46.73751, lng: 12.17085, osmId: 'node/279716579', name: 'Gartencafe' },
+        { km: 0.7, lat: 46.73765, lng: 12.17667, osmId: 'node/4656760753', name: 'Tennisbar' }
+      ],
+      desc: 'A gentle loop from Niederdorf across the Maistatt meadows to a warm spring and back through the forest. The board lists 4.8 km and 133 m of ascent.'
+    },
+    'trecime-villabassa-mooskirche': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
+      // The Tre Cime Dolomites tourist board’s walk “Villabassa – giro del bosco "Mooskirche" – Villabassa”, drawn on 21 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Niederdorf (own regulation).
+      // No Natura 2000 site, park, biotope or natural monument on the line; a natural monument lies 18 m and a biotope 43 m from it.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Niederdorf – St. Magdalena in Moos, Niederdorf',
+      distance: 2.5,
+      elevation: 21,
+      hours: '0.6',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the Holy Trinity hospital church in Niederdorf along the edge of the forest to the chapel of St. Magdalena in Moos, and back on a quiet paved road between fields.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The chapel of St. Magdalena in Moos with the lane past it, in July (Luca Giovanni Bertin, CC BY-SA 4.0); the chapel stands 55 m from the line.',
+        route: 'Official loop 2.5 km from the Holy Trinity hospital church, Niederdorf, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 21 OSM ways along the GPX on the board’s page, 2.5 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'The board names no path numbers: from the Holy Trinity hospital church in the centre of Niederdorf along the edge of the forest towards the Gothic chapel of St. Magdalena in Moos, with views of the village and the Prags Dolomites; benches by the chapel. Back on a quiet paved road between wide fields to the start.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.1 and at km 0.3 (OSM nodes 7597331186, 279716575, 13134734620, 7597331187, 13134731994, 13134757751, 279714554).',
+        elevation: 'Official 2.5 km, 21 m up and 21 m down, 38 min, highest point 1,157 m, lowest 1,136 m (Tre Cime Dolomites tourist board, dreizinnen.com). The board lists it as barrier-free and suitable for pushchairs. The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Villabassa – giro del bosco "Mooskirche" – Villabassa (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Niederdorf, Verordnung über die Haltung und das Führen von Hunden (resolution 3/R/10 of 21 January 2010), Art. 5 and 9: a lead of at most 1.5 m on all public ground, a muzzle carried, no dogs on farmed land from 1 April to 31 October and none in the spa park',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line; a natural monument is 18 m away and a biotope 43 m, neither entered',
+          'OpenStreetMap ways along the board’s line (21 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 20,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The way back is a quiet paved road: watch for the odd car', 'Farmed fields either side: Niederdorf bans dogs from farmed land from April to October'],
+      terrainType: 'Paved paths and quiet roads',
+      shadeDescription: 'Little shade: the path follows the forest edge, but the way back crosses open fields.',
+      terrainDescription: 'A flat, barrier-free loop at about 1,140–1,160 m on the edge of Niederdorf to the small Gothic chapel of St. Magdalena in Moos, with views over the village to the Prags Dolomites.',
+      waterDescription: 'Several drinking fountains in Niederdorf at the start and end; cafés in the village.',
+      dogNotes: 'Niederdorf’s dog regulation requires a lead of at most 1.5 m on all public ground and a muzzle carried; dogs are not allowed on farmed land from 1 April to 31 October, even where no sign says so.',
+      tips: 'Start at the Holy Trinity hospital church in Niederdorf: 2.5 km on the flat, about 40 minutes, and suitable for pushchairs. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Niederdorf requires, and keep off the fields.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Villabassa – giro del bosco "Mooskirche" – Villabassa', url: 'https://www.dreizinnen.com/it/activity/passeggiata-per-famiglie-villabassa-giro-del-bosco-mooskirche-villabassa_606' },
+        { label: 'Gemeinde Niederdorf, Gemeindeverordnung über die Haltung und das Führen von Hunden', url: 'https://www.gemeinde.niederdorf.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_das_Fuehren_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.73818, lng: 12.169029, label: 'Holy Trinity hospital church, Niederdorf, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.7392099, lng: 12.1693947, osmId: 'node/7597331186', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.7378158, lng: 12.1707811, osmId: 'node/279716575', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.7393608, lng: 12.1701046, osmId: 'node/13134734620', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.739645, lng: 12.1692, osmId: 'node/7597331187', label: 'Drinking fountain at the start' },
+        { km: 0.1, lat: 46.739905, lng: 12.1692956, osmId: 'node/13134731994', label: 'Drinking fountain' },
+        { km: 0.1, lat: 46.7398167, lng: 12.1705283, osmId: 'node/13134757751', label: 'Drinking fountain' },
+        { km: 0.3, lat: 46.7387429, lng: 12.1672008, osmId: 'node/279714554', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.739, lng: 12.16835, osmId: 'node/12232848024', name: 'Mexico City' },
+        { km: 0, lat: 46.73819, lng: 12.16752, osmId: 'node/12521029437', name: 'Apfel Caffè' },
+        { km: 0, lat: 46.73739, lng: 12.16918, osmId: 'way/217502350', name: 'Wunderbar' },
+        { km: 0, lat: 46.73751, lng: 12.17085, osmId: 'node/279716579', name: 'Gartencafe' }
+      ],
+      desc: 'A flat family loop from Niederdorf to the Gothic chapel of St. Magdalena in Moos and back between the fields. The board lists 2.5 km and 21 m of ascent.'
+    },
+    'trecime-lago-di-braies-malga-foresta': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
+      // The Tre Cime Dolomites tourist board’s walk “Lago di Braies – Malga Foresta”, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Prags (own regulation, national rule for lead length and muzzle).
+      // Almost all of the line is in the Fanes-Sennes-Prags nature park (IT3110049, dogs on a lead); a natural monument lies 9 m from it and is not entered.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Pragser Wildsee – Grünwaldalm, Prags',
+      distance: 2.1,
+      elevation: 118,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Pragser Wildsee car park along the west shore of the lake to a wide green clearing, then right on path 19 up to the Grünwaldalm; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Grünwaldalm hut and the track beside it, below the Dolomite walls, in July (Roberto Ferrari, CC BY-SA 2.0), 18 m from the line.',
+        route: 'Official one-way walk 2.1 km from the Pragser Wildsee car park, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 9 OSM ways along the GPX on the board’s page, 2.2 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 19: from the Pragser Wildsee car park along the west shore of the lake to a wide green clearing, then right on path 19 up the valley to the Grünwaldalm (Malga Foresta). Back the same way. The board says it suits families and is passable with a pushchair.',
+        mapPoints: 'Start at the board’s start; drinking water at km 2 (OSM nodes 9758809517).',
+        elevation: 'Official 2.1 km, 118 m up and 18 m down, 1 h, highest point 1,590 m, lowest 1,493 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Lago di Braies – Malga Foresta (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Prags, Verordnung über die Haltung von Hunden (council resolution 24/R/06 of 17 October 2006), Art. 2: dogs on a lead in public places; it sets no lead length and no muzzle rule outdoors, so the national rule (Ministry of Health ordinance of 6 August 2013, extended to September 2027) adds a lead of at most 1.5 m and a muzzle carried',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); the Fanes-Sennes-Prags protection decree (no. 72/V/LS of 4 March 1980) sets no reserve zone and no other rule on dogs',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): almost all of the line is in the Fanes-Sennes-Prags nature park and Natura 2000 site IT3110049; a natural monument is 9 m away and not entered',
+          'OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 40,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The lake shore is very crowded in summer: keep your dog close', 'Cows graze around the Grünwaldalm', 'Keep your dog out of the lake'],
+      terrainType: 'Lakeside path and gravel track',
+      shadeDescription: 'Partly shaded: the lake shore runs below forest; the valley up to the hut is more open.',
+      terrainDescription: 'A short walk at 1,495–1,590 m from the Pragser Wildsee along its west shore and up a side valley to the Grünwaldalm, a hut below the walls of the Prags Dolomites.',
+      waterDescription: 'A drinking fountain at the Grünwaldalm at km 2; the hut serves food in summer, and there are restaurants at the lake.',
+      dogNotes: 'Prags requires dogs on a lead in public places; the national rule sets the lead at no more than 1.5 m and asks you to carry a muzzle. The whole walk is in the Fanes-Sennes-Prags nature park, where dogs must be on a lead at all times. Cows graze around the hut.',
+      tips: 'Start at the Pragser Wildsee car park: 2.1 km and about 120 m of climbing one way, an hour to the Grünwaldalm, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The lake shore is very busy in summer: go early.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Lago di Braies – Malga Foresta', url: 'https://www.dreizinnen.com/it/activity/escursione-estiva-lago-di-braies-malga-foresta-_651' },
+        { label: 'Gemeinde Prags, Verordnung über die Haltung von Hunden', url: 'https://www.gemeinde.prags.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.697883, lng: 12.083853, label: 'Pragser Wildsee car park, the board’s start' },
+      waterSources: [
+        { km: 2, lat: 46.6923959, lng: 12.065672, osmId: 'node/9758809517', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 1.9, lat: 46.69224, lng: 12.0654, osmId: 'node/821986763', name: 'Grünwaldalm - Malga Foresta' }
+      ],
+      desc: 'A short walk from the Pragser Wildsee along its west shore and up path 19 to the Grünwaldalm. The board lists 2.1 km and 118 m of ascent, one way.'
     }
   };
 
