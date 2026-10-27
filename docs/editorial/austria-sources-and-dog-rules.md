@@ -70,12 +70,28 @@ listed below. The licence is CC BY 4.0 on the data.gv.at records, credited as
 - The park's walks in East Tyrol (Innergschlöss, Umbaltal, Dorfertal, …) are on
   osttirol.com with figures and GPX, so that is the source.
 
-### Carinthia (next step, not yet surveyed for walks)
+### Carinthia: Gailtal and Lesachtal (nassfeld.at) — usable
 
-- Land Kärnten open data has "Kommunales Wegenetz Kärnten" (GeoPackage) and
-  "Schutzgebiete Naturschutz Kärnten (INSPIRE)".
-- The Gailtal and Lesachtal walk lists (Nassfeld-Pressegger See, Lesachtal)
-  still need to be checked for climb, time and GPX.
+- **Publisher:** NLW Tourismus Marketing GmbH, Hermagor, is responsible for
+  content. The site owner is KIG Karnische Incoming GmbH. The board covers
+  Nassfeld-Pressegger See, the Lesachtal and the Weissensee.
+- **List:** `https://www.nassfeld.at/sitemap.tour.xml` holds 782 German tour
+  pages (`/de/Tour/<name>_t_<id>`), including skitours and bike routes, which
+  have to be filtered out.
+- **Figures on each page:** distance, Dauer (walking time), Aufstieg and
+  Abstieg (climb and descent), lowest and highest point, and difficulty.
+  Example: Gailwanderung Liesing, 4.8 km, 1.4 h, 170 m up.
+- **Official line:** each page names its Outdooractive tour
+  (`outdooractive.com/oar-nlw-tourismus/r/<id>`). The public Outdooractive page
+  carries the line in JSON-LD, which `build-board-line.js` already reads.
+  Tested: 218 points, start "Liesing im Lesachtal". No API key is used.
+- **Licence:** „Alle Inhalte dieser Webseite … unterliegen dem Urheberrecht“
+  (all content is under copyright). The same treatment as Osttirol applies:
+  cite figures, draw our own line, copy no text or photos.
+- **Times in decimal hours:** the board gives times like "1.4 h". Convert
+  them to h:mm (1.4 h = 1:24) for `--time`.
+- **Land Kärnten open data:** "Kommunales Wegenetz Kärnten" (GeoPackage) and
+  "Schutzgebiete Naturschutz Kärnten (INSPIRE)", for the protected-area check.
 
 ## 2. Dog rules
 
@@ -175,7 +191,10 @@ Where the commune's own rule is found, it wins. Where it is not:
 
 Findings from the code, 27 October 2026:
 
-- **Region and country:**
+- **Decided 27 October:** a new region "Tyrol & Carinthia" (country AT), added
+  as a REGIONS entry with localities on top of PR #1103, which makes regions
+  data-driven. No separate region plumbing is built for Austria.
+- **Region and country (why):**
   - The country comes from the region (`regions-config.js` REGIONS).
   - Without new localities, an Austrian walk would be labelled "Alta Pusteria"
     or "Val Pusteria, Italy". It would also fail `locality-coverage.test.js`
