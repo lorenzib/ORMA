@@ -160,7 +160,7 @@ function displayStartLabel(t, label) {
   return `Mapped start suggestion, ${plainStartLabel(label)}. Check current access before travelling.`;
 }
 
-const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', lombardy: 'Lombardy, Italy', tyrol: 'Tyrol & Carinthia, Austria' };
+const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', lombardy: 'Lombardy, Italy', friuli: 'Friuli Venezia Giulia, Italy', tyrol: 'Tyrol & Carinthia, Austria' };
 const REGION_COUNTRY = { savoy: 'FR', tyrol: 'AT' };
 
 /**
@@ -866,11 +866,11 @@ function updateBrowseIndex(entries) {
   const b = html.indexOf(END);
   if (a === -1 || b === -1) return console.warn('Index markers not found in browse-trails.html, skipping.');
 
-  const byRegion = { dolomites: [], savoy: [], lombardy: [], tyrol: [] };
+  const byRegion = { dolomites: [], savoy: [], lombardy: [], friuli: [], tyrol: [] };
   for (const e of entries) (byRegion[e.region] || byRegion.dolomites).push(e);
   for (const k of Object.keys(byRegion)) byRegion[k].sort((x, y) => x.name.localeCompare(y.name));
 
-  const block = ['dolomites', 'savoy', 'lombardy', 'tyrol']
+  const block = ['dolomites', 'savoy', 'lombardy', 'friuli', 'tyrol']
     .filter((r) => byRegion[r].length)
     .map(
       (r) =>

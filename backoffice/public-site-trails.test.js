@@ -75,12 +75,19 @@ describe('the existing-site verification boundary',()=>{
     // waterfall from Corvara. Then 261 and 259 with six Val Gardena walks: the Lech
     // Sant, the Ortisei valley promenade, the Resciesa summit loop, Santa Croce –
     // Brogles, the Via Crucis above Santa Cristina and San Giacomo from Ortisei.
-    // Then 265 and 263 with the first Austrian walks, in East Tyrol: the Schloss
+    // Then 268 and 266 with the first seven Hochpustertal walks: the Toblacher See,
+    // the Gustav Mahler path, Innichen – Haselsberg – Toblach, Wildbad Innichen, the
+    // Maistatt loop, St. Magdalena in Moos and the Grünwaldalm above the Pragser Wildsee.
+    // Then 272 and 270 with four more Val di Fassa walks: Soraga to Tamion, Alba to
+    // Penìa, Val Freida and Moena to Soraga.
+    // Then 275 and 273 with three more Val di Fassa walks: Mazzin to Pera over
+    // Ronch, Moena to Malga Roncac and Moena to Soraga over Someda.
+    // Then 279 and 277 with the first Austrian walks, in East Tyrol: the Schloss
     // Weißenstein loop at Matrei, the Umbal Falls, the Ködnitz culture walk at Kals
     // and the Obersee loop at the Staller Sattel.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(265);
-    expect(currentSiteTrails(catalogue)).toHaveLength(263);
+    expect(catalogue).toHaveLength(279);
+    expect(currentSiteTrails(catalogue)).toHaveLength(277);
   });
 
   test('requires the artwork the public trail page needs',()=>{

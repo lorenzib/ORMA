@@ -6,7 +6,7 @@
   'use strict';
 
   // Every ORMA region in Italy; "Italy" means all of them, not the Dolomites.
-  const ITALIAN_REGIONS = ['dolomites', 'lombardy'];
+  const ITALIAN_REGIONS = ['dolomites', 'lombardy', 'friuli'];
   // Each country's regions and code. Austria made a third country, so the
   // filter can no longer read "not Italy" as France.
   const COUNTRY_REGIONS = {
