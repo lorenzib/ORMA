@@ -648,6 +648,76 @@
       "name": "San Giacomo from Ortisei",
       "slug": "san-giacomo-ortisei",
       "gloss": "the forest walk to the church of San Giacomo"
+    },
+    "trecime-dobbiaco-lago-di-dobbiaco": {
+      "name": "Toblach – Lago di Dobbiaco",
+      "slug": "toblach-lago-di-dobbiaco",
+      "gloss": "the nature trail on the west shore of the Toblacher See"
+    },
+    "trecime-sentiero-gustav-mahler": {
+      "name": "Gustav Mahler path",
+      "slug": "gustav-mahler-path-toblach",
+      "gloss": "the forest loop to Mahler's composing hut at Altschluderbach"
+    },
+    "trecime-san-candido-costa-dei-nosellari-dobbiaco": {
+      "name": "Innichen – Haselsberg – Toblach",
+      "slug": "innichen-haselsberg-toblach",
+      "gloss": "the farm lane over the Haselsberg from Innichen to Toblach"
+    },
+    "trecime-bagni-di-san-candido": {
+      "name": "Wildbad Innichen",
+      "slug": "wildbad-innichen",
+      "gloss": "the forest walk up to the old spa at Wildbad Innichen"
+    },
+    "trecime-circolare-maistatt": {
+      "name": "Maistatt loop",
+      "slug": "maistatt-loop-niederdorf",
+      "gloss": "the meadow loop to Maistatt above Niederdorf"
+    },
+    "trecime-villabassa-mooskirche": {
+      "name": "Niederdorf – Mooskirche",
+      "slug": "niederdorf-mooskirche",
+      "gloss": "the woodland walk to the Moos chapel"
+    },
+    "trecime-lago-di-braies-malga-foresta": {
+      "name": "Lago di Braies – Grünwaldalm",
+      "slug": "lago-di-braies-gruenwaldalm",
+      "gloss": "the lake shore and the climb to the Grünwaldalm"
+    },
+    "fassa-borgo-di-tamion": {
+      "name": "Alla scoperta del borgo ladino di Tamion",
+      "slug": "borgo-di-tamion-soraga",
+      "gloss": "the climb from Soraga to the hamlet of Tamion"
+    },
+    "fassa-da-alba-a-penia": {
+      "name": "Da Alba a Penìa",
+      "slug": "alba-penia",
+      "gloss": "the village walk from Alba to Penìa"
+    },
+    "fassa-val-freida": {
+      "name": "Sulle tracce dei pastori all'imbocco della Val Freida",
+      "slug": "val-freida-san-pellegrino",
+      "gloss": "the meadow walk from Malga Boer into Val Freida"
+    },
+    "fassa-moena-soraga-acqua": {
+      "name": "Da Moena a Soraga, dove l'acqua ha segnato la storia",
+      "slug": "moena-soraga-avisio",
+      "gloss": "the riverside walk from Moena to Soraga"
+    },
+    "fassa-dipinti-del-giotto": {
+      "name": "Sulle tracce dei dipinti del Giotto della Val di Fassa",
+      "slug": "giotto-della-val-di-fassa-mazzin-pera",
+      "gloss": "the walk from Mazzin over Ronch to Pera"
+    },
+    "fassa-ciajeole-malga-roncac": {
+      "name": "Passi nella storia: da Ciajeole a Malga Roncac",
+      "slug": "ciajeole-malga-roncac-moena",
+      "gloss": "the climb from Moena to Malga Roncac"
+    },
+    "fassa-moena-soraga-someda": {
+      "name": "Da Moena a Soraga, la natura a due passi da casa",
+      "slug": "moena-soraga-someda",
+      "gloss": "the walk from Moena over Someda to Soraga Alta"
     }
   }
 }
