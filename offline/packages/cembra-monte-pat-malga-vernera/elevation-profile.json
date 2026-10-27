@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cembra-monte-pat-malga-vernera",
+  "distanceKm": 2.1,
+  "ascentM": 183,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1495
+    },
+    {
+      "km": 0.2,
+      "elev": 1499
+    },
+    {
+      "km": 0.3,
+      "elev": 1495
+    },
+    {
+      "km": 0.5,
+      "elev": 1528
+    },
+    {
+      "km": 0.6,
+      "elev": 1556
+    },
+    {
+      "km": 0.8,
+      "elev": 1619
+    },
+    {
+      "km": 1,
+      "elev": 1665
+    },
+    {
+      "km": 1.1,
+      "elev": 1665
+    },
+    {
+      "km": 1.3,
+      "elev": 1613
+    },
+    {
+      "km": 1.4,
+      "elev": 1556
+    },
+    {
+      "km": 1.6,
+      "elev": 1528
+    },
+    {
+      "km": 1.7,
+      "elev": 1495
+    },
+    {
+      "km": 1.9,
+      "elev": 1499
+    },
+    {
+      "km": 2.1,
+      "elev": 1500
+    }
+  ]
+}
