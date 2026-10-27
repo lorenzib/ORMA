@@ -49,6 +49,16 @@ const byName = new Map(regions.LOCALITIES.map(([name, lat, lng]) => [name, [lat,
 const trails = loadProductionTrails(ROOT).filter((t) => typeof t.lat === 'number');
 
 describe('locality table coverage', () => {
+  test('Mont Blanc splits Courmayeur from Chamonix', () => {
+    // The two towns share a meridian, so only the nearest locality separates
+    // Valle d'Aosta from Savoy, in the Val Veny and the Val Ferret right under
+    // the ridge as much as in either town.
+    expect(regions.nearestLocality(45.8000, 6.9500).region).toBe('aosta'); // Val Veny
+    expect(regions.nearestLocality(45.8400, 7.0300).region).toBe('aosta'); // Val Ferret, Planpincieux
+    expect(regions.nearestLocality(45.9200, 6.8700).region).toBe('savoy'); // Chamonix
+    expect(regions.REGIONS.aosta).toEqual(expect.objectContaining({ countryCode: 'IT' }));
+  });
+
   test('the import pipeline and the runtime share one locality table', () => {
     const generator = fs.readFileSync(path.join(ROOT, 'scripts/promote-osm-trails.js'), 'utf8');
     // A second copy is what let `area` and `valley` name different places: the

@@ -217,14 +217,32 @@
     // Piancavallo stays in the Dolomites region: its curated loop is part of the
     // Dolomites lake-loops collection, and a collection holds one region.
     ['Barcis', 46.1908, 12.5605, 'Valcellina – Piancavallo', 'dolomites', 'pordenone'],
-    ['Piancavallo', 46.1060, 12.5230, 'Valcellina – Piancavallo', 'dolomites', 'pordenone']
+    ['Piancavallo', 46.1060, 12.5230, 'Valcellina – Piancavallo', 'dolomites', 'pordenone'],
+
+    // ---- Valle d'Aosta ----
+    // Courmayeur and Chamonix are 15 km apart through the Mont Blanc tunnel,
+    // so both sides need listing or a walk above Courmayeur is called Savoy.
+    ['Courmayeur', 45.7967, 6.9690, 'Courmayeur – Mont Blanc', 'aosta', 'aosta'],
+    ['La Thuile', 45.7139, 6.9500, 'Courmayeur – Mont Blanc', 'aosta', 'aosta'],
+    ['Morgex / La Salle', 45.7570, 7.0380, 'Courmayeur – Mont Blanc', 'aosta', 'aosta'],
+    ['Aosta', 45.7372, 7.3206, 'Aosta – Plaine', 'aosta', 'aosta'],
+    ['Cogne', 45.6085, 7.3567, 'Cogne – Gran Paradiso', 'aosta', 'aosta'],
+    ['Valsavarenche', 45.5920, 7.2100, 'Cogne – Gran Paradiso', 'aosta', 'aosta'],
+    ['Rhêmes-Notre-Dame', 45.5700, 7.1180, 'Valgrisenche – Rhêmes', 'aosta', 'aosta'],
+    ['Valgrisenche', 45.6300, 7.0640, 'Valgrisenche – Rhêmes', 'aosta', 'aosta'],
+    ['Valtournenche', 45.8760, 7.6230, 'Valtournenche – Cervinia', 'aosta', 'aosta'],
+    ['Breuil-Cervinia', 45.9330, 7.6300, 'Valtournenche – Cervinia', 'aosta', 'aosta'],
+    ['Champoluc (Ayas)', 45.8300, 7.7270, 'Ayas – Gressoney', 'aosta', 'aosta'],
+    ['Gressoney-Saint-Jean', 45.7760, 7.8260, 'Ayas – Gressoney', 'aosta', 'aosta'],
+    ['Gressoney-La-Trinité', 45.8290, 7.8240, 'Ayas – Gressoney', 'aosta', 'aosta']
   ];
 
   const REGIONS = {
     dolomites: { label: 'Dolomites', country: 'Italy', countryCode: 'IT' },
     savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' },
     lombardy: { label: 'Lombardy', country: 'Italy', countryCode: 'IT' },
-    friuli: { label: 'Friuli Venezia Giulia', country: 'Italy', countryCode: 'IT' }
+    friuli: { label: 'Friuli Venezia Giulia', country: 'Italy', countryCode: 'IT' },
+    aosta: { label: 'Valle d\'Aosta', country: 'Italy', countryCode: 'IT' }
   };
 
   function countryForRegion(region) {
