@@ -74,6 +74,8 @@ describe('a refresh that stops is said out loud', () => {
     const check = steps.findIndex(s => /check-hiking-route-tiles\.js _site\/data\/hiking-routes/.test(s.run || ''));
     expect(check).toBeGreaterThan(publish);
     expect(steps[check].run).toMatch(/alert\.sh raise-once/);
+    // A plain copy would date every set to the deploy itself.
+    expect(steps[publish].run).toMatch(/cp -Rp hiking-routes _site\/data\/hiking-routes/);
     expect(steps[check].run).not.toMatch(/alert\.sh (raise |clear)/);
   });
 
