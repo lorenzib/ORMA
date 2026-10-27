@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-san-candido-costa-dei-nosellari-dobbiaco",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.8,
+    "ascentM": 161,
+    "highestPointM": 1372,
+    "expectedDuration": "1.8 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 15
+  },
+  "trailhead": {
+    "lat": 46.730995,
+    "lng": 12.267263,
+    "label": "Petrol station on the SS 49 at Innichen, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.736298,
+      "lng": 12.22838,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.73559,
+      "lng": 12.22452,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.735466,
+      "lng": 12.2229797,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7350678,
+      "lng": 12.222587,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7350776,
+      "lng": 12.2225938,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7343913,
+      "lng": 12.2227053,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Mostly on narrow paved farm lanes: watch for farm traffic.",
+    "Open meadows with little shade: carry water on hot days.",
+    "Farmed meadows either side: keep your dog on the lane.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}

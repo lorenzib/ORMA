@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-circolare-maistatt",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.8,
+    "ascentM": 133,
+    "highestPointM": 1273,
+    "expectedDuration": "1.35 hours",
+    "difficulty": "Easy",
+    "shadePercent": 30
+  },
+  "trailhead": {
+    "lat": 46.7391,
+    "lng": 12.169371,
+    "label": "Primary school, Niederdorf, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7392099,
+      "lng": 12.1693947,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.739645,
+      "lng": 12.1692,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.739905,
+      "lng": 12.1692956,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7393608,
+      "lng": 12.1701046,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7398167,
+      "lng": 12.1705283,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7378158,
+      "lng": 12.1707811,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7377544,
+      "lng": 12.1709318,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7373634,
+      "lng": 12.1727685,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7370893,
+      "lng": 12.1744934,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A fenced cow pasture on the Maistatt road: keep your dog close past the cattle.",
+    "Two railway underpasses and village streets.",
+    "Farmed meadows either side: Niederdorf bans dogs from farmed land from April to October.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-sentiero-gustav-mahler",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.7,
+    "ascentM": 72,
+    "highestPointM": 1236,
+    "expectedDuration": "2 hours",
+    "difficulty": "Easy",
+    "shadePercent": 45
+  },
+  "trailhead": {
+    "lat": 46.723306,
+    "lng": 12.225306,
+    "label": "Former Grand Hotel, Neu-Toblach, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7244305,
+      "lng": 12.2254734,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7246325,
+      "lng": 12.2247724,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.72784,
+      "lng": 12.201692,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The way back is the paved cycle path: share it with bikes.",
+    "A short climb beside a ski slope near the start.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}
