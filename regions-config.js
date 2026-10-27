@@ -97,6 +97,24 @@
     ['Malga Sass (Valfloriana)', 46.2009, 11.3787, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
     ['Tambre / Alpago', 46.0973, 12.4389, 'Alpago', 'dolomites', 'belluno'],
 
+    // Western Trentino. Without them a walk anywhere from the Val di Sole to
+    // Lake Garda fell through to Madonna di Campiglio or Andalo, up to 40 km off.
+    ['Malè', 46.3530, 10.9130, 'Val di Sole', 'dolomites', 'trentino'],
+    ['Dimaro', 46.3260, 10.8720, 'Val di Sole', 'dolomites', 'trentino'],
+    ['Vermiglio', 46.2970, 10.6910, 'Val di Sole', 'dolomites', 'trentino'],
+    ['Cogolo (Peio)', 46.3570, 10.6710, 'Val di Sole', 'dolomites', 'trentino'],
+    ['San Bernardo (Rabbi)', 46.4010, 10.8480, 'Val di Sole', 'dolomites', 'trentino'],
+    ['Cles', 46.3640, 11.0350, 'Val di Non', 'dolomites', 'trentino'],
+    ['Coredo (Predaia)', 46.3480, 11.0910, 'Val di Non', 'dolomites', 'trentino'],
+    ['Fondo (Borgo d\'Anaunia)', 46.4370, 11.1380, 'Val di Non', 'dolomites', 'trentino'],
+    ['Pinzolo', 46.1600, 10.7650, 'Val Rendena', 'dolomites', 'trentino'],
+    ['Tione di Trento', 46.0360, 10.7260, 'Giudicarie', 'dolomites', 'trentino'],
+    ['Ponte Arche (Comano Terme)', 46.0360, 10.8730, 'Giudicarie', 'dolomites', 'trentino'],
+    ['Storo', 45.8490, 10.5800, 'Giudicarie', 'dolomites', 'trentino'],
+    ['Riva del Garda', 45.8850, 10.8410, 'Garda Trentino', 'dolomites', 'trentino'],
+    ['Arco', 45.9180, 10.8860, 'Garda Trentino', 'dolomites', 'trentino'],
+    ['Pieve di Ledro', 45.8880, 10.7310, 'Garda Trentino', 'dolomites', 'trentino'],
+
     // ---- Savoy ----
     ['Chamonix-Mont-Blanc', 45.9237, 6.8694, 'Chamonix – Mont Blanc', 'savoy', 'haute-savoie'],
     ['Les Houches', 45.8906, 6.7986, 'Chamonix – Mont Blanc', 'savoy', 'haute-savoie'],
