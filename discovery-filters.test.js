@@ -75,6 +75,14 @@ describe('dog-specific discovery filters', () => {
     expect(filters.matches(trail({ region:'savoy', country:'FR' }), { country:'france', region:'savoy' })).toBe(true);
   });
 
+  test('Italy means every Italian region, not only the Dolomites', () => {
+    const lombardy = trail({ region:'lombardy', valley:'Valtellina' });
+    expect(filters.matches(lombardy, { country:'italy' })).toBe(true);
+    expect(filters.matches(lombardy, { country:'italy', region:'lombardy' })).toBe(true);
+    expect(filters.matches(lombardy, { country:'italy', region:'dolomites' })).toBe(false);
+    expect(filters.matches(lombardy, { country:'france' })).toBe(false);
+  });
+
   test('valley narrows results inside the selected region', () => {
     expect(filters.matches(trail(), { region:'dolomites', valley:'Val di Fassa' })).toBe(true);
     expect(filters.matches(trail(), { region:'dolomites', valley:'Val Gardena' })).toBe(false);
