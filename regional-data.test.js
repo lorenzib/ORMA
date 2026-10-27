@@ -40,7 +40,7 @@ describe('DATA-03 regional runtime boundaries', () => {
     // Every region the manifest names, so a region added to regions-config.js
     // is held to the same rule without editing this list.
     const regions = Object.keys(manifest.regions);
-    expect(regions).toEqual(expect.arrayContaining(['dolomites', 'savoy', 'lombardy']));
+    expect(regions).toEqual(expect.arrayContaining(['dolomites', 'savoy', 'lombardy', 'aosta']));
     const byRegion = Object.fromEntries(regions.map(region =>
       [region, loadRegionalTrailFile(`data/regions/${region}-trails.js`)]));
     const ids = Object.values(byRegion).flat().map(trail => trail.id);
