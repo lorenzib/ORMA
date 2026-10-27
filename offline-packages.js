@@ -186,6 +186,11 @@
     'sentiero-del-trenino': "Sentiero del Trenino",
     'sentiero-hans-e-paula-steger': "Sentiero Hans e Paula Steger",
     'tre-cime': "Tre Cime di Lavaredo classic circuit",
+    'valgardena-escursione-al-resciesa': "Resciesa summit loop",
+    'valgardena-giro-della-via-crucis': "Via Crucis, Santa Cristina",
+    'valgardena-passeggiata-alla-chiesetta-di-san-giacomo': "San Giacomo from Ortisei",
+    'valgardena-passeggiata-da-ortisei-a-s-cristina': "Ortisei valley promenade",
+    'valgardena-tour-alla-volta-del-lech-sant': "Lech Sant",
     'valley-view': "Val di Funes Panorama Trail",
   };
   // </offline-package-registry>
