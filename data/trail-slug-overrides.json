@@ -488,6 +488,11 @@
       "name": "La via della frutta antica",
       "slug": "via-della-frutta-antica",
       "gloss": "the old-fruit walk from Pieve to Passo Gobbera"
+    },
+    "primiero-malga-valcigolera": {
+      "name": "San Martino di Castrozza - Malga Valcigolera",
+      "slug": "malga-valcigolera",
+      "gloss": "the forest walk from San Martino to Malga Valcigolera"
     }
   }
 }
