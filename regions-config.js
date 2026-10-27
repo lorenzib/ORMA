@@ -96,6 +96,38 @@
     ['Malga Sass (Valfloriana)', 46.2009, 11.3787, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
     ['Tambre / Alpago', 46.0973, 12.4389, 'Alpago', 'dolomites', 'belluno'],
 
+    // ---- Friuli Venezia Giulia mountains ----
+    // Carnia, Sappada, the Tarvisio and Julian Alps valleys, and the Friulian
+    // Dolomites. They share the Italian runtime package, so the region key stays
+    // 'dolomites'; the valley and province say where they are.
+    ['Sappada', 46.5667, 12.6847, 'Sappada', 'dolomites', 'udine'],
+    ['Forni di Sopra', 46.4236, 12.5839, 'Dolomiti Friulane', 'dolomites', 'udine'],
+    ['Forni di Sotto', 46.3929, 12.6716, 'Dolomiti Friulane', 'dolomites', 'udine'],
+    ['Sauris', 46.4665, 12.7080, 'Carnia', 'dolomites', 'udine'],
+    ['Ampezzo (Carnia)', 46.4168, 12.7966, 'Carnia', 'dolomites', 'udine'],
+    ['Ovaro / Val Degano', 46.4836, 12.8656, 'Carnia', 'dolomites', 'udine'],
+    ['Forni Avoltri', 46.5865, 12.7754, 'Carnia', 'dolomites', 'udine'],
+    ['Ravascletto / Zoncolan', 46.5237, 12.9226, 'Carnia', 'dolomites', 'udine'],
+    ['Paluzza / Timau', 46.5326, 13.0155, 'Carnia', 'dolomites', 'udine'],
+    ['Arta Terme', 46.4797, 13.0177, 'Carnia', 'dolomites', 'udine'],
+    ['Paularo', 46.5310, 13.1186, 'Carnia', 'dolomites', 'udine'],
+    ['Tolmezzo', 46.4057, 13.0131, 'Carnia', 'dolomites', 'udine'],
+    ['Pontebba', 46.5058, 13.3060, 'Tarvisio – Alpi Giulie', 'dolomites', 'udine'],
+    ['Malborghetto-Valbruna', 46.5072, 13.4405, 'Tarvisio – Alpi Giulie', 'dolomites', 'udine'],
+    ['Tarvisio', 46.5054, 13.5785, 'Tarvisio – Alpi Giulie', 'dolomites', 'udine'],
+    ['Fusine in Valromana', 46.4794, 13.6655, 'Tarvisio – Alpi Giulie', 'dolomites', 'udine'],
+    ['Sella Nevea', 46.3893, 13.4752, 'Tarvisio – Alpi Giulie', 'dolomites', 'udine'],
+    ['Chiusaforte / Canal del Ferro', 46.4073, 13.3089, 'Canal del Ferro – Val Resia', 'dolomites', 'udine'],
+    ['Moggio Udinese', 46.4090, 13.1993, 'Canal del Ferro – Val Resia', 'dolomites', 'udine'],
+    ['Resia / Val Resia', 46.3741, 13.3050, 'Canal del Ferro – Val Resia', 'dolomites', 'udine'],
+    ['Venzone', 46.3326, 13.1383, 'Gemonese – Prealpi Giulie', 'dolomites', 'udine'],
+    ['Gemona del Friuli', 46.2757, 13.1385, 'Gemonese – Prealpi Giulie', 'dolomites', 'udine'],
+    ['Claut / Valcellina', 46.2690, 12.5140, 'Dolomiti Friulane', 'dolomites', 'pordenone'],
+    ['Cimolais', 46.2884, 12.4382, 'Dolomiti Friulane', 'dolomites', 'pordenone'],
+    ['Erto e Casso', 46.2755, 12.3713, 'Dolomiti Friulane', 'dolomites', 'pordenone'],
+    ['Barcis', 46.1908, 12.5605, 'Valcellina – Piancavallo', 'dolomites', 'pordenone'],
+    ['Piancavallo', 46.1060, 12.5230, 'Valcellina – Piancavallo', 'dolomites', 'pordenone'],
+
     // ---- Savoy ----
     ['Chamonix-Mont-Blanc', 45.9237, 6.8694, 'Chamonix – Mont Blanc', 'savoy', 'haute-savoie'],
     ['Les Houches', 45.8906, 6.7986, 'Chamonix – Mont Blanc', 'savoy', 'haute-savoie'],
