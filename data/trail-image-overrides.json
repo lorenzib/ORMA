@@ -20,6 +20,40 @@
       }
     },
     {
+      "id": "altabadia-da-furnacia-a-la-crusc",
+      "approvedReviewId": "mapillary-altabadia-da-furnacia-a-la-crusc-on-route",
+      "approvedAt": "2026-10-27T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/altabadia-da-furnacia-a-la-crusc-sanctuary.jpg",
+        "heroImage": "images/trails/altabadia-da-furnacia-a-la-crusc-sanctuary.jpg",
+        "imageAlt": "The white sanctuary church of La Crusc with its square bell tower on a gravel terrace, walkers at tables in the sun, forest and Dolomite peaks behind",
+        "imageCredit": "The sanctuary of La Crusc",
+        "imageCreditText": "The sanctuary of La Crusc by mapillary_service",
+        "imageCreator": "mapillary_service",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=786289005592777",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa",
+      "approvedReviewId": "commons-altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa-on-route",
+      "approvedAt": "2026-10-27T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa-meadows.jpg",
+        "heroImage": "images/trails/altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa-meadows.jpg",
+        "imageAlt": "Forested slopes and green hay meadows with scattered farms above La Val in soft June light, a long grey Dolomite cliff under clouds behind, dark spruces in the foreground",
+        "imageCredit": "Above La Val on the farms loop",
+        "imageCreditText": "Above La Val on the farms loop by Amelia Pridgeon",
+        "imageCreator": "Amelia Pridgeon",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Piz_dles_Cunturines_6.29.2026.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "altabadia-escursione-corvara-colfosco",
       "approvedReviewId": "commons-altabadia-escursione-corvara-colfosco-on-route",
       "approvedAt": "2026-10-27T12:00:00.000Z",
