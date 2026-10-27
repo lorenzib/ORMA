@@ -173,6 +173,108 @@
       }
     },
     {
+      "id": "aosta-champoluc-cascata-mascognaz",
+      "approvedReviewId": "commons-aosta-champoluc-cascata-mascognaz-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/aosta-champoluc-cascata-mascognaz-champoluc.jpg",
+        "heroImage": "images/trails/aosta-champoluc-cascata-mascognaz-champoluc.jpg",
+        "imageAlt": "An aerial view down onto the village of Champoluc in a green valley, forested slopes rising on the right and snowy peaks of Monte Rosa on the horizon",
+        "imageCredit": "Champoluc and the Val d’Ayas",
+        "imageCreditText": "Champoluc and the Val d’Ayas by Hagai Agmon-Snir",
+        "imageCreator": "Hagai Agmon-Snir",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:ValAyasChampolucAug212024_03.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "aosta-periasc-antagnod",
+      "approvedReviewId": "commons-aosta-periasc-antagnod-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/aosta-periasc-antagnod-church.jpg",
+        "heroImage": "images/trails/aosta-periasc-antagnod-church.jpg",
+        "imageAlt": "The cream-coloured front of the church of San Martino in Antagnod with an arched porch, a sundial and flower boxes on a stone-paved square",
+        "imageCredit": "The church of San Martino in Antagnod",
+        "imageCreditText": "The church of San Martino in Antagnod by Capricornis crispus",
+        "imageCreator": "Capricornis crispus",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chiesa_di_San_Martino_-_Antagnod_(Ayas).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "aosta-ru-courtaud",
+      "approvedReviewId": "commons-aosta-ru-courtaud-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/aosta-ru-courtaud-channel.jpg",
+        "heroImage": "images/trails/aosta-ru-courtaud-channel.jpg",
+        "imageAlt": "A wide earth path beside a narrow irrigation channel of clear water running through a sunlit larch and spruce forest",
+        "imageCredit": "The Rû Courtaud in Ayas",
+        "imageCreditText": "The Rû Courtaud in Ayas by Tenam2",
+        "imageCreator": "Tenam2",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:R%C3%BB_Courtaud_-_Ayas.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "aosta-sentiero-della-regina",
+      "approvedReviewId": "commons-aosta-sentiero-della-regina-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/aosta-sentiero-della-regina-lago-gover.jpg",
+        "heroImage": "images/trails/aosta-sentiero-della-regina-lago-gover.jpg",
+        "imageAlt": "Lago Gover at dawn with chalets and a timber-framed villa among larches and spruces on its shore, the glaciers of Monte Rosa lit pink behind",
+        "imageCredit": "Lago Gover under Monte Rosa at dawn",
+        "imageCreditText": "Lago Gover under Monte Rosa at dawn by BeppeViews",
+        "imageCreator": "BeppeViews",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sotto_il_monte_Rosa_all%27alba.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "aosta-strada-lombarda",
+      "approvedReviewId": "commons-aosta-strada-lombarda-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/aosta-strada-lombarda-villa-peccoz.jpg",
+        "heroImage": "images/trails/aosta-strada-lombarda-villa-peccoz.jpg",
+        "imageAlt": "A tall cream-coloured villa with red shutters and balconies beside a quiet village road, forested mountainside behind under a blue sky",
+        "imageCredit": "Villa Peccoz in Gressoney-Saint-Jean",
+        "imageCreditText": "Villa Peccoz in Gressoney-Saint-Jean by Ivanbranco",
+        "imageCreator": "Ivanbranco",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ex_Hinderheim_-_Villa_Peccoz.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande",
+      "approvedReviewId": "commons-aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande-alpenzu.jpg",
+        "heroImage": "images/trails/aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande-alpenzu.jpg",
+        "imageAlt": "Stone houses with grey slab roofs on a flowering alpine meadow, a large tree beside them and green pastures and forest below",
+        "imageCredit": "The hamlet of Alpenzù",
+        "imageCreditText": "The hamlet of Alpenzù by Francofranco56",
+        "imageCreator": "Francofranco56",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villaggio_Alpenz%C3%B9.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cadini",
       "approvedReviewId": "commons-cadini",
       "approvedAt": "2026-09-06T12:22:30.979Z",

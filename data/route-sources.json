@@ -82,6 +82,54 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T12:00:00.000Z"
     },
+    "aosta-champoluc-cascata-mascognaz": {
+      "url": "https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=07_S50&TIPO=S&LINGUA=it",
+      "publisher": "Regione Autonoma Valle d'Aosta, Catasto Sentieri (the regional path register) (mappe.regione.vda.it)",
+      "name": "Champoluc - Cascata Mascognaz",
+      "quote": "Dislivello positivo 255 m · Dislivello negativo 0 m · Lunghezza 1561 m · Tempo di andata 0h47",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "aosta-periasc-antagnod": {
+      "url": "https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=07_S65&TIPO=S&LINGUA=it",
+      "publisher": "Regione Autonoma Valle d'Aosta, Catasto Sentieri (the regional path register) (mappe.regione.vda.it)",
+      "name": "Periasc - Antagnod",
+      "quote": "Dislivello positivo 176 m · Dislivello negativo 0 m · Lunghezza 974 m · Tempo di andata 0h32",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "aosta-ru-courtaud": {
+      "url": "https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=07_S21&TIPO=S&LINGUA=it",
+      "publisher": "Regione Autonoma Valle d'Aosta, Catasto Sentieri (the regional path register) (mappe.regione.vda.it)",
+      "name": "Ru Courtaud",
+      "quote": "Dislivello positivo 174 m · Dislivello negativo 0 m · Lunghezza 5869 m · Tempo di andata 1h46",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "aosta-sentiero-della-regina": {
+      "url": "https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=33_S32&TIPO=S&LINGUA=it",
+      "publisher": "Regione Autonoma Valle d'Aosta, Catasto Sentieri (the regional path register) (mappe.regione.vda.it)",
+      "name": "Sentiero della Regina",
+      "quote": "Dislivello positivo 104 m · Dislivello negativo 101 m · Lunghezza 3363 m · Tempo di andata 0h56",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "aosta-strada-lombarda": {
+      "url": "https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=33_S33&TIPO=S&LINGUA=it",
+      "publisher": "Regione Autonoma Valle d'Aosta, Catasto Sentieri (the regional path register) (mappe.regione.vda.it)",
+      "name": "Strada Lombarda",
+      "quote": "Dislivello positivo 155 m · Dislivello negativo 0 m · Lunghezza 4346 m · Tempo di andata 1h11",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": {
+      "url": "https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=33_S46&TIPO=S&LINGUA=it",
+      "publisher": "Regione Autonoma Valle d'Aosta, Catasto Sentieri (the regional path register) (mappe.regione.vda.it)",
+      "name": "Villaggi di Alpenzu piccolo e Alpenzu grande",
+      "quote": "Dislivello positivo 311 m · Dislivello negativo 0 m · Lunghezza 3338 m · Tempo di andata 1h27",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
     "cembra-castello-segonzano": {
       "url": "https://www.visitfiemme.it/it/activity/il-castello-di-segonzano-e-il-canyon-del-pr-_9748",
       "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",

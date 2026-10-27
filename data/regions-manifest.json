@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T23:09:06.657Z",
+  "generatedAt": "2026-10-27T23:18:28.963Z",
   "regions": {
     "dolomites": {
       "trailCount": 242,
@@ -340,9 +340,16 @@
       "optional": []
     },
     "aosta": {
-      "trailCount": 0,
-      "trails": "data/regions/aosta-trails.js?v=5c23f1a8921e",
-      "details": {},
+      "trailCount": 6,
+      "trails": "data/regions/aosta-trails.js?v=24c59057fd5d",
+      "details": {
+        "aosta-ru-courtaud": "data/trail-details/aosta-ru-courtaud.js?v=115773eb966d",
+        "aosta-champoluc-cascata-mascognaz": "data/trail-details/aosta-champoluc-cascata-mascognaz.js?v=1124d13b672e",
+        "aosta-periasc-antagnod": "data/trail-details/aosta-periasc-antagnod.js?v=0bd1a6dc7940",
+        "aosta-sentiero-della-regina": "data/trail-details/aosta-sentiero-della-regina.js?v=2c2dbbfa2aa2",
+        "aosta-strada-lombarda": "data/trail-details/aosta-strada-lombarda.js?v=c819e01cf8ea",
+        "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": "data/trail-details/aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande.js?v=e5dddb8c843c"
+      },
       "water": "data/regions/aosta-water.geojson",
       "hutsBars": "data/regions/aosta-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
@@ -647,7 +654,13 @@
     "lario-pognana-lario-e-le-sculture-simposio": "lombardy",
     "lario-alla-ricerca-di-un-panorama-unico": "lombardy",
     "lario-anello-ai-piedi-del-monte-oriolo": "lombardy",
-    "lario-eupilio-tra-segrino-e-cornizzolo": "lombardy"
+    "lario-eupilio-tra-segrino-e-cornizzolo": "lombardy",
+    "aosta-ru-courtaud": "aosta",
+    "aosta-champoluc-cascata-mascognaz": "aosta",
+    "aosta-periasc-antagnod": "aosta",
+    "aosta-sentiero-della-regina": "aosta",
+    "aosta-strada-lombarda": "aosta",
+    "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": "aosta"
   },
   "trailSlug": {
     "alpe-siusi": "alpe-di-siusi-meadow-loop",
@@ -947,6 +960,12 @@
     "lario-alla-ricerca-di-un-panorama-unico": "brogno-nuvolone-viewpoint",
     "lario-anello-ai-piedi-del-monte-oriolo": "lasnigo-barni-crezzo-lake",
     "lario-eupilio-tra-segrino-e-cornizzolo": "eupilio-madonna-della-neve",
+    "aosta-ru-courtaud": "ru-courtaud-ayas",
+    "aosta-champoluc-cascata-mascognaz": "champoluc-mascognaz-waterfall",
+    "aosta-periasc-antagnod": "periasc-antagnod",
+    "aosta-sentiero-della-regina": "sentiero-della-regina-gressoney",
+    "aosta-strada-lombarda": "strada-lombarda-gressoney",
+    "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": "alpenzu-walser-villages",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1247,6 +1266,12 @@
     "brogno-nuvolone-viewpoint": "lario-alla-ricerca-di-un-panorama-unico",
     "lasnigo-barni-crezzo-lake": "lario-anello-ai-piedi-del-monte-oriolo",
     "eupilio-madonna-della-neve": "lario-eupilio-tra-segrino-e-cornizzolo",
+    "ru-courtaud-ayas": "aosta-ru-courtaud",
+    "champoluc-mascognaz-waterfall": "aosta-champoluc-cascata-mascognaz",
+    "periasc-antagnod": "aosta-periasc-antagnod",
+    "sentiero-della-regina-gressoney": "aosta-sentiero-della-regina",
+    "strada-lombarda-gressoney": "aosta-strada-lombarda",
+    "alpenzu-walser-villages": "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

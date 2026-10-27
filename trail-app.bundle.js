@@ -53593,6 +53593,411 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 3.4, lat: 45.82768, lng: 9.27656, osmId: 'way/132284739', name: 'Ristorante Cacciatori' }
       ],
       desc: 'A loop from Carella above the Segrino lake up the way of the cross to the Madonna della Neve and the Alpe di Carella, and back down the cobbled mule track to Mariaga. The portal lists 5.24 km and 397 m of ascent.'
+    },
+    'aosta-ru-courtaud': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Valle d'Aosta batch 1).
+      // The Valle d'Aosta path register's route “Ru Courtaud” (07_S21), drawn on 19 OSM ways along the GPX the register exports
+      // (data/board-line-routes.geojson). Commune: Ayas (no dog regulation, national rule and regional law 37/2010).
+      // No Natura 2000 site, park or reserve on the line or within 1 km of it (Ministry PCN layers; positive control: the Lillaz waterfall walk is 47% inside Gran Paradiso).
+      // Figures are the register's own route sheet: length, climb and one-way walking time.
+      area: 'Barmasc – Rû Courtaud – Pian Tavela, Ayas',
+      distance: 5.9,
+      elevation: 174,
+      hours: '1.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Barmasc car park above Antagnod along path 5 and the Rû Courtaud to the end of the track; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Rû Courtaud channel and its path in the forest, in late August (Tenam2, CC BY-SA 3.0); the file is not geotagged, but it shows the channel the whole walk follows.',
+        route: 'Official one-way route 5.9 km from Parcheggio Barmasc to Inizio pista, as the Valle d\'Aosta path register publishes it; the stored line is drawn on 19 OSM ways along the GPX the register exports, 6 km, with 100% of the register’s line within 25 m of it.',
+        routeNumbers: 'Path 5: from the Barmasc car park on the dirt road to Pian Tavela, then on the path along the Rû Courtaud, the old irrigation channel, almost level across the slope through larch woods and pastures, to where it meets the farm track, and on along the channel path to the end of the track. Back the same way.',
+        mapPoints: 'Start at the register’s start; drinking water at km 4.1, at km 5.7, at km 5.8 and at km 6 (OSM node 6670252411, node 1851508047, node 1966715584, node 1830001424).',
+        elevation: 'Official 5.9 km, 174 m up and 0 m down, 1 h 46 min one way (1 h 34 min back), start 1,898 m, finish 1,893 m (Regione Autonoma Valle d\'Aosta, Catasto Sentieri (the regional path register), route 07_S21). Our elevation profile starts and ends within 30 m of those heights.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Regione Autonoma Valle d\'Aosta, Catasto Sentieri (the regional path register), route 07_S21 “Ru Courtaud” (route sheet and its GPX export)',
+          'Comune di Ayas publishes no dog regulation (none among its published regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried. Valle d\'Aosta regional law 37/2010, art. 6, also requires a lead in places open to the public',
+          'Ministry of the Environment PCN layers (Natura 2000 SIC/ZSC/ZPS and EUAP parks and reserves): no protected area on the line or within 1 km of it; Gran Paradiso National Park, where dogs are banned, is in another valley',
+          'OpenStreetMap ways along the register’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 41,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The path follows an open irrigation channel for most of its length: keep your dog out of the water and off the channel edge', 'A short stretch of dirt road open to permitted vehicles', 'Pastures: livestock may be grazing in summer'],
+      terrainType: 'Path along an irrigation channel, forest and pasture',
+      shadeDescription: 'Partly shaded: about two fifths runs through larch and spruce, the rest over open pasture.',
+      terrainDescription: 'A gentle walk at about 1,900–2,000 m along the Rû Courtaud, a medieval irrigation channel that contours the slope above Antagnod and Champoluc, on a wide path through larch woods and pastures.',
+      waterDescription: 'Drinking water at km 4.1, at km 5.7, at km 5.8 and at km 6; places to eat at the start, at km 0.5, at km 4, at km 4.5, at km 4.9 and at km 5.9.',
+      dogNotes: 'Ayas has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Valle d\'Aosta\'s regional law also asks for a lead in places open to the public. Please clean up after your dog.',
+      tips: 'Start at the Barmasc car park above Antagnod: 5.9 km one way and about 170 m of gentle climbing, an hour and three quarters along the channel, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Valle d\'Aosta path register, Ru Courtaud (07_S21)', url: 'https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=07_S21&TIPO=S&LINGUA=it' },
+        { label: 'Comune di Ayas, published regulations (none on dogs)', url: 'https://www.comune.ayas.ao.it/it-it/amministrazione/regolamenti' },
+        { label: 'Regione Valle d\'Aosta, legge regionale 37/2010 on companion animals (art. 6: a lead in places open to the public)', url: 'https://www.izs.it/IZS/Engine/RAServeFile.php/f/pdf_normativa/Iuvene_normativa_regionale_animali_affezione/Valle_D_Aosta/Val_lr_37_2010.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Ministero dell’Ambiente, Geoportale Nazionale: Natura 2000 and protected-area (EUAP) layers (WFS)', url: 'https://wms.pcn.minambiente.it/ogc?map=/ms_ogc/wfs/SIC_ZSC_ZPS.map&service=WFS&version=1.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.829565, lng: 7.705582, label: 'Parcheggio Barmasc, the register’s start' },
+      waterSources: [
+        { km: 4.1, lat: 45.815553, lng: 7.6781688, osmId: 'node/6670252411', label: 'Drinking water' },
+        { km: 5.7, lat: 45.8089013, lng: 7.6753207, osmId: 'node/1851508047', label: 'Drinking water' },
+        { km: 5.8, lat: 45.8093589, lng: 7.675501, osmId: 'node/1966715584', label: 'Drinking water' },
+        { km: 6, lat: 45.8094866, lng: 7.6777771, osmId: 'node/1830001424', label: 'Fonte di devozione' }
+      ],
+      rifugi: [
+        { km: 0, lat: 45.8288647, lng: 7.7039058, osmId: 'node/3893615291', name: 'La Meridiana' },
+        { km: 0.5, lat: 45.8344502, lng: 7.7020718, osmId: 'node/1278956941', name: 'La Tchavana' },
+        { km: 4, lat: 45.8155697, lng: 7.6780249, osmId: 'way/116818768', name: 'Agriturismo Alpe Corneuil' },
+        { km: 4.5, lat: 45.812038, lng: 7.6747353, osmId: 'node/3892087749', name: 'Agriturismo La Maison du Braconnier' },
+        { km: 4.9, lat: 45.8110868, lng: 7.6750358, osmId: 'way/116818780', name: 'Altitude Barmasc' },
+        { km: 5.9, lat: 45.8099272, lng: 7.6784739, osmId: 'node/8997696329', name: 'Le Solitaire' }
+      ],
+      desc: 'A gentle walk at about 1,900–2,000 m along the Rû Courtaud, a medieval irrigation channel that contours the slope above Antagnod and Champoluc, on a wide path through larch woods and pastures. The regional path register lists 5.9 km and 174 m of ascent, one way.'
+    },
+    'aosta-champoluc-cascata-mascognaz': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Valle d'Aosta batch 1).
+      // The Valle d'Aosta path register's route “Champoluc - Cascata Mascognaz” (07_S50), drawn on 11 OSM ways along the GPX the register exports
+      // (data/board-line-routes.geojson). Commune: Ayas (no dog regulation, national rule and regional law 37/2010).
+      // No Natura 2000 site, park or reserve on the line or within 1 km of it (Ministry PCN layers; positive control: the Lillaz waterfall walk is 47% inside Gran Paradiso).
+      // Figures are the register's own route sheet: length, climb and one-way walking time.
+      area: 'Champoluc – Mascognaz waterfall, Ayas',
+      distance: 1.6,
+      elevation: 255,
+      hours: '0.8',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the centre of Champoluc up path 14D to the Mascognaz waterfall; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Champoluc and the forest the path climbs through, from above, in August (Hagai Agmon-Snir, CC BY-SA 4.0), taken 42 m from the line.',
+        route: 'Official one-way route 1.6 km from Champoluc to Cascata Mascognaz, as the Valle d\'Aosta path register publishes it; the stored line is drawn on 11 OSM ways along the GPX the register exports, 1.6 km, with 100% of the register’s line within 25 m of it.',
+        routeNumbers: 'Path 14D: from the centre of Champoluc on the village road to the start of path 14D, then up the forest path to the Mascognaz waterfall, where it meets path 13A. Back the same way.',
+        mapPoints: 'Start at the register’s start; drinking water at the start and at km 1.4 (OSM node 1289265990, node 1289266459).',
+        elevation: 'Official 1.6 km, 255 m up and 0 m down, 47 min one way (30 min back), start 1,560 m, finish 1,812 m (Regione Autonoma Valle d\'Aosta, Catasto Sentieri (the regional path register), route 07_S50). Our elevation profile starts and ends within 30 m of those heights.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Regione Autonoma Valle d\'Aosta, Catasto Sentieri (the regional path register), route 07_S50 “Champoluc - Cascata Mascognaz” (route sheet and its GPX export)',
+          'Comune di Ayas publishes no dog regulation (none among its published regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried. Valle d\'Aosta regional law 37/2010, art. 6, also requires a lead in places open to the public',
+          'Ministry of the Environment PCN layers (Natura 2000 SIC/ZSC/ZPS and EUAP parks and reserves): no protected area on the line or within 1 km of it; Gran Paradiso National Park, where dogs are banned, is in another valley',
+          'OpenStreetMap ways along the register’s line (11 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 73,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 350 m on village streets in Champoluc, with traffic', 'A steady climb on a forest path', 'Wet rock near the waterfall: keep your dog away from the falls'],
+      terrainType: 'Village streets, then a forest path',
+      shadeDescription: 'Mostly shaded: nearly three quarters runs through the forest above Champoluc.',
+      terrainDescription: 'A short, steady climb at 1,560–1,810 m from the centre of Champoluc up a forest path to the Mascognaz waterfall.',
+      waterDescription: 'Drinking water at the start and at km 1.4; places to eat at the start.',
+      dogNotes: 'Ayas has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Valle d\'Aosta\'s regional law also asks for a lead in places open to the public. Please clean up after your dog.',
+      tips: 'Start in the centre of Champoluc: 1.6 km and about 250 m of climbing one way, under an hour to the waterfall, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Valle d\'Aosta path register, Champoluc - Cascata Mascognaz (07_S50)', url: 'https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=07_S50&TIPO=S&LINGUA=it' },
+        { label: 'Comune di Ayas, published regulations (none on dogs)', url: 'https://www.comune.ayas.ao.it/it-it/amministrazione/regolamenti' },
+        { label: 'Regione Valle d\'Aosta, legge regionale 37/2010 on companion animals (art. 6: a lead in places open to the public)', url: 'https://www.izs.it/IZS/Engine/RAServeFile.php/f/pdf_normativa/Iuvene_normativa_regionale_animali_affezione/Valle_D_Aosta/Val_lr_37_2010.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Ministero dell’Ambiente, Geoportale Nazionale: Natura 2000 and protected-area (EUAP) layers (WFS)', url: 'https://wms.pcn.minambiente.it/ogc?map=/ms_ogc/wfs/SIC_ZSC_ZPS.map&service=WFS&version=1.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.831394, lng: 7.725662, label: 'Champoluc, the register’s start' },
+      waterSources: [
+        { km: 0, lat: 45.8306933, lng: 7.7252106, osmId: 'node/1289265990', label: 'Drinking water at the start' },
+        { km: 1.4, lat: 45.8230846, lng: 7.7297057, osmId: 'node/1289266459', label: 'Drinking water' }
+      ],
+      rifugi: [
+        { km: 0, lat: 45.8331178, lng: 7.7271375, osmId: 'node/372793666', name: 'Brasserie du Breithorn' },
+        { km: 0, lat: 45.8320335, lng: 7.7267749, osmId: 'node/1820425575', name: 'Café du centre' },
+        { km: 0, lat: 45.8334639, lng: 7.7250828, osmId: 'node/1851581294', name: 'Bar Ristorante Pizzeria Churen' },
+        { km: 0, lat: 45.8323717, lng: 7.7272665, osmId: 'node/2165683635', name: 'Restaurant L\'essentiel' }
+      ],
+      desc: 'A short, steady climb at 1,560–1,810 m from the centre of Champoluc up a forest path to the Mascognaz waterfall. The regional path register lists 1.6 km and 255 m of ascent, one way.'
+    },
+    'aosta-periasc-antagnod': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Valle d'Aosta batch 1).
+      // The Valle d'Aosta path register's route “Periasc - Antagnod” (07_S65), drawn on 9 OSM ways along the GPX the register exports
+      // (data/board-line-routes.geojson). Commune: Ayas (no dog regulation, national rule and regional law 37/2010).
+      // No Natura 2000 site, park or reserve on the line or within 1 km of it (Ministry PCN layers; positive control: the Lillaz waterfall walk is 47% inside Gran Paradiso).
+      // Figures are the register's own route sheet: length, climb and one-way walking time.
+      area: 'Périasc – Antagnod, Ayas',
+      distance: 1,
+      elevation: 176,
+      hours: '0.55',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Périasc up path 1 to Antagnod; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of San Martino in Antagnod, where the walk ends, in July (Capricornis crispus, CC BY-SA 4.0); the file is not geotagged, and the church (OSM way 116905563) is 68 m from the line.',
+        route: 'Official one-way route 1 km from Periasc to Antagnod, as the Valle d\'Aosta path register publishes it; the stored line is drawn on 9 OSM ways along the GPX the register exports, 1.1 km, with 100% of the register’s line within 25 m of it.',
+        routeNumbers: 'Path 1: from Périasc across the main road and up the dirt track to the old mule track, which climbs to the road into Antagnod and the start of the farm road by the village. Back the same way.',
+        mapPoints: 'Start at the register’s start; drinking water at the start, at km 0.1, at km 0.7, at km 0.8, at km 0.9 and at km 1 (OSM node 3896535921, node 3896535938, node 7846060626, node 1316834900, node 7846060624, node 3890486181).',
+        elevation: 'Official 1 km, 176 m up and 0 m down, 32 min one way (20 min back), start 1,504 m, finish 1,680 m (Regione Autonoma Valle d\'Aosta, Catasto Sentieri (the regional path register), route 07_S65). Our elevation profile starts and ends within 30 m of those heights.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Regione Autonoma Valle d\'Aosta, Catasto Sentieri (the regional path register), route 07_S65 “Periasc - Antagnod” (route sheet and its GPX export)',
+          'Comune di Ayas publishes no dog regulation (none among its published regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried. Valle d\'Aosta regional law 37/2010, art. 6, also requires a lead in places open to the public',
+          'Ministry of the Environment PCN layers (Natura 2000 SIC/ZSC/ZPS and EUAP parks and reserves): no protected area on the line or within 1 km of it; Gran Paradiso National Park, where dogs are banned, is in another valley',
+          'OpenStreetMap ways along the register’s line (9 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 140 m along the main valley road (SR45), with traffic: keep your dog close', 'A steep old mule track'],
+      terrainType: 'Old mule track and village roads',
+      shadeDescription: 'Little shade: about a quarter runs through trees.',
+      terrainDescription: 'A short climb at 1,500–1,680 m from the hamlet of Périasc on the valley floor up an old mule track to the village of Antagnod and its church.',
+      waterDescription: 'Drinking water at the start, at km 0.1, at km 0.7, at km 0.8, at km 0.9 and at km 1; places to eat at km 0.5, at km 0.6 and at km 0.9.',
+      dogNotes: 'Ayas has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Valle d\'Aosta\'s regional law also asks for a lead in places open to the public. Please clean up after your dog.',
+      tips: 'Start at Périasc on the valley floor: 1 km and about 180 m of climbing one way, half an hour up to Antagnod, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Valle d\'Aosta path register, Periasc - Antagnod (07_S65)', url: 'https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=07_S65&TIPO=S&LINGUA=it' },
+        { label: 'Comune di Ayas, published regulations (none on dogs)', url: 'https://www.comune.ayas.ao.it/it-it/amministrazione/regolamenti' },
+        { label: 'Regione Valle d\'Aosta, legge regionale 37/2010 on companion animals (art. 6: a lead in places open to the public)', url: 'https://www.izs.it/IZS/Engine/RAServeFile.php/f/pdf_normativa/Iuvene_normativa_regionale_animali_affezione/Valle_D_Aosta/Val_lr_37_2010.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Ministero dell’Ambiente, Geoportale Nazionale: Natura 2000 and protected-area (EUAP) layers (WFS)', url: 'https://wms.pcn.minambiente.it/ogc?map=/ms_ogc/wfs/SIC_ZSC_ZPS.map&service=WFS&version=1.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.809775, lng: 7.695558, label: 'Periasc, the register’s start' },
+      waterSources: [
+        { km: 0, lat: 45.8107499, lng: 7.6958056, osmId: 'node/3896535921', label: 'Drinking water at the start' },
+        { km: 0.1, lat: 45.8117363, lng: 7.6954351, osmId: 'node/3896535938', label: 'Drinking water' },
+        { km: 0.7, lat: 45.8119219, lng: 7.6888043, osmId: 'node/7846060626', label: 'Drinking water' },
+        { km: 0.8, lat: 45.8120947, lng: 7.6884898, osmId: 'node/1316834900', label: 'Drinking water' },
+        { km: 0.9, lat: 45.8126407, lng: 7.6883923, osmId: 'node/7846060624', label: 'Drinking water' },
+        { km: 1, lat: 45.8113445, lng: 7.6880767, osmId: 'node/3890486181', label: 'Drinking water' }
+      ],
+      rifugi: [
+        { km: 0.5, lat: 45.8119263, lng: 7.6887938, osmId: 'node/6780744588', name: 'Le cadran solaire' },
+        { km: 0.6, lat: 45.8125585, lng: 7.6893925, osmId: 'node/3890483955', name: 'Kramer Tal Bar' },
+        { km: 0.6, lat: 45.8126773, lng: 7.6894968, osmId: 'node/7806916001', name: 'Kramerthal' },
+        { km: 0.9, lat: 45.8144188, lng: 7.6885657, osmId: 'node/7806914776', name: 'Sin Scéal Eile' }
+      ],
+      desc: 'A short climb at 1,500–1,680 m from the hamlet of Périasc on the valley floor up an old mule track to the village of Antagnod and its church. The regional path register lists 1 km and 176 m of ascent, one way.'
+    },
+    'aosta-sentiero-della-regina': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Valle d'Aosta batch 1).
+      // The Valle d'Aosta path register's route “Sentiero della Regina” (33_S32), drawn on 17 OSM ways along the GPX the register exports
+      // (data/board-line-routes.geojson). Commune: Gressoney-Saint-Jean (no dog regulation, national rule and regional law 37/2010).
+      // No Natura 2000 site, park or reserve on the line or within 1 km of it (Ministry PCN layers; positive control: the Lillaz waterfall walk is 47% inside Gran Paradiso).
+      // Figures are the register's own route sheet: length, climb and one-way walking time.
+      area: 'Tschemonal – Lago Gover – Castel Savoia, Gressoney-Saint-Jean',
+      distance: 3.4,
+      elevation: 104,
+      hours: '0.95',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Tschemonal along path 15 past Lago Gover to Castel Savoia; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Lago Gover, which the path passes, at dawn in late October with no snow on the ground (BeppeViews, CC BY 4.0), taken 91 m from the line.',
+        route: 'Official one-way route 3.4 km from Tschemonal to Castello Savoia, as the Valle d\'Aosta path register publishes it; the stored line is drawn on 17 OSM ways along the GPX the register exports, 3.4 km, with 100% of the register’s line within 25 m of it.',
+        routeNumbers: 'Path 15: from Tschemonal on the mule track along the valley side, across the Campo bridge to the Lago Gover junction, on the mule track and the forest path past the junction with path 4, to the castle road at Castel Savoia. Back the same way.',
+        mapPoints: 'Start at the register’s start; drinking water at the start, at km 1.6, at km 2 and at km 3.2 (OSM node 8942205065, node 2975882421, node 2927387290, node 2970569536).',
+        elevation: 'Official 3.4 km, 104 m up and 101 m down, 56 min one way (51 min back), start 1,405 m, finish 1,408 m (Regione Autonoma Valle d\'Aosta, Catasto Sentieri (the regional path register), route 33_S32). Our elevation profile starts and ends within 30 m of those heights.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Regione Autonoma Valle d\'Aosta, Catasto Sentieri (the regional path register), route 33_S32 “Sentiero della Regina” (route sheet and its GPX export)',
+          'Comune di Gressoney-Saint-Jean publishes no dog regulation (none among its published regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried. Valle d\'Aosta regional law 37/2010, art. 6, also requires a lead in places open to the public',
+          'Ministry of the Environment PCN layers (Natura 2000 SIC/ZSC/ZPS and EUAP parks and reserves): no protected area on the line or within 1 km of it; Gran Paradiso National Park, where dogs are banned, is in another valley',
+          'OpenStreetMap ways along the register’s line (17 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 72,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A few short climbs and descents on mule track and forest path', 'Busy around Lago Gover and the castle in summer'],
+      terrainType: 'Mule track and forest path along the valley side',
+      shadeDescription: 'Mostly shaded: nearly three quarters runs through larch and spruce.',
+      terrainDescription: 'An easy walk at about 1,380–1,440 m along the valley side above Gressoney-Saint-Jean, past Lago Gover to Castel Savoia, the summer residence of Queen Margherita.',
+      waterDescription: 'Drinking water at the start, at km 1.6, at km 2 and at km 3.2; places to eat at km 1.5, at km 1.6, at km 1.8, at km 1.9 and at km 2.',
+      dogNotes: 'Gressoney-Saint-Jean has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Valle d\'Aosta\'s regional law also asks for a lead in places open to the public. Please clean up after your dog.',
+      tips: 'Start at Tschemonal: 3.4 km one way with about 100 m up and 100 m down, under an hour to Castel Savoia, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Valle d\'Aosta path register, Sentiero della Regina (33_S32)', url: 'https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=33_S32&TIPO=S&LINGUA=it' },
+        { label: 'Comune di Gressoney-Saint-Jean, published regulations (none on dogs)', url: 'https://www.comune.gressoneystjean.ao.it/it-it/amministrazione/regolamenti' },
+        { label: 'Regione Valle d\'Aosta, legge regionale 37/2010 on companion animals (art. 6: a lead in places open to the public)', url: 'https://www.izs.it/IZS/Engine/RAServeFile.php/f/pdf_normativa/Iuvene_normativa_regionale_animali_affezione/Valle_D_Aosta/Val_lr_37_2010.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Ministero dell’Ambiente, Geoportale Nazionale: Natura 2000 and protected-area (EUAP) layers (WFS)', url: 'https://wms.pcn.minambiente.it/ogc?map=/ms_ogc/wfs/SIC_ZSC_ZPS.map&service=WFS&version=1.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.793638, lng: 7.821438, label: 'Tschemonal, the register’s start' },
+      waterSources: [
+        { km: 0, lat: 45.7937012, lng: 7.8215507, osmId: 'node/8942205065', label: 'Drinking water at the start' },
+        { km: 1.6, lat: 45.7794802, lng: 7.8233776, osmId: 'node/2975882421', label: 'Drinking water' },
+        { km: 2, lat: 45.776458, lng: 7.822576, osmId: 'node/2927387290', label: 'Drinking water' },
+        { km: 3.2, lat: 45.7659682, lng: 7.8256332, osmId: 'node/2970569536', label: 'Drinking water' }
+      ],
+      rifugi: [
+        { km: 1.5, lat: 45.7794205, lng: 7.8237099, osmId: 'node/2927388802', name: 'Pizzeria Oro Argento e Bronzo' },
+        { km: 1.6, lat: 45.779471, lng: 7.8248538, osmId: 'node/1352505406', name: 'Lyskamm' },
+        { km: 1.6, lat: 45.7794724, lng: 7.8249849, osmId: 'node/6307635451', name: 'Snack Bar' },
+        { km: 1.8, lat: 45.7766035, lng: 7.8232185, osmId: 'node/4177869336', name: 'Bar Ristorante Lago Gover' },
+        { km: 1.9, lat: 45.7775758, lng: 7.8249506, osmId: 'node/2970394734', name: 'Lo Stambecco' },
+        { km: 2, lat: 45.775852, lng: 7.8242093, osmId: 'node/3668592369', name: 'Café des Guides' }
+      ],
+      desc: 'An easy walk at about 1,380–1,440 m along the valley side above Gressoney-Saint-Jean, past Lago Gover to Castel Savoia, the summer residence of Queen Margherita. The regional path register lists 3.4 km and 104 m of ascent, one way.'
+    },
+    'aosta-strada-lombarda': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Valle d'Aosta batch 1).
+      // The Valle d'Aosta path register's route “Strada Lombarda” (33_S33), drawn on 42 OSM ways along the GPX the register exports
+      // (data/board-line-routes.geojson). Commune: Gressoney-Saint-Jean (no dog regulation, national rule and regional law 37/2010).
+      // No Natura 2000 site, park or reserve on the line or within 1 km of it (Ministry PCN layers; positive control: the Lillaz waterfall walk is 47% inside Gran Paradiso).
+      // Figures are the register's own route sheet: length, climb and one-way walking time.
+      area: 'Villa Margherita – Gressoney-Saint-Jean – Strada Lombarda, Gressoney-Saint-Jean',
+      distance: 4.3,
+      elevation: 155,
+      hours: '1.2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Villa Margherita junction through Gressoney-Saint-Jean on path 14 to the start of path 9; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Villa Peccoz on the walk through Gressoney-Saint-Jean, in July (Ivanbranco, CC BY-SA 4.0), taken 21 m from the line.',
+        route: 'Official one-way route 4.3 km from Bivio Villa Margherita to Start 9, as the Valle d\'Aosta path register publishes it; the stored line is drawn on 42 OSM ways along the GPX the register exports, 4.3 km, with 100% of the register’s line within 25 m of it.',
+        routeNumbers: 'Path 14: from the Villa Margherita junction on the dirt road to Obro Verdebio, on the path and the mule track to the road by the swimming pool, through the village square of Gressoney-Saint-Jean, and on the dirt road from the concrete bridge to the start of path 9. Back the same way.',
+        mapPoints: 'Start at the register’s start; drinking water at the start, at km 0.8, at km 1.7, at km 1.8 and at km 4.1 (OSM node 893388345, node 4177810233, node 9003616852, node 13952358401, node 4190003457).',
+        elevation: 'Official 4.3 km, 155 m up and 0 m down, 1 h 11 min one way (1 h back), start 1,385 m, finish 1,441 m (Regione Autonoma Valle d\'Aosta, Catasto Sentieri (the regional path register), route 33_S33). Our elevation profile starts and ends within 30 m of those heights.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Regione Autonoma Valle d\'Aosta, Catasto Sentieri (the regional path register), route 33_S33 “Strada Lombarda” (route sheet and its GPX export)',
+          'Comune di Gressoney-Saint-Jean publishes no dog regulation (none among its published regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried. Valle d\'Aosta regional law 37/2010, art. 6, also requires a lead in places open to the public',
+          'Ministry of the Environment PCN layers (Natura 2000 SIC/ZSC/ZPS and EUAP parks and reserves): no protected area on the line or within 1 km of it; Gran Paradiso National Park, where dogs are banned, is in another valley',
+          'OpenStreetMap ways along the register’s line (42 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 9,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 250 m along the main valley road (SR44) and stretches of village streets: keep your dog close', 'Little shade on hot days'],
+      terrainType: 'Village roads, dirt road and mule track on the valley floor',
+      shadeDescription: 'Little shade: under a tenth runs through trees.',
+      terrainDescription: 'An easy walk at about 1,370–1,440 m on the valley floor through Gressoney-Saint-Jean, on the old valley road, the Strada Lombarda, and a dirt road beside the Lys.',
+      waterDescription: 'Drinking water at the start, at km 0.8, at km 1.7, at km 1.8 and at km 4.1; places to eat at the start, at km 0.2, at km 0.6 and at km 0.8.',
+      dogNotes: 'Gressoney-Saint-Jean has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Valle d\'Aosta\'s regional law also asks for a lead in places open to the public. Please clean up after your dog.',
+      tips: 'Start at the Villa Margherita junction: 4.3 km and about 150 m of climbing one way, a little over an hour, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Valle d\'Aosta path register, Strada Lombarda (33_S33)', url: 'https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=33_S33&TIPO=S&LINGUA=it' },
+        { label: 'Comune di Gressoney-Saint-Jean, published regulations (none on dogs)', url: 'https://www.comune.gressoneystjean.ao.it/it-it/amministrazione/regolamenti' },
+        { label: 'Regione Valle d\'Aosta, legge regionale 37/2010 on companion animals (art. 6: a lead in places open to the public)', url: 'https://www.izs.it/IZS/Engine/RAServeFile.php/f/pdf_normativa/Iuvene_normativa_regionale_animali_affezione/Valle_D_Aosta/Val_lr_37_2010.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Ministero dell’Ambiente, Geoportale Nazionale: Natura 2000 and protected-area (EUAP) layers (WFS)', url: 'https://wms.pcn.minambiente.it/ogc?map=/ms_ogc/wfs/SIC_ZSC_ZPS.map&service=WFS&version=1.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.76524, lng: 7.83566, label: 'Bivio Villa Margherita, the register’s start' },
+      waterSources: [
+        { km: 0, lat: 45.7640925, lng: 7.8357642, osmId: 'node/893388345', label: 'Drinking water at the start' },
+        { km: 0.8, lat: 45.7720954, lng: 7.8305587, osmId: 'node/4177810233', label: 'Drinking water' },
+        { km: 1.7, lat: 45.7786604, lng: 7.8254753, osmId: 'node/9003616852', label: 'Drinking water' },
+        { km: 1.8, lat: 45.7793613, lng: 7.8247204, osmId: 'node/13952358401', label: 'Drinking water' },
+        { km: 4.1, lat: 45.7992706, lng: 7.8259788, osmId: 'node/4190003457', label: 'Drinking water' }
+      ],
+      rifugi: [
+        { km: 0, lat: 45.7637094, lng: 7.8355613, osmId: 'node/1193102359', name: 'Genzianella' },
+        { km: 0.2, lat: 45.7659297, lng: 7.8319537, osmId: 'node/2429259446', name: 'Ristorante Mont Néry' },
+        { km: 0.2, lat: 45.7685586, lng: 7.8331781, osmId: 'node/2893736212', name: 'Bar Sport' },
+        { km: 0.6, lat: 45.7707678, lng: 7.8306016, osmId: 'node/3666312692', name: 'Carducci' },
+        { km: 0.8, lat: 45.7725204, lng: 7.8294585, osmId: 'node/3893241507', name: 'Braciere' },
+        { km: 0.8, lat: 45.772787, lng: 7.829308, osmId: 'node/12993238443', name: 'Trattoria il Braciere' }
+      ],
+      desc: 'An easy walk at about 1,370–1,440 m on the valley floor through Gressoney-Saint-Jean, on the old valley road, the Strada Lombarda, and a dirt road beside the Lys. The regional path register lists 4.3 km and 155 m of ascent, one way.'
+    },
+    'aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Valle d'Aosta batch 1).
+      // The Valle d'Aosta path register's route “Villaggi di Alpenzu piccolo e Alpenzu grande” (33_S46), drawn on 11 OSM ways along the GPX the register exports
+      // (data/board-line-routes.geojson). Commune: Gressoney-Saint-Jean (no dog regulation, national rule and regional law 37/2010).
+      // No Natura 2000 site, park or reserve on the line or within 1 km of it (Ministry PCN layers; positive control: the Lillaz waterfall walk is 47% inside Gran Paradiso).
+      // Figures are the register's own route sheet: length, climb and one-way walking time.
+      area: 'Gressoney – Alpenzù Piccolo – Alpenzù Grande, Gressoney-Saint-Jean',
+      distance: 3.3,
+      elevation: 311,
+      hours: '1.45',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the valley road below Gressoney-La-Trinité up the Walser path (W) to Alpenzù Piccolo and on to Alpenzù Grande; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The hamlet of Alpenzù seen from just above it, in July (Francofranco56, CC BY-SA 3.0); the file is not geotagged, and both hamlets (OSM nodes 1350384801, 1958398006) are within 10 m of the line.',
+        route: 'Official one-way route 3.3 km from Prima di Gressoney-La-Trinité to Alpezu grande, as the Valle d\'Aosta path register publishes it; the stored line is drawn on 11 OSM ways along the GPX the register exports, 3.3 km, with 100% of the register’s line within 25 m of it.',
+        routeNumbers: 'Path W (the Walser path): from the start of the W by the valley road up through the larch woods past the junctions with paths 6, 7 and 10A to Alpenzù Piccolo, then on across the meadows to Alpenzù Grande and its hut. Back the same way.',
+        mapPoints: 'Start at the register’s start; drinking water at km 1.3, at km 1.5 and at km 3.2 (OSM node 3706607551, node 5043833394, node 3002402360).',
+        elevation: 'Official 3.3 km, 311 m up and 0 m down, 1 h 27 min one way (1 h 10 min back), start 1,634 m, finish 1,788 m (Regione Autonoma Valle d\'Aosta, Catasto Sentieri (the regional path register), route 33_S46). Our elevation profile starts and ends within 30 m of those heights.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Regione Autonoma Valle d\'Aosta, Catasto Sentieri (the regional path register), route 33_S46 “Villaggi di Alpenzu piccolo e Alpenzu grande” (route sheet and its GPX export)',
+          'Comune di Gressoney-Saint-Jean publishes no dog regulation (none among its published regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried. Valle d\'Aosta regional law 37/2010, art. 6, also requires a lead in places open to the public',
+          'Ministry of the Environment PCN layers (Natura 2000 SIC/ZSC/ZPS and EUAP parks and reserves): no protected area on the line or within 1 km of it; Gran Paradiso National Park, where dogs are banned, is in another valley',
+          'OpenStreetMap ways along the register’s line (11 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 58,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A steady climb on a forest and meadow path', 'Alpine pastures around the hamlets: livestock may be grazing in summer'],
+      terrainType: 'Forest and meadow path',
+      shadeDescription: 'Partly shaded: more than half runs through larch woods, the rest over the meadows of the hamlets.',
+      terrainDescription: 'A steady climb at about 1,610–1,860 m on the Walser path up the east side of the valley to the stone hamlets of Alpenzù Piccolo and Alpenzù Grande.',
+      waterDescription: 'Drinking water at km 1.3, at km 1.5 and at km 3.2; a place to eat at km 3.1.',
+      dogNotes: 'Gressoney-Saint-Jean has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Valle d\'Aosta\'s regional law also asks for a lead in places open to the public. Please clean up after your dog.',
+      tips: 'Start on the valley road below Gressoney-La-Trinité: 3.3 km and about 310 m of climbing one way, an hour and a half to Alpenzù Grande, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Valle d\'Aosta path register, Villaggi di Alpenzu piccolo e Alpenzu grande (33_S46)', url: 'https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=33_S46&TIPO=S&LINGUA=it' },
+        { label: 'Comune di Gressoney-Saint-Jean, published regulations (none on dogs)', url: 'https://www.comune.gressoneystjean.ao.it/it-it/amministrazione/regolamenti' },
+        { label: 'Regione Valle d\'Aosta, legge regionale 37/2010 on companion animals (art. 6: a lead in places open to the public)', url: 'https://www.izs.it/IZS/Engine/RAServeFile.php/f/pdf_normativa/Iuvene_normativa_regionale_animali_affezione/Valle_D_Aosta/Val_lr_37_2010.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Ministero dell’Ambiente, Geoportale Nazionale: Natura 2000 and protected-area (EUAP) layers (WFS)', url: 'https://wms.pcn.minambiente.it/ogc?map=/ms_ogc/wfs/SIC_ZSC_ZPS.map&service=WFS&version=1.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.819218, lng: 7.82431, label: 'Prima di Gressoney-La-Trinité, the register’s start' },
+      waterSources: [
+        { km: 1.3, lat: 45.8119489, lng: 7.8189181, osmId: 'node/3706607551', label: 'Drinking water' },
+        { km: 1.5, lat: 45.8105158, lng: 7.8177925, osmId: 'node/5043833394', label: 'Drinking water' },
+        { km: 3.2, lat: 45.799082, lng: 7.8162684, osmId: 'node/3002402360', label: 'Drinking water' }
+      ],
+      rifugi: [
+        { km: 3.1, lat: 45.7991516, lng: 7.8161253, osmId: 'node/353049771', name: 'Rifugio Alpenzu Grande' }
+      ],
+      desc: 'A steady climb at about 1,610–1,860 m on the Walser path up the east side of the valley to the stone hamlets of Alpenzù Piccolo and Alpenzù Grande. The regional path register lists 3.3 km and 311 m of ascent, one way.'
     }
   };
 

@@ -94,9 +94,12 @@ describe('the existing-site verification boundary',()=>{
     // Then 298 and 296 with the first five Lombardy walks, round Lake Como:
     // Brunate's churches, the Pognana Lario sculptures, Brogno to the Nuvolone
     // viewpoint, Lasnigo – Barni – Crezzo and Eupilio's Madonna della Neve.
+    // Then 304 and 302 with the first six Valle d'Aosta walks: the Rû Courtaud,
+    // Champoluc to the Mascognaz waterfall and Périasc to Antagnod in Ayas, and the
+    // Sentiero della Regina, the Strada Lombarda and Alpenzù in Gressoney.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(298);
-    expect(currentSiteTrails(catalogue)).toHaveLength(296);
+    expect(catalogue).toHaveLength(304);
+    expect(currentSiteTrails(catalogue)).toHaveLength(302);
   });
 
   test('requires the artwork the public trail page needs',()=>{
