@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T21:03:51.217Z",
+  "generatedAt": "2026-10-27T21:31:37.714Z",
   "regions": {
     "dolomites": {
       "trailCount": 204,
-      "trails": "data/regions/dolomites-trails.js?v=940861cd31a4",
+      "trails": "data/regions/dolomites-trails.js?v=def375cc971e",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -18,7 +18,7 @@
         "lago-carezza": "data/trail-details/lago-carezza.js?v=0dec405e1f12",
         "lago-sorapis": "data/trail-details/lago-sorapis.js?v=c61fe779f16b",
         "valley-view": "data/trail-details/valley-view.js?v=9611d5921a8e",
-        "piancavallo": "data/trail-details/piancavallo.js?v=d6875e7a1bdb",
+        "piancavallo": "data/trail-details/piancavallo.js?v=dfc83ef7e4ce",
         "geotrail-bulla": "data/trail-details/geotrail-bulla.js?v=28e241191dba",
         "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=2cf323a8820d",
         "sentiero-hans-e-paula-steger": "data/trail-details/sentiero-hans-e-paula-steger.js?v=528a743b999c",
@@ -283,6 +283,15 @@
       "details": {},
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
+      "dogRoutes": "dog-friendly-routes.geojson",
+      "optional": []
+    },
+    "friuli": {
+      "trailCount": 0,
+      "trails": "data/regions/friuli-trails.js?v=5c23f1a8921e",
+      "details": {},
+      "water": "data/regions/friuli-water.geojson",
+      "hutsBars": "data/regions/friuli-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
       "optional": []
     }
