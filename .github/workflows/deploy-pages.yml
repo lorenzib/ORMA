@@ -21,6 +21,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  issues: write      # say so when the hiking route tiles are missing or stale
 
 # Never cancel a running deploy; let it finish and queue the next one.
 concurrency:
@@ -80,6 +81,23 @@ jobs:
             echo "Published $(find _site/data/hiking-routes -name '*.pbf' | wc -l) hiking route tiles."
           else
             echo "::warning::No hiking route tiles; the maps will fall back to Waymarked Trails."
+          fi
+
+      # Catches what the weekly build's own alarm cannot: a timer that never
+      # fired, or a cache that lost every set. Opens the issue only; the next
+      # good weekly build closes it.
+      - name: Say so when the hiking route tiles are missing or stale
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          health="$(node scripts/check-hiking-route-tiles.js _site/data/hiking-routes)"
+          echo "Hiking route tiles: $health"
+          state="$(node -p "JSON.parse(process.argv[1]).state" "$health")"
+          age="$(node -p "JSON.parse(process.argv[1]).ageDays" "$health")"
+          if [ "$state" = "missing" ]; then
+            bash scripts/hiking-route-tiles-alert.sh raise-once "The site deployed with no hiking route tiles, so every map is drawing Waymarked Trails' raster instead of ORMA's routes."
+          elif [ "$state" = "stale" ]; then
+            bash scripts/hiking-route-tiles-alert.sh raise-once "The hiking route tiles on the site were built ${age} days ago. The weekly refresh has stopped."
           fi
 
       # Fails the deploy rather than publishing operator data, and fails it
