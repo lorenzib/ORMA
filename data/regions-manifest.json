@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T14:46:06.526Z",
+  "generatedAt": "2026-10-27T18:34:23.138Z",
   "regions": {
     "dolomites": {
-      "trailCount": 195,
-      "trails": "data/regions/dolomites-trails.js?v=b62f7a51a1b3",
+      "trailCount": 199,
+      "trails": "data/regions/dolomites-trails.js?v=dd37377aeb01",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -200,6 +200,10 @@
         "cembra-vecchi-mestieri-grumes": "data/trail-details/cembra-vecchi-mestieri-grumes.js?v=1e0d9d4ec5b1",
         "cembra-monte-pat-malga-vernera": "data/trail-details/cembra-monte-pat-malga-vernera.js?v=a281b4b35d53",
         "cembra-pascoli-malga-vernera": "data/trail-details/cembra-pascoli-malga-vernera.js?v=00030517228d",
+        "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": "data/trail-details/altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt.js?v=09a230696e64",
+        "altabadia-escursione-corvara-colfosco": "data/trail-details/altabadia-escursione-corvara-colfosco.js?v=5a648ccea63b",
+        "altabadia-sentiero-degli-artisti-tru-di-artisc": "data/trail-details/altabadia-sentiero-degli-artisti-tru-di-artisc.js?v=3f2e8abd0344",
+        "altabadia-escursione-corvara-la-villa": "data/trail-details/altabadia-escursione-corvara-la-villa.js?v=2b9337d53009",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -464,6 +468,10 @@
     "cembra-vecchi-mestieri-grumes": "dolomites",
     "cembra-monte-pat-malga-vernera": "dolomites",
     "cembra-pascoli-malga-vernera": "dolomites",
+    "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": "dolomites",
+    "altabadia-escursione-corvara-colfosco": "dolomites",
+    "altabadia-sentiero-degli-artisti-tru-di-artisc": "dolomites",
+    "altabadia-escursione-corvara-la-villa": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -763,6 +771,10 @@
     "cembra-vecchi-mestieri-grumes": "sentiero-vecchi-mestieri-grumes",
     "cembra-monte-pat-malga-vernera": "baita-monte-pat-malga-vernera",
     "cembra-pascoli-malga-vernera": "sui-pascoli-di-malga-vernera",
+    "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": "la-villa-lech-da-sompunt",
+    "altabadia-escursione-corvara-colfosco": "corvara-colfosco",
+    "altabadia-sentiero-degli-artisti-tru-di-artisc": "tru-di-artisc",
+    "altabadia-escursione-corvara-la-villa": "corvara-la-villa",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1011,6 +1023,10 @@
     "sentiero-vecchi-mestieri-grumes": "cembra-vecchi-mestieri-grumes",
     "baita-monte-pat-malga-vernera": "cembra-monte-pat-malga-vernera",
     "sui-pascoli-di-malga-vernera": "cembra-pascoli-malga-vernera",
+    "la-villa-lech-da-sompunt": "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt",
+    "corvara-colfosco": "altabadia-escursione-corvara-colfosco",
+    "tru-di-artisc": "altabadia-sentiero-degli-artisti-tru-di-artisc",
+    "corvara-la-villa": "altabadia-escursione-corvara-la-villa",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
