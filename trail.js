@@ -2044,14 +2044,16 @@ function renderTrail(t){
           maxzoom: 19,
           attribution: 'Imagery © Esri',
         });
-        const firstSymbol = map.getStyle().layers.find(l => l.type === 'symbol');
+        // Below our hiking routes: the first symbol layer is now their numbers,
+        // which sit above the walk, so the photo would cover the walk itself.
+        const belowRoutes = window.ORMAMapStyle.networkLayerId(map);
         map.addLayer({
           id: 'satellite-layer',
           type: 'raster',
           source: 'satellite',
           layout: { visibility: 'none' },
           paint: { 'raster-resampling': 'linear', 'raster-fade-duration': 100 },
-        }, firstSymbol && firstSymbol.id);
+        }, belowRoutes);
         return true;
       };
       layerSwitch.addEventListener('click', (e) => {
