@@ -63,10 +63,12 @@ describe('the existing-site verification boundary',()=>{
     // Then 230 and 228 with the forest walk to Malga Valcigolera. Then 236 and
     // 234 with the first six Val di Cembra walks: the Lago Santo, two walks
     // at the Lago di Lases, San Leonardo above Lisignago, the Dos Paion on
-    // Monte Corona and the Rifugio Potzmauer.
+    // Monte Corona and the Rifugio Potzmauer. Then 241 and
+    // 239 with five more Val di Cembra walks: the Castello di Segonzano, Sevignano,
+    // Grauno, the Monte Corona loop and the Masi di Grumes.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(236);
-    expect(currentSiteTrails(catalogue)).toHaveLength(234);
+    expect(catalogue).toHaveLength(241);
+    expect(currentSiteTrails(catalogue)).toHaveLength(239);
   });
 
   test('requires the artwork the public trail page needs',()=>{

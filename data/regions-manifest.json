@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T13:30:32.902Z",
+  "generatedAt": "2026-10-27T13:46:30.637Z",
   "regions": {
     "dolomites": {
-      "trailCount": 185,
-      "trails": "data/regions/dolomites-trails.js?v=683735bf01d4",
+      "trailCount": 190,
+      "trails": "data/regions/dolomites-trails.js?v=b99cba8ff32c",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -190,6 +190,11 @@
         "cembra-dos-paion": "data/trail-details/cembra-dos-paion.js?v=201046e85bfb",
         "cembra-san-leonardo-lisignago": "data/trail-details/cembra-san-leonardo-lisignago.js?v=3ce3178004f6",
         "cembra-rifugio-potzmauer": "data/trail-details/cembra-rifugio-potzmauer.js?v=509bc22a8ae9",
+        "cembra-giro-monte-corona": "data/trail-details/cembra-giro-monte-corona.js?v=43e622d3689b",
+        "cembra-giro-masi-grumes": "data/trail-details/cembra-giro-masi-grumes.js?v=55016db87e37",
+        "cembra-erbe-della-salute": "data/trail-details/cembra-erbe-della-salute.js?v=66ab2854e039",
+        "cembra-castello-segonzano": "data/trail-details/cembra-castello-segonzano.js?v=9569dbd66b94",
+        "cembra-paese-beghei": "data/trail-details/cembra-paese-beghei.js?v=35e5bc55bfba",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -444,6 +449,11 @@
     "cembra-dos-paion": "dolomites",
     "cembra-san-leonardo-lisignago": "dolomites",
     "cembra-rifugio-potzmauer": "dolomites",
+    "cembra-giro-monte-corona": "dolomites",
+    "cembra-giro-masi-grumes": "dolomites",
+    "cembra-erbe-della-salute": "dolomites",
+    "cembra-castello-segonzano": "dolomites",
+    "cembra-paese-beghei": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -733,6 +743,11 @@
     "cembra-dos-paion": "dos-paion-monte-corona",
     "cembra-san-leonardo-lisignago": "san-leonardo-lisignago",
     "cembra-rifugio-potzmauer": "rifugio-potzmauer",
+    "cembra-giro-monte-corona": "giro-panoramico-monte-corona",
+    "cembra-giro-masi-grumes": "giro-dei-masi-di-grumes",
+    "cembra-erbe-della-salute": "erbe-della-salute-grauno",
+    "cembra-castello-segonzano": "castello-di-segonzano-canyon-del-pra",
+    "cembra-paese-beghei": "paese-dei-beghei-sevignano",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -971,6 +986,11 @@
     "dos-paion-monte-corona": "cembra-dos-paion",
     "san-leonardo-lisignago": "cembra-san-leonardo-lisignago",
     "rifugio-potzmauer": "cembra-rifugio-potzmauer",
+    "giro-panoramico-monte-corona": "cembra-giro-monte-corona",
+    "giro-dei-masi-di-grumes": "cembra-giro-masi-grumes",
+    "erbe-della-salute-grauno": "cembra-erbe-della-salute",
+    "castello-di-segonzano-canyon-del-pra": "cembra-castello-segonzano",
+    "paese-dei-beghei-sevignano": "cembra-paese-beghei",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
