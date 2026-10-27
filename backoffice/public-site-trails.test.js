@@ -72,10 +72,12 @@ describe('the existing-site verification boundary',()=>{
     // and Corvara – La Villa. Then 252 and 250 with two more: the farms loop
     // above Pederoa and Furnacia – La Crusc. Then 255 and 253 with three more: the
     // Rit meadows above La Val, San Cassiano – Pralongiá – Corvara and the Pisciadú
-    // waterfall from Corvara.
+    // waterfall from Corvara. Then 261 and 259 with six Val Gardena walks: the Lech
+    // Sant, the Ortisei valley promenade, the Resciesa summit loop, Santa Croce –
+    // Brogles, the Via Crucis above Santa Cristina and San Giacomo from Ortisei.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(255);
-    expect(currentSiteTrails(catalogue)).toHaveLength(253);
+    expect(catalogue).toHaveLength(261);
+    expect(currentSiteTrails(catalogue)).toHaveLength(259);
   });
 
   test('requires the artwork the public trail page needs',()=>{
