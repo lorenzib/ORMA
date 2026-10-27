@@ -770,3 +770,20 @@ describe('trail page map controls', () => {
     expect(html).toContain('grid-auto-columns:82%;');
   });
 });
+
+describe('trail page for a trail that does not exist', () => {
+  test('the not-found message has a place to go on the current page', () => {
+    // It looked only for the pre-redesign .td-wrap, found nothing, and a
+    // withdrawn or mistyped link showed an empty trail with live buttons.
+    const script = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    const start = script.indexOf("document.title = window.t('trail.notFound')");
+    const block = script.slice(start, script.indexOf('improveLoopStart(trail', start));
+    const selectors = Array.from(block.matchAll(/document\.querySelector\('([^']+)'\)/g)).map(match => match[1]);
+    expect(selectors.length).toBeGreaterThan(0);
+    const page = new DOMParser().parseFromString(fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8'), 'text/html');
+    const target = selectors.map(selector => page.querySelector(selector)).find(Boolean);
+    expect(target).toBeTruthy();
+    expect(target.querySelector('#trailName')).not.toBeNull();
+    expect(block).toContain("window.t('trail.notFound')");
+  });
+});
