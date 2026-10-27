@@ -149,8 +149,12 @@
   }
 
   function regionForFix(fix){
-    // ORMA currently covers Savoy (west of 9°E) and the Dolomites.
-    return fix && fix.lng < 9 ? 'savoy' : 'dolomites';
+    // East of 9°E is the Dolomites. West of it Courmayeur and Chamonix share a
+    // meridian, so the nearest locality decides, as it does for every trail.
+    if(!fix || !(fix.lng < 9)) return 'dolomites';
+    var regions = window.DoloPawsRegions;
+    var near = regions && regions.nearestLocality ? regions.nearestLocality(fix.lat, fix.lng).region : 'savoy';
+    return near === 'dolomites' ? 'savoy' : near;
   }
 
   function regionAsset(key){
@@ -235,8 +239,8 @@
         function build(){
           if(typeof gondolas === 'undefined') { reject(new Error('Lift layer unavailable')); return; }
           var lifts = gondolas.filter(function(lift){
-            var savoy = lift.country === 'FR' || (lift.from && lift.from.lng < 9);
-            return overlayRegion === 'savoy' ? savoy : !savoy;
+            var region = lift.country === 'FR' ? 'savoy' : regionForFix(lift.from);
+            return region === overlayRegion;
           });
           var features = lifts.map(function(lift){ return { type:'Feature', properties:{ name:lift.name, status:lift.status },
             geometry:{ type:'LineString', coordinates:[[lift.from.lng,lift.from.lat],[lift.to.lng,lift.to.lat]] } }; });

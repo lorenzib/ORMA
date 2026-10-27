@@ -111,6 +111,7 @@
     { value:'all', label:'All regions', countryCode:'all' },
     { value:'dolomites', label:'Dolomites', countryCode:'IT' },
     { value:'savoy', label:'Savoy', countryCode:'FR' },
+    { value:'aosta', label:'Valle d\'Aosta', countryCode:'IT' },
   ];
 
   const THEME_MATCHERS = {
@@ -119,7 +120,8 @@
     scenic: collection => /lake|lakeside|woodland|scenery|high-level/i.test(`${collection.id} ${collection.title} ${collection.subtitle} ${collection.chips.join(' ')}`),
   };
   const trailsFor = collection => api.trailsFor(collection, trails);
-  const trailInArea = trail => (country === 'all' || (country === 'IT' ? trail.region === 'dolomites' : trail.region === 'savoy'))
+  const regionCountry = value => (REGIONS.find(item => item.value === value) || {}).countryCode;
+  const trailInArea = trail => (country === 'all' || regionCountry(trail.region) === country)
     && (region === 'all' || trail.region === region);
   const collectionInValley = collection => valley === 'all'
     || trailsFor(collection).some(trail => trail.valley === valley);

@@ -170,10 +170,11 @@ describe('the static pages and the app agree on the slug', () => {
   test('every script taught to emit a slug had its cache key moved', () => {
     // regional-trails-loader moved again with the detail-first load order, so
     // the expected token is per script rather than one shared value.
+    // discovery-state and collections-page moved when Valle d'Aosta was added.
     const SLUG_AWARE = {
-      'discovery-state': '20261007-1', 'regional-trails-loader': '20261007-2',
+      'discovery-state': '20261027-1', 'regional-trails-loader': '20261007-2',
       'browse-map': '20261007-1', 'compare-page': '20261007-1',
-      'collections-page': '20261007-1', 'homepage-search': '20261007-1',
+      'collections-page': '20261027-1', 'homepage-search': '20261007-1',
       'mobile-nav': '20261007-1', 'notifications-feed': '20261023-1',
     };
     const stale = [];

@@ -10,6 +10,9 @@
   // imported) so this module stays standalone for the browser globals build and
   // the Node test harness alike.
   const MULTI_DAY_MIN_KM = 25;
+  // Which country filter a region answers to, the same pairing as
+  // regions-config.js and standalone for the same reason.
+  const REGION_COUNTRY = Object.freeze({ dolomites:'italy', aosta:'italy', savoy:'france' });
   const FILTER_ORDER = [
     'search', 'country', 'region', 'valley', 'risk', 'distance', 'duration', 'difficulty', 'terrain', 'water', 'heat',
     'exposure', 'access', 'collection', 'minMatch', 'lifts',
@@ -95,9 +98,8 @@
     if(q && !searchable.includes(q)) return false;
     if(state.country){
       const country = String(trail.country || '').toLocaleLowerCase();
-      const expectedRegion = state.country === 'italy' ? 'dolomites' : 'savoy';
       const expectedCode = state.country === 'italy' ? 'it' : 'fr';
-      if(trail.region !== expectedRegion && country !== state.country && country !== expectedCode) return false;
+      if(REGION_COUNTRY[trail.region] !== state.country && country !== state.country && country !== expectedCode) return false;
     }
     if(state.region && state.region !== 'all' && trail.region !== state.region) return false;
     if(state.valley && state.valley !== 'all' && trail.valley !== state.valley) return false;
@@ -211,7 +213,9 @@
     const labels = {
       search: tr('filters.chip.search', 'Search “{q}”', { q: state.search }),
       country: state.country === 'italy' ? tr('filters.chip.italy', 'Italy') : tr('filters.chip.france', 'France'),
-      region: state.region === 'dolomites' ? tr('filters.chip.dolomites', 'Dolomites region') : tr('filters.chip.savoy', 'Savoy region'),
+      region: state.region === 'dolomites' ? tr('filters.chip.dolomites', 'Dolomites region')
+        : state.region === 'aosta' ? tr('filters.chip.aosta', 'Valle d’Aosta region')
+          : tr('filters.chip.savoy', 'Savoy region'),
       valley: state.valley,
       risk: tr('filters.chip.risk', '{risk} rating', { risk: state.risk }),
       distance: state.distance === 'u5' ? tr('filters.chip.under5', 'Under 5 km')

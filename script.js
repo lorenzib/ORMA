@@ -209,12 +209,12 @@ let lastFilterKey = '';            // legacy, kept for safety
 const LI_LINKED_REGION = (() => {
   try {
     const requested = new URLSearchParams(window.location.search).get('region');
-    if(requested === 'savoy' || requested === 'dolomites') return requested;
+    if(requested && liRegionConfigs()[requested]) return requested;
     return 'all';
   } catch(e) { return 'all'; }
 })();
 let activeRegion = LI_LINKED_REGION;
-let activeCountry = activeRegion === 'savoy' ? 'FR' : activeRegion === 'dolomites' ? 'IT' : 'all';
+let activeCountry = liCountryForRegion(activeRegion);
 let activeValley = 'all';
 // The geography the map replaced, so "Clear map area" puts back the area the
 // owner chose rather than dropping them at the location gate to choose again.
@@ -276,7 +276,7 @@ const LI_LOCATION_LABEL_ALIASES = Object.freeze({
 // The whole catalogue, for the ?all=1 link only. A walk is planned in one
 // place, so the page itself never opens on the Dolomites and Savoy mixed.
 const LI_ALL_TRAILS_CONTEXT = Object.freeze({ kind:'area', country:'all', region:'all', valley:'all', label:'All ORMA trails', transient:true });
-const LI_REGION_LABELS = Object.freeze({ dolomites:'The Dolomites', savoy:'Savoy' });
+const LI_REGION_LABELS = Object.freeze({ dolomites:'The Dolomites', savoy:'Savoy', aosta:'Valle d’Aosta' });
 // The last trails opened, kept by trail.js in this browser only. Declared up
 // here because the page's opening region is read from them at load.
 const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';
@@ -286,7 +286,7 @@ const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';
 // picked is kept for the visit instead.
 function liRegionContext(region, auto){
   const context = {
-    kind:'area', country:region === 'savoy' ? 'FR' : 'IT', region, valley:'all',
+    kind:'area', country:liCountryForRegion(region), region, valley:'all',
     label:LI_REGION_LABELS[region] || region,
   };
   if(auto){ context.transient = true; context.auto = true; }
@@ -388,7 +388,7 @@ function liValidLocationContext(value){
   }
   if(value.kind === 'area' && value.label && (value.country || value.region || value.valley)){
     const region = String(value.region || 'all');
-    const inferredCountry = region === 'savoy' ? 'FR' : region === 'dolomites' ? 'IT' : 'all';
+    const inferredCountry = liCountryForRegion(region);
     return {
       kind:'area',
       country:String(value.country || inferredCountry),
@@ -455,7 +455,7 @@ function liApplyLocationGeography(){
   }
   if(liLocationContext.kind === 'area'){
     activeRegion = liLocationContext.region || 'all';
-    activeCountry = liLocationContext.country || (activeRegion === 'savoy' ? 'FR' : activeRegion === 'dolomites' ? 'IT' : 'all');
+    activeCountry = liLocationContext.country || liCountryForRegion(activeRegion);
     activeValley = liLocationContext.valley || 'all';
   } else {
     activeCountry = 'all';
@@ -488,7 +488,7 @@ function filterTrailsForLocationContext(list){
       (!liLocationContext.country || liLocationContext.country === 'all' || (
         window.DoloPawsRegions && typeof window.DoloPawsRegions.countryForRegion === 'function'
           ? window.DoloPawsRegions.countryForRegion(trail.region) === liLocationContext.country
-          : (trail.region === 'savoy' ? 'FR' : 'IT') === liLocationContext.country
+          : liCountryForRegion(trail.region) === liLocationContext.country
       ))
       &&
       (!liLocationContext.region || liLocationContext.region === 'all' || trail.region === liLocationContext.region)
@@ -696,7 +696,7 @@ function liEnsureAreaChoices(){
     const key = `${trail.region}::${trail.valley}`;
     if(!valleys.has(key)) valleys.set(key, {
       kind:'area',
-      country:(configs[trail.region] && configs[trail.region].countryCode) || (trail.region === 'savoy' ? 'FR' : 'IT'),
+      country:liCountryForRegion(trail.region),
       region:trail.region,
       valley:trail.valley,
       label:liDisplayLocationLabel(trail.valley),
@@ -977,7 +977,12 @@ function liRenderRegionChoices(){
     const count = button.querySelector('[data-li-region-count]');
     if(count){
       const n = list.filter(trail => trail.region === region).length;
-      count.textContent = `${region === 'savoy' ? 'France' : 'Italy'} · ${n} ${n === 1 ? 'trail' : 'trails'}`;
+      const config = liRegionConfigs()[region];
+      count.textContent = `${config ? config.country : ''} · ${n} ${n === 1 ? 'trail' : 'trails'}`;
+      // A region opens in the menu once it has a trail to show. The manifest
+      // counts every region, loaded or not; the list holds only those loaded.
+      const regional = window.DoloPawsRegionalData;
+      if(regional && typeof regional.trailCount === 'function') button.hidden = regional.trailCount(region) === 0;
     }
     const on = !!liLocationContext && liLocationContext.kind === 'area'
       && liLocationContext.region === region && (liLocationContext.valley || 'all') === 'all';
@@ -1190,7 +1195,7 @@ function filterTrailsForReturningView(list){
     displayList = displayList.filter(x => {
       const country = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
         ? window.DoloPawsRegions.countryForRegion(x.region)
-        : (x.region === 'savoy' ? 'FR' : 'IT');
+        : liCountryForRegion(x.region);
       return country === activeCountry;
     });
   }
@@ -2400,8 +2405,15 @@ function liRegionConfigs(){
     ? window.DoloPawsRegions.REGIONS
     : {
         dolomites: { label: 'Dolomites', country: 'Italy', countryCode: 'IT' },
-        savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' }
+        savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' },
+        aosta: { label: 'Valle d\'Aosta', country: 'Italy', countryCode: 'IT' }
       };
+}
+
+// 'all' for no region or one the table does not know.
+function liCountryForRegion(region){
+  const config = liRegionConfigs()[region];
+  return config ? config.countryCode : 'all';
 }
 
 function liRegionIdsForCountry(countryCode){
@@ -2423,7 +2435,7 @@ function liSelectedGeographyLabel(){
 function liTrailIsInSelectedGeography(trail, includeValley){
   const country = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
     ? window.DoloPawsRegions.countryForRegion(trail.region)
-    : (trail.region === 'savoy' ? 'FR' : 'IT');
+    : liCountryForRegion(trail.region);
   if(activeCountry !== 'all' && country !== activeCountry) return false;
   if(activeRegion !== 'all' && trail.region !== activeRegion) return false;
   return !includeValley || activeValley === 'all' || trail.valley === activeValley;

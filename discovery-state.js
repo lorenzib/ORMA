@@ -7,7 +7,7 @@
 
   const ALLOWED = Object.freeze({
     country: ['italy', 'france'],
-    region: ['dolomites', 'savoy'],
+    region: ['dolomites', 'savoy', 'aosta'],
     risk: ['low-risk', 'moderate', 'caution'],
     distance: ['3', '5', '6', '10', '20', 'u5', '5to10', '10p'],
     duration: ['day', 'multi'],

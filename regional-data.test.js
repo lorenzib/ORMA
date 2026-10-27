@@ -39,23 +39,29 @@ describe('DATA-03 regional runtime boundaries', () => {
     const canonical = loadCanonicalTrails();
     const dolomites = loadRegionalTrailFile('data/regions/dolomites-trails.js');
     const savoy = loadRegionalTrailFile('data/regions/savoy-trails.js');
-    const ids = [...dolomites, ...savoy].map(trail => trail.id);
+    const aosta = loadRegionalTrailFile('data/regions/aosta-trails.js');
+    const ids = [...dolomites, ...savoy, ...aosta].map(trail => trail.id);
     expect(new Set(ids).size).toBe(ids.length);
+    expect(Object.keys(manifest.regions)).toEqual(['dolomites', 'savoy', 'aosta']);
     expect(dolomites).toHaveLength(manifest.regions.dolomites.trailCount);
     expect(savoy).toHaveLength(manifest.regions.savoy.trailCount);
+    expect(aosta).toHaveLength(manifest.regions.aosta.trailCount);
     expect(Object.keys(manifest.trailRegion)).toHaveLength(ids.length);
     expect(new Set(ids)).toEqual(new Set(canonical.map(trail => trail.id)));
     expect(dolomites.every(trail => trail.region === 'dolomites')).toBe(true);
     expect(savoy.every(trail => trail.region === 'savoy')).toBe(true);
+    expect(aosta.every(trail => trail.region === 'aosta')).toBe(true);
   });
 
   test('each region owns separate trail, water, amenity and dog-route assets', () => {
-    for (const region of ['dolomites', 'savoy']) {
+    for (const region of ['dolomites', 'savoy', 'aosta']) {
       const entry = manifest.regions[region];
       expect(entry.trails).toContain(`${region}-trails.js`);
       expect(entry.water).toContain(`${region}-water.geojson`);
       expect(entry.hutsBars).toContain(`${region}-huts-bars.geojson`);
-      expect(entry.dogRoutes).toMatch(/dog-friendly-routes/);
+      // A region added after launch has no OSM dog-route overlay of its own,
+      // and gets an empty one rather than its neighbour's.
+      expect(entry.dogRoutes).toMatch(region === 'aosta' ? /aosta-dog-routes/ : /dog-friendly-routes/);
       [entry.trails, entry.water, entry.hutsBars, entry.dogRoutes].forEach(file => {
         expect(fs.existsSync(path.join(root, file.split('?')[0]))).toBe(true);
       });
@@ -103,7 +109,7 @@ describe('DATA-03 regional runtime boundaries', () => {
   });
 
   test('mapped Waymarked Trails numbers reach trail-detail payloads', () => {
-    const all = ['data/regions/dolomites-trails.js', 'data/regions/savoy-trails.js']
+    const all = ['data/regions/dolomites-trails.js', 'data/regions/savoy-trails.js', 'data/regions/aosta-trails.js']
       .flatMap(loadRegionalTrailFile);
     expect(all.every(trail => typeof trail.routeNumberStatus === 'string')).toBe(true);
     expect(all.find(trail => trail.id === 'osm-1116675')).toEqual(expect.objectContaining({
@@ -118,7 +124,7 @@ describe('DATA-03 regional runtime boundaries', () => {
   });
 
   test('verified trails publish actionable numbered or landmark route guidance', () => {
-    const all = ['data/regions/dolomites-trails.js', 'data/regions/savoy-trails.js']
+    const all = ['data/regions/dolomites-trails.js', 'data/regions/savoy-trails.js', 'data/regions/aosta-trails.js']
       .flatMap(loadRegionalTrailFile);
     const verified=all.filter(trail=>trail.ormaVerified===true);
     expect(verified.length).toBeGreaterThan(0);

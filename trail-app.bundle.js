@@ -50767,18 +50767,39 @@ function effectiveOverrides(profile, adjustOverride){
     ['Valmorel / Les Avanchers', 45.4782, 6.4562, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
     ['Saint-Martin-de-Belleville', 45.3798, 6.5046, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
     ['Les Échelles / Chartreuse', 45.4359, 5.7546, 'Chambéry – Bauges', 'savoy', 'savoie'],
-    ['Val Thorens', 45.2979, 6.5823, 'Tarentaise – Vanoise', 'savoy', 'savoie']
+    ['Val Thorens', 45.2979, 6.5823, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
+
+    // ---- Valle d'Aosta ----
+    // Courmayeur and Chamonix are 15 km apart through the Mont Blanc tunnel,
+    // so the nearest-locality rule needs both sides listed or a walk above
+    // Courmayeur would be labelled Savoy.
+    ['Courmayeur', 45.7967, 6.9690, 'Courmayeur – Mont Blanc', 'aosta', 'aosta'],
+    ['La Thuile', 45.7139, 6.9500, 'Courmayeur – Mont Blanc', 'aosta', 'aosta'],
+    ['Morgex / La Salle', 45.7570, 7.0380, 'Courmayeur – Mont Blanc', 'aosta', 'aosta'],
+    ['Aosta', 45.7372, 7.3206, 'Aosta – Plaine', 'aosta', 'aosta'],
+    ['Cogne', 45.6085, 7.3567, 'Cogne – Gran Paradiso', 'aosta', 'aosta'],
+    ['Valsavarenche', 45.5920, 7.2100, 'Cogne – Gran Paradiso', 'aosta', 'aosta'],
+    ['Rhêmes-Notre-Dame', 45.5700, 7.1180, 'Valgrisenche – Rhêmes', 'aosta', 'aosta'],
+    ['Valgrisenche', 45.6300, 7.0640, 'Valgrisenche – Rhêmes', 'aosta', 'aosta'],
+    ['Valtournenche', 45.8760, 7.6230, 'Valtournenche – Cervinia', 'aosta', 'aosta'],
+    ['Breuil-Cervinia', 45.9330, 7.6300, 'Valtournenche – Cervinia', 'aosta', 'aosta'],
+    ['Champoluc (Ayas)', 45.8300, 7.7270, 'Ayas – Gressoney', 'aosta', 'aosta'],
+    ['Gressoney-Saint-Jean', 45.7760, 7.8260, 'Ayas – Gressoney', 'aosta', 'aosta'],
+    ['Gressoney-La-Trinité', 45.8290, 7.8240, 'Ayas – Gressoney', 'aosta', 'aosta']
   ];
 
   const REGIONS = {
     dolomites: { label: 'Dolomites', country: 'Italy', countryCode: 'IT' },
-    savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' }
+    savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' },
+    aosta: { label: 'Valle d\'Aosta', country: 'Italy', countryCode: 'IT' }
   };
 
   function countryForRegion(region) {
     return REGIONS[region] ? REGIONS[region].countryCode : null;
   }
 
+  // A country can hold more than one region now, so this names the first
+  // listed, never the only one.
   function regionForCountry(countryCode) {
     return Object.keys(REGIONS).find(region => REGIONS[region].countryCode === countryCode) || null;
   }

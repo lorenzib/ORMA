@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T20:33:12.470Z",
+  "generatedAt": "2026-10-27T21:03:30.575Z",
   "regions": {
     "dolomites": {
       "trailCount": 204,
@@ -218,7 +218,7 @@
     },
     "savoy": {
       "trailCount": 51,
-      "trails": "data/regions/savoy-trails.js?v=0001fef7ee9c",
+      "trails": "data/regions/savoy-trails.js?v=14dc69edd534",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=07be5ff5d5e1",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=6206ef4046f2",
@@ -275,6 +275,15 @@
       "water": "data/regions/savoy-water.geojson",
       "hutsBars": "data/regions/savoy-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes-savoy.geojson",
+      "optional": []
+    },
+    "aosta": {
+      "trailCount": 0,
+      "trails": "data/regions/aosta-trails.js?v=27b1da905e0f",
+      "details": {},
+      "water": "data/regions/aosta-water.geojson",
+      "hutsBars": "data/regions/aosta-huts-bars.geojson",
+      "dogRoutes": "data/regions/aosta-dog-routes.geojson",
       "optional": []
     }
   },
