@@ -274,6 +274,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T22:00:00.000Z"
     },
+    "fassa-ciajeole-malga-roncac": {
+      "url": "https://www.fassa.com/it/itinerari/passi-nella-storia-dall-antico-rione-di-ciajeole-a-malga-roncac",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Passi nella storia: da Ciajeole a Malga Roncac",
+      "quote": "Distanza 3 km Durata 1:00 h Salita 137 m Discesa 137 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
     "fassa-da-alba-a-penia": {
       "url": "https://www.fassa.com/it/itinerari/da-alba-a-penia-l-ultimo-borgo-prima-della-marmolada",
       "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
@@ -290,6 +298,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T21:00:00.000Z"
     },
+    "fassa-dipinti-del-giotto": {
+      "url": "https://www.fassa.com/it/itinerari/sulle-tracce-dei-dipinti-del-giotto-della-val-di-fassa",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Sulle tracce dei dipinti del Giotto della Val di Fassa",
+      "quote": "Distanza 4,7 km Durata 1:25 h Salita 152 m Discesa 153 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
     "fassa-malga-aloch": {
       "url": "https://www.fassa.com/it/itinerari/storie-di-vita-contadina-a-malga-aloch-e-masc-aloch",
       "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
@@ -303,6 +319,14 @@
       "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
       "name": "Da Moena a Soraga, dove l'acqua ha segnato la storia",
       "quote": "Distanza 4,8 km Durata 1:20 h Salita 139 m Discesa 139 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "fassa-moena-soraga-someda": {
+      "url": "https://www.fassa.com/it/itinerari/da-moena-a-soraga-la-natura-a-due-passi-da-casa",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Da Moena a Soraga, la natura a due passi da casa",
+      "quote": "Distanza 6,1 km Durata 1:50 h Salita 175 m Discesa 175 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T22:00:00.000Z"
     },
