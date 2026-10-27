@@ -91,9 +91,12 @@ describe('the existing-site verification boundary',()=>{
     // Then 293 and 291 with five more Hochpustertal walks: Innichen – Waldkapelle –
     // Sexten, Niederdorf – Bellavista, the Pragser Wildsee to the Rossalm, Schluderbach
     // to the Dürrensteinhütte, and down from the Helm to Vierschach.
+    // Then 298 and 296 with the first five Lombardy walks, round Lake Como:
+    // Brunate's churches, the Pognana Lario sculptures, Brogno to the Nuvolone
+    // viewpoint, Lasnigo – Barni – Crezzo and Eupilio's Madonna della Neve.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(293);
-    expect(currentSiteTrails(catalogue)).toHaveLength(291);
+    expect(catalogue).toHaveLength(298);
+    expect(currentSiteTrails(catalogue)).toHaveLength(296);
   });
 
   test('requires the artwork the public trail page needs',()=>{

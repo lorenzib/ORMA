@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T23:05:03.768Z",
+  "generatedAt": "2026-10-27T23:09:06.657Z",
   "regions": {
     "dolomites": {
       "trailCount": 242,
-      "trails": "data/regions/dolomites-trails.js?v=902abf963715",
+      "trails": "data/regions/dolomites-trails.js?v=2f1cbd7ebeb3",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -316,9 +316,15 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 0,
-      "trails": "data/regions/lombardy-trails.js?v=5c23f1a8921e",
-      "details": {},
+      "trailCount": 5,
+      "trails": "data/regions/lombardy-trails.js?v=4ad54fa4f5b8",
+      "details": {
+        "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=7e2f9ea8f6ea",
+        "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
+        "lario-alla-ricerca-di-un-panorama-unico": "data/trail-details/lario-alla-ricerca-di-un-panorama-unico.js?v=117a49c4a77b",
+        "lario-anello-ai-piedi-del-monte-oriolo": "data/trail-details/lario-anello-ai-piedi-del-monte-oriolo.js?v=bf6d4cd2c031",
+        "lario-eupilio-tra-segrino-e-cornizzolo": "data/trail-details/lario-eupilio-tra-segrino-e-cornizzolo.js?v=b75f5b6913ba"
+      },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
@@ -636,7 +642,12 @@
     "osm-19661726": "savoy",
     "osm-19760372": "savoy",
     "osm-19855818": "savoy",
-    "osm-21021130": "savoy"
+    "osm-21021130": "savoy",
+    "lario-brunate-e-le-sue-chiese": "lombardy",
+    "lario-pognana-lario-e-le-sculture-simposio": "lombardy",
+    "lario-alla-ricerca-di-un-panorama-unico": "lombardy",
+    "lario-anello-ai-piedi-del-monte-oriolo": "lombardy",
+    "lario-eupilio-tra-segrino-e-cornizzolo": "lombardy"
   },
   "trailSlug": {
     "alpe-siusi": "alpe-di-siusi-meadow-loop",
@@ -931,6 +942,11 @@
     "trecime-lago-di-braies-malga-rossalm": "pragser-wildsee-rossalm",
     "trecime-carbonin-rifugio-vallandro": "schluderbach-duerrensteinhuette",
     "trecime-monte-elmo-versciaco": "helm-vierschach",
+    "lario-brunate-e-le-sue-chiese": "brunate-churches-loop",
+    "lario-pognana-lario-e-le-sculture-simposio": "pognana-lario-sculpture-walk",
+    "lario-alla-ricerca-di-un-panorama-unico": "brogno-nuvolone-viewpoint",
+    "lario-anello-ai-piedi-del-monte-oriolo": "lasnigo-barni-crezzo-lake",
+    "lario-eupilio-tra-segrino-e-cornizzolo": "eupilio-madonna-della-neve",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1226,6 +1242,11 @@
     "pragser-wildsee-rossalm": "trecime-lago-di-braies-malga-rossalm",
     "schluderbach-duerrensteinhuette": "trecime-carbonin-rifugio-vallandro",
     "helm-vierschach": "trecime-monte-elmo-versciaco",
+    "brunate-churches-loop": "lario-brunate-e-le-sue-chiese",
+    "pognana-lario-sculpture-walk": "lario-pognana-lario-e-le-sculture-simposio",
+    "brogno-nuvolone-viewpoint": "lario-alla-ricerca-di-un-panorama-unico",
+    "lasnigo-barni-crezzo-lake": "lario-anello-ai-piedi-del-monte-oriolo",
+    "eupilio-madonna-della-neve": "lario-eupilio-tra-segrino-e-cornizzolo",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
