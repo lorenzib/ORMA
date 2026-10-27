@@ -209,12 +209,12 @@ let lastFilterKey = '';            // legacy, kept for safety
 const LI_LINKED_REGION = (() => {
   try {
     const requested = new URLSearchParams(window.location.search).get('region');
-    if(requested === 'savoy' || requested === 'dolomites' || requested === 'lombardy') return requested;
+    if(requested && requested !== 'all' && Object.prototype.hasOwnProperty.call(liRegionConfigs(), requested)) return requested;
     return 'all';
   } catch(e) { return 'all'; }
 })();
 let activeRegion = LI_LINKED_REGION;
-let activeCountry = activeRegion === 'savoy' ? 'FR' : activeRegion !== 'all' ? 'IT' : 'all';
+let activeCountry = liCountryForRegion(activeRegion);
 let activeValley = 'all';
 // The geography the map replaced, so "Clear map area" puts back the area the
 // owner chose rather than dropping them at the location gate to choose again.
@@ -276,7 +276,7 @@ const LI_LOCATION_LABEL_ALIASES = Object.freeze({
 // The whole catalogue, for the ?all=1 link only. A walk is planned in one
 // place, so the page itself never opens on the Dolomites and Savoy mixed.
 const LI_ALL_TRAILS_CONTEXT = Object.freeze({ kind:'area', country:'all', region:'all', valley:'all', label:'All ORMA trails', transient:true });
-const LI_REGION_LABELS = Object.freeze({ dolomites:'The Dolomites', savoy:'Savoy', lombardy:'Lombardy' });
+const LI_REGION_LABELS = Object.freeze({ dolomites:'The Dolomites', savoy:'Savoy', lombardy:'Lombardy', tyrol:'Tyrol & Carinthia' });
 // The last trails opened, kept by trail.js in this browser only. Declared up
 // here because the page's opening region is read from them at load.
 const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';
@@ -286,7 +286,7 @@ const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';
 // picked is kept for the visit instead.
 function liRegionContext(region, auto){
   const context = {
-    kind:'area', country:region === 'savoy' ? 'FR' : 'IT', region, valley:'all',
+    kind:'area', country:liCountryForRegion(region), region, valley:'all',
     label:LI_REGION_LABELS[region] || region,
   };
   if(auto){ context.transient = true; context.auto = true; }
@@ -388,7 +388,7 @@ function liValidLocationContext(value){
   }
   if(value.kind === 'area' && value.label && (value.country || value.region || value.valley)){
     const region = String(value.region || 'all');
-    const inferredCountry = region === 'savoy' ? 'FR' : region !== 'all' ? 'IT' : 'all';
+    const inferredCountry = liCountryForRegion(region);
     return {
       kind:'area',
       country:String(value.country || inferredCountry),
@@ -455,7 +455,7 @@ function liApplyLocationGeography(){
   }
   if(liLocationContext.kind === 'area'){
     activeRegion = liLocationContext.region || 'all';
-    activeCountry = liLocationContext.country || (activeRegion === 'savoy' ? 'FR' : activeRegion !== 'all' ? 'IT' : 'all');
+    activeCountry = liLocationContext.country || liCountryForRegion(activeRegion);
     activeValley = liLocationContext.valley || 'all';
   } else {
     activeCountry = 'all';
@@ -485,11 +485,8 @@ function filterTrailsForLocationContext(list){
   if(liLocationContext.kind === 'map') return liTrailsInBounds(liLocationContext.bounds, list);
   if(liLocationContext.kind === 'area'){
     return list.filter(trail =>
-      (!liLocationContext.country || liLocationContext.country === 'all' || (
-        window.DoloPawsRegions && typeof window.DoloPawsRegions.countryForRegion === 'function'
-          ? window.DoloPawsRegions.countryForRegion(trail.region) === liLocationContext.country
-          : (trail.region === 'savoy' ? 'FR' : 'IT') === liLocationContext.country
-      ))
+      (!liLocationContext.country || liLocationContext.country === 'all'
+        || liCountryForRegion(trail.region) === liLocationContext.country)
       &&
       (!liLocationContext.region || liLocationContext.region === 'all' || trail.region === liLocationContext.region)
       && (!liLocationContext.valley || liLocationContext.valley === 'all' || trail.valley === liLocationContext.valley));
@@ -696,7 +693,7 @@ function liEnsureAreaChoices(){
     const key = `${trail.region}::${trail.valley}`;
     if(!valleys.has(key)) valleys.set(key, {
       kind:'area',
-      country:(configs[trail.region] && configs[trail.region].countryCode) || (trail.region === 'savoy' ? 'FR' : 'IT'),
+      country:liCountryForRegion(trail.region),
       region:trail.region,
       valley:trail.valley,
       label:liDisplayLocationLabel(trail.valley),
@@ -977,7 +974,8 @@ function liRenderRegionChoices(){
     const count = button.querySelector('[data-li-region-count]');
     if(count){
       const n = list.filter(trail => trail.region === region).length;
-      count.textContent = `${region === 'savoy' ? 'France' : 'Italy'} · ${n} ${n === 1 ? 'trail' : 'trails'}`;
+      const config = liRegionConfigs()[region];
+      count.textContent = `${config ? config.country : 'Italy'} · ${n} ${n === 1 ? 'trail' : 'trails'}`;
       // A region opens before its first walk is published; don't offer it empty.
       button.hidden = n === 0;
     }
@@ -1190,10 +1188,7 @@ function filterTrailsForReturningView(list){
   if(showingSavedOnly) displayList = displayList.filter(x => currentFavorites[x.id]);
   if(activeCountry !== 'all'){
     displayList = displayList.filter(x => {
-      const country = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
-        ? window.DoloPawsRegions.countryForRegion(x.region)
-        : (x.region === 'savoy' ? 'FR' : 'IT');
-      return country === activeCountry;
+      return liCountryForRegion(x.region) === activeCountry;
     });
   }
   if(activeRegion !== 'all') displayList = displayList.filter(x => x.region === activeRegion);
@@ -2408,6 +2403,14 @@ function liRegionConfigs(){
       };
 }
 
+// A region's country comes from its row in regions-config.js. Austria made a
+// third country, so "not Savoy" no longer means Italy.
+function liCountryForRegion(region){
+  if(!region || region === 'all') return 'all';
+  const config = liRegionConfigs()[region];
+  return config ? config.countryCode : (region === 'savoy' ? 'FR' : 'IT');
+}
+
 function liRegionIdsForCountry(countryCode){
   return Object.entries(liRegionConfigs())
     .filter(([, config]) => countryCode === 'all' || config.countryCode === countryCode)
@@ -2425,10 +2428,7 @@ function liSelectedGeographyLabel(){
 }
 
 function liTrailIsInSelectedGeography(trail, includeValley){
-  const country = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
-    ? window.DoloPawsRegions.countryForRegion(trail.region)
-    : (trail.region === 'savoy' ? 'FR' : 'IT');
-  if(activeCountry !== 'all' && country !== activeCountry) return false;
+  if(activeCountry !== 'all' && liCountryForRegion(trail.region) !== activeCountry) return false;
   if(activeRegion !== 'all' && trail.region !== activeRegion) return false;
   return !includeValley || activeValley === 'all' || trail.valley === activeValley;
 }

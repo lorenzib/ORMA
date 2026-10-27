@@ -111,3 +111,22 @@ describe('locality table coverage', () => {
     expect(outliers).toEqual([]);
   });
 });
+
+describe('East Tyrol and Carinthia are Austria, and take no Italian trail with them', () => {
+  const regions = loadRegions();
+  test.each([
+    ['Lienz', 46.8299, 12.7681, 'Lienz – Lienz Dolomites'],
+    ['Sillian', 46.7473, 12.418, 'Hochpustertal'],
+    ['Liesing', 46.6923, 12.818, 'Lesachtal'],
+  ])('%s is labelled in its own valley, in Austria', (name, lat, lng, valley) => {
+    const n = regions.nearestLocality(lat, lng);
+    expect(n.valley).toBe(valley);
+    expect(regions.countryForRegion(n.region)).toBe('AT');
+  });
+  test.each([
+    ['Sesto / Sexten', 46.7034, 12.3497],
+    ['San Candido / Innichen', 46.7329, 12.2828],
+  ])('%s, across the border, stays in Italy', (name, lat, lng) => {
+    expect(regions.countryForRegion(regions.nearestLocality(lat, lng).region)).toBe('IT');
+  });
+});

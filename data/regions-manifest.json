@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T21:23:02.433Z",
+  "generatedAt": "2026-10-27T22:00:24.206Z",
   "regions": {
     "dolomites": {
       "trailCount": 210,
@@ -289,6 +289,15 @@
       "details": {},
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
+      "dogRoutes": "dog-friendly-routes.geojson",
+      "optional": []
+    },
+    "tyrol": {
+      "trailCount": 0,
+      "trails": "data/regions/tyrol-trails.js?v=5c23f1a8921e",
+      "details": {},
+      "water": "data/regions/tyrol-water.geojson",
+      "hutsBars": "data/regions/tyrol-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
       "optional": []
     }

@@ -108,7 +108,9 @@ function regionFor(legacy){
     ? { id: 'savoy', name: 'Savoy', countryCode: 'FR' }
     : legacy.region === 'lombardy'
       ? { id: 'lombardy', name: 'Lombardy', countryCode: 'IT' }
-      : { id: 'dolomites', name: 'Dolomites', countryCode: 'IT' };
+      : legacy.region === 'tyrol'
+        ? { id: 'tyrol', name: 'Tyrol & Carinthia', countryCode: 'AT' }
+        : { id: 'dolomites', name: 'Dolomites', countryCode: 'IT' };
   if(legacy.valley){
     region.id = slugify(legacy.valley) || region.id;
     region.name = String(legacy.valley);

@@ -51187,13 +51187,39 @@ function effectiveOverrides(profile, adjustOverride){
     ['Breno', 45.9570, 10.3040, 'Val Camonica', 'lombardy', 'brescia'],
     ['Capo di Ponte', 46.0310, 10.3450, 'Val Camonica', 'lombardy', 'brescia'],
     ['Edolo', 46.1780, 10.3330, 'Val Camonica', 'lombardy', 'brescia'],
-    ['Ponte di Legno', 46.2590, 10.5100, 'Val Camonica', 'lombardy', 'brescia']
+    ['Ponte di Legno', 46.2590, 10.5100, 'Val Camonica', 'lombardy', 'brescia'],
+    // ---- Tyrol & Carinthia (Austria) ----
+    ['Lienz', 46.8299, 12.7681, 'Lienz – Lienz Dolomites', 'tyrol', 'osttirol'],
+    ['Tristach', 46.8171, 12.7881, 'Lienz – Lienz Dolomites', 'tyrol', 'osttirol'],
+    ['Dölsach', 46.8257, 12.8410, 'Lienz – Lienz Dolomites', 'tyrol', 'osttirol'],
+    ['Nußdorf-Debant', 46.8370, 12.7900, 'Lienz – Lienz Dolomites', 'tyrol', 'osttirol'],
+    ['Ainet', 46.8661, 12.6902, 'Iseltal', 'tyrol', 'osttirol'],
+    ['Assling', 46.7862, 12.6399, 'Hochpustertal', 'tyrol', 'osttirol'],
+    ['Anras', 46.7724, 12.5562, 'Hochpustertal', 'tyrol', 'osttirol'],
+    ['Strassen', 46.7505, 12.4871, 'Hochpustertal', 'tyrol', 'osttirol'],
+    ['Sillian', 46.7473, 12.4180, 'Hochpustertal', 'tyrol', 'osttirol'],
+    ['Innervillgraten', 46.8078, 12.3721, 'Villgratental', 'tyrol', 'osttirol'],
+    ['Außervillgraten', 46.7865, 12.4291, 'Villgratental', 'tyrol', 'osttirol'],
+    ['Kartitsch', 46.7254, 12.4975, 'Tiroler Gailtal', 'tyrol', 'osttirol'],
+    ['Obertilliach', 46.7100, 12.6147, 'Tiroler Gailtal', 'tyrol', 'osttirol'],
+    ['St. Jakob in Defereggen', 46.9178, 12.3313, 'Defereggental', 'tyrol', 'osttirol'],
+    ['St. Veit in Defereggen', 46.9248, 12.4236, 'Defereggental', 'tyrol', 'osttirol'],
+    ['Hopfgarten in Defereggen', 46.9218, 12.5209, 'Defereggental', 'tyrol', 'osttirol'],
+    ['Matrei in Osttirol', 47.0011, 12.5387, 'Matrei – Tauerntal', 'tyrol', 'osttirol'],
+    ['Virgen', 46.9995, 12.4305, 'Virgental', 'tyrol', 'osttirol'],
+    ['Prägraten am Großvenediger', 47.0168, 12.3786, 'Virgental', 'tyrol', 'osttirol'],
+    ['Kals am Großglockner', 47.0024, 12.6458, 'Kals am Großglockner', 'tyrol', 'osttirol'],
+    ['Maria Luggau / Lesachtal', 46.7056, 12.7348, 'Lesachtal', 'tyrol', 'hermagor'],
+    ['Liesing / Lesachtal', 46.6923, 12.8180, 'Lesachtal', 'tyrol', 'hermagor'],
+    ['Kötschach-Mauthen', 46.6617, 12.9712, 'Gailtal', 'tyrol', 'hermagor'],
+    ['Hermagor', 46.6268, 13.3702, 'Gailtal', 'tyrol', 'hermagor']
   ];
 
   const REGIONS = {
     dolomites: { label: 'Dolomites', country: 'Italy', countryCode: 'IT' },
     savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' },
-    lombardy: { label: 'Lombardy', country: 'Italy', countryCode: 'IT' }
+    lombardy: { label: 'Lombardy', country: 'Italy', countryCode: 'IT' },
+    tyrol: { label: 'Tyrol & Carinthia', country: 'Austria', countryCode: 'AT' }
   };
 
   function countryForRegion(region) {
@@ -60804,7 +60830,7 @@ if(document.querySelector('.td2')){
     // Breadcrumb: "← Trails · {region} · {valley}"
     const crumb = $('tdBreadcrumb');
     if (crumb && /^browse-trails\.html(?:[?#]|$)/.test(crumb.getAttribute('href') || '')) {
-      const regionName = t.region === 'savoy' ? 'Savoy' : t.region === 'lombardy' ? 'Lombardy' : 'Dolomites';
+      const regionName = t.region === 'savoy' ? 'Savoy' : t.region === 'lombardy' ? 'Lombardy' : t.region === 'tyrol' ? 'Tyrol & Carinthia' : 'Dolomites';
       crumb.textContent = '← Trails · ' + regionName + (t.valley ? ' · ' + t.valley : '');
     }
 
