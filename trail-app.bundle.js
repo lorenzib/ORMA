@@ -50402,6 +50402,208 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 3.9, lat: 46.6145, lng: 11.93846, osmId: 'way/42321524', name: 'Heiligkreuz-Hospitz' }
       ],
       desc: 'A climb from Furnacia above La Val across the edge of the Armentara meadows to the sanctuary of Santa Croce below the Sas dla Crusc. The board lists 4.2 km and 324 m of ascent, one way.'
+    },
+    'altabadia-da-la-val-ai-prati-di-rit': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 3).
+      // The Alta Badia tourist board’s walk “Da La Val ai prati di Rit”, drawn on 59 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: La Val (no regulation, national rule).
+      // No Natura 2000 site or park on the line; it passes the edge of the Lêch de Rit natural monument, where damage is forbidden but dogs are not mentioned (La Val landscape plan).
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'La Val – Santa Barbara – Lech de Rit – Prati di Rit, La Val',
+      distance: 14.1,
+      elevation: 728,
+      hours: '4.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from La Val up past the chapel of Santa Barbara and the farms of Ciablun, Runch and Biei to the small Rit lake and the high Rit meadows, along a grassy ridge to the Ütia da Rit and back down through Spëscia.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The chapel at Rumestlungs by the stream in La Val, beside the loop, in late October with no snow (Wolfgang Moroder, CC BY-SA 3.0), 31 m from the line.',
+        route: 'Official loop 14.1 km from La Val centre, as the Alta Badia tourist board publishes it; the stored line is drawn on 59 OSM ways along the board’s published line, 14 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 6, 15, 13 and 16: from the centre of La Val on path 6 to the chapel of Santa Barbara, up left to the farms of Ciablun, Runch and Biei (reachable by car), on path 6 along the forest road to the small Rit lake, a protected natural monument; right on path 15 and at the junction on the mule track 13 to the Rit meadows, with a short detour right to the Rit cross, the best viewpoint. Back east on path 13 along a grassy ridge to the Ütia da Rit (closed in winter), then down path 16 to Spëscia and back into La Val.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 6.9 and at km 11.9 (OSM nodes 8264695632, 1407390138, 2445015358).',
+        elevation: 'Official 14.1 km, 728 m up and 728 m down, 4 h 45 min, highest point 2,021 m, lowest 1,295 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Società Cooperativa Turistica Alta Badia, Da La Val ai prati di Rit (altabadia.org and its Outdooractive tour)',
+          'Comune di La Valle / La Val publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line, only landscape protection zones, which set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (59 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A long climb of over 700 m: plan rests and water for your dog', 'Forest roads and farm tracks: watch for tractors near the farms', 'The Rit lake is a protected natural monument: keep your dog out of the water'],
+      terrainType: 'Forest roads, mule tracks and meadow paths',
+      shadeDescription: 'About half shaded: the climb to the Rit lake runs through forest; the Rit meadows and the ridge are open.',
+      terrainDescription: 'A long loop at 1,300–2,020 m above La Val, from the village past old farms and a small mountain lake to the open Rit meadows and the hut on the ridge, with views of the Sas dla Crusc and the Puez group.',
+      waterDescription: 'Drinking fountains at the start, at km 6.9 and at km 11.9; places to eat at the start and on the way.',
+      dogNotes: 'La Val has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start in the centre of La Val: 14.1 km and about 730 m of climbing, nearly five hours. La Val has no dog regulation of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m and carry a muzzle. Keep your dog out of the Rit lake. The Ütia da Rit on the ridge is open in summer.',
+      sourceLinks: [
+        { label: 'Alta Badia, Da La Val ai prati di Rit', url: 'https://www.altabadia.org/it/tour/oadetail/oa/da-la-val-ai-prati-di-rit' },
+        { label: 'Outdooractive, Da La Val ai prati di Rit (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/16570917' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.65752, lng: 11.924509, label: 'La Val centre, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.657633, lng: 11.9245469, osmId: 'node/8264695632', label: 'Drinking fountain at the start' },
+        { km: 6.9, lat: 46.6542315, lng: 11.962634, osmId: 'node/1407390138', label: 'Drinking fountain' },
+        { km: 11.9, lat: 46.649902, lng: 11.9441198, osmId: 'node/2445015358', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.65807, lng: 11.92368, osmId: 'node/8266806845', name: 'Pider' },
+        { km: 0, lat: 46.65752, lng: 11.92387, osmId: 'node/8266806846', name: 'Alpenrose' },
+        { km: 5.8, lat: 46.66147, lng: 11.95666, osmId: 'way/515519747', name: 'Ütia da Rit' }
+      ],
+      desc: 'A long loop from La Val past the chapel of Santa Barbara and the Rit lake to the high Rit meadows and the Ütia da Rit, and back through Spëscia. The board lists 14.1 km and 728 m of ascent.'
+    },
+    'altabadia-da-san-cassiano-al-pralongia-fino-a-corvara': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 3).
+      // The Alta Badia tourist board’s walk “Da San Cassiano al Pralongiá fino a Corvara”, drawn on 26 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Corvara (no regulation, national rule); Badia (own dog regulation, lead and muzzle); Livinallongo del Col di Lana (no regulation, national rule).
+      // No Natura 2000 site or park on the line (Province of Bolzano layers; the Veneto layer shows no site on the 2% in Livinallongo).
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Piz Sorega – Bioch – Pralongiá – Corvara',
+      distance: 8.7,
+      elevation: 128,
+      hours: '2.7',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the top of the Piz Sorega gondola above San Cassiano across the Pralongiá plateau past the Bioch hut and the Pralongiá inn, and down on foot to Corvara.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Pralongiá meadows with a hay hut and the Sas dla Crusc behind, on the walk, in August (Christof46, CC BY-SA 4.0), 11 m from the line.',
+        route: 'Official one-way walk 8.7 km from Piz Sorega gondola top station, above San Cassiano, as the Alta Badia tourist board publishes it; the stored line is drawn on 26 OSM ways along the board’s published line, 8.7 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 21A, 23, 25 and 24: from the top of the Piz Sorega gondola (2,040 m) south-west on path 21A past the Las Vegas inn towards Pralongiá, level across the high meadows to the Ütia Bioch (2,073 m, 30 min); left on path 23 south along the ridge to the Pralongiá inn (2,135 m, 1 h 10). Down to Corvara (1 h 30) on path 25 west past the Ütia Punta Trieste to a junction, then right on path 24 into Corvara.',
+        mapPoints: 'Start at the board’s start; drinking water at km 2.8, at km 3.3, at km 4.4 and at km 6.1 (OSM nodes 5825391261, 5825251753, 13022396946, 11212911476).',
+        elevation: 'Official 8.7 km, 128 m up and 581 m down, 2 h 40 min, highest point 2,129 m, lowest 1,555 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Società Cooperativa Turistica Alta Badia, Da San Cassiano al Pralongiá fino a Corvara (altabadia.org and its Outdooractive tour)',
+          'Gemeinde Abtei / Comune di Badia, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 7, 22.02.2010), Art. 4 and 8: a lead of at most 1.5 m everywhere and a muzzle carried; no dogs on farmed meadows in the growing season',
+          'Comune di Corvara in Badia publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Comune di Livinallongo del Col di Lana publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line',
+          'Regione del Veneto Natura 2000 layer (rv:c1101121_natura_2000): no site on the 2% of the line in Livinallongo (positive control: the Sorapis lake falls in IT3230081)',
+          'OpenStreetMap ways along the board’s line (26 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 14,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Open high plateau with no shade: storms build fast in summer afternoons', 'Tracks shared with mountain bikes, and ski-area service vehicles', 'Cattle graze the plateau in summer: keep your distance'],
+      terrainType: 'Gravel tracks and meadow paths on a high plateau',
+      shadeDescription: 'Little shade: about a seventh of the walk is near trees, mostly on the descent to Corvara; the Pralongiá plateau is open grassland.',
+      terrainDescription: 'A high, mostly downhill walk at 1,555–2,130 m across the Pralongiá plateau between San Cassiano and Corvara, with wide views of the Sella, the Marmolada and the Sas dla Crusc.',
+      waterDescription: 'Drinking fountains at km 2.8, at km 3.3, at km 4.4 and at km 6.1; places to eat at the start and on the way.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. Corvara has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Ride the Piz Sorega gondola up from San Cassiano (closed cabins) and walk to Corvara: 8.7 km, about 130 m up and 580 m down, two hours and forty minutes. Keep your dog on a lead of at most 1.5 m and carry a muzzle on the whole walk: the national rule in Corvara and Livinallongo, and Badia’s own rule on its stretch. There is little shade: carry water for your dog and set out early. Plan your way back to San Cassiano: local buses link the villages.',
+      sourceLinks: [
+        { label: 'Alta Badia, Da San Cassiano al Pralongiá fino a Corvara', url: 'https://www.altabadia.org/it/tour/oadetail/oa/da-san-cassiano-al-pralongia-fino-a-corvara' },
+        { label: 'Outdooractive, Da San Cassiano al Pralongiá fino a Corvara (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/17276451' },
+        { label: 'Gemeinde Abtei, dog regulation', url: 'https://www.gemeinde.abtei.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.556128, lng: 11.922768, label: 'Piz Sorega gondola top station, above San Cassiano, the board’s start' },
+      waterSources: [
+        { km: 2.8, lat: 46.5377462, lng: 11.9174656, osmId: 'node/5825391261', label: 'Drinking fountain' },
+        { km: 3.3, lat: 46.533693, lng: 11.916203, osmId: 'node/5825251753', label: 'Drinking fountain' },
+        { km: 4.4, lat: 46.535072, lng: 11.9051671, osmId: 'node/13022396946', label: 'Drinking fountain' },
+        { km: 6.1, lat: 46.5392384, lng: 11.8966839, osmId: 'node/11212911476', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.55436, lng: 11.92152, osmId: 'way/42317064', name: 'Ütia Las Vegas' },
+        { km: 0, lat: 46.55635, lng: 11.9222, osmId: 'way/42318371', name: 'Piz Sorega' },
+        { km: 0.8, lat: 46.54952, lng: 11.91671, osmId: 'node/4346448500', name: 'Ütia Prè I still - Rosa Alpina' },
+        { km: 1.5, lat: 46.54709, lng: 11.90966, osmId: 'way/42316314', name: 'Ütia de Bioch' },
+        { km: 3.2, lat: 46.53371, lng: 11.91652, osmId: 'way/199512074', name: 'Pralongià' }
+      ],
+      desc: 'A high walk from the top of the Piz Sorega gondola across the Pralongiá plateau past the Bioch hut and the Pralongiá inn, and down on foot to Corvara. The board lists 8.7 km, 128 m up and 581 m down.'
+    },
+    'altabadia-passeggiata-borest-cascate-del-pisciadu': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 3).
+      // The Alta Badia tourist board’s walk “Passeggiata Borest - cascate del Pisciadú”, drawn on 12 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Corvara (no regulation, national rule).
+      // No Natura 2000 site or park; 38% is in the Sella group landscape protection area, which limits building and land changes, not dogs.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Corvara – Rü de Pisciadú – Pisciadú waterfall, Corvara in Badia',
+      distance: 3.7,
+      elevation: 204,
+      hours: '1.2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Boé gondola car park in Corvara up the Borest path and path 28 beside the Rü de Pisciadú to the Pisciadú waterfall below the Sella; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Rü de Pisciadú stream in the forest, beside the path, in June (Tiia Monto, CC BY-SA 3.0), 11 m from the line.',
+        route: 'Official one-way walk 3.7 km from Boé gondola car park, Corvara, as the Alta Badia tourist board publishes it; the stored line is drawn on 12 OSM ways along the board’s published line, 3.7 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 28: from the Boé gondola car park up the Borest path to the campsite, then on path 28 gently up beside the Rü de Pisciadú, past the mouth of the Val de Mesdì, to a wide meadow at the foot of the Sella with big boulders, larches, springs and benches; from there up towards the Sella walls to the Pisciadú waterfall (1,730 m). Back the same way. No lift is used: the walk only starts at the gondola car park.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.5, at km 1.3 and at km 2.2 (OSM nodes 4378806904, 839222326, 1824535509, 1863501676).',
+        elevation: 'Official 3.7 km, 204 m up and 16 m down, 1 h 10 min, highest point 1,719 m, lowest 1,530 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Società Cooperativa Turistica Alta Badia, Passeggiata Borest - cascate del Pisciadú (altabadia.org and its Outdooractive tour)',
+          'Comune di Corvara in Badia publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park or natural monument on the line; about 38% is in the Crëps dl Sela / Sellagruppe landscape protection area, whose rules under the landscape law (LP 16/1970) cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (12 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 60,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The path runs beside a fast mountain stream: keep your dog out of the water', 'Rocky ground near the waterfall', 'Boulder field below the Sella walls: watch for loose stones'],
+      terrainType: 'Forest and meadow paths beside a stream',
+      shadeDescription: 'Mostly shaded: about three fifths runs through larch and spruce beside the stream.',
+      terrainDescription: 'A short walk at 1,530–1,720 m from Corvara up the Rü de Pisciadú stream to a waterfall at the foot of the Sella group, through forest and a wide meadow of boulders and larches.',
+      waterDescription: 'Drinking fountains at the start, at km 0.5, at km 1.3 and at km 2.2; places to eat at the start.',
+      dogNotes: 'Corvara has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start at the Boé gondola car park in Corvara: 3.7 km and about 200 m of climbing one way, an hour and ten minutes to the waterfall, then the same way back. Corvara has no dog regulation of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m and carry a muzzle. Keep your dog out of the stream, which runs fast after rain.',
+      sourceLinks: [
+        { label: 'Alta Badia, Passeggiata Borest - cascate del Pisciadú', url: 'https://www.altabadia.org/it/tour/oadetail/oa/passeggiata-borest-cascate-del-pisciadu' },
+        { label: 'Outdooractive, Passeggiata Borest - cascate del Pisciadú (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/111288236' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.549973, lng: 11.870939, label: 'Boé gondola car park, Corvara, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.5489824, lng: 11.872182, osmId: 'node/4378806904', label: 'Drinking fountain at the start' },
+        { km: 0.5, lat: 46.5488843, lng: 11.8657211, osmId: 'node/839222326', label: 'Drinking fountain' },
+        { km: 1.3, lat: 46.5489962, lng: 11.8571567, osmId: 'node/1824535509', label: 'Drinking fountain' },
+        { km: 2.2, lat: 46.5464618, lng: 11.846024, osmId: 'node/1863501676', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.54982, lng: 11.86957, osmId: 'node/839242421', name: 'Bar del Lago' },
+        { km: 0, lat: 46.54854, lng: 11.87208, osmId: 'node/1623822137', name: 'Corf' }
+      ],
+      desc: 'A short walk from Corvara up the Rü de Pisciadú stream to the Pisciadú waterfall at the foot of the Sella. The board lists 3.7 km and 204 m of ascent, one way.'
     }
   };
 

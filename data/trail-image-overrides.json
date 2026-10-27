@@ -37,6 +37,23 @@
       }
     },
     {
+      "id": "altabadia-da-la-val-ai-prati-di-rit",
+      "approvedReviewId": "commons-altabadia-da-la-val-ai-prati-di-rit-on-route",
+      "approvedAt": "2026-10-27T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/altabadia-da-la-val-ai-prati-di-rit-rumestlungs.jpg",
+        "heroImage": "images/trails/altabadia-da-la-val-ai-prati-di-rit-rumestlungs.jpg",
+        "imageAlt": "A small white chapel with a slender bell tower on a green slope beside a stream in La Val, golden larches and dark spruces behind, farms on the hillside in the distance",
+        "imageCredit": "The chapel at Rumestlungs, La Val",
+        "imageCreditText": "The chapel at Rumestlungs, La Val by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chapel_in_Rumestlungs_La_Val_01.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa",
       "approvedReviewId": "commons-altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa-on-route",
       "approvedAt": "2026-10-27T18:00:00.000Z",
@@ -50,6 +67,23 @@
         "imageLicence": "CC BY 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Piz_dles_Cunturines_6.29.2026.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara",
+      "approvedReviewId": "commons-altabadia-da-san-cassiano-al-pralongia-fino-a-corvara-on-route",
+      "approvedAt": "2026-10-27T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/altabadia-da-san-cassiano-al-pralongia-fino-a-corvara-pralongia.jpg",
+        "heroImage": "images/trails/altabadia-da-san-cassiano-al-pralongia-fino-a-corvara-pralongia.jpg",
+        "imageAlt": "A wooden hay hut on the green Pralongiá meadows among larches under a blue sky, the pale cliffs of the Sas dla Crusc behind",
+        "imageCredit": "The Pralongiá meadows and the Sas dla Crusc",
+        "imageCreditText": "The Pralongiá meadows and the Sas dla Crusc by Christof46",
+        "imageCreator": "Christof46",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Heiligkreuzkofel-IMG_4867aa.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -101,6 +135,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Badia_Abtei.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "altabadia-passeggiata-borest-cascate-del-pisciadu",
+      "approvedReviewId": "commons-altabadia-passeggiata-borest-cascate-del-pisciadu-on-route",
+      "approvedAt": "2026-10-27T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/altabadia-passeggiata-borest-cascate-del-pisciadu-stream.jpg",
+        "heroImage": "images/trails/altabadia-passeggiata-borest-cascate-del-pisciadu-stream.jpg",
+        "imageAlt": "A clear mountain stream rushing over pale stones through a spruce and larch forest, mossy banks on either side",
+        "imageCredit": "The Rü de Pisciadú in Corvara",
+        "imageCreditText": "The Rü de Pisciadú in Corvara by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ru_de_Pisciadu.jpg",
         "imageSourceType": "licensed-source"
       }
     },
