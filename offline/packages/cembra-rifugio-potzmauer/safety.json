@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cembra-rifugio-potzmauer",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.8,
+    "ascentM": 300,
+    "highestPointM": 1376,
+    "expectedDuration": "1.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 94
+  },
+  "trailhead": {
+    "lat": 46.223224,
+    "lng": 11.265595,
+    "label": "Pradèt car park above Grumes, the APT’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A mountain path (480) with roots and stones, and forest roads used by occasional forestry vehicles.",
+    "A steady climb of about 300 m.",
+    "A stream beside the path: keep your dog out of it after heavy rain.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}
