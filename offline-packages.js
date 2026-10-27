@@ -150,6 +150,7 @@
     'primiero-malga-crel': "San Martino di Castrozza - Malga Crel",
     'primiero-monte-vederna': "Passeggiata a Monte Vederna – Croce degli Alpini",
     'primiero-percorso-verde': "Percorso Verde (I percorsi del benessere)",
+    'primiero-ponte-su-funi': "Ponte su Funi Rio San Piero da Mezzano",
     'primiero-san-martino-di-castrozza-val-di-roda-prati-col': "San Martino di Castrozza - Val di Roda - Prati Col",
     'primiero-siror': "Siror",
     'primiero-tonadico': "Tonadico",
