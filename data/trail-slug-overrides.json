@@ -718,6 +718,51 @@
       "name": "Da Moena a Soraga, la natura a due passi da casa",
       "slug": "moena-soraga-someda",
       "gloss": "the walk from Moena over Someda to Soraga Alta"
+    },
+    "giudicarie-tione-bolbeno-madonna-del-lares": {
+      "name": "Tione – Bolbeno – Madonna del Lares",
+      "slug": "tione-bolbeno-madonna-del-lares",
+      "gloss": "the walk up from Tione to the Madonna del Lares sanctuary"
+    },
+    "giudicarie-san-martino-bosco-scolpito": {
+      "name": "San Martino – Bosco Scolpito",
+      "slug": "san-martino-bosco-scolpito",
+      "gloss": "the carved-wood forest path above Pieve di Bono"
+    },
+    "giudicarie-san-vigilio-senter-dei-cavai": {
+      "name": "San Vigilio and the Senter dei Cavai",
+      "slug": "san-vigilio-senter-dei-cavai",
+      "gloss": "the riverside loop from Tione"
+    },
+    "rendena-ciclabile-javre-dare-vigo-pelugo": {
+      "name": "Javrè – Pelugo cycle path loop",
+      "slug": "javre-pelugo-cycle-path-loop",
+      "gloss": "the flat riverside loop on the Val Rendena cycle path"
+    },
+    "valdisole-fazzon-lago-dei-caprioli": {
+      "name": "Rifugio Fazzon – Lago dei Caprioli",
+      "slug": "fazzon-lago-dei-caprioli",
+      "gloss": "the short lake loop above Pellizzano"
+    },
+    "valdisole-lago-dei-caprioli-malga-alta-di-fazzon": {
+      "name": "Lago dei Caprioli – Malga Alta di Fazzon",
+      "slug": "lago-dei-caprioli-malga-alta-fazzon",
+      "gloss": "the climb from the lake to the high Fazzon pasture"
+    },
+    "valdisole-marilleva-1400-malga-alta-di-fazzon": {
+      "name": "Marilleva 1400 – Malga Alta di Fazzon",
+      "slug": "marilleva-1400-malga-alta-fazzon",
+      "gloss": "the forest walk from Marilleva 1400 to the Fazzon pastures"
+    },
+    "valdisole-bivacco-malga-baselga": {
+      "name": "Bivacco Malga Baselga",
+      "slug": "bivacco-malga-baselga",
+      "gloss": "the climb from Lago dei Caprioli to the Baselga shelter"
+    },
+    "valdisole-rifugio-stavel-denza": {
+      "name": "Rifugio Stavel – Francesco Denza",
+      "slug": "rifugio-stavel-denza",
+      "gloss": "the Val Stavel climb to the Denza hut under the Presanella"
     }
   }
 }

@@ -506,6 +506,30 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "giudicarie-san-martino-bosco-scolpito": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/san-martino-e-il-sentiero-del-bosco-scolpito",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "San Martino e il sentiero del bosco scolpito",
+      "quote": "Distanza 4,4 km · Durata 1:45 h · Salita 250 m · Discesa 216 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "giudicarie-san-vigilio-senter-dei-cavai": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/chiesetta-di-san-vigilio-e-senter-dei-cavai",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Chiesetta di San Vigilio e \"Senter dei Cavai\"",
+      "quote": "Distanza 7,2 km · Durata 3:00 h · Salita 91 m · Discesa 91 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "giudicarie-tione-bolbeno-madonna-del-lares": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/tione-di-trento-bolbeno-madonna-del-lares",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Tione di Trento - Bolbeno - Madonna del Lares",
+      "quote": "Distanza 3,1 km · Durata 1:15 h · Salita 238 m · Discesa 30 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
     "lago-braies": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/insider-tipps/pragser-wildsee-wandern",
       "publisher": "IDM Südtirol-Alto Adige (regional tourism board)",
@@ -1746,6 +1770,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-26T21:00:00.000Z"
     },
+    "rendena-ciclabile-javre-dare-vigo-pelugo": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/giro-della-ciclabile-javre-dare-vigo-pelugo",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Giro della Ciclabile Javrè - Darè - Vigo - Pelugo",
+      "quote": "Distanza 7,2 km · Durata 2:30 h · Salita 79 m · Discesa 56 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
     "santa-maddalena": {
       "url": "https://www.odlesdolomites.com/en/activities/48ACC63FE1421483734B750F6788CED9",
       "publisher": "Tourismusgenossenschaft Odles",
@@ -1825,6 +1857,46 @@
       "quote": "Lunghezza 2,5 km · Durata 0:38 · Salita 21 m · Discesa 21 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "valdisole-bivacco-malga-baselga": {
+      "url": "https://www.visitvaldisole.it/it/activity/bivaccomalgabaselga-37723",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Bivacco Malga Baselga",
+      "quote": "Lunghezza 6.9 km · Durata 4:30 h · Salita 740 m · Discesa 740 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "valdisole-fazzon-lago-dei-caprioli": {
+      "url": "https://www.visitvaldisole.it/it/activity/passeggiatadalrifugiofazzonallagodeicaprioli-10077",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Passeggiata dal Rifugio Fazzon al Lago dei Caprioli",
+      "quote": "Lunghezza 1.5 km · Durata 0:45 h · Salita 62 m · Discesa 62 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "valdisole-lago-dei-caprioli-malga-alta-di-fazzon": {
+      "url": "https://www.visitvaldisole.it/it/activity/lagodeicaprioli_malgaaltadifazzon-14247",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Lago dei Caprioli - Malga Alta di Fazzon",
+      "quote": "Lunghezza 3.1 km · Durata 1:15 h · Salita 237 m · Discesa 237 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "valdisole-marilleva-1400-malga-alta-di-fazzon": {
+      "url": "https://www.visitvaldisole.it/it/activity/marilleva1400_malgaaltadifazzon-37485",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Marilleva 1400 - Malga Alta di Fazzon",
+      "quote": "Lunghezza 4.4 km · Durata 2:00 h · Salita 211 m · Discesa 352 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "valdisole-rifugio-stavel-denza": {
+      "url": "https://www.visitvaldisole.it/it/activity/rifugiostavel__francescodenza__-10471",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Rifugio Stavel «Francesco Denza»",
+      "quote": "Lunghezza 7.3 km · Durata 4:00 h · Salita 594 m · Discesa 594 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
     },
     "valgardena-escursione-al-resciesa": {
       "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-resciesa/16420468/",

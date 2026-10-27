@@ -45141,6 +45141,672 @@
         { km: 1.9, lat: 46.69224, lng: 12.0654, osmId: 'node/821986763', name: 'Grünwaldalm - Malga Foresta' }
       ],
       desc: 'A short walk from the Pragser Wildsee along its west shore and up path 19 to the Grünwaldalm. The board lists 2.1 km and 118 m of ascent, one way.'
+    },
+    'giudicarie-tione-bolbeno-madonna-del-lares': {
+      // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
+      // APT Madonna di Campiglio’s walk “Tione di Trento - Bolbeno - Madonna del Lares”, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Borgo Lares 88% (no regulation, national rule) and Tione di Trento 12% (Art. 30).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      area: 'Tione di Trento – Bolbeno – Madonna del Lares, Giudicarie',
+      distance: 3.1,
+      elevation: 238,
+      hours: '1.3',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Via Baita in Tione along the cycle path beside the Arnò to Bolbeno, past the ski slope and up the tarmac forest road and a short stepped path to the Madonna del Lares chapel; come back the same way, downhill.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The portico of the Madonna del Lares chapel at the end of the walk, in August (zonta72 on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official one-way walk 3.1 km from Via Baita, Tione di Trento, as APT Madonna di Campiglio publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 3.4 km, with 99% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from Tione onto the cycle path coming down from the Val Rendena, through the woods beside the Arnò stream to Bolbeno (Borgo Lares); past the ski slope, up the tarmac forest road towards the Madonna del Lares with views of Tione and the Rendena mountains; just after the viewpoint a stone fountain on the left; then left onto a path that climbs a few steps through the woods to the clearing and the chapel. Back the same way.',
+        mapPoints: 'Start at the APT’s start in Via Baita, Tione; drinking water at the start, at km 1, at km 1.2, at km 1.6, at km 2.6 and at km 3.1 (OSM nodes 2378442143, 9530598419, 9530618721, 850580827, 8548378118, 674032225, 674032223, 1868799976).',
+        elevation: 'Official 3.1 km, 238 m up and 30 m down, 1 h 15 min, highest point 794 m, lowest 557 m (Madonna di Campiglio Azienda per il Turismo); the stored profile runs 566–790 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Tione di Trento - Bolbeno - Madonna del Lares (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Borgo Lares publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Comune di Tione di Trento, Regolamento di Polizia Urbana (2013), Art. 30: dogs on a lead on streets and public places, and also muzzled in crowds',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 57,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'The cycle path to Bolbeno is shared with bikes: keep your dog on a short lead',
+        'The forest road to the sanctuary is tarmac and open to occasional vehicles',
+        'A short flight of steps up to the chapel'
+      ],
+      terrainType: 'Cycle path, tarmac forest road and a short path',
+      shadeDescription: 'Part shade: about 57% runs under trees, most of it in the woods beside the Arnò and on the forest road.',
+      terrainDescription: 'A short climb at 557–794 m from Tione along the Arnò stream to Bolbeno and up through broadleaf and conifer woods to the Madonna del Lares, a pilgrims’ chapel in a quiet clearing.',
+      waterDescription: 'Drinking fountains in Tione and Bolbeno, and the stone fountain fed by Monte Piza just after the viewpoint, which the APT points out.',
+      dogNotes: 'Borgo Lares has no dog regulation of its own, so the national rule applies there: a lead of at most 1.5 m and a muzzle carried. Tione’s rule asks for a lead on streets and public places, a muzzle in crowds, and no dogs in the town hall, places of care, churches or cemeteries. Keep your dog close on the cycle path.',
+      tips: 'Start in Via Baita in Tione: 3.1 km and about 240 m of climbing one way, an hour and a quarter to the chapel, then the same way back downhill. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Fill up at the stone fountain after the viewpoint.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Tione di Trento - Bolbeno - Madonna del Lares', url: 'https://www.campigliodolomiti.it/it/itinerari/tione-di-trento-bolbeno-madonna-del-lares' },
+        { label: 'Outdooractive, Tione di Trento - Bolbeno - Madonna del Lares (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/805502035' },
+        { label: 'Comune di Tione di Trento, Regolamento di Polizia Urbana (dogs: Art. 30)', url: 'https://www.comune.tioneditrento.tn.it/content/download/752/14939/3/REGOLAMENTO_POLIZIA_URBANA_NOVEMBRE_2013.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.030377,
+        lng: 10.725298,
+        label: 'Via Baita, Tione di Trento, the APT’s start'
+      },
+      waterSources: [
+        { km: 0, lat: 46.0308043, lng: 10.7235875, osmId: 'node/2378442143', label: 'Drinking fountain at the start' },
+        { km: 1, lat: 46.0317617, lng: 10.7364863, osmId: 'node/9530598419', label: 'Drinking fountain' },
+        { km: 1, lat: 46.0315182, lng: 10.7365156, osmId: 'node/9530618721', label: 'Drinking fountain' },
+        { km: 1.2, lat: 46.0327608, lng: 10.7374479, osmId: 'node/850580827', label: 'Drinking fountain' },
+        { km: 1.2, lat: 46.0318924, lng: 10.7379306, osmId: 'node/8548378118', label: 'Drinking fountain' },
+        { km: 1.6, lat: 46.0291218, lng: 10.7383278, osmId: 'node/674032225', label: 'Canocel' },
+        { km: 2.6, lat: 46.0256973, lng: 10.7311621, osmId: 'node/674032223', label: 'Drinking fountain' },
+        { km: 3.1, lat: 46.0215528, lng: 10.7288557, osmId: 'node/1868799976', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.02898, lng: 10.72393, osmId: 'node/2378438981', name: 'Ristorante Pizzeria Pellegrini' },
+        { km: 0, lat: 46.02884, lng: 10.72385, osmId: 'node/2378439248', name: 'Pizzeria Pub Fermata 97' },
+        { km: 0, lat: 46.03104, lng: 10.72306, osmId: 'node/922129790', name: 'Bar Brevine' },
+        { km: 0, lat: 46.03088, lng: 10.72439, osmId: 'node/8610425491', name: 'Caffetteria Incontra' },
+        { km: 0.6, lat: 46.03081, lng: 10.73324, osmId: 'way/87054865', name: 'La Contea Pizzeria Ristorante Snow Pub' }
+      ],
+      desc: 'A short climb from Tione along the Arnò stream to Bolbeno and up through the woods to the Madonna del Lares, a chapel in a quiet clearing. The APT lists 3.1 km and 238 m of ascent, one way.'
+    },
+    'giudicarie-san-martino-bosco-scolpito': {
+      // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
+      // APT Madonna di Campiglio’s walk “San Martino e il sentiero del bosco scolpito”, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Pieve di Bono-Prezzo (animal regulation, Art. 7).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      area: 'Cologna – San Martino, Pieve di Bono-Prezzo, Valle del Chiese',
+      distance: 4.4,
+      elevation: 250,
+      hours: '1.8',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the car park by the information office below Cologna up through the woods past carved wooden sculptures and a picnic glade to the ruined church of San Martino, then down a steep, narrow path towards the village.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The lane by the start in Pieve di Bono-Prezzo, looking into the Valle del Chiese, in September (zonta72 on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official one-way walk 4.4 km from the car park below Cologna, as APT Madonna di Campiglio publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 4.4 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the car park by the information office below Cologna, a first part all uphill (about 250 m) on lanes and forest paths lined with wooden sculptures of animals and fantastic figures by local carvers; a wide glade in open woodland with a carved wooden fountain, benches and tables; on to the ruins of the church of San Martino, with a view over the Valle del Chiese to Castel Romano; then all downhill, steep and narrow for a stretch just after the church.',
+        mapPoints: 'Start at the APT’s start below Cologna; drinking water at km 3, at km 3.9 and at km 4.1 (OSM nodes 2568331930, 2568332294, 2568332356).',
+        elevation: 'Official 4.4 km, 250 m up and 216 m down, 1 h 45 min, highest point 730 m, lowest 497 m (Madonna di Campiglio Azienda per il Turismo); the stored profile runs 496–718 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, San Martino e il sentiero del bosco scolpito (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Pieve di Bono-Prezzo, Regolamento per la detenzione e circolazione di animali, Art. 7: dogs always on a lead in squares, streets and places open to the public, a muzzle for dogs that bite',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 79,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: [
+        'A steep, narrow stretch of path on the way down just after the church of San Martino (km 3.8)',
+        'Lanes through Cologna at the start are open to cars'
+      ],
+      terrainType: 'Village lanes and forest paths',
+      shadeDescription: 'Mostly shaded: about 79% runs under trees, the lanes at the start are in the sun.',
+      terrainDescription: 'A gentle climb at 497–730 m above Pieve di Bono-Prezzo through open woodland full of carved wooden sculptures, to the ruined church of San Martino above the Valle del Chiese.',
+      waterDescription: 'Three drinking fountains in the second half, among them the carved wooden fountain in the picnic glade.',
+      dogNotes: 'Pieve di Bono-Prezzo’s animal regulation keeps dogs on a lead in squares, streets and places open to the public, and asks for a muzzle on dogs that bite. Keep your dog close on the steep, narrow stretch after San Martino.',
+      tips: 'Start at the car park by the information office below Cologna: 4.4 km and about 250 m of climbing, an hour and three quarters. Keep your dog on a lead and carry a muzzle. Take the steep descent after the church slowly.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, San Martino e il sentiero del bosco scolpito', url: 'https://www.campigliodolomiti.it/it/itinerari/san-martino-e-il-sentiero-del-bosco-scolpito' },
+        { label: 'Outdooractive, San Martino e il sentiero del bosco scolpito (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/805956763' },
+        { label: 'Comune di Pieve di Bono-Prezzo, Regolamento per la detenzione e circolazione di animali (dogs: Art. 7)', url: 'https://www.comune.pievedibono-prezzo.tn.it/content/download/534/9134/6/Regolamento%2Bdetenzione%2Bcani.pdf' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 45.928399,
+        lng: 10.635818,
+        label: 'Car park by the information office below Cologna, the APT’s start'
+      },
+      waterSources: [
+        { km: 3, lat: 45.9256756, lng: 10.6395271, osmId: 'node/2568331930', label: 'Drinking fountain' },
+        { km: 3.9, lat: 45.93041, lng: 10.6416307, osmId: 'node/2568332294', label: 'Drinking fountain' },
+        { km: 4.1, lat: 45.9312656, lng: 10.6390109, osmId: 'node/2568332356', label: 'Drinking fountain' }
+      ],
+      rifugi: [],
+      desc: 'A walk above Pieve di Bono-Prezzo through woods full of carved wooden sculptures to the ruined church of San Martino, with a view over the Valle del Chiese. The APT lists 4.4 km and 250 m of ascent, one way.'
+    },
+    'giudicarie-san-vigilio-senter-dei-cavai': {
+      // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
+      // APT Madonna di Campiglio’s walk “Chiesetta di San Vigilio e "Senter dei Cavai"”, drawn on 40 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Tre Ville 65% (no regulation, national rule) and Tione di Trento 35% (Art. 30).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      // ROPE BRIDGE at km 1.6: the “pont che bala”, a 23 m rope-anchored footbridge over the Sarca (OSM way 230168654,
+      // bridge:structure=simple-suspension, wooden deck). Allowed under the owner’s 26 Oct rule, flagged in hazards, dog notes
+      // and tips, and exposure set to true. The profile’s 628 m at km 3.4 is one elevation sample against the valley wall; every
+      // other sample is 514–585 m, against the APT’s 510–570 m, so that one sample is left out of the profile below.
+      area: 'Tione di Trento – San Vigilio – Sesena, Giudicarie',
+      distance: 7.2,
+      elevation: 91,
+      hours: '3',
+      elevationProfile: [
+        { km: 0, elev: 569 },
+        { km: 0.6, elev: 551 },
+        { km: 1.2, elev: 562 },
+        { km: 1.8, elev: 548 },
+        { km: 2.3, elev: 559 },
+        { km: 2.9, elev: 581 },
+        { km: 4, elev: 585 },
+        { km: 4.6, elev: 528 },
+        { km: 5.2, elev: 514 },
+        { km: 5.8, elev: 538 },
+        { km: 6.3, elev: 537 },
+        { km: 6.9, elev: 551 },
+        { km: 7.5, elev: 566 }
+      ],
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the church of Santa Maria Assunta in Tione past the industrial area to the chapel of San Vigilio, through the woods and over the swinging rope bridge across the Sarca, along the Senter dei Cavai to Sesena, then back on the pavement and the cycle path beside the Sarca.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The chapel of San Vigilio beside the Sarca, on the line, in August (Syrio, CC BY-SA 4.0), 44 m from the line.',
+        route: 'Official loop 7.2 km from the church of Santa Maria Assunta, Tione di Trento, as APT Madonna di Campiglio publishes it; the stored line is drawn on 40 OSM ways along the APT’s published line, 7.5 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: clockwise from Tione, level past the edge of the industrial area to the chapel of San Vigilio; into the woods, cool and shaded in the morning under big trees, and over the “pont che bala”, a rope-anchored footbridge across the Sarca; out of the woods on the Senter dei Cavai, a wide earth track, to the first houses of Sesena (Preore, Tre Ville); along the pavement onto the cycle path beside the Sarca and back to Tione, with benches along the way.',
+        mapPoints: 'Start at the church of Santa Maria Assunta in Tione, the APT’s start; drinking water at the start, at km 0.3, at km 1, at km 1.1, at km 2.2 and at km 3.9 (OSM nodes 9485899727, 9485899728, 8050688974, 9960803812, 9960848728, 6103480680, 11307731636).',
+        elevation: 'Official 7.2 km, 91 m up and 91 m down, 3 h, highest point 570 m, lowest 510 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Chiesetta di San Vigilio e "Senter dei Cavai" (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Tre Ville publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Comune di Tione di Trento, Regolamento di Polizia Urbana (2013), Art. 30: dogs on a lead on streets and public places, and also muzzled in crowds',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line (40 ways), road, surface, bridge, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 38,
+      heatRisk: 'high',
+      exposure: true,
+      surfaceHazards: [
+        'The swinging rope bridge over the Sarca at km 1.6 (the “pont che bala”): about 23 m long, anchored with ropes, with a wooden deck',
+        'The cycle path back to Tione is shared with bikes and fully in the sun',
+        'Pavement and road crossings in Tione and Sesena'
+      ],
+      terrainType: 'Village streets, forest path, a rope bridge, earth track and cycle path',
+      shadeDescription: 'Mostly open: about 38% runs under trees, in the woods by San Vigilio; the cycle path back is in full sun.',
+      terrainDescription: 'A nearly level loop at 510–570 m around the “Busa di Tione”, through the riverside woods by the chapel of San Vigilio and over a swinging rope bridge across the clear Sarca, back along the cycle path.',
+      waterDescription: 'Drinking fountains in Tione at the start and along the first two kilometres, and one more on the cycle path; the Sarca runs beside much of the loop.',
+      dogNotes: 'The loop crosses the “pont che bala”, a rope-anchored footbridge about 23 m long over the Sarca, at km 1.6. It swings as you walk: some dogs refuse it. Cross slowly with your dog on a short lead, carry a small dog if it hesitates, and be ready to turn back. Tre Ville has no dog regulation, so the national rule applies there: a lead of at most 1.5 m and a muzzle carried; Tione asks for a lead on streets and public places and a muzzle in crowds.',
+      tips: 'Start at the church of Santa Maria Assunta in Tione and walk clockwise: 7.2 km, under 100 m of climbing, about three hours. The rope bridge over the Sarca at km 1.6 swings as you cross: some dogs refuse it. Cross slowly with your dog on a short lead, carry a small dog if it hesitates, and be ready to turn back. The cycle path back is in full sun: go in the morning, when the woods are cool.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Chiesetta di San Vigilio e "Senter dei Cavai"', url: 'https://www.campigliodolomiti.it/it/itinerari/chiesetta-di-san-vigilio-e-senter-dei-cavai' },
+        { label: 'Outdooractive, Chiesetta di San Vigilio e "Senter dei Cavai" (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/805485056' },
+        { label: 'Comune di Tione di Trento, Regolamento di Polizia Urbana (dogs: Art. 30)', url: 'https://www.comune.tioneditrento.tn.it/content/download/752/14939/3/REGOLAMENTO_POLIZIA_URBANA_NOVEMBRE_2013.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.03439,
+        lng: 10.728866,
+        label: 'Church of Santa Maria Assunta, Tione di Trento, the APT’s start'
+      },
+      waterSources: [
+        { km: 0, lat: 46.034215, lng: 10.7297002, osmId: 'node/9485899727', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.0344475, lng: 10.7294042, osmId: 'node/9485899728', label: 'Drinking fountain' },
+        { km: 0.3, lat: 46.0352622, lng: 10.7339735, osmId: 'node/8050688974', label: 'Drinking fountain' },
+        { km: 1, lat: 46.0412071, lng: 10.729233, osmId: 'node/9960803812', label: 'Drinking fountain' },
+        { km: 1.1, lat: 46.0421994, lng: 10.7287587, osmId: 'node/9960848728', label: 'Drinking fountain' },
+        { km: 2.2, lat: 46.0425858, lng: 10.7310287, osmId: 'node/6103480680', label: 'Drinking fountain' },
+        { km: 3.9, lat: 46.0459843, lng: 10.7510411, osmId: 'node/11307731636', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.03622, lng: 10.72876, osmId: 'node/5446414999', name: 'C\'era una volta' },
+        { km: 0, lat: 46.03604, lng: 10.72814, osmId: 'node/10695155098', name: 'Bar Jolly' },
+        { km: 0, lat: 46.03637, lng: 10.72754, osmId: 'node/10700339900', name: 'Bar Point' },
+        { km: 0, lat: 46.0341, lng: 10.72571, osmId: 'node/10700372429', name: 'Pizza al Taglio Le Ghinghe' },
+        { km: 0.1, lat: 46.03441, lng: 10.73273, osmId: 'node/8942982791', name: 'Bar Arnò' },
+        { km: 0.1, lat: 46.03693, lng: 10.73023, osmId: 'node/1945868045', name: 'Happy Days' },
+        { km: 4.6, lat: 46.04023, lng: 10.74752, osmId: 'node/12578429304', name: 'AtipicO' }
+      ],
+      desc: 'A level loop from Tione through the riverside woods by the chapel of San Vigilio, over a swinging rope bridge across the Sarca and back along the cycle path. The APT lists 7.2 km and 91 m of ascent.'
+    },
+    'rendena-ciclabile-javre-dare-vigo-pelugo': {
+      // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
+      // APT Madonna di Campiglio’s walk “Giro della Ciclabile Javrè - Darè - Vigo - Pelugo”, drawn on 46 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Porte di Rendena 81% and Pelugo 17% (neither publishes a dog regulation, national rule).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers). OSM tags the cycle path dog=leashed.
+      area: 'Villa Rendena – Javrè – Darè – Vigo – Pelugo, Val Rendena',
+      distance: 7.2,
+      elevation: 79,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the information point at Villa Rendena down to the Val Rendena cycle path, south to the bridge over the Sarca, back north on the far bank by lanes, a track and a path to Parco Masere, and south again on the cycle path and a quiet road to the start.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Val Rendena cycle path beside the Sarca, on the line, in October (Adert, CC BY-SA 4.0), 9 m from the line.',
+        route: 'Official loop 7.2 km from the Porte di Rendena information point, Villa Rendena, as APT Madonna di Campiglio publishes it; the stored line is drawn on 46 OSM ways along the APT’s published line, 7.4 km, with 99% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the information point at Villa Rendena a few metres north on the main road, then the first lane down on the right to the cycle and foot path; south on it to the bridge over the Sarca; across, and north on the tarmac lane on the far bank; at the concrete bridge, without crossing, straight on along a lane that becomes a track and then a path to Parco Masere; from the park south on the cycle path and a stretch of side road back to the start.',
+        mapPoints: 'Start at the APT’s start, the Porte di Rendena information point; drinking water at km 2.4 and at km 2.9 (OSM nodes 6482400507, 7681382942, 7681382941, 7681382943).',
+        elevation: 'Official 7.2 km, 79 m up and 56 m down, 2 h 30 min, highest point 628 m, lowest 571 m (Madonna di Campiglio Azienda per il Turismo); the stored profile runs 578–624 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Giro della Ciclabile Javrè - Darè - Vigo - Pelugo (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Porte di Rendena and Comune di Pelugo publish no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line (46 ways), road, surface, woodland and water data; the Val Rendena cycle path is tagged dog=leashed'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 23,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: [
+        'The Val Rendena cycle path is shared with bikes and inline skaters: keep your dog on a short lead',
+        'Short stretches on the main road and side roads at Villa Rendena',
+        'The path runs beside the Sarca: keep your dog out of the river after rain'
+      ],
+      terrainType: 'Cycle path, tarmac lanes, a track and a short path',
+      shadeDescription: 'Mostly open: about 23% runs under trees, the valley floor is mostly in the sun.',
+      terrainDescription: 'A flat loop at 571–628 m on the floor of the Val Rendena, along both banks of the Sarca between Javrè, Darè, Vigo and Pelugo, about half on tarmac.',
+      waterDescription: 'Drinking fountains at km 2.4 and at the Bici Grill in Vigo Rendena (km 2.9), with places to eat at the start, at Vigo and at Parco Masere.',
+      dogNotes: 'Porte di Rendena and Pelugo have no dog regulation of their own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog close on the cycle path, which is busy with bikes in summer.',
+      tips: 'Start at the information point at Villa Rendena (free parking): 7.2 km, under 100 m of climbing, about two and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The valley floor is hot in summer: go early or late and fill up at the Bici Grill in Vigo.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Giro della Ciclabile Javrè - Darè - Vigo - Pelugo', url: 'https://www.campigliodolomiti.it/it/itinerari/giro-della-ciclabile-javre-dare-vigo-pelugo' },
+        { label: 'Outdooractive, Giro della Ciclabile Javrè - Darè - Vigo - Pelugo (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/63124726' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.06648,
+        lng: 10.713138,
+        label: 'Porte di Rendena information point, Villa Rendena, the APT’s start'
+      },
+      waterSources: [
+        { km: 2.4, lat: 46.0726947, lng: 10.7217872, osmId: 'node/6482400507', label: 'Drinking fountain' },
+        { km: 2.9, lat: 46.0760448, lng: 10.7248435, osmId: 'node/7681382942', label: 'Drinking fountain' },
+        { km: 2.9, lat: 46.0763466, lng: 10.7250198, osmId: 'node/7681382941', label: 'Drinking fountain' },
+        { km: 2.9, lat: 46.0761706, lng: 10.7246173, osmId: 'node/7681382943', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.06802, lng: 10.71198, osmId: 'way/1131212888', name: 'BarBaluba' },
+        { km: 0, lat: 46.06421, lng: 10.71474, osmId: 'way/240983135', name: 'Il Favo' },
+        { km: 2.3, lat: 46.07307, lng: 10.72107, osmId: 'way/232973841', name: 'Ristorante Pizzeria Le Fontane' },
+        { km: 2.9, lat: 46.07663, lng: 10.72428, osmId: 'way/246315975', name: 'Bici Grill Vigo' },
+        { km: 3.9, lat: 46.08604, lng: 10.7294, osmId: 'node/8875762282', name: 'Biergarten Parco Masere' }
+      ],
+      desc: 'A flat loop on the floor of the Val Rendena along both banks of the Sarca, between Javrè, Darè, Vigo and Pelugo, mostly on the cycle path and quiet lanes. The APT lists 7.2 km and 79 m of ascent.'
+    },
+    'valdisole-fazzon-lago-dei-caprioli': {
+      // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
+      // APT Val di Sole’s walk “Passeggiata dal Rifugio Fazzon al Lago dei Caprioli”, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Pellizzano (animal regulation, Art. 6).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers); the Adamello Brenta park is further south.
+      area: 'Rifugio Fazzon – Lago dei Caprioli, Pellizzano, Val di Sole',
+      distance: 1.5,
+      elevation: 62,
+      hours: '0.8',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from Rifugio Fazzon on the Fazzon plain to the Lago dei Caprioli and back, on tarmac and compacted lanes.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lago dei Caprioli from the north, with its little wooded island, in May (Matteo Ianeselli, CC BY-SA 3.0), 5 m from the line.',
+        route: 'Official loop 1.5 km from Rifugio Fazzon, as APT Val di Sole publishes it; the stored line is drawn on 9 OSM ways along the APT’s published line, 1.5 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from Rifugio Fazzon (1,250 m) on the Fazzon plain past Agritur Malga Bassa to the Lago dei Caprioli and its chalet, round and back to the rifugio. The APT notes the rifugio can also be reached on foot from Pellizzano on the Sentiero degli Gnomi.',
+        mapPoints: 'Start at Rifugio Fazzon, the APT’s start; no drinking fountain is mapped on the loop, but Rifugio Fazzon, Agritur Malga Bassa and the lake chalet serve food and drink.',
+        elevation: 'Official 1.5 km, 62 m up and 62 m down, 45 min, highest point 1,317 m, lowest 1,258 m (APT Val di Sole); the stored profile runs 1,252–1,320 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Valli di Sole, Peio e Rabbi, Passeggiata dal Rifugio Fazzon al Lago dei Caprioli (visitvaldisole.it and its Outdooractive tour)',
+          'Comune di Pellizzano, Regolamento per la cura di animali d’affezione (2021), Art. 6: dogs on a lead in public areas and areas open to the public, small dogs too',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line (9 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 31,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'The lanes on the Fazzon plain are tarmac and used by cars to the rifugio and the lake',
+        'The lake shore is busy with families in summer'
+      ],
+      terrainType: 'Tarmac and compacted lanes',
+      shadeDescription: 'Mostly open: about 31% runs under trees, with open meadow by the lake.',
+      terrainDescription: 'A very short, almost level loop at about 1,250–1,320 m on the Fazzon plain above Pellizzano to the Lago dei Caprioli, a green lake among larches and spruces.',
+      waterDescription: 'No drinking fountain is mapped on the loop; Rifugio Fazzon, Agritur Malga Bassa and the chalet at the lake serve food and drink. Carry water for your dog.',
+      dogNotes: 'Pellizzano’s animal regulation keeps dogs on a lead in every public place, small dogs too, and forbids letting them roam. Keep your dog close by the lake, where there are many children in summer.',
+      tips: 'Start at Rifugio Fazzon: 1.5 km and about 60 m of climbing, 45 minutes. Keep your dog on a lead all the way. Carry water: no fountain is mapped, though the rifugio and the lake chalet serve drinks.',
+      sourceLinks: [
+        { label: 'Val di Sole, Passeggiata dal Rifugio Fazzon al Lago dei Caprioli', url: 'https://www.visitvaldisole.it/it/activity/passeggiatadalrifugiofazzonallagodeicaprioli-10077' },
+        { label: 'Outdooractive, Passeggiata dal Rifugio Fazzon al Lago dei Caprioli (APT Valli di Sole, Peio e Rabbi)', url: 'https://www.outdooractive.com/it/r/21345216' },
+        { label: 'Comune di Pellizzano, Regolamento per la cura di animali d’affezione (dogs: Art. 6)', url: 'https://www.comune.pellizzano.tn.it/content/download/545/8874/6/AP20210022C.pdf' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.297876,
+        lng: 10.762748,
+        label: 'Rifugio Fazzon (1,250 m), the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.29801, lng: 10.76309, osmId: 'way/120201443', name: 'Rifugio Alpino Fazzon' },
+        { km: 0.1, lat: 46.29503, lng: 10.76478, osmId: 'node/3741391076', name: 'Agritur Malga Bassa' },
+        { km: 0.5, lat: 46.29201, lng: 10.76686, osmId: 'way/122159699', name: 'Chalet Ristorante Lago dei Caprioli' }
+      ],
+      desc: 'A very short loop on the Fazzon plain above Pellizzano from Rifugio Fazzon to the Lago dei Caprioli, a green lake among larches. The APT lists 1.5 km and 62 m of ascent.'
+    },
+    'valdisole-lago-dei-caprioli-malga-alta-di-fazzon': {
+      // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
+      // APT Val di Sole’s walk “Lago dei Caprioli - Malga Alta di Fazzon”, drawn on 5 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Pellizzano (animal regulation, Art. 6).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      // The APT’s line runs from Malga Alta down to the lake and back; its text describes the same out-and-back from the lake.
+      area: 'Lago dei Caprioli – Malga Alta di Fazzon, Pellizzano, Val di Sole',
+      distance: 3.1,
+      elevation: 237,
+      hours: '1.3',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back on a compacted forest road between the Lago dei Caprioli and Malga Alta di Fazzon, with a view over the upper Val di Peio from the malga.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lago dei Caprioli in July, by the line (Mauro Cavallo, CC BY 3.0), 94 m from the line.',
+        route: 'Official out-and-back walk 3.1 km between the Lago dei Caprioli and Malga Alta di Fazzon, as APT Val di Sole publishes it; the stored line is drawn on 5 OSM ways along the APT’s published line, 2.8 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the shore of the Lago dei Caprioli up through quiet woods on the forest road to Malga Alta di Fazzon (1,547 m), a working farm and restaurant with a view over the upper Val di Peio; back the same way. The APT suggests parking by Malga Bassa, beside the lake; its published line begins at Malga Alta.',
+        mapPoints: 'Start where the APT’s line begins, at Malga Alta di Fazzon; drinking water at the start and at km 1.2 (OSM nodes 4247537698, 4397312849, 2345928059).',
+        elevation: 'Official 3.1 km, 237 m up and 237 m down, 1 h 15 min, highest point 1,547 m (Malga Alta di Fazzon), lowest 1,310 m (APT Val di Sole); the stored profile runs 1,333–1,538 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Valli di Sole, Peio e Rabbi, Lago dei Caprioli - Malga Alta di Fazzon (visitvaldisole.it and its Outdooractive tour)',
+          'Comune di Pellizzano, Regolamento per la cura di animali d’affezione (2021), Art. 6: dogs on a lead in public areas and areas open to the public, small dogs too',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line (5 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 77,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: [
+        'Farm animals at Malga Alta di Fazzon: cows, goats, sheep and pigs in summer',
+        'The forest road is shared with farm vehicles to the malga'
+      ],
+      terrainType: 'Compacted forest road',
+      shadeDescription: 'Mostly shaded: about 77% runs under trees, with open pasture at the malga.',
+      terrainDescription: 'A short climb at 1,310–1,547 m from the Lago dei Caprioli through the woods to the pastures of Malga Alta di Fazzon, with a view over the upper Val di Peio.',
+      waterDescription: 'Drinking fountains at Malga Alta and near the lake; the malga and the lake chalet serve food and drink.',
+      dogNotes: 'Pellizzano’s animal regulation keeps dogs on a lead in every public place, small dogs too, and forbids letting them roam. Malga Alta di Fazzon is a working farm in summer, with cows, goats, sheep and pigs: keep your dog on a short lead around the animals and well away from calves.',
+      tips: 'From the lake to Malga Alta and back: 3.1 km and about 240 m of climbing, an hour and a quarter. Park by Malga Bassa, beside the lake. Keep your dog on a lead all the way, and on a short one around the farm animals at the malga.',
+      sourceLinks: [
+        { label: 'Val di Sole, Lago dei Caprioli - Malga Alta di Fazzon', url: 'https://www.visitvaldisole.it/it/activity/lagodeicaprioli_malgaaltadifazzon-14247' },
+        { label: 'Outdooractive, Lago dei Caprioli - Malga Alta di Fazzon (APT Valli di Sole, Peio e Rabbi)', url: 'https://www.outdooractive.com/it/r/58069977' },
+        { label: 'Comune di Pellizzano, Regolamento per la cura di animali d’affezione (dogs: Art. 6)', url: 'https://www.comune.pellizzano.tn.it/content/download/545/8874/6/AP20210022C.pdf' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.293981,
+        lng: 10.776518,
+        label: 'Malga Alta di Fazzon, where the APT’s line begins (park by Malga Bassa, at the lake)'
+      },
+      waterSources: [
+        { km: 0, lat: 46.2937941, lng: 10.7767776, osmId: 'node/4247537698', label: 'Drinking fountain' },
+        { km: 0, lat: 46.2939588, lng: 10.776474, osmId: 'node/4397312849', label: 'Drinking fountain' },
+        { km: 1.2, lat: 46.2912515, lng: 10.7688361, osmId: 'node/2345928059', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.29376, lng: 10.77646, osmId: 'way/122054743', name: 'Malga Alta di Pellizzano' },
+        { km: 1.1, lat: 46.29201, lng: 10.76686, osmId: 'way/122159699', name: 'Chalet Ristorante Lago dei Caprioli' }
+      ],
+      desc: 'A short climb through the woods from the Lago dei Caprioli to the farm at Malga Alta di Fazzon and back, with a view over the upper Val di Peio. The APT lists 3.1 km and 237 m of ascent.'
+    },
+    'valdisole-marilleva-1400-malga-alta-di-fazzon': {
+      // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
+      // APT Val di Sole’s walk “Marilleva 1400 - Malga Alta di Fazzon”, drawn on 12 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Pellizzano 62% (Art. 6) and Mezzana 38% (Art. 3).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers). No lift: the APT notes the
+      // Marilleva 900–1400 cable car is closed in summer; the walk starts from the car park at Marilleva 1400.
+      area: 'Marilleva 1400 – Malga Alta di Fazzon – Lago dei Caprioli, Val di Sole',
+      distance: 4.4,
+      elevation: 211,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Marilleva 1400 through the forest on the Sentiero delle coste to Malga Alta di Fazzon, then down the forest road to the Lago dei Caprioli; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lago dei Caprioli in autumn, at the end of the walk (Luigi Mengato, CC BY 2.0), 52 m from the line.',
+        route: 'Official one-way walk 4.4 km from Marilleva 1400, as APT Val di Sole publishes it; the stored line is drawn on 12 OSM ways along the APT’s published line, 4.3 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the car park in front of the church at Marilleva 1400 into the forest on the Sentiero delle coste, a mountain path, to Malga Alta di Fazzon (km 2.5, 1,547 m), a working farm with a view over the upper Val di Peio and the Ortles–Cevedale; then down the forest road to the Lago dei Caprioli, as the APT suggests. Back the same way.',
+        mapPoints: 'Start at Marilleva 1400, the APT’s start; drinking water at the start, at km 2.6 and at km 4 (OSM nodes 12319174877, 4247537698, 4397312849, 2345928059).',
+        elevation: 'Official 4.4 km, 211 m up and 352 m down, 2 h, highest point 1,661 m, lowest 1,309 m (APT Val di Sole); the stored profile runs 1,320–1,664 m and ends at the lake.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Valli di Sole, Peio e Rabbi, Marilleva 1400 - Malga Alta di Fazzon (visitvaldisole.it and its Outdooractive tour)',
+          'Comune di Pellizzano, Regolamento per la cura di animali d’affezione (2021), Art. 6: dogs on a lead in public areas and areas open to the public, small dogs too',
+          'Comune di Mezzana, Regolamento detenzione cani e animali d’affezione, Art. 3: a dog off the lead must wear a muzzle on streets and places open to the public; large or aggressive dogs need both',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line (12 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 87,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: [
+        'The Sentiero delle coste is a mountain path with roots and stones',
+        'Farm animals at Malga Alta di Fazzon: cows, goats, sheep and pigs in summer',
+        'Cobbled and gravel stretches at Marilleva 1400'
+      ],
+      terrainType: 'Mountain path, forest road and cobbled lanes',
+      shadeDescription: 'Mostly shaded: about 87% runs under trees, with open pasture at the malga.',
+      terrainDescription: 'A forest walk at 1,309–1,661 m from the resort of Marilleva 1400 along the hillside to the pastures of Malga Alta di Fazzon and down to the Lago dei Caprioli.',
+      waterDescription: 'Drinking fountains at the start, at Malga Alta (km 2.6) and near the lake (km 4.0); the malga and the lake chalet serve food and drink.',
+      dogNotes: 'In Mezzana a dog off the lead must wear a muzzle in public places, and large dogs need both a lead and a muzzle; pellizzano’s animal regulation keeps dogs on a lead in every public place, small dogs too, and forbids letting them roam. Malga Alta di Fazzon is a working farm in summer, with cows, goats, sheep and pigs: keep your dog on a short lead around the animals and well away from calves.',
+      tips: 'Start at the car park in front of the church at Marilleva 1400 (the cable car from Marilleva 900 is closed in summer): 4.4 km, about 210 m up and 350 m down to the lake, two hours one way, then back the same way. Keep your dog on a lead all the way, and on a short one around the farm animals at Malga Alta.',
+      sourceLinks: [
+        { label: 'Val di Sole, Marilleva 1400 - Malga Alta di Fazzon', url: 'https://www.visitvaldisole.it/it/activity/marilleva1400_malgaaltadifazzon-37485' },
+        { label: 'Outdooractive, Marilleva 1400 - Malga Alta di Fazzon (APT Valli di Sole, Peio e Rabbi)', url: 'https://www.outdooractive.com/it/r/805260236' },
+        { label: 'Comune di Pellizzano, Regolamento per la cura di animali d’affezione (dogs: Art. 6)', url: 'https://www.comune.pellizzano.tn.it/content/download/545/8874/6/AP20210022C.pdf' },
+        { label: 'Comune di Mezzana, Regolamento detenzione cani e animali d’affezione (dogs: Art. 3)', url: 'https://www.comune.mezzana.tn.it/content/download/712/13985/2/Regolamento_detenzione_cani_e_animali_d%2527affezione.pdf' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.299431,
+        lng: 10.807328,
+        label: 'Marilleva 1400, by the church car park, the APT’s start'
+      },
+      waterSources: [
+        { km: 0, lat: 46.3003754, lng: 10.8061756, osmId: 'node/12319174877', label: 'Drinking fountain at the start' },
+        { km: 2.6, lat: 46.2937941, lng: 10.7767776, osmId: 'node/4247537698', label: 'Drinking fountain' },
+        { km: 2.6, lat: 46.2939588, lng: 10.776474, osmId: 'node/4397312849', label: 'Drinking fountain' },
+        { km: 4, lat: 46.2912515, lng: 10.7688361, osmId: 'node/2345928059', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.30047, lng: 10.80988, osmId: 'node/333786122', name: 'Bar Paninoteca Centro Scuola di Sci' },
+        { km: 2.5, lat: 46.29376, lng: 10.77646, osmId: 'way/122054743', name: 'Malga Alta di Pellizzano' },
+        { km: 3.9, lat: 46.29201, lng: 10.76686, osmId: 'way/122159699', name: 'Chalet Ristorante Lago dei Caprioli' }
+      ],
+      desc: 'A forest walk from Marilleva 1400 along the hillside to the farm at Malga Alta di Fazzon and down to the Lago dei Caprioli. The APT lists 4.4 km, 211 m of ascent and 352 m of descent, one way.'
+    },
+    'valdisole-bivacco-malga-baselga': {
+      // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
+      // APT Val di Sole’s walk “Bivacco Malga Baselga”, drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Pellizzano (animal regulation, Art. 6).
+      // About 40% is in the ZSC IT3120165 Vermiglio – Folgarida; Trentino’s Natura 2000 measures set no rule on dogs.
+      // No park or reserve within 150 m. The profile’s top sample is 1,932 m, below the APT’s 2,003 m: the samples are about
+      // 0.5 km apart and miss the steep top of the climb.
+      area: 'Lago dei Caprioli – Val Baselga, Pellizzano, Val di Sole',
+      distance: 6.9,
+      elevation: 740,
+      hours: '4.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Malga Bassa by the Lago dei Caprioli up a forest road and then a rough, steep path through larch woods into the Val Baselga to the bivouac at about 2,000 m, and back down.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The stream running into the Lago dei Caprioli, by the start, in May (Matteo Ianeselli, CC BY-SA 3.0), 87 m from the line.',
+        route: 'Official loop 6.9 km from Località Fazzon – Malga Bassa, as APT Val di Sole publishes it; the stored line is drawn on 17 OSM ways along the APT’s published line, 7.3 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route on the APT page: from Malga Bassa by the Lago dei Caprioli first on an easy forest road, then up a rough, steep path through larch and stone-pine woods with rhododendron; at about 2,000 m a view of the Vioz and Cevedale and the Val di Peio; a few more steps to the bivouac in a hollow of the Val Baselga, a small green basin with granite peaks and a stream; back down to the lake.',
+        mapPoints: 'Start at the APT’s start, Località Fazzon – Malga Bassa; no drinking fountain is mapped on the line, but Agritur Malga Bassa and the lake chalet at the start serve food and drink.',
+        elevation: 'Official 6.9 km, 740 m up and 740 m down, 4 h 30 min, highest point 2,003 m, lowest 1,269 m (APT Val di Sole).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Valli di Sole, Peio e Rabbi, Bivacco Malga Baselga (visitvaldisole.it and its Outdooractive tour)',
+          'Comune di Pellizzano, Regolamento per la cura di animali d’affezione (2021), Art. 6: dogs on a lead in public areas and areas open to the public, small dogs too',
+          'Province of Trento ZSC layer: about 40% of the line is in IT3120165 Vermiglio – Folgarida, whose conservation measures set no rule on dogs; no park or reserve within 150 m',
+          'OpenStreetMap ways along the APT line (17 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 83,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'A rough, steep mountain path for the upper half of the climb (about 2.2 km)',
+        'Stream crossings in the Val Baselga',
+        'Possible grazing cattle on the upper pastures in summer'
+      ],
+      terrainType: 'Forest road and a steep mountain path',
+      shadeDescription: 'Mostly shaded: about 83% runs under trees, the top of the Val Baselga is open.',
+      terrainDescription: 'A demanding climb of about 740 m at 1,269–2,003 m from the Lago dei Caprioli through larch and stone-pine woods into the wild Val Baselga, a small green basin under granite peaks.',
+      waterDescription: 'No drinking fountain is mapped on the line; the stream in the Val Baselga runs beside the upper path. Carry water for you and your dog, and fill up at Malga Bassa before you start.',
+      dogNotes: 'Pellizzano’s animal regulation keeps dogs on a lead in every public place, small dogs too, and forbids letting them roam. The upper path is steep and rough: only for fit dogs used to mountain paths. Keep your dog on a lead if cattle are grazing.',
+      tips: 'Start at Malga Bassa by the Lago dei Caprioli: 6.9 km and about 740 m of climbing, four and a half hours. The upper path is steep and rough, so it suits fit dogs used to mountain paths. Carry water: none is mapped on the way. In autumn the larches turn gold.',
+      sourceLinks: [
+        { label: 'Val di Sole, Bivacco Malga Baselga', url: 'https://www.visitvaldisole.it/it/activity/bivaccomalgabaselga-37723' },
+        { label: 'Outdooractive, Bivacco Malga Baselga (APT Valli di Sole, Peio e Rabbi)', url: 'https://www.outdooractive.com/it/r/805260256' },
+        { label: 'Comune di Pellizzano, Regolamento per la cura di animali d’affezione (dogs: Art. 6)', url: 'https://www.comune.pellizzano.tn.it/content/download/545/8874/6/AP20210022C.pdf' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.295562,
+        lng: 10.763737,
+        label: 'Località Fazzon – Malga Bassa, by the Lago dei Caprioli, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.29503, lng: 10.76478, osmId: 'node/3741391076', name: 'Agritur Malga Bassa' },
+        { km: 0.2, lat: 46.29201, lng: 10.76686, osmId: 'way/122159699', name: 'Chalet Ristorante Lago dei Caprioli' }
+      ],
+      desc: 'A demanding climb from the Lago dei Caprioli through larch woods into the wild Val Baselga to a bivouac at 2,000 m, with views of the Cevedale. The APT lists 6.9 km and 740 m of ascent.'
+    },
+    'valdisole-rifugio-stavel-denza': {
+      // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
+      // APT Val di Sole’s walk “Rifugio Stavel «Francesco Denza»”, drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Vermiglio (no regulation, national rule).
+      // About half is in the ZSC IT3120165 Vermiglio – Folgarida; Trentino’s Natura 2000 measures set no rule on dogs.
+      // No park or reserve within 150 m. A 17 m First World War tunnel (OSM way 235152873, 1.9 m high) at km 0.7.
+      // The profile tops out at 2,209 m against the hut’s 2,296 m: the elevation grid smooths the steep cirque.
+      area: 'Pozzi Alti – Val di Stavel – Rifugio Denza, Vermiglio, Val di Sole',
+      distance: 7.3,
+      elevation: 594,
+      hours: '4',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Pozzi Alti car park and fort in the Val di Stavel up mountain paths of the First World War, through a short tunnel, to Rifugio Denza under the north face of the Presanella, and back down by the other side of the valley.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Rifugio Denza under the Presanella, at the top of the walk, in September (nardi1987, CC BY 3.0), 7 m from the line.',
+        route: 'Official loop 7.3 km from the Pozzi Alti car park, as APT Val di Sole publishes it; the stored line is drawn on 17 OSM ways along the APT’s published line, 7.4 km, with 98% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Mountain paths (T2): from the car park by the Forte Pozzi Alti (1,856 m) up the Val di Stavel on First World War paths, through a short tunnel at km 0.7, to Rifugio Denza (2,296 m, km 3.4) at the foot of the north face of Cima Presanella; the little Lago Denza is five minutes beyond. Down the other side of the valley to the car park. The climb to Cima Presanella beyond the hut is mountaineering and not part of this walk.',
+        mapPoints: 'Start at the APT’s start, the Pozzi Alti car park; no drinking fountain is mapped on the line; Rifugio Denza (km 3.4) serves food and drink in summer.',
+        elevation: 'Official 7.3 km, 594 m up and 594 m down, 4 h, highest point 2,296 m (Rifugio Denza), lowest 1,856 m (Forte Pozzi Alti) (APT Val di Sole).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Valli di Sole, Peio e Rabbi, Rifugio Stavel «Francesco Denza» (visitvaldisole.it and its Outdooractive tour)',
+          'Comune di Vermiglio publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Trento ZSC layer: about half of the line is in IT3120165 Vermiglio – Folgarida, whose conservation measures set no rule on dogs; no park or reserve within 150 m',
+          'OpenStreetMap ways along the APT line (17 ways, mountain_hiking), road, surface, tunnel and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 66,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: [
+        'Rocky mountain paths (T2) above 1,850 m',
+        'A short, low First World War tunnel at km 0.7 (about 17 m, 1.9 m high): dark inside',
+        'Snow can linger near the hut into early summer'
+      ],
+      terrainType: 'Rocky mountain paths',
+      shadeDescription: 'Part shade: about 66% runs under trees, in larch and stone pine lower down; the cirque around the hut is open.',
+      terrainDescription: 'A high mountain loop at 1,856–2,296 m in the Val di Stavel above Vermiglio, on First World War paths to Rifugio Denza beneath the glaciers and north face of the Presanella.',
+      waterDescription: 'No drinking fountain is mapped on the line; streams cross the Val di Stavel and Rifugio Denza serves drinks in summer. Carry water for your dog.',
+      dogNotes: 'Vermiglio has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The paths are rocky and high: only for fit dogs used to mountain terrain. Ask at Rifugio Denza before taking your dog inside.',
+      tips: 'Start at the Pozzi Alti car park in the Val di Stavel: 7.3 km and about 600 m of climbing, four hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. There is a short, dark tunnel at km 0.7. The cirque around the hut has no shade: carry water and go early on hot days.',
+      sourceLinks: [
+        { label: 'Val di Sole, Rifugio Stavel «Francesco Denza»', url: 'https://www.visitvaldisole.it/it/activity/rifugiostavel__francescodenza__-10471' },
+        { label: 'Outdooractive, Rifugio Stavel «Francesco Denza» (APT Valli di Sole, Peio e Rabbi)', url: 'https://www.outdooractive.com/it/r/22488266' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.26292,
+        lng: 10.644449,
+        label: 'Pozzi Alti car park, Val di Stavel, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 3.4, lat: 46.24342, lng: 10.65524, osmId: 'way/95877357', name: 'Rifugio Stavèl Francesco Denza' }
+      ],
+      desc: 'A high loop in the Val di Stavel above Vermiglio on First World War paths to Rifugio Denza, under the north face and glaciers of the Presanella. The APT lists 7.3 km and 594 m of ascent.'
     }
   };
 
