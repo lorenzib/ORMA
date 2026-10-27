@@ -978,8 +978,12 @@ function liRenderRegionChoices(){
     if(count){
       const n = list.filter(trail => trail.region === region).length;
       count.textContent = `${region === 'savoy' ? 'France' : 'Italy'} · ${n} ${n === 1 ? 'trail' : 'trails'}`;
-      // A region opens before its first walk is published; don't offer it empty.
-      button.hidden = n === 0;
+      // A region opens before its first walk is published; don't offer it
+      // empty. Ask the manifest, not the list: a page opened on one region
+      // has only that region loaded, and every other one would count 0.
+      const published = window.DoloPawsRegionManifest && window.DoloPawsRegionManifest.regions
+        && window.DoloPawsRegionManifest.regions[region];
+      button.hidden = !!published && !published.trailCount;
     }
     const on = !!liLocationContext && liLocationContext.kind === 'area'
       && liLocationContext.region === region && (liLocationContext.valley || 'all') === 'all';

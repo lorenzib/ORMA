@@ -169,8 +169,11 @@
     countrySelect.value = country;
     countryDropdown.refresh();
     compactAreaTrigger(countrySelect);
+    // A region with no published walk yet (the manifest says) is not offered.
+    const manifestRegions = window.DoloPawsRegionManifest && window.DoloPawsRegionManifest.regions;
     const availableRegions = REGIONS.filter(item => item.value === 'all'
-      || country === 'all' || item.countryCode === country);
+      || ((country === 'all' || item.countryCode === country)
+        && (!manifestRegions || !manifestRegions[item.value] || manifestRegions[item.value].trailCount > 0 || item.value === region)));
     regionSelect.replaceChildren(...availableRegions.map(item => option(item, countForRegion(item.value))));
     regionSelect.value = region;
     regionDropdown.refresh();
