@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara",
+  "distanceKm": 8.7,
+  "ascentM": 128,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1997
+    },
+    {
+      "km": 0.7,
+      "elev": 1986
+    },
+    {
+      "km": 1.3,
+      "elev": 2021
+    },
+    {
+      "km": 2,
+      "elev": 2058
+    },
+    {
+      "km": 2.6,
+      "elev": 2057
+    },
+    {
+      "km": 3.3,
+      "elev": 2093
+    },
+    {
+      "km": 4,
+      "elev": 2074
+    },
+    {
+      "km": 4.6,
+      "elev": 2006
+    },
+    {
+      "km": 5.3,
+      "elev": 1873
+    },
+    {
+      "km": 6,
+      "elev": 1799
+    },
+    {
+      "km": 6.6,
+      "elev": 1744
+    },
+    {
+      "km": 7.3,
+      "elev": 1719
+    },
+    {
+      "km": 7.9,
+      "elev": 1646
+    },
+    {
+      "km": 8.6,
+      "elev": 1561
+    },
+    {
+      "km": 8.7,
+      "elev": 1552
+    }
+  ]
+}
