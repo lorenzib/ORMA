@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-passeggiata-alla-chiesetta-di-san-giacomo",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6,
+    "ascentM": 330,
+    "highestPointM": 1578,
+    "expectedDuration": "2 hours",
+    "difficulty": "Hard",
+    "shadePercent": 84
+  },
+  "trailhead": {
+    "lat": 46.575385,
+    "lng": 11.671595,
+    "label": "Ortisei parish church, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5750854,
+      "lng": 11.6716411,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5769834,
+      "lng": 11.6754494,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.577123,
+      "lng": 11.67535,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5734059,
+      "lng": 11.6946714,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Forest path with roots and a steady climb.",
+    "Village streets in Ortisei: keep your dog close.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}

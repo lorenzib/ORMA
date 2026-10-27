@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-giro-della-via-crucis",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.3,
+    "ascentM": 138,
+    "highestPointM": 1572,
+    "expectedDuration": "1 hour",
+    "difficulty": "Moderate",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.559608,
+    "lng": 11.71588,
+    "label": "Casa Orchidee above the parish church, Santa Cristina, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5591964,
+      "lng": 11.7161458,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.559008,
+      "lng": 11.72348,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.559089,
+      "lng": 11.72856,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.558211,
+      "lng": 11.721892,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Village lanes and a short stretch of road: keep your dog close.",
+    "Paths shared with cyclists on the old railway path.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}
