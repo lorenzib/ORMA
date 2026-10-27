@@ -91,6 +91,9 @@
     ['Segonzano', 46.1890, 11.2640, 'Val di Cembra', 'dolomites', 'trentino'],
     ['Faver (Altavalle)', 46.1880, 11.2350, 'Val di Cembra', 'dolomites', 'trentino'],
     ['Grumes (Altavalle)', 46.2210, 11.2930, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Montesover (Sover)', 46.2232, 11.3376, 'Val di Cembra', 'dolomites', 'trentino'],
+    // Keeps the walks above Valfloriana in Fiemme now Montesover is listed.
+    ['Malga Sass (Valfloriana)', 46.2009, 11.3787, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
     ['Tambre / Alpago', 46.0973, 12.4389, 'Alpago', 'dolomites', 'belluno'],
 
     // ---- Savoy ----

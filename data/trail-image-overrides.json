@@ -156,6 +156,23 @@
       }
     },
     {
+      "id": "cembra-monte-pat-malga-vernera",
+      "approvedReviewId": "panoramax-cembra-monte-pat-malga-vernera-on-route",
+      "approvedAt": "2026-10-27T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-monte-pat-malga-vernera-malga.jpg",
+        "heroImage": "images/trails/cembra-monte-pat-malga-vernera-malga.jpg",
+        "imageAlt": "A wooden trail signpost for Malga Vernera Alta, Cimatti and Passo Mirafiori in front of the low stone and timber hut of Malga Vernera Bassa, a gravel track and green pasture, wooded hills behind",
+        "imageCredit": "Malga Vernera Bassa",
+        "imageCreditText": "Malga Vernera Bassa by samdja",
+        "imageCreator": "samdja",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://api.panoramax.xyz/api/collections/21a1ecda-8dc4-4f70-92a4-7ad935e87bbf/items/0316dae0-3db8-4cc5-ab55-5b81142b1543",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cembra-paese-beghei",
       "approvedReviewId": "commons-cembra-paese-beghei-on-route",
       "approvedAt": "2026-10-27T15:00:00.000Z",
@@ -169,6 +186,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Segonzano_-_Sevignano_-_chiesa,_facciata.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cembra-pascoli-malga-vernera",
+      "approvedReviewId": "panoramax-cembra-pascoli-malga-vernera-on-route",
+      "approvedAt": "2026-10-27T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-pascoli-malga-vernera-pasture.jpg",
+        "heroImage": "images/trails/cembra-pascoli-malga-vernera-pasture.jpg",
+        "imageAlt": "A wooden trail signpost at Malga Vernera Bassa beside a gravel road climbing across brown autumn pastures towards spruce woods under a pale sky",
+        "imageCredit": "Vernera pastures",
+        "imageCreditText": "Vernera pastures by samdja",
+        "imageCreator": "samdja",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://api.panoramax.xyz/api/collections/f119f369-3553-477c-b84b-8afebe38837c/items/362a5ef4-35cd-4213-be6c-976886a874f7",
         "imageSourceType": "licensed-source"
       }
     },

@@ -66,10 +66,11 @@ describe('the existing-site verification boundary',()=>{
     // Monte Corona and the Rifugio Potzmauer. Then 241 and
     // 239 with five more Val di Cembra walks: the Castello di Segonzano, Sevignano,
     // Grauno, the Monte Corona loop and the Masi di Grumes. Then 244 and
-    // 242 with the Malghette, the Piz de le Agole and the old-trades path from Grumes.
+    // 242 with the Malghette, the Piz de le Agole and the old-trades path from Grumes. Then 246 and
+    // 244 with the two walks at Malga Vernera above Sover.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(244);
-    expect(currentSiteTrails(catalogue)).toHaveLength(242);
+    expect(catalogue).toHaveLength(246);
+    expect(currentSiteTrails(catalogue)).toHaveLength(244);
   });
 
   test('requires the artwork the public trail page needs',()=>{

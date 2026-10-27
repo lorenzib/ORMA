@@ -49880,6 +49880,121 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 0, lat: 46.22163, lng: 11.29371, osmId: 'way/253472677', name: 'Bar risortante Stella Alpina' }
       ],
       desc: 'A loop from Grumes down the Rio dei Molini past old water mills, a Venetian sawmill and a forge, on woodland paths and footbridges, and back up to the village. The APT lists 5.3 km and 400 m of ascent.'
+    },
+    'cembra-monte-pat-malga-vernera': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 4).
+      // APT Fiemme Cembra’s walk “Dalla Baita Monte Pat a Malga Vernera”. The line is drawn on 7 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Sover publishes no dog rule (none among its 220 published documents), so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer); the nearest local reserve, Pat, is about 200 m away.
+      area: 'Montesover – Malga Vernera, Sover, Val di Cembra',
+      distance: 2.3,
+      elevation: 183,
+      hours: '1',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back: from the Baita Monte Pat above Montesover along the forest road through the woods to Malga Vernera Bassa, and back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The signpost and hut of Malga Vernera Bassa (1,671 m), where the walk turns round, on 10 October 2026 without snow (samdja on Panoramax, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official out-and-back walk 2.3 km from Baita Monte Pat car park above Montesover, as APT Fiemme Cembra publishes it; the stored line is drawn on 7 OSM ways along the APT’s published line, 2.1 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the church square in Montesover up the steep tarred lane to the turning for the Baita Monte Pat and its car park, then on foot along the forest road without turning off to Malga Vernera Bassa (1,671 m), and back the same way. The APT tags it as a dog-friendly walk.',
+        mapPoints: 'Start at Baita Monte Pat car park above Montesover, the APT’s start; drinking water none mapped.',
+        elevation: 'Official 2.3 km, 183 m up and 183 m down, 1 h, highest point 1,675 m, lowest 1,492 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Dalla Baita Monte Pat a Malga Vernera (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Sover publishes no dog rule)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (7 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 88,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A forest road open to farm and forestry vehicles', 'Cows graze the pastures round Malga Vernera in summer: keep your dog on the lead and give the herd room', 'A steady climb of about 180 m'],
+      terrainType: 'A forest road',
+      shadeDescription: 'Mostly shaded: about 90% of the forest road runs through spruce woods, opening out only at the pastures of Vernera.',
+      terrainDescription: 'A short walk at 1,490–1,675 m from the Baita Monte Pat above Montesover through spruce woods to the summer pastures and hut of Malga Vernera, at the foot of the Lagorai.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bars and cafés at the start; bring water.',
+      dogNotes: 'Sover has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Cows graze the Vernera pastures in summer: keep your dog on the lead and close to you near the herd.',
+      tips: 'Start at the Baita Monte Pat car park above Montesover: 2.3 km there and back, about 180 m of climbing, an hour. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Cows graze at Vernera in summer. The Baita Monte Pat serves food at the start; no fountain is mapped on the way, so bring water for your dog.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Dalla Baita Monte Pat a Malga Vernera', url: 'https://www.visitfiemme.it/it/activity/dalla-baita-monte-pat-a-malga-vernera_9739' },
+        { label: 'Outdooractive, Dalla Baita Monte Pat a Malga Vernera (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/800200711' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.220641, lng: 11.344979, label: 'Baita Monte Pat car park above Montesover, the APT’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.22086, lng: 11.34512, osmId: 'node/937732242', name: 'Baita Monte Pat' }
+      ],
+      desc: 'A short walk on a forest road from the Baita Monte Pat above Montesover to the summer pastures of Malga Vernera, and back the same way; the APT tags it as dog-friendly. The APT lists 2.3 km and 183 m of ascent.'
+    },
+    'cembra-pascoli-malga-vernera': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 4).
+      // APT Fiemme Cembra’s walk “Sui Pascoli di Malga Vernera”. The line is drawn on 11 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Sover publishes no dog rule (none among its 220 published documents), so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer); the nearest local reserve, Pat, is about 400 m away.
+      area: 'Malga Vernera, Sover, Val di Cembra',
+      distance: 3.6,
+      elevation: 185,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Malga Vernera Bassa on marked paths and forest roads over the summer pastures up towards Malga Vernera Alta and back; it can be walked either way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The signpost by Malga Vernera Bassa and the gravel road up across the pastures the loop follows, on 10 October 2026 without snow (samdja on Panoramax, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official loop 3.6 km from Malga Vernera Bassa car park, as APT Fiemme Cembra publishes it; the stored line is drawn on 11 OSM ways along the APT’s published line, 3.6 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number given by the APT: from the car park at Malga Vernera Bassa (1,670 m), reached from Montesover by the “Strada de Vernera”, tarred at first and then gravel, on well-marked paths and forest roads up across the pastures towards Malga Vernera Alta and back round to the start. It can be walked in either direction.',
+        mapPoints: 'Start at Malga Vernera Bassa car park, the APT’s start; drinking water at km 0.5 and at km 1.2 (OSM nodes 9796103998, 4072074994).',
+        elevation: 'Official 3.6 km, 185 m up and 185 m down, 1 h 10 min, highest point 1,863 m, lowest 1,678 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Sui Pascoli di Malga Vernera (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Sover publishes no dog rule)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (11 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 42,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Cows graze these pastures in summer: keep your dog on the lead and give the herd room', 'Grassy paths and gravel forest roads, stony in places', 'Open ground: little shelter in a storm'],
+      terrainType: 'Pasture paths and gravel forest roads',
+      shadeDescription: 'Partly shaded: about 40% of the loop runs along the edge of the woods; the rest crosses open pasture.',
+      terrainDescription: 'A short loop at 1,680–1,865 m over the summer pastures of Malga Vernera above Sover, at the foot of the Lagorai, with wide views over the Val di Cembra.',
+      waterDescription: 'Drinking fountains at km 0.5 and at km 1.2.',
+      dogNotes: 'Sover has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Cows graze the Vernera pastures in summer: keep your dog on the lead and close to you near the herd.',
+      tips: 'Start at the Malga Vernera Bassa car park: 3.6 km, 185 m of climbing, about an hour and ten minutes. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Cows graze here in summer. Two drinking fountains are mapped on the loop.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Sui Pascoli di Malga Vernera', url: 'https://www.visitfiemme.it/it/activity/sui-pascoli-di-malga-vernera_63417' },
+        { label: 'Outdooractive, Sui Pascoli di Malga Vernera (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/811025195' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.217257, lng: 11.352234, label: 'Malga Vernera Bassa car park, the APT’s start' },
+      waterSources: [
+        { km: 0.5, lat: 46.2122215, lng: 11.3528185, osmId: 'node/9796103998', label: 'Drinking fountain' },
+        { km: 1.2, lat: 46.2087818, lng: 11.3484275, osmId: 'node/4072074994', label: 'Drinking fountain' }
+      ],
+      rifugi: [],
+      desc: 'A short loop over the summer pastures of Malga Vernera above Sover, on marked paths and forest roads with wide views over the Val di Cembra. The APT lists 3.6 km and 185 m of ascent.'
     }
   };
 
@@ -49997,6 +50112,9 @@ function effectiveOverrides(profile, adjustOverride){
     ['Segonzano', 46.1890, 11.2640, 'Val di Cembra', 'dolomites', 'trentino'],
     ['Faver (Altavalle)', 46.1880, 11.2350, 'Val di Cembra', 'dolomites', 'trentino'],
     ['Grumes (Altavalle)', 46.2210, 11.2930, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Montesover (Sover)', 46.2232, 11.3376, 'Val di Cembra', 'dolomites', 'trentino'],
+    // Keeps the walks above Valfloriana in Fiemme now Montesover is listed.
+    ['Malga Sass (Valfloriana)', 46.2009, 11.3787, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
     ['Tambre / Alpago', 46.0973, 12.4389, 'Alpago', 'dolomites', 'belluno'],
 
     // ---- Savoy ----
