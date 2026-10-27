@@ -581,6 +581,40 @@
       }
     },
     {
+      "id": "fassa-borgo-di-tamion",
+      "approvedReviewId": "commons-fassa-borgo-di-tamion-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-borgo-di-tamion-soraga.jpg",
+        "heroImage": "images/trails/fassa-borgo-di-tamion-soraga.jpg",
+        "imageAlt": "Cows grazing on the meadow below the yellow church of Soraga with its red onion dome, houses and wooded slopes behind and the Catinaccio peaks in cloud",
+        "imageCredit": "The meadow by Soraga church",
+        "imageCreditText": "The meadow by Soraga church by Holapaco77",
+        "imageCreator": "Holapaco77",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Soraga.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-da-alba-a-penia",
+      "approvedReviewId": "mapillary-fassa-da-alba-a-penia-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-da-alba-a-penia-gran-vernel.jpg",
+        "heroImage": "images/trails/fassa-da-alba-a-penia-gran-vernel.jpg",
+        "imageAlt": "The road into Penìa between a tall spruce and wooden chalets, the pale rock wall of the Gran Vernel rising behind under a blue October sky",
+        "imageCredit": "Penìa under the Gran Vernel",
+        "imageCreditText": "Penìa under the Gran Vernel by thetornado76",
+        "imageCreator": "thetornado76",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=832855231644377",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fassa-da-canazei-a-penia",
       "approvedReviewId": "commons-fassa-da-canazei-a-penia-on-route",
       "approvedAt": "2026-10-24T21:00:00.000Z",
@@ -611,6 +645,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pozza_di_Fassa.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-moena-soraga-acqua",
+      "approvedReviewId": "commons-fassa-moena-soraga-acqua-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-moena-soraga-acqua-soraga.jpg",
+        "heroImage": "images/trails/fassa-moena-soraga-acqua-soraga.jpg",
+        "imageAlt": "Soraga seen from the valley road, its yellow church tower and wooden houses, green meadows and spruce woods below the pale towers of the Catinaccio",
+        "imageCredit": "Soraga and the Catinaccio",
+        "imageCreditText": "Soraga and the Catinaccio by Mattana",
+        "imageCreator": "Mattana",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Soraga_001.JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -730,6 +781,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gruppo_del_Catinaccio_-_Ciampedie2.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-val-freida",
+      "approvedReviewId": "mapillary-fassa-val-freida-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-val-freida-meadow.jpg",
+        "heroImage": "images/trails/fassa-val-freida-meadow.jpg",
+        "imageAlt": "A wide green meadow edged by spruce forest at the mouth of Val Freida, a gravel track on the right and the jagged Pale di San Martino on the skyline",
+        "imageCredit": "The meadows at the mouth of Val Freida",
+        "imageCreditText": "The meadows at the mouth of Val Freida by gigicogo",
+        "imageCreator": "gigicogo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=2565297107106871",
         "imageSourceType": "licensed-source"
       }
     },

@@ -40137,6 +40137,279 @@
       ],
       desc: 'An almost level walk from the San Pellegrino pass to the Fuciade alp, a wide pasture of old wooden hay barns and chapels facing the Marmolada. The APT lists 6.9 km and 94 m of ascent.'
     },
+    'fassa-borgo-di-tamion': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 12).
+      // APT Val di Fassa’s walk “Alla scoperta del borgo ladino di Tamion”, tagged “animali accettati”. The line
+      // is drawn on 35 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // The APT files it as a winter walk open all year; its own figures are used.
+      // Soraga di Fassa and San Giovanni di Fassa (Tamion) publish no general dog rule
+      // (Soraga only one for its fenced dog area), so the national dog ordinance
+      // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
+      // dog standard; Trentino’s animal law leaves leads and muzzles to it.
+      // No Natura 2000 site, park or provincial or local reserve on or near the line (Province of Trento layers).
+      area: 'Soraga – Barbide – Tamion, Soraga di Fassa / San Giovanni di Fassa',
+      distance: 4.7,
+      elevation: 339,
+      hours: '2',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Up from the square in Soraga through the hamlet of Barbide and along a forest road above the red sandstone gorge to the meadows and the hamlet of Tamion, then back down the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The meadow by the church of Soraga, where the walk starts, with the Catinaccio behind, in September (Holapaco77, CC BY-SA 4.0), 28 m from the line.',
+        route: 'Official out-and-back 4.7 km from Soraga di Fassa (Piaz Bepo Roch), as APT Val di Fassa publishes it; the stored line is drawn on 35 OSM ways along the APT’s published line, 4.7 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number on the ground (the APT numbers it 23 in its winter-walk list and says the route has no waymarks of its own): from Soraga up Strada del Cioch and Strada de Barbida to the chapel of Barbide, up Strada de Parlaut and along the forest road above the red sandstone gorge to the meadows of Tamion and its church of the Holy Trinity, and back the same way.',
+        mapPoints: 'Start at Soraga di Fassa (Piaz Bepo Roch), the APT’s start; drinking fountains in Soraga in the first half kilometre (OSM nodes 6453004674, 1538180181, 6453004641, 1662566505).',
+        elevation: 'Official 4.7 km, 339 m up and 339 m down, 2 h 03 min, highest point 1,545 m, lowest 1,207 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Alla scoperta del borgo ladino di Tamion (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Soraga di Fassa and San Giovanni di Fassa publish no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'Provincia autonoma di Trento, Natura 2000 ZSC and ZPS, parks, provincial and local reserves (none on or near the line)',
+          'OpenStreetMap ways along the APT line (35 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 11,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steep, sustained climb of about 340 m in 2.3 km; the APT suggests care on the descent, which can be slippery in the shade', 'The forest road runs along the top of a steep red sandstone gorge: keep your dog close at the edge', 'About 1.6 km on tarmac, village lanes in Soraga open to cars', 'Hay meadows and farms around Tamion: keep to the track'],
+      terrainType: 'Village lanes, then a gravel forest and farm road (about three fifths gravel, a third tarmac)',
+      shadeDescription: 'About a tenth is mapped under trees; the APT says the steepest middle part climbs under good tree cover. The meadows of Tamion are open.',
+      terrainDescription: 'A climb of about 340 m from Soraga at 1,210 m to the hamlet of Tamion at about 1,545 m, past the chapel of Barbide and above the red sandstone gorge, with views of the Sassolungo, the Buffaure and the Larséch cliffs.',
+      waterDescription: 'Drinking fountains in Soraga in the first half kilometre; none on the climb or in Tamion, so carry water for your dog. The APT notes no food or drink on the way.',
+      dogNotes: 'Soraga and San Giovanni di Fassa publish no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses. Keep your dog close along the top of the gorge.',
+      tips: 'Start in the square in Soraga: 4.7 km there and back, about 340 m of climbing, two hours. Fill up at the fountains in Soraga, as there is no water higher up. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep out of the hay meadows. Take care coming down if the track is wet.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Alla scoperta del borgo ladino di Tamion', url: 'https://www.fassa.com/it/itinerari/alla-scoperta-del-borgo-ladino-di-tamion' },
+        { label: 'Outdooractive, Alla scoperta del borgo ladino di Tamion (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/801487737' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.393667, lng: 11.666257, label: 'Soraga di Fassa (Piaz Bepo Roch), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.3943923, lng: 11.6652318, osmId: 'node/6453004674', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.3953133, lng: 11.6666079, osmId: 'node/1538180181', label: 'Drinking fountain' },
+        { km: 0.1, lat: 46.3954988, lng: 11.6673679, osmId: 'node/6453004641', label: 'Fontana - Comune di Soraga' },
+        { km: 0.5, lat: 46.3986819, lng: 11.6666839, osmId: 'node/1662566505', label: 'Drinking fountain, the last before the climb' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.39446, lng: 11.66689, osmId: 'node/1585221252', name: 'Ja Vito' },
+        { km: 0, lat: 46.39516, lng: 11.66633, osmId: 'node/866739470', name: 'Caffe’ Gelateria Dolomiti' },
+        { km: 0, lat: 46.39576, lng: 11.66662, osmId: 'node/1585221511', name: 'Ristorante Pizzeria Sas da Rocia' }
+      ],
+      desc: 'A steady climb from Soraga past the chapel of Barbide and above the red sandstone gorge to Tamion, a hamlet of old barns and a small church in the meadows, facing the Sassolungo. The APT lists 4.7 km and 339 m of ascent, there and back.'
+    },
+    'fassa-da-alba-a-penia': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 12).
+      // APT Val di Fassa’s walk “Da Alba a Penìa, l’ultimo borgo prima della Marmolada”, tagged “animali accettati”. The line
+      // is drawn on 32 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // The APT files it as a winter walk; its own figures are used. About 30% of it
+      // shares streets with Da Canazei a Penìa (batch 10); the loop through old Penìa is its own.
+      // Canazei publishes no dog rule, so the national dog ordinance (6 August 2013,
+      // extended to September 2027) applies under ORMA’s Italian dog standard.
+      // No Natura 2000 site, park or provincial or local reserve on or near the line (Province of Trento layers).
+      area: 'Alba – Penìa, Canazei',
+      distance: 4.5,
+      elevation: 97,
+      hours: '1.25',
+      routeShape: 'loop',
+      routeShapeNote: 'From Alba along the Avisio past the ice stadium to Penìa, a short loop up through the old village and down past the Venetian sawmill of La Sia, then back to Alba the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The road into Penìa under the Gran Vernel in October (thetornado76 on Mapillary, CC BY-SA 4.0), 13 m from the line.',
+        route: 'Official loop 4.5 km from Alba di Canazei (Strèda de Costa), as APT Val di Fassa publishes it; the stored line is drawn on 32 OSM ways along the APT’s published line, 4.5 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number (the APT numbers it 76 in its winter-walk list): from Alba down Strèda de Dolèda past the ice stadium, over the wooden footbridge to the playground and on to Penìa; up Strèda de Treve past the Cèsa Dovolavilla to the church of Santi Rocco e Sebastiano, down Strèda Vernel across the main road to La Sia, and back to Alba along the pavement and the outward lane.',
+        mapPoints: 'Start at Alba di Canazei (Strèda de Costa), the APT’s start; drinking water at the start, at km 1.3 and at km 1.5 (OSM nodes 639924501, 12179849556, 7727120952).',
+        elevation: 'Official 4.5 km, 97 m up and 97 m down, 1 h 10 min, highest point 1,550 m, lowest 1,473 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Da Alba a Penìa, l’ultimo borgo prima della Marmolada (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Canazei publishes no dog rule)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'Provincia autonoma di Trento, Natura 2000 ZSC and ZPS, parks, provincial and local reserves (none on or near the line)',
+          'OpenStreetMap ways along the APT line (32 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Almost all on tarmac: village lanes open to cars and, back to Alba, the pavement of the Passo Fedaia road', 'Two crossings of the main road (SS641) in Penìa', 'Short wooden footbridge over the Avisio'],
+      terrainType: 'Village lanes, pavements and a riverside lane; pram-friendly',
+      shadeDescription: 'No mapped tree cover: an open walk between the villages, in sun under the Gran Vernel.',
+      terrainDescription: 'An almost level walk at 1,470–1,550 m between Alba and Penìa, the last village before the Marmolada, through old Ladin houses with balconies and bread ovens.',
+      waterDescription: 'Drinking fountains at the start in Alba, at km 1.3 and in Penìa’s square at km 1.5; bars and inns in both villages.',
+      dogNotes: 'Canazei publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses. Keep your dog on a short lead on the pavement of the main road.',
+      tips: 'Start in Alba: 4.5 km, almost level, about an hour and a quarter. Keep your dog on a short lead (1.5 m at most) on the village lanes and the main-road pavement, and carry a muzzle. Fountains in Alba and in the square in Penìa.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Da Alba a Penìa, l’ultimo borgo prima della Marmolada', url: 'https://www.fassa.com/it/itinerari/da-alba-a-penia-l-ultimo-borgo-prima-della-marmolada' },
+        { label: 'Outdooractive, Da Alba a Penìa, l’ultimo borgo prima della Marmolada (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/810153437' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.461712, lng: 11.782996, label: 'Alba di Canazei (Strèda de Costa), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.4618, lng: 11.7827401, osmId: 'node/639924501', label: 'Drinking fountain at the start' },
+        { km: 1.3, lat: 46.4576514, lng: 11.7918887, osmId: 'node/12179849556', label: 'Drinking fountain' },
+        { km: 1.5, lat: 46.4572045, lng: 11.795804, osmId: 'node/7727120952', label: 'Drinking fountain in Penìa' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.46046, lng: 11.7833, osmId: 'way/59298311', name: 'Pizzeria Ristorante El Resole’' },
+        { km: 1.4, lat: 46.45695, lng: 11.79577, osmId: 'node/8751118089', name: 'Le Marmotte' },
+        { km: 1.6, lat: 46.45838, lng: 11.79769, osmId: 'node/9809543343', name: 'Bar Penia' }
+      ],
+      desc: 'An easy walk from Alba to Penìa, the last village before the Marmolada, with a loop through its old Ladin houses to the onion-domed church and the Venetian sawmill, under the wall of the Gran Vernel. The APT lists 4.5 km and 97 m of ascent.'
+    },
+    'fassa-val-freida': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 12).
+      // APT Val di Fassa’s walk “Sulle tracce dei pastori all’imbocco della Val Freida”, tagged “animali accettati”. The line
+      // is drawn on 7 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // The APT’s text places Val Freida in Falcade’s territory, but the whole line, the
+      // Rifugio Flora Alpina included, lies in Soraga di Fassa in Trentino (OSM boundaries).
+      // Soraga publishes no general dog rule (only one for its fenced dog area), so the
+      // national dog ordinance (6 August 2013, extended to September 2027) applies under
+      // ORMA’s Italian dog standard. No Natura 2000 site, park or provincial or local reserve
+      // on or near the line (Province of Trento layers).
+      area: 'Passo San Pellegrino – Val Freida, Soraga di Fassa',
+      distance: 2.8,
+      elevation: 116,
+      hours: '0.75',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'From Malga Boer below the San Pellegrino pass along the tarmac lane through the pastures to the Rifugio Flora Alpina at the mouth of Val Freida, and back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The meadows at the mouth of Val Freida below the Pale di San Martino in August (gigicogo on Mapillary, CC BY-SA 4.0), 12 m from the line.',
+        route: 'Official out-and-back 2.8 km from Malga Boer (Passo San Pellegrino), as APT Val di Fassa publishes it; the stored line is drawn on 7 OSM ways along the APT’s published line, 2.7 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Malga Boer along the lane to the Fuciade and Flora Alpina refuges, through pastures, larch woods and restored hay barns, to the Rifugio Flora Alpina at the mouth of Val Freida, and back.',
+        mapPoints: 'Start at Malga Boer (Passo San Pellegrino), the APT’s start, reached by car from the pass; drinking water at the Rifugio Flora Alpina, km 1.2 (OSM node 5197081479).',
+        elevation: 'Official 2.8 km, 116 m up and 116 m down, 50 min, highest point 1,867 m, lowest 1,804 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Sulle tracce dei pastori all’imbocco della Val Freida (fassa.com and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Soraga di Fassa publishes no dog rule beyond its fenced dog area)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'Provincia autonoma di Trento, Natura 2000 ZSC and ZPS, parks, provincial and local reserves (none on or near the line)',
+          'OpenStreetMap ways along the APT line (7 ways), administrative boundaries, road, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 32,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['All on a narrow tarmac lane shared with the refuges’ vehicles', 'Alpine pastures with cattle in summer: keep your distance'],
+      terrainType: 'Narrow tarmac lane through pasture and larch wood; pram-friendly',
+      shadeDescription: 'About a third passes larch and spruce wood; the pastures are open.',
+      terrainDescription: 'A short, gentle walk at 1,800–1,870 m below the San Pellegrino pass, through pastures and restored hay barns to the mouth of Val Freida, facing the Marmolada, the Focobon and the Mulaz.',
+      waterDescription: 'A drinking fountain at the Rifugio Flora Alpina at the turn, km 1.2; food at Malga Boer and the Rifugio Flora Alpina.',
+      dogNotes: 'Soraga publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. The APT asks for a lead, distance from livestock, and a lead and muzzle on lifts and buses. Keep your dog on a short lead past the cattle.',
+      tips: 'Start at Malga Boer, a short drive from the San Pellegrino pass: 2.8 km there and back, under an hour. Keep your dog on a short lead (1.5 m at most) on the lane and past the cattle, and carry a muzzle. Water at the Rifugio Flora Alpina.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Sulle tracce dei pastori all’imbocco della Val Freida', url: 'https://www.fassa.com/it/itinerari/sulle-tracce-dei-pastori-all-imbocco-della-val-freida' },
+        { label: 'Outdooractive, Sulle tracce dei pastori all’imbocco della Val Freida (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/801492686' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.380268, lng: 11.817657, label: 'Malga Boer (Passo San Pellegrino), the APT’s start' },
+      waterSources: [
+        { km: 1.2, lat: 46.3802616, lng: 11.8325488, osmId: 'node/5197081479', label: 'Drinking fountain at the Rifugio Flora Alpina' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.38044, lng: 11.81879, osmId: 'way/338525442', name: 'Malga Boer' },
+        { km: 1.1, lat: 46.38014, lng: 11.83312, osmId: 'way/199486712', name: 'Rifugio Flora Alpina' }
+      ],
+      desc: 'A short walk from Malga Boer through the pastures and old hay barns below the San Pellegrino pass to the Rifugio Flora Alpina at the mouth of Val Freida, facing the Marmolada and the Pale. The APT lists 2.8 km and 116 m of ascent, there and back.'
+    },
+    'fassa-moena-soraga-acqua': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 12).
+      // APT Val di Fassa’s walk “Da Moena a Soraga, dove l’acqua ha segnato la storia”, tagged “animali accettati”. The line
+      // is drawn on 19 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // The APT files it as a winter walk for autumn to spring; its own figures are used.
+      // The start is in Moena, whose dog rules (August 2026) apply; Soraga publishes no
+      // general dog rule (only one for its fenced dog area), so the national dog ordinance
+      // applies there under ORMA’s Italian dog standard. No Natura 2000 site, park or
+      // provincial or local reserve on or near the line (Province of Trento layers).
+      area: 'Moena – Palua – Soraga, Moena / Soraga di Fassa',
+      distance: 4.8,
+      elevation: 139,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'From the centre of Moena up through Col dei Soldai and along the farm lane over the meadows above the Soraga reservoir to Palua, down into Soraga and across the covered footbridge to the riverside park, then back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Soraga and its church below the Catinaccio in August, where the walk turns (Mattana, CC BY-SA 3.0), 65 m from the line.',
+        route: 'Official out-and-back 4.8 km from Moena (Piaz de Sotegrava), as APT Val di Fassa publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 4.7 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number (the APT numbers it 10 in its winter-walk list): from Piaz de Sotegrava up Strada Salejada, Strada de Moene and Strada Saslonch past Col dei Soldai and the El Mas farm, along the farm lane above the Soraga reservoir to Palua, down to Soraga and over the covered footbridge to the Vischia de Sach riverside park, and back.',
+        mapPoints: 'Start at Moena (Piaz de Sotegrava), the APT’s start; drinking fountains in Moena in the first 200 m and in Soraga at km 2.3 (OSM nodes 1884458673, 3780887514, 6453004674).',
+        elevation: 'Official 4.8 km, 139 m up and 139 m down, 1 h 20 min, highest point 1,257 m, lowest 1,170 m (APT Val di Fassa).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Da Moena a Soraga, dove l’acqua ha segnato la storia (fassa.com and its Outdooractive page)',
+          'Comune di Moena, Regole per la conduzione dei cani nel territorio comunale (August 2026); Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Soraga di Fassa publishes no dog rule beyond its fenced dog area)',
+          'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
+          'Provincia autonoma di Trento, Natura 2000 ZSC and ZPS, parks, provincial and local reserves (none on or near the line)',
+          'OpenStreetMap ways along the APT line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 2.8 km on tarmac: town streets in Moena and Soraga and a farm lane open to farm traffic', 'Hay meadows and farms above the reservoir: keep to the lane', 'Water birds in the riverside park at Soraga: keep your dog out of the water and on the lead'],
+      terrainType: 'Town streets, an agricultural tarmac lane and gravel paths; pram-friendly',
+      shadeDescription: 'No mapped tree cover: the lane over the meadows is open and sunny.',
+      terrainDescription: 'A gentle walk at 1,170–1,260 m from Moena over the farmland above the Soraga reservoir to Soraga and its riverside park, facing the Catinaccio, the Sassolungo and the Monzoni ridge.',
+      waterDescription: 'Drinking fountains in Moena at the start and in Soraga at km 2.3; the El Mas farm, bars in Soraga and in Moena.',
+      dogNotes: 'Moena requires a lead in public places, bags to pick up after your dog, a bottle of water to rinse urine off pavements, and a muzzle when it is crowded; dogs may not enter places signed as closed to them. Soraga publishes no dog rule, so the Italian national rule applies there: a lead of at most 1.5 m and a muzzle carried. Keep your dog out of the water at the riverside park.',
+      tips: 'Start in Piaz de Sotegrava in Moena: 4.8 km there and back, about 140 m of climbing, an hour and a quarter. Keep your dog on a short lead, carry bags, a bottle of water and a muzzle as Moena asks, and keep to the lane through the meadows. Fountains in Moena and Soraga.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Da Moena a Soraga, dove l’acqua ha segnato la storia', url: 'https://www.fassa.com/it/itinerari/da-moena-a-soraga-dove-l-acqua-ha-segnato-la-storia' },
+        { label: 'Outdooractive, Da Moena a Soraga, dove l’acqua ha segnato la storia (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/65325200' },
+        { label: 'Comune di Moena, Regole per la conduzione dei cani', url: 'https://www.comune.moena.tn.it/ocmultibinary/download/4674/72838/4/6d6402a9f76531cb63cb42cee6b639e4.pdf/file/regole%2Bper%2Bconduzione%2Bcani.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.376718, lng: 11.659822, label: 'Moena (Piaz de Sotegrava), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.3768022, lng: 11.659712, osmId: 'node/1884458673', label: 'Drinking fountain at the start' },
+        { km: 0.1, lat: 46.3779003, lng: 11.6579709, osmId: 'node/3780887514', label: 'Drinking fountain' },
+        { km: 2.3, lat: 46.3943923, lng: 11.6652318, osmId: 'node/6453004674', label: 'Drinking fountain in Soraga' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.37704, lng: 11.65966, osmId: 'node/3786688685', name: 'Bar Mancin' },
+        { km: 0.7, lat: 46.38294, lng: 11.66223, osmId: 'node/5013934509', name: 'Agritur el Mas' },
+        { km: 2.2, lat: 46.39446, lng: 11.66689, osmId: 'node/1585221252', name: 'Ja Vito' }
+      ],
+      desc: 'An easy walk from Moena over the farmland above the Soraga reservoir to Soraga and its riverside park, past the El Mas farm and a covered footbridge, facing the Catinaccio and the Sassolungo. The APT lists 4.8 km and 139 m of ascent, there and back.'
+    },
     'primiero-fiera-pieve': {
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “Fiera-Pieve”, marked Dog-friendly on its

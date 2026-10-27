@@ -78,9 +78,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 268 and 266 with the first seven Hochpustertal walks: the Toblacher See,
     // the Gustav Mahler path, Innichen – Haselsberg – Toblach, Wildbad Innichen, the
     // Maistatt loop, St. Magdalena in Moos and the Grünwaldalm above the Pragser Wildsee.
+    // Then 272 and 270 with four more Val di Fassa walks: Soraga to Tamion, Alba to
+    // Penìa, Val Freida and Moena to Soraga.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(268);
-    expect(currentSiteTrails(catalogue)).toHaveLength(266);
+    expect(catalogue).toHaveLength(272);
+    expect(currentSiteTrails(catalogue)).toHaveLength(270);
   });
 
   test('requires the artwork the public trail page needs',()=>{

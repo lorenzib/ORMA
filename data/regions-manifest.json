@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T22:09:48.331Z",
+  "generatedAt": "2026-10-27T22:15:53.987Z",
   "regions": {
     "dolomites": {
-      "trailCount": 217,
-      "trails": "data/regions/dolomites-trails.js?v=ffe99ec637ea",
+      "trailCount": 221,
+      "trails": "data/regions/dolomites-trails.js?v=546d37b1a0a8",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -222,6 +222,10 @@
         "trecime-circolare-maistatt": "data/trail-details/trecime-circolare-maistatt.js?v=def2fbb23e37",
         "trecime-villabassa-mooskirche": "data/trail-details/trecime-villabassa-mooskirche.js?v=7d612e433060",
         "trecime-lago-di-braies-malga-foresta": "data/trail-details/trecime-lago-di-braies-malga-foresta.js?v=4b7ae230507b",
+        "fassa-borgo-di-tamion": "data/trail-details/fassa-borgo-di-tamion.js?v=6525deb826f8",
+        "fassa-da-alba-a-penia": "data/trail-details/fassa-da-alba-a-penia.js?v=a115d45cc2da",
+        "fassa-val-freida": "data/trail-details/fassa-val-freida.js?v=cde711157fca",
+        "fassa-moena-soraga-acqua": "data/trail-details/fassa-moena-soraga-acqua.js?v=87b5a566075a",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -526,6 +530,10 @@
     "trecime-circolare-maistatt": "dolomites",
     "trecime-villabassa-mooskirche": "dolomites",
     "trecime-lago-di-braies-malga-foresta": "dolomites",
+    "fassa-borgo-di-tamion": "dolomites",
+    "fassa-da-alba-a-penia": "dolomites",
+    "fassa-val-freida": "dolomites",
+    "fassa-moena-soraga-acqua": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -847,6 +855,10 @@
     "trecime-circolare-maistatt": "maistatt-loop-niederdorf",
     "trecime-villabassa-mooskirche": "niederdorf-mooskirche",
     "trecime-lago-di-braies-malga-foresta": "lago-di-braies-gruenwaldalm",
+    "fassa-borgo-di-tamion": "borgo-di-tamion-soraga",
+    "fassa-da-alba-a-penia": "alba-penia",
+    "fassa-val-freida": "val-freida-san-pellegrino",
+    "fassa-moena-soraga-acqua": "moena-soraga-avisio",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1117,6 +1129,10 @@
     "maistatt-loop-niederdorf": "trecime-circolare-maistatt",
     "niederdorf-mooskirche": "trecime-villabassa-mooskirche",
     "lago-di-braies-gruenwaldalm": "trecime-lago-di-braies-malga-foresta",
+    "borgo-di-tamion-soraga": "fassa-borgo-di-tamion",
+    "alba-penia": "fassa-da-alba-a-penia",
+    "val-freida-san-pellegrino": "fassa-val-freida",
+    "moena-soraga-avisio": "fassa-moena-soraga-acqua",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
