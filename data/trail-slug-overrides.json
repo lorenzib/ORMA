@@ -683,6 +683,26 @@
       "name": "Lago di Braies – Grünwaldalm",
       "slug": "lago-di-braies-gruenwaldalm",
       "gloss": "the lake shore and the climb to the Grünwaldalm"
+    },
+    "fassa-borgo-di-tamion": {
+      "name": "Alla scoperta del borgo ladino di Tamion",
+      "slug": "borgo-di-tamion-soraga",
+      "gloss": "the climb from Soraga to the hamlet of Tamion"
+    },
+    "fassa-da-alba-a-penia": {
+      "name": "Da Alba a Penìa",
+      "slug": "alba-penia",
+      "gloss": "the village walk from Alba to Penìa"
+    },
+    "fassa-val-freida": {
+      "name": "Sulle tracce dei pastori all'imbocco della Val Freida",
+      "slug": "val-freida-san-pellegrino",
+      "gloss": "the meadow walk from Malga Boer into Val Freida"
+    },
+    "fassa-moena-soraga-acqua": {
+      "name": "Da Moena a Soraga, dove l'acqua ha segnato la storia",
+      "slug": "moena-soraga-avisio",
+      "gloss": "the riverside walk from Moena to Soraga"
     }
   }
 }

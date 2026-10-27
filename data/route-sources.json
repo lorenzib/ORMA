@@ -266,6 +266,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T21:00:00.000Z"
     },
+    "fassa-borgo-di-tamion": {
+      "url": "https://www.fassa.com/it/itinerari/alla-scoperta-del-borgo-ladino-di-tamion",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Alla scoperta del borgo ladino di Tamion",
+      "quote": "Distanza 4,7 km Durata 2:03 h Salita 339 m Discesa 339 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "fassa-da-alba-a-penia": {
+      "url": "https://www.fassa.com/it/itinerari/da-alba-a-penia-l-ultimo-borgo-prima-della-marmolada",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Da Alba a Penìa",
+      "quote": "Distanza 4,5 km Durata 1:10 h Salita 97 m Discesa 97 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
     "fassa-da-canazei-a-penia": {
       "url": "https://www.fassa.com/it/itinerari/da-canazei-a-penia",
       "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
@@ -281,6 +297,14 @@
       "quote": "Distanza 2 km Durata 0:35 h Salita 58 m Discesa 58 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-moena-soraga-acqua": {
+      "url": "https://www.fassa.com/it/itinerari/da-moena-a-soraga-dove-l-acqua-ha-segnato-la-storia",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Da Moena a Soraga, dove l'acqua ha segnato la storia",
+      "quote": "Distanza 4,8 km Durata 1:20 h Salita 139 m Discesa 139 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
     },
     "fassa-molin-de-pezol": {
       "url": "https://www.fassa.com/it/itinerari/ruote-del-tempo-al-molin-de-pezol-ancora-funzionante",
@@ -337,6 +361,14 @@
       "quote": "Distanza 3 km Durata 0:55 h Salita 6 m Discesa 46 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-val-freida": {
+      "url": "https://www.fassa.com/it/itinerari/sulle-tracce-dei-pastori-all-imbocco-della-val-freida",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Sulle tracce dei pastori all'imbocco della Val Freida",
+      "quote": "Distanza 2,8 km Durata 0:50 h Salita 116 m Discesa 116 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
     },
     "fiemme-cascatelle-di-ziano": {
       "url": "https://www.visitfiemme.it/it/activity/le-cascatelle-di-ziano-di-fiemme_9658",
