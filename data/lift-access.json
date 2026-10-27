@@ -66,6 +66,17 @@
           "notes": "The walk starts and ends on the Ciampedie plateau, which you reach by the closed cabins of the Catinaccio cable car from Vigo. The APT asks for a lead and a muzzle on lifts."
         }
       }
+    },
+    {
+      "id": "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Piz Sorega gondola (San Cassiano)",
+          "notes": "The walk starts at the top of the Piz Sorega gondola from San Cassiano; its cabins are closed. It ends on foot in Corvara."
+        }
+      }
     }
   ]
 }

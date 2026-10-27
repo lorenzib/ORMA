@@ -505,6 +505,7 @@
 <a href="trail.html?id=anton-schwingshackl-weg" style="display:block;color:inherit;">Anton Schwingshackl Weg</a>
 <a href="trail.html?id=archeopfad-brixen" style="display:block;color:inherit;">Archeopfad Brixen</a>
 <a href="trail.html?id=birmehlweg-sentiero-birmehl" style="display:block;color:inherit;">Birmehlweg - Sentiero Birmehl</a>
+<a href="trail.html?id=borest-pisciadu-waterfall" style="display:block;color:inherit;">Borest – Pisciadú waterfall</a>
 <a href="trail.html?id=bunkerweg" style="display:block;color:inherit;">Bunkerweg</a>
 <a href="trail.html?id=cadini-di-misurina-viewpoint" style="display:block;color:inherit;">Cadini di Misurina Viewpoint</a>
 <a href="trail.html?id=carl-toldt-weg" style="display:block;color:inherit;">Carl-Toldt-Weg</a>
@@ -569,6 +570,7 @@
 <a href="trail.html?id=scalata-alle-malghette" style="display:block;color:inherit;">La “scalata” alle Malghette</a>
 <a href="trail.html?id=la-guana-di-primiero" style="display:block;color:inherit;">La Guana di Primiero</a>
 <a href="trail.html?id=lases-pietra-del-futuro" style="display:block;color:inherit;">La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases</a>
+<a href="trail.html?id=la-val-prati-di-rit" style="display:block;color:inherit;">La Val – Prati di Rit</a>
 <a href="trail.html?id=via-della-frutta-antica" style="display:block;color:inherit;">La via della frutta antica</a>
 <a href="trail.html?id=la-villa-lech-da-sompunt" style="display:block;color:inherit;">La Villa – Lech da Sompunt</a>
 <a href="trail.html?id=lago-di-braies-seeweg-circuit" style="display:block;color:inherit;">Lago di Braies Seeweg circuit</a>
@@ -637,6 +639,7 @@
 <a href="trail.html?id=rundweg-schwarzegg-sentiero-circolare-dosso-nero" style="display:block;color:inherit;">Rundweg Schwarzegg - Sentiero circolare Dosso Nero</a>
 <a href="trail.html?id=rundweg-st-magdalena" style="display:block;color:inherit;">Rundweg St. Magdalena</a>
 <a href="trail.html?id=sagenweg-sentiero-delle-leggende" style="display:block;color:inherit;">Sagenweg - Sentiero delle leggende</a>
+<a href="trail.html?id=san-cassiano-pralongia-corvara" style="display:block;color:inherit;">San Cassiano – Pralongiá – Corvara</a>
 <a href="trail.html?id=san-leonardo-lisignago" style="display:block;color:inherit;">San Leonardo e le campagne di Lisignago</a>
 <a href="trail.html?id=malga-ces" style="display:block;color:inherit;">San Martino di Castrozza - Malga Ces</a>
 <a href="trail.html?id=malga-crel" style="display:block;color:inherit;">San Martino di Castrozza - Malga Crel</a>
@@ -977,7 +980,7 @@
     // the trail page itself, at the moment it's actually wanted.
     const PER_PAGE = 15;
     const allowedCountries = ['all', 'italy', 'france'];
-    const allowedRegions = ['all', 'dolomites', 'savoy'];
+    const allowedRegions = ['all', 'dolomites', 'savoy', 'lombardy'];
     const allowedRisks = ['all', 'low-risk', 'moderate', 'caution'];
     const allowedDistances = ['all', '3', '5', '6', '10', '20', 'u5', '5to10', '10p'];
     let page = 1;
@@ -1031,7 +1034,7 @@
       countryValue = allowedCountries.includes(canonical.country) ? canonical.country : 'all';
       regionValue = allowedRegions.includes(canonical.region) ? canonical.region : 'all';
       valleyValue = canonical.valley || 'all';
-      if(regionValue === 'dolomites') countryValue = 'italy';
+      if(regionValue === 'dolomites' || regionValue === 'lombardy') countryValue = 'italy';
       if(regionValue === 'savoy') countryValue = 'france';
       risk.value = allowedRisks.includes(canonical.risk) ? canonical.risk : 'all';
       distance.value = allowedDistances.includes(canonical.distance) ? canonical.distance : 'all';
@@ -1222,18 +1225,35 @@
       if(mapBoundsFilter && window.DoloPawsBrowseMap){
         pool = pool.filter(trail => window.DoloPawsBrowseMap.withinBounds(trail, mapBoundsFilter));
       }
-      return pool;
+      return rankByMatch(pool);
+    }
+
+    // Every card says how well the trail suits the dog the list is scored
+    // for, so the list leads with the best of them. The wizard's "See all
+    // matches" lands here, and a catalogue-order list put "Not recommended"
+    // trails above its 100% match. The verdict ranks first because the engine
+    // can declare one the score alone does not carry; ties keep catalogue order.
+    const VERDICT_RANK = { 'strong-option':0, 'possible-with-cautions':1, 'not-recommended':2 };
+    function rankByMatch(pool){
+      return pool
+        .map((trail, index) => {
+          const verdict = matchVerdict(trail);
+          return { trail, index, rank: VERDICT_RANK[verdict.category] ?? 2, score: verdict.score || 0 };
+        })
+        .sort((a, b) => (a.rank - b.rank) || (b.score - a.score) || (a.index - b.index))
+        .map(item => item.trail);
     }
 
     const COUNTRIES = [
       { value:'all', label:bt('browse.geo.allCountries', 'All countries'), match:() => true },
-      { value:'italy', label:bt('browse.geo.italy', 'Italy'), match:t => t.region === 'dolomites' },
+      { value:'italy', label:bt('browse.geo.italy', 'Italy'), match:t => t.region !== 'savoy' },
       { value:'france', label:bt('browse.geo.france', 'France'), match:t => t.region === 'savoy' },
     ];
     const REGIONS = [
       { value: 'all', label: bt('browse.geo.allRegions', 'All regions'), country:'all', match: () => true },
       { value: 'dolomites', label: bt('browse.geo.dolomites', 'Dolomites'), country:'italy', match: t => t.region === 'dolomites' },
       { value: 'savoy', label: bt('browse.geo.savoy', 'Savoy'), country:'france', match: t => t.region === 'savoy' },
+      { value: 'lombardy', label: bt('browse.geo.lombardy', 'Lombardy'), country:'italy', match: t => t.region === 'lombardy' },
     ];
     function renderBreadcrumb(){
       if(!breadcrumb) return;
@@ -1272,7 +1292,7 @@
       regionSelect.replaceChildren(...regionOptions().map(item => {
         const count = item.value === 'all'
           ? trails.filter(t => countryValue === 'all'
-            || (countryValue === 'italy' ? t.region === 'dolomites' : t.region === 'savoy')).length
+            || (countryValue === 'italy' ? t.region !== 'savoy' : t.region === 'savoy')).length
           : trails.filter(item.match).length;
         return option(item, count);
       }));
@@ -1283,7 +1303,7 @@
     function valleyEntries(){
       const scoped = trails.filter(trail => {
         if(regionValue !== 'all') return trail.region === regionValue;
-        if(countryValue === 'italy') return trail.region === 'dolomites';
+        if(countryValue === 'italy') return trail.region !== 'savoy';
         if(countryValue === 'france') return trail.region === 'savoy';
         return true;
       });

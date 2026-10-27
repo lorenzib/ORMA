@@ -288,6 +288,19 @@ describe('shared navigation hardening', () => {
       .toBe('/?wizard=1');
   });
 
+  test('a guest adding a dog from a trail comes back to that trail, without the login it abandoned', () => {
+    window.history.replaceState(null, '', '/trail.html?id=lago-di-carezza-loop&action=export-gpx#map');
+    try {
+      localStorage.clear();
+      document.body.innerHTML = '<nav class="topnav"><a class="brand" href="/">ORMA</a><div class="links"></div></nav>';
+      window.eval(mobileNav);
+      expect(document.querySelector('.dog-profile-banner a').getAttribute('href'))
+        .toBe('/?wizard=1&next=' + encodeURIComponent('trail.html?id=lago-di-carezza-loop#map'));
+    } finally {
+      window.history.replaceState(null, '', '/');
+    }
+  });
+
   test('every standard public page with the shared header loads this banner bundle', () => {
     const directories = [__dirname, path.join(__dirname, 'guides'), path.join(__dirname, 'trails')];
     const pages = directories.flatMap(directory => fs.readdirSync(directory)

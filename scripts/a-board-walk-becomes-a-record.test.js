@@ -83,6 +83,13 @@ describe('the guide is read from the page anyone can open', () => {
     expect(guide.author).toBe('Azienda per il Turismo della Val di Fassa');
   });
 
+  test('or from a GPX the operator exports, whichever way round it writes lat and lon', () => {
+    const gpx = `<gpx creator="INVA x RAVdA"><trk><trkseg>${GUIDE.map(([lat, lng], i) => (i % 2
+      ? `<trkpt lon="${lng}" lat="${lat}"><ele>1500</ele></trkpt>`
+      : `<trkpt lat="${lat}" lon="${lng}"></trkpt>`)).join('')}</trkseg></trk></gpx>`;
+    expect(parseGuide(gpx).line).toEqual(GUIDE);
+  });
+
   test('a page with no published line has no guide', () => {
     expect(parseGuide('<html><script type="application/ld+json">{"@type":"Place"}</script></html>')).toBeNull();
     expect(parseGuide('not a page')).toBeNull();
@@ -207,6 +214,18 @@ describe('it adds one walk and nothing else', () => {
     // OSM node of the drawn line.
     const nodes = new Set(grid().elements.filter(e => e.type === 'node').map(e => `${e.lat.toFixed(6)},${e.lon.toFixed(6)}`));
     for (const [lng, lat] of feature.geometry.coordinates) expect(nodes.has(`${lat.toFixed(6)},${lng.toFixed(6)}`)).toBe(true);
+  });
+
+  test('--guidefile reads the guide from a saved GPX and still stores the public page', async () => {
+    const file = emptyRoutes();
+    const gpx = path.join(path.dirname(file), 'guide.gpx');
+    fs.writeFileSync(gpx, `<gpx><trk><trkseg>${GUIDE.map(([lat, lng]) => `<trkpt lat="${lat}" lon="${lng}"/>`).join('')}</trkseg></trk></gpx>`);
+    const result = await main({
+      argv: [...ARGS, '--km', String(lengthKm), '--guidefile', gpx], routesPath: file,
+      ...fetchers(), fetchText: async () => { throw new Error('the guide page must not be fetched'); },
+    });
+    expect(result.status).toBe('dry-run');
+    expect(result.feature.properties.guide_url).toBe('https://www.outdooractive.com/it/r/1');
   });
 
   test('a walk already in the file is left alone', async () => {
