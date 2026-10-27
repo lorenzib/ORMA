@@ -48,8 +48,12 @@ function mergedWithPrevious(next,previous,at){
     // municipality list that is empty was a broken lookup, not an answer.
     const usable=previous[step]&&previous[step].status!=='lookup-failed'
       &&!(step==='communes'&&!(previous[step].communes||[]).length);
-    if(next[step]?.status==='lookup-failed'&&usable){
-      merged[step]={...previous[step],staleSince:previous[step].staleSince||at,lastError:next[step].error};
+    // An EEA whose control site did not come back is an outage too (it was down
+    // for maintenance on 27 October 2026), not a line that touches no site.
+    const failed=next[step]?.status==='lookup-failed'||next[step]?.status==='service-unreliable';
+    if(failed&&usable&&previous[step].status!=='service-unreliable'){
+      merged[step]={...previous[step],staleSince:previous[step].staleSince||at,
+        lastError:next[step].error||'control site did not come back'};
     }
   }
   return merged;

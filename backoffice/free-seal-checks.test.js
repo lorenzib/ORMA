@@ -139,6 +139,10 @@ describe('a run of the checks',()=>{
     expect(mergedWithPrevious(failed,good,'T').communes).toMatchObject({status:'checked',staleSince:'T',lastError:'502'});
     const empty={communes:{status:'checked',communes:[]}};
     expect(mergedWithPrevious(failed,empty,'T').communes.status).toBe('lookup-failed');
+    const measured={protectedAreas:{status:'checked',sites:[{code:'IT3110049'}]}};
+    const outage={protectedAreas:{status:'service-unreliable',sites:[]}};
+    expect(mergedWithPrevious(outage,measured,'T').protectedAreas)
+      .toMatchObject({status:'checked',sites:[{code:'IT3110049'}],staleSince:'T'});
   });
 });
 
