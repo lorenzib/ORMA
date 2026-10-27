@@ -1714,6 +1714,62 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
+    "trecime-bagni-di-san-candido": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-a-tema-bagni-di-san-candido_630",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione a tema: Bagni di San Candido",
+      "quote": "Lunghezza 3,3 km · Durata 1:00 · Salita 145 m · Discesa 57 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-circolare-maistatt": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-circolare-maistatt-_50004",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione circolare Maistatt",
+      "quote": "Lunghezza 4,8 km · Durata 1:21 · Salita 133 m · Discesa 133 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-dobbiaco-lago-di-dobbiaco": {
+      "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-dobbiaco-lago-di-dobbiaco-percorso-naturalistico-attorno-al-lago-dobbiaco_553",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Sentiero tematico: Dobbiaco – Lago di Dobbiaco – percorso naturalistico attorno al lago - Dobbiaco",
+      "quote": "Lunghezza 7,9 km · Durata 2:30 · Salita 61 m · Discesa 61 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-lago-di-braies-malga-foresta": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-lago-di-braies-malga-foresta-_651",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione estiva Lago di Braies - Malga Foresta",
+      "quote": "Lunghezza 2,1 km · Durata 1:00 · Salita 118 m · Discesa 18 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-san-candido-costa-dei-nosellari-dobbiaco": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-san-candido-costa-dei-nosellari-dobbiaco_628",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione: San Candido - Costa dei Nosellari - Dobbiaco",
+      "quote": "Lunghezza 4,8 km · Durata 1:50 · Salita 161 m · Discesa 109 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-sentiero-gustav-mahler": {
+      "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-sentiero-gustav-mahler_50104",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Sentiero tematico: Sentiero Gustav Mahler",
+      "quote": "Lunghezza 4,7 km · Durata 2:00 · Salita 72 m · Discesa 72 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-villabassa-mooskirche": {
+      "url": "https://www.dreizinnen.com/it/activity/passeggiata-per-famiglie-villabassa-giro-del-bosco-mooskirche-villabassa_606",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Passeggiata per famiglie: Villabassa - giro del bosco \"Mooskirche\" - Villabassa",
+      "quote": "Lunghezza 2,5 km · Durata 0:38 · Salita 21 m · Discesa 21 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
     "valgardena-escursione-al-resciesa": {
       "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-resciesa/16420468/",
       "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",

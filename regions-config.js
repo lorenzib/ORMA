@@ -22,6 +22,7 @@
     ['San Candido / Innichen', 46.7327, 12.2800, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
     ['Sesto / Sexten', 46.7025, 12.3500, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
     ['Braies / Prags', 46.7207, 12.1350, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
+    ['Villabassa / Niederdorf', 46.7378, 12.1724, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
     ['Auronzo di Cadore', 46.5527, 12.4419, 'Alta Pusteria – Tre Cime', 'dolomites', 'belluno'],
     ['Alpe di Siusi / Seiser Alm', 46.5402, 11.6181, 'Alpe di Siusi – Sciliar', 'dolomites', 'alto-adige'],
     ['Castelrotto / Kastelruth', 46.5670, 11.5599, 'Alpe di Siusi – Sciliar', 'dolomites', 'alto-adige'],
