@@ -46095,6 +46095,345 @@
         { km: 0.7, lat: 46.55945, lng: 11.72844, osmId: 'node/6498563669', name: 'Wood Fired Pizza' }
       ],
       desc: 'A short loop round Santa Cristina along the Cisles stream to the Tervela waterfall, back through the forest and up the Triech path to the church. The board lists 3.9 km and 151 m of ascent.'
+    },
+    'trecime-innichen-waldkapelle-sexten': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 2).
+      // The Tre Cime Dolomites tourist board’s walk “Cimitero dei soldati "Burg" – Cappella del bosco – Sesto”, drawn on 27 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Innichen (own regulation) and Sexten (no regulation, national rule).
+      // No Natura 2000 site, park, biotope or natural monument on the line; two biotopes lie 117 m and 139 m away.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Innichen – Burg – Waldkapelle – Sexten',
+      distance: 8,
+      elevation: 400,
+      hours: '3',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Innichen up past the soldiers’ cemetery on the Burg hill, along the forest road on path 4 to the Waldkapelle, and down path 4D past the Way of the Cross and the Hösler and Ladstätter farms to Sexten. Back by bus.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Waldkapelle, the wooden forest chapel on the walk, in June (Steinsplitter, CC BY-SA 3.0); the chapel stands 5 m from the line.',
+        route: 'Official one-way walk 8 km from Innichen to Sexten, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 27 OSM ways along the GPX on the board’s page, 8.1 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 4 and 4D: from Innichen briefly up the Burg hill to the soldiers’ cemetery, then on the Schlossweg forest road on path 4. The meditation path turns right and after about 100 m reaches the Waldkapelle, a First World War chapel hidden in the forest. From the chapel path 4D runs gently down past the stations of the Way of the Cross and the Hösler and Ladstätter farms into Sexten. In summer 2026 the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.2, at km 6 and at km 8 (OSM nodes 9855080120, 9855081117, 8013586286, 2414242404).',
+        elevation: 'Official 8 km, 400 m up and 257 m down, 3 h, highest point 1,538 m, lowest 1,175 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Cimitero dei soldati "Burg" – Cappella del bosco – Sesto (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Innichen, Haltung und Führung von Hunden (council resolution no. 4 of 3 March 2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields in the growing season',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line; two biotopes are 117 m and 139 m away and not entered',
+          'OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 60,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Summer 2026: the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built: keep your dog close on the forest road', 'Forest roads shared with forestry vehicles', 'Farm lanes past the Hösler and Ladstätter farms: watch for tractors'],
+      terrainType: 'Forest roads, forest paths and farm lanes',
+      shadeDescription: 'Mostly shaded: the middle of the walk is in spruce forest; the farm lanes into Sexten are open.',
+      terrainDescription: 'A walk at 1,175–1,540 m from Innichen over the wooded hill between the Drau valley and the Sexten valley, past a hidden wartime forest chapel and old farms, down into Sexten.',
+      waterDescription: 'Drinking fountains at the start and at km 0.2 in Innichen, at km 6 and at the end in Sexten; places to eat in both villages.',
+      dogNotes: 'Innichen requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs off farmed meadows in the growing season. Sexten publishes no dog rule, so the national rule applies there: a lead of at most 1.5 m and a muzzle carried.',
+      tips: 'Start in Innichen: 8 km one way, about 400 m of climbing, three hours, then the bus back from Sexten. Keep your dog on a lead of at most 1.5 m and carry a muzzle. In summer 2026 expect construction lorries on path 4: keep your dog close.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Cimitero dei soldati "Burg" – Cappella del bosco – Sesto', url: 'https://www.dreizinnen.com/it/activity/escursione-cimitero-dei-soldati-burg-capella-del-bosco-sesto_560' },
+        { label: 'Gemeinde Innichen, Haltung und Führung von Hunden', url: 'https://www.gemeinde.innichen.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden_1' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.730854, lng: 12.284351, label: 'Innichen, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.731864, lng: 12.285081, osmId: 'node/9855080120', label: 'Drinking fountain at the start' },
+        { km: 0.2, lat: 46.729831, lng: 12.287253, osmId: 'node/9855081117', label: 'Drinking fountain' },
+        { km: 6, lat: 46.712745, lng: 12.343032, osmId: 'node/8013586286', label: 'Drinking fountain' },
+        { km: 8, lat: 46.701956, lng: 12.350441, osmId: 'node/2414242404', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.73214, lng: 12.2823, osmId: 'node/1969209945', name: 'Café Silvia' },
+        { km: 0, lat: 46.73136, lng: 12.28173, osmId: 'node/2333490989', name: 'Rose' },
+        { km: 0, lat: 46.73189, lng: 12.28278, osmId: 'node/2333490998', name: 'Senfter Bistro' },
+        { km: 0, lat: 46.73202, lng: 12.28354, osmId: 'node/3157054117', name: 'Molzeit' },
+        { km: 7.6, lat: 46.70108, lng: 12.35626, osmId: 'node/1885745737', name: 'Gästehaus Gruber' },
+        { km: 7.9, lat: 46.70191, lng: 12.35093, osmId: 'node/7166368497', name: 'Brugga' },
+        { km: 7.9, lat: 46.70096, lng: 12.3502, osmId: 'node/842257296', name: 'Erich' },
+        { km: 7.9, lat: 46.70122, lng: 12.35054, osmId: 'node/11540403591', name: 'Mühle' },
+        { km: 7.9, lat: 46.70221, lng: 12.35, osmId: 'node/13087662884', name: 'Hotel Mondschein' }
+      ],
+      desc: 'A walk from Innichen through the forest past the hidden Waldkapelle and down by old farms to Sexten. The board lists 8 km and 400 m of ascent, one way.'
+    },
+    'trecime-bellavista-montecosta': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 2).
+      // The Tre Cime Dolomites tourist board’s walk “Escursione estiva: Bellavista Montecosta”, drawn on 25 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Niederdorf (own regulation) and Welsberg-Taisten (mayor’s order).
+      // No Natura 2000 site, park, biotope or natural monument on the line; a natural monument lies 48 m away.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Niederdorf – Montecosta – Bellavista',
+      distance: 5.7,
+      elevation: 360,
+      hours: '1.9',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Holy Trinity hospital church in Niederdorf past the parish church, up the Montecosta road and path 45 to the Thaler farm, nearly level west to the hamlet of Kleinsinner and on along the road to the Bellavista viewpoint at 1,460 m. Come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The road out of Niederdorf past a small chapel towards the Montecosta, on the walk, in August (Codas, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official one-way walk 5.7 km from the Holy Trinity hospital church, Niederdorf, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 25 OSM ways along the GPX on the board’s page, 5.7 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 45: from the Holy Trinity hospital church past the parish church and up the Montecosta road to the bend at the Brandhäusl; there left on path 45, a quiet shaded path, to the Thaler farm; then almost level west to the hamlet of Kleinsinner, and along the road to the Bellavista viewpoint (1,460 m). Back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.1, at km 0.3 and at km 4.9 (OSM nodes 7597331186, 279716575, 13134734620, 7597331187, 13134731994, 13134757751, 279714554, 13092856721).',
+        elevation: 'Official 5.7 km, 360 m up and 90 m down, 1 h 52 min, highest point 1,490 m, lowest 1,142 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Escursione estiva: Bellavista Montecosta (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Niederdorf, Verordnung über die Haltung und das Führen von Hunden (resolution 3/R/10 of 21 January 2010), Art. 5 and 9: a lead of at most 1.5 m on all public ground, a muzzle carried, no dogs on farmed land from 1 April to 31 October and none in the spa park',
+          'Gemeinde Welsberg-Taisten, mayor’s order no. 03/2023: dogs on a lead in public places and publicly accessible areas, and bags carried; it sets no lead length or muzzle rule, so the national rule (Ministry of Health ordinance of 6 August 2013, extended to September 2027) adds a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line; a natural monument is 48 m away and not entered',
+          'OpenStreetMap ways along the board’s line (25 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 40,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The Montecosta road and the last stretch to Bellavista are paved roads with some traffic', 'Farmed meadows either side: Niederdorf bans dogs from farmed land from April to October', 'A steady climb of about 360 m'],
+      terrainType: 'Paved roads and forest paths',
+      shadeDescription: 'Partly shaded: path 45 to the Thaler farm runs through forest; the road stretches are open.',
+      terrainDescription: 'A climb at 1,140–1,490 m from Niederdorf up the sunny Montecosta slope to the Bellavista viewpoint above the Pustertal, past old farms and the hamlet of Kleinsinner.',
+      waterDescription: 'Several drinking fountains in Niederdorf in the first 300 m and one at km 4.9; cafés in the village.',
+      dogNotes: 'Niederdorf requires a lead of at most 1.5 m on all public ground and a muzzle carried; dogs are not allowed on farmed land from 1 April to 31 October, even where no sign says so. The last stretch crosses into Welsberg-Taisten, where a mayor’s order also requires a lead on public ground.',
+      tips: 'Start at the Holy Trinity hospital church in Niederdorf: 5.7 km and about 360 m of climbing one way, under two hours, then the same way back. Keep your dog on a lead of at most 1.5 m, carry a muzzle and keep off the meadows. Watch for cars on the Montecosta road.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Escursione estiva: Bellavista Montecosta', url: 'https://www.dreizinnen.com/it/activity/escursione-estiva-bellavista-montecosta_640' },
+        { label: 'Gemeinde Niederdorf, Gemeindeverordnung über die Haltung und das Führen von Hunden', url: 'https://www.gemeinde.niederdorf.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_das_Fuehren_von_Hunden' },
+        { label: 'Gemeinde Welsberg-Taisten, mayor’s order no. 03/2023 on dog owners', url: 'https://www.gemeinde.welsberg-taisten.bz.it/de/Neuigkeiten/News/Anordnung_des_Buergermeisters_fuer_das_Verhalten_von_Hundebesitzern' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.73818, lng: 12.169029, label: 'Holy Trinity hospital church, Niederdorf, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.7392099, lng: 12.1693947, osmId: 'node/7597331186', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.7378158, lng: 12.1707811, osmId: 'node/279716575', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.7393608, lng: 12.1701046, osmId: 'node/13134734620', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.739645, lng: 12.1692, osmId: 'node/7597331187', label: 'Drinking fountain at the start' },
+        { km: 0.1, lat: 46.739905, lng: 12.1692956, osmId: 'node/13134731994', label: 'Drinking fountain' },
+        { km: 0.1, lat: 46.7398167, lng: 12.1705283, osmId: 'node/13134757751', label: 'Drinking fountain' },
+        { km: 0.3, lat: 46.7387429, lng: 12.1672008, osmId: 'node/279714554', label: 'Drinking fountain' },
+        { km: 4.9, lat: 46.7519322, lng: 12.1316709, osmId: 'node/13092856721', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.739, lng: 12.16835, osmId: 'node/12232848024', name: 'Mexico City' },
+        { km: 0, lat: 46.73819, lng: 12.16752, osmId: 'node/12521029437', name: 'Apfel Caffè' },
+        { km: 0, lat: 46.73739, lng: 12.16918, osmId: 'way/217502350', name: 'Wunderbar' },
+        { km: 0, lat: 46.73751, lng: 12.17085, osmId: 'node/279716579', name: 'Gartencafe' }
+      ],
+      desc: 'A climb from Niederdorf up the Montecosta past old farms to the Bellavista viewpoint above the Pustertal. The board lists 5.7 km and 360 m of ascent, one way.'
+    },
+    'trecime-lago-di-braies-malga-rossalm': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 2).
+      // The Tre Cime Dolomites tourist board’s walk “Lago di Braies – Malga Rossalm”, drawn on 23 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Prags (own regulation, national rule for lead length and muzzle).
+      // 95% of the line is in the Fanes-Sennes-Prags nature park (IT3110049, dogs on a lead); a natural monument lies 9 m away and is not entered.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Pragser Wildsee – Rossalm, Prags',
+      distance: 6.6,
+      elevation: 846,
+      hours: '2.9',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Pragser Wildsee along its west shore to the south-east end of the lake, up path 1 for about 2.2 km and on path 4 for about 3 km to the Rossalm hut. Come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Rossalm hut, where the walk ends, in September (Falk2, CC BY-SA 4.0); the photo carries no geotag; the hut stands at the end of the line.',
+        route: 'Official one-way walk 6.6 km from the Pragser Wildsee, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 23 OSM ways along the GPX on the board’s page, 6.7 km, with 99% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 1 and 4: along the west shore of the Pragser Wildsee to its south-east end, right at the junction on path 1 and up for about 2.2 km to the next junction, then on path 4 for about 3 km to the Rossalm. Back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at km 6.5 (OSM nodes 11037278705).',
+        elevation: 'Official 6.6 km, 846 m up and 158 m down, 2 h 56 min, highest point 2,285 m, lowest 1,492 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Lago di Braies – Malga Rossalm (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Prags, Verordnung über die Haltung von Hunden (council resolution 24/R/06 of 17 October 2006), Art. 2: dogs on a lead in public places; it sets no lead length and no muzzle rule outdoors, so the national rule (Ministry of Health ordinance of 6 August 2013, extended to September 2027) adds a lead of at most 1.5 m and a muzzle carried',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); the Fanes-Sennes-Prags protection decree (no. 72/V/LS of 4 March 1980) sets no reserve zone and no other rule on dogs',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): 95% of the line is in the Fanes-Sennes-Prags nature park and Natura 2000 site IT3110049; a natural monument is 9 m away and not entered',
+          'OpenStreetMap ways along the board’s line (23 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 35,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A long, steep climb of almost 850 m: plan rests and water for your dog', 'The lake shore is very crowded in summer: keep your dog close', 'Cows graze around the Rossalm'],
+      terrainType: 'Lakeside path, mountain paths and gravel track',
+      shadeDescription: 'Partly shaded: the lower part of the climb is in forest; the upper slopes to the Rossalm are open.',
+      terrainDescription: 'A long climb at 1,490–2,285 m from the Pragser Wildsee up the side valley below the Seekofel to the high pastures of the Rossalm, with views back over the lake and across to the Hohe Gaisl.',
+      waterDescription: 'No fountain is mapped until the Rossalm at km 6.5: carry water for your dog. The hut serves food in summer.',
+      dogNotes: 'Prags requires dogs on a lead in public places; the national rule sets the lead at no more than 1.5 m and asks you to carry a muzzle. Almost the whole walk is in the Fanes-Sennes-Prags nature park, where dogs must be on a lead at all times. Cows graze at the Rossalm.',
+      tips: 'Start at the Pragser Wildsee car park: 6.6 km and almost 850 m of climbing one way, about three hours to the Rossalm, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Carry water: none is mapped before the hut. Go early to avoid the crowds at the lake.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Lago di Braies – Malga Rossalm', url: 'https://www.dreizinnen.com/it/activity/escursione-estiva-lago-di-braies-malga-rossalm-_473' },
+        { label: 'Gemeinde Prags, Verordnung über die Haltung von Hunden', url: 'https://www.gemeinde.prags.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.69887, lng: 12.085465, label: 'Pragser Wildsee car park, the board’s start' },
+      waterSources: [
+        { km: 6.5, lat: 46.6598549, lng: 12.1190259, osmId: 'node/11037278705', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 6.4, lat: 46.65979, lng: 12.11891, osmId: 'way/843654868', name: 'Malga Rossalm' }
+      ],
+      desc: 'A long climb from the Pragser Wildsee on paths 1 and 4 to the Rossalm pastures. The board lists 6.6 km and 846 m of ascent, one way.'
+    },
+    'trecime-carbonin-rifugio-vallandro': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 2).
+      // The Tre Cime Dolomites tourist board’s walk “Carbonin – Rifugio Vallandro”, drawn on 18 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Toblach (own regulation) and Prags (own regulation, national rule for lead length and muzzle).
+      // The whole line is in the Fanes-Sennes-Prags nature park (IT3110049, dogs on a lead); two natural monuments (moraines, a fossil reef slope) lie 8 m and 58 m away and are not entered.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Carbonin / Schluderbach – Dürrensteinhütte, Toblach and Prags',
+      distance: 6,
+      elevation: 579,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Schluderbach in the Höhlensteintal up the forest road on path 37 through the forest to the Dürrensteinhütte on the Plätzwiese. Come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Dürrensteinhütte on the Plätzwiese, where the walk ends, in September (Falk2, CC BY-SA 4.0); the photo carries no geotag; the hut stands on the line.',
+        route: 'Official one-way walk 6 km from Schluderbach, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 18 OSM ways along the GPX on the board’s page, 6 km, with 99% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 37: from Schluderbach the forest road climbs gently through the forest to the Dürrensteinhütte (Rifugio Vallandro) on the Plätzwiese. Shortcuts cut the bends but are steeper. The walk can be joined to a walk on the Plätzwiese.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and at km 3.7 (OSM nodes 814769708, 7783062605).',
+        elevation: 'Official 6 km, 579 m up and 66 m down, 2 h, highest point 2,031 m, lowest 1,449 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Carbonin – Rifugio Vallandro (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden (January 2010 text), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields',
+          'Gemeinde Prags, Verordnung über die Haltung von Hunden (council resolution 24/R/06 of 17 October 2006), Art. 2: dogs on a lead in public places; it sets no lead length and no muzzle rule outdoors, so the national rule (Ministry of Health ordinance of 6 August 2013, extended to September 2027) adds a lead of at most 1.5 m and a muzzle carried',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); the Fanes-Sennes-Prags protection decree (no. 72/V/LS of 4 March 1980) sets no reserve zone and no other rule on dogs',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): the whole line is in the Fanes-Sennes-Prags nature park and Natura 2000 site IT3110049; two natural monuments are 8 m and 58 m away and not entered',
+          'OpenStreetMap ways along the board’s line (18 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steady climb of almost 600 m on a forest road', 'The shortcuts are steeper and rougher than the road', 'Cows graze on the Plätzwiese'],
+      terrainType: 'Forest road with steeper shortcuts',
+      shadeDescription: 'Over half shaded: the forest road climbs through spruce and larch; the Plätzwiese at the top is open.',
+      terrainDescription: 'A climb at 1,450–2,030 m from Schluderbach in the Höhlensteintal through the forest to the Plätzwiese, a high plateau with views of the Hohe Gaisl and Monte Cristallo, and the Dürrensteinhütte beside an old Austrian fort.',
+      waterDescription: 'Drinking fountains at the start and at km 3.7; the Dürrensteinhütte at km 5.1 serves food in summer.',
+      dogNotes: 'Toblach requires a lead of at most 1.5 m on all public ground and a muzzle carried; Prags requires a lead in public places, and the national rule sets it at no more than 1.5 m with a muzzle carried. The whole walk is in the Fanes-Sennes-Prags nature park, where dogs must be on a lead at all times.',
+      tips: 'Start at Schluderbach in the Höhlensteintal: 6 km and almost 600 m of climbing one way, two hours to the Dürrensteinhütte, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Stay on the forest road rather than the steeper shortcuts.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Carbonin – Rifugio Vallandro', url: 'https://www.dreizinnen.com/it/activity/escursione-estiva-carbonin-rifugio-vallandro_832' },
+        { label: 'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.toblach.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Gemeinde Prags, Verordnung über die Haltung von Hunden', url: 'https://www.gemeinde.prags.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.621405, lng: 12.211001, label: 'Schluderbach (Carbonin), the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.621635, lng: 12.211071, osmId: 'node/814769708', label: 'Drinking fountain at the start' },
+        { km: 3.7, lat: 46.631826, lng: 12.206245, osmId: 'node/7783062605', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 5.1, lat: 46.64189, lng: 12.19583, osmId: 'node/14067022302', name: 'Dürrensteinhütte - Rifugio Vallandro' },
+        { km: 5.1, lat: 46.64194, lng: 12.19588, osmId: 'way/103700847', name: 'Dürrensteinhütte - Rifugio di Vallandro' }
+      ],
+      desc: 'A climb from Schluderbach up the forest road on path 37 to the Dürrensteinhütte on the Plätzwiese. The board lists 6 km and 579 m of ascent, one way.'
+    },
+    'trecime-monte-elmo-versciaco': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 2).
+      // The Tre Cime Dolomites tourist board’s walk “Sentiero nel bosco fino a Versciaco”, drawn on 35 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sexten (no regulation, national rule) and Innichen (own regulation).
+      // No Natura 2000 site, park, biotope or natural monument on the line; a biotope lies 17 m away and is not entered.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Helm – Jägerhütte – Vierschach, Sexten and Innichen',
+      distance: 7.9,
+      elevation: 61,
+      hours: '2.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the top of the Vierschach – Helm gondola down path 4, the fairy-tale path, past the Jägerhütte, then right on path 4B down to Vierschach.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Sexten Dolomites seen from the Helm, where the walk starts, in October (Ximonic, CC BY-SA 4.0), 13 m from the line.',
+        route: 'Official one-way walk 7.9 km from the Helm gondola top station, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 35 OSM ways along the GPX on the board’s page, 7.6 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 4 and 4B: up from Vierschach on the Vierschach – Helm gondola to the Helm restaurant, then down path 4, the fairy-tale path, past the Jägerhütte; turn right on path 4B and down through the forest to Vierschach. The gondola has closed cabins. In summer 2026 the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and at km 7.2 (OSM nodes 10963532111, 9031501812, 9031501811).',
+        elevation: 'Official 7.9 km, 61 m up and 911 m down, 2 h 45 min, highest point 2,044 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Sentiero nel bosco fino a Versciaco (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde Innichen, Haltung und Führung von Hunden (council resolution no. 4 of 3 March 2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields in the growing season',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line; a biotope is 17 m away and not entered',
+          'OpenStreetMap ways along the board’s line (35 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A long descent of over 900 m: hard on joints and paws, take it slowly', 'Summer 2026: the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built: keep your dog close on the forest road', 'Forest roads shared with forestry vehicles'],
+      terrainType: 'Gravel forest roads and forest paths',
+      shadeDescription: 'Over half shaded: below the open Helm summit area the paths run through larch and spruce forest.',
+      terrainDescription: 'A long descent at 1,130–2,045 m from the Helm, with views of the Sexten Dolomites, through the forest past the Jägerhütte down to Vierschach in the Pustertal.',
+      waterDescription: 'A drinking fountain at the start by the Helm restaurant and two near the end at km 7.2; the Jägerhütte at km 0.9 and places in Vierschach serve food.',
+      dogNotes: 'The walk starts in Sexten, which publishes no dog rule, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Innichen, where it ends, requires the same and keeps dogs off farmed meadows in the growing season. The Vierschach – Helm gondola has closed cabins: keep your dog on a lead in the cabin and carry a muzzle.',
+      tips: 'Take the Vierschach – Helm gondola up (closed cabins), then walk down: 7.9 km and over 900 m of descent, under three hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Check that the gondola is running before you go, and in summer 2026 expect construction lorries on path 4.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Sentiero nel bosco fino a Versciaco', url: 'https://www.dreizinnen.com/it/activity/sentiero-nel-bosco-fino-a-versciaco_68483' },
+        { label: 'Gemeinde Innichen, Haltung und Führung von Hunden', url: 'https://www.gemeinde.innichen.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden_1' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.716269, lng: 12.361782, label: 'Helm gondola top station, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.715956, lng: 12.362822, osmId: 'node/10963532111', label: 'Drinking fountain at the start' },
+        { km: 7.2, lat: 46.7301297, lng: 12.3261067, osmId: 'node/9031501812', label: 'Drinking fountain' },
+        { km: 7.2, lat: 46.7305689, lng: 12.326805, osmId: 'node/9031501811', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.71597, lng: 12.36226, osmId: 'node/684624592', name: 'Helmrestaurant - Ristorante Monte Elmo' },
+        { km: 0.9, lat: 46.71504, lng: 12.35351, osmId: 'node/2965982642', name: 'Jägerhütte - Baita del Cacciatore' },
+        { km: 7.1, lat: 46.73105, lng: 12.32855, osmId: 'node/12615820007', name: 'Max Alm' },
+        { km: 7.1, lat: 46.73112, lng: 12.32963, osmId: 'way/238512369', name: 'Gröberhütte' },
+        { km: 7.1, lat: 46.73143, lng: 12.32825, osmId: 'node/12441945904', name: 'Punka Ristorante' }
+      ],
+      desc: 'A long walk down from the Helm, reached by gondola, through the forest past the Jägerhütte to Vierschach. The board lists 7.9 km and 911 m of descent.'
     }
   };
 

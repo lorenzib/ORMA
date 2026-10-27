@@ -4395,6 +4395,40 @@
       }
     },
     {
+      "id": "trecime-bellavista-montecosta",
+      "approvedReviewId": "commons-trecime-bellavista-montecosta-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-bellavista-montecosta-niederdorf.jpg",
+        "heroImage": "images/trails/trecime-bellavista-montecosta-niederdorf.jpg",
+        "imageAlt": "A quiet street at the edge of Niederdorf with a small white chapel on the left, the parish church tower beyond and forested hills with a green meadow under a summer sky",
+        "imageCredit": "The road out of Niederdorf towards the Montecosta in August",
+        "imageCreditText": "The road out of Niederdorf towards the Montecosta in August by Codas",
+        "imageCreator": "Codas",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Scorcio_di_Villabassa.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-carbonin-rifugio-vallandro",
+      "approvedReviewId": "commons-trecime-carbonin-rifugio-vallandro-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-carbonin-rifugio-vallandro-hut.jpg",
+        "heroImage": "images/trails/trecime-carbonin-rifugio-vallandro-hut.jpg",
+        "imageAlt": "The timber-clad Dürrensteinhütte with red geraniums on its balconies, a wide gravel forecourt in front and rocks and spruces behind under a deep blue sky",
+        "imageCredit": "The Dürrensteinhütte on the Plätzwiese, where the walk ends, in September",
+        "imageCreditText": "The Dürrensteinhütte on the Plätzwiese, where the walk ends, in September by Falk2",
+        "imageCreator": "Falk2",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:J40_091_D%C3%BCrrensteinh%C3%BCtte.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-circolare-maistatt",
       "approvedReviewId": "commons-trecime-circolare-maistatt-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
@@ -4429,6 +4463,23 @@
       }
     },
     {
+      "id": "trecime-innichen-waldkapelle-sexten",
+      "approvedReviewId": "commons-trecime-innichen-waldkapelle-sexten-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-innichen-waldkapelle-sexten-chapel.jpg",
+        "heroImage": "images/trails/trecime-innichen-waldkapelle-sexten-chapel.jpg",
+        "imageAlt": "A small wooden chapel with a little bell turret in a sunlit spruce forest, a large mossy boulder beside the gravel path in front of it",
+        "imageCredit": "The Waldkapelle in the forest above Sexten in June",
+        "imageCreditText": "The Waldkapelle in the forest above Sexten in June by Steinsplitter",
+        "imageCreator": "Steinsplitter",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Waldkapelle_Sexten_Sesto.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-lago-di-braies-malga-foresta",
       "approvedReviewId": "commons-trecime-lago-di-braies-malga-foresta-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
@@ -4442,6 +4493,40 @@
         "imageLicence": "CC BY-SA 2.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gr%C3%BCnwaldalm_-_Malga_Foresta_-_Braies.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-lago-di-braies-malga-rossalm",
+      "approvedReviewId": "commons-trecime-lago-di-braies-malga-rossalm-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-lago-di-braies-malga-rossalm-hut.jpg",
+        "heroImage": "images/trails/trecime-lago-di-braies-malga-rossalm-hut.jpg",
+        "imageAlt": "The wooden Rossalm hut and its outbuildings on a grassy alpine slope, a gravel track climbing past it towards scattered larches and pines",
+        "imageCredit": "The Rossalm, where the walk ends, in September",
+        "imageCreditText": "The Rossalm, where the walk ends, in September by Falk2",
+        "imageCreator": "Falk2",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:J40_266_Rossalmh%C3%BCtte.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-monte-elmo-versciaco",
+      "approvedReviewId": "commons-trecime-monte-elmo-versciaco-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-monte-elmo-versciaco-view.jpg",
+        "heroImage": "images/trails/trecime-monte-elmo-versciaco-view.jpg",
+        "imageAlt": "The pale limestone walls of the Sexten Dolomites seen from the Helm, golden larches in the valley below and a blue sky with thin cloud",
+        "imageCredit": "The Sexten Dolomites from the Helm, where the walk starts, in October",
+        "imageCreditText": "The Sexten Dolomites from the Helm, where the walk starts, in October by Ximonic (Simo Räsänen)",
+        "imageCreator": "Ximonic (Simo Räsänen)",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Camp_dei_Sassi_and_Schwalbenkofel_from_from_Monte_Elmo,_Sexten,_Pustertal,_Trentino-Alto_Adige,_Italy,_2025_October.jpg",
         "imageSourceType": "licensed-source"
       }
     },

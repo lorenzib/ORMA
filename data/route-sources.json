@@ -1810,6 +1810,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
     },
+    "trecime-bellavista-montecosta": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-bellavista-montecosta_640",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione estiva: Bellavista Montecosta",
+      "quote": "Lunghezza 5,7 km · Durata 1:52 · Salita 360 m · Discesa 90 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-carbonin-rifugio-vallandro": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-carbonin-rifugio-vallandro_832",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione estiva: Carbonin - Rifugio Vallandro",
+      "quote": "Lunghezza 6,0 km · Durata 2:00 · Salita 579 m · Discesa 66 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
     "trecime-circolare-maistatt": {
       "url": "https://www.dreizinnen.com/it/activity/escursione-circolare-maistatt-_50004",
       "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
@@ -1826,11 +1842,35 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
     },
+    "trecime-innichen-waldkapelle-sexten": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-cimitero-dei-soldati-burg-capella-del-bosco-sesto_560",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione: Cimitero dei soldati \"Burg\" - Capella del bosco - Sesto",
+      "quote": "Lunghezza 8,0 km · Durata 3:00 · Salita 400 m · Discesa 257 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
     "trecime-lago-di-braies-malga-foresta": {
       "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-lago-di-braies-malga-foresta-_651",
       "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
       "name": "Escursione estiva Lago di Braies - Malga Foresta",
       "quote": "Lunghezza 2,1 km · Durata 1:00 · Salita 118 m · Discesa 18 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-lago-di-braies-malga-rossalm": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-lago-di-braies-malga-rossalm-_473",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione estiva - Lago di Braies - Malga Rossalm",
+      "quote": "Lunghezza 6,6 km · Durata 2:56 · Salita 846 m · Discesa 158 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-monte-elmo-versciaco": {
+      "url": "https://www.dreizinnen.com/it/activity/sentiero-nel-bosco-fino-a-versciaco_68483",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Sentiero nel bosco fino a Versciaco",
+      "quote": "Lunghezza 7,9 km · Durata 2:45 · Salita 61 m · Discesa 911 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
     },
@@ -1906,6 +1946,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T09:00:00.000Z"
     },
+    "valgardena-escursione-al-terrazzo-panoramico-seeurasas": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-terrazzo-panoramico-seeurasas/67905450/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione al terrazzo panoramico Sëurasas",
+      "quote": "Distanza 6,6 km · Salita 449 m · Durata 3:00 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
     "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": {
       "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-dalla-cappella-santa-croce-al-brogles/800791260/",
       "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
@@ -1913,6 +1961,14 @@
       "quote": "Distanza 13,0 km · Salita 422 m · Durata 3:48 ore",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-escursione-nella-vallunga": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-nella-vallunga/810055896/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione nella Vallunga",
+      "quote": "Distanza 7,5 km · Salita 201 m · Durata 2:00 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
     },
     "valgardena-giro-della-via-crucis": {
       "url": "https://www.valgardena.it/it/outdoor/base/outdoor/giro-della-via-crucis/810054903/",
@@ -1938,38 +1994,6 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T09:00:00.000Z"
     },
-    "valgardena-tour-alla-volta-del-lech-sant": {
-      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/tour-alla-volta-del-lech-sant/49659382/",
-      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
-      "name": "Tour alla volta del Lech Sant",
-      "quote": "Distanza 7,7 km · Salita 349 m · Durata 2:40 ore",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T09:00:00.000Z"
-    },
-    "valley-view": {
-      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi4d53fc3760a30cad25696849c7669dd5.sonnseitenweg-panoramaweg.st--peter---villnoess",
-      "publisher": "Tourismusgenossenschaft Odles, via Südtirol.info (IDM Südtirol)",
-      "name": "Sonnseitenweg-Panoramaweg",
-      "quote": "Vom Bühlerhof läuft man leicht ansteigend bis zum Beginn des Panoramaweges (1389 m), der mit Berg-Symbolen markiert ist. Der Panoramaweg verläuft relativ eben bis zur Wegkreuzung mit Weg Nr. 11.",
-      "foundBy": "orma-route-source-scout",
-      "verifiedAt": "2026-10-12T19:40:50.460Z"
-    },
-    "valgardena-escursione-nella-vallunga": {
-      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-nella-vallunga/810055896/",
-      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
-      "name": "Escursione nella Vallunga",
-      "quote": "Distanza 7,5 km · Salita 201 m · Durata 2:00 ore",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T12:00:00.000Z"
-    },
-    "valgardena-escursione-al-terrazzo-panoramico-seeurasas": {
-      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-terrazzo-panoramico-seeurasas/67905450/",
-      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
-      "name": "Escursione al terrazzo panoramico Sëurasas",
-      "quote": "Distanza 6,6 km · Salita 449 m · Durata 3:00 ore",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T12:00:00.000Z"
-    },
     "valgardena-percorso-dei-masi-tradizionali": {
       "url": "https://www.valgardena.it/it/outdoor/base/outdoor/percorso-dei-masi-tradizionali/64155465/",
       "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
@@ -1985,6 +2009,22 @@
       "quote": "Distanza 3,9 km · Salita 151 m · Durata 1:10 ore",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "valgardena-tour-alla-volta-del-lech-sant": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/tour-alla-volta-del-lech-sant/49659382/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Tour alla volta del Lech Sant",
+      "quote": "Distanza 7,7 km · Salita 349 m · Durata 2:40 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valley-view": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi4d53fc3760a30cad25696849c7669dd5.sonnseitenweg-panoramaweg.st--peter---villnoess",
+      "publisher": "Tourismusgenossenschaft Odles, via Südtirol.info (IDM Südtirol)",
+      "name": "Sonnseitenweg-Panoramaweg",
+      "quote": "Vom Bühlerhof läuft man leicht ansteigend bis zum Beginn des Panoramaweges (1389 m), der mit Berg-Symbolen markiert ist. Der Panoramaweg verläuft relativ eben bis zur Wegkreuzung mit Weg Nr. 11.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T19:40:50.460Z"
     }
   }
 }

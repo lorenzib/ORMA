@@ -783,6 +783,31 @@
       "name": "Raida dl luech",
       "slug": "raida-dl-luech",
       "gloss": "the village loop to the Tervela waterfall"
+    },
+    "trecime-innichen-waldkapelle-sexten": {
+      "name": "Innichen – Waldkapelle – Sexten",
+      "slug": "innichen-waldkapelle-sexten",
+      "gloss": "the forest path past the Waldkapelle from Innichen to Sexten"
+    },
+    "trecime-bellavista-montecosta": {
+      "name": "Niederdorf – Bellavista",
+      "slug": "niederdorf-bellavista",
+      "gloss": "the climb from Niederdorf to the Bellavista viewpoint"
+    },
+    "trecime-lago-di-braies-malga-rossalm": {
+      "name": "Pragser Wildsee – Rossalm",
+      "slug": "pragser-wildsee-rossalm",
+      "gloss": "the long climb from the Pragser Wildsee to the Rossalm"
+    },
+    "trecime-carbonin-rifugio-vallandro": {
+      "name": "Schluderbach – Dürrensteinhütte",
+      "slug": "schluderbach-duerrensteinhuette",
+      "gloss": "the forest road from Schluderbach up to the Plätzwiese"
+    },
+    "trecime-monte-elmo-versciaco": {
+      "name": "Helm – Vierschach",
+      "slug": "helm-vierschach",
+      "gloss": "the forest path down from the Helm to Vierschach"
     }
   }
 }

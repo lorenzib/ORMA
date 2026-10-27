@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T22:57:28.228Z",
+  "generatedAt": "2026-10-27T23:05:03.768Z",
   "regions": {
     "dolomites": {
-      "trailCount": 237,
-      "trails": "data/regions/dolomites-trails.js?v=e16a0092049f",
+      "trailCount": 242,
+      "trails": "data/regions/dolomites-trails.js?v=902abf963715",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -242,6 +242,11 @@
         "valgardena-escursione-al-terrazzo-panoramico-seeurasas": "data/trail-details/valgardena-escursione-al-terrazzo-panoramico-seeurasas.js?v=e1c6a962175d",
         "valgardena-percorso-dei-masi-tradizionali": "data/trail-details/valgardena-percorso-dei-masi-tradizionali.js?v=76763443f27f",
         "valgardena-raida-dl-luech-giro-del-paese": "data/trail-details/valgardena-raida-dl-luech-giro-del-paese.js?v=d13ec409a5da",
+        "trecime-innichen-waldkapelle-sexten": "data/trail-details/trecime-innichen-waldkapelle-sexten.js?v=0a8cd44d4190",
+        "trecime-bellavista-montecosta": "data/trail-details/trecime-bellavista-montecosta.js?v=445b937b6c3e",
+        "trecime-lago-di-braies-malga-rossalm": "data/trail-details/trecime-lago-di-braies-malga-rossalm.js?v=596588c72db1",
+        "trecime-carbonin-rifugio-vallandro": "data/trail-details/trecime-carbonin-rifugio-vallandro.js?v=611d8d2b6a67",
+        "trecime-monte-elmo-versciaco": "data/trail-details/trecime-monte-elmo-versciaco.js?v=fa1213fc8fa1",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -575,6 +580,11 @@
     "valgardena-escursione-al-terrazzo-panoramico-seeurasas": "dolomites",
     "valgardena-percorso-dei-masi-tradizionali": "dolomites",
     "valgardena-raida-dl-luech-giro-del-paese": "dolomites",
+    "trecime-innichen-waldkapelle-sexten": "dolomites",
+    "trecime-bellavista-montecosta": "dolomites",
+    "trecime-lago-di-braies-malga-rossalm": "dolomites",
+    "trecime-carbonin-rifugio-vallandro": "dolomites",
+    "trecime-monte-elmo-versciaco": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -916,6 +926,11 @@
     "valgardena-escursione-al-terrazzo-panoramico-seeurasas": "seurasas",
     "valgardena-percorso-dei-masi-tradizionali": "santa-cristina-farms-path",
     "valgardena-raida-dl-luech-giro-del-paese": "raida-dl-luech",
+    "trecime-innichen-waldkapelle-sexten": "innichen-waldkapelle-sexten",
+    "trecime-bellavista-montecosta": "niederdorf-bellavista",
+    "trecime-lago-di-braies-malga-rossalm": "pragser-wildsee-rossalm",
+    "trecime-carbonin-rifugio-vallandro": "schluderbach-duerrensteinhuette",
+    "trecime-monte-elmo-versciaco": "helm-vierschach",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1206,6 +1221,11 @@
     "seurasas": "valgardena-escursione-al-terrazzo-panoramico-seeurasas",
     "santa-cristina-farms-path": "valgardena-percorso-dei-masi-tradizionali",
     "raida-dl-luech": "valgardena-raida-dl-luech-giro-del-paese",
+    "innichen-waldkapelle-sexten": "trecime-innichen-waldkapelle-sexten",
+    "niederdorf-bellavista": "trecime-bellavista-montecosta",
+    "pragser-wildsee-rossalm": "trecime-lago-di-braies-malga-rossalm",
+    "schluderbach-duerrensteinhuette": "trecime-carbonin-rifugio-vallandro",
+    "helm-vierschach": "trecime-monte-elmo-versciaco",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

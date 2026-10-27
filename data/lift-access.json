@@ -99,6 +99,17 @@
           "notes": "The walk starts at the top of the Resciesa funicular from Ortisei, a railway with closed cars. Dogs ride on a lead and muzzled."
         }
       }
+    },
+    {
+      "id": "trecime-monte-elmo-versciaco",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Vierschach – Helm gondola (Versciaco – Monte Elmo)",
+          "notes": "The walk starts at the top of the Vierschach – Helm gondola, whose cabins are closed, and ends on foot in Vierschach. Keep your dog on a lead in the cabin and carry a muzzle."
+        }
+      }
     }
   ]
 }
