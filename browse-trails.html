@@ -1285,8 +1285,14 @@
     }
     // Region remains a separate choice so the model scales when ORMA adds
     // more regions within a country.
+    // A region opens before its first walk is published; the manifest says
+    // when it has one. Without a manifest every region is offered.
+    const regionPublished = item => {
+      const regions = window.DoloPawsRegionManifest && window.DoloPawsRegionManifest.regions;
+      return !regions || !regions[item.value] || regions[item.value].trailCount > 0 || item.value === regionValue;
+    };
     const regionOptions = () => REGIONS.filter(item => item.value === 'all'
-      || countryValue === 'all' || item.country === countryValue);
+      || ((countryValue === 'all' || item.country === countryValue) && regionPublished(item)));
     function renderRegionSelect(){
       if(!regionSelect) return;
       regionSelect.replaceChildren(...regionOptions().map(item => {
