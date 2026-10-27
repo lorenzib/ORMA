@@ -37,6 +37,23 @@
       }
     },
     {
+      "id": "cembra-castello-segonzano",
+      "approvedReviewId": "commons-cembra-castello-segonzano-on-route",
+      "approvedAt": "2026-10-27T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-castello-segonzano-castle.jpg",
+        "heroImage": "images/trails/cembra-castello-segonzano-castle.jpg",
+        "imageAlt": "The two ruined towers of the Castello di Segonzano on a wooded rock above terraced vineyards under a cloudy summer sky",
+        "imageCredit": "Castello di Segonzano",
+        "imageCreditText": "Castello di Segonzano by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castello_di_Segonzano_-_vista_da_sotto.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cembra-dos-paion",
       "approvedReviewId": "commons-cembra-dos-paion-on-route",
       "approvedAt": "2026-10-27T12:00:00.000Z",
@@ -50,6 +67,57 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vista_dal_Monte_Corona_di_Giovo.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cembra-erbe-della-salute",
+      "approvedReviewId": "commons-cembra-erbe-della-salute-on-route",
+      "approvedAt": "2026-10-27T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-erbe-della-salute-church.jpg",
+        "heroImage": "images/trails/cembra-erbe-della-salute-church.jpg",
+        "imageAlt": "The pale church of San Martino in Grauno with lamp posts and stone gate pillars in front of it, a cobbled lane and wooded hills under a grey summer sky",
+        "imageCredit": "San Martino, Grauno",
+        "imageCreditText": "San Martino, Grauno by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Grauno_-_Chiesa_di_san_Martino_02.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cembra-giro-masi-grumes",
+      "approvedReviewId": "mapillary-cembra-giro-masi-grumes-on-route",
+      "approvedAt": "2026-10-27T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-giro-masi-grumes-masi.jpg",
+        "heroImage": "images/trails/cembra-giro-masi-grumes-masi.jpg",
+        "imageAlt": "A narrow tarred lane past an old stone farmhouse and barn with a wooden fence, a red hydrant and mountains under grey clouds in late summer",
+        "imageCredit": "The Masi di Grumes",
+        "imageCreditText": "The Masi di Grumes by AlessioMela",
+        "imageCreator": "AlessioMela",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=2233157020517876",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cembra-giro-monte-corona",
+      "approvedReviewId": "commons-cembra-giro-monte-corona-on-route",
+      "approvedAt": "2026-10-27T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-giro-monte-corona-cross.jpg",
+        "heroImage": "images/trails/cembra-giro-monte-corona-cross.jpg",
+        "imageAlt": "A metal summit cross on a grassy clifftop above pale limestone walls, the slopes around it covered in orange autumn larches and green pines",
+        "imageCredit": "Monte Corona summit cross",
+        "imageCreditText": "Monte Corona summit cross by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Monte_Corona_di_Giovo.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -84,6 +152,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_Santo_di_Cembra.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cembra-paese-beghei",
+      "approvedReviewId": "commons-cembra-paese-beghei-on-route",
+      "approvedAt": "2026-10-27T15:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-paese-beghei-church.jpg",
+        "heroImage": "images/trails/cembra-paese-beghei-church.jpg",
+        "imageAlt": "The pale yellow front of the church of San Nicolò in Sevignano with its rose window and slim bell tower under a summer sky with clouds",
+        "imageCredit": "San Nicolò, Sevignano",
+        "imageCreditText": "San Nicolò, Sevignano by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Segonzano_-_Sevignano_-_chiesa,_facciata.JPG",
         "imageSourceType": "licensed-source"
       }
     },

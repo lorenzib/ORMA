@@ -10,6 +10,14 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "cembra-castello-segonzano": {
+      "url": "https://www.visitfiemme.it/it/activity/il-castello-di-segonzano-e-il-canyon-del-pr-_9748",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il Castello di Segonzano e il canyon del Prà",
+      "quote": "Lunghezza 6,1 km Durata 3 h 30 min Salita 190 m Discesa 186 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T15:00:00.000Z"
+    },
     "cembra-dos-paion": {
       "url": "https://www.visitfiemme.it/it/activity/passeggiata-al-belvedere-del-dos-paion-sul-monte-corona_9837",
       "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
@@ -17,6 +25,30 @@
       "quote": "Lunghezza 6,0 km Durata 2 h 02 min Salita 308 m Discesa 308 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-erbe-della-salute": {
+      "url": "https://www.visitfiemme.it/it/activity/le-erbe-della-salute_63414",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Le erbe della salute",
+      "quote": "Lunghezza 2,1 km Durata 1 h 00 min Salita 100 m Discesa 100 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T15:00:00.000Z"
+    },
+    "cembra-giro-masi-grumes": {
+      "url": "https://www.visitfiemme.it/it/activity/il-giro-dei-masi-di-grumes_9684",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il Giro dei Masi di Grumes",
+      "quote": "Lunghezza 6,8 km Durata 2 h 30 min Salita 250 m Discesa 250 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T15:00:00.000Z"
+    },
+    "cembra-giro-monte-corona": {
+      "url": "https://www.visitfiemme.it/it/activity/giro-panoramico-sul-monte-corona_39031",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Giro panoramico sul Monte Corona",
+      "quote": "Lunghezza 7,2 km Durata 2 h 40 min Salita 390 m Discesa 390 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T15:00:00.000Z"
     },
     "cembra-lago-lases-buse-giaz": {
       "url": "https://www.visitfiemme.it/it/activity/il-lago-di-lases-e-le-buse-del-giaz_9812",
@@ -33,6 +65,14 @@
       "quote": "Lunghezza 1,1 km Durata 20 min Salita 10 m Discesa 10 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-paese-beghei": {
+      "url": "https://www.visitfiemme.it/it/activity/il-paese-dei-beghei-_9886",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il paese dei “Beghei”",
+      "quote": "Lunghezza 4,0 km Durata 2 h 00 min Salita 200 m Discesa 200 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T15:00:00.000Z"
     },
     "cembra-pietra-del-futuro": {
       "url": "https://www.visitfiemme.it/it/activity/la-pietra-del-futuro-percorso-con-audioguida-dei-ragazzi-della-scuola-elementare-di-lona-lases_35376",

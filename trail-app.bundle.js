@@ -49396,6 +49396,303 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 2, lat: 46.23488, lng: 11.25156, osmId: 'way/125480046', name: 'Rifugio Potzmauer' }
       ],
       desc: 'A walk through the woods above Grumes, over the Potzmauer pass to the Rifugio Potzmauer and its meadow, and back the same way. The APT lists 4.8 km and 300 m of ascent.'
+    },
+    'cembra-castello-segonzano': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
+      // APT Fiemme Cembra’s walk “Il Castello di Segonzano e il canyon del Prà”. The line is drawn on 35 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // The whole line is in Segonzano, whose police bylaw (article 39, as amended by council resolution 29 of 2009) requires dogs on a lead or with a muzzle on streets and in public places, both in crowds, and keeps them out of playgrounds, schools and churches; dogs may use all other public areas, gardens and parks included.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer).
+      area: 'Scancio – Piazzo – Prà, Segonzano, Val di Cembra',
+      distance: 6.1,
+      elevation: 190,
+      hours: '3.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Scancio past the ruined Castello di Segonzano on its rock, down through Piazzo towards the Avisio and the Ponte di Cantilaga, on to the hamlet of Prà and back through the fields and woods of the Prà gorge.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The two towers of the ruined Castello di Segonzano on their rock above the vineyards, which the walk passes, in September (Syrio, CC BY-SA 4.0); the castle is 8 m from the line.',
+        route: 'Official loop 6.1 km from Scancio, Segonzano (car park by the Hotel Piramidi), as APT Fiemme Cembra publishes it; the stored line is drawn on 35 OSM ways along the APT’s published line, 6.2 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the car park by the Hotel Piramidi in Scancio, briefly along the SP 71 and through Saletto, past the ruins of the Castello di Segonzano and down through Piazzo, then lanes and paths towards the Avisio and the Ponte di Cantilaga (do not cross the bridge), on to the hamlet of Prà, and back through the fields and the woods of the Prà gorge to Saletto and Scancio.',
+        mapPoints: 'Start at Scancio, Segonzano (car park by the Hotel Piramidi), the APT’s start; drinking water at km 4.9 (OSM nodes 9097224637).',
+        elevation: 'Official 6.1 km, 190 m up and 186 m down, 3 h 30 min, highest point 675 m, lowest 485 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Il Castello di Segonzano e il canyon del Prà (visitfiemme.it and its Outdooractive page)',
+          'Comune di Segonzano, Regolamento di polizia urbana (amended by council resolution 29 of 2009), article 39',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (35 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 30,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 250 m on the SP 71 provincial road at the start and end: lead short', 'Quiet tarred lanes between the hamlets, with farm traffic', 'Woodland paths in the Prà gorge, one stretch rough underfoot'],
+      terrainType: 'Village lanes, field tracks and woodland paths',
+      shadeDescription: 'Mostly open: about 30% of the loop is shaded, in the woods of the Prà gorge.',
+      terrainDescription: 'A loop at 485–675 m through the hamlets of Segonzano, past the ruined castle where Dürer painted in 1494, down towards the Avisio and back through the little gorge of Prà.',
+      waterDescription: 'Drinking fountain at km 4.9; bars and cafés at the start and on the way.',
+      dogNotes: 'Segonzano’s police bylaw requires dogs on a lead or with a muzzle on streets and in public places, and both in crowds; dogs may use all public areas, gardens and parks included, but not children’s playgrounds, schools or churches.',
+      tips: 'Start at the car park by the Hotel Piramidi in Scancio: 6.1 km, 190 m of climbing, about three and a half hours with stops. Segonzano requires a lead or a muzzle in public places; keep your dog short on the SP 71. Low and mostly open, so avoid summer middays; a fountain near the end, so bring water.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Il Castello di Segonzano e il canyon del Prà', url: 'https://www.visitfiemme.it/it/activity/il-castello-di-segonzano-e-il-canyon-del-pr-_9748' },
+        { label: 'Outdooractive, Il Castello di Segonzano e il canyon del Prà (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/36899316' },
+        { label: 'Comune di Segonzano, Regolamento di polizia urbana (article 39)', url: 'https://www.comune.segonzano.tn.it/content/download/2680/36743/1/Regolamento+di+polizia+urbana+modificato+con+CC+29-2009.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.187494, lng: 11.258736, label: 'Scancio, Segonzano (car park by the Hotel Piramidi), the APT’s start' },
+      waterSources: [
+        { km: 4.9, lat: 46.1936669, lng: 11.2563294, osmId: 'node/9097224637', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.18714, lng: 11.25856, osmId: 'way/126273701', name: 'Alle Piramidi' },
+        { km: 0, lat: 46.18679, lng: 11.26064, osmId: 'node/12673376360', name: 'Trattoria Bar Alpino' },
+        { km: 5.2, lat: 46.19158, lng: 11.25925, osmId: 'node/269348441', name: 'Snack Bar' }
+      ],
+      desc: 'A loop through the hamlets of Segonzano, past the ruined Castello di Segonzano on its rock and down towards the Avisio, back through the little gorge of Prà. The APT lists 6.1 km and 190 m of ascent.'
+    },
+    'cembra-paese-beghei': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
+      // APT Fiemme Cembra’s walk “Il paese dei “Beghei””. The line is drawn on 20 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // The whole line is in Segonzano, whose police bylaw (article 39, as amended by council resolution 29 of 2009) requires dogs on a lead or with a muzzle on streets and in public places, both in crowds, and keeps them out of playgrounds, schools and churches; dogs may use all other public areas, gardens and parks included.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer).
+      area: 'Sevignano, Segonzano, Val di Cembra',
+      distance: 4,
+      elevation: 200,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Sevignano up through the lanes of the village with its wooden owls and artworks, through the larch wood to the meadows of Fontane and the great beech of Fo Gross, down a forest road to Prada and back on a level lane.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of San Nicolò in Sevignano, which the walk passes, in June (Syrio, CC BY-SA 3.0); the church is 15 m from the line.',
+        route: 'Official loop 4 km from Sevignano (car park by the war memorial on the SP 71), as APT Fiemme Cembra publishes it; the stored line is drawn on 20 OSM ways along the APT’s published line, 4 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the car park by the war memorial on the SP 71 up a cobbled lane into Sevignano, past the big wooden owl on an old balcony, round the lanes looking for the artworks, then to the south of the village through a thinned larch wood restored by volunteers, up following the signs to the meadows and huts of Fontane, a short detour right on a forest road to the Fo Gross, the great old beech of Sevignano, then down a gentle forest road to the meadows of Prada, and back to the village on a level tarred lane.',
+        mapPoints: 'Start at Sevignano (car park by the war memorial on the SP 71), the APT’s start; drinking water at the start (OSM nodes 12873942865).',
+        elevation: 'Official 4 km, 200 m up and 200 m down, 2 h, highest point 895 m, lowest 687 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Il paese dei “Beghei” (visitfiemme.it and its Outdooractive page)',
+          'Comune di Segonzano, Regolamento di polizia urbana (amended by council resolution 29 of 2009), article 39',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (20 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 51,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A cobbled lane and village streets at the start', 'Forest roads and woodland paths, some steep', 'About 1 km back on a quiet tarred lane open to cars'],
+      terrainType: 'Village lanes, forest roads and woodland paths',
+      shadeDescription: 'About half the loop is shaded, in the larch and beech woods above the village.',
+      terrainDescription: 'A loop at 690–895 m from Sevignano, the village of the “Beghei” (as its people are nicknamed), through larch and beech woods to the meadows of Fontane and Prada.',
+      waterDescription: 'Drinking fountain at the start; bars and cafés on the way.',
+      dogNotes: 'Segonzano’s police bylaw requires dogs on a lead or with a muzzle on streets and in public places, and both in crowds; dogs may use all public areas, gardens and parks included, but not children’s playgrounds, schools or churches.',
+      tips: 'Start at the car park by the war memorial on the SP 71 in Sevignano: 4 km, 200 m of climbing, about two hours. Segonzano requires a lead or a muzzle in public places. A fountain at the start and a bar in the village; half shaded.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Il paese dei “Beghei”', url: 'https://www.visitfiemme.it/it/activity/il-paese-dei-beghei-_9886' },
+        { label: 'Outdooractive, Il paese dei “Beghei” (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/60452612' },
+        { label: 'Comune di Segonzano, Regolamento di polizia urbana (article 39)', url: 'https://www.comune.segonzano.tn.it/content/download/2680/36743/1/Regolamento+di+polizia+urbana+modificato+con+CC+29-2009.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.170838, lng: 11.24718, label: 'Sevignano (car park by the war memorial on the SP 71), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.1711971, lng: 11.2482096, osmId: 'node/12873942865', label: 'Drinking fountain at the start' }
+      ],
+      rifugi: [
+        { km: 0.3, lat: 46.16832, lng: 11.24724, osmId: 'node/937699739', name: 'Durer' }
+      ],
+      desc: 'A loop from the village of Sevignano, with its wooden owls and artworks, through larch and beech woods to the meadows of Fontane, the great beech of Fo Gross and the fields of Prada. The APT lists 4 km and 200 m of ascent.'
+    },
+    'cembra-erbe-della-salute': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
+      // APT Fiemme Cembra’s walk “Le erbe della salute”. The line is drawn on 18 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Altavalle publishes no dog rule (none among its 270 published documents), so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer).
+      area: 'Grauno, Altavalle, Val di Cembra',
+      distance: 2.1,
+      elevation: 100,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the top of Grauno past the church, up the cobbled lane and along a level track into the woods, then down a woodland path back into the village and up through its lanes to the start.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of San Martino in Grauno, which the walk passes, in August (Syrio, CC BY-SA 4.0); the church is 9 m from the line.',
+        route: 'Official loop 2.1 km from Grauno (Centro servizi Castelet, at the top of the village), as APT Fiemme Cembra publishes it; the stored line is drawn on 18 OSM ways along the APT’s published line, 2 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the car park by the Castelet services centre at the top of Grauno towards the church, up the cobbled lane, then the first level track into the woods, signed for Capriana, until a path drops back through the woods towards the village; along Via Orti to the roundabout by the cemetery at the bottom of the village and back up to the start.',
+        mapPoints: 'Start at Grauno (Centro servizi Castelet, at the top of the village), the APT’s start; drinking water at the start (OSM nodes 10093184780).',
+        elevation: 'Official 2.1 km, 100 m up and 100 m down, 1 h, highest point 1,008 m, lowest 938 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Le erbe della salute (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Altavalle publishes no dog rule)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (18 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Village streets and a cobbled lane, slippery when wet', 'A short, steep woodland path down to the village'],
+      terrainType: 'Village lanes, a forest track and a woodland path',
+      shadeDescription: 'About half the loop is shaded, in the woods above the village.',
+      terrainDescription: 'A short loop at 940–1,010 m round the village of Grauno, high in the Val di Cembra, through the woods where the herbs once used for remedies grow.',
+      waterDescription: 'Drinking fountain at the start.',
+      dogNotes: 'Altavalle has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried.',
+      tips: 'Start at the Castelet services centre at the top of Grauno: 2.1 km, 100 m of climbing, about an hour. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Fountains in the village at the start.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Le erbe della salute', url: 'https://www.visitfiemme.it/it/activity/le-erbe-della-salute_63414' },
+        { label: 'Outdooractive, Le erbe della salute (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/801012170' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.23037, lng: 11.297081, label: 'Grauno (Centro servizi Castelet, at the top of the village), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.230026, lng: 11.2978172, osmId: 'node/10093184780', label: 'Drinking fountain at the start' }
+      ],
+      rifugi: [],
+      desc: 'A short loop round the village of Grauno, past its church and through the woods where healing herbs grow. The APT lists 2.1 km and 100 m of ascent.'
+    },
+    'cembra-giro-monte-corona': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
+      // APT Fiemme Cembra’s walk “Giro panoramico sul Monte Corona”. The line is drawn on 19 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // The whole line is in Giovo, whose police bylaw (council resolution 25 of 30 August 2007, article 32) requires dogs always on a lead of at most 2 m on public ground, a muzzle for large or known aggressive dogs, and picking up after them.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer).
+      area: 'Ville di Giovo – Monte Corona, Giovo, Val di Cembra',
+      distance: 7.2,
+      elevation: 390,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Ville di Giovo up through the vineyards and the woods below the cliffs to the top of Monte Corona and its viewpoint, along the ridge and down through a cleft in the rock to a gravel road and back to the village.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The summit cross of Monte Corona on its cliff edge above autumn larches, in late October without snow (Syrio, CC BY-SA 4.0), 89 m from the line.',
+        route: 'Official loop 7.2 km from Ville di Giovo, as APT Fiemme Cembra publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 7.1 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'SAT path E464 for most of the way: from Ville di Giovo up the tarred lane signed for Monte Corona through the vineyards, then a path through the woods at the foot of the rock face to the Valsolana 1 forest road, followed by path E464 and for a stretch the Monte Corona forest road to the top of Monte Corona and the viewpoint nearby. From there the path runs along the ridge, drops through a cleft in the rocky crest and down to a gravel road that joins the tarred lane back to Ville di Giovo.',
+        mapPoints: 'Start at Ville di Giovo, the APT’s start; drinking water at the start (OSM nodes 8170134089).',
+        elevation: 'Official 7.2 km, 390 m up and 390 m down, 2 h 40 min, highest point 1,021 m, lowest 705 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Giro panoramico sul Monte Corona (visitfiemme.it and its Outdooractive page)',
+          'Comune di Giovo, Regolamento comunale di polizia urbana (council resolution 25 of 30 August 2007), article 32',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 78,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The viewpoint and the ridge are at a cliff edge: keep your dog on a short lead', 'A steep, narrow descent through a cleft in the rock ridge, with rough ground', 'About 1 km on quiet tarred lanes through the vineyards'],
+      terrainType: 'Mountain paths, forest roads and tarred lanes',
+      shadeDescription: 'Mostly shaded: about 80% of the loop runs through woods.',
+      terrainDescription: 'A loop at 705–1,020 m from Ville di Giovo over Monte Corona, the wooded hill above the lower Val di Cembra, with views over the vineyards to the Adige valley.',
+      waterDescription: 'Drinking fountain at the start.',
+      dogNotes: 'Giovo’s police bylaw requires dogs always on a lead of at most 2 m on public ground (the Italian national rule asks for 1.5 m), a muzzle for large or known aggressive dogs, and bags to pick up after them.',
+      tips: 'Start in Ville di Giovo: 7.2 km, 390 m of climbing, about two hours and forty minutes. Giovo requires a lead on public ground and a muzzle for large dogs. Shorten the lead at the viewpoint and on the ridge, and take the rocky descent slowly. A fountain at the start only; mostly shaded.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Giro panoramico sul Monte Corona', url: 'https://www.visitfiemme.it/it/activity/giro-panoramico-sul-monte-corona_39031' },
+        { label: 'Outdooractive, Giro panoramico sul Monte Corona (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/806162354' },
+        { label: 'Comune di Giovo, Regolamento di polizia urbana (article 32)', url: 'https://www.comune.giovo.tn.it/content/download/988/16123/1/Polizia%2BUrbana.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.168097, lng: 11.156664, label: 'Ville di Giovo, the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.168155, lng: 11.1567719, osmId: 'node/8170134089', label: 'Drinking fountain at the start' }
+      ],
+      rifugi: [],
+      desc: 'A loop from Ville di Giovo through the vineyards and woods to the top of Monte Corona and its viewpoint, along the ridge and down through a cleft in the rock. The APT lists 7.2 km and 390 m of ascent.'
+    },
+    'cembra-giro-masi-grumes': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
+      // APT Fiemme Cembra’s walk “Il Giro dei Masi di Grumes”. The line is drawn on 38 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Altavalle publishes no dog rule (none among its 270 published documents), so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer).
+      area: 'Grumes – Masi di Grumes, Altavalle, Val di Cembra',
+      distance: 6.8,
+      elevation: 250,
+      hours: '2.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back: from Grumes across the SS 612 and up the quiet lanes and a short path to the scattered farmsteads of the Masi di Grumes, and back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A stone farmstead and its barn on the lane through the Masi di Grumes, in September (AlessioMela on Mapillary, CC BY-SA 4.0), 18 m from the line.',
+        route: 'Official out-and-back walk 6.8 km from Grumes (“Le Fontanelle” car park by the theatre), as APT Fiemme Cembra publishes it; the stored line is drawn on 38 OSM ways along the APT’s published line, 6.8 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the “Le Fontanelle” car park by the theatre in Grumes through Piazza Municipio and Via Santa Lucia, across the SS 612, up a cobbled path and Via del Palù, then quiet tarred lanes and a short mountain path up among the old farmsteads of the Masi di Grumes, past the El Casèl dei Masi, and back the same way.',
+        mapPoints: 'Start at Grumes (“Le Fontanelle” car park by the theatre), the APT’s start; drinking water at the start, at km 0.5, at km 1.9 and at km 2.7 (OSM nodes 10935265406, 12919075815, 12920693303, 3626852675).',
+        elevation: 'Official 6.8 km, 250 m up and 250 m down, 2 h 30 min, highest point 1,111 m, lowest 851 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Il Giro dei Masi di Grumes (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Altavalle publishes no dog rule)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (38 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 34,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Two crossings of the busy SS 612 in Grumes: lead short', 'Mostly quiet tarred lanes open to farm and resident traffic', 'A short mountain path and stretches of rough cobbles'],
+      terrainType: 'Quiet tarred lanes, cobbled paths and a short mountain path',
+      shadeDescription: 'Mostly open: about a third of the way is shaded.',
+      terrainDescription: 'A walk at 850–1,110 m from Grumes up to the Masi di Grumes, scattered farmsteads on the sunny slopes of the upper Val di Cembra, with views across the valley.',
+      waterDescription: 'Drinking fountains at the start, at km 0.5, at km 1.9 and at km 2.7; bars and cafés at the start and on the way.',
+      dogNotes: 'Altavalle has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried.',
+      tips: 'Start at the “Le Fontanelle” car park in Grumes: 6.8 km there and back, 250 m of climbing, about two and a half hours. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog close crossing the SS 612. Fountains in Grumes and on the way up; El Casèl dei Masi on the way.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Il Giro dei Masi di Grumes', url: 'https://www.visitfiemme.it/it/activity/il-giro-dei-masi-di-grumes_9684' },
+        { label: 'Outdooractive, Il Giro dei Masi di Grumes (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/36900096' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.22144, lng: 11.29435, label: 'Grumes (“Le Fontanelle” car park by the theatre), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.221202, lng: 11.2948894, osmId: 'node/10935265406', label: 'Drinking fountain at the start' },
+        { km: 0.5, lat: 46.220127, lng: 11.2882292, osmId: 'node/12919075815', label: 'Drinking fountain' },
+        { km: 1.9, lat: 46.2185738, lng: 11.2743608, osmId: 'node/12920693303', label: 'Drinking fountain' },
+        { km: 2.7, lat: 46.2228652, lng: 11.2689506, osmId: 'node/3626852675', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.22163, lng: 11.29371, osmId: 'way/253472677', name: 'Bar risortante Stella Alpina' },
+        { km: 2.2, lat: 46.22216, lng: 11.2718, osmId: 'way/690380723', name: 'El Casèl dei Masi' }
+      ],
+      desc: 'A walk from Grumes up the quiet lanes to the Masi di Grumes, old farmsteads on the sunny slopes of the upper Val di Cembra, and back the same way. The APT lists 6.8 km and 250 m of ascent.'
     }
   };
 

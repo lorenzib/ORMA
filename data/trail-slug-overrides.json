@@ -523,6 +523,31 @@
       "name": "Al Rifugio Potzmauer",
       "slug": "rifugio-potzmauer",
       "gloss": "the woodland walk to the Rifugio Potzmauer"
+    },
+    "cembra-castello-segonzano": {
+      "name": "Il Castello di Segonzano e il canyon del Prà",
+      "slug": "castello-di-segonzano-canyon-del-pra",
+      "gloss": "the loop past the Castello di Segonzano and the Prà gorge"
+    },
+    "cembra-paese-beghei": {
+      "name": "Il paese dei “Beghei”",
+      "slug": "paese-dei-beghei-sevignano",
+      "gloss": "the village and woodland loop from Sevignano"
+    },
+    "cembra-erbe-della-salute": {
+      "name": "Le erbe della salute",
+      "slug": "erbe-della-salute-grauno",
+      "gloss": "the short herb walk round Grauno"
+    },
+    "cembra-giro-monte-corona": {
+      "name": "Giro panoramico sul Monte Corona",
+      "slug": "giro-panoramico-monte-corona",
+      "gloss": "the loop over Monte Corona from Ville di Giovo"
+    },
+    "cembra-giro-masi-grumes": {
+      "name": "Il Giro dei Masi di Grumes",
+      "slug": "giro-dei-masi-di-grumes",
+      "gloss": "the walk up to the Masi di Grumes"
     }
   }
 }
