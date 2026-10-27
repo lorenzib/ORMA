@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lario-alla-ricerca-di-un-panorama-unico",
+  "distanceKm": 8.1,
+  "ascentM": 679,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 591
+    },
+    {
+      "km": 0.6,
+      "elev": 729
+    },
+    {
+      "km": 1.2,
+      "elev": 864
+    },
+    {
+      "km": 1.8,
+      "elev": 961
+    },
+    {
+      "km": 2.5,
+      "elev": 1049
+    },
+    {
+      "km": 3.1,
+      "elev": 951
+    },
+    {
+      "km": 3.7,
+      "elev": 1023
+    },
+    {
+      "km": 4.3,
+      "elev": 983
+    },
+    {
+      "km": 4.9,
+      "elev": 929
+    },
+    {
+      "km": 5.5,
+      "elev": 893
+    },
+    {
+      "km": 6.1,
+      "elev": 815
+    },
+    {
+      "km": 6.8,
+      "elev": 782
+    },
+    {
+      "km": 7.4,
+      "elev": 710
+    },
+    {
+      "km": 8,
+      "elev": 595
+    },
+    {
+      "km": 8.1,
+      "elev": 591
+    }
+  ]
+}

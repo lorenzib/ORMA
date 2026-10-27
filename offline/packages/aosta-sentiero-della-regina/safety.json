@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "trailId": "aosta-sentiero-della-regina",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 3.4,
+    "ascentM": 104,
+    "highestPointM": 1472,
+    "expectedDuration": "0.95 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 72
+  },
+  "trailhead": {
+    "lat": 45.793638,
+    "lng": 7.821438,
+    "label": "Tschemonal, the register’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.7937012,
+      "lng": 7.8215507,
+      "label": "Drinking water at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.7794802,
+      "lng": 7.8233776,
+      "label": "Drinking water",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.776458,
+      "lng": 7.822576,
+      "label": "Drinking water",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.7659682,
+      "lng": 7.8256332,
+      "label": "Drinking water",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A few short climbs and descents on mule track and forest path.",
+    "Busy around Lago Gover and the castle in summer.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "trailId": "aosta-strada-lombarda",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.3,
+    "ascentM": 155,
+    "highestPointM": 1438,
+    "expectedDuration": "1.2 hours",
+    "difficulty": "Easy",
+    "shadePercent": 9
+  },
+  "trailhead": {
+    "lat": 45.76524,
+    "lng": 7.83566,
+    "label": "Bivio Villa Margherita, the register’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.7640925,
+      "lng": 7.8357642,
+      "label": "Drinking water at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.7720954,
+      "lng": 7.8305587,
+      "label": "Drinking water",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.7786604,
+      "lng": 7.8254753,
+      "label": "Drinking water",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.7793613,
+      "lng": 7.8247204,
+      "label": "Drinking water",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.7992706,
+      "lng": 7.8259788,
+      "label": "Drinking water",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 250 m along the main valley road (SR44) and stretches of village streets: keep your dog close.",
+    "Little shade on hot days.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}

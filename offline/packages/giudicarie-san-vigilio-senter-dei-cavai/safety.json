@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "trailId": "giudicarie-san-vigilio-senter-dei-cavai",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.2,
+    "ascentM": 91,
+    "highestPointM": 585,
+    "expectedDuration": "3 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 38
+  },
+  "trailhead": {
+    "lat": 46.03439,
+    "lng": 10.728866,
+    "label": "Church of Santa Maria Assunta, Tione di Trento, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.034215,
+      "lng": 10.7297002,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.0344475,
+      "lng": 10.7294042,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.0352622,
+      "lng": 10.7339735,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.0412071,
+      "lng": 10.729233,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.0421994,
+      "lng": 10.7287587,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.0425858,
+      "lng": 10.7310287,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.0459843,
+      "lng": 10.7510411,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Parts of this walk are exposed; keep your dog close and on a short lead.",
+    "The swinging rope bridge over the Sarca at km 1.6 (the “pont che bala”): about 23 m long, anchored with ropes, with a wooden deck.",
+    "The cycle path back to Tione is shared with bikes and fully in the sun.",
+    "Pavement and road crossings in Tione and Sesena.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}
