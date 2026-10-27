@@ -2,8 +2,8 @@
 
 const {communesAlongLine,communesQuery,protectedAreasOnLine,natura2000Control,photoLocation,
   officialDistanceFromSource,lineAgainstOfficial,freeSealChecksFor,problemsIn,
-  NATURA2000_CONTROL}=require('./workflows/free-seal-checks');
-const {mergedWithPrevious}=require('./cli/free-seal-checks');
+  NATURA2000_CONTROL,OVERPASS_WAIT_MS}=require('./workflows/free-seal-checks');
+const {mergedWithPrevious,inCheckingOrder}=require('./cli/free-seal-checks');
 const {researchMethodHolds,lineLengthKm}=require('./workflows/research-methods');
 
 /**
@@ -139,6 +139,36 @@ describe('a run of the checks',()=>{
     expect(mergedWithPrevious(failed,good,'T').communes).toMatchObject({status:'checked',staleSince:'T',lastError:'502'});
     const empty={communes:{status:'checked',communes:[]}};
     expect(mergedWithPrevious(failed,empty,'T').communes.status).toBe('lookup-failed');
+    const measured={protectedAreas:{status:'checked',sites:[{code:'IT3110049'}]}};
+    const outage={protectedAreas:{status:'service-unreliable',sites:[]}};
+    expect(mergedWithPrevious(outage,measured,'T').protectedAreas)
+      .toMatchObject({status:'checked',sites:[{code:'IT3110049'}],staleSince:'T'});
+  });
+});
+
+describe('a run that cannot check every trail at once',()=>{
+  test('never-checked trails go first, then the oldest check, so the next run carries on',()=>{
+    const trails=['a','b','c','d'].map(id=>({id}));
+    const previous={trails:{a:{checkedAt:'2026-10-26T05:00:00Z'},b:{checkedAt:'2026-10-19T05:00:00Z'},
+      d:{checkedAt:'2026-10-26T04:50:00Z'}}};
+    expect(inCheckingOrder(trails,previous).map(trail=>trail.id)).toEqual(['c','b','d','a']);
+    expect(inCheckingOrder(trails,null).map(trail=>trail.id)).toEqual(['a','b','c','d']);
+  });
+
+  test('a silent mirror is given up on, not waited on for three minutes',async()=>{
+    const waits=[];
+    const runQuery=async(query,options)=>{waits.push(options.timeoutMs);
+      return {endpoint:options.endpoints[0],payload:{elements:[{id:1,tags:{name:'Braies'}}]}};};
+    await communesAlongLine([[46.69,12.08],[46.70,12.09]],{runQuery,endpoints:['https://one.example/api'],retryPauseMs:0});
+    expect(waits).toEqual([OVERPASS_WAIT_MS]);
+    expect(OVERPASS_WAIT_MS).toBeLessThan(180000);
+  });
+
+  test('a photo host that never answers is abandoned with a time limit',async()=>{
+    let signal=null;
+    const fetchImpl=async(url,init)=>{signal=init.signal;return {ok:true,json:async()=>({query:{pages:[{coordinates:[]}]}})};};
+    await photoLocation({heroImage:'x.jpg',imageSourcePage:'https://commons.wikimedia.org/wiki/File:X.jpg'},{fetchImpl});
+    expect(signal).toBeInstanceOf(AbortSignal);
   });
 });
 

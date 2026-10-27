@@ -2414,6 +2414,13 @@ A lookup that fails keeps the last real answer, marked stale; an outage is not
 evidence about a trail. The workflow opens a pull request only when a
 measurement changed.
 
+A run has a time budget (110 minutes in the workflow) and checks the trails
+never checked first, then those checked longest ago. When the budget runs out
+it stops, writes what it measured, and the next run carries on from there, so
+a growing catalogue is covered over consecutive runs instead of losing a whole
+run to the job's time limit. Each lookup gives up after a fixed wait (75
+seconds for an Overpass mirror, 45 for the EEA and photo hosts).
+
 **Who uses it.** A person verifying by hand starts from it instead of
 measuring again. The Ranger and the terrain analyst are handed it as a lead,
 so a paid search goes on the dog rules rather than on finding the communes. And
