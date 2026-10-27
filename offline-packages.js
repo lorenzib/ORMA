@@ -7,6 +7,8 @@
   // <offline-package-registry>
   const PACKAGE_NAMES = {
     'alpe-siusi': "Alpe di Siusi Meadow Loop",
+    'altabadia-da-furnacia-a-la-crusc': "Furnacia – La Crusc",
+    'altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa': "Pederoa – Picedac – Costa",
     'altabadia-escursione-corvara-colfosco': "Corvara – Colfosco",
     'altabadia-escursione-corvara-la-villa': "Corvara – La Villa",
     'altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt': "La Villa – Lech da Sompunt",
