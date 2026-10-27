@@ -111,6 +111,8 @@
     { value:'all', label:'All regions', countryCode:'all' },
     { value:'dolomites', label:'Dolomites', countryCode:'IT' },
     { value:'savoy', label:'Savoy', countryCode:'FR' },
+    { value:'lombardy', label:'Lombardy', countryCode:'IT' },
+    { value:'friuli', label:'Friuli Venezia Giulia', countryCode:'IT' },
   ];
 
   const THEME_MATCHERS = {
@@ -119,7 +121,7 @@
     scenic: collection => /lake|lakeside|woodland|scenery|high-level/i.test(`${collection.id} ${collection.title} ${collection.subtitle} ${collection.chips.join(' ')}`),
   };
   const trailsFor = collection => api.trailsFor(collection, trails);
-  const trailInArea = trail => (country === 'all' || (country === 'IT' ? trail.region === 'dolomites' : trail.region === 'savoy'))
+  const trailInArea = trail => (country === 'all' || (country === 'IT' ? trail.region !== 'savoy' : trail.region === 'savoy'))
     && (region === 'all' || trail.region === region);
   const collectionInValley = collection => valley === 'all'
     || trailsFor(collection).some(trail => trail.valley === valley);
@@ -168,8 +170,11 @@
     countrySelect.value = country;
     countryDropdown.refresh();
     compactAreaTrigger(countrySelect);
+    // A region with no published walk yet (the manifest says) is not offered.
+    const manifestRegions = window.DoloPawsRegionManifest && window.DoloPawsRegionManifest.regions;
     const availableRegions = REGIONS.filter(item => item.value === 'all'
-      || country === 'all' || item.countryCode === country);
+      || ((country === 'all' || item.countryCode === country)
+        && (!manifestRegions || !manifestRegions[item.value] || manifestRegions[item.value].trailCount > 0 || item.value === region)));
     regionSelect.replaceChildren(...availableRegions.map(item => option(item, countForRegion(item.value))));
     regionSelect.value = region;
     regionDropdown.refresh();

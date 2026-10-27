@@ -618,6 +618,36 @@
       "name": "Borest – Pisciadú waterfall",
       "slug": "borest-pisciadu-waterfall",
       "gloss": "the stream walk from Corvara to the Pisciadú waterfall"
+    },
+    "valgardena-tour-alla-volta-del-lech-sant": {
+      "name": "Lech Sant",
+      "slug": "lech-sant",
+      "gloss": "the forest loop to the Lech Sant"
+    },
+    "valgardena-passeggiata-da-ortisei-a-s-cristina": {
+      "name": "Ortisei valley promenade",
+      "slug": "ortisei-valley-promenade",
+      "gloss": "the Luis Trenker promenade loop"
+    },
+    "valgardena-escursione-al-resciesa": {
+      "name": "Resciesa summit loop",
+      "slug": "resciesa-summit-loop",
+      "gloss": "the high loop from the Resciesa funicular"
+    },
+    "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": {
+      "name": "Santa Croce – Brogles",
+      "slug": "santa-croce-brogles",
+      "gloss": "the high loop to the Brogles alp"
+    },
+    "valgardena-giro-della-via-crucis": {
+      "name": "Via Crucis, Santa Cristina",
+      "slug": "via-crucis-santa-cristina",
+      "gloss": "the Way of the Cross loop above Santa Cristina"
+    },
+    "valgardena-passeggiata-alla-chiesetta-di-san-giacomo": {
+      "name": "San Giacomo from Ortisei",
+      "slug": "san-giacomo-ortisei",
+      "gloss": "the forest walk to the church of San Giacomo"
     }
   }
 }

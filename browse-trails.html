@@ -580,6 +580,7 @@
 <a href="trail.html?id=langer-rundweg-am-karer-see" style="display:block;color:inherit;">Langer Rundweg am Karer See</a>
 <a href="trail.html?id=cascatelle-di-ziano" style="display:block;color:inherit;">Le Cascatelle di Ziano di Fiemme</a>
 <a href="trail.html?id=erbe-della-salute-grauno" style="display:block;color:inherit;">Le erbe della salute</a>
+<a href="trail.html?id=lech-sant" style="display:block;color:inherit;">Lech Sant</a>
 <a href="trail.html?id=maiser-waalweg" style="display:block;color:inherit;">Maiser Waalweg</a>
 <a href="trail.html?id=malga-aloch-pozza" style="display:block;color:inherit;">Malga Aloch e Masc Aloch</a>
 <a href="trail.html?id=malga-ra-stua" style="display:block;color:inherit;">Malga Ra Stua</a>
@@ -595,6 +596,7 @@
 <a href="trail.html?id=naturerlebnispfad-zans" style="display:block;color:inherit;">Naturerlebnispfad Zans</a>
 <a href="trail.html?id=naturlehrpfad" style="display:block;color:inherit;">Naturlehrpfad</a>
 <a href="trail.html?id=nossingbuhel" style="display:block;color:inherit;">Nössingbühel</a>
+<a href="trail.html?id=ortisei-valley-promenade" style="display:block;color:inherit;">Ortisei valley promenade</a>
 <a href="trail.html?id=oswald-von-wolkenstein-weg" style="display:block;color:inherit;">Oswald-von-Wolkenstein-Weg</a>
 <a href="trail.html?id=pana-raida" style="display:block;color:inherit;">Pana Raida</a>
 <a href="trail.html?id=panoramarundweg" style="display:block;color:inherit;">Panoramarundweg</a>
@@ -619,6 +621,7 @@
 <a href="trail.html?id=prato-di-sorte-moena" style="display:block;color:inherit;">Prato di Sorte</a>
 <a href="trail.html?id=prato-piazza-platzwiese" style="display:block;color:inherit;">Prato Piazza (Plätzwiese)</a>
 <a href="trail.html?id=rafeil-rundweg" style="display:block;color:inherit;">Rafeil-Rundweg</a>
+<a href="trail.html?id=resciesa-summit-loop" style="display:block;color:inherit;">Resciesa summit loop</a>
 <a href="trail.html?id=roda-de-armentara" style="display:block;color:inherit;">Roda de Armentara</a>
 <a href="trail.html?id=roda-de-cherz" style="display:block;color:inherit;">Roda de Cherz</a>
 <a href="trail.html?id=roda-dles-viles" style="display:block;color:inherit;">Roda dles Viles</a>
@@ -640,11 +643,13 @@
 <a href="trail.html?id=rundweg-st-magdalena" style="display:block;color:inherit;">Rundweg St. Magdalena</a>
 <a href="trail.html?id=sagenweg-sentiero-delle-leggende" style="display:block;color:inherit;">Sagenweg - Sentiero delle leggende</a>
 <a href="trail.html?id=san-cassiano-pralongia-corvara" style="display:block;color:inherit;">San Cassiano – Pralongiá – Corvara</a>
+<a href="trail.html?id=san-giacomo-ortisei" style="display:block;color:inherit;">San Giacomo from Ortisei</a>
 <a href="trail.html?id=san-leonardo-lisignago" style="display:block;color:inherit;">San Leonardo e le campagne di Lisignago</a>
 <a href="trail.html?id=malga-ces" style="display:block;color:inherit;">San Martino di Castrozza - Malga Ces</a>
 <a href="trail.html?id=malga-crel" style="display:block;color:inherit;">San Martino di Castrozza - Malga Crel</a>
 <a href="trail.html?id=malga-valcigolera" style="display:block;color:inherit;">San Martino di Castrozza - Malga Valcigolera</a>
 <a href="trail.html?id=val-di-roda-prati-col" style="display:block;color:inherit;">San Martino di Castrozza - Val di Roda - Prati Col</a>
+<a href="trail.html?id=santa-croce-brogles" style="display:block;color:inherit;">Santa Croce – Brogles</a>
 <a href="trail.html?id=sassolungo-sassopiatto-loop" style="display:block;color:inherit;">Sassolungo–Sassopiatto Loop</a>
 <a href="trail.html?id=schorgaurunde" style="display:block;color:inherit;">Schörgaurunde</a>
 <a href="trail.html?id=schwalbenwandrunde" style="display:block;color:inherit;">Schwalbenwandrunde</a>
@@ -679,6 +684,7 @@
 <a href="trail.html?id=tru-dles-viles" style="display:block;color:inherit;">Tru dles Viles</a>
 <a href="trail.html?id=val-di-funes-panorama-trail" style="display:block;color:inherit;">Val di Funes Panorama Trail</a>
 <a href="trail.html?id=valser-rundweg" style="display:block;color:inherit;">Valser Rundweg</a>
+<a href="trail.html?id=via-crucis-santa-cristina" style="display:block;color:inherit;">Via Crucis, Santa Cristina</a>
 <a href="trail.html?id=vigo-borgo-dei-patins" style="display:block;color:inherit;">Vigo, borgo dei patins</a>
 <a href="trail.html?id=vogelweider-rundweg" style="display:block;color:inherit;">Vogelweider Rundweg</a>
 <a href="trail.html?id=walderlebnispfad-aschbach" style="display:block;color:inherit;">Walderlebnispfad Aschbach</a>
@@ -980,7 +986,7 @@
     // the trail page itself, at the moment it's actually wanted.
     const PER_PAGE = 15;
     const allowedCountries = ['all', 'italy', 'france'];
-    const allowedRegions = ['all', 'dolomites', 'savoy'];
+    const allowedRegions = ['all', 'dolomites', 'savoy', 'lombardy', 'friuli'];
     const allowedRisks = ['all', 'low-risk', 'moderate', 'caution'];
     const allowedDistances = ['all', '3', '5', '6', '10', '20', 'u5', '5to10', '10p'];
     let page = 1;
@@ -1034,7 +1040,7 @@
       countryValue = allowedCountries.includes(canonical.country) ? canonical.country : 'all';
       regionValue = allowedRegions.includes(canonical.region) ? canonical.region : 'all';
       valleyValue = canonical.valley || 'all';
-      if(regionValue === 'dolomites') countryValue = 'italy';
+      if(regionValue === 'dolomites' || regionValue === 'lombardy' || regionValue === 'friuli') countryValue = 'italy';
       if(regionValue === 'savoy') countryValue = 'france';
       risk.value = allowedRisks.includes(canonical.risk) ? canonical.risk : 'all';
       distance.value = allowedDistances.includes(canonical.distance) ? canonical.distance : 'all';
@@ -1246,13 +1252,15 @@
 
     const COUNTRIES = [
       { value:'all', label:bt('browse.geo.allCountries', 'All countries'), match:() => true },
-      { value:'italy', label:bt('browse.geo.italy', 'Italy'), match:t => t.region === 'dolomites' },
+      { value:'italy', label:bt('browse.geo.italy', 'Italy'), match:t => t.region !== 'savoy' },
       { value:'france', label:bt('browse.geo.france', 'France'), match:t => t.region === 'savoy' },
     ];
     const REGIONS = [
       { value: 'all', label: bt('browse.geo.allRegions', 'All regions'), country:'all', match: () => true },
       { value: 'dolomites', label: bt('browse.geo.dolomites', 'Dolomites'), country:'italy', match: t => t.region === 'dolomites' },
       { value: 'savoy', label: bt('browse.geo.savoy', 'Savoy'), country:'france', match: t => t.region === 'savoy' },
+      { value: 'lombardy', label: bt('browse.geo.lombardy', 'Lombardy'), country:'italy', match: t => t.region === 'lombardy' },
+      { value: 'friuli', label: bt('browse.geo.friuli', 'Friuli Venezia Giulia'), country:'italy', match: t => t.region === 'friuli' },
     ];
     function renderBreadcrumb(){
       if(!breadcrumb) return;
@@ -1284,14 +1292,20 @@
     }
     // Region remains a separate choice so the model scales when ORMA adds
     // more regions within a country.
+    // A region opens before its first walk is published; the manifest says
+    // when it has one. Without a manifest every region is offered.
+    const regionPublished = item => {
+      const regions = window.DoloPawsRegionManifest && window.DoloPawsRegionManifest.regions;
+      return !regions || !regions[item.value] || regions[item.value].trailCount > 0 || item.value === regionValue;
+    };
     const regionOptions = () => REGIONS.filter(item => item.value === 'all'
-      || countryValue === 'all' || item.country === countryValue);
+      || ((countryValue === 'all' || item.country === countryValue) && regionPublished(item)));
     function renderRegionSelect(){
       if(!regionSelect) return;
       regionSelect.replaceChildren(...regionOptions().map(item => {
         const count = item.value === 'all'
           ? trails.filter(t => countryValue === 'all'
-            || (countryValue === 'italy' ? t.region === 'dolomites' : t.region === 'savoy')).length
+            || (countryValue === 'italy' ? t.region !== 'savoy' : t.region === 'savoy')).length
           : trails.filter(item.match).length;
         return option(item, count);
       }));
@@ -1302,7 +1316,7 @@
     function valleyEntries(){
       const scoped = trails.filter(trail => {
         if(regionValue !== 'all') return trail.region === regionValue;
-        if(countryValue === 'italy') return trail.region === 'dolomites';
+        if(countryValue === 'italy') return trail.region !== 'savoy';
         if(countryValue === 'france') return trail.region === 'savoy';
         return true;
       });

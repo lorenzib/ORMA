@@ -152,12 +152,76 @@
     ['Valmorel / Les Avanchers', 45.4782, 6.4562, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
     ['Saint-Martin-de-Belleville', 45.3798, 6.5046, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
     ['Les Échelles / Chartreuse', 45.4359, 5.7546, 'Chambéry – Bauges', 'savoy', 'savoie'],
-    ['Val Thorens', 45.2979, 6.5823, 'Tarentaise – Vanoise', 'savoy', 'savoie']
+    ['Val Thorens', 45.2979, 6.5823, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
+    // ---- Lombardy ----
+    ['Sondrio', 46.1699, 9.8715, 'Valtellina', 'lombardy', 'sondrio'],
+    ['Morbegno', 46.1356, 9.5714, 'Valtellina', 'lombardy', 'sondrio'],
+    ['Val Masino', 46.2430, 9.6380, 'Valtellina', 'lombardy', 'sondrio'],
+    ['Teglio', 46.1717, 10.0640, 'Valtellina', 'lombardy', 'sondrio'],
+    ['Tirano', 46.2160, 10.1690, 'Valtellina', 'lombardy', 'sondrio'],
+    ['Aprica', 46.1540, 10.1500, 'Valtellina', 'lombardy', 'sondrio'],
+    ['Chiesa in Valmalenco', 46.2667, 9.8500, 'Valmalenco', 'lombardy', 'sondrio'],
+    ['Bormio', 46.4669, 10.3705, 'Bormio – Livigno', 'lombardy', 'sondrio'],
+    ['Valdidentro', 46.4980, 10.2600, 'Bormio – Livigno', 'lombardy', 'sondrio'],
+    ['Santa Caterina Valfurva', 46.4120, 10.4950, 'Bormio – Livigno', 'lombardy', 'sondrio'],
+    ['Livigno', 46.5386, 10.1357, 'Bormio – Livigno', 'lombardy', 'sondrio'],
+    ['Chiavenna', 46.3195, 9.4010, 'Valchiavenna', 'lombardy', 'sondrio'],
+    ['Madesimo', 46.4400, 9.3570, 'Valchiavenna', 'lombardy', 'sondrio'],
+    ['Villa di Chiavenna', 46.3310, 9.4800, 'Valchiavenna', 'lombardy', 'sondrio'],
+    ['Como', 45.8081, 9.0852, 'Lake Como', 'lombardy', 'como'],
+    ['Bellagio', 45.9870, 9.2610, 'Lake Como', 'lombardy', 'como'],
+    ['Menaggio', 46.0200, 9.2390, 'Lake Como', 'lombardy', 'como'],
+    ['Dongo / Alto Lario', 46.1230, 9.2810, 'Lake Como', 'lombardy', 'como'],
+    ['Lecco', 45.8566, 9.3977, 'Lake Como – Grigne', 'lombardy', 'lecco'],
+    ['Mandello del Lario', 45.9170, 9.3190, 'Lake Como – Grigne', 'lombardy', 'lecco'],
+    ['Varenna', 46.0100, 9.2840, 'Lake Como – Grigne', 'lombardy', 'lecco'],
+    ['Pasturo / Valsassina', 45.9520, 9.4430, 'Lake Como – Grigne', 'lombardy', 'lecco'],
+    ['Colico', 46.1360, 9.3720, 'Lake Como – Grigne', 'lombardy', 'lecco'],
+    ['Darfo Boario Terme', 45.8800, 10.1820, 'Val Camonica', 'lombardy', 'brescia'],
+    ['Breno', 45.9570, 10.3040, 'Val Camonica', 'lombardy', 'brescia'],
+    ['Capo di Ponte', 46.0310, 10.3450, 'Val Camonica', 'lombardy', 'brescia'],
+    ['Edolo', 46.1780, 10.3330, 'Val Camonica', 'lombardy', 'brescia'],
+    ['Ponte di Legno', 46.2590, 10.5100, 'Val Camonica', 'lombardy', 'brescia'],
+    // ---- Friuli Venezia Giulia ----
+    // Carnia, Sappada, the Tarvisio and Julian Alps valleys, the Friulian
+    // Dolomites and Piancavallo.
+    ['Sappada', 46.5667, 12.6847, 'Sappada', 'friuli', 'udine'],
+    ['Forni di Sopra', 46.4236, 12.5839, 'Dolomiti Friulane', 'friuli', 'udine'],
+    ['Forni di Sotto', 46.3929, 12.6716, 'Dolomiti Friulane', 'friuli', 'udine'],
+    ['Sauris', 46.4665, 12.7080, 'Carnia', 'friuli', 'udine'],
+    ['Ampezzo (Carnia)', 46.4168, 12.7966, 'Carnia', 'friuli', 'udine'],
+    ['Ovaro / Val Degano', 46.4836, 12.8656, 'Carnia', 'friuli', 'udine'],
+    ['Forni Avoltri', 46.5865, 12.7754, 'Carnia', 'friuli', 'udine'],
+    ['Ravascletto / Zoncolan', 46.5237, 12.9226, 'Carnia', 'friuli', 'udine'],
+    ['Paluzza / Timau', 46.5326, 13.0155, 'Carnia', 'friuli', 'udine'],
+    ['Arta Terme', 46.4797, 13.0177, 'Carnia', 'friuli', 'udine'],
+    ['Paularo', 46.5310, 13.1186, 'Carnia', 'friuli', 'udine'],
+    ['Tolmezzo', 46.4057, 13.0131, 'Carnia', 'friuli', 'udine'],
+    ['Pontebba', 46.5058, 13.3060, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Malborghetto-Valbruna', 46.5072, 13.4405, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Tarvisio', 46.5054, 13.5785, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Fusine in Valromana', 46.4794, 13.6655, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Sella Nevea', 46.3893, 13.4752, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Dogna', 46.4482, 13.3155, 'Canal del Ferro – Val Resia', 'friuli', 'udine'],
+    ['Chiusaforte / Canal del Ferro', 46.4073, 13.3089, 'Canal del Ferro – Val Resia', 'friuli', 'udine'],
+    ['Moggio Udinese', 46.4090, 13.1993, 'Canal del Ferro – Val Resia', 'friuli', 'udine'],
+    ['Resia / Val Resia', 46.3741, 13.3050, 'Canal del Ferro – Val Resia', 'friuli', 'udine'],
+    ['Venzone', 46.3326, 13.1383, 'Gemonese – Prealpi Giulie', 'friuli', 'udine'],
+    ['Gemona del Friuli', 46.2757, 13.1385, 'Gemonese – Prealpi Giulie', 'friuli', 'udine'],
+    ['Claut / Valcellina', 46.2690, 12.5140, 'Dolomiti Friulane', 'friuli', 'pordenone'],
+    ['Cimolais', 46.2884, 12.4382, 'Dolomiti Friulane', 'friuli', 'pordenone'],
+    ['Erto e Casso', 46.2755, 12.3713, 'Dolomiti Friulane', 'friuli', 'pordenone'],
+    // Piancavallo stays in the Dolomites region: its curated loop is part of the
+    // Dolomites lake-loops collection, and a collection holds one region.
+    ['Barcis', 46.1908, 12.5605, 'Valcellina – Piancavallo', 'dolomites', 'pordenone'],
+    ['Piancavallo', 46.1060, 12.5230, 'Valcellina – Piancavallo', 'dolomites', 'pordenone']
   ];
 
   const REGIONS = {
     dolomites: { label: 'Dolomites', country: 'Italy', countryCode: 'IT' },
-    savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' }
+    savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' },
+    lombardy: { label: 'Lombardy', country: 'Italy', countryCode: 'IT' },
+    friuli: { label: 'Friuli Venezia Giulia', country: 'Italy', countryCode: 'IT' }
   };
 
   function countryForRegion(region) {
