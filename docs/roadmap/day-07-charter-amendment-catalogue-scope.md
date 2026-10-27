@@ -1,9 +1,9 @@
 # Proposed charter amendment — catalogue and offline scope
 
-**Status:** Proposed 2026-10-27. Awaiting the product owner's decision. The
-charter is unchanged until this is accepted. Under the charter's scope-change
-rule, the charter and the Day 6 backlog are then updated together, in one pull
-request.
+**Status:** Accepted 2026-10-27 by the product owner, with **Option A** for
+offline packages. The charter, the Day 6 backlog and the readiness ledger's
+`asOf` were updated together in the same pull request, as the scope-change rule
+requires.
 
 ## Why an amendment is needed
 
@@ -62,7 +62,7 @@ conditions:
 authority's published route are not that expansion, but bulk imports of OSM
 relations are.
 
-### 3. Offline packages beyond the pilots (decision needed)
+### 3. Offline packages beyond the pilots (decided: Option A)
 
 Two options.
 

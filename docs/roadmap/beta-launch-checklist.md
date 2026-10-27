@@ -129,9 +129,11 @@ readiness review. P0 gates cannot be waived.
       route geometry, no false `Ready offline`, no lost download or active hike,
       no confident off-route alert on weak GPS, no inaccessible core action,
       and no exact location in analytics.
-- [ ] The charter scope amendment
-      (`day-07-charter-amendment-catalogue-scope.md`) is decided, so the review
-      judges the product we actually ship.
+- [x] The charter scope amendment
+      (`day-07-charter-amendment-catalogue-scope.md`) is decided (2026-10-27,
+      Option A), so the review judges the product we actually ship.
+- [ ] If any physical device gate failed, non-pilot offline downloads were
+      switched off until its fix passed (charter, Option A).
 - [ ] Record the decision (`launch`, `reduce scope` or `delay`) and its date in
       the ledger.
 

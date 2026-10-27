@@ -177,6 +177,22 @@ All P0 and P1 work
   - Export does not imply that all safety context is included.
   - Representative files pass an independent GPX parser test.
 
+### OFF-07 / OFF-08 — Offline packages for every Verified trail
+
+- **Status:** Accepted scope under the 2026-10-27 catalogue and offline scope
+  amendment to the Day 7 charter (`day-07-charter-amendment-catalogue-scope.md`)
+- **Priority:** P1 (supporting the core journey; not a field-test route)
+- **Outcome:** every Verified trail offers an offline package whose map carries
+  the trail page's status.
+- **Acceptance:**
+  - Only Verified trails receive a package; Reviewed and Imported never do.
+  - The offline hike-mode claim names only the two pilots until the physical
+    device gates pass.
+  - If a physical device gate fails, non-pilot downloads are switched off
+    until the fix passes the affected gate.
+  - See `docs/architecture/OFF-07-verified-trail-offline-packages.md` and
+    `docs/architecture/OFF-08-offline-map-says-what-the-trail-page-says.md`.
+
 ## Epic B — Trail data, scoring, and trust
 
 ### DATA-01 — Define the canonical versioned trail schema
@@ -791,6 +807,9 @@ Implementation evidence: `docs/architecture/QA-01-complete-ci-quality-gate.md`.
   - Security, offline, accuracy, accessibility, performance, and privacy gates
     have recorded evidence.
   - Recruitment does not begin until this decision is recorded.
+  - The review is judged against the scope as amended on 2026-10-27; the
+    offline hike-mode claim covers the two pilots only.
+  - The ordered remaining work is in `beta-launch-checklist.md`.
 
 ## P2 supporting backlog
 
