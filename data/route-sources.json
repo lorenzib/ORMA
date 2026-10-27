@@ -82,6 +82,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T12:00:00.000Z"
     },
+    "cembra-piz-de-le-agole": {
+      "url": "https://www.visitfiemme.it/it/activity/il-piz-de-le-agole-balcone-sulla-valle_9623",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il Piz de le Agole, balcone sulla valle",
+      "quote": "Lunghezza 10,2 km Durata 3 h 30 min Salita 600 m Discesa 600 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T18:00:00.000Z"
+    },
     "cembra-rifugio-potzmauer": {
       "url": "https://www.visitfiemme.it/it/activity/al-rifugio-potzmauer_9863",
       "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
@@ -97,6 +105,14 @@
       "quote": "Lunghezza 4,4 km Durata 2 h 00 min Salita 280 m Discesa 280 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-vecchi-mestieri-grumes": {
+      "url": "https://www.visitfiemme.it/it/activity/il-sentiero-dei-vecchi-mestieri-da-grumes_9859",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il Sentiero dei vecchi mestieri – da Grumes",
+      "quote": "Lunghezza 5,3 km Durata 3 h 00 min Salita 400 m Discesa 400 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T18:00:00.000Z"
     },
     "cortina-castello-di-botestagno": {
       "url": "https://cortina.dolomiti.org/it/escursioni/al-castello-di-botestagno/",
@@ -297,6 +313,14 @@
       "quote": "Lunghezza 3,1 km Durata 55 min Salita 103 m Discesa 103 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-26T23:30:00.000Z"
+    },
+    "fiemme-scalata-alle-malghette": {
+      "url": "https://www.visitfiemme.it/it/activity/montagna-senza-limiti-la-scalata-alle-malghette_46674",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Montagna Senza Limiti - La “scalata” alle Malghette",
+      "quote": "Lunghezza 3,9 km Durata 2 h 00 min Salita 163 m Discesa 163 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T18:00:00.000Z"
     },
     "fiemme-sentiero-botanico": {
       "url": "https://www.visitfiemme.it/it/activity/sentiero-botanico-naturalistico_9640",

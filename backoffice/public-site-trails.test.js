@@ -65,10 +65,11 @@ describe('the existing-site verification boundary',()=>{
     // at the Lago di Lases, San Leonardo above Lisignago, the Dos Paion on
     // Monte Corona and the Rifugio Potzmauer. Then 241 and
     // 239 with five more Val di Cembra walks: the Castello di Segonzano, Sevignano,
-    // Grauno, the Monte Corona loop and the Masi di Grumes.
+    // Grauno, the Monte Corona loop and the Masi di Grumes. Then 244 and
+    // 242 with the Malghette, the Piz de le Agole and the old-trades path from Grumes.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(241);
-    expect(currentSiteTrails(catalogue)).toHaveLength(239);
+    expect(catalogue).toHaveLength(244);
+    expect(currentSiteTrails(catalogue)).toHaveLength(242);
   });
 
   test('requires the artwork the public trail page needs',()=>{

@@ -190,6 +190,23 @@
       }
     },
     {
+      "id": "cembra-piz-de-le-agole",
+      "approvedReviewId": "commons-cembra-piz-de-le-agole-on-route",
+      "approvedAt": "2026-10-27T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-piz-de-le-agole-church.jpg",
+        "heroImage": "images/trails/cembra-piz-de-le-agole-church.jpg",
+        "imageAlt": "The church of San Biagio in Lisignago with its tall bell tower and clock, a rose window and a carved stone doorway, under a clear summer sky",
+        "imageCredit": "San Biagio, Lisignago",
+        "imageCreditText": "San Biagio, Lisignago by Niccolò Caranti",
+        "imageCreator": "Niccolò Caranti",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chiesa_di_San_Biagio_(Lisignago)_04.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cembra-rifugio-potzmauer",
       "approvedReviewId": "commons-cembra-rifugio-potzmauer-on-route",
       "approvedAt": "2026-10-27T12:00:00.000Z",
@@ -220,6 +237,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chiesa_di_San_Leonardo_a_Lisignago_05.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cembra-vecchi-mestieri-grumes",
+      "approvedReviewId": "commons-cembra-vecchi-mestieri-grumes-on-route",
+      "approvedAt": "2026-10-27T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-vecchi-mestieri-grumes-church.jpg",
+        "heroImage": "images/trails/cembra-vecchi-mestieri-grumes-church.jpg",
+        "imageAlt": "The church of Santa Lucia in Grumes with its onion-domed bell tower above the village cemetery, wooded mountains of the Val di Cembra behind in spring",
+        "imageCredit": "Santa Lucia, Grumes",
+        "imageCreditText": "Santa Lucia, Grumes by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Grumes,_chiesa_di_Santa_Lucia_1.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -645,6 +679,23 @@
         "imageLicence": "CC BY 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:38040_Valfloriana,_Province_of_Trento,_Italy_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fiemme-scalata-alle-malghette",
+      "approvedReviewId": "commons-fiemme-scalata-alle-malghette-on-route",
+      "approvedAt": "2026-10-27T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fiemme-scalata-alle-malghette-hut.jpg",
+        "heroImage": "images/trails/fiemme-scalata-alle-malghette-hut.jpg",
+        "imageAlt": "A long summer meadow of tall grass rising to the white hut of Le Malghette at the edge of spruce woods under a clear blue sky",
+        "imageCredit": "Le Malghette (Krabes Alm)",
+        "imageCreditText": "Le Malghette (Krabes Alm) by Mario Penner",
+        "imageCreator": "Mario Penner",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Krabes_Alm_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
