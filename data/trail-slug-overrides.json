@@ -493,6 +493,36 @@
       "name": "San Martino di Castrozza - Malga Valcigolera",
       "slug": "malga-valcigolera",
       "gloss": "the forest walk from San Martino to Malga Valcigolera"
+    },
+    "cembra-lago-santo": {
+      "name": "Il Lago Santo",
+      "slug": "lago-santo-cembra",
+      "gloss": "the loop round the Lago Santo above Cembra"
+    },
+    "cembra-pietra-del-futuro": {
+      "name": "La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases",
+      "slug": "lases-pietra-del-futuro",
+      "gloss": "the audio-guided walk from Lases to its lake"
+    },
+    "cembra-lago-lases-buse-giaz": {
+      "name": "Il Lago di Lases e le buse del giaz",
+      "slug": "lago-di-lases-buse-del-giaz",
+      "gloss": "the loop round the Lago di Lases and the Val Fredda"
+    },
+    "cembra-san-leonardo-lisignago": {
+      "name": "San Leonardo e le campagne di Lisignago",
+      "slug": "san-leonardo-lisignago",
+      "gloss": "the vineyard loop to San Leonardo from Lisignago"
+    },
+    "cembra-dos-paion": {
+      "name": "Passeggiata al belvedere del Dos Paion sul Monte Corona",
+      "slug": "dos-paion-monte-corona",
+      "gloss": "the walk to the Dos Paion viewpoint on Monte Corona"
+    },
+    "cembra-rifugio-potzmauer": {
+      "name": "Al Rifugio Potzmauer",
+      "slug": "rifugio-potzmauer",
+      "gloss": "the woodland walk to the Rifugio Potzmauer"
     }
   }
 }

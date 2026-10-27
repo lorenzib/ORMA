@@ -10,6 +10,54 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "cembra-dos-paion": {
+      "url": "https://www.visitfiemme.it/it/activity/passeggiata-al-belvedere-del-dos-paion-sul-monte-corona_9837",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Passeggiata al belvedere del Dos Paion sul Monte Corona",
+      "quote": "Lunghezza 6,0 km Durata 2 h 02 min Salita 308 m Discesa 308 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-lago-lases-buse-giaz": {
+      "url": "https://www.visitfiemme.it/it/activity/il-lago-di-lases-e-le-buse-del-giaz_9812",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il Lago di Lases e le buse del giaz",
+      "quote": "Lunghezza 4,9 km Durata 2 h 00 min Salita 150 m Discesa 150 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-lago-santo": {
+      "url": "https://www.visitfiemme.it/it/activity/il-lago-santo_63413",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il Lago Santo",
+      "quote": "Lunghezza 1,1 km Durata 20 min Salita 10 m Discesa 10 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-pietra-del-futuro": {
+      "url": "https://www.visitfiemme.it/it/activity/la-pietra-del-futuro-percorso-con-audioguida-dei-ragazzi-della-scuola-elementare-di-lona-lases_35376",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases",
+      "quote": "Lunghezza 2,7 km Durata 50 min Salita 61 m Discesa 63 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-rifugio-potzmauer": {
+      "url": "https://www.visitfiemme.it/it/activity/al-rifugio-potzmauer_9863",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Al Rifugio Potzmauer",
+      "quote": "Lunghezza 4,8 km Durata 1 h 30 min Salita 300 m Discesa 300 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-san-leonardo-lisignago": {
+      "url": "https://www.visitfiemme.it/it/activity/san-leonardo-e-le-campagne-di-lisignago_9746",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "San Leonardo e le campagne di Lisignago",
+      "quote": "Lunghezza 4,4 km Durata 2 h 00 min Salita 280 m Discesa 280 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
     "cortina-castello-di-botestagno": {
       "url": "https://cortina.dolomiti.org/it/escursioni/al-castello-di-botestagno/",
       "publisher": "Cortina Marketing (cortina.dolomiti.org, Outdooractive)",
