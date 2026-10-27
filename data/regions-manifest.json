@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T19:08:36.302Z",
+  "generatedAt": "2026-10-27T20:33:12.470Z",
   "regions": {
     "dolomites": {
-      "trailCount": 201,
-      "trails": "data/regions/dolomites-trails.js?v=362e0eee12ba",
+      "trailCount": 204,
+      "trails": "data/regions/dolomites-trails.js?v=940861cd31a4",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -206,6 +206,9 @@
         "altabadia-escursione-corvara-la-villa": "data/trail-details/altabadia-escursione-corvara-la-villa.js?v=2b9337d53009",
         "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa": "data/trail-details/altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa.js?v=8afb5cd1951d",
         "altabadia-da-furnacia-a-la-crusc": "data/trail-details/altabadia-da-furnacia-a-la-crusc.js?v=8d0212d090d8",
+        "altabadia-da-la-val-ai-prati-di-rit": "data/trail-details/altabadia-da-la-val-ai-prati-di-rit.js?v=fa93006bf989",
+        "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara": "data/trail-details/altabadia-da-san-cassiano-al-pralongia-fino-a-corvara.js?v=62b491dad3d3",
+        "altabadia-passeggiata-borest-cascate-del-pisciadu": "data/trail-details/altabadia-passeggiata-borest-cascate-del-pisciadu.js?v=6d07daa64e05",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -476,6 +479,9 @@
     "altabadia-escursione-corvara-la-villa": "dolomites",
     "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa": "dolomites",
     "altabadia-da-furnacia-a-la-crusc": "dolomites",
+    "altabadia-da-la-val-ai-prati-di-rit": "dolomites",
+    "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara": "dolomites",
+    "altabadia-passeggiata-borest-cascate-del-pisciadu": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -781,6 +787,9 @@
     "altabadia-escursione-corvara-la-villa": "corvara-la-villa",
     "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa": "pederoa-masi-picedac-costa",
     "altabadia-da-furnacia-a-la-crusc": "furnacia-la-crusc",
+    "altabadia-da-la-val-ai-prati-di-rit": "la-val-prati-di-rit",
+    "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara": "san-cassiano-pralongia-corvara",
+    "altabadia-passeggiata-borest-cascate-del-pisciadu": "borest-pisciadu-waterfall",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1035,6 +1044,9 @@
     "corvara-la-villa": "altabadia-escursione-corvara-la-villa",
     "pederoa-masi-picedac-costa": "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa",
     "furnacia-la-crusc": "altabadia-da-furnacia-a-la-crusc",
+    "la-val-prati-di-rit": "altabadia-da-la-val-ai-prati-di-rit",
+    "san-cassiano-pralongia-corvara": "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara",
+    "borest-pisciadu-waterfall": "altabadia-passeggiata-borest-cascate-del-pisciadu",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

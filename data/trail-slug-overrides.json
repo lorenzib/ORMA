@@ -603,6 +603,21 @@
       "name": "Furnacia – La Crusc",
       "slug": "furnacia-la-crusc",
       "gloss": "the climb to the Santa Croce sanctuary"
+    },
+    "altabadia-da-la-val-ai-prati-di-rit": {
+      "name": "La Val – Prati di Rit",
+      "slug": "la-val-prati-di-rit",
+      "gloss": "the long loop to the Rit meadows"
+    },
+    "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara": {
+      "name": "San Cassiano – Pralongiá – Corvara",
+      "slug": "san-cassiano-pralongia-corvara",
+      "gloss": "the plateau walk from Piz Sorega to Corvara"
+    },
+    "altabadia-passeggiata-borest-cascate-del-pisciadu": {
+      "name": "Borest – Pisciadú waterfall",
+      "slug": "borest-pisciadu-waterfall",
+      "gloss": "the stream walk from Corvara to the Pisciadú waterfall"
     }
   }
 }
