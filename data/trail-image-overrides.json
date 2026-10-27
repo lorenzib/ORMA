@@ -4191,6 +4191,108 @@
       }
     },
     {
+      "id": "valgardena-escursione-al-resciesa",
+      "approvedReviewId": "mapillary-valgardena-escursione-al-resciesa-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-al-resciesa-rifugio.jpg",
+        "heroImage": "images/trails/valgardena-escursione-al-resciesa-rifugio.jpg",
+        "imageAlt": "A wooden mountain hut with a terrace beside a gravel path and open green meadows under a blue sky on the Resciesa",
+        "imageCredit": "The Rifugio Resciesa",
+        "imageCreditText": "The Rifugio Resciesa by dsmm",
+        "imageCreator": "dsmm",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=378218130159169",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-escursione-dalla-cappella-santa-croce-al-brogles",
+      "approvedReviewId": "mapillary-valgardena-escursione-dalla-cappella-santa-croce-al-brogles-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-dalla-cappella-santa-croce-al-brogles-path.jpg",
+        "heroImage": "images/trails/valgardena-escursione-dalla-cappella-santa-croce-al-brogles-path.jpg",
+        "imageAlt": "A narrow gravel path edged with stones across green meadows towards the Odle peaks, walkers ahead under a blue sky",
+        "imageCredit": "The path towards Brogles",
+        "imageCreditText": "The path towards Brogles by highlander",
+        "imageCreator": "highlander",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=771618323554512",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-giro-della-via-crucis",
+      "approvedReviewId": "mapillary-valgardena-giro-della-via-crucis-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-giro-della-via-crucis-bench.jpg",
+        "heroImage": "images/trails/valgardena-giro-della-via-crucis-bench.jpg",
+        "imageAlt": "A wooden bench on a grassy slope above Santa Cristina, the village roofs and a road below",
+        "imageCredit": "Above Santa Cristina on the Way of the Cross",
+        "imageCreditText": "Above Santa Cristina on the Way of the Cross by highlander",
+        "imageCreator": "highlander",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=377866916885609",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-passeggiata-alla-chiesetta-di-san-giacomo",
+      "approvedReviewId": "mapillary-valgardena-passeggiata-alla-chiesetta-di-san-giacomo-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-passeggiata-alla-chiesetta-di-san-giacomo-col-de-flam.jpg",
+        "heroImage": "images/trails/valgardena-passeggiata-alla-chiesetta-di-san-giacomo-col-de-flam.jpg",
+        "imageAlt": "A rest area of wooden benches on a gravel clearing among trees at Col de Flam above Ortisei, a walker standing by a stone",
+        "imageCredit": "The Col de Flam rest area",
+        "imageCreditText": "The Col de Flam rest area by highlander",
+        "imageCreator": "highlander",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=495459584903694",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-passeggiata-da-ortisei-a-s-cristina",
+      "approvedReviewId": "mapillary-valgardena-passeggiata-da-ortisei-a-s-cristina-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-passeggiata-da-ortisei-a-s-cristina-promenade.jpg",
+        "heroImage": "images/trails/valgardena-passeggiata-da-ortisei-a-s-cristina-promenade.jpg",
+        "imageAlt": "A broad paved promenade in Ortisei between a stone wall and trees, walkers in the distance and an art poster beside the path",
+        "imageCredit": "The Luis Trenker promenade, Ortisei",
+        "imageCreditText": "The Luis Trenker promenade, Ortisei by maxxzor",
+        "imageCreator": "maxxzor",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1130864824044983",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-tour-alla-volta-del-lech-sant",
+      "approvedReviewId": "mapillary-valgardena-tour-alla-volta-del-lech-sant-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-tour-alla-volta-del-lech-sant-path.jpg",
+        "heroImage": "images/trails/valgardena-tour-alla-volta-del-lech-sant-path.jpg",
+        "imageAlt": "A walker in a blue jacket on a gravel track beside a wooden fence near Cristauta, larches and spruces behind and the Odle peaks in cloud",
+        "imageCredit": "The track near Cristauta",
+        "imageCreditText": "The track near Cristauta by ursus",
+        "imageCreator": "ursus",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1245395036599629",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valley-view",
       "approvedReviewId": "commons-valley-view",
       "approvedAt": "2026-09-07T16:37:15.690Z",
