@@ -10,6 +10,38 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "altabadia-escursione-corvara-colfosco": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-colfosco",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Escursione Corvara - Colfosco",
+      "quote": "Percorso 4,8 km · Durata 1:20 h · Salita 128 m · Discesa 132 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "altabadia-escursione-corvara-la-villa": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-la-villa",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Escursione Corvara - La Villa",
+      "quote": "Percorso 5,1 km · Durata 1:15 h · Salita 21 m · Discesa 132 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/escursione-da-la-villa-al-lago-lech-da-sompunt",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Escursione da La Villa al lago Lech da Sompunt",
+      "quote": "Percorso 7,5 km · Durata 2:30 h · Salita 172 m · Discesa 174 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "altabadia-sentiero-degli-artisti-tru-di-artisc": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/sentiero-degli-artisti-tru-di-artisc",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Sentiero degli artisti - Tru di artisć",
+      "quote": "Percorso 5,2 km · Durata 1:40 h · Salita 245 m · Discesa 46 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
     "cembra-castello-segonzano": {
       "url": "https://www.visitfiemme.it/it/activity/il-castello-di-segonzano-e-il-canyon-del-pr-_9748",
       "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",

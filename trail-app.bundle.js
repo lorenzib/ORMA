@@ -49997,6 +49997,278 @@ function effectiveOverrides(profile, adjustOverride){
       ],
       rifugi: [],
       desc: 'A short loop over the summer pastures of Malga Vernera above Sover, on marked paths and forest roads with wide views over the Val di Cembra. The APT lists 3.6 km and 185 m of ascent.'
+    },
+    'altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 1).
+      // The Alta Badia tourist board’s walk “Escursione da La Villa al lago Lech da Sompunt”, drawn on 53 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Badia (own dog regulation, lead and muzzle).
+      // No Natura 2000 site, park or natural monument on the line (Province of Bolzano landscape-plan layers).
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'La Villa – Lech da Sompunt – Pedraces, Badia',
+      distance: 7.5,
+      elevation: 172,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from La Villa up through meadows and forest to the small lake Lech da Sompunt, down through Ciaminades to Pedraces, and back to La Villa on a quiet path along the river.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Pedraces in Badia, where the loop comes down to the main road before following the river back, in June (Tiia Monto, CC BY-SA 3.0), 2 m from the line.',
+        route: 'Official loop 7.5 km from La Villa bus stop, as the Alta Badia tourist board publishes it; the stored line is drawn on 53 OSM ways along the board’s published line, 7.8 km, with 99% of the board’s line within 25 m of it.',
+        routeNumbers: 'From the La Villa bus stop up road no. 11 to the top of the village; right of the parish church, along the small tarred lane past the houses, gently up across the meadow (a ski slope in winter) and along the forest on an easy path to Lech da Sompunt (45 min), where the Sas dla Crusc is reflected in the water; then gently down to Ciaminades and Pedraces, and back to La Villa on a quiet path beside the river.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.4, at km 1.4 and at km 1.9 (OSM nodes 4319958092, 2464363648, 1352469015, 1352468995).',
+        elevation: 'Official 7.5 km, 172 m up and 174 m down, 2 h 30 min, highest point 1,492 m, lowest 1,318 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Società Cooperativa Turistica Alta Badia, Escursione da La Villa al lago Lech da Sompunt (altabadia.org and its Outdooractive tour)',
+          'Gemeinde Abtei / Comune di Badia, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 7, 22.02.2010), Art. 4 and 8: a lead of at most 1.5 m everywhere and a muzzle carried; no dogs on farmed meadows in the growing season',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line, only landscape protection zones, which set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (53 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 11,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A short stretch on the main road through Pedraces: keep your dog close', 'The path crosses hay meadows: Badia keeps dogs off farmed meadows in the growing season, so stay on the path', 'Paths and lanes shared with cyclists'],
+      terrainType: 'Village lanes, meadow and forest paths, riverside path',
+      shadeDescription: 'Mostly open: only about a tenth runs through forest, on the climb to the lake; the meadows and the riverside path are in the sun.',
+      terrainDescription: 'An easy loop at 1,320–1,490 m between La Villa and Pedraces in the Val Badia, suitable for pushchairs, through meadows and forest with views of the Sas dla Crusc, Lavarela and Conturines.',
+      waterDescription: 'Drinking fountains at the start, at km 0.4, at km 1.4 and at km 1.9; places to eat at the start and on the way.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start at the La Villa bus stop: 7.5 km, about 170 m of climbing, two and a half hours. In Badia your dog must be on a lead of at most 1.5 m on the whole walk and you must carry a muzzle; keep off the hay meadows and do not let your dog bathe in fountains. A quarter of the loop shares paths with the Tru di Lëc round Lech da Sompunt.',
+      sourceLinks: [
+        { label: 'Alta Badia, Escursione da La Villa al lago Lech da Sompunt', url: 'https://www.altabadia.org/it/tour/oadetail/oa/escursione-da-la-villa-al-lago-lech-da-sompunt' },
+        { label: 'Outdooractive, Escursione da La Villa al lago Lech da Sompunt (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/16420694' },
+        { label: 'Gemeinde Abtei, dog regulation', url: 'https://www.gemeinde.abtei.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.582703, lng: 11.903674, label: 'La Villa bus stop, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.5829542, lng: 11.9036343, osmId: 'node/4319958092', label: 'Drinking fountain at the start' },
+        { km: 0.4, lat: 46.5821902, lng: 11.897446, osmId: 'node/2464363648', label: 'Drinking fountain' },
+        { km: 1.4, lat: 46.5914127, lng: 11.8956699, osmId: 'node/1352469015', label: 'Drinking fountain' },
+        { km: 1.9, lat: 46.5960439, lng: 11.8941968, osmId: 'node/1352468995', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.58463, lng: 11.90476, osmId: 'node/349238903', name: 'L\'Fana' },
+        { km: 0, lat: 46.58284, lng: 11.90387, osmId: 'node/2980829322', name: 'Aurora' },
+        { km: 0.7, lat: 46.58574, lng: 11.89655, osmId: 'node/2098608086', name: 'Ütia Florian' },
+        { km: 3.4, lat: 46.6072, lng: 11.89635, osmId: 'way/459071671', name: 'Badia Pub' },
+        { km: 3.7, lat: 46.6114, lng: 11.8943, osmId: 'node/11181235037', name: 'Pasticceria Bar “I Dolci di Ricky”' }
+      ],
+      desc: 'An easy loop from La Villa to the small lake Lech da Sompunt below the Sas dla Crusc, down to Pedraces and back along the river. The board lists 7.5 km and 172 m of ascent.'
+    },
+    'altabadia-escursione-corvara-colfosco': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 1).
+      // The Alta Badia tourist board’s walk “Escursione Corvara - Colfosco”, drawn on 32 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Corvara (no regulation, national rule).
+      // No Natura 2000 site, park or natural monument on the line (Province of Bolzano landscape-plan layers).
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Corvara – Colfosco, Corvara in Badia',
+      distance: 4.8,
+      elevation: 128,
+      hours: '1.3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Boé gondola car park in Corvara up through Percosta to Colfosco and back down across the valley pastures on path 645 along the Rü de Pisciadú.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The footpath above Corvara below the Sassongher, on the walk, in June (Tiia Monto, CC BY-SA 3.0), 1 m from the line.',
+        route: 'Official loop 4.8 km from Boé gondola car park, Corvara, as the Alta Badia tourist board publishes it; the stored line is drawn on 32 OSM ways along the board’s published line, 4.8 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'From the Boé gondola car park north to the main road from Corvara to Colfosco; at the roundabout take the road left of the Hotel Tablé, up through Percosta, and at Villa Anita left on the road to Colfosco (45 min). Through Colfosco, then south down through the valley pastures on path 645 to the Rü de Pisciadú, and past the campsite back to Corvara. No lift is used: the walk only starts at the gondola car park.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.4, at km 2.3 and at km 3 (OSM nodes 4378806904, 5812715641, 5812713361, 1824535507).',
+        elevation: 'Official 4.8 km, 128 m up and 132 m down, 1 h 20 min, highest point 1,643 m, lowest 1,516 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Società Cooperativa Turistica Alta Badia, Escursione Corvara - Colfosco (altabadia.org and its Outdooractive tour)',
+          'Comune di Corvara in Badia publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line, only landscape protection zones, which set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (32 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 12,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Quiet roads with some traffic through Percosta and Colfosco: keep your dog close', 'Cattle may graze on the valley pastures in summer', 'Paths shared with cyclists'],
+      terrainType: 'Village roads and lanes, meadow paths',
+      shadeDescription: 'Mostly open: about a tenth of the loop is under trees; the lanes and the pastures are in the sun.',
+      terrainDescription: 'A short loop at 1,520–1,640 m between Corvara and Colfosco at the foot of the Sella and the Sassongher, on lanes and meadow paths.',
+      waterDescription: 'Drinking fountains at the start, at km 0.4, at km 2.3 and at km 3; places to eat at the start and on the way.',
+      dogNotes: 'Corvara has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start at the Boé gondola car park in Corvara: 4.8 km, about 130 m of climbing, an hour and twenty minutes. Corvara has no dog regulation of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m and carry a muzzle. Keep your distance from cattle on the pastures.',
+      sourceLinks: [
+        { label: 'Alta Badia, Escursione Corvara - Colfosco', url: 'https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-colfosco' },
+        { label: 'Outdooractive, Escursione Corvara - Colfosco (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/810055282' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.549191, lng: 11.871554, label: 'Boé gondola car park, Corvara, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.5489824, lng: 11.872182, osmId: 'node/4378806904', label: 'Drinking fountain at the start' },
+        { km: 0.4, lat: 46.5530581, lng: 11.8728024, osmId: 'node/5812715641', label: 'Drinking fountain' },
+        { km: 2.3, lat: 46.5544812, lng: 11.8553401, osmId: 'node/5812713361', label: 'Drinking fountain' },
+        { km: 3, lat: 46.5485176, lng: 11.8543605, osmId: 'node/1824535507', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.54982, lng: 11.86957, osmId: 'node/839242421', name: 'Bar del Lago' },
+        { km: 0, lat: 46.54854, lng: 11.87208, osmId: 'node/1623822137', name: 'Corf' },
+        { km: 0.1, lat: 46.5516, lng: 11.87118, osmId: 'node/2582823172', name: 'Olapa' },
+        { km: 2.2, lat: 46.55274, lng: 11.85599, osmId: 'way/237463797', name: 'Ristorante Pizzeria Black Hill' }
+      ],
+      desc: 'A short loop from Corvara up to Colfosco and back across the valley pastures beside the Rü de Pisciadú, below the Sella. The board lists 4.8 km and 128 m of ascent.'
+    },
+    'altabadia-sentiero-degli-artisti-tru-di-artisc': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 1).
+      // The Alta Badia tourist board’s walk “Sentiero degli artisti - Tru di artisć”, drawn on 37 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Badia (own dog regulation, lead and muzzle).
+      // No Natura 2000 site, park or natural monument on the line (Province of Bolzano landscape-plan layers).
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'La Villa – San Cassiano – Armentarola, Badia',
+      distance: 5.2,
+      elevation: 245,
+      hours: '1.7',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from La Villa along the San Cassiano stream to San Cassiano and on through meadows to Armentarola; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'San Cassiano’s meadows and old barns below the Sas dla Crusc, next to the walk, in July (Sjaak Kempe, CC BY 2.0), 40 m from the line.',
+        route: 'Official one-way walk 5.2 km from La Villa bus stop, as the Alta Badia tourist board publishes it; the stored line is drawn on 37 OSM ways along the board’s published line, 5.1 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 11: from the bus stop in the centre of La Villa down east to the stream, following the sign for San Cassiano (no. 11); from the small power station the Tru di Artisć, the artists’ path, follows the San Cassiano stream up to San Cassiano (1,526 m, 50 min), then on in the same direction, first gently up and then level through meadows and pastures, to Armentarola (1,625 m).',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 1.4 and at km 2.9 (OSM nodes 4319958092, 1351008878, 439620274).',
+        elevation: 'Official 5.2 km, 245 m up and 46 m down, 1 h 40 min, highest point 1,625 m, lowest 1,386 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Società Cooperativa Turistica Alta Badia, Sentiero degli artisti - Tru di artisć (altabadia.org and its Outdooractive tour)',
+          'Gemeinde Abtei / Comune di Badia, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 7, 22.02.2010), Art. 4 and 8: a lead of at most 1.5 m everywhere and a muzzle carried; no dogs on farmed meadows in the growing season',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line, only landscape protection zones, which set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (37 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 22,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Crossing roads in La Villa and San Cassiano: keep your dog close', 'Paths shared with cyclists', 'The path runs beside the stream'],
+      terrainType: 'Riverside forest path and meadow paths',
+      shadeDescription: 'Partly shaded: about a fifth runs under trees along the stream; the meadows beyond San Cassiano are open.',
+      terrainDescription: 'A gentle walk at 1,390–1,630 m up the San Cassiano valley from La Villa, beside the stream and through meadows below the Sas dla Crusc and the Conturines.',
+      waterDescription: 'Drinking fountains at the start, at km 1.4 and at km 2.9; places to eat at the start and on the way.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start at the La Villa bus stop: 5.2 km one way, about 250 m of climbing and an hour and forty minutes to Armentarola, then come back the same way. In Badia your dog must be on a lead of at most 1.5 m on the whole walk and you must carry a muzzle; keep off the hay meadows. There are fountains and places to eat in San Cassiano.',
+      sourceLinks: [
+        { label: 'Alta Badia, Sentiero degli artisti - Tru di artisć', url: 'https://www.altabadia.org/it/tour/oadetail/oa/sentiero-degli-artisti-tru-di-artisc' },
+        { label: 'Outdooractive, Sentiero degli artisti - Tru di artisć (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/810054917' },
+        { label: 'Gemeinde Abtei, dog regulation', url: 'https://www.gemeinde.abtei.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.583152, lng: 11.90384, label: 'La Villa bus stop, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.5829542, lng: 11.9036343, osmId: 'node/4319958092', label: 'Drinking fountain at the start' },
+        { km: 1.4, lat: 46.5774402, lng: 11.9193398, osmId: 'node/1351008878', label: 'Drinking fountain' },
+        { km: 2.9, lat: 46.5708285, lng: 11.9327252, osmId: 'node/439620274', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.58463, lng: 11.90476, osmId: 'node/349238903', name: 'L\'Fana' },
+        { km: 0, lat: 46.58284, lng: 11.90387, osmId: 'node/2980829322', name: 'Aurora' },
+        { km: 2.6, lat: 46.57111, lng: 11.93181, osmId: 'node/439750542', name: 'Da La Vedla' },
+        { km: 3.1, lat: 46.5685, lng: 11.93726, osmId: 'way/120866166', name: 'La Sieia' },
+        { km: 4.9, lat: 46.55975, lng: 11.95295, osmId: 'way/460408521', name: 'Baita La Locia' }
+      ],
+      desc: 'The artists’ path from La Villa along the San Cassiano stream to San Cassiano and on through meadows to Armentarola. The board lists 5.2 km and 245 m of ascent, one way.'
+    },
+    'altabadia-escursione-corvara-la-villa': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 1).
+      // The Alta Badia tourist board’s walk “Escursione Corvara - La Villa”, drawn on 34 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Corvara (no regulation, national rule); Badia (own dog regulation, lead and muzzle).
+      // No Natura 2000 site, park or natural monument on the line (Province of Bolzano landscape-plan layers).
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Corvara – La Villa, along the Gadera',
+      distance: 5.1,
+      elevation: 21,
+      hours: '1.25',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Corvara down the valley beside the stream (the “Tru dl’ega”) to the sports ground at La Villa and up into the village; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The gravel path by a wooden fence at La Villa, where the walk ends, in September (mapillary_service on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official one-way walk 5.1 km from Boé gondola car park, Corvara, as the Alta Badia tourist board publishes it; the stored line is drawn on 34 OSM ways along the board’s published line, 5 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'From the Boé gondola car park north to the main road from Corvara to Colfosco, then right, following the sign “La Villa – Tru dl’ega”; along the stream, past the turnings for Verda and the Hotel Cristallo and for Funtanacia, to the sports ground at La Villa, then up left on path 2 into the village. No lift is used: the walk only starts at the gondola car park.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.6, at km 4.5 and at km 4.9 (OSM nodes 4378806904, 5812715641, 12085448169, 4319958092).',
+        elevation: 'Official 5.1 km, 21 m up and 132 m down, 1 h 15 min, highest point 1,537 m, lowest 1,405 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Società Cooperativa Turistica Alta Badia, Escursione Corvara - La Villa (altabadia.org and its Outdooractive tour)',
+          'Gemeinde Abtei / Comune di Badia, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 7, 22.02.2010), Art. 4 and 8: a lead of at most 1.5 m everywhere and a muzzle carried; no dogs on farmed meadows in the growing season',
+          'Comune di Corvara in Badia publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line, only landscape protection zones, which set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (34 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 41,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The path runs beside the stream', 'Paths shared with cyclists', 'Crossing the main road in Corvara: keep your dog close'],
+      terrainType: 'Riverside path and tracks',
+      shadeDescription: 'Partly shaded: about two fifths runs under trees along the stream.',
+      terrainDescription: 'An almost flat walk down the Val Badia at 1,400–1,540 m from Corvara to La Villa, beside the stream on the “Tru dl’ega”.',
+      waterDescription: 'Drinking fountains at the start, at km 0.6, at km 4.5 and at km 4.9; places to eat at the start and on the way.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. Corvara has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start at the Boé gondola car park in Corvara: 5.1 km one way, mostly gently downhill, an hour and a quarter, then come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle: that is the national rule in Corvara and Badia’s own rule in La Villa. Keep your dog out of the stream when it runs high.',
+      sourceLinks: [
+        { label: 'Alta Badia, Escursione Corvara - La Villa', url: 'https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-la-villa' },
+        { label: 'Outdooractive, Escursione Corvara - La Villa (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/810055884' },
+        { label: 'Gemeinde Abtei, dog regulation', url: 'https://www.gemeinde.abtei.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.548913, lng: 11.871767, label: 'Boé gondola car park, Corvara, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.5489824, lng: 11.872182, osmId: 'node/4378806904', label: 'Drinking fountain at the start' },
+        { km: 0.6, lat: 46.5530581, lng: 11.8728024, osmId: 'node/5812715641', label: 'Drinking fountain' },
+        { km: 4.5, lat: 46.5797298, lng: 11.9008324, osmId: 'node/12085448169', label: 'Drinking fountain' },
+        { km: 4.9, lat: 46.5829542, lng: 11.9036343, osmId: 'node/4319958092', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.54982, lng: 11.86957, osmId: 'node/839242421', name: 'Bar del Lago' },
+        { km: 0, lat: 46.54854, lng: 11.87208, osmId: 'node/1623822137', name: 'Corf' },
+        { km: 0.1, lat: 46.5516, lng: 11.87118, osmId: 'node/2582823172', name: 'Olapa' },
+        { km: 0.6, lat: 46.55239, lng: 11.87351, osmId: 'node/1943278294', name: 'l\'Asti' },
+        { km: 4.8, lat: 46.58284, lng: 11.90387, osmId: 'node/2980829322', name: 'Aurora' }
+      ],
+      desc: 'A gentle walk down the valley from Corvara to La Villa beside the stream, on the “Tru dl’ega”. The board lists 5.1 km, 21 m up and 132 m down, one way.'
     }
   };
 

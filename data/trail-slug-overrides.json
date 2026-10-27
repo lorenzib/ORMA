@@ -573,6 +573,26 @@
       "name": "Sui Pascoli di Malga Vernera",
       "slug": "sui-pascoli-di-malga-vernera",
       "gloss": "the pasture loop at Malga Vernera"
+    },
+    "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": {
+      "name": "La Villa – Lech da Sompunt",
+      "slug": "la-villa-lech-da-sompunt",
+      "gloss": "the lake loop from La Villa"
+    },
+    "altabadia-escursione-corvara-colfosco": {
+      "name": "Corvara – Colfosco",
+      "slug": "corvara-colfosco",
+      "gloss": "the loop from Corvara to Colfosco"
+    },
+    "altabadia-sentiero-degli-artisti-tru-di-artisc": {
+      "name": "Tru di artisć",
+      "slug": "tru-di-artisc",
+      "gloss": "the artists’ path from La Villa to Armentarola"
+    },
+    "altabadia-escursione-corvara-la-villa": {
+      "name": "Corvara – La Villa",
+      "slug": "corvara-la-villa",
+      "gloss": "the riverside walk from Corvara to La Villa"
     }
   }
 }
