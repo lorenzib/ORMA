@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-circolare-maistatt",
+  "distanceKm": 4.8,
+  "ascentM": 133,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1153
+    },
+    {
+      "km": 0.4,
+      "elev": 1152
+    },
+    {
+      "km": 0.7,
+      "elev": 1156
+    },
+    {
+      "km": 1.1,
+      "elev": 1166
+    },
+    {
+      "km": 1.5,
+      "elev": 1192
+    },
+    {
+      "km": 1.8,
+      "elev": 1206
+    },
+    {
+      "km": 2.2,
+      "elev": 1233
+    },
+    {
+      "km": 2.6,
+      "elev": 1254
+    },
+    {
+      "km": 2.9,
+      "elev": 1273
+    },
+    {
+      "km": 3.3,
+      "elev": 1233
+    },
+    {
+      "km": 3.7,
+      "elev": 1200
+    },
+    {
+      "km": 4,
+      "elev": 1172
+    },
+    {
+      "km": 4.4,
+      "elev": 1153
+    },
+    {
+      "km": 4.8,
+      "elev": 1153
+    }
+  ]
+}
