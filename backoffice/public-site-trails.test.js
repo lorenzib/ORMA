@@ -60,10 +60,13 @@ describe('the existing-site verification boundary',()=>{
     // 224 with the forest walk to Malga Crel and the Croce degli Alpini on Vederna. Then 227 and
     // 225 with the botanical path from Grauno to Capriana. Then 229 and 227
     // with the rope-bridge loop from Mezzano and the old-fruit walk to Passo Gobbera.
-    // Then 230 and 228 with the forest walk to Malga Valcigolera.
+    // Then 230 and 228 with the forest walk to Malga Valcigolera. Then 236 and
+    // 234 with the first six Val di Cembra walks: the Lago Santo, two walks
+    // at the Lago di Lases, San Leonardo above Lisignago, the Dos Paion on
+    // Monte Corona and the Rifugio Potzmauer.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(230);
-    expect(currentSiteTrails(catalogue)).toHaveLength(228);
+    expect(catalogue).toHaveLength(236);
+    expect(currentSiteTrails(catalogue)).toHaveLength(234);
   });
 
   test('requires the artwork the public trail page needs',()=>{

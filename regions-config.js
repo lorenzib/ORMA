@@ -82,6 +82,15 @@
     ['Fai della Paganella', 46.1793, 11.0689, 'Paganella', 'dolomites', 'trentino'],
     ['Baselga di Piné', 46.1313, 11.2568, 'Valsugana', 'dolomites', 'trentino'],
     ['Pieve Tesino', 46.1986, 11.5441, 'Valsugana', 'dolomites', 'trentino'],
+    // The Val di Cembra. Without it Lases and Lisignago fell through to
+    // Baselga di Piné, Giovo to Fai della Paganella and Cembra to Salorno.
+    ['Cembra', 46.1745, 11.2190, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Lisignago', 46.1630, 11.1870, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Lases', 46.1430, 11.2210, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Verla di Giovo', 46.1550, 11.1530, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Segonzano', 46.1890, 11.2640, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Faver (Altavalle)', 46.1880, 11.2350, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Grumes (Altavalle)', 46.2210, 11.2930, 'Val di Cembra', 'dolomites', 'trentino'],
     ['Tambre / Alpago', 46.0973, 12.4389, 'Alpago', 'dolomites', 'belluno'],
 
     // ---- Savoy ----

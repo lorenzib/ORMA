@@ -49036,6 +49036,360 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 4.4, lat: 46.26138, lng: 11.76083, osmId: 'node/722738557', name: 'Malga Valcigolera' }
       ],
       desc: 'A walk from the centre of San Martino di Castrozza through the forest of the Val Cigolera to Malga Valcigolera and back, with a wide view of the Pale di San Martino at the top. The APT lists 9.1 km and 431 m of ascent.'
+    },
+    'cembra-lago-santo': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
+      // APT Fiemme Cembra’s walk “Il Lago Santo”. The line is drawn on 19 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Cembra Lisignago’s order 24 of 5 July 2023 for the shores of the Lago Santo: dogs on a lead on the shores, no dogs in the water except in the signed dog-bathing area north of the Rio Mercar outlet. The commune publishes no general dog bylaw, so the national dog ordinance (6 August 2013, extended to September 2027) also applies under ORMA’s Italian dog standard.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer); the nearest local reserves, Feo and San Pietro, are about 590–700 m away.
+      area: 'Lago Santo, Cembra Lisignago, Val di Cembra',
+      distance: 1.1,
+      elevation: 10,
+      hours: '0.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop round the shore of the Lago Santo above Cembra, from the car park at the end of the lake road.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lago Santo from its grassy shore, which the walk follows all the way round, in May (Syrio, CC BY-SA 4.0).',
+        route: 'Official loop 1.1 km from Lago Santo car park, Cembra, as APT Fiemme Cembra publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 1.1 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the car park at the end of the provincial road to the Lago Santo, down to the bathing area and onto the path round the lake, anticlockwise (it can be walked either way), past the Madonna degli Alpini chapel and back to the car park.',
+        mapPoints: 'Start at Lago Santo car park, Cembra, the APT’s start; drinking water none mapped.',
+        elevation: 'Official 1.1 km, 10 m up and 10 m down, 20 min, highest point 1,203 m, lowest 1,193 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Il Lago Santo (visitfiemme.it and its Outdooractive page)',
+          'Comune di Cembra Lisignago, Ordinanza n. 24/2023 (5 July 2023): dogs on a lead on the shores of the Lago Santo, no dogs in the water except in the signed dog-bathing area',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Cembra Lisignago publishes no general dog bylaw)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 38,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Grassy and compacted lakeside paths, a little muddy after rain', 'Busy with bathers in summer: keep your dog close on the beach', 'Dogs may not go into the water except in the signed dog-bathing area just north of the Rio Mercar outlet'],
+      terrainType: 'Lakeside paths, grass and a short stretch of lane',
+      shadeDescription: 'Partly shaded: about 40% of the loop runs under the trees round the lake.',
+      terrainDescription: 'A flat stroll at about 1,200 m round the Lago Santo, a small mountain lake in the woods above Cembra.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bars and cafés at the start; bring water.',
+      dogNotes: 'On the shores of the Lago Santo dogs must be on a lead, by the commune’s order of 2023, and may not go into the water except in the signed dog-bathing area just north of the Rio Mercar outlet. Elsewhere the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried.',
+      tips: 'Start at the Lago Santo car park above Cembra: 1.1 km, flat, about 20 minutes. Keep your dog on the lead round the lake; it can swim only in the signed dog-bathing area north of the outlet. Two restaurants at the car park.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Il Lago Santo', url: 'https://www.visitfiemme.it/it/activity/il-lago-santo_63413' },
+        { label: 'Outdooractive, Il Lago Santo (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/811025021' },
+        { label: 'Comune di Cembra Lisignago, Ordinanza 24/2023 (Lago Santo shores)', url: 'https://www.comune.cembralisignago.tn.it/ocmultibinary/download/2206/48587/2/68518df6216c96553daa65aafa7435cf.pdf/file/Ordinanza%2B24-2023.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.19713, lng: 11.205303, label: 'Lago Santo car park, Cembra, the APT’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.19766, lng: 11.20326, osmId: 'node/440503597', name: 'Happy Ranch' },
+        { km: 0, lat: 46.19714, lng: 11.20557, osmId: 'node/3907919130', name: 'Albergo Lago Santo' }
+      ],
+      desc: 'A short, flat loop round the Lago Santo, a small lake in the woods above Cembra, with a dog-bathing area of its own. The APT lists 1.1 km and 10 m of ascent.'
+    },
+    'cembra-pietra-del-futuro': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
+      // APT Fiemme Cembra’s walk “La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases”. The line is drawn on 39 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Lona-Lases publishes no dog rule, so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard. The lake path crosses the Lona-Lases provincial nature reserve (also ZSC IT3120049), whose rules ban leaving dogs to roam.
+      // About 460 m of the lake path lies in the Lona-Lases provincial nature reserve and Natura 2000 site IT3120049: its rules ban leaving dogs or other pets to roam, so keep your dog on the lead (Province of Trento boundaries and reserve rules; Ministry of the Environment Natura 2000 layer).
+      area: 'Lases – Lago di Lases, Lona-Lases, Val di Cembra',
+      distance: 2.7,
+      elevation: 61,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way: from the village of Lases down Via Lago to the lake and along the path on its shore, with an audio guide recorded by the children of the Lona-Lases primary school.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lago di Lases seen from its north shore on the walk, in July (Matteo Ianeselli, CC BY-SA 3.0), 10 m from the line.',
+        route: 'Official one-way walk 2.7 km from Lases village, as APT Fiemme Cembra publishes it; the stored line is drawn on 39 OSM ways along the APT’s published line, 2.6 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the centre of Lases along Via Principale and down Via Lago to the lake, then the Sentiero Lago Lases along the shore, with stone and wooden steps in places, past the bathing meadow to the far end of the lake. One way: return the same way or by the lake road.',
+        mapPoints: 'Start at Lases village, the APT’s start; drinking water at km 0.2 (OSM nodes 3657358746).',
+        elevation: 'Official 2.7 km, 61 m up and 63 m down, 50 min, highest point 687 m, lowest 631 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Lona-Lases publishes no dog rule)',
+          'Provincia autonoma di Trento, Riserva naturale provinciale Lona-Lases, permitted activities and bans: dogs and other pets may not be left to roam',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): the lake path lies in the Lona-Lases reserve and ZSC IT3120049',
+          'OpenStreetMap ways along the APT line (39 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 53,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Village streets with cars at the start', 'Short flights of stone and wooden steps on the lake path', 'Fishing and nesting areas round the lake: keep your dog on the lead and out of the reeds'],
+      terrainType: 'Village lanes, a lakeside path with some steps, paved paths',
+      shadeDescription: 'About half the way is shaded by the woods on the lake shore.',
+      terrainDescription: 'A short, gentle walk at 630–690 m from the porphyry village of Lases to its lake, on the lakeside path through the Lona-Lases nature reserve.',
+      waterDescription: 'Drinking fountain at km 0.2; bars and cafés at the start.',
+      dogNotes: 'Lona-Lases publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Around the lake you are in the Lona-Lases provincial nature reserve, where dogs must never be left to roam.',
+      tips: 'Start in the centre of Lases: 2.7 km one way, about 60 m of climbing, under an hour. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried; the lake is a nature reserve, so never let your dog roam. A few steps on the lake path. Fountains in Lases.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases', url: 'https://www.visitfiemme.it/it/activity/la-pietra-del-futuro-percorso-con-audioguida-dei-ragazzi-della-scuola-elementare-di-lona-lases_35376' },
+        { label: 'Outdooractive, La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/806536848' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, Riserva naturale provinciale Lona-Lases: attività ammesse e divieti', url: 'https://www.provincia.tn.it/News/Approfondimenti/Riserva-naturale-provinciale-Lona-Lases-attivita-ammesse-e-divieti' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.145929, lng: 11.219928, label: 'Lases village, the APT’s start' },
+      waterSources: [
+        { km: 0.2, lat: 46.1431085, lng: 11.220579, osmId: 'node/3657358746', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.14403, lng: 11.21914, osmId: 'way/126261128', name: 'La Locanda del Professore' }
+      ],
+      desc: 'A short walk from the porphyry village of Lases down to its lake and along the shore, with an audio guide recorded by the village schoolchildren. The APT lists 2.7 km and 61 m of ascent, one way.'
+    },
+    'cembra-lago-lases-buse-giaz': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
+      // APT Fiemme Cembra’s walk “Il Lago di Lases e le buse del giaz”. The line is drawn on 51 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Lona-Lases publishes no dog rule, so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard. About 1.2 km of the loop lies in the Lona-Lases provincial nature reserve (also ZSC IT3120049), whose rules ban leaving dogs to roam.
+      // About 1.2 km of the loop lies in the Lona-Lases provincial nature reserve and Natura 2000 site IT3120049: its rules ban leaving dogs or other pets to roam, so keep your dog on the lead (Province of Trento boundaries and reserve rules; Ministry of the Environment Natura 2000 layer).
+      area: 'Lago di Lases, Lona-Lases, Val di Cembra',
+      distance: 4.9,
+      elevation: 150,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the lake car park into the wooded Val Fredda with its old ice pits, then round the Lago di Lases, over the footbridge between the lake and the Palù degli Sfrondoni and back along the opposite shore.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lago di Lases from its north shore, which the walk follows, in July (Matteo Ianeselli, CC BY-SA 3.0), 2 m from the line.',
+        route: 'Official loop 4.9 km from Lago di Lases car park on the SP 71, as APT Fiemme Cembra publishes it; the stored line is drawn on 51 OSM ways along the APT’s published line, 4.8 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the car park on the SP 71 to the lake and left along the lakeside path, then, following the signs, off into the woods up the Strada Val Freda to the cold Val Fredda and its ice pits (“buse del giaz”), where ice was once stored. Back down to the lakeside path to the south end of the lake, over the small bridge between the lake and the Palù degli Sfrondoni wetland, and back to the start along the opposite shore.',
+        mapPoints: 'Start at Lago di Lases car park on the SP 71, the APT’s start; drinking water at km 0.2 (OSM nodes 9837867879).',
+        elevation: 'Official 4.9 km, 150 m up and 150 m down, 2 h, highest point 766 m, lowest 631 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Il Lago di Lases e le buse del giaz (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Lona-Lases publishes no dog rule)',
+          'Provincia autonoma di Trento, Riserva naturale provinciale Lona-Lases, permitted activities and bans: dogs and other pets may not be left to roam',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): about 1.2 km of the loop lies in the Lona-Lases reserve and ZSC IT3120049',
+          'OpenStreetMap ways along the APT line (51 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 74,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Forest tracks and a lakeside path with short flights of stone and wooden steps', 'About 270 m on a quiet road', 'A nature reserve with wetlands and nesting birds: keep your dog on the lead and out of the reeds and the water'],
+      terrainType: 'Forest tracks, a lakeside path with some steps, quiet roads',
+      shadeDescription: 'Mostly shaded: about three quarters of the loop runs through woods.',
+      terrainDescription: 'A loop at 630–770 m round the Lago di Lases and up into the cool Val Fredda, a reserve of lake, wetland and cold-air hollows below the porphyry quarries of Lases.',
+      waterDescription: 'Drinking fountain at km 0.2; bars and cafés on the way.',
+      dogNotes: 'Lona-Lases publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Around the lake you are in the Lona-Lases provincial nature reserve, where dogs must never be left to roam.',
+      tips: 'Start at the lake car park on the SP 71 (paid in summer): 4.9 km, 150 m of climbing, about two hours. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried; the lake is a nature reserve, so never let your dog roam. Fountains by the lake at the start; mostly shaded.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Il Lago di Lases e le buse del giaz', url: 'https://www.visitfiemme.it/it/activity/il-lago-di-lases-e-le-buse-del-giaz_9812' },
+        { label: 'Outdooractive, Il Lago di Lases e le buse del giaz (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/59900305' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, Riserva naturale provinciale Lona-Lases: attività ammesse e divieti', url: 'https://www.provincia.tn.it/News/Approfondimenti/Riserva-naturale-provinciale-Lona-Lases-attivita-ammesse-e-divieti' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.141371, lng: 11.218199, label: 'Lago di Lases car park on the SP 71, the APT’s start' },
+      waterSources: [
+        { km: 0.2, lat: 46.1425352, lng: 11.2208318, osmId: 'node/9837867879', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0.1, lat: 46.14403, lng: 11.21914, osmId: 'way/126261128', name: 'La Locanda del Professore' },
+        { km: 1.4, lat: 46.15048, lng: 11.22237, osmId: 'node/269348447', name: 'Bar Esso' }
+      ],
+      desc: 'A loop round the Lago di Lases and up into the cool Val Fredda with its old ice pits, through the Lona-Lases nature reserve. The APT lists 4.9 km and 150 m of ascent.'
+    },
+    'cembra-san-leonardo-lisignago': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
+      // APT Fiemme Cembra’s walk “San Leonardo e le campagne di Lisignago”. The line is drawn on 21 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Cembra Lisignago publishes no general dog bylaw, so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard. The short stretch in Giovo follows Giovo’s police bylaw, article 32: dogs always on a lead of at most 2 m on public ground.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer).
+      area: 'Lisignago, Cembra Lisignago, Val di Cembra',
+      distance: 4.4,
+      elevation: 280,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Lisignago down through the vineyards to the hilltop chapel of San Leonardo, on to the Rio Ischiele, up through the woods to Maso Spedenal and back across the fields.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The little church of San Leonardo on its hilltop above the vineyards and the Avisio, which the walk climbs to, in August (Syrio, CC BY-SA 4.0), 8 m from the line.',
+        route: 'Official loop 4.4 km from Lisignago, behind the church of San Biagio, as APT Fiemme Cembra publishes it; the stored line is drawn on 21 OSM ways along the APT’s published line, 4.4 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the car park behind the church of San Biagio in Lisignago down country lanes signed for the church of San Leonardo, up onto the hill with the chapel and its viewpoint, then down the lane on the south side of the hill between two field huts to the Rio Ischiele in a cool little valley, a few hundred metres on, right into the woods and gradually up into the vineyards to Maso Spedenal, then right at the junction along the fairly level farm road back to Lisignago.',
+        mapPoints: 'Start at Lisignago, behind the church of San Biagio, the APT’s start; drinking water none mapped.',
+        elevation: 'Official 4.4 km, 280 m up and 280 m down, 2 h, highest point 582 m, lowest 395 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, San Leonardo e le campagne di Lisignago (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Cembra Lisignago publishes no general dog bylaw)',
+          'Comune di Giovo, Regolamento comunale di polizia urbana (council resolution 25 of 30 August 2007), article 32',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (21 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 37,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Mostly tarred farm lanes and quiet roads, used by farm vehicles at harvest', 'Vineyards on both sides: keep your dog on the lead and off the vines', 'A climb of about 280 m back to Lisignago'],
+      terrainType: 'Farm lanes, quiet roads and a forest track',
+      shadeDescription: 'Mostly open: about a third of the loop is shaded, in the woods by the Rio Ischiele.',
+      terrainDescription: 'A loop at 395–580 m through the vineyards below Lisignago in the lower Val di Cembra, to the hilltop chapel of San Leonardo above the Avisio.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water.',
+      dogNotes: 'Cembra Lisignago has no general dog rule, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. The short stretch in Giovo also requires a lead on public ground and bags to pick up after your dog.',
+      tips: 'Start behind the church of San Biagio in Lisignago: 4.4 km, 280 m of climbing, about two hours. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried; keep your dog off the vines. Mostly open and low, so avoid summer middays; no fountain mapped on the way, bring water.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, San Leonardo e le campagne di Lisignago', url: 'https://www.visitfiemme.it/it/activity/san-leonardo-e-le-campagne-di-lisignago_9746' },
+        { label: 'Outdooractive, San Leonardo e le campagne di Lisignago (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/59999829' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Comune di Giovo, Regolamento di polizia urbana (article 32)', url: 'https://www.comune.giovo.tn.it/content/download/988/16123/1/Polizia%2BUrbana.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.160048, lng: 11.185965, label: 'Lisignago, behind the church of San Biagio, the APT’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'A loop from Lisignago through the vineyards of the lower Val di Cembra to the hilltop chapel of San Leonardo, down to the Rio Ischiele and back by Maso Spedenal. The APT lists 4.4 km and 280 m of ascent.'
+    },
+    'cembra-dos-paion': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
+      // APT Fiemme Cembra’s walk “Passeggiata al belvedere del Dos Paion sul Monte Corona”. The line is drawn on 19 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // The whole line is in Giovo, whose police bylaw (council resolution 25 of 30 August 2007, article 32) requires dogs always on a lead of at most 2 m on public ground, a muzzle for large or known aggressive dogs, and picking up after them.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer).
+      area: 'Ville di Giovo – Monte Corona, Giovo, Val di Cembra',
+      distance: 6,
+      elevation: 308,
+      hours: '2',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back: from Ville di Giovo up through the woods on forest tracks to the Dos Paion viewpoint on Monte Corona, and back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The view from Monte Corona over the vineyards and villages of Giovo and the Val di Cembra, in late October without snow (Syrio, CC BY-SA 4.0), 48 m from the line.',
+        route: 'Official out-and-back walk 6 km from Ville di Giovo (Piazza della Crosara), as APT Fiemme Cembra publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 5.9 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from Piazza della Crosara in Ville di Giovo up Via della Corona and a short footpath to the tarred lane, then forest tracks up through the woods of Monte Corona to the Dos Paion viewpoint, and back the same way.',
+        mapPoints: 'Start at Ville di Giovo (Piazza della Crosara), the APT’s start; drinking water at the start (OSM nodes 8170134089).',
+        elevation: 'Official 6 km, 308 m up and 308 m down, 2 h 02 min, highest point 1,014 m, lowest 707 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Passeggiata al belvedere del Dos Paion sul Monte Corona (visitfiemme.it and its Outdooractive page)',
+          'Comune di Giovo, Regolamento comunale di polizia urbana (council resolution 25 of 30 August 2007), article 32',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 78,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Forest tracks and a short footpath; the tarred lane at the start is open to cars', 'The viewpoint is at the edge of a cliff: keep your dog on a short lead there', 'A steady climb of about 300 m'],
+      terrainType: 'Forest tracks, a footpath and a quiet lane',
+      shadeDescription: 'Mostly shaded: about 80% of the way runs through woods.',
+      terrainDescription: 'A walk at 710–1,010 m from Ville di Giovo through the woods of Monte Corona to the Dos Paion, a viewpoint over the vineyards of the lower Val di Cembra and the Adige valley.',
+      waterDescription: 'Drinking fountain at the start.',
+      dogNotes: 'Giovo’s police bylaw requires dogs always on a lead of at most 2 m on public ground (the Italian national rule asks for 1.5 m), a muzzle for large or known aggressive dogs, and bags to pick up after them.',
+      tips: 'Start in Piazza della Crosara, Ville di Giovo: 6 km there and back, about 300 m of climbing, two hours. Giovo requires a lead on public ground and a muzzle for large dogs. The viewpoint is at a cliff edge, so shorten the lead there. Mostly shaded; a fountain at the start only.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Passeggiata al belvedere del Dos Paion sul Monte Corona', url: 'https://www.visitfiemme.it/it/activity/passeggiata-al-belvedere-del-dos-paion-sul-monte-corona_9837' },
+        { label: 'Outdooractive, Passeggiata al belvedere del Dos Paion sul Monte Corona (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/51459361' },
+        { label: 'Comune di Giovo, Regolamento di polizia urbana (article 32)', url: 'https://www.comune.giovo.tn.it/content/download/988/16123/1/Polizia%2BUrbana.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.168187, lng: 11.157097, label: 'Ville di Giovo (Piazza della Crosara), the APT’s start' },
+      waterSources: [
+        { km: 0, lat: 46.168155, lng: 11.1567719, osmId: 'node/8170134089', label: 'Drinking fountain at the start' }
+      ],
+      rifugi: [],
+      desc: 'A walk from Ville di Giovo up through the woods of Monte Corona to the Dos Paion viewpoint over the vineyards of the lower Val di Cembra, and back the same way. The APT lists 6 km and 308 m of ascent.'
+    },
+    'cembra-rifugio-potzmauer': {
+      // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
+      // APT Fiemme Cembra’s walk “Al Rifugio Potzmauer”. The line is drawn on 24 OSM ways
+      // along the line the APT publishes (data/board-line-routes.geojson).
+      // Altavalle publishes no dog rule (none among its 270 published documents), so the national dog ordinance (6 August 2013, extended to September 2027) applies under ORMA’s Italian dog standard.
+      // No Natura 2000 site, nature park or provincial reserve on the line (Province of Trento boundaries and the Ministry of the Environment Natura 2000 layer); the nearest local reserves, Monpiana, are about 480–570 m away.
+      area: 'Pradèt – Rifugio Potzmauer, Altavalle, Val di Cembra',
+      distance: 4.8,
+      elevation: 300,
+      hours: '1.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back: from the Pradèt car park above Grumes up path 480 beside the Rio dei Pezzi and the forest road to the Potzmauer pass, then down through the woods to the Potzmauer hut, and back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Rifugio Potzmauer and its meadow, where the walk turns round, in May (Syrio, CC BY-SA 4.0); the hut is 74 m from the line.',
+        route: 'Official out-and-back walk 4.8 km from Pradèt car park above Grumes, as APT Fiemme Cembra publishes it; the stored line is drawn on 24 OSM ways along the APT’s published line, 4.6 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'Path 480: from the Pradèt car park, reached from Grumes past the Masi di Grumes, along the lane towards the hut, then path 480 almost parallel to the forest road beside the Rio dei Pezzi, crossing the road twice, onto the road just below the Potzmauer pass (1,350 m), then following the signs down through the woods to the meadow of the Rifugio Potzmauer (1,292 m). Back the same way.',
+        mapPoints: 'Start at Pradèt car park above Grumes, the APT’s start; drinking water none mapped.',
+        elevation: 'Official 4.8 km, 300 m up and 300 m down, 1 h 30 min, highest point 1,350 m, lowest 1,113 m (APT Fiemme Cembra).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Fiemme Cembra, Al Rifugio Potzmauer (visitfiemme.it and its Outdooractive page)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Altavalle publishes no dog rule)',
+          'Provincia autonoma di Trento, official boundaries of the Natura 2000 sites (ZSC and ZPS, 2019), the nature parks and the provincial nature reserves and the Ministry of the Environment Natura 2000 layer (positive control on the Lagorai sites): none on the line',
+          'OpenStreetMap ways along the APT line (24 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 94,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A mountain path (480) with roots and stones, and forest roads used by occasional forestry vehicles', 'A steady climb of about 300 m', 'A stream beside the path: keep your dog out of it after heavy rain'],
+      terrainType: 'A mountain path and forest roads',
+      shadeDescription: 'Almost all shaded: about 95% of the way runs through woods.',
+      terrainDescription: 'A walk at 1,110–1,350 m from above Grumes through larch and spruce woods over the Potzmauer pass to the Potzmauer hut, on the European long-distance path E5.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bars and cafés on the way; bring water.',
+      dogNotes: 'Altavalle has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried.',
+      tips: 'Start at the Pradèt car park above Grumes: 4.8 km there and back, 300 m of climbing, an hour and a half. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Almost all in the woods; no fountain mapped, so carry water for your dog. The Potzmauer hut serves food at the turn.',
+      sourceLinks: [
+        { label: 'APT Fiemme Cembra, Al Rifugio Potzmauer', url: 'https://www.visitfiemme.it/it/activity/al-rifugio-potzmauer_9863' },
+        { label: 'Outdooractive, Al Rifugio Potzmauer (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/21344543' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.223224, lng: 11.265595, label: 'Pradèt car park above Grumes, the APT’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 2, lat: 46.23488, lng: 11.25156, osmId: 'way/125480046', name: 'Rifugio Potzmauer' }
+      ],
+      desc: 'A walk through the woods above Grumes, over the Potzmauer pass to the Rifugio Potzmauer and its meadow, and back the same way. The APT lists 4.8 km and 300 m of ascent.'
     }
   };
 
@@ -49144,6 +49498,15 @@ function effectiveOverrides(profile, adjustOverride){
     ['Fai della Paganella', 46.1793, 11.0689, 'Paganella', 'dolomites', 'trentino'],
     ['Baselga di Piné', 46.1313, 11.2568, 'Valsugana', 'dolomites', 'trentino'],
     ['Pieve Tesino', 46.1986, 11.5441, 'Valsugana', 'dolomites', 'trentino'],
+    // The Val di Cembra. Without it Lases and Lisignago fell through to
+    // Baselga di Piné, Giovo to Fai della Paganella and Cembra to Salorno.
+    ['Cembra', 46.1745, 11.2190, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Lisignago', 46.1630, 11.1870, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Lases', 46.1430, 11.2210, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Verla di Giovo', 46.1550, 11.1530, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Segonzano', 46.1890, 11.2640, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Faver (Altavalle)', 46.1880, 11.2350, 'Val di Cembra', 'dolomites', 'trentino'],
+    ['Grumes (Altavalle)', 46.2210, 11.2930, 'Val di Cembra', 'dolomites', 'trentino'],
     ['Tambre / Alpago', 46.0973, 12.4389, 'Alpago', 'dolomites', 'belluno'],
 
     // ---- Savoy ----

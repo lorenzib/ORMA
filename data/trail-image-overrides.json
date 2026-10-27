@@ -37,6 +37,108 @@
       }
     },
     {
+      "id": "cembra-dos-paion",
+      "approvedReviewId": "commons-cembra-dos-paion-on-route",
+      "approvedAt": "2026-10-27T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-dos-paion-view.jpg",
+        "heroImage": "images/trails/cembra-dos-paion-view.jpg",
+        "imageAlt": "A wide view from Monte Corona over terraced vineyards, villages and wooded hills of the lower Val di Cembra in autumn colours, mountains on the horizon",
+        "imageCredit": "View from Monte Corona",
+        "imageCreditText": "View from Monte Corona by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vista_dal_Monte_Corona_di_Giovo.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cembra-lago-lases-buse-giaz",
+      "approvedReviewId": "commons-cembra-lago-lases-buse-giaz-on-route",
+      "approvedAt": "2026-10-27T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-lago-lases-buse-giaz-lake.jpg",
+        "heroImage": "images/trails/cembra-lago-lases-buse-giaz-lake.jpg",
+        "imageAlt": "The Lago di Lases stretching away under a summer sky, wooded slopes and pale porphyry quarry faces on the far side and willow branches in the foreground",
+        "imageCredit": "Lago di Lases",
+        "imageCreditText": "Lago di Lases by Matteo Ianeselli",
+        "imageCreator": "Matteo Ianeselli",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lases-Lake_lases_from_north_2.jpg",
+        "imageSourceType": "licensed-source",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+      }
+    },
+    {
+      "id": "cembra-lago-santo",
+      "approvedReviewId": "commons-cembra-lago-santo-on-route",
+      "approvedAt": "2026-10-27T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-lago-santo-lake.jpg",
+        "heroImage": "images/trails/cembra-lago-santo-lake.jpg",
+        "imageAlt": "The Lago Santo lying calm and blue among dark spruce woods, reeds and a grassy shore in the foreground under a clear spring sky",
+        "imageCredit": "Lago Santo",
+        "imageCreditText": "Lago Santo by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_Santo_di_Cembra.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cembra-pietra-del-futuro",
+      "approvedReviewId": "commons-cembra-pietra-del-futuro-on-route",
+      "approvedAt": "2026-10-27T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-pietra-del-futuro-lake.jpg",
+        "heroImage": "images/trails/cembra-pietra-del-futuro-lake.jpg",
+        "imageAlt": "The Lago di Lases seen from a grassy shore between tall trees, a red pedal boat on the beach and porphyry quarry cliffs above the far shore under a summer sky",
+        "imageCredit": "Lago di Lases",
+        "imageCreditText": "Lago di Lases by Matteo Ianeselli",
+        "imageCreator": "Matteo Ianeselli",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lases-lake_Lases_from_north.jpg",
+        "imageSourceType": "licensed-source",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+      }
+    },
+    {
+      "id": "cembra-rifugio-potzmauer",
+      "approvedReviewId": "commons-cembra-rifugio-potzmauer-on-route",
+      "approvedAt": "2026-10-27T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-rifugio-potzmauer-hut.jpg",
+        "heroImage": "images/trails/cembra-rifugio-potzmauer-hut.jpg",
+        "imageAlt": "The wooden Rifugio Potzmauer with walkers at its tables, on a green meadow edged by tall larches and a big bare tree under a blue sky",
+        "imageCredit": "Rifugio Potzmauer",
+        "imageCreditText": "Rifugio Potzmauer by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rifugio_Potzmauer.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cembra-san-leonardo-lisignago",
+      "approvedReviewId": "commons-cembra-san-leonardo-lisignago-on-route",
+      "approvedAt": "2026-10-27T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cembra-san-leonardo-lisignago-church.jpg",
+        "heroImage": "images/trails/cembra-san-leonardo-lisignago-church.jpg",
+        "imageAlt": "The small church of San Leonardo on a wooded hilltop seen from above, terraced vineyards and the pale bed of the Avisio below in summer",
+        "imageCredit": "San Leonardo, Lisignago",
+        "imageCreditText": "San Leonardo, Lisignago by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chiesa_di_San_Leonardo_a_Lisignago_05.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cortina-castello-di-botestagno",
       "approvedReviewId": "commons-cortina-castello-di-botestagno-on-route",
       "approvedAt": "2026-10-26T20:00:00.000Z",
