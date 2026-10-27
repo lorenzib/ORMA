@@ -115,8 +115,24 @@ function coverage(points, line, tolerance = COVER_M) {
  * Outdooractive tour pages carry schema.org JSON-LD: the line as a GeoShape
  * (`lat lng lat lng …`), the start and end places, and the author. That is the
  * page anyone can open; nothing here uses an API key.
+ *
+ * Some boards publish the line as a GPX download instead (Osttirol's walks
+ * link one from every walk page). Its track points are the line; the file
+ * names no start place or author, so those come from the board's page.
  */
+function parseGpxGuide(text) {
+  const points = [];
+  for (const match of String(text).matchAll(/<trkpt\b([^>]*)>/g)) {
+    const lat = Number((match[1].match(/\blat="([^"]+)"/) || [])[1]);
+    const lng = Number((match[1].match(/\blon="([^"]+)"/) || [])[1]);
+    if (Number.isFinite(lat) && Number.isFinite(lng)) points.push([lat, lng]);
+  }
+  if (points.length < 2) return null;
+  return { line: points, start: null, end: null, author: null };
+}
+
 function parseGuide(html) {
+  if (/<gpx\b/.test(String(html))) return parseGpxGuide(html);
   const blocks = [...String(html).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => m[1]);
   const find = (value, key) => {
     if (value && typeof value === 'object') {

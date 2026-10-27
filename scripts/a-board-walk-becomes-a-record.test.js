@@ -83,6 +83,16 @@ describe('the guide is read from the page anyone can open', () => {
     expect(guide.author).toBe('Azienda per il Turismo della Val di Fassa');
   });
 
+  test('a GPX download is read as the line, lon-first attributes included', () => {
+    const gpx = '<?xml version="1.0"?><gpx version="1.1"><wpt lon="12.6" lat="46.99"><name>hut</name></wpt><trk><trkseg>'
+      + GUIDE.map(([lat, lng]) => `<trkpt lon="${lng}" lat="${lat}"><ele>2397</ele></trkpt>`).join('')
+      + '</trkseg></trk></gpx>';
+    const guide = parseGuide(gpx);
+    expect(guide.line).toEqual(GUIDE);
+    expect(guide.start).toBeNull();
+    expect(parseGuide('<gpx version="1.1"><trk><trkseg></trkseg></trk></gpx>')).toBeNull();
+  });
+
   test('a page with no published line has no guide', () => {
     expect(parseGuide('<html><script type="application/ld+json">{"@type":"Place"}</script></html>')).toBeNull();
     expect(parseGuide('not a page')).toBeNull();
