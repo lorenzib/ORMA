@@ -117,7 +117,10 @@ function writeJson(file, value) {
 }
 
 const trails = loadTrails();
-anchorTrails = trails.filter(trail => trail.region && trail.region !== 'savoy'
+// Savoy and Valle d'Aosta lie wholly west of 9°E, so neither can anchor a
+// point east of it: a lift by Lake Como is not an Aosta lift because the
+// Gressoney walks happen to be the nearest trails.
+anchorTrails = trails.filter(trail => trail.region && trail.region !== 'savoy' && trail.region !== 'aosta'
   && Number.isFinite(trail.lat) && Number.isFinite(trail.lng));
 const gondolas = loadGondolas();
 const regionIds = Object.keys(regionsApi.REGIONS);

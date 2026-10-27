@@ -833,6 +833,36 @@
       "name": "Eupilio and the Madonna della Neve",
       "slug": "eupilio-madonna-della-neve",
       "gloss": "the way of the cross to the Madonna della Neve and the Alpe di Carella"
+    },
+    "aosta-ru-courtaud": {
+      "name": "Rû Courtaud",
+      "slug": "ru-courtaud-ayas",
+      "gloss": "the level walk along the old irrigation channel above Antagnod"
+    },
+    "aosta-champoluc-cascata-mascognaz": {
+      "name": "Champoluc – Mascognaz waterfall",
+      "slug": "champoluc-mascognaz-waterfall",
+      "gloss": "the short climb from Champoluc to the Mascognaz waterfall"
+    },
+    "aosta-periasc-antagnod": {
+      "name": "Périasc – Antagnod",
+      "slug": "periasc-antagnod",
+      "gloss": "the old mule track from Périasc up to Antagnod"
+    },
+    "aosta-sentiero-della-regina": {
+      "name": "Sentiero della Regina",
+      "slug": "sentiero-della-regina-gressoney",
+      "gloss": "the Queen’s path along the valley side to Castel Savoia"
+    },
+    "aosta-strada-lombarda": {
+      "name": "Strada Lombarda",
+      "slug": "strada-lombarda-gressoney",
+      "gloss": "the old valley road through Gressoney-Saint-Jean"
+    },
+    "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": {
+      "name": "Alpenzù Piccolo and Alpenzù Grande",
+      "slug": "alpenzu-walser-villages",
+      "gloss": "the Walser path up to the hamlets of Alpenzù"
     }
   }
 }
