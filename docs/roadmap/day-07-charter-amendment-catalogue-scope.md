@@ -13,7 +13,7 @@ does.
 
 | The charter says | What is live on 2026-10-27 |
 |---|---|
-| Initial beta region: Val Gardena and nearby Alpe di Siusi. "Cortina, the wider Dolomites, and Savoy are outside the first beta scope." | 246 published trails: 195 across South Tyrol, Trentino and Belluno, and 51 in Savoy. |
+| Initial beta region: Val Gardena and nearby Alpe di Siusi. "Cortina, the wider Dolomites, and Savoy are outside the first beta scope." | 246 trails in the catalogue (245 published, 1 draft): 195 across South Tyrol, Trentino and Belluno, and 51 in Savoy. |
 | "Broad OSM route expansion" is frozen. "New geographic regions" are excluded. | Since 22 Oct, hand verification has added walks in Val di Fassa, Primiero, Val di Fiemme, Val di Cembra and around Cortina. |
 | "No other trail may advertise an offline package during the first beta until the two-route device and field matrix passes." | OFF-07 (23 Oct) gives every Verified trail an offline package. That is about 170 packages, offered on the trail pages, while the matrix is still pending. |
 | "Verified" is reserved for the agreed evidence-backed process. | 171 trails are Verified, and about 95% of them by hand under the seal rules in the operating standard. This one still holds. |
