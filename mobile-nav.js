@@ -101,6 +101,25 @@
     return '/account.html?mode=add&next=' + encodeURIComponent(currentReturnTarget());
   }
 
+  // The guest wizard lives on the homepage. Without a way back, adding a dog
+  // from a trail page dropped the reader on the trail list and never showed
+  // them that trail's score for their dog. A half-finished save or GPX
+  // action is left behind: it asked for a login the reader did not give.
+  function guestWizardHref(){
+    const target = currentReturnTarget();
+    if(target === '/') return '/?wizard=1';
+    // String surgery, not new URL(): the native app and framed pages report an
+    // origin of "null", and a throw here would take the whole banner with it.
+    const hashAt = target.indexOf('#');
+    const hash = hashAt >= 0 ? target.slice(hashAt) : '';
+    const [page, query = ''] = (hashAt >= 0 ? target.slice(0, hashAt) : target).split('?');
+    if(!/\.html$/.test(page)) return '/?wizard=1';
+    const params = new URLSearchParams(query);
+    params.delete('action');
+    const search = params.toString();
+    return '/?wizard=1&next=' + encodeURIComponent(page + (search ? '?' + search : '') + hash);
+  }
+
   function installDogProfileBanner(){
     const topnav = document.querySelector('.topnav');
     const personalisedHomepageHeader = document.querySelector('#returningCustomerHomepage .li-top');
@@ -132,7 +151,7 @@
 
     const profile = document.createElement('a');
     profile.className = 'dog-profile-banner__action hp-dog-profile-cta';
-    profile.href = '/?wizard=1';
+    profile.href = guestWizardHref();
     profile.addEventListener('click', event => {
       if(profile.dataset.action !== 'save-pending-dog') return;
       event.preventDefault();
@@ -169,7 +188,7 @@
         title.textContent = copy('hp.guest.addDog', 'Add your dog');
         description.textContent = copy('hp.guest.medium.sub', 'Add your dog for personalised matches. Create a free account only when you choose to save.');
         profile.textContent = copy('hp.guest.addDog', 'Add your dog');
-        profile.href = member ? addDogAccountHref() : '/?wizard=1';
+        profile.href = member ? addDogAccountHref() : guestWizardHref();
         delete profile.dataset.action;
       }
       // The guest homepage already ships the exact prompt and its button

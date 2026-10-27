@@ -1222,7 +1222,23 @@
       if(mapBoundsFilter && window.DoloPawsBrowseMap){
         pool = pool.filter(trail => window.DoloPawsBrowseMap.withinBounds(trail, mapBoundsFilter));
       }
-      return pool;
+      return rankByMatch(pool);
+    }
+
+    // Every card says how well the trail suits the dog the list is scored
+    // for, so the list leads with the best of them. The wizard's "See all
+    // matches" lands here, and a catalogue-order list put "Not recommended"
+    // trails above its 100% match. The verdict ranks first because the engine
+    // can declare one the score alone does not carry; ties keep catalogue order.
+    const VERDICT_RANK = { 'strong-option':0, 'possible-with-cautions':1, 'not-recommended':2 };
+    function rankByMatch(pool){
+      return pool
+        .map((trail, index) => {
+          const verdict = matchVerdict(trail);
+          return { trail, index, rank: VERDICT_RANK[verdict.category] ?? 2, score: verdict.score || 0 };
+        })
+        .sort((a, b) => (a.rank - b.rank) || (b.score - a.score) || (a.index - b.index))
+        .map(item => item.trail);
     }
 
     const COUNTRIES = [

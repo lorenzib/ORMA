@@ -6,6 +6,27 @@ const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
 describe('guest dog persistence and the quick wizard chairlift question', () => {
   const controller = read('homepage-search.js');
 
+  test('finishing the wizard returns to the page it was opened from, and only to this site', () => {
+    const body = controller.match(/function wizardReturn\(\) \{([\s\S]*?)\n  \}/)[1];
+    const returnFor = search => new Function('window', 'URLSearchParams', body)({ location:{ search } }, URLSearchParams);
+    const next = target => returnFor('?wizard=1&next=' + encodeURIComponent(target));
+
+    expect(next('trail.html?id=lago-di-carezza-loop#map')).toBe('trail.html?id=lago-di-carezza-loop#map');
+    expect(next('trails/lago-di-braies-seeweg-circuit.html')).toBe('trails/lago-di-braies-seeweg-circuit.html');
+    expect(next('browse-trails.html?region=savoy')).toBe('browse-trails.html?region=savoy');
+    expect(returnFor('?wizard=1')).toBe('');
+    for(const hostile of ['https://evil.example/trail.html', '//evil.example/trail.html', '/trail.html', 'javascript:alert(1)', 'account.html']){
+      expect(next(hostile)).toBe('');
+    }
+    // Both finish buttons use it, and say where they go when it is a trail.
+    expect(controller).toContain("openSignup({ next: wizardReturn() || 'browse-trails.html' })");
+    expect(controller).toContain("window.location.href = wizardReturn() || 'browse-trails.html';");
+    const dictionary = read('i18n.js');
+    for(const key of ['hp.wizard.done.saveTrail', 'hp.wizard.done.backTrail']){
+      expect(dictionary.split(`'${key}':`).length).toBe(3);
+    }
+  });
+
   test('the quick wizard picks the device dog back up on load', () => {
     expect(controller).toContain("localStorage.getItem('dolopaws-pending-dog-profile')");
     expect(controller).toMatch(/restoreDeviceDog\(\);\s*renderAll\(\);/);

@@ -52,7 +52,7 @@ describe('guest homepage editorial structure', () => {
     expect(controller).toContain("matches.slice(0, 3)");
     expect(controller).toContain('Save profile and see all matches');
     expect(controller).toContain('See all matches without saving');
-    expect(controller).toContain("openSignup({ next: 'browse-trails.html' })");
+    expect(controller).toContain("openSignup({ next: wizardReturn() || 'browse-trails.html' })");
   });
 
   test('uses the compact guest notice only on the ranking catalogue', () => {

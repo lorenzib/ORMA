@@ -58703,10 +58703,13 @@ function init(){
 
   if(!trail){
     document.title = window.t('trail.notFound') + ' | ORMA';
-    const wrap = document.querySelector('.td-wrap');
+    // The page body is .td2 since the redesign; this looked only for the old
+    // .td-wrap, found nothing, and left an empty trail with live Start, Save
+    // and GPX buttons on every withdrawn or mistyped link.
+    const wrap = document.querySelector('.td2') || document.querySelector('.td-wrap');
     if(wrap){
       wrap.innerHTML = `
-        <div style="max-width:620px;margin:48px auto;text-align:center;">
+        <div class="td-wrap" style="max-width:620px;margin:48px auto;text-align:center;">
           <h1>${window.t('trail.notFound')}</h1>
           <p style="margin:14px 0 24px;color:var(--ink-soft);">${window.t('trail.notFoundSub')}</p>
           <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
