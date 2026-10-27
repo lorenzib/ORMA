@@ -69,10 +69,11 @@ describe('the existing-site verification boundary',()=>{
     // 242 with the Malghette, the Piz de le Agole and the old-trades path from Grumes. Then 246 and
     // 244 with the two walks at Malga Vernera above Sover. Then 250 and 248 with
     // four Alta Badia walks: Lech da Sompunt, Corvara – Colfosco, the Tru di artisć
-    // and Corvara – La Villa.
+    // and Corvara – La Villa. Then 252 and 250 with two more: the farms loop
+    // above Pederoa and Furnacia – La Crusc.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(250);
-    expect(currentSiteTrails(catalogue)).toHaveLength(248);
+    expect(catalogue).toHaveLength(252);
+    expect(currentSiteTrails(catalogue)).toHaveLength(250);
   });
 
   test('requires the artwork the public trail page needs',()=>{

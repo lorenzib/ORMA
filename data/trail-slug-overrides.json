@@ -593,6 +593,16 @@
       "name": "Corvara – La Villa",
       "slug": "corvara-la-villa",
       "gloss": "the riverside walk from Corvara to La Villa"
+    },
+    "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa": {
+      "name": "Pederoa – Picedac – Costa",
+      "slug": "pederoa-masi-picedac-costa",
+      "gloss": "the farms loop above Pederoa"
+    },
+    "altabadia-da-furnacia-a-la-crusc": {
+      "name": "Furnacia – La Crusc",
+      "slug": "furnacia-la-crusc",
+      "gloss": "the climb to the Santa Croce sanctuary"
     }
   }
 }
