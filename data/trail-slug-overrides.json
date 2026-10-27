@@ -763,6 +763,26 @@
       "name": "Rifugio Stavel – Francesco Denza",
       "slug": "rifugio-stavel-denza",
       "gloss": "the Val Stavel climb to the Denza hut under the Presanella"
+    },
+    "valgardena-escursione-nella-vallunga": {
+      "name": "Vallunga",
+      "slug": "vallunga",
+      "gloss": "the valley-floor walk up the Vallunga"
+    },
+    "valgardena-escursione-al-terrazzo-panoramico-seeurasas": {
+      "name": "Sëurasas",
+      "slug": "seurasas",
+      "gloss": "the climb from Cristauta to the Sëurasas viewpoint"
+    },
+    "valgardena-percorso-dei-masi-tradizionali": {
+      "name": "Santa Cristina farms path",
+      "slug": "santa-cristina-farms-path",
+      "gloss": "the loop past the old farms above Santa Cristina"
+    },
+    "valgardena-raida-dl-luech-giro-del-paese": {
+      "name": "Raida dl luech",
+      "slug": "raida-dl-luech",
+      "gloss": "the village loop to the Tervela waterfall"
     }
   }
 }

@@ -86,9 +86,11 @@ describe('the existing-site verification boundary',()=>{
     // Lago dei Caprioli and Rifugio Denza in the Val di Sole, the Javrè – Pelugo
     // cycle path loop, and Madonna del Lares, San Vigilio and San Martino in the
     // Giudicarie.
+    // Then 288 and 286 with four more Val Gardena walks: the Vallunga, the Sëurasas,
+    // the farms path above Santa Cristina and the Raida dl luech.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(284);
-    expect(currentSiteTrails(catalogue)).toHaveLength(282);
+    expect(catalogue).toHaveLength(288);
+    expect(currentSiteTrails(catalogue)).toHaveLength(286);
   });
 
   test('requires the artwork the public trail page needs',()=>{

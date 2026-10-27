@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T22:47:03.135Z",
+  "generatedAt": "2026-10-27T22:57:28.228Z",
   "regions": {
     "dolomites": {
-      "trailCount": 233,
-      "trails": "data/regions/dolomites-trails.js?v=944b64f8c8f9",
+      "trailCount": 237,
+      "trails": "data/regions/dolomites-trails.js?v=e16a0092049f",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -238,6 +238,10 @@
         "valdisole-rifugio-stavel-denza": "data/trail-details/valdisole-rifugio-stavel-denza.js?v=0365d0e90bb7",
         "rendena-ciclabile-javre-dare-vigo-pelugo": "data/trail-details/rendena-ciclabile-javre-dare-vigo-pelugo.js?v=3484ad245f45",
         "giudicarie-san-vigilio-senter-dei-cavai": "data/trail-details/giudicarie-san-vigilio-senter-dei-cavai.js?v=5c312fbae811",
+        "valgardena-escursione-nella-vallunga": "data/trail-details/valgardena-escursione-nella-vallunga.js?v=50d353e91868",
+        "valgardena-escursione-al-terrazzo-panoramico-seeurasas": "data/trail-details/valgardena-escursione-al-terrazzo-panoramico-seeurasas.js?v=e1c6a962175d",
+        "valgardena-percorso-dei-masi-tradizionali": "data/trail-details/valgardena-percorso-dei-masi-tradizionali.js?v=76763443f27f",
+        "valgardena-raida-dl-luech-giro-del-paese": "data/trail-details/valgardena-raida-dl-luech-giro-del-paese.js?v=d13ec409a5da",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -567,6 +571,10 @@
     "valdisole-rifugio-stavel-denza": "dolomites",
     "rendena-ciclabile-javre-dare-vigo-pelugo": "dolomites",
     "giudicarie-san-vigilio-senter-dei-cavai": "dolomites",
+    "valgardena-escursione-nella-vallunga": "dolomites",
+    "valgardena-escursione-al-terrazzo-panoramico-seeurasas": "dolomites",
+    "valgardena-percorso-dei-masi-tradizionali": "dolomites",
+    "valgardena-raida-dl-luech-giro-del-paese": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -904,6 +912,10 @@
     "valdisole-rifugio-stavel-denza": "rifugio-stavel-denza",
     "rendena-ciclabile-javre-dare-vigo-pelugo": "javre-pelugo-cycle-path-loop",
     "giudicarie-san-vigilio-senter-dei-cavai": "san-vigilio-senter-dei-cavai",
+    "valgardena-escursione-nella-vallunga": "vallunga",
+    "valgardena-escursione-al-terrazzo-panoramico-seeurasas": "seurasas",
+    "valgardena-percorso-dei-masi-tradizionali": "santa-cristina-farms-path",
+    "valgardena-raida-dl-luech-giro-del-paese": "raida-dl-luech",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1190,6 +1202,10 @@
     "rifugio-stavel-denza": "valdisole-rifugio-stavel-denza",
     "javre-pelugo-cycle-path-loop": "rendena-ciclabile-javre-dare-vigo-pelugo",
     "san-vigilio-senter-dei-cavai": "giudicarie-san-vigilio-senter-dei-cavai",
+    "vallunga": "valgardena-escursione-nella-vallunga",
+    "seurasas": "valgardena-escursione-al-terrazzo-panoramico-seeurasas",
+    "santa-cristina-farms-path": "valgardena-percorso-dei-masi-tradizionali",
+    "raida-dl-luech": "valgardena-raida-dl-luech-giro-del-paese",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

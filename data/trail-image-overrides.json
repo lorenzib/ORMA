@@ -4599,6 +4599,23 @@
       }
     },
     {
+      "id": "valgardena-escursione-al-terrazzo-panoramico-seeurasas",
+      "approvedReviewId": "commons-valgardena-escursione-al-terrazzo-panoramico-seeurasas-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-al-terrazzo-panoramico-seeurasas-ortisei.jpg",
+        "heroImage": "images/trails/valgardena-escursione-al-terrazzo-panoramico-seeurasas-ortisei.jpg",
+        "imageAlt": "Looking down from the grassy Sëurasas ridge over golden larches to Ortisei spread along the floor of Val Gardena, forested slopes and farm meadows on either side, hazy hills beyond",
+        "imageCredit": "Ortisei from the Sëurasas",
+        "imageCreditText": "Ortisei from the Sëurasas by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Urtijei_from_Seurasass.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valgardena-escursione-dalla-cappella-santa-croce-al-brogles",
       "approvedReviewId": "mapillary-valgardena-escursione-dalla-cappella-santa-croce-al-brogles-on-route",
       "approvedAt": "2026-10-28T09:00:00.000Z",
@@ -4612,6 +4629,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=771618323554512",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-escursione-nella-vallunga",
+      "approvedReviewId": "commons-valgardena-escursione-nella-vallunga-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-nella-vallunga-san-silvestro.jpg",
+        "heroImage": "images/trails/valgardena-escursione-nella-vallunga-san-silvestro.jpg",
+        "imageAlt": "A wide sunlit meadow on the floor of the Vallunga with a gravel path in the foreground, the small white San Silvestro chapel among spruces and golden larches, and pale limestone cliffs rising on both sides under a deep blue sky",
+        "imageCredit": "The Vallunga meadows and the San Silvestro chapel",
+        "imageCreditText": "The Vallunga meadows and the San Silvestro chapel by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Langental_Val_Longia.JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -4663,6 +4697,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=1130864824044983",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-percorso-dei-masi-tradizionali",
+      "approvedReviewId": "commons-valgardena-percorso-dei-masi-tradizionali-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-percorso-dei-masi-tradizionali-iender.jpg",
+        "heroImage": "images/trails/valgardena-percorso-dei-masi-tradizionali-iender.jpg",
+        "imageAlt": "A traditional farmhouse on a green meadow slope above Santa Cristina, larches and spruces framing the view down the forested Iender valley to farms and the Odle peaks under a blue sky",
+        "imageCredit": "A farm above the Iender valley from Praulëta",
+        "imageCreditText": "A farm above the Iender valley from Praulëta by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Val_Iender_Santa_Cristina.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-raida-dl-luech-giro-del-paese",
+      "approvedReviewId": "commons-valgardena-raida-dl-luech-giro-del-paese-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-raida-dl-luech-giro-del-paese-tervela.jpg",
+        "heroImage": "images/trails/valgardena-raida-dl-luech-giro-del-paese-tervela.jpg",
+        "imageAlt": "The Tervela waterfall pouring down a rock face into a stream among lush green bushes, a wooden footbridge across the stream and a gravel path with a rustic rail in the foreground",
+        "imageCredit": "The Tervela waterfall and its footbridge",
+        "imageCreditText": "The Tervela waterfall and its footbridge by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pisciadoi_dl_Tervela_dinst%C3%A0_Santa_Cristina.jpg",
         "imageSourceType": "licensed-source"
       }
     },

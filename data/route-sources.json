@@ -1953,6 +1953,38 @@
       "quote": "Vom Bühlerhof läuft man leicht ansteigend bis zum Beginn des Panoramaweges (1389 m), der mit Berg-Symbolen markiert ist. Der Panoramaweg verläuft relativ eben bis zur Wegkreuzung mit Weg Nr. 11.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T19:40:50.460Z"
+    },
+    "valgardena-escursione-nella-vallunga": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-nella-vallunga/810055896/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione nella Vallunga",
+      "quote": "Distanza 7,5 km · Salita 201 m · Durata 2:00 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "valgardena-escursione-al-terrazzo-panoramico-seeurasas": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-terrazzo-panoramico-seeurasas/67905450/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione al terrazzo panoramico Sëurasas",
+      "quote": "Distanza 6,6 km · Salita 449 m · Durata 3:00 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "valgardena-percorso-dei-masi-tradizionali": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/percorso-dei-masi-tradizionali/64155465/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Percorso dei masi tradizionali",
+      "quote": "Distanza 7,4 km · Salita 450 m · Durata 2:25 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "valgardena-raida-dl-luech-giro-del-paese": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/raida-dl-luech-giro-del-paese/17086259/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "\"Raida dl luech\" - Giro del paese",
+      "quote": "Distanza 3,9 km · Salita 151 m · Durata 1:10 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
     }
   }
 }
