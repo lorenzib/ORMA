@@ -1175,6 +1175,91 @@
       }
     },
     {
+      "id": "lario-alla-ricerca-di-un-panorama-unico",
+      "approvedReviewId": "commons-lario-alla-ricerca-di-un-panorama-unico-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-alla-ricerca-di-un-panorama-unico-nuvolone.jpg",
+        "heroImage": "images/trails/lario-alla-ricerca-di-un-panorama-unico-nuvolone.jpg",
+        "imageAlt": "Lake Como far below the Nuvolone viewpoint, the bare rocky Monte di Tremezzo and its lakeside villages across the water, wooded slopes in the foreground and snowy peaks in the distance",
+        "imageCredit": "Lake Como from the Nuvolone viewpoint",
+        "imageCreditText": "Lake Como from the Nuvolone viewpoint by Kaitu",
+        "imageCreator": "Kaitu",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Panoramic_view_centered_on_North_direction_from_Monte_Nuvolone.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-anello-ai-piedi-del-monte-oriolo",
+      "approvedReviewId": "commons-lario-anello-ai-piedi-del-monte-oriolo-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-anello-ai-piedi-del-monte-oriolo-crezzo.jpg",
+        "heroImage": "images/trails/lario-anello-ai-piedi-del-monte-oriolo-crezzo.jpg",
+        "imageAlt": "A small stone monument with a pointed roof and an Italian flag in the open meadows of the Conca di Crezzo, bare trees and wooded slopes behind under a blue sky",
+        "imageCredit": "The Alpine monument in the Conca di Crezzo",
+        "imageCreditText": "The Alpine monument in the Conca di Crezzo by Kaitu",
+        "imageCreator": "Kaitu",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Monumento_all%27Alpino_nella_Conca_di_Crezzo_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-brunate-e-le-sue-chiese",
+      "approvedReviewId": "commons-lario-brunate-e-le-sue-chiese-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-brunate-e-le-sue-chiese-lake-view.jpg",
+        "heroImage": "images/trails/lario-brunate-e-le-sue-chiese-lake-view.jpg",
+        "imageAlt": "Lake Como seen from the wooded hill of Brunate, the town of Como and its villas along the shore below, green hills and distant mountains behind",
+        "imageCredit": "Lake Como from Brunate",
+        "imageCreditText": "Lake Como from Brunate by Another Believer",
+        "imageCreator": "Another Believer",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Brunate,_Italy_(2025)_-_05.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-eupilio-tra-segrino-e-cornizzolo",
+      "approvedReviewId": "commons-lario-eupilio-tra-segrino-e-cornizzolo-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-eupilio-tra-segrino-e-cornizzolo-pusiano-lake.jpg",
+        "heroImage": "images/trails/lario-eupilio-tra-segrino-e-cornizzolo-pusiano-lake.jpg",
+        "imageAlt": "Lake Pusiano seen from the wooded slope at the Madonna della Neve sanctuary, the small tree-covered Isola dei Cipressi in the middle and houses along the shore below",
+        "imageCredit": "Lake Pusiano from the Madonna della Neve",
+        "imageCreditText": "Lake Pusiano from the Madonna della Neve by Kaitu",
+        "imageCreator": "Kaitu",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:View_on_island_Isola_dei_Cipressi,_from_Madonna_della_Neve_(Pusiano).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-pognana-lario-e-le-sculture-simposio",
+      "approvedReviewId": "commons-lario-pognana-lario-e-le-sculture-simposio-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-pognana-lario-e-le-sculture-simposio-lake.jpg",
+        "heroImage": "images/trails/lario-pognana-lario-e-le-sculture-simposio-lake.jpg",
+        "imageAlt": "The Como branch of the lake seen from the rooftops of Pognana Lario, a steep green mountain and a lakeside village on the far shore under a clear sky",
+        "imageCredit": "Lake Como from Pognana Lario",
+        "imageCreditText": "Lake Como from Pognana Lario by Sigoise",
+        "imageCreator": "Sigoise",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pognana_Lario_Panorama.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "nuvolau",
       "approvedReviewId": "commons-nuvolau",
       "approvedAt": "2026-09-05T21:14:34.033Z",

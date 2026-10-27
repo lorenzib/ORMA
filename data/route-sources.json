@@ -554,6 +554,46 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
+    "lario-alla-ricerca-di-un-panorama-unico": {
+      "url": "https://www.in-lombardia.it/itinerari/alla-ricerca-di-un-panorama-unico",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Alla ricerca di un panorama unico",
+      "quote": "Durata/Lunghezza 3h e 30min 7.90km · Dislivello Salita: 679m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "lario-anello-ai-piedi-del-monte-oriolo": {
+      "url": "https://www.in-lombardia.it/itinerari/anello-ai-piedi-del-monte-oriolo",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Anello ai piedi del Monte Oriolo",
+      "quote": "Durata/Lunghezza 3h 9.18km · Dislivello Salita: 580m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "lario-brunate-e-le-sue-chiese": {
+      "url": "https://www.in-lombardia.it/itinerari/brunate-e-le-sue-chiese",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Brunate e le sue Chiese",
+      "quote": "Durata/Lunghezza 3h 5.49km · Dislivello Salita: 300m Discesa: 300m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "lario-eupilio-tra-segrino-e-cornizzolo": {
+      "url": "https://www.in-lombardia.it/itinerari/eupilio-tra-segrino-e-cornizzolo",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Eupilio tra Segrino e Cornizzolo",
+      "quote": "Durata/Lunghezza 2h 5.24km · Dislivello Salita: 397m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "lario-pognana-lario-e-le-sculture-simposio": {
+      "url": "https://www.in-lombardia.it/itinerari/pognana-lario-e-le-sculture-simposio",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Percorso delle sculture: Simposio Internazionale di Scultura",
+      "quote": "Durata/Lunghezza 2h 4.20km · Dislivello Salita: 160m Discesa: 160m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
     "nuvolau": {
       "url": "https://cortina.dolomiti.org/it/escursioni/al-rifugio-nuvolau/",
       "publisher": "Cortina Dolomiti / Cortina Marketing",

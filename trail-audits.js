@@ -46434,6 +46434,326 @@
         { km: 7.1, lat: 46.73143, lng: 12.32825, osmId: 'node/12441945904', name: 'Punka Ristorante' }
       ],
       desc: 'A long walk down from the Helm, reached by gondola, through the forest past the Jägerhütte to Vierschach. The board lists 7.9 km and 911 m of descent.'
+    },
+    'lario-brunate-e-le-sue-chiese': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Lombardy batch 1).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Brunate e le sue Chiese” by Lago di Como GAL, drawn on 54 OSM ways along its published GPX
+      // (data/board-line-routes.geojson). Communes: Brunate (no regulation, national rule); Como (own rule, lead ≤1.5 m).
+      // No Natura 2000 site, park, reserve, local park or natural monument on the line or within 100 m (Regione Lombardia geoportal).
+      area: 'Brunate – San Maurizio – Faro Voltiano, above Como',
+      distance: 5.49,
+      elevation: 300,
+      hours: '3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the via Laghetto car park through the old centre of Brunate, down to the Sacro Cuore church, up the old mule track to San Maurizio and the Volta lighthouse, and back down past the chapel of Sant’Antonio Abate.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The first basin of Lake Como and the hills of Como from Brunate, beside the loop, in early December with no snow (Another Believer, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official loop 5.49 km from the via Laghetto car park, Brunate, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 54 OSM ways along the published GPX, 5.4 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'From the via Laghetto car park along via Civiglio to the chapel of the Madonna della Pace, right to via Fraccia and through the old centre past the Madonna di Pompei church and the chapel of the Madonna dell’Accoglienza (via Monti, via Volta); down via Attilio Pirotta to via Parco Nidrino and the Sacro Cuore church; up via Nidrino to via Roma and the Lourdes grotto; via Pissarottino, the steps to via ai Zocc and the mule track (via Mulattiera per San Maurizio) to San Maurizio; up to the Faro Voltiano and the Tre Croci, back to the church and up the mule track to the Cao; then the path towards Civiglio, down the concrete via alla Spessa past the chapel of Sant’Antonio Abate and back to via Laghetto.',
+        mapPoints: 'Start at the published start; drinking water at km 0.3, at km 0.9, at km 1.7 and at km 2.7 (OSM nodes 2851310346, 5613634931, 1904524784, 2292919024).',
+        elevation: 'Official 5.49 km, 300 m up and 300 m down, 3 h (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL). The stored line follows the published GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'in-Lombardia, the official tourism portal of Regione Lombardia, “Brunate e le sue Chiese” (itinerary by Lago di Como GAL, with its GPX)',
+          'Comune di Brunate publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Comune di Como, Regolamento di Polizia Urbana (DCC 53 of 1 July 2019, amended DCC 43 of 4 June 2025), Art. 5: in any public place, outside dog areas, a lead of at most 1.5 m',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'Regione Lombardia geoportal layers (Rete_Natura_2000 ZSC/SIC and ZPS, Parchi_Regionali_Nazionali, Parchi_Naturali, Riserve_Naturali, PLIS, Monumenti_Naturali): no Natura 2000 site, park, reserve, local park or natural monument on the line or within 100 m (positive control: Val di Mello IT2040020)',
+          'OpenStreetMap ways along the published line (54 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 40,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Village lanes and roads with cars: keep your dog close', 'Steep steps and cobbled mule tracks on the way to San Maurizio', 'Busy viewpoints at the lighthouse at weekends'],
+      terrainType: 'Village lanes, steps and cobbled mule tracks',
+      shadeDescription: 'About two fifths shaded: the mule tracks run under chestnut and beech woods; the village streets and the lighthouse terrace are open.',
+      terrainDescription: 'A loop at 680–930 m on the hill above Como, through the village of Brunate and its hamlets, with views over the first basin of the lake and the Alps.',
+      waterDescription: 'Drinking fountains at km 0.3, at km 0.9, at km 1.7 and at km 2.7; places to eat on the way.',
+      dogNotes: 'Como requires a lead of at most 1.5 m in any public place, which covers the stretch on its side of the hill. Brunate has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Clean up after your dog.',
+      tips: 'Start at the via Laghetto car park in Brunate (or ride the Como–Brunate funicular up): 5.5 km and 300 m of climbing, about three hours with the stops. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The Volta lighthouse has a 143-step spiral stair; leave your dog with someone at the bottom.',
+      sourceLinks: [
+        { label: 'in-Lombardia, Brunate e le sue Chiese', url: 'https://www.in-lombardia.it/itinerari/brunate-e-le-sue-chiese' },
+        { label: 'in-Lombardia, Brunate e le sue Chiese: GPX', url: 'https://www.in-lombardia.it/sites/default/files/itinerari/gpx/424320/Itinerario_Brunate_OltreLario.gpx' },
+        { label: 'Comune di Como, Regolamento di Polizia Urbana', url: 'https://www.comune.como.it/export/sites/comune-di-como/.galleries/Regolamenti/regolamento-polizia-urbana.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.819954, lng: 9.102118, label: 'The via Laghetto car park, Brunate, the published start' },
+      waterSources: [
+        { km: 0.3, lat: 45.8202459, lng: 9.0987024, osmId: 'node/2851310346', label: 'Drinking fountain' },
+        { km: 0.9, lat: 45.8196509, lng: 9.0950562, osmId: 'node/5613634931', label: 'Drinking fountain' },
+        { km: 1.7, lat: 45.8252069, lng: 9.0967266, osmId: 'node/1904524784', label: 'Drinking fountain' },
+        { km: 2.7, lat: 45.8255902, lng: 9.1027041, osmId: 'node/2292919024', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0.7, lat: 45.81821, lng: 9.0961, osmId: 'way/111414041', name: 'Locanda Milano 1873' },
+        { km: 2.6, lat: 45.8249, lng: 9.10106, osmId: 'node/4199163200', name: 'Locanda del dolce basilico' },
+        { km: 3.1, lat: 45.82579, lng: 9.10317, osmId: 'node/5237994642', name: 'il Faro' },
+        { km: 3.7, lat: 45.82526, lng: 9.11081, osmId: 'way/250245675', name: 'Ristorante il Bettolino' }
+      ],
+      desc: 'A loop round the churches and chapels of Brunate, above Como, up an old mule track to San Maurizio and the Volta lighthouse. The portal lists 5.49 km and 300 m of ascent.'
+    },
+    'lario-pognana-lario-e-le-sculture-simposio': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Lombardy batch 1).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Percorso delle sculture: Simposio Internazionale di Scultura” by Lago di Como GAL, drawn on 37 OSM ways along its published GPX
+      // (data/board-line-routes.geojson). Communes: Pognana Lario (Unione Lario e Monti rule, lead).
+      // No Natura 2000 site, park, reserve, local park or natural monument on the line or within 100 m (Regione Lombardia geoportal).
+      area: 'Pognana Lario – Quarzano – Canzaga, Lake Como',
+      distance: 4.2,
+      elevation: 160,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the town hall down to the lakeshore and back up through the hamlets on the old Strada Regia, past the ten sculptures carved at the 1986 symposium.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Lake Como from the village of Pognana Lario, on the walk, in late September (Sigoise, CC BY-SA 4.0), 6 m from the line.',
+        route: 'Official loop 4.2 km from Pognana Lario town hall, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 37 OSM ways along the published GPX, 3.9 km, with 98% of the published line within 25 m of it.',
+        routeNumbers: 'From the town hall (sculptures 1–3) left along the provincial road towards Como, then right down the mule track of via Imbarcadero and via San Fedele to the lakeshore (sculpture 4); about 500 m along the lakeside mule track, back up to the provincial road and along it for about 400 m towards Bellagio (sculpture 5); on the mule track through the village to the church of San Miro (sculpture 6), along the Strada Regia towards Canzaga under the houses of the Ponte delle Capre to the church of the Santissima Trinità (sculpture 7); down via Aldo Moro (sculptures 8 and 9), a few metres along the provincial road towards Como (sculpture 10), and back by via Giacomo Matteotti to the town hall.',
+        mapPoints: 'Start at the published start; drinking water at km 1.5 and at km 2.5 (OSM nodes 6184881395, 2386979266).',
+        elevation: 'Official 4.2 km, 160 m up and 160 m down, 2 h (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL). The stored line follows the published GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'in-Lombardia, the official tourism portal of Regione Lombardia, “Percorso delle sculture: Simposio Internazionale di Scultura” (itinerary by Lago di Como GAL, with its GPX)',
+          'Unione dei Comuni Lario e Monti, Regolamento di Polizia Urbana (Assembly deliberation 17 of 29 October 2007), Art. 27, published by Comune di Pognana Lario: dogs off their owner’s property on a lead, at most 1 m for large or aggressive dogs',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'Regione Lombardia geoportal layers (Rete_Natura_2000 ZSC/SIC and ZPS, Parchi_Regionali_Nazionali, Parchi_Naturali, Riserve_Naturali, PLIS, Monumenti_Naturali): no Natura 2000 site, park, reserve, local park or natural monument on the line or within 100 m (positive control: Val di Mello IT2040020)',
+          'OpenStreetMap ways along the published line (37 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 400 m on the lakeside provincial road, which has narrow verges and traffic: keep your dog on a short lead', 'Cobbled mule tracks and steps', 'The lakeside path: keep your dog out of the water near boats'],
+      terrainType: 'Village lanes, cobbled mule tracks and a lakeside path',
+      shadeDescription: 'Almost no shade: the walk runs along sunny lanes, the lakeshore and the road.',
+      terrainDescription: 'A short loop at 200–340 m on the east shore of the Como branch of the lake, between the old hamlets of Pognana Lario and the water.',
+      waterDescription: 'Drinking fountains at km 1.5 and at km 2.5; places to eat at the start and on the way.',
+      dogNotes: 'Pognana Lario requires a lead whenever a dog is out of its home, no longer than 1 m for large dogs. Clean up after your dog.',
+      tips: 'Start at the town hall in Pognana Lario: 4.2 km and 160 m of climbing, about two hours. Keep your dog on a short lead, above all on the 400 m of provincial road, and carry a muzzle. There is little shade: avoid midday in summer.',
+      sourceLinks: [
+        { label: 'in-Lombardia, Percorso delle sculture: Simposio Internazionale di Scultura', url: 'https://www.in-lombardia.it/itinerari/pognana-lario-e-le-sculture-simposio' },
+        { label: 'in-Lombardia, Percorso delle sculture: Simposio Internazionale di Scultura: GPX', url: 'https://www.in-lombardia.it/sites/default/files/itinerari/gpx/424629/Pognana-GPX.gpx' },
+        { label: 'Comune di Pognana Lario, Regolamento di Polizia Urbana (Unione Lario e Monti)', url: 'https://www.comune.pognanalario.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_77.html' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.879656, lng: 9.157744, label: 'Pognana Lario town hall, the published start' },
+      waterSources: [
+        { km: 1.5, lat: 45.8851922, lng: 9.1571622, osmId: 'node/6184881395', label: 'Drinking fountain' },
+        { km: 2.5, lat: 45.8780158, lng: 9.1589027, osmId: 'node/2386979266', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 45.87939, lng: 9.15772, osmId: 'node/2390011594', name: 'Peppo\'s Bar' },
+        { km: 3.2, lat: 45.87568, lng: 9.15724, osmId: 'node/2390011593', name: 'La Meridiana' }
+      ],
+      desc: 'A short loop from the town hall of Pognana Lario down to the lake and back along the old Strada Regia, past the ten stone sculptures of the 1986 symposium. The portal lists 4.2 km and 160 m of ascent.'
+    },
+    'lario-alla-ricerca-di-un-panorama-unico': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Lombardy batch 1).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Alla ricerca di un panorama unico” by Lago di Como GAL, drawn on 22 OSM ways along its published GPX
+      // (data/board-line-routes.geojson). Communes: Bellagio (own rule covers the Borgo, the lakefront and the parks, not this walk; national rule).
+      // No Natura 2000 site, park, reserve, local park or natural monument on the line or within 100 m (Regione Lombardia geoportal).
+      area: 'Brogno – Belvedere del Nuvolone – Bocchetta del Nuvolone – Rovenza, Bellagio',
+      distance: 7.9,
+      elevation: 679,
+      hours: '3.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Brogno up a steep path to the Nuvolone viewpoint over the three arms of the lake, round the foot of Monte Nuvolone to its bocchetta, and back through the woods above Rovenza.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Lake Como, Monte di Tremezzo and the Tremezzina shore from the Nuvolone viewpoint, on the loop, in late December with snow only on the far peaks (Kaitu, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official loop 7.9 km from Brogno, Bellagio, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 22 OSM ways along the published GPX, 8.1 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'From Brogno, on the SP41 Vallassina road, take the lane left off the main road and soon the path climbing steeply left, following the signs for the Belvedere del Nuvolone: almost 500 m of climbing in 2 km to the viewpoint. On more gently to the fork for the summit of Monte Nuvolone (1,092 m); keep left for the Bocchetta del Nuvolone (938 m) and do not take the short, rough summit path. At the bocchetta follow the signs for Monte San Primo across a small clearing and through the wood to some buildings below Ceppo del Mucchio, then down the steep concrete road in hairpins to the tarmac; left towards Rovenza to the first hairpin, then straight on along the dirt mule track signed for Brogno, through the wood to a votive chapel; left round it and down the path back to Brogno.',
+        mapPoints: 'Start at the published start; no drinking water mapped on the line.',
+        elevation: 'Official 7.9 km, 679 m up, 3 h 30 min (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL). The stored line follows the published GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'in-Lombardia, the official tourism portal of Regione Lombardia, “Alla ricerca di un panorama unico” (itinerary by Lago di Como GAL, with its GPX)',
+          'Comune di Bellagio, Regolamento di Polizia Urbana (DCC 7 of 8 April 2024, amended), Art. 4 and 5: dogs on a lead in the Borgo, the listed hamlets, on Lungolago Europa and in the public parks; none of these is on this walk, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'Regione Lombardia geoportal layers (Rete_Natura_2000 ZSC/SIC and ZPS, Parchi_Regionali_Nazionali, Parchi_Naturali, Riserve_Naturali, PLIS, Monumenti_Naturali): no Natura 2000 site, park, reserve, local park or natural monument on the line or within 100 m (positive control: Val di Mello IT2040020)',
+          'OpenStreetMap ways along the published line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 92,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A steep, sustained climb of almost 500 m in the first 2 km', 'Do not take the rough path to the Nuvolone summit: keep left for the bocchetta', 'A steep concrete road in hairpins on the descent'],
+      terrainType: 'Forest paths, mule tracks and a concrete farm road',
+      shadeDescription: 'Almost all shaded: nine tenths runs through beech and chestnut woods; the viewpoint is open.',
+      terrainDescription: 'A loop at 590–1,050 m in the woods above Bellagio, climbing to a viewpoint that looks down all three arms of Lake Como, the Grigne and the Alps.',
+      waterDescription: 'No drinking water is mapped on the way; bring water for your dog.',
+      dogNotes: 'Bellagio’s own lead rule covers the Borgo, the lakefront and its parks; on this walk the national rule applies: a lead of at most 1.5 m and a muzzle carried. Clean up after your dog.',
+      tips: 'Start in Brogno on the road from Asso to Bellagio: 7.9 km and about 680 m of climbing, three and a half hours. The first climb is steep: let your dog rest. No water is mapped on the way: carry enough for your dog. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'in-Lombardia, Alla ricerca di un panorama unico', url: 'https://www.in-lombardia.it/itinerari/alla-ricerca-di-un-panorama-unico' },
+        { label: 'in-Lombardia, Alla ricerca di un panorama unico: GPX', url: 'https://www.in-lombardia.it/sites/default/files/itinerari/gpx/240333/anello_bellagio_brogno_nuvolone_brogno.gpx' },
+        { label: 'Comune di Bellagio, Regolamento di Polizia Urbana', url: 'https://www.comune.bellagio.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_185.html' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.95691, lng: 9.245932, label: 'Brogno, Bellagio, the published start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'A loop from Brogno above Bellagio up to the Nuvolone viewpoint, the “most beautiful place in the world” over all three arms of the lake, and back through the woods by Rovenza. The portal lists 7.9 km and 679 m of ascent.'
+    },
+    'lario-anello-ai-piedi-del-monte-oriolo': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Lombardy batch 1).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Anello ai piedi del Monte Oriolo” by Lago di Como GAL, drawn on 48 OSM ways along its published GPX
+      // (data/board-line-routes.geojson). Communes: Lasnigo (no regulation, national rule); Barni (no regulation, national rule).
+      // No Natura 2000 site, park, reserve, local park or natural monument on the line or within 100 m (Regione Lombardia geoportal).
+      area: 'Lasnigo – Barni – Madonnina – Conca di Crezzo, Vallassina',
+      distance: 9.18,
+      elevation: 580,
+      hours: '3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Lasnigo along dirt roads above the Lambro to Barni, up through the woods to the Madonnina, and back past the little Crezzo lake.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Alpine monument in the meadows of the Conca di Crezzo, on the loop, in March with no snow (Kaitu, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official loop 9.18 km from Piazza Roma, Lasnigo, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 48 OSM ways along the published GPX, 9.3 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'From Piazza Roma in the old centre of Lasnigo past the parish church along via Pietro Fioroni (drinking fountain) to the junction for the church of Sant’Alessandro (a 400 m return detour); straight on to the dirt road of Gera, right after 400 m on the dirt road Selva Bella above the Lambro, across the provincial road after 1.8 km and on through the meadows to Barni (700 m); along via Don Giuseppe Bolgeri to the centre and the church of the Annunciazione; via Don Bartolomeo and via Andreoletti (detour to the church of San Paolo), then up the road towards the Madonnina, which becomes a steep path in the wood; past a farmhouse, right at the fork, back on via per la Madonnina, and on the woodland path that crosses the road twice up to below the Madonnina restaurant; left for 250 m to the junction with the Crezzo road (detour of 600 m return to the ATR 42 memorial), right along the road for 800 m to the Conca di Crezzo and its little lake, and down the road for 2.5 km back to Lasnigo.',
+        mapPoints: 'Start at the published start; drinking water at the start and at km 9.3 (OSM nodes 2867254180, 2867254181).',
+        elevation: 'Official 9.18 km, 580 m up, 3 h (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL). The stored line follows the published GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'in-Lombardia, the official tourism portal of Regione Lombardia, “Anello ai piedi del Monte Oriolo” (itinerary by Lago di Como GAL, with its GPX)',
+          'Comune di Lasnigo publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Comune di Barni publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'Regione Lombardia geoportal layers (Rete_Natura_2000 ZSC/SIC and ZPS, Parchi_Regionali_Nazionali, Parchi_Naturali, Riserve_Naturali, PLIS, Monumenti_Naturali): no Natura 2000 site, park, reserve, local park or natural monument on the line or within 100 m (positive control: Val di Mello IT2040020)',
+          'OpenStreetMap ways along the published line (48 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 59,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steep woodland climb above Barni', 'Long stretches on quiet tarmac roads with occasional cars, including the 2.5 km descent', 'The Crezzo lake: keep your dog out of the water near the picnic areas'],
+      terrainType: 'Dirt roads, woodland paths and quiet tarmac roads',
+      shadeDescription: 'More than half shaded: the climb from Barni and the stretch above the Lambro run through woods; the roads to Crezzo and Lasnigo are partly open.',
+      terrainDescription: 'A loop at 580–880 m in the upper Vallassina, at the foot of Monte Oriolo, between the old villages of Lasnigo and Barni and the meadows of the Conca di Crezzo.',
+      waterDescription: 'Drinking fountains at the start and at km 9.3; places to eat at the start and on the way.',
+      dogNotes: 'Lasnigo and Barni have no dog regulation of their own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Clean up after your dog.',
+      tips: 'Start in Piazza Roma in Lasnigo (bus C36): 9.2 km and 580 m of climbing, about three hours. Fill up at the fountain on via Fioroni and at the Crezzo picnic area. Keep your dog on a lead of at most 1.5 m on the roads and carry a muzzle.',
+      sourceLinks: [
+        { label: 'in-Lombardia, Anello ai piedi del Monte Oriolo', url: 'https://www.in-lombardia.it/itinerari/anello-ai-piedi-del-monte-oriolo' },
+        { label: 'in-Lombardia, Anello ai piedi del Monte Oriolo: GPX', url: 'https://www.in-lombardia.it/sites/default/files/itinerari/gpx/238933/anello_lasnigo_barni.gpx' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.88176, lng: 9.267892, label: 'Piazza Roma, Lasnigo, the published start' },
+      waterSources: [
+        { km: 0, lat: 45.8820935, lng: 9.2672337, osmId: 'node/2867254180', label: 'Drinking fountain at the start' },
+        { km: 9.3, lat: 45.8816712, lng: 9.2680615, osmId: 'node/2867254181', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 45.88273, lng: 9.26708, osmId: 'node/5451414979', name: 'Cavallino bar' },
+        { km: 0, lat: 45.88187, lng: 9.2677, osmId: 'way/346912948', name: 'Bar Soda' },
+        { km: 3.8, lat: 45.91109, lng: 9.26539, osmId: 'way/756194597', name: 'Bar Sport' }
+      ],
+      desc: 'A loop from Lasnigo above the Lambro to Barni and its old churches, up through the woods to the Madonnina and back past the Crezzo lake. The portal lists 9.18 km and 580 m of ascent.'
+    },
+    'lario-eupilio-tra-segrino-e-cornizzolo': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Lombardy batch 1).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Eupilio tra Segrino e Cornizzolo” by Lago di Como GAL, drawn on 39 OSM ways along its published GPX
+      // (data/board-line-routes.geojson). Communes: Eupilio (own rule, lead ≤1.5 m always, muzzle carried); Pusiano (no regulation, national rule).
+      // No Natura 2000 site, park, reserve, local park or natural monument on the line or within 100 m (Regione Lombardia geoportal).
+      area: 'Carella – Madonna della Neve – Alpe di Carella – Mariaga, Eupilio',
+      distance: 5.24,
+      elevation: 397,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Carella up the dirt road towards the Cornizzolo and a way of the cross to the Madonna della Neve sanctuary, on to the Alpe di Carella, and back down the old cobbled mule track to Mariaga.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Lake Pusiano and the Isola dei Cipressi from the Madonna della Neve sanctuary, on the loop, in August (Kaitu, CC0), 4 m from the line.',
+        route: 'Official loop 5.24 km from Carella cemetery, via Ceresuola, Eupilio, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 39 OSM ways along the published GPX, 5.3 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'From the cemetery of Carella on via Ceresuola (bus C90) along the road towards the Cornizzolo, tarmac then dirt, for about 1 km to the wooden cross on the ruins of the chapel of the Madonna Bianca; left up the way of the cross to the sanctuary of the Madonna della Neve (fountain, picnic area); past it, left up a mule track to the gravel road, left again and into the wood at the hairpin on a rougher path to via Cornizzolo; up the road to the car park of the Trattoria Brianzola, then on the path above the building, across the road and on dirt to the fenced animals of the Trattoria Alpe Carella. Back to the car park, then right down a steep lane that becomes a cobbled mule track, down via Cornizzolo to Mariaga, through the narrow mule track between the walls, along via del Conte past the church of San Cristoforo, via Diaz, via IV Novembre and back on via Ceresuola.',
+        mapPoints: 'Start at the published start; drinking water at km 1.7 and at km 4.9 (OSM nodes 5590009130, 7083655143).',
+        elevation: 'Official 5.24 km, 397 m up, 2 h (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL). The stored line follows the published GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'in-Lombardia, the official tourism portal of Regione Lombardia, “Eupilio tra Segrino e Cornizzolo” (itinerary by Lago di Como GAL, with its GPX)',
+          'Comune di Eupilio, Regolamento di Polizia Urbana (DCC 33 of 29 July 2022), Art. 60: dogs always on a lead of at most 1.5 m except in dog areas, and a muzzle carried',
+          'Comune di Pusiano publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'Regione Lombardia geoportal layers (Rete_Natura_2000 ZSC/SIC and ZPS, Parchi_Regionali_Nazionali, Parchi_Naturali, Riserve_Naturali, PLIS, Monumenti_Naturali): no Natura 2000 site, park, reserve, local park or natural monument on the line or within 100 m (positive control: Val di Mello IT2040020)',
+          'OpenStreetMap ways along the published line (39 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 52,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A rougher woodland path between the sanctuary and via Cornizzolo', 'Stretches on via Cornizzolo, the road to the Rifugio SEC, with cars at weekends', 'Farm animals behind the fence at the Alpe di Carella: keep your dog close'],
+      terrainType: 'Dirt roads, cobbled mule tracks and woodland paths',
+      shadeDescription: 'About half shaded: the way of the cross and the woodland path are under trees; the roads and the Alpe are open.',
+      terrainDescription: 'A loop at 390–640 m on the lower slopes of Monte Cornizzolo above the Segrino lake, between the hamlets of Carella and Mariaga and the Madonna della Neve sanctuary.',
+      waterDescription: 'Drinking fountains at km 1.7 and at km 4.9; places to eat on the way.',
+      dogNotes: 'Eupilio requires a lead of at most 1.5 m everywhere, not just in the villages, and a muzzle carried. Pusiano has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Clean up after your dog.',
+      tips: 'Start at the Carella cemetery in Eupilio: 5.2 km and about 400 m of climbing, two hours. There is a fountain at the Madonna della Neve. Keep your dog on a lead of at most 1.5 m on the roads and near the farm animals, and carry a muzzle.',
+      sourceLinks: [
+        { label: 'in-Lombardia, Eupilio tra Segrino e Cornizzolo', url: 'https://www.in-lombardia.it/itinerari/eupilio-tra-segrino-e-cornizzolo' },
+        { label: 'in-Lombardia, Eupilio tra Segrino e Cornizzolo: GPX', url: 'https://www.in-lombardia.it/sites/default/files/itinerari/gpx/227207/anello_eupilio_alpe_carella.gpx' },
+        { label: 'Comune di Eupilio, Regolamento di Polizia Urbana', url: 'https://www.comune.eupilio.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_126.html' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.820776, lng: 9.269287, label: 'Carella cemetery, via Ceresuola, Eupilio, the published start' },
+      waterSources: [
+        { km: 1.7, lat: 45.8200733, lng: 9.2844115, osmId: 'node/5590009130', label: 'Drinking fountain' },
+        { km: 4.9, lat: 45.8202403, lng: 9.2710443, osmId: 'node/7083655143', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 2.9, lat: 45.82413, lng: 9.2777, osmId: 'way/132284740', name: 'Trattoria Brianzola' },
+        { km: 3.4, lat: 45.82768, lng: 9.27656, osmId: 'way/132284739', name: 'Ristorante Cacciatori' }
+      ],
+      desc: 'A loop from Carella above the Segrino lake up the way of the cross to the Madonna della Neve and the Alpe di Carella, and back down the cobbled mule track to Mariaga. The portal lists 5.24 km and 397 m of ascent.'
     }
   };
 

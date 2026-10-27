@@ -808,6 +808,31 @@
       "name": "Helm – Vierschach",
       "slug": "helm-vierschach",
       "gloss": "the forest path down from the Helm to Vierschach"
+    },
+    "lario-brunate-e-le-sue-chiese": {
+      "name": "Brunate churches loop",
+      "slug": "brunate-churches-loop",
+      "gloss": "the churches and the Volta lighthouse above Como"
+    },
+    "lario-pognana-lario-e-le-sculture-simposio": {
+      "name": "Pognana Lario sculpture walk",
+      "slug": "pognana-lario-sculpture-walk",
+      "gloss": "the 1986 sculptures between the village and the lake"
+    },
+    "lario-alla-ricerca-di-un-panorama-unico": {
+      "name": "Brogno to the Nuvolone viewpoint",
+      "slug": "brogno-nuvolone-viewpoint",
+      "gloss": "the viewpoint over all three arms of the lake"
+    },
+    "lario-anello-ai-piedi-del-monte-oriolo": {
+      "name": "Lasnigo, Barni and the Crezzo lake",
+      "slug": "lasnigo-barni-crezzo-lake",
+      "gloss": "the Romanesque churches of the Vallassina and the Crezzo lake"
+    },
+    "lario-eupilio-tra-segrino-e-cornizzolo": {
+      "name": "Eupilio and the Madonna della Neve",
+      "slug": "eupilio-madonna-della-neve",
+      "gloss": "the way of the cross to the Madonna della Neve and the Alpe di Carella"
     }
   }
 }
