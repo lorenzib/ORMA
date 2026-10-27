@@ -50767,12 +50767,42 @@ function effectiveOverrides(profile, adjustOverride){
     ['Valmorel / Les Avanchers', 45.4782, 6.4562, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
     ['Saint-Martin-de-Belleville', 45.3798, 6.5046, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
     ['Les Échelles / Chartreuse', 45.4359, 5.7546, 'Chambéry – Bauges', 'savoy', 'savoie'],
-    ['Val Thorens', 45.2979, 6.5823, 'Tarentaise – Vanoise', 'savoy', 'savoie']
+    ['Val Thorens', 45.2979, 6.5823, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
+    // ---- Lombardy ----
+    ['Sondrio', 46.1699, 9.8715, 'Valtellina', 'lombardy', 'sondrio'],
+    ['Morbegno', 46.1356, 9.5714, 'Valtellina', 'lombardy', 'sondrio'],
+    ['Val Masino', 46.2430, 9.6380, 'Valtellina', 'lombardy', 'sondrio'],
+    ['Teglio', 46.1717, 10.0640, 'Valtellina', 'lombardy', 'sondrio'],
+    ['Tirano', 46.2160, 10.1690, 'Valtellina', 'lombardy', 'sondrio'],
+    ['Aprica', 46.1540, 10.1500, 'Valtellina', 'lombardy', 'sondrio'],
+    ['Chiesa in Valmalenco', 46.2667, 9.8500, 'Valmalenco', 'lombardy', 'sondrio'],
+    ['Bormio', 46.4669, 10.3705, 'Bormio – Livigno', 'lombardy', 'sondrio'],
+    ['Valdidentro', 46.4980, 10.2600, 'Bormio – Livigno', 'lombardy', 'sondrio'],
+    ['Santa Caterina Valfurva', 46.4120, 10.4950, 'Bormio – Livigno', 'lombardy', 'sondrio'],
+    ['Livigno', 46.5386, 10.1357, 'Bormio – Livigno', 'lombardy', 'sondrio'],
+    ['Chiavenna', 46.3195, 9.4010, 'Valchiavenna', 'lombardy', 'sondrio'],
+    ['Madesimo', 46.4400, 9.3570, 'Valchiavenna', 'lombardy', 'sondrio'],
+    ['Villa di Chiavenna', 46.3310, 9.4800, 'Valchiavenna', 'lombardy', 'sondrio'],
+    ['Como', 45.8081, 9.0852, 'Lake Como', 'lombardy', 'como'],
+    ['Bellagio', 45.9870, 9.2610, 'Lake Como', 'lombardy', 'como'],
+    ['Menaggio', 46.0200, 9.2390, 'Lake Como', 'lombardy', 'como'],
+    ['Dongo / Alto Lario', 46.1230, 9.2810, 'Lake Como', 'lombardy', 'como'],
+    ['Lecco', 45.8566, 9.3977, 'Lake Como – Grigne', 'lombardy', 'lecco'],
+    ['Mandello del Lario', 45.9170, 9.3190, 'Lake Como – Grigne', 'lombardy', 'lecco'],
+    ['Varenna', 46.0100, 9.2840, 'Lake Como – Grigne', 'lombardy', 'lecco'],
+    ['Pasturo / Valsassina', 45.9520, 9.4430, 'Lake Como – Grigne', 'lombardy', 'lecco'],
+    ['Colico', 46.1360, 9.3720, 'Lake Como – Grigne', 'lombardy', 'lecco'],
+    ['Darfo Boario Terme', 45.8800, 10.1820, 'Val Camonica', 'lombardy', 'brescia'],
+    ['Breno', 45.9570, 10.3040, 'Val Camonica', 'lombardy', 'brescia'],
+    ['Capo di Ponte', 46.0310, 10.3450, 'Val Camonica', 'lombardy', 'brescia'],
+    ['Edolo', 46.1780, 10.3330, 'Val Camonica', 'lombardy', 'brescia'],
+    ['Ponte di Legno', 46.2590, 10.5100, 'Val Camonica', 'lombardy', 'brescia']
   ];
 
   const REGIONS = {
     dolomites: { label: 'Dolomites', country: 'Italy', countryCode: 'IT' },
-    savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' }
+    savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' },
+    lombardy: { label: 'Lombardy', country: 'Italy', countryCode: 'IT' }
   };
 
   function countryForRegion(region) {
@@ -60381,7 +60411,7 @@ if(document.querySelector('.td2')){
     // Breadcrumb: "← Trails · {region} · {valley}"
     const crumb = $('tdBreadcrumb');
     if (crumb && /^browse-trails\.html(?:[?#]|$)/.test(crumb.getAttribute('href') || '')) {
-      const regionName = t.region === 'savoy' ? 'Savoy' : 'Dolomites';
+      const regionName = t.region === 'savoy' ? 'Savoy' : t.region === 'lombardy' ? 'Lombardy' : 'Dolomites';
       crumb.textContent = '← Trails · ' + regionName + (t.valley ? ' · ' + t.valley : '');
     }
 

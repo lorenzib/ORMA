@@ -83,14 +83,11 @@ describe('the guide is read from the page anyone can open', () => {
     expect(guide.author).toBe('Azienda per il Turismo della Val di Fassa');
   });
 
-  test('a GPX download is read as the line, lon-first attributes included', () => {
-    const gpx = '<?xml version="1.0"?><gpx version="1.1"><wpt lon="12.6" lat="46.99"><name>hut</name></wpt><trk><trkseg>'
-      + GUIDE.map(([lat, lng]) => `<trkpt lon="${lng}" lat="${lat}"><ele>2397</ele></trkpt>`).join('')
-      + '</trkseg></trk></gpx>';
-    const guide = parseGuide(gpx);
-    expect(guide.line).toEqual(GUIDE);
-    expect(guide.start).toBeNull();
-    expect(parseGuide('<gpx version="1.1"><trk><trkseg></trkseg></trk></gpx>')).toBeNull();
+  test('or from a GPX the operator exports, whichever way round it writes lat and lon', () => {
+    const gpx = `<gpx creator="INVA x RAVdA"><trk><trkseg>${GUIDE.map(([lat, lng], i) => (i % 2
+      ? `<trkpt lon="${lng}" lat="${lat}"><ele>1500</ele></trkpt>`
+      : `<trkpt lat="${lat}" lon="${lng}"></trkpt>`)).join('')}</trkseg></trk></gpx>`;
+    expect(parseGuide(gpx).line).toEqual(GUIDE);
   });
 
   test('a page with no published line has no guide', () => {
@@ -217,6 +214,18 @@ describe('it adds one walk and nothing else', () => {
     // OSM node of the drawn line.
     const nodes = new Set(grid().elements.filter(e => e.type === 'node').map(e => `${e.lat.toFixed(6)},${e.lon.toFixed(6)}`));
     for (const [lng, lat] of feature.geometry.coordinates) expect(nodes.has(`${lat.toFixed(6)},${lng.toFixed(6)}`)).toBe(true);
+  });
+
+  test('--guidefile reads the guide from a saved GPX and still stores the public page', async () => {
+    const file = emptyRoutes();
+    const gpx = path.join(path.dirname(file), 'guide.gpx');
+    fs.writeFileSync(gpx, `<gpx><trk><trkseg>${GUIDE.map(([lat, lng]) => `<trkpt lat="${lat}" lon="${lng}"/>`).join('')}</trkseg></trk></gpx>`);
+    const result = await main({
+      argv: [...ARGS, '--km', String(lengthKm), '--guidefile', gpx], routesPath: file,
+      ...fetchers(), fetchText: async () => { throw new Error('the guide page must not be fetched'); },
+    });
+    expect(result.status).toBe('dry-run');
+    expect(result.feature.properties.guide_url).toBe('https://www.outdooractive.com/it/r/1');
   });
 
   test('a walk already in the file is left alone', async () => {

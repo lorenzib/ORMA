@@ -5,6 +5,9 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(root){
   'use strict';
 
+  // Every ORMA region in Italy; "Italy" means all of them, not the Dolomites.
+  const ITALIAN_REGIONS = ['dolomites', 'lombardy'];
+
   const DISTANCES = [3, 5, 6, 10, 20];
   // Kept in step with trail-trust.js's MULTI_DAY_MIN_KM. Duplicated (not
   // imported) so this module stays standalone for the browser globals build and
@@ -95,9 +98,9 @@
     if(q && !searchable.includes(q)) return false;
     if(state.country){
       const country = String(trail.country || '').toLocaleLowerCase();
-      const expectedRegion = state.country === 'italy' ? 'dolomites' : 'savoy';
+      const expectedRegions = state.country === 'italy' ? ITALIAN_REGIONS : ['savoy'];
       const expectedCode = state.country === 'italy' ? 'it' : 'fr';
-      if(trail.region !== expectedRegion && country !== state.country && country !== expectedCode) return false;
+      if(!expectedRegions.includes(trail.region) && country !== state.country && country !== expectedCode) return false;
     }
     if(state.region && state.region !== 'all' && trail.region !== state.region) return false;
     if(state.valley && state.valley !== 'all' && trail.valley !== state.valley) return false;

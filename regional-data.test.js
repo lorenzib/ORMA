@@ -37,20 +37,24 @@ describe('DATA-03 regional runtime boundaries', () => {
 
   test('manifest maps every published trail to exactly one regional payload', () => {
     const canonical = loadCanonicalTrails();
-    const dolomites = loadRegionalTrailFile('data/regions/dolomites-trails.js');
-    const savoy = loadRegionalTrailFile('data/regions/savoy-trails.js');
-    const ids = [...dolomites, ...savoy].map(trail => trail.id);
+    // Every region the manifest names, so a region added to regions-config.js
+    // is held to the same rule without editing this list.
+    const regions = Object.keys(manifest.regions);
+    expect(regions).toEqual(expect.arrayContaining(['dolomites', 'savoy', 'lombardy']));
+    const byRegion = Object.fromEntries(regions.map(region =>
+      [region, loadRegionalTrailFile(`data/regions/${region}-trails.js`)]));
+    const ids = Object.values(byRegion).flat().map(trail => trail.id);
     expect(new Set(ids).size).toBe(ids.length);
-    expect(dolomites).toHaveLength(manifest.regions.dolomites.trailCount);
-    expect(savoy).toHaveLength(manifest.regions.savoy.trailCount);
+    for (const region of regions) {
+      expect(byRegion[region]).toHaveLength(manifest.regions[region].trailCount);
+      expect(byRegion[region].every(trail => trail.region === region)).toBe(true);
+    }
     expect(Object.keys(manifest.trailRegion)).toHaveLength(ids.length);
     expect(new Set(ids)).toEqual(new Set(canonical.map(trail => trail.id)));
-    expect(dolomites.every(trail => trail.region === 'dolomites')).toBe(true);
-    expect(savoy.every(trail => trail.region === 'savoy')).toBe(true);
   });
 
   test('each region owns separate trail, water, amenity and dog-route assets', () => {
-    for (const region of ['dolomites', 'savoy']) {
+    for (const region of Object.keys(manifest.regions)) {
       const entry = manifest.regions[region];
       expect(entry.trails).toContain(`${region}-trails.js`);
       expect(entry.water).toContain(`${region}-water.geojson`);
@@ -63,7 +67,7 @@ describe('DATA-03 regional runtime boundaries', () => {
   });
 
   test('detail pages can load a single published trail before the regional catalogue', () => {
-    for (const region of ['dolomites', 'savoy']) {
+    for (const region of Object.keys(manifest.regions)) {
       const entry = manifest.regions[region];
       const detailEntries = Object.entries(entry.details || {});
       expect(detailEntries).toHaveLength(entry.trailCount);

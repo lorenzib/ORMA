@@ -10,6 +10,11 @@
  *     --guide https://www.outdooractive.com/it/r/38079215 \
  *     --km 6.3 --ascent 58 --time 1:35 [--apply]
  *
+ *   --guidefile <path> reads the guide from a GPX the operator exports, for
+ *   an operator whose line has no stable address: the Valle d'Aosta path
+ *   register hands out its GPX through a one-off download token. --guide
+ *   still names the public page the line belongs to, and is what is stored.
+ *
  * Dry run by default.
  *
  * Most walks a tourist board publishes are not one route in OpenStreetMap. A
@@ -115,24 +120,8 @@ function coverage(points, line, tolerance = COVER_M) {
  * Outdooractive tour pages carry schema.org JSON-LD: the line as a GeoShape
  * (`lat lng lat lng …`), the start and end places, and the author. That is the
  * page anyone can open; nothing here uses an API key.
- *
- * Some boards publish the line as a GPX download instead (Osttirol's walks
- * link one from every walk page). Its track points are the line; the file
- * names no start place or author, so those come from the board's page.
  */
-function parseGpxGuide(text) {
-  const points = [];
-  for (const match of String(text).matchAll(/<trkpt\b([^>]*)>/g)) {
-    const lat = Number((match[1].match(/\blat="([^"]+)"/) || [])[1]);
-    const lng = Number((match[1].match(/\blon="([^"]+)"/) || [])[1]);
-    if (Number.isFinite(lat) && Number.isFinite(lng)) points.push([lat, lng]);
-  }
-  if (points.length < 2) return null;
-  return { line: points, start: null, end: null, author: null };
-}
-
 function parseGuide(html) {
-  if (/<gpx\b/.test(String(html))) return parseGpxGuide(html);
   const blocks = [...String(html).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => m[1]);
   const find = (value, key) => {
     if (value && typeof value === 'object') {
@@ -167,7 +156,21 @@ function parseGuide(html) {
         : author && typeof author === 'object' ? (author.name || null) : (author || null),
     };
   }
-  return null;
+  return parseGpx(html);
+}
+
+/**
+ * The guide as a GPX track or route, the form a path register exports.
+ * Attribute order varies between exporters, so lat and lon are read apart.
+ */
+function parseGpx(text) {
+  const points = [...String(text).matchAll(/<(?:trkpt|rtept)\b([^>]*)>/g)].map(match => {
+    const lat = match[1].match(/\blat="([-\d.]+)"/);
+    const lon = match[1].match(/\blon="([-\d.]+)"/);
+    return lat && lon ? [Number(lat[1]), Number(lon[1])] : null;
+  });
+  if (points.length < 2 || points.some(p => !p || !Number.isFinite(p[0]) || !Number.isFinite(p[1]))) return null;
+  return { line: points, start: null, end: null, author: null };
 }
 
 /** The walkable OSM network in a set of OSM API map answers. */
@@ -398,7 +401,7 @@ function tilesFor(line) {
 
 function parseArgs(argv) {
   const out = { apply: false };
-  const keys = ['id', 'name', 'operator', 'source', 'guide', 'km', 'ascent', 'time'];
+  const keys = ['id', 'name', 'operator', 'source', 'guide', 'guidefile', 'km', 'ascent', 'time'];
   for (let i = 0; i < argv.length; i += 1) {
     const arg = String(argv[i]);
     if (arg === '--apply') { out.apply = true; continue; }
@@ -442,8 +445,8 @@ async function main(options = {}) {
 
   const getText = options.fetchText || fetchText;
   const getJson = options.fetchJson || fetchJson;
-  const guide = parseGuide(await getText(args.guide));
-  if (!guide) { say(`[board-line] ${args.guide} carries no published line. Nothing was changed.`); return { status: 'no-guide' }; }
+  const guide = parseGuide(args.guidefile ? await fs.readFile(args.guidefile, 'utf8') : await getText(args.guide));
+  if (!guide) { say(`[board-line] ${args.guidefile || args.guide} carries no published line. Nothing was changed.`); return { status: 'no-guide' }; }
 
   const answers = [];
   for (const [w, s, e, n] of tilesFor(guide.line)) {
@@ -505,5 +508,5 @@ if (require.main === module) {
 
 module.exports = {
   ROUTES_FILE, SAMPLE_M, SNAP_M, COVER_M, MIN_COVER, MAX_LENGTH_OFF,
-  meters, densify, coverage, parseGuide, buildGraph, matchGuide, judge, tilesFor, parseArgs, main,
+  meters, densify, coverage, parseGuide, parseGpx, buildGraph, matchGuide, judge, tilesFor, parseArgs, main,
 };
