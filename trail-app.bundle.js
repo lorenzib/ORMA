@@ -60038,6 +60038,321 @@ function effectiveOverrides(profile, adjustOverride){
 
       ],
       desc: 'A loop from the Nassfeld pass along the Auernig ridge on the Austrian–Italian border, known for its 300-million-year-old marine fossils, towards the Garnitzenberg and the Gugga. The board lists 5.6 km and 441 m of ascent.'
+    },
+    'kronplatz-passeggiata-valdaora-monguelfo': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
+      // Olang tourist board (Tourismusverein Olang)’s walk “Passeggiata Valdaora - Monguelfo”, drawn on 30 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried); Welsberg-Taisten (its 2008 dog regulation, amended 2015: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site or park; 8% in landscape protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Olang reservoir – Welsberg, Pustertal',
+      distance: 6.1,
+      elevation: 34,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Olang along the Pustertal cycle path, past the Olang reservoir, into the centre of Welsberg; come back the same way or by the Pustertal train or bus.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The gravel path beside the Olang reservoir, with a bench and a wooden fence above the water, in September (voschix on Mapillary, CC BY-SA 4.0), 8 m from the line.',
+        route: 'Official one-way walk 6.1 km from Valdaora di Sopra, on the Pustertal cycle path, as the Olang tourist board (Tourismusverein Olang) publishes it; the stored line is drawn on 30 OSM ways along the board’s published line, 6.1 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Along the Pustertal cycle path from Olang, past the Olang reservoir (Stausee), to Welsberg: well kept, almost level, about an hour and a half; shared with cyclists.',
+        mapPoints: 'Start at the board’s start; drinking water at km 5.6 and at km 6 (OSM nodes 7850209428, 9006242959).',
+        elevation: 'Official 6.1 km, 34 m up and 30 m down, 1:30 h, highest point 1,087 m, lowest 1,054 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Olang tourist board (Tourismusverein Olang), Passeggiata Valdaora - Monguelfo (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Olang / Comune di Valdaora, Verordnung betreffend die Haltung von Hunden und anderen Tieren (Gemeinderat Nr. 11, 25.02.2010, amended Nr. 5, 23.02.2026), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds and parks, or on farmed meadows and fields in the growing season; no bathing in fountains',
+          'Marktgemeinde Welsberg-Taisten / Comune di Monguelfo-Tesido, Verordnung über die Haltung und das Führen von Hunden (Ratsbeschluss Nr. 19, 05.06.2008, amended Nr. 8, 26.02.2015): a lead of at most 1.5 m on public ground and a muzzle carried; no dogs on farmed meadows and fields from 1 March to 31 October; no bathing in public fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 8% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (30 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 64,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Shared with cyclists on the Pustertal cycle path: keep your dog close and on the right', 'Fenced stretch above the reservoir: do not let your dog down to the water', 'Short stretches on village roads at each end'],
+      terrainType: 'Cycle path, gravel and tarmac',
+      shadeDescription: 'Partly shaded: nearly two thirds runs beside spruce and larch on the reservoir slope; the stretches through the villages are open.',
+      terrainDescription: 'An almost level walk at 1,050–1,090 m along the Pustertal cycle path, past the Olang reservoir and into Welsberg.',
+      waterDescription: 'Drinking water at km 5.6 and at km 6; places to eat on the way.',
+      dogNotes: 'Olang and Welsberg-Taisten require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows in the growing season and out of the fountains. In Olang dogs are also banned from parks and playgrounds.',
+      tips: 'Start in Olang: 6.1 km one way, almost level, about an hour and a half; come back the same way or by train or bus. Keep your dog on a lead of at most 1.5 m and carry a muzzle: both Olang and Welsberg-Taisten require it. Cyclists use the path: keep to the right. Fountains and cafés in Welsberg at the end.',
+      sourceLinks: [
+        { label: 'Outdooractive, Passeggiata Valdaora - Monguelfo (Olang tourist board (Tourismusverein Olang))', url: 'https://www.outdooractive.com/it/r/810055571' },
+        { label: 'Gemeinde Olang, dog regulation (2010, amended 2026)', url: 'https://www.gemeinde.olang.bz.it/system/web/GetDocument.ashx?cts=1792490199&fileId=179640' },
+        { label: 'Welsberg-Taisten, dog regulation (2008, amended 2015)', url: 'https://www.gemeinde.welsberg-taisten.bz.it/system/web/GetDocument.ashx?cts=1711035357&fileId=875023' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.758284, lng: 12.044621, label: 'Valdaora di Sopra, on the Pustertal cycle path, the board’s start' },
+      waterSources: [
+        { km: 5.6, lat: 46.7569998, lng: 12.1039943, osmId: 'node/7850209428', label: 'Drinking fountain' },
+        { km: 6, lat: 46.7579497, lng: 12.1053116, osmId: 'node/9006242959', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0.7, lat: 46.76153, lng: 12.05186, osmId: 'node/4426715671', name: 'Alte Goste' },
+        { km: 5.5, lat: 46.75663, lng: 12.10439, osmId: 'node/3815278145', name: 'Dorfcafe' }
+      ],
+      desc: 'An almost level walk on the Pustertal cycle path from Olang past the Olang reservoir to Welsberg. The board lists 6.1 km, 34 m up and 30 m down.'
+    },
+    'kronplatz-sentiero-tematico-tru-dles-liondes': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
+      // San Vigilio Dolomites tourist board’s walk “Sentiero tematico: Tru dles Liondes”, drawn on 21 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Enneberg (no dog regulation found, national rule).
+      // No Natura 2000 site or park; 12% in landscape protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'San Vigilio – Strada Fanes, Marebbe',
+      distance: 2.8,
+      elevation: 60,
+      hours: '0.8',
+      routeShape: 'loop',
+      routeShapeNote: 'A short themed loop from the Hotel Aqua Bad Cortina on the Fanes road above San Vigilio, through pine forest and meadows past boards telling the legends of the Kingdom of Fanes.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The gravel path between a meadow and the pine forest on the loop, in August (mfortini on Mapillary, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official loop 2.8 km from Hotel Aqua Bad Cortina, Strada Fanes, San Vigilio, as the San Vigilio Dolomites tourist board publishes it; the stored line is drawn on 21 OSM ways along the board’s published line, 2.9 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Themed path “Tru dles Liondes” (path of legends): from the Hotel Aqua Bad Cortina on the Fanes road, a short loop with boards on the legends of the Kingdom of Fanes; ask for the children’s quiz at the tourist office or the nature park visitor centre before you set off.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.4 and at km 2.4 (OSM nodes 2452257631, 7318189201).',
+        elevation: 'Official 2.8 km, 60 m up and 60 m down, 0:45 h, highest point 1,245 m, lowest 1,198 m (San Vigilio Dolomites tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'San Vigilio Dolomites tourist board, Sentiero tematico: Tru dles Liondes (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Enneberg: no dog regulation found on its website (the commune’s document search does not list one). Neighbouring communes use the same 2010 provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 12% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (21 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 62,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Short stretches on the Fanes road, which carries traffic to Pederü in summer', 'Gravel forest tracks shared with cyclists', 'Hay meadows beside the path: keep your dog off them in summer'],
+      terrainType: 'Gravel forest tracks and lanes',
+      shadeDescription: 'Mostly shaded: about three fifths runs through pine and larch; the meadows near the start are open.',
+      terrainDescription: 'A short, gentle loop at 1,200–1,245 m on the Fanes side of San Vigilio, through pine forest and meadows, with boards telling the Ladin legends of Fanes.',
+      waterDescription: 'Drinking water at km 0.4 and at km 2.4; places to eat on the way.',
+      dogNotes: 'Enneberg has no dog regulation we could find, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep off the hay meadows too, as the neighbouring communes require.',
+      tips: 'Start at the Hotel Aqua Bad Cortina on the Fanes road: 2.8 km and about 60 m of climbing, three quarters of an hour; good with children, who can pick up the legends quiz at the tourist office. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and keep off the hay meadows. Water and cafés in San Vigilio.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sentiero tematico: Tru dles Liondes (San Vigilio Dolomites tourist board)', url: 'https://www.outdooractive.com/it/r/16419100' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.694567, lng: 11.931868, label: 'Hotel Aqua Bad Cortina, Strada Fanes, San Vigilio, the board’s start' },
+      waterSources: [
+        { km: 0.4, lat: 46.6920838, lng: 11.9348123, osmId: 'node/2452257631', label: 'Drinking fountain' },
+        { km: 2.4, lat: 46.694498, lng: 11.934264, osmId: 'node/7318189201', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 1.8, lat: 46.69493, lng: 11.93929, osmId: 'way/123481116', name: 'Ristorante da Arnold' },
+        { km: 2.3, lat: 46.69534, lng: 11.93602, osmId: 'node/3685046481', name: 'Ristorante da Attilio' },
+        { km: 2.7, lat: 46.69685, lng: 11.93532, osmId: 'node/3686649653', name: 'Ristorante Erika' }
+      ],
+      desc: 'A short themed loop above San Vigilio through pine forest and meadows, with boards telling the legends of the Kingdom of Fanes. The board lists 2.8 km and 60 m of ascent.'
+    },
+    'kronplatz-passeggiata-san-vigilio-le-dla-creda': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
+      // San Vigilio Dolomites tourist board’s walk “Passeggiata: San Vigilio - Lé dla Creda”, drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Enneberg (no dog regulation found, national rule).
+      // About 1% at Lé dla Creda is in the Fanes-Sennes-Prags nature park (Natura 2000 IT3110049, dogs on a lead); 1% in landscape protection zones.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'San Vigilio – Rü de Rudo – Lé dla Creda, Marebbe',
+      distance: 3.5,
+      elevation: 86,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the main square of San Vigilio on the “Tres La Val” path past the Ciamaor beach, up beside the Rü de Rudo stream to the small lake Lé dla Creda at the edge of the Fanes-Sennes-Prags nature park; back partly on the road, partly on the path.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The gravel path beside the road up the Rudo valley, in August (mfortini on Mapillary, CC BY-SA 4.0), 16 m from the line.',
+        route: 'Official one-way walk 3.5 km from the main square of San Vigilio, as the San Vigilio Dolomites tourist board publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 3.5 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: '“Tres La Val” path: from the main square of San Vigilio (towards Valiares) or from the Aqua Bad Cortina hotel to the Ciamaor beach; from there follow “Tres La Val” on the right of the Rü de Rudo to the footbridge, then ten minutes to the Lé dla Creda. Back to San Vigilio partly on the tarred road, partly on the path on the right.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.4, at km 1.8 and at km 3 (OSM nodes 2452257631, 7321474485, 2460531169).',
+        elevation: 'Official 3.5 km, 86 m up and 17 m down, 0:58 h, highest point 1,272 m, lowest 1,202 m (San Vigilio Dolomites tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'San Vigilio Dolomites tourist board, Passeggiata: San Vigilio - Lé dla Creda (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Enneberg: no dog regulation found on its website (the commune’s document search does not list one). Neighbouring communes use the same 2010 provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Naturpark Fanes-Sennes-Prags (Natura 2000 IT3110049), decree DLH 72/V/LS of 4 March 1980, Art. 5 and 7, and the Province’s code of conduct for the nature parks: dogs on a lead. About 1% of the line, at Lé dla Creda, is inside the park (Province of Bolzano layer NationalAndNaturalParks)',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): apart from the 1% in the Fanes-Sennes-Prags park, no Natura 2000 site, park or natural monument; about 1% is in landscape protection zones, which set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 71,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Stretches beside and on the road up the Rudo valley: keep your dog close', 'Path beside the stream: watch your dog near the water when it runs high', 'Busy with families near the Ciamaor beach in summer'],
+      terrainType: 'Gravel paths and quiet road',
+      shadeDescription: 'Mostly shaded: about seven tenths runs through pine and larch along the stream.',
+      terrainDescription: 'A gentle walk at 1,200–1,270 m from the centre of San Vigilio up the wooded Rudo valley, past the Ciamaor beach, to the little lake Lé dla Creda.',
+      waterDescription: 'Drinking water at km 0.4, at km 1.8 and at km 3.',
+      dogNotes: 'Enneberg has no dog regulation we could find, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep off the hay meadows too, as the neighbouring communes require. The lake Lé dla Creda is at the edge of the Fanes-Sennes-Prags nature park, where dogs must be on a lead.',
+      tips: 'Start in the main square of San Vigilio: 3.5 km one way, about an hour, gently uphill; come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle; the lake is at the edge of the Fanes-Sennes-Prags nature park, which also asks for a lead. Drinking water on the way and at the 40 springs near the lake.',
+      sourceLinks: [
+        { label: 'Outdooractive, Passeggiata: San Vigilio - Lé dla Creda (San Vigilio Dolomites tourist board)', url: 'https://www.outdooractive.com/it/r/16570262' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, nature parks code of conduct', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.694624, lng: 11.931694, label: 'The main square of San Vigilio, the board’s start' },
+      waterSources: [
+        { km: 0.4, lat: 46.6920838, lng: 11.9348123, osmId: 'node/2452257631', label: 'Drinking fountain' },
+        { km: 1.8, lat: 46.6884664, lng: 11.949588, osmId: 'node/7321474485', label: 'Drinking fountain' },
+        { km: 3, lat: 46.6831472, lng: 11.9609079, osmId: 'node/2460531169', label: 'Springs (40 Quellen – Les Fontanes)' }
+      ],
+      rifugi: [],
+      desc: 'A gentle walk from the centre of San Vigilio up the wooded Rudo valley, past the Ciamaor beach, to the little lake Lé dla Creda. The board lists 3.5 km and 86 m of ascent, one way.'
+    },
+    'kronplatz-attraverso-il-sentiero-panoramico-a-brunico': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
+      // Olang tourist board (Tourismusverein Olang)’s walk “Attraverso il Sentiero Panoramico a Brunico”, drawn on 38 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried); Rasen-Antholz (its 2010 dog regulation: lead ≤1.5 m, muzzle carried); Bruneck (its 2008 dog regulation, amended 2010: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site or park; about a third in landscape protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Niederolang – Lamprechtsburg – Bruneck, Pustertal',
+      distance: 8.6,
+      elevation: 45,
+      hours: '2.3',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the parish church of Niederolang on path 15 past the Riedler farms, through the Riedwald forest to Lamprechtsburg castle, then on path 14 down into Bruneck; back by the free Holidaypass bus or train.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A quiet lane above the Pustertal with the Dolomites behind, in August (voschix on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official one-way walk 8.6 km from the parish church of Valdaora di Sotto (Niederolang), as the Olang tourist board (Tourismusverein Olang) publishes it; the stored line is drawn on 38 OSM ways along the board’s published line, 8.5 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 15 and 14: from the parish church of Niederolang on path 15 towards the Riedler farms, through the Riedwald forest to Lamprechtsburg castle; from there path 14 down into Bruneck. About 8.5 km and two hours, mostly downhill; back to Olang by public transport, free with the Kronplatz guest pass.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 5.4, at km 5.9 and at km 6.9 (OSM nodes 3451774094, 7781001619, 11111274005, 7780549236).',
+        elevation: 'Official 8.6 km, 45 m up and 231 m down, 2:20 h, highest point 1,043 m, lowest 835 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The board’s text says “about 200 m” of height difference: that is the drop to Bruneck; its figures are 45 m up and 231 m down. The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Olang tourist board (Tourismusverein Olang), Attraverso il Sentiero Panoramico a Brunico (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Olang / Comune di Valdaora, Verordnung betreffend die Haltung von Hunden und anderen Tieren (Gemeinderat Nr. 11, 25.02.2010, amended Nr. 5, 23.02.2026), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds and parks, or on farmed meadows and fields in the growing season; no bathing in fountains',
+          'Gemeinde Rasen-Antholz / Comune di Rasun-Anterselva, Verordnung zur Regelung der Hundehaltung (Ratsbeschluss Nr. 10/10, 25.02.2010), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs on farmed meadows and fields in the growing season; no bathing in public fountains',
+          'Stadtgemeinde Bruneck / Città di Brunico, Verordnung über die Haltung und das Führen von Hunden (Gemeinderat Nr. 65, 24.11.2008, amended Nr. 4, 25.01.2010), Art. 4: a lead of at most 1.5 m on all public ground, except marked dog areas, and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about a third is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (38 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 47,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Quiet farm lanes with occasional cars and tractors', 'Busy streets in the centre of Bruneck at the end: keep your dog close', 'Some stretches on forest paths with roots'],
+      terrainType: 'Farm lanes, forest paths and town streets',
+      shadeDescription: 'Partly shaded: just under half runs through the Riedwald and other woods; the farm lanes and the descent into Bruneck are open.',
+      terrainDescription: 'A gently descending walk at 835–1,045 m from Niederolang along the sunny slope above the Pustertal, through the Riedwald to Lamprechtsburg castle and down into Bruneck.',
+      waterDescription: 'Drinking water at the start, at km 5.4, at km 5.9 and at km 6.9; places to eat on the way.',
+      dogNotes: 'Olang, Rasen-Antholz and Bruneck all require a lead of at most 1.5 m and a muzzle carried. Olang and Rasen-Antholz also keep dogs off farmed meadows in the growing season and out of the fountains, and Olang bans dogs from parks and playgrounds.',
+      tips: 'Start at the parish church of Niederolang: 8.6 km one way, mostly downhill, a little over two hours; take the bus or train back from Bruneck. Keep your dog on a lead of at most 1.5 m and carry a muzzle: Olang, Rasen-Antholz and Bruneck all require it, and Olang and Rasen-Antholz keep dogs off farmed meadows in the growing season. Plenty of fountains and cafés in Bruneck.',
+      sourceLinks: [
+        { label: 'Outdooractive, Attraverso il Sentiero Panoramico a Brunico (Olang tourist board (Tourismusverein Olang))', url: 'https://www.outdooractive.com/it/r/810055675' },
+        { label: 'Gemeinde Olang, dog regulation (2010, amended 2026)', url: 'https://www.gemeinde.olang.bz.it/system/web/GetDocument.ashx?cts=1792490199&fileId=179640' },
+        { label: 'Gemeinde Rasen-Antholz, dog regulation (2010)', url: 'https://www.gemeinde.rasenantholz.bz.it/system/web/GetDocument.ashx?cts=1781179733&fileId=1549844' },
+        { label: 'Stadtgemeinde Bruneck, dog regulation (2008, amended 2010)', url: 'https://www.gemeinde.bruneck.bz.it/system/web/GetDocument.ashx?cts=1740139932&fileId=971388' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.767997, lng: 12.016975, label: 'The parish church of Valdaora di Sotto (Niederolang), the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.7676263, lng: 12.0172421, osmId: 'node/3451774094', label: 'Drinking fountain at the start' },
+        { km: 5.4, lat: 46.7830022, lng: 11.9654216, osmId: 'node/7781001619', label: 'Drinking fountain' },
+        { km: 5.9, lat: 46.7815855, lng: 11.9600891, osmId: 'node/11111274005', label: 'Drinking fountain' },
+        { km: 6.9, lat: 46.7879711, lng: 11.9502, osmId: 'node/7780549236', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 3.1, lat: 46.78826, lng: 11.99007, osmId: 'way/314824770', name: 'Sportbar Percha' },
+        { km: 7.4, lat: 46.79274, lng: 11.94922, osmId: 'node/12633165601', name: 'Atelier Moessmer' },
+        { km: 8, lat: 46.79494, lng: 11.9416, osmId: 'node/11708171139', name: 'Komot' },
+        { km: 8.3, lat: 46.79635, lng: 11.9385, osmId: 'node/2910419204', name: 'Café Roth' }
+      ],
+      desc: 'A gently descending walk from Niederolang along the slope above the Pustertal, through the Riedwald to Lamprechtsburg castle and into Bruneck. The board lists 8.6 km, 45 m up and 231 m down.'
+    },
+    'kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
+      // San Vigilio Dolomites tourist board’s walk “Escursione da Antermoia attraverso Colac - Val a Rina”, drawn on 16 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Enneberg (no dog regulation found, national rule); San Martin de Tor (no dog regulation found, national rule).
+      // No Natura 2000 site or park; 4% in landscape protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Antermoia – Colac – Val – Rina, Marebbe',
+      distance: 5.5,
+      elevation: 143,
+      hours: '1.6',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the sports ground in Antermoia on path 20 up to the Colac farms, down the road to the Val farms, then on path 20A through the forest and over a wooden bridge to Rina; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The road into Antermoia with its church and the Dolomites behind, at the start, in July (mik007 on Mapillary, CC BY-SA 4.0), 6 m from the line.',
+        route: 'Official one-way walk 5.5 km from the sports ground in Antermoia, as the San Vigilio Dolomites tourist board publishes it; the stored line is drawn on 16 OSM ways along the board’s published line, 5.5 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 20 and 20A: from beside the sports ground in Antermoia, path 20 climbs, sunny and with wide views, to the Colac farms; follow the road down, keeping left, to the Val farms; then path 20A (the Michael Plattner path) through the forest and over a wooden bridge; from there left on the road to Rina.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 2804317886).',
+        elevation: 'Official 5.5 km, 143 m up and 222 m down, 1:37 h, highest point 1,585 m, lowest 1,425 m (San Vigilio Dolomites tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'San Vigilio Dolomites tourist board, Escursione da Antermoia attraverso Colac - Val a Rina (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Enneberg: no dog regulation found on its website (the commune’s document search does not list one). Neighbouring communes use the same 2010 provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde San Martin de Tor: no dog regulation found on its website (the commune’s document search does not list one). Neighbouring communes use the same 2010 provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 4% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (16 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Farm roads past working farms: watch for tractors and farm dogs', 'Sunny, open climb to Colac', 'Stretches on quiet roads at the Val farms and into Rina'],
+      terrainType: 'Meadow paths, farm roads and forest path',
+      shadeDescription: 'Partly shaded: just under half runs through forest on path 20A; the climb to Colac is open and sunny.',
+      terrainDescription: 'A walk at 1,425–1,585 m across the sunny slopes between Antermoia and Rina in the side valleys of Marebbe, past old farms with views of the Puez-Odle peaks.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Enneberg and San Martin de Tor have no dog regulation we could find, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep off the hay meadows too, as the neighbouring communes require.',
+      tips: 'Start at the sports ground in Antermoia: 5.5 km one way, about 145 m up and 220 m down, an hour and a half; come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and keep off the hay meadows round the farms. Water at the start; a bar in Rina at the end.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione da Antermoia attraverso Colac - Val a Rina (San Vigilio Dolomites tourist board)', url: 'https://www.outdooractive.com/it/r/810055911' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.69068, lng: 11.849973, label: 'The sports ground in Antermoia, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.6908288, lng: 11.85112, osmId: 'node/2804317886', label: 'Drinking fountain at the start' }
+      ],
+      rifugi: [
+        { km: 5.3, lat: 46.71486, lng: 11.87912, osmId: 'node/12859740355', name: 'Bar Rosa' }
+      ],
+      desc: 'A walk from Antermoia over the sunny farm slopes of Colac and Val and through the forest to Rina. The board lists 5.5 km, 143 m up and 222 m down.'
     }
   };
 

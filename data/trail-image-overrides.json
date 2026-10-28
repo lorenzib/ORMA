@@ -1754,6 +1754,91 @@
       }
     },
     {
+      "id": "kronplatz-attraverso-il-sentiero-panoramico-a-brunico",
+      "approvedReviewId": "mapillary-kronplatz-attraverso-il-sentiero-panoramico-a-brunico-on-route",
+      "approvedAt": "2026-10-28T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-attraverso-il-sentiero-panoramico-a-brunico-lane.jpg",
+        "heroImage": "images/trails/kronplatz-attraverso-il-sentiero-panoramico-a-brunico-lane.jpg",
+        "imageAlt": "A quiet tarred lane curving past a grassy bank and houses, with the pale Dolomite peaks on the skyline",
+        "imageCredit": "A lane on the panoramic path",
+        "imageCreditText": "A lane on the panoramic path by voschix",
+        "imageCreator": "voschix",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=386356622494850",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina",
+      "approvedReviewId": "mapillary-kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina-on-route",
+      "approvedAt": "2026-10-28T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina-church.jpg",
+        "heroImage": "images/trails/kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina-church.jpg",
+        "imageAlt": "A village road in Antermoia between an old wooden barn and new houses, with the white church and its pointed tower and grey Dolomite peaks behind",
+        "imageCredit": "Antermoia and its church",
+        "imageCreditText": "Antermoia and its church by mik007",
+        "imageCreator": "mik007",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=968304753932632",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "kronplatz-passeggiata-san-vigilio-le-dla-creda",
+      "approvedReviewId": "mapillary-kronplatz-passeggiata-san-vigilio-le-dla-creda-on-route",
+      "approvedAt": "2026-10-28T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-passeggiata-san-vigilio-le-dla-creda-path.jpg",
+        "heroImage": "images/trails/kronplatz-passeggiata-san-vigilio-le-dla-creda-path.jpg",
+        "imageAlt": "A gravel footpath beside a wooden fence running parallel to a quiet road through pine and larch forest, with parked cars further up",
+        "imageCredit": "The path up the Rudo valley",
+        "imageCreditText": "The path up the Rudo valley by mfortini",
+        "imageCreator": "mfortini",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=165065948860117",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "kronplatz-passeggiata-valdaora-monguelfo",
+      "approvedReviewId": "mapillary-kronplatz-passeggiata-valdaora-monguelfo-on-route",
+      "approvedAt": "2026-10-28T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-passeggiata-valdaora-monguelfo-lake-path.jpg",
+        "heroImage": "images/trails/kronplatz-passeggiata-valdaora-monguelfo-lake-path.jpg",
+        "imageAlt": "A gravel path beside a wooden fence above the turquoise Olang reservoir, with a bench, a painted sign and spruce forest on the slope",
+        "imageCredit": "The path beside the Olang reservoir",
+        "imageCreditText": "The path beside the Olang reservoir by voschix",
+        "imageCreator": "voschix",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=386658945829810",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "kronplatz-sentiero-tematico-tru-dles-liondes",
+      "approvedReviewId": "mapillary-kronplatz-sentiero-tematico-tru-dles-liondes-on-route",
+      "approvedAt": "2026-10-28T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-sentiero-tematico-tru-dles-liondes-forest-path.jpg",
+        "heroImage": "images/trails/kronplatz-sentiero-tematico-tru-dles-liondes-forest-path.jpg",
+        "imageAlt": "A wide gravel path running between a green meadow and tall pines in summer sunshine",
+        "imageCredit": "The legends path near San Vigilio",
+        "imageCreditText": "The legends path near San Vigilio by mfortini",
+        "imageCreator": "mfortini",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=323993905810567",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "lago-carezza",
       "approvedAt": "2026-10-19T14:27:29.317Z",
       "fields": {

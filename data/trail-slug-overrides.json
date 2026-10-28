@@ -1308,6 +1308,31 @@
       "name": "Auernig ridge walk, Nassfeld",
       "slug": "auernig-ridge-walk-nassfeld",
       "gloss": "the fossil ridge on the Austrian–Italian border east of the Nassfeld pass"
+    },
+    "kronplatz-passeggiata-valdaora-monguelfo": {
+      "name": "Olang to Welsberg by the reservoir",
+      "slug": "olang-welsberg-reservoir-path",
+      "gloss": "the cycle-path walk past the Olang reservoir"
+    },
+    "kronplatz-sentiero-tematico-tru-dles-liondes": {
+      "name": "Tru dles Liondes",
+      "slug": "tru-dles-liondes",
+      "gloss": "the legends loop above San Vigilio"
+    },
+    "kronplatz-passeggiata-san-vigilio-le-dla-creda": {
+      "name": "San Vigilio to Lé dla Creda",
+      "slug": "san-vigilio-le-dla-creda",
+      "gloss": "the walk up the Rudo valley to the little lake"
+    },
+    "kronplatz-attraverso-il-sentiero-panoramico-a-brunico": {
+      "name": "Panoramic path from Olang to Bruneck",
+      "slug": "olang-bruneck-panoramic-path",
+      "gloss": "the slope walk past Lamprechtsburg into Bruneck"
+    },
+    "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina": {
+      "name": "Antermoia to Rina",
+      "slug": "antermoia-colac-rina",
+      "gloss": "the farm-slope walk from Antermoia to Rina"
     }
   }
 }
