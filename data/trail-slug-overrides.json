@@ -958,6 +958,21 @@
       "name": "Sette passi per sette Ville",
       "slug": "sette-passi-sette-ville",
       "gloss": "the loop through the old hamlets of San Lorenzo in Banale"
+    },
+    "lario-il-sentiero-del-viandante": {
+      "name": "Sentiero del Viandante: Varenna – Bellano",
+      "slug": "sentiero-del-viandante-varenna-bellano",
+      "gloss": "the old travellers’ path along the lake from Varenna to Bellano"
+    },
+    "lario-caslino-sullacqua": {
+      "name": "Caslino d’Erba and the Lambro",
+      "slug": "caslino-derba-and-the-lambro",
+      "gloss": "the Piot waterfalls, the Acqua Santa spring and the Lambro"
+    },
+    "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": {
+      "name": "Monte Scioscia viewpoint loop",
+      "slug": "monte-scioscia-viewpoint-loop",
+      "gloss": "the viewpoint over the Segrino and Pusiano lakes"
     }
   }
 }

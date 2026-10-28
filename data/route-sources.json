@@ -674,6 +674,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
     },
+    "lario-caslino-sullacqua": {
+      "url": "https://www.in-lombardia.it/itinerari/caslino-sullacqua",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Caslino sull’acqua",
+      "quote": "Durata/Lunghezza 2h 5.32km · Dislivello Salita: 447m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
     "lario-eupilio-tra-segrino-e-cornizzolo": {
       "url": "https://www.in-lombardia.it/itinerari/eupilio-tra-segrino-e-cornizzolo",
       "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
@@ -682,6 +690,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
     },
+    "lario-il-sentiero-del-viandante": {
+      "url": "https://www.in-lombardia.it/itinerari/il-sentiero-del-viandante",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Orobie Active)",
+      "name": "Il Sentiero del Viandante",
+      "quote": "Durata/Lunghezza 4,30 ore 8km · Dislivello Salita: 400m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
     "lario-pognana-lario-e-le-sculture-simposio": {
       "url": "https://www.in-lombardia.it/itinerari/pognana-lario-e-le-sculture-simposio",
       "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
@@ -689,6 +705,14 @@
       "quote": "Durata/Lunghezza 2h 4.20km · Dislivello Salita: 160m Discesa: 160m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": {
+      "url": "https://www.in-lombardia.it/itinerari/salendo-al-monte-scioscia-ad-ammirare-la-brianza",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Salendo al Monte Scioscia ad ammirare la Brianza",
+      "quote": "Durata/Lunghezza 4h 12km · Dislivello Salita: 734m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
     },
     "nuvolau": {
       "url": "https://cortina.dolomiti.org/it/escursioni/al-rifugio-nuvolau/",

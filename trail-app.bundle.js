@@ -55301,6 +55301,215 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 1.1, lat: 46.07842, lng: 10.90018, osmId: 'way/1082345630', name: 'Al Ritorno' }
       ],
       desc: 'A gentle loop through the old stone hamlets of San Lorenzo in Banale, past small churches and fountains below the Brenta Dolomites. The APT lists 3.8 km and 107 m of ascent.'
+    },
+    'lario-il-sentiero-del-viandante': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Lombardy batch 2).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Il Sentiero del Viandante” by Orobie Active, drawn on 86 OSM ways along its published GPX
+      // (data/board-line-routes.geojson). Communes: Varenna (own rule, lead always); Perledo (no regulation, national rule); Bellano (own rule, lead on public ways).
+      // No Natura 2000 site, park or reserve on the line; it passes within 100 m of the Grigne ZPS (IT2030601), whose measures set no dog rule.
+      area: 'Varenna – Vezio – Perledo – Bellano, east shore of Lake Como',
+      distance: 8,
+      elevation: 400,
+      hours: '4.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way along the east shore from Varenna up past the castle of Vezio and along the old Sentiero del Viandante through Perledo’s hamlets to Bellano. Come back by train or ferry.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Lake Como from the Sentiero del Viandante above Varenna, in May (schoella, CC BY 3.0), 2 m from the line.',
+        route: 'Official one-way walk 8 km from the lakefront at Varenna, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 86 OSM ways along the published GPX, 7.3 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'From the lakefront of Varenna along the lakeside boardwalk and up the stepped lanes past the church of San Giovanni, through the terraced vineyards to the castle of Vezio; on along the Sentiero del Viandante, the old path that linked the Alps with Milan away from the lake, through the hamlets above Perledo, partly on quiet lanes and two short stretches of the Parlasco–Bellano road, and down to Bellano, past the Orrido gorge (an optional visit with its own ticket) to the Romanesque church of Santi Nazaro e Celso.',
+        mapPoints: 'Start at the published start; drinking water at the start, at km 0.5, at km 1.8 and at km 2.9 (OSM nodes 4247288241, 4478812081, 6776564386, 9980049439).',
+        elevation: 'Official 8 km, 400 m up, 4 h 30 min (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Orobie Active). The stored line follows the published GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'in-Lombardia, the official tourism portal of Regione Lombardia, “Il Sentiero del Viandante” (itinerary by Orobie Active, with its GPX)',
+          'Comune di Varenna, Regolamento di Polizia Urbana (DCC 38 of 27 November 2023, amended DCC 15 of 26 June 2026), Art. 54: dogs always on a lead on public ground; a muzzle for dogs that may be dangerous',
+          'Comune di Perledo publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Comune di Bellano, Regolamento di Polizia Urbana (published 3 June 2025), Art. 35: dogs on a lead on public ways and areas; a muzzle worn by aggressive dogs; no dogs in play areas',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'Regione Lombardia geoportal layers (Rete_Natura_2000, parks, reserves, PLIS, natural monuments): the line crosses none of them; it passes within 100 m of the Grigne ZPS IT2030601, whose conservation measures (DGR 8/9275 of 2009; DGR X/4429 of 2015, Allegato 2 for Grigna Settentrionale IT2030001) set no rule on dogs',
+          'OpenStreetMap ways along the published line (86 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 32,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Two short stretches on the Parlasco–Bellano state road with traffic: keep your dog on a short lead', 'Steep stepped lanes and cobbled mule tracks in Varenna and Bellano', 'The Orrido di Bellano is a separate, ticketed visit on walkways over the gorge; ask at the gate before taking a dog'],
+      terrainType: 'Cobbled mule tracks, stepped lanes and forest paths',
+      shadeDescription: 'About a third shaded: the stretches between the hamlets run through chestnut woods; the terraces above Varenna and the villages are open.',
+      terrainDescription: 'A one-way walk at 200–410 m on the east shore of Lake Como, on the historic Sentiero del Viandante between the fishing village of Varenna and Bellano, with wide views over the lake to Bellagio and the Grigne behind.',
+      waterDescription: 'Drinking fountains at the start, at km 0.5, at km 1.8 and at km 2.9; places to eat on the way.',
+      dogNotes: 'Varenna requires a lead at all times on public ground. Bellano requires a lead on its streets and public areas, the Orrido included. Perledo has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Clean up after your dog.',
+      tips: 'Start on the lakefront at Varenna (train station nearby): 8 km and about 400 m of climbing, four and a half hours with the stops, ending at Bellano, where the train or the ferry takes you back. Keep your dog on a lead: Varenna and Bellano require one, and Perledo follows the national rule (1.5 m at most, muzzle carried). Plenty of fountains in the villages.',
+      sourceLinks: [
+        { label: 'in-Lombardia, Il Sentiero del Viandante', url: 'https://www.in-lombardia.it/itinerari/il-sentiero-del-viandante' },
+        { label: 'in-Lombardia, Il Sentiero del Viandante: GPX', url: 'https://www.in-lombardia.it/sites/default/files/itinerari/gpx/185228/setNametrackgzg7z4e3nui8nahstsqhr55aa1oxh5b6.gpx' },
+        { label: 'Comune di Varenna, Regolamento di Polizia Urbana', url: 'https://www.halleyweb.com/c097084/zf/index.php/atti-generali/index/dettaglio-voce/atto/22/voce/104' },
+        { label: 'Comune di Bellano, Regolamento di Polizia Urbana', url: 'https://www.comune.bellano.lc.it/amministrazione/documenti_e_dati/atti_normativi/documento_72.html' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.013399, lng: 9.283613, label: 'The lakefront at Varenna, the published start' },
+      waterSources: [
+        { km: 0, lat: 46.0135056, lng: 9.2836277, osmId: 'node/4247288241', label: 'Drinking fountain at the start' },
+        { km: 0.5, lat: 46.0101509, lng: 9.2838503, osmId: 'node/4478812081', label: 'Drinking fountain' },
+        { km: 1.8, lat: 46.0111533, lng: 9.288209, osmId: 'node/6776564386', label: 'Drinking fountain' },
+        { km: 2.9, lat: 46.0154808, lng: 9.2908513, osmId: 'node/9980049439', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0.2, lat: 46.01143, lng: 9.28308, osmId: 'node/9170513617', name: 'La Vista' },
+        { km: 0.5, lat: 46.01018, lng: 9.28347, osmId: 'node/5909751787', name: 'Bistró' },
+        { km: 1.9, lat: 46.0109, lng: 9.28914, osmId: 'node/10128978473', name: 'Ristorante Il Portichetto' },
+        { km: 7.1, lat: 46.04286, lng: 9.30393, osmId: 'node/4952620321', name: 'Bar Monastero' }
+      ],
+      desc: 'The old Sentiero del Viandante along the east shore of Lake Como, one way from Varenna past the castle of Vezio and the hamlets of Perledo to Bellano. The portal lists 8 km and 400 m of ascent.'
+    },
+    'lario-caslino-sullacqua': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Lombardy batch 2).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Caslino sull’acqua” by Lago di Como GAL, drawn on 58 OSM ways along its published GPX
+      // (data/board-line-routes.geojson). Communes: Caslino d’Erba (own rule, lead ≤1.5 m always, muzzle carried); Ponte Lambro (own rule, lead ≤1.5 m always, muzzle carried); Castelmarte (own rule, lead ≤1.5 m always, muzzle carried).
+      // No Natura 2000 site, park, reserve, local park or natural monument on the line or within 100 m (Regione Lombardia geoportal).
+      area: 'Caslino d’Erba – Acqua Santa – Ponte Lambro – Castelmarte, Vallassina',
+      distance: 5.32,
+      elevation: 447,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Caslino d’Erba station up through the old village and along the Piot stream to the Acqua Santa spring, down across the Lambro to Ponte Lambro, and back by the Scalinata della Vigna and Castelmarte.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lambro at Ponte Lambro, on the loop, in late October (Gabriele Tripoli, CC BY-SA 3.0), 7 m from the line.',
+        route: 'Official loop 5.32 km from the car park at Caslino d’Erba station, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 58 OSM ways along the published GPX, 5.2 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'From Caslino d’Erba station up via IV Novembre, via Majet and the four hairpins of viale Tremolada into the old village (via Matteotti, via Cavour, Piazza Mazzini and its wash-house); up via San Giuseppe and left on via San Salvatore, the old way to Ponte Lambro signed for the Capanna Mara; over the bridge on the Piot past its little waterfalls and left to the Acqua Santa spring; past Bistonda on a gentle path for 500 m to the fork for the San Salvatore hermitage; left on a steep path down to Ponte Lambro (750 m), across the SP 40 with care, down steps to via Trieste and over the old bridge on the Lambro; through Piazza Vittorio Veneto and via Roma to the church of Santa Maria Annunciata; via Leonardo da Vinci to the SP 42, up the two flights of the Scalinata della Vigna to Castelmarte’s town hall, via Roma, Largo Diaz and via Dante, then down steps and a steep path in hairpins back to the station.',
+        mapPoints: 'Start at the published start; drinking water at km 0.7 (OSM nodes 5761774272).',
+        elevation: 'Official 5.32 km, 447 m up, 2 h (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL). The stored line follows the published GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'in-Lombardia, the official tourism portal of Regione Lombardia, “Caslino sull’acqua” (itinerary by Lago di Como GAL, with its GPX)',
+          'Comune di Caslino d’Erba, Regolamento di Polizia Urbana (published 14 October 2025), Art. 35: dogs always on a lead of at most 1.5 m except in dog areas, and a muzzle carried; Art. 10 keeps dogs out of public parks and gardens',
+          'Comune di Ponte Lambro, Regolamento di Polizia Urbana (DCC 39 of 28 November 2011), Art. 69: dogs always on a lead of at most 1.5 m except in dog areas, and a muzzle carried; no dogs in play areas',
+          'Comune di Castelmarte, Regolamento di Polizia Urbana (DCC 7 of 29 April 2015), Art. 35: dogs always on a lead of at most 1.5 m except in dog areas, and a muzzle carried',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'Regione Lombardia geoportal layers (Rete_Natura_2000 ZSC/SIC and ZPS, Parchi_Regionali_Nazionali, Parchi_Naturali, Riserve_Naturali, PLIS, Monumenti_Naturali): no Natura 2000 site, park, reserve, local park or natural monument on the line or within 100 m (positive control: Val di Mello IT2040020)',
+          'OpenStreetMap ways along the published line (58 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 36,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A crossing of the SP 40 provincial road: keep your dog on a short lead', 'Steep descents and long flights of steps', 'The Piot and the Lambro: keep your dog out of the water near the weirs'],
+      terrainType: 'Village lanes, steps and woodland paths',
+      shadeDescription: 'About a third shaded: the paths along the Piot and down to Ponte Lambro run through woods; the villages and lanes are open.',
+      terrainDescription: 'A short loop at 320–520 m in the lower Vallassina between Caslino d’Erba, Ponte Lambro and Castelmarte, along the Piot stream with its pools and small waterfalls and across the Lambro.',
+      waterDescription: 'Drinking fountain at km 0.7; places to eat on the way.',
+      dogNotes: 'Caslino d’Erba requires a lead of at most 1.5 m everywhere and a muzzle carried, and keeps dogs out of its public parks and gardens. Ponte Lambro requires a lead of at most 1.5 m and a muzzle carried. Castelmarte requires a lead of at most 1.5 m and a muzzle carried. Clean up after your dog.',
+      tips: 'Start at the station car park in Caslino d’Erba (train or bus C39): 5.3 km and about 450 m of climbing, two hours. All three communes require a lead of at most 1.5 m and a muzzle carried, and Caslino keeps dogs out of its public parks. Fill up at the fountains in Caslino’s old village.',
+      sourceLinks: [
+        { label: 'in-Lombardia, Caslino sull’acqua', url: 'https://www.in-lombardia.it/itinerari/caslino-sullacqua' },
+        { label: 'in-Lombardia, Caslino sull’acqua: GPX', url: 'https://www.in-lombardia.it/sites/default/files/itinerari/gpx/238535/anello_caslino_castelmarte_2.gpx' },
+        { label: 'Comune di Caslino d’Erba, Regolamento di Polizia Urbana', url: 'https://www.comune.caslinoderba.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_79.html' },
+        { label: 'Comune di Ponte Lambro, Regolamento di Polizia Urbana', url: 'https://pontelambro.trasparenza-valutazione-merito.it/web/trasparenza/papca-g/-/papca/display/3023839' },
+        { label: 'Comune di Castelmarte, Regolamento di Polizia Urbana', url: 'https://www.comune.castelmarte.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_131.html' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.835944, lng: 9.232211, label: 'The car park at Caslino d’Erba station, the published start' },
+      waterSources: [
+        { km: 0.7, lat: 45.8370372, lng: 9.2271067, osmId: 'node/5761774272', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 3.3, lat: 45.82884, lng: 9.2235, osmId: 'node/10926082931', name: 'Spiedino Abruzzese' },
+        { km: 5.1, lat: 45.83562, lng: 9.23253, osmId: 'way/187016808', name: 'Bar Trattoria Pizzeria Ristoro Vecchia Stazione' }
+      ],
+      desc: 'A short loop from Caslino d’Erba station through the old village and along the Piot stream to the Acqua Santa spring, across the Lambro to Ponte Lambro and back by Castelmarte. The portal lists 5.32 km and 447 m of ascent.'
+    },
+    'lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Lombardy batch 2).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Salendo al Monte Scioscia ad ammirare la Brianza” by Lago di Como GAL, drawn on 63 OSM ways along its published GPX
+      // (data/board-line-routes.geojson). Communes: Longone al Segrino (own rule, lead ≤1.5 m always, muzzle carried); Eupilio (own rule, lead ≤1.5 m always, muzzle carried); Canzo (own rule, lead ≤1.5 m always, muzzle carried); Castelmarte (own rule, lead ≤1.5 m always, muzzle carried); Proserpio (own rule, lead ≤1.5 m always, muzzle carried).
+      // Crosses the Lago del Segrino Natura 2000 site IT2020010 and local park, whose measures require dogs on a lead and visitors on the paths; published with that rule stated (owner rule of 27 Oct 2026).
+      area: 'Lago del Segrino – Belvedere del Monte Scioscia – Canzo – Proserpio – Longone',
+      distance: 12,
+      elevation: 734,
+      hours: '4',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Segrino lake up to the Monte Scioscia viewpoint, down to Canzo, across the wooded hill past the Sasso del Numero to Proserpio, and back by Inarca to the lake.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Segrino lake below the Monte Scioscia viewpoint, with the Pusiano lake beyond, on the loop, in early April (Kaitu, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official loop 12 km from the car parks by the Segrino lake, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 63 OSM ways along the published GPX, 12 km, with 99% of the published line within 25 m of it.',
+        routeNumbers: 'From the car parks by the Segrino lake (bus C49) across the provincial road and up the mule track between the houses into the wood, 700 m to the fork for Inarca; right on the steepest stretch, with a short flight of steps, to a junction, then the “Sentée da mez da Scioscia” for 400 m to a wide mule track and right to the Scioscia viewpoint over the Segrino and Pusiano lakes. Down the narrow path towards the north end of the Segrino, with some tricky passages, for 1 km to via Grandi and down into Canzo; via Brusa and via Puecher beside the railway to Cascina Emilia, up the farm track through beech woods, right towards Castelmarte and left on a dirt road; straight on at the hairpin to the short detour to the Sasso del Numero boulder; up the hill past the Funtanin dal Luf spring and the Sass de la Pulenta to via Spinei and into Proserpio by the church of San Rocco; via Fratelli Rizzi to the roundabout, right along via Inarca to the old farm, down a farm track and along a fence to the first fork, and right back to the lake.',
+        mapPoints: 'Start at the published start; drinking water at the start (OSM nodes 14206405201).',
+        elevation: 'Official 12 km, 734 m up, 4 h (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL). The stored line follows the published GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'in-Lombardia, the official tourism portal of Regione Lombardia, “Salendo al Monte Scioscia ad ammirare la Brianza” (itinerary by Lago di Como GAL, with its GPX)',
+          'Comune di Longone al Segrino, Regolamento di Polizia Urbana (published 19 December 2022), Art. 35: dogs always on a lead of at most 1.5 m except in dog areas, and a muzzle carried; Art. 10 keeps dogs out of public parks and gardens',
+          'Comune di Eupilio, Regolamento di Polizia Urbana (DCC 33 of 29 July 2022), Art. 60: dogs always on a lead of at most 1.5 m except in dog areas, and a muzzle carried',
+          'Comune di Canzo, Regolamento di Polizia Urbana (DCC 25 of 26 June 2013), Art. 35: dogs always on a lead of at most 1.5 m except in dog areas, and a muzzle carried; no dogs in play areas',
+          'Comune di Castelmarte, Regolamento di Polizia Urbana (DCC 7 of 29 April 2015), Art. 35: dogs always on a lead of at most 1.5 m except in dog areas, and a muzzle carried',
+          'Comune di Proserpio, Regolamento di Polizia Urbana (DCC 5 of 22 March 2021), Art. 35: dogs always on a lead of at most 1.5 m except in dog areas, and a muzzle carried; Art. 10 keeps dogs out of public parks and gardens',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'ZSC IT2020010 Lago del Segrino (managed by the Consorzio Parco Lago del Segrino): DGR X/4429 of 30 November 2015, Allegato 2, Art. 2, dogs on a lead and watched, and visitors on the paths; also in the Lago del Segrino local park (PLIS). No reserve or strict zone on the line (Regione Lombardia geoportal layers)',
+          'OpenStreetMap ways along the published line (63 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 56,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Tricky, steep passages on the descent from the viewpoint towards Canzo: avoid it after heavy rain, when it is slippery', 'Village roads in Canzo and Proserpio and a crossing of the provincial road at the start', 'The Segrino lake is a protected site: keep your dog on a lead and out of the reed beds'],
+      terrainType: 'Woodland paths, mule tracks and village lanes',
+      shadeDescription: 'More than half shaded: the climb to the viewpoint and the hill between Canzo and Proserpio run through woods; the stretches in the villages are open.',
+      terrainDescription: 'A long loop at 370–660 m round the Segrino lake in the Larian Triangle, from the lake up to the Monte Scioscia viewpoint and across the wooded hills between Canzo, Castelmarte and Proserpio.',
+      waterDescription: 'Drinking fountain at the start; places to eat at the start and on the way.',
+      dogNotes: 'All five communes on the loop (Longone al Segrino, Eupilio, Canzo, Castelmarte and Proserpio) require a lead of at most 1.5 m everywhere and a muzzle carried; Longone and Proserpio also keep dogs out of their public parks and gardens. Part of the loop is in the Lago del Segrino Natura 2000 site: dogs on a lead and stay on the paths. Clean up after your dog.',
+      tips: 'Start by the Segrino lake: 12 km and about 730 m of climbing, four hours. Every commune on the loop requires a lead of at most 1.5 m and a muzzle carried, and the lake is a Natura 2000 site where dogs stay on a lead and on the paths. Skip the descent to Canzo after heavy rain.',
+      sourceLinks: [
+        { label: 'in-Lombardia, Salendo al Monte Scioscia ad ammirare la Brianza', url: 'https://www.in-lombardia.it/itinerari/salendo-al-monte-scioscia-ad-ammirare-la-brianza' },
+        { label: 'in-Lombardia, Salendo al Monte Scioscia ad ammirare la Brianza: GPX', url: 'https://www.in-lombardia.it/sites/default/files/itinerari/gpx/224786/anello_longone_canzo_proserpio.gpx' },
+        { label: 'Comune di Longone al Segrino, Regolamento di Polizia Urbana', url: 'https://www.comune.longonealsegrino.co.it/c013134/zf/index.php/atti-generali/index/dettaglio-voce/atto/66/voce/87' },
+        { label: 'Comune di Eupilio, Regolamento di Polizia Urbana', url: 'https://www.comune.eupilio.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_126.html' },
+        { label: 'Comune di Canzo, Regolamento di Polizia Urbana', url: 'https://www.comune.canzo.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_137.html' },
+        { label: 'Comune di Castelmarte, Regolamento di Polizia Urbana', url: 'https://www.comune.castelmarte.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_131.html' },
+        { label: 'Comune di Proserpio, Regolamento di Polizia Urbana', url: 'https://www.comune.proserpio.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_136.html' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'Regione Lombardia, DGR X/4429/2015, Allegato 2 (site-specific conservation measures)', url: 'https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/dgr-4429-2015-allegato-2-%20misure-di-conservazione-sito-specifiche.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.823769, lng: 9.260938, label: 'The car parks by the Segrino lake, the published start' },
+      waterSources: [
+        { km: 0, lat: 45.8239134, lng: 9.2605783, osmId: 'node/14206405201', label: 'Drinking fountain at the start' }
+      ],
+      rifugi: [
+        { km: 0, lat: 45.82379, lng: 9.26113, osmId: 'node/1621358207', name: 'Bar Elfi\'s' },
+        { km: 8.9, lat: 45.82822, lng: 9.2476, osmId: 'node/9211132493', name: 'Trattoria La Bugiana' },
+        { km: 10.2, lat: 45.82581, lng: 9.25645, osmId: 'node/2739762524', name: 'Cascina Inarca' }
+      ],
+      desc: 'A loop from the Segrino lake up to the Monte Scioscia viewpoint over the Segrino and Pusiano lakes, down to Canzo and back through the woods by Proserpio. The portal lists 12 km and 734 m of ascent.'
     }
   };
 

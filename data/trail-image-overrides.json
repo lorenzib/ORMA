@@ -1430,6 +1430,23 @@
       }
     },
     {
+      "id": "lario-caslino-sullacqua",
+      "approvedReviewId": "commons-lario-caslino-sullacqua-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-caslino-sullacqua-lambro.jpg",
+        "heroImage": "images/trails/lario-caslino-sullacqua-lambro.jpg",
+        "imageAlt": "The Lambro river running over stones between green banks in Ponte Lambro, a park and houses on the slope above",
+        "imageCredit": "The Lambro at Ponte Lambro",
+        "imageCreditText": "The Lambro at Ponte Lambro by Gabriele Tripoli",
+        "imageCreator": "Gabriele Tripoli",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Il_Lambro_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "lario-eupilio-tra-segrino-e-cornizzolo",
       "approvedReviewId": "commons-lario-eupilio-tra-segrino-e-cornizzolo-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",
@@ -1447,6 +1464,23 @@
       }
     },
     {
+      "id": "lario-il-sentiero-del-viandante",
+      "approvedReviewId": "commons-lario-il-sentiero-del-viandante-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-il-sentiero-del-viandante-lake.jpg",
+        "heroImage": "images/trails/lario-il-sentiero-del-viandante-lake.jpg",
+        "imageAlt": "Lake Como seen from a grassy terrace on the Sentiero del Viandante, an old tiled roof and trees in front and wooded mountains on the far shore",
+        "imageCredit": "Lake Como from the Sentiero del Viandante",
+        "imageCreditText": "Lake Como from the Sentiero del Viandante by schoella",
+        "imageCreator": "schoella",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Como_dal_sentiero_del_Viandante_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "lario-pognana-lario-e-le-sculture-simposio",
       "approvedReviewId": "commons-lario-pognana-lario-e-le-sculture-simposio-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",
@@ -1460,6 +1494,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pognana_Lario_Panorama.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza",
+      "approvedReviewId": "commons-lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza-segrino.jpg",
+        "heroImage": "images/trails/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza-segrino.jpg",
+        "imageAlt": "The long blue Segrino lake far below a wooded slope, villages on its far shore and the larger Pusiano lake and the Brianza plain beyond",
+        "imageCredit": "The Segrino lake from the Monte Scioscia viewpoint",
+        "imageCreditText": "The Segrino lake from the Monte Scioscia viewpoint by Kaitu",
+        "imageCreator": "Kaitu",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:View_from_viewpoint_of_Scioscia.jpg",
         "imageSourceType": "licensed-source"
       }
     },

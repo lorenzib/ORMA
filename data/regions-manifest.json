@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T00:26:33.519Z",
+  "generatedAt": "2026-10-28T00:34:37.125Z",
   "regions": {
     "dolomites": {
       "trailCount": 256,
-      "trails": "data/regions/dolomites-trails.js?v=085423a982ab",
+      "trails": "data/regions/dolomites-trails.js?v=5e1174b3b82a",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -330,14 +330,17 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 5,
-      "trails": "data/regions/lombardy-trails.js?v=d1a6ed4f558e",
+      "trailCount": 8,
+      "trails": "data/regions/lombardy-trails.js?v=6f9d9f5073fe",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=7e2f9ea8f6ea",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
         "lario-alla-ricerca-di-un-panorama-unico": "data/trail-details/lario-alla-ricerca-di-un-panorama-unico.js?v=117a49c4a77b",
         "lario-anello-ai-piedi-del-monte-oriolo": "data/trail-details/lario-anello-ai-piedi-del-monte-oriolo.js?v=bf6d4cd2c031",
-        "lario-eupilio-tra-segrino-e-cornizzolo": "data/trail-details/lario-eupilio-tra-segrino-e-cornizzolo.js?v=b75f5b6913ba"
+        "lario-eupilio-tra-segrino-e-cornizzolo": "data/trail-details/lario-eupilio-tra-segrino-e-cornizzolo.js?v=b75f5b6913ba",
+        "lario-il-sentiero-del-viandante": "data/trail-details/lario-il-sentiero-del-viandante.js?v=e4f3aee5a9b6",
+        "lario-caslino-sullacqua": "data/trail-details/lario-caslino-sullacqua.js?v=c260de4a7d80",
+        "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "data/trail-details/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza.js?v=a15ee9697efc"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -689,6 +692,9 @@
     "lario-alla-ricerca-di-un-panorama-unico": "lombardy",
     "lario-anello-ai-piedi-del-monte-oriolo": "lombardy",
     "lario-eupilio-tra-segrino-e-cornizzolo": "lombardy",
+    "lario-il-sentiero-del-viandante": "lombardy",
+    "lario-caslino-sullacqua": "lombardy",
+    "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -1024,6 +1030,9 @@
     "paganella-andalo-tana-ermellino": "andalo-tana-ermellino",
     "paganella-giro-della-toresela": "giro-della-toresela",
     "paganella-sette-passi-sette-ville": "sette-passi-sette-ville",
+    "lario-il-sentiero-del-viandante": "sentiero-del-viandante-varenna-bellano",
+    "lario-caslino-sullacqua": "caslino-derba-and-the-lambro",
+    "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "monte-scioscia-viewpoint-loop",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1349,6 +1358,9 @@
     "andalo-tana-ermellino": "paganella-andalo-tana-ermellino",
     "giro-della-toresela": "paganella-giro-della-toresela",
     "sette-passi-sette-ville": "paganella-sette-passi-sette-ville",
+    "sentiero-del-viandante-varenna-bellano": "lario-il-sentiero-del-viandante",
+    "caslino-derba-and-the-lambro": "lario-caslino-sullacqua",
+    "monte-scioscia-viewpoint-loop": "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
