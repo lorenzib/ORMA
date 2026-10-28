@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T14:44:23.370Z",
+  "generatedAt": "2026-10-28T15:17:58.033Z",
   "regions": {
     "dolomites": {
       "trailCount": 287,
@@ -423,8 +423,8 @@
       "optional": []
     },
     "tyrol": {
-      "trailCount": 22,
-      "trails": "data/regions/tyrol-trails.js?v=d859ef095776",
+      "trailCount": 23,
+      "trails": "data/regions/tyrol-trails.js?v=6c127500c155",
       "details": {
         "osttirol-rundwanderung-schloss-weissenstein": "data/trail-details/osttirol-rundwanderung-schloss-weissenstein.js?v=505f9f1fa778",
         "osttirol-naturkraftweg-umbalfaelle": "data/trail-details/osttirol-naturkraftweg-umbalfaelle.js?v=40335ca2a8f1",
@@ -447,7 +447,8 @@
         "weissensee-nordic-2-urschitz": "data/trail-details/weissensee-nordic-2-urschitz.js?v=a6de2a77ecbd",
         "weissensee-nordic-8-naggler-alm": "data/trail-details/weissensee-nordic-8-naggler-alm.js?v=080c76971569",
         "weissensee-techendorf-tschabitscher-kreuzwirt": "data/trail-details/weissensee-techendorf-tschabitscher-kreuzwirt.js?v=d72cff8707ad",
-        "weissensee-ortsee-ronacherfels": "data/trail-details/weissensee-ortsee-ronacherfels.js?v=596ff2168b78"
+        "weissensee-ortsee-ronacherfels": "data/trail-details/weissensee-ortsee-ronacherfels.js?v=596ff2168b78",
+        "gailtal-auernig-hoehenweg": "data/trail-details/gailtal-auernig-hoehenweg.js?v=8b140da5f6bd"
       },
       "water": "data/regions/tyrol-water.geojson",
       "hutsBars": "data/regions/tyrol-huts-bars.geojson",
@@ -847,7 +848,8 @@
     "weissensee-nordic-2-urschitz": "tyrol",
     "weissensee-nordic-8-naggler-alm": "tyrol",
     "weissensee-techendorf-tschabitscher-kreuzwirt": "tyrol",
-    "weissensee-ortsee-ronacherfels": "tyrol"
+    "weissensee-ortsee-ronacherfels": "tyrol",
+    "gailtal-auernig-hoehenweg": "tyrol"
   },
   "trailSlug": {
     "alpe-siusi": "alpe-di-siusi-meadow-loop",
@@ -1241,6 +1243,7 @@
     "weissensee-nordic-8-naggler-alm": "naggler-alm-climb-weissensee",
     "weissensee-techendorf-tschabitscher-kreuzwirt": "techendorf-kreuzwirt-walk-weissensee",
     "weissensee-ortsee-ronacherfels": "neusach-east-shore-lakeside-walk-weissensee",
+    "gailtal-auernig-hoehenweg": "auernig-ridge-walk-nassfeld",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1635,6 +1638,7 @@
     "naggler-alm-climb-weissensee": "weissensee-nordic-8-naggler-alm",
     "techendorf-kreuzwirt-walk-weissensee": "weissensee-techendorf-tschabitscher-kreuzwirt",
     "neusach-east-shore-lakeside-walk-weissensee": "weissensee-ortsee-ronacherfels",
+    "auernig-ridge-walk-nassfeld": "gailtal-auernig-hoehenweg",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
