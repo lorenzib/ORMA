@@ -194,7 +194,14 @@
   .browse-map-popup{display:grid;gap:4px;padding:2px 14px 2px 0;color:#2E4034;}
   .browse-map-popup strong{font:700 14px/1.25 'Bricolage Grotesque',sans-serif;}
   .browse-map-popup span{color:#66766B;font-size:11.5px;}
-  .browse-map-popup b{color:#3E7A91;font-size:10.5px;}
+  .browse-map-popup__verdict{display:grid;gap:1px;margin:2px 0 1px;}
+  .browse-map-popup__verdict small{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
+  .browse-map-popup__verdict b{font:700 13px/1.2 'Bricolage Grotesque',sans-serif;}
+  .browse-map-key{position:absolute;left:14px;bottom:14px;z-index:8;display:grid;gap:4px;padding:8px 11px;border:1px solid rgba(46,64,52,.14);border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,53,40,.15);color:#2E4034;font:600 11px/1.2 'Inter',sans-serif;}
+  .browse-map-key__title{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
+  .browse-map-key__row{display:flex;align-items:center;gap:7px;}
+  @media(max-width:760px){.browse-map-key{bottom:58px;}}
+  .browse-map-key__dot{width:10px;height:10px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(46,64,52,.18);}
   .browse-map-popup a{color:#32697E;font-size:11.5px;font-weight:800;text-decoration:none;}
   .browse-map-pane .maplibregl-popup-content{border:1px solid rgba(46,64,52,.12);border-radius:13px;padding:11px 12px;box-shadow:0 10px 30px rgba(35,53,40,.18);}
   .browse-map-pane .maplibregl-ctrl-top-right{top:8px;right:8px;}
@@ -458,6 +465,12 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg>
         <span data-i18n="browse.map.searchArea">Search this area</span>
       </button>
+      <div class="browse-map-key" id="browseMapKey" aria-label="What the colours mean" data-i18n-aria-label="browse.map.keyAria">
+        <span class="browse-map-key__title" id="browseMapKeyTitle">For a medium dog</span>
+        <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="good"></i><span data-category="strong-option"></span></span>
+        <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="fair"></i><span data-category="possible-with-cautions"></span></span>
+        <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="poor"></i><span data-category="not-recommended"></span></span>
+      </div>
       <div class="browse-map-style" role="group" aria-label="Map appearance" data-i18n-aria-label="browse.map.styleAria">
         <button type="button" class="on" data-browse-map-style="map" aria-pressed="true" data-i18n="browse.map.styleMap">Map</button>
         <button type="button" data-browse-map-style="terrain" aria-pressed="false" data-i18n="browse.map.styleTerrain">Terrain</button>
@@ -970,8 +983,8 @@
 <script src="area-dropdown.js?v=20260823-2"></script>
 <script src="map-runtime.js?v=20260908-2"></script>
 <script src="match-verdict.js?v=20261002-1"></script>
-<script src="map-style.js?v=20261016-1"></script>
-<script src="browse-map.js?v=20261007-1"></script>
+<script src="map-style.js?v=20261028-1"></script>
+<script src="browse-map.js?v=20261028-1"></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     // Guest bar mirrors the homepage: members never see it.
@@ -1055,6 +1068,8 @@
       containerId:'browseMap',
       searchAreaButtonId:'browseSearchArea',
       scoreFor:matchScore,
+      verdictFor:matchVerdict,
+      subjectLabel:scoredSubjectLabel,
       savedFor:trail => !!currentFavorites[trail.id],
       onSelect(id){
         selectedTrailId = String(id || '');
@@ -1791,6 +1806,17 @@
         });
       });
       if(selectedTrailId && !pool.some(trail => String(trail.id) === selectedTrailId)) selectedTrailId = '';
+      const mapKeyTitle = document.getElementById('browseMapKeyTitle');
+      // The colours are for this dog, so the key says which dog.
+      if(mapKeyTitle) mapKeyTitle.textContent = scoredSubjectLabel();
+      // The verdicts' own words, from the one module that spells them.
+      if(window.OrmaMatchVerdict) document.querySelectorAll('.browse-map-key [data-category]').forEach(label => {
+        label.textContent = window.OrmaMatchVerdict.categoryLabel(label.dataset.category, window.t);
+      });
+      // The pins' own palette, so the key cannot drift from the map.
+      if(window.ORMAMapStyle) document.querySelectorAll('.browse-map-key__dot[data-fit]').forEach(dot => {
+        dot.style.background = window.ORMAMapStyle.MATCH_COLOURS[dot.dataset.fit] || '';
+      });
       if(browseMap){
         browseMap.update(pool, { fit:!mapBoundsFilter && (!renderOptions || renderOptions.fitMap !== false) });
         if(selectedTrailId) browseMap.select(selectedTrailId, { popup:false });
