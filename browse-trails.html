@@ -1084,8 +1084,16 @@
     // What stays personal (match %, saving, reporting) prompts login on
     // the trail page itself, at the moment it's actually wanted.
     const PER_PAGE = 15;
-    const allowedCountries = ['all', 'italy', 'france'];
-    const allowedRegions = ['all', 'dolomites', 'savoy', 'lombardy', 'friuli', 'aosta'];
+    const allowedCountries = ['all', 'italy', 'france', 'austria'];
+    const allowedRegions = ['all', 'dolomites', 'savoy', 'lombardy', 'friuli', 'aosta', 'tyrol'];
+    // A trail's country comes from its region's row in regions-config.js.
+    const COUNTRY_VALUE = { IT:'italy', FR:'france', AT:'austria' };
+    function trailCountry(trail){
+      const code = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
+        ? window.DoloPawsRegions.countryForRegion(trail.region)
+        : (trail.region === 'savoy' ? 'FR' : 'IT');
+      return COUNTRY_VALUE[code] || 'italy';
+    }
     const allowedRisks = ['all', 'low-risk', 'moderate', 'caution'];
     const allowedDistances = ['all', '3', '5', '6', '10', '20', 'u5', '5to10', '10p'];
     let page = 1;
@@ -1139,8 +1147,7 @@
       countryValue = allowedCountries.includes(canonical.country) ? canonical.country : 'all';
       regionValue = allowedRegions.includes(canonical.region) ? canonical.region : 'all';
       valleyValue = canonical.valley || 'all';
-      if(regionValue === 'dolomites' || regionValue === 'lombardy' || regionValue === 'friuli' || regionValue === 'aosta') countryValue = 'italy';
-      if(regionValue === 'savoy') countryValue = 'france';
+      if(regionValue !== 'all') countryValue = trailCountry({ region: regionValue });
       risk.value = allowedRisks.includes(canonical.risk) ? canonical.risk : 'all';
       distance.value = allowedDistances.includes(canonical.distance) ? canonical.distance : 'all';
       durationValue = canonical.duration === 'multi' ? 'multi' : 'day';
@@ -1351,8 +1358,9 @@
 
     const COUNTRIES = [
       { value:'all', label:bt('browse.geo.allCountries', 'All countries'), match:() => true },
-      { value:'italy', label:bt('browse.geo.italy', 'Italy'), match:t => t.region !== 'savoy' },
-      { value:'france', label:bt('browse.geo.france', 'France'), match:t => t.region === 'savoy' },
+      { value:'italy', label:bt('browse.geo.italy', 'Italy'), match:t => trailCountry(t) === 'italy' },
+      { value:'france', label:bt('browse.geo.france', 'France'), match:t => trailCountry(t) === 'france' },
+      { value:'austria', label:bt('browse.geo.austria', 'Austria'), match:t => trailCountry(t) === 'austria' },
     ];
     const REGIONS = [
       { value: 'all', label: bt('browse.geo.allRegions', 'All regions'), country:'all', match: () => true },
@@ -1361,6 +1369,7 @@
       { value: 'lombardy', label: bt('browse.geo.lombardy', 'Lombardy'), country:'italy', match: t => t.region === 'lombardy' },
       { value: 'friuli', label: bt('browse.geo.friuli', 'Friuli Venezia Giulia'), country:'italy', match: t => t.region === 'friuli' },
       { value: 'aosta', label: bt('browse.geo.aosta', 'Valle d’Aosta'), country:'italy', match: t => t.region === 'aosta' },
+      { value: 'tyrol', label: bt('browse.geo.tyrol', 'Tyrol & Carinthia'), country:'austria', match: t => t.region === 'tyrol' },
     ];
     function renderBreadcrumb(){
       if(!breadcrumb) return;
@@ -1405,7 +1414,7 @@
       regionSelect.replaceChildren(...regionOptions().map(item => {
         const count = item.value === 'all'
           ? trails.filter(t => countryValue === 'all'
-            || (countryValue === 'italy' ? t.region !== 'savoy' : t.region === 'savoy')).length
+            || trailCountry(t) === countryValue).length
           : trails.filter(item.match).length;
         return option(item, count);
       }));
@@ -1416,8 +1425,7 @@
     function valleyEntries(){
       const scoped = trails.filter(trail => {
         if(regionValue !== 'all') return trail.region === regionValue;
-        if(countryValue === 'italy') return trail.region !== 'savoy';
-        if(countryValue === 'france') return trail.region === 'savoy';
+        if(countryValue !== 'all') return trailCountry(trail) === countryValue;
         return true;
       });
       const counts = new Map();
