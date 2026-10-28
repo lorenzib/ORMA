@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-sesto-alte-saege-val-campo-di-dentro",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 19.7,
+    "ascentM": 457,
+    "highestPointM": 1598,
+    "expectedDuration": "5.3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 55
+  },
+  "trailhead": {
+    "lat": 46.696776,
+    "lng": 12.356231,
+    "label": "Haus der Berge, Sexten, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.697494,
+      "lng": 12.3536806,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.701956,
+      "lng": 12.350441,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.703499,
+      "lng": 12.346699,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7050219,
+      "lng": 12.3396005,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A long day: almost 20 km there and back.",
+    "The paved path 105 is shared with bikes and the odd car to the Dreischusterhütte.",
+    "A climbing crag in the Innerfeldtal: keep your dog away from the base of the rock.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
