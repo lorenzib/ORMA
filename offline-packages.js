@@ -315,6 +315,15 @@
     'valgardena-uciei-de-freeines': "Uciei de Frëines",
     'valgardena-val-danna-percorso-kneipp': "Val d’Anna",
     'valley-view': "Val di Funes Panorama Trail",
+    'weissensee-nordic-2-urschitz': "Urschitz loop, Weissensee",
+    'weissensee-nordic-5-genoesns-bruendl': "Genösn’s Bründl loop, Weissensee",
+    'weissensee-nordic-6-rothns-bichl': "Rothn’s Bichl loop, Weissensee",
+    'weissensee-nordic-7-franz-josephs-hoehe': "Franz-Josephs-Höhe loop, Weissensee",
+    'weissensee-nordic-8-naggler-alm': "Climb to the Naggler Alm, Weissensee",
+    'weissensee-ortsee-ronacherfels': "Neusach to the east shore by the Kleine Steinwand, Weissensee",
+    'weissensee-slow-trail': "Slow Trail Weissensee",
+    'weissensee-techendorf-tschabitscher-kreuzwirt': "Techendorf to the Kreuzwirt, Weissensee",
+    'weissensee-wasserleben': "Was(s)erleben nature trail, Weissensee east shore",
   };
   // </offline-package-registry>
   const PACKAGES = Object.freeze(Object.fromEntries(Object.keys(PACKAGE_NAMES).map(trailId => [trailId, Object.freeze({

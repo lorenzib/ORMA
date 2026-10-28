@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "weissensee-nordic-2-urschitz",
+  "distanceKm": 7.3,
+  "ascentM": 129,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 935
+    },
+    {
+      "km": 0.6,
+      "elev": 934
+    },
+    {
+      "km": 1.1,
+      "elev": 942
+    },
+    {
+      "km": 1.7,
+      "elev": 933
+    },
+    {
+      "km": 2.2,
+      "elev": 946
+    },
+    {
+      "km": 2.8,
+      "elev": 996
+    },
+    {
+      "km": 3.3,
+      "elev": 1037
+    },
+    {
+      "km": 3.9,
+      "elev": 1067
+    },
+    {
+      "km": 4.5,
+      "elev": 1023
+    },
+    {
+      "km": 5,
+      "elev": 1034
+    },
+    {
+      "km": 5.5,
+      "elev": 1016
+    },
+    {
+      "km": 6.1,
+      "elev": 1040
+    },
+    {
+      "km": 6.7,
+      "elev": 978
+    },
+    {
+      "km": 7.2,
+      "elev": 932
+    },
+    {
+      "km": 7.3,
+      "elev": 935
+    }
+  ]
+}
