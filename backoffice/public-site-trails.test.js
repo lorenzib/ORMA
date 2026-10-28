@@ -124,9 +124,12 @@ describe('the existing-site verification boundary',()=>{
     // Then 343 and 341 with four more Friuli Venezia Giulia walks: the Fontanon di
     // Goriuda, the Col dei Piais above Claut, Raunis and the Belepeit falls from
     // Chiusaforte, and the small churches above Venzone.
+    // Then 349 and 347 with six more Hochpustertal walks: the Außergsell – Innergsell
+    // loop, Rotwandwiesen – Moos, Helm – Waldruhe – Sexten, Fischleintal – Sextner
+    // Stein, Moos – Helm and Sexten – Innerfeldtal.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(343);
-    expect(currentSiteTrails(catalogue)).toHaveLength(341);
+    expect(catalogue).toHaveLength(349);
+    expect(currentSiteTrails(catalogue)).toHaveLength(347);
   });
 
   test('requires the artwork the public trail page needs',()=>{

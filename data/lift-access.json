@@ -165,6 +165,28 @@
           "notes": "The walk is on foot; the way down can be by the closed Seceda cable car to Ortisei or the Col Raiser gondola. Dogs ride on a lead and muzzled."
         }
       }
+    },
+    {
+      "id": "trecime-rotwandwiesen-moos",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Rotwand gondola (Bad Moos – Rotwandwiesen)",
+          "notes": "The walk starts at the top of the Rotwand gondola from Bad Moos, whose cabins are closed, and ends on foot at the valley station car park. Keep your dog on a lead in the cabin and carry a muzzle."
+        }
+      }
+    },
+    {
+      "id": "trecime-helmjet-waldruhe-sexten",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Helmjet gondola (Sexten – Helm)",
+          "notes": "The walk starts at the top of the Helmjet gondola from Sexten, whose cabins are closed, and ends on foot in Sexten. Keep your dog on a lead in the cabin and carry a muzzle."
+        }
+      }
     }
   ]
 }

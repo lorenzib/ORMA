@@ -56683,6 +56683,411 @@ function effectiveOverrides(profile, adjustOverride){
       waterSources: [],
       rifugi: [],
       desc: 'An easy short loop from the walled town of Venzone through hazel woods and meadows to the small churches of Santa Caterina and Saints James and Anna, rebuilt after the 1976 earthquake. PromoTurismoFVG lists 2.6 km and 99 m of ascent.'
+    },
+    'trecime-monte-casella-di-fuori': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 5).
+      // The Tre Cime Dolomites tourist board’s walk “Giro per il Monte Casella di Fuori”, drawn on 39 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sexten (no regulation, national rule).
+      // 83% of the line is in the Drei Zinnen nature park (IT3110050, dogs on a lead); a natural monument lies 104 m away.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Sexten – Gsell valley – Außergsell – Innergsell, Sexten',
+      distance: 13.2,
+      elevation: 832,
+      hours: '5.1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the heating plant in Sexten up path 12B through the Gsell valley to the Außergsell, along a gentler ridge on path 12 to the Innergsell meadows, down path 12 into the Fischleintal and back on the Sexten circular path 1.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Schmieden meadows below the wooded Gsell slopes where the loop climbs, in September (Friedrich Haag, CC BY-SA 4.0), 13 m from the line.',
+        route: 'Official loop 13.2 km from the heating plant in Sexten, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 39 OSM ways along the GPX on the board’s page, 13.2 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 12B, 12 and 1: from the heating plant in Sexten on the forest path 12B, climbing steadily through the Gsell valley, steep in places but easy, through shaded forest to the top of the Außergsell; then on path 12 along a gentler ridge to the Innergsell, wide mountain meadows full of flowers in summer; down path 12 into the Fischleintal, where the Sexten circular path 1 leads back to the heating plant.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 4.3, at km 9, at km 10.7, at km 10.9, at km 11.7, at km 12.2 and at km 12.6 (OSM nodes 12230293435, 1373808398, 8013601385, 844651956, 8252011617, 13003911947, 2414242404, 2400549554).',
+        elevation: 'Official 13.2 km, 832 m up and 833 m down, 5 h 5 min, highest point 2,067 m, lowest 1,283 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Giro per il Monte Casella di Fuori (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); the Drei Zinnen protection decree (no. 103/V/81 of 22 December 1981) sets no reserve zone and no other rule on dogs',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): 83% of the line is in the Drei Zinnen nature park and Natura 2000 site IT3110050; a natural monument is 104 m away',
+          'OpenStreetMap ways along the board’s line (39 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A long climb of over 800 m, steep in places: plan rests and water for your dog', 'No staffed hut on the way: carry food and water', 'Open ridge and meadows at about 2,000 m: turn back if a storm builds'],
+      terrainType: 'Forest paths, meadow paths and a gentle ridge',
+      shadeDescription: 'Over half shaded: the climb through the Gsell valley is in forest; the Gsell meadows and the ridge are open.',
+      terrainDescription: 'A long loop at 1,285–2,065 m from Sexten through the forested Gsell valley to the high Außergsell and Innergsell meadows, with views of the Sexten Sundial peaks, and down through the Fischleintal.',
+      waterDescription: 'A drinking fountain at the start and one at km 4.3; more on the way back through the Fischleintal and Sexten from km 9. No staffed hut on the way.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Most of the walk is in the Drei Zinnen nature park, where dogs must be on a lead at all times.',
+      tips: 'Start at the heating plant in Sexten: 13.2 km and about 830 m of climbing, five hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. There is no staffed hut on the way, so carry food and water for both of you.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Giro per il Monte Casella di Fuori', url: 'https://www.dreizinnen.com/it/activity/escursione-in-montagna-giro-per-il-monte-casella-di-fuori_701' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.703985, lng: 12.341221, label: 'Heating plant, Sexten, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.7050219, lng: 12.3396005, osmId: 'node/12230293435', label: 'Drinking fountain at the start' },
+        { km: 4.3, lat: 46.69127, lng: 12.328526, osmId: 'node/1373808398', label: 'Drinking fountain' },
+        { km: 9, lat: 46.675597, lng: 12.357817, osmId: 'node/8013601385', label: 'Drinking fountain' },
+        { km: 10.7, lat: 46.690911, lng: 12.35476, osmId: 'node/844651956', label: 'Drinking fountain' },
+        { km: 10.9, lat: 46.692106, lng: 12.35374, osmId: 'node/8252011617', label: 'Drinking fountain' },
+        { km: 11.7, lat: 46.697494, lng: 12.3536806, osmId: 'node/13003911947', label: 'Drinking fountain' },
+        { km: 12.2, lat: 46.701956, lng: 12.350441, osmId: 'node/2414242404', label: 'Drinking fountain' },
+        { km: 12.6, lat: 46.703499, lng: 12.346699, osmId: 'node/2400549554', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 11.8, lat: 46.6981, lng: 12.35523, osmId: 'way/543080258', name: 'Pizzeria Restaurant Riega' },
+        { km: 11.8, lat: 46.69897, lng: 12.35316, osmId: 'way/543395681', name: 'S\' Grill Hittl' },
+        { km: 12, lat: 46.70096, lng: 12.3502, osmId: 'node/842257296', name: 'Erich' },
+        { km: 12, lat: 46.70122, lng: 12.35054, osmId: 'node/11540403591', name: 'Mühle' },
+        { km: 12.1, lat: 46.70191, lng: 12.35093, osmId: 'node/7166368497', name: 'Brugga' },
+        { km: 12.1, lat: 46.70221, lng: 12.35, osmId: 'node/13087662884', name: 'Hotel Mondschein' }
+      ],
+      desc: 'A long loop from Sexten through the Gsell valley to the Außergsell and Innergsell meadows and back through the Fischleintal. The board lists 13.2 km and 832 m of ascent.'
+    },
+    'trecime-rotwandwiesen-moos': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 5).
+      // The Tre Cime Dolomites tourist board’s walk “Passeggiata nella Valle di Sesto”, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sexten (no regulation, national rule).
+      // No Natura 2000 site, park, biotope or natural monument on the line; it runs 2 m from the edge of the Drei Zinnen nature park without entering it.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Rotwandwiesen – Signaue – Moos, Sexten',
+      distance: 4.8,
+      elevation: 1,
+      hours: '2.2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the top of the Rotwand gondola from Bad Moos on the Rotwandwiesen (1,925 m) along forest road 17A to the Signaue gondola, then left on path 17 down through the forest to the car park at the Rotwand valley station.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'An alpine hut on the Rotwandwiesen meadows, near the start, in July (wurmi001, CC BY 3.0), 31 m from the line.',
+        route: 'Official one-way walk 4.8 km from the Rotwand gondola top station, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 19 OSM ways along the GPX on the board’s page, 5.1 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 17A and 17: up from Bad Moos on the Rotwand gondola to the Rotwandwiesen (1,925 m); along forest road 17A, fine for pushchairs, to the Signaue gondola; left on path 17 into the forest and down to the car park at the Rotwand valley station. The Rotwand gondola has closed cabins; no lift is used on the way down.',
+        mapPoints: 'Start at the board’s start; drinking water at km 4.8 (OSM nodes 8013647885).',
+        elevation: 'Official 4.8 km, 1 m up and 570 m down, 2 h 10 min, highest point 1,923 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Passeggiata nella Valle di Sesto (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line; the Drei Zinnen nature park is 2 m away and not entered',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 50,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A descent of about 570 m: take it slowly on the steeper path 17', 'Forest road shared with forestry vehicles and pushchairs', 'Check the Rotwand gondola is running before you set out'],
+      terrainType: 'Gravel forest road and forest path',
+      shadeDescription: 'About half shaded: the forest road crosses open meadows at first; path 17 down is in forest.',
+      terrainDescription: 'A downhill walk at 1,355–1,925 m from the sunny Rotwandwiesen meadows, reached by gondola, along a forest road and down through the forest to Moos in the Sexten valley.',
+      waterDescription: 'A drinking fountain near the end at km 4.8; the huts at the top station and the Hennstoll at km 3.9 serve food in summer.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The Rotwand gondola up from Bad Moos has closed cabins: keep your dog on a lead in the cabin and carry a muzzle.',
+      tips: 'Ride the Rotwand gondola up from Bad Moos (closed cabins), then walk down: 4.8 km and about 570 m of descent, two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Check that the gondola is running before you go.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Passeggiata nella Valle di Sesto', url: 'https://www.dreizinnen.com/it/activity/passeggiata-nella-valle-di-sesto_68498' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.665028, lng: 12.372934, label: 'Rotwand gondola top station, Rotwandwiesen, the board’s start' },
+      waterSources: [
+        { km: 4.8, lat: 46.682771, lng: 12.366872, osmId: 'node/8013647885', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.66523, lng: 12.37036, osmId: 'node/857491163', name: 'Rotwandwiesenhütte - Rifugio Prati di Croda Rossa' },
+        { km: 0, lat: 46.66455, lng: 12.37238, osmId: 'node/924003387', name: 'Rudi-Hütte - Rifugio Rudi' },
+        { km: 3.9, lat: 46.68036, lng: 12.38098, osmId: 'node/4311418887', name: 'Hennstoll - Pollaio' },
+        { km: 4.9, lat: 46.68213, lng: 12.36483, osmId: 'node/12552276202', name: 'Luis Alm' },
+        { km: 5.1, lat: 46.68118, lng: 12.36312, osmId: 'node/5822854002', name: 'Mühlenhof' }
+      ],
+      desc: 'A downhill walk from the Rotwandwiesen, reached by gondola, along the forest road to Signaue and down through the forest to Moos. The board lists 4.8 km and 570 m of descent.'
+    },
+    'trecime-helmjet-waldruhe-sexten': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 5).
+      // The Tre Cime Dolomites tourist board’s walk “Stazione a monte Monte Elmo – Baita del Cacciatore – Gasthof Waldruhe – Sesto”, drawn on 34 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sexten (no regulation, national rule).
+      // No Natura 2000 site, park, biotope or natural monument on the line.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Helm – Jägerhütte – Waldruhe – Sexten',
+      distance: 5.3,
+      elevation: 7,
+      hours: '1.6',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the top of the Helmjet gondola down the fairy-tale path 4 past the Jägerhütte to the Gasthof Waldruhe, and on along the quiet Außerberg and Mitterberg roads into Sexten.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Wooden fences in Olperl’s nature park by the Helm, near the start, in September (Friedrich Haag, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official one-way walk 5.3 km from the Helmjet gondola top station, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 34 OSM ways along the GPX on the board’s page, 5.4 km, with 99% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 4 and quiet roads: from the top station of the Helmjet gondola from Sexten down the fairy-tale path (path 4), with stories of the Knödelweibile and other legends of the Sexten Dolomites, past the Jägerhütte (1,802 m) to the Gasthof Waldruhe (1,580 m); from there down the little-used Außerberg and Mitterberg roads into Sexten. The Helmjet gondola has closed cabins. In summer 2026 the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 2.9 and at km 5.1 (OSM nodes 10963532111, 890784908, 2414242404).',
+        elevation: 'Official 5.3 km, 7 m up and 744 m down, 1 h 35 min, highest point 2,049 m, lowest 1,310 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Stazione a monte Monte Elmo – Baita del Cacciatore – Gasthof Waldruhe – Sesto (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (34 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A descent of about 740 m: hard on joints and paws, take it slowly', 'Summer 2026: the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built: keep your dog close on the forest road', 'The last stretch is on quiet paved roads into Sexten'],
+      terrainType: 'Forest paths and quiet paved roads',
+      shadeDescription: 'Over half shaded: the fairy-tale path runs through larch and spruce forest; the roads into Sexten are open.',
+      terrainDescription: 'A downhill walk at 1,310–2,050 m from the Helm, reached by gondola from Sexten, through the forest past the Jägerhütte and the Waldruhe inn, down to Sexten.',
+      waterDescription: 'Drinking fountains at the start by the Helm restaurant, at km 2.9 near the Waldruhe and at the end in Sexten; the Jägerhütte and the Waldruhe serve food in summer.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The Helmjet gondola up from Sexten has closed cabins: keep your dog on a lead in the cabin and carry a muzzle.',
+      tips: 'Ride the Helmjet gondola up from Sexten (closed cabins), then walk down: 5.3 km and about 740 m of descent, an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Check that the gondola is running, and in summer 2026 expect construction lorries on path 4.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Stazione a monte Monte Elmo – Baita del Cacciatore – Gasthof Waldruhe – Sesto', url: 'https://www.dreizinnen.com/it/activity/sentiero-tematico-stazione-a-monte-della-funivia-monte-elmo-baita-del-cacciatore-gasthof-waldruhe-sesto_50095' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.715604, lng: 12.363901, label: 'Helmjet gondola top station, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.715956, lng: 12.362822, osmId: 'node/10963532111', label: 'Drinking fountain at the start' },
+        { km: 2.9, lat: 46.710185, lng: 12.350042, osmId: 'node/890784908', label: 'Drinking fountain' },
+        { km: 5.1, lat: 46.701956, lng: 12.350441, osmId: 'node/2414242404', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.71597, lng: 12.36226, osmId: 'node/684624592', name: 'Helmrestaurant - Ristorante Monte Elmo' },
+        { km: 1.2, lat: 46.71504, lng: 12.35351, osmId: 'node/2965982642', name: 'Jägerhütte - Baita del Cacciatore' },
+        { km: 2.8, lat: 46.71024, lng: 12.34986, osmId: 'way/292525962', name: 'Gasthof Waldruhe' },
+        { km: 4.7, lat: 46.70108, lng: 12.35626, osmId: 'node/1885745737', name: 'Gästehaus Gruber' },
+        { km: 5, lat: 46.70191, lng: 12.35093, osmId: 'node/7166368497', name: 'Brugga' },
+        { km: 5.1, lat: 46.70096, lng: 12.3502, osmId: 'node/842257296', name: 'Erich' },
+        { km: 5.1, lat: 46.70122, lng: 12.35054, osmId: 'node/11540403591', name: 'Mühle' },
+        { km: 5.1, lat: 46.70221, lng: 12.35, osmId: 'node/13087662884', name: 'Hotel Mondschein' }
+      ],
+      desc: 'A downhill walk from the Helm, reached by gondola, on the fairy-tale path past the Jägerhütte and the Waldruhe to Sexten. The board lists 5.3 km and 744 m of descent.'
+    },
+    'trecime-sasso-di-sesto': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 5).
+      // The Tre Cime Dolomites tourist board’s walk “Escursione in montagna: Sasso di Sesto”, drawn on 31 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sexten (no regulation, national rule).
+      // Almost half of the line is in the Drei Zinnen nature park (IT3110050, dogs on a lead); a natural monument lies 19 m away and is not entered.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Fischleintal – Altensteintal – Sextner Stein – Dreizinnenhütte, Sexten',
+      distance: 16.6,
+      elevation: 1071,
+      hours: '6.4',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'From the car park by the Fischleinbodenhütte along the Fischleintal to the Talschlusshütte, up path 102 through the Altensteintal past the Bödenalm and the Bödenseen to the Sextner Stein by the Dreizinnenhütte, and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The two Bödenseen lakes beside the path below the Sextner Stein, in June (Punteador, CC BY-SA 4.0), 6 m from the line.',
+        route: 'Official walk 16.6 km there and back from the Fischleinboden car park, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 31 OSM ways along the GPX on the board’s page, walked out and back, 15.1 km, with 99% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 102: from the car park by the Fischleinbodenhütte in the Fischleintal, reached by car or bus from Sexten or Moos, south on the wide, level valley path to the Talschlusshütte; then right into the Altensteintal on path 102, west up to the Bödenalm and past the foot of the Toblinger Knoten to the Sextner Stein beside the Dreizinnenhütte, facing the north walls of the Drei Zinnen and the Paternkofel. Back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1.7, at km 5, at km 6.4 and at km 6.9 (OSM nodes 2401524922, 1884054567, 13944848601, 12471858280).',
+        elevation: 'Official 16.6 km there and back, 1,071 m up and 1,075 m down, 6 h 25 min, highest point 2,533 m, lowest 1,453 m (Tre Cime Dolomites tourist board, dreizinnen.com). The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Escursione in montagna: Sasso di Sesto (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); the Drei Zinnen protection decree (no. 103/V/81 of 22 December 1981) sets no reserve zone and no other rule on dogs',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): almost half of the line is in the Drei Zinnen nature park and Natura 2000 site IT3110050; a natural monument is 19 m away and not entered',
+          'OpenStreetMap ways along the board’s line (31 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A long, high climb of over 1,000 m to about 2,500 m: plan rests and water, and turn back if a storm builds', 'Rocky, stony ground in the upper Altensteintal', 'The Dreizinnenhütte area is very crowded in summer: keep your dog close'],
+      terrainType: 'Valley path, mountain path and stony ground',
+      shadeDescription: 'Little shade: after the Fischleintal the climb runs through open high-mountain terrain.',
+      terrainDescription: 'A long high-mountain walk at 1,455–2,535 m from the Fischleintal up the Altensteintal past the Bödenseen to the Sextner Stein and the Dreizinnenhütte, in front of the north faces of the Drei Zinnen.',
+      waterDescription: 'Drinking fountains at the Talschlusshütte at km 1.7, and at km 5, 6.4 and 6.9 near the top; the Talschlusshütte and the Dreizinnenhütte serve food in summer.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Almost half of the walk is in the Drei Zinnen nature park, where dogs must be on a lead at all times.',
+      tips: 'Start at the Fischleinboden car park in the Fischleintal: 16.6 km there and back with over 1,000 m of climbing, six and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Start early, carry water, and keep your dog close in the crowds at the Dreizinnenhütte.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Escursione in montagna: Sasso di Sesto', url: 'https://www.dreizinnen.com/it/activity/escursione-in-montagna-sasso-di-sesto-_424' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.666663, lng: 12.35376, label: 'Fischleinboden car park, Fischleintal, the board’s start' },
+      waterSources: [
+        { km: 1.7, lat: 46.651509, lng: 12.353699, osmId: 'node/2401524922', label: 'Drinking fountain' },
+        { km: 5, lat: 46.6418769, lng: 12.325322, osmId: 'node/1884054567', label: 'Drinking fountain' },
+        { km: 6.4, lat: 46.6392951, lng: 12.3123483, osmId: 'node/13944848601', label: 'Drinking fountain' },
+        { km: 6.9, lat: 46.6374213, lng: 12.3085465, osmId: 'node/12471858280', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.66529, lng: 12.35428, osmId: 'node/12582024400', name: 'Bistro Bergsteiger' },
+        { km: 0, lat: 46.66568, lng: 12.35402, osmId: 'way/98002213', name: 'Dolomitenhof' },
+        { km: 0, lat: 46.66652, lng: 12.35367, osmId: 'way/235990840', name: 'Fischleinbodenhütte - Rifugio Piano Fiscalino' },
+        { km: 1.7, lat: 46.65138, lng: 12.35387, osmId: 'way/96096595', name: 'Talschlusshütte Fischleintal - Rifugio Fondovalle Val Fiscalina' },
+        { km: 6.6, lat: 46.63694, lng: 12.31049, osmId: 'way/84679331', name: 'Dreizinnenhütte - Rifugio Antonio Locatelli/Sepp Innerkofler' },
+        { km: 6.6, lat: 46.63677, lng: 12.3113, osmId: 'way/84679345', name: 'Rifugio Locatelli - Bivouac' }
+      ],
+      desc: 'A long high walk from the Fischleintal up the Altensteintal to the Sextner Stein facing the Drei Zinnen, and back. The board lists 16.6 km and 1,071 m of ascent, there and back.'
+    },
+    'trecime-monte-elmo-da-moso': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 5).
+      // The Tre Cime Dolomites tourist board’s walk “Escursione: Monte Elmo”, drawn on 47 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sexten (no regulation, national rule).
+      // No Natura 2000 site, park, biotope or natural monument on the line.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Moos – Kristler farms – Heimatsteig – Helm summit, Sexten',
+      distance: 10.2,
+      elevation: 1063,
+      hours: '5.1',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'From Moos up the Helmstraße past Palmstatt, on path 1 to the Kristler farms and the Helmhanghütte, then up the narrow Heimatsteig, path 3A, along the ridge to the Helm summit (2,434 m), and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Sexten Dolomites seen from the Helm summit at the top of the walk, in June (Punteador, CC BY-SA 4.0), 13 m from the line.',
+        route: 'Official walk 10.2 km there and back from Moos, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 47 OSM ways along the GPX on the board’s page, walked out and back, 9.8 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 1 and 3A: from the Schäfer shop in Moos up the Helmstraße past the Palmstatt houses to a small bridge, left on path 1 across the ski slope and along the fence to the Kristler farms and the Helmhanghütte; a short way on towards Egge, then left at the last hut into the open larch wood on path 3A, the Heimatsteig, a narrow path climbing steadily along the ridge above the treeline to the Helm summit (2,434 m). Back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water is mapped on the line.',
+        elevation: 'Official 10.2 km there and back, 1,063 m up and 1,063 m down, 5 h 5 min, highest point 2,431 m, lowest 1,341 m (Tre Cime Dolomites tourist board, dreizinnen.com). The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Escursione: Monte Elmo (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (47 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 30,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['A steep climb of over 1,000 m: plan rests and water for your dog', 'The Heimatsteig is a narrow ridge path: keep your dog close on a short lead', 'No drinking water is mapped on the line; the Helmhanghütte at km 1.3 serves food'],
+      terrainType: 'Lanes, mountain paths and a narrow ridge path',
+      shadeDescription: 'Little shade: the lower path crosses meadows and open larch wood; the ridge above the treeline is fully exposed to the sun.',
+      terrainDescription: 'A steep climb at 1,340–2,430 m from Moos past old farms and up the grassy Heimatsteig ridge to the Helm summit, with views over the whole Sexten Dolomites.',
+      waterDescription: 'No drinking fountain is mapped on the line: carry water for your dog. The Helmhanghütte at km 1.3 and the restaurants on the Helm serve food in summer.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog on a short lead on the narrow Heimatsteig.',
+      tips: 'Start at the Schäfer shop in Moos: 10.2 km there and back with over 1,000 m of climbing, five hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Carry plenty of water and go early: the ridge is open to the sun.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Escursione: Monte Elmo', url: 'https://www.dreizinnen.com/it/activity/escursione-monte-elmo-_50062' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.691175, lng: 12.365553, label: 'Schäfer shop, Moos, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.69095, lng: 12.36606, osmId: 'node/1459767344', name: 'Pizzeria Martina' },
+        { km: 0, lat: 46.69015, lng: 12.36653, osmId: 'node/2414240998', name: 'Reider Biwak12' },
+        { km: 1.3, lat: 46.69745, lng: 12.37229, osmId: 'node/843484008', name: 'Helmhanghütte - Rifugio Pendio Monte Elmo' }
+      ],
+      desc: 'A steep climb from Moos past the Helmhanghütte and up the Heimatsteig ridge to the Helm summit, and back. The board lists 10.2 km and 1,063 m of ascent, there and back.'
+    },
+    'trecime-sesto-alte-saege-val-campo-di-dentro': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 5).
+      // The Tre Cime Dolomites tourist board’s walk “Sesto – Alte Säge – Val Campo di Dentro”, drawn on 123 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sexten (no regulation, national rule) and Innichen (own regulation).
+      // About a third of the line is in the Drei Zinnen nature park (IT3110050, dogs on a lead).
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Sexten – Alte Säge – Innerfeldtal – Antoniusstein',
+      distance: 19.7,
+      elevation: 457,
+      hours: '5.3',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'From the Haus der Berge in Sexten to the Alte Säge, up the paved path 105 through larch woods into the Innerfeldtal to the Antoniusstein, right on a narrow forest path to the head of the valley, and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Sextner Bach beside the path near Sexten, in August (Giorgio Galeotti, CC BY-SA 4.0), 17 m from the line.',
+        route: 'Official walk 19.7 km there and back from the Haus der Berge, Sexten, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 123 OSM ways along the GPX on the board’s page, walked out and back, 18.6 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 105: from the Haus der Berge in Sexten on the path to the Alte Säge (1,259 m), then the paved path 105 through larch woods up the Innerfeldtal to the Antoniusstein (1,509 m); right on a narrow forest path to the head of the valley by the Dreischusterhütte. Back the same way. The board marks it suitable for pushchairs as far as the paved path goes.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.5, at km 1, at km 1.4 and at km 2 (OSM nodes 13003911947, 2414242404, 2400549554, 12230293435).',
+        elevation: 'Official 19.7 km there and back, 457 m up and 457 m down, 5 h 20 min, highest point 1,622 m, lowest 1,257 m (Tre Cime Dolomites tourist board, dreizinnen.com). The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Sesto – Alte Säge – Val Campo di Dentro (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde Innichen, Haltung und Führung von Hunden (council resolution no. 4 of 3 March 2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields in the growing season',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); the Drei Zinnen protection decree (no. 103/V/81 of 22 December 1981) sets no reserve zone and no other rule on dogs',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): about a third of the line is in the Drei Zinnen nature park and Natura 2000 site IT3110050',
+          'OpenStreetMap ways along the board’s line (123 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A long day: almost 20 km there and back', 'The paved path 105 is shared with bikes and the odd car to the Dreischusterhütte', 'A climbing crag in the Innerfeldtal: keep your dog away from the base of the rock'],
+      terrainType: 'Paved path and forest paths',
+      shadeDescription: 'Over half shaded: the path climbs through larch woods most of the way.',
+      terrainDescription: 'A long, gentle valley walk at 1,255–1,620 m from Sexten past the Alte Säge into the quiet Innerfeldtal below the Dreischusterspitze, through larch woods to the head of the valley.',
+      waterDescription: 'Drinking fountains in Sexten in the first 2 km; the Alte Säge at km 4.1 and the Dreischusterhütte at km 9 serve food in summer.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The walk dips into Innichen in the Innerfeldtal, which has the same lead and muzzle rule; about a third of it is in the Drei Zinnen nature park, where dogs must be on a lead at all times.',
+      tips: 'Start at the Haus der Berge in Sexten: 19.7 km there and back with about 460 m of climbing, five hours and twenty minutes. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The Dreischusterhütte at the head of the valley makes a good halfway stop.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Sesto – Alte Säge – Val Campo di Dentro', url: 'https://www.dreizinnen.com/it/activity/passeggiata-con-il-passeggino-sesto-alte-s-ge-val-campo-di-dentro_49959' },
+        { label: 'Gemeinde Innichen, Haltung und Führung von Hunden', url: 'https://www.gemeinde.innichen.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden_1' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.696776, lng: 12.356231, label: 'Haus der Berge, Sexten, the board’s start' },
+      waterSources: [
+        { km: 0.5, lat: 46.697494, lng: 12.3536806, osmId: 'node/13003911947', label: 'Drinking fountain' },
+        { km: 1, lat: 46.701956, lng: 12.350441, osmId: 'node/2414242404', label: 'Drinking fountain' },
+        { km: 1.4, lat: 46.703499, lng: 12.346699, osmId: 'node/2400549554', label: 'Drinking fountain' },
+        { km: 2, lat: 46.7050219, lng: 12.3396005, osmId: 'node/12230293435', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.6981, lng: 12.35523, osmId: 'way/543080258', name: 'Pizzeria Restaurant Riega' },
+        { km: 0.6, lat: 46.69897, lng: 12.35316, osmId: 'way/543395681', name: 'S\' Grill Hittl' },
+        { km: 0.8, lat: 46.70096, lng: 12.3502, osmId: 'node/842257296', name: 'Erich' },
+        { km: 0.8, lat: 46.70122, lng: 12.35054, osmId: 'node/11540403591', name: 'Mühle' },
+        { km: 0.9, lat: 46.70191, lng: 12.35093, osmId: 'node/7166368497', name: 'Brugga' },
+        { km: 0.9, lat: 46.70221, lng: 12.35, osmId: 'node/13087662884', name: 'Hotel Mondschein' },
+        { km: 4.1, lat: 46.71258, lng: 12.31646, osmId: 'way/218395537', name: 'Alte Säge' },
+        { km: 9, lat: 46.67457, lng: 12.29723, osmId: 'way/83855898', name: 'Dreischusterhütte - Rifugio Tre Scarperi' }
+      ],
+      desc: 'A long, gentle walk from Sexten past the Alte Säge up the Innerfeldtal to the head of the valley, and back. The board lists 19.7 km and 457 m of ascent, there and back.'
     }
   };
 

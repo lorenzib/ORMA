@@ -546,6 +546,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
     },
+    "fvg-col-dei-piais": {
+      "url": "https://www.outdooractive.com/it/route/escursione/claut/col-dei-piais/805561297/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Col dei Piais",
+      "quote": "Distanza 4,9 km · Durata 1:50 h · Salita 285 m · Discesa 284 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T06:00:00.000Z"
+    },
     "fvg-faggi-secolari-pustot-dordolla": {
       "url": "https://www.outdooractive.com/it/route/escursione/moggio-udinese/i-faggi-secolari-di-pustot-a-dordolla/811755887/",
       "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
@@ -553,6 +561,14 @@
       "quote": "Distanza 4,9 km · Durata 2:20 h · Salita 395 m · Discesa 394 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "fvg-fontanon-di-goriuda": {
+      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/fontanon-di-goriuda/805382080/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Fontanon di Goriuda",
+      "quote": "Distanza 0,6 km · Durata 0:15 h · Salita 50 m · Discesa 50 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T06:00:00.000Z"
     },
     "fvg-laghi-di-fusine": {
       "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/laghi-di-fusine/801482658/",
@@ -562,6 +578,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
     },
+    "fvg-raunis-cascate-belepeit": {
+      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/borgo-raunis-e-le-cascate-del-rio-belepeit/809189921/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Borgo Raunis e le cascate del rio Belepeit",
+      "quote": "Distanza 5,8 km · Durata 3:00 h · Salita 333 m · Discesa 333 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T06:00:00.000Z"
+    },
     "fvg-ta-lipa-pot-corto": {
       "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/ta-lipa-pot-percorso-breve/805322923/",
       "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
@@ -569,6 +593,14 @@
       "quote": "Distanza 5,5 km · Durata 1:45 h · Salita 152 m · Discesa 152 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "fvg-venzone-anello-delle-chiesette": {
+      "url": "https://www.outdooractive.com/it/route/escursione/venzone/sentiero-natura-anello-delle-chiesette-di-venzone/805854151/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Sentiero Natura - Anello delle chiesette di Venzone",
+      "quote": "Distanza 2,6 km · Durata 1:00 h · Salita 99 m · Discesa 99 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T06:00:00.000Z"
     },
     "geotrail-bulla": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi989d38877e70605be1a85f34d9ce0f7c.geotrail-pufels.st--michael---kastelruth",
@@ -2058,6 +2090,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
     },
+    "trecime-helmjet-waldruhe-sexten": {
+      "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-stazione-a-monte-della-funivia-monte-elmo-baita-del-cacciatore-gasthof-waldruhe-sesto_50095",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Sentiero tematico:  stazione a monte della funivia Monte Elmo – Baita del Cacciatore – Gasthof Waldruhe - Sesto",
+      "quote": "Lunghezza 5,3 km · Durata 1:35 · Salita 7 m · Discesa 744 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
     "trecime-innichen-waldkapelle-sexten": {
       "url": "https://www.dreizinnen.com/it/activity/escursione-cimitero-dei-soldati-burg-capella-del-bosco-sesto_560",
       "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
@@ -2082,11 +2122,35 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
     },
+    "trecime-monte-casella-di-fuori": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-in-montagna-giro-per-il-monte-casella-di-fuori_701",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione in montagna: Giro per il Monte Casella di Fuori",
+      "quote": "Lunghezza 13,2 km · Durata 5:05 · Salita 832 m · Discesa 833 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-monte-elmo-da-moso": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-monte-elmo-_50062",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione: Monte Elmo",
+      "quote": "Lunghezza 10,2 km · Durata 5:05 · Salita 1.063 m · Discesa 1.063 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
     "trecime-monte-elmo-versciaco": {
       "url": "https://www.dreizinnen.com/it/activity/sentiero-nel-bosco-fino-a-versciaco_68483",
       "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
       "name": "Sentiero nel bosco fino a Versciaco",
       "quote": "Lunghezza 7,9 km · Durata 2:45 · Salita 61 m · Discesa 911 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-rotwandwiesen-moos": {
+      "url": "https://www.dreizinnen.com/it/activity/passeggiata-nella-valle-di-sesto_68498",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Passeggiata nella Valle di Sesto",
+      "quote": "Lunghezza 4,8 km · Durata 2:10 · Salita 1 m · Discesa 570 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
     },
@@ -2098,11 +2162,27 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
     },
+    "trecime-sasso-di-sesto": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-in-montagna-sasso-di-sesto-_424",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione in montagna: Sasso di Sesto",
+      "quote": "Lunghezza 16,6 km · Durata 6:25 · Salita 1.071 m · Discesa 1.075 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
     "trecime-sentiero-gustav-mahler": {
       "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-sentiero-gustav-mahler_50104",
       "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
       "name": "Sentiero tematico: Sentiero Gustav Mahler",
       "quote": "Lunghezza 4,7 km · Durata 2:00 · Salita 72 m · Discesa 72 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-sesto-alte-saege-val-campo-di-dentro": {
+      "url": "https://www.dreizinnen.com/it/activity/passeggiata-con-il-passeggino-sesto-alte-s-ge-val-campo-di-dentro_49959",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Passeggiata con il passeggino: Sesto - Alte Säge - Val Campo di Dentro",
+      "quote": "Lunghezza 19,7 km · Durata 5:20 · Salita 457 m · Discesa 457 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
     },
@@ -2218,6 +2298,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
     },
+    "valgardena-arte-e-storia": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/arte-e-storia/16570787/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Arte e storia",
+      "quote": "Distanza 2,1 km · Salita 76 m · Durata 1:31 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-escursione-al-brogles": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-brogles/810055933/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione al Brogles",
+      "quote": "Distanza 4,9 km · Salita 126 m · Durata 1:22 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
     "valgardena-escursione-al-resciesa": {
       "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-resciesa/16420468/",
       "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
@@ -2226,6 +2322,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T09:00:00.000Z"
     },
+    "valgardena-escursione-al-seeurasas": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-seeurasas/811360645/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione al Sëurasas",
+      "quote": "Distanza 5,2 km · Salita 900 m · Durata 2:55 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
     "valgardena-escursione-al-terrazzo-panoramico-seeurasas": {
       "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-terrazzo-panoramico-seeurasas/67905450/",
       "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
@@ -2233,6 +2337,14 @@
       "quote": "Distanza 6,6 km · Salita 449 m · Durata 3:00 ore",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "valgardena-escursione-da-s-cristina-al-passo-sella": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-da-s-cristina-al-passo-sella/810055923/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione da S. Cristina al Passo Sella",
+      "quote": "Distanza 8,4 km · Salita 800 m · Durata 3:24 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
     },
     "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": {
       "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-dalla-cappella-santa-croce-al-brogles/800791260/",
@@ -2250,6 +2362,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T12:00:00.000Z"
     },
+    "valgardena-escursione-ortisei-passo-sella": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-ortisei-passo-sella/65027101/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione Ortisei - Passo Sella",
+      "quote": "Distanza 12,4 km · Salita 1101 m · Durata 4:28 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T20:00:00.000Z"
+    },
     "valgardena-giro-della-via-crucis": {
       "url": "https://www.valgardena.it/it/outdoor/base/outdoor/giro-della-via-crucis/810054903/",
       "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
@@ -2257,6 +2377,14 @@
       "quote": "Distanza 3,3 km · Salita 138 m · Durata 1:00 ore",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-giro-storico-del-paese-di-ortisei": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/giro-storico-del-paese-di-ortisei/810054788/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Giro storico del paese di Ortisei",
+      "quote": "Distanza 4,6 km · Salita 179 m · Durata 1:25 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
     },
     "valgardena-passeggiata-alla-chiesetta-di-san-giacomo": {
       "url": "https://www.valgardena.it/it/outdoor/base/outdoor/passeggiata-alla-chiesetta-di-san-giacomo/16570805/",
@@ -2290,6 +2418,30 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T12:00:00.000Z"
     },
+    "valgardena-seceda-da-col-raiser": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-col-raiser-stazione-a-monte/810055439/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a monte)",
+      "quote": "Distanza 3,5 km · Salita 423 m · Durata 1:35 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T20:00:00.000Z"
+    },
+    "valgardena-seceda-da-cristauta-pic": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-cristauta-seeurasas/810055443/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Seceda - Ridge Line da S. Cristina per Cristauta - Sëurasas",
+      "quote": "Distanza 6,3 km · Salita 861 m · Durata 3:04 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T22:00:00.000Z"
+    },
+    "valgardena-seceda-dal-rifugio-firenze": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-col-raiser-stazione-a-valle-rifugio-firenze/808744765/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a valle) - Rifugio Firenze",
+      "quote": "Distanza 7,9 km · Salita 983 m · Durata 3:25 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T20:00:00.000Z"
+    },
     "valgardena-tour-alla-volta-del-lech-sant": {
       "url": "https://www.valgardena.it/it/outdoor/base/outdoor/tour-alla-volta-del-lech-sant/49659382/",
       "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
@@ -2297,46 +2449,6 @@
       "quote": "Distanza 7,7 km · Salita 349 m · Durata 2:40 ore",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T09:00:00.000Z"
-    },
-    "valley-view": {
-      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi4d53fc3760a30cad25696849c7669dd5.sonnseitenweg-panoramaweg.st--peter---villnoess",
-      "publisher": "Tourismusgenossenschaft Odles, via Südtirol.info (IDM Südtirol)",
-      "name": "Sonnseitenweg-Panoramaweg",
-      "quote": "Vom Bühlerhof läuft man leicht ansteigend bis zum Beginn des Panoramaweges (1389 m), der mit Berg-Symbolen markiert ist. Der Panoramaweg verläuft relativ eben bis zur Wegkreuzung mit Weg Nr. 11.",
-      "foundBy": "orma-route-source-scout",
-      "verifiedAt": "2026-10-12T19:40:50.460Z"
-    },
-    "valgardena-arte-e-storia": {
-      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/arte-e-storia/16570787/",
-      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
-      "name": "Arte e storia",
-      "quote": "Distanza 2,1 km · Salita 76 m · Durata 1:31 ore",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T16:00:00.000Z"
-    },
-    "valgardena-escursione-al-brogles": {
-      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-brogles/810055933/",
-      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
-      "name": "Escursione al Brogles",
-      "quote": "Distanza 4,9 km · Salita 126 m · Durata 1:22 ore",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T16:00:00.000Z"
-    },
-    "valgardena-escursione-al-seeurasas": {
-      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-seeurasas/811360645/",
-      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
-      "name": "Escursione al Sëurasas",
-      "quote": "Distanza 5,2 km · Salita 900 m · Durata 2:55 ore",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T16:00:00.000Z"
-    },
-    "valgardena-escursione-da-s-cristina-al-passo-sella": {
-      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-da-s-cristina-al-passo-sella/810055923/",
-      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
-      "name": "Escursione da S. Cristina al Passo Sella",
-      "quote": "Distanza 8,4 km · Salita 800 m · Durata 3:24 ore",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T16:00:00.000Z"
     },
     "valgardena-uciei-de-freeines": {
       "url": "https://www.valgardena.it/it/outdoor/base/outdoor/uciei-de-freeines-arte-che-invita-il-sentiero-dei-richiami-degli-uccelli/810055690/",
@@ -2354,77 +2466,13 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T16:00:00.000Z"
     },
-    "valgardena-giro-storico-del-paese-di-ortisei": {
-      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/giro-storico-del-paese-di-ortisei/810054788/",
-      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
-      "name": "Giro storico del paese di Ortisei",
-      "quote": "Distanza 4,6 km · Salita 179 m · Durata 1:25 ore",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T16:00:00.000Z"
-    },
-    "valgardena-seceda-da-col-raiser": {
-      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-col-raiser-stazione-a-monte/810055439/",
-      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
-      "name": "Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a monte)",
-      "quote": "Distanza 3,5 km · Salita 423 m · Durata 1:35 ore",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T20:00:00.000Z"
-    },
-    "valgardena-seceda-dal-rifugio-firenze": {
-      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-col-raiser-stazione-a-valle-rifugio-firenze/808744765/",
-      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
-      "name": "Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a valle) - Rifugio Firenze",
-      "quote": "Distanza 7,9 km · Salita 983 m · Durata 3:25 ore",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T20:00:00.000Z"
-    },
-    "valgardena-escursione-ortisei-passo-sella": {
-      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-ortisei-passo-sella/65027101/",
-      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
-      "name": "Escursione Ortisei - Passo Sella",
-      "quote": "Distanza 12,4 km · Salita 1101 m · Durata 4:28 ore",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T20:00:00.000Z"
-    },
-    "valgardena-seceda-da-cristauta-pic": {
-      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-cristauta-seeurasas/810055443/",
-      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
-      "name": "Seceda - Ridge Line da S. Cristina per Cristauta - Sëurasas",
-      "quote": "Distanza 6,3 km · Salita 861 m · Durata 3:04 ore",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T22:00:00.000Z"
-    },
-    "fvg-fontanon-di-goriuda": {
-      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/fontanon-di-goriuda/805382080/",
-      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
-      "name": "Fontanon di Goriuda",
-      "quote": "Distanza 0,6 km · Durata 0:15 h · Salita 50 m · Discesa 50 m",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T06:00:00.000Z"
-    },
-    "fvg-col-dei-piais": {
-      "url": "https://www.outdooractive.com/it/route/escursione/claut/col-dei-piais/805561297/",
-      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
-      "name": "Col dei Piais",
-      "quote": "Distanza 4,9 km · Durata 1:50 h · Salita 285 m · Discesa 284 m",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T06:00:00.000Z"
-    },
-    "fvg-raunis-cascate-belepeit": {
-      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/borgo-raunis-e-le-cascate-del-rio-belepeit/809189921/",
-      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
-      "name": "Borgo Raunis e le cascate del rio Belepeit",
-      "quote": "Distanza 5,8 km · Durata 3:00 h · Salita 333 m · Discesa 333 m",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T06:00:00.000Z"
-    },
-    "fvg-venzone-anello-delle-chiesette": {
-      "url": "https://www.outdooractive.com/it/route/escursione/venzone/sentiero-natura-anello-delle-chiesette-di-venzone/805854151/",
-      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
-      "name": "Sentiero Natura - Anello delle chiesette di Venzone",
-      "quote": "Distanza 2,6 km · Durata 1:00 h · Salita 99 m · Discesa 99 m",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T06:00:00.000Z"
+    "valley-view": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi4d53fc3760a30cad25696849c7669dd5.sonnseitenweg-panoramaweg.st--peter---villnoess",
+      "publisher": "Tourismusgenossenschaft Odles, via Südtirol.info (IDM Südtirol)",
+      "name": "Sonnseitenweg-Panoramaweg",
+      "quote": "Vom Bühlerhof läuft man leicht ansteigend bis zum Beginn des Panoramaweges (1389 m), der mit Berg-Symbolen markiert ist. Der Panoramaweg verläuft relativ eben bis zur Wegkreuzung mit Weg Nr. 11.",
+      "foundBy": "orma-route-source-scout",
+      "verifiedAt": "2026-10-12T19:40:50.460Z"
     }
   }
 }
