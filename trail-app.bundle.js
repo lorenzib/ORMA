@@ -57703,6 +57703,249 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 1, lat: 46.14904, lng: 10.9497, osmId: 'way/291725569', name: 'Baita Ciclamino' }
       ],
       desc: 'A short walk from Molveno to the foot of the Croz dell’Altissimo and down beside the Rio Massò and its little waterfalls. The APT lists 2.8 km and 76 m of ascent.'
+    },
+    'osttirol-rundwanderung-schloss-weissenstein': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 1, the first Austrian walks).
+      // The Osttirol tourist board’s walk “Rundwanderung Schloss Weißenstein”, drawn on 17 OSM ways along the GPX it publishes
+      // (data/board-line-routes.geojson). Commune: Matrei in Osttirol. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Matrei in Osttirol – Schloss Weißenstein',
+      distance: 3.21,
+      elevation: 88,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the Rauterplatz in the centre of Matrei along the Proßeggweg to the park below Schloss Weißenstein, with its metal animal sculptures and nature boards, and back past the pharmacy beside the Felbertauern road.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Schloss Weißenstein on its crag above Matrei, seen from the Kreuzbichl chapel, in June (Haeferl on Wikimedia Commons, CC BY-SA 4.0), 8 m from the line.',
+        route: 'Official loop 3.21 km from the Rauterplatz in the centre of Matrei, as the Osttirol tourist board publishes it; the stored line is drawn on 17 OSM ways along the board’s published GPX, 3.2 km.',
+        routeNumbers: 'From the Rauterplatz in Matrei along the Proßeggweg to the turn below the castle, up the wide gravel path into the Schloss Weißenstein park, and back along the Felbertauern road past the pharmacy to the centre.',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line; places to eat and drink from OSM listed below.',
+        elevation: 'Official 3.21 km, 88 m up and 88 m down, 1 h (Osttirol tourist board); our line runs 954–1,062 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Osttirol tourist board, Rundwanderung Schloss Weißenstein (osttirol.com, with its GPX)',
+          'Matrei in Osttirol publishes no dog ordinance (none found on its website, oesterreich.gv.at or RIS), so ORMA’s Tyrol default applies',
+          'Tyrol’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): Landes-Polizeigesetz § 6a, a lead or a muzzle in the village and both on buses; Almschutzverordnung § 2, a short lead on any alpine pasture while it is grazed; Jagdgesetz § 35, a dog out of control in a hunting ground may be shot',
+          'Land Tirol protected-area, Natura 2000 and national-park layers (tiris open data, CC BY 4.0): No national park, Natura 2000 site or protected area on or within 300 m of the line (Land Tirol layers).',
+          'OpenStreetMap ways along the board’s line (17 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.5,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 80 m beside the Felbertauern road on the way back: keep your dog close on a short lead', 'Village streets with traffic'],
+      terrainType: 'Village streets and a wide gravel path through the castle park',
+      shadeDescription: 'About half the loop is under trees, mostly in the castle park; the village streets are open.',
+      terrainDescription: 'An easy loop at 950–1,060 m from the centre of Matrei to the park of Schloss Weißenstein, on village streets and a wide gravel path suitable for pushchairs.',
+      waterDescription: 'No public fountain is mapped on the line; cafés and inns in the centre of Matrei at the start.',
+      dogNotes: 'Matrei in Osttirol publishes no dog ordinance (none found on its website, oesterreich.gv.at or RIS); ORMA’s Tyrol standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: in the village Tyrolean law requires a lead or a muzzle, and both on buses. If the walk crosses grazed pasture, Tyrolean law (Almschutzverordnung § 2) asks for a short lead there. Under the Tyrolean hunting law a dog found out of control and chasing game may be shot.',
+      tips: 'Start at the Rauterplatz in the centre of Matrei: 3.21 km and about 88 m of climbing, an hour. Most of the loop is on village streets and the castle-park path, so keep your dog on a lead throughout. Carry a muzzle for buses and lifts.',
+      sourceLinks: [
+        { label: 'Osttirol, Rundwanderung Schloss Weißenstein', url: 'https://www.osttirol.com/aktiv-outdoor/wandern/detail/rundwanderung-schloss-weissenstein' },
+        { label: 'Tiroler Landes-Polizeigesetz § 6a (dogs in villages and on public transport)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40052150/LTI40052150.html' },
+        { label: 'Tiroler Almschutzverordnung § 2 (dogs on grazed alpine pastures)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40044604/LTI40044604.html' },
+        { label: 'Tiroler Jagdgesetz 2004 § 35 (dogs out of control in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40051034/LTI40051034.html' },
+        { label: 'Land Tirol, protected areas (tiris open data)', url: 'https://data-tiris.opendata.arcgis.com/datasets/schutzgebiete-umwelt-1/explore' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 47.00106, lng: 12.538609, label: 'Rauterplatz, the centre of Matrei in Osttirol, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 47.00002, lng: 12.53837, osmId: 'node/1673277317', name: 'Outside' },
+        { km: 0, lat: 47.00158, lng: 12.53819, osmId: 'node/4777053391', name: 'Gasthof Hinteregger' },
+        { km: 0, lat: 47.0012, lng: 12.53808, osmId: 'node/5880809753', name: 'Kuckuck' },
+        { km: 0, lat: 47.0011, lng: 12.53893, osmId: 'way/484960908', name: 'Talmarkt' }
+      ],
+      desc: 'A short loop from the centre of Matrei in Osttirol to the park below Schloss Weißenstein, with animal sculptures and nature boards along the way. The board lists 3.2 km and 88 m of ascent.'
+    },
+    'osttirol-naturkraftweg-umbalfaelle': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 1, the first Austrian walks).
+      // The Osttirol tourist board’s walk “NaturKraftWeg Umbalfälle”, drawn on 27 OSM ways along the GPX it publishes
+      // (data/board-line-routes.geojson). Commune: Prägraten am Großvenediger. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Prägraten – Ströden – Umbalfälle',
+      distance: 5.97,
+      elevation: 257,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Ströden car park at the head of the Virgental up the Isel to the Umbal Falls, with viewing platforms above the gorge and down by the water, and back down the other side of the river.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Isel and the Großbach waterfall in the upper Virgental, in July (Matthias Wien on Wikimedia Commons, CC BY-SA 4.0), 50 m from the line.',
+        route: 'Official loop 5.97 km from the Ströden car park (1,400 m) above Prägraten, as the Osttirol tourist board publishes it; the stored line is drawn on 27 OSM ways along the board’s published GPX, 6 km.',
+        routeNumbers: 'From the Ströden car park up the valley road and the paths beside the Isel to the Umbal Falls and their viewing platforms, with steps up beside the cascades, towards the Islitzer Alm, and back down by the river to Ströden.',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line; places to eat and drink from OSM listed below.',
+        elevation: 'Official 5.97 km, 257 m up and 257 m down, 2:30 h (Osttirol tourist board); our line runs 1,410–1,661 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Osttirol tourist board, NaturKraftWeg Umbalfälle (osttirol.com, with its GPX)',
+          'Prägraten am Großvenediger tells oesterreich.gv.at that dog owners must keep their dog on a lead everywhere outside private buildings (commune answer, January 2020; the ordinance text itself is not online), which is stricter than the Tyrol default and applies',
+          'Tyrol’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): Landes-Polizeigesetz § 6a, a lead or a muzzle in the village and both on buses; Almschutzverordnung § 2, a short lead on any alpine pasture while it is grazed; Jagdgesetz § 35, a dog out of control in a hunting ground may be shot',
+          'Land Tirol protected-area, Natura 2000 and national-park layers (tiris open data, CC BY 4.0): About 6% of the line, at its top, is in the outer zone of the Hohe Tauern National Park, which is also Natura 2000 (Hohe Tauern, Tirol); the river path touches the Natura 2000 site “Osttiroler Gletscherflüsse Isel, Schwarzach und Kalserbach”. Neither order sets a dog rule (full-text search of Tyrolean law); the park asks visitors to keep dogs on a lead everywhere. The core zone is more than 300 m away.',
+          'OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.9,
+      heatRisk: 'low',
+      exposure: true,
+      surfaceHazards: ['Viewing platforms high above the gorge and right by the water: keep your dog on a short lead', 'Steep wooden and stone steps beside the cascades', 'The glacial Isel is fast and cold, especially on summer afternoons: keep your dog out of it'],
+      terrainType: 'Gravel tracks, forest paths and wooden steps beside the cascades',
+      shadeDescription: 'Mostly in larch and spruce forest; the viewing platforms and the river meadows are open.',
+      terrainDescription: 'A loop at 1,410–1,660 m at the head of the Virgental on gravel tracks and forest paths, with steps and viewing platforms beside the Umbal Falls of the glacier-fed Isel.',
+      waterDescription: 'No drinking fountain is mapped; do not let your dog drink from or enter the glacial river. The Islitzer Alm near the top of the loop serves food and drink in summer.',
+      dogNotes: 'Prägraten am Großvenediger tells oesterreich.gv.at that dog owners must keep their dog on a lead everywhere outside private buildings (commune answer, January 2020; the ordinance text itself is not online), which is stricter than the Tyrol default and applies. Keep your dog on a lead for the whole walk and carry a muzzle: in the village Tyrolean law requires a lead or a muzzle, and both on buses. On the alpine pasture, while it is grazed, Tyrolean law (Almschutzverordnung § 2) asks for a short lead; if cattle threaten, let the dog go and move away. Under the Tyrolean hunting law a dog found out of control and chasing game may be shot.',
+      tips: 'Start at the Ströden car park (1,400 m) above Prägraten: 5.97 km and about 257 m of climbing, 2:30 h. Prägraten asks for a lead everywhere, and the national park asks the same, so keep your dog on a lead for the whole walk; it is a short lead on the Islitzer Alm pasture while cattle are up. The road to Ströden is open; in summer a shuttle runs on to the Islitzer Alm. Carry a muzzle for buses and lifts.',
+      sourceLinks: [
+        { label: 'Osttirol, NaturKraftWeg Umbalfälle', url: 'https://www.osttirol.com/aktiv-outdoor/wandern/detail/naturkraftweg-umbalfaelle' },
+        { label: 'Tiroler Landes-Polizeigesetz § 6a (dogs in villages and on public transport)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40052150/LTI40052150.html' },
+        { label: 'Tiroler Almschutzverordnung § 2 (dogs on grazed alpine pastures)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40044604/LTI40044604.html' },
+        { label: 'Tiroler Jagdgesetz 2004 § 35 (dogs out of control in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40051034/LTI40051034.html' },
+        { label: 'Land Tirol, protected areas (tiris open data)', url: 'https://data-tiris.opendata.arcgis.com/datasets/schutzgebiete-umwelt-1/explore' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 47.016471, lng: 12.319547, label: 'Ströden car park (1,400 m), Prägraten am Großvenediger, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 1.5, lat: 47.0092, lng: 12.30471, osmId: 'way/131675261', name: 'Islitzeralm' }
+      ],
+      desc: 'A loop at the head of the Virgental from Ströden up the glacier-fed Isel to the Umbal Falls, with viewing platforms above the gorge and by the water. The board lists 6 km and 257 m of ascent.'
+    },
+    'osttirol-kulturweg-koednitz': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 1, the first Austrian walks).
+      // The Osttirol tourist board’s walk “Kulturweg Ködnitz”, drawn on 17 OSM ways along the GPX it publishes
+      // (data/board-line-routes.geojson). Commune: Kals am Großglockner. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Kals am Großglockner – Ködnitz',
+      distance: 1.7,
+      elevation: 34,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A short heritage loop round Ködnitz, the centre of Kals: the Gothic parish church of St Rupert inside its fortified cemetery wall with the Glockner memorial, the late-Gothic rectory of 1481, the Glocknerhaus and the new village and culture halls.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The fortified cemetery wall round the church at Ködnitz, on the loop, in July (Michael Kranewitter on Wikimedia Commons, CC BY-SA 4.0), 11 m from the line.',
+        route: 'Official loop 1.7 km from the village square in Kals-Ködnitz, as the Osttirol tourist board publishes it; the stored line is drawn on 17 OSM ways along the board’s published GPX, 1.8 km.',
+        routeNumbers: 'From the village square at Ködnitz round the parish church of St Rupert and its cemetery wall, past the rectory, the Glocknerhaus and the culture hall, with a stretch along the Kals road (L26), and back to the square.',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line; places to eat and drink from OSM listed below.',
+        elevation: 'Official 1.7 km, 34 m up and 33 m down, 1 h (Osttirol tourist board); our line runs 1,308–1,360 m and measures 1.8 km.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Osttirol tourist board, Kulturweg Ködnitz (osttirol.com, with its GPX)',
+          'Kals am Großglockner publishes no dog ordinance (only its dog tax; none found on its website, oesterreich.gv.at or RIS), so ORMA’s Tyrol default applies',
+          'Tyrol’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): Landes-Polizeigesetz § 6a, a lead or a muzzle in the village and both on buses; Almschutzverordnung § 2, a short lead on any alpine pasture while it is grazed; Jagdgesetz § 35, a dog out of control in a hunting ground may be shot',
+          'Land Tirol protected-area, Natura 2000 and national-park layers (tiris open data, CC BY 4.0): No national park or protected area on the line; it passes 24 m from the Natura 2000 site “Osttiroler Gletscherflüsse Isel, Schwarzach und Kalserbach” on the Kalserbach without entering it (Land Tirol layers).',
+          'OpenStreetMap ways along the board’s line (17 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.1,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 260 m along the Kals road (L26), with traffic to the Großglockner valleys: keep your dog close on a short lead', 'Village lanes with cars'],
+      terrainType: 'Village lanes and pavements',
+      shadeDescription: 'Almost all in the open village; a few trees by the cemetery.',
+      terrainDescription: 'A very short loop at 1,310–1,360 m round the old centre of Kals am Großglockner, almost all on paved village lanes.',
+      waterDescription: 'No public fountain is mapped on the line; inns in Ködnitz at the start.',
+      dogNotes: 'Kals am Großglockner publishes no dog ordinance (only its dog tax; none found on its website, oesterreich.gv.at or RIS); ORMA’s Tyrol standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: in the village Tyrolean law requires a lead or a muzzle, and both on buses. If the walk crosses grazed pasture, Tyrolean law (Almschutzverordnung § 2) asks for a short lead there. Under the Tyrolean hunting law a dog found out of control and chasing game may be shot.',
+      tips: 'Start at the village square in Kals-Ködnitz: 1.7 km and about 34 m of climbing, an hour. The whole loop is in the village, where Tyrolean law asks for a lead or a muzzle: keep your dog on a lead for the whole loop. Carry a muzzle for buses and lifts.',
+      sourceLinks: [
+        { label: 'Osttirol, Kulturweg Ködnitz', url: 'https://www.osttirol.com/aktiv-outdoor/wandern/detail/kulturweg-koednitz' },
+        { label: 'Tiroler Landes-Polizeigesetz § 6a (dogs in villages and on public transport)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40052150/LTI40052150.html' },
+        { label: 'Tiroler Almschutzverordnung § 2 (dogs on grazed alpine pastures)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40044604/LTI40044604.html' },
+        { label: 'Tiroler Jagdgesetz 2004 § 35 (dogs out of control in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40051034/LTI40051034.html' },
+        { label: 'Land Tirol, protected areas (tiris open data)', url: 'https://data-tiris.opendata.arcgis.com/datasets/schutzgebiete-umwelt-1/explore' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 47.002499, lng: 12.645016, label: 'Village square, Kals-Ködnitz, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 47.00113, lng: 12.64528, osmId: 'node/517399097', name: 'Gasthof Ködnitzhof' },
+        { km: 0, lat: 47.00166, lng: 12.64518, osmId: 'node/517399108', name: 'Kalser Eck' }
+      ],
+      desc: 'A short heritage loop round Ködnitz, the old centre of Kals am Großglockner, past the Gothic church of St Rupert, its fortified cemetery wall and the Glockner memorial. The board lists 1.7 km and 34 m of ascent.'
+    },
+    'osttirol-rundwanderung-am-staller-sattel': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 1, the first Austrian walks).
+      // The Osttirol tourist board’s walk “Rundwanderung am Staller Sattel”, drawn on 30 OSM ways along the GPX it publishes
+      // (data/board-line-routes.geojson). Commune: St. Jakob in Defereggen. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'St. Jakob in Defereggen – Staller Sattel – Obersee',
+      distance: 4.7,
+      elevation: 70,
+      hours: '1.3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Grünbichl bus stop below the Staller Sattel up a path to the Obersee, along the lake past the Obersee inn and back by the Staller Almen huts.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Obersee and the peaks above the Staller Sattel, in August (PantheraLeo1359531 on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official loop 4.7 km from the Grünbichl bus stop and car park below the Staller Sattel, as the Osttirol tourist board publishes it; the stored line is drawn on 30 OSM ways along the board’s published GPX, 4.7 km.',
+        routeNumbers: 'From the Grünbichl bus stop and car park gently up the footpath to the Obersee, along the lake shore past the Alpengasthaus Obersee, and back over the pastures by the Außerweger and Hinterpassler huts of the Staller Almen to Grünbichl, with a short stretch of the pass road (L25).',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line; places to eat and drink from OSM listed below.',
+        elevation: 'Official 4.7 km, 70 m up and 70 m down, 1:20 h (Osttirol tourist board); our line runs 1,964–2,072 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Osttirol tourist board, Rundwanderung am Staller Sattel (osttirol.com, with its GPX)',
+          'St. Jakob in Defereggen publishes no dog ordinance (none found on its website, oesterreich.gv.at or RIS), so ORMA’s Tyrol default applies',
+          'Tyrol’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): Landes-Polizeigesetz § 6a, a lead or a muzzle in the village and both on buses; Almschutzverordnung § 2, a short lead on any alpine pasture while it is grazed; Jagdgesetz § 35, a dog out of control in a hunting ground may be shot',
+          'Land Tirol protected-area, Natura 2000 and national-park layers (tiris open data, CC BY 4.0): No national park, Natura 2000 site or protected area on the Austrian line (Land Tirol layers). Across the border the Rieserferner-Ahrn nature park (Natura 2000) lies 68 m from the line at its closest; the walk does not enter it (Province of Bolzano layers).',
+          'OpenStreetMap ways along the board’s line (30 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 200 m on the Staller Sattel pass road (L25): keep your dog close on a short lead', 'Grazing cattle on the Staller Almen in summer: short lead, give the herd room'],
+      terrainType: 'Footpaths, gravel tracks and pasture by the lake',
+      shadeDescription: 'No shade: the loop is on open pasture and lakeshore at 2,000 m.',
+      terrainDescription: 'An easy loop at 1,960–2,070 m below the Staller Sattel on footpaths and gravel tracks around the Obersee and over the Staller Almen.',
+      waterDescription: 'No drinking fountain is mapped; the Obersee inn and the Staller Almen huts serve drinks in summer.',
+      dogNotes: 'St. Jakob in Defereggen publishes no dog ordinance (none found on its website, oesterreich.gv.at or RIS); ORMA’s Tyrol standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: in the village Tyrolean law requires a lead or a muzzle, and both on buses. On the alpine pasture, while it is grazed, Tyrolean law (Almschutzverordnung § 2) asks for a short lead; if cattle threaten, let the dog go and move away. Under the Tyrolean hunting law a dog found out of control and chasing game may be shot.',
+      tips: 'Start at the Grünbichl bus stop and car park below the Staller Sattel: 4.7 km and about 70 m of climbing, 1:20 h. Most of the loop crosses the Staller Almen, a grazed pasture in summer, so Tyrolean law asks for a short lead there; keep it on for the whole walk. Carry a muzzle for buses and lifts.',
+      sourceLinks: [
+        { label: 'Osttirol, Rundwanderung am Staller Sattel', url: 'https://www.osttirol.com/aktiv-outdoor/wandern/detail/rundwanderung-am-staller-sattel' },
+        { label: 'Tiroler Landes-Polizeigesetz § 6a (dogs in villages and on public transport)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40052150/LTI40052150.html' },
+        { label: 'Tiroler Almschutzverordnung § 2 (dogs on grazed alpine pastures)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40044604/LTI40044604.html' },
+        { label: 'Tiroler Jagdgesetz 2004 § 35 (dogs out of control in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40051034/LTI40051034.html' },
+        { label: 'Land Tirol, protected areas (tiris open data)', url: 'https://data-tiris.opendata.arcgis.com/datasets/schutzgebiete-umwelt-1/explore' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.898984, lng: 12.220813, label: 'Grünbichl bus stop and car park below the Staller Sattel, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.89784, lng: 12.21861, osmId: 'node/10961574274', name: 'Lackenstüberl' },
+        { km: 0, lat: 46.90116, lng: 12.22138, osmId: 'way/222412072', name: 'Außerwegerhütte' },
+        { km: 0, lat: 46.90058, lng: 12.22152, osmId: 'way/235351441', name: 'Hinterpasslerhütte' },
+        { km: 2.1, lat: 46.89117, lng: 12.20228, osmId: 'way/38448752', name: 'Oberseehütte' }
+      ],
+      desc: 'An easy loop at 2,000 m below the Staller Sattel at the head of the Defereggen valley, up to the Obersee, along the lake and back over the Staller Almen. The board lists 4.7 km and 70 m of ascent.'
     }
   };
 
@@ -57807,6 +58050,8 @@ function effectiveOverrides(profile, adjustOverride){
     ['Terento / Terenten', 46.8515, 11.7820, 'Val Pusteria – Pustertal', 'dolomites', 'alto-adige'],
     ['Chienes / Kiens', 46.8226, 11.8326, 'Val Pusteria – Pustertal', 'dolomites', 'alto-adige'],
     ['Valle di Casies / Gsies', 46.8241, 12.2325, 'Val Pusteria – Pustertal', 'dolomites', 'alto-adige'],
+    ['Anterselva / Antholz', 46.8640, 12.1180, 'Val Pusteria – Pustertal', 'dolomites', 'alto-adige'],
+    ['Lago di Anterselva / Antholzer See', 46.8870, 12.1720, 'Val Pusteria – Pustertal', 'dolomites', 'alto-adige'],
     ['Valles / Vals', 46.8698, 11.6202, 'Valle Isarco – Eisacktal', 'dolomites', 'alto-adige'],
     ['San Martino in Badia / St. Martin', 46.6509, 11.8417, 'Val Badia', 'dolomites', 'alto-adige'],
     ['Andalo', 46.1617, 11.0076, 'Paganella', 'dolomites', 'trentino'],
@@ -57968,6 +58213,7 @@ function effectiveOverrides(profile, adjustOverride){
     ['Kartitsch', 46.7254, 12.4975, 'Tiroler Gailtal', 'tyrol', 'osttirol'],
     ['Obertilliach', 46.7100, 12.6147, 'Tiroler Gailtal', 'tyrol', 'osttirol'],
     ['St. Jakob in Defereggen', 46.9178, 12.3313, 'Defereggental', 'tyrol', 'osttirol'],
+    ['Staller Sattel / Obersee', 46.8960, 12.2090, 'Defereggental', 'tyrol', 'osttirol'],
     ['St. Veit in Defereggen', 46.9248, 12.4236, 'Defereggental', 'tyrol', 'osttirol'],
     ['Hopfgarten in Defereggen', 46.9218, 12.5209, 'Defereggental', 'tyrol', 'osttirol'],
     ['Matrei in Osttirol', 47.0011, 12.5387, 'Matrei – Tauerntal', 'tyrol', 'osttirol'],

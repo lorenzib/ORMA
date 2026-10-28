@@ -4463,6 +4463,74 @@
       }
     },
     {
+      "id": "osttirol-kulturweg-koednitz",
+      "approvedReviewId": "commons-osttirol-kulturweg-koednitz-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osttirol-kulturweg-koednitz-cemetery-wall.jpg",
+        "heroImage": "images/trails/osttirol-kulturweg-koednitz-cemetery-wall.jpg",
+        "imageAlt": "A stone wall with a modern wooden gate beside a paved path and a green lawn, with larch and spruce trees behind, at the church of Kals-Ködnitz",
+        "imageCredit": "The cemetery wall at Ködnitz",
+        "imageCreditText": "The cemetery wall at Ködnitz by Michael Kranewitter",
+        "imageCreator": "Michael Kranewitter",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:K%C3%B6dnitz_-_Friedhof_Kals_a.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osttirol-naturkraftweg-umbalfaelle",
+      "approvedReviewId": "commons-osttirol-naturkraftweg-umbalfaelle-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osttirol-naturkraftweg-umbalfaelle-grossbach.jpg",
+        "heroImage": "images/trails/osttirol-naturkraftweg-umbalfaelle-grossbach.jpg",
+        "imageAlt": "A fast grey-green glacial river beside a summer meadow, with a waterfall dropping through larch forest on the mountainside behind, in the upper Virgental",
+        "imageCredit": "The Isel and the Großbach falls above Ströden",
+        "imageCreditText": "The Isel and the Großbach falls above Ströden by Matthias Wien",
+        "imageCreator": "Matthias Wien",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gro%C3%9Fbach.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osttirol-rundwanderung-am-staller-sattel",
+      "approvedReviewId": "commons-osttirol-rundwanderung-am-staller-sattel-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osttirol-rundwanderung-am-staller-sattel-obersee.jpg",
+        "heroImage": "images/trails/osttirol-rundwanderung-am-staller-sattel-obersee.jpg",
+        "imageAlt": "A blue mountain lake in front of grassy slopes with larches and grey peaks under a part-cloudy sky, below the Staller Sattel",
+        "imageCredit": "The Obersee below the Staller Sattel",
+        "imageCreditText": "The Obersee below the Staller Sattel by PantheraLeo1359531",
+        "imageCreator": "PantheraLeo1359531",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Auf_dem_Weg_zum_Obersee_(Grenze_Italien-%C3%96sterreich)_von_%C3%96sterreich_aus_23082018_043_Berge.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osttirol-rundwanderung-schloss-weissenstein",
+      "approvedReviewId": "commons-osttirol-rundwanderung-schloss-weissenstein-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osttirol-rundwanderung-schloss-weissenstein-castle.jpg",
+        "heroImage": "images/trails/osttirol-rundwanderung-schloss-weissenstein-castle.jpg",
+        "imageAlt": "A pale castle with a square tower on a wooded crag above a rock face, with green slopes and low cloud behind, in Matrei in Osttirol",
+        "imageCredit": "Schloss Weißenstein above Matrei",
+        "imageCreditText": "Schloss Weißenstein above Matrei by Haeferl",
+        "imageCreator": "Haeferl",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Matrei_-_Schloss_Wei%C3%9Fenstein_-_3b_-_von_der_Kreuzbichler-Kapelle_aus.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "paganella-andalo-tana-ermellino",
       "approvedReviewId": "commons-paganella-andalo-tana-ermellino-on-route",
       "approvedAt": "2026-10-28T02:00:00.000Z",
