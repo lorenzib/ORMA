@@ -58245,6 +58245,69 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 7, lat: 46.20911, lng: 10.71079, osmId: 'node/11138943607', name: 'Rifugio Val Amola-Giovanni Segantini' }
       ],
       desc: 'A demanding high loop from Valina d’Amola up to the Rifugio Segantini and towards the Cornisello lakes, below the Presanella, in the Adamello Brenta Nature Park. The APT lists 9.4 km and 559 m of ascent.'
+    },
+    'bormio-da-arnoga-al-rifugio-federico': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Lombardy batch 3).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Da Arnoga al Rifugio Federico” by Orobie Active, drawn on 28 OSM ways along its published GPX
+      // (data/board-line-routes.geojson). Communes: Valdidentro (no regulation, national rule).
+      // Crosses the Val Viola Bormina – Ghiacciaio di Cima dei Piazzi Natura 2000 site IT2040012, whose measures require dogs on a lead and visitors on the paths; published with that rule stated (owner rule of 27 Oct 2026). Not in the Stelvio National Park.
+      area: 'Arnoga – Paluetta – Baite dell’Orsa – Rifugio Federico, Val Viola, Valdidentro',
+      distance: 7,
+      elevation: 562,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way up the Val Viola from Arnoga past Paluetta, the Baite dell’Orsa and the Caricc farm to the Rifugio Federico at the mouth of the Val Dosdè; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The larch forest of the Valdidentro below Arnoga and the mountains towards Bormio, beside the start of the walk, in late June (qwesy qwesy, CC BY 3.0), 75 m from the line.',
+        route: 'Official one-way walk 7 km from the lower car park at the Arnoga hairpin, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 28 OSM ways along the published GPX, 7 km, with 99% of the published line within 25 m of it.',
+        routeNumbers: 'From the lower car park on the Arnoga hairpin along the almost level dirt road on the left side of the valley, through Swiss stone pine, spruce and larch, to just beyond Paluetta; over a bridge with wooden sleepers to the right bank and gently up to the Baite dell’Orsa, a cluster of old summer huts in a clearing; on a well-trodden path through larches, with a few short climbs, to the Caricc farm (1,990 m); steeper from here, with a natural balcony halfway over the canyon of the Viola torrent; where the trees thin out the climb ends, with a wide view over the Val Dosdè, and the path runs level to the Rifugio Federico. Back the same way.',
+        mapPoints: 'Start at the published start; drinking water at km 0.2 (OSM nodes 7553509309).',
+        elevation: 'Official 7 km, 562 m up, 2 h (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Orobie Active). The stored line follows the published GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'in-Lombardia, the official tourism portal of Regione Lombardia, “Da Arnoga al Rifugio Federico” (itinerary by Orobie Active, with its GPX)',
+          'Comune di Valdidentro publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'ZSC IT2040012 Val Viola Bormina – Ghiacciaio di Cima dei Piazzi: DGR X/4429 of 30 November 2015, Allegato 2, Art. 4 (p. 272), visitors keep to the paths and dogs go on a lead under close watch; no free-roaming pets. No park, reserve or strict zone on the line (Regione Lombardia geoportal layers; the line is outside the Stelvio National Park)',
+          'OpenStreetMap ways along the published line (28 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 51,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A natural balcony over the Viola canyon on the steeper stretch above the Caricc farm: keep your dog close and on a short lead', 'Cattle graze the Val Viola in summer: keep your distance', 'Above 2,000 m the open stretch to the hut has no shade and storms build fast on summer afternoons'],
+      terrainType: 'Dirt road, then forest and meadow paths',
+      shadeDescription: 'About half shaded: the dirt road and the larch woods up to the Caricc farm are under trees; the last climb and the level stretch to the hut are open.',
+      terrainDescription: 'A one-way walk at about 1,800–2,140 m up the Val Viola, a side valley of the Valdidentro between Bormio and Livigno, through stone pine and larch forest to a hut with a wide view over the Val Dosdè. A summer walk: snow lies late up here.',
+      waterDescription: 'Drinking fountain at km 0.2; places to eat at the start and on the way.',
+      dogNotes: 'Valdidentro has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The Val Viola is a Natura 2000 site: keep your dog on a lead and on the path the whole way. Clean up after your dog.',
+      tips: 'Start at the lower car park on the Arnoga hairpin, on the road from Bormio to Livigno: 7 km and, as the portal lists, 562 m of climbing, about two hours to the Rifugio Federico, then the same way back. Walk it in summer and early autumn. Keep your dog on a lead the whole way: Valdidentro follows the national rule (1.5 m at most, muzzle carried) and the Val Viola is a Natura 2000 site where dogs stay on a lead and on the path. There is a fountain near the start and water and food at the hut.',
+      sourceLinks: [
+        { label: 'in-Lombardia, Da Arnoga al Rifugio Federico', url: 'https://www.in-lombardia.it/itinerari/da-arnoga-al-rifugio-federico' },
+        { label: 'in-Lombardia, Da Arnoga al Rifugio Federico: GPX', url: 'https://www.in-lombardia.it/sites/default/files/itinerari/gpx/169998/setNametrack62rfz70k32yn1dles47w7r4yl0pyjnph.gpx' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'Regione Lombardia, DGR X/4429/2015, Allegato 2 (site-specific conservation measures)', url: 'https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/dgr-4429-2015-allegato-2-%20misure-di-conservazione-sito-specifiche.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.458904, lng: 10.241593, label: 'The lower car park at the Arnoga hairpin, the published start' },
+      waterSources: [
+        { km: 0.2, lat: 46.4579825, lng: 10.2403387, osmId: 'node/7553509309', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.45909, lng: 10.242, osmId: 'way/119431806', name: 'Li Arnoga' },
+        { km: 7, lat: 46.42124, lng: 10.19775, osmId: 'way/119431803', name: 'Rifugio Federico Valgoi' }
+      ],
+      desc: 'A one-way walk up the Val Viola from Arnoga, between Bormio and Livigno, through stone pine and larch woods past the Baite dell’Orsa to the Rifugio Federico with its view over the Val Dosdè. The portal lists 7 km and 562 m of ascent.'
     }
   };
 

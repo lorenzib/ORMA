@@ -275,6 +275,23 @@
       }
     },
     {
+      "id": "bormio-da-arnoga-al-rifugio-federico",
+      "approvedReviewId": "commons-bormio-da-arnoga-al-rifugio-federico-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/bormio-da-arnoga-al-rifugio-federico-valdidentro.jpg",
+        "heroImage": "images/trails/bormio-da-arnoga-al-rifugio-federico-valdidentro.jpg",
+        "imageAlt": "Steep slopes of dark larch and pine forest in the Valdidentro with pale rocky mountains behind under a summer sky",
+        "imageCredit": "The Valdidentro towards Bormio from Arnoga",
+        "imageCreditText": "The Valdidentro towards Bormio from Arnoga by qwesy qwesy",
+        "imageCreator": "qwesy qwesy",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:View_direction_Bormio_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cadini",
       "approvedReviewId": "commons-cadini",
       "approvedAt": "2026-09-06T12:22:30.979Z",
