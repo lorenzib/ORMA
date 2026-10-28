@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-seceda-da-cristauta-pic",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 6.3,
+    "ascentM": 861,
+    "highestPointM": 2477,
+    "expectedDuration": "3.1 hours",
+    "difficulty": "Hard",
+    "shadePercent": 33
+  },
+  "trailhead": {
+    "lat": 46.566435,
+    "lng": 11.724621,
+    "label": "Cristauta car park, above Santa Cristina, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5876375,
+      "lng": 11.721831,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "At the Seceda top station the ridge path beyond runs along a sheer north face: keep your dog on a short lead there.",
+    "Long climb of about 860 m.",
+    "Cattle graze the Mastlé and Seceda pastures in summer.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
