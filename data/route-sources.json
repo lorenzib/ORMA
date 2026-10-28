@@ -570,6 +570,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
     },
+    "giudicarie-senter-dei-popi-madonna-del-lares": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/senter-dei-popi-madonna-del-lares",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Senter dei Popi - Madonna del Lares",
+      "quote": "Distanza 4,2 km · Durata 1:30 h · Salita 93 m · Discesa 92 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T01:00:00.000Z"
+    },
     "giudicarie-tione-bolbeno-madonna-del-lares": {
       "url": "https://www.campigliodolomiti.it/it/itinerari/tione-di-trento-bolbeno-madonna-del-lares",
       "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
@@ -1866,6 +1874,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
     },
+    "rendena-giro-del-belvedere-giustino": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/giro-del-belvedere",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Giro del Belvedere",
+      "quote": "Distanza 1,8 km · Durata 1:00 h · Salita 53 m · Discesa 53 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T01:00:00.000Z"
+    },
     "santa-maddalena": {
       "url": "https://www.odlesdolomites.com/en/activities/48ACC63FE1421483734B750F6788CED9",
       "publisher": "Tourismusgenossenschaft Odles",
@@ -2057,6 +2073,38 @@
       "quote": "Lunghezza 4.4 km · Durata 2:00 h · Salita 211 m · Discesa 352 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "valdisole-monclassico-presson-meridiane": {
+      "url": "https://www.visitvaldisole.it/it/activity/monclassicoepresson_ipaesidellemeridiane-15354",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Monclassico e Presson - I paesi delle Meridiane",
+      "quote": "Lunghezza 1.7 km · Durata 1:00 h · Salita 39 m · Discesa 38 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T01:00:00.000Z"
+    },
+    "valdisole-ortise-malga-stabli": {
+      "url": "https://www.visitvaldisole.it/it/activity/ortis___malgastabli-27663",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Ortisé - Malga Stabli",
+      "quote": "Lunghezza 7.2 km · Durata 2:25 h · Salita 342 m · Discesa 342 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T01:00:00.000Z"
+    },
+    "valdisole-passo-tonale-forte-mero": {
+      "url": "https://www.visitvaldisole.it/it/activity/passotonale_fortemero-38225",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Passo Tonale - Forte Mero",
+      "quote": "Lunghezza 3.7 km · Durata 2:30 h · Salita 31 m · Discesa 154 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T01:00:00.000Z"
+    },
+    "valdisole-passo-tonale-forte-mero-forte-zaccarana": {
+      "url": "https://www.visitvaldisole.it/it/activity/passotonalefortemeroefortezaccarana-38242",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Passo Tonale Forte Mero e Forte Zaccarana",
+      "quote": "Lunghezza 9.1 km · Durata 3:30 h · Salita 250 m · Discesa 250 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T01:00:00.000Z"
     },
     "valdisole-rifugio-stavel-denza": {
       "url": "https://www.visitvaldisole.it/it/activity/rifugiostavel__francescodenza__-10471",
