@@ -4,7 +4,7 @@
   "name": "Pragser Wildsee huts circuit",
   "version": "2026.10.28-beta.1",
   "generatedAt": "2026-10-28T01:29:54.567Z",
-  "scoringVersion": "1.6.0",
+  "scoringVersion": "1.7.0",
   "verificationStatus": "source-verified",
   "packageBytes": 442037,
   "packageBudgetBytes": 5242880,
