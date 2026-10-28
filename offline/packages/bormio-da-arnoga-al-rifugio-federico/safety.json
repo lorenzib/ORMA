@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "bormio-da-arnoga-al-rifugio-federico",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 7,
+    "ascentM": 562,
+    "highestPointM": 2131,
+    "expectedDuration": "2 hours",
+    "difficulty": "Hard",
+    "shadePercent": 51
+  },
+  "trailhead": {
+    "lat": 46.458904,
+    "lng": 10.241593,
+    "label": "The lower car park at the Arnoga hairpin, the published start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.4579825,
+      "lng": 10.2403387,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A natural balcony over the Viola canyon on the steeper stretch above the Caricc farm: keep your dog close and on a short lead.",
+    "Cattle graze the Val Viola in summer: keep your distance.",
+    "Above 2,000 m the open stretch to the hut has no shade and storms build fast on summer afternoons.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

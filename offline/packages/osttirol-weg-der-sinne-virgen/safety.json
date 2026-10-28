@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osttirol-weg-der-sinne-virgen",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.6,
+    "ascentM": 149,
+    "highestPointM": 1197,
+    "expectedDuration": "1.5 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 0.4
+  },
+  "trailhead": {
+    "lat": 47.003295,
+    "lng": 12.457538,
+    "label": "the tourist office in the centre of Virgen, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 47.0008662,
+      "lng": 12.456244,
+      "label": "Drinking-water tap in Virgen",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Wooden bridges and a short flight of steps.",
+    "A water playground and the Mellitzbach beside the path: keep your dog on the path and out of the play area.",
+    "Village lanes at the start and finish.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
