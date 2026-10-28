@@ -2713,6 +2713,30 @@
       "quote": "Distanza 7,6 km · Durata 3:50 h · Salita 737 m · Discesa 739 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "lesachtal-spazierweg-maria-luggau-gailweg": {
+      "url": "https://www.nassfeld.at/de/Tour/Spazierweg-Maria-Luggau-Gailweg_t_27590",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Spazierweg Maria Luggau – Gailweg",
+      "quote": "1.6 km Strecke · 0.5 h Dauer · 76 hm Aufstieg · 76 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "lesachtal-tuffbad": {
+      "url": "https://www.nassfeld.at/de/Tour/Wander-und-Spazierweg-Tuffbad_t_27597",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Wander- und Spazierweg Tuffbad",
+      "quote": "3 km Strecke · 0.9 h Dauer · 133 hm Aufstieg · 136 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "gailtal-almkaese-sonnenalpe": {
+      "url": "https://www.nassfeld.at/de/Tour/Slow-Food-Gailtaler-Almkaese-ab-Sonnenalpe_t_54897",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Slow Food | Gailtaler Almkäse ab Sonnenalpe",
+      "quote": "8.7 km Strecke · 2.5 h Dauer · 295 hm Aufstieg · 300 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
     }
   }
 }

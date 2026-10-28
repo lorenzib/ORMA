@@ -52193,6 +52193,187 @@
         { km: 2.5, lat: 46.34738, lng: 12.79926, osmId: 'way/36024699', name: 'Casera Monte Rest' }
       ],
       desc: 'A panoramic climb from Passo Rest past Casera Rest to the summit of Monte Rest along a wide grassy crest, with views over the Carnic Prealps. PromoTurismoFVG lists 7.6 km and 737 m of ascent.'
+    },
+    'lesachtal-spazierweg-maria-luggau-gailweg': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 1, the first Carinthian walks).
+      // NLW Tourismus’s walk “Spazierweg Maria Luggau – Gailweg” (nassfeld.at), drawn on 11 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Lesachtal. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Maria Luggau – Gail',
+      distance: 1.6,
+      elevation: 76,
+      hours: '0.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from below the pilgrimage church in Maria Luggau west through the village, down to the Gail, along the river path, and up a woodland path back to the village before the Moos bridge.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The main street of Maria Luggau at the start of the loop, in May (Helmlechner on Wikimedia Commons, CC0), 8 m from the line.',
+        route: 'Official loop 1.6 km from below the pilgrimage church in Maria Luggau, as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 11 OSM ways along the board’s published line, 1.6 km.',
+        routeNumbers: 'From below the church in Maria Luggau west along the Gailtalstraße, left down to the Gail, left along the Gailweg by the river, and left again up the woodland path before the Moos bridge back to the start.',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line; places to eat and drink from OSM listed below.',
+        elevation: 'Official 1.6 km, 76 m up and 76 m down, about half an hour (NLW Tourismus, nassfeld.at); our line runs 1,105–1,180 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Spazierweg Maria Luggau – Gailweg (nassfeld.at, with its Outdooractive line)',
+          'Lesachtal has no lead order of its own (RIS, Carinthian municipal law: only its dog-tax ordinance), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): No national park, Natura 2000 site or nature reserve on or within 300 m of the line (Land Kärnten INSPIRE protected sites); it passes a protected group of six beeches (natural monument) at Maria Luggau.',
+          'OpenStreetMap ways along the board’s line (11 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.25,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 300 m on the Gailtalstraße (B111) through Maria Luggau, signed 50 km/h: keep your dog close on a short lead', 'The Gail runs fast beside the path: keep your dog out of the water'],
+      terrainType: 'Village road, a farm track and a footpath along the Gail',
+      shadeDescription: 'Mostly open meadows and the village, with a short wooded stretch on the path back up from the river.',
+      terrainDescription: 'A short loop at 1,100–1,180 m from Maria Luggau down to the Gail on a village road, a farm track and a narrow footpath back up through the wood.',
+      waterDescription: 'No drinking fountain is mapped on the line; inns in Maria Luggau at the start.',
+      dogNotes: 'Lesachtal has no lead order of its own (RIS, Carinthian municipal law: only its dog-tax ordinance); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49).',
+      tips: 'Start at below the pilgrimage church in Maria Luggau: 1.6 km and about 76 m of climbing, about half an hour. The loop starts on the main road through Maria Luggau, so keep your dog on a short lead there. Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Spazierweg Maria Luggau – Gailweg', url: 'https://www.nassfeld.at/de/Tour/Spazierweg-Maria-Luggau-Gailweg_t_27590' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.704889, lng: 12.73549, label: 'below the pilgrimage church in Maria Luggau, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.70528, lng: 12.73773, osmId: 'node/1936567964', name: 'Gasthof Paternwirt' },
+        { km: 0, lat: 46.70562, lng: 12.73474, osmId: 'node/1936568579', name: 'Gasthof Bäckwirt' },
+        { km: 1, lat: 46.70396, lng: 12.74142, osmId: 'node/3281983667', name: 'Gasthof Luggau' }
+      ],
+      desc: 'A short loop from the pilgrimage village of Maria Luggau down to the Gail and along the river. The board lists 1.6 km and 76 m of ascent.'
+    },
+    'lesachtal-tuffbad': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 1, the first Carinthian walks).
+      // NLW Tourismus’s walk “Wander- und Spazierweg Tuffbad” (nassfeld.at), drawn on 8 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Lesachtal. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'St. Lorenzen im Lesachtal – Tuffbad',
+      distance: 3,
+      elevation: 133,
+      hours: '0.9',
+      routeShape: 'loop',
+      routeShapeNote: 'A small loop from the car park below the Tuffbad inn up the valley on an alpine track, along a forest road through the woods above the Tuffbad with views down the valley, and back on another alpine track.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Tuffbad inn at the start of the loop, in May (Johann Jaritz on Wikimedia Commons, CC BY-SA 3.0 AT), 51 m from the line.',
+        route: 'Official loop 3 km from the car park below the Tuffbad, above St. Lorenzen im Lesachtal, as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 8 OSM ways along the board’s published line, 3 km.',
+        routeNumbers: 'From the car park below the Tuffbad past the inn up the valley on the alpine track (229), right onto the forest road through the woods above the Tuffbad, and back down on an alpine path to the start.',
+        mapPoints: 'Start at the board’s start; drinking water from OSM listed below.',
+        elevation: 'Official 3 km, 133 m up and 136 m down, just under an hour (NLW Tourismus, nassfeld.at); our line runs 1,270–1,409 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Wander- und Spazierweg Tuffbad (nassfeld.at, with its Outdooractive line)',
+          'Lesachtal has no lead order of its own (RIS, Carinthian municipal law: only its dog-tax ordinance), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): No national park, Natura 2000 site or nature reserve on or within 300 m of the line (Land Kärnten INSPIRE protected sites).',
+          'OpenStreetMap ways along the board’s line (8 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.5,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Alpine tracks and the forest road are open to farm and forestry vehicles', 'Cattle may graze the alpine meadows in summer: short lead, give the herd room'],
+      terrainType: 'Alpine tracks and a forest road',
+      shadeDescription: 'About half on the forest road through the woods; the alpine tracks by the Tuffbad are open.',
+      terrainDescription: 'A small loop at 1,270–1,410 m on gravel alpine tracks, a forest road and a short path above the Tuffbad.',
+      waterDescription: 'A drinking-water tap by the Tuffbad near the start; the Tuffbad inn serves food and drink.',
+      dogNotes: 'Lesachtal has no lead order of its own (RIS, Carinthian municipal law: only its dog-tax ordinance); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Cattle graze the alpine pastures in summer: keep the lead short and give the herd room; if cattle threaten, let the dog go and move away. Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49).',
+      tips: 'Start at the car park below the Tuffbad, above St. Lorenzen im Lesachtal: 3 km and about 133 m of climbing, just under an hour. Carinthian law asks for a lead at all times in open country, and cattle may be on the alpine meadows, so keep your dog on a short lead throughout. Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Wander- und Spazierweg Tuffbad', url: 'https://www.nassfeld.at/de/Tour/Wander-und-Spazierweg-Tuffbad_t_27597' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.72335, lng: 12.766836, label: 'the car park below the Tuffbad, above St. Lorenzen im Lesachtal, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.7241421, lng: 12.7652903, osmId: 'node/12142912362', label: 'Drinking-water tap by the Tuffbad' }
+      ],
+      rifugi: [
+
+      ],
+      desc: 'A small loop through the woods above the Tuffbad, an old spa inn at the head of a side valley above St. Lorenzen im Lesachtal. The board lists 3 km and 133 m of ascent.'
+    },
+    'gailtal-almkaese-sonnenalpe': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 1, the first Carinthian walks).
+      // NLW Tourismus’s walk “Slow Food | Gailtaler Almkäse ab Sonnenalpe” (nassfeld.at), drawn on 33 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Hermagor-Pressegger See. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Sonnenalpe Nassfeld – cheese alps',
+      distance: 8.7,
+      elevation: 295,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Sonnenalpe Nassfeld on the Nassfeld pass road to two alpine dairies that make Gailtaler Almkäse, on alp roads, tracks and paths across the summer pastures, and back to the Sonnenalpe.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The meadows above the Sonnenalpe Nassfeld at the start, in July (Klaftan on Wikimedia Commons, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official loop 8.7 km from the Sonnenalpe Nassfeld on the Nassfeld pass road (B90), as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 33 OSM ways along the board’s published line, 8.6 km.',
+        routeNumbers: 'From the Sonnenalpe Nassfeld along the Tressdorfer Almweg and the alp tracks and paths across the pastures to two cheese alps, and back to the Sonnenalpe, with short stretches beside the Nassfeld pass road (B90).',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line.',
+        elevation: 'Official 8.7 km, 295 m up and 300 m down, about 2:30 h (NLW Tourismus, nassfeld.at); our line runs 1,505–1,713 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Slow Food | Gailtaler Almkäse ab Sonnenalpe (nassfeld.at, with its Outdooractive line)',
+          'Hermagor-Pressegger See has no lead order of its own (RIS, Carinthian municipal law: only its dog-tax, market and cemetery ordinances), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): No national park, Natura 2000 site or nature reserve on or within 300 m of the line (Land Kärnten INSPIRE protected sites). The line stays in Austria.',
+          'OpenStreetMap ways along the board’s line (33 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.45,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 500 m beside the Nassfeld pass road (B90) at the Sonnenalpe, signed 50 km/h: keep your dog close on a short lead', 'Grazing cattle on the alpine pastures in summer: short lead, give the herd room', 'A stretch shared with mountain bikes on the Easy Way singletrail: keep your dog close', 'Paved alp roads open to traffic to the alps'],
+      terrainType: 'Paved alp roads, gravel tracks and pebble paths across the alpine pastures',
+      shadeDescription: 'Just under half in spruce and larch woods; the alpine pastures and the Sonnenalpe are open.',
+      terrainDescription: 'A loop at 1,500–1,710 m across the summer pastures of the Nassfeld, on paved alp roads, gravel tracks and pebble paths.',
+      waterDescription: 'No drinking fountain is mapped on the line; the two cheese alps and the Sonnenalpe serve food and drink in summer.',
+      dogNotes: 'Hermagor-Pressegger See has no lead order of its own (RIS, Carinthian municipal law: only its dog-tax, market and cemetery ordinances); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Cattle graze the alpine pastures in summer: keep the lead short and give the herd room; if cattle threaten, let the dog go and move away. Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49).',
+      tips: 'Start at the Sonnenalpe Nassfeld on the Nassfeld pass road (B90): 8.7 km and about 295 m of climbing, about 2:30 h. The loop crosses grazed alpine pastures and Carinthian law asks for a lead at all times in open country, so keep your dog on a short lead throughout. The Sonnenalpe can be reached by car over the Nassfeld pass road (B90). Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Slow Food | Gailtaler Almkäse ab Sonnenalpe', url: 'https://www.nassfeld.at/de/Tour/Slow-Food-Gailtaler-Almkaese-ab-Sonnenalpe_t_54897' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.564074, lng: 13.272505, label: 'the Sonnenalpe Nassfeld on the Nassfeld pass road (B90), the board’s start' },
+      waterSources: [],
+      rifugi: [
+
+      ],
+      desc: 'A loop from the Sonnenalpe Nassfeld across the summer pastures to two alpine dairies that make Gailtaler Almkäse. The board lists 8.7 km and 295 m of ascent.'
     }
   };
 

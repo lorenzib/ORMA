@@ -1584,6 +1584,23 @@
       }
     },
     {
+      "id": "gailtal-almkaese-sonnenalpe",
+      "approvedReviewId": "commons-gailtal-almkaese-sonnenalpe-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/gailtal-almkaese-sonnenalpe-meadows.jpg",
+        "heroImage": "images/trails/gailtal-almkaese-sonnenalpe-meadows.jpg",
+        "imageAlt": "Green alpine meadows below spruce forest under a grey summer sky at the Sonnenalpe Nassfeld, with a small lift hut and a gravel track",
+        "imageCredit": "Summer meadows at the Sonnenalpe Nassfeld",
+        "imageCreditText": "Summer meadows at the Sonnenalpe Nassfeld by Klaftan",
+        "imageCreator": "Klaftan",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Nassfeld_-_Umgebung_(1).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "geotrail-bulla",
       "approvedReviewId": "commons-geotrail-bulla-on-route",
       "approvedAt": "2026-10-23T20:00:00.000Z",
@@ -1868,6 +1885,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:View_from_viewpoint_of_Scioscia.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lesachtal-spazierweg-maria-luggau-gailweg",
+      "approvedReviewId": "commons-lesachtal-spazierweg-maria-luggau-gailweg-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lesachtal-gailweg-maria-luggau-village.jpg",
+        "heroImage": "images/trails/lesachtal-gailweg-maria-luggau-village.jpg",
+        "imageAlt": "The main street of Maria Luggau with an old inn and village houses below steep green wooded slopes, in late spring",
+        "imageCredit": "Maria Luggau in the Lesachtal",
+        "imageCreditText": "Maria Luggau in the Lesachtal by Helmlechner",
+        "imageCreator": "Helmlechner",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Maria_Luggau.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lesachtal-tuffbad",
+      "approvedReviewId": "commons-lesachtal-tuffbad-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lesachtal-tuffbad-inn.jpg",
+        "heroImage": "images/trails/lesachtal-tuffbad-inn.jpg",
+        "imageAlt": "A large wooden alpine inn with balconies and parasols beside a lane, below grey rocky peaks, at the Tuffbad in the Lesachtal in late spring",
+        "imageCredit": "The Tuffbad in the Lesachtal",
+        "imageCreditText": "The Tuffbad in the Lesachtal by Johann Jaritz",
+        "imageCreator": "Johann Jaritz",
+        "imageLicence": "CC BY-SA 3.0 AT",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lesachtal_Tuffbad_23052007_03.jpg",
         "imageSourceType": "licensed-source"
       }
     },

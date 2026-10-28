@@ -148,9 +148,12 @@ describe('the existing-site verification boundary',()=>{
     // Sompdogna lake, Rifugio Calvi above Sappada, Casera Canin, the Malga Confin loop
     // on Monte Plauris, Monte Talm, the Casera Vas loop from Frassenetto and Monte
     // Rest.
+    // Then 382 and 380 with the first Carinthian walks: the Gail river walk at Maria
+    // Luggau, the Tuffbad loop in the Lesachtal and the alpine cheese walk from the
+    // Sonnenalpe Nassfeld.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(379);
-    expect(currentSiteTrails(catalogue)).toHaveLength(377);
+    expect(catalogue).toHaveLength(382);
+    expect(currentSiteTrails(catalogue)).toHaveLength(380);
   });
 
   test('requires the artwork the public trail page needs',()=>{
