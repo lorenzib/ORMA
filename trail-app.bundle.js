@@ -50656,9 +50656,11 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'An easy loop from La Villa to the small lake Lech da Sompunt below the Sas dla Crusc, down to Pedraces and back along the river. The board lists 7.5 km and 172 m of ascent.'
     },
     'altabadia-escursione-corvara-colfosco': {
+      // Correction 28 October 2026: Corvara does publish a dog regulation (Gemeinderat Nr. 17, 27.06.2011);
+      // the record first said it had none. Its rules are the same as the national rule plus no farmed meadows.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 1).
       // The Alta Badia tourist board’s walk “Escursione Corvara - Colfosco”, drawn on 32 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Communes: Corvara (no regulation, national rule).
+      // (data/board-line-routes.geojson). Communes: Corvara (own dog regulation, lead and muzzle).
       // No Natura 2000 site, park or natural monument on the line (Province of Bolzano landscape-plan layers).
       // The stored line follows the board’s own Outdooractive tour.
       area: 'Corvara – Colfosco, Corvara in Badia',
@@ -50683,7 +50685,7 @@ function effectiveOverrides(profile, adjustOverride){
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Società Cooperativa Turistica Alta Badia, Escursione Corvara - Colfosco (altabadia.org and its Outdooractive tour)',
-          'Comune di Corvara in Badia publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde Corvara / Comune di Corvara in Badia, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 17, 27.06.2011), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs on farmed meadows in the growing season',
           'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line, only landscape protection zones, which set no rule on dogs',
           'OpenStreetMap ways along the board’s line (32 ways), road, surface, woodland and water data'
         ],
@@ -50697,12 +50699,12 @@ function effectiveOverrides(profile, adjustOverride){
       shadeDescription: 'Mostly open: about a tenth of the loop is under trees; the lanes and the pastures are in the sun.',
       terrainDescription: 'A short loop at 1,520–1,640 m between Corvara and Colfosco at the foot of the Sella and the Sassongher, on lanes and meadow paths.',
       waterDescription: 'Drinking fountains at the start, at km 0.4, at km 2.3 and at km 3; places to eat at the start and on the way.',
-      dogNotes: 'Corvara has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
-      tips: 'Start at the Boé gondola car park in Corvara: 4.8 km, about 130 m of climbing, an hour and twenty minutes. Corvara has no dog regulation of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m and carry a muzzle. Keep your distance from cattle on the pastures.',
+      dogNotes: 'Corvara requires a lead no longer than 1.5 m on all public ground and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in the fountains of the village centre. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start at the Boé gondola car park in Corvara: 4.8 km, about 130 m of climbing, an hour and twenty minutes. In Corvara your dog must be on a lead of at most 1.5 m and you must carry a muzzle; keep off the hay meadows. Keep your distance from cattle on the pastures.',
       sourceLinks: [
         { label: 'Alta Badia, Escursione Corvara - Colfosco', url: 'https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-colfosco' },
         { label: 'Outdooractive, Escursione Corvara - Colfosco (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/810055282' },
-        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Corvara, dog regulation (PDF)', url: 'https://www.comune.corvara.bz.it/system/web/GetDocument.ashx?cts=1536582119&fileId=1025436' },
         { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
         { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
@@ -50790,9 +50792,11 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'The artists’ path from La Villa along the San Cassiano stream to San Cassiano and on through meadows to Armentarola. The board lists 5.2 km and 245 m of ascent, one way.'
     },
     'altabadia-escursione-corvara-la-villa': {
+      // Correction 28 October 2026: Corvara does publish a dog regulation (Gemeinderat Nr. 17, 27.06.2011);
+      // the record first said it had none. Its rules are the same as the national rule plus no farmed meadows.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 1).
       // The Alta Badia tourist board’s walk “Escursione Corvara - La Villa”, drawn on 34 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Communes: Corvara (no regulation, national rule); Badia (own dog regulation, lead and muzzle).
+      // (data/board-line-routes.geojson). Communes: Corvara (own dog regulation, lead and muzzle); Badia (own dog regulation, lead and muzzle).
       // No Natura 2000 site, park or natural monument on the line (Province of Bolzano landscape-plan layers).
       // The stored line follows the board’s own Outdooractive tour.
       area: 'Corvara – La Villa, along the Gadera',
@@ -50818,7 +50822,7 @@ function effectiveOverrides(profile, adjustOverride){
         sources: [
           'Società Cooperativa Turistica Alta Badia, Escursione Corvara - La Villa (altabadia.org and its Outdooractive tour)',
           'Gemeinde Abtei / Comune di Badia, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 7, 22.02.2010), Art. 4 and 8: a lead of at most 1.5 m everywhere and a muzzle carried; no dogs on farmed meadows in the growing season',
-          'Comune di Corvara in Badia publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde Corvara / Comune di Corvara in Badia, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 17, 27.06.2011), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs on farmed meadows in the growing season',
           'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line, only landscape protection zones, which set no rule on dogs',
           'OpenStreetMap ways along the board’s line (34 ways), road, surface, woodland and water data'
         ],
@@ -50832,13 +50836,13 @@ function effectiveOverrides(profile, adjustOverride){
       shadeDescription: 'Partly shaded: about two fifths runs under trees along the stream.',
       terrainDescription: 'An almost flat walk down the Val Badia at 1,400–1,540 m from Corvara to La Villa, beside the stream on the “Tru dl’ega”.',
       waterDescription: 'Drinking fountains at the start, at km 0.6, at km 4.5 and at km 4.9; places to eat at the start and on the way.',
-      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. Corvara has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
-      tips: 'Start at the Boé gondola car park in Corvara: 5.1 km one way, mostly gently downhill, an hour and a quarter, then come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle: that is the national rule in Corvara and Badia’s own rule in La Villa. Keep your dog out of the stream when it runs high.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. Corvara requires a lead no longer than 1.5 m on all public ground and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in the fountains of the village centre. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start at the Boé gondola car park in Corvara: 5.1 km one way, mostly gently downhill, an hour and a quarter, then come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle: both Corvara and Badia require it. Keep your dog out of the stream when it runs high.',
       sourceLinks: [
         { label: 'Alta Badia, Escursione Corvara - La Villa', url: 'https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-la-villa' },
         { label: 'Outdooractive, Escursione Corvara - La Villa (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/810055884' },
         { label: 'Gemeinde Abtei, dog regulation', url: 'https://www.gemeinde.abtei.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_von_Hunden' },
-        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Corvara, dog regulation (PDF)', url: 'https://www.comune.corvara.bz.it/system/web/GetDocument.ashx?cts=1536582119&fileId=1025436' },
         { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
         { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
@@ -51052,9 +51056,11 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A long loop from La Val past the chapel of Santa Barbara and the Rit lake to the high Rit meadows and the Ütia da Rit, and back through Spëscia. The board lists 14.1 km and 728 m of ascent.'
     },
     'altabadia-da-san-cassiano-al-pralongia-fino-a-corvara': {
+      // Correction 28 October 2026: Corvara does publish a dog regulation (Gemeinderat Nr. 17, 27.06.2011);
+      // the record first said it had none. Its rules are the same as the national rule plus no farmed meadows.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 3).
       // The Alta Badia tourist board’s walk “Da San Cassiano al Pralongiá fino a Corvara”, drawn on 26 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Communes: Corvara (no regulation, national rule); Badia (own dog regulation, lead and muzzle); Livinallongo del Col di Lana (no regulation, national rule).
+      // (data/board-line-routes.geojson). Communes: Corvara (own dog regulation, lead and muzzle); Badia (own dog regulation, lead and muzzle); Livinallongo del Col di Lana (no regulation, national rule).
       // No Natura 2000 site or park on the line (Province of Bolzano layers; the Veneto layer shows no site on the 2% in Livinallongo).
       // The stored line follows the board’s own Outdooractive tour.
       area: 'Piz Sorega – Bioch – Pralongiá – Corvara',
@@ -51080,7 +51086,7 @@ function effectiveOverrides(profile, adjustOverride){
         sources: [
           'Società Cooperativa Turistica Alta Badia, Da San Cassiano al Pralongiá fino a Corvara (altabadia.org and its Outdooractive tour)',
           'Gemeinde Abtei / Comune di Badia, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 7, 22.02.2010), Art. 4 and 8: a lead of at most 1.5 m everywhere and a muzzle carried; no dogs on farmed meadows in the growing season',
-          'Comune di Corvara in Badia publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde Corvara / Comune di Corvara in Badia, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 17, 27.06.2011), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs on farmed meadows in the growing season',
           'Comune di Livinallongo del Col di Lana publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
           'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line',
           'Regione del Veneto Natura 2000 layer (rv:c1101121_natura_2000): no site on the 2% of the line in Livinallongo (positive control: the Sorapis lake falls in IT3230081)',
@@ -51096,12 +51102,13 @@ function effectiveOverrides(profile, adjustOverride){
       shadeDescription: 'Little shade: about a seventh of the walk is near trees, mostly on the descent to Corvara; the Pralongiá plateau is open grassland.',
       terrainDescription: 'A high, mostly downhill walk at 1,555–2,130 m across the Pralongiá plateau between San Cassiano and Corvara, with wide views of the Sella, the Marmolada and the Sas dla Crusc.',
       waterDescription: 'Drinking fountains at km 2.8, at km 3.3, at km 4.4 and at km 6.1; places to eat at the start and on the way.',
-      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. Corvara has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
-      tips: 'Ride the Piz Sorega gondola up from San Cassiano (closed cabins) and walk to Corvara: 8.7 km, about 130 m up and 580 m down, two hours and forty minutes. Keep your dog on a lead of at most 1.5 m and carry a muzzle on the whole walk: the national rule in Corvara and Livinallongo, and Badia’s own rule on its stretch. There is little shade: carry water for your dog and set out early. Plan your way back to San Cassiano: local buses link the villages.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. Corvara requires a lead no longer than 1.5 m on all public ground and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in the fountains of the village centre. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Ride the Piz Sorega gondola up from San Cassiano (closed cabins) and walk to Corvara: 8.7 km, about 130 m up and 580 m down, two hours and forty minutes. Keep your dog on a lead of at most 1.5 m and carry a muzzle on the whole walk: Corvara and Badia require it, and the national rule says the same in Livinallongo. There is little shade: carry water for your dog and set out early. Plan your way back to San Cassiano: local buses link the villages.',
       sourceLinks: [
         { label: 'Alta Badia, Da San Cassiano al Pralongiá fino a Corvara', url: 'https://www.altabadia.org/it/tour/oadetail/oa/da-san-cassiano-al-pralongia-fino-a-corvara' },
         { label: 'Outdooractive, Da San Cassiano al Pralongiá fino a Corvara (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/17276451' },
         { label: 'Gemeinde Abtei, dog regulation', url: 'https://www.gemeinde.abtei.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Gemeinde Corvara, dog regulation (PDF)', url: 'https://www.comune.corvara.bz.it/system/web/GetDocument.ashx?cts=1536582119&fileId=1025436' },
         { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
         { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
         { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
@@ -51124,9 +51131,11 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A high walk from the top of the Piz Sorega gondola across the Pralongiá plateau past the Bioch hut and the Pralongiá inn, and down on foot to Corvara. The board lists 8.7 km, 128 m up and 581 m down.'
     },
     'altabadia-passeggiata-borest-cascate-del-pisciadu': {
+      // Correction 28 October 2026: Corvara does publish a dog regulation (Gemeinderat Nr. 17, 27.06.2011);
+      // the record first said it had none. Its rules are the same as the national rule plus no farmed meadows.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 3).
       // The Alta Badia tourist board’s walk “Passeggiata Borest - cascate del Pisciadú”, drawn on 12 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Communes: Corvara (no regulation, national rule).
+      // (data/board-line-routes.geojson). Communes: Corvara (own dog regulation, lead and muzzle).
       // No Natura 2000 site or park; 38% is in the Sella group landscape protection area, which limits building and land changes, not dogs.
       // The stored line follows the board’s own Outdooractive tour.
       area: 'Corvara – Rü de Pisciadú – Pisciadú waterfall, Corvara in Badia',
@@ -51151,7 +51160,7 @@ function effectiveOverrides(profile, adjustOverride){
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Società Cooperativa Turistica Alta Badia, Passeggiata Borest - cascate del Pisciadú (altabadia.org and its Outdooractive tour)',
-          'Comune di Corvara in Badia publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde Corvara / Comune di Corvara in Badia, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 17, 27.06.2011), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs on farmed meadows in the growing season',
           'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park or natural monument on the line; about 38% is in the Crëps dl Sela / Sellagruppe landscape protection area, whose rules under the landscape law (LP 16/1970) cover building and changes to the land and set no rule on dogs',
           'OpenStreetMap ways along the board’s line (12 ways), road, surface, woodland and water data'
         ],
@@ -51165,12 +51174,12 @@ function effectiveOverrides(profile, adjustOverride){
       shadeDescription: 'Mostly shaded: about three fifths runs through larch and spruce beside the stream.',
       terrainDescription: 'A short walk at 1,530–1,720 m from Corvara up the Rü de Pisciadú stream to a waterfall at the foot of the Sella group, through forest and a wide meadow of boulders and larches.',
       waterDescription: 'Drinking fountains at the start, at km 0.5, at km 1.3 and at km 2.2; places to eat at the start.',
-      dogNotes: 'Corvara has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
-      tips: 'Start at the Boé gondola car park in Corvara: 3.7 km and about 200 m of climbing one way, an hour and ten minutes to the waterfall, then the same way back. Corvara has no dog regulation of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m and carry a muzzle. Keep your dog out of the stream, which runs fast after rain.',
+      dogNotes: 'Corvara requires a lead no longer than 1.5 m on all public ground and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in the fountains of the village centre. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start at the Boé gondola car park in Corvara: 3.7 km and about 200 m of climbing one way, an hour and ten minutes to the waterfall, then the same way back. In Corvara your dog must be on a lead of at most 1.5 m and you must carry a muzzle; keep off the hay meadows. Keep your dog out of the stream, which runs fast after rain.',
       sourceLinks: [
         { label: 'Alta Badia, Passeggiata Borest - cascate del Pisciadú', url: 'https://www.altabadia.org/it/tour/oadetail/oa/passeggiata-borest-cascate-del-pisciadu' },
         { label: 'Outdooractive, Passeggiata Borest - cascate del Pisciadú (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/111288236' },
-        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Corvara, dog regulation (PDF)', url: 'https://www.comune.corvara.bz.it/system/web/GetDocument.ashx?cts=1536582119&fileId=1025436' },
         { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
         { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
