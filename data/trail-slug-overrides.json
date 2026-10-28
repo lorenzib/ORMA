@@ -1258,6 +1258,51 @@
       "name": "Alpine cheese walk, Sonnenalpe Nassfeld",
       "slug": "alpine-cheese-walk-sonnenalpe-nassfeld",
       "gloss": "the loop to two Gailtal cheese alps from the Sonnenalpe Nassfeld"
+    },
+    "weissensee-nordic-6-rothns-bichl": {
+      "name": "Rothn’s Bichl loop, Weissensee",
+      "slug": "rothns-bichl-loop-weissensee",
+      "gloss": "the Nordic walking loop through the woods south of Techendorf"
+    },
+    "weissensee-nordic-5-genoesns-bruendl": {
+      "name": "Genösn’s Bründl loop, Weissensee",
+      "slug": "genoesns-bruendl-loop-weissensee",
+      "gloss": "the short Nordic walking loop into the woods south of Techendorf"
+    },
+    "weissensee-nordic-7-franz-josephs-hoehe": {
+      "name": "Franz-Josephs-Höhe loop, Weissensee",
+      "slug": "franz-josephs-hoehe-loop-weissensee",
+      "gloss": "the longer Nordic walking loop through the woods above the south shore"
+    },
+    "weissensee-nordic-2-urschitz": {
+      "name": "Urschitz loop, Weissensee",
+      "slug": "urschitz-loop-weissensee",
+      "gloss": "the Nordic walking loop on the tracks and woodland paths above Gatschach"
+    },
+    "weissensee-nordic-8-naggler-alm": {
+      "name": "Climb to the Naggler Alm, Weissensee",
+      "slug": "naggler-alm-climb-weissensee",
+      "gloss": "the steep Nordic walking climb from Techendorf to the Naggler Alm"
+    },
+    "weissensee-techendorf-tschabitscher-kreuzwirt": {
+      "name": "Techendorf to the Kreuzwirt, Weissensee",
+      "slug": "techendorf-kreuzwirt-walk-weissensee",
+      "gloss": "the walk above the north shore from Techendorf past the Tschabitscher farm to the Kreuzwirt"
+    },
+    "weissensee-slow-trail": {
+      "name": "Slow Trail Weissensee",
+      "slug": "slow-trail-weissensee",
+      "gloss": "the quiet lakeside path from the Ronacherfels to the east end of the lake"
+    },
+    "weissensee-ortsee-ronacherfels": {
+      "name": "Neusach to the east shore by the Kleine Steinwand, Weissensee",
+      "slug": "neusach-east-shore-lakeside-walk-weissensee",
+      "gloss": "the lakeside walk from Neusach past the Ronacherfels and the Kleine Steinwand to the east end"
+    },
+    "weissensee-wasserleben": {
+      "name": "Was(s)erleben nature trail, Weissensee east shore",
+      "slug": "wasserleben-nature-trail-weissensee",
+      "gloss": "the nature park’s short water trail at the east end of the lake"
     }
   }
 }

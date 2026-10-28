@@ -6382,6 +6382,159 @@
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villn%C3%B6%C3%9F_looking_west.jpg",
         "imageSourceType": "licensed-source"
       }
+    },
+    {
+      "id": "weissensee-nordic-2-urschitz",
+      "approvedReviewId": "commons-weissensee-nordic-2-urschitz-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/weissensee-gebanzkogel-meadow.jpg",
+        "heroImage": "images/trails/weissensee-gebanzkogel-meadow.jpg",
+        "imageAlt": "A paved path beside a mown green meadow below the wooded Gebanzkogel at Gatschach, with forested mountains behind, in early summer",
+        "imageCredit": "Meadow path below the Gebanzkogel at the Weissensee",
+        "imageCreditText": "Meadow path below the Gebanzkogel at the Weissensee by Aidexxx",
+        "imageCreator": "Aidexxx",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Weißensee_(Kärnten)_Gebanzkogel_Naturdenkmal_001.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "weissensee-nordic-5-genoesns-bruendl",
+      "approvedReviewId": "commons-weissensee-nordic-5-genoesns-bruendl-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/weissensee-techendorf-autumn-jetty.jpg",
+        "heroImage": "images/trails/weissensee-techendorf-autumn-jetty.jpg",
+        "imageAlt": "An old wooden jetty and golden autumn reeds on the clear blue Weissensee at Techendorf, with wooded slopes behind",
+        "imageCredit": "A jetty on the Weissensee at Techendorf in autumn",
+        "imageCreditText": "A jetty on the Weissensee at Techendorf in autumn by Fillei S Photos For A Moment Of Nostalgia",
+        "imageCreator": "Fillei S Photos For A Moment Of Nostalgia",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Autumn_Feeling_(181795549).jpeg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "weissensee-nordic-6-rothns-bichl",
+      "approvedReviewId": "commons-weissensee-nordic-6-rothns-bichl-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/weissensee-techendorf-south-shore.jpg",
+        "heroImage": "images/trails/weissensee-techendorf-south-shore.jpg",
+        "imageAlt": "Wooden boathouses and a jetty on the clear green Weissensee at Techendorf, below wooded mountains, on a summer day",
+        "imageCredit": "The south shore of the Weissensee at Techendorf",
+        "imageCreditText": "The south shore of the Weissensee at Techendorf by Joadl",
+        "imageCreator": "Joadl",
+        "imageLicence": "CC BY-SA 3.0 AT",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Weissensee_Kärnten_Techendorf_Südufer_2013_07a.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "weissensee-nordic-7-franz-josephs-hoehe",
+      "approvedReviewId": "commons-weissensee-nordic-7-franz-josephs-hoehe-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/weissensee-west-from-techendorf.jpg",
+        "heroImage": "images/trails/weissensee-west-from-techendorf.jpg",
+        "imageAlt": "The western Weissensee seen from the bridge at Techendorf, with the village and wooded slopes on either shore, on a bright summer evening",
+        "imageCredit": "The western Weissensee from Techendorf",
+        "imageCreditText": "The western Weissensee from Techendorf by Prunk",
+        "imageCreator": "Prunk",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Weissensee-West.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "weissensee-nordic-8-naggler-alm",
+      "approvedReviewId": "commons-weissensee-nordic-8-naggler-alm-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/weissensee-view-below-naggler-alm.jpg",
+        "heroImage": "images/trails/weissensee-view-below-naggler-alm.jpg",
+        "imageAlt": "The turquoise Weissensee and the village on its north shore seen from the wooded slope below the Naggler Alm, in summer",
+        "imageCredit": "The Weissensee from the slope below the Naggler Alm",
+        "imageCreditText": "The Weissensee from the slope below the Naggler Alm by Löwe 48",
+        "imageCreator": "Löwe 48",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Weißensee_-_Gailtaler_Alpen_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "weissensee-ortsee-ronacherfels",
+      "approvedReviewId": "commons-weissensee-ortsee-ronacherfels-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/weissensee-north-shore-meadows.jpg",
+        "heroImage": "images/trails/weissensee-north-shore-meadows.jpg",
+        "imageAlt": "Green meadows and spruce forest rising from the deep blue Weissensee on its north shore",
+        "imageCredit": "The north shore of the Weissensee",
+        "imageCreditText": "The north shore of the Weissensee by Mefusbren69",
+        "imageCreator": "Mefusbren69",
+        "imageLicence": "Public domain",
+        "imageLicenceUrl": "https://commons.wikimedia.org/wiki/Help:Public_domain",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Weißensee_Nordufer.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "weissensee-slow-trail",
+      "approvedReviewId": "commons-weissensee-slow-trail-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/weissensee-kleine-steinwand.jpg",
+        "heroImage": "images/trails/weissensee-kleine-steinwand.jpg",
+        "imageAlt": "Pale limestone cliffs of the Kleine Steinwand reflected in the still water of the Weissensee",
+        "imageCredit": "The Kleine Steinwand on the Weissensee",
+        "imageCreditText": "The Kleine Steinwand on the Weissensee by Mefusbren69",
+        "imageCreator": "Mefusbren69",
+        "imageLicence": "Public domain",
+        "imageLicenceUrl": "https://commons.wikimedia.org/wiki/Help:Public_domain",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Weissensee_-_Kleine_Steinwand.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "weissensee-techendorf-tschabitscher-kreuzwirt",
+      "approvedReviewId": "commons-weissensee-techendorf-tschabitscher-kreuzwirt-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/weissensee-techendorf-village.jpg",
+        "heroImage": "images/trails/weissensee-techendorf-village.jpg",
+        "imageAlt": "Techendorf with its church spire and boathouses on the Weissensee, below wooded slopes, on a sunny autumn day",
+        "imageCredit": "Techendorf on the Weissensee",
+        "imageCreditText": "Techendorf on the Weissensee by Vid Pogacnik",
+        "imageCreator": "Vid Pogacnik",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Techendorf.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "weissensee-wasserleben",
+      "approvedReviewId": "commons-weissensee-wasserleben-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/weissensee-east-shore.jpg",
+        "heroImage": "images/trails/weissensee-east-shore.jpg",
+        "imageAlt": "Turquoise water of the Weissensee seen between pine trunks on the east shore, with wooded slopes beyond, in summer",
+        "imageCredit": "The Weissensee from the east shore",
+        "imageCreditText": "The Weissensee from the east shore by Gerdsch",
+        "imageCreator": "Gerdsch",
+        "imageLicence": "CC BY-SA 3.0 AT",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Weißensee_Kärnten_(2).JPG",
+        "imageSourceType": "licensed-source"
+      }
     }
   ]
 }

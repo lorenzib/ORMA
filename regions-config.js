@@ -254,6 +254,8 @@
     ['Kötschach-Mauthen', 46.6617, 12.9712, 'Gailtal', 'tyrol', 'hermagor'],
     ['Sonnenalpe Nassfeld', 46.5639, 13.2745, 'Gailtal – Nassfeld', 'tyrol', 'hermagor'],
     ['Hermagor', 46.6268, 13.3702, 'Gailtal', 'tyrol', 'hermagor'],
+    ['Techendorf / Weissensee', 46.7140, 13.2950, 'Weissensee', 'tyrol', 'spittal'],
+    ['Neusach / Weissensee', 46.7085, 13.3480, 'Weissensee', 'tyrol', 'spittal'],
 
     // ---- Valle d'Aosta ----
     // Courmayeur and Chamonix are 15 km apart through the Mont Blanc tunnel,
