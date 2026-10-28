@@ -140,13 +140,17 @@ describe('the existing-site verification boundary',()=>{
     // Segantini at the head of the Val Nambrone.
     // Then 366 and 364 with the first Valtellina walk: Arnoga to the Rifugio
     // Federico up the Val Viola, between Bormio and Livigno.
-    // Then 373 and 371 with seven more Friuli Venezia Giulia walks: the Sella
+    // Then 372 and 370 with six more East Tyrol walks: the Kreuzweg to Klaunz and
+    // the St. Nikolaus church walk at Matrei, the Weg der Sinne and the Kreuzweg to
+    // Maria Schnee at Virgen, the children's nature trail at Kals and the water
+    // trail at St. Jakob in Defereggen.
+    // Then 379 and 377 with seven more Friuli Venezia Giulia walks: the Sella
     // Sompdogna lake, Rifugio Calvi above Sappada, Casera Canin, the Malga Confin loop
     // on Monte Plauris, Monte Talm, the Casera Vas loop from Frassenetto and Monte
     // Rest.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(373);
-    expect(currentSiteTrails(catalogue)).toHaveLength(371);
+    expect(catalogue).toHaveLength(379);
+    expect(currentSiteTrails(catalogue)).toHaveLength(377);
   });
 
   test('requires the artwork the public trail page needs',()=>{

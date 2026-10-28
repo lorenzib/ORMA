@@ -610,14 +610,6 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-26T23:00:00.000Z"
     },
-    "fvg-anello-casera-vas-monte-buoi": {
-      "url": "https://www.outdooractive.com/it/route/escursione/forni-avoltri/anello-casera-vas-casera-monte-buoi/809390935/",
-      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
-      "name": "Anello Casera Vas - Casera Monte Buoi",
-      "quote": "Distanza 11,1 km · Durata 3:55 h · Salita 659 m · Discesa 659 m",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T12:00:00.000Z"
-    },
     "fvg-anello-lago-di-verzegnis": {
       "url": "https://www.outdooractive.com/it/route/escursione/verzegnis/anello-del-lago-di-verzegnis/808413751/",
       "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
@@ -625,14 +617,6 @@
       "quote": "Distanza 2,6 km · Durata 1:30 h · Salita 93 m · Discesa 93 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
-    },
-    "fvg-anello-malga-confin-ungarina": {
-      "url": "https://www.outdooractive.com/it/route/escursione/parco-naturale-delle-prealpi-giulie/l-anello-di-malga-confin-e-malga-ungarina/810695476/",
-      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
-      "name": "L'anello di malga Confin e malga Ungarina",
-      "quote": "Distanza 4,7 km · Durata 2:10 h · Salita 401 m · Discesa 401 m",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T12:00:00.000Z"
     },
     "fvg-borgo-stavoli-moggio": {
       "url": "https://www.outdooractive.com/it/route/escursione/friuli-venezia-giulia/il-borgo-isolato-di-stavoli-di-moggio/810696096/",
@@ -674,30 +658,6 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T23:00:00.000Z"
     },
-    "fvg-lago-di-sella-sompdogna": {
-      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/il-laghetto-di-sella-sompdogna/806020923/",
-      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
-      "name": "Il laghetto di sella Sompdogna",
-      "quote": "Distanza 2,2 km · Durata 0:50 h · Salita 123 m · Discesa 123 m",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T12:00:00.000Z"
-    },
-    "fvg-monte-rest-da-passo-rest": {
-      "url": "https://www.outdooractive.com/it/route/escursione/tramonti-di-sopra/dal-passo-rest-al-monte-rest-itinerario-panoramico/805023851/",
-      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
-      "name": "Dal Passo Rest al Monte Rest",
-      "quote": "Distanza 7,6 km · Durata 3:50 h · Salita 737 m · Discesa 739 m",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T12:00:00.000Z"
-    },
-    "fvg-monte-talm-da-piani-di-vas": {
-      "url": "https://www.outdooractive.com/it/route/escursione/carnia/monte-talm-dai-piani-di-vas/805502320/",
-      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
-      "name": "Monte Talm dai Piani di Vas",
-      "quote": "Distanza 10,6 km · Durata 4:10 h · Salita 744 m · Discesa 744 m",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T12:00:00.000Z"
-    },
     "fvg-raunis-cascate-belepeit": {
       "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/borgo-raunis-e-le-cascate-del-rio-belepeit/809189921/",
       "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
@@ -705,22 +665,6 @@
       "quote": "Distanza 5,8 km · Durata 3:00 h · Salita 333 m · Discesa 333 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T06:00:00.000Z"
-    },
-    "fvg-salita-casera-canin": {
-      "url": "https://www.outdooractive.com/it/route/escursione/parco-naturale-delle-prealpi-giulie/salita-a-casera-canin-balcone-panoramico-sulla-val-resia/810597009/",
-      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
-      "name": "Salita a Casera Canin: balcone panoramico sulla val Resia",
-      "quote": "Distanza 7,9 km · Durata 3:00 h · Salita 401 m · Discesa 401 m",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T12:00:00.000Z"
-    },
-    "fvg-sappada-rifugio-calvi": {
-      "url": "https://www.outdooractive.com/it/route/escursione/sappada/24-rifugio-calvi-sappada/13988147/",
-      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
-      "name": "Rifugio Calvi",
-      "quote": "Distanza 4 km · Durata 1:40 h · Salita 333 m · Discesa 333 m",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T12:00:00.000Z"
     },
     "fvg-ta-lipa-pot-corto": {
       "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/ta-lipa-pot-percorso-breve/805322923/",
@@ -2665,6 +2609,110 @@
       "quote": "Vom Bühlerhof läuft man leicht ansteigend bis zum Beginn des Panoramaweges (1389 m), der mit Berg-Symbolen markiert ist. Der Panoramaweg verläuft relativ eben bis zur Wegkreuzung mit Weg Nr. 11.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T19:40:50.460Z"
+    },
+    "osttirol-spazierweg-kreuzweg": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/spazierweg-kreuzweg",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Spazierweg “Kreuzweg”",
+      "quote": "Streckenlänge 3 km · Höhenmeter Bergauf 130 hm · Bergab 130 hm · Gehzeit Gesamt 1 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-spazierweg-nikolauskirche": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/spazierweg-nikolauskirche",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Spazierweg “Nikolauskirche”",
+      "quote": "Streckenlänge 5.7 km · Höhenmeter Bergauf 140 hm · Bergab 140 hm · Gehzeit Gesamt 1:45 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-weg-der-sinne-virgen": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/weg-der-sinne-virgen",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Weg der Sinne Virgen",
+      "quote": "Streckenlänge 3.6 km · Höhenmeter Bergauf 149 hm · Bergab 149 hm · Gehzeit Gesamt 1:30 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-themenweg-kreuzweg-virgen": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/themenweg-kreuzweg-virgen",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Themenweg “Kreuzweg Virgen”",
+      "quote": "Streckenlänge 3.15 km · Höhenmeter Bergauf 104 hm · Bergab 104 hm · Gehzeit Gesamt 1 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-kinder-naturerlebnispfad-kals-ag": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/kinder-naturerlebnispfad-kals-ag",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Kinder-Naturerlebnispfad Kals a.G.",
+      "quote": "Streckenlänge 4.36 km · Höhenmeter Bergauf 130 hm · Bergab 123 hm · Gehzeit Gesamt 2 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-wassererlebnisweg-st-jakob-i-d": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/wassererlebnisweg-st-jakob-i-d",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Wassererlebnisweg St. Jakob i. D.",
+      "quote": "Streckenlänge 8.7 km · Höhenmeter Bergauf 41 hm · Bergab 40 hm · Gehzeit Gesamt 2:30 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "fvg-lago-di-sella-sompdogna": {
+      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/il-laghetto-di-sella-sompdogna/806020923/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Il laghetto di sella Sompdogna",
+      "quote": "Distanza 2,2 km · Durata 0:50 h · Salita 123 m · Discesa 123 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-sappada-rifugio-calvi": {
+      "url": "https://www.outdooractive.com/it/route/escursione/sappada/24-rifugio-calvi-sappada/13988147/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Rifugio Calvi",
+      "quote": "Distanza 4 km · Durata 1:40 h · Salita 333 m · Discesa 333 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-salita-casera-canin": {
+      "url": "https://www.outdooractive.com/it/route/escursione/parco-naturale-delle-prealpi-giulie/salita-a-casera-canin-balcone-panoramico-sulla-val-resia/810597009/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Salita a Casera Canin: balcone panoramico sulla val Resia",
+      "quote": "Distanza 7,9 km · Durata 3:00 h · Salita 401 m · Discesa 401 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-anello-malga-confin-ungarina": {
+      "url": "https://www.outdooractive.com/it/route/escursione/parco-naturale-delle-prealpi-giulie/l-anello-di-malga-confin-e-malga-ungarina/810695476/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "L'anello di malga Confin e malga Ungarina",
+      "quote": "Distanza 4,7 km · Durata 2:10 h · Salita 401 m · Discesa 401 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-monte-talm-da-piani-di-vas": {
+      "url": "https://www.outdooractive.com/it/route/escursione/carnia/monte-talm-dai-piani-di-vas/805502320/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Monte Talm dai Piani di Vas",
+      "quote": "Distanza 10,6 km · Durata 4:10 h · Salita 744 m · Discesa 744 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-anello-casera-vas-monte-buoi": {
+      "url": "https://www.outdooractive.com/it/route/escursione/forni-avoltri/anello-casera-vas-casera-monte-buoi/809390935/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Anello Casera Vas - Casera Monte Buoi",
+      "quote": "Distanza 11,1 km · Durata 3:55 h · Salita 659 m · Discesa 659 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-monte-rest-da-passo-rest": {
+      "url": "https://www.outdooractive.com/it/route/escursione/tramonti-di-sopra/dal-passo-rest-al-monte-rest-itinerario-panoramico/805023851/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Dal Passo Rest al Monte Rest",
+      "quote": "Distanza 7,6 km · Durata 3:50 h · Salita 737 m · Discesa 739 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
     }
   }
 }
