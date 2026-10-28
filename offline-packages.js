@@ -101,6 +101,7 @@
     'fvg-ta-lipa-pot-corto': "Ta Lipa Pot - Percorso breve",
     'fvg-venzone-anello-delle-chiesette': "Sentiero Natura - Anello delle chiesette di Venzone",
     'gailtal-almkaese-sonnenalpe': "Alpine cheese walk, Sonnenalpe Nassfeld",
+    'gailtal-auernig-hoehenweg': "Auernig ridge walk, Nassfeld",
     'giro-del-bulacia': "Giro della Bullaccia",
     'giudicarie-san-martino-bosco-scolpito': "San Martino – Bosco Scolpito",
     'giudicarie-san-vigilio-senter-dei-cavai': "San Vigilio and the Senter dei Cavai",
