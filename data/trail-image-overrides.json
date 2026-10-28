@@ -4905,6 +4905,23 @@
       }
     },
     {
+      "id": "trecime-cimabanche-prato-piazza",
+      "approvedReviewId": "commons-trecime-cimabanche-prato-piazza-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-cimabanche-prato-piazza-meadow.jpg",
+        "heroImage": "images/trails/trecime-cimabanche-prato-piazza-meadow.jpg",
+        "imageAlt": "A small wooden hay hut on a rolling green meadow of the Plätzwiese, grey Dolomite peaks and a few spruces behind under a blue sky with white clouds",
+        "imageCredit": "The Plätzwiese meadows at the top of the walk, in July",
+        "imageCreditText": "The Plätzwiese meadows at the top of the walk, in July by More pics than views",
+        "imageCreator": "More pics than views",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Prato,_Piazza_Pl%C3%A4tzwiese,_Dolomiten_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-circolare-maistatt",
       "approvedReviewId": "commons-trecime-circolare-maistatt-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",

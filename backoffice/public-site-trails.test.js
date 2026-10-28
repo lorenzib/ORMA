@@ -127,9 +127,10 @@ describe('the existing-site verification boundary',()=>{
     // Then 349 and 347 with six more Hochpustertal walks: the Außergsell – Innergsell
     // loop, Rotwandwiesen – Moos, Helm – Waldruhe – Sexten, Fischleintal – Sextner
     // Stein, Moos – Helm and Sexten – Innerfeldtal.
+    // Then 350 and 348 with one more Hochpustertal walk: Cimabanche to the Plätzwiese.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(349);
-    expect(currentSiteTrails(catalogue)).toHaveLength(347);
+    expect(catalogue).toHaveLength(350);
+    expect(currentSiteTrails(catalogue)).toHaveLength(348);
   });
 
   test('requires the artwork the public trail page needs',()=>{
