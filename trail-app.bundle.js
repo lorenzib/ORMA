@@ -821,6 +821,31 @@
     ];
   }
 
+  // The engine's verdict, as the three tiers. A strong score the engine
+  // downgraded (an unreviewed category that matters) is amber, not green,
+  // because the words beside it say "Possible with cautions".
+  const FIT_FOR_CATEGORY = Object.freeze({
+    'strong-option': 'good',
+    'possible-with-cautions': 'fair',
+    'not-recommended': 'poor',
+  });
+
+  function fitForCategory(category) {
+    return FIT_FOR_CATEGORY[category] || '';
+  }
+
+  // Colour by a feature's `fit` (good/fair/poor); a feature without one falls
+  // back to its score, and one with neither is the unknown grey.
+  function fitColourExpression(fitProperty, scoreProperty) {
+    return [
+      'match', ['coalesce', ['get', fitProperty || 'fit'], ''],
+      'good', MATCH_COLOURS.good,
+      'fair', MATCH_COLOURS.fair,
+      'poor', MATCH_COLOURS.poor,
+      matchColourExpression(scoreProperty || 'score'),
+    ];
+  }
+
   function widthRamp(a, b, c, d, scale) {
     const factor = scale || 1;
     return [
@@ -1032,6 +1057,8 @@
     MATCH_FAIR,
     matchColour,
     matchColourExpression,
+    fitForCategory,
+    fitColourExpression,
     addWaymarkedHiking,
     setWaymarkedVisible,
     HIKING_SOURCE,
