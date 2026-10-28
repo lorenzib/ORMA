@@ -1148,6 +1148,26 @@
       "name": "Obersee loop at the Staller Sattel",
       "slug": "obersee-staller-sattel-loop",
       "gloss": "the lake loop below the Staller Sattel pass at the head of the Defereggental"
+    },
+    "campiglio-trekking-al-lago-di-nambino": {
+      "name": "Lago di Nambino",
+      "slug": "lago-di-nambino-walk",
+      "gloss": "the short climb from the Nambino plain to its lake"
+    },
+    "campiglio-madonna-di-campiglio-monte-spinale": {
+      "name": "Madonna di Campiglio – Monte Spinale",
+      "slug": "campiglio-monte-spinale",
+      "gloss": "the climb from the village to the Spinale pastures"
+    },
+    "campiglio-trekking-al-rifugio-segantini": {
+      "name": "Rifugio Segantini loop",
+      "slug": "rifugio-segantini-loop",
+      "gloss": "the loop under the Presanella to the Segantini hut"
+    },
+    "campiglio-valina-d-amola-rifugio-segantini-cornisello": {
+      "name": "Valina d’Amola – Segantini – Cornisello",
+      "slug": "valina-amola-segantini-cornisello",
+      "gloss": "the high loop from Valina d'Amola past the Segantini hut"
     }
   }
 }

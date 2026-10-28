@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T10:15:24.907Z",
+  "generatedAt": "2026-10-28T10:25:29.062Z",
   "regions": {
     "dolomites": {
-      "trailCount": 283,
-      "trails": "data/regions/dolomites-trails.js?v=d5e0108c19e3",
+      "trailCount": 287,
+      "trails": "data/regions/dolomites-trails.js?v=077878d15172",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -288,6 +288,10 @@
         "campiglio-monte-spinale-rifugio-graffer": "data/trail-details/campiglio-monte-spinale-rifugio-graffer.js?v=eff3b22b3926",
         "paganella-giro-del-lago-di-molveno": "data/trail-details/paganella-giro-del-lago-di-molveno.js?v=e7d5f217a056",
         "paganella-passeggiata-del-ciclamino": "data/trail-details/paganella-passeggiata-del-ciclamino.js?v=92e708d2000e",
+        "campiglio-valina-d-amola-rifugio-segantini-cornisello": "data/trail-details/campiglio-valina-d-amola-rifugio-segantini-cornisello.js?v=d5b64dbb5fb0",
+        "campiglio-trekking-al-lago-di-nambino": "data/trail-details/campiglio-trekking-al-lago-di-nambino.js?v=93a2ac4bc0c9",
+        "campiglio-trekking-al-rifugio-segantini": "data/trail-details/campiglio-trekking-al-rifugio-segantini.js?v=82c418feb51e",
+        "campiglio-madonna-di-campiglio-monte-spinale": "data/trail-details/campiglio-madonna-di-campiglio-monte-spinale.js?v=a941b25651f8",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -707,6 +711,10 @@
     "campiglio-monte-spinale-rifugio-graffer": "dolomites",
     "paganella-giro-del-lago-di-molveno": "dolomites",
     "paganella-passeggiata-del-ciclamino": "dolomites",
+    "campiglio-valina-d-amola-rifugio-segantini-cornisello": "dolomites",
+    "campiglio-trekking-al-lago-di-nambino": "dolomites",
+    "campiglio-trekking-al-rifugio-segantini": "dolomites",
+    "campiglio-madonna-di-campiglio-monte-spinale": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1148,6 +1156,10 @@
     "osttirol-naturkraftweg-umbalfaelle": "umbal-falls-nature-walk",
     "osttirol-kulturweg-koednitz": "koednitz-culture-walk-kals",
     "osttirol-rundwanderung-am-staller-sattel": "obersee-staller-sattel-loop",
+    "campiglio-valina-d-amola-rifugio-segantini-cornisello": "valina-amola-segantini-cornisello",
+    "campiglio-trekking-al-lago-di-nambino": "lago-di-nambino-walk",
+    "campiglio-trekking-al-rifugio-segantini": "rifugio-segantini-loop",
+    "campiglio-madonna-di-campiglio-monte-spinale": "campiglio-monte-spinale",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1511,6 +1523,10 @@
     "umbal-falls-nature-walk": "osttirol-naturkraftweg-umbalfaelle",
     "koednitz-culture-walk-kals": "osttirol-kulturweg-koednitz",
     "obersee-staller-sattel-loop": "osttirol-rundwanderung-am-staller-sattel",
+    "valina-amola-segantini-cornisello": "campiglio-valina-d-amola-rifugio-segantini-cornisello",
+    "lago-di-nambino-walk": "campiglio-trekking-al-lago-di-nambino",
+    "rifugio-segantini-loop": "campiglio-trekking-al-rifugio-segantini",
+    "campiglio-monte-spinale": "campiglio-madonna-di-campiglio-monte-spinale",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

@@ -360,6 +360,23 @@
       }
     },
     {
+      "id": "campiglio-madonna-di-campiglio-monte-spinale",
+      "approvedReviewId": "mapillary-campiglio-madonna-di-campiglio-monte-spinale-on-route",
+      "approvedAt": "2026-10-28T11:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-madonna-di-campiglio-monte-spinale-start.jpg",
+        "heroImage": "images/trails/campiglio-madonna-di-campiglio-monte-spinale-start.jpg",
+        "imageAlt": "A stone-paved square with a small fountain below a wooden-fenced meadow and spruce woods, at the start of the climb from Madonna di Campiglio",
+        "imageCredit": "By the church of Santa Maria Antica, the start",
+        "imageCreditText": "By the church of Santa Maria Antica, the start by lary_fede",
+        "imageCreator": "lary_fede",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1126577024498666",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "campiglio-monte-spinale-rifugio-graffer",
       "approvedReviewId": "commons-campiglio-monte-spinale-rifugio-graffer-on-route",
       "approvedAt": "2026-10-28T08:00:00.000Z",
@@ -373,6 +390,57 @@
         "imageLicence": "CC BY-SA 3.0 de",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_Spinale_NO.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "campiglio-trekking-al-lago-di-nambino",
+      "approvedReviewId": "mapillary-campiglio-trekking-al-lago-di-nambino-on-route",
+      "approvedAt": "2026-10-28T11:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-trekking-al-lago-di-nambino-forest-steps.jpg",
+        "heroImage": "images/trails/campiglio-trekking-al-lago-di-nambino-forest-steps.jpg",
+        "imageAlt": "Stone steps of a mountain path climbing through spruce forest with ferns and mossy boulders on either side",
+        "imageCredit": "Path 217 to the Lago di Nambino",
+        "imageCreditText": "Path 217 to the Lago di Nambino by napo",
+        "imageCreator": "napo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=156963189717671",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "campiglio-trekking-al-rifugio-segantini",
+      "approvedReviewId": "mapillary-campiglio-trekking-al-rifugio-segantini-on-route",
+      "approvedAt": "2026-10-28T11:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-trekking-al-rifugio-segantini-plateau.jpg",
+        "heroImage": "images/trails/campiglio-trekking-al-rifugio-segantini-plateau.jpg",
+        "imageAlt": "Smooth granite slabs and boulders on an open high plateau, the red-roofed Rifugio Segantini in the distance under low clouds",
+        "imageCredit": "The granite plateau below the Rifugio Segantini",
+        "imageCreditText": "The granite plateau below the Rifugio Segantini by zontad",
+        "imageCreator": "zontad",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=926537149297418",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "campiglio-valina-d-amola-rifugio-segantini-cornisello",
+      "approvedReviewId": "mapillary-campiglio-valina-d-amola-rifugio-segantini-cornisello-on-route",
+      "approvedAt": "2026-10-28T11:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-valina-d-amola-rifugio-segantini-cornisello-valley.jpg",
+        "heroImage": "images/trails/campiglio-valina-d-amola-rifugio-segantini-cornisello-valley.jpg",
+        "imageAlt": "A wide green alpine meadow scattered with boulders in the Val d’Amola, steep grey cliffs and clouds over the valley head",
+        "imageCredit": "The Val d’Amola, on the loop",
+        "imageCreditText": "The Val d’Amola, on the loop by zontad",
+        "imageCreator": "zontad",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=523338610375339",
         "imageSourceType": "licensed-source"
       }
     },

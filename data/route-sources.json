@@ -162,6 +162,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T08:00:00.000Z"
     },
+    "campiglio-madonna-di-campiglio-monte-spinale": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/madonna-di-campiglio-monte-spinale",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Madonna di Campiglio - Monte Spinale",
+      "quote": "Distanza 4,1 km · Durata 2:00 h · Salita 567 m · Discesa 1 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T11:00:00.000Z"
+    },
     "campiglio-monte-spinale-rifugio-graffer": {
       "url": "https://www.campigliodolomiti.it/it/itinerari/monte-spinale-rifugio-graffer",
       "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
@@ -169,6 +177,30 @@
       "quote": "Distanza 7,5 km · Durata 2:30 h · Salita 300 m · Discesa 312 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "campiglio-trekking-al-lago-di-nambino": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/trekking-al-lago-di-nambino",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Trekking al Lago di Nambino",
+      "quote": "Distanza 3,1 km · Durata 1:30 h · Salita 154 m · Discesa 153 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T11:00:00.000Z"
+    },
+    "campiglio-trekking-al-rifugio-segantini": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/trekking-al-rifugio-segantini",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Trekking al Rifugio Segantini",
+      "quote": "Distanza 4,9 km · Durata 2:00 h · Salita 397 m · Discesa 398 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T11:00:00.000Z"
+    },
+    "campiglio-valina-d-amola-rifugio-segantini-cornisello": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/valina-d-amola-rifugio-segantini-cornisello",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Valina d'Amola - Rifugio Segantini - Cornisello",
+      "quote": "Distanza 9,4 km · Durata 5:00 h · Salita 559 m · Discesa 559 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T11:00:00.000Z"
     },
     "cembra-castello-segonzano": {
       "url": "https://www.visitfiemme.it/it/activity/il-castello-di-segonzano-e-il-canyon-del-pr-_9748",
@@ -1858,6 +1890,38 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osttirol-kulturweg-koednitz": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/kulturweg-koednitz",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Kulturweg Ködnitz",
+      "quote": "Streckenlänge 1.7 km · Höhenmeter Bergauf 34 hm · Bergab 33 hm · Gehzeit Gesamt 1 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-naturkraftweg-umbalfaelle": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/naturkraftweg-umbalfaelle",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "NaturKraftWeg Umbalfälle",
+      "quote": "Streckenlänge 5.97 km · Höhenmeter Bergauf 257 hm · Bergab 257 hm · Gehzeit Gesamt 2:30 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-rundwanderung-am-staller-sattel": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/rundwanderung-am-staller-sattel",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Rundwanderung am Staller Sattel",
+      "quote": "Streckenlänge 4.7 km · Höhenmeter Bergauf 70 hm · Bergab 70 hm · Gehzeit Gesamt 1:20 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-rundwanderung-schloss-weissenstein": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/rundwanderung-schloss-weissenstein",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Rundwanderung Schloss Weißenstein",
+      "quote": "Streckenlänge 3.21 km · Höhenmeter Bergauf 88 hm · Bergab 88 hm · Gehzeit Gesamt 1 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
     "paganella-andalo-tana-ermellino": {
       "url": "https://ktips.visitpaganella.it/it/itinerari/passeggiata-da-andalo-alla-tana-dell-ermellino",
       "publisher": "Visit Paganella, APT Dolomiti di Brenta Paganella (visitpaganella.it, Outdooractive)",
@@ -2537,38 +2601,6 @@
       "quote": "Vom Bühlerhof läuft man leicht ansteigend bis zum Beginn des Panoramaweges (1389 m), der mit Berg-Symbolen markiert ist. Der Panoramaweg verläuft relativ eben bis zur Wegkreuzung mit Weg Nr. 11.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T19:40:50.460Z"
-    },
-    "osttirol-rundwanderung-schloss-weissenstein": {
-      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/rundwanderung-schloss-weissenstein",
-      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
-      "name": "Rundwanderung Schloss Weißenstein",
-      "quote": "Streckenlänge 3.21 km · Höhenmeter Bergauf 88 hm · Bergab 88 hm · Gehzeit Gesamt 1 h",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T09:00:00.000Z"
-    },
-    "osttirol-naturkraftweg-umbalfaelle": {
-      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/naturkraftweg-umbalfaelle",
-      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
-      "name": "NaturKraftWeg Umbalfälle",
-      "quote": "Streckenlänge 5.97 km · Höhenmeter Bergauf 257 hm · Bergab 257 hm · Gehzeit Gesamt 2:30 h",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T09:00:00.000Z"
-    },
-    "osttirol-kulturweg-koednitz": {
-      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/kulturweg-koednitz",
-      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
-      "name": "Kulturweg Ködnitz",
-      "quote": "Streckenlänge 1.7 km · Höhenmeter Bergauf 34 hm · Bergab 33 hm · Gehzeit Gesamt 1 h",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T09:00:00.000Z"
-    },
-    "osttirol-rundwanderung-am-staller-sattel": {
-      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/rundwanderung-am-staller-sattel",
-      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
-      "name": "Rundwanderung am Staller Sattel",
-      "quote": "Streckenlänge 4.7 km · Höhenmeter Bergauf 70 hm · Bergab 70 hm · Gehzeit Gesamt 1:20 h",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-28T09:00:00.000Z"
     }
   }
 }
