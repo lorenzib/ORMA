@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-monte-rest-da-passo-rest",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.6,
+    "ascentM": 737,
+    "highestPointM": 1709,
+    "expectedDuration": "3.85 hours",
+    "difficulty": "Hard",
+    "shadePercent": 62
+  },
+  "trailhead": {
+    "lat": 46.35385,
+    "lng": 12.787389,
+    "label": "Passo Rest, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A climb of about 740 m, with a steeper last stretch to the summit.",
+    "Open ridge: avoid the hot middle of summer days and storms.",
+    "Passo Rest is reached only from April to November (SR 552 closed in winter).",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
