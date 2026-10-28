@@ -49540,6 +49540,241 @@
         { km: 6.1, lat: 46.59802, lng: 11.72448, osmId: 'node/9679415726', name: 'Utia Seceda' }
       ],
       desc: 'A long climb from Cristauta above Santa Cristina through the forest to the Sëurasas, then over the pastures by Monte Pic and the Passo Cuca to the Seceda. The board lists 6.3 km and 861 m of ascent one way.'
+    },
+    'fvg-fontanon-di-goriuda': {
+      // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 2).
+      // PromoTurismoFVG’s walk “Fontanon di Goriuda” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
+      // on 4 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // Chiusaforte publishes no dog rule of its own (none among its published regulations), so the national dog ordinance (6 August 2013, extended to September 2027) and the regional law LR 20/2012 apply under ORMA’s Italian dog standard.
+      // No park, reserve, biotope or Natura 2000 site on or within 300 m of the line (FVG protected-area layers).
+      area: 'Pian della Sega – Fontanon di Goriuda, Val Raccolana, Chiusaforte',
+      distance: 0.6,
+      elevation: 50,
+      hours: '0.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from Pian della Sega up through beech forest to the Fontanon di Goriuda waterfall and back down beside the stream past smaller falls.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Fontanon di Goriuda waterfall above the beech forest, at the end of the path, in August 2010 (Klenje, CC BY-SA 3.0), 7 m from the line.',
+        route: 'Official loop 0.6 km from Pian della Sega car park, Val Raccolana, as PromoTurismoFVG publishes it; the stored line is drawn on 4 OSM ways along the published line, 0.5 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'No route number given: from the car park at Pian della Sega (ruins of a Great War infirmary) along the tarred road to the edge of the forest, then right on the path that climbs gently through beech wood to the waterfall in about ten minutes. Back at the information panel another path leads down beside the stream past smaller falls to Pian della Sega in about five minutes.',
+        mapPoints: 'Start at Pian della Sega car park, Val Raccolana, the board’s start; drinking water none mapped.',
+        elevation: 'Official 0.6 km, 50 m up and 50 m down, 15 min, highest point 700 m, lowest 659 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Fontanon di Goriuda (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Parco Naturale Prealpi Giulie)',
+          'Comune di Chiusaforte publishes no dog rule (none among its published regulations), so the national rule applies',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): none on the line or within 300 m',
+          'OpenStreetMap ways along the published line (4 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 66,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Wet, slippery rock by the waterfall and its pool', 'Ice on the path in winter: spikes advised', 'A short stretch of tarred valley road at the start'],
+      terrainType: 'A short forest path and a stretch of tarred road',
+      shadeDescription: 'Mostly shaded: about two thirds of the short loop runs through beech forest; the road at the start is open.',
+      terrainDescription: 'A very short walk at 660–700 m in the Val Raccolana below Monte Canin, from Pian della Sega through beech forest to a big waterfall where a karst spring bursts out of the mountain, and back beside the stream.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water for your dog.',
+      dogNotes: 'Chiusaforte has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m in villages and on public ground, and a muzzle carried. Pick up after your dog. Keep your dog out of the waterfall pool: the rocks round it are slippery.',
+      tips: 'Park at Pian della Sega in the Val Raccolana (bus 191 from Chiusaforte or Sella Nevea): 0.6 km and about 50 m of climbing, a quarter of an hour. Keep your dog on a lead at the car park and on the road, and carry a muzzle. In winter the path is icy.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Fontanon di Goriuda', url: 'https://www.outdooractive.com/it/route/escursione/tarvisio/fontanon-di-goriuda/805382080/' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.39529, lng: 13.434592, label: 'Pian della Sega car park, Val Raccolana, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'A very short loop from Pian della Sega through beech forest to the Fontanon di Goriuda, a waterfall where a karst spring of Monte Canin bursts from the rock, and back beside the stream. PromoTurismoFVG lists 0.6 km and 50 m of ascent.'
+    },
+    'fvg-col-dei-piais': {
+      // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 2).
+      // PromoTurismoFVG’s walk “Col dei Piais” (its verified Outdooractive account, author PromoTurismoFVG Montagna). The line is drawn
+      // on 41 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // Claut publishes no dog rule of its own (none among its regulations; its Val Settimana tourism rules have no dog clause), so the national dog ordinance (6 August 2013, extended to September 2027) and the regional law LR 20/2012 apply under ORMA’s Italian dog standard.
+      // No park, reserve, biotope or Natura 2000 site on the line; the Dolomiti Friulane Natura 2000 site is about 250 m away and the park further still (FVG protected-area layers).
+      area: 'Claut – Stalla Piais – Col dei Piais, Valcellina',
+      distance: 4.9,
+      elevation: 285,
+      hours: '1.85',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Conca Verde in Claut past the chapel of San Rocco and up path 385 to the summit chapel of San Gualberto on the Col dei Piais, and back down the other branch of path 385 to the village.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The chapel of San Rocco in Claut, where the walk leaves the village, in July 2023 (Marchetto da Trieste, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official loop 4.9 km from Conca Verde, Claut, as PromoTurismoFVG publishes it; the stored line is drawn on 41 OSM ways along the published line, 4.7 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'Path 385: from the Conca Verde in Claut (606 m) along the Ciàdula stream and through the village to the chapel of San Rocco; take the road to its right, ignore path 384 and climb the tarred road over the bridge on the Ciafurle; at the second hairpin take path 385 on the left (660 m) to Stalla Piais (773 m), on along the slope to a three-way junction, right up to a saddle (840 m) and to the summit of the Col dei Piais (876 m) with the chapel of San Gualberto. Back to the saddle, then right on path 385 down to the tarred road and into Claut, and from San Rocco the way you came.',
+        mapPoints: 'Start at Conca Verde, Claut, the board’s start; drinking water none mapped.',
+        elevation: 'Official 4.9 km, 285 m up and 284 m down, 1 h 50 min, highest point 873 m, lowest 592 m (PromoTurismoFVG, author PromoTurismoFVG Montagna).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Col dei Piais (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author PromoTurismoFVG Montagna)',
+          'Comune di Claut publishes no dog rule (none among its regulations; the Val Settimana tourism rules have no dog clause), so the national rule applies',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): none on the line; ZSC/ZPS IT3310001 Dolomiti Friulane about 250 m away',
+          'OpenStreetMap ways along the published line (41 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 61,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Tarred village roads at the start and end', 'A steady climb on a forest path to the summit', 'Slippery when wet'],
+      terrainType: 'Forest paths and quiet village roads',
+      shadeDescription: 'Mostly shaded: about three fifths of the loop runs through woods on the hill; the village streets are open.',
+      terrainDescription: 'A short loop at 590–875 m from the village of Claut in the upper Valcellina to the wooded hill above it, topped by the chapel of San Gualberto, with views over Claut and the Friulian Dolomites.',
+      waterDescription: 'No drinking fountain is mapped on the walk; places to eat at the start; bring water for your dog.',
+      dogNotes: 'Claut has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m in villages and on public ground, and a muzzle carried. Pick up after your dog.',
+      tips: 'Start at the Conca Verde in Claut: 4.9 km and about 285 m of climbing, under two hours. Keep your dog on a lead of at most 1.5 m in the village and carry a muzzle. Bring water for the climb.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Col dei Piais', url: 'https://www.outdooractive.com/it/route/escursione/claut/col-dei-piais/805561297/' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.268634, lng: 12.512751, label: 'Conca Verde, Claut, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.26867, lng: 12.51479, osmId: 'node/2163747009', name: 'Panificio Caffetteria Giuseppe' },
+        { km: 0, lat: 46.26913, lng: 12.51127, osmId: 'node/2163756068', name: 'Bar K2' }
+      ],
+      desc: 'A short loop from Claut up the wooded Col dei Piais to the little chapel of San Gualberto, with views over the village and the Friulian Dolomites. PromoTurismoFVG lists 4.9 km and 285 m of ascent.'
+    },
+    'fvg-raunis-cascate-belepeit': {
+      // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 2).
+      // PromoTurismoFVG’s walk “Borgo Raunis e le cascate del rio Belepeit” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
+      // on 36 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // Chiusaforte publishes no dog rule of its own (none among its published regulations), so the national dog ordinance (6 August 2013, extended to September 2027) and the regional law LR 20/2012 apply under ORMA’s Italian dog standard.
+      // No park, reserve, biotope or Natura 2000 site on or within 300 m of the line (FVG protected-area layers).
+      area: 'Chiusaforte – Raunis – rio Belepeit falls, Canal del Ferro',
+      distance: 5.8,
+      elevation: 333,
+      hours: '3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Chiusaforte town hall up through the woods to the hamlet of Raunis, along the slope on path CAI 425 to the waterfalls of the Belepeit stream, steeply down to the village and back along the Alpe Adria cycle path.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Fella river and Chiusaforte below the mountains, by the start of the loop, in August 2020 (Sirleonidas, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official loop 5.8 km from Chiusaforte town hall, as PromoTurismoFVG publishes it; the stored line is drawn on 36 OSM ways along the published line, 5.8 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'Signs for Raunis from Chiusaforte town hall: through an underpass and up a steep flight of steps to a small hamlet, then up through broadleaf woods; right at a fork to the hamlet of Raunis. Back to the fork (yellow bench, small ford) and straight on along the slope to join CAI path 425 to the Belepeit waterfalls. After the second fall, at a concrete wall, turn left steeply downhill and keep left at every fork into the village; down steps to the road, right into the woods at the end of the guard rail (red sticker) to the Alpe Adria cycle path, and along it past the Stazione di Chiusaforte bar back to the town hall.',
+        mapPoints: 'Start at Chiusaforte town hall, the board’s start; drinking water none mapped.',
+        elevation: 'Official 5.8 km, 333 m up and 333 m down, 3 h, highest point 601 m, lowest 377 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Borgo Raunis e le cascate del rio Belepeit (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Parco Naturale Prealpi Giulie)',
+          'Comune di Chiusaforte publishes no dog rule (none among its published regulations), so the national rule applies',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): none on the line or within 300 m',
+          'OpenStreetMap ways along the published line (36 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 79,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Steep steps and a steep, fast descent from the falls', 'Brambles on the path near the village', 'The Alpe Adria cycle path at the end: keep your dog close to the edge, bikes are fast'],
+      terrainType: 'Forest paths, steps and a cycle path',
+      shadeDescription: 'Well shaded: about four fifths of the loop runs through broadleaf and black pine woods; the cycle path at the end is more open.',
+      terrainDescription: 'A loop at 380–600 m above Chiusaforte in the Canal del Ferro, through broadleaf and black pine woods to the small hamlet of Raunis and the waterfalls of the Belepeit stream, with views over the Fella valley.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water for your dog.',
+      dogNotes: 'Chiusaforte has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m in villages and on public ground, and a muzzle carried. Pick up after your dog. Keep your dog on a short lead on the Alpe Adria cycle path.',
+      tips: 'Start at Chiusaforte town hall (free parking nearby, or the Alpe Adria cycle path): 5.8 km and about 330 m of climbing, three hours. Keep your dog on a lead of at most 1.5 m in the village and on the cycle path, and carry a muzzle. The descent from the falls is steep: take it slowly.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Borgo Raunis e le cascate del rio Belepeit', url: 'https://www.outdooractive.com/it/route/escursione/tarvisio/borgo-raunis-e-le-cascate-del-rio-belepeit/809189921/' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.408373, lng: 13.310382, label: 'Chiusaforte town hall, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'A loop from Chiusaforte through the woods to the hamlet of Raunis and the waterfalls of the Belepeit stream, back down to the village and along the Alpe Adria cycle path. PromoTurismoFVG lists 5.8 km and 333 m of ascent.'
+    },
+    'fvg-venzone-anello-delle-chiesette': {
+      // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 2).
+      // PromoTurismoFVG’s walk “Sentiero Natura - Anello delle chiesette di Venzone” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
+      // on 26 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // Venzone publishes no dog rule of its own (no police or animal regulation and no dog ordinance on its site), so the national dog ordinance (6 August 2013, extended to September 2027) and the regional law LR 20/2012 apply under ORMA’s Italian dog standard.
+      // No park, reserve, biotope or Natura 2000 site on or within 300 m of the line (FVG protected-area layers); the Prealpi Giulie park lies further up the Val Venzonassa.
+      area: 'Venzone – Sant’Antonio shrine – Santa Caterina, Venzone',
+      distance: 2.6,
+      elevation: 99,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the walled town of Venzone out through Porta San Genesio, up a path among hazels and dry-stone walls past a shrine to Saint Anthony, and down across a meadow to the small churches of Santa Caterina and Saints James and Anna, back into the town.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A small stone church in a meadow outside Venzone, on the loop, in August 2020 (Sirleonidas, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official loop 2.6 km from Historic centre of Venzone, as PromoTurismoFVG publishes it; the stored line is drawn on 26 OSM ways along the published line, 2.5 km, with 99% of the published line within 25 m of it.',
+        routeNumbers: 'No route number given: through the streets of Venzone to Porta San Genesio, the pedestrian east gate in the medieval walls; across the moat and up via Santa Caterina, then left on a gentle path up the slope between dry-stone walls to the shrine of Saint Anthony; on along the level under hazels, then right on a path gently down (leaving the straight track into the Val Venzonassa), across a wide meadow to the church of Santa Caterina (15th century, rebuilt after the 1976 earthquake) and on to the church of Saints James and Anna, and back into the town.',
+        mapPoints: 'Start at Historic centre of Venzone, the board’s start; drinking water none mapped.',
+        elevation: 'Official 2.6 km, 99 m up and 99 m down, 1 h, highest point 319 m, lowest 229 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Sentiero Natura - Anello delle chiesette di Venzone (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Parco Naturale Prealpi Giulie)',
+          'Comune di Venzone publishes no dog rule (no police or animal regulation and no dog ordinance on its site), so the national rule applies',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): none on the line or within 300 m',
+          'OpenStreetMap ways along the published line (26 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 47,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Short stretches on town streets and a tarred lane', 'Stony path between dry-stone walls, slippery when wet', 'Roe deer in the woods: keep your dog on the lead'],
+      terrainType: 'Town streets, a stony path and meadow tracks',
+      shadeDescription: 'About half shaded: the path along the slope runs under hazels and broadleaf trees; the meadows round the churches and the town are open.',
+      terrainDescription: 'A short, easy loop at 230–320 m from the walled medieval town of Venzone, rebuilt stone by stone after the 1976 earthquake, to two small churches in the meadows at the foot of the Julian Prealps.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water for your dog.',
+      dogNotes: 'Venzone has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m in villages and on public ground, and a muzzle carried. Pick up after your dog. Keep your dog on the lead in the old town, which is busy at weekends.',
+      tips: 'Start in the old centre of Venzone: 2.6 km and about 100 m of climbing, an hour. Keep your dog on a lead of at most 1.5 m in the town and carry a muzzle. Cafés and fountains are in the town at the start.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Sentiero Natura - Anello delle chiesette di Venzone', url: 'https://www.outdooractive.com/it/route/escursione/venzone/sentiero-natura-anello-delle-chiesette-di-venzone/805854151/' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.333675, lng: 13.139266, label: 'Historic centre of Venzone, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'An easy short loop from the walled town of Venzone through hazel woods and meadows to the small churches of Santa Caterina and Saints James and Anna, rebuilt after the 1976 earthquake. PromoTurismoFVG lists 2.6 km and 99 m of ascent.'
     }
   };
 

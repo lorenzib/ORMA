@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T01:29:04.619Z",
+  "generatedAt": "2026-10-28T01:45:14.569Z",
   "regions": {
     "dolomites": {
       "trailCount": 269,
@@ -361,14 +361,18 @@
       "optional": []
     },
     "friuli": {
-      "trailCount": 5,
-      "trails": "data/regions/friuli-trails.js?v=1a82dac06f7e",
+      "trailCount": 9,
+      "trails": "data/regions/friuli-trails.js?v=f86df7e79b5c",
       "details": {
         "fvg-laghi-di-fusine": "data/trail-details/fvg-laghi-di-fusine.js?v=ba8dfb3f05d8",
         "fvg-ta-lipa-pot-corto": "data/trail-details/fvg-ta-lipa-pot-corto.js?v=a6af7947e5e7",
         "fvg-borgo-stavoli-moggio": "data/trail-details/fvg-borgo-stavoli-moggio.js?v=2be05c9f6881",
         "fvg-anello-lago-di-verzegnis": "data/trail-details/fvg-anello-lago-di-verzegnis.js?v=b04ed2eac022",
-        "fvg-faggi-secolari-pustot-dordolla": "data/trail-details/fvg-faggi-secolari-pustot-dordolla.js?v=ba2f33ed69ab"
+        "fvg-faggi-secolari-pustot-dordolla": "data/trail-details/fvg-faggi-secolari-pustot-dordolla.js?v=ba2f33ed69ab",
+        "fvg-fontanon-di-goriuda": "data/trail-details/fvg-fontanon-di-goriuda.js?v=dcee82103417",
+        "fvg-col-dei-piais": "data/trail-details/fvg-col-dei-piais.js?v=e63c37e41279",
+        "fvg-raunis-cascate-belepeit": "data/trail-details/fvg-raunis-cascate-belepeit.js?v=d50ca07b413a",
+        "fvg-venzone-anello-delle-chiesette": "data/trail-details/fvg-venzone-anello-delle-chiesette.js?v=dbf612140179"
       },
       "water": "data/regions/friuli-water.geojson",
       "hutsBars": "data/regions/friuli-huts-bars.geojson",
@@ -726,6 +730,10 @@
     "fvg-borgo-stavoli-moggio": "friuli",
     "fvg-anello-lago-di-verzegnis": "friuli",
     "fvg-faggi-secolari-pustot-dordolla": "friuli",
+    "fvg-fontanon-di-goriuda": "friuli",
+    "fvg-col-dei-piais": "friuli",
+    "fvg-raunis-cascate-belepeit": "friuli",
+    "fvg-venzone-anello-delle-chiesette": "friuli",
     "aosta-ru-courtaud": "aosta",
     "aosta-champoluc-cascata-mascognaz": "aosta",
     "aosta-periasc-antagnod": "aosta",
@@ -1072,6 +1080,10 @@
     "valgardena-seceda-dal-rifugio-firenze": "seceda-via-rifugio-firenze",
     "valgardena-escursione-ortisei-passo-sella": "ortisei-passo-sella",
     "valgardena-seceda-da-cristauta-pic": "cristauta-seceda-monte-pic",
+    "fvg-fontanon-di-goriuda": "fontanon-di-goriuda",
+    "fvg-col-dei-piais": "col-dei-piais-claut",
+    "fvg-raunis-cascate-belepeit": "raunis-cascate-belepeit",
+    "fvg-venzone-anello-delle-chiesette": "venzone-anello-delle-chiesette",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1413,6 +1425,10 @@
     "seceda-via-rifugio-firenze": "valgardena-seceda-dal-rifugio-firenze",
     "ortisei-passo-sella": "valgardena-escursione-ortisei-passo-sella",
     "cristauta-seceda-monte-pic": "valgardena-seceda-da-cristauta-pic",
+    "fontanon-di-goriuda": "fvg-fontanon-di-goriuda",
+    "col-dei-piais-claut": "fvg-col-dei-piais",
+    "raunis-cascate-belepeit": "fvg-raunis-cascate-belepeit",
+    "venzone-anello-delle-chiesette": "fvg-venzone-anello-delle-chiesette",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
