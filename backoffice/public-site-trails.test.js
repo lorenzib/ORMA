@@ -135,9 +135,12 @@ describe('the existing-site verification boundary',()=>{
     // Then 361 and 359 with the first Austrian walks, in East Tyrol: the Schloss
     // Weißenstein loop at Matrei, the Umbal Falls, the Ködnitz culture walk at Kals
     // and the Obersee loop at the Staller Sattel.
+    // Then 365 and 363 with four more Adamello Brenta walks: the Lago di Nambino,
+    // Madonna di Campiglio up to Monte Spinale, and two loops to the Rifugio
+    // Segantini at the head of the Val Nambrone.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(361);
-    expect(currentSiteTrails(catalogue)).toHaveLength(359);
+    expect(catalogue).toHaveLength(365);
+    expect(currentSiteTrails(catalogue)).toHaveLength(363);
   });
 
   test('requires the artwork the public trail page needs',()=>{

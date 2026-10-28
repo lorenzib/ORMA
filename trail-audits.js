@@ -51024,6 +51024,297 @@
         { km: 2.1, lat: 46.89117, lng: 12.20228, osmId: 'way/38448752', name: 'Oberseehütte' }
       ],
       desc: 'An easy loop at 2,000 m below the Staller Sattel at the head of the Defereggen valley, up to the Obersee, along the lake and back over the Staller Almen. The board lists 4.7 km and 70 m of ascent.'
+    },
+    'campiglio-trekking-al-lago-di-nambino': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 5).
+      // APT Madonna di Campiglio’s walk “Trekking al Lago di Nambino”, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Pinzolo (Regolamento di Polizia Urbana 2024, Art. 66).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      area: 'Piana di Nambino – Lago di Nambino, Madonna di Campiglio',
+      distance: 3.1,
+      elevation: 154,
+      hours: '1.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the Piana di Nambino on the little road west and then path 217 beside the Rio Nambino up to the Lago di Nambino and its rifugio, with a short walk round the lake.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The stone steps of path 217 through the forest, on the line, in August (napo on Mapillary, CC BY-SA 4.0), 0 m from the line.',
+        route: 'Official out-and-back walk 3.1 km from the Piana di Nambino, as APT Madonna di Campiglio publishes it; the stored line is drawn on 9 OSM ways along the APT’s published line, 2.9 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Path SAT 217: from the Piana di Nambino west on the little road towards the Lago di Nambino; at the cableway hut, right on path 217, which climbs along the left bank of the Rio Nambino to the lake basin (about 170 m, under half an hour); walk round the lake. Back the same way.',
+        mapPoints: 'Start at the APT’s start, the Piana di Nambino; no drinking fountain is mapped on the line.',
+        elevation: 'Official 3.1 km, 154 m up and 153 m down, 1 h 30 min, highest point 1,773 m, lowest 1,628 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Trekking al Lago di Nambino (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Pinzolo, Regolamento di Polizia Urbana (2024), Art. 66: no roaming; a lead wherever the ground is not fenced, at most 1.5 m near people, animals or traffic',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 37,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Stone steps and roots on path 217', 'The path climbs beside the Rio Nambino: keep your dog out of the fast water'],
+      terrainType: 'Little road and a mountain path with stone steps',
+      shadeDescription: 'Mostly open: about 37% runs under trees, with the open lake basin at the top.',
+      terrainDescription: 'A short, family-friendly climb at 1,628–1,773 m from the Piana di Nambino through spruce forest to the Lago di Nambino and its rifugio, open all year.',
+      waterDescription: 'No drinking fountain is mapped on the line; the Rifugio Lago Nambino at the lake serves food and drink, and the Rio Nambino runs beside the path.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. Pinzolo’s rule also asks for a lead wherever the ground is not fenced, at most 1.5 m near people. The lake shore is busy with families: keep your dog close.',
+      tips: 'Start at the Piana di Nambino: 3.1 km there and back and about 150 m of climbing, an hour and a half with a walk round the lake. Keep your dog on a lead all the way.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Trekking al Lago di Nambino', url: 'https://www.campigliodolomiti.it/it/itinerari/trekking-al-lago-di-nambino' },
+        { label: 'Outdooractive, Trekking al Lago di Nambino (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/1510360' },
+        { label: 'Comune di Pinzolo, Regolamento di Polizia Urbana (2024; dogs: Art. 66–67)', url: 'https://www.comune.pinzolo.tn.it/content/download/795/15785/4/Regolamento+Polizia+Urbana+2024+A.pdf' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.237623,
+        lng: 10.817145,
+        label: 'Piana di Nambino, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.23779, lng: 10.8177, osmId: 'node/12430843295', name: 'Super G Italian Mountain Club - Campiglio' },
+        { km: 1.3, lat: 46.24162, lng: 10.80022, osmId: 'way/119917913', name: 'Rifugio Lago di Nambino' }
+      ],
+      desc: 'A short climb through spruce forest from the Piana di Nambino to the Lago di Nambino and its rifugio, in the Adamello Brenta Nature Park. The APT lists 3.1 km and 154 m of ascent.'
+    },
+    'campiglio-madonna-di-campiglio-monte-spinale': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 5).
+      // APT Madonna di Campiglio’s walk “Madonna di Campiglio - Monte Spinale”, drawn on 11 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Tre Ville 95% (no dog regulation, national rule) and Pinzolo 5% (Art. 66).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      // No lift is needed: the APT offers the Spinale gondola (closed cabins) as an alternative way down.
+      area: 'Madonna di Campiglio – Malga Fevri – Monte Spinale',
+      distance: 4.1,
+      elevation: 567,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and uphill from the church of Santa Maria Antica in Madonna di Campiglio on the Cantico delle Creature path, a steep path to Piazzetta Imperatrice, past Malga Fevri to the pastures of Monte Spinale; come back the same way or down on the Spinale gondola.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The stone square by the church of Santa Maria Antica, at the start, in August (lary_fede on Mapillary, CC BY-SA 4.0), 0 m from the line.',
+        route: 'Official one-way walk 4.1 km from the church of Santa Maria Antica, Madonna di Campiglio, as APT Madonna di Campiglio publishes it; the stored line is drawn on 11 OSM ways along the APT’s published line, 4 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the church of Santa Maria Antica on the Cantico delle Creature path; on reaching a tarmac road, about 50 m south to the sign for Piazzetta Imperatrice; the steep path up to Piazzetta Imperatrice; on to Malga Fevri and up to the pastures of Monte Spinale and the Chalet Spinale, with views of the Brenta Dolomites and the Adamello–Presanella glaciers. Back the same way, or down on the Spinale gondola.',
+        mapPoints: 'Start at the APT’s start, the church of Santa Maria Antica; drinking water at the start and at km 0.7 (OSM nodes 4987050042, 11176611620, 9959332174).',
+        elevation: 'Official 4.1 km, 567 m up and 1 m down one way, 2 h, highest point 2,086 m, lowest 1,519 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Madonna di Campiglio - Monte Spinale (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Tre Ville publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Comune di Pinzolo, Regolamento di Polizia Urbana (2024), Art. 66: no roaming; a lead wherever the ground is not fenced, at most 1.5 m near people, animals or traffic',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 47,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'A steep path up to Piazzetta Imperatrice',
+        'Cattle on the Spinale pastures in summer',
+        'Ski-area tracks and lift stations at the top'
+      ],
+      terrainType: 'Forest paths and high pastures',
+      shadeDescription: 'Part shade: about 47% runs under trees, in the woods low down; the Spinale pastures are open.',
+      terrainDescription: 'A steady climb of about 570 m at 1,519–2,086 m from the village through the woods to the high pastures of Monte Spinale, with a 360° view of the Brenta Dolomites and the Adamello–Presanella glaciers.',
+      waterDescription: 'No drinking fountain is mapped on the climb; the Chalet Spinale at the top serves food and drink. Carry water for your dog.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. Tre Ville has no dog rule of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried, which you will also need if you take the gondola down. Cattle graze on the Spinale pastures in summer.',
+      tips: 'Start at the church of Santa Maria Antica in Madonna di Campiglio: 4.1 km and about 570 m of climbing, two hours up. Come back the same way, or take the Spinale gondola down (closed cabins; carry a muzzle). Carry water.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Madonna di Campiglio - Monte Spinale', url: 'https://www.campigliodolomiti.it/it/itinerari/madonna-di-campiglio-monte-spinale' },
+        { label: 'Outdooractive, Madonna di Campiglio - Monte Spinale (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/51478105' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Comune di Pinzolo, Regolamento di Polizia Urbana (2024; dogs: Art. 66–67)', url: 'https://www.comune.pinzolo.tn.it/content/download/795/15785/4/Regolamento+Polizia+Urbana+2024+A.pdf' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.231319,
+        lng: 10.8285,
+        label: 'Church of Santa Maria Antica, Madonna di Campiglio, the APT’s start'
+      },
+      waterSources: [
+        { km: 0, lat: 46.230524, lng: 10.8273322, osmId: 'node/4987050042', label: 'Drinking fountain' },
+        { km: 0, lat: 46.2308791, lng: 10.8293582, osmId: 'node/11176611620', label: 'Drinking fountain' },
+        { km: 0.7, lat: 46.2281794, lng: 10.8332427, osmId: 'node/9959332174', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.22955, lng: 10.82681, osmId: 'node/333791574', name: 'Caffé Maturi' },
+        { km: 0, lat: 46.2295, lng: 10.827, osmId: 'node/12066038201', name: 'La Tana' },
+        { km: 0, lat: 46.23207, lng: 10.82743, osmId: 'node/304632628', name: 'Pizzeria Ristorante Belvedere' },
+        { km: 0, lat: 46.2319, lng: 10.82588, osmId: 'node/304632785', name: 'Arnica' },
+        { km: 0, lat: 46.23092, lng: 10.82658, osmId: 'node/333791569', name: 'La Cantina di Suisse' },
+        { km: 0, lat: 46.23193, lng: 10.82772, osmId: 'node/5325769522', name: 'Lume17' },
+        { km: 0, lat: 46.23239, lng: 10.8266, osmId: 'node/9969540118', name: 'El Volt' },
+        { km: 0, lat: 46.23204, lng: 10.82769, osmId: 'node/12076555560', name: 'Frischhh' },
+        { km: 0.1, lat: 46.22866, lng: 10.8291, osmId: 'way/610239683', name: 'Ober1' },
+        { km: 3.6, lat: 46.22256, lng: 10.84834, osmId: 'node/8699463843', name: 'Chalet Fiat' },
+        { km: 3.6, lat: 46.2226, lng: 10.84842, osmId: 'way/88073995', name: 'Rifugio Spinale' }
+      ],
+      desc: 'A steady climb from Madonna di Campiglio through the woods to the high pastures of Monte Spinale and its 360° view, in the Adamello Brenta Nature Park. The APT lists 4.1 km and 567 m of ascent, one way.'
+    },
+    'campiglio-trekking-al-rifugio-segantini': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 5).
+      // APT Madonna di Campiglio’s walk “Trekking al Rifugio Segantini”, drawn on 14 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Giustino (Regolamento di Polizia Urbana, Art. 31).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      area: 'Valina d’Amola – Rifugio Segantini, Val Nambrone',
+      distance: 4.9,
+      elevation: 397,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car park in the Val d’Amola over the wooden bridge on the Sarca d’Amola, up the panoramic ridge on path 211 “Oscar Collini” to the Rifugio Segantini below the Presanella, and back past streams, small waterfalls and lakes.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The granite plateau below the Rifugio Segantini, on the line, in August (zontad on Mapillary, CC BY-SA 4.0), 0 m from the line.',
+        route: 'Official loop 4.9 km from the Val d’Amola car park, as APT Madonna di Campiglio publishes it; the stored line is drawn on 14 OSM ways along the APT’s published line, 4.8 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Path SAT 211 “Oscar Collini”: from the car park along the little path to the wooden bridge over the Sarca d’Amola; across, right on path 211, which zigzags up the ramp to the wide panoramic ridge and follows it to the foot of the Rifugio Segantini, with the Vallina plain below, the Cornisello ridge and the Passo dell’Om to the right and the walls of the Presanella ahead; back past streams, small waterfalls and lakes to the car park.',
+        mapPoints: 'Start at the APT’s start, the Val d’Amola car park; no drinking fountain is mapped on the line.',
+        elevation: 'Official 4.9 km, 397 m up and 398 m down, 2 h, highest point 2,369 m, lowest 2,019 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Trekking al Rifugio Segantini (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Giustino, Regolamento di Polizia Urbana, Art. 31: dogs on a lead of at most 1.5 m on streets and public places, muzzled in public premises and in crowds',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: [
+        'Rocky mountain path and granite slabs above 2,000 m',
+        'Wooden bridge over the fast Sarca d’Amola',
+        'No shelter from bad weather on the ridge'
+      ],
+      terrainType: 'Rocky mountain paths',
+      shadeDescription: 'Mostly open: about 0% runs under trees, all of it above the trees.',
+      terrainDescription: 'A high loop at 2,019–2,369 m at the head of the Val Nambrone, up a panoramic ridge to the Rifugio Segantini at the foot of the Presanella, past streams, small waterfalls and lakes.',
+      waterDescription: 'No drinking fountain is mapped on the line; streams cross the loop and the Rifugio Segantini serves food and drink in summer. Carry water for your dog.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. Giustino’s rule asks for a lead of at most 1.5 m on public places and a muzzle in public premises and in crowds. The path is rocky: only for dogs used to mountain terrain.',
+      tips: 'Start at the Val d’Amola car park: 4.9 km and about 400 m of climbing, two hours. Keep your dog on a lead and carry a muzzle. The APT recommends it for children from about ten: the path is rocky but not difficult.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Trekking al Rifugio Segantini', url: 'https://www.campigliodolomiti.it/it/itinerari/trekking-al-rifugio-segantini' },
+        { label: 'Outdooractive, Trekking al Rifugio Segantini (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/1510456' },
+        { label: 'Comune di Giustino, Regolamento di Polizia Urbana (dogs: Art. 31)', url: 'https://www.comune.giustino.tn.it/content/download/581/11652/2/Regolamento%2BPolizia%2BUrbana%2BGiustino.pdf' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.205512,
+        lng: 10.725836,
+        label: 'Val d’Amola car park, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 1.7, lat: 46.20911, lng: 10.71079, osmId: 'node/11138943607', name: 'Rifugio Val Amola-Giovanni Segantini' },
+        { km: 1.7, lat: 46.20924, lng: 10.7108, osmId: 'way/94750442', name: 'Rifugio Segantini' }
+      ],
+      desc: 'A high loop at the head of the Val Nambrone up a panoramic ridge to the Rifugio Segantini, below the walls of the Presanella. The APT lists 4.9 km and 397 m of ascent.'
+    },
+    'campiglio-valina-d-amola-rifugio-segantini-cornisello': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 5).
+      // APT Madonna di Campiglio’s walk “Valina d’Amola - Rifugio Segantini - Cornisello”, drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Giustino 62% (Art. 31) and Carisolo 38% (Art. 35).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      area: 'Valina d’Amola – Rifugio Segantini – Cornisello, Val Nambrone',
+      distance: 9.4,
+      elevation: 559,
+      hours: '5',
+      routeShape: 'loop',
+      routeShapeNote: 'A high loop from the small car park at Valina d’Amola past Malga Valina d’Amola, up a steep ridge to the Rifugio Segantini and on towards the Cornisello lakes, above the trees for most of the way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The meadows of the Val d’Amola, on the loop, in August (zontad on Mapillary, CC BY-SA 4.0), 55 m from the line.',
+        route: 'Official loop 9.4 km from the Valina d’Amola car park, as APT Madonna di Campiglio publishes it; the stored line is drawn on 17 OSM ways along the APT’s published line, 9.4 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Path SAT 211 and others: from the small car park at Valina d’Amola left on the gravel road south to the Sarca d’Amola; before the bridge, right on the path beside the stream; back on the forest road to Malga Valina d’Amola; right (west), over a small wooden bridge and right again at the fork (north); up the steep ridge in zigzags to its crest and along it to the Rifugio Segantini; on towards the Cornisello and back to the car park.',
+        mapPoints: 'Start at the APT’s start, the Valina d’Amola car park; no drinking fountain is mapped on the line.',
+        elevation: 'Official 9.4 km, 559 m up and 559 m down, 5 h, highest point 2,421 m, lowest 1,911 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Valina d’Amola - Rifugio Segantini - Cornisello (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Giustino, Regolamento di Polizia Urbana, Art. 31: dogs on a lead of at most 1.5 m on streets and public places, muzzled in public premises and in crowds',
+          'Comune di Carisolo, Regolamento di Polizia Urbana, Art. 35: dogs on a lead of at most 1.5 m on streets and public places, muzzled in public premises and in crowds',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: [
+        'A steep, zigzagging ridge up to the Rifugio Segantini',
+        'High and open above 2,000 m: the APT advises an early start and stable weather',
+        'Small wooden bridges over fast streams'
+      ],
+      terrainType: 'Forest road and rocky mountain paths',
+      shadeDescription: 'Mostly open: about 0% runs under trees, the APT notes it runs above the trees.',
+      terrainDescription: 'A demanding high loop at 1,911–2,421 m from Valina d’Amola up to the Rifugio Segantini and towards the Cornisello lakes, below the Presanella.',
+      waterDescription: 'No drinking fountain is mapped on the line; streams cross the loop and the Rifugio Segantini serves food and drink in summer. Carry water for your dog.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. Giustino and Carisolo both ask for a lead of at most 1.5 m in public places and a muzzle in public premises and crowds. The ridge is steep and rocky: only for fit dogs used to mountain days.',
+      tips: 'Start at the small car park at Valina d’Amola early, on a day of stable weather, as the APT advises: 9.4 km and about 560 m of climbing, five hours. Keep your dog on a lead, carry a muzzle and carry water.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Valina d’Amola - Rifugio Segantini - Cornisello', url: 'https://www.campigliodolomiti.it/it/itinerari/valina-d-amola-rifugio-segantini-cornisello' },
+        { label: 'Outdooractive, Valina d’Amola - Rifugio Segantini - Cornisello (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/19614908' },
+        { label: 'Comune di Giustino, Regolamento di Polizia Urbana (dogs: Art. 31)', url: 'https://www.comune.giustino.tn.it/content/download/581/11652/2/Regolamento%2BPolizia%2BUrbana%2BGiustino.pdf' },
+        { label: 'Comune di Carisolo, Regolamento di Polizia Urbana (dogs: Art. 35)', url: 'https://www.comune.carisolo.tn.it/content/download/2890/35784/2/CT045-24-A+regolamento+polizia+urbana.pdf' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.205255,
+        lng: 10.730959,
+        label: 'Valina d’Amola car park, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 2.3, lat: 46.21996, lng: 10.73821, osmId: 'way/29390000', name: 'Rifugio Cornisello' },
+        { km: 7, lat: 46.20924, lng: 10.7108, osmId: 'way/94750442', name: 'Rifugio Segantini' },
+        { km: 7, lat: 46.20911, lng: 10.71079, osmId: 'node/11138943607', name: 'Rifugio Val Amola-Giovanni Segantini' }
+      ],
+      desc: 'A demanding high loop from Valina d’Amola up to the Rifugio Segantini and towards the Cornisello lakes, below the Presanella, in the Adamello Brenta Nature Park. The APT lists 9.4 km and 559 m of ascent.'
     }
   };
 
