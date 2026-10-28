@@ -2837,30 +2837,14 @@ function renderLiDogLists(profile){
       meta.textContent = [dog.breed, dog.fitness ? dog.fitness + ' fitness' : null].filter(Boolean).join(' · ');
       copy.append(name, meta);
       row.append(avatar, copy);
-      row.addEventListener('click', async () => {
-        // The account dropdown is not a modal. Always dismiss it first so an
-        // active-dog click or a slow network request can never block the page.
+      // A dog card opens that dog's profile. account.html makes the dog
+      // active itself when ?dog= names another one.
+      row.addEventListener('click', () => {
+        // The account dropdown is not a modal. Dismiss it first.
         liCloseMenus();
-        if(dog.id === activeId){
-          window.location.href = `account.html?dog=${encodeURIComponent(dog.id)}&next=%2F`;
-          return;
-        }
-        if(!window.DoloPawsAuth || !window.DoloPawsAuth.selectDogProfile) return;
-        row.disabled = true;
-        row.setAttribute('aria-busy', 'true');
-        try {
-          // selectDogProfile dispatches dolopaws-dog-profile-saved, which
-          // refreshes scores and dog context in place. Reloading here was
-          // redundant and could strand the homepage during a slow reload.
-          await window.DoloPawsAuth.selectDogProfile(dog.id);
-        } catch(error){
-          // Keep the rest of the homepage usable even if profile sync fails.
-        } finally {
-          if(row.isConnected){
-            row.disabled = false;
-            row.removeAttribute('aria-busy');
-          }
-        }
+        window.location.href = dog.id
+          ? `account.html?dog=${encodeURIComponent(dog.id)}&next=%2F`
+          : 'account.html?next=%2F';
       });
       list.appendChild(row);
     });
@@ -2879,15 +2863,11 @@ function renderLiHeader(profile){
   liFillAvatar(document.getElementById('liGreetAvatar'), profile);
   liFillAvatar(document.getElementById('liDogCtxAvatar'), profile);
   renderLiDogLists(profile);
+  // The dog cards open each profile, so this link is only for a member
+  // who has no dog yet.
   ['liManageLink','liGreetManageLink'].forEach(id => {
-    const manage = document.getElementById(id);
-    if(!manage) return;
-    manage.textContent = (profile && profile.name)
-      ? 'Manage dog profiles →'
-      : "Set up your dog's profile";
-    manage.href = profile && profile.id
-      ? `account.html?dog=${encodeURIComponent(profile.id)}&next=%2F`
-      : 'account.html?next=%2F';
+    const setup = document.getElementById(id);
+    if(setup) setup.hidden = Boolean(profile && profile.name);
   });
   const matchLabel = document.getElementById('liMatchSecLabel');
   if(matchLabel) matchLabel.textContent = (profile && profile.name)
