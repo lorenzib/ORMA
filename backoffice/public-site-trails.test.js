@@ -100,9 +100,12 @@ describe('the existing-site verification boundary',()=>{
     // Then 309 and 307 with five Sexten walks drawn there and back: Sexten – Innichen,
     // Sexten church – Gasthof Panorama, Haus der Berge – Lärchenhütte, the Mitterberg
     // fort to the Helmhanghütte, and Sexten – Waldkapelle.
+    // Then 315 and 313 with six more western Trentino walks: the Senter dei Popi,
+    // Giustino's Giro del Belvedere, the Monclassico sundials, Passo del Tonale to
+    // Forte Mero and to Forte Zaccarana, and Ortisè to Malga Stabli.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(309);
-    expect(currentSiteTrails(catalogue)).toHaveLength(307);
+    expect(catalogue).toHaveLength(315);
+    expect(currentSiteTrails(catalogue)).toHaveLength(313);
   });
 
   test('requires the artwork the public trail page needs',()=>{

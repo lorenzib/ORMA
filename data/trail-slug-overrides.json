@@ -888,6 +888,36 @@
       "name": "Sexten – Waldkapelle",
       "slug": "sexten-waldkapelle",
       "gloss": "the meditation path from Sexten church to the forest chapel"
+    },
+    "giudicarie-senter-dei-popi-madonna-del-lares": {
+      "name": "Senter dei Popi – Madonna del Lares",
+      "slug": "senter-dei-popi-madonna-del-lares",
+      "gloss": "the gorge path from Bondo to the Madonna del Lares"
+    },
+    "rendena-giro-del-belvedere-giustino": {
+      "name": "Giro del Belvedere",
+      "slug": "giro-del-belvedere-giustino",
+      "gloss": "the short village loop above Giustino"
+    },
+    "valdisole-monclassico-presson-meridiane": {
+      "name": "Monclassico and Presson, the sundial villages",
+      "slug": "monclassico-presson-sundials",
+      "gloss": "the village loop past the painted sundials"
+    },
+    "valdisole-passo-tonale-forte-mero-forte-zaccarana": {
+      "name": "Passo Tonale – Forte Mero and Forte Zaccarana",
+      "slug": "tonale-forte-mero-forte-zaccarana",
+      "gloss": "the loop to the two Austro-Hungarian forts below the Tonale"
+    },
+    "valdisole-passo-tonale-forte-mero": {
+      "name": "Passo Tonale – Forte Mero",
+      "slug": "tonale-forte-mero",
+      "gloss": "the gentle walk down from the Tonale to Forte Mero"
+    },
+    "valdisole-ortise-malga-stabli": {
+      "name": "Ortisè – Malga Stabli",
+      "slug": "ortise-malga-stabli",
+      "gloss": "the climb from Ortisè to the Stabli pastures"
     }
   }
 }

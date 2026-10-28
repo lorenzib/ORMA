@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T00:00:48.995Z",
+  "generatedAt": "2026-10-28T00:07:32.715Z",
   "regions": {
     "dolomites": {
-      "trailCount": 247,
-      "trails": "data/regions/dolomites-trails.js?v=9da65730ffbd",
+      "trailCount": 253,
+      "trails": "data/regions/dolomites-trails.js?v=3660a4492cd7",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -235,7 +235,7 @@
         "valdisole-lago-dei-caprioli-malga-alta-di-fazzon": "data/trail-details/valdisole-lago-dei-caprioli-malga-alta-di-fazzon.js?v=c6ddcc212e17",
         "valdisole-marilleva-1400-malga-alta-di-fazzon": "data/trail-details/valdisole-marilleva-1400-malga-alta-di-fazzon.js?v=bf2858e84c8a",
         "valdisole-bivacco-malga-baselga": "data/trail-details/valdisole-bivacco-malga-baselga.js?v=44b21d727016",
-        "valdisole-rifugio-stavel-denza": "data/trail-details/valdisole-rifugio-stavel-denza.js?v=0365d0e90bb7",
+        "valdisole-rifugio-stavel-denza": "data/trail-details/valdisole-rifugio-stavel-denza.js?v=2bd4b7643603",
         "rendena-ciclabile-javre-dare-vigo-pelugo": "data/trail-details/rendena-ciclabile-javre-dare-vigo-pelugo.js?v=3484ad245f45",
         "giudicarie-san-vigilio-senter-dei-cavai": "data/trail-details/giudicarie-san-vigilio-senter-dei-cavai.js?v=5c312fbae811",
         "valgardena-escursione-nella-vallunga": "data/trail-details/valgardena-escursione-nella-vallunga.js?v=50d353e91868",
@@ -252,6 +252,12 @@
         "trecime-haus-der-berge-rifugio-larice": "data/trail-details/trecime-haus-der-berge-rifugio-larice.js?v=9708c96fc1b0",
         "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": "data/trail-details/trecime-gasthof-panorama-rifugio-pendio-monte-elmo.js?v=6151ed4634df",
         "trecime-sesto-cappella-del-bosco": "data/trail-details/trecime-sesto-cappella-del-bosco.js?v=5007ec2330ea",
+        "giudicarie-senter-dei-popi-madonna-del-lares": "data/trail-details/giudicarie-senter-dei-popi-madonna-del-lares.js?v=51edb3206903",
+        "rendena-giro-del-belvedere-giustino": "data/trail-details/rendena-giro-del-belvedere-giustino.js?v=3722e2bd5481",
+        "valdisole-monclassico-presson-meridiane": "data/trail-details/valdisole-monclassico-presson-meridiane.js?v=10ea38aab695",
+        "valdisole-passo-tonale-forte-mero-forte-zaccarana": "data/trail-details/valdisole-passo-tonale-forte-mero-forte-zaccarana.js?v=92e7bb7b32a8",
+        "valdisole-passo-tonale-forte-mero": "data/trail-details/valdisole-passo-tonale-forte-mero.js?v=b4ca594246c3",
+        "valdisole-ortise-malga-stabli": "data/trail-details/valdisole-ortise-malga-stabli.js?v=1c5122c6c3a1",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -322,7 +328,7 @@
     },
     "lombardy": {
       "trailCount": 5,
-      "trails": "data/regions/lombardy-trails.js?v=4ad54fa4f5b8",
+      "trails": "data/regions/lombardy-trails.js?v=d1a6ed4f558e",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=7e2f9ea8f6ea",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
@@ -608,6 +614,12 @@
     "trecime-haus-der-berge-rifugio-larice": "dolomites",
     "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": "dolomites",
     "trecime-sesto-cappella-del-bosco": "dolomites",
+    "giudicarie-senter-dei-popi-madonna-del-lares": "dolomites",
+    "rendena-giro-del-belvedere-giustino": "dolomites",
+    "valdisole-monclassico-presson-meridiane": "dolomites",
+    "valdisole-passo-tonale-forte-mero-forte-zaccarana": "dolomites",
+    "valdisole-passo-tonale-forte-mero": "dolomites",
+    "valdisole-ortise-malga-stabli": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -981,6 +993,12 @@
     "trecime-haus-der-berge-rifugio-larice": "haus-der-berge-laerchenhuette",
     "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": "fort-mitterberg-helmhanghuette",
     "trecime-sesto-cappella-del-bosco": "sexten-waldkapelle",
+    "giudicarie-senter-dei-popi-madonna-del-lares": "senter-dei-popi-madonna-del-lares",
+    "rendena-giro-del-belvedere-giustino": "giro-del-belvedere-giustino",
+    "valdisole-monclassico-presson-meridiane": "monclassico-presson-sundials",
+    "valdisole-passo-tonale-forte-mero-forte-zaccarana": "tonale-forte-mero-forte-zaccarana",
+    "valdisole-passo-tonale-forte-mero": "tonale-forte-mero",
+    "valdisole-ortise-malga-stabli": "ortise-malga-stabli",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1292,6 +1310,12 @@
     "haus-der-berge-laerchenhuette": "trecime-haus-der-berge-rifugio-larice",
     "fort-mitterberg-helmhanghuette": "trecime-gasthof-panorama-rifugio-pendio-monte-elmo",
     "sexten-waldkapelle": "trecime-sesto-cappella-del-bosco",
+    "senter-dei-popi-madonna-del-lares": "giudicarie-senter-dei-popi-madonna-del-lares",
+    "giro-del-belvedere-giustino": "rendena-giro-del-belvedere-giustino",
+    "monclassico-presson-sundials": "valdisole-monclassico-presson-meridiane",
+    "tonale-forte-mero-forte-zaccarana": "valdisole-passo-tonale-forte-mero-forte-zaccarana",
+    "tonale-forte-mero": "valdisole-passo-tonale-forte-mero",
+    "ortise-malga-stabli": "valdisole-ortise-malga-stabli",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
