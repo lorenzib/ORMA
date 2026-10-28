@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-seceda-dal-rifugio-firenze",
+  "distanceKm": 8,
+  "ascentM": 983,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1550
+    },
+    {
+      "km": 0.6,
+      "elev": 1633
+    },
+    {
+      "km": 1.2,
+      "elev": 1754
+    },
+    {
+      "km": 1.8,
+      "elev": 1824
+    },
+    {
+      "km": 2.4,
+      "elev": 1904
+    },
+    {
+      "km": 3,
+      "elev": 1943
+    },
+    {
+      "km": 3.6,
+      "elev": 2037
+    },
+    {
+      "km": 4.2,
+      "elev": 2068
+    },
+    {
+      "km": 4.9,
+      "elev": 2140
+    },
+    {
+      "km": 5.5,
+      "elev": 2126
+    },
+    {
+      "km": 6.1,
+      "elev": 2207
+    },
+    {
+      "km": 6.7,
+      "elev": 2320
+    },
+    {
+      "km": 7.3,
+      "elev": 2412
+    },
+    {
+      "km": 7.9,
+      "elev": 2421
+    },
+    {
+      "km": 8,
+      "elev": 2460
+    }
+  ]
+}
