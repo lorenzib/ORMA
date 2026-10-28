@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "trailId": "paganella-giro-del-lago-di-molveno",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 10.1,
+    "ascentM": 232,
+    "highestPointM": 909,
+    "expectedDuration": "2.3 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 64
+  },
+  "trailhead": {
+    "lat": 46.138211,
+    "lng": 10.958315,
+    "label": "Molveno campsite, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.1267827,
+      "lng": 10.9501354,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.125385,
+      "lng": 10.951487,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1130271,
+      "lng": 10.9413054,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.141809,
+      "lng": 10.9667181,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1423628,
+      "lng": 10.9666683,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1427635,
+      "lng": 10.9646626,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1424701,
+      "lng": 10.9637313,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1403244,
+      "lng": 10.9625728,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "One crossing of the main road on the east shore.",
+    "Busy lakeside paths, beaches and the lido in summer.",
+    "Keep your dog out of the water where swimming areas are signed.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
