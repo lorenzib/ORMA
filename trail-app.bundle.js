@@ -57156,6 +57156,536 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 4.3, lat: 46.65388, lng: 12.17925, osmId: 'way/103700852', name: 'Berggasthof Plätzwiese - Rifugio Prato Piazza' }
       ],
       desc: 'A climb from the Cimabanche pass on path 18 up the Knappenfußtal past a small waterfall to the Plätzwiese. The board lists 4.4 km and 494 m of ascent, one way.'
+    },
+    'campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
+      // APT Madonna di Campiglio’s walk “Escursione a Malga Ritort da Madonna di Campiglio”, drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Pinzolo (Regolamento di Polizia Urbana 2024, Art. 66).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      area: 'Madonna di Campiglio – Malga Ritort, Val Rendena',
+      distance: 6,
+      elevation: 212,
+      hours: '2',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the centre of Madonna di Campiglio through spruce woods to the Ritort pastures and Malga Ritort, with the Brenta Dolomites opening up at the top.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Cows grazing at Malga Ritort, at the end of the walk, in September (Marco Ober, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official out-and-back walk 6 km from the Pappagallo restaurant, Madonna di Campiglio, as APT Madonna di Campiglio publishes it; the stored line is drawn on 17 OSM ways along the APT’s published line, 5.7 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the centre of Madonna di Campiglio along Via Adamello to the Pappagallo restaurant, into the woods on the Giro di Campiglio southwards; after about ten minutes, right on the path to Malga Ritort, which climbs gently to the wide pasture by the malga and its view of the Brenta Dolomites. Back the same way, or by the tarmac road through Patascoss to the north of the village.',
+        mapPoints: 'Start at the APT’s start by the Pappagallo restaurant in Madonna di Campiglio; no drinking fountain is mapped on the line.',
+        elevation: 'Official 6 km, 212 m up and 213 m down, 2 h, highest point 1,743 m, lowest 1,531 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Escursione a Malga Ritort da Madonna di Campiglio (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Pinzolo, Regolamento di Polizia Urbana (2024), Art. 66: no roaming; a lead wherever the ground is not fenced, at most 1.5 m near people, animals or traffic; Art. 67 lists places closed to animals',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 76,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Cattle graze on the pastures round Malga Ritort in summer', 'Village streets in Madonna di Campiglio at the start'],
+      terrainType: 'Village streets and forest paths',
+      shadeDescription: 'Mostly shaded: about 76% runs under trees, with open pasture at the malga.',
+      terrainDescription: 'An easy forest walk at 1,531–1,743 m from Madonna di Campiglio to the Ritort pastures, where the Brenta Dolomites suddenly appear across the valley.',
+      waterDescription: 'No drinking fountain is mapped on the way; bars at the start and Malga Ritort, a restaurant, at the top. Carry water for your dog.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. Pinzolo’s rule also asks for a lead wherever the ground is not fenced, at most 1.5 m near people, animals or traffic. Cattle graze round Malga Ritort in summer: keep your dog on a short lead and away from calves.',
+      tips: 'Start by the Pappagallo restaurant in Madonna di Campiglio: about 6 km there and back and 210 m of climbing, two hours. Keep your dog on a lead all the way, and on a short one near the cattle at Malga Ritort. A good choice on a day of uncertain weather.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Escursione a Malga Ritort da Madonna di Campiglio', url: 'https://www.campigliodolomiti.it/it/itinerari/escursione-a-malga-ritort-da-madonna-di-campiglio' },
+        { label: 'Outdooractive, Escursione a Malga Ritort da Madonna di Campiglio (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/51240770' },
+        { label: 'Comune di Pinzolo, Regolamento di Polizia Urbana (2024; dogs: Art. 66–67)', url: 'https://www.comune.pinzolo.tn.it/content/download/795/15785/4/Regolamento+Polizia+Urbana+2024+A.pdf' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.224846,
+        lng: 10.823597,
+        label: 'Pappagallo restaurant, Madonna di Campiglio, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.22626, lng: 10.82589, osmId: 'node/2381700948', name: 'Ristorante Pizzeria Antico Focolare' },
+        { km: 0, lat: 46.22485, lng: 10.82681, osmId: 'node/9980361650', name: 'Zanolini' },
+        { km: 0, lat: 46.22399, lng: 10.82393, osmId: 'way/87545513', name: 'Bar Azzurro' },
+        { km: 0, lat: 46.22528, lng: 10.82353, osmId: 'way/87959579', name: 'Pappagallo' },
+        { km: 2.2, lat: 46.21378, lng: 10.80631, osmId: 'way/96081135', name: 'Bar Ristorante Malga Ritorto' }
+      ],
+      desc: 'An easy forest walk from Madonna di Campiglio to the Ritort pastures and their view of the Brenta Dolomites, in the Adamello Brenta Nature Park. The APT lists 6 km and 212 m of ascent.'
+    },
+    'campiglio-lago-ritorto-nel-blu-dipinto-di-blu': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
+      // APT Madonna di Campiglio’s walk “Lago Ritorto, nel blu dipinto di blu”, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Pinzolo (Regolamento di Polizia Urbana 2024, Art. 66).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      // The upper part is in the RSP6 Ritort special reserve area of the park plan.
+      area: 'Patascoss – Malga Ritorto – Lago Ritorto, Val Rendena',
+      distance: 5.4,
+      elevation: 339,
+      hours: '2.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Patascoss on a quiet tarmac road and track to Malga Ritorto, then on path SAT 277 across the Pian dei Mughi and past the ruins of Malga della Pozza dei Garzoni to the Lago Ritorto; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Brenta group seen from the Ritort pastures, on the line, in September (Marco Ober, CC BY-SA 4.0), 13 m from the line.',
+        route: 'Official one-way walk 5.4 km from Patascoss, as APT Madonna di Campiglio publishes it; the stored line is drawn on 9 OSM ways along the APT’s published line, 5.7 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Path SAT 277 for the upper part: from Patascoss, a couple of kilometres north of Madonna di Campiglio, gently up a small tarmac road and then a track through clearings and spruce woods to Malga Ritorto (restaurant, wide view of the Brenta); then SAT 277 across the Pian dei Mughi, where chamois and roe deer are often seen, past the ruins of Malga della Pozza dei Garzoni, to the Lago Ritorto (2,055 m). Back the same way.',
+        mapPoints: 'Start at the APT’s start, Patascoss; no drinking fountain is mapped on the line.',
+        elevation: 'Official 5.4 km, 339 m up and 2 m down one way, 2 h 30 min, highest point 2,065 m, lowest 1,726 m (Madonna di Campiglio Azienda per il Turismo); the stored line ends at 2,060 m by the lake.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Lago Ritorto, nel blu dipinto di blu (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Pinzolo, Regolamento di Polizia Urbana (2024), Art. 66: no roaming; a lead wherever the ground is not fenced, at most 1.5 m near people, animals or traffic',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 52,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: [
+        'Wildlife on the Pian dei Mughi: chamois and roe deer are often close to the path',
+        'Cattle graze round Malga Ritorto in summer',
+        'A rougher mountain path for the last part to the lake'
+      ],
+      terrainType: 'Tarmac road, track and mountain path',
+      shadeDescription: 'Part shade: about 52% runs under trees, the upper path to the lake is open.',
+      terrainDescription: 'A climb at 1,726–2,065 m from Patascoss past Malga Ritorto and across the wild Pian dei Mughi to the Lago Ritorto, facing the Brenta Dolomites.',
+      waterDescription: 'No drinking fountain is mapped on the line; Malga Ritorto serves food and drink halfway, and the lake is at the end. Carry water for your dog.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. The upper part runs through the Ritort special reserve, and chamois and roe deer are often near the path: keep your dog close. Cattle graze round Malga Ritorto in summer. Pinzolo’s rule also asks for a lead wherever the ground is not fenced.',
+      tips: 'Start at Patascoss: 5.4 km and about 340 m of climbing to the lake, two and a half hours one way, then the same way back. Keep your dog on a lead all the way, and stay on the path between 1 April and 15 July. Malga Ritorto halfway serves food.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Lago Ritorto, nel blu dipinto di blu', url: 'https://www.campigliodolomiti.it/it/itinerari/lago-ritorto-nel-blu-dipinto-di-blu' },
+        { label: 'Outdooractive, Lago Ritorto, nel blu dipinto di blu (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/66794358' },
+        { label: 'Comune di Pinzolo, Regolamento di Polizia Urbana (2024; dogs: Art. 66–67)', url: 'https://www.comune.pinzolo.tn.it/content/download/795/15785/4/Regolamento+Polizia+Urbana+2024+A.pdf' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.230149,
+        lng: 10.815934,
+        label: 'Patascoss, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.23016, lng: 10.81783, osmId: 'way/88060120', name: 'Rifugio Patascoss' },
+        { km: 2.1, lat: 46.21378, lng: 10.80631, osmId: 'way/96081135', name: 'Bar Ristorante Malga Ritorto' }
+      ],
+      desc: 'A climb from Patascoss past Malga Ritorto and across the wild Pian dei Mughi to the Lago Ritorto, facing the Brenta Dolomites, in the Adamello Brenta Nature Park. The APT lists 5.4 km and 339 m of ascent, one way.'
+    },
+    'campiglio-laghi-di-san-giuliano-garzone-e-vacarsa': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
+      // APT Madonna di Campiglio’s walk “Laghi di San Giuliano, Garzonè e Vacarsa”, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Caderzone Terme (Regolamento di Polizia Urbana, Art. 30).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      area: 'Malga Campo – Laghi di San Giuliano – Vacarsa, Caderzone Terme, Val Rendena',
+      distance: 11,
+      elevation: 665,
+      hours: '6',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car park at Pöc dali Fafc above Caderzone past Malga Campo, on path 230 to Malga San Giuliano and the San Giuliano and Garzonè lakes, over the Bocchetta dell’Acqua Fredda on path 221, down to the Lago di Vacarsa and Malga Campostril, and back on the “senter plan”.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lago di San Giuliano with its hut, on the loop, in August (Syrio, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official loop 11 km from Pöc dali Fafc above Caderzone Terme, as APT Madonna di Campiglio publishes it; the stored line is drawn on 9 OSM ways along the APT’s published line, 10.8 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Paths SAT 230 and 221: from the car park at Pöc dali Fafc on the road to Malga Campo (view of Cima Presanella); a short path to join SAT 230 from Malga Diaga; along the side of the Val Genova to the pastures of Malga San Giuliano and down to the Lago di San Giuliano, its little church and the rifugio, with the Lago Garzonè beside it; up SAT 221 to the Bocchetta dell’Acqua Fredda (Passo San Giuliano), with a view of the Brenta Dolomites; down in wide bends to the Lago di Vacarsa and Malga Campostril, and left on the “senter plan” back to the car park.',
+        mapPoints: 'Start at the APT’s start, the car park at Pöc dali Fafc; drinking water at km 1, at km 2 and at km 9.5 (OSM nodes 2211286533, 9007686802, 770511738).',
+        elevation: 'Official 11 km, 665 m up and 665 m down, 6 h, highest point 2,175 m, lowest 1,666 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Laghi di San Giuliano, Garzonè e Vacarsa (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Caderzone Terme, Regolamento di Polizia Urbana, Art. 30: dogs on a lead, at most 1.5 m near people, animals or traffic',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 48,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: [
+        'Mountain paths with a climb to a 2,175 m pass',
+        'Cattle on the pastures of Malga San Giuliano and Malga Campostril in summer',
+        'Long day: six hours, little shelter on the pass'
+      ],
+      terrainType: 'Forest roads and mountain paths',
+      shadeDescription: 'Part shade: about 48% runs under trees, the pass and the lakes are open.',
+      terrainDescription: 'A long mountain loop at 1,666–2,175 m above Caderzone past three high lakes, San Giuliano, Garzonè and Vacarsa, and over a pass with views of the Presanella and the Brenta Dolomites.',
+      waterDescription: 'Drinking water near the start at km 1 and 2 and at km 9.5; the Rifugio San Giuliano at km 5.9 serves food and drink, and the lakes are along the way.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. Caderzone’s rule asks for a lead, at most 1.5 m near people, animals or traffic. Cattle graze on the pastures in summer: keep your dog on a short lead there. Only for fit dogs used to long mountain days.',
+      tips: 'Drive from Caderzone Terme to the car park at Pöc dali Fafc: 11 km and about 670 m of climbing, six hours. Keep your dog on a lead all the way and stay on the paths. The Rifugio San Giuliano halfway serves food.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Laghi di San Giuliano, Garzonè e Vacarsa', url: 'https://www.campigliodolomiti.it/it/itinerari/laghi-di-san-giuliano-garzone-e-vacarsa' },
+        { label: 'Outdooractive, Laghi di San Giuliano, Garzonè e Vacarsa (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/19612017' },
+        { label: 'Comune di Caderzone Terme, Regolamento di Polizia Urbana (dogs: Art. 30)', url: 'https://www.comune.caderzoneterme.tn.it/content/download/766/12439/2/REGOLAMENTOPOLIZIAURBANA.pdf' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.142842,
+        lng: 10.735426,
+        label: 'Car park at Pöc dali Fafc above Caderzone Terme, the APT’s start'
+      },
+      waterSources: [
+        { km: 1, lat: 46.1526958, lng: 10.7361987, osmId: 'node/2211286533', label: 'Drinking fountain' },
+        { km: 2, lat: 46.1583121, lng: 10.7281973, osmId: 'node/9007686802', label: 'Drinking fountain' },
+        { km: 9.5, lat: 46.1369888, lng: 10.7270957, osmId: 'node/770511738', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 5.9, lat: 46.14489, lng: 10.70475, osmId: 'way/94835545', name: 'Rifugio San Giuliano' }
+      ],
+      desc: 'A long mountain loop above Caderzone past the San Giuliano, Garzonè and Vacarsa lakes and over a 2,175 m pass, in the Adamello Brenta Nature Park. The APT lists 11 km and 665 m of ascent.'
+    },
+    'campiglio-monte-spinale-rifugio-graffer': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
+      // APT Madonna di Campiglio’s walk “Monte Spinale - Rifugio Graffer”, drawn on 15 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Tre Ville (no dog regulation, national rule).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      // Starts and ends at the top of the Spinale gondola (closed cabins), recorded in data/lift-access.json.
+      area: 'Monte Spinale – Lago Spinale – Rifugio Graffer, Madonna di Campiglio',
+      distance: 7.5,
+      elevation: 300,
+      hours: '2.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the top of the Spinale gondola on path SAT 331 past the little Lago Spinale and across high pastures to the Rifugio Graffer, facing the Brenta Dolomites.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lago Spinale in a green meadow, on the line, in August (FkMohr, CC BY-SA 3.0 de), 2 m from the line.',
+        route: 'Official out-and-back walk 7.5 km from the top station of the Spinale gondola, as APT Madonna di Campiglio publishes it; the stored line is drawn on 15 OSM ways along the APT’s published line, 7.4 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Path SAT 331: from the top station of the Spinale gondola (Chalet Spinale) to the Lago Spinale, then on SAT 331 with little climbing across meadows and pastures, with the Brenta Dolomites on one side and the Adamello–Presanella glaciers on the other, to the Rifugio Giorgio Graffer. Back the same way to the gondola.',
+        mapPoints: 'Start at the APT’s start, the top of the Spinale gondola; no drinking fountain is mapped on the line.',
+        elevation: 'Official 7.5 km, 300 m up and 312 m down, 2 h 30 min, highest point 2,259 m, lowest 2,022 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Monte Spinale - Rifugio Graffer (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Tre Ville publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data',
+          'Spinale gondola from Madonna di Campiglio: closed cabins, allowed under the owner’s 26 Oct lift rule'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'High and open above 2,000 m, with no shelter on the way in bad weather',
+        'Cattle on the Spinale pastures in summer',
+        'Ski-area service tracks and lift stations along the way'
+      ],
+      terrainType: 'Mountain paths across high pastures',
+      shadeDescription: 'Mostly open: about 0% runs under trees, all of it above the trees.',
+      terrainDescription: 'A high pasture walk at 2,022–2,259 m from the top of the Spinale gondola past the Lago Spinale to the Rifugio Graffer, between the Brenta Dolomites and the Adamello–Presanella glaciers.',
+      waterDescription: 'No drinking fountain is mapped on the line; the Chalet Spinale at the start and the Rifugio Graffer at the turning point serve food and drink. Carry water for your dog: there is no shade.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. Tre Ville has no dog rule of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried, which you also need on the gondola. Cattle graze on the Spinale pastures in summer.',
+      tips: 'Take the Spinale gondola up from Madonna di Campiglio (closed cabins; carry a muzzle): 7.5 km there and back and about 300 m of climbing, two and a half hours. The APT warns there is no shelter on the way in bad weather. Carry water: the walk is in full sun.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Monte Spinale - Rifugio Graffer', url: 'https://www.campigliodolomiti.it/it/itinerari/monte-spinale-rifugio-graffer' },
+        { label: 'Outdooractive, Monte Spinale - Rifugio Graffer (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/50352617' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.222953,
+        lng: 10.848051,
+        label: 'Chalet Spinale, at the top of the Spinale gondola, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.22256, lng: 10.84834, osmId: 'node/8699463843', name: 'Chalet Fiat' },
+        { km: 0, lat: 46.2226, lng: 10.84842, osmId: 'way/88073995', name: 'Rifugio Spinale' },
+        { km: 3.5, lat: 46.21965, lng: 10.88941, osmId: 'node/6592652529', name: 'Rifugio Giorgio Graffer al Grostè' }
+      ],
+      desc: 'A high pasture walk from the top of the Spinale gondola past the Lago Spinale to the Rifugio Graffer, between the Brenta Dolomites and the Adamello glaciers. The APT lists 7.5 km and 300 m of ascent.'
+    },
+    'campiglio-carisolo-centro-storico': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
+      // APT Madonna di Campiglio’s walk “Carisolo - centro storico”, drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Carisolo (Regolamento di Polizia Urbana, Art. 35).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      // The line runs along the park boundary (23 m away at the closest).
+      area: 'Carisolo, Val Rendena',
+      distance: 3.5,
+      elevation: 88,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A short walk from Carisolo town hall through the old village to the church of San Nicolò, up the road into the Val Genova to the old chestnut grove, along the cobbled Way of the Cross to the frescoed chapel of Santo Stefano, and down through the woods to the old glassworks.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'An old chestnut tree in the Carisolo chestnut grove, on the walk, in June (Oscar Collini, CC BY-SA 4.0), 29 m from the line.',
+        route: 'Official walk 3.5 km from Carisolo town hall, as APT Madonna di Campiglio publishes it; the stored line is drawn on 22 OSM ways along the APT’s published line, 3.7 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: with your back to Carisolo town hall, right into the village to Piazza 2 Maggio and up to the church of San Nicolò; along Via Val Genova for about 800 m, then left down a path to the old chestnut grove (a “library in the woods”); up the cobbled Way of the Cross to the cemetery chapel of Santo Stefano, with its Baschenis frescoes; past the chapel, left down a woodland path to the Antica Vetreria glass museum, and on towards the sanctuary of the Beata Vergine del Potere.',
+        mapPoints: 'Start at the APT’s start, Carisolo town hall; drinking water at the start, at km 1.1, at km 1.2, at km 1.6 and at km 2.7 (OSM nodes 2422077386, 8834879824, 2422076383, 5987934137, 5987934138, 12115087008, 12860517028).',
+        elevation: 'Official 3.5 km, 88 m up and 80 m down, 1 h 30 min, highest point 868 m, lowest 790 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Carisolo - centro storico (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Carisolo, Regolamento di Polizia Urbana, Art. 35: dogs on a lead of at most 1.5 m on streets and public places, muzzled in public premises and in crowds; no dogs in playgrounds, schools, places of care or worship',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 35,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Village streets and the road into the Val Genova, shared with cars', 'A cobbled Way of the Cross, slippery when wet'],
+      terrainType: 'Village streets, a cobbled path and woodland paths',
+      shadeDescription: 'Mostly open: about 35% runs under trees, in the chestnut grove and the woods.',
+      terrainDescription: 'A short walk at 790–868 m through the old village of Carisolo to its chestnut grove, the frescoed chapel of Santo Stefano and the old glassworks, on the edge of the Adamello Brenta park.',
+      waterDescription: 'Several drinking fountains in the village at the start and along the way, at km 1.1, 1.2, 1.6 and 2.7.',
+      dogNotes: 'Carisolo’s rule asks for a lead of at most 1.5 m on streets and public places, a muzzle in public premises and in crowds, and no dogs in playgrounds, schools or churches. Where the walk touches the Adamello Brenta park, dogs must always be on a lead.',
+      tips: 'Start at Carisolo town hall: 3.5 km and under 100 m of climbing, an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Leave your dog outside the chapel and the glass museum.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Carisolo - centro storico', url: 'https://www.campigliodolomiti.it/it/itinerari/carisolo-centro-storico' },
+        { label: 'Outdooractive, Carisolo - centro storico (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/59208875' },
+        { label: 'Comune di Carisolo, Regolamento di Polizia Urbana (dogs: Art. 35)', url: 'https://www.comune.carisolo.tn.it/content/download/2890/35784/2/CT045-24-A+regolamento+polizia+urbana.pdf' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.169017,
+        lng: 10.76389,
+        label: 'Carisolo town hall, the APT’s start'
+      },
+      waterSources: [
+        { km: 0, lat: 46.1689682, lng: 10.7639763, osmId: 'node/2422077386', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.1699287, lng: 10.7637359, osmId: 'node/8834879824', label: 'Drinking fountain' },
+        { km: 0, lat: 46.1697081, lng: 10.7621889, osmId: 'node/2422076383', label: 'Drinking fountain' },
+        { km: 1.1, lat: 46.1730848, lng: 10.7517301, osmId: 'node/5987934137', label: 'Drinking fountain' },
+        { km: 1.2, lat: 46.1727607, lng: 10.7502213, osmId: 'node/5987934138', label: 'Drinking fountain' },
+        { km: 1.6, lat: 46.1724329, lng: 10.7466197, osmId: 'node/12115087008', label: 'Drinking fountain' },
+        { km: 2.7, lat: 46.169628, lng: 10.7516198, osmId: 'node/12860517028', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.16879, lng: 10.76333, osmId: 'node/1945847780', name: 'Bar Eureka' },
+        { km: 0, lat: 46.16896, lng: 10.76134, osmId: 'node/4318091389', name: 'Bar Sport' },
+        { km: 0, lat: 46.16917, lng: 10.76236, osmId: 'node/8835049162', name: 'Bar Ser Artur' },
+        { km: 0, lat: 46.17012, lng: 10.76473, osmId: 'node/2717008013', name: 'Ristorante Pizzeria All\'Antica Segheria' },
+        { km: 1.7, lat: 46.17392, lng: 10.7443, osmId: 'node/13168231681', name: 'Chalet Val Genova' }
+      ],
+      desc: 'A short walk through the old village of Carisolo to its chestnut grove, the frescoed chapel of Santo Stefano and the old glassworks. The APT lists 3.5 km and 88 m of ascent.'
+    },
+    'paganella-giro-del-lago-di-molveno': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
+      // APT Dolomiti Paganella’s walk “Giro del lago di Molveno”, drawn on 33 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: San Lorenzo Dorsino (San Lorenzo in Banale rules, Art. 10) and Molveno (no dog regulation, national rule).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      area: 'Lago di Molveno, Paganella – Brenta',
+      distance: 10.1,
+      elevation: 232,
+      hours: '2.3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop round the Lago di Molveno from the campsite past the Roman bridge and the Napoleonic forts, along the west and then the more panoramic east shore, and back to Molveno on the path named after the King of the Belgians and over the Bior bridge.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lago di Molveno with rocks on the shore, on the loop, in August (Italo Greco, CC BY 2.0), 1 m from the line.',
+        route: 'Official loop 10.1 km from the Molveno campsite, as Visit Paganella publishes it; the stored line is drawn on 33 OSM ways along the APT’s published line, 10.5 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the campsite at Molveno towards the Roman bridge and the Fortini di Napoleone (fortifications of 1796–1801, a short detour), along the west shore and then the east shore, the most panoramic stretch; cross the main road but do not walk along it, the path runs first in the woods above the road and then below it; back to Molveno on the King of the Belgians’ path and over the Bior bridge.',
+        mapPoints: 'Start at the APT’s start, the Molveno campsite; drinking water at km 1.7, at km 1.8, at km 3.5, at km 9.5, at km 9.8 and at km 9.9 (OSM nodes 11007893285, 12139299941, 13068447066, 1524975924, 1524976036, 9014232206, 427547571, 2952130045).',
+        elevation: 'Official 10.1 km, 232 m up and 233 m down, 2 h 15 min, highest point 897 m (Corno di Napoleone), lowest 817 m (Molveno) (Visit Paganella).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Visit Paganella, APT Dolomiti di Brenta Paganella, Giro del lago di Molveno (visitpaganella.it and its Outdooractive tour)',
+          'Comune di San Lorenzo Dorsino, Norme per la detenzione e circolazione di animali (San Lorenzo in Banale, 2013), Art. 10: dogs always on a lead in squares, streets and places open to the public; dogs that bite muzzled',
+          'Comune di Molveno publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 64,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'One crossing of the main road on the east shore',
+        'Busy lakeside paths, beaches and the lido in summer',
+        'Keep your dog out of the water where swimming areas are signed'
+      ],
+      terrainType: 'Lakeside paths and forest paths',
+      shadeDescription: 'Part shade: about 64% runs under trees, in the woods above and below the road on the east shore.',
+      terrainDescription: 'A loop at 817–897 m round the Lago di Molveno below the Brenta Dolomites, past the Roman bridge and the Napoleonic forts.',
+      waterDescription: 'Drinking fountains at km 1.7, 1.8 and 3.5 and several near the end in Molveno; the lake is beside you most of the way.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. San Lorenzo in Banale’s rules, which cover the south of the lake, keep dogs always on a lead in public places; Molveno has no rule of its own, so the national rule applies there: a lead of at most 1.5 m and a muzzle carried. Follow the signs at the beaches and the lido.',
+      tips: 'Start at the Molveno campsite: 10.1 km and about 230 m of climbing, two and a quarter hours. Keep your dog on a lead all the way, cross the main road with care, and follow the signs at the beaches. The detour to the Napoleonic forts is short and worth it.',
+      sourceLinks: [
+        { label: 'Visit Paganella, Giro del lago di Molveno', url: 'https://ktips.visitpaganella.it/it/itinerari/giro-del-lago-di-molveno' },
+        { label: 'Outdooractive, Giro del lago di Molveno (Visit Paganella)', url: 'https://www.outdooractive.com/it/r/17453714' },
+        { label: 'Comune di San Lorenzo Dorsino, Norme per la detenzione e circolazione di animali – San Lorenzo in Banale (dogs: Art. 10)', url: 'https://www.comune.sanlorenzodorsino.tn.it/content/download/560/9234/8/regolamento_detenzione_e_circolazione_animali_-_dal_11.2013_.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.138211,
+        lng: 10.958315,
+        label: 'Molveno campsite, the APT’s start'
+      },
+      waterSources: [
+        { km: 1.7, lat: 46.1267827, lng: 10.9501354, osmId: 'node/11007893285', label: 'Drinking fountain' },
+        { km: 1.8, lat: 46.125385, lng: 10.951487, osmId: 'node/12139299941', label: 'Drinking fountain' },
+        { km: 3.5, lat: 46.1130271, lng: 10.9413054, osmId: 'node/13068447066', label: 'Drinking fountain' },
+        { km: 9.5, lat: 46.141809, lng: 10.9667181, osmId: 'node/1524975924', label: 'Drinking fountain' },
+        { km: 9.5, lat: 46.1423628, lng: 10.9666683, osmId: 'node/1524976036', label: 'Drinking fountain' },
+        { km: 9.8, lat: 46.1427635, lng: 10.9646626, osmId: 'node/9014232206', label: 'Drinking fountain' },
+        { km: 9.8, lat: 46.1424701, lng: 10.9637313, osmId: 'node/427547571', label: 'Drinking fountain' },
+        { km: 9.9, lat: 46.1403244, lng: 10.9625728, osmId: 'node/2952130045', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 1.5, lat: 46.12684, lng: 10.95027, osmId: 'way/159095828', name: 'Baita ai fortini di Napoleone' },
+        { km: 9.3, lat: 46.14205, lng: 10.96689, osmId: 'node/10983124905', name: 'Café Ideal Bar Gelateria' },
+        { km: 9.3, lat: 46.14151, lng: 10.96568, osmId: 'node/1523289665', name: 'L\'Osteria del Maso' },
+        { km: 9.3, lat: 46.1426, lng: 10.967, osmId: 'node/1524975600', name: 'Antica Bosnia' },
+        { km: 9.3, lat: 46.14217, lng: 10.96662, osmId: 'node/11331919014', name: 'Bar Sport' },
+        { km: 9.4, lat: 46.14254, lng: 10.96657, osmId: 'node/1525276858', name: 'Imperia' },
+        { km: 9.5, lat: 46.14333, lng: 10.96679, osmId: 'node/1525442359', name: 'Bucaneve' },
+        { km: 9.5, lat: 46.14312, lng: 10.96603, osmId: 'node/459656419', name: 'Taverna La Botte' },
+        { km: 9.5, lat: 46.14279, lng: 10.96557, osmId: 'node/1524975624', name: 'Meeting' },
+        { km: 9.5, lat: 46.1428, lng: 10.96552, osmId: 'node/1524976160', name: 'Bertolini' },
+        { km: 9.6, lat: 46.14061, lng: 10.96392, osmId: 'node/2929049985', name: 'Bar L\'Aquilone' },
+        { km: 9.7, lat: 46.14261, lng: 10.96468, osmId: 'node/1512648046', name: 'El Filò' },
+        { km: 9.7, lat: 46.14288, lng: 10.9649, osmId: 'node/1524976201', name: 'Cristallo' },
+        { km: 9.7, lat: 46.14058, lng: 10.96346, osmId: 'node/2929049984', name: 'Pizzico' },
+        { km: 9.7, lat: 46.14233, lng: 10.96359, osmId: 'node/1523289654', name: 'Bar Malibù' },
+        { km: 9.8, lat: 46.14062, lng: 10.96194, osmId: 'node/459656425', name: 'Al Caminetto' },
+        { km: 9.9, lat: 46.13945, lng: 10.96216, osmId: 'way/137884766', name: 'Bar Spiaggia' },
+        { km: 10, lat: 46.13879, lng: 10.96152, osmId: 'node/10010956613', name: 'Bar La Playa' }
+      ],
+      desc: 'A loop round the Lago di Molveno below the Brenta Dolomites, past the Roman bridge and the Napoleonic forts, partly in the Adamello Brenta Nature Park. The APT lists 10.1 km and 232 m of ascent.'
+    },
+    'paganella-passeggiata-del-ciclamino': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
+      // APT Dolomiti Paganella’s walk “Passeggiata del Ciclamino”, drawn on 18 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Molveno (no dog regulation, national rule).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      area: 'Molveno – Ciclamino, Paganella – Brenta',
+      distance: 2.8,
+      elevation: 76,
+      hours: '0.8',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A short walk from the centre of Molveno along Via Dolomiti to the Madonnina shrine, on a level path to Ciclamino below the Croz dell’Altissimo, and down beside the Rio Massò towards the lido.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path beside the Rio Massodi above Molveno, on the walk, in September (Giorgio Galeotti, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official walk 2.8 km from the centre of Molveno, as Visit Paganella publishes it; the stored line is drawn on 18 OSM ways along the APT’s published line, 3 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the centre of Molveno along Via Dolomiti to the Capitello della Madonnina; on a level path to Ciclamino at the foot of the great wall of the Croz dell’Altissimo; down the other side of the stream to the Capitello di Sant’Antonio, past the little waterfalls at Molin dei Mori, and beside the Rio Massò to the lido (or right, along the Rio dei Molini, to the old Taialacqua sawmill by the campsite).',
+        mapPoints: 'Start at the APT’s start in the centre of Molveno; drinking water at the start and at km 0.4 (OSM nodes 427547571, 2987324988).',
+        elevation: 'Official 2.8 km, 76 m up and 110 m down, 50 min, highest point 941 m (Ciclamino), lowest 831 m (Molveno) (Visit Paganella).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Visit Paganella, APT Dolomiti di Brenta Paganella, Passeggiata del Ciclamino (visitpaganella.it and its Outdooractive tour)',
+          'Comune di Molveno publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 56,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'The path runs beside a fast stream: keep your dog out of the water after rain',
+        'Village streets in Molveno at the start'
+      ],
+      terrainType: 'Village streets and streamside paths',
+      shadeDescription: 'Part shade: about 56% runs under trees, beside the streams.',
+      terrainDescription: 'A short walk at 831–941 m from Molveno to the foot of the Croz dell’Altissimo and down beside the Rio Massò and its little waterfalls.',
+      waterDescription: 'Drinking fountains in Molveno at the start and at km 0.4; the streams run beside most of the walk.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. Molveno has no dog rule of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog out of the fast streams.',
+      tips: 'Start in the centre of Molveno: 2.8 km, mostly level and then downhill, about 50 minutes. Keep your dog on a lead and carry a muzzle. Stop at the little waterfalls at Molin dei Mori.',
+      sourceLinks: [
+        { label: 'Visit Paganella, Passeggiata del Ciclamino', url: 'https://ktips.visitpaganella.it/it/itinerari/passeggiata-del-ciclamino' },
+        { label: 'Outdooractive, Passeggiata del Ciclamino (Visit Paganella)', url: 'https://www.outdooractive.com/it/r/19077979' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.142352,
+        lng: 10.962029,
+        label: 'Molveno, the APT’s start'
+      },
+      waterSources: [
+        { km: 0, lat: 46.1424701, lng: 10.9637313, osmId: 'node/427547571', label: 'Drinking fountain at the start' },
+        { km: 0.4, lat: 46.1447981, lng: 10.9557523, osmId: 'node/2987324988', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.14062, lng: 10.96194, osmId: 'node/459656425', name: 'Al Caminetto' },
+        { km: 0, lat: 46.14261, lng: 10.96468, osmId: 'node/1512648046', name: 'El Filò' },
+        { km: 0, lat: 46.14233, lng: 10.96359, osmId: 'node/1523289654', name: 'Bar Malibù' },
+        { km: 0, lat: 46.14288, lng: 10.9649, osmId: 'node/1524976201', name: 'Cristallo' },
+        { km: 0, lat: 46.14058, lng: 10.96346, osmId: 'node/2929049984', name: 'Pizzico' },
+        { km: 0, lat: 46.14061, lng: 10.96392, osmId: 'node/2929049985', name: 'Bar L\'Aquilone' },
+        { km: 1, lat: 46.14904, lng: 10.9497, osmId: 'way/291725569', name: 'Baita Ciclamino' }
+      ],
+      desc: 'A short walk from Molveno to the foot of the Croz dell’Altissimo and down beside the Rio Massò and its little waterfalls. The APT lists 2.8 km and 76 m of ascent.'
     }
   };
 

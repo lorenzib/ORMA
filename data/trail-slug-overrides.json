@@ -1093,6 +1093,41 @@
       "name": "Cimabanche – Plätzwiese",
       "slug": "cimabanche-plaetzwiese",
       "gloss": "the forest path from Cimabanche up the Knappenfußtal to the Plätzwiese"
+    },
+    "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio": {
+      "name": "Madonna di Campiglio – Malga Ritort",
+      "slug": "campiglio-malga-ritort",
+      "gloss": "the forest walk from Campiglio to the Ritort pastures"
+    },
+    "campiglio-lago-ritorto-nel-blu-dipinto-di-blu": {
+      "name": "Lago Ritorto",
+      "slug": "lago-ritorto",
+      "gloss": "the climb from Patascoss to the Ritort lake"
+    },
+    "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa": {
+      "name": "San Giuliano, Garzonè and Vacarsa lakes",
+      "slug": "san-giuliano-garzone-vacarsa-lakes",
+      "gloss": "the high lakes loop above Caderzone"
+    },
+    "campiglio-monte-spinale-rifugio-graffer": {
+      "name": "Monte Spinale – Rifugio Graffer",
+      "slug": "monte-spinale-rifugio-graffer",
+      "gloss": "the high pasture walk from the Spinale to the Graffer hut"
+    },
+    "campiglio-carisolo-centro-storico": {
+      "name": "Carisolo old village",
+      "slug": "carisolo-old-village",
+      "gloss": "the loop through Carisolo and its chestnut grove"
+    },
+    "paganella-giro-del-lago-di-molveno": {
+      "name": "Lago di Molveno loop",
+      "slug": "lago-di-molveno-loop",
+      "gloss": "the walk round Molveno's lake"
+    },
+    "paganella-passeggiata-del-ciclamino": {
+      "name": "Passeggiata del Ciclamino",
+      "slug": "passeggiata-del-ciclamino-molveno",
+      "gloss": "the short stream walk above Molveno"
     }
   }
 }

@@ -187,6 +187,17 @@
           "notes": "The walk starts at the top of the Helmjet gondola from Sexten, whose cabins are closed, and ends on foot in Sexten. Keep your dog on a lead in the cabin and carry a muzzle."
         }
       }
+    },
+    {
+      "id": "campiglio-monte-spinale-rifugio-graffer",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Spinale gondola (Madonna di Campiglio)",
+          "notes": "The walk starts at the top station of the Spinale gondola from Madonna di Campiglio; its cabins are closed. It ends back at the same station."
+        }
+      }
     }
   ]
 }
