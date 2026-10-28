@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T10:45:04.569Z",
+  "generatedAt": "2026-10-28T11:26:06.831Z",
   "regions": {
     "dolomites": {
       "trailCount": 287,
@@ -380,8 +380,8 @@
       "optional": []
     },
     "friuli": {
-      "trailCount": 9,
-      "trails": "data/regions/friuli-trails.js?v=f86df7e79b5c",
+      "trailCount": 16,
+      "trails": "data/regions/friuli-trails.js?v=881e260cd400",
       "details": {
         "fvg-laghi-di-fusine": "data/trail-details/fvg-laghi-di-fusine.js?v=ba8dfb3f05d8",
         "fvg-ta-lipa-pot-corto": "data/trail-details/fvg-ta-lipa-pot-corto.js?v=a6af7947e5e7",
@@ -391,7 +391,14 @@
         "fvg-fontanon-di-goriuda": "data/trail-details/fvg-fontanon-di-goriuda.js?v=dcee82103417",
         "fvg-col-dei-piais": "data/trail-details/fvg-col-dei-piais.js?v=e63c37e41279",
         "fvg-raunis-cascate-belepeit": "data/trail-details/fvg-raunis-cascate-belepeit.js?v=d50ca07b413a",
-        "fvg-venzone-anello-delle-chiesette": "data/trail-details/fvg-venzone-anello-delle-chiesette.js?v=dbf612140179"
+        "fvg-venzone-anello-delle-chiesette": "data/trail-details/fvg-venzone-anello-delle-chiesette.js?v=dbf612140179",
+        "fvg-lago-di-sella-sompdogna": "data/trail-details/fvg-lago-di-sella-sompdogna.js?v=9d8277d0b80c",
+        "fvg-sappada-rifugio-calvi": "data/trail-details/fvg-sappada-rifugio-calvi.js?v=d33b76b3e9b5",
+        "fvg-salita-casera-canin": "data/trail-details/fvg-salita-casera-canin.js?v=5dd924b75cc1",
+        "fvg-anello-malga-confin-ungarina": "data/trail-details/fvg-anello-malga-confin-ungarina.js?v=b0daec160bcf",
+        "fvg-monte-talm-da-piani-di-vas": "data/trail-details/fvg-monte-talm-da-piani-di-vas.js?v=0bfc7409c63b",
+        "fvg-anello-casera-vas-monte-buoi": "data/trail-details/fvg-anello-casera-vas-monte-buoi.js?v=eedeeb2d351f",
+        "fvg-monte-rest-da-passo-rest": "data/trail-details/fvg-monte-rest-da-passo-rest.js?v=46d3afd97be3"
       },
       "water": "data/regions/friuli-water.geojson",
       "hutsBars": "data/regions/friuli-huts-bars.geojson",
@@ -792,6 +799,13 @@
     "fvg-col-dei-piais": "friuli",
     "fvg-raunis-cascate-belepeit": "friuli",
     "fvg-venzone-anello-delle-chiesette": "friuli",
+    "fvg-lago-di-sella-sompdogna": "friuli",
+    "fvg-sappada-rifugio-calvi": "friuli",
+    "fvg-salita-casera-canin": "friuli",
+    "fvg-anello-malga-confin-ungarina": "friuli",
+    "fvg-monte-talm-da-piani-di-vas": "friuli",
+    "fvg-anello-casera-vas-monte-buoi": "friuli",
+    "fvg-monte-rest-da-passo-rest": "friuli",
     "aosta-ru-courtaud": "aosta",
     "aosta-champoluc-cascata-mascognaz": "aosta",
     "aosta-periasc-antagnod": "aosta",
@@ -1181,6 +1195,13 @@
     "osttirol-themenweg-kreuzweg-virgen": "kreuzweg-maria-schnee-virgen",
     "osttirol-kinder-naturerlebnispfad-kals-ag": "kals-childrens-nature-trail",
     "osttirol-wassererlebnisweg-st-jakob-i-d": "water-trail-st-jakob-defereggen",
+    "fvg-lago-di-sella-sompdogna": "laghetto-di-sella-sompdogna",
+    "fvg-sappada-rifugio-calvi": "sappada-rifugio-calvi",
+    "fvg-salita-casera-canin": "salita-casera-canin",
+    "fvg-anello-malga-confin-ungarina": "anello-malga-confin-ungarina",
+    "fvg-monte-talm-da-piani-di-vas": "monte-talm-piani-di-vas",
+    "fvg-anello-casera-vas-monte-buoi": "anello-casera-vas-monte-buoi",
+    "fvg-monte-rest-da-passo-rest": "monte-rest-da-passo-rest",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1555,6 +1576,13 @@
     "kreuzweg-maria-schnee-virgen": "osttirol-themenweg-kreuzweg-virgen",
     "kals-childrens-nature-trail": "osttirol-kinder-naturerlebnispfad-kals-ag",
     "water-trail-st-jakob-defereggen": "osttirol-wassererlebnisweg-st-jakob-i-d",
+    "laghetto-di-sella-sompdogna": "fvg-lago-di-sella-sompdogna",
+    "sappada-rifugio-calvi": "fvg-sappada-rifugio-calvi",
+    "salita-casera-canin": "fvg-salita-casera-canin",
+    "anello-malga-confin-ungarina": "fvg-anello-malga-confin-ungarina",
+    "monte-talm-piani-di-vas": "fvg-monte-talm-da-piani-di-vas",
+    "anello-casera-vas-monte-buoi": "fvg-anello-casera-vas-monte-buoi",
+    "monte-rest-da-passo-rest": "fvg-monte-rest-da-passo-rest",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

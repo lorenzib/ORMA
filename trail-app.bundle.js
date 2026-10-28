@@ -58697,6 +58697,439 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 4.7, lat: 46.91227, lng: 12.29894, osmId: 'way/39115251', name: 'Zollwirt' }
       ],
       desc: 'A flat loop along the Schwarzach from St. Jakob in Defereggen, past ponds and springs and boards on the river and the 1966 flood. The board lists 8.7 km and 41 m of ascent.'
+    },
+    'fvg-lago-di-sella-sompdogna': {
+      // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 3).
+      // PromoTurismoFVG’s walk “Il laghetto di sella Sompdogna” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
+      // on 7 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // The loop is in Dogna and Malborghetto-Valbruna; Dogna’s rural bylaw only covers guard dogs and Malborghetto-Valbruna publishes only a droppings rule, so the national dog ordinance (6 August 2013, extended to September 2027) and the regional law LR 20/2012 apply under ORMA’s Italian dog standard.
+      // The loop lies in the Jôf di Montasio e Jôf Fuart ZSC (IT3320010) and the Alpi Giulie ZPS (IT3321002); the Region’s 2024 measures for its alpine sites set no rule on walkers’ dogs. No park, reserve or biotope.
+      area: 'Sella Sompdogna – Rifugio Grego, Dogna',
+      distance: 2.2,
+      elevation: 123,
+      hours: '0.85',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from Sella Sompdogna through larch and fir woods to the small lake of Sella Sompdogna and back past the Grego hut.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Grego hut in its meadow at Sella Sompdogna, on the loop, on 21 June 2026 (igorzo on Mapillary, CC BY-SA 4.0), 23 m from the line.',
+        route: 'Official loop 2.2 km from Sella Sompdogna at the end of the road from Dogna, as PromoTurismoFVG publishes it; the stored line is drawn on 7 OSM ways along the published line, 2.2 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'No route number given: from the end of the road at Sella Sompdogna (free parking) on dirt roads and paths through larch and fir woods to the little lake of Sella Sompdogna, and back round past the Grego hut to the start.',
+        mapPoints: 'Start at Sella Sompdogna at the end of the road from Dogna, the board’s start; drinking water none mapped.',
+        elevation: 'Official 2.2 km, 123 m up and 123 m down, 50 min, highest point 1,475 m, lowest 1,355 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Il laghetto di sella Sompdogna (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Parco Naturale Prealpi Giulie)',
+          'Comune di Dogna, Regolamento di Polizia Rurale (2020, revised 2024), Art. 12, covers only guard dogs, and Malborghetto-Valbruna publishes only a droppings rule, so the national rule applies',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): no park, reserve or biotope; inside ZSC IT3320010 Jôf di Montasio e Jôf Fuart and ZPS IT3321002 Alpi Giulie. Regione Friuli Venezia Giulia, conservation measures of the alpine Natura 2000 sites (DGR 1148/2024, annex 1, July 2024): no rule on walkers’ dogs',
+          'OpenStreetMap ways along the published line (7 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 83,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A short stretch of tarred road at the start', 'Not advised in rain, snow or the hottest summer hours', 'Ticks are common in the region: check your dog after the walk'],
+      terrainType: 'Dirt roads and forest paths',
+      shadeDescription: 'Well shaded: about four fifths of the loop runs through larch and fir woods; the meadow by the hut is open.',
+      terrainDescription: 'A very short loop at 1,355–1,475 m on the Sella Sompdogna saddle above Dogna, at the foot of the Jôf di Montasio, through larch and fir woods to a small mountain lake.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water for your dog.',
+      dogNotes: 'Dogna has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m in villages and on public ground, and a muzzle carried. Pick up after your dog. The saddle is in a Natura 2000 site: keep to the marked paths.',
+      tips: 'Drive up from Dogna to the end of the road at Sella Sompdogna (no public transport): 2.2 km and about 120 m of climbing, under an hour. Keep your dog on a lead at the hut and carry a muzzle. The Grego hut serves food in summer.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Il laghetto di sella Sompdogna', url: 'https://www.outdooractive.com/it/route/escursione/tarvisio/il-laghetto-di-sella-sompdogna/806020923/' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'Regione Friuli Venezia Giulia, DGR 1148/2024 annex 1 (alpine Natura 2000 conservation measures)', url: 'https://mtom.regione.fvg.it/storage//2024_1148/Allegato%201%20alla%20Delibera%201148-2024.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.461813, lng: 13.449422, label: 'Sella Sompdogna at the end of the road from Dogna, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'A short loop on the Sella Sompdogna saddle through larch and fir woods to a small mountain lake below the Jôf di Montasio, past the Grego hut. PromoTurismoFVG lists 2.2 km and 123 m of ascent.'
+    },
+    'fvg-sappada-rifugio-calvi': {
+      // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 3).
+      // PromoTurismoFVG’s walk “Rifugio Calvi” (its verified Outdooractive account, author Giovanni Borella). The line is drawn
+      // on 19 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // The whole line is in Sappada, whose rural police bylaw (Art. 12-bis, council resolution 12 of 2015) requires dogs on a lead, and a muzzle where they could cause danger or disturbance.
+      // The line lies in the Val Visdende – Monte Peralba ZSC (IT3230006) and the Dolomiti del Cadore e del Comelico ZPS (IT3230089), both coded to the Veneto, whose 2016 alpine measures only restate the national dog ordinance. No park, reserve or biotope.
+      area: 'Sorgenti del Piave – Rifugio Calvi, Sappada',
+      distance: 4,
+      elevation: 333,
+      hours: '1.65',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the car park near the Piave springs up the gravel road to the Rifugio Calvi below Monte Peralba, and down the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The gravel road to the Rifugio Calvi with the Creta Forata and Siera range across the valley, on the walk, on 16 August 2025 (igorzo on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official out-and-back walk 4 km from Car park at the junction for the Piave springs above Cima Sappada, as PromoTurismoFVG publishes it; the stored line is drawn on 19 OSM ways along the published line, 4 km, with 99% of the published line within 25 m of it.',
+        routeNumbers: 'Route 24 in Sappada’s walk list: from the large car park near the junction for the Piave springs, up the easy gravel road in about an hour to the Rifugio Calvi (2,164 m), owned by the CAI of Sappada, below the Peralba and the Chiadenis; back the same way. (The board also mentions a First World War path with fixed aids; this walk follows the gravel road.)',
+        mapPoints: 'Start at Car park at the junction for the Piave springs above Cima Sappada, the board’s start; drinking water none mapped.',
+        elevation: 'Official 4 km, 333 m up and 333 m down, 1 h 40 min, highest point 2,140 m, lowest 1,807 m (PromoTurismoFVG, author Giovanni Borella).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Rifugio Calvi (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Giovanni Borella)',
+          'Comune di Sappada, Regolamento di Polizia Rurale (council resolution 12 of 30 April 2015), Art. 12-bis: dogs on a lead, with a muzzle where they could cause danger, damage or disturbance; bags carried',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): no park, reserve or biotope; inside ZSC IT3230006 and ZPS IT3230089. Regione del Veneto, conservation measures of the alpine Natura 2000 sites (DGR 786/2016, annex A), Art. 99: they restate the national dog ordinance (a lead of at most 1.5 m in places open to the public, a muzzle carried)',
+          'OpenStreetMap ways along the published line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['High and open above 1,800 m: storms build fast on summer afternoons', 'Loose gravel on the steeper bends', 'Grazing animals may be about: keep your dog close'],
+      terrainType: 'A gravel road and short paths above the tree line',
+      shadeDescription: 'No shade: the whole walk is above the trees on open slopes.',
+      terrainDescription: 'A short climb at 1,810–2,140 m from the Piave springs above Sappada to the highest hut in the region, below the Peralba, with views over the Sappada valley.',
+      waterDescription: 'No drinking fountain is mapped on the walk; places to eat on the way; bring water for your dog.',
+      dogNotes: 'Sappada’s rural police bylaw (Art. 12-bis) requires dogs on a lead, with a muzzle where they could cause danger, damage or disturbance, and bags carried; the national rule adds a lead of at most 1.5 m on public ground. There is no shade or water on the way: bring water for your dog.',
+      tips: 'Drive to the car park by the Piave springs junction above Cima Sappada: 4 km there and back and about 330 m of climbing, an hour and forty minutes. Keep your dog on a lead and carry a muzzle. No shade and no water on the way up: start early and bring water. The Rifugio Calvi is open in summer.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Rifugio Calvi', url: 'https://www.outdooractive.com/it/route/escursione/sappada/24-rifugio-calvi-sappada/13988147/' },
+        { label: 'Comune di Sappada, Regolamento di Polizia Rurale (Art. 12-bis)', url: 'https://www.comune.sappada.ud.it/media/files/030189/attachment/Reg_Polizia_Rurale.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'Regione del Veneto, DGR 786/2016 annex A (alpine Natura 2000 measures)', url: 'https://download.mase.gov.it/Natura2000/Materiale%20Designazione%20ZSC/Veneto/04_Misure%20di%20Conservazione/DGR%20786_27_05_2016-%20Allegato%20A%20MdC%20Alpina.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.620101, lng: 12.716555, label: 'Car park at the junction for the Piave springs above Cima Sappada, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 1.6, lat: 46.62395, lng: 12.72689, osmId: 'way/157253905', name: 'Rifugio Pier Fortunato Calvi' }
+      ],
+      desc: 'An easy climb on a gravel road from the Piave springs above Sappada to the Rifugio Calvi, the highest hut in the region, below Monte Peralba. PromoTurismoFVG lists 4 km and 333 m of ascent.'
+    },
+    'fvg-salita-casera-canin': {
+      // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 3).
+      // PromoTurismoFVG’s walk “Salita a Casera Canin: balcone panoramico sulla val Resia” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
+      // on 28 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // Resia publishes no dog rule of its own, so the national dog ordinance and the regional law LR 20/2012 apply; most of the line is in the Prealpi Giulie nature park, whose regulation (Art. 10 c.3) admits only dogs on a lead.
+      // About 93% of the line is in the Prealpi Giulie nature park, which has no strict reserve zone and admits leashed dogs everywhere; published under the owner’s park decision of 28 October 2026. It is also in ZSC IT3320012 and ZPS IT3321002, whose 2024 measures set no rule on walkers’ dogs.
+      area: 'Malga Coot – Berdo di Sopra – Casera Canin, Resia',
+      distance: 7.9,
+      elevation: 401,
+      hours: '3',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the car park below Malga Coot on CAI path 642 through woods and pastures past Berdo di Sopra to Casera Canin, and back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The pastures and ruined farmhouses below Casera Canin with the Val Resia beyond, on the walk, in July 2018 (igorzo on Mapillary, CC BY-SA 4.0), 6 m from the line.',
+        route: 'Official out-and-back walk 7.9 km from Car park below Malga Coot, Val Resia, as PromoTurismoFVG publishes it; the stored line is drawn on 28 OSM ways along the published line, 7.8 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'CAI path 642 (the Ardito Desio path): from the car park along the cemented road to Malga Coot in about ten minutes, then on path 642 through woods and pastures at the foot of the Canin, past the ruined farmhouses of Berdo di Sopra, up to Casera Canin with its view over the Val Resia. Back the same way.',
+        mapPoints: 'Start at Car park below Malga Coot, Val Resia, the board’s start; drinking water none mapped.',
+        elevation: 'Official 7.9 km, 401 m up and 401 m down, 3 h, highest point 1,444 m, lowest 1,078 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Salita a Casera Canin: balcone panoramico sulla val Resia (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Parco Naturale Prealpi Giulie)',
+          'Parco naturale regionale delle Prealpi Giulie, Regolamento (DPReg 28 February 2017 n. 048/Pres., as amended 2018), Art. 10 c.3: only dogs on a lead are admitted, anywhere in the park; no zone of the park bans dogs',
+          'ORMA owner decision of 28 October 2026 on park zones: hold only a true strict reserve (zone A, +100 m) or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Comune di Resia publishes no dog rule (its waste regulation, article 13, only requires picking up droppings), so the national rule applies',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): about 93% in the Parco naturale regionale delle Prealpi Giulie; inside ZSC IT3320012 Prealpi Giulie Settentrionali and ZPS IT3321002 Alpi Giulie. Regione Friuli Venezia Giulia, conservation measures of the alpine Natura 2000 sites (DGR 1148/2024, annex 1, July 2024): no rule on walkers’ dogs',
+          'OpenStreetMap ways along the published line (28 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 51,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Ibex and chamois on the steeper slopes: keep your dog on the lead', 'Cows may graze the pastures in summer', 'Not advised in bad weather or the hottest summer hours'],
+      terrainType: 'Forest and pasture paths',
+      shadeDescription: 'About half shaded: the lower part runs through beech woods; the pastures round Berdo and Casera Canin are open.',
+      terrainDescription: 'A walk at 1,080–1,445 m in the Prealpi Giulie nature park, from Malga Coot through woods and pastures at the foot of Monte Canin to a mountain hut looking over the Val Resia.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water for your dog.',
+      dogNotes: 'Inside the Prealpi Giulie nature park dogs must always be on a lead (park regulation, Art. 10). Resia has no dog rule of its own, so the national rule also applies: a lead of at most 1.5 m and a muzzle carried. Ibex and chamois are often on the slopes.',
+      tips: 'Park below Malga Coot in the Val Resia: 7.9 km there and back and about 400 m of climbing, three hours. Keep your dog on a lead the whole way, as the park requires, and carry a muzzle. Malga Coot serves food on the way back. Best in late spring and autumn.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Salita a Casera Canin: balcone panoramico sulla val Resia', url: 'https://www.outdooractive.com/it/route/escursione/parco-naturale-delle-prealpi-giulie/salita-a-casera-canin-balcone-panoramico-sulla-val-resia/810597009/' },
+        { label: 'Parco naturale delle Prealpi Giulie, Regolamento del Parco (DPReg 048/2017)', url: 'https://www.parcoprealpigiulie.it/documents/893/D_P_REG_0048-2017.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'Regione Friuli Venezia Giulia, DGR 1148/2024 annex 1 (alpine Natura 2000 conservation measures)', url: 'https://mtom.regione.fvg.it/storage//2024_1148/Allegato%201%20alla%20Delibera%201148-2024.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.331974, lng: 13.422196, label: 'Car park below Malga Coot, Val Resia, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'A walk in the Prealpi Giulie nature park from Malga Coot through woods and pastures at the foot of Monte Canin to Casera Canin, a balcony over the Val Resia. PromoTurismoFVG lists 7.9 km and 401 m of ascent.'
+    },
+    'fvg-anello-malga-confin-ungarina': {
+      // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 3).
+      // PromoTurismoFVG’s walk “L'anello di malga Confin e malga Ungarina” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
+      // on 7 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // Venzone publishes no dog rule of its own, so the national dog ordinance and the regional law LR 20/2012 apply; about a fifth of the loop is in the Prealpi Giulie nature park, whose regulation (Art. 10 c.3) admits only dogs on a lead.
+      // About 20% of the line is in the Prealpi Giulie nature park, which has no strict reserve zone and admits leashed dogs everywhere; published under the owner’s park decision of 28 October 2026. The whole loop is in ZSC IT3320012 and ZPS IT3321002, whose 2024 measures set no rule on walkers’ dogs.
+      area: 'Malga Confin – Malga Ungarina, Monte Plauris, Venzone',
+      distance: 4.7,
+      elevation: 401,
+      hours: '2.15',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Malga Confin on paths CAI 702a and 702 across the high meadows of Monte Plauris to Malga Ungarina and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The green roofs of a malga on the open slopes of Monte Plauris, on the loop, in October 2020 (igorzo on Mapillary, CC BY-SA 4.0), 17 m from the line.',
+        route: 'Official loop 4.7 km from Malga Confin, on the southern slopes of Monte Plauris, as PromoTurismoFVG publishes it; the stored line is drawn on 7 OSM ways along the published line, 4.7 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'Paths CAI 702a and 702: from Malga Confin across the wide pastures and gentle ridges on the southern side of Monte Plauris to Malga Ungarina, and back round to Malga Confin. (The continuation to the summit of the Plauris, with sections graded EE, is not part of this walk.)',
+        mapPoints: 'Start at Malga Confin, on the southern slopes of Monte Plauris, the board’s start; drinking water none mapped.',
+        elevation: 'Official 4.7 km, 401 m up and 401 m down, 2 h 10 min, highest point 1,686 m, lowest 1,285 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, L\'anello di malga Confin e malga Ungarina (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Parco Naturale Prealpi Giulie)',
+          'Parco naturale regionale delle Prealpi Giulie, Regolamento (DPReg 28 February 2017 n. 048/Pres., as amended 2018), Art. 10 c.3: only dogs on a lead are admitted, anywhere in the park; no zone of the park bans dogs',
+          'ORMA owner decision of 28 October 2026 on park zones: hold only a true strict reserve (zone A, +100 m) or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Comune di Venzone publishes no dog rule (no police or animal regulation and no dog ordinance on its site), so the national rule applies',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): about 20% in the Parco naturale regionale delle Prealpi Giulie; inside ZSC IT3320012 and ZPS IT3321002. Regione Friuli Venezia Giulia, conservation measures of the alpine Natura 2000 sites (DGR 1148/2024, annex 1, July 2024): no rule on walkers’ dogs',
+          'OpenStreetMap ways along the published line (7 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 1,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Cows graze round Malga Confin in summer: keep your dog on a short lead and give the herd room', 'Open slopes with no shade', 'Chamois on the upper slopes'],
+      terrainType: 'Pasture paths and grassy ridges',
+      shadeDescription: 'No shade: the loop crosses open pastures and grassy ridges.',
+      terrainDescription: 'A short loop at 1,285–1,690 m over the flowery pastures of Monte Plauris above the Tagliamento, on the edge of the Prealpi Giulie nature park, between two working summer farms.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water for your dog.',
+      dogNotes: 'Inside the Prealpi Giulie nature park dogs must always be on a lead (park regulation, Art. 10). Venzone has no dog rule of its own, so the national rule applies elsewhere: a lead of at most 1.5 m and a muzzle carried. Cows graze at Malga Confin: keep your dog close.',
+      tips: 'Start at Malga Confin: 4.7 km and about 400 m of climbing, just over two hours. Keep your dog on a lead, as the park requires, and carry a muzzle. No shade: bring water and avoid hot afternoons. Malga Confin sells its cheese and serves food.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, L\'anello di malga Confin e malga Ungarina', url: 'https://www.outdooractive.com/it/route/escursione/parco-naturale-delle-prealpi-giulie/l-anello-di-malga-confin-e-malga-ungarina/810695476/' },
+        { label: 'Parco naturale delle Prealpi Giulie, Regolamento del Parco (DPReg 048/2017)', url: 'https://www.parcoprealpigiulie.it/documents/893/D_P_REG_0048-2017.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'Regione Friuli Venezia Giulia, DGR 1148/2024 annex 1 (alpine Natura 2000 conservation measures)', url: 'https://mtom.regione.fvg.it/storage//2024_1148/Allegato%201%20alla%20Delibera%201148-2024.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.342596, lng: 13.217635, label: 'Malga Confin, on the southern slopes of Monte Plauris, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'A short loop over the flowery high pastures of Monte Plauris between Malga Confin and Malga Ungarina, with views of the Tagliamento valley. PromoTurismoFVG lists 4.7 km and 401 m of ascent.'
+    },
+    'fvg-monte-talm-da-piani-di-vas': {
+      // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 3).
+      // PromoTurismoFVG’s walk “Monte Talm dai Piani di Vas” (its verified Outdooractive account, author Prime Alps). The line is drawn
+      // on 23 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // The loop is in Rigolato and Prato Carnico: Rigolato’s police bylaw (Art. 24) copies the national rule, and Prato Carnico’s (Art. 32) requires a lead of at most 2 m everywhere outside dog areas and a muzzle on medium and large dogs.
+      // No park, reserve, biotope or Natura 2000 site on or within 300 m of the line (FVG protected-area layers).
+      area: 'Piani di Vas – Rifugio Chiampizzulon – Monte Talm, Rigolato and Prato Carnico',
+      distance: 10.6,
+      elevation: 744,
+      hours: '4.15',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Piani di Vas on the forest road and paths 227 and 228a to the Talm saddle, on path 226a past the Rifugio Chiampizzulon to the summit of Monte Talm, and back down on the southern side.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A path signpost for Malga Chiampiut and the Sella di Talm in the woods below Monte Talm, on the loop, on 7 September 2021 (igorzo on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official loop 10.6 km from Piani di Vas car park, as PromoTurismoFVG publishes it; the stored line is drawn on 23 OSM ways along the published line, 10.6 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'CAI paths 227, 228a, 226a and 226: from the Piani di Vas car park up the forest road towards the Talm saddle, cutting the hairpins on 227 and 228a; from the saddle into the woods on 226a past the private hunters’ hut, with ups and downs, to the grassy ridge and the summit of Monte Talm with its Friendship Bell. Down the southern side on path 226 through the summit meadows and back to Piani di Vas. The climb can be stopped at the Rifugio Chiampizzulon.',
+        mapPoints: 'Start at Piani di Vas car park, the board’s start; drinking water none mapped.',
+        elevation: 'Official 10.6 km, 744 m up and 744 m down, 4 h 10 min, highest point 1,726 m, lowest 1,260 m (PromoTurismoFVG, author Prime Alps).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Monte Talm dai Piani di Vas (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Prime Alps)',
+          'Comune di Rigolato, Regolamento di Polizia Urbana (council resolution 2 of 20 February 2004, consolidated 2009), Art. 24: a lead of at most 1.5 m in urban areas and places open to the public, a muzzle carried',
+          'Comune di Prato Carnico, Regolamento di Polizia Urbana (council resolution 36 of 15 December 2003), Art. 32: dogs always on a lead of at most 2 m outside dog areas, and medium, large or biting dogs muzzled',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): none on the line or within 300 m',
+          'OpenStreetMap ways along the published line (23 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 47,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A long climb of about 750 m: plan rests and water for your dog', 'The grassy ridge and the southern descent are steep and slippery when wet; take great care in snow', 'No water on the loop'],
+      terrainType: 'Forest roads, forest paths and a grassy ridge',
+      shadeDescription: 'About half shaded: the forest road and paths run through woods; the summit ridge and its meadows are open.',
+      terrainDescription: 'A loop at 1,260–1,725 m from Piani di Vas to the summit of Monte Talm on the ridge above the Val Pesarina, with wide views of the Coglians, the Avanza and the Carnic Alps.',
+      waterDescription: 'No drinking fountain is mapped on the walk; places to eat on the way; bring water for your dog.',
+      dogNotes: 'Prato Carnico, on the southern half of the loop, requires dogs on a lead of at most 2 m everywhere outside dog areas, and a muzzle on medium and large dogs and biting ones (police bylaw, Art. 32). Rigolato, on the climb, follows the national rule: a lead of at most 1.5 m and a muzzle carried. Muzzle a medium or large dog on the Prato Carnico side.',
+      tips: 'Start at the Piani di Vas car park: 10.6 km and about 750 m of climbing, over four hours. Keep your dog on a lead throughout and muzzle a medium or large dog on the Prato Carnico side. There is no water on the loop; the Rifugio Chiampizzulon serves food when open, and the walk can stop there.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Monte Talm dai Piani di Vas', url: 'https://www.outdooractive.com/it/route/escursione/carnia/monte-talm-dai-piani-di-vas/805502320/' },
+        { label: 'Comune di Rigolato, Regolamento di Polizia Urbana (Art. 24)', url: 'https://comune.rigolato.ud.it/media/files/030094/attachment/regolamento_polizia_urbana.pdf' },
+        { label: 'Comune di Prato Carnico, Regolamento di Polizia Urbana (Art. 32)', url: 'https://comune.prato-carnico.ud.it/media/files/030081/attachment/Regolam.Polizia_Urbana_2003_PDFA.PDF' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.553473, lng: 12.816823, label: 'Piani di Vas car park, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 7.6, lat: 46.55196, lng: 12.79817, osmId: 'way/35943657', name: 'Rifugio Chiampizzulon' }
+      ],
+      desc: 'A loop from Piani di Vas past the Rifugio Chiampizzulon to the panoramic summit of Monte Talm above the Val Pesarina, and back down through the summit meadows. PromoTurismoFVG lists 10.6 km and 744 m of ascent.'
+    },
+    'fvg-anello-casera-vas-monte-buoi': {
+      // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 3).
+      // PromoTurismoFVG’s walk “Anello Casera Vas - Casera Monte Buoi” (its verified Outdooractive account, author PromoTurismoFVG Montagna). The line is drawn
+      // on 21 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // Forni Avoltri publishes no dog rule of its own (none among its published regulations), so the national dog ordinance (6 August 2013, extended to September 2027) and the regional law LR 20/2012 apply under ORMA’s Italian dog standard.
+      // Most of the loop is in the Alpi Carniche ZPS (IT3321001) and a sliver in the Gruppo del Monte Coglians ZSC (IT3320001); the Region’s 2024 measures for its alpine sites set no rule on walkers’ dogs. No park, reserve or biotope.
+      area: 'Frassenetto – Casera Vas – Casera Monte dei Buoi, Forni Avoltri',
+      distance: 11.1,
+      elevation: 659,
+      hours: '3.9',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the hamlet of Frassenetto on forest roads through dense woods up to the pasture of Casera Vas and on to Casera Monte dei Buoi, and back down to Frassenetto.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of Frassenetto above the road where the loop starts, on 19 August 2021 (igorzo on Mapillary, CC BY-SA 4.0), 14 m from the line.',
+        route: 'Official loop 11.1 km from Frassenetto, Forni Avoltri, as PromoTurismoFVG publishes it; the stored line is drawn on 21 OSM ways along the published line, 11.1 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'No route number given: from the square in Frassenetto on the forest track opposite, along the right side of the Rio Frassenetto, across the stream at 1,149 m and up in wide bends through the forest to the wooded ridge of Monte Vas; at the fork at 1,550 m (near the Pozzo di Suttul spring) right to Casera Vas (1,607 m) in its clearing, on to the boulder-strewn pasture of Casera Monte dei Buoi, and back down to Frassenetto.',
+        mapPoints: 'Start at Frassenetto, Forni Avoltri, the board’s start; drinking water none mapped.',
+        elevation: 'Official 11.1 km, 659 m up and 659 m down, 3 h 55 min, highest point 1,722 m, lowest 1,063 m (PromoTurismoFVG, author PromoTurismoFVG Montagna).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Anello Casera Vas - Casera Monte Buoi (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author PromoTurismoFVG Montagna)',
+          'Comune di Forni Avoltri publishes no dog rule (none among its published regulations), so the national rule applies',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): no park, reserve or biotope; about 88% in ZPS IT3321001 Alpi Carniche and 1% in ZSC IT3320001. Regione Friuli Venezia Giulia, conservation measures of the alpine Natura 2000 sites (DGR 1148/2024, annex 1, July 2024): no rule on walkers’ dogs',
+          'OpenStreetMap ways along the published line (21 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 87,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Heifers graze at Casera Vas in summer: close the electric fence gaps behind you and keep your dog on a short lead', 'Long forest roads shared with forestry vehicles', 'In winter the slope above the forest is steep and avalanches run near Casera Monte dei Buoi: summer walk only'],
+      terrainType: 'Forest roads and pasture paths',
+      shadeDescription: 'Well shaded: nearly nine tenths of the loop runs through dense spruce, larch and fir forest; the two pastures are open.',
+      terrainDescription: 'A long loop at 1,060–1,720 m from the hamlet of Frassenetto in the upper Val Degano, through dense forest to the summer pastures of Casera Vas and Casera Monte dei Buoi, with views of Monte Chiadin and the Avanza group.',
+      waterDescription: 'No drinking fountain is mapped on the walk; places to eat on the way; bring water for your dog.',
+      dogNotes: 'Forni Avoltri has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m in villages and on public ground, and a muzzle carried. Pick up after your dog. Heifers graze at Casera Vas in summer behind electric fences: keep your dog on a short lead and close the gaps behind you.',
+      tips: 'Start in Frassenetto above Forni Avoltri: 11.1 km and about 660 m of climbing, nearly four hours. Keep your dog on a lead near the herds and in the hamlet, and carry a muzzle. Casera Vas can be used as a shelter. A summer walk: not in snow or ice.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Anello Casera Vas - Casera Monte Buoi', url: 'https://www.outdooractive.com/it/route/escursione/forni-avoltri/anello-casera-vas-casera-monte-buoi/809390935/' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'Regione Friuli Venezia Giulia, DGR 1148/2024 annex 1 (alpine Natura 2000 conservation measures)', url: 'https://mtom.regione.fvg.it/storage//2024_1148/Allegato%201%20alla%20Delibera%201148-2024.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.581103, lng: 12.796648, label: 'Frassenetto, Forni Avoltri, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 4.5, lat: 46.59804, lng: 12.80125, osmId: 'way/36679398', name: 'Casera Vas' },
+        { km: 5.1, lat: 46.59822, lng: 12.80862, osmId: 'way/35943364', name: 'Casera Monte dei Buoi' },
+        { km: 9.1, lat: 46.57789, lng: 12.81324, osmId: 'way/35943420', name: 'Da Gina' }
+      ],
+      desc: 'A long forest loop from Frassenetto in the upper Val Degano to the summer pastures of Casera Vas and Casera Monte dei Buoi, among larch, fir and big limestone boulders. PromoTurismoFVG lists 11.1 km and 659 m of ascent.'
+    },
+    'fvg-monte-rest-da-passo-rest': {
+      // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 3).
+      // PromoTurismoFVG’s walk “Dal Passo Rest al Monte Rest” (its verified Outdooractive account, author PromoTurismoFVG Montagna). The line is drawn
+      // on 22 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // The whole line is in Tramonti di Sopra, whose rural police bylaw (Art. 13, council resolution 36 of 2012) requires dogs in places open to the public on a lead or muzzled and forbids roaming.
+      // No park, reserve, biotope or Natura 2000 site on or within 300 m of the line (FVG protected-area layers).
+      area: 'Passo Rest – Casera Rest – Monte Rest, Tramonti di Sopra',
+      distance: 7.6,
+      elevation: 737,
+      hours: '3.85',
+      routeShape: 'loop',
+      routeShapeNote: 'From Passo Rest up the dirt road to Casera Rest, on path CAI 826 to the ridge and along the wide crest to the summit of Monte Rest, and back to the pass.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The view from the Monte Rest ridge over the Carnic Prealps, on the walk, on 29 August 2026 (igorzo on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official loop 7.6 km from Passo Rest, as PromoTurismoFVG publishes it; the stored line is drawn on 22 OSM ways along the published line, 7.8 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'CAI path 826: from Passo Rest up the narrow tarred road to the church, then the dirt road to Casera Rest (1,500 m, an emergency bivouac) in its pasture; on path 826 slanting up the high meadows to the ridge at 1,610 m, leaving the direct path to Forca Separeit for the wide crest above, past a panoramic bench and an old trough to the summit of Monte Rest (1,780 m). Back to the pass.',
+        mapPoints: 'Start at Passo Rest, the board’s start; drinking water none mapped.',
+        elevation: 'Official 7.6 km, 737 m up and 739 m down, 3 h 50 min, highest point 1,780 m, lowest 1,041 m (PromoTurismoFVG, author PromoTurismoFVG Montagna).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Dal Passo Rest al Monte Rest (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author PromoTurismoFVG Montagna)',
+          'Comune di Tramonti di Sopra, Regolamento di Polizia Rurale (council resolution 36 of 29 November 2012), Art. 13: dogs in streets and places open to the public on a lead or muzzled, no roaming, droppings picked up',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): none on the line or within 300 m',
+          'OpenStreetMap ways along the published line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 62,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A climb of about 740 m, with a steeper last stretch to the summit', 'Open ridge: avoid the hot middle of summer days and storms', 'Passo Rest is reached only from April to November (SR 552 closed in winter)'],
+      terrainType: 'Dirt road, meadow paths and a grassy ridge',
+      shadeDescription: 'Mostly shaded on the way up: about three fifths of the line runs through beech and mountain pine; the ridge and summit are open.',
+      terrainDescription: 'A panoramic climb at 1,040–1,780 m from Passo Rest to Monte Rest in the Carnic Prealps, along a wide grassy crest between the Val Meduna and the Tagliamento valley.',
+      waterDescription: 'No drinking fountain is mapped on the walk; places to eat at the start and on the way; bring water for your dog.',
+      dogNotes: 'Tramonti di Sopra’s rural police bylaw (Art. 13) requires dogs in places open to the public on a lead or muzzled, never roaming, with droppings picked up; the national rule adds a lead of at most 1.5 m on public ground and a muzzle carried.',
+      tips: 'Drive to Passo Rest (open about April to November): 7.6 km and about 740 m of climbing, nearly four hours. Keep your dog on a lead and carry a muzzle. No water on the ridge: bring plenty and avoid the hottest hours. Casera Rest can be used as an emergency bivouac.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Dal Passo Rest al Monte Rest', url: 'https://www.outdooractive.com/it/route/escursione/tramonti-di-sopra/dal-passo-rest-al-monte-rest-itinerario-panoramico/805023851/' },
+        { label: 'Comune di Tramonti di Sopra, Regolamento di Polizia Rurale (Art. 13)', url: 'https://comune.tramontidisopra.pn.it/media/files/093045/attachment/REGOLAMENTO_POLIZIA_RURALE_0hbSWTI.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.35385, lng: 12.787389, label: 'Passo Rest, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.35391, lng: 12.78831, osmId: 'way/36023864', name: 'Malga Rest' },
+        { km: 2.5, lat: 46.34738, lng: 12.79926, osmId: 'way/36024699', name: 'Casera Monte Rest' }
+      ],
+      desc: 'A panoramic climb from Passo Rest past Casera Rest to the summit of Monte Rest along a wide grassy crest, with views over the Carnic Prealps. PromoTurismoFVG lists 7.6 km and 737 m of ascent.'
     }
   };
 
@@ -58920,6 +59353,7 @@ function effectiveOverrides(profile, adjustOverride){
     // Carnia, Sappada, the Tarvisio and Julian Alps valleys, the Friulian
     // Dolomites and Piancavallo.
     ['Sappada', 46.5667, 12.6847, 'Sappada', 'friuli', 'udine'],
+    ['Sorgenti del Piave (Sappada)', 46.6100, 12.7120, 'Sappada', 'friuli', 'udine'],
     ['Forni di Sopra', 46.4236, 12.5839, 'Dolomiti Friulane', 'friuli', 'udine'],
     ['Forni di Sotto', 46.3929, 12.6716, 'Dolomiti Friulane', 'friuli', 'udine'],
     ['Sauris', 46.4665, 12.7080, 'Carnia', 'friuli', 'udine'],

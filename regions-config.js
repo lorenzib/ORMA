@@ -197,6 +197,7 @@
     // Carnia, Sappada, the Tarvisio and Julian Alps valleys, the Friulian
     // Dolomites and Piancavallo.
     ['Sappada', 46.5667, 12.6847, 'Sappada', 'friuli', 'udine'],
+    ['Sorgenti del Piave (Sappada)', 46.6100, 12.7120, 'Sappada', 'friuli', 'udine'],
     ['Forni di Sopra', 46.4236, 12.5839, 'Dolomiti Friulane', 'friuli', 'udine'],
     ['Forni di Sotto', 46.3929, 12.6716, 'Dolomiti Friulane', 'friuli', 'udine'],
     ['Sauris', 46.4665, 12.7080, 'Carnia', 'friuli', 'udine'],

@@ -144,9 +144,13 @@ describe('the existing-site verification boundary',()=>{
     // the St. Nikolaus church walk at Matrei, the Weg der Sinne and the Kreuzweg to
     // Maria Schnee at Virgen, the children's nature trail at Kals and the water
     // trail at St. Jakob in Defereggen.
+    // Then 379 and 377 with seven more Friuli Venezia Giulia walks: the Sella
+    // Sompdogna lake, Rifugio Calvi above Sappada, Casera Canin, the Malga Confin loop
+    // on Monte Plauris, Monte Talm, the Casera Vas loop from Frassenetto and Monte
+    // Rest.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(372);
-    expect(currentSiteTrails(catalogue)).toHaveLength(370);
+    expect(catalogue).toHaveLength(379);
+    expect(currentSiteTrails(catalogue)).toHaveLength(377);
   });
 
   test('requires the artwork the public trail page needs',()=>{
