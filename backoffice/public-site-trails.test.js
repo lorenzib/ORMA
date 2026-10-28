@@ -100,9 +100,12 @@ describe('the existing-site verification boundary',()=>{
     // Then 309 and 307 with five Sexten walks drawn there and back: Sexten – Innichen,
     // Sexten church – Gasthof Panorama, Haus der Berge – Lärchenhütte, the Mitterberg
     // fort to the Helmhanghütte, and Sexten – Waldkapelle.
+    // Then 314 and 312 with the first five Friuli Venezia Giulia walks: the Fusine
+    // lakes, Ta Lipa Pot at Stolvizza, the Pustot beeches above Dordolla, Stavoli
+    // di Moggio and the Lago di Verzegnis loop.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(309);
-    expect(currentSiteTrails(catalogue)).toHaveLength(307);
+    expect(catalogue).toHaveLength(314);
+    expect(currentSiteTrails(catalogue)).toHaveLength(312);
   });
 
   test('requires the artwork the public trail page needs',()=>{

@@ -54366,6 +54366,301 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 0, lat: 46.70221, lng: 12.35, osmId: 'node/13087662884', name: 'Hotel Mondschein' }
       ],
       desc: 'A short climb on the meditation path from Sexten past old farms to the Waldkapelle in the forest, and back. The board lists 3.7 km and 209 m of ascent, there and back.'
+    },
+    'fvg-laghi-di-fusine': {
+      // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
+      // PromoTurismoFVG’s walk “Laghi di Fusine” (its verified Outdooractive account, author PromoTurismoFVG Montagna). The line is drawn
+      // on 43 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // The whole line is in Tarvisio, whose police bylaw (article 39, council resolution 17 of 2017) requires dogs on a lead of at most 1.5 m outside dog areas and a muzzle carried.
+      // The loop lies inside the Conca di Fusine Natura 2000 site (ZSC/ZPS IT3320006); its 2024 measures set no rule on dogs, only to stay on official paths in the Scichizza bog and to keep 50 m from the lakes off the trails during big events. No park, reserve or biotope.
+      area: 'Laghi di Fusine, Tarvisio',
+      distance: 5.4,
+      elevation: 104,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the lower lake car park round the Lower Fusine Lake, over a moraine ridge to the Upper Lake and round its western shore, and back along the promenade past the Capanna Edelweiss.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lower Fusine Lake with autumn larches and the Mangart group behind, on the loop, on 13 October 2026 without snow (Ajznponar, CC0), 0 m from the line.',
+        route: 'Official loop 5.4 km from Lower lake car park past Scichizza, Fusine in Valromana, as PromoTurismoFVG publishes it; the stored line is drawn on 43 OSM ways along the published line, 5.5 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'No route number given: from the car park past the houses of Scichizza, a short stretch through the forest on boardwalks, along the Lower Lake past the streams that feed it with the Mangart and Ponze walls ahead, through beech and spruce over a moraine ridge with large erratic boulders to the Upper Lake; along its western shore to the wide southern plain, then back on the broad promenade to the Capanna Edelweiss and the start, by the lake path or the tarred road.',
+        mapPoints: 'Start at Lower lake car park past Scichizza, Fusine in Valromana, the board’s start; drinking water none mapped.',
+        elevation: 'Official 5.4 km, 104 m up and 104 m down, 2 h, highest point 980 m, lowest 878 m (PromoTurismoFVG, author PromoTurismoFVG Montagna).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Laghi di Fusine (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author PromoTurismoFVG Montagna)',
+          'Comune di Tarvisio, Regolamento di Polizia Urbana (council resolution 17 of 18 April 2017), article 39: dogs always on a lead of at most 1.5 m except in marked dog areas, a muzzle carried and worn in public premises and on buses, no dogs in marked play areas',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): no park, reserve or biotope; the loop is inside ZSC/ZPS IT3320006 Conca di Fusine. Regione Friuli Venezia Giulia, conservation measures of the alpine Natura 2000 sites (DGR 1148/2024, annex 1, July 2024): no rule on walkers’ dogs; for this site, stay on official paths in the Scichizza bog and keep 50 m from the lakes off the trails during events of over 500 people',
+          'OpenStreetMap ways along the published line (43 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 50,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Boardwalks and roots along the lakeshore are slippery when wet', 'Busy in summer and at weekends: keep your dog close on the narrow shore paths', 'A protected Natura 2000 site: stay on the marked paths in the Scichizza bog'],
+      terrainType: 'Lakeshore paths, boardwalks and a gravel promenade',
+      shadeDescription: 'About half shaded: the shore paths run through beech and spruce forest; the lakesides, the southern plain and the promenade are open.',
+      terrainDescription: 'An easy loop at 880–980 m round two glacial lakes in the Tarvisio forest, below the north walls of the Mangart and the Ponze, on shore paths, boardwalks and a wide promenade.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water for your dog.',
+      dogNotes: 'Tarvisio’s police bylaw (article 39) requires dogs on a lead of at most 1.5 m everywhere outside marked dog areas, and a muzzle carried (worn in public premises and on buses); dogs may not enter marked play areas. The lakes are in a Natura 2000 site: keep to the marked paths, especially in the Scichizza bog by the Lower Lake.',
+      tips: 'Start at the lower lake car park past Scichizza (paid at busy times): 5.4 km and about 100 m of climbing, two hours. Tarvisio requires a lead of at most 1.5 m everywhere and a muzzle carried. Stay on the marked paths round the lakes. The Capanna Edelweiss and other places to eat are by the lakes.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Laghi di Fusine', url: 'https://www.outdooractive.com/it/route/escursione/tarvisio/laghi-di-fusine/801482658/' },
+        { label: 'Comune di Tarvisio, Regolamento di Polizia Urbana (article 39)', url: 'https://www.comune.tarvisio.ud.it/media/files/md/030117/Regolamento_Polizia_URBANA_1.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'Regione Friuli Venezia Giulia, DGR 1148/2024 annex 1 (alpine Natura 2000 conservation measures)', url: 'https://mtom.regione.fvg.it/storage//2024_1148/Allegato%201%20alla%20Delibera%201148-2024.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.488615, lng: 13.672542, label: 'Lower lake car park past Scichizza, Fusine in Valromana, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'An easy loop round the two Fusine lakes below the Mangart, through beech and spruce forest and over a moraine ridge, back along the lakeside promenade. PromoTurismoFVG lists 5.4 km and 104 m of ascent.'
+    },
+    'fvg-ta-lipa-pot-corto': {
+      // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
+      // PromoTurismoFVG’s walk “Ta Lipa Pot - Percorso breve” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
+      // on 22 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // Resia publishes no dog rule of its own (only a duty to pick up droppings), so the national dog ordinance (6 August 2013, extended to September 2027) and the regional law LR 20/2012 apply under ORMA’s Italian dog standard.
+      // No park, reserve, biotope or Natura 2000 site on or within 300 m of the line (FVG protected-area layers); the Prealpi Giulie park is further up the valley.
+      area: 'Stolvizza – Potok waterfall – Zamlin, Resia',
+      distance: 5.5,
+      elevation: 152,
+      hours: '1.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Stolvizza down to the Potok waterfall, along the stream through pine forest past the Casa Resiana to the hamlet of Zamlin, and back up through the woods to Stolvizza.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Autumn woods and meadows below the Julian Prealps seen from the valley floor at Stolvizza, beside the loop, on 11 October 2025 without snow (Ajznponar, CC0), 2 m from the line.',
+        route: 'Official loop 5.5 km from Via Pustigost by the bar-trattoria All’arrivo, Stolvizza di Resia, as PromoTurismoFVG publishes it; the stored line is drawn on 22 OSM ways along the published line, 5.4 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'The park’s “Ta Lipa Pot” (“the beautiful road” in Resian), no route number: from via Pustigost in Stolvizza down a steep stretch to the stream and, with some care over rocks and gravel, to the Potok waterfall; along the right bank through pine forest to the meadow of the Casa Resiana; straight on across a stream and past a large meadow to a junction, left down to the tarred road by the bar and campsite Al Ranch; right along the road through the hamlet of Zamlin, then left at a large meadow, following the signs, steeply up through shady woods past meadows and a stable to the road, and finally right off the road on the last stretch of path into Stolvizza.',
+        mapPoints: 'Start at Via Pustigost by the bar-trattoria All’arrivo, Stolvizza di Resia, the board’s start; drinking water none mapped.',
+        elevation: 'Official 5.5 km, 152 m up and 152 m down, 1 h 45 min, highest point 584 m, lowest 431 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Ta Lipa Pot - Percorso breve (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Parco Naturale Prealpi Giulie)',
+          'Comune di Resia publishes no dog rule (its waste regulation, article 13, only requires picking up droppings), so the national rule applies',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): none on the line or within 300 m',
+          'OpenStreetMap ways along the published line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 51,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steep descent over rocks and gravel to the Potok waterfall', 'Short stretches on a quiet tarred road through Zamlin', 'Ticks are common in the region: check your dog after the walk'],
+      terrainType: 'Forest paths, dirt roads and short stretches of tarred road',
+      shadeDescription: 'About half shaded: the stream and the climb back to Stolvizza run through pine and beech woods; the meadows and the road through Zamlin are open.',
+      terrainDescription: 'A short loop at 430–585 m round Stolvizza in Val Resia, down to the Potok waterfall and along the stream through pine forest, past meadows and the hamlet of Zamlin.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water for your dog.',
+      dogNotes: 'Resia has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m in the village and on public ground, and a muzzle carried. Pick up after your dog. The park reminds walkers that dogs must be on a lead inside protected areas.',
+      tips: 'Start in Stolvizza on via Pustigost: 5.5 km and about 150 m of climbing, an hour and three quarters. Keep your dog on a lead of at most 1.5 m in the hamlets and carry a muzzle. The way down to the Potok waterfall is steep and stony. Avoid the hottest summer hours; the Stolvizza museums and restaurants are at the start.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Ta Lipa Pot - Percorso breve', url: 'https://www.outdooractive.com/it/route/escursione/tarvisio/ta-lipa-pot-percorso-breve/805322923/' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.362068, lng: 13.350169, label: 'Via Pustigost by the bar-trattoria All’arrivo, Stolvizza di Resia, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'An easy loop from Stolvizza in Val Resia to the Potok waterfall, through pine woods past the Casa Resiana and the hamlet of Zamlin, and back up to the village. PromoTurismoFVG lists 5.5 km and 152 m of ascent.'
+    },
+    'fvg-faggi-secolari-pustot-dordolla': {
+      // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
+      // PromoTurismoFVG’s walk “I faggi secolari di Pustot a Dordolla” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
+      // on 41 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // The whole line is in Moggio Udinese, whose urban and rural police bylaw (article 40, council resolution 23 of 2018) requires dogs on a lead or muzzled in places open to the public and loose only in marked areas.
+      // No park, reserve, biotope or Natura 2000 site on or within 300 m of the line (FVG protected-area layers).
+      area: 'Dordolla – Drentus – Pustot, Val Aupa, Moggio Udinese',
+      distance: 4.9,
+      elevation: 395,
+      hours: '2.35',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Dordolla along the old road to the hamlet of Drentus, up to the centuries-old beech trees of Pustot, and back down to Dordolla on the old mule tracks to the hayfields.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Dordolla’s stone houses and meadows below the Creta Grauzaria, at the start of the loop, in early October 2011 without snow (Kaspar Nickles, CC BY-SA 3.0 AT), 4 m from the line.',
+        route: 'Official loop 4.9 km from Dordolla village, Val Aupa, as PromoTurismoFVG publishes it; the stored line is drawn on 41 OSM ways along the published line, 5.3 km, with 99% of the published line within 25 m of it.',
+        routeNumbers: 'Blue markers from Dordolla, no route number given: along the old road that linked the villages to the hamlet of Drentus, where the climb starts; a steady ascent to Pustot and its centuries-old beeches; down to Dordolla on the old tracks the valley’s people used to reach their hayfields and summer pastures. A short detour from Dordolla leads to the Spissande waterfall.',
+        mapPoints: 'Start at Dordolla village, Val Aupa, the board’s start; drinking water none mapped.',
+        elevation: 'Official 4.9 km, 395 m up and 394 m down, 2 h 20 min, highest point 960 m, lowest 611 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, I faggi secolari di Pustot a Dordolla (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Parco Naturale Prealpi Giulie)',
+          'Comune di Moggio Udinese, Regolamento di Polizia Urbana e Rurale (council resolution 23 of 6 July 2018), article 40: dogs in streets and every place open to the public on a lead or wearing a muzzle, loose only in marked areas, never in children’s play areas',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): none on the line or within 300 m',
+          'OpenStreetMap ways along the published line (41 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 68,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Steep climbs and descents on old mule tracks: slippery after rain', 'Not advised after heavy rain', 'Ticks are common in the region: check your dog after the walk'],
+      terrainType: 'Old mule tracks, forest paths and village lanes',
+      shadeDescription: 'Mostly shaded: about two thirds of the loop runs through beech woods, Pustot included; the meadows round Dordolla and Drentus are open.',
+      terrainDescription: 'A loop at 610–960 m from the hilltop village of Dordolla in the Val Aupa, through restored meadows to the hamlet of Drentus and up to the monumental beeches of Pustot, below the Creta Grauzaria.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water for your dog.',
+      dogNotes: 'Moggio Udinese’s urban and rural police bylaw (article 40) requires dogs on a lead or wearing a muzzle in streets and every place open to the public, lets them off only in marked areas and keeps them out of play areas; the national rule adds a lead of at most 1.5 m and a muzzle carried. Sheep and cattle graze the restored meadows round Dordolla: keep your dog close.',
+      tips: 'Start in Dordolla, at the end of the Val Aupa road (few free parking places): 4.9 km and about 400 m of climbing, two hours and twenty minutes. Keep your dog on a lead in the village and carry a muzzle. The old tracks are steep and slippery after rain. Spring and autumn are the best seasons.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, I faggi secolari di Pustot a Dordolla', url: 'https://www.outdooractive.com/it/route/escursione/moggio-udinese/i-faggi-secolari-di-pustot-a-dordolla/811755887/' },
+        { label: 'Comune di Moggio Udinese, Regolamento di Polizia Urbana e Rurale (article 40)', url: 'https://comune.moggioudinese.ud.it/media/files/md/030059/regolamento_polizia_urbana_e_rurale.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.467451, lng: 13.192468, label: 'Dordolla village, Val Aupa, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'A loop from the hilltop village of Dordolla in the Val Aupa up to the centuries-old beeches of Pustot and back on the valley’s old mule tracks. PromoTurismoFVG lists 4.9 km and 395 m of ascent.'
+    },
+    'fvg-borgo-stavoli-moggio': {
+      // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
+      // PromoTurismoFVG’s walk “Il borgo isolato di Stavoli di Moggio” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
+      // on 27 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // The whole line is in Moggio Udinese, whose urban and rural police bylaw (article 40, council resolution 23 of 2018) requires dogs on a lead or muzzled in places open to the public and loose only in marked areas.
+      // No park, reserve, biotope or Natura 2000 site on or within 300 m of the line (FVG protected-area layers).
+      area: 'Campiolo – Glagnò stream – Stavoli, Moggio Udinese',
+      distance: 6.9,
+      elevation: 379,
+      hours: '3.1',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back: from Campiolo on path CAI 417 along the Glagnò stream and up through the forest to the uninhabited hamlet of Stavoli, and back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The mule track from Campiolo to Stavoli, with a guard rail above the slope, in October 2008 without snow (Joadl, CC BY-SA 3.0), 1 m from the line.',
+        route: 'Official out-and-back walk 6.9 km from Campiolo, by the parking places at the start of path CAI 417, as PromoTurismoFVG publishes it; the stored line is drawn on 27 OSM ways along the published line, 6.6 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'CAI path 417: from Campiolo along the Glagnò stream through forest and past emerald pools; after a small bridge the path leaves the stream and climbs at a steady gradient through the forest to Stavoli, a group of stone houses reached only on foot. Back the same way. (A longer loop on to Moggessa di Là and Moggessa di Qua, about 11 km, is not part of this walk.)',
+        mapPoints: 'Start at Campiolo, by the parking places at the start of path CAI 417, the board’s start; drinking water none mapped.',
+        elevation: 'Official 6.9 km, 379 m up and 379 m down, 3 h 05 min, highest point 569 m, lowest 291 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Il borgo isolato di Stavoli di Moggio (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Parco Naturale Prealpi Giulie)',
+          'Comune di Moggio Udinese, Regolamento di Polizia Urbana e Rurale (council resolution 23 of 6 July 2018), article 40: dogs in streets and every place open to the public on a lead or wearing a muzzle, loose only in marked areas, never in children’s play areas',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): none on the line or within 300 m',
+          'OpenStreetMap ways along the published line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 51,
+      heatRisk: 'moderate',
+      exposure: true,
+      surfaceHazards: ['A mule track along steep slopes above the Glagnò gorge, with guard rails in places: keep your dog on a short lead', 'A long steady climb of about 380 m', 'Not advised in bad weather or the hottest summer hours'],
+      terrainType: 'A stony mule track and forest path',
+      shadeDescription: 'About half shaded: the mule track climbs through mixed forest; the stretches along the stream and the slopes above the gorge are open.',
+      terrainDescription: 'An old mule track at 290–570 m from Campiolo in the Canal del Ferro along the Glagnò stream and its emerald pools, then up through the forest to Stavoli, an uninhabited stone hamlet reached only on foot.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water for your dog.',
+      dogNotes: 'Moggio Udinese’s urban and rural police bylaw (article 40) requires dogs on a lead or wearing a muzzle in streets and every place open to the public, lets them off only in marked areas and keeps them out of play areas; the national rule adds a lead of at most 1.5 m and a muzzle carried. The mule track runs above a steep drop with guard rails in places: keep your dog on a short lead there. The stream pools are tempting but fast after rain.',
+      tips: 'Start in Campiolo (free parking a few metres from the path): 6.9 km there and back and about 380 m of climbing, three hours. Keep your dog on a short lead on the stretches above the gorge and carry a muzzle. In summer the Friends of Stavoli open a kiosk in the hamlet; bring water for your dog.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Il borgo isolato di Stavoli di Moggio', url: 'https://www.outdooractive.com/it/route/escursione/friuli-venezia-giulia/il-borgo-isolato-di-stavoli-di-moggio/810696096/' },
+        { label: 'Comune di Moggio Udinese, Regolamento di Polizia Urbana e Rurale (article 40)', url: 'https://comune.moggioudinese.ud.it/media/files/md/030059/regolamento_polizia_urbana_e_rurale.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.40013, lng: 13.162681, label: 'Campiolo, by the parking places at the start of path CAI 417, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'An out-and-back walk on the old mule track from Campiolo along the Glagnò stream to Stavoli, a stone hamlet reached only on foot. PromoTurismoFVG lists 6.9 km and 379 m of ascent.'
+    },
+    'fvg-anello-lago-di-verzegnis': {
+      // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
+      // PromoTurismoFVG’s walk “Anello del Lago di Verzegnis” (its verified Outdooractive account, author Prime Alps). The line is drawn
+      // on 10 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // The whole line is in Verzegnis, whose police bylaw (article 40, council resolution 95 of 1988) requires dogs on a lead of at most 80 cm in public places and muzzles for large breeds, shepherd dogs included.
+      // No park, reserve, biotope or Natura 2000 site on or within 300 m of the line (FVG protected-area layers).
+      area: 'Lago di Verzegnis – Ambiesta dam – Chiaicis, Verzegnis',
+      distance: 2.6,
+      elevation: 93,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the bridge over the Lago di Verzegnis along the eastern shore to the Ambiesta dam, across its crest, and back through the woods over several suspension bridges.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The turquoise Lago di Verzegnis seen from the bridge at the start of the loop, in August 2023 (Vid Pogacnik, CC BY-SA 4.0), 0 m from the line.',
+        route: 'Official loop 2.6 km from Car park by the bridge over the Lago di Verzegnis, via Ambiesta below Chiaicis, as PromoTurismoFVG publishes it; the stored line is drawn on 10 OSM ways along the published line, 2.6 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'White and green waymarks, no route number: across the bridge from the car park, then left at the sign along the shore path to near the dam crest (a branch climbs to a viewpoint); across the 140 m crest of the Ambiesta dam, then up the tarred via Panias for about 150 m and left into the woods on the marked path over several suspension bridges back to the start. To avoid the bridges, stay on the road up to Chiaicis and walk back down to the car park.',
+        mapPoints: 'Start at Car park by the bridge over the Lago di Verzegnis, via Ambiesta below Chiaicis, the board’s start; drinking water none mapped.',
+        elevation: 'Official 2.6 km, 93 m up and 93 m down, 1 h 30 min, highest point 518 m, lowest 441 m (PromoTurismoFVG, author Prime Alps).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, Anello del Lago di Verzegnis (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Prime Alps)',
+          'Comune di Verzegnis, Regolamento comunale di Polizia Urbana (council resolution 95 of 12 July 1988), article 40: in public places and places open to the public dogs on a solid lead of at most 80 cm, and large breeds (mastiffs, Great Danes, Dobermanns, shepherd dogs) and biting dogs muzzled',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): none on the line or within 300 m',
+          'OpenStreetMap ways along the published line (10 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 52,
+      heatRisk: 'moderate',
+      exposure: true,
+      surfaceHazards: ['Several suspension bridges without side rails on the way back: carry or closely hold your dog, or take the road via Chiaicis instead', 'Slippery, exposed stretches: not in uncertain weather, snow or ice', 'The dam crest and a short stretch of tarred road'],
+      terrainType: 'Lakeshore paths, a dam crest and suspension bridges',
+      shadeDescription: 'About half shaded: the way back runs through woods above the lake; the shore path, the dam and the bridge are open.',
+      terrainDescription: 'A short loop at 440–520 m round the eastern arm of the turquoise Verzegnis reservoir in Carnia, across the Ambiesta dam and back through the woods over suspension bridges, below Monte Amariana.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water for your dog.',
+      dogNotes: 'Verzegnis has one of the strictest dog rules in the region (police bylaw, article 40): in public places a solid lead of at most 80 cm, and a muzzle on large breeds, shepherd dogs included, and on dogs that bite. The way back crosses several suspension bridges without side rails: a nervous dog may need carrying, or take the road via Chiaicis instead. The lake is not for swimming.',
+      tips: 'Start at the car park by the bridge below Chiaicis: 2.6 km and about 90 m of climbing, an hour and a half. Keep your dog on a lead of at most 80 cm, and muzzle a large or shepherd breed. The suspension bridges on the way back have no side rails: if your dog is unsure, cross the dam and walk back by the road via Chiaicis. Avoid it in wet or icy weather; there is almost no water on the way.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, Anello del Lago di Verzegnis', url: 'https://www.outdooractive.com/it/route/escursione/verzegnis/anello-del-lago-di-verzegnis/808413751/' },
+        { label: 'Comune di Verzegnis, Regolamento di Polizia Urbana (article 40)', url: 'https://www.comune.verzegnis.ud.it/documento_pubblico/regolamento-di-polizia-urbana/' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.380246, lng: 12.974528, label: 'Car park by the bridge over the Lago di Verzegnis, via Ambiesta below Chiaicis, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'A short loop round the eastern arm of the Lago di Verzegnis, across the Ambiesta dam and back through the woods over suspension bridges, with views of Monte Amariana. PromoTurismoFVG lists 2.6 km and 93 m of ascent.'
     }
   };
 

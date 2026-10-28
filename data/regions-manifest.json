@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T00:00:48.995Z",
+  "generatedAt": "2026-10-28T00:07:28.002Z",
   "regions": {
     "dolomites": {
       "trailCount": 247,
@@ -336,9 +336,15 @@
       "optional": []
     },
     "friuli": {
-      "trailCount": 0,
-      "trails": "data/regions/friuli-trails.js?v=5c23f1a8921e",
-      "details": {},
+      "trailCount": 5,
+      "trails": "data/regions/friuli-trails.js?v=1a82dac06f7e",
+      "details": {
+        "fvg-laghi-di-fusine": "data/trail-details/fvg-laghi-di-fusine.js?v=ba8dfb3f05d8",
+        "fvg-ta-lipa-pot-corto": "data/trail-details/fvg-ta-lipa-pot-corto.js?v=a6af7947e5e7",
+        "fvg-borgo-stavoli-moggio": "data/trail-details/fvg-borgo-stavoli-moggio.js?v=2be05c9f6881",
+        "fvg-anello-lago-di-verzegnis": "data/trail-details/fvg-anello-lago-di-verzegnis.js?v=b04ed2eac022",
+        "fvg-faggi-secolari-pustot-dordolla": "data/trail-details/fvg-faggi-secolari-pustot-dordolla.js?v=ba2f33ed69ab"
+      },
       "water": "data/regions/friuli-water.geojson",
       "hutsBars": "data/regions/friuli-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
@@ -665,6 +671,11 @@
     "lario-alla-ricerca-di-un-panorama-unico": "lombardy",
     "lario-anello-ai-piedi-del-monte-oriolo": "lombardy",
     "lario-eupilio-tra-segrino-e-cornizzolo": "lombardy",
+    "fvg-laghi-di-fusine": "friuli",
+    "fvg-ta-lipa-pot-corto": "friuli",
+    "fvg-borgo-stavoli-moggio": "friuli",
+    "fvg-anello-lago-di-verzegnis": "friuli",
+    "fvg-faggi-secolari-pustot-dordolla": "friuli",
     "aosta-ru-courtaud": "aosta",
     "aosta-champoluc-cascata-mascognaz": "aosta",
     "aosta-periasc-antagnod": "aosta",
@@ -981,6 +992,11 @@
     "trecime-haus-der-berge-rifugio-larice": "haus-der-berge-laerchenhuette",
     "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": "fort-mitterberg-helmhanghuette",
     "trecime-sesto-cappella-del-bosco": "sexten-waldkapelle",
+    "fvg-laghi-di-fusine": "laghi-di-fusine",
+    "fvg-ta-lipa-pot-corto": "ta-lipa-pot-stolvizza",
+    "fvg-borgo-stavoli-moggio": "stavoli-di-moggio",
+    "fvg-anello-lago-di-verzegnis": "anello-lago-di-verzegnis",
+    "fvg-faggi-secolari-pustot-dordolla": "faggi-di-pustot-dordolla",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1292,6 +1308,11 @@
     "haus-der-berge-laerchenhuette": "trecime-haus-der-berge-rifugio-larice",
     "fort-mitterberg-helmhanghuette": "trecime-gasthof-panorama-rifugio-pendio-monte-elmo",
     "sexten-waldkapelle": "trecime-sesto-cappella-del-bosco",
+    "laghi-di-fusine": "fvg-laghi-di-fusine",
+    "ta-lipa-pot-stolvizza": "fvg-ta-lipa-pot-corto",
+    "stavoli-di-moggio": "fvg-borgo-stavoli-moggio",
+    "anello-lago-di-verzegnis": "fvg-anello-lago-di-verzegnis",
+    "faggi-di-pustot-dordolla": "fvg-faggi-secolari-pustot-dordolla",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

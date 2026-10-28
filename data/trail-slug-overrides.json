@@ -888,6 +888,31 @@
       "name": "Sexten – Waldkapelle",
       "slug": "sexten-waldkapelle",
       "gloss": "the meditation path from Sexten church to the forest chapel"
+    },
+    "fvg-laghi-di-fusine": {
+      "name": "Laghi di Fusine",
+      "slug": "laghi-di-fusine",
+      "gloss": "the loop round the Fusine lakes"
+    },
+    "fvg-ta-lipa-pot-corto": {
+      "name": "Ta Lipa Pot - Percorso breve",
+      "slug": "ta-lipa-pot-stolvizza",
+      "gloss": "the short Ta Lipa Pot loop from Stolvizza"
+    },
+    "fvg-faggi-secolari-pustot-dordolla": {
+      "name": "I faggi secolari di Pustot a Dordolla",
+      "slug": "faggi-di-pustot-dordolla",
+      "gloss": "the loop from Dordolla to the old beeches of Pustot"
+    },
+    "fvg-borgo-stavoli-moggio": {
+      "name": "Il borgo isolato di Stavoli di Moggio",
+      "slug": "stavoli-di-moggio",
+      "gloss": "the mule track from Campiolo to the hamlet of Stavoli"
+    },
+    "fvg-anello-lago-di-verzegnis": {
+      "name": "Anello del Lago di Verzegnis",
+      "slug": "anello-lago-di-verzegnis",
+      "gloss": "the loop round the Lago di Verzegnis"
     }
   }
 }
