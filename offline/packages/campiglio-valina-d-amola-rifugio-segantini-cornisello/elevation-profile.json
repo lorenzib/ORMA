@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "campiglio-valina-d-amola-rifugio-segantini-cornisello",
+  "distanceKm": 9.4,
+  "ascentM": 559,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 2040
+    },
+    {
+      "km": 0.8,
+      "elev": 1963
+    },
+    {
+      "km": 1.5,
+      "elev": 1959
+    },
+    {
+      "km": 2.2,
+      "elev": 2057
+    },
+    {
+      "km": 2.9,
+      "elev": 2070
+    },
+    {
+      "km": 3.6,
+      "elev": 2169
+    },
+    {
+      "km": 4.3,
+      "elev": 2219
+    },
+    {
+      "km": 5,
+      "elev": 2283
+    },
+    {
+      "km": 5.7,
+      "elev": 2435
+    },
+    {
+      "km": 6.4,
+      "elev": 2386
+    },
+    {
+      "km": 7.2,
+      "elev": 2380
+    },
+    {
+      "km": 7.9,
+      "elev": 2295
+    },
+    {
+      "km": 8.6,
+      "elev": 2178
+    },
+    {
+      "km": 9.3,
+      "elev": 2040
+    },
+    {
+      "km": 9.4,
+      "elev": 2040
+    }
+  ]
+}
