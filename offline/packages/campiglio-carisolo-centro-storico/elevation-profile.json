@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "campiglio-carisolo-centro-storico",
+  "distanceKm": 3.7,
+  "ascentM": 88,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 811
+    },
+    {
+      "km": 0.3,
+      "elev": 833
+    },
+    {
+      "km": 0.6,
+      "elev": 864
+    },
+    {
+      "km": 0.8,
+      "elev": 866
+    },
+    {
+      "km": 1.1,
+      "elev": 858
+    },
+    {
+      "km": 1.4,
+      "elev": 827
+    },
+    {
+      "km": 1.7,
+      "elev": 861
+    },
+    {
+      "km": 2,
+      "elev": 870
+    },
+    {
+      "km": 2.2,
+      "elev": 847
+    },
+    {
+      "km": 2.6,
+      "elev": 792
+    },
+    {
+      "km": 2.8,
+      "elev": 795
+    },
+    {
+      "km": 3.1,
+      "elev": 814
+    },
+    {
+      "km": 3.4,
+      "elev": 813
+    },
+    {
+      "km": 3.6,
+      "elev": 833
+    },
+    {
+      "km": 3.7,
+      "elev": 833
+    }
+  ]
+}

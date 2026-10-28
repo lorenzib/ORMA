@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "trailId": "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6,
+    "ascentM": 212,
+    "highestPointM": 1737,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 76
+  },
+  "trailhead": {
+    "lat": 46.224846,
+    "lng": 10.823597,
+    "label": "Pappagallo restaurant, Madonna di Campiglio, the APT’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Cattle graze on the pastures round Malga Ritort in summer.",
+    "Village streets in Madonna di Campiglio at the start.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

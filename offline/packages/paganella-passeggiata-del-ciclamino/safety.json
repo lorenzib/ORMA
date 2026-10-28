@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "trailId": "paganella-passeggiata-del-ciclamino",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 2.8,
+    "ascentM": 76,
+    "highestPointM": 960,
+    "expectedDuration": "0.8 hours",
+    "difficulty": "Easy",
+    "shadePercent": 56
+  },
+  "trailhead": {
+    "lat": 46.142352,
+    "lng": 10.962029,
+    "label": "Molveno, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.1424701,
+      "lng": 10.9637313,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1447981,
+      "lng": 10.9557523,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The path runs beside a fast stream: keep your dog out of the water after rain.",
+    "Village streets in Molveno at the start.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
