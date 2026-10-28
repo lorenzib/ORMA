@@ -158,8 +158,8 @@ describe('the existing-site verification boundary',()=>{
     // north-shore walk from Neusach and the Was(s)erleben nature trail.
     // Then 393 and 391 with the Auernig ridge walk on the border at the Nassfeld.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(393);
-    expect(currentSiteTrails(catalogue)).toHaveLength(391);
+    expect(catalogue).toHaveLength(398);
+    expect(currentSiteTrails(catalogue)).toHaveLength(396);
   });
 
   test('requires the artwork the public trail page needs',()=>{
