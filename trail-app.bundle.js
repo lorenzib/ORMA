@@ -54028,6 +54028,344 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 3.1, lat: 45.7991516, lng: 7.8161253, osmId: 'node/353049771', name: 'Rifugio Alpenzu Grande' }
       ],
       desc: 'A steady climb at about 1,610–1,860 m on the Walser path up the east side of the valley to the stone hamlets of Alpenzù Piccolo and Alpenzù Grande. The regional path register lists 3.3 km and 311 m of ascent, one way.'
+    },
+    'trecime-sesto-san-candido': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 3).
+      // The Tre Cime Dolomites tourist board’s walk “Passeggiata: Sesto – San Candido”, drawn on 55 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sexten (no regulation, national rule) and Innichen (own regulation).
+      // No Natura 2000 site, park, biotope or natural monument on the line; it runs 49 m from the Drei Zinnen nature park and along the edge of a biotope near Innichen without entering either.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Moos – Sexten – Innichen, Sexten and Innichen',
+      distance: 19.3,
+      elevation: 462,
+      hours: '5.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'From the church in Moos down to Sexten on path 102, through the village past the church and on path 5 across the meadows and through the forest above the Sexten reservoir, joining path 4 into Innichen; back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Schmieden meadows with their hay huts below the forest, beside path 5, in September (Friedrich Haag, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official walk 19.3 km there and back from Moos, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 55 OSM ways along the GPX on the board’s page, walked out and back, 19.2 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 102, 5 and 4: from the church in Moos down Heideckstraße to its end, over a small bridge and right on path 102 towards Sexten, past the swimming pool to the village centre; across the road and up the narrow lane to the church, past it and after a few hundred metres left into the Lanerweg. Below the Laner farms path 5 starts towards Innichen, across flower meadows, past farms and through the forest above the Sexten reservoir; beyond the lake path 5 joins path 4 into Innichen, away from the busy cycle path. Back the same way. In summer 2026 the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 1.7, at km 2.3, at km 2.7, at km 8.9, at km 9.4, at km 9.5 and at km 9.6 (OSM nodes 2414239878, 13003911947, 2414242404, 2400549554, 9855081117, 9855080120, 4373683666, 7318188901, 9855080521, 2940422371, 4373683667, 7318189292).',
+        elevation: 'Official 19.3 km there and back, 462 m up and 460 m down, 5 h 30 min, highest point 1,395 m, lowest 1,174 m (Tre Cime Dolomites tourist board, dreizinnen.com). The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Passeggiata: Sesto – San Candido (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde Innichen, Haltung und Führung von Hunden (council resolution no. 4 of 3 March 2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields in the growing season',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line; the Drei Zinnen nature park is 49 m away and a biotope near Innichen borders the path, neither entered',
+          'OpenStreetMap ways along the board’s line (55 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A long day: 19 km there and back, or take the bus back from Innichen', 'Summer 2026: the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built: keep your dog close where the walk joins path 4', 'Village streets and farm lanes in Moos, Sexten and Innichen', 'Farmed meadows either side of path 5: keep your dog on the path'],
+      terrainType: 'Village streets, meadow paths and forest paths',
+      shadeDescription: 'About half shaded: the meadows between Sexten and the reservoir are open; the forest above the lake and towards Innichen gives shade.',
+      terrainDescription: 'A long valley walk at 1,175–1,395 m from Moos through Sexten and down the Sexten valley to Innichen, across flower meadows, past farms and through the forest above the Sexten reservoir.',
+      waterDescription: 'Drinking fountains at the start in Moos, in Sexten at km 1.7 to 2.7 and in Innichen around km 9; places to eat in all three villages.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Innichen requires the same and keeps dogs off farmed meadows in the growing season.',
+      tips: 'Start at the church in Moos: 19.3 km there and back with about 460 m of climbing, five and a half hours; you can shorten it by taking the bus back from Innichen. Keep your dog on a lead of at most 1.5 m and carry a muzzle. In summer 2026 expect construction lorries where the walk joins path 4.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Passeggiata: Sesto – San Candido', url: 'https://www.dreizinnen.com/it/activity/passeggiata-sesto-san-candido_724' },
+        { label: 'Gemeinde Innichen, Haltung und Führung von Hunden', url: 'https://www.gemeinde.innichen.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden_1' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.689528, lng: 12.366824, label: 'Church in Moos, Sexten, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.689809, lng: 12.366502, osmId: 'node/2414239878', label: 'Drinking fountain at the start' },
+        { km: 1.7, lat: 46.697494, lng: 12.3536806, osmId: 'node/13003911947', label: 'Drinking fountain' },
+        { km: 2.3, lat: 46.701956, lng: 12.350441, osmId: 'node/2414242404', label: 'Drinking fountain' },
+        { km: 2.7, lat: 46.703499, lng: 12.346699, osmId: 'node/2400549554', label: 'Drinking fountain' },
+        { km: 8.9, lat: 46.729831, lng: 12.287253, osmId: 'node/9855081117', label: 'Drinking fountain' },
+        { km: 9.4, lat: 46.731864, lng: 12.285081, osmId: 'node/9855080120', label: 'Drinking fountain' },
+        { km: 9.5, lat: 46.733088, lng: 12.284136, osmId: 'node/4373683666', label: 'Drinking fountain' },
+        { km: 9.5, lat: 46.732478, lng: 12.282119, osmId: 'node/7318188901', label: 'Drinking fountain' },
+        { km: 9.5, lat: 46.732897, lng: 12.283192, osmId: 'node/9855080521', label: 'Drinking fountain' },
+        { km: 9.6, lat: 46.731215, lng: 12.281462, osmId: 'node/2940422371', label: 'Drinking fountain' },
+        { km: 9.6, lat: 46.733227, lng: 12.282317, osmId: 'node/4373683667', label: 'Drinking fountain' },
+        { km: 9.6, lat: 46.731364, lng: 12.281551, osmId: 'node/7318189292', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.69095, lng: 12.36606, osmId: 'node/1459767344', name: 'Pizzeria Martina' },
+        { km: 0, lat: 46.69015, lng: 12.36653, osmId: 'node/2414240998', name: 'Reider Biwak12' },
+        { km: 1.6, lat: 46.6981, lng: 12.35523, osmId: 'way/543080258', name: 'Pizzeria Restaurant Riega' },
+        { km: 1.8, lat: 46.69897, lng: 12.35316, osmId: 'way/543395681', name: 'S\' Grill Hittl' },
+        { km: 2, lat: 46.70096, lng: 12.3502, osmId: 'node/842257296', name: 'Erich' },
+        { km: 2.1, lat: 46.70122, lng: 12.35054, osmId: 'node/11540403591', name: 'Mühle' },
+        { km: 2.1, lat: 46.70191, lng: 12.35093, osmId: 'node/7166368497', name: 'Brugga' },
+        { km: 2.2, lat: 46.70221, lng: 12.35, osmId: 'node/13087662884', name: 'Hotel Mondschein' },
+        { km: 9.3, lat: 46.73202, lng: 12.28354, osmId: 'node/3157054117', name: 'Molzeit' },
+        { km: 9.3, lat: 46.73189, lng: 12.28278, osmId: 'node/2333490998', name: 'Senfter Bistro' },
+        { km: 9.3, lat: 46.73136, lng: 12.28173, osmId: 'node/2333490989', name: 'Rose' },
+        { km: 9.4, lat: 46.73214, lng: 12.2823, osmId: 'node/1969209945', name: 'Café Silvia' },
+        { km: 9.5, lat: 46.73258, lng: 12.28156, osmId: 'node/2333490698', name: 'da marco' },
+        { km: 9.5, lat: 46.73335, lng: 12.28235, osmId: 'node/2333490992', name: 'Rudy' },
+        { km: 9.5, lat: 46.73315, lng: 12.2813, osmId: 'node/2333490618', name: 'Grauer Bär' },
+        { km: 9.5, lat: 46.73321, lng: 12.28188, osmId: 'node/6161428654', name: 'Restaurant Wiesthaler' },
+        { km: 9.6, lat: 46.73344, lng: 12.28026, osmId: 'node/2333490602', name: 'Cornet' },
+        { km: 9.6, lat: 46.7332, lng: 12.28109, osmId: 'node/2333490709', name: 'Vis a Vis' }
+      ],
+      desc: 'A long walk from Moos through Sexten and down the valley on path 5 to Innichen, and back. The board lists 19.3 km and 462 m of ascent, there and back.'
+    },
+    'trecime-sesto-chiesa-gasthof-panorama': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 3).
+      // The Tre Cime Dolomites tourist board’s walk “Sesto chiesa parrocchiale – Gasthof Panorama”, drawn on 21 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sexten (no regulation, national rule).
+      // No Natura 2000 site, park, biotope or natural monument on the line.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Sexten – Mitterberg – Gasthof Panorama, Sexten',
+      distance: 6,
+      elevation: 248,
+      hours: '2',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'From Sexten parish church up the paved lane across the Mitterberg to the Gasthof Panorama (1,576 m), and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Sexten Dolomites above the forest, seen from the walk above Sexten, in September (Friedrich Haag, CC BY-SA 4.0), 19 m from the line.',
+        route: 'Official walk 6 km there and back from Sexten parish church, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 21 OSM ways along the GPX on the board’s page, walked out and back, 5.9 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'The board names no path number: from Sexten parish church up the paved road across the Mitterberg, with views of the Sexten Sundial peaks, to the Gasthof Panorama (1,576 m). Back the same way. From the Panorama, paths continue to the Helmhanghütte and the Sexten alms, or up to the Lärchenhütte and the Helm.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 2414242404).',
+        elevation: 'Official 6 km there and back, 248 m up and 250 m down, 2 h, highest point 1,570 m, lowest 1,314 m (Tre Cime Dolomites tourist board, dreizinnen.com). The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Sesto chiesa parrocchiale – Gasthof Panorama (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (21 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 20,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['All on a paved road: watch for cars and the Mitterberg shuttle bus', 'Open slopes with little shade: carry water on hot days'],
+      terrainType: 'Paved road',
+      shadeDescription: 'Little shade: the road climbs open meadows on the Mitterberg.',
+      terrainDescription: 'A short climb at 1,315–1,570 m from Sexten up the sunny Mitterberg to the Gasthof Panorama, with views across the valley to the Sexten Sundial peaks.',
+      waterDescription: 'A drinking fountain at the start by the church; the Gasthof Panorama at the top serves food. No water is mapped on the way.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried.',
+      tips: 'Start at Sexten parish church: 6 km there and back with about 250 m of climbing, two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The whole walk is on a paved road: keep your dog close to the edge.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Sesto chiesa parrocchiale – Gasthof Panorama', url: 'https://www.dreizinnen.com/it/activity/escursione-sesto-chiesa-parocchiale-gasthof-panorama-_412' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.702538, lng: 12.350427, label: 'Sexten parish church, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.701956, lng: 12.350441, osmId: 'node/2414242404', label: 'Drinking fountain at the start' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.70096, lng: 12.3502, osmId: 'node/842257296', name: 'Erich' },
+        { km: 0, lat: 46.70191, lng: 12.35093, osmId: 'node/7166368497', name: 'Brugga' },
+        { km: 0, lat: 46.70122, lng: 12.35054, osmId: 'node/11540403591', name: 'Mühle' },
+        { km: 0, lat: 46.70221, lng: 12.35, osmId: 'node/13087662884', name: 'Hotel Mondschein' },
+        { km: 0.8, lat: 46.70108, lng: 12.35626, osmId: 'node/1885745737', name: 'Gästehaus Gruber' },
+        { km: 2.7, lat: 46.69979, lng: 12.36586, osmId: 'node/684255988', name: 'Panorama' }
+      ],
+      desc: 'A short climb from Sexten up the Mitterberg road to the Gasthof Panorama, and back. The board lists 6 km and 248 m of ascent, there and back.'
+    },
+    'trecime-haus-der-berge-rifugio-larice': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 3).
+      // The Tre Cime Dolomites tourist board’s walk “Haus der Berge – Rifugio Larice”, drawn on 91 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sexten (no regulation, national rule).
+      // No Natura 2000 site, park, biotope or natural monument on the line.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Sexten – Kiniger farms – Lärchenhütte, Sexten',
+      distance: 8,
+      elevation: 538,
+      hours: '3.1',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'From the Haus der Berge by the Helmjet valley station past the Kiniger farms to the Gasthof Panorama, then up the forest road past the Helmhanghütte to the Lärchenhütte, and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Mitterberg fort beside the walk, with the Sexten Dolomites behind, in July (Petr1888, CC BY-SA 4.0), 26 m from the line.',
+        route: 'Official walk 8 km there and back from the Haus der Berge, Sexten, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 91 OSM ways along the GPX on the board’s page, walked out and back, 7.8 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'The board gives the way by its signs: from the Haus der Berge, a signed path left of the Helmjet valley station leads to the Kiniger farms and on to the Gasthof Panorama; from there left on a paved road that becomes a forest road, climbing gently and steadily through the forest to the Lärchenhütte. Back the same way. No lift is used: the walk only starts beside the Helmjet valley station.',
+        mapPoints: 'Start at the board’s start; no drinking water is mapped on the line.',
+        elevation: 'Official 8 km there and back, 538 m up and 539 m down, 3 h 5 min, highest point 1,851 m, lowest 1,314 m (Tre Cime Dolomites tourist board, dreizinnen.com). The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Haus der Berge – Rifugio Larice (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (91 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A paved road from the Panorama before the forest road: watch for cars', 'Forest road shared with forestry vehicles', 'No drinking water is mapped on the line: carry water for your dog'],
+      terrainType: 'Farm paths, paved road and forest road',
+      shadeDescription: 'Over half shaded: the forest road above the Panorama climbs through spruce and larch.',
+      terrainDescription: 'A steady climb at 1,315–1,850 m from Sexten past old farms and the Mitterberg fort, then through the forest to the Lärchenhütte below the Helm, with views of the Sexten Dolomites.',
+      waterDescription: 'No drinking fountain is mapped on the line. The Gasthof Panorama at km 0.9, the Helmhanghütte at km 2 and the Lärchenhütte at km 3.6 serve food in summer.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried.',
+      tips: 'Start at the Haus der Berge by the Helmjet valley station in Sexten: 8 km there and back with about 540 m of climbing, three hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Carry water for your dog: none is mapped on the way.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Haus der Berge – Rifugio Larice', url: 'https://www.dreizinnen.com/it/activity/escursione-haus-der-berge-rifugio-larice_14721' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.697072, lng: 12.356712, label: 'Haus der Berge by the Helmjet valley station, Sexten, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.6981, lng: 12.35523, osmId: 'way/543080258', name: 'Pizzeria Restaurant Riega' },
+        { km: 0.1, lat: 46.69859, lng: 12.36073, osmId: 'node/684255873', name: 'Kinigerhof' },
+        { km: 0.9, lat: 46.69979, lng: 12.36586, osmId: 'node/684255988', name: 'Panorama' },
+        { km: 1.7, lat: 46.70238, lng: 12.37206, osmId: 'node/684255858', name: 'Tschurtschenthaler Hof' },
+        { km: 2, lat: 46.69745, lng: 12.37229, osmId: 'node/843484008', name: 'Helmhanghütte - Rifugio Pendio Monte Elmo' },
+        { km: 3.6, lat: 46.70675, lng: 12.37147, osmId: 'node/684373240', name: 'Lärchenhütte - Rifugio Larice' }
+      ],
+      desc: 'A climb from Sexten past the Kiniger farms and the Gasthof Panorama up the forest road to the Lärchenhütte, and back. The board lists 8 km and 538 m of ascent, there and back.'
+    },
+    'trecime-gasthof-panorama-rifugio-pendio-monte-elmo': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 3).
+      // The Tre Cime Dolomites tourist board’s walk “Gasthof Panorama – Rifugio Pendio Monte Elmo”, drawn on 21 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sexten (no regulation, national rule).
+      // No Natura 2000 site, park, biotope or natural monument on the line.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Mitterberg fort – Gasthof Panorama – Helmhanghütte, Sexten',
+      distance: 2,
+      elevation: 60,
+      hours: '0.7',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'From the Mitterberg fort car park past the Gasthof Panorama along the forest road on path 13 to the Helmhanghütte (1,605 m), and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Mitterberg fort at the start of the walk, in October, snow-free (Ximonic, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official walk 2 km there and back from the Mitterberg fort car park, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 21 OSM ways along the GPX on the board’s page, walked out and back, 2 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 13: from the public car park at the Mitterberg fort past the Gasthof Panorama (1,576 m) along the forest road to the Helmhanghütte (1,605 m). Back the same way. The board says it suits pushchairs; the Mitterberg shuttle bus (line 440.1) stops at the start.',
+        mapPoints: 'Start at the board’s start; no drinking water is mapped on the line.',
+        elevation: 'Official 2 km there and back, 60 m up and 64 m down, 40 min, highest point 1,625 m, lowest 1,573 m (Tre Cime Dolomites tourist board, dreizinnen.com). The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Gasthof Panorama – Rifugio Pendio Monte Elmo (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (21 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 30,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The first stretch past the Panorama is a paved road: watch for cars', 'No drinking water is mapped: carry water for your dog'],
+      terrainType: 'Paved road and gravel forest road',
+      shadeDescription: 'Partly shaded: the forest road runs along the edge of the forest.',
+      terrainDescription: 'A short, nearly level walk at about 1,575–1,625 m on the Mitterberg above Sexten, from the old fort to the Helmhanghütte, with wide views of Sexten and the Sexten Dolomites.',
+      waterDescription: 'No drinking fountain is mapped. The Gasthof Panorama at the start and the Helmhanghütte at km 0.7 serve food in summer.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried.',
+      tips: 'Start at the Mitterberg fort car park above Sexten, also reached by the shuttle bus 440.1: 2 km there and back on the level, 40 minutes, and fine with a pushchair. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Gasthof Panorama – Rifugio Pendio Monte Elmo', url: 'https://www.dreizinnen.com/it/activity/passeggiata-con-il-passeggino-gasthof-panorama-rifugio-pendio-monte-elmo_7510' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.698862, lng: 12.368033, label: 'Mitterberg fort car park, Sexten, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.69979, lng: 12.36586, osmId: 'node/684255988', name: 'Panorama' },
+        { km: 0.4, lat: 46.70238, lng: 12.37206, osmId: 'node/684255858', name: 'Tschurtschenthaler Hof' },
+        { km: 0.7, lat: 46.69745, lng: 12.37229, osmId: 'node/843484008', name: 'Helmhanghütte - Rifugio Pendio Monte Elmo' }
+      ],
+      desc: 'A short, level walk from the Mitterberg fort past the Gasthof Panorama to the Helmhanghütte, and back. The board lists 2 km and 60 m of ascent, there and back.'
+    },
+    'trecime-sesto-cappella-del-bosco': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 3).
+      // The Tre Cime Dolomites tourist board’s walk “Da Sesto alla Cappella del Bosco”, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sexten (no regulation, national rule).
+      // No Natura 2000 site, park, biotope or natural monument on the line.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Sexten – Hösler farms – Waldkapelle, Sexten',
+      distance: 3.7,
+      elevation: 209,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'From Sexten parish church on the meditation path with 14 stations, on paths 5 and 4B past the Hösler and Ladstätter farms and through forest and meadows to the Waldkapelle (1,552 m), and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Waldkapelle, the wooden forest chapel where the walk ends, in July (Steinsplitter, CC BY-SA 3.0); the photo carries no geotag; the chapel stands on the line.',
+        route: 'Official walk 3.7 km there and back from Sexten parish church, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 9 OSM ways along the GPX on the board’s page, walked out and back, 3.9 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 5 and 4B: from Sexten parish church the biblical meditation path, marked as paths 5 and 4B, passes the stations of the Way of the Cross to the Hösler farms, follows the farm path 4B to the Ladstätter farm, and crosses forest and meadows to the Waldkapelle (1,552 m), a chapel built for secret masses after the First World War. Back the same way. The Mitterberg shuttle bus (line 440.1) serves the area.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.2 and at km 1.6 (OSM nodes 2414242404, 2400549554, 8013586286).',
+        elevation: 'Official 3.7 km there and back, 209 m up and 209 m down, 1 h 15 min, highest point 1,527 m, lowest 1,313 m (Tre Cime Dolomites tourist board, dreizinnen.com). The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Da Sesto alla Cappella del Bosco (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Farm lanes past the Hösler and Ladstätter farms: watch for tractors', 'Farmed meadows either side: keep your dog on the path'],
+      terrainType: 'Village lanes, farm paths and forest paths',
+      shadeDescription: 'About half shaded: the farm lanes are open; the last stretch to the chapel runs through forest.',
+      terrainDescription: 'A short climb at 1,315–1,530 m from Sexten past the Way of the Cross and old farms to the Waldkapelle, a small wooden chapel hidden in the forest.',
+      waterDescription: 'Drinking fountains at the start, at km 0.2 and at km 1.6; places to eat in Sexten.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried.',
+      tips: 'Start at Sexten parish church: 3.7 km there and back with about 210 m of climbing, an hour and a quarter. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and keep off the meadows by the farms.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Da Sesto alla Cappella del Bosco', url: 'https://www.dreizinnen.com/it/activity/escursione-da-sesto-alla-cappella-del-bosco-_49977' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.702538, lng: 12.350427, label: 'Sexten parish church, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.701956, lng: 12.350441, osmId: 'node/2414242404', label: 'Drinking fountain at the start' },
+        { km: 0.2, lat: 46.703499, lng: 12.346699, osmId: 'node/2400549554', label: 'Drinking fountain' },
+        { km: 1.6, lat: 46.712745, lng: 12.343032, osmId: 'node/8013586286', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.70096, lng: 12.3502, osmId: 'node/842257296', name: 'Erich' },
+        { km: 0, lat: 46.70191, lng: 12.35093, osmId: 'node/7166368497', name: 'Brugga' },
+        { km: 0, lat: 46.70122, lng: 12.35054, osmId: 'node/11540403591', name: 'Mühle' },
+        { km: 0, lat: 46.70221, lng: 12.35, osmId: 'node/13087662884', name: 'Hotel Mondschein' }
+      ],
+      desc: 'A short climb on the meditation path from Sexten past old farms to the Waldkapelle in the forest, and back. The board lists 3.7 km and 209 m of ascent, there and back.'
     }
   };
 

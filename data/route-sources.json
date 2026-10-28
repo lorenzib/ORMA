@@ -1930,6 +1930,22 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
     },
+    "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": {
+      "url": "https://www.dreizinnen.com/it/activity/passeggiata-con-il-passeggino-gasthof-panorama-rifugio-pendio-monte-elmo_7510",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Passeggiata con il passeggino: Gasthof Panorama – Rifugio Pendio Monte Elmo",
+      "quote": "Lunghezza 2,0 km · Durata 0:40 · Salita 60 m · Discesa 64 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-haus-der-berge-rifugio-larice": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-haus-der-berge-rifugio-larice_14721",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione: Haus der Berge - Rifugio Larice",
+      "quote": "Lunghezza 8,0 km · Durata 3:05 · Salita 538 m · Discesa 539 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
     "trecime-innichen-waldkapelle-sexten": {
       "url": "https://www.dreizinnen.com/it/activity/escursione-cimitero-dei-soldati-burg-capella-del-bosco-sesto_560",
       "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
@@ -1975,6 +1991,30 @@
       "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
       "name": "Sentiero tematico: Sentiero Gustav Mahler",
       "quote": "Lunghezza 4,7 km · Durata 2:00 · Salita 72 m · Discesa 72 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-sesto-cappella-del-bosco": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-da-sesto-alla-cappella-del-bosco-_49977",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione: Da Sesto alla Cappella del Bosco",
+      "quote": "Lunghezza 3,7 km · Durata 1:15 · Salita 209 m · Discesa 209 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-sesto-chiesa-gasthof-panorama": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-sesto-chiesa-parocchiale-gasthof-panorama-_412",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione: Sesto chiesa parocchiale – Gasthof Panorama",
+      "quote": "Lunghezza 6,0 km · Durata 2:00 · Salita 248 m · Discesa 250 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-sesto-san-candido": {
+      "url": "https://www.dreizinnen.com/it/activity/passeggiata-sesto-san-candido_724",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Passeggiata: Sesto - San Candido",
+      "quote": "Lunghezza 19,3 km · Durata 5:30 · Salita 462 m · Discesa 460 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
     },
