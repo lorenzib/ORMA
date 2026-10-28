@@ -1058,6 +1058,36 @@
       "name": "Sentiero Natura - Anello delle chiesette di Venzone",
       "slug": "venzone-anello-delle-chiesette",
       "gloss": "the short loop to the small churches above Venzone"
+    },
+    "trecime-monte-casella-di-fuori": {
+      "name": "Außergsell – Innergsell loop",
+      "slug": "aussergsell-innergsell-loop",
+      "gloss": "the loop through the Gsell valley to the Gsell meadows above Sexten"
+    },
+    "trecime-rotwandwiesen-moos": {
+      "name": "Rotwandwiesen – Moos",
+      "slug": "rotwandwiesen-moos",
+      "gloss": "the forest road down from the Rotwandwiesen to Moos"
+    },
+    "trecime-helmjet-waldruhe-sexten": {
+      "name": "Helm – Waldruhe – Sexten",
+      "slug": "helm-waldruhe-sexten",
+      "gloss": "the fairy-tale path down from the Helm to Sexten"
+    },
+    "trecime-sasso-di-sesto": {
+      "name": "Fischleintal – Sextner Stein",
+      "slug": "fischleintal-sextner-stein",
+      "gloss": "the climb from the Fischleintal to the Sextner Stein below the Drei Zinnen"
+    },
+    "trecime-monte-elmo-da-moso": {
+      "name": "Moos – Helm",
+      "slug": "moos-helm",
+      "gloss": "the Heimatsteig ridge from Moos to the Helm summit"
+    },
+    "trecime-sesto-alte-saege-val-campo-di-dentro": {
+      "name": "Sexten – Innerfeldtal",
+      "slug": "sexten-innerfeldtal",
+      "gloss": "the larch-wood road from Sexten into the Innerfeldtal and back"
     }
   }
 }

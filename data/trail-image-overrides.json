@@ -4990,6 +4990,23 @@
       }
     },
     {
+      "id": "trecime-helmjet-waldruhe-sexten",
+      "approvedReviewId": "commons-trecime-helmjet-waldruhe-sexten-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-helmjet-waldruhe-sexten-fences.jpg",
+        "heroImage": "images/trails/trecime-helmjet-waldruhe-sexten-fences.jpg",
+        "imageAlt": "Rustic wooden fences, a small log hut with a water wheel and signposts on a sunny grassy slope at the forest edge",
+        "imageCredit": "Olperl’s nature park by the Helm, near the start, in September",
+        "imageCreditText": "Olperl’s nature park by the Helm, near the start, in September by Friedrich Haag",
+        "imageCreator": "Friedrich Haag",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:003_2019_09_27_Zaeune_und_Grenzmauern.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-innichen-waldkapelle-sexten",
       "approvedReviewId": "commons-trecime-innichen-waldkapelle-sexten-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
@@ -5041,6 +5058,40 @@
       }
     },
     {
+      "id": "trecime-monte-casella-di-fuori",
+      "approvedReviewId": "commons-trecime-monte-casella-di-fuori-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-monte-casella-di-fuori-meadows.jpg",
+        "heroImage": "images/trails/trecime-monte-casella-di-fuori-meadows.jpg",
+        "imageAlt": "Green meadows with weathered wooden hay huts below the steep forested Gsell slopes, pale Dolomite peaks rising behind under a grey sky",
+        "imageCredit": "The Schmieden meadows below the Gsell slopes, in September",
+        "imageCreditText": "The Schmieden meadows below the Gsell slopes, in September by Friedrich Haag",
+        "imageCreator": "Friedrich Haag",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sexten_Schmiedenw%C3%A4lder_008_2019_09_26.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-monte-elmo-da-moso",
+      "approvedReviewId": "commons-trecime-monte-elmo-da-moso-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-monte-elmo-summit-view.jpg",
+        "heroImage": "images/trails/trecime-monte-elmo-summit-view.jpg",
+        "imageAlt": "The Sexten valley and the jagged Sexten Dolomites under heavy summer cloud, seen from the grassy slopes of the Helm summit",
+        "imageCredit": "The Sexten Dolomites from the Helm summit, in June",
+        "imageCreditText": "The Sexten Dolomites from the Helm summit, in June by Punteador",
+        "imageCreator": "Punteador",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Helm_%E2%80%93_Sexten_Dolomites_seen_from_the_summit.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-monte-elmo-versciaco",
       "approvedReviewId": "commons-trecime-monte-elmo-versciaco-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
@@ -5054,6 +5105,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Camp_dei_Sassi_and_Schwalbenkofel_from_from_Monte_Elmo,_Sexten,_Pustertal,_Trentino-Alto_Adige,_Italy,_2025_October.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-rotwandwiesen-moos",
+      "approvedReviewId": "commons-trecime-rotwandwiesen-moos-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-rotwandwiesen-moos-hut.jpg",
+        "heroImage": "images/trails/trecime-rotwandwiesen-moos-hut.jpg",
+        "imageAlt": "A small wooden alpine hut with a terrace behind an orange fence on a green meadow, a path running past it and grey Dolomite peaks behind",
+        "imageCredit": "An alpine hut on the Rotwandwiesen, near the start, in July",
+        "imageCreditText": "An alpine hut on the Rotwandwiesen, near the start, in July by wurmi001",
+        "imageCreator": "wurmi001",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:H%C3%BCtte_-_panoramio_(5).jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -5075,6 +5143,23 @@
       }
     },
     {
+      "id": "trecime-sasso-di-sesto",
+      "approvedReviewId": "commons-trecime-sasso-di-sesto-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-sasso-di-sesto-boedenseen.jpg",
+        "heroImage": "images/trails/trecime-sasso-di-sesto-boedenseen.jpg",
+        "imageAlt": "Two small mountain lakes in a stony high valley below grey Dolomite walls with patches of late snow, seen from the slope above under a cloudy sky",
+        "imageCredit": "The Bödenseen beside path 102, in June",
+        "imageCreditText": "The Bödenseen beside path 102, in June by Punteador",
+        "imageCreator": "Punteador",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:B%C3%B6denseen_%E2%80%93_both_lakes_from_the_slope_above.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-sentiero-gustav-mahler",
       "approvedReviewId": "commons-trecime-sentiero-gustav-mahler-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
@@ -5088,6 +5173,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Toblach_Grand_Hotel_1070362.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-sesto-alte-saege-val-campo-di-dentro",
+      "approvedReviewId": "commons-trecime-sesto-alte-saege-val-campo-di-dentro-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-sesto-alte-saege-sextner-bach.jpg",
+        "heroImage": "images/trails/trecime-sesto-alte-saege-sextner-bach.jpg",
+        "imageAlt": "A clear, shallow mountain stream in a wide gravel bed between bushes and forested slopes in the Sexten valley, in morning light",
+        "imageCredit": "The Sextner Bach beside the path, in August",
+        "imageCreditText": "The Sextner Bach beside the path, in August by Giorgio Galeotti",
+        "imageCreator": "Giorgio Galeotti",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rio_di_Sesto_(Sextner_Bach)_-_Sesto,_Bolzano,_Italia_-_6_Agosto_2026_01.jpg",
         "imageSourceType": "licensed-source"
       }
     },
