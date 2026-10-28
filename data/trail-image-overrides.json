@@ -4888,6 +4888,23 @@
       }
     },
     {
+      "id": "trecime-giro-delle-baite-lago-di-braies",
+      "approvedReviewId": "commons-trecime-giro-delle-baite-lago-di-braies-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-giro-delle-baite-lago-di-braies-pasture.jpg",
+        "heroImage": "images/trails/trecime-giro-delle-baite-lago-di-braies-pasture.jpg",
+        "imageAlt": "A shaggy dark brown cow grazing on a bright green alpine pasture with spruce forest behind",
+        "imageCredit": "Cattle on the pasture by the Grünwaldalm, in July",
+        "imageCreditText": "Cattle on the pasture by the Grünwaldalm, in July by Roberto Ferrari",
+        "imageCreator": "Roberto Ferrari",
+        "imageLicence": "CC BY-SA 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pascolo_(3855310627).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-haus-der-berge-rifugio-larice",
       "approvedReviewId": "commons-trecime-haus-der-berge-rifugio-larice-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
@@ -5054,6 +5071,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sexten_Schmiedenw%C3%A4lder_009_2019_09_27.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-villabassa-lanaweg",
+      "approvedReviewId": "commons-trecime-villabassa-lanaweg-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-circolare-villabassa-lanaweg-church.jpg",
+        "heroImage": "images/trails/trecime-circolare-villabassa-lanaweg-church.jpg",
+        "imageAlt": "The pink baroque parish church of St. Stephen in Niederdorf with its tall square tower, wrought-iron grave crosses in the churchyard in front and wooded hills under grey cloud",
+        "imageCredit": "The parish church of St. Stephen in Niederdorf, by the start, in July",
+        "imageCreditText": "The parish church of St. Stephen in Niederdorf, by the start, in July by Mattana",
+        "imageCreator": "Mattana",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villabassa-Niederdorf,_Santo_Stefano_002.JPG",
         "imageSourceType": "licensed-source"
       }
     },

@@ -973,6 +973,16 @@
       "name": "Monte Scioscia viewpoint loop",
       "slug": "monte-scioscia-viewpoint-loop",
       "gloss": "the viewpoint over the Segrino and Pusiano lakes"
+    },
+    "trecime-villabassa-lanaweg": {
+      "name": "Niederdorf – Lanaweg loop",
+      "slug": "niederdorf-lanaweg-loop",
+      "gloss": "the sunny Lana path loop above Niederdorf"
+    },
+    "trecime-giro-delle-baite-lago-di-braies": {
+      "name": "Pragser Wildsee huts circuit",
+      "slug": "pragser-wildsee-huts-circuit",
+      "gloss": "the circuit to the Kaseralm and the Grünwaldalm above the Pragser Wildsee"
     }
   }
 }
