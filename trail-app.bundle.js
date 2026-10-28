@@ -54367,6 +54367,419 @@ function effectiveOverrides(profile, adjustOverride){
       ],
       desc: 'A short climb on the meditation path from Sexten past old farms to the Waldkapelle in the forest, and back. The board lists 3.7 km and 209 m of ascent, there and back.'
     },
+    'giudicarie-senter-dei-popi-madonna-del-lares': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 2).
+      // APT Madonna di Campiglio’s walk “Senter dei Popi - Madonna del Lares”, drawn on 18 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Sella Giudicarie (animal regulation, Art. 7) and Borgo Lares (no regulation, national rule).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      // SUSPENSION BRIDGE: the APT lists “un ponte sospeso” over the gorge and a walkway between the rock and the riverbed; OSM
+      // maps the crossings as short bridges (way 173342757, 7 m, metal grating, km 0.5; way 173342754, 18 m, wooden, km 0.8).
+      // Allowed under the owner’s 26 Oct rule, flagged in hazards, dog notes and tips, and exposure set to true.
+      area: 'Bondo – Breguzzo – Madonna del Lares, Giudicarie',
+      distance: 4.2,
+      elevation: 93,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Località Fiana in Bondo along the Fiana and Arnò streams, past the gorge on a suspension bridge and a walkway by the riverbed, through Breguzzo and the woods to the Madonna del Lares sanctuary; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The fenced gravel path of the Senter dei Popi above Bondo, on the line, in September (zonta72 on Mapillary, CC BY-SA 4.0), 0 m from the line.',
+        route: 'Official one-way walk 4.2 km from Località Fiana, Bondo (Sella Giudicarie), as APT Madonna di Campiglio publishes it; the stored line is drawn on 18 OSM ways along the APT’s published line, 4.2 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from Località Fiana in Bondo beside the Fiana and Arnò streams, with views into the gorge, over a suspension bridge and along a walkway set between the rock and the riverbed, past picnic areas and carved wooden sculptures; on through Breguzzo and a natural tunnel of woodland to the green clearing of the Madonna del Lares sanctuary. Back the same way.',
+        mapPoints: 'Start at the APT’s start, Località Fiana in Bondo; drinking water at the start, at km 0.1, at km 0.4, at km 1.3 and at km 4.2 (OSM nodes 1841777100, 1841777143, 9969548796, 1868799962, 1868799976).',
+        elevation: 'Official 4.2 km, 93 m up and 92 m down, 1 h 30 min, highest point 844 m (Madonna del Lares), lowest 755 m (Località Fiana) (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Senter dei Popi - Madonna del Lares (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Sella Giudicarie, Regolamento per la detenzione e la circolazione di animali, Art. 7: dogs always on a lead in squares, streets and places open to the public; dogs that bite muzzled',
+          'Comune di Borgo Lares publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line, road, surface, bridge, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 75,
+      heatRisk: 'low',
+      exposure: true,
+      surfaceHazards: [
+        'A suspension bridge over the gorge of the Arnò and a walkway between the rock and the riverbed in the first kilometre',
+        'The path by the streams is damp and slippery, and can stay icy in spring',
+        'About half on quiet tarmac lanes through Breguzzo, open to cars'
+      ],
+      terrainType: 'Streamside path, a suspension bridge, a walkway and quiet lanes',
+      shadeDescription: 'Mostly shaded: about 75% runs under trees, cool beside the streams.',
+      terrainDescription: 'A nearly level walk at 755–844 m beside the Fiana and Arnò streams from Bondo through Breguzzo to the Madonna del Lares, with a gorge, a suspension bridge and carved wooden sculptures along the way.',
+      waterDescription: 'The APT notes drinking fountains along the way and no place to eat; the streams run beside much of the path.',
+      dogNotes: 'Early on the path crosses a suspension bridge over the gorge and runs along a walkway between the rock and the riverbed. The bridge can move as you cross: some dogs refuse it. Cross slowly with your dog on a short lead, carry a small dog if it hesitates, and be ready to turn back. Sella Giudicarie keeps dogs on a lead in public places; Borgo Lares has no rule of its own, so the national rule applies there: a lead of at most 1.5 m and a muzzle carried.',
+      tips: 'Start at Località Fiana in Bondo: 4.2 km and under 100 m of climbing one way, an hour and a half, then the same way back. The suspension bridge over the gorge can move as you cross: some dogs refuse it. Cross slowly with your dog on a short lead, carry a small dog if it hesitates, and be ready to turn back. The streamside path is slippery when wet and can be icy in spring.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Senter dei Popi - Madonna del Lares', url: 'https://www.campigliodolomiti.it/it/itinerari/senter-dei-popi-madonna-del-lares' },
+        { label: 'Outdooractive, Senter dei Popi - Madonna del Lares (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/805811260' },
+        { label: 'Comune di Sella Giudicarie, Regolamento per la detenzione e la circolazione di animali (dogs: Art. 7)', url: 'https://www.comune.sellagiudicarie.tn.it/content/download/537/8017/2/Regolamento+detenzione+e+circolazione+di+animali.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 45.999444,
+        lng: 10.695705,
+        label: 'Località Fiana, Bondo, the APT’s start'
+      },
+      waterSources: [
+        { km: 0, lat: 45.9992743, lng: 10.6954115, osmId: 'node/1841777100', label: 'Drinking fountain' },
+        { km: 0.1, lat: 46.0004192, lng: 10.6942061, osmId: 'node/1841777143', label: 'Drinking fountain' },
+        { km: 0.4, lat: 46.002268, lng: 10.6939255, osmId: 'node/9969548796', label: 'Drinking fountain' },
+        { km: 1.3, lat: 46.0064984, lng: 10.7048248, osmId: 'node/1868799962', label: 'Drinking fountain' },
+        { km: 4.2, lat: 46.0215528, lng: 10.7288557, osmId: 'node/1868799976', label: 'Drinking fountain' }
+      ],
+      rifugi: [],
+      desc: 'A streamside walk from Bondo along the Fiana and Arnò, past a gorge on a suspension bridge and through Breguzzo to the Madonna del Lares sanctuary. The APT lists 4.2 km and 93 m of ascent, one way.'
+    },
+    'rendena-giro-del-belvedere-giustino': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 2).
+      // APT Madonna di Campiglio’s walk “Giro del Belvedere”, drawn on 20 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Giustino (Regolamento di Polizia Urbana, Art. 31).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      area: 'Giustino, Val Rendena',
+      distance: 1.8,
+      elevation: 53,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from Giustino town hall up through the village lanes past two old wash-houses, along a grassy path above the houses towards Pinzolo, and down a flight of steps and the pavement back to the start.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Giustino town hall, the start of the loop, in October (Syrio, CC BY-SA 4.0); the town hall is 16 m from the line.',
+        route: 'Official loop 1.8 km from Giustino town hall, as APT Madonna di Campiglio publishes it; the stored line is drawn on 20 OSM ways along the APT’s published line, 1.8 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from Giustino town hall, opposite the church of Santa Lucia, up Via Rosmini towards Vadaione; past a wood-and-granite wash-house, right into Via della Spiazzola past a second wash-house and along Via dei Tampléi behind the Hotel Bellavista; at its end a grassy path above the houses towards Pinzolo; at a junction near the houses down the big steps to Via Palazzin and Via del Gaiulin to the main road, and back along the pavement.',
+        mapPoints: 'Start at the APT’s start, Giustino town hall; drinking water at the start, at km 0.2 and at km 0.3 (OSM nodes 5968621276, 4327444206, 4327444207).',
+        elevation: 'Official 1.8 km, 53 m up and 53 m down, 1 h, highest point 811 m, lowest 760 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Giro del Belvedere (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Giustino, Regolamento di Polizia Urbana, Art. 31: dogs on a lead of at most 1.5 m on streets and public places, muzzled in public premises and in crowds; no dogs in playgrounds, schools, places of care or worship',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Village lanes and a short stretch of pavement beside the main road', 'A long flight of steps down to Via Palazzin'],
+      terrainType: 'Village lanes, a grassy path and steps',
+      shadeDescription: 'Mostly open: about 0% runs under trees, mostly between the houses and meadows above the village.',
+      terrainDescription: 'A short loop at 760–811 m through the lanes of Giustino and along a grassy path above the village, with views up the Val Rendena towards Pinzolo.',
+      waterDescription: 'Drinking fountains and old wash-houses in the village lanes.',
+      dogNotes: 'Giustino’s rule asks for a lead of at most 1.5 m on streets and public places, a muzzle in public premises and in crowds, and no dogs in playgrounds, schools or churches. Keep your dog close on the pavement by the main road.',
+      tips: 'Start at Giustino town hall, opposite the church of Santa Lucia: 1.8 km and about 50 m of climbing, an hour. Keep your dog on a lead of at most 1.5 m, carry a muzzle, and take the steps down to Via Palazzin slowly.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Giro del Belvedere', url: 'https://www.campigliodolomiti.it/it/itinerari/giro-del-belvedere' },
+        { label: 'Outdooractive, Giro del Belvedere (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/59358310' },
+        { label: 'Comune di Giustino, Regolamento di Polizia Urbana (dogs: Art. 31)', url: 'https://www.comune.giustino.tn.it/content/download/581/11652/2/Regolamento%2BPolizia%2BUrbana%2BGiustino.pdf' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.148552,
+        lng: 10.768561,
+        label: 'Giustino town hall, the APT’s start'
+      },
+      waterSources: [
+        { km: 0, lat: 46.1490378, lng: 10.7684635, osmId: 'node/5968621276', label: 'Drinking fountain' },
+        { km: 0.2, lat: 46.1513487, lng: 10.767943, osmId: 'node/4327444206', label: 'Drinking fountain' },
+        { km: 0.3, lat: 46.1521513, lng: 10.7665672, osmId: 'node/4327444207', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0.2, lat: 46.15248, lng: 10.76661, osmId: 'node/1916510766', name: 'La Botte' },
+        { km: 0.8, lat: 46.15629, lng: 10.76646, osmId: 'node/8093496708', name: 'Europeo' }
+      ],
+      desc: 'A short loop through the lanes of Giustino and along a grassy path above the village, with views up the Val Rendena. The APT lists 1.8 km and 53 m of ascent.'
+    },
+    'valdisole-monclassico-presson-meridiane': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 2).
+      // APT Val di Sole’s walk “Monclassico e Presson - I paesi delle Meridiane”, drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Dimaro Folgarida (no regulation, national rule).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      area: 'Monclassico and Presson, Dimaro Folgarida, Val di Sole',
+      distance: 1.7,
+      elevation: 39,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A short, almost level loop from the church of San Lorenzo in Dimaro through the lanes of Monclassico and Presson, past more than fifty painted sundials on the houses.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of San Vigilio in Monclassico, on the loop, in October (Syrio, CC BY-SA 4.0); the church is 17 m from the line.',
+        route: 'Official loop 1.7 km from the church of San Lorenzo, Dimaro, as APT Val di Sole publishes it; the stored line is drawn on 17 OSM ways along the APT’s published line, 1.7 km, with 99% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: a walk round the lanes of Monclassico and Presson, an open-air gallery of more than fifty sundials painted by local, Italian and foreign artists with the Associazione Culturale “Le Meridiane”, including a horizontal sundial and a camera obscura. Level and fine with a pushchair; guided visits in July and August. The APT suggests walking in from Dimaro along the Meledrio and the Noce, or back on the cycle path beside the Noce.',
+        mapPoints: 'Start at the APT’s start, the church of San Lorenzo in Dimaro; drinking water at km 0.1, at km 0.3, at km 0.9, at km 1, at km 1.1 and at km 1.2 (OSM nodes 2418310440, 2417781928, 2418310464, 2418310463, 1493486366, 613869988, 613869995, 2429894203, 613870010).',
+        elevation: 'Official 1.7 km, 39 m up and 38 m down, 1 h, highest point 778 m, lowest 739 m (APT Val di Sole).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Valli di Sole, Peio e Rabbi, Monclassico e Presson - I paesi delle Meridiane (visitvaldisole.it and its Outdooractive tour)',
+          'Comune di Dimaro Folgarida publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Village lanes shared with cars', 'A short flight of steps'],
+      terrainType: 'Village lanes and short paths',
+      shadeDescription: 'Mostly open: about 0% runs under trees, between the houses of the two villages.',
+      terrainDescription: 'A short, level loop at 739–778 m through two old Val di Sole villages whose houses carry more than fifty painted sundials.',
+      waterDescription: 'Several drinking fountains in the lanes of Monclassico and Presson.',
+      dogNotes: 'Dimaro Folgarida has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog close in the narrow lanes, which are shared with cars.',
+      tips: 'Start at the church of San Lorenzo in Dimaro: an hour round Monclassico and Presson, 1.7 km and almost level. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Pick up the sundial leaflet at the Dimaro tourist office.',
+      sourceLinks: [
+        { label: 'Val di Sole, Monclassico e Presson - I paesi delle Meridiane', url: 'https://www.visitvaldisole.it/it/activity/monclassicoepresson_ipaesidellemeridiane-15354' },
+        { label: 'Outdooractive, Monclassico e Presson - I paesi delle Meridiane (APT Valli di Sole, Peio e Rabbi)', url: 'https://www.outdooractive.com/it/r/58792487' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.334284,
+        lng: 10.887828,
+        label: 'Church of San Lorenzo, Dimaro, the APT’s start'
+      },
+      waterSources: [
+        { km: 0.1, lat: 46.3356155, lng: 10.8870218, osmId: 'node/2418310440', label: 'Drinking fountain' },
+        { km: 0.1, lat: 46.3363712, lng: 10.8878467, osmId: 'node/2417781928', label: 'Drinking fountain' },
+        { km: 0.1, lat: 46.3363223, lng: 10.8883919, osmId: 'node/2418310464', label: 'Drinking fountain' },
+        { km: 0.3, lat: 46.3363101, lng: 10.8898128, osmId: 'node/2418310463', label: 'Drinking fountain' },
+        { km: 0.9, lat: 46.3332429, lng: 10.8803981, osmId: 'node/1493486366', label: 'Drinking fountain' },
+        { km: 0.9, lat: 46.3325384, lng: 10.8806736, osmId: 'node/613869988', label: 'Drinking fountain' },
+        { km: 1, lat: 46.3323586, lng: 10.8798427, osmId: 'node/613869995', label: 'Drinking fountain' },
+        { km: 1.1, lat: 46.3325156, lng: 10.882666, osmId: 'node/2429894203', label: 'Drinking fountain' },
+        { km: 1.2, lat: 46.3317957, lng: 10.8833588, osmId: 'node/613870010', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.33361, lng: 10.88645, osmId: 'node/2429894206', name: 'Bar Biolago' },
+        { km: 0, lat: 46.33328, lng: 10.88824, osmId: 'node/3125868985', name: 'Anna' },
+        { km: 0.1, lat: 46.33526, lng: 10.89143, osmId: 'node/11017553435', name: 'Pancafé' },
+        { km: 1.2, lat: 46.33179, lng: 10.88567, osmId: 'node/3127526120', name: 'Ristorante Pizzeria La Spleuza' }
+      ],
+      desc: 'A short, level loop through Monclassico and Presson, two Val di Sole villages whose houses carry more than fifty painted sundials. The APT lists 1.7 km and 39 m of ascent.'
+    },
+    'valdisole-passo-tonale-forte-mero-forte-zaccarana': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 2).
+      // APT Val di Sole’s walk “Passo Tonale Forte Mero e Forte Zaccarana”, drawn on 15 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Vermiglio (no regulation, national rule). The whole line is in Trentino.
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      // No lift: the walk starts at the Valbiolo chairlift car park and goes on foot.
+      area: 'Passo del Tonale – Forte Mero – Forte Zaccarana, Vermiglio, Val di Sole',
+      distance: 9.1,
+      elevation: 250,
+      hours: '3.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Valbiolo car park at Passo del Tonale past the old Ospizio San Bartolomeo, along the gravel road over the Tonale plateau to Forte Mero, up to Forte Zaccarana, and back on a panoramic path among alpine flowers.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Forte Zaccarana (Werk Tonale), on the loop, in September (Jumk18, CC BY-SA 4.0); the fort is 28 m from the line.',
+        route: 'Official loop 9.1 km from the Valbiolo car park, Passo del Tonale, as APT Val di Sole publishes it; the stored line is drawn on 15 OSM ways along the APT’s published line, 9.1 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route (T3): from the Valbiolo car park up the tarmac road to the old Ospizio San Bartolomeo (1,971 m) and on along the gravel road towards Vermiglio; at the big bend, the gravel road over the Tonale plateau to Forte Mero (1,840 m), an Austro-Hungarian fort of 1911–13; just before the ruins of the Strino barracks, up the gravel road to Forte Zaccarana (about 2,076 m), with views of the Presanella and the upper Val di Sole; back on a panoramic path rich in alpine flowers. The inside of Forte Zaccarana is open on guided visits only.',
+        mapPoints: 'Start at the APT’s start, the Valbiolo car park; drinking water at km 5.7 and at km 6.9 (OSM nodes 5836766273, 12151285332).',
+        elevation: 'Official 9.1 km, 250 m up and 250 m down, 3 h 30 min, highest point 2,076 m, lowest 1,839 m (APT Val di Sole).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Valli di Sole, Peio e Rabbi, Passo Tonale Forte Mero e Forte Zaccarana (visitvaldisole.it and its Outdooractive tour)',
+          'Comune di Vermiglio publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line; the whole line is in Trentino',
+          'OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 38,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'The return is a mountain path the APT grades T3',
+        'Gravel roads on the plateau are used by farm and service vehicles',
+        'Ruined fortifications: keep your dog away from walls and openings'
+      ],
+      terrainType: 'Tarmac, gravel roads and a mountain path',
+      shadeDescription: 'Mostly open: about 38% runs under trees, the plateau and the path back are open.',
+      terrainDescription: 'A high loop at 1,839–2,076 m over the Tonale plateau to two Austro-Hungarian forts of the First World War, with wide views of the Presanella and the upper Val di Sole.',
+      waterDescription: 'Drinking fountains at km 5.7 and km 6.9 on the way back; none on the first half over the plateau. Carry water for your dog.',
+      dogNotes: 'Vermiglio has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The APT asks you to keep your dog on a lead near grazing animals and wildlife. Keep your dog out of the ruined forts.',
+      tips: 'Start at the Valbiolo car park at Passo del Tonale: 9.1 km and about 250 m of climbing, three and a half hours. The path back is graded T3: it suits fit dogs used to mountain paths. Keep your dog on a lead of at most 1.5 m, carry a muzzle and carry water.',
+      sourceLinks: [
+        { label: 'Val di Sole, Passo Tonale Forte Mero e Forte Zaccarana', url: 'https://www.visitvaldisole.it/it/activity/passotonalefortemeroefortezaccarana-38242' },
+        { label: 'Outdooractive, Passo Tonale Forte Mero e Forte Zaccarana (APT Valli di Sole, Peio e Rabbi)', url: 'https://www.outdooractive.com/it/r/805867213' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.267546,
+        lng: 10.590531,
+        label: 'Valbiolo car park, Passo del Tonale, the APT’s start'
+      },
+      waterSources: [
+        { km: 5.7, lat: 46.281879, lng: 10.6229612, osmId: 'node/5836766273', label: 'Drinking fountain' },
+        { km: 6.9, lat: 46.2754283, lng: 10.6137552, osmId: 'node/12151285332', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.26741, lng: 10.59073, osmId: 'node/6704376087', name: 'Bar Ristorante La Mirandola' }
+      ],
+      desc: 'A high loop from Passo del Tonale over the plateau to Forte Mero and Forte Zaccarana, two Austro-Hungarian forts with wide views of the Presanella. The APT lists 9.1 km and 250 m of ascent.'
+    },
+    'valdisole-passo-tonale-forte-mero': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 2).
+      // APT Val di Sole’s walk “Passo Tonale - Forte Mero”, drawn on 6 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Vermiglio (no regulation, national rule). The whole line is in Trentino.
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      area: 'Passo del Tonale – Forte Mero, Vermiglio, Val di Sole',
+      distance: 3.7,
+      elevation: 31,
+      hours: '2.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and gently downhill from the old Ospizio San Bartolomeo at Passo del Tonale along the gravel road over the plateau to Forte Mero and the ruins of the Strino barracks; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Forte Mero and its picnic area, at the end of the walk, in September (Jumk18, CC BY-SA 4.0); the fort is 38 m from the line.',
+        route: 'Official one-way walk 3.7 km from the Ospizio San Bartolomeo, Passo del Tonale, as APT Val di Sole publishes it; the stored line is drawn on 6 OSM ways along the APT’s published line, 3.7 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route (T2): from the old Ospizio San Bartolomeo (almost 2,000 m) east along the gravel road over the Tonale plateau to Forte Mero (1,840 m), an Austro-Hungarian fort of 1911–13 with a picnic area, and a few minutes on to the ruins of the Strino barracks. Back the same way, gently uphill.',
+        mapPoints: 'Start at the APT’s start at Passo del Tonale; no drinking fountain is mapped on the line.',
+        elevation: 'Official 3.7 km, 31 m up and 154 m down one way, 2 h 30 min, highest point 1,984 m, lowest 1,836 m (APT Val di Sole).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Valli di Sole, Peio e Rabbi, Passo Tonale - Forte Mero (visitvaldisole.it and its Outdooractive tour)',
+          'Comune di Vermiglio publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line; the whole line is in Trentino',
+          'OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 27,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'Gravel road used by farm and service vehicles',
+        'Ruined fortifications and barracks: keep your dog away from walls and openings'
+      ],
+      terrainType: 'Gravel road',
+      shadeDescription: 'Mostly open: about 27% runs under trees, the plateau is open.',
+      terrainDescription: 'An easy walk at 1,836–1,984 m along the gravel road over the Tonale plateau to Forte Mero, an Austro-Hungarian fort of the First World War, and the ruined Strino barracks.',
+      waterDescription: 'No drinking fountain is mapped on the line; there are bars at Passo del Tonale by the start. Carry water for your dog.',
+      dogNotes: 'Vermiglio has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The APT asks you to keep your dog on a lead near grazing animals and wildlife. Keep your dog out of the ruined fort and barracks.',
+      tips: 'Start at the Ospizio San Bartolomeo at Passo del Tonale: 3.7 km gently downhill to Forte Mero, then the same way back uphill, about two and a half hours in all. Keep your dog on a lead of at most 1.5 m, carry a muzzle and carry water. Forte Mero has picnic tables.',
+      sourceLinks: [
+        { label: 'Val di Sole, Passo Tonale - Forte Mero', url: 'https://www.visitvaldisole.it/it/activity/passotonale_fortemero-38225' },
+        { label: 'Outdooractive, Passo Tonale - Forte Mero (APT Valli di Sole, Peio e Rabbi)', url: 'https://www.outdooractive.com/it/r/805866880' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.267546,
+        lng: 10.590531,
+        label: 'Ospizio San Bartolomeo, Passo del Tonale, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.26741, lng: 10.59073, osmId: 'node/6704376087', name: 'Bar Ristorante La Mirandola' }
+      ],
+      desc: 'An easy, gently downhill walk from Passo del Tonale over the plateau to Forte Mero, an Austro-Hungarian fort of the First World War. The APT lists 3.7 km, 31 m of ascent and 154 m of descent, one way.'
+    },
+    'valdisole-ortise-malga-stabli': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 2).
+      // APT Val di Sole’s walk “Ortisé - Malga Stabli”, drawn on 11 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Mezzana (Regolamento detenzione cani, Art. 3).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      // Photo: Ortisè church in January 2022, with no snow on the ground or the slopes behind.
+      area: 'Ortisè – Malga Stabli, Mezzana, Val di Sole',
+      distance: 7.2,
+      elevation: 342,
+      hours: '2.4',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from Ortisè on the gravel road along the hillside, a natural terrace over the Val di Sole, to Malga Stabli.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of San Cristoforo in Ortisè, by the start, in January with no snow (Syrio, CC BY-SA 4.0); the church is 49 m from the line.',
+        route: 'Official out-and-back walk 7.2 km from Ortisè, as APT Val di Sole publishes it; the stored line is drawn on 11 OSM ways along the APT’s published line, 7.1 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the car park by the church in Ortisè (1,477 m) along the gravel road towards Malga Stabli (1,814 m), a natural terrace over the Val di Sole with views of the Brenta Dolomites and the Presanella; fine with a pushchair, and open to cars without a permit as far as the malga, which serves food. Back the same way.',
+        mapPoints: 'Start at the APT’s start, the car park by the church in Ortisè; drinking water at the start and at km 2 (OSM nodes 9887972167, 11129757635, 9031308715).',
+        elevation: 'Official 7.2 km, 342 m up and 342 m down, 2 h 25 min, highest point 1,832 m, lowest 1,492 m (APT Val di Sole).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Valli di Sole, Peio e Rabbi, Ortisé - Malga Stabli (visitvaldisole.it and its Outdooractive tour)',
+          'Comune di Mezzana, Regolamento detenzione cani e animali d’affezione, Art. 3: a dog off the lead must wear a muzzle on streets and places open to the public; large or aggressive dogs need both',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 29,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The gravel road is open to cars as far as Malga Stabli', 'Cattle graze around Malga Stabli in summer'],
+      terrainType: 'Gravel road',
+      shadeDescription: 'Mostly open: about 29% runs under trees, with open pasture near the malga.',
+      terrainDescription: 'An easy climb at 1,492–1,832 m from the mountain village of Ortisè along a hillside road over the Val di Sole to the restored Malga Stabli, with views of the Brenta Dolomites and the Presanella.',
+      waterDescription: 'Drinking fountains in Ortisè at the start and at km 2; Malga Stabli serves food and drink. Carry water for your dog on the way.',
+      dogNotes: 'In Mezzana a dog off the lead must wear a muzzle in public places, and large dogs need both a lead and a muzzle. The APT asks you to keep your dog on a lead near grazing animals: cattle graze around Malga Stabli in summer. Watch for cars on the road.',
+      tips: 'Park by the church in Ortisè: 7.2 km out and back and about 340 m of climbing, two and a half hours. Keep your dog on a lead, especially near the cattle at Malga Stabli and when cars pass.',
+      sourceLinks: [
+        { label: 'Val di Sole, Ortisé - Malga Stabli', url: 'https://www.visitvaldisole.it/it/activity/ortis___malgastabli-27663' },
+        { label: 'Outdooractive, Ortisé - Malga Stabli (APT Valli di Sole, Peio e Rabbi)', url: 'https://www.outdooractive.com/it/r/801252686' },
+        { label: 'Comune di Mezzana, Regolamento detenzione cani e animali d’affezione (dogs: Art. 3)', url: 'https://www.comune.mezzana.tn.it/content/download/712/13985/2/Regolamento_detenzione_cani_e_animali_d%2527affezione.pdf' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.326675,
+        lng: 10.783929,
+        label: 'Car park by the church, Ortisè, the APT’s start'
+      },
+      waterSources: [
+        { km: 0, lat: 46.327241, lng: 10.7840587, osmId: 'node/9887972167', label: 'Drinking fountain' },
+        { km: 0, lat: 46.326871, lng: 10.7848217, osmId: 'node/11129757635', label: 'Drinking fountain' },
+        { km: 2, lat: 46.3295723, lng: 10.777351, osmId: 'node/9031308715', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 3.3, lat: 46.33635, lng: 10.78114, osmId: 'way/109731262', name: 'Malga Stabli' }
+      ],
+      desc: 'An easy hillside road from the mountain village of Ortisè to the restored Malga Stabli, a terrace over the Val di Sole with views of the Brenta Dolomites and the Presanella. The APT lists 7.2 km and 342 m of ascent.'
+    },
     'fvg-laghi-di-fusine': {
       // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
       // PromoTurismoFVG’s walk “Laghi di Fusine” (its verified Outdooractive account, author PromoTurismoFVG Montagna). The line is drawn
@@ -54790,6 +55203,8 @@ function effectiveOverrides(profile, adjustOverride){
     ['Malè', 46.3530, 10.9130, 'Val di Sole', 'dolomites', 'trentino'],
     ['Dimaro', 46.3260, 10.8720, 'Val di Sole', 'dolomites', 'trentino'],
     ['Vermiglio', 46.2970, 10.6910, 'Val di Sole', 'dolomites', 'trentino'],
+    // The Trentino side of the pass; without it the forts walks fell to Ponte di Legno.
+    ['Passo del Tonale (Vermiglio)', 46.2600, 10.6100, 'Val di Sole', 'dolomites', 'trentino'],
     ['Cogolo (Peio)', 46.3570, 10.6710, 'Val di Sole', 'dolomites', 'trentino'],
     ['San Bernardo (Rabbi)', 46.4010, 10.8480, 'Val di Sole', 'dolomites', 'trentino'],
     ['Cles', 46.3640, 11.0350, 'Val di Non', 'dolomites', 'trentino'],

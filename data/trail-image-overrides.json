@@ -1312,6 +1312,23 @@
       }
     },
     {
+      "id": "giudicarie-senter-dei-popi-madonna-del-lares",
+      "approvedReviewId": "mapillary-giudicarie-senter-dei-popi-madonna-del-lares-on-route",
+      "approvedAt": "2026-10-28T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/giudicarie-senter-dei-popi-madonna-del-lares-gorge-path.jpg",
+        "heroImage": "images/trails/giudicarie-senter-dei-popi-madonna-del-lares-gorge-path.jpg",
+        "imageAlt": "A gravel path with a wooden rail fence along it climbing gently through green woods, a grassy bank beside it",
+        "imageCredit": "The Senter dei Popi above Bondo",
+        "imageCreditText": "The Senter dei Popi above Bondo by zonta72",
+        "imageCreator": "zonta72",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=858852061375329",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "giudicarie-tione-bolbeno-madonna-del-lares",
       "approvedReviewId": "mapillary-giudicarie-tione-bolbeno-madonna-del-lares-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",
@@ -4565,6 +4582,23 @@
       }
     },
     {
+      "id": "rendena-giro-del-belvedere-giustino",
+      "approvedReviewId": "commons-rendena-giro-del-belvedere-giustino-on-route",
+      "approvedAt": "2026-10-28T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/rendena-giro-del-belvedere-giustino-town-hall.jpg",
+        "heroImage": "images/trails/rendena-giro-del-belvedere-giustino-town-hall.jpg",
+        "imageAlt": "Giustino town hall, a stone-clad building with a wide wooden roof and flags, steps and a terrace beside it, mountains under a deep blue sky",
+        "imageCredit": "Giustino town hall, on the loop",
+        "imageCreditText": "Giustino town hall, on the loop by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Giustino_-_Municipio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "santa-maddalena",
       "approvedReviewId": "commons-santa-maddalena",
       "approvedAt": "2026-09-06T14:27:06.592Z",
@@ -5003,6 +5037,74 @@
         "imageLicence": "CC BY 2.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_dei_Caprioli_(6295703583).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-monclassico-presson-meridiane",
+      "approvedReviewId": "commons-valdisole-monclassico-presson-meridiane-on-route",
+      "approvedAt": "2026-10-28T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-monclassico-presson-meridiane-san-vigilio.jpg",
+        "heroImage": "images/trails/valdisole-monclassico-presson-meridiane-san-vigilio.jpg",
+        "imageAlt": "The white baroque front of the church of San Vigilio in Monclassico with a stone stair, a slender bell tower and wooded slopes behind",
+        "imageCredit": "The church of San Vigilio in Monclassico, on the loop",
+        "imageCreditText": "The church of San Vigilio in Monclassico, on the loop by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Monclassico,_chiesa_di_San_Vigilio_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-ortise-malga-stabli",
+      "approvedReviewId": "commons-valdisole-ortise-malga-stabli-on-route",
+      "approvedAt": "2026-10-28T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-ortise-malga-stabli-san-cristoforo.jpg",
+        "heroImage": "images/trails/valdisole-ortise-malga-stabli-san-cristoforo.jpg",
+        "imageAlt": "The small white church of San Cristoforo in Ortisè with its tall bell tower and a stone terrace, larch-covered slopes behind under a clear blue sky",
+        "imageCredit": "The church of San Cristoforo in Ortisè, by the start",
+        "imageCreditText": "The church of San Cristoforo in Ortisè, by the start by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ortis%C3%A9,_chiesa_di_San_Cristoforo_03.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-passo-tonale-forte-mero",
+      "approvedReviewId": "commons-valdisole-passo-tonale-forte-mero-on-route",
+      "approvedAt": "2026-10-28T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-passo-tonale-forte-mero-forte-mero.jpg",
+        "heroImage": "images/trails/valdisole-passo-tonale-forte-mero-forte-mero.jpg",
+        "imageAlt": "The low grass-covered ruin of Forte Mero in a green clearing among larches and spruces, wooden picnic tables in front and glaciated peaks behind",
+        "imageCredit": "Forte Mero, at the end of the walk",
+        "imageCreditText": "Forte Mero, at the end of the walk by Jumk18",
+        "imageCreator": "Jumk18",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vermiglio_-_Forte_Mero_-_202209102041.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-passo-tonale-forte-mero-forte-zaccarana",
+      "approvedReviewId": "commons-valdisole-passo-tonale-forte-mero-forte-zaccarana-on-route",
+      "approvedAt": "2026-10-28T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-passo-tonale-forte-mero-forte-zaccarana-forte-zaccarana.jpg",
+        "heroImage": "images/trails/valdisole-passo-tonale-forte-mero-forte-zaccarana-forte-zaccarana.jpg",
+        "imageAlt": "The weathered stone walls of the ruined Forte Zaccarana with dark gun ports and an arched doorway, a grassy yard in front and clouds overhead",
+        "imageCredit": "Forte Zaccarana (Werk Tonale), on the loop",
+        "imageCreditText": "Forte Zaccarana (Werk Tonale), on the loop by Jumk18",
+        "imageCreator": "Jumk18",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vermiglio_-_Forte_Saccarana_-_202209102043.jpg",
         "imageSourceType": "licensed-source"
       }
     },

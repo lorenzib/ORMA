@@ -100,12 +100,15 @@ describe('the existing-site verification boundary',()=>{
     // Then 309 and 307 with five Sexten walks drawn there and back: Sexten – Innichen,
     // Sexten church – Gasthof Panorama, Haus der Berge – Lärchenhütte, the Mitterberg
     // fort to the Helmhanghütte, and Sexten – Waldkapelle.
-    // Then 314 and 312 with the first five Friuli Venezia Giulia walks: the Fusine
-    // lakes, Ta Lipa Pot at Stolvizza, the Pustot beeches above Dordolla, Stavoli
-    // di Moggio and the Lago di Verzegnis loop.
+    // Then 315 and 313 with six more western Trentino walks: the Senter dei Popi,
+    // Giustino's Giro del Belvedere, the Monclassico sundials, Passo del Tonale to
+    // Forte Mero and to Forte Zaccarana, and Ortisè to Malga Stabli.
+    // Then 320 and 318 with the first five Friuli Venezia Giulia walks: the Fusine
+    // lakes, Ta Lipa Pot at Stolvizza, the Pustot beeches above Dordolla, Stavoli di
+    // Moggio and the Lago di Verzegnis loop.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(314);
-    expect(currentSiteTrails(catalogue)).toHaveLength(312);
+    expect(catalogue).toHaveLength(320);
+    expect(currentSiteTrails(catalogue)).toHaveLength(318);
   });
 
   test('requires the artwork the public trail page needs',()=>{
