@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 5.5,
+    "ascentM": 143,
+    "highestPointM": 1610,
+    "expectedDuration": "1.6 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 45
+  },
+  "trailhead": {
+    "lat": 46.69068,
+    "lng": 11.849973,
+    "label": "The sports ground in Antermoia, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6908288,
+      "lng": 11.85112,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Farm roads past working farms: watch for tractors and farm dogs.",
+    "Sunny, open climb to Colac.",
+    "Stretches on quiet roads at the Val farms and into Rina.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
