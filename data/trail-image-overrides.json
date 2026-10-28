@@ -1465,6 +1465,23 @@
       }
     },
     {
+      "id": "fvg-mirabila-sentiero-botanico-bila-pec",
+      "approvedReviewId": "mapillary-fvg-mirabila-sentiero-botanico-bila-pec-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-mirabila-sentiero-botanico-bila-pec-canin.jpg",
+        "heroImage": "images/trails/fvg-mirabila-sentiero-botanico-bila-pec-canin.jpg",
+        "imageAlt": "A rocky glacial basin of pale limestone boulders and patches of grass between steep grey mountain walls, low sun and a hazy sky",
+        "imageCredit": "The basin below Monte Canin",
+        "imageCreditText": "The basin below Monte Canin by igorzo",
+        "imageCreator": "igorzo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1563414204213815",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fvg-monte-rest-da-passo-rest",
       "approvedReviewId": "mapillary-fvg-monte-rest-da-passo-rest-on-route",
       "approvedAt": "2026-10-28T12:00:00.000Z",

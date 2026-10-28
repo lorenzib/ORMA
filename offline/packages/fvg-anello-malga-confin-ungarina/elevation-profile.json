@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-anello-malga-confin-ungarina",
+  "distanceKm": 4.7,
+  "ascentM": 401,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1360
+    },
+    {
+      "km": 0.4,
+      "elev": 1322
+    },
+    {
+      "km": 0.7,
+      "elev": 1313
+    },
+    {
+      "km": 1.1,
+      "elev": 1336
+    },
+    {
+      "km": 1.4,
+      "elev": 1333
+    },
+    {
+      "km": 1.8,
+      "elev": 1324
+    },
+    {
+      "km": 2.1,
+      "elev": 1470
+    },
+    {
+      "km": 2.5,
+      "elev": 1585
+    },
+    {
+      "km": 2.8,
+      "elev": 1631
+    },
+    {
+      "km": 3.2,
+      "elev": 1665
+    },
+    {
+      "km": 3.6,
+      "elev": 1607
+    },
+    {
+      "km": 3.9,
+      "elev": 1542
+    },
+    {
+      "km": 4.3,
+      "elev": 1439
+    },
+    {
+      "km": 4.6,
+      "elev": 1360
+    },
+    {
+      "km": 4.7,
+      "elev": 1360
+    }
+  ]
+}

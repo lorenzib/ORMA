@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T12:20:52.269Z",
+  "generatedAt": "2026-10-28T12:34:49.816Z",
   "regions": {
     "dolomites": {
       "trailCount": 287,
@@ -380,8 +380,8 @@
       "optional": []
     },
     "friuli": {
-      "trailCount": 16,
-      "trails": "data/regions/friuli-trails.js?v=881e260cd400",
+      "trailCount": 17,
+      "trails": "data/regions/friuli-trails.js?v=6ce13aacaf67",
       "details": {
         "fvg-laghi-di-fusine": "data/trail-details/fvg-laghi-di-fusine.js?v=ba8dfb3f05d8",
         "fvg-ta-lipa-pot-corto": "data/trail-details/fvg-ta-lipa-pot-corto.js?v=a6af7947e5e7",
@@ -398,7 +398,8 @@
         "fvg-anello-malga-confin-ungarina": "data/trail-details/fvg-anello-malga-confin-ungarina.js?v=b0daec160bcf",
         "fvg-monte-talm-da-piani-di-vas": "data/trail-details/fvg-monte-talm-da-piani-di-vas.js?v=0bfc7409c63b",
         "fvg-anello-casera-vas-monte-buoi": "data/trail-details/fvg-anello-casera-vas-monte-buoi.js?v=eedeeb2d351f",
-        "fvg-monte-rest-da-passo-rest": "data/trail-details/fvg-monte-rest-da-passo-rest.js?v=46d3afd97be3"
+        "fvg-monte-rest-da-passo-rest": "data/trail-details/fvg-monte-rest-da-passo-rest.js?v=46d3afd97be3",
+        "fvg-mirabila-sentiero-botanico-bila-pec": "data/trail-details/fvg-mirabila-sentiero-botanico-bila-pec.js?v=07b22ad08d5d"
       },
       "water": "data/regions/friuli-water.geojson",
       "hutsBars": "data/regions/friuli-huts-bars.geojson",
@@ -809,6 +810,7 @@
     "fvg-monte-talm-da-piani-di-vas": "friuli",
     "fvg-anello-casera-vas-monte-buoi": "friuli",
     "fvg-monte-rest-da-passo-rest": "friuli",
+    "fvg-mirabila-sentiero-botanico-bila-pec": "friuli",
     "aosta-ru-courtaud": "aosta",
     "aosta-champoluc-cascata-mascognaz": "aosta",
     "aosta-periasc-antagnod": "aosta",
@@ -1208,6 +1210,7 @@
     "fvg-monte-talm-da-piani-di-vas": "monte-talm-piani-di-vas",
     "fvg-anello-casera-vas-monte-buoi": "anello-casera-vas-monte-buoi",
     "fvg-monte-rest-da-passo-rest": "monte-rest-da-passo-rest",
+    "fvg-mirabila-sentiero-botanico-bila-pec": "mirabila-sentiero-bila-pec",
     "lesachtal-spazierweg-maria-luggau-gailweg": "gailweg-maria-luggau",
     "lesachtal-tuffbad": "tuffbad-loop-lesachtal",
     "gailtal-almkaese-sonnenalpe": "alpine-cheese-walk-sonnenalpe-nassfeld",
@@ -1592,6 +1595,7 @@
     "monte-talm-piani-di-vas": "fvg-monte-talm-da-piani-di-vas",
     "anello-casera-vas-monte-buoi": "fvg-anello-casera-vas-monte-buoi",
     "monte-rest-da-passo-rest": "fvg-monte-rest-da-passo-rest",
+    "mirabila-sentiero-bila-pec": "fvg-mirabila-sentiero-botanico-bila-pec",
     "gailweg-maria-luggau": "lesachtal-spazierweg-maria-luggau-gailweg",
     "tuffbad-loop-lesachtal": "lesachtal-tuffbad",
     "alpine-cheese-walk-sonnenalpe-nassfeld": "gailtal-almkaese-sonnenalpe",

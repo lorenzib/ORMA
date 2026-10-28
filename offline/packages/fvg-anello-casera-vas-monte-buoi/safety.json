@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-anello-casera-vas-monte-buoi",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 11.1,
+    "ascentM": 659,
+    "highestPointM": 1724,
+    "expectedDuration": "3.9 hours",
+    "difficulty": "Hard",
+    "shadePercent": 87
+  },
+  "trailhead": {
+    "lat": 46.581103,
+    "lng": 12.796648,
+    "label": "Frassenetto, Forni Avoltri, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Heifers graze at Casera Vas in summer: close the electric fence gaps behind you and keep your dog on a short lead.",
+    "Long forest roads shared with forestry vehicles.",
+    "In winter the slope above the forest is steep and avalanches run near Casera Monte dei Buoi: summer walk only.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

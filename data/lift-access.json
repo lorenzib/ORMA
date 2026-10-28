@@ -198,6 +198,17 @@
           "notes": "The walk starts at the top station of the Spinale gondola from Madonna di Campiglio; its cabins are closed. It ends back at the same station."
         }
       }
+    },
+    {
+      "id": "fvg-mirabila-sentiero-botanico-bila-pec",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Canin cable car (Sella Nevea – Rifugio Gilberti)",
+          "notes": "The loop starts and ends at the Rifugio Gilberti, at the top of the Canin cable car from Sella Nevea; its cabins are closed. Dogs ride on a lead and muzzled, one per cabin, with a ticket for medium and large dogs. The hut can also be reached on foot by path CAI 635."
+        }
+      }
     }
   ]
 }
