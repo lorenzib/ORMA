@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-gasthof-panorama-rifugio-pendio-monte-elmo",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2,
+    "ascentM": 60,
+    "highestPointM": 1626,
+    "expectedDuration": "0.7 hours",
+    "difficulty": "Easy",
+    "shadePercent": 30
+  },
+  "trailhead": {
+    "lat": 46.698862,
+    "lng": 12.368033,
+    "label": "Mitterberg fort car park, Sexten, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The first stretch past the Panorama is a paved road: watch for cars.",
+    "No drinking water is mapped: carry water for your dog.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
