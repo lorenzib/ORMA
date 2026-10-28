@@ -138,9 +138,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 365 and 363 with four more Adamello Brenta walks: the Lago di Nambino,
     // Madonna di Campiglio up to Monte Spinale, and two loops to the Rifugio
     // Segantini at the head of the Val Nambrone.
+    // Then 366 and 364 with the first Valtellina walk: Arnoga to the Rifugio
+    // Federico up the Val Viola, between Bormio and Livigno.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(365);
-    expect(currentSiteTrails(catalogue)).toHaveLength(363);
+    expect(catalogue).toHaveLength(366);
+    expect(currentSiteTrails(catalogue)).toHaveLength(364);
   });
 
   test('requires the artwork the public trail page needs',()=>{
