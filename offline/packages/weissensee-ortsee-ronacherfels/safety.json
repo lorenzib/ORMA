@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "weissensee-ortsee-ronacherfels",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 8.5,
+    "ascentM": 69,
+    "highestPointM": 1052,
+    "expectedDuration": "2.8 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 0.65
+  },
+  "trailhead": {
+    "lat": 46.715123,
+    "lng": 13.322662,
+    "label": "Neusach on the north shore, where the board’s line begins"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7150329,
+      "lng": 13.3225862,
+      "label": "Drinking water in Neusach",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7097544,
+      "lng": 13.3444568,
+      "label": "Drinking water at the Ronacherfels",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7060572,
+      "lng": 13.3620603,
+      "label": "Drinking-water fountain (Brunnen)",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7026256,
+      "lng": 13.4127859,
+      "label": "Drinking water on the east shore",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 500 m on village lanes in Neusach (30–50 km/h): keep your dog close.",
+    "A narrow lakeside path with roots and short steps that runs right above the water in places: keep your dog close.",
+    "The boardwalk at the east end is shared with cyclists.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

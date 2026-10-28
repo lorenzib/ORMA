@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "weissensee-nordic-8-naggler-alm",
+  "distanceKm": 3.1,
+  "ascentM": 385,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 938
+    },
+    {
+      "km": 0.3,
+      "elev": 949
+    },
+    {
+      "km": 0.5,
+      "elev": 953
+    },
+    {
+      "km": 0.7,
+      "elev": 982
+    },
+    {
+      "km": 0.9,
+      "elev": 1015
+    },
+    {
+      "km": 1.2,
+      "elev": 1082
+    },
+    {
+      "km": 1.5,
+      "elev": 1169
+    },
+    {
+      "km": 1.6,
+      "elev": 1190
+    },
+    {
+      "km": 1.9,
+      "elev": 1205
+    },
+    {
+      "km": 2.1,
+      "elev": 1218
+    },
+    {
+      "km": 2.4,
+      "elev": 1263
+    },
+    {
+      "km": 2.6,
+      "elev": 1313
+    },
+    {
+      "km": 2.8,
+      "elev": 1327
+    },
+    {
+      "km": 3.1,
+      "elev": 1346
+    }
+  ]
+}

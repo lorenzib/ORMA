@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "trailId": "weissensee-nordic-5-genoesns-bruendl",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.5,
+    "ascentM": 88,
+    "highestPointM": 1017,
+    "expectedDuration": "0.8 hours",
+    "difficulty": "Easy",
+    "shadePercent": 0.2
+  },
+  "trailhead": {
+    "lat": 46.714267,
+    "lng": 13.294199,
+    "label": "car park P 7 on the south shore at Techendorf, the board’s start (Nordic Walking centre “Süd”)"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 80 m on the lakeside road (L7a) at Techendorf, signed 30 km/h: keep your dog close.",
+    "Forest tracks open to forestry vehicles.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
