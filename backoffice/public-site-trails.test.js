@@ -119,9 +119,11 @@ describe('the existing-site verification boundary',()=>{
     // Uciei de Frëines, the Val d'Anna and historic Ortisei.
     // Then 338 and 336 with three more Val Gardena walks: Col Raiser – Seceda, the
     // Seceda via the Rifugio Firenze and Ortisei – Passo Sella.
+    // Then 339 and 337 with one more Val Gardena walk: Cristauta to the Seceda over
+    // the Sëurasas and Monte Pic.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(338);
-    expect(currentSiteTrails(catalogue)).toHaveLength(336);
+    expect(catalogue).toHaveLength(339);
+    expect(currentSiteTrails(catalogue)).toHaveLength(337);
   });
 
   test('requires the artwork the public trail page needs',()=>{

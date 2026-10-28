@@ -154,6 +154,17 @@
           "notes": "The walk is on foot; the way down can be by the closed Seceda cable car to Ortisei or the Col Raiser gondola. Dogs ride on a lead and muzzled."
         }
       }
+    },
+    {
+      "id": "valgardena-seceda-da-cristauta-pic",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "optional",
+          "name": "Seceda cable car and Col Raiser gondola",
+          "notes": "The walk is on foot; the way down can be by the closed Seceda cable car to Ortisei or the Col Raiser gondola. Dogs ride on a lead and muzzled."
+        }
+      }
     }
   ]
 }
