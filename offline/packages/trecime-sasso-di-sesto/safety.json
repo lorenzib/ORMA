@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-sasso-di-sesto",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 16.6,
+    "ascentM": 1071,
+    "highestPointM": 2442,
+    "expectedDuration": "6.4 hours",
+    "difficulty": "Hard",
+    "shadePercent": 25
+  },
+  "trailhead": {
+    "lat": 46.666663,
+    "lng": 12.35376,
+    "label": "Fischleinboden car park, Fischleintal, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.651509,
+      "lng": 12.353699,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6418769,
+      "lng": 12.325322,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6392951,
+      "lng": 12.3123483,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6374213,
+      "lng": 12.3085465,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A long, high climb of over 1,000 m to about 2,500 m: plan rests and water, and turn back if a storm builds.",
+    "Rocky, stony ground in the upper Altensteintal.",
+    "The Dreizinnenhütte area is very crowded in summer: keep your dog close.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

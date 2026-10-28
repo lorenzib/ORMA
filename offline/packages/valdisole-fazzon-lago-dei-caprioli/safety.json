@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valdisole-fazzon-lago-dei-caprioli",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 1.5,
+    "ascentM": 62,
+    "highestPointM": 1320,
+    "expectedDuration": "0.8 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 31
+  },
+  "trailhead": {
+    "lat": 46.297876,
+    "lng": 10.762748,
+    "label": "Rifugio Fazzon (1,250 m), the APT’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The lanes on the Fazzon plain are tarmac and used by cars to the rifugio and the lake.",
+    "The lake shore is busy with families in summer.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}

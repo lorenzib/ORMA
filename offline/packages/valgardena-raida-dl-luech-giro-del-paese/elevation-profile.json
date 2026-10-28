@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-raida-dl-luech-giro-del-paese",
+  "distanceKm": 3.9,
+  "ascentM": 151,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1454
+    },
+    {
+      "km": 0.3,
+      "elev": 1440
+    },
+    {
+      "km": 0.6,
+      "elev": 1447
+    },
+    {
+      "km": 0.9,
+      "elev": 1466
+    },
+    {
+      "km": 1.2,
+      "elev": 1439
+    },
+    {
+      "km": 1.5,
+      "elev": 1414
+    },
+    {
+      "km": 1.8,
+      "elev": 1402
+    },
+    {
+      "km": 2.1,
+      "elev": 1397
+    },
+    {
+      "km": 2.4,
+      "elev": 1393
+    },
+    {
+      "km": 2.7,
+      "elev": 1365
+    },
+    {
+      "km": 3,
+      "elev": 1354
+    },
+    {
+      "km": 3.2,
+      "elev": 1367
+    },
+    {
+      "km": 3.5,
+      "elev": 1410
+    },
+    {
+      "km": 3.8,
+      "elev": 1454
+    },
+    {
+      "km": 3.9,
+      "elev": 1454
+    }
+  ]
+}

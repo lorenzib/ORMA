@@ -22,6 +22,8 @@
     ['San Candido / Innichen', 46.7327, 12.2800, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
     ['Sesto / Sexten', 46.7025, 12.3500, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
     ['Braies / Prags', 46.7207, 12.1350, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
+    ['Villabassa / Niederdorf', 46.7378, 12.1724, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
+    ['Carbonin / Schluderbach (Dobbiaco)', 46.6214, 12.2120, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
     ['Auronzo di Cadore', 46.5527, 12.4419, 'Alta Pusteria – Tre Cime', 'dolomites', 'belluno'],
     ['Alpe di Siusi / Seiser Alm', 46.5402, 11.6181, 'Alpe di Siusi – Sciliar', 'dolomites', 'alto-adige'],
     ['Castelrotto / Kastelruth', 46.5670, 11.5599, 'Alpe di Siusi – Sciliar', 'dolomites', 'alto-adige'],
@@ -96,6 +98,28 @@
     ['Malga Sass (Valfloriana)', 46.2009, 11.3787, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
     ['Tambre / Alpago', 46.0973, 12.4389, 'Alpago', 'dolomites', 'belluno'],
 
+    // Western Trentino. Without them a walk anywhere from the Val di Sole to
+    // Lake Garda fell through to Madonna di Campiglio or Andalo, up to 40 km off.
+    ['Malè', 46.3530, 10.9130, 'Val di Sole', 'dolomites', 'trentino'],
+    ['Dimaro', 46.3260, 10.8720, 'Val di Sole', 'dolomites', 'trentino'],
+    ['Vermiglio', 46.2970, 10.6910, 'Val di Sole', 'dolomites', 'trentino'],
+    // The Trentino side of the pass; without it the forts walks fell to Ponte di Legno.
+    ['Passo del Tonale (Vermiglio)', 46.2600, 10.6100, 'Val di Sole', 'dolomites', 'trentino'],
+    ['Cogolo (Peio)', 46.3570, 10.6710, 'Val di Sole', 'dolomites', 'trentino'],
+    ['San Bernardo (Rabbi)', 46.4010, 10.8480, 'Val di Sole', 'dolomites', 'trentino'],
+    ['Cles', 46.3640, 11.0350, 'Val di Non', 'dolomites', 'trentino'],
+    ['Coredo (Predaia)', 46.3480, 11.0910, 'Val di Non', 'dolomites', 'trentino'],
+    ['Fondo (Borgo d\'Anaunia)', 46.4370, 11.1380, 'Val di Non', 'dolomites', 'trentino'],
+    ['Pinzolo', 46.1600, 10.7650, 'Val Rendena', 'dolomites', 'trentino'],
+    ['Villa Rendena (Porte di Rendena)', 46.0640, 10.7120, 'Val Rendena', 'dolomites', 'trentino'],
+    ['Tione di Trento', 46.0360, 10.7260, 'Giudicarie', 'dolomites', 'trentino'],
+    ['Ponte Arche (Comano Terme)', 46.0360, 10.8730, 'Giudicarie', 'dolomites', 'trentino'],
+    ['Pieve di Bono', 45.9440, 10.6380, 'Giudicarie', 'dolomites', 'trentino'],
+    ['Storo', 45.8490, 10.5800, 'Giudicarie', 'dolomites', 'trentino'],
+    ['Riva del Garda', 45.8850, 10.8410, 'Garda Trentino', 'dolomites', 'trentino'],
+    ['Arco', 45.9180, 10.8860, 'Garda Trentino', 'dolomites', 'trentino'],
+    ['Pieve di Ledro', 45.8880, 10.7310, 'Garda Trentino', 'dolomites', 'trentino'],
+
     // ---- Savoy ----
     ['Chamonix-Mont-Blanc', 45.9237, 6.8694, 'Chamonix – Mont Blanc', 'savoy', 'haute-savoie'],
     ['Les Houches', 45.8906, 6.7986, 'Chamonix – Mont Blanc', 'savoy', 'haute-savoie'],
@@ -151,6 +175,9 @@
     ['Madesimo', 46.4400, 9.3570, 'Valchiavenna', 'lombardy', 'sondrio'],
     ['Villa di Chiavenna', 46.3310, 9.4800, 'Valchiavenna', 'lombardy', 'sondrio'],
     ['Como', 45.8081, 9.0852, 'Lake Como', 'lombardy', 'como'],
+    ['Brunate', 45.8193, 9.0960, 'Lake Como', 'lombardy', 'como'],
+    ['Nesso', 45.9116, 9.1557, 'Lake Como', 'lombardy', 'como'],
+    ['Canzo / Triangolo Lariano', 45.8481, 9.2722, 'Lake Como', 'lombardy', 'como'],
     ['Bellagio', 45.9870, 9.2610, 'Lake Como', 'lombardy', 'como'],
     ['Menaggio', 46.0200, 9.2390, 'Lake Como', 'lombardy', 'como'],
     ['Dongo / Alto Lario', 46.1230, 9.2810, 'Lake Como', 'lombardy', 'como'],
@@ -163,13 +190,65 @@
     ['Breno', 45.9570, 10.3040, 'Val Camonica', 'lombardy', 'brescia'],
     ['Capo di Ponte', 46.0310, 10.3450, 'Val Camonica', 'lombardy', 'brescia'],
     ['Edolo', 46.1780, 10.3330, 'Val Camonica', 'lombardy', 'brescia'],
-    ['Ponte di Legno', 46.2590, 10.5100, 'Val Camonica', 'lombardy', 'brescia']
+    ['Ponte di Legno', 46.2590, 10.5100, 'Val Camonica', 'lombardy', 'brescia'],
+    // ---- Friuli Venezia Giulia ----
+    // Carnia, Sappada, the Tarvisio and Julian Alps valleys, the Friulian
+    // Dolomites and Piancavallo.
+    ['Sappada', 46.5667, 12.6847, 'Sappada', 'friuli', 'udine'],
+    ['Forni di Sopra', 46.4236, 12.5839, 'Dolomiti Friulane', 'friuli', 'udine'],
+    ['Forni di Sotto', 46.3929, 12.6716, 'Dolomiti Friulane', 'friuli', 'udine'],
+    ['Sauris', 46.4665, 12.7080, 'Carnia', 'friuli', 'udine'],
+    ['Ampezzo (Carnia)', 46.4168, 12.7966, 'Carnia', 'friuli', 'udine'],
+    ['Ovaro / Val Degano', 46.4836, 12.8656, 'Carnia', 'friuli', 'udine'],
+    ['Forni Avoltri', 46.5865, 12.7754, 'Carnia', 'friuli', 'udine'],
+    ['Ravascletto / Zoncolan', 46.5237, 12.9226, 'Carnia', 'friuli', 'udine'],
+    ['Paluzza / Timau', 46.5326, 13.0155, 'Carnia', 'friuli', 'udine'],
+    ['Arta Terme', 46.4797, 13.0177, 'Carnia', 'friuli', 'udine'],
+    ['Paularo', 46.5310, 13.1186, 'Carnia', 'friuli', 'udine'],
+    ['Tolmezzo', 46.4057, 13.0131, 'Carnia', 'friuli', 'udine'],
+    ['Pontebba', 46.5058, 13.3060, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Malborghetto-Valbruna', 46.5072, 13.4405, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Tarvisio', 46.5054, 13.5785, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Fusine in Valromana', 46.4794, 13.6655, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Sella Nevea', 46.3893, 13.4752, 'Tarvisio – Alpi Giulie', 'friuli', 'udine'],
+    ['Dogna', 46.4482, 13.3155, 'Canal del Ferro – Val Resia', 'friuli', 'udine'],
+    ['Chiusaforte / Canal del Ferro', 46.4073, 13.3089, 'Canal del Ferro – Val Resia', 'friuli', 'udine'],
+    ['Moggio Udinese', 46.4090, 13.1993, 'Canal del Ferro – Val Resia', 'friuli', 'udine'],
+    ['Resia / Val Resia', 46.3741, 13.3050, 'Canal del Ferro – Val Resia', 'friuli', 'udine'],
+    ['Venzone', 46.3326, 13.1383, 'Gemonese – Prealpi Giulie', 'friuli', 'udine'],
+    ['Gemona del Friuli', 46.2757, 13.1385, 'Gemonese – Prealpi Giulie', 'friuli', 'udine'],
+    ['Claut / Valcellina', 46.2690, 12.5140, 'Dolomiti Friulane', 'friuli', 'pordenone'],
+    ['Cimolais', 46.2884, 12.4382, 'Dolomiti Friulane', 'friuli', 'pordenone'],
+    ['Erto e Casso', 46.2755, 12.3713, 'Dolomiti Friulane', 'friuli', 'pordenone'],
+    // Piancavallo stays in the Dolomites region: its curated loop is part of the
+    // Dolomites lake-loops collection, and a collection holds one region.
+    ['Barcis', 46.1908, 12.5605, 'Valcellina – Piancavallo', 'dolomites', 'pordenone'],
+    ['Piancavallo', 46.1060, 12.5230, 'Valcellina – Piancavallo', 'dolomites', 'pordenone'],
+
+    // ---- Valle d'Aosta ----
+    // Courmayeur and Chamonix are 15 km apart through the Mont Blanc tunnel,
+    // so both sides need listing or a walk above Courmayeur is called Savoy.
+    ['Courmayeur', 45.7967, 6.9690, 'Courmayeur – Mont Blanc', 'aosta', 'aosta'],
+    ['La Thuile', 45.7139, 6.9500, 'Courmayeur – Mont Blanc', 'aosta', 'aosta'],
+    ['Morgex / La Salle', 45.7570, 7.0380, 'Courmayeur – Mont Blanc', 'aosta', 'aosta'],
+    ['Aosta', 45.7372, 7.3206, 'Aosta – Plaine', 'aosta', 'aosta'],
+    ['Cogne', 45.6085, 7.3567, 'Cogne – Gran Paradiso', 'aosta', 'aosta'],
+    ['Valsavarenche', 45.5920, 7.2100, 'Cogne – Gran Paradiso', 'aosta', 'aosta'],
+    ['Rhêmes-Notre-Dame', 45.5700, 7.1180, 'Valgrisenche – Rhêmes', 'aosta', 'aosta'],
+    ['Valgrisenche', 45.6300, 7.0640, 'Valgrisenche – Rhêmes', 'aosta', 'aosta'],
+    ['Valtournenche', 45.8760, 7.6230, 'Valtournenche – Cervinia', 'aosta', 'aosta'],
+    ['Breuil-Cervinia', 45.9330, 7.6300, 'Valtournenche – Cervinia', 'aosta', 'aosta'],
+    ['Champoluc (Ayas)', 45.8300, 7.7270, 'Ayas – Gressoney', 'aosta', 'aosta'],
+    ['Gressoney-Saint-Jean', 45.7760, 7.8260, 'Ayas – Gressoney', 'aosta', 'aosta'],
+    ['Gressoney-La-Trinité', 45.8290, 7.8240, 'Ayas – Gressoney', 'aosta', 'aosta']
   ];
 
   const REGIONS = {
     dolomites: { label: 'Dolomites', country: 'Italy', countryCode: 'IT' },
     savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' },
-    lombardy: { label: 'Lombardy', country: 'Italy', countryCode: 'IT' }
+    lombardy: { label: 'Lombardy', country: 'Italy', countryCode: 'IT' },
+    friuli: { label: 'Friuli Venezia Giulia', country: 'Italy', countryCode: 'IT' },
+    aosta: { label: 'Valle d\'Aosta', country: 'Italy', countryCode: 'IT' }
   };
 
   function countryForRegion(region) {

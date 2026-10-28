@@ -108,6 +108,10 @@ function regionFor(legacy){
     ? { id: 'savoy', name: 'Savoy', countryCode: 'FR' }
     : legacy.region === 'lombardy'
       ? { id: 'lombardy', name: 'Lombardy', countryCode: 'IT' }
+    : legacy.region === 'friuli'
+      ? { id: 'friuli', name: 'Friuli Venezia Giulia', countryCode: 'IT' }
+      : legacy.region === 'aosta'
+      ? { id: 'aosta', name: 'Valle d\'Aosta', countryCode: 'IT' }
       : { id: 'dolomites', name: 'Dolomites', countryCode: 'IT' };
   if(legacy.valley){
     region.id = slugify(legacy.valley) || region.id;

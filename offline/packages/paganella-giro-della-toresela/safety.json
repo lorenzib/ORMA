@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "trailId": "paganella-giro-della-toresela",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 1.4,
+    "ascentM": 66,
+    "highestPointM": 295,
+    "expectedDuration": "0.5 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 48
+  },
+  "trailhead": {
+    "lat": 46.209575,
+    "lng": 11.090611,
+    "label": "Via San Pietro, behind the parish church in Mezzolombardo, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.2092096,
+      "lng": 11.0893454,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.2087432,
+      "lng": 11.0945434,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Parts of this walk are exposed; keep your dog close and on a short lead.",
+    "The suspension bridge at km 0.8: about 100 m long, with a metal deck.",
+    "Town streets in Mezzolombardo, shared with cars.",
+    "Low and sunny: the Piana Rotaliana gets very hot in summer.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

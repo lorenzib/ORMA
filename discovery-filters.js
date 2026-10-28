@@ -6,7 +6,7 @@
   'use strict';
 
   // Every ORMA region in Italy; "Italy" means all of them, not the Dolomites.
-  const ITALIAN_REGIONS = ['dolomites', 'lombardy'];
+  const ITALIAN_REGIONS = ['dolomites', 'lombardy', 'friuli', 'aosta'];
 
   const DISTANCES = [3, 5, 6, 10, 20];
   // Kept in step with trail-trust.js's MULTI_DAY_MIN_KM. Duplicated (not

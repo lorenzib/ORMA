@@ -46,10 +46,14 @@ const regionsApi = (() => {
 // of the walks it serves. A locality would not do: a fountain at Riva del
 // Garda is nearer a Val Camonica town than any Dolomites one, and the Garda
 // walks would lose it.
+// West of 9°E a point is Savoy's unless its nearest locality is in Valle
+// d'Aosta: Courmayeur and Chamonix share a meridian, so a longitude cannot
+// split them. A lift says which country it is in, so a French one stays in
+// Savoy whatever its lower station's position.
 let anchorTrails = [];
 function regionForPoint(lng, lat) {
   if (!Number.isFinite(lng) || !Number.isFinite(lat)) return null;
-  if (lng < 9) return 'savoy';
+  if (lng < 9) return regionsApi.nearestLocality(lat, lng).region === 'aosta' ? 'aosta' : 'savoy';
   let best = 'dolomites';
   let bestD = Infinity;
   const k = Math.cos(lat * Math.PI / 180);
@@ -113,13 +117,17 @@ function writeJson(file, value) {
 }
 
 const trails = loadTrails();
-anchorTrails = trails.filter(trail => trail.region && trail.region !== 'savoy'
+// Savoy and Valle d'Aosta lie wholly west of 9°E, so neither can anchor a
+// point east of it: a lift by Lake Como is not an Aosta lift because the
+// Gressoney walks happen to be the nearest trails.
+anchorTrails = trails.filter(trail => trail.region && trail.region !== 'savoy' && trail.region !== 'aosta'
   && Number.isFinite(trail.lat) && Number.isFinite(trail.lng));
 const gondolas = loadGondolas();
 const regionIds = Object.keys(regionsApi.REGIONS);
 const byRegion = Object.fromEntries(regionIds.map(region => [region, trails.filter(trail => trail.region === region)]));
 const gondolasByRegion = Object.fromEntries(regionIds.map(region => [region,
-  gondolas.filter(lift => lift.from && regionForPoint(lift.from.lng, lift.from.lat) === region)]));
+  gondolas.filter(lift => lift.from
+    && (lift.country === 'FR' ? 'savoy' : regionForPoint(lift.from.lng, lift.from.lat)) === region)]));
 const trailAssetVersions = {};
 const detailAssetVersions = {};
 
