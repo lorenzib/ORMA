@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T09:41:30.914Z",
+  "generatedAt": "2026-10-28T10:40:02.050Z",
   "regions": {
     "dolomites": {
-      "trailCount": 283,
-      "trails": "data/regions/dolomites-trails.js?v=4715d88f1ffb",
+      "trailCount": 287,
+      "trails": "data/regions/dolomites-trails.js?v=37e6aeb019f0",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -126,14 +126,14 @@
         "osm-2376630": "data/trail-details/osm-2376630.js?v=2c21bfb68d68",
         "osm-11270309": "data/trail-details/osm-11270309.js?v=ae20a0397dc8",
         "osm-11775923": "data/trail-details/osm-11775923.js?v=f281fe1b3b91",
-        "osm-12302182": "data/trail-details/osm-12302182.js?v=7fe2a20cb9f1",
-        "osm-12302137": "data/trail-details/osm-12302137.js?v=7fd98ffef944",
+        "osm-12302182": "data/trail-details/osm-12302182.js?v=30a2d11e1b27",
+        "osm-12302137": "data/trail-details/osm-12302137.js?v=229625b5e41b",
         "osm-8396539": "data/trail-details/osm-8396539.js?v=c6e3161fe7e0",
         "osm-20380913": "data/trail-details/osm-20380913.js?v=183c9909b523",
         "osm-10220399": "data/trail-details/osm-10220399.js?v=6445e8023d34",
         "osm-9648632": "data/trail-details/osm-9648632.js?v=ee65535625f8",
         "osm-11768853": "data/trail-details/osm-11768853.js?v=4399fcf5a273",
-        "osm-7567918": "data/trail-details/osm-7567918.js?v=1edbc8399ee8",
+        "osm-7567918": "data/trail-details/osm-7567918.js?v=0ebbb205ed79",
         "osm-9450411": "data/trail-details/osm-9450411.js?v=559026df0557",
         "osm-6601608": "data/trail-details/osm-6601608.js?v=4f1e88250dc0",
         "osm-11791915": "data/trail-details/osm-11791915.js?v=bd924e55c0ac",
@@ -288,6 +288,10 @@
         "campiglio-monte-spinale-rifugio-graffer": "data/trail-details/campiglio-monte-spinale-rifugio-graffer.js?v=eff3b22b3926",
         "paganella-giro-del-lago-di-molveno": "data/trail-details/paganella-giro-del-lago-di-molveno.js?v=e7d5f217a056",
         "paganella-passeggiata-del-ciclamino": "data/trail-details/paganella-passeggiata-del-ciclamino.js?v=92e708d2000e",
+        "campiglio-valina-d-amola-rifugio-segantini-cornisello": "data/trail-details/campiglio-valina-d-amola-rifugio-segantini-cornisello.js?v=d5b64dbb5fb0",
+        "campiglio-trekking-al-lago-di-nambino": "data/trail-details/campiglio-trekking-al-lago-di-nambino.js?v=93a2ac4bc0c9",
+        "campiglio-trekking-al-rifugio-segantini": "data/trail-details/campiglio-trekking-al-rifugio-segantini.js?v=82c418feb51e",
+        "campiglio-madonna-di-campiglio-monte-spinale": "data/trail-details/campiglio-madonna-di-campiglio-monte-spinale.js?v=a941b25651f8",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -357,8 +361,8 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 8,
-      "trails": "data/regions/lombardy-trails.js?v=6f9d9f5073fe",
+      "trailCount": 9,
+      "trails": "data/regions/lombardy-trails.js?v=f60313002fe1",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=7e2f9ea8f6ea",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
@@ -367,7 +371,8 @@
         "lario-eupilio-tra-segrino-e-cornizzolo": "data/trail-details/lario-eupilio-tra-segrino-e-cornizzolo.js?v=b75f5b6913ba",
         "lario-il-sentiero-del-viandante": "data/trail-details/lario-il-sentiero-del-viandante.js?v=e4f3aee5a9b6",
         "lario-caslino-sullacqua": "data/trail-details/lario-caslino-sullacqua.js?v=c260de4a7d80",
-        "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "data/trail-details/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza.js?v=a15ee9697efc"
+        "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "data/trail-details/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza.js?v=a15ee9697efc",
+        "bormio-da-arnoga-al-rifugio-federico": "data/trail-details/bormio-da-arnoga-al-rifugio-federico.js?v=b466bc6017f9"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -406,6 +411,20 @@
       },
       "water": "data/regions/aosta-water.geojson",
       "hutsBars": "data/regions/aosta-huts-bars.geojson",
+      "dogRoutes": "dog-friendly-routes.geojson",
+      "optional": []
+    },
+    "tyrol": {
+      "trailCount": 4,
+      "trails": "data/regions/tyrol-trails.js?v=e4dd4cdd06e4",
+      "details": {
+        "osttirol-rundwanderung-schloss-weissenstein": "data/trail-details/osttirol-rundwanderung-schloss-weissenstein.js?v=505f9f1fa778",
+        "osttirol-naturkraftweg-umbalfaelle": "data/trail-details/osttirol-naturkraftweg-umbalfaelle.js?v=40335ca2a8f1",
+        "osttirol-kulturweg-koednitz": "data/trail-details/osttirol-kulturweg-koednitz.js?v=8daab1982604",
+        "osttirol-rundwanderung-am-staller-sattel": "data/trail-details/osttirol-rundwanderung-am-staller-sattel.js?v=ad400270d9b1"
+      },
+      "water": "data/regions/tyrol-water.geojson",
+      "hutsBars": "data/regions/tyrol-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
       "optional": []
     }
@@ -693,6 +712,10 @@
     "campiglio-monte-spinale-rifugio-graffer": "dolomites",
     "paganella-giro-del-lago-di-molveno": "dolomites",
     "paganella-passeggiata-del-ciclamino": "dolomites",
+    "campiglio-valina-d-amola-rifugio-segantini-cornisello": "dolomites",
+    "campiglio-trekking-al-lago-di-nambino": "dolomites",
+    "campiglio-trekking-al-rifugio-segantini": "dolomites",
+    "campiglio-madonna-di-campiglio-monte-spinale": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -753,6 +776,7 @@
     "lario-il-sentiero-del-viandante": "lombardy",
     "lario-caslino-sullacqua": "lombardy",
     "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "lombardy",
+    "bormio-da-arnoga-al-rifugio-federico": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -767,7 +791,11 @@
     "aosta-periasc-antagnod": "aosta",
     "aosta-sentiero-della-regina": "aosta",
     "aosta-strada-lombarda": "aosta",
-    "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": "aosta"
+    "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": "aosta",
+    "osttirol-rundwanderung-schloss-weissenstein": "tyrol",
+    "osttirol-naturkraftweg-umbalfaelle": "tyrol",
+    "osttirol-kulturweg-koednitz": "tyrol",
+    "osttirol-rundwanderung-am-staller-sattel": "tyrol"
   },
   "trailSlug": {
     "alpe-siusi": "alpe-di-siusi-meadow-loop",
@@ -1126,6 +1154,15 @@
     "campiglio-monte-spinale-rifugio-graffer": "monte-spinale-rifugio-graffer",
     "paganella-giro-del-lago-di-molveno": "lago-di-molveno-loop",
     "paganella-passeggiata-del-ciclamino": "passeggiata-del-ciclamino-molveno",
+    "osttirol-rundwanderung-schloss-weissenstein": "schloss-weissenstein-matrei",
+    "osttirol-naturkraftweg-umbalfaelle": "umbal-falls-nature-walk",
+    "osttirol-kulturweg-koednitz": "koednitz-culture-walk-kals",
+    "osttirol-rundwanderung-am-staller-sattel": "obersee-staller-sattel-loop",
+    "campiglio-valina-d-amola-rifugio-segantini-cornisello": "valina-amola-segantini-cornisello",
+    "campiglio-trekking-al-lago-di-nambino": "lago-di-nambino-walk",
+    "campiglio-trekking-al-rifugio-segantini": "rifugio-segantini-loop",
+    "campiglio-madonna-di-campiglio-monte-spinale": "campiglio-monte-spinale",
+    "bormio-da-arnoga-al-rifugio-federico": "arnoga-rifugio-federico-val-viola",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1485,6 +1522,15 @@
     "monte-spinale-rifugio-graffer": "campiglio-monte-spinale-rifugio-graffer",
     "lago-di-molveno-loop": "paganella-giro-del-lago-di-molveno",
     "passeggiata-del-ciclamino-molveno": "paganella-passeggiata-del-ciclamino",
+    "schloss-weissenstein-matrei": "osttirol-rundwanderung-schloss-weissenstein",
+    "umbal-falls-nature-walk": "osttirol-naturkraftweg-umbalfaelle",
+    "koednitz-culture-walk-kals": "osttirol-kulturweg-koednitz",
+    "obersee-staller-sattel-loop": "osttirol-rundwanderung-am-staller-sattel",
+    "valina-amola-segantini-cornisello": "campiglio-valina-d-amola-rifugio-segantini-cornisello",
+    "lago-di-nambino-walk": "campiglio-trekking-al-lago-di-nambino",
+    "rifugio-segantini-loop": "campiglio-trekking-al-rifugio-segantini",
+    "campiglio-monte-spinale": "campiglio-madonna-di-campiglio-monte-spinale",
+    "arnoga-rifugio-federico-val-viola": "bormio-da-arnoga-al-rifugio-federico",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

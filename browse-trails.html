@@ -601,6 +601,7 @@
 <a href="trail.html?id=lago-di-braies-seeweg-circuit" style="display:block;color:inherit;">Lago di Braies Seeweg circuit</a>
 <a href="trail.html?id=lago-di-carezza-loop" style="display:block;color:inherit;">Lago di Carezza Loop</a>
 <a href="trail.html?id=lago-di-molveno-loop" style="display:block;color:inherit;">Lago di Molveno loop</a>
+<a href="trail.html?id=lago-di-nambino-walk" style="display:block;color:inherit;">Lago di Nambino</a>
 <a href="trail.html?id=lago-di-sorapis-trail" style="display:block;color:inherit;">Lago di Sorapis Trail</a>
 <a href="trail.html?id=lago-ritorto" style="display:block;color:inherit;">Lago Ritorto</a>
 <a href="trail.html?id=lang-erl-weg" style="display:block;color:inherit;">Lang-Erl-Weg</a>
@@ -609,6 +610,7 @@
 <a href="trail.html?id=erbe-della-salute-grauno" style="display:block;color:inherit;">Le erbe della salute</a>
 <a href="trail.html?id=lech-sant" style="display:block;color:inherit;">Lech Sant</a>
 <a href="trail.html?id=campiglio-malga-ritort" style="display:block;color:inherit;">Madonna di Campiglio – Malga Ritort</a>
+<a href="trail.html?id=campiglio-monte-spinale" style="display:block;color:inherit;">Madonna di Campiglio – Monte Spinale</a>
 <a href="trail.html?id=maiser-waalweg" style="display:block;color:inherit;">Maiser Waalweg</a>
 <a href="trail.html?id=maistatt-loop-niederdorf" style="display:block;color:inherit;">Maistatt loop</a>
 <a href="trail.html?id=malga-aloch-pozza" style="display:block;color:inherit;">Malga Aloch e Masc Aloch</a>
@@ -670,6 +672,7 @@
 <a href="trail.html?id=resciesa-brogles" style="display:block;color:inherit;">Resciesa – Brogles</a>
 <a href="trail.html?id=resciesa-summit-loop" style="display:block;color:inherit;">Resciesa summit loop</a>
 <a href="trail.html?id=fazzon-lago-dei-caprioli" style="display:block;color:inherit;">Rifugio Fazzon – Lago dei Caprioli</a>
+<a href="trail.html?id=rifugio-segantini-loop" style="display:block;color:inherit;">Rifugio Segantini loop</a>
 <a href="trail.html?id=rifugio-stavel-denza" style="display:block;color:inherit;">Rifugio Stavel – Francesco Denza</a>
 <a href="trail.html?id=roda-de-armentara" style="display:block;color:inherit;">Roda de Armentara</a>
 <a href="trail.html?id=roda-de-cherz" style="display:block;color:inherit;">Roda de Cherz</a>
@@ -754,6 +757,7 @@
 <a href="trail.html?id=uciei-de-freines" style="display:block;color:inherit;">Uciei de Frëines</a>
 <a href="trail.html?id=val-d-anna" style="display:block;color:inherit;">Val d’Anna</a>
 <a href="trail.html?id=val-di-funes-panorama-trail" style="display:block;color:inherit;">Val di Funes Panorama Trail</a>
+<a href="trail.html?id=valina-amola-segantini-cornisello" style="display:block;color:inherit;">Valina d’Amola – Segantini – Cornisello</a>
 <a href="trail.html?id=vallunga" style="display:block;color:inherit;">Vallunga</a>
 <a href="trail.html?id=valser-rundweg" style="display:block;color:inherit;">Valser Rundweg</a>
 <a href="trail.html?id=via-crucis-santa-cristina" style="display:block;color:inherit;">Via Crucis, Santa Cristina</a>
@@ -817,6 +821,7 @@
 <a href="trail.html?id=sentier-eco-sylve-de-poingt-ravier" style="display:block;color:inherit;">Sentier éco-sylve de Poingt-Ravier</a>
 <a href="trail.html?id=sentier-pedestre-des-graniteurs" style="display:block;color:inherit;">Sentier pédestre des Graniteurs</a>
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Lombardy, Italy</p>
+<a href="trail.html?id=arnoga-rifugio-federico-val-viola" style="display:block;color:inherit;">Arnoga – Rifugio Federico, Val Viola</a>
 <a href="trail.html?id=brogno-nuvolone-viewpoint" style="display:block;color:inherit;">Brogno to the Nuvolone viewpoint</a>
 <a href="trail.html?id=brunate-churches-loop" style="display:block;color:inherit;">Brunate churches loop</a>
 <a href="trail.html?id=caslino-derba-and-the-lambro" style="display:block;color:inherit;">Caslino d’Erba and the Lambro</a>
@@ -842,6 +847,11 @@
 <a href="trail.html?id=ru-courtaud-ayas" style="display:block;color:inherit;">Rû Courtaud</a>
 <a href="trail.html?id=sentiero-della-regina-gressoney" style="display:block;color:inherit;">Sentiero della Regina</a>
 <a href="trail.html?id=strada-lombarda-gressoney" style="display:block;color:inherit;">Strada Lombarda</a>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Tyrol &amp; Carinthia, Austria</p>
+<a href="trail.html?id=koednitz-culture-walk-kals" style="display:block;color:inherit;">Ködnitz culture walk, Kals</a>
+<a href="trail.html?id=obersee-staller-sattel-loop" style="display:block;color:inherit;">Obersee loop at the Staller Sattel</a>
+<a href="trail.html?id=schloss-weissenstein-matrei" style="display:block;color:inherit;">Schloss Weißenstein loop, Matrei</a>
+<a href="trail.html?id=umbal-falls-nature-walk" style="display:block;color:inherit;">Umbal Falls nature walk</a>
 <!-- TRAIL-INDEX-END -->
     </div>
   </details>
@@ -1084,8 +1094,16 @@
     // What stays personal (match %, saving, reporting) prompts login on
     // the trail page itself, at the moment it's actually wanted.
     const PER_PAGE = 15;
-    const allowedCountries = ['all', 'italy', 'france'];
-    const allowedRegions = ['all', 'dolomites', 'savoy', 'lombardy', 'friuli', 'aosta'];
+    const allowedCountries = ['all', 'italy', 'france', 'austria'];
+    const allowedRegions = ['all', 'dolomites', 'savoy', 'lombardy', 'friuli', 'aosta', 'tyrol'];
+    // A trail's country comes from its region's row in regions-config.js.
+    const COUNTRY_VALUE = { IT:'italy', FR:'france', AT:'austria' };
+    function trailCountry(trail){
+      const code = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
+        ? window.DoloPawsRegions.countryForRegion(trail.region)
+        : (trail.region === 'savoy' ? 'FR' : 'IT');
+      return COUNTRY_VALUE[code] || 'italy';
+    }
     const allowedRisks = ['all', 'low-risk', 'moderate', 'caution'];
     const allowedDistances = ['all', '3', '5', '6', '10', '20', 'u5', '5to10', '10p'];
     let page = 1;
@@ -1139,8 +1157,7 @@
       countryValue = allowedCountries.includes(canonical.country) ? canonical.country : 'all';
       regionValue = allowedRegions.includes(canonical.region) ? canonical.region : 'all';
       valleyValue = canonical.valley || 'all';
-      if(regionValue === 'dolomites' || regionValue === 'lombardy' || regionValue === 'friuli' || regionValue === 'aosta') countryValue = 'italy';
-      if(regionValue === 'savoy') countryValue = 'france';
+      if(regionValue !== 'all') countryValue = trailCountry({ region: regionValue });
       risk.value = allowedRisks.includes(canonical.risk) ? canonical.risk : 'all';
       distance.value = allowedDistances.includes(canonical.distance) ? canonical.distance : 'all';
       durationValue = canonical.duration === 'multi' ? 'multi' : 'day';
@@ -1351,8 +1368,9 @@
 
     const COUNTRIES = [
       { value:'all', label:bt('browse.geo.allCountries', 'All countries'), match:() => true },
-      { value:'italy', label:bt('browse.geo.italy', 'Italy'), match:t => t.region !== 'savoy' },
-      { value:'france', label:bt('browse.geo.france', 'France'), match:t => t.region === 'savoy' },
+      { value:'italy', label:bt('browse.geo.italy', 'Italy'), match:t => trailCountry(t) === 'italy' },
+      { value:'france', label:bt('browse.geo.france', 'France'), match:t => trailCountry(t) === 'france' },
+      { value:'austria', label:bt('browse.geo.austria', 'Austria'), match:t => trailCountry(t) === 'austria' },
     ];
     const REGIONS = [
       { value: 'all', label: bt('browse.geo.allRegions', 'All regions'), country:'all', match: () => true },
@@ -1361,6 +1379,7 @@
       { value: 'lombardy', label: bt('browse.geo.lombardy', 'Lombardy'), country:'italy', match: t => t.region === 'lombardy' },
       { value: 'friuli', label: bt('browse.geo.friuli', 'Friuli Venezia Giulia'), country:'italy', match: t => t.region === 'friuli' },
       { value: 'aosta', label: bt('browse.geo.aosta', 'Valle d’Aosta'), country:'italy', match: t => t.region === 'aosta' },
+      { value: 'tyrol', label: bt('browse.geo.tyrol', 'Tyrol & Carinthia'), country:'austria', match: t => t.region === 'tyrol' },
     ];
     function renderBreadcrumb(){
       if(!breadcrumb) return;
@@ -1405,7 +1424,7 @@
       regionSelect.replaceChildren(...regionOptions().map(item => {
         const count = item.value === 'all'
           ? trails.filter(t => countryValue === 'all'
-            || (countryValue === 'italy' ? t.region !== 'savoy' : t.region === 'savoy')).length
+            || trailCountry(t) === countryValue).length
           : trails.filter(item.match).length;
         return option(item, count);
       }));
@@ -1416,8 +1435,7 @@
     function valleyEntries(){
       const scoped = trails.filter(trail => {
         if(regionValue !== 'all') return trail.region === regionValue;
-        if(countryValue === 'italy') return trail.region !== 'savoy';
-        if(countryValue === 'france') return trail.region === 'savoy';
+        if(countryValue !== 'all') return trailCountry(trail) === countryValue;
         return true;
       });
       const counts = new Map();

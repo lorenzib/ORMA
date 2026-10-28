@@ -160,7 +160,8 @@ function displayStartLabel(t, label) {
   return `Mapped start suggestion, ${plainStartLabel(label)}. Check current access before travelling.`;
 }
 
-const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', lombardy: 'Lombardy, Italy', friuli: 'Friuli Venezia Giulia, Italy', aosta: 'Valle d\'Aosta, Italy' };
+const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', lombardy: 'Lombardy, Italy', friuli: 'Friuli Venezia Giulia, Italy', aosta: 'Valle d\'Aosta, Italy', tyrol: 'Tyrol & Carinthia, Austria' };
+const REGION_COUNTRY = { savoy: 'FR', tyrol: 'AT' };
 
 /**
  * One rule for the badge, shared with the app.
@@ -580,7 +581,7 @@ function trailPage(t, slug, all) {
     url: canonical,
     geo: { '@type': 'GeoCoordinates', latitude: t.lat, longitude: t.lng },
     isAccessibleForFree: !t.paid,
-    address: { '@type': 'PostalAddress', addressCountry: t.region === 'savoy' ? 'FR' : 'IT' },
+    address: { '@type': 'PostalAddress', addressCountry: REGION_COUNTRY[t.region] || 'IT' },
   };
 
   const breadcrumbLd = {
@@ -865,11 +866,11 @@ function updateBrowseIndex(entries) {
   const b = html.indexOf(END);
   if (a === -1 || b === -1) return console.warn('Index markers not found in browse-trails.html, skipping.');
 
-  const byRegion = { dolomites: [], savoy: [], lombardy: [], friuli: [], aosta: [] };
+  const byRegion = { dolomites: [], savoy: [], lombardy: [], friuli: [], aosta: [], tyrol: [] };
   for (const e of entries) (byRegion[e.region] || byRegion.dolomites).push(e);
   for (const k of Object.keys(byRegion)) byRegion[k].sort((x, y) => x.name.localeCompare(y.name));
 
-  const block = ['dolomites', 'savoy', 'lombardy', 'friuli', 'aosta']
+  const block = ['dolomites', 'savoy', 'lombardy', 'friuli', 'aosta', 'tyrol']
     .filter((r) => byRegion[r].length)
     .map(
       (r) =>

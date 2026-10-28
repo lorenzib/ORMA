@@ -132,9 +132,17 @@ describe('the existing-site verification boundary',()=>{
     // Brenta park: Madonna di Campiglio to Malga Ritort, Patascoss to the Lago
     // Ritorto, the San Giuliano lakes, Monte Spinale to the Graffer hut, Carisolo,
     // and round the Lago di Molveno and the Ciclamino walk above it.
+    // Then 361 and 359 with the first Austrian walks, in East Tyrol: the Schloss
+    // Weißenstein loop at Matrei, the Umbal Falls, the Ködnitz culture walk at Kals
+    // and the Obersee loop at the Staller Sattel.
+    // Then 365 and 363 with four more Adamello Brenta walks: the Lago di Nambino,
+    // Madonna di Campiglio up to Monte Spinale, and two loops to the Rifugio
+    // Segantini at the head of the Val Nambrone.
+    // Then 366 and 364 with the first Valtellina walk: Arnoga to the Rifugio
+    // Federico up the Val Viola, between Bormio and Livigno.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(357);
-    expect(currentSiteTrails(catalogue)).toHaveLength(355);
+    expect(catalogue).toHaveLength(366);
+    expect(currentSiteTrails(catalogue)).toHaveLength(364);
   });
 
   test('requires the artwork the public trail page needs',()=>{

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-cimabanche-prato-piazza",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.4,
+    "ascentM": 494,
+    "highestPointM": 1986,
+    "expectedDuration": "2 hours",
+    "difficulty": "Hard",
+    "shadePercent": 45
+  },
+  "trailhead": {
+    "lat": 46.623455,
+    "lng": 12.190587,
+    "label": "Cimabanche pass, Höhlensteintal, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A steady climb of almost 500 m, with zigzags in the upper part.",
+    "No drinking water is mapped before the Plätzwiese: carry water for your dog.",
+    "Cows graze on the Plätzwiese.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

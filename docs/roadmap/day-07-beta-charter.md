@@ -10,6 +10,8 @@ Account-profile amendment: 2026-08-11
 
 Catalogue and offline scope amendment: 2026-10-27
 
+Catalogue area amendment (Alps): 2026-10-27
+
 ## Purpose
 
 This charter closes the first planning cycle and fixes the target for the first
@@ -51,10 +53,10 @@ Before field testing, each selected route must have:
 - an internal airplane-mode test.
 
 The field test stays in this region (see the offline-route amendment below).
-For planning, the beta covers the published catalogue in the Dolomites and
-Savoy, under the catalogue and offline scope amendment below. Expansion
-beyond those two areas requires evidence that the complete journey works in
-the initial region.
+For planning, the beta covers the published catalogue in the areas the
+catalogue area amendment below lists, under the catalogue and offline scope
+amendment. Expansion beyond those areas requires evidence that the complete
+journey works in the initial region.
 
 If repeated access to Val Gardena and Alpe di Siusi proves operationally
 impossible, the region may be replaced before recruitment by another compact
@@ -84,9 +86,9 @@ its reasoning are in `day-07-charter-amendment-catalogue-scope.md`.
    `ROUTE-FIELD-REVIEW`) run on the two pilot routes, Lago di Carezza and
    Alpe di Siusi, on the supported iPhone and Android targets.
 2. **Planning catalogue scope.** The beta covers, for planning, the published
-   catalogue in the Dolomites (South Tyrol, Trentino, Belluno) and Savoy,
-   each trail showing its real status: Verified, Reviewed or Imported. The
-   catalogue may keep growing within those two areas only, under the seal
+   catalogue in the areas of the catalogue area amendment below, each trail
+   showing its real status: Verified, Reviewed or Imported. The catalogue may
+   keep growing within those areas only, under the seal
    rules of the operating standard, and never ahead of a step on the launch
    checklist's critical path (`beta-launch-checklist.md`). Bulk import of OSM
    relations remains frozen; a walk verified by hand from an authority's
@@ -101,6 +103,24 @@ its reasoning are in `day-07-charter-amendment-catalogue-scope.md`.
 
 No P0 or P1 gate is removed or waived by this amendment, and recruitment stays
 closed until the readiness decision is recorded.
+
+### Catalogue area amendment (Alps, 2026-10-27)
+
+The product owner widened the planning catalogue scope on 27 October 2026. The
+catalogue may grow in these areas:
+
+- **Italy:** the Dolomites (South Tyrol, Trentino including western Trentino,
+  Belluno); Valle d'Aosta; the Lombardy mountains (Valtellina, Valchiavenna,
+  the Lake Como mountains, Val Camonica); the Friuli Venezia Giulia mountains.
+- **France:** Savoy (Savoie and Haute-Savoie).
+- **Austria:** East Tyrol (Osttirol) and Carinthia (Gailtal and Lesachtal
+  first).
+
+Only the area changes. The seal rules of the operating standard, the frozen
+bulk OSM import, the field-test scope and the launch checklist's critical path
+apply unchanged. A new country also needs its own dog-access standard before a
+walk there is sealed: Austria's was approved the same day
+(`docs/editorial/austria-sources-and-dog-rules.md`).
 
 ### Optional multiple-dog profile amendment
 
@@ -381,7 +401,7 @@ The first beta does not include:
 - social feeds;
 - badges, leaderboards, or gamification;
 - subscriptions or paid tiers;
-- new countries, or areas outside the Dolomites and Savoy;
+- new countries, or areas outside the catalogue area amendment;
 - voice turn-by-turn guidance;
 - continuous background GPS recording;
 - advanced multi-day itineraries;

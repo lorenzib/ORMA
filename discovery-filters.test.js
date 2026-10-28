@@ -83,6 +83,15 @@ describe('dog-specific discovery filters', () => {
     expect(filters.matches(lombardy, { country:'france' })).toBe(false);
   });
 
+  test('Austria is its own country, not Italy because it is not Savoy', () => {
+    const lienz = trail({ region:'tyrol', valley:'Lienz – Lienz Dolomites' });
+    expect(filters.matches(lienz, { country:'austria' })).toBe(true);
+    expect(filters.matches(lienz, { country:'austria', region:'tyrol' })).toBe(true);
+    expect(filters.matches(lienz, { country:'italy' })).toBe(false);
+    expect(filters.matches(lienz, { country:'france' })).toBe(false);
+    expect(filters.matches(trail(), { country:'austria' })).toBe(false);
+  });
+
   test('valley narrows results inside the selected region', () => {
     expect(filters.matches(trail(), { region:'dolomites', valley:'Val di Fassa' })).toBe(true);
     expect(filters.matches(trail(), { region:'dolomites', valley:'Val Gardena' })).toBe(false);

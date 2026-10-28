@@ -43734,9 +43734,11 @@
       desc: 'An easy loop from La Villa to the small lake Lech da Sompunt below the Sas dla Crusc, down to Pedraces and back along the river. The board lists 7.5 km and 172 m of ascent.'
     },
     'altabadia-escursione-corvara-colfosco': {
+      // Correction 28 October 2026: Corvara does publish a dog regulation (Gemeinderat Nr. 17, 27.06.2011);
+      // the record first said it had none. Its rules are the same as the national rule plus no farmed meadows.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 1).
       // The Alta Badia tourist board’s walk “Escursione Corvara - Colfosco”, drawn on 32 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Communes: Corvara (no regulation, national rule).
+      // (data/board-line-routes.geojson). Communes: Corvara (own dog regulation, lead and muzzle).
       // No Natura 2000 site, park or natural monument on the line (Province of Bolzano landscape-plan layers).
       // The stored line follows the board’s own Outdooractive tour.
       area: 'Corvara – Colfosco, Corvara in Badia',
@@ -43761,7 +43763,7 @@
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Società Cooperativa Turistica Alta Badia, Escursione Corvara - Colfosco (altabadia.org and its Outdooractive tour)',
-          'Comune di Corvara in Badia publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde Corvara / Comune di Corvara in Badia, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 17, 27.06.2011), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs on farmed meadows in the growing season',
           'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line, only landscape protection zones, which set no rule on dogs',
           'OpenStreetMap ways along the board’s line (32 ways), road, surface, woodland and water data'
         ],
@@ -43775,12 +43777,12 @@
       shadeDescription: 'Mostly open: about a tenth of the loop is under trees; the lanes and the pastures are in the sun.',
       terrainDescription: 'A short loop at 1,520–1,640 m between Corvara and Colfosco at the foot of the Sella and the Sassongher, on lanes and meadow paths.',
       waterDescription: 'Drinking fountains at the start, at km 0.4, at km 2.3 and at km 3; places to eat at the start and on the way.',
-      dogNotes: 'Corvara has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
-      tips: 'Start at the Boé gondola car park in Corvara: 4.8 km, about 130 m of climbing, an hour and twenty minutes. Corvara has no dog regulation of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m and carry a muzzle. Keep your distance from cattle on the pastures.',
+      dogNotes: 'Corvara requires a lead no longer than 1.5 m on all public ground and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in the fountains of the village centre. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start at the Boé gondola car park in Corvara: 4.8 km, about 130 m of climbing, an hour and twenty minutes. In Corvara your dog must be on a lead of at most 1.5 m and you must carry a muzzle; keep off the hay meadows. Keep your distance from cattle on the pastures.',
       sourceLinks: [
         { label: 'Alta Badia, Escursione Corvara - Colfosco', url: 'https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-colfosco' },
         { label: 'Outdooractive, Escursione Corvara - Colfosco (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/810055282' },
-        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Corvara, dog regulation (PDF)', url: 'https://www.comune.corvara.bz.it/system/web/GetDocument.ashx?cts=1536582119&fileId=1025436' },
         { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
         { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
@@ -43868,9 +43870,11 @@
       desc: 'The artists’ path from La Villa along the San Cassiano stream to San Cassiano and on through meadows to Armentarola. The board lists 5.2 km and 245 m of ascent, one way.'
     },
     'altabadia-escursione-corvara-la-villa': {
+      // Correction 28 October 2026: Corvara does publish a dog regulation (Gemeinderat Nr. 17, 27.06.2011);
+      // the record first said it had none. Its rules are the same as the national rule plus no farmed meadows.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 1).
       // The Alta Badia tourist board’s walk “Escursione Corvara - La Villa”, drawn on 34 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Communes: Corvara (no regulation, national rule); Badia (own dog regulation, lead and muzzle).
+      // (data/board-line-routes.geojson). Communes: Corvara (own dog regulation, lead and muzzle); Badia (own dog regulation, lead and muzzle).
       // No Natura 2000 site, park or natural monument on the line (Province of Bolzano landscape-plan layers).
       // The stored line follows the board’s own Outdooractive tour.
       area: 'Corvara – La Villa, along the Gadera',
@@ -43896,7 +43900,7 @@
         sources: [
           'Società Cooperativa Turistica Alta Badia, Escursione Corvara - La Villa (altabadia.org and its Outdooractive tour)',
           'Gemeinde Abtei / Comune di Badia, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 7, 22.02.2010), Art. 4 and 8: a lead of at most 1.5 m everywhere and a muzzle carried; no dogs on farmed meadows in the growing season',
-          'Comune di Corvara in Badia publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde Corvara / Comune di Corvara in Badia, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 17, 27.06.2011), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs on farmed meadows in the growing season',
           'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line, only landscape protection zones, which set no rule on dogs',
           'OpenStreetMap ways along the board’s line (34 ways), road, surface, woodland and water data'
         ],
@@ -43910,13 +43914,13 @@
       shadeDescription: 'Partly shaded: about two fifths runs under trees along the stream.',
       terrainDescription: 'An almost flat walk down the Val Badia at 1,400–1,540 m from Corvara to La Villa, beside the stream on the “Tru dl’ega”.',
       waterDescription: 'Drinking fountains at the start, at km 0.6, at km 4.5 and at km 4.9; places to eat at the start and on the way.',
-      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. Corvara has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
-      tips: 'Start at the Boé gondola car park in Corvara: 5.1 km one way, mostly gently downhill, an hour and a quarter, then come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle: that is the national rule in Corvara and Badia’s own rule in La Villa. Keep your dog out of the stream when it runs high.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. Corvara requires a lead no longer than 1.5 m on all public ground and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in the fountains of the village centre. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start at the Boé gondola car park in Corvara: 5.1 km one way, mostly gently downhill, an hour and a quarter, then come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle: both Corvara and Badia require it. Keep your dog out of the stream when it runs high.',
       sourceLinks: [
         { label: 'Alta Badia, Escursione Corvara - La Villa', url: 'https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-la-villa' },
         { label: 'Outdooractive, Escursione Corvara - La Villa (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/810055884' },
         { label: 'Gemeinde Abtei, dog regulation', url: 'https://www.gemeinde.abtei.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_von_Hunden' },
-        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Corvara, dog regulation (PDF)', url: 'https://www.comune.corvara.bz.it/system/web/GetDocument.ashx?cts=1536582119&fileId=1025436' },
         { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
         { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
@@ -44130,9 +44134,11 @@
       desc: 'A long loop from La Val past the chapel of Santa Barbara and the Rit lake to the high Rit meadows and the Ütia da Rit, and back through Spëscia. The board lists 14.1 km and 728 m of ascent.'
     },
     'altabadia-da-san-cassiano-al-pralongia-fino-a-corvara': {
+      // Correction 28 October 2026: Corvara does publish a dog regulation (Gemeinderat Nr. 17, 27.06.2011);
+      // the record first said it had none. Its rules are the same as the national rule plus no farmed meadows.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 3).
       // The Alta Badia tourist board’s walk “Da San Cassiano al Pralongiá fino a Corvara”, drawn on 26 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Communes: Corvara (no regulation, national rule); Badia (own dog regulation, lead and muzzle); Livinallongo del Col di Lana (no regulation, national rule).
+      // (data/board-line-routes.geojson). Communes: Corvara (own dog regulation, lead and muzzle); Badia (own dog regulation, lead and muzzle); Livinallongo del Col di Lana (no regulation, national rule).
       // No Natura 2000 site or park on the line (Province of Bolzano layers; the Veneto layer shows no site on the 2% in Livinallongo).
       // The stored line follows the board’s own Outdooractive tour.
       area: 'Piz Sorega – Bioch – Pralongiá – Corvara',
@@ -44158,7 +44164,7 @@
         sources: [
           'Società Cooperativa Turistica Alta Badia, Da San Cassiano al Pralongiá fino a Corvara (altabadia.org and its Outdooractive tour)',
           'Gemeinde Abtei / Comune di Badia, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 7, 22.02.2010), Art. 4 and 8: a lead of at most 1.5 m everywhere and a muzzle carried; no dogs on farmed meadows in the growing season',
-          'Comune di Corvara in Badia publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde Corvara / Comune di Corvara in Badia, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 17, 27.06.2011), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs on farmed meadows in the growing season',
           'Comune di Livinallongo del Col di Lana publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
           'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line',
           'Regione del Veneto Natura 2000 layer (rv:c1101121_natura_2000): no site on the 2% of the line in Livinallongo (positive control: the Sorapis lake falls in IT3230081)',
@@ -44174,12 +44180,13 @@
       shadeDescription: 'Little shade: about a seventh of the walk is near trees, mostly on the descent to Corvara; the Pralongiá plateau is open grassland.',
       terrainDescription: 'A high, mostly downhill walk at 1,555–2,130 m across the Pralongiá plateau between San Cassiano and Corvara, with wide views of the Sella, the Marmolada and the Sas dla Crusc.',
       waterDescription: 'Drinking fountains at km 2.8, at km 3.3, at km 4.4 and at km 6.1; places to eat at the start and on the way.',
-      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. Corvara has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
-      tips: 'Ride the Piz Sorega gondola up from San Cassiano (closed cabins) and walk to Corvara: 8.7 km, about 130 m up and 580 m down, two hours and forty minutes. Keep your dog on a lead of at most 1.5 m and carry a muzzle on the whole walk: the national rule in Corvara and Livinallongo, and Badia’s own rule on its stretch. There is little shade: carry water for your dog and set out early. Plan your way back to San Cassiano: local buses link the villages.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. Corvara requires a lead no longer than 1.5 m on all public ground and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in the fountains of the village centre. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Ride the Piz Sorega gondola up from San Cassiano (closed cabins) and walk to Corvara: 8.7 km, about 130 m up and 580 m down, two hours and forty minutes. Keep your dog on a lead of at most 1.5 m and carry a muzzle on the whole walk: Corvara and Badia require it, and the national rule says the same in Livinallongo. There is little shade: carry water for your dog and set out early. Plan your way back to San Cassiano: local buses link the villages.',
       sourceLinks: [
         { label: 'Alta Badia, Da San Cassiano al Pralongiá fino a Corvara', url: 'https://www.altabadia.org/it/tour/oadetail/oa/da-san-cassiano-al-pralongia-fino-a-corvara' },
         { label: 'Outdooractive, Da San Cassiano al Pralongiá fino a Corvara (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/17276451' },
         { label: 'Gemeinde Abtei, dog regulation', url: 'https://www.gemeinde.abtei.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Gemeinde Corvara, dog regulation (PDF)', url: 'https://www.comune.corvara.bz.it/system/web/GetDocument.ashx?cts=1536582119&fileId=1025436' },
         { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
         { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
         { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
@@ -44202,9 +44209,11 @@
       desc: 'A high walk from the top of the Piz Sorega gondola across the Pralongiá plateau past the Bioch hut and the Pralongiá inn, and down on foot to Corvara. The board lists 8.7 km, 128 m up and 581 m down.'
     },
     'altabadia-passeggiata-borest-cascate-del-pisciadu': {
+      // Correction 28 October 2026: Corvara does publish a dog regulation (Gemeinderat Nr. 17, 27.06.2011);
+      // the record first said it had none. Its rules are the same as the national rule plus no farmed meadows.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 3).
       // The Alta Badia tourist board’s walk “Passeggiata Borest - cascate del Pisciadú”, drawn on 12 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Communes: Corvara (no regulation, national rule).
+      // (data/board-line-routes.geojson). Communes: Corvara (own dog regulation, lead and muzzle).
       // No Natura 2000 site or park; 38% is in the Sella group landscape protection area, which limits building and land changes, not dogs.
       // The stored line follows the board’s own Outdooractive tour.
       area: 'Corvara – Rü de Pisciadú – Pisciadú waterfall, Corvara in Badia',
@@ -44229,7 +44238,7 @@
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Società Cooperativa Turistica Alta Badia, Passeggiata Borest - cascate del Pisciadú (altabadia.org and its Outdooractive tour)',
-          'Comune di Corvara in Badia publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde Corvara / Comune di Corvara in Badia, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 17, 27.06.2011), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs on farmed meadows in the growing season',
           'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park or natural monument on the line; about 38% is in the Crëps dl Sela / Sellagruppe landscape protection area, whose rules under the landscape law (LP 16/1970) cover building and changes to the land and set no rule on dogs',
           'OpenStreetMap ways along the board’s line (12 ways), road, surface, woodland and water data'
         ],
@@ -44243,12 +44252,12 @@
       shadeDescription: 'Mostly shaded: about three fifths runs through larch and spruce beside the stream.',
       terrainDescription: 'A short walk at 1,530–1,720 m from Corvara up the Rü de Pisciadú stream to a waterfall at the foot of the Sella group, through forest and a wide meadow of boulders and larches.',
       waterDescription: 'Drinking fountains at the start, at km 0.5, at km 1.3 and at km 2.2; places to eat at the start.',
-      dogNotes: 'Corvara has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
-      tips: 'Start at the Boé gondola car park in Corvara: 3.7 km and about 200 m of climbing one way, an hour and ten minutes to the waterfall, then the same way back. Corvara has no dog regulation of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m and carry a muzzle. Keep your dog out of the stream, which runs fast after rain.',
+      dogNotes: 'Corvara requires a lead no longer than 1.5 m on all public ground and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in the fountains of the village centre. The tourist board asks you to clean up after your dog; bag dispensers are in every village.',
+      tips: 'Start at the Boé gondola car park in Corvara: 3.7 km and about 200 m of climbing one way, an hour and ten minutes to the waterfall, then the same way back. In Corvara your dog must be on a lead of at most 1.5 m and you must carry a muzzle; keep off the hay meadows. Keep your dog out of the stream, which runs fast after rain.',
       sourceLinks: [
         { label: 'Alta Badia, Passeggiata Borest - cascate del Pisciadú', url: 'https://www.altabadia.org/it/tour/oadetail/oa/passeggiata-borest-cascate-del-pisciadu' },
         { label: 'Outdooractive, Passeggiata Borest - cascate del Pisciadú (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/111288236' },
-        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Corvara, dog regulation (PDF)', url: 'https://www.comune.corvara.bz.it/system/web/GetDocument.ashx?cts=1536582119&fileId=1025436' },
         { label: 'Alta Badia, holidays with your dog: practical tips', url: 'https://www.altabadia.org/it/alta-badia-vacanza-con-il-cane/consigli-pratici-per-il-cane' },
         { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
@@ -50772,6 +50781,603 @@
         { km: 1, lat: 46.14904, lng: 10.9497, osmId: 'way/291725569', name: 'Baita Ciclamino' }
       ],
       desc: 'A short walk from Molveno to the foot of the Croz dell’Altissimo and down beside the Rio Massò and its little waterfalls. The APT lists 2.8 km and 76 m of ascent.'
+    },
+    'osttirol-rundwanderung-schloss-weissenstein': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 1, the first Austrian walks).
+      // The Osttirol tourist board’s walk “Rundwanderung Schloss Weißenstein”, drawn on 17 OSM ways along the GPX it publishes
+      // (data/board-line-routes.geojson). Commune: Matrei in Osttirol. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Matrei in Osttirol – Schloss Weißenstein',
+      distance: 3.21,
+      elevation: 88,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the Rauterplatz in the centre of Matrei along the Proßeggweg to the park below Schloss Weißenstein, with its metal animal sculptures and nature boards, and back past the pharmacy beside the Felbertauern road.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Schloss Weißenstein on its crag above Matrei, seen from the Kreuzbichl chapel, in June (Haeferl on Wikimedia Commons, CC BY-SA 4.0), 8 m from the line.',
+        route: 'Official loop 3.21 km from the Rauterplatz in the centre of Matrei, as the Osttirol tourist board publishes it; the stored line is drawn on 17 OSM ways along the board’s published GPX, 3.2 km.',
+        routeNumbers: 'From the Rauterplatz in Matrei along the Proßeggweg to the turn below the castle, up the wide gravel path into the Schloss Weißenstein park, and back along the Felbertauern road past the pharmacy to the centre.',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line; places to eat and drink from OSM listed below.',
+        elevation: 'Official 3.21 km, 88 m up and 88 m down, 1 h (Osttirol tourist board); our line runs 954–1,062 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Osttirol tourist board, Rundwanderung Schloss Weißenstein (osttirol.com, with its GPX)',
+          'Matrei in Osttirol publishes no dog ordinance (none found on its website, oesterreich.gv.at or RIS), so ORMA’s Tyrol default applies',
+          'Tyrol’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): Landes-Polizeigesetz § 6a, a lead or a muzzle in the village and both on buses; Almschutzverordnung § 2, a short lead on any alpine pasture while it is grazed; Jagdgesetz § 35, a dog out of control in a hunting ground may be shot',
+          'Land Tirol protected-area, Natura 2000 and national-park layers (tiris open data, CC BY 4.0): No national park, Natura 2000 site or protected area on or within 300 m of the line (Land Tirol layers).',
+          'OpenStreetMap ways along the board’s line (17 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.5,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 80 m beside the Felbertauern road on the way back: keep your dog close on a short lead', 'Village streets with traffic'],
+      terrainType: 'Village streets and a wide gravel path through the castle park',
+      shadeDescription: 'About half the loop is under trees, mostly in the castle park; the village streets are open.',
+      terrainDescription: 'An easy loop at 950–1,060 m from the centre of Matrei to the park of Schloss Weißenstein, on village streets and a wide gravel path suitable for pushchairs.',
+      waterDescription: 'No public fountain is mapped on the line; cafés and inns in the centre of Matrei at the start.',
+      dogNotes: 'Matrei in Osttirol publishes no dog ordinance (none found on its website, oesterreich.gv.at or RIS); ORMA’s Tyrol standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: in the village Tyrolean law requires a lead or a muzzle, and both on buses. If the walk crosses grazed pasture, Tyrolean law (Almschutzverordnung § 2) asks for a short lead there. Under the Tyrolean hunting law a dog found out of control and chasing game may be shot.',
+      tips: 'Start at the Rauterplatz in the centre of Matrei: 3.21 km and about 88 m of climbing, an hour. Most of the loop is on village streets and the castle-park path, so keep your dog on a lead throughout. Carry a muzzle for buses and lifts.',
+      sourceLinks: [
+        { label: 'Osttirol, Rundwanderung Schloss Weißenstein', url: 'https://www.osttirol.com/aktiv-outdoor/wandern/detail/rundwanderung-schloss-weissenstein' },
+        { label: 'Tiroler Landes-Polizeigesetz § 6a (dogs in villages and on public transport)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40052150/LTI40052150.html' },
+        { label: 'Tiroler Almschutzverordnung § 2 (dogs on grazed alpine pastures)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40044604/LTI40044604.html' },
+        { label: 'Tiroler Jagdgesetz 2004 § 35 (dogs out of control in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40051034/LTI40051034.html' },
+        { label: 'Land Tirol, protected areas (tiris open data)', url: 'https://data-tiris.opendata.arcgis.com/datasets/schutzgebiete-umwelt-1/explore' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 47.00106, lng: 12.538609, label: 'Rauterplatz, the centre of Matrei in Osttirol, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 47.00002, lng: 12.53837, osmId: 'node/1673277317', name: 'Outside' },
+        { km: 0, lat: 47.00158, lng: 12.53819, osmId: 'node/4777053391', name: 'Gasthof Hinteregger' },
+        { km: 0, lat: 47.0012, lng: 12.53808, osmId: 'node/5880809753', name: 'Kuckuck' },
+        { km: 0, lat: 47.0011, lng: 12.53893, osmId: 'way/484960908', name: 'Talmarkt' }
+      ],
+      desc: 'A short loop from the centre of Matrei in Osttirol to the park below Schloss Weißenstein, with animal sculptures and nature boards along the way. The board lists 3.2 km and 88 m of ascent.'
+    },
+    'osttirol-naturkraftweg-umbalfaelle': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 1, the first Austrian walks).
+      // The Osttirol tourist board’s walk “NaturKraftWeg Umbalfälle”, drawn on 27 OSM ways along the GPX it publishes
+      // (data/board-line-routes.geojson). Commune: Prägraten am Großvenediger. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Prägraten – Ströden – Umbalfälle',
+      distance: 5.97,
+      elevation: 257,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Ströden car park at the head of the Virgental up the Isel to the Umbal Falls, with viewing platforms above the gorge and down by the water, and back down the other side of the river.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Isel and the Großbach waterfall in the upper Virgental, in July (Matthias Wien on Wikimedia Commons, CC BY-SA 4.0), 50 m from the line.',
+        route: 'Official loop 5.97 km from the Ströden car park (1,400 m) above Prägraten, as the Osttirol tourist board publishes it; the stored line is drawn on 27 OSM ways along the board’s published GPX, 6 km.',
+        routeNumbers: 'From the Ströden car park up the valley road and the paths beside the Isel to the Umbal Falls and their viewing platforms, with steps up beside the cascades, towards the Islitzer Alm, and back down by the river to Ströden.',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line; places to eat and drink from OSM listed below.',
+        elevation: 'Official 5.97 km, 257 m up and 257 m down, 2:30 h (Osttirol tourist board); our line runs 1,410–1,661 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Osttirol tourist board, NaturKraftWeg Umbalfälle (osttirol.com, with its GPX)',
+          'Prägraten am Großvenediger tells oesterreich.gv.at that dog owners must keep their dog on a lead everywhere outside private buildings (commune answer, January 2020; the ordinance text itself is not online), which is stricter than the Tyrol default and applies',
+          'Tyrol’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): Landes-Polizeigesetz § 6a, a lead or a muzzle in the village and both on buses; Almschutzverordnung § 2, a short lead on any alpine pasture while it is grazed; Jagdgesetz § 35, a dog out of control in a hunting ground may be shot',
+          'Land Tirol protected-area, Natura 2000 and national-park layers (tiris open data, CC BY 4.0): About 6% of the line, at its top, is in the outer zone of the Hohe Tauern National Park, which is also Natura 2000 (Hohe Tauern, Tirol); the river path touches the Natura 2000 site “Osttiroler Gletscherflüsse Isel, Schwarzach und Kalserbach”. Neither order sets a dog rule (full-text search of Tyrolean law); the park asks visitors to keep dogs on a lead everywhere. The core zone is more than 300 m away.',
+          'OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.9,
+      heatRisk: 'low',
+      exposure: true,
+      surfaceHazards: ['Viewing platforms high above the gorge and right by the water: keep your dog on a short lead', 'Steep wooden and stone steps beside the cascades', 'The glacial Isel is fast and cold, especially on summer afternoons: keep your dog out of it'],
+      terrainType: 'Gravel tracks, forest paths and wooden steps beside the cascades',
+      shadeDescription: 'Mostly in larch and spruce forest; the viewing platforms and the river meadows are open.',
+      terrainDescription: 'A loop at 1,410–1,660 m at the head of the Virgental on gravel tracks and forest paths, with steps and viewing platforms beside the Umbal Falls of the glacier-fed Isel.',
+      waterDescription: 'No drinking fountain is mapped; do not let your dog drink from or enter the glacial river. The Islitzer Alm near the top of the loop serves food and drink in summer.',
+      dogNotes: 'Prägraten am Großvenediger tells oesterreich.gv.at that dog owners must keep their dog on a lead everywhere outside private buildings (commune answer, January 2020; the ordinance text itself is not online), which is stricter than the Tyrol default and applies. Keep your dog on a lead for the whole walk and carry a muzzle: in the village Tyrolean law requires a lead or a muzzle, and both on buses. On the alpine pasture, while it is grazed, Tyrolean law (Almschutzverordnung § 2) asks for a short lead; if cattle threaten, let the dog go and move away. Under the Tyrolean hunting law a dog found out of control and chasing game may be shot.',
+      tips: 'Start at the Ströden car park (1,400 m) above Prägraten: 5.97 km and about 257 m of climbing, 2:30 h. Prägraten asks for a lead everywhere, and the national park asks the same, so keep your dog on a lead for the whole walk; it is a short lead on the Islitzer Alm pasture while cattle are up. The road to Ströden is open; in summer a shuttle runs on to the Islitzer Alm. Carry a muzzle for buses and lifts.',
+      sourceLinks: [
+        { label: 'Osttirol, NaturKraftWeg Umbalfälle', url: 'https://www.osttirol.com/aktiv-outdoor/wandern/detail/naturkraftweg-umbalfaelle' },
+        { label: 'Tiroler Landes-Polizeigesetz § 6a (dogs in villages and on public transport)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40052150/LTI40052150.html' },
+        { label: 'Tiroler Almschutzverordnung § 2 (dogs on grazed alpine pastures)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40044604/LTI40044604.html' },
+        { label: 'Tiroler Jagdgesetz 2004 § 35 (dogs out of control in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40051034/LTI40051034.html' },
+        { label: 'Land Tirol, protected areas (tiris open data)', url: 'https://data-tiris.opendata.arcgis.com/datasets/schutzgebiete-umwelt-1/explore' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 47.016471, lng: 12.319547, label: 'Ströden car park (1,400 m), Prägraten am Großvenediger, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 1.5, lat: 47.0092, lng: 12.30471, osmId: 'way/131675261', name: 'Islitzeralm' }
+      ],
+      desc: 'A loop at the head of the Virgental from Ströden up the glacier-fed Isel to the Umbal Falls, with viewing platforms above the gorge and by the water. The board lists 6 km and 257 m of ascent.'
+    },
+    'osttirol-kulturweg-koednitz': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 1, the first Austrian walks).
+      // The Osttirol tourist board’s walk “Kulturweg Ködnitz”, drawn on 17 OSM ways along the GPX it publishes
+      // (data/board-line-routes.geojson). Commune: Kals am Großglockner. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Kals am Großglockner – Ködnitz',
+      distance: 1.7,
+      elevation: 34,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A short heritage loop round Ködnitz, the centre of Kals: the Gothic parish church of St Rupert inside its fortified cemetery wall with the Glockner memorial, the late-Gothic rectory of 1481, the Glocknerhaus and the new village and culture halls.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The fortified cemetery wall round the church at Ködnitz, on the loop, in July (Michael Kranewitter on Wikimedia Commons, CC BY-SA 4.0), 11 m from the line.',
+        route: 'Official loop 1.7 km from the village square in Kals-Ködnitz, as the Osttirol tourist board publishes it; the stored line is drawn on 17 OSM ways along the board’s published GPX, 1.8 km.',
+        routeNumbers: 'From the village square at Ködnitz round the parish church of St Rupert and its cemetery wall, past the rectory, the Glocknerhaus and the culture hall, with a stretch along the Kals road (L26), and back to the square.',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line; places to eat and drink from OSM listed below.',
+        elevation: 'Official 1.7 km, 34 m up and 33 m down, 1 h (Osttirol tourist board); our line runs 1,308–1,360 m and measures 1.8 km.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Osttirol tourist board, Kulturweg Ködnitz (osttirol.com, with its GPX)',
+          'Kals am Großglockner publishes no dog ordinance (only its dog tax; none found on its website, oesterreich.gv.at or RIS), so ORMA’s Tyrol default applies',
+          'Tyrol’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): Landes-Polizeigesetz § 6a, a lead or a muzzle in the village and both on buses; Almschutzverordnung § 2, a short lead on any alpine pasture while it is grazed; Jagdgesetz § 35, a dog out of control in a hunting ground may be shot',
+          'Land Tirol protected-area, Natura 2000 and national-park layers (tiris open data, CC BY 4.0): No national park or protected area on the line; it passes 24 m from the Natura 2000 site “Osttiroler Gletscherflüsse Isel, Schwarzach und Kalserbach” on the Kalserbach without entering it (Land Tirol layers).',
+          'OpenStreetMap ways along the board’s line (17 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.1,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 260 m along the Kals road (L26), with traffic to the Großglockner valleys: keep your dog close on a short lead', 'Village lanes with cars'],
+      terrainType: 'Village lanes and pavements',
+      shadeDescription: 'Almost all in the open village; a few trees by the cemetery.',
+      terrainDescription: 'A very short loop at 1,310–1,360 m round the old centre of Kals am Großglockner, almost all on paved village lanes.',
+      waterDescription: 'No public fountain is mapped on the line; inns in Ködnitz at the start.',
+      dogNotes: 'Kals am Großglockner publishes no dog ordinance (only its dog tax; none found on its website, oesterreich.gv.at or RIS); ORMA’s Tyrol standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: in the village Tyrolean law requires a lead or a muzzle, and both on buses. If the walk crosses grazed pasture, Tyrolean law (Almschutzverordnung § 2) asks for a short lead there. Under the Tyrolean hunting law a dog found out of control and chasing game may be shot.',
+      tips: 'Start at the village square in Kals-Ködnitz: 1.7 km and about 34 m of climbing, an hour. The whole loop is in the village, where Tyrolean law asks for a lead or a muzzle: keep your dog on a lead for the whole loop. Carry a muzzle for buses and lifts.',
+      sourceLinks: [
+        { label: 'Osttirol, Kulturweg Ködnitz', url: 'https://www.osttirol.com/aktiv-outdoor/wandern/detail/kulturweg-koednitz' },
+        { label: 'Tiroler Landes-Polizeigesetz § 6a (dogs in villages and on public transport)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40052150/LTI40052150.html' },
+        { label: 'Tiroler Almschutzverordnung § 2 (dogs on grazed alpine pastures)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40044604/LTI40044604.html' },
+        { label: 'Tiroler Jagdgesetz 2004 § 35 (dogs out of control in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40051034/LTI40051034.html' },
+        { label: 'Land Tirol, protected areas (tiris open data)', url: 'https://data-tiris.opendata.arcgis.com/datasets/schutzgebiete-umwelt-1/explore' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 47.002499, lng: 12.645016, label: 'Village square, Kals-Ködnitz, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 47.00113, lng: 12.64528, osmId: 'node/517399097', name: 'Gasthof Ködnitzhof' },
+        { km: 0, lat: 47.00166, lng: 12.64518, osmId: 'node/517399108', name: 'Kalser Eck' }
+      ],
+      desc: 'A short heritage loop round Ködnitz, the old centre of Kals am Großglockner, past the Gothic church of St Rupert, its fortified cemetery wall and the Glockner memorial. The board lists 1.7 km and 34 m of ascent.'
+    },
+    'osttirol-rundwanderung-am-staller-sattel': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 1, the first Austrian walks).
+      // The Osttirol tourist board’s walk “Rundwanderung am Staller Sattel”, drawn on 30 OSM ways along the GPX it publishes
+      // (data/board-line-routes.geojson). Commune: St. Jakob in Defereggen. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'St. Jakob in Defereggen – Staller Sattel – Obersee',
+      distance: 4.7,
+      elevation: 70,
+      hours: '1.3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Grünbichl bus stop below the Staller Sattel up a path to the Obersee, along the lake past the Obersee inn and back by the Staller Almen huts.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Obersee and the peaks above the Staller Sattel, in August (PantheraLeo1359531 on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official loop 4.7 km from the Grünbichl bus stop and car park below the Staller Sattel, as the Osttirol tourist board publishes it; the stored line is drawn on 30 OSM ways along the board’s published GPX, 4.7 km.',
+        routeNumbers: 'From the Grünbichl bus stop and car park gently up the footpath to the Obersee, along the lake shore past the Alpengasthaus Obersee, and back over the pastures by the Außerweger and Hinterpassler huts of the Staller Almen to Grünbichl, with a short stretch of the pass road (L25).',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line; places to eat and drink from OSM listed below.',
+        elevation: 'Official 4.7 km, 70 m up and 70 m down, 1:20 h (Osttirol tourist board); our line runs 1,964–2,072 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Osttirol tourist board, Rundwanderung am Staller Sattel (osttirol.com, with its GPX)',
+          'St. Jakob in Defereggen publishes no dog ordinance (none found on its website, oesterreich.gv.at or RIS), so ORMA’s Tyrol default applies',
+          'Tyrol’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): Landes-Polizeigesetz § 6a, a lead or a muzzle in the village and both on buses; Almschutzverordnung § 2, a short lead on any alpine pasture while it is grazed; Jagdgesetz § 35, a dog out of control in a hunting ground may be shot',
+          'Land Tirol protected-area, Natura 2000 and national-park layers (tiris open data, CC BY 4.0): No national park, Natura 2000 site or protected area on the Austrian line (Land Tirol layers). Across the border the Rieserferner-Ahrn nature park (Natura 2000) lies 68 m from the line at its closest; the walk does not enter it (Province of Bolzano layers).',
+          'OpenStreetMap ways along the board’s line (30 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 200 m on the Staller Sattel pass road (L25): keep your dog close on a short lead', 'Grazing cattle on the Staller Almen in summer: short lead, give the herd room'],
+      terrainType: 'Footpaths, gravel tracks and pasture by the lake',
+      shadeDescription: 'No shade: the loop is on open pasture and lakeshore at 2,000 m.',
+      terrainDescription: 'An easy loop at 1,960–2,070 m below the Staller Sattel on footpaths and gravel tracks around the Obersee and over the Staller Almen.',
+      waterDescription: 'No drinking fountain is mapped; the Obersee inn and the Staller Almen huts serve drinks in summer.',
+      dogNotes: 'St. Jakob in Defereggen publishes no dog ordinance (none found on its website, oesterreich.gv.at or RIS); ORMA’s Tyrol standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: in the village Tyrolean law requires a lead or a muzzle, and both on buses. On the alpine pasture, while it is grazed, Tyrolean law (Almschutzverordnung § 2) asks for a short lead; if cattle threaten, let the dog go and move away. Under the Tyrolean hunting law a dog found out of control and chasing game may be shot.',
+      tips: 'Start at the Grünbichl bus stop and car park below the Staller Sattel: 4.7 km and about 70 m of climbing, 1:20 h. Most of the loop crosses the Staller Almen, a grazed pasture in summer, so Tyrolean law asks for a short lead there; keep it on for the whole walk. Carry a muzzle for buses and lifts.',
+      sourceLinks: [
+        { label: 'Osttirol, Rundwanderung am Staller Sattel', url: 'https://www.osttirol.com/aktiv-outdoor/wandern/detail/rundwanderung-am-staller-sattel' },
+        { label: 'Tiroler Landes-Polizeigesetz § 6a (dogs in villages and on public transport)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40052150/LTI40052150.html' },
+        { label: 'Tiroler Almschutzverordnung § 2 (dogs on grazed alpine pastures)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40044604/LTI40044604.html' },
+        { label: 'Tiroler Jagdgesetz 2004 § 35 (dogs out of control in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40051034/LTI40051034.html' },
+        { label: 'Land Tirol, protected areas (tiris open data)', url: 'https://data-tiris.opendata.arcgis.com/datasets/schutzgebiete-umwelt-1/explore' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.898984, lng: 12.220813, label: 'Grünbichl bus stop and car park below the Staller Sattel, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.89784, lng: 12.21861, osmId: 'node/10961574274', name: 'Lackenstüberl' },
+        { km: 0, lat: 46.90116, lng: 12.22138, osmId: 'way/222412072', name: 'Außerwegerhütte' },
+        { km: 0, lat: 46.90058, lng: 12.22152, osmId: 'way/235351441', name: 'Hinterpasslerhütte' },
+        { km: 2.1, lat: 46.89117, lng: 12.20228, osmId: 'way/38448752', name: 'Oberseehütte' }
+      ],
+      desc: 'An easy loop at 2,000 m below the Staller Sattel at the head of the Defereggen valley, up to the Obersee, along the lake and back over the Staller Almen. The board lists 4.7 km and 70 m of ascent.'
+    },
+    'campiglio-trekking-al-lago-di-nambino': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 5).
+      // APT Madonna di Campiglio’s walk “Trekking al Lago di Nambino”, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Pinzolo (Regolamento di Polizia Urbana 2024, Art. 66).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      area: 'Piana di Nambino – Lago di Nambino, Madonna di Campiglio',
+      distance: 3.1,
+      elevation: 154,
+      hours: '1.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the Piana di Nambino on the little road west and then path 217 beside the Rio Nambino up to the Lago di Nambino and its rifugio, with a short walk round the lake.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The stone steps of path 217 through the forest, on the line, in August (napo on Mapillary, CC BY-SA 4.0), 0 m from the line.',
+        route: 'Official out-and-back walk 3.1 km from the Piana di Nambino, as APT Madonna di Campiglio publishes it; the stored line is drawn on 9 OSM ways along the APT’s published line, 2.9 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Path SAT 217: from the Piana di Nambino west on the little road towards the Lago di Nambino; at the cableway hut, right on path 217, which climbs along the left bank of the Rio Nambino to the lake basin (about 170 m, under half an hour); walk round the lake. Back the same way.',
+        mapPoints: 'Start at the APT’s start, the Piana di Nambino; no drinking fountain is mapped on the line.',
+        elevation: 'Official 3.1 km, 154 m up and 153 m down, 1 h 30 min, highest point 1,773 m, lowest 1,628 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Trekking al Lago di Nambino (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Pinzolo, Regolamento di Polizia Urbana (2024), Art. 66: no roaming; a lead wherever the ground is not fenced, at most 1.5 m near people, animals or traffic',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 37,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Stone steps and roots on path 217', 'The path climbs beside the Rio Nambino: keep your dog out of the fast water'],
+      terrainType: 'Little road and a mountain path with stone steps',
+      shadeDescription: 'Mostly open: about 37% runs under trees, with the open lake basin at the top.',
+      terrainDescription: 'A short, family-friendly climb at 1,628–1,773 m from the Piana di Nambino through spruce forest to the Lago di Nambino and its rifugio, open all year.',
+      waterDescription: 'No drinking fountain is mapped on the line; the Rifugio Lago Nambino at the lake serves food and drink, and the Rio Nambino runs beside the path.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. Pinzolo’s rule also asks for a lead wherever the ground is not fenced, at most 1.5 m near people. The lake shore is busy with families: keep your dog close.',
+      tips: 'Start at the Piana di Nambino: 3.1 km there and back and about 150 m of climbing, an hour and a half with a walk round the lake. Keep your dog on a lead all the way.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Trekking al Lago di Nambino', url: 'https://www.campigliodolomiti.it/it/itinerari/trekking-al-lago-di-nambino' },
+        { label: 'Outdooractive, Trekking al Lago di Nambino (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/1510360' },
+        { label: 'Comune di Pinzolo, Regolamento di Polizia Urbana (2024; dogs: Art. 66–67)', url: 'https://www.comune.pinzolo.tn.it/content/download/795/15785/4/Regolamento+Polizia+Urbana+2024+A.pdf' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.237623,
+        lng: 10.817145,
+        label: 'Piana di Nambino, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 0, lat: 46.23779, lng: 10.8177, osmId: 'node/12430843295', name: 'Super G Italian Mountain Club - Campiglio' },
+        { km: 1.3, lat: 46.24162, lng: 10.80022, osmId: 'way/119917913', name: 'Rifugio Lago di Nambino' }
+      ],
+      desc: 'A short climb through spruce forest from the Piana di Nambino to the Lago di Nambino and its rifugio, in the Adamello Brenta Nature Park. The APT lists 3.1 km and 154 m of ascent.'
+    },
+    'campiglio-madonna-di-campiglio-monte-spinale': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 5).
+      // APT Madonna di Campiglio’s walk “Madonna di Campiglio - Monte Spinale”, drawn on 11 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Tre Ville 95% (no dog regulation, national rule) and Pinzolo 5% (Art. 66).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      // No lift is needed: the APT offers the Spinale gondola (closed cabins) as an alternative way down.
+      area: 'Madonna di Campiglio – Malga Fevri – Monte Spinale',
+      distance: 4.1,
+      elevation: 567,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and uphill from the church of Santa Maria Antica in Madonna di Campiglio on the Cantico delle Creature path, a steep path to Piazzetta Imperatrice, past Malga Fevri to the pastures of Monte Spinale; come back the same way or down on the Spinale gondola.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The stone square by the church of Santa Maria Antica, at the start, in August (lary_fede on Mapillary, CC BY-SA 4.0), 0 m from the line.',
+        route: 'Official one-way walk 4.1 km from the church of Santa Maria Antica, Madonna di Campiglio, as APT Madonna di Campiglio publishes it; the stored line is drawn on 11 OSM ways along the APT’s published line, 4 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the church of Santa Maria Antica on the Cantico delle Creature path; on reaching a tarmac road, about 50 m south to the sign for Piazzetta Imperatrice; the steep path up to Piazzetta Imperatrice; on to Malga Fevri and up to the pastures of Monte Spinale and the Chalet Spinale, with views of the Brenta Dolomites and the Adamello–Presanella glaciers. Back the same way, or down on the Spinale gondola.',
+        mapPoints: 'Start at the APT’s start, the church of Santa Maria Antica; drinking water at the start and at km 0.7 (OSM nodes 4987050042, 11176611620, 9959332174).',
+        elevation: 'Official 4.1 km, 567 m up and 1 m down one way, 2 h, highest point 2,086 m, lowest 1,519 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Madonna di Campiglio - Monte Spinale (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Tre Ville publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Comune di Pinzolo, Regolamento di Polizia Urbana (2024), Art. 66: no roaming; a lead wherever the ground is not fenced, at most 1.5 m near people, animals or traffic',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 47,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'A steep path up to Piazzetta Imperatrice',
+        'Cattle on the Spinale pastures in summer',
+        'Ski-area tracks and lift stations at the top'
+      ],
+      terrainType: 'Forest paths and high pastures',
+      shadeDescription: 'Part shade: about 47% runs under trees, in the woods low down; the Spinale pastures are open.',
+      terrainDescription: 'A steady climb of about 570 m at 1,519–2,086 m from the village through the woods to the high pastures of Monte Spinale, with a 360° view of the Brenta Dolomites and the Adamello–Presanella glaciers.',
+      waterDescription: 'No drinking fountain is mapped on the climb; the Chalet Spinale at the top serves food and drink. Carry water for your dog.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. Tre Ville has no dog rule of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried, which you will also need if you take the gondola down. Cattle graze on the Spinale pastures in summer.',
+      tips: 'Start at the church of Santa Maria Antica in Madonna di Campiglio: 4.1 km and about 570 m of climbing, two hours up. Come back the same way, or take the Spinale gondola down (closed cabins; carry a muzzle). Carry water.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Madonna di Campiglio - Monte Spinale', url: 'https://www.campigliodolomiti.it/it/itinerari/madonna-di-campiglio-monte-spinale' },
+        { label: 'Outdooractive, Madonna di Campiglio - Monte Spinale (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/51478105' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Comune di Pinzolo, Regolamento di Polizia Urbana (2024; dogs: Art. 66–67)', url: 'https://www.comune.pinzolo.tn.it/content/download/795/15785/4/Regolamento+Polizia+Urbana+2024+A.pdf' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.231319,
+        lng: 10.8285,
+        label: 'Church of Santa Maria Antica, Madonna di Campiglio, the APT’s start'
+      },
+      waterSources: [
+        { km: 0, lat: 46.230524, lng: 10.8273322, osmId: 'node/4987050042', label: 'Drinking fountain' },
+        { km: 0, lat: 46.2308791, lng: 10.8293582, osmId: 'node/11176611620', label: 'Drinking fountain' },
+        { km: 0.7, lat: 46.2281794, lng: 10.8332427, osmId: 'node/9959332174', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.22955, lng: 10.82681, osmId: 'node/333791574', name: 'Caffé Maturi' },
+        { km: 0, lat: 46.2295, lng: 10.827, osmId: 'node/12066038201', name: 'La Tana' },
+        { km: 0, lat: 46.23207, lng: 10.82743, osmId: 'node/304632628', name: 'Pizzeria Ristorante Belvedere' },
+        { km: 0, lat: 46.2319, lng: 10.82588, osmId: 'node/304632785', name: 'Arnica' },
+        { km: 0, lat: 46.23092, lng: 10.82658, osmId: 'node/333791569', name: 'La Cantina di Suisse' },
+        { km: 0, lat: 46.23193, lng: 10.82772, osmId: 'node/5325769522', name: 'Lume17' },
+        { km: 0, lat: 46.23239, lng: 10.8266, osmId: 'node/9969540118', name: 'El Volt' },
+        { km: 0, lat: 46.23204, lng: 10.82769, osmId: 'node/12076555560', name: 'Frischhh' },
+        { km: 0.1, lat: 46.22866, lng: 10.8291, osmId: 'way/610239683', name: 'Ober1' },
+        { km: 3.6, lat: 46.22256, lng: 10.84834, osmId: 'node/8699463843', name: 'Chalet Fiat' },
+        { km: 3.6, lat: 46.2226, lng: 10.84842, osmId: 'way/88073995', name: 'Rifugio Spinale' }
+      ],
+      desc: 'A steady climb from Madonna di Campiglio through the woods to the high pastures of Monte Spinale and its 360° view, in the Adamello Brenta Nature Park. The APT lists 4.1 km and 567 m of ascent, one way.'
+    },
+    'campiglio-trekking-al-rifugio-segantini': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 5).
+      // APT Madonna di Campiglio’s walk “Trekking al Rifugio Segantini”, drawn on 14 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Giustino (Regolamento di Polizia Urbana, Art. 31).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      area: 'Valina d’Amola – Rifugio Segantini, Val Nambrone',
+      distance: 4.9,
+      elevation: 397,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car park in the Val d’Amola over the wooden bridge on the Sarca d’Amola, up the panoramic ridge on path 211 “Oscar Collini” to the Rifugio Segantini below the Presanella, and back past streams, small waterfalls and lakes.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The granite plateau below the Rifugio Segantini, on the line, in August (zontad on Mapillary, CC BY-SA 4.0), 0 m from the line.',
+        route: 'Official loop 4.9 km from the Val d’Amola car park, as APT Madonna di Campiglio publishes it; the stored line is drawn on 14 OSM ways along the APT’s published line, 4.8 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Path SAT 211 “Oscar Collini”: from the car park along the little path to the wooden bridge over the Sarca d’Amola; across, right on path 211, which zigzags up the ramp to the wide panoramic ridge and follows it to the foot of the Rifugio Segantini, with the Vallina plain below, the Cornisello ridge and the Passo dell’Om to the right and the walls of the Presanella ahead; back past streams, small waterfalls and lakes to the car park.',
+        mapPoints: 'Start at the APT’s start, the Val d’Amola car park; no drinking fountain is mapped on the line.',
+        elevation: 'Official 4.9 km, 397 m up and 398 m down, 2 h, highest point 2,369 m, lowest 2,019 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Trekking al Rifugio Segantini (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Giustino, Regolamento di Polizia Urbana, Art. 31: dogs on a lead of at most 1.5 m on streets and public places, muzzled in public premises and in crowds',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: [
+        'Rocky mountain path and granite slabs above 2,000 m',
+        'Wooden bridge over the fast Sarca d’Amola',
+        'No shelter from bad weather on the ridge'
+      ],
+      terrainType: 'Rocky mountain paths',
+      shadeDescription: 'Mostly open: about 0% runs under trees, all of it above the trees.',
+      terrainDescription: 'A high loop at 2,019–2,369 m at the head of the Val Nambrone, up a panoramic ridge to the Rifugio Segantini at the foot of the Presanella, past streams, small waterfalls and lakes.',
+      waterDescription: 'No drinking fountain is mapped on the line; streams cross the loop and the Rifugio Segantini serves food and drink in summer. Carry water for your dog.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. Giustino’s rule asks for a lead of at most 1.5 m on public places and a muzzle in public premises and in crowds. The path is rocky: only for dogs used to mountain terrain.',
+      tips: 'Start at the Val d’Amola car park: 4.9 km and about 400 m of climbing, two hours. Keep your dog on a lead and carry a muzzle. The APT recommends it for children from about ten: the path is rocky but not difficult.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Trekking al Rifugio Segantini', url: 'https://www.campigliodolomiti.it/it/itinerari/trekking-al-rifugio-segantini' },
+        { label: 'Outdooractive, Trekking al Rifugio Segantini (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/1510456' },
+        { label: 'Comune di Giustino, Regolamento di Polizia Urbana (dogs: Art. 31)', url: 'https://www.comune.giustino.tn.it/content/download/581/11652/2/Regolamento%2BPolizia%2BUrbana%2BGiustino.pdf' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.205512,
+        lng: 10.725836,
+        label: 'Val d’Amola car park, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 1.7, lat: 46.20911, lng: 10.71079, osmId: 'node/11138943607', name: 'Rifugio Val Amola-Giovanni Segantini' },
+        { km: 1.7, lat: 46.20924, lng: 10.7108, osmId: 'way/94750442', name: 'Rifugio Segantini' }
+      ],
+      desc: 'A high loop at the head of the Val Nambrone up a panoramic ridge to the Rifugio Segantini, below the walls of the Presanella. The APT lists 4.9 km and 397 m of ascent.'
+    },
+    'campiglio-valina-d-amola-rifugio-segantini-cornisello': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 5).
+      // APT Madonna di Campiglio’s walk “Valina d’Amola - Rifugio Segantini - Cornisello”, drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Giustino 62% (Art. 31) and Carisolo 38% (Art. 35).
+      // Adamello Brenta park: no zone A (riserva integrale) within 150 m on the park’s Tav. 1 zoning sheets, so it is published under
+      // the owner’s 28 Oct rule (hold only zone A + 100 m) with the park’s lead rule and the special-reserve stay-on-path rule stated.
+      area: 'Valina d’Amola – Rifugio Segantini – Cornisello, Val Nambrone',
+      distance: 9.4,
+      elevation: 559,
+      hours: '5',
+      routeShape: 'loop',
+      routeShapeNote: 'A high loop from the small car park at Valina d’Amola past Malga Valina d’Amola, up a steep ridge to the Rifugio Segantini and on towards the Cornisello lakes, above the trees for most of the way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The meadows of the Val d’Amola, on the loop, in August (zontad on Mapillary, CC BY-SA 4.0), 55 m from the line.',
+        route: 'Official loop 9.4 km from the Valina d’Amola car park, as APT Madonna di Campiglio publishes it; the stored line is drawn on 17 OSM ways along the APT’s published line, 9.4 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Path SAT 211 and others: from the small car park at Valina d’Amola left on the gravel road south to the Sarca d’Amola; before the bridge, right on the path beside the stream; back on the forest road to Malga Valina d’Amola; right (west), over a small wooden bridge and right again at the fork (north); up the steep ridge in zigzags to its crest and along it to the Rifugio Segantini; on towards the Cornisello and back to the car park.',
+        mapPoints: 'Start at the APT’s start, the Valina d’Amola car park; no drinking fountain is mapped on the line.',
+        elevation: 'Official 9.4 km, 559 m up and 559 m down, 5 h, highest point 2,421 m, lowest 1,911 m (Madonna di Campiglio Azienda per il Turismo).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Madonna di Campiglio Azienda per il Turismo, Valina d’Amola - Rifugio Segantini - Cornisello (campigliodolomiti.it and its Outdooractive tour)',
+          'Comune di Giustino, Regolamento di Polizia Urbana, Art. 31: dogs on a lead of at most 1.5 m on streets and public places, muzzled in public premises and in crowds',
+          'Comune di Carisolo, Regolamento di Polizia Urbana, Art. 35: dogs on a lead of at most 1.5 m on streets and public places, muzzled in public premises and in crowds',
+          'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco: Art. 28 c.6 keeps dogs always on a lead in the park and bans them nowhere; Art. 16 c.5 forbids leaving the paths in the passive-conservation special reserves (RSP) from 1 April to 15 July and on snow. Zone A (riserva integrale) checked on the park’s Tav. 1 zoning sheets: none within 150 m of the line. Owner’s rule of 28 Oct 2026: hold only zone A and 100 m around it, or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Province of Trento Natura 2000 measures set no rule on dogs; OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: [
+        'A steep, zigzagging ridge up to the Rifugio Segantini',
+        'High and open above 2,000 m: the APT advises an early start and stable weather',
+        'Small wooden bridges over fast streams'
+      ],
+      terrainType: 'Forest road and rocky mountain paths',
+      shadeDescription: 'Mostly open: about 0% runs under trees, the APT notes it runs above the trees.',
+      terrainDescription: 'A demanding high loop at 1,911–2,421 m from Valina d’Amola up to the Rifugio Segantini and towards the Cornisello lakes, below the Presanella.',
+      waterDescription: 'No drinking fountain is mapped on the line; streams cross the loop and the Rifugio Segantini serves food and drink in summer. Carry water for your dog.',
+      dogNotes: 'In the Adamello Brenta Nature Park dogs must always be on a lead. In the park’s special reserves, stay on the path from 1 April to 15 July and whenever there is snow. Giustino and Carisolo both ask for a lead of at most 1.5 m in public places and a muzzle in public premises and crowds. The ridge is steep and rocky: only for fit dogs used to mountain days.',
+      tips: 'Start at the small car park at Valina d’Amola early, on a day of stable weather, as the APT advises: 9.4 km and about 560 m of climbing, five hours. Keep your dog on a lead, carry a muzzle and carry water.',
+      sourceLinks: [
+        { label: 'Madonna di Campiglio, Valina d’Amola - Rifugio Segantini - Cornisello', url: 'https://www.campigliodolomiti.it/it/itinerari/valina-d-amola-rifugio-segantini-cornisello' },
+        { label: 'Outdooractive, Valina d’Amola - Rifugio Segantini - Cornisello (Madonna di Campiglio Azienda per il Turismo)', url: 'https://www.outdooractive.com/it/r/19614908' },
+        { label: 'Comune di Giustino, Regolamento di Polizia Urbana (dogs: Art. 31)', url: 'https://www.comune.giustino.tn.it/content/download/581/11652/2/Regolamento%2BPolizia%2BUrbana%2BGiustino.pdf' },
+        { label: 'Comune di Carisolo, Regolamento di Polizia Urbana (dogs: Art. 35)', url: 'https://www.comune.carisolo.tn.it/content/download/2890/35784/2/CT045-24-A+regolamento+polizia+urbana.pdf' },
+        { label: 'Parco Naturale Adamello Brenta, Norme di attuazione del Piano del Parco (dogs: Art. 28 c.6; special reserves: Art. 15–18)', url: 'https://www.pnab.it/it/ente/regolamento-fauna' },
+        { label: 'Parco Naturale Adamello Brenta, Piano del Parco Tav. 1 (zoning sheets)', url: 'https://www.pnab.it/it/ente/piano-del-parco-tav-1' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.205255,
+        lng: 10.730959,
+        label: 'Valina d’Amola car park, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 2.3, lat: 46.21996, lng: 10.73821, osmId: 'way/29390000', name: 'Rifugio Cornisello' },
+        { km: 7, lat: 46.20924, lng: 10.7108, osmId: 'way/94750442', name: 'Rifugio Segantini' },
+        { km: 7, lat: 46.20911, lng: 10.71079, osmId: 'node/11138943607', name: 'Rifugio Val Amola-Giovanni Segantini' }
+      ],
+      desc: 'A demanding high loop from Valina d’Amola up to the Rifugio Segantini and towards the Cornisello lakes, below the Presanella, in the Adamello Brenta Nature Park. The APT lists 9.4 km and 559 m of ascent.'
+    },
+    'bormio-da-arnoga-al-rifugio-federico': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Lombardy batch 3).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Da Arnoga al Rifugio Federico” by Orobie Active, drawn on 28 OSM ways along its published GPX
+      // (data/board-line-routes.geojson). Communes: Valdidentro (no regulation, national rule).
+      // Crosses the Val Viola Bormina – Ghiacciaio di Cima dei Piazzi Natura 2000 site IT2040012, whose measures require dogs on a lead and visitors on the paths; published with that rule stated (owner rule of 27 Oct 2026). Not in the Stelvio National Park.
+      area: 'Arnoga – Paluetta – Baite dell’Orsa – Rifugio Federico, Val Viola, Valdidentro',
+      distance: 7,
+      elevation: 562,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way up the Val Viola from Arnoga past Paluetta, the Baite dell’Orsa and the Caricc farm to the Rifugio Federico at the mouth of the Val Dosdè; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The larch forest of the Valdidentro below Arnoga and the mountains towards Bormio, beside the start of the walk, in late June (qwesy qwesy, CC BY 3.0), 75 m from the line.',
+        route: 'Official one-way walk 7 km from the lower car park at the Arnoga hairpin, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 28 OSM ways along the published GPX, 7 km, with 99% of the published line within 25 m of it.',
+        routeNumbers: 'From the lower car park on the Arnoga hairpin along the almost level dirt road on the left side of the valley, through Swiss stone pine, spruce and larch, to just beyond Paluetta; over a bridge with wooden sleepers to the right bank and gently up to the Baite dell’Orsa, a cluster of old summer huts in a clearing; on a well-trodden path through larches, with a few short climbs, to the Caricc farm (1,990 m); steeper from here, with a natural balcony halfway over the canyon of the Viola torrent; where the trees thin out the climb ends, with a wide view over the Val Dosdè, and the path runs level to the Rifugio Federico. Back the same way.',
+        mapPoints: 'Start at the published start; drinking water at km 0.2 (OSM nodes 7553509309).',
+        elevation: 'Official 7 km, 562 m up, 2 h (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Orobie Active). The stored line follows the published GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'in-Lombardia, the official tourism portal of Regione Lombardia, “Da Arnoga al Rifugio Federico” (itinerary by Orobie Active, with its GPX)',
+          'Comune di Valdidentro publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'ZSC IT2040012 Val Viola Bormina – Ghiacciaio di Cima dei Piazzi: DGR X/4429 of 30 November 2015, Allegato 2, Art. 4 (p. 272), visitors keep to the paths and dogs go on a lead under close watch; no free-roaming pets. No park, reserve or strict zone on the line (Regione Lombardia geoportal layers; the line is outside the Stelvio National Park)',
+          'OpenStreetMap ways along the published line (28 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 51,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A natural balcony over the Viola canyon on the steeper stretch above the Caricc farm: keep your dog close and on a short lead', 'Cattle graze the Val Viola in summer: keep your distance', 'Above 2,000 m the open stretch to the hut has no shade and storms build fast on summer afternoons'],
+      terrainType: 'Dirt road, then forest and meadow paths',
+      shadeDescription: 'About half shaded: the dirt road and the larch woods up to the Caricc farm are under trees; the last climb and the level stretch to the hut are open.',
+      terrainDescription: 'A one-way walk at about 1,800–2,140 m up the Val Viola, a side valley of the Valdidentro between Bormio and Livigno, through stone pine and larch forest to a hut with a wide view over the Val Dosdè. A summer walk: snow lies late up here.',
+      waterDescription: 'Drinking fountain at km 0.2; places to eat at the start and on the way.',
+      dogNotes: 'Valdidentro has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The Val Viola is a Natura 2000 site: keep your dog on a lead and on the path the whole way. Clean up after your dog.',
+      tips: 'Start at the lower car park on the Arnoga hairpin, on the road from Bormio to Livigno: 7 km and, as the portal lists, 562 m of climbing, about two hours to the Rifugio Federico, then the same way back. Walk it in summer and early autumn. Keep your dog on a lead the whole way: Valdidentro follows the national rule (1.5 m at most, muzzle carried) and the Val Viola is a Natura 2000 site where dogs stay on a lead and on the path. There is a fountain near the start and water and food at the hut.',
+      sourceLinks: [
+        { label: 'in-Lombardia, Da Arnoga al Rifugio Federico', url: 'https://www.in-lombardia.it/itinerari/da-arnoga-al-rifugio-federico' },
+        { label: 'in-Lombardia, Da Arnoga al Rifugio Federico: GPX', url: 'https://www.in-lombardia.it/sites/default/files/itinerari/gpx/169998/setNametrack62rfz70k32yn1dles47w7r4yl0pyjnph.gpx' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'Regione Lombardia, DGR X/4429/2015, Allegato 2 (site-specific conservation measures)', url: 'https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/dgr-4429-2015-allegato-2-%20misure-di-conservazione-sito-specifiche.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.458904, lng: 10.241593, label: 'The lower car park at the Arnoga hairpin, the published start' },
+      waterSources: [
+        { km: 0.2, lat: 46.4579825, lng: 10.2403387, osmId: 'node/7553509309', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.45909, lng: 10.242, osmId: 'way/119431806', name: 'Li Arnoga' },
+        { km: 7, lat: 46.42124, lng: 10.19775, osmId: 'way/119431803', name: 'Rifugio Federico Valgoi' }
+      ],
+      desc: 'A one-way walk up the Val Viola from Arnoga, between Bormio and Livigno, through stone pine and larch woods past the Baite dell’Orsa to the Rifugio Federico with its view over the Val Dosdè. The portal lists 7 km and 562 m of ascent.'
     }
   };
 
