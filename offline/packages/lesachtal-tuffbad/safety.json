@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lesachtal-tuffbad",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3,
+    "ascentM": 133,
+    "highestPointM": 1409,
+    "expectedDuration": "0.9 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 0.5
+  },
+  "trailhead": {
+    "lat": 46.72335,
+    "lng": 12.766836,
+    "label": "the car park below the Tuffbad, above St. Lorenzen im Lesachtal, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7241421,
+      "lng": 12.7652903,
+      "label": "Drinking-water tap by the Tuffbad",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Alpine tracks and the forest road are open to farm and forestry vehicles.",
+    "Cattle may graze the alpine meadows in summer: short lead, give the herd room.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

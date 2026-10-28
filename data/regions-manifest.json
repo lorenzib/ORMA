@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T11:37:00.212Z",
+  "generatedAt": "2026-10-28T12:34:49.816Z",
   "regions": {
     "dolomites": {
       "trailCount": 287,
@@ -423,8 +423,8 @@
       "optional": []
     },
     "tyrol": {
-      "trailCount": 10,
-      "trails": "data/regions/tyrol-trails.js?v=a1170e500e31",
+      "trailCount": 13,
+      "trails": "data/regions/tyrol-trails.js?v=7ddff27b40c0",
       "details": {
         "osttirol-rundwanderung-schloss-weissenstein": "data/trail-details/osttirol-rundwanderung-schloss-weissenstein.js?v=505f9f1fa778",
         "osttirol-naturkraftweg-umbalfaelle": "data/trail-details/osttirol-naturkraftweg-umbalfaelle.js?v=40335ca2a8f1",
@@ -435,7 +435,10 @@
         "osttirol-weg-der-sinne-virgen": "data/trail-details/osttirol-weg-der-sinne-virgen.js?v=2442d2f325ca",
         "osttirol-themenweg-kreuzweg-virgen": "data/trail-details/osttirol-themenweg-kreuzweg-virgen.js?v=f048d0ec5ebe",
         "osttirol-kinder-naturerlebnispfad-kals-ag": "data/trail-details/osttirol-kinder-naturerlebnispfad-kals-ag.js?v=e8654b3c05e7",
-        "osttirol-wassererlebnisweg-st-jakob-i-d": "data/trail-details/osttirol-wassererlebnisweg-st-jakob-i-d.js?v=dded64d35664"
+        "osttirol-wassererlebnisweg-st-jakob-i-d": "data/trail-details/osttirol-wassererlebnisweg-st-jakob-i-d.js?v=dded64d35664",
+        "lesachtal-spazierweg-maria-luggau-gailweg": "data/trail-details/lesachtal-spazierweg-maria-luggau-gailweg.js?v=dab77041c8f1",
+        "lesachtal-tuffbad": "data/trail-details/lesachtal-tuffbad.js?v=b771d811e6a5",
+        "gailtal-almkaese-sonnenalpe": "data/trail-details/gailtal-almkaese-sonnenalpe.js?v=8ec14c665f2e"
       },
       "water": "data/regions/tyrol-water.geojson",
       "hutsBars": "data/regions/tyrol-huts-bars.geojson",
@@ -823,7 +826,10 @@
     "osttirol-weg-der-sinne-virgen": "tyrol",
     "osttirol-themenweg-kreuzweg-virgen": "tyrol",
     "osttirol-kinder-naturerlebnispfad-kals-ag": "tyrol",
-    "osttirol-wassererlebnisweg-st-jakob-i-d": "tyrol"
+    "osttirol-wassererlebnisweg-st-jakob-i-d": "tyrol",
+    "lesachtal-spazierweg-maria-luggau-gailweg": "tyrol",
+    "lesachtal-tuffbad": "tyrol",
+    "gailtal-almkaese-sonnenalpe": "tyrol"
   },
   "trailSlug": {
     "alpe-siusi": "alpe-di-siusi-meadow-loop",
@@ -1205,6 +1211,9 @@
     "fvg-anello-casera-vas-monte-buoi": "anello-casera-vas-monte-buoi",
     "fvg-monte-rest-da-passo-rest": "monte-rest-da-passo-rest",
     "fvg-mirabila-sentiero-botanico-bila-pec": "mirabila-sentiero-bila-pec",
+    "lesachtal-spazierweg-maria-luggau-gailweg": "gailweg-maria-luggau",
+    "lesachtal-tuffbad": "tuffbad-loop-lesachtal",
+    "gailtal-almkaese-sonnenalpe": "alpine-cheese-walk-sonnenalpe-nassfeld",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1587,6 +1596,9 @@
     "anello-casera-vas-monte-buoi": "fvg-anello-casera-vas-monte-buoi",
     "monte-rest-da-passo-rest": "fvg-monte-rest-da-passo-rest",
     "mirabila-sentiero-bila-pec": "fvg-mirabila-sentiero-botanico-bila-pec",
+    "gailweg-maria-luggau": "lesachtal-spazierweg-maria-luggau-gailweg",
+    "tuffbad-loop-lesachtal": "lesachtal-tuffbad",
+    "alpine-cheese-walk-sonnenalpe-nassfeld": "gailtal-almkaese-sonnenalpe",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

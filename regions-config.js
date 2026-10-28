@@ -252,6 +252,7 @@
     ['Maria Luggau / Lesachtal', 46.7056, 12.7348, 'Lesachtal', 'tyrol', 'hermagor'],
     ['Liesing / Lesachtal', 46.6923, 12.8180, 'Lesachtal', 'tyrol', 'hermagor'],
     ['Kötschach-Mauthen', 46.6617, 12.9712, 'Gailtal', 'tyrol', 'hermagor'],
+    ['Sonnenalpe Nassfeld', 46.5639, 13.2745, 'Gailtal – Nassfeld', 'tyrol', 'hermagor'],
     ['Hermagor', 46.6268, 13.3702, 'Gailtal', 'tyrol', 'hermagor'],
 
     // ---- Valle d'Aosta ----
