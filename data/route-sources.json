@@ -2305,6 +2305,62 @@
       "quote": "Vom Bühlerhof läuft man leicht ansteigend bis zum Beginn des Panoramaweges (1389 m), der mit Berg-Symbolen markiert ist. Der Panoramaweg verläuft relativ eben bis zur Wegkreuzung mit Weg Nr. 11.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T19:40:50.460Z"
+    },
+    "valgardena-arte-e-storia": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/arte-e-storia/16570787/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Arte e storia",
+      "quote": "Distanza 2,1 km · Salita 76 m · Durata 1:31 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-escursione-al-brogles": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-brogles/810055933/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione al Brogles",
+      "quote": "Distanza 4,9 km · Salita 126 m · Durata 1:22 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-escursione-al-seeurasas": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-seeurasas/811360645/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione al Sëurasas",
+      "quote": "Distanza 5,2 km · Salita 900 m · Durata 2:55 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-escursione-da-s-cristina-al-passo-sella": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-da-s-cristina-al-passo-sella/810055923/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione da S. Cristina al Passo Sella",
+      "quote": "Distanza 8,4 km · Salita 800 m · Durata 3:24 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-uciei-de-freeines": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/uciei-de-freeines-arte-che-invita-il-sentiero-dei-richiami-degli-uccelli/810055690/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Uciei de Frëines: Arte che invita – Il sentiero dei richiami degli uccelli",
+      "quote": "Distanza 5,1 km · Salita 3 m · Durata 1:35 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-val-danna-percorso-kneipp": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/val-danna-percorso-kneipp/810054401/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Val d'Anna - percorso Kneipp",
+      "quote": "Distanza 1,2 km · Salita 98 m · Durata 0:27 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-giro-storico-del-paese-di-ortisei": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/giro-storico-del-paese-di-ortisei/810054788/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Giro storico del paese di Ortisei",
+      "quote": "Distanza 4,6 km · Salita 179 m · Durata 1:25 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
     }
   }
 }

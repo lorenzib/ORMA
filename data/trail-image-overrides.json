@@ -5262,6 +5262,40 @@
       }
     },
     {
+      "id": "valgardena-arte-e-storia",
+      "approvedReviewId": "commons-valgardena-arte-e-storia-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-arte-e-storia-castle.jpg",
+        "heroImage": "images/trails/valgardena-arte-e-storia-castle.jpg",
+        "imageAlt": "The ruined walls of Castel Wolkenstein built into a pale limestone cliff, with larch and spruce forest below and the meadows and houses of Selva in the valley beyond",
+        "imageCredit": "The ruins of Castel Wolkenstein above Selva",
+        "imageCreditText": "The ruins of Castel Wolkenstein above Selva by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ciastel_Wolkenstein_Gherd%C3%ABina.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-escursione-al-brogles",
+      "approvedReviewId": "commons-valgardena-escursione-al-brogles-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-al-brogles-schienboden.jpg",
+        "heroImage": "images/trails/valgardena-escursione-al-brogles-schienboden.jpg",
+        "imageAlt": "Wide green alpine pastures dotted with stone pines on the Resciesa, the jagged grey peaks of the Odle and their scree slopes rising behind under a pale summer sky",
+        "imageCredit": "The Resciesa pastures below the Odle",
+        "imageCreditText": "The Resciesa pastures below the Odle by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Odles_Eures_de_Bredles_Schienboden.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valgardena-escursione-al-resciesa",
       "approvedReviewId": "mapillary-valgardena-escursione-al-resciesa-on-route",
       "approvedAt": "2026-10-28T09:00:00.000Z",
@@ -5279,6 +5313,23 @@
       }
     },
     {
+      "id": "valgardena-escursione-al-seeurasas",
+      "approvedReviewId": "commons-valgardena-escursione-al-seeurasas-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-al-seeurasas-san-giacomo.jpg",
+        "heroImage": "images/trails/valgardena-escursione-al-seeurasas-san-giacomo.jpg",
+        "imageAlt": "The white San Giacomo church with its tall slender spire on a green meadow edged by spruce, a small house beside it, and the Sassolungo towering in the distance under dark clouds",
+        "imageCredit": "San Giacomo above Ortisei, on the way to the Sëurasas",
+        "imageCreditText": "San Giacomo above Ortisei, on the way to the Sëurasas by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Dlieja_da_Sacun_cun_Saslonch.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valgardena-escursione-al-terrazzo-panoramico-seeurasas",
       "approvedReviewId": "commons-valgardena-escursione-al-terrazzo-panoramico-seeurasas-on-route",
       "approvedAt": "2026-10-28T12:00:00.000Z",
@@ -5292,6 +5343,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Urtijei_from_Seurasass.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-escursione-da-s-cristina-al-passo-sella",
+      "approvedReviewId": "commons-valgardena-escursione-da-s-cristina-al-passo-sella-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-da-s-cristina-al-passo-sella-comici.jpg",
+        "heroImage": "images/trails/valgardena-escursione-da-s-cristina-al-passo-sella-comici.jpg",
+        "imageAlt": "The white Rifugio Emilio Comici with blue shutters and climbing holds painted on its walls, a wooden fence and gravel in front, and the grey cliffs of the Sassolungo rising behind",
+        "imageCredit": "The Rifugio Emilio Comici below the Sassolungo",
+        "imageCreditText": "The Rifugio Emilio Comici below the Sassolungo by Leo72",
+        "imageCreator": "Leo72",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rifugio_Emilio_Comici_2.JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -5343,6 +5411,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=377866916885609",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-giro-storico-del-paese-di-ortisei",
+      "approvedReviewId": "commons-valgardena-giro-storico-del-paese-di-ortisei-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-giro-storico-del-paese-di-ortisei-church.jpg",
+        "heroImage": "images/trails/valgardena-giro-storico-del-paese-di-ortisei-church.jpg",
+        "imageAlt": "The pale yellow baroque parish church of Ortisei with its red onion-domed bell tower, a stone wall and flowering shrubs in front and a forested slope behind under a blue sky with clouds",
+        "imageCredit": "The parish church of Ortisei",
+        "imageCreditText": "The parish church of Ortisei by H. Zell",
+        "imageCreator": "H. Zell",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Parish_church_St._Ulrich_-_Urtij%C3%ABi.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -5428,6 +5513,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=1245395036599629",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-uciei-de-freeines",
+      "approvedReviewId": "commons-valgardena-uciei-de-freeines-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-uciei-de-freeines-col-raiser.jpg",
+        "heroImage": "images/trails/valgardena-uciei-de-freeines-col-raiser.jpg",
+        "imageAlt": "A flowering alpine meadow on Col Raiser with a small group of spruces, the grey Odle and Stevia peaks and their pale scree slopes behind under a summer sky with white clouds",
+        "imageCredit": "The Odle and the Stevia from Col Raiser",
+        "imageCreditText": "The Odle and the Stevia from Col Raiser by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Odles_y_Stevia_da_Col_Raiser.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-val-danna-percorso-kneipp",
+      "approvedReviewId": "commons-valgardena-val-danna-percorso-kneipp-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-val-danna-percorso-kneipp-stream.jpg",
+        "heroImage": "images/trails/valgardena-val-danna-percorso-kneipp-stream.jpg",
+        "imageAlt": "The Val d’Anna stream tumbling over low stone weirs through a wooded gorge, a gravel path climbing beside it on the right among spruces",
+        "imageCredit": "The Val d’Anna stream above Ortisei",
+        "imageCreditText": "The Val d’Anna stream above Ortisei by Boboseiptu",
+        "imageCreator": "Boboseiptu",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rio_Val_d%27Anna_-_Ruf_de_Val_d%27Ana.jpg",
         "imageSourceType": "licensed-source"
       }
     },
