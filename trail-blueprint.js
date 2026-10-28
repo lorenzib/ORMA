@@ -610,19 +610,31 @@
     }
   })();
 
-  /* ---- Dog safety tab: Good/Caution rows from real trail fields ---- */
+  /* ---- Dog safety tab: Good/Caution rows from real trail fields ----
+     Painted once from the route, then again when the forecast lands: heat
+     and hot ground only matter on a warm day, so the rows follow the weather. */
   (function safetyRows() {
     const box = $('dogSafetyRows');
     if (!box) return;
+    const paint = () => paintSafetyRows(box, window.DoloPawsWeatherWindow
+      ? window.DoloPawsWeatherWindow.scoringConditions(window.DoloPawsCurrentConditions)
+      : null);
+    paint();
+    window.addEventListener('dolopaws-conditions-ready', paint);
+  })();
+
+  function paintSafetyRows(box, conditions) {
     const text = `${t.tips || ''} ${t.desc || ''} ${(t.surfaceHazards || []).join(' ')}`.toLowerCase();
     const hasWater = Array.isArray(t.waterSources) && t.waterSources.length > 0;
     const shade = typeof t.shadeCoverage === 'number' ? t.shadeCoverage : null;
     const maxAlt = Math.max(0, ...(t.elevationProfile || []).map(p => Number(p.elev) || 0));
     const rows = [];
-    const caution = (title, sub, guideId) => rows.push({ title, sub, guideId });
+    const caution = (title, sub, guideId, items) => rows.push({ title, sub, guideId, items: items || [] });
+    // An assessment may name its own guide, or none (`guide: null`) when no
+    // guide fits, such as cold advice on a page whose guide is about heat.
     const addAssessment = (item, guideId) => {
       if (!item || item.ok) return;
-      caution(item.title, item.detail, guideId);
+      caution(item.title, item.detail, item.guide === undefined ? guideId : item.guide, item.items);
     };
 
     addAssessment(trust ? trust.exposureAssessment(t) : (t.exposure
@@ -632,7 +644,8 @@
     addAssessment(trust ? trust.surfaceAssessment(t) : (Number(t.terrainRank) !== 0
       ? { ok: false, title: 'Surface hazards', detail: (t.terrainType || 'Gravel and mixed rock') + '. Check pads at breaks; consider booties for tender paws.' }
       : null), 'paws');
-    addAssessment(trust ? trust.heatAssessment(t) : null, 'heat');
+    addAssessment(trust ? trust.trafficAssessment(t) : null, null);
+    addAssessment(trust ? trust.heatAssessment(t, conditions) : null, 'heat');
     addAssessment(trust ? trust.waterAssessment(t) : (hasWater
       ? { ok: true, title: 'Water', detail: 'A water source is mapped on this route. Bring a bowl.' }
       : { ok: false, title: 'Water', detail: 'No water source is mapped. Carry enough for the dog.' }), 'water');
@@ -645,10 +658,14 @@
     const rowMarkup = r => `
       <div class="safety-row is-caution"${r.guideId ? ` data-guide-id="${esc(r.guideId)}"` : ''}>
         <span class="pill">Caution</span>
-        <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small></span>
+        <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small>${r.items.length
+          ? `<ul class="safety-row-items">${r.items.map(entry => `<li>${esc(entry)}</li>`).join('')}</ul>`
+          : ''}</span>
       </div>`;
     box.innerHTML = rows.map(rowMarkup).join('');
-  })();
+    // A repaint drops the guide links trail-recommendation.js added; it adds
+    // them again on the same event, and only to rows that lack one.
+  }
 
   /* ---- Getting there + getting around, keep travel to the trailhead
      separate from the numbered waymarks used once the walk begins. ----- */
