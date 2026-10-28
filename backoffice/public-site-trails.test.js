@@ -106,9 +106,12 @@ describe('the existing-site verification boundary',()=>{
     // Then 320 and 318 with the first five Friuli Venezia Giulia walks: the Fusine
     // lakes, Ta Lipa Pot at Stolvizza, the Pustot beeches above Dordolla, Stavoli di
     // Moggio and the Lago di Verzegnis loop.
+    // Then 323 and 321 with three Paganella walks: Andalo to the Tana
+    // dell'Ermellino, the Toresela above Mezzolombardo over its suspension bridge,
+    // and the hamlets of San Lorenzo in Banale.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(320);
-    expect(currentSiteTrails(catalogue)).toHaveLength(318);
+    expect(catalogue).toHaveLength(323);
+    expect(currentSiteTrails(catalogue)).toHaveLength(321);
   });
 
   test('requires the artwork the public trail page needs',()=>{
