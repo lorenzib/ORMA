@@ -863,6 +863,31 @@
       "name": "Alpenzù Piccolo and Alpenzù Grande",
       "slug": "alpenzu-walser-villages",
       "gloss": "the Walser path up to the hamlets of Alpenzù"
+    },
+    "trecime-sesto-san-candido": {
+      "name": "Sexten – Innichen and back",
+      "slug": "sexten-innichen-there-and-back",
+      "gloss": "the meadow and forest path from Moos through Sexten to Innichen and back"
+    },
+    "trecime-sesto-chiesa-gasthof-panorama": {
+      "name": "Sexten – Gasthof Panorama",
+      "slug": "sexten-gasthof-panorama",
+      "gloss": "the lane up the Mitterberg from Sexten church to the Panorama"
+    },
+    "trecime-haus-der-berge-rifugio-larice": {
+      "name": "Haus der Berge – Lärchenhütte",
+      "slug": "haus-der-berge-laerchenhuette",
+      "gloss": "the farm path and forest road from Sexten to the Lärchenhütte"
+    },
+    "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": {
+      "name": "Fort Mitterberg – Helmhanghütte",
+      "slug": "fort-mitterberg-helmhanghuette",
+      "gloss": "the level forest road from the Mitterberg fort to the Helmhanghütte"
+    },
+    "trecime-sesto-cappella-del-bosco": {
+      "name": "Sexten – Waldkapelle",
+      "slug": "sexten-waldkapelle",
+      "gloss": "the meditation path from Sexten church to the forest chapel"
     }
   }
 }

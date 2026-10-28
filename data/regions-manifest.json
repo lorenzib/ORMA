@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-27T23:18:28.963Z",
+  "generatedAt": "2026-10-28T00:00:48.995Z",
   "regions": {
     "dolomites": {
-      "trailCount": 242,
-      "trails": "data/regions/dolomites-trails.js?v=2f1cbd7ebeb3",
+      "trailCount": 247,
+      "trails": "data/regions/dolomites-trails.js?v=9da65730ffbd",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -247,6 +247,11 @@
         "trecime-lago-di-braies-malga-rossalm": "data/trail-details/trecime-lago-di-braies-malga-rossalm.js?v=596588c72db1",
         "trecime-carbonin-rifugio-vallandro": "data/trail-details/trecime-carbonin-rifugio-vallandro.js?v=611d8d2b6a67",
         "trecime-monte-elmo-versciaco": "data/trail-details/trecime-monte-elmo-versciaco.js?v=fa1213fc8fa1",
+        "trecime-sesto-san-candido": "data/trail-details/trecime-sesto-san-candido.js?v=b029e4a653d4",
+        "trecime-sesto-chiesa-gasthof-panorama": "data/trail-details/trecime-sesto-chiesa-gasthof-panorama.js?v=4273469fb15b",
+        "trecime-haus-der-berge-rifugio-larice": "data/trail-details/trecime-haus-der-berge-rifugio-larice.js?v=9708c96fc1b0",
+        "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": "data/trail-details/trecime-gasthof-panorama-rifugio-pendio-monte-elmo.js?v=6151ed4634df",
+        "trecime-sesto-cappella-del-bosco": "data/trail-details/trecime-sesto-cappella-del-bosco.js?v=5007ec2330ea",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -598,6 +603,11 @@
     "trecime-lago-di-braies-malga-rossalm": "dolomites",
     "trecime-carbonin-rifugio-vallandro": "dolomites",
     "trecime-monte-elmo-versciaco": "dolomites",
+    "trecime-sesto-san-candido": "dolomites",
+    "trecime-sesto-chiesa-gasthof-panorama": "dolomites",
+    "trecime-haus-der-berge-rifugio-larice": "dolomites",
+    "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": "dolomites",
+    "trecime-sesto-cappella-del-bosco": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -966,6 +976,11 @@
     "aosta-sentiero-della-regina": "sentiero-della-regina-gressoney",
     "aosta-strada-lombarda": "strada-lombarda-gressoney",
     "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": "alpenzu-walser-villages",
+    "trecime-sesto-san-candido": "sexten-innichen-there-and-back",
+    "trecime-sesto-chiesa-gasthof-panorama": "sexten-gasthof-panorama",
+    "trecime-haus-der-berge-rifugio-larice": "haus-der-berge-laerchenhuette",
+    "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": "fort-mitterberg-helmhanghuette",
+    "trecime-sesto-cappella-del-bosco": "sexten-waldkapelle",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1272,6 +1287,11 @@
     "sentiero-della-regina-gressoney": "aosta-sentiero-della-regina",
     "strada-lombarda-gressoney": "aosta-strada-lombarda",
     "alpenzu-walser-villages": "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande",
+    "sexten-innichen-there-and-back": "trecime-sesto-san-candido",
+    "sexten-gasthof-panorama": "trecime-sesto-chiesa-gasthof-panorama",
+    "haus-der-berge-laerchenhuette": "trecime-haus-der-berge-rifugio-larice",
+    "fort-mitterberg-helmhanghuette": "trecime-gasthof-panorama-rifugio-pendio-monte-elmo",
+    "sexten-waldkapelle": "trecime-sesto-cappella-del-bosco",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

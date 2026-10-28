@@ -4650,6 +4650,40 @@
       }
     },
     {
+      "id": "trecime-gasthof-panorama-rifugio-pendio-monte-elmo",
+      "approvedReviewId": "commons-trecime-gasthof-panorama-rifugio-pendio-monte-elmo-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-gasthof-panorama-rifugio-pendio-monte-elmo-fort.jpg",
+        "heroImage": "images/trails/trecime-gasthof-panorama-rifugio-pendio-monte-elmo-fort.jpg",
+        "imageAlt": "The rough stone wall of the Mitterberg fort beside a grassy slope with a fence, a large farmhouse on the hill above and forested mountains under cloud",
+        "imageCredit": "The Mitterberg fort where the walk starts, in October",
+        "imageCreditText": "The Mitterberg fort where the walk starts, in October by Ximonic (Simo Räsänen)",
+        "imageCreator": "Ximonic (Simo Räsänen)",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Forte_Mitterberg,_Sesto,_Trentino-Alto_Adige,_Italy,_2025_October.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-haus-der-berge-rifugio-larice",
+      "approvedReviewId": "commons-trecime-haus-der-berge-rifugio-larice-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-haus-der-berge-rifugio-larice-fort.jpg",
+        "heroImage": "images/trails/trecime-haus-der-berge-rifugio-larice-fort.jpg",
+        "imageAlt": "The long stone Mitterberg fort beside a paved lane and a wooden fence on a green slope, forest and the jagged Sexten Dolomites behind under summer clouds",
+        "imageCredit": "The Mitterberg fort beside the walk, in July",
+        "imageCreditText": "The Mitterberg fort beside the walk, in July by Petr1888",
+        "imageCreator": "Petr1888",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pevnost_Mitterberg_v_sextensk%C3%A9m_%C3%BAdol%C3%AD.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-innichen-waldkapelle-sexten",
       "approvedReviewId": "commons-trecime-innichen-waldkapelle-sexten-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
@@ -4748,6 +4782,57 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Toblach_Grand_Hotel_1070362.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-sesto-cappella-del-bosco",
+      "approvedReviewId": "commons-trecime-sesto-cappella-del-bosco-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-sesto-cappella-del-bosco-chapel.jpg",
+        "heroImage": "images/trails/trecime-sesto-cappella-del-bosco-chapel.jpg",
+        "imageAlt": "A small weathered wooden chapel with a little bell turret among tall spruces, a carved wooden figure in front and a mossy boulder beside it",
+        "imageCredit": "The Waldkapelle where the walk ends, in July",
+        "imageCreditText": "The Waldkapelle where the walk ends, in July by Steinsplitter",
+        "imageCreator": "Steinsplitter",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Waldkapelle_Sexten_2.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-sesto-chiesa-gasthof-panorama",
+      "approvedReviewId": "commons-trecime-sesto-chiesa-gasthof-panorama-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-sesto-chiesa-gasthof-panorama-view.jpg",
+        "heroImage": "images/trails/trecime-sesto-chiesa-gasthof-panorama-view.jpg",
+        "imageAlt": "A jagged grey Dolomite massif rising above dark forested slopes under a clear blue sky, seen from the slopes above Sexten",
+        "imageCredit": "The Sexten Dolomites from the walk above Sexten, in September",
+        "imageCreditText": "The Sexten Dolomites from the walk above Sexten, in September by Friedrich Haag",
+        "imageCreator": "Friedrich Haag",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sexten_Au%C3%9Fergesell_002_2019_09_27.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-sesto-san-candido",
+      "approvedReviewId": "commons-trecime-sesto-san-candido-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-sesto-san-candido-meadows.jpg",
+        "heroImage": "images/trails/trecime-sesto-san-candido-meadows.jpg",
+        "imageAlt": "Green meadows dotted with small wooden hay huts below a steep forested hill, a pale Dolomite peak rising behind under a blue sky",
+        "imageCredit": "The Schmieden meadows above Sexten, beside path 5, in September",
+        "imageCreditText": "The Schmieden meadows above Sexten, beside path 5, in September by Friedrich Haag",
+        "imageCreator": "Friedrich Haag",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sexten_Schmiedenw%C3%A4lder_009_2019_09_27.jpg",
         "imageSourceType": "licensed-source"
       }
     },

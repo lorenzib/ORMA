@@ -97,9 +97,12 @@ describe('the existing-site verification boundary',()=>{
     // Then 304 and 302 with the first six Valle d'Aosta walks: the Rû Courtaud,
     // Champoluc to the Mascognaz waterfall and Périasc to Antagnod in Ayas, and the
     // Sentiero della Regina, the Strada Lombarda and Alpenzù in Gressoney.
+    // Then 309 and 307 with five Sexten walks drawn there and back: Sexten – Innichen,
+    // Sexten church – Gasthof Panorama, Haus der Berge – Lärchenhütte, the Mitterberg
+    // fort to the Helmhanghütte, and Sexten – Waldkapelle.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(304);
-    expect(currentSiteTrails(catalogue)).toHaveLength(302);
+    expect(catalogue).toHaveLength(309);
+    expect(currentSiteTrails(catalogue)).toHaveLength(307);
   });
 
   test('requires the artwork the public trail page needs',()=>{
