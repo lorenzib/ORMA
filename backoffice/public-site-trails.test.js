@@ -117,9 +117,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 335 and 333 with seven more Val Gardena walks: Selva's Way of the Cross,
     // Resciesa – Brogles, Ortisei – Sëurasas, Santa Cristina – Passo Sella, the
     // Uciei de Frëines, the Val d'Anna and historic Ortisei.
+    // Then 338 and 336 with three more Val Gardena walks: Col Raiser – Seceda, the
+    // Seceda via the Rifugio Firenze and Ortisei – Passo Sella.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(335);
-    expect(currentSiteTrails(catalogue)).toHaveLength(333);
+    expect(catalogue).toHaveLength(338);
+    expect(currentSiteTrails(catalogue)).toHaveLength(336);
   });
 
   test('requires the artwork the public trail page needs',()=>{

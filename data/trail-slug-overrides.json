@@ -1018,6 +1018,21 @@
       "name": "Historic Ortisei",
       "slug": "historic-ortisei",
       "gloss": "the villa and workshop walk round old Ortisei"
+    },
+    "valgardena-seceda-da-col-raiser": {
+      "name": "Col Raiser – Seceda",
+      "slug": "col-raiser-seceda",
+      "gloss": "the climb across the Mastlé pastures to the Seceda"
+    },
+    "valgardena-seceda-dal-rifugio-firenze": {
+      "name": "Seceda via the Rifugio Firenze",
+      "slug": "seceda-via-rifugio-firenze",
+      "gloss": "the long climb past the Firenze hut to the Seceda"
+    },
+    "valgardena-escursione-ortisei-passo-sella": {
+      "name": "Ortisei – Passo Sella",
+      "slug": "ortisei-passo-sella",
+      "gloss": "the long climb from Ortisei to the Sella pass"
     }
   }
 }

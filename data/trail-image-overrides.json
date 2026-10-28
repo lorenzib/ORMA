@@ -5398,6 +5398,23 @@
       }
     },
     {
+      "id": "valgardena-escursione-ortisei-passo-sella",
+      "approvedReviewId": "commons-valgardena-escursione-ortisei-passo-sella-on-route",
+      "approvedAt": "2026-10-28T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-ortisei-passo-sella-citta-dei-sassi.jpg",
+        "heroImage": "images/trails/valgardena-escursione-ortisei-passo-sella-citta-dei-sassi.jpg",
+        "imageAlt": "Grey boulders and stone pines scattered across green alpine grass in the Città dei Sassi, the pale walls of the Sella group rising behind under a blue sky with white clouds",
+        "imageCredit": "The Città dei Sassi below the Sella",
+        "imageCreditText": "The Città dei Sassi below the Sella by Marie-Lan Taÿ Pamart",
+        "imageCreator": "Marie-Lan Taÿ Pamart",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sassolungo_Citt%C3%A0_dei_Sassi_20200819_n1.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valgardena-giro-della-via-crucis",
       "approvedReviewId": "mapillary-valgardena-giro-della-via-crucis-on-route",
       "approvedAt": "2026-10-28T09:00:00.000Z",
@@ -5496,6 +5513,40 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pisciadoi_dl_Tervela_dinst%C3%A0_Santa_Cristina.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-seceda-da-col-raiser",
+      "approvedReviewId": "commons-valgardena-seceda-da-col-raiser-on-route",
+      "approvedAt": "2026-10-28T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-seceda-da-col-raiser-odle.jpg",
+        "heroImage": "images/trails/valgardena-seceda-da-col-raiser-odle.jpg",
+        "imageAlt": "Wide green pastures on the Seceda dotted with wooden huts and a gravel track, the jagged grey Odle peaks rising on the left and the Puez group beyond under a clear blue sky",
+        "imageCredit": "The Seceda pastures below the Odle",
+        "imageCreditText": "The Seceda pastures below the Odle by NorbertNagel",
+        "imageCreator": "NorbertNagel",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Odle,_Puez,_Sella_and_Langkofel_groups_from_Seceda,_South_Tyrol.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-seceda-dal-rifugio-firenze",
+      "approvedReviewId": "commons-valgardena-seceda-dal-rifugio-firenze-on-route",
+      "approvedAt": "2026-10-28T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-seceda-dal-rifugio-firenze-cisles.jpg",
+        "heroImage": "images/trails/valgardena-seceda-dal-rifugio-firenze-cisles.jpg",
+        "imageAlt": "A small green pond among tall larches and spruces on the Cisles alp near the Rifugio Firenze, a gravel path in the foreground and the pale Odle peaks behind",
+        "imageCredit": "The Lech de Ciaulonch on the Cisles alp",
+        "imageCreditText": "The Lech de Ciaulonch on the Cisles alp by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lech_de_Ciaulonch_Ncisles_Gherd%C3%ABina.jpg",
         "imageSourceType": "licensed-source"
       }
     },
