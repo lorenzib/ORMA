@@ -65,8 +65,25 @@ describe('both maps look like the same product', () => {
 
   test('neither map re-inlines a colour ramp', () => {
     [browse,home].forEach(source=>{
-      expect(source).toMatch(/ORMAMapStyle\.matchColour(Expression)?\(/);
+      expect(source).toMatch(/ORMAMapStyle\.(matchColour(Expression)?|fitColourExpression)\(/);
       expect(source).not.toContain("65, '#C98A2E'");
     });
+  });
+});
+
+describe('a pin is the colour of its verdict', () => {
+  require('./map-style.js');
+  const style=globalThis.ORMAMapStyle;
+  test.each([
+    ['strong-option','good'],
+    ['possible-with-cautions','fair'],
+    ['not-recommended','poor'],
+  ])('%s is %s', (category,fit) => {
+    expect(style.fitForCategory(category)).toBe(fit);
+    expect(style.fitForCategory(verdictFor({category,score:50}).category)).toBe(fit);
+  });
+  test('an unknown verdict falls back to the score colour', () => {
+    expect(style.fitForCategory('unavailable')).toBe('');
+    expect(style.fitColourExpression('fit','score').slice(-1)[0]).toEqual(style.matchColourExpression('score'));
   });
 });
