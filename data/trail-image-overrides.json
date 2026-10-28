@@ -4463,6 +4463,23 @@
       }
     },
     {
+      "id": "osttirol-kinder-naturerlebnispfad-kals-ag",
+      "approvedReviewId": "commons-osttirol-kinder-naturerlebnispfad-kals-ag-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osttirol-kinder-naturerlebnispfad-kals-mill.jpg",
+        "heroImage": "images/trails/osttirol-kinder-naturerlebnispfad-kals-mill.jpg",
+        "imageAlt": "A small dark wooden water mill with a shingle roof and flowers at the window, beside a wooden walkway among larch trees, at Kals am Großglockner",
+        "imageCredit": "The Kerermühle on the Kals mill path",
+        "imageCreditText": "The Kerermühle on the Kals mill path by Niki.L",
+        "imageCreator": "Niki.L",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kererm%C3%BChle_(Kals_am_Gro%C3%9Fglockner).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osttirol-kulturweg-koednitz",
       "approvedReviewId": "commons-osttirol-kulturweg-koednitz-on-route",
       "approvedAt": "2026-10-28T09:00:00.000Z",
@@ -4527,6 +4544,91 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Matrei_-_Schloss_Wei%C3%9Fenstein_-_3b_-_von_der_Kreuzbichler-Kapelle_aus.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osttirol-spazierweg-kreuzweg",
+      "approvedReviewId": "commons-osttirol-spazierweg-kreuzweg-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osttirol-spazierweg-kreuzweg-klaunz.jpg",
+        "heroImage": "images/trails/osttirol-spazierweg-kreuzweg-klaunz.jpg",
+        "imageAlt": "Farmhouses on a green meadow at Klaunz above Matrei in Osttirol, with forested slopes and a rocky peak in cloud behind",
+        "imageCredit": "The hamlet of Klaunz above Matrei",
+        "imageCreditText": "The hamlet of Klaunz above Matrei by Michael Kranewitter",
+        "imageCreator": "Michael Kranewitter",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Klaunz_-_Klaunz_d.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osttirol-spazierweg-nikolauskirche",
+      "approvedReviewId": "commons-osttirol-spazierweg-nikolauskirche-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osttirol-spazierweg-nikolauskirche-matrei.jpg",
+        "heroImage": "images/trails/osttirol-spazierweg-nikolauskirche-matrei.jpg",
+        "imageAlt": "The town of Matrei in Osttirol spread across a green valley floor below forested mountainsides, seen from the slope above the Isel, in summer",
+        "imageCredit": "Matrei in Osttirol seen from the St. Nikolaus side",
+        "imageCreditText": "Matrei in Osttirol seen from the St. Nikolaus side by Haeferl",
+        "imageCreator": "Haeferl",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Matrei_-_Ortsansicht.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osttirol-themenweg-kreuzweg-virgen",
+      "approvedReviewId": "commons-osttirol-themenweg-kreuzweg-virgen-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osttirol-themenweg-kreuzweg-virgen-station.jpg",
+        "heroImage": "images/trails/osttirol-themenweg-kreuzweg-virgen-station.jpg",
+        "imageAlt": "A tall green serpentine block with a bronze relief standing in a meadow beside the path, with mountains of the Virgental behind, in summer",
+        "imageCredit": "A station of the Kreuzweg at Göriach, Virgen",
+        "imageCreditText": "A station of the Kreuzweg at Göriach, Virgen by Michael Kranewitter",
+        "imageCreator": "Michael Kranewitter",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kreuzweg_G%C3%B6riach_-_Station_07a.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osttirol-wassererlebnisweg-st-jakob-i-d",
+      "approvedReviewId": "commons-osttirol-wassererlebnisweg-st-jakob-i-d-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osttirol-wassererlebnisweg-st-jakob-schwarzach.jpg",
+        "heroImage": "images/trails/osttirol-wassererlebnisweg-st-jakob-schwarzach.jpg",
+        "imageAlt": "A fast, clear mountain river running over grey boulders between banks of green bushes and trees, beside the path near St. Jakob in Defereggen in summer",
+        "imageCredit": "The Schwarzach beside the path near St. Jakob",
+        "imageCreditText": "The Schwarzach beside the path near St. Jakob by PantheraLeo1359531",
+        "imageCreator": "PantheraLeo1359531",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Fluss_auf_dem_Wanderweg_nach_Rinderschinken_22082018_001.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osttirol-weg-der-sinne-virgen",
+      "approvedReviewId": "commons-osttirol-weg-der-sinne-virgen-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osttirol-weg-der-sinne-virgen-path.jpg",
+        "heroImage": "images/trails/osttirol-weg-der-sinne-virgen-path.jpg",
+        "imageAlt": "An earth path leading into green deciduous woodland, with a small wooden sign on a tree trunk, on the Weg der Sinne below Virgen in summer",
+        "imageCredit": "On the Weg der Sinne at Virgen",
+        "imageCreditText": "On the Weg der Sinne at Virgen by Haeferl",
+        "imageCreator": "Haeferl",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Virgen_-_Weg_der_Sinne.jpg",
         "imageSourceType": "licensed-source"
       }
     },

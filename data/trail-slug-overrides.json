@@ -1148,6 +1148,36 @@
       "name": "Obersee loop at the Staller Sattel",
       "slug": "obersee-staller-sattel-loop",
       "gloss": "the lake loop below the Staller Sattel pass at the head of the Defereggental"
+    },
+    "osttirol-spazierweg-kreuzweg": {
+      "name": "Kreuzweg to Klaunz, Matrei",
+      "slug": "kreuzweg-klaunz-matrei",
+      "gloss": "the Stations of the Cross loop above the centre of Matrei in Osttirol"
+    },
+    "osttirol-spazierweg-nikolauskirche": {
+      "name": "St. Nikolaus church walk, Matrei",
+      "slug": "st-nikolaus-church-walk-matrei",
+      "gloss": "the loop across the Isel to the Romanesque church of St. Nikolaus at Matrei"
+    },
+    "osttirol-weg-der-sinne-virgen": {
+      "name": "Weg der Sinne, Virgen",
+      "slug": "weg-der-sinne-virgen",
+      "gloss": "the nature trail with hands-on stations in the fields and woods below Virgen"
+    },
+    "osttirol-themenweg-kreuzweg-virgen": {
+      "name": "Kreuzweg to Maria Schnee, Virgen",
+      "slug": "kreuzweg-maria-schnee-virgen",
+      "gloss": "the Stations of the Cross from Virgen to the pilgrimage church of Maria Schnee at Obermauern"
+    },
+    "osttirol-kinder-naturerlebnispfad-kals-ag": {
+      "name": "Children’s nature trail, Kals",
+      "slug": "kals-childrens-nature-trail",
+      "gloss": "the nature trail past the old Stockmühlen mills along the Kalserbach at Kals am Großglockner"
+    },
+    "osttirol-wassererlebnisweg-st-jakob-i-d": {
+      "name": "Water trail, St. Jakob in Defereggen",
+      "slug": "water-trail-st-jakob-defereggen",
+      "gloss": "the flat loop along the Schwarzach from St. Jakob in Defereggen"
     }
   }
 }

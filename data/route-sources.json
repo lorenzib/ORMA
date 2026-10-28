@@ -2569,6 +2569,54 @@
       "quote": "Streckenlänge 4.7 km · Höhenmeter Bergauf 70 hm · Bergab 70 hm · Gehzeit Gesamt 1:20 h",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-spazierweg-kreuzweg": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/spazierweg-kreuzweg",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Spazierweg “Kreuzweg”",
+      "quote": "Streckenlänge 3 km · Höhenmeter Bergauf 130 hm · Bergab 130 hm · Gehzeit Gesamt 1 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-spazierweg-nikolauskirche": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/spazierweg-nikolauskirche",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Spazierweg “Nikolauskirche”",
+      "quote": "Streckenlänge 5.7 km · Höhenmeter Bergauf 140 hm · Bergab 140 hm · Gehzeit Gesamt 1:45 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-weg-der-sinne-virgen": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/weg-der-sinne-virgen",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Weg der Sinne Virgen",
+      "quote": "Streckenlänge 3.6 km · Höhenmeter Bergauf 149 hm · Bergab 149 hm · Gehzeit Gesamt 1:30 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-themenweg-kreuzweg-virgen": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/themenweg-kreuzweg-virgen",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Themenweg “Kreuzweg Virgen”",
+      "quote": "Streckenlänge 3.15 km · Höhenmeter Bergauf 104 hm · Bergab 104 hm · Gehzeit Gesamt 1 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-kinder-naturerlebnispfad-kals-ag": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/kinder-naturerlebnispfad-kals-ag",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Kinder-Naturerlebnispfad Kals a.G.",
+      "quote": "Streckenlänge 4.36 km · Höhenmeter Bergauf 130 hm · Bergab 123 hm · Gehzeit Gesamt 2 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-wassererlebnisweg-st-jakob-i-d": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/wassererlebnisweg-st-jakob-i-d",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Wassererlebnisweg St. Jakob i. D.",
+      "quote": "Streckenlänge 8.7 km · Höhenmeter Bergauf 41 hm · Bergab 40 hm · Gehzeit Gesamt 2:30 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
     }
   }
 }

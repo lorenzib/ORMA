@@ -135,9 +135,13 @@ describe('the existing-site verification boundary',()=>{
     // Then 361 and 359 with the first Austrian walks, in East Tyrol: the Schloss
     // Weißenstein loop at Matrei, the Umbal Falls, the Ködnitz culture walk at Kals
     // and the Obersee loop at the Staller Sattel.
+    // Then 367 and 365 with six more East Tyrol walks: the Kreuzweg to Klaunz and
+    // the St. Nikolaus church walk at Matrei, the Weg der Sinne and the Kreuzweg to
+    // Maria Schnee at Virgen, the children's nature trail at Kals and the water
+    // trail at St. Jakob in Defereggen.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(361);
-    expect(currentSiteTrails(catalogue)).toHaveLength(359);
+    expect(catalogue).toHaveLength(367);
+    expect(currentSiteTrails(catalogue)).toHaveLength(365);
   });
 
   test('requires the artwork the public trail page needs',()=>{
