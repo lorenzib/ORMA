@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-borgo-di-tamion",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.7,
+    "ascentM": 339,
+    "highestPointM": 1540,
+    "expectedDuration": "2 hours",
+    "difficulty": "Hard",
+    "shadePercent": 11
+  },
+  "trailhead": {
+    "lat": 46.393667,
+    "lng": 11.666257,
+    "label": "Soraga di Fassa (Piaz Bepo Roch), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.3943923,
+      "lng": 11.6652318,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3953133,
+      "lng": 11.6666079,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3954988,
+      "lng": 11.6673679,
+      "label": "Fontana - Comune di Soraga",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3986819,
+      "lng": 11.6666839,
+      "label": "Drinking fountain, the last before the climb",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A steep, sustained climb of about 340 m in 2.3 km; the APT suggests care on the descent, which can be slippery in the shade.",
+    "The forest road runs along the top of a steep red sandstone gorge: keep your dog close at the edge.",
+    "About 1.6 km on tarmac, village lanes in Soraga open to cars.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}

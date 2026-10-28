@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-ta-lipa-pot-corto",
+  "distanceKm": 5.4,
+  "ascentM": 152,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 563
+    },
+    {
+      "km": 0.4,
+      "elev": 594
+    },
+    {
+      "km": 0.8,
+      "elev": 599
+    },
+    {
+      "km": 1.3,
+      "elev": 561
+    },
+    {
+      "km": 1.7,
+      "elev": 550
+    },
+    {
+      "km": 2.1,
+      "elev": 538
+    },
+    {
+      "km": 2.5,
+      "elev": 525
+    },
+    {
+      "km": 2.9,
+      "elev": 491
+    },
+    {
+      "km": 3.3,
+      "elev": 447
+    },
+    {
+      "km": 3.7,
+      "elev": 440
+    },
+    {
+      "km": 4.1,
+      "elev": 477
+    },
+    {
+      "km": 4.5,
+      "elev": 523
+    },
+    {
+      "km": 5,
+      "elev": 546
+    },
+    {
+      "km": 5.4,
+      "elev": 545
+    }
+  ]
+}

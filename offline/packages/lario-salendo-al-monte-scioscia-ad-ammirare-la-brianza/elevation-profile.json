@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza",
+  "distanceKm": 12,
+  "ascentM": 734,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 384
+    },
+    {
+      "km": 0.9,
+      "elev": 534
+    },
+    {
+      "km": 1.8,
+      "elev": 657
+    },
+    {
+      "km": 2.7,
+      "elev": 553
+    },
+    {
+      "km": 3.7,
+      "elev": 385
+    },
+    {
+      "km": 4.6,
+      "elev": 370
+    },
+    {
+      "km": 5.5,
+      "elev": 431
+    },
+    {
+      "km": 6.4,
+      "elev": 425
+    },
+    {
+      "km": 7.3,
+      "elev": 471
+    },
+    {
+      "km": 8.2,
+      "elev": 451
+    },
+    {
+      "km": 9.1,
+      "elev": 488
+    },
+    {
+      "km": 10,
+      "elev": 499
+    },
+    {
+      "km": 10.9,
+      "elev": 540
+    },
+    {
+      "km": 11.8,
+      "elev": 402
+    },
+    {
+      "km": 12,
+      "elev": 384
+    }
+  ]
+}

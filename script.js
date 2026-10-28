@@ -276,7 +276,7 @@ const LI_LOCATION_LABEL_ALIASES = Object.freeze({
 // The whole catalogue, for the ?all=1 link only. A walk is planned in one
 // place, so the page itself never opens on the Dolomites and Savoy mixed.
 const LI_ALL_TRAILS_CONTEXT = Object.freeze({ kind:'area', country:'all', region:'all', valley:'all', label:'All ORMA trails', transient:true });
-const LI_REGION_LABELS = Object.freeze({ dolomites:'The Dolomites', savoy:'Savoy', lombardy:'Lombardy', friuli:'Friuli Venezia Giulia', tyrol:'Tyrol & Carinthia' });
+const LI_REGION_LABELS = Object.freeze({ dolomites:'The Dolomites', savoy:'Savoy', lombardy:'Lombardy', friuli:'Friuli Venezia Giulia', aosta:'Valle d’Aosta', tyrol:'Tyrol & Carinthia' });
 // The last trails opened, kept by trail.js in this browser only. Declared up
 // here because the page's opening region is read from them at load.
 const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';

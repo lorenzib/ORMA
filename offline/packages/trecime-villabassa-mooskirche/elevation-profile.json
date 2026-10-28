@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-villabassa-mooskirche",
+  "distanceKm": 2.5,
+  "ascentM": 21,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1150
+    },
+    {
+      "km": 0.2,
+      "elev": 1162
+    },
+    {
+      "km": 0.4,
+      "elev": 1152
+    },
+    {
+      "km": 0.6,
+      "elev": 1152
+    },
+    {
+      "km": 0.8,
+      "elev": 1150
+    },
+    {
+      "km": 0.9,
+      "elev": 1150
+    },
+    {
+      "km": 1.1,
+      "elev": 1145
+    },
+    {
+      "km": 1.3,
+      "elev": 1145
+    },
+    {
+      "km": 1.5,
+      "elev": 1140
+    },
+    {
+      "km": 1.7,
+      "elev": 1138
+    },
+    {
+      "km": 1.9,
+      "elev": 1143
+    },
+    {
+      "km": 2.1,
+      "elev": 1144
+    },
+    {
+      "km": 2.3,
+      "elev": 1146
+    },
+    {
+      "km": 2.4,
+      "elev": 1150
+    },
+    {
+      "km": 2.5,
+      "elev": 1150
+    }
+  ]
+}

@@ -82,9 +82,59 @@ describe('the existing-site verification boundary',()=>{
     // Penìa, Val Freida and Moena to Soraga.
     // Then 275 and 273 with three more Val di Fassa walks: Mazzin to Pera over
     // Ronch, Moena to Malga Roncac and Moena to Soraga over Someda.
+    // Then 284 and 282 with the first nine western Trentino walks: five around the
+    // Lago dei Caprioli and Rifugio Denza in the Val di Sole, the Javrè – Pelugo
+    // cycle path loop, and Madonna del Lares, San Vigilio and San Martino in the
+    // Giudicarie.
+    // Then 288 and 286 with four more Val Gardena walks: the Vallunga, the Sëurasas,
+    // the farms path above Santa Cristina and the Raida dl luech.
+    // Then 293 and 291 with five more Hochpustertal walks: Innichen – Waldkapelle –
+    // Sexten, Niederdorf – Bellavista, the Pragser Wildsee to the Rossalm, Schluderbach
+    // to the Dürrensteinhütte, and down from the Helm to Vierschach.
+    // Then 298 and 296 with the first five Lombardy walks, round Lake Como:
+    // Brunate's churches, the Pognana Lario sculptures, Brogno to the Nuvolone
+    // viewpoint, Lasnigo – Barni – Crezzo and Eupilio's Madonna della Neve.
+    // Then 304 and 302 with the first six Valle d'Aosta walks: the Rû Courtaud,
+    // Champoluc to the Mascognaz waterfall and Périasc to Antagnod in Ayas, and the
+    // Sentiero della Regina, the Strada Lombarda and Alpenzù in Gressoney.
+    // Then 309 and 307 with five Sexten walks drawn there and back: Sexten – Innichen,
+    // Sexten church – Gasthof Panorama, Haus der Berge – Lärchenhütte, the Mitterberg
+    // fort to the Helmhanghütte, and Sexten – Waldkapelle.
+    // Then 315 and 313 with six more western Trentino walks: the Senter dei Popi,
+    // Giustino's Giro del Belvedere, the Monclassico sundials, Passo del Tonale to
+    // Forte Mero and to Forte Zaccarana, and Ortisè to Malga Stabli.
+    // Then 320 and 318 with the first five Friuli Venezia Giulia walks: the Fusine
+    // lakes, Ta Lipa Pot at Stolvizza, the Pustot beeches above Dordolla, Stavoli di
+    // Moggio and the Lago di Verzegnis loop.
+    // Then 323 and 321 with three Paganella walks: Andalo to the Tana
+    // dell'Ermellino, the Toresela above Mezzolombardo over its suspension bridge,
+    // and the hamlets of San Lorenzo in Banale.
+    // Then 326 and 324 with three more Lake Como walks: the Sentiero del
+    // Viandante from Varenna to Bellano, Caslino d'Erba and the Lambro, and the
+    // Monte Scioscia viewpoint loop above the Segrino.
+    // Then 328 and 326 with two more Hochpustertal walks: the Lanaweg loop above
+    // Niederdorf and the huts circuit above the Pragser Wildsee.
+    // Then 335 and 333 with seven more Val Gardena walks: Selva's Way of the Cross,
+    // Resciesa – Brogles, Ortisei – Sëurasas, Santa Cristina – Passo Sella, the
+    // Uciei de Frëines, the Val d'Anna and historic Ortisei.
+    // Then 338 and 336 with three more Val Gardena walks: Col Raiser – Seceda, the
+    // Seceda via the Rifugio Firenze and Ortisei – Passo Sella.
+    // Then 339 and 337 with one more Val Gardena walk: Cristauta to the Seceda over
+    // the Sëurasas and Monte Pic.
+    // Then 343 and 341 with four more Friuli Venezia Giulia walks: the Fontanon di
+    // Goriuda, the Col dei Piais above Claut, Raunis and the Belepeit falls from
+    // Chiusaforte, and the small churches above Venzone.
+    // Then 349 and 347 with six more Hochpustertal walks: the Außergsell – Innergsell
+    // loop, Rotwandwiesen – Moos, Helm – Waldruhe – Sexten, Fischleintal – Sextner
+    // Stein, Moos – Helm and Sexten – Innerfeldtal.
+    // Then 350 and 348 with one more Hochpustertal walk: Cimabanche to the Plätzwiese.
+    // Then 357 and 355 with seven western Trentino walks in and beside the Adamello
+    // Brenta park: Madonna di Campiglio to Malga Ritort, Patascoss to the Lago
+    // Ritorto, the San Giuliano lakes, Monte Spinale to the Graffer hut, Carisolo,
+    // and round the Lago di Molveno and the Ciclamino walk above it.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(275);
-    expect(currentSiteTrails(catalogue)).toHaveLength(273);
+    expect(catalogue).toHaveLength(357);
+    expect(currentSiteTrails(catalogue)).toHaveLength(355);
   });
 
   test('requires the artwork the public trail page needs',()=>{

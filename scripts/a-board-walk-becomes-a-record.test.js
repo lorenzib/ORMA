@@ -237,6 +237,21 @@ describe('it adds one walk and nothing else', () => {
     expect(fs.readFileSync(file, 'utf8')).toBe(before);
   });
 
+  test('figures published for there and back draw the one-way guide out and back', async () => {
+    // A one-way line against a there-and-back distance is refused, as it should be...
+    const oneWay = emptyRoutes();
+    expect((await main({ argv: [...ARGS, '--km', String(lengthKm * 2), '--apply'], routesPath: oneWay, ...fetchers() })).status).toBe('refused');
+    // ...unless the operator says its figures are for the walk there and back.
+    const file = emptyRoutes();
+    const result = await main({ argv: [...ARGS, '--km', String(lengthKm * 2), '--there-and-back', '--apply'], routesPath: file, ...fetchers() });
+    expect(result.status).not.toBe('refused');
+    const feature = JSON.parse(fs.readFileSync(file, 'utf8')).features[0];
+    expect(feature.properties.official.there_and_back).toBe(true);
+    expect(Math.abs(feature.properties.distance_km - lengthKm * 2)).toBeLessThan(0.1);
+    const line = feature.geometry.coordinates;
+    expect(meters([line[0][1], line[0][0]], [line[line.length - 1][1], line[line.length - 1][0]])).toBeLessThan(50);
+  });
+
   test('a refused walk writes nothing', async () => {
     const file = emptyRoutes();
     const result = await main({ argv: [...ARGS, '--km', String(lengthKm * 2), '--apply'], routesPath: file, ...fetchers() });

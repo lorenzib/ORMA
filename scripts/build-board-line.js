@@ -15,6 +15,12 @@
  *   register hands out its GPX through a one-off download token. --guide
  *   still names the public page the line belongs to, and is what is stored.
  *
+ *   --there-and-back is for a walk whose operator publishes the line one way
+ *   but the distance, climb and time for going there and back the same way,
+ *   and says so on the walk's page (the Tre Cime Dolomites board: "la durata
+ *   indicata si riferisce al viaggio di andata e ritorno"). The guide is then
+ *   walked out and back, so the stored line and the published distance agree.
+ *
  * Dry run by default.
  *
  * Most walks a tourist board publishes are not one route in OpenStreetMap. A
@@ -171,6 +177,11 @@ function parseGpx(text) {
   });
   if (points.length < 2 || points.some(p => !p || !Number.isFinite(p[0]) || !Number.isFinite(p[1]))) return null;
   return { line: points, start: null, end: null, author: null };
+}
+
+/** A one-way line walked out and back the same way. */
+function thereAndBack(line) {
+  return line.concat(line.slice(0, -1).reverse());
 }
 
 /** The walkable OSM network in a set of OSM API map answers. */
@@ -405,6 +416,7 @@ function parseArgs(argv) {
   for (let i = 0; i < argv.length; i += 1) {
     const arg = String(argv[i]);
     if (arg === '--apply') { out.apply = true; continue; }
+    if (arg === '--there-and-back') { out.thereAndBack = true; continue; }
     const match = arg.match(/^--([a-z]+)(?:=(.*))?$/);
     if (match && keys.includes(match[1])) out[match[1]] = match[2] !== undefined ? match[2] : argv[i += 1];
   }
@@ -447,6 +459,7 @@ async function main(options = {}) {
   const getJson = options.fetchJson || fetchJson;
   const guide = parseGuide(args.guidefile ? await fs.readFile(args.guidefile, 'utf8') : await getText(args.guide));
   if (!guide) { say(`[board-line] ${args.guidefile || args.guide} carries no published line. Nothing was changed.`); return { status: 'no-guide' }; }
+  if (args.thereAndBack) guide.line = thereAndBack(guide.line);
 
   const answers = [];
   for (const [w, s, e, n] of tilesFor(guide.line)) {
@@ -478,7 +491,7 @@ async function main(options = {}) {
       name: args.name,
       operator: args.operator,
       source_url: args.source,
-      official: { distance_km: args.km, ascent_m: args.ascent, time: args.time },
+      official: { distance_km: args.km, ascent_m: args.ascent, time: args.time, ...(args.thereAndBack ? { there_and_back: true } : {}) },
       guide_url: args.guide,
       start_name: guide.start?.name || null,
       line_basis: 'OSM ways along the line the operator publishes; the published line itself is not stored',
@@ -508,5 +521,5 @@ if (require.main === module) {
 
 module.exports = {
   ROUTES_FILE, SAMPLE_M, SNAP_M, COVER_M, MIN_COVER, MAX_LENGTH_OFF,
-  meters, densify, coverage, parseGuide, parseGpx, buildGraph, matchGuide, judge, tilesFor, parseArgs, main,
+  meters, densify, coverage, parseGuide, parseGpx, thereAndBack, buildGraph, matchGuide, judge, tilesFor, parseArgs, main,
 };
