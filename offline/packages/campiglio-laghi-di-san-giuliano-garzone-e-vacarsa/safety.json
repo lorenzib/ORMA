@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 11,
+    "ascentM": 665,
+    "highestPointM": 2148,
+    "expectedDuration": "6 hours",
+    "difficulty": "Hard",
+    "shadePercent": 48
+  },
+  "trailhead": {
+    "lat": 46.142842,
+    "lng": 10.735426,
+    "label": "Car park at Pöc dali Fafc above Caderzone Terme, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.1526958,
+      "lng": 10.7361987,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1583121,
+      "lng": 10.7281973,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1369888,
+      "lng": 10.7270957,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Mountain paths with a climb to a 2,175 m pass.",
+    "Cattle on the pastures of Malga San Giuliano and Malga Campostril in summer.",
+    "Long day: six hours, little shelter on the pass.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
