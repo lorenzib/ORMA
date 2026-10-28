@@ -1243,6 +1243,21 @@
       "name": "MIRABILA - Sentiero botanico del Bila Pec",
       "slug": "mirabila-sentiero-bila-pec",
       "gloss": "the botanical loop from the Rifugio Gilberti to the Bila Pec saddle"
+    },
+    "lesachtal-spazierweg-maria-luggau-gailweg": {
+      "name": "Gail river walk, Maria Luggau",
+      "slug": "gailweg-maria-luggau",
+      "gloss": "the short loop from Maria Luggau down to the Gail and back"
+    },
+    "lesachtal-tuffbad": {
+      "name": "Tuffbad loop, Lesachtal",
+      "slug": "tuffbad-loop-lesachtal",
+      "gloss": "the small loop through the woods above the Tuffbad in the Lesachtal"
+    },
+    "gailtal-almkaese-sonnenalpe": {
+      "name": "Alpine cheese walk, Sonnenalpe Nassfeld",
+      "slug": "alpine-cheese-walk-sonnenalpe-nassfeld",
+      "gloss": "the loop to two Gailtal cheese alps from the Sonnenalpe Nassfeld"
     }
   }
 }

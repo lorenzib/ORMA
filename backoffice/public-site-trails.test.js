@@ -150,9 +150,12 @@ describe('the existing-site verification boundary',()=>{
     // Rest.
     // Then 380 and 378 with the Mirabila botanical path below Monte Canin, from the
     // top of the Canin cable car.
+    // Then 383 and 381 with the first Carinthian walks: the Gail river walk at Maria
+    // Luggau, the Tuffbad loop in the Lesachtal and the alpine cheese walk from the
+    // Sonnenalpe Nassfeld.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(380);
-    expect(currentSiteTrails(catalogue)).toHaveLength(378);
+    expect(catalogue).toHaveLength(383);
+    expect(currentSiteTrails(catalogue)).toHaveLength(381);
   });
 
   test('requires the artwork the public trail page needs',()=>{
