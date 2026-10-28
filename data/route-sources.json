@@ -130,6 +130,46 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-27T22:00:00.000Z"
     },
+    "campiglio-carisolo-centro-storico": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/carisolo-centro-storico",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Carisolo - centro storico",
+      "quote": "Distanza 3,5 km · Durata 1:30 h · Salita 88 m · Discesa 80 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/escursione-a-malga-ritort-da-madonna-di-campiglio",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Escursione a Malga Ritort da Madonna di Campiglio",
+      "quote": "Distanza 6 km · Durata 2:00 h · Salita 212 m · Discesa 213 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/laghi-di-san-giuliano-garzone-e-vacarsa",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Laghi di San Giuliano, Garzonè e Vacarsa",
+      "quote": "Distanza 11 km · Durata 6:00 h · Salita 665 m · Discesa 665 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "campiglio-lago-ritorto-nel-blu-dipinto-di-blu": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/lago-ritorto-nel-blu-dipinto-di-blu",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Lago Ritorto, nel blu dipinto di blu",
+      "quote": "Distanza 5,4 km · Durata 2:30 h · Salita 339 m · Discesa 2 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "campiglio-monte-spinale-rifugio-graffer": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/monte-spinale-rifugio-graffer",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Monte Spinale - Rifugio Graffer",
+      "quote": "Distanza 7,5 km · Durata 2:30 h · Salita 300 m · Discesa 312 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
     "cembra-castello-segonzano": {
       "url": "https://www.visitfiemme.it/it/activity/il-castello-di-segonzano-e-il-canyon-del-pr-_9748",
       "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
@@ -1826,6 +1866,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T02:00:00.000Z"
     },
+    "paganella-giro-del-lago-di-molveno": {
+      "url": "https://ktips.visitpaganella.it/it/itinerari/giro-del-lago-di-molveno",
+      "publisher": "Visit Paganella, APT Dolomiti di Brenta Paganella (visitpaganella.it, Outdooractive)",
+      "name": "Giro del lago di Molveno",
+      "quote": "Distanza 10,1 km · Durata 2:15 h · Salita 232 m · Discesa 233 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
     "paganella-giro-della-toresela": {
       "url": "https://ktips.visitpaganella.it/it/itinerari/giro-della-toresela",
       "publisher": "Visit Paganella, APT Dolomiti di Brenta Paganella (visitpaganella.it, Outdooractive)",
@@ -1833,6 +1881,14 @@
       "quote": "Distanza 1,4 km · Durata 0:30 h · Salita 66 m · Discesa 66 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T02:00:00.000Z"
+    },
+    "paganella-passeggiata-del-ciclamino": {
+      "url": "https://ktips.visitpaganella.it/it/itinerari/passeggiata-del-ciclamino",
+      "publisher": "Visit Paganella, APT Dolomiti di Brenta Paganella (visitpaganella.it, Outdooractive)",
+      "name": "Passeggiata del Ciclamino",
+      "quote": "Distanza 2,8 km · Durata 0:50 h · Salita 76 m · Discesa 110 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
     },
     "paganella-sette-passi-sette-ville": {
       "url": "https://ktips.visitpaganella.it/it/itinerari/sette-passi-per-sette-ville-san-lorenzo-dorsino",

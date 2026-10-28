@@ -292,6 +292,91 @@
       }
     },
     {
+      "id": "campiglio-carisolo-centro-storico",
+      "approvedReviewId": "commons-campiglio-carisolo-centro-storico-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-carisolo-centro-storico-chestnut.jpg",
+        "heroImage": "images/trails/campiglio-carisolo-centro-storico-chestnut.jpg",
+        "imageAlt": "A huge old chestnut tree with a gnarled trunk and a broad green crown in a sunny grassy grove",
+        "imageCredit": "The chestnut grove at Carisolo",
+        "imageCreditText": "The chestnut grove at Carisolo by Oscar Collini",
+        "imageCreator": "Oscar Collini",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castagneto_di_Carisolo.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio",
+      "approvedReviewId": "commons-campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio-cows.jpg",
+        "heroImage": "images/trails/campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio-cows.jpg",
+        "imageAlt": "Brown and black cows grazing on a green slope beside a gravel track at Malga Ritort, spruce forest and a wide valley behind",
+        "imageCredit": "Cows grazing at Malga Ritort, at the end of the walk",
+        "imageCreditText": "Cows grazing at Malga Ritort, at the end of the walk by Marco Ober",
+        "imageCreator": "Marco Ober",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Grazing_cows_at_the_Ritorto_hut_(Adamello_Brenta_nature_reserve).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa",
+      "approvedReviewId": "commons-campiglio-laghi-di-san-giuliano-garzone-e-vacarsa-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-laghi-di-san-giuliano-garzone-e-vacarsa-lake.jpg",
+        "heroImage": "images/trails/campiglio-laghi-di-san-giuliano-garzone-e-vacarsa-lake.jpg",
+        "imageAlt": "The Lago di San Giuliano among larches and meadows, a small wooden hut on the grassy shore and forested slopes under a summer sky",
+        "imageCredit": "The Lago di San Giuliano, on the loop",
+        "imageCreditText": "The Lago di San Giuliano, on the loop by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Caderzone_Terme_-_Lago_di_San_Giuliano_04.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "campiglio-lago-ritorto-nel-blu-dipinto-di-blu",
+      "approvedReviewId": "commons-campiglio-lago-ritorto-nel-blu-dipinto-di-blu-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-lago-ritorto-nel-blu-dipinto-di-blu-brenta-view.jpg",
+        "heroImage": "images/trails/campiglio-lago-ritorto-nel-blu-dipinto-di-blu-brenta-view.jpg",
+        "imageAlt": "The pale walls and towers of the Brenta Dolomites under drifting clouds, seen across dark spruce forest from the Ritort pastures",
+        "imageCredit": "The Brenta group from the Ritort pastures",
+        "imageCreditText": "The Brenta group from the Ritort pastures by Marco Ober",
+        "imageCreator": "Marco Ober",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Brenta_Dolomites,_view_from_Ritorto_lodge_02.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "campiglio-monte-spinale-rifugio-graffer",
+      "approvedReviewId": "commons-campiglio-monte-spinale-rifugio-graffer-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-monte-spinale-rifugio-graffer-lago-spinale.jpg",
+        "heroImage": "images/trails/campiglio-monte-spinale-rifugio-graffer-lago-spinale.jpg",
+        "imageAlt": "The small Lago Spinale in a green alpine meadow with a fence around it, grey Brenta peaks and white clouds behind",
+        "imageCredit": "The Lago Spinale, on the walk",
+        "imageCreditText": "The Lago Spinale, on the walk by FkMohr",
+        "imageCreator": "FkMohr",
+        "imageLicence": "CC BY-SA 3.0 de",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_Spinale_NO.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cembra-castello-segonzano",
       "approvedReviewId": "commons-cembra-castello-segonzano-on-route",
       "approvedAt": "2026-10-27T15:00:00.000Z",
@@ -4395,6 +4480,23 @@
       }
     },
     {
+      "id": "paganella-giro-del-lago-di-molveno",
+      "approvedReviewId": "commons-paganella-giro-del-lago-di-molveno-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/paganella-giro-del-lago-di-molveno-lake.jpg",
+        "heroImage": "images/trails/paganella-giro-del-lago-di-molveno-lake.jpg",
+        "imageAlt": "The still turquoise Lago di Molveno with pale rocks on the shore in the foreground and wooded mountains beyond under a soft evening sky",
+        "imageCredit": "The Lago di Molveno, on the loop",
+        "imageCreditText": "The Lago di Molveno, on the loop by Italo Greco",
+        "imageCreator": "Italo Greco",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Molveno_(9614678613).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "paganella-giro-della-toresela",
       "approvedReviewId": "commons-paganella-giro-della-toresela-on-route",
       "approvedAt": "2026-10-28T02:00:00.000Z",
@@ -4408,6 +4510,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Toresela_facciata.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "paganella-passeggiata-del-ciclamino",
+      "approvedReviewId": "commons-paganella-passeggiata-del-ciclamino-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/paganella-passeggiata-del-ciclamino-rio-massodi.jpg",
+        "heroImage": "images/trails/paganella-passeggiata-del-ciclamino-rio-massodi.jpg",
+        "imageAlt": "A wooden-railed path beside the clear Rio Massodi stream running over rocks through green woods above Molveno",
+        "imageCredit": "The Rio Massodi above Molveno, on the walk",
+        "imageCreditText": "The Rio Massodi above Molveno, on the walk by Giorgio Galeotti",
+        "imageCreator": "Giorgio Galeotti",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rio_Massodi_-_Molveno,_Trento,_Italia_-_22_Settembre_2024_14.jpg",
         "imageSourceType": "licensed-source"
       }
     },

@@ -128,9 +128,13 @@ describe('the existing-site verification boundary',()=>{
     // loop, Rotwandwiesen – Moos, Helm – Waldruhe – Sexten, Fischleintal – Sextner
     // Stein, Moos – Helm and Sexten – Innerfeldtal.
     // Then 350 and 348 with one more Hochpustertal walk: Cimabanche to the Plätzwiese.
+    // Then 357 and 355 with seven western Trentino walks in and beside the Adamello
+    // Brenta park: Madonna di Campiglio to Malga Ritort, Patascoss to the Lago
+    // Ritorto, the San Giuliano lakes, Monte Spinale to the Graffer hut, Carisolo,
+    // and round the Lago di Molveno and the Ciclamino walk above it.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(350);
-    expect(currentSiteTrails(catalogue)).toHaveLength(348);
+    expect(catalogue).toHaveLength(357);
+    expect(currentSiteTrails(catalogue)).toHaveLength(355);
   });
 
   test('requires the artwork the public trail page needs',()=>{
