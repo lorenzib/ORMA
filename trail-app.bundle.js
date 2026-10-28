@@ -66507,6 +66507,27 @@ function makeIconEl(iconKey, bgColor){
   return fallback;
 }
 
+// The terrain's height under the middle of the map, or null before its
+// tiles have loaded (the terrain answers 0 until then).
+function groundElevation(map){
+  if(typeof map.queryTerrainElevation !== 'function') return null;
+  const height = map.queryTerrainElevation(map.getCenter());
+  return Number.isFinite(height) && height > 0 ? height : null;
+}
+
+// Calls back with the ground's height once the terrain knows it, or with
+// null after a second and a half, so a slow connection still gets its 3D.
+function whenGroundKnown(map, done, tries = 30){
+  const check = () => {
+    const height = groundElevation(map);
+    tries -= 1;
+    if(height !== null || tries <= 0) done(height);
+    else setTimeout(check, 50);
+  };
+  // Never synchronously: the caller finishes switching 3D on first.
+  setTimeout(check, 0);
+}
+
 function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
   // With `existingBtn`, the toggle joins the Map · Satellite · 3D group.
   let btn = existingBtn || null;
@@ -66549,7 +66570,17 @@ function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
       }
       // At close trail-detail zooms the camera can sit below a 2,000–3,000 m
       // terrain surface, blanking the map. Pull back to a safe planning zoom.
-      map.easeTo({ pitch: pitch3D, zoom: Math.min(currentZoom, 12.25), duration: 500 });
+      //
+      // And aim at the ground, not at sea level. The flat map's camera points at
+      // elevation 0, and tilted 45° a walk 2,000 m up then sits above the top
+      // of the view. An eased move drops `elevation`, so the camera is lifted
+      // with a jump while the map is still flat, where it does not show, and
+      // only then tilted. The terrain answers a moment after setTerrain.
+      whenGroundKnown(map, height => {
+        if(!elevationVisible) return;
+        if(height !== null) map.jumpTo({ elevation: height });
+        map.easeTo({ pitch: pitch3D, zoom: Math.min(currentZoom, 12.25), duration: 500 });
+      });
       if(existingBtn){ btn.classList.add('on'); btn.setAttribute('aria-pressed', 'true'); }
       else btn.textContent = window.t('trail.viewFlat');
     } else {
@@ -66560,6 +66591,7 @@ function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
         center: flatCamera && flatCamera.center,
         zoom: flatCamera && flatCamera.zoom,
         bearing: flatCamera && flatCamera.bearing,
+        elevation: 0,
         duration: 500,
       });
       if(existingBtn){ btn.classList.remove('on'); btn.setAttribute('aria-pressed', 'false'); }
