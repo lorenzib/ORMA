@@ -140,9 +140,13 @@ describe('the existing-site verification boundary',()=>{
     // Segantini at the head of the Val Nambrone.
     // Then 366 and 364 with the first Valtellina walk: Arnoga to the Rifugio
     // Federico up the Val Viola, between Bormio and Livigno.
+    // Then 372 and 370 with six more East Tyrol walks: the Kreuzweg to Klaunz and
+    // the St. Nikolaus church walk at Matrei, the Weg der Sinne and the Kreuzweg to
+    // Maria Schnee at Virgen, the children's nature trail at Kals and the water
+    // trail at St. Jakob in Defereggen.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(366);
-    expect(currentSiteTrails(catalogue)).toHaveLength(364);
+    expect(catalogue).toHaveLength(372);
+    expect(currentSiteTrails(catalogue)).toHaveLength(370);
   });
 
   test('requires the artwork the public trail page needs',()=>{

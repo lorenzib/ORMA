@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T10:40:02.050Z",
+  "generatedAt": "2026-10-28T10:45:04.569Z",
   "regions": {
     "dolomites": {
       "trailCount": 287,
@@ -415,13 +415,19 @@
       "optional": []
     },
     "tyrol": {
-      "trailCount": 4,
-      "trails": "data/regions/tyrol-trails.js?v=e4dd4cdd06e4",
+      "trailCount": 10,
+      "trails": "data/regions/tyrol-trails.js?v=a1170e500e31",
       "details": {
         "osttirol-rundwanderung-schloss-weissenstein": "data/trail-details/osttirol-rundwanderung-schloss-weissenstein.js?v=505f9f1fa778",
         "osttirol-naturkraftweg-umbalfaelle": "data/trail-details/osttirol-naturkraftweg-umbalfaelle.js?v=40335ca2a8f1",
         "osttirol-kulturweg-koednitz": "data/trail-details/osttirol-kulturweg-koednitz.js?v=8daab1982604",
-        "osttirol-rundwanderung-am-staller-sattel": "data/trail-details/osttirol-rundwanderung-am-staller-sattel.js?v=ad400270d9b1"
+        "osttirol-rundwanderung-am-staller-sattel": "data/trail-details/osttirol-rundwanderung-am-staller-sattel.js?v=ad400270d9b1",
+        "osttirol-spazierweg-kreuzweg": "data/trail-details/osttirol-spazierweg-kreuzweg.js?v=bbbb582bff01",
+        "osttirol-spazierweg-nikolauskirche": "data/trail-details/osttirol-spazierweg-nikolauskirche.js?v=dbb4bf7f0bd2",
+        "osttirol-weg-der-sinne-virgen": "data/trail-details/osttirol-weg-der-sinne-virgen.js?v=2442d2f325ca",
+        "osttirol-themenweg-kreuzweg-virgen": "data/trail-details/osttirol-themenweg-kreuzweg-virgen.js?v=f048d0ec5ebe",
+        "osttirol-kinder-naturerlebnispfad-kals-ag": "data/trail-details/osttirol-kinder-naturerlebnispfad-kals-ag.js?v=e8654b3c05e7",
+        "osttirol-wassererlebnisweg-st-jakob-i-d": "data/trail-details/osttirol-wassererlebnisweg-st-jakob-i-d.js?v=dded64d35664"
       },
       "water": "data/regions/tyrol-water.geojson",
       "hutsBars": "data/regions/tyrol-huts-bars.geojson",
@@ -795,7 +801,13 @@
     "osttirol-rundwanderung-schloss-weissenstein": "tyrol",
     "osttirol-naturkraftweg-umbalfaelle": "tyrol",
     "osttirol-kulturweg-koednitz": "tyrol",
-    "osttirol-rundwanderung-am-staller-sattel": "tyrol"
+    "osttirol-rundwanderung-am-staller-sattel": "tyrol",
+    "osttirol-spazierweg-kreuzweg": "tyrol",
+    "osttirol-spazierweg-nikolauskirche": "tyrol",
+    "osttirol-weg-der-sinne-virgen": "tyrol",
+    "osttirol-themenweg-kreuzweg-virgen": "tyrol",
+    "osttirol-kinder-naturerlebnispfad-kals-ag": "tyrol",
+    "osttirol-wassererlebnisweg-st-jakob-i-d": "tyrol"
   },
   "trailSlug": {
     "alpe-siusi": "alpe-di-siusi-meadow-loop",
@@ -1163,6 +1175,12 @@
     "campiglio-trekking-al-rifugio-segantini": "rifugio-segantini-loop",
     "campiglio-madonna-di-campiglio-monte-spinale": "campiglio-monte-spinale",
     "bormio-da-arnoga-al-rifugio-federico": "arnoga-rifugio-federico-val-viola",
+    "osttirol-spazierweg-kreuzweg": "kreuzweg-klaunz-matrei",
+    "osttirol-spazierweg-nikolauskirche": "st-nikolaus-church-walk-matrei",
+    "osttirol-weg-der-sinne-virgen": "weg-der-sinne-virgen",
+    "osttirol-themenweg-kreuzweg-virgen": "kreuzweg-maria-schnee-virgen",
+    "osttirol-kinder-naturerlebnispfad-kals-ag": "kals-childrens-nature-trail",
+    "osttirol-wassererlebnisweg-st-jakob-i-d": "water-trail-st-jakob-defereggen",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1531,6 +1549,12 @@
     "rifugio-segantini-loop": "campiglio-trekking-al-rifugio-segantini",
     "campiglio-monte-spinale": "campiglio-madonna-di-campiglio-monte-spinale",
     "arnoga-rifugio-federico-val-viola": "bormio-da-arnoga-al-rifugio-federico",
+    "kreuzweg-klaunz-matrei": "osttirol-spazierweg-kreuzweg",
+    "st-nikolaus-church-walk-matrei": "osttirol-spazierweg-nikolauskirche",
+    "weg-der-sinne-virgen": "osttirol-weg-der-sinne-virgen",
+    "kreuzweg-maria-schnee-virgen": "osttirol-themenweg-kreuzweg-virgen",
+    "kals-childrens-nature-trail": "osttirol-kinder-naturerlebnispfad-kals-ag",
+    "water-trail-st-jakob-defereggen": "osttirol-wassererlebnisweg-st-jakob-i-d",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
