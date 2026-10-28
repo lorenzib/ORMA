@@ -110,6 +110,28 @@
           "notes": "The walk starts at the top of the Vierschach – Helm gondola, whose cabins are closed, and ends on foot in Vierschach. Keep your dog on a lead in the cabin and carry a muzzle."
         }
       }
+    },
+    {
+      "id": "valgardena-escursione-al-brogles",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Resciesa funicular (Ortisei)",
+          "notes": "The walk starts at the top of the Resciesa funicular from Ortisei, a railway with closed cars. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "valgardena-uciei-de-freeines",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Col Raiser gondola (Santa Cristina)",
+          "notes": "The walk starts at the top of the Col Raiser gondola from Santa Cristina, with closed cabins, and ends at its valley station. Dogs ride on a lead and muzzled."
+        }
+      }
     }
   ]
 }

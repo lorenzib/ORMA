@@ -114,9 +114,12 @@ describe('the existing-site verification boundary',()=>{
     // Monte Scioscia viewpoint loop above the Segrino.
     // Then 328 and 326 with two more Hochpustertal walks: the Lanaweg loop above
     // Niederdorf and the huts circuit above the Pragser Wildsee.
+    // Then 335 and 333 with seven more Val Gardena walks: Selva's Way of the Cross,
+    // Resciesa – Brogles, Ortisei – Sëurasas, Santa Cristina – Passo Sella, the
+    // Uciei de Frëines, the Val d'Anna and historic Ortisei.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(328);
-    expect(currentSiteTrails(catalogue)).toHaveLength(326);
+    expect(catalogue).toHaveLength(335);
+    expect(currentSiteTrails(catalogue)).toHaveLength(333);
   });
 
   test('requires the artwork the public trail page needs',()=>{

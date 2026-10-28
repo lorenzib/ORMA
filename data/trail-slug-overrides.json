@@ -983,6 +983,41 @@
       "name": "Pragser Wildsee huts circuit",
       "slug": "pragser-wildsee-huts-circuit",
       "gloss": "the circuit to the Kaseralm and the Grünwaldalm above the Pragser Wildsee"
+    },
+    "valgardena-arte-e-storia": {
+      "name": "Selva Way of the Cross",
+      "slug": "selva-way-of-the-cross",
+      "gloss": "the old Way of the Cross under the Stevia to San Silvestro"
+    },
+    "valgardena-escursione-al-brogles": {
+      "name": "Resciesa – Brogles",
+      "slug": "resciesa-brogles",
+      "gloss": "the high-pasture walk from the Resciesa to Brogles"
+    },
+    "valgardena-escursione-al-seeurasas": {
+      "name": "Ortisei – Sëurasas",
+      "slug": "ortisei-seurasas",
+      "gloss": "the climb from Ortisei past San Giacomo to the Sëurasas"
+    },
+    "valgardena-escursione-da-s-cristina-al-passo-sella": {
+      "name": "Santa Cristina – Passo Sella",
+      "slug": "santa-cristina-passo-sella",
+      "gloss": "the climb over Monte Pana and the Città dei Sassi to the Sella pass"
+    },
+    "valgardena-uciei-de-freeines": {
+      "name": "Uciei de Frëines",
+      "slug": "uciei-de-freines",
+      "gloss": "the bird-call art path down from Col Raiser"
+    },
+    "valgardena-val-danna-percorso-kneipp": {
+      "name": "Val d’Anna",
+      "slug": "val-d-anna",
+      "gloss": "the shaded stream walk up the Val d’Anna"
+    },
+    "valgardena-giro-storico-del-paese-di-ortisei": {
+      "name": "Historic Ortisei",
+      "slug": "historic-ortisei",
+      "gloss": "the villa and workshop walk round old Ortisei"
     }
   }
 }
