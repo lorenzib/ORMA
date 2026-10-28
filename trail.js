@@ -2093,6 +2093,8 @@ function renderTrail(t){
         if (!btn || !ensureSatelliteLayer()) return;
         const sat = btn.getAttribute('data-maplayer') === 'satellite';
         map.setLayoutProperty('satellite-layer', 'visibility', sat ? 'visible' : 'none');
+        // Let the real path in the photo show through the walk.
+        window.ORMAMapStyle.setLinesOnImagery(map, 'single-trail-path-line', sat);
         // The vector style's building fills sit above the raster and would
         // paint every roof grey over the photo imagery, hide them on
         // satellite.
@@ -2485,6 +2487,10 @@ function renderTrail(t){
           color: selectedRouteColor,
           beforeId: window.ORMAMapStyle.walkLineBeforeId(map),
         });
+        // Satellite may already be on by the time the walk arrives.
+        if(map.getLayer('satellite-layer') && map.getLayoutProperty('satellite-layer', 'visibility') === 'visible'){
+          window.ORMAMapStyle.setLinesOnImagery(map, 'single-trail-path-line', true);
+        }
 
         // Closed loops are intentionally direction-neutral: hikers can join
         // anywhere and walk clockwise or anticlockwise. Keep arrows only for

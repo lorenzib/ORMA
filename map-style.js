@@ -134,6 +134,8 @@
   // load, the raster is put back in their place.
   const HIKING_SOURCE = 'orma-hiking-routes';
   const HIKING_LINE_LAYER = 'orma-hiking-routes-line';
+  // Fainter over satellite, so the track in the photo is not painted over.
+  const HIKING_LINE_OPACITY = { map: 0.75, imagery: 0.55 };
   const HIKING_REF_LAYER = 'orma-hiking-routes-ref';
   const HIKING_WALK_SOURCE = 'orma-hiking-walk-refs';
   const HIKING_WALK_REF_LAYER = 'orma-hiking-routes-ref-walk';
@@ -310,7 +312,7 @@
       layout: { visibility, 'line-join': 'round', 'line-cap': 'butt' },
       paint: {
         'line-color': HIKING_LINE_COLOUR,
-        'line-opacity': 0.75,
+        'line-opacity': HIKING_LINE_OPACITY.map,
         // Dashed so a route never reads as a contour line.
         'line-dasharray': [2, 1.6],
         'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.8, 13, 1.4, 16, 2.4],
@@ -689,6 +691,29 @@
     return { casing: id + '-casing', line: id };
   }
 
+  // On satellite the photo itself shows the path, so the white casing goes
+  // and the corridor becomes a light tint: still clearly "your walk", but
+  // the real track shows through it.
+  const ROUTE_LINE_ON_IMAGERY = { casing: 0, line: 0.4 };
+
+  /**
+   * Fade the walk (a line made by addRouteLine) and our hiking routes over
+   * satellite imagery, or restore them.
+   */
+  function setLinesOnImagery(map, walkId, onImagery) {
+    if (!map) return;
+    if (map.getLayer(HIKING_LINE_LAYER)) {
+      map.setPaintProperty(HIKING_LINE_LAYER, 'line-opacity',
+        onImagery ? HIKING_LINE_OPACITY.imagery : HIKING_LINE_OPACITY.map);
+    }
+    if (!walkId || !map.getLayer(walkId)) return;
+    const normal = routeLinePaint('#000');
+    const casing = onImagery ? ROUTE_LINE_ON_IMAGERY.casing : normal.casing['line-opacity'];
+    const line = onImagery ? ROUTE_LINE_ON_IMAGERY.line : normal.line['line-opacity'];
+    if (map.getLayer(walkId + '-casing')) map.setPaintProperty(walkId + '-casing', 'line-opacity', casing);
+    map.setPaintProperty(walkId, 'line-opacity', line);
+  }
+
   // ── Contour lines ─────────────────────────────────────────────────────
   // The elevation detail a general street basemap (openfreemap Liberty) does
   // not carry and a paid outdoors style (Mapbox/AllTrails) does. Generated
@@ -808,6 +833,9 @@
     calmBasemap,
     routeLinePaint,
     addRouteLine,
+    setLinesOnImagery,
+    ROUTE_LINE_ON_IMAGERY,
+    HIKING_LINE_OPACITY,
     addContours,
     setContoursVisible,
     CONTOUR_SOURCE,
