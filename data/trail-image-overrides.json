@@ -1176,6 +1176,23 @@
       }
     },
     {
+      "id": "fvg-col-dei-piais",
+      "approvedReviewId": "commons-fvg-col-dei-piais-on-route",
+      "approvedAt": "2026-10-28T06:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-col-dei-piais-san-rocco.jpg",
+        "heroImage": "images/trails/fvg-col-dei-piais-san-rocco.jpg",
+        "imageAlt": "The white front of a small chapel with a round window and red geraniums at its windows, steep green wooded slopes behind under a blue sky",
+        "imageCredit": "The chapel of San Rocco, Claut",
+        "imageCreditText": "The chapel of San Rocco, Claut by Marchetto da Trieste",
+        "imageCreator": "Marchetto da Trieste",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chiesa_di_San_Rocco_(Massurie,_Claut)_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fvg-faggi-secolari-pustot-dordolla",
       "approvedReviewId": "commons-fvg-faggi-secolari-pustot-dordolla-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",
@@ -1189,6 +1206,23 @@
         "imageLicence": "CC BY-SA 3.0 at",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/at",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Friaul_Val_Aupa_Dordolla_West_credit_Kaspar_Nickles_2011.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-fontanon-di-goriuda",
+      "approvedReviewId": "commons-fvg-fontanon-di-goriuda-on-route",
+      "approvedAt": "2026-10-28T06:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-fontanon-di-goriuda-waterfall.jpg",
+        "heroImage": "images/trails/fvg-fontanon-di-goriuda-waterfall.jpg",
+        "imageAlt": "A tall white waterfall pouring down a steep wooded mountainside between spruces, green summer leaves in the foreground",
+        "imageCredit": "The Fontanon di Goriuda",
+        "imageCreditText": "The Fontanon di Goriuda by Klenje",
+        "imageCreator": "Klenje",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Fontanon_di_Goriuda.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1210,6 +1244,23 @@
       }
     },
     {
+      "id": "fvg-raunis-cascate-belepeit",
+      "approvedReviewId": "commons-fvg-raunis-cascate-belepeit-on-route",
+      "approvedAt": "2026-10-28T06:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-raunis-cascate-belepeit-chiusaforte.jpg",
+        "heroImage": "images/trails/fvg-raunis-cascate-belepeit-chiusaforte.jpg",
+        "imageAlt": "A clear green-blue river over pale stones below a concrete bridge, the yellow and white houses of a village and steep wooded mountains behind under a grey sky",
+        "imageCredit": "Chiusaforte and the Fella river",
+        "imageCreditText": "Chiusaforte and the Fella river by Sirleonidas",
+        "imageCreator": "Sirleonidas",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chiusaforte_veduta_06.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fvg-ta-lipa-pot-corto",
       "approvedReviewId": "commons-fvg-ta-lipa-pot-corto-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",
@@ -1223,6 +1274,23 @@
         "imageLicence": "CC0",
         "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Julian_Prealps_between_Cima_Tulsti_and_Bagni_Colc,_view_from_Resia_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-venzone-anello-delle-chiesette",
+      "approvedReviewId": "commons-fvg-venzone-anello-delle-chiesette-on-route",
+      "approvedAt": "2026-10-28T06:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-venzone-anello-delle-chiesette-church.jpg",
+        "heroImage": "images/trails/fvg-venzone-anello-delle-chiesette-church.jpg",
+        "imageAlt": "A long low stone church with an arched porch and a square bell tower on green grass, wooded mountains under grey clouds behind",
+        "imageCredit": "A small church in the meadows outside Venzone",
+        "imageCreditText": "A small church in the meadows outside Venzone by Sirleonidas",
+        "imageCreator": "Sirleonidas",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Venzone_veduta_14.jpg",
         "imageSourceType": "licensed-source"
       }
     },

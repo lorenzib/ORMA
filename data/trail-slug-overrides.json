@@ -1038,6 +1038,26 @@
       "name": "Cristauta – Seceda over Monte Pic",
       "slug": "cristauta-seceda-monte-pic",
       "gloss": "the climb over the Sëurasas and Monte Pic to the Seceda"
+    },
+    "fvg-fontanon-di-goriuda": {
+      "name": "Fontanon di Goriuda",
+      "slug": "fontanon-di-goriuda",
+      "gloss": "the short path to the Fontanon di Goriuda waterfall"
+    },
+    "fvg-col-dei-piais": {
+      "name": "Col dei Piais",
+      "slug": "col-dei-piais-claut",
+      "gloss": "the loop from Claut up the Col dei Piais"
+    },
+    "fvg-raunis-cascate-belepeit": {
+      "name": "Borgo Raunis e le cascate del rio Belepeit",
+      "slug": "raunis-cascate-belepeit",
+      "gloss": "the loop from Chiusaforte to Raunis and the Belepeit falls"
+    },
+    "fvg-venzone-anello-delle-chiesette": {
+      "name": "Sentiero Natura - Anello delle chiesette di Venzone",
+      "slug": "venzone-anello-delle-chiesette",
+      "gloss": "the short loop to the small churches above Venzone"
     }
   }
 }

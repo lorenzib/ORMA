@@ -121,9 +121,12 @@ describe('the existing-site verification boundary',()=>{
     // Seceda via the Rifugio Firenze and Ortisei – Passo Sella.
     // Then 339 and 337 with one more Val Gardena walk: Cristauta to the Seceda over
     // the Sëurasas and Monte Pic.
+    // Then 343 and 341 with four more Friuli Venezia Giulia walks: the Fontanon di
+    // Goriuda, the Col dei Piais above Claut, Raunis and the Belepeit falls from
+    // Chiusaforte, and the small churches above Venzone.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(339);
-    expect(currentSiteTrails(catalogue)).toHaveLength(337);
+    expect(catalogue).toHaveLength(343);
+    expect(currentSiteTrails(catalogue)).toHaveLength(341);
   });
 
   test('requires the artwork the public trail page needs',()=>{

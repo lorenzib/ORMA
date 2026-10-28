@@ -2393,6 +2393,38 @@
       "quote": "Distanza 6,3 km · Salita 861 m · Durata 3:04 ore",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T22:00:00.000Z"
+    },
+    "fvg-fontanon-di-goriuda": {
+      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/fontanon-di-goriuda/805382080/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Fontanon di Goriuda",
+      "quote": "Distanza 0,6 km · Durata 0:15 h · Salita 50 m · Discesa 50 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T06:00:00.000Z"
+    },
+    "fvg-col-dei-piais": {
+      "url": "https://www.outdooractive.com/it/route/escursione/claut/col-dei-piais/805561297/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Col dei Piais",
+      "quote": "Distanza 4,9 km · Durata 1:50 h · Salita 285 m · Discesa 284 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T06:00:00.000Z"
+    },
+    "fvg-raunis-cascate-belepeit": {
+      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/borgo-raunis-e-le-cascate-del-rio-belepeit/809189921/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Borgo Raunis e le cascate del rio Belepeit",
+      "quote": "Distanza 5,8 km · Durata 3:00 h · Salita 333 m · Discesa 333 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T06:00:00.000Z"
+    },
+    "fvg-venzone-anello-delle-chiesette": {
+      "url": "https://www.outdooractive.com/it/route/escursione/venzone/sentiero-natura-anello-delle-chiesette-di-venzone/805854151/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Sentiero Natura - Anello delle chiesette di Venzone",
+      "quote": "Distanza 2,6 km · Durata 1:00 h · Salita 99 m · Discesa 99 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T06:00:00.000Z"
     }
   }
 }
