@@ -55079,6 +55079,228 @@ function effectiveOverrides(profile, adjustOverride){
       waterSources: [],
       rifugi: [],
       desc: 'A short loop round the eastern arm of the Lago di Verzegnis, across the Ambiesta dam and back through the woods over suspension bridges, with views of Monte Amariana. PromoTurismoFVG lists 2.6 km and 93 m of ascent.'
+    },
+    'paganella-andalo-tana-ermellino': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 3).
+      // APT Dolomiti Paganella’s walk “Passeggiata da Andalo alla Tana dell’Ermellino”, drawn on 15 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Cavedago and Andalo (neither publishes a dog regulation, national rule).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      area: 'Andalo – Priori – Tana dell’Ermellino, Paganella',
+      distance: 3.8,
+      elevation: 32,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A nearly level loop from the riding stables in the Andalo Life park along the gravel road beside the lake and through the woods to the Tana dell’Ermellino at Priori, and back.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Path 812 through a mown meadow near Cavedago, on the loop, in June (Giorgio Galeotti, CC BY-SA 4.0), 22 m from the line.',
+        route: 'Official loop 3.8 km from the Andalo Life park, as Visit Paganella publishes it; the stored line is drawn on 15 OSM ways along the APT’s published line, 3.7 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the riding stables in the Andalo Life park along the compacted gravel road beside the paved path round the Lago di Andalo, into the woods to the Tana dell’Ermellino at Priori, a bar-restaurant with a playground and picnic tables, and back. About three quarters on tarmac or gravel road, the rest on a nature path.',
+        mapPoints: 'Start at the APT’s start, the Andalo Life park; no drinking fountain is mapped on the line.',
+        elevation: 'Official 3.8 km, 32 m up and 32 m down, 1 h 03 min, highest point 1,044 m (Priori), lowest 1,013 m (Andalo) (Visit Paganella).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Visit Paganella, APT Dolomiti di Brenta Paganella, Passeggiata da Andalo alla Tana dell’Ermellino (visitpaganella.it and its Outdooractive tour)',
+          'Comune di Cavedago, like Comune di Andalo, publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 67,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: [
+        'Mostly tarmac and gravel road, shared with bikes and the odd car',
+        'The Andalo Life park and the lake shore are busy with families and horses from the riding stables'
+      ],
+      terrainType: 'Gravel road, tarmac and a short nature path',
+      shadeDescription: 'Part shade: about 67% runs under trees, in the woods towards Priori.',
+      terrainDescription: 'A nearly level loop at about 1,013–1,044 m from Andalo past its karst lake and through the woods to Priori, with the Paganella above.',
+      waterDescription: 'No drinking fountain is mapped on the loop; the Tana dell’Ermellino at Priori serves food and drink, and the Andalo Life park has bars at the start. Carry water for your dog.',
+      dogNotes: 'Andalo and Cavedago have no dog regulation of their own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog close near the riding stables and the playgrounds.',
+      tips: 'Start at the riding stables in the Andalo Life park: 3.8 km and almost level, about an hour. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Carry water: the only stop is the Tana dell’Ermellino at Priori.',
+      sourceLinks: [
+        { label: 'Visit Paganella, Passeggiata da Andalo alla Tana dell’Ermellino', url: 'https://ktips.visitpaganella.it/it/itinerari/passeggiata-da-andalo-alla-tana-dell-ermellino' },
+        { label: 'Outdooractive, Passeggiata da Andalo alla Tana dell’Ermellino (Visit Paganella)', url: 'https://www.outdooractive.com/it/r/22486693' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.172096,
+        lng: 11.003644,
+        label: 'Andalo Life park, the APT’s start'
+      },
+      waterSources: [],
+      rifugi: [
+        { km: 1.4, lat: 46.1841, lng: 11.01301, osmId: 'node/12534903736', name: 'La tana dell\'ermellino' }
+      ],
+      desc: 'A nearly level loop from Andalo past its little lake and through the woods to the Tana dell’Ermellino at Priori. The APT lists 3.8 km and 32 m of ascent.'
+    },
+    'paganella-giro-della-toresela': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 3).
+      // APT Dolomiti Paganella’s walk “Giro della Toresela”, drawn on 12 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: Mezzolombardo (no dog regulation among its 145 published regulations, national rule).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      // SUSPENSION BRIDGE at km 0.8: the Ponte sospeso di Mezzolombardo (OSM way 1244059081, bridge:structure=simple-suspension,
+      // metal deck, about 100 m). The route follows the signs for the Val del Rì via ferrata only as far as the bridge.
+      // Allowed under the owner’s 26 Oct rule, flagged in hazards, dog notes and tips, and exposure set to true.
+      area: 'Mezzolombardo – Colle San Pietro – Toresela, Piana Rotaliana',
+      distance: 1.4,
+      elevation: 66,
+      hours: '0.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from behind the parish church of Mezzolombardo through the old Canevarie quarter, up the Colle San Pietro past the cemetery, over a suspension bridge to the Toresela watchtower, and back down into the town.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Toresela watchtower, on the loop, in September (MonicaBobo, CC BY-SA 4.0), 10 m from the line.',
+        route: 'Official loop 1.4 km from Via San Pietro, Mezzolombardo, as Visit Paganella publishes it; the stored line is drawn on 12 OSM ways along the APT’s published line, 1.4 km, with 100% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from behind the parish church of Mezzolombardo through the old Canevarie quarter and up the Colle San Pietro towards the cemetery; from there follow the signs for the Val del Rì via ferrata only as far as the suspension bridge (km 0.8), cross it to the Toresela, a panoramic watchtower, and go back down into the town. The via ferrata itself is not part of the walk.',
+        mapPoints: 'Start at the APT’s start, Via San Pietro in Mezzolombardo; drinking water at the start and at km 0.2 (OSM nodes 12828395458, 1633035183).',
+        elevation: 'Official 1.4 km, 66 m up and 66 m down, 30 min, highest point 293 m, lowest 228 m (Visit Paganella).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Visit Paganella, APT Dolomiti di Brenta Paganella, Giro della Toresela (visitpaganella.it and its Outdooractive tour)',
+          'Comune di Mezzolombardo publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line, road, surface, bridge, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 48,
+      heatRisk: 'high',
+      exposure: true,
+      surfaceHazards: [
+        'The suspension bridge at km 0.8: about 100 m long, with a metal deck',
+        'Town streets in Mezzolombardo, shared with cars',
+        'Low and sunny: the Piana Rotaliana gets very hot in summer'
+      ],
+      terrainType: 'Town streets, a short path and a suspension bridge',
+      shadeDescription: 'Part shade: about 48% runs under trees, on the Colle San Pietro.',
+      terrainDescription: 'A short loop at 228–293 m above the wine town of Mezzolombardo, through its oldest quarter and over a long suspension bridge to the Toresela watchtower, with views over the Piana Rotaliana.',
+      waterDescription: 'Drinking fountains at the start and at km 0.2, and bars and cafés in the town centre.',
+      dogNotes: 'The loop crosses a suspension bridge about 100 m long with a metal deck at km 0.8. It moves as you walk and you can see through the gaps: some dogs refuse it. Cross slowly with your dog on a short lead, carry a small dog if it hesitates, and be ready to turn back. Mezzolombardo has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried.',
+      tips: 'Start behind the parish church in Mezzolombardo: 1.4 km and about 70 m of climbing, half an hour. The suspension bridge at km 0.8 moves as you cross: some dogs refuse it. Cross slowly with your dog on a short lead, carry a small dog if it hesitates, and be ready to turn back. Avoid the middle of hot summer days.',
+      sourceLinks: [
+        { label: 'Visit Paganella, Giro della Toresela', url: 'https://ktips.visitpaganella.it/it/itinerari/giro-della-toresela' },
+        { label: 'Outdooractive, Giro della Toresela (Consorzio Turistico Piana Rotaliana Königsberg for Visit Paganella)', url: 'https://www.outdooractive.com/it/r/805497810' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.209575,
+        lng: 11.090611,
+        label: 'Via San Pietro, behind the parish church in Mezzolombardo, the APT’s start'
+      },
+      waterSources: [
+        { km: 0, lat: 46.2092096, lng: 11.0893454, osmId: 'node/12828395458', label: 'Drinking fountain at the start' },
+        { km: 0.2, lat: 46.2087432, lng: 11.0945434, osmId: 'node/1633035183', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.20918, lng: 11.08935, osmId: 'way/160098056', name: 'La Toresela' },
+        { km: 0, lat: 46.20946, lng: 11.09319, osmId: 'node/1362787078', name: 'Bar Stella' },
+        { km: 0, lat: 46.21097, lng: 11.09066, osmId: 'node/870463323', name: 'Hua Xing' },
+        { km: 0, lat: 46.21117, lng: 11.09055, osmId: 'node/870463412', name: 'Caffè Mazzini' },
+        { km: 0, lat: 46.2109, lng: 11.09122, osmId: 'node/885639402', name: 'Bar Titti' },
+        { km: 0, lat: 46.21164, lng: 11.09086, osmId: 'node/885639416', name: 'Caffè DNA' },
+        { km: 0.1, lat: 46.20924, lng: 11.09409, osmId: 'way/72528026', name: 'Ristorante Pizzeria Al Duomo' },
+        { km: 0.1, lat: 46.20811, lng: 11.09409, osmId: 'node/861050488', name: 'Ristorante Pizzeria Mana' },
+        { km: 0.1, lat: 46.20987, lng: 11.09439, osmId: 'node/6063577655', name: 'Le Rodelle' },
+        { km: 0.2, lat: 46.20911, lng: 11.09589, osmId: 'way/73424152', name: 'Ristorante Casa Nardon' },
+        { km: 1.1, lat: 46.21198, lng: 11.08972, osmId: 'node/861065544', name: 'Liston' }
+      ],
+      desc: 'A short loop above Mezzolombardo through its oldest quarter and over a long suspension bridge to the Toresela watchtower. The APT lists 1.4 km and 66 m of ascent.'
+    },
+    'paganella-sette-passi-sette-ville': {
+      // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 3).
+      // APT Dolomiti Paganella’s walk “Sette passi per sette Ville”, drawn on 50 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Commune: San Lorenzo Dorsino (San Lorenzo in Banale animal rules, Art. 10).
+      // No park, reserve or Natura 2000 site within 150 m of the line (Province of Trento layers).
+      area: 'San Lorenzo in Banale – Berghi – Pergnano – Senaso – Dolaso, Giudicarie',
+      distance: 3.8,
+      elevation: 107,
+      hours: '1.2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the upper part of San Lorenzo in Banale through its old hamlets, Berghi, Pergnano, Senaso and Dolaso, past small churches, old fountains, kitchen gardens and woods.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Stone houses round a courtyard in one of the hamlets, on the loop, in July (napo on Mapillary, CC BY-SA 4.0), 0 m from the line.',
+        route: 'Official loop 3.8 km from San Lorenzo in Banale, as Visit Paganella publishes it; the stored line is drawn on 50 OSM ways along the APT’s published line, 3.9 km, with 96% of the APT’s line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the upper part of San Lorenzo in Banale, where the old rural village is best kept, through the hamlets of Berghi, Pergnano, Senaso and Dolaso with their small churches and old fountains, between stone-and-wood houses, kitchen gardens and woods, and back. A short passage under a building and a few steps in the lanes.',
+        mapPoints: 'Start at the APT’s start in San Lorenzo in Banale; drinking water at the start, at km 0.2, at km 0.3, at km 0.7, at km 0.9, at km 1, at km 1.4, at km 1.7, at km 2.6, at km 3.1 and at km 3.2 (OSM nodes 2987321200, 7083031141, 5401506452, 7083031144, 5401506481, 9945990649, 2378275793, 12094825180, 7082786812, 7090793282, 2378275764, 5401506447, 11032315704, 11032337905, 835951070).',
+        elevation: 'Official 3.8 km, 107 m up and 108 m down, 1 h 10 min, highest point 797 m, lowest 709 m (Visit Paganella).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Visit Paganella, APT Dolomiti di Brenta Paganella, Sette passi per sette Ville (visitpaganella.it and its Outdooractive tour)',
+          'Comune di San Lorenzo Dorsino, Norme per la detenzione e circolazione di animali (San Lorenzo in Banale, 2013), Art. 10: dogs always on a lead in squares, streets and places open to the public; dogs that bite muzzled',
+          'Province of Trento protected-area layers (parks, provincial and local reserves, ZSC and ZPS): none within 150 m of the line',
+          'OpenStreetMap ways along the APT line, road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 1,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Village lanes shared with cars', 'A few steps and a short passage under a building'],
+      terrainType: 'Village lanes and field paths',
+      shadeDescription: 'Mostly open: about 1% runs under trees, between the houses and gardens of the hamlets.',
+      terrainDescription: 'A gentle loop at 709–797 m through the old stone hamlets of San Lorenzo in Banale, below the Brenta Dolomites.',
+      waterDescription: 'Many old village fountains along the loop, in every hamlet.',
+      dogNotes: 'San Lorenzo in Banale’s rules keep dogs always on a lead in squares, streets and places open to the public, and ask for a muzzle on dogs that bite. Keep your dog close in the narrow lanes.',
+      tips: 'Start in the upper part of San Lorenzo in Banale: 3.8 km and about 100 m of climbing, an hour and ten minutes. Keep your dog on a lead all the way. The old fountains in each hamlet are good for a drink.',
+      sourceLinks: [
+        { label: 'Visit Paganella, Sette passi per sette Ville', url: 'https://ktips.visitpaganella.it/it/itinerari/sette-passi-per-sette-ville-san-lorenzo-dorsino' },
+        { label: 'Outdooractive, Sette passi per sette Ville (Visit Paganella)', url: 'https://www.outdooractive.com/it/r/57558766' },
+        { label: 'Comune di San Lorenzo Dorsino, Norme per la detenzione e circolazione di animali – San Lorenzo in Banale (dogs: Art. 10)', url: 'https://www.comune.sanlorenzodorsino.tn.it/content/download/560/9234/8/regolamento_detenzione_e_circolazione_animali_-_dal_11.2013_.pdf' },
+        { label: 'Provincia autonoma di Trento, protected-area layers (parks, provincial and local reserves, ZSC, ZPS)', url: 'https://siat.provincia.tn.it/geonetwork/srv/ita/catalog.search' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: {
+        lat: 46.076735,
+        lng: 10.909081,
+        label: 'San Lorenzo in Banale, the APT’s start'
+      },
+      waterSources: [
+        { km: 0, lat: 46.0760597, lng: 10.9104468, osmId: 'node/2987321200', label: 'Drinking fountain at the start' },
+        { km: 0.2, lat: 46.0777815, lng: 10.9116351, osmId: 'node/7083031141', label: 'Drinking fountain' },
+        { km: 0.3, lat: 46.0782753, lng: 10.9128455, osmId: 'node/5401506452', label: 'Drinking fountain' },
+        { km: 0.7, lat: 46.0785025, lng: 10.9065724, osmId: 'node/7083031144', label: 'Drinking fountain' },
+        { km: 0.9, lat: 46.079138, lng: 10.9036901, osmId: 'node/5401506481', label: 'Drinking fountain' },
+        { km: 1, lat: 46.0793807, lng: 10.9028182, osmId: 'node/9945990649', label: 'Drinking fountain' },
+        { km: 1, lat: 46.0794721, lng: 10.9024789, osmId: 'node/2378275793', label: 'Drinking fountain' },
+        { km: 1.4, lat: 46.0790742, lng: 10.8975948, osmId: 'node/12094825180', label: 'Drinking fountain' },
+        { km: 1.7, lat: 46.0751586, lng: 10.8999693, osmId: 'node/7082786812', label: 'Drinking fountain' },
+        { km: 1.7, lat: 46.07511, lng: 10.9000647, osmId: 'node/7090793282', label: 'Drinking fountain' },
+        { km: 2.6, lat: 46.0753126, lng: 10.9090005, osmId: 'node/2378275764', label: 'Drinking fountain' },
+        { km: 3.1, lat: 46.0757048, lng: 10.9128441, osmId: 'node/5401506447', label: 'Drinking fountain' },
+        { km: 3.1, lat: 46.075213, lng: 10.9126175, osmId: 'node/11032315704', label: 'Drinking fountain' },
+        { km: 3.1, lat: 46.0759479, lng: 10.9128994, osmId: 'node/11032337905', label: 'Drinking fountain' },
+        { km: 3.2, lat: 46.0757739, lng: 10.9144911, osmId: 'node/835951070', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 1.1, lat: 46.07842, lng: 10.90018, osmId: 'way/1082345630', name: 'Al Ritorno' }
+      ],
+      desc: 'A gentle loop through the old stone hamlets of San Lorenzo in Banale, past small churches and fountains below the Brenta Dolomites. The APT lists 3.8 km and 107 m of ascent.'
     }
   };
 

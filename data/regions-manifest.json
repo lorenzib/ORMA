@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T00:14:44.301Z",
+  "generatedAt": "2026-10-28T00:26:33.519Z",
   "regions": {
     "dolomites": {
-      "trailCount": 253,
-      "trails": "data/regions/dolomites-trails.js?v=3660a4492cd7",
+      "trailCount": 256,
+      "trails": "data/regions/dolomites-trails.js?v=085423a982ab",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -258,6 +258,9 @@
         "valdisole-passo-tonale-forte-mero-forte-zaccarana": "data/trail-details/valdisole-passo-tonale-forte-mero-forte-zaccarana.js?v=92e7bb7b32a8",
         "valdisole-passo-tonale-forte-mero": "data/trail-details/valdisole-passo-tonale-forte-mero.js?v=b4ca594246c3",
         "valdisole-ortise-malga-stabli": "data/trail-details/valdisole-ortise-malga-stabli.js?v=1c5122c6c3a1",
+        "paganella-andalo-tana-ermellino": "data/trail-details/paganella-andalo-tana-ermellino.js?v=3498649837b5",
+        "paganella-giro-della-toresela": "data/trail-details/paganella-giro-della-toresela.js?v=4a30c2bc6e94",
+        "paganella-sette-passi-sette-ville": "data/trail-details/paganella-sette-passi-sette-ville.js?v=72479e6a7f6a",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -626,6 +629,9 @@
     "valdisole-passo-tonale-forte-mero-forte-zaccarana": "dolomites",
     "valdisole-passo-tonale-forte-mero": "dolomites",
     "valdisole-ortise-malga-stabli": "dolomites",
+    "paganella-andalo-tana-ermellino": "dolomites",
+    "paganella-giro-della-toresela": "dolomites",
+    "paganella-sette-passi-sette-ville": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1015,6 +1021,9 @@
     "fvg-borgo-stavoli-moggio": "stavoli-di-moggio",
     "fvg-anello-lago-di-verzegnis": "anello-lago-di-verzegnis",
     "fvg-faggi-secolari-pustot-dordolla": "faggi-di-pustot-dordolla",
+    "paganella-andalo-tana-ermellino": "andalo-tana-ermellino",
+    "paganella-giro-della-toresela": "giro-della-toresela",
+    "paganella-sette-passi-sette-ville": "sette-passi-sette-ville",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1337,6 +1346,9 @@
     "stavoli-di-moggio": "fvg-borgo-stavoli-moggio",
     "anello-lago-di-verzegnis": "fvg-anello-lago-di-verzegnis",
     "faggi-di-pustot-dordolla": "fvg-faggi-secolari-pustot-dordolla",
+    "andalo-tana-ermellino": "paganella-andalo-tana-ermellino",
+    "giro-della-toresela": "paganella-giro-della-toresela",
+    "sette-passi-sette-ville": "paganella-sette-passi-sette-ville",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

@@ -943,6 +943,21 @@
       "name": "Anello del Lago di Verzegnis",
       "slug": "anello-lago-di-verzegnis",
       "gloss": "the loop round the Lago di Verzegnis"
+    },
+    "paganella-andalo-tana-ermellino": {
+      "name": "Andalo – Tana dell’Ermellino",
+      "slug": "andalo-tana-ermellino",
+      "gloss": "the level forest walk from Andalo towards Cavedago"
+    },
+    "paganella-giro-della-toresela": {
+      "name": "Giro della Toresela",
+      "slug": "giro-della-toresela",
+      "gloss": "the short climb to the Toresela above Mezzolombardo"
+    },
+    "paganella-sette-passi-sette-ville": {
+      "name": "Sette passi per sette Ville",
+      "slug": "sette-passi-sette-ville",
+      "gloss": "the loop through the old hamlets of San Lorenzo in Banale"
     }
   }
 }
