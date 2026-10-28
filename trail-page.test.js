@@ -606,6 +606,7 @@ describe('trail page map controls', () => {
   });
 
   test('addTerrainToggle joins the grouped layer switch when given its 3D button', () => {
+    jest.useFakeTimers();
     const context = loadTrailScript({
       document: {
         readyState: 'loading',
@@ -643,6 +644,7 @@ describe('trail page map controls', () => {
     expect(typeof clickHandler).toBe('function');
 
     clickHandler();
+    jest.runAllTimers();
     expect(classes.has('on')).toBe(true);
     expect(attrs['aria-pressed']).toBe('true');
     // Label must stay put, the pressed state carries the meaning.
@@ -655,6 +657,70 @@ describe('trail page map controls', () => {
     expect(classes.has('on')).toBe(false);
     expect(attrs['aria-pressed']).toBe('false');
     expect(terrainCalls[1]).toBeNull();
+    jest.useRealTimers();
+  });
+
+  test('3D lifts the camera onto the ground before tilting, so the walk stays centred', () => {
+    jest.useFakeTimers();
+    const context = loadTrailScript({
+      document: {
+        readyState: 'loading',
+        getElementById: () => null,
+        querySelector: () => null,
+        querySelectorAll: () => [],
+        createElement: () => ({}),
+        addEventListener: () => {},
+      },
+    });
+    let clickHandler = null;
+    const groupBtn = {
+      textContent: '3D',
+      classList: { add: () => {}, remove: () => {} },
+      setAttribute: () => {},
+      addEventListener: (type, fn) => { if(type === 'click') clickHandler = fn; },
+    };
+    const camera = [];
+    let terrainHeight = 0;         // the terrain answers 0 until its tiles load
+    const fakeMap = {
+      setTerrain: () => {},
+      getLayer: () => true,
+      removeLayer: () => {},
+      addLayer: () => {},
+      getCenter: () => ({ lng: 11.63, lat: 46.54 }),
+      getZoom: () => 13,
+      getBearing: () => 0,
+      queryTerrainElevation: () => terrainHeight,
+      jumpTo: value => camera.push(['jump', value]),
+      easeTo: value => camera.push(['ease', value]),
+    };
+    context.addTerrainToggle(fakeMap, 'trailDetailMap', 1.5, 45, groupBtn);
+
+    clickHandler();
+    jest.advanceTimersByTime(200);
+    expect(camera).toEqual([]);    // waiting for the ground
+    terrainHeight = 2887;
+    jest.advanceTimersByTime(100);
+    // The lift happens flat, where it does not show; the tilt keeps it.
+    expect(camera[0]).toEqual(['jump', { elevation: 2887 }]);
+    expect(camera[1][0]).toBe('ease');
+    expect(camera[1][1].pitch).toBe(45);
+
+    // Turned off before the terrain answered: no late tilt.
+    clickHandler();
+    camera.length = 0;
+    terrainHeight = 0;
+    clickHandler();
+    clickHandler();
+    jest.advanceTimersByTime(2000);
+    expect(camera.filter(([kind, value]) => kind === 'ease' && value.pitch === 45)).toEqual([]);
+
+    // No terrain at all: 3D still tilts after the wait.
+    camera.length = 0;
+    clickHandler();
+    jest.advanceTimersByTime(1600);
+    expect(camera).toHaveLength(1);
+    expect(camera[0][1].pitch).toBe(45);
+    jest.useRealTimers();
   });
 
   test('hike mode keeps live elevation visible and offers explicit relief choices', () => {
