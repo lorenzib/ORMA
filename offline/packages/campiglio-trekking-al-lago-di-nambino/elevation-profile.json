@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "campiglio-trekking-al-lago-di-nambino",
+  "distanceKm": 2.9,
+  "ascentM": 154,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1634
+    },
+    {
+      "km": 0.2,
+      "elev": 1640
+    },
+    {
+      "km": 0.5,
+      "elev": 1678
+    },
+    {
+      "km": 0.7,
+      "elev": 1673
+    },
+    {
+      "km": 0.9,
+      "elev": 1711
+    },
+    {
+      "km": 1.1,
+      "elev": 1758
+    },
+    {
+      "km": 1.4,
+      "elev": 1768
+    },
+    {
+      "km": 1.6,
+      "elev": 1768
+    },
+    {
+      "km": 1.8,
+      "elev": 1758
+    },
+    {
+      "km": 2,
+      "elev": 1711
+    },
+    {
+      "km": 2.2,
+      "elev": 1673
+    },
+    {
+      "km": 2.5,
+      "elev": 1651
+    },
+    {
+      "km": 2.7,
+      "elev": 1640
+    },
+    {
+      "km": 2.9,
+      "elev": 1634
+    }
+  ]
+}
