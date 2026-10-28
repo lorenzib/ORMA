@@ -92,6 +92,7 @@
     'fvg-fontanon-di-goriuda': "Fontanon di Goriuda",
     'fvg-laghi-di-fusine': "Laghi di Fusine",
     'fvg-lago-di-sella-sompdogna': "Il laghetto di sella Sompdogna",
+    'fvg-mirabila-sentiero-botanico-bila-pec': "MIRABILA - Sentiero botanico del Bila Pec",
     'fvg-monte-rest-da-passo-rest': "Dal Passo Rest al Monte Rest",
     'fvg-monte-talm-da-piani-di-vas': "Monte Talm dai Piani di Vas",
     'fvg-raunis-cascate-belepeit': "Borgo Raunis e le cascate del rio Belepeit",
