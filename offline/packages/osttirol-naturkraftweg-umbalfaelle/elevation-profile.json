@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osttirol-naturkraftweg-umbalfaelle",
+  "distanceKm": 6,
+  "ascentM": 257,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1410
+    },
+    {
+      "km": 0.5,
+      "elev": 1436
+    },
+    {
+      "km": 0.9,
+      "elev": 1559
+    },
+    {
+      "km": 1.4,
+      "elev": 1531
+    },
+    {
+      "km": 1.8,
+      "elev": 1507
+    },
+    {
+      "km": 2.3,
+      "elev": 1635
+    },
+    {
+      "km": 2.7,
+      "elev": 1657
+    },
+    {
+      "km": 3.2,
+      "elev": 1661
+    },
+    {
+      "km": 3.6,
+      "elev": 1597
+    },
+    {
+      "km": 4.1,
+      "elev": 1517
+    },
+    {
+      "km": 4.6,
+      "elev": 1520
+    },
+    {
+      "km": 5,
+      "elev": 1559
+    },
+    {
+      "km": 5.4,
+      "elev": 1479
+    },
+    {
+      "km": 5.9,
+      "elev": 1410
+    },
+    {
+      "km": 6,
+      "elev": 1410
+    }
+  ]
+}

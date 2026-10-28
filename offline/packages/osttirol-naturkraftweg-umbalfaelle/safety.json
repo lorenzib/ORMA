@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osttirol-naturkraftweg-umbalfaelle",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.97,
+    "ascentM": 257,
+    "highestPointM": 1661,
+    "expectedDuration": "2.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 0.9
+  },
+  "trailhead": {
+    "lat": 47.016471,
+    "lng": 12.319547,
+    "label": "Ströden car park (1,400 m), Prägraten am Großvenediger, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Parts of this walk are exposed; keep your dog close and on a short lead.",
+    "Viewing platforms high above the gorge and right by the water: keep your dog on a short lead.",
+    "Steep wooden and stone steps beside the cascades.",
+    "The glacial Isel is fast and cold, especially on summer afternoons: keep your dog out of it.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

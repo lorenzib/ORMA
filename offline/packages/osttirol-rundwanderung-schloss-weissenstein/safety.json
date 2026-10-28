@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osttirol-rundwanderung-schloss-weissenstein",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.21,
+    "ascentM": 88,
+    "highestPointM": 1062,
+    "expectedDuration": "1 hour",
+    "difficulty": "Moderate",
+    "shadePercent": 0.5
+  },
+  "trailhead": {
+    "lat": 47.00106,
+    "lng": 12.538609,
+    "label": "Rauterplatz, the centre of Matrei in Osttirol, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 80 m beside the Felbertauern road on the way back: keep your dog close on a short lead.",
+    "Village streets with traffic.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
