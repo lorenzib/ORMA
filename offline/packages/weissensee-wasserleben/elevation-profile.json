@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "weissensee-wasserleben",
+  "distanceKm": 2.3,
+  "ascentM": 37,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 930
+    },
+    {
+      "km": 0.2,
+      "elev": 942
+    },
+    {
+      "km": 0.4,
+      "elev": 935
+    },
+    {
+      "km": 0.5,
+      "elev": 942
+    },
+    {
+      "km": 0.7,
+      "elev": 935
+    },
+    {
+      "km": 0.9,
+      "elev": 973
+    },
+    {
+      "km": 1.1,
+      "elev": 980
+    },
+    {
+      "km": 1.2,
+      "elev": 1018
+    },
+    {
+      "km": 1.4,
+      "elev": 981
+    },
+    {
+      "km": 1.6,
+      "elev": 961
+    },
+    {
+      "km": 1.8,
+      "elev": 945
+    },
+    {
+      "km": 2,
+      "elev": 935
+    },
+    {
+      "km": 2.1,
+      "elev": 942
+    },
+    {
+      "km": 2.3,
+      "elev": 930
+    }
+  ]
+}
