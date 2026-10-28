@@ -112,9 +112,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 326 and 324 with three more Lake Como walks: the Sentiero del
     // Viandante from Varenna to Bellano, Caslino d'Erba and the Lambro, and the
     // Monte Scioscia viewpoint loop above the Segrino.
+    // Then 328 and 326 with two more Hochpustertal walks: the Lanaweg loop above
+    // Niederdorf and the huts circuit above the Pragser Wildsee.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(326);
-    expect(currentSiteTrails(catalogue)).toHaveLength(324);
+    expect(catalogue).toHaveLength(328);
+    expect(currentSiteTrails(catalogue)).toHaveLength(326);
   });
 
   test('requires the artwork the public trail page needs',()=>{

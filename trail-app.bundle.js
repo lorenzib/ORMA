@@ -55510,6 +55510,149 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 10.2, lat: 45.82581, lng: 9.25645, osmId: 'node/2739762524', name: 'Cascina Inarca' }
       ],
       desc: 'A loop from the Segrino lake up to the Monte Scioscia viewpoint over the Segrino and Pusiano lakes, down to Canzo and back through the woods by Proserpio. The portal lists 12 km and 734 m of ascent.'
+    },
+    'trecime-villabassa-lanaweg': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 4).
+      // The Tre Cime Dolomites tourist board’s walk “Escursione circolare: Villabassa – Lanaweg”, drawn on 23 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Niederdorf (own regulation) and Toblach (own regulation).
+      // No Natura 2000 site, park, biotope or natural monument on the line.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Niederdorf – Sinna Mihle – Lanaweg, Niederdorf and Toblach',
+      distance: 5.3,
+      elevation: 232,
+      hours: '1.6',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the fire station in Niederdorf on path 46 up to the old Sinna Mihle mill, right along the level Lanaweg towards Toblach for about 1.5 km, and back across the Langwiesn meadows to Niederdorf.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The parish church of St. Stephen in Niederdorf, by the start of the loop, in July (Mattana, CC BY-SA 3.0), 15 m from the line.',
+        route: 'Official loop 5.3 km from the fire station in Niederdorf, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 23 OSM ways along the GPX on the board’s page, 5.4 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 46 and the Lanaweg: from the fire station in the centre of Niederdorf on the signed path 46 through meadows and woods to the Sinna Mihle, an old mill; there right onto the Lanaweg, which runs level for about 1.5 km towards Toblach along the sunny slope of the Eggerberg; back across the Langwiesn meadows to Niederdorf and the fire station.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 4.3, at km 4.4, at km 4.5, at km 4.6, at km 5 and at km 5.1 (OSM nodes 7597331186, 7597331187, 279716575, 12434334285, 13134734620, 13134757751, 13134731994, 9975966830, 6584670085, 9026030518, 2993998133, 7871320386, 279716589, 279716583).',
+        elevation: 'Official 5.3 km, 232 m up and 232 m down, 1 h 37 min, highest point 1,354 m, lowest 1,147 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Escursione circolare: Villabassa – Lanaweg (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Niederdorf, Verordnung über die Haltung und das Führen von Hunden (resolution 3/R/10 of 21 January 2010), Art. 5 and 9: a lead of at most 1.5 m on all public ground, a muzzle carried, no dogs on farmed land from 1 April to 31 October and none in the spa park',
+          'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden (January 2010 text), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park, biotope or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (23 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 35,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Village streets and farm lanes at the start and end', 'Farmed meadows either side: Niederdorf bans dogs from farmed land from April to October'],
+      terrainType: 'Village streets, farm lanes and forest-edge paths',
+      shadeDescription: 'Partly shaded: the Lanaweg runs along the edge of the forest; the Langwiesn meadows are open.',
+      terrainDescription: 'An easy loop at 1,145–1,355 m on the sunny Eggerberg slope above Niederdorf, past an old mill and along the level Lanaweg, with views over the village and the Pustertal.',
+      waterDescription: 'Several drinking fountains in Niederdorf at the start, and more from km 4.3 on the way back into the village; cafés in Niederdorf.',
+      dogNotes: 'Niederdorf requires a lead of at most 1.5 m on all public ground and a muzzle carried; dogs are not allowed on farmed land from 1 April to 31 October, even where no sign says so. The Lanaweg crosses into Toblach, which has the same lead and muzzle rule.',
+      tips: 'Start at the fire station in Niederdorf: 5.3 km and about 230 m of climbing, an hour and a half. Keep your dog on a lead of at most 1.5 m, carry a muzzle and keep off the meadows.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Escursione circolare: Villabassa – Lanaweg', url: 'https://www.dreizinnen.com/it/activity/escursione-circolare-villabassa-lanaweg_605' },
+        { label: 'Gemeinde Niederdorf, Gemeindeverordnung über die Haltung und das Führen von Hunden', url: 'https://www.gemeinde.niederdorf.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_das_Fuehren_von_Hunden' },
+        { label: 'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.toblach.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.738822, lng: 12.170665, label: 'Fire station, Niederdorf, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.7392099, lng: 12.1693947, osmId: 'node/7597331186', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.739645, lng: 12.1692, osmId: 'node/7597331187', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.7378158, lng: 12.1707811, osmId: 'node/279716575', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.7377544, lng: 12.1709318, osmId: 'node/12434334285', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.7393608, lng: 12.1701046, osmId: 'node/13134734620', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.7398167, lng: 12.1705283, osmId: 'node/13134757751', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.739905, lng: 12.1692956, osmId: 'node/13134731994', label: 'Drinking fountain at the start' },
+        { km: 4.3, lat: 46.737264, lng: 12.1823224, osmId: 'node/9975966830', label: 'Drinking fountain' },
+        { km: 4.4, lat: 46.7374331, lng: 12.181246, osmId: 'node/6584670085', label: 'Drinking fountain' },
+        { km: 4.4, lat: 46.7371423, lng: 12.1806251, osmId: 'node/9026030518', label: 'Drinking fountain' },
+        { km: 4.5, lat: 46.7378474, lng: 12.1795952, osmId: 'node/2993998133', label: 'Drinking fountain' },
+        { km: 4.6, lat: 46.7377075, lng: 12.1789251, osmId: 'node/7871320386', label: 'Drinking fountain' },
+        { km: 5, lat: 46.7370893, lng: 12.1744934, osmId: 'node/279716589', label: 'Drinking fountain' },
+        { km: 5.1, lat: 46.7373634, lng: 12.1727685, osmId: 'node/279716583', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.739, lng: 12.16835, osmId: 'node/12232848024', name: 'Mexico City' },
+        { km: 0, lat: 46.73819, lng: 12.16752, osmId: 'node/12521029437', name: 'Apfel Caffè' },
+        { km: 0, lat: 46.73739, lng: 12.16918, osmId: 'way/217502350', name: 'Wunderbar' },
+        { km: 0, lat: 46.73751, lng: 12.17085, osmId: 'node/279716579', name: 'Gartencafe' },
+        { km: 4.1, lat: 46.73618, lng: 12.18373, osmId: 'node/5780908700', name: 'Bar Irma' },
+        { km: 4.6, lat: 46.73765, lng: 12.17667, osmId: 'node/4656760753', name: 'Tennisbar' }
+      ],
+      desc: 'An easy loop from Niederdorf up to the old Sinna Mihle and along the level Lanaweg, back across the Langwiesn meadows. The board lists 5.3 km and 232 m of ascent.'
+    },
+    'trecime-giro-delle-baite-lago-di-braies': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 4).
+      // The Tre Cime Dolomites tourist board’s walk “Giro delle baite del Lago di Braies”, drawn on 29 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Prags (own regulation, national rule for lead length and muzzle).
+      // 85% of the line is in the Fanes-Sennes-Prags nature park (IT3110049, dogs on a lead); a natural monument lies 9 m away and is not entered.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Pragser Wildsee – Kaseralm – Grünwaldalm, Prags',
+      distance: 7.5,
+      elevation: 590,
+      hours: '4.5',
+      routeShape: 'loop',
+      routeShapeNote: 'From the Pragser Wildsee right of the Hotel Pragser Wildsee up paths 20 and 61 to the Kaseralm, down path 22A to the Grünwaldalm, and back on path 19 along the shore of the lake.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Cattle grazing the pasture by the Grünwaldalm, on the walk, in July (Roberto Ferrari, CC BY-SA 2.0), 18 m from the line.',
+        route: 'Official circuit 7.5 km from the Pragser Wildsee, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 29 OSM ways along the GPX on the board’s page, 7.5 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 20, 61, 22A and 19: from the Pragser Wildsee, right of the Hotel Pragser Wildsee, first on path 20 and then path 61 up to the Kaseralm; from there path 22A down to the Grünwaldalm; path 19 back to the start along the shore of the lake.',
+        mapPoints: 'Start at the board’s start; drinking water at km 5.1 (OSM nodes 9758809517).',
+        elevation: 'Official 7.5 km, 590 m up and 590 m down, 4 h 30 min, highest point 2,082 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Giro delle baite del Lago di Braies (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Prags, Verordnung über die Haltung von Hunden (council resolution 24/R/06 of 17 October 2006), Art. 2: dogs on a lead in public places; it sets no lead length and no muzzle rule outdoors, so the national rule (Ministry of Health ordinance of 6 August 2013, extended to September 2027) adds a lead of at most 1.5 m and a muzzle carried',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); the Fanes-Sennes-Prags protection decree (no. 72/V/LS of 4 March 1980) sets no reserve zone and no other rule on dogs',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): 85% of the line is in the Fanes-Sennes-Prags nature park and Natura 2000 site IT3110049; a natural monument is 9 m away and not entered',
+          'OpenStreetMap ways along the board’s line (29 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A climb of about 590 m to the Kaseralm: plan rests and water for your dog', 'Cattle graze around both huts', 'The lake shore is very crowded in summer: keep your dog close'],
+      terrainType: 'Mountain paths, gravel tracks and lakeside path',
+      shadeDescription: 'About half shaded: the climb to the Kaseralm and the descent run partly through forest; the alm pastures are open.',
+      terrainDescription: 'A circuit at about 1,495–2,080 m above the Pragser Wildsee to two working huts, the Kaseralm and the Grünwaldalm, below the walls of the Prags Dolomites, and back along the lake.',
+      waterDescription: 'A drinking fountain at the Grünwaldalm at km 5.1; both huts serve food in summer, and there are restaurants at the lake. Carry water for the climb.',
+      dogNotes: 'Prags requires dogs on a lead in public places; the national rule sets the lead at no more than 1.5 m and asks you to carry a muzzle. Most of the walk is in the Fanes-Sennes-Prags nature park, where dogs must be on a lead at all times. Cattle graze around both huts.',
+      tips: 'Start at the Pragser Wildsee: 7.5 km and about 590 m of climbing, four and a half hours with stops at the huts. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Carry water for the climb: the only mapped fountain is at the Grünwaldalm. Go early to avoid the crowds at the lake.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Giro delle baite del Lago di Braies', url: 'https://www.dreizinnen.com/it/activity/escursione-giro-estivo-giro-delle-baite-lago-di-braies_73638' },
+        { label: 'Gemeinde Prags, Verordnung über die Haltung von Hunden', url: 'https://www.gemeinde.prags.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.699448, lng: 12.085223, label: 'Pragser Wildsee, by the Hotel Pragser Wildsee, the board’s start' },
+      waterSources: [
+        { km: 5.1, lat: 46.6923959, lng: 12.065672, osmId: 'node/9758809517', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 2.4, lat: 46.7086, lng: 12.0601, osmId: 'node/11813625426', name: 'Kaseralm' },
+        { km: 5, lat: 46.69224, lng: 12.0654, osmId: 'node/821986763', name: 'Grünwaldalm - Malga Foresta' }
+      ],
+      desc: 'A circuit from the Pragser Wildsee up to the Kaseralm, down to the Grünwaldalm and back along the lake. The board lists 7.5 km and 590 m of ascent.'
     }
   };
 
