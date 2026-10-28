@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T10:25:29.062Z",
+  "generatedAt": "2026-10-28T10:40:02.050Z",
   "regions": {
     "dolomites": {
       "trailCount": 287,
-      "trails": "data/regions/dolomites-trails.js?v=077878d15172",
+      "trails": "data/regions/dolomites-trails.js?v=37e6aeb019f0",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -361,8 +361,8 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 8,
-      "trails": "data/regions/lombardy-trails.js?v=6f9d9f5073fe",
+      "trailCount": 9,
+      "trails": "data/regions/lombardy-trails.js?v=f60313002fe1",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=7e2f9ea8f6ea",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
@@ -371,7 +371,8 @@
         "lario-eupilio-tra-segrino-e-cornizzolo": "data/trail-details/lario-eupilio-tra-segrino-e-cornizzolo.js?v=b75f5b6913ba",
         "lario-il-sentiero-del-viandante": "data/trail-details/lario-il-sentiero-del-viandante.js?v=e4f3aee5a9b6",
         "lario-caslino-sullacqua": "data/trail-details/lario-caslino-sullacqua.js?v=c260de4a7d80",
-        "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "data/trail-details/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza.js?v=a15ee9697efc"
+        "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "data/trail-details/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza.js?v=a15ee9697efc",
+        "bormio-da-arnoga-al-rifugio-federico": "data/trail-details/bormio-da-arnoga-al-rifugio-federico.js?v=b466bc6017f9"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -775,6 +776,7 @@
     "lario-il-sentiero-del-viandante": "lombardy",
     "lario-caslino-sullacqua": "lombardy",
     "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "lombardy",
+    "bormio-da-arnoga-al-rifugio-federico": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -1160,6 +1162,7 @@
     "campiglio-trekking-al-lago-di-nambino": "lago-di-nambino-walk",
     "campiglio-trekking-al-rifugio-segantini": "rifugio-segantini-loop",
     "campiglio-madonna-di-campiglio-monte-spinale": "campiglio-monte-spinale",
+    "bormio-da-arnoga-al-rifugio-federico": "arnoga-rifugio-federico-val-viola",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1527,6 +1530,7 @@
     "lago-di-nambino-walk": "campiglio-trekking-al-lago-di-nambino",
     "rifugio-segantini-loop": "campiglio-trekking-al-rifugio-segantini",
     "campiglio-monte-spinale": "campiglio-madonna-di-campiglio-monte-spinale",
+    "arnoga-rifugio-federico-val-viola": "bormio-da-arnoga-al-rifugio-federico",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
