@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valdisole-passo-tonale-forte-mero-forte-zaccarana",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 9.1,
+    "ascentM": 250,
+    "highestPointM": 2053,
+    "expectedDuration": "3.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 38
+  },
+  "trailhead": {
+    "lat": 46.267546,
+    "lng": 10.590531,
+    "label": "Valbiolo car park, Passo del Tonale, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.281879,
+      "lng": 10.6229612,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.2754283,
+      "lng": 10.6137552,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The return is a mountain path the APT grades T3.",
+    "Gravel roads on the plateau are used by farm and service vehicles.",
+    "Ruined fortifications: keep your dog away from walls and openings.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
