@@ -5534,6 +5534,23 @@
       }
     },
     {
+      "id": "valgardena-seceda-da-cristauta-pic",
+      "approvedReviewId": "commons-valgardena-seceda-da-cristauta-pic-on-route",
+      "approvedAt": "2026-10-28T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-seceda-da-cristauta-pic-sassolungo.jpg",
+        "heroImage": "images/trails/valgardena-seceda-da-cristauta-pic-sassolungo.jpg",
+        "imageAlt": "A green meadow slope above Santa Cristina framed by spruces and a wooden fence, the grey Sassolungo towering over the forested valley under a blue sky with white clouds",
+        "imageCredit": "The Sassolungo from the meadows above Santa Cristina",
+        "imageCreditText": "The Sassolungo from the meadows above Santa Cristina by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Saslonch_da_Santa_Cristina_Runcaudie.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valgardena-seceda-dal-rifugio-firenze",
       "approvedReviewId": "commons-valgardena-seceda-dal-rifugio-firenze-on-route",
       "approvedAt": "2026-10-28T20:00:00.000Z",

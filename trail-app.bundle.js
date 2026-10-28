@@ -56376,6 +56376,73 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 10.6, lat: 46.52866, lng: 11.74808, osmId: 'way/41964731', name: 'Emilio-Comici-Hütte - Rifugio Emilio Comici' }
       ],
       desc: 'A long climb from Ortisei along the old railway path and past the Tervela waterfall to Monte Pana, then below the Sassolungo to the Rifugio Comici and through the Città dei Sassi to the Passo Sella. The board lists 12.4 km and 1,101 m of ascent one way.'
+    },
+    'valgardena-seceda-da-cristauta-pic': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 5).
+      // The Val Gardena tourist board’s walk “Seceda - Ridge Line da S. Cristina per Cristauta - Sëurasas”, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Santa Cristina and Ortisei (their own dog regulations: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site or park on the line; about three fifths is in landscape protection areas (Monte Pic), which limit building, not dogs. Our line is 6.7 km against the board’s 6.3 km (6%). Our profile ends at about 2,460 m against the board’s 2,511 m high point: the line follows the board’s own line, and the coarse elevation model rounds off the summit.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Cristauta – Sëurasas – Monte Pic – Passo Cuca – Seceda, Santa Cristina',
+      distance: 6.3,
+      elevation: 861,
+      hours: '3.1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way up from the Cristauta car park above Santa Cristina on paths 4 and 41 through the forest to the Sëurasas, on path 20 towards Monte Pic, path 6A (Troi de Tuei) to the Passo Cuca and path 6 to the Seceda; ride the closed Seceda cable car down to Ortisei or the Col Raiser gondola to Santa Cristina.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Sassolungo from the meadows above Santa Cristina near the start, August (Wolfgang Moroder, CC BY-SA 3.0), 3 m from the line.',
+        route: 'Official one-way walk 6.3 km from Cristauta car park, above Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 6.7 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 4, 41, 20, 6A and 6: from Cristauta on path 4, at the first fork onto path 41 through the forest to the Sëurasas (path 20); at the junction on path 20 towards Monte Pic, then path 6A, the “Troi de Tuei”; at the Passo Cuca onto path 6, which leads to the Seceda, the start of the Ridge Line trail.',
+        mapPoints: 'Start at the board’s start; drinking water at km 4.3 (OSM nodes 6362321526).',
+        elevation: 'Official 6.3 km, 861 m up and 102 m down, 3:04 h, highest point 2,511 m, lowest 1,752 m (S. Cristina – Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Dolomites Val Gardena tourist board, Seceda - Ridge Line da S. Cristina per Cristauta - Sëurasas (valgardena.it and its Outdooractive tour)',
+          'Gemeinde St. Christina / Comune di Santa Cristina Valgardena, Gemeindeverordnung zur Hundehaltung (Ratsbeschluss Nr. 2, 08.02.2010), Art. 4 and 8: a lead of at most 1.5 m in public places, a muzzle carried, no dogs on farmed meadows in the growing season',
+          'Gemeinde St. Ulrich / Comune di Ortisei, Verordnung über die Haltung und das Führen von Hunden (Gemeinderat Nr. 28, 06.08.2019), Art. 4 and 6: a lead of at most 1.5 m on all public ground, a muzzle carried (worn in public premises and on public transport), no dogs on farmed land',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park or biotope on the line; about three fifths is in landscape protection areas including Monte Pic, and it touches the Seceda rock-face natural monument (085_G08), whose rules protect the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 33,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['At the Seceda top station the ridge path beyond runs along a sheer north face: keep your dog on a short lead there', 'Long climb of about 860 m', 'Cattle graze the Mastlé and Seceda pastures in summer', 'Early in the season some stretches may still hold snow'],
+      terrainType: 'Forest paths and alpine paths across pasture',
+      shadeDescription: 'About a third runs through forest below the Sëurasas; the upper pastures are open.',
+      terrainDescription: 'A long climb at 1,750–2,500 m from Cristauta above Santa Cristina through forest to the Sëurasas, then over the open pastures by Monte Pic and the Passo Cuca to the Seceda.',
+      waterDescription: 'One drinking fountain at about km 4.3; huts at the Sëurasas, at the Curona hut and on the Mastlé pastures.',
+      dogNotes: 'Santa Cristina and Ortisei each require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows in the growing season, so stay on the path across the pastures. Cattle graze the alp in summer; dogs ride the cable car and gondola down on a lead and muzzled.',
+      tips: 'Start at the Cristauta car park above Santa Cristina: 6.3 km and about 860 m of climbing one way to the Seceda, about three hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Carry water for the climb, keep back from the edge at the top, and ride the closed Seceda cable car or Col Raiser gondola down (dogs muzzled).',
+      sourceLinks: [
+        { label: 'Val Gardena, Seceda - Ridge Line da S. Cristina per Cristauta - Sëurasas', url: 'https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-cristauta-seeurasas/810055443/' },
+        { label: 'Outdooractive, Seceda - Ridge Line da S. Cristina per Cristauta - Sëurasas (Dolomites Val Gardena tourist board)', url: 'https://www.outdooractive.com/it/r/810055443' },
+        { label: 'St. Christina / Santa Cristina, dog regulation (2010)', url: 'https://www.gemeinde.stchristina.bz.it/system/web/GetDocument.ashx?cts=1536582042&fileId=1004815' },
+        { label: 'St. Ulrich / Ortisei, dog regulation (2019)', url: 'https://www.comune.ortisei.bz.it/system/web/GetDocument.ashx?fileId=1093922&cts=1565705929' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'Val Gardena, holidays with your dog', url: 'https://www.valgardena.it/it/in-vacanza-col-cane/' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.566435, lng: 11.724621, label: 'Cristauta car park, above Santa Cristina, the board’s start' },
+      waterSources: [
+        { km: 4.3, lat: 46.5876375, lng: 11.721831, osmId: 'node/6362321526', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 2.3, lat: 46.57523, lng: 11.71884, osmId: 'way/131189853', name: 'Sëurasas' },
+        { km: 4.3, lat: 46.58911, lng: 11.72231, osmId: 'way/150974874', name: 'Curona' },
+        { km: 5.5, lat: 46.59487, lng: 11.72981, osmId: 'way/41950775', name: 'Mastle' },
+        { km: 5.6, lat: 46.59772, lng: 11.72714, osmId: 'way/84867557', name: 'Sofie-Hütte - Baita Sofie' },
+        { km: 6.1, lat: 46.59802, lng: 11.72448, osmId: 'node/9679415726', name: 'Utia Seceda' }
+      ],
+      desc: 'A long climb from Cristauta above Santa Cristina through the forest to the Sëurasas, then over the pastures by Monte Pic and the Passo Cuca to the Seceda. The board lists 6.3 km and 861 m of ascent one way.'
     }
   };
 

@@ -1033,6 +1033,11 @@
       "name": "Ortisei – Passo Sella",
       "slug": "ortisei-passo-sella",
       "gloss": "the long climb from Ortisei to the Sella pass"
+    },
+    "valgardena-seceda-da-cristauta-pic": {
+      "name": "Cristauta – Seceda over Monte Pic",
+      "slug": "cristauta-seceda-monte-pic",
+      "gloss": "the climb over the Sëurasas and Monte Pic to the Seceda"
     }
   }
 }
