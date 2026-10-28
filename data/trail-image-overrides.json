@@ -1142,6 +1142,91 @@
       }
     },
     {
+      "id": "fvg-anello-lago-di-verzegnis",
+      "approvedReviewId": "commons-fvg-anello-lago-di-verzegnis-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-anello-lago-di-verzegnis-lake.jpg",
+        "heroImage": "images/trails/fvg-anello-lago-di-verzegnis-lake.jpg",
+        "imageAlt": "A still turquoise reservoir between steep wooded slopes under grey clouds, a grassy bank and trees in the foreground",
+        "imageCredit": "The Lago di Verzegnis",
+        "imageCreditText": "The Lago di Verzegnis by Vid Pogacnik",
+        "imageCreator": "Vid Pogacnik",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Verzegnis_VP01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-borgo-stavoli-moggio",
+      "approvedReviewId": "commons-fvg-borgo-stavoli-moggio-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-borgo-stavoli-moggio-mule-track.jpg",
+        "heroImage": "images/trails/fvg-borgo-stavoli-moggio-mule-track.jpg",
+        "imageAlt": "A stony mule track winding down a wooded slope beside a green metal guard rail, pale rock outcrops and autumn trees around it",
+        "imageCredit": "The mule track to Stavoli",
+        "imageCreditText": "The mule track to Stavoli by Joadl",
+        "imageCreator": "Joadl",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Stavoli_2008_1004_07.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-faggi-secolari-pustot-dordolla",
+      "approvedReviewId": "commons-fvg-faggi-secolari-pustot-dordolla-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-faggi-secolari-pustot-dordolla-dordolla.jpg",
+        "heroImage": "images/trails/fvg-faggi-secolari-pustot-dordolla-dordolla.jpg",
+        "imageAlt": "Stone and plastered houses of a small mountain village on a green meadow, a wooden frame hung with coloured flags in front, under a tall pale limestone peak and wooded slopes in sunshine",
+        "imageCredit": "Dordolla below the Creta Grauzaria",
+        "imageCreditText": "Dordolla below the Creta Grauzaria by Kaspar Nickles",
+        "imageCreator": "Kaspar Nickles",
+        "imageLicence": "CC BY-SA 3.0 at",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/at",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Friaul_Val_Aupa_Dordolla_West_credit_Kaspar_Nickles_2011.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-laghi-di-fusine",
+      "approvedReviewId": "commons-fvg-laghi-di-fusine-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-laghi-di-fusine-lower-lake.jpg",
+        "heroImage": "images/trails/fvg-laghi-di-fusine-lower-lake.jpg",
+        "imageAlt": "A turquoise mountain lake rippling in the sun, its far shore lined with yellow autumn larches and dark spruces, below the grey limestone walls of the Mangart group under a pale blue sky",
+        "imageCredit": "The Lower Fusine Lake and the Mangart group",
+        "imageCreditText": "The Lower Fusine Lake and the Mangart group by Ajznponar",
+        "imageCreator": "Ajznponar",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lower_Fusine_Lake_and_the_Mangart_Group_06.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-ta-lipa-pot-corto",
+      "approvedReviewId": "commons-fvg-ta-lipa-pot-corto-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-ta-lipa-pot-corto-stolvizza.jpg",
+        "heroImage": "images/trails/fvg-ta-lipa-pot-corto-stolvizza.jpg",
+        "imageAlt": "Wooded mountains under a blue sky with thin vapour trails, yellow and green autumn trees and a meadow in the foreground in Val Resia",
+        "imageCredit": "The Julian Prealps from Stolvizza, Val Resia",
+        "imageCreditText": "The Julian Prealps from Stolvizza, Val Resia by Ajznponar",
+        "imageCreator": "Ajznponar",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Julian_Prealps_between_Cima_Tulsti_and_Bagni_Colc,_view_from_Resia_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "geotrail-bulla",
       "approvedReviewId": "commons-geotrail-bulla-on-route",
       "approvedAt": "2026-10-23T20:00:00.000Z",
