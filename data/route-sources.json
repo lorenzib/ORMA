@@ -2825,6 +2825,46 @@
       "quote": "5.6 km Strecke · 3 h Dauer · 441 hm Aufstieg · 441 hm Abstieg",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "kronplatz-passeggiata-valdaora-monguelfo": {
+      "url": "https://www.outdooractive.com/it/r/810055571",
+      "publisher": "Olang tourist board (Tourismusverein Olang) (Outdooractive, suedtirol.info)",
+      "name": "Passeggiata Valdaora - Monguelfo",
+      "quote": "Distanza 6,1 km · Durata 1:30 h · Salita 34 m · Discesa 30 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T18:00:00.000Z"
+    },
+    "kronplatz-sentiero-tematico-tru-dles-liondes": {
+      "url": "https://www.outdooractive.com/it/r/16419100",
+      "publisher": "San Vigilio Dolomites tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero tematico: Tru dles Liondes",
+      "quote": "Distanza 2,8 km · Durata 0:45 h · Salita 60 m · Discesa 60 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T18:00:00.000Z"
+    },
+    "kronplatz-passeggiata-san-vigilio-le-dla-creda": {
+      "url": "https://www.outdooractive.com/it/r/16570262",
+      "publisher": "San Vigilio Dolomites tourist board (Outdooractive, suedtirol.info)",
+      "name": "Passeggiata: San Vigilio - Lé dla Creda",
+      "quote": "Distanza 3,5 km · Durata 0:58 h · Salita 86 m · Discesa 17 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T18:00:00.000Z"
+    },
+    "kronplatz-attraverso-il-sentiero-panoramico-a-brunico": {
+      "url": "https://www.outdooractive.com/it/r/810055675",
+      "publisher": "Olang tourist board (Tourismusverein Olang) (Outdooractive, suedtirol.info)",
+      "name": "Attraverso il Sentiero Panoramico a Brunico",
+      "quote": "Distanza 8,6 km · Durata 2:20 h · Salita 45 m · Discesa 231 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T18:00:00.000Z"
+    },
+    "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina": {
+      "url": "https://www.outdooractive.com/it/r/810055911",
+      "publisher": "San Vigilio Dolomites tourist board (Outdooractive, suedtirol.info)",
+      "name": "Escursione da Antermoia attraverso Colac - Val a Rina",
+      "quote": "Distanza 5,5 km · Durata 1:37 h · Salita 143 m · Discesa 222 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T18:00:00.000Z"
     }
   }
 }

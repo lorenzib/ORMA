@@ -194,7 +194,14 @@
   .browse-map-popup{display:grid;gap:4px;padding:2px 14px 2px 0;color:#2E4034;}
   .browse-map-popup strong{font:700 14px/1.25 'Bricolage Grotesque',sans-serif;}
   .browse-map-popup span{color:#66766B;font-size:11.5px;}
-  .browse-map-popup b{color:#3E7A91;font-size:10.5px;}
+  .browse-map-popup__verdict{display:grid;gap:1px;margin:2px 0 1px;}
+  .browse-map-popup__verdict small{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
+  .browse-map-popup__verdict b{font:700 13px/1.2 'Bricolage Grotesque',sans-serif;}
+  .browse-map-key{position:absolute;left:14px;bottom:14px;z-index:8;display:grid;gap:4px;padding:8px 11px;border:1px solid rgba(46,64,52,.14);border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,53,40,.15);color:#2E4034;font:600 11px/1.2 'Inter',sans-serif;}
+  .browse-map-key__title{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
+  .browse-map-key__row{display:flex;align-items:center;gap:7px;}
+  @media(max-width:760px){.browse-map-key{bottom:58px;}}
+  .browse-map-key__dot{width:10px;height:10px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(46,64,52,.18);}
   .browse-map-popup a{color:#32697E;font-size:11.5px;font-weight:800;text-decoration:none;}
   .browse-map-pane .maplibregl-popup-content{border:1px solid rgba(46,64,52,.12);border-radius:13px;padding:11px 12px;box-shadow:0 10px 30px rgba(35,53,40,.18);}
   .browse-map-pane .maplibregl-ctrl-top-right{top:8px;right:8px;}
@@ -458,6 +465,12 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg>
         <span data-i18n="browse.map.searchArea">Search this area</span>
       </button>
+      <div class="browse-map-key" id="browseMapKey" aria-label="What the colours mean" data-i18n-aria-label="browse.map.keyAria">
+        <span class="browse-map-key__title" id="browseMapKeyTitle">For a medium dog</span>
+        <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="good"></i><span data-category="strong-option"></span></span>
+        <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="fair"></i><span data-category="possible-with-cautions"></span></span>
+        <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="poor"></i><span data-category="not-recommended"></span></span>
+      </div>
       <div class="browse-map-style" role="group" aria-label="Map appearance" data-i18n-aria-label="browse.map.styleAria">
         <button type="button" class="on" data-browse-map-style="map" aria-pressed="true" data-i18n="browse.map.styleMap">Map</button>
         <button type="button" data-browse-map-style="terrain" aria-pressed="false" data-i18n="browse.map.styleTerrain">Terrain</button>
@@ -504,6 +517,7 @@
 <a href="trail.html?id=anello-di-valzalina" style="display:block;color:inherit;">Anello di Valzalina</a>
 <a href="trail.html?id=anello-molaren-via-nova-marine" style="display:block;color:inherit;">Anello Molaren - Via Nova - Marine</a>
 <a href="trail.html?id=anello-poit-cordogne-san-giovanni" style="display:block;color:inherit;">Anello Poit - Cordognè - San Giovanni</a>
+<a href="trail.html?id=antermoia-colac-rina" style="display:block;color:inherit;">Antermoia to Rina</a>
 <a href="trail.html?id=anton-schwingshackl-weg" style="display:block;color:inherit;">Anton Schwingshackl Weg</a>
 <a href="trail.html?id=archeopfad-brixen" style="display:block;color:inherit;">Archeopfad Brixen</a>
 <a href="trail.html?id=aussergsell-innergsell-loop" style="display:block;color:inherit;">Außergsell – Innergsell loop</a>
@@ -634,6 +648,7 @@
 <a href="trail.html?id=niederdorf-lanaweg-loop" style="display:block;color:inherit;">Niederdorf – Lanaweg loop</a>
 <a href="trail.html?id=niederdorf-mooskirche" style="display:block;color:inherit;">Niederdorf – Mooskirche</a>
 <a href="trail.html?id=nossingbuhel" style="display:block;color:inherit;">Nössingbühel</a>
+<a href="trail.html?id=olang-welsberg-reservoir-path" style="display:block;color:inherit;">Olang to Welsberg by the reservoir</a>
 <a href="trail.html?id=ortise-malga-stabli" style="display:block;color:inherit;">Ortisè – Malga Stabli</a>
 <a href="trail.html?id=ortisei-passo-sella" style="display:block;color:inherit;">Ortisei – Passo Sella</a>
 <a href="trail.html?id=ortisei-seurasas" style="display:block;color:inherit;">Ortisei – Sëurasas</a>
@@ -645,6 +660,7 @@
 <a href="trail.html?id=panoramaweg-in-feldthurns" style="display:block;color:inherit;">Panoramaweg in Feldthurns</a>
 <a href="trail.html?id=panoramaweg-burgraviato-merano" style="display:block;color:inherit;">Panoramaweg, Burgraviato – Merano</a>
 <a href="trail.html?id=panoramaweg-oltradige-bassa-atesina" style="display:block;color:inherit;">Panoramaweg, Oltradige – Bassa Atesina</a>
+<a href="trail.html?id=olang-bruneck-panoramic-path" style="display:block;color:inherit;">Panoramic path from Olang to Bruneck</a>
 <a href="trail.html?id=monte-vederna" style="display:block;color:inherit;">Passeggiata a Monte Vederna – Croce degli Alpini</a>
 <a href="trail.html?id=dos-paion-monte-corona" style="display:block;color:inherit;">Passeggiata al belvedere del Dos Paion sul Monte Corona</a>
 <a href="trail.html?id=pra-del-manz-to-anterivo" style="display:block;color:inherit;">Passeggiata col passeggino tra i larici verso Anterivo</a>
@@ -705,6 +721,7 @@
 <a href="trail.html?id=malga-valcigolera" style="display:block;color:inherit;">San Martino di Castrozza - Malga Valcigolera</a>
 <a href="trail.html?id=val-di-roda-prati-col" style="display:block;color:inherit;">San Martino di Castrozza - Val di Roda - Prati Col</a>
 <a href="trail.html?id=san-vigilio-senter-dei-cavai" style="display:block;color:inherit;">San Vigilio and the Senter dei Cavai</a>
+<a href="trail.html?id=san-vigilio-le-dla-creda" style="display:block;color:inherit;">San Vigilio to Lé dla Creda</a>
 <a href="trail.html?id=santa-cristina-passo-sella" style="display:block;color:inherit;">Santa Cristina – Passo Sella</a>
 <a href="trail.html?id=santa-cristina-farms-path" style="display:block;color:inherit;">Santa Cristina farms path</a>
 <a href="trail.html?id=santa-croce-brogles" style="display:block;color:inherit;">Santa Croce – Brogles</a>
@@ -753,6 +770,7 @@
 <a href="trail.html?id=tre-cime-di-lavaredo-classic-circuit" style="display:block;color:inherit;">Tre Cime di Lavaredo classic circuit</a>
 <a href="trail.html?id=tru-di-artisc" style="display:block;color:inherit;">Tru di artisć</a>
 <a href="trail.html?id=tru-di-lec" style="display:block;color:inherit;">Tru di Lëc</a>
+<a href="trail.html?id=tru-dles-liondes" style="display:block;color:inherit;">Tru dles Liondes</a>
 <a href="trail.html?id=tru-dles-viles" style="display:block;color:inherit;">Tru dles Viles</a>
 <a href="trail.html?id=uciei-de-freines" style="display:block;color:inherit;">Uciei de Frëines</a>
 <a href="trail.html?id=val-d-anna" style="display:block;color:inherit;">Val d’Anna</a>
@@ -970,8 +988,8 @@
 <script src="area-dropdown.js?v=20260823-2"></script>
 <script src="map-runtime.js?v=20260908-2"></script>
 <script src="match-verdict.js?v=20261002-1"></script>
-<script src="map-style.js?v=20261016-1"></script>
-<script src="browse-map.js?v=20261007-1"></script>
+<script src="map-style.js?v=20261028-1"></script>
+<script src="browse-map.js?v=20261028-1"></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     // Guest bar mirrors the homepage: members never see it.
@@ -1055,6 +1073,8 @@
       containerId:'browseMap',
       searchAreaButtonId:'browseSearchArea',
       scoreFor:matchScore,
+      verdictFor:matchVerdict,
+      subjectLabel:scoredSubjectLabel,
       savedFor:trail => !!currentFavorites[trail.id],
       onSelect(id){
         selectedTrailId = String(id || '');
@@ -1791,6 +1811,17 @@
         });
       });
       if(selectedTrailId && !pool.some(trail => String(trail.id) === selectedTrailId)) selectedTrailId = '';
+      const mapKeyTitle = document.getElementById('browseMapKeyTitle');
+      // The colours are for this dog, so the key says which dog.
+      if(mapKeyTitle) mapKeyTitle.textContent = scoredSubjectLabel();
+      // The verdicts' own words, from the one module that spells them.
+      if(window.OrmaMatchVerdict) document.querySelectorAll('.browse-map-key [data-category]').forEach(label => {
+        label.textContent = window.OrmaMatchVerdict.categoryLabel(label.dataset.category, window.t);
+      });
+      // The pins' own palette, so the key cannot drift from the map.
+      if(window.ORMAMapStyle) document.querySelectorAll('.browse-map-key__dot[data-fit]').forEach(dot => {
+        dot.style.background = window.ORMAMapStyle.MATCH_COLOURS[dot.dataset.fit] || '';
+      });
       if(browseMap){
         browseMap.update(pool, { fit:!mapBoundsFilter && (!renderOptions || renderOptions.fitMap !== false) });
         if(selectedTrailId) browseMap.select(selectedTrailId, { popup:false });
