@@ -59137,6 +59137,70 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 2.5, lat: 46.34738, lng: 12.79926, osmId: 'way/36024699', name: 'Casera Monte Rest' }
       ],
       desc: 'A panoramic climb from Passo Rest past Casera Rest to the summit of Monte Rest along a wide grassy crest, with views over the Carnic Prealps. PromoTurismoFVG lists 7.6 km and 737 m of ascent.'
+    },
+    'fvg-mirabila-sentiero-botanico-bila-pec': {
+      // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 4).
+      // PromoTurismoFVG’s walk “MIRABILA - Sentiero botanico del Bila Pec” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
+      // on 12 OSM ways along the line it publishes (data/board-line-routes.geojson).
+      // Chiusaforte publishes no dog rule of its own, so the national dog ordinance and the regional law LR 20/2012 apply; about 91% of the line is in the Prealpi Giulie nature park, whose regulation (Art. 10 c.3) admits only dogs on a lead.
+      // About 91% of the line is in the Prealpi Giulie nature park, which has no strict reserve zone and admits leashed dogs everywhere; published under the owner’s park decision of 28 October 2026. A small part is in ZSC IT3320012 and ZPS IT3321002, whose 2024 measures set no rule on walkers’ dogs.
+      area: 'Rifugio Gilberti – Sella Bila Pec, Monte Canin, Chiusaforte',
+      distance: 2,
+      elevation: 206,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the Rifugio Gilberti up path CAI 635 among boulders and flowers to the Bila Pec saddle, and back down past a debris-filled sinkhole to the hut.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The boulder-strewn glacial basin below Monte Canin on the botanical path, on 15 August 2024 (igorzo on Mapillary, CC BY-SA 4.0), 6 m from the line.',
+        route: 'Official loop 2 km from Rifugio Gilberti, at the top of the Canin cable car from Sella Nevea, as PromoTurismoFVG publishes it; the stored line is drawn on 12 OSM ways along the published line, 1.9 km, with 100% of the published line within 25 m of it.',
+        routeNumbers: 'Path CAI 635 and the park’s Bila Pec botanical path, with information panels on the alpine flora: from the Rifugio Gilberti (reached by the Canin cable car from Sella Nevea, or on foot by CAI path 635) along path 635 under the walls of Bila Pec; at the big rock wall left, climbing among large boulders and flowers, with steeper and easier stretches and a series of hairpins, to the Bila Pec saddle (2,006 m) facing the Foran dal Mus karst plateau. Back down the same path, keeping right on 635; at 1,830 m right across the floor of a debris-filled sinkhole, and in a few minutes back to the hut.',
+        mapPoints: 'Start at Rifugio Gilberti, at the top of the Canin cable car from Sella Nevea, the board’s start; drinking water none mapped.',
+        elevation: 'Official 2 km, 206 m up and 206 m down, 2 h, highest point 2,006 m, lowest 1,822 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'PromoTurismoFVG, MIRABILA - Sentiero botanico del Bila Pec (its verified Outdooractive account “Friuli Venezia Giulia”, linked from turismofvg.it; author Parco Naturale Prealpi Giulie)',
+          'Parco naturale regionale delle Prealpi Giulie, Regolamento (DPReg 28 February 2017 n. 048/Pres., as amended 2018), Art. 10 c.3: only dogs on a lead are admitted, anywhere in the park; no zone of the park bans dogs',
+          'ORMA owner decision of 28 October 2026 on park zones: hold only a true strict reserve (zone A, +100 m) or a zone where the park bans or restricts dogs; elsewhere publish with the park’s rule stated',
+          'Comune di Chiusaforte publishes no dog rule (none among its published regulations), so the national rule applies',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public; not required in open country and the mountains outside parks and nature areas',
+          'PromoTurismoFVG, pets on the region’s lifts: dogs on a lead and muzzled, one animal per cabin, a ticket for medium and large dogs (3 euro a day at Sella Nevea in summer 2026)',
+          'Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): about 91% in the Parco naturale regionale delle Prealpi Giulie; 6% in ZSC IT3320012 and ZPS IT3321002. Regione Friuli Venezia Giulia, conservation measures of the alpine Natura 2000 sites (DGR 1148/2024, annex 1, July 2024): no rule on walkers’ dogs',
+          'OpenStreetMap ways along the published line (12 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Rocky karst ground with large boulders: watch your dog’s paws on sharp limestone', 'High and open at 1,800–2,000 m: storms build fast and snow can lie into early summer', 'The Canin cable car takes dogs only on a lead and muzzled, one per cabin, with a ticket'],
+      terrainType: 'A rocky alpine path among boulders',
+      shadeDescription: 'No shade: the whole loop is above the trees in a rocky glacial basin.',
+      terrainDescription: 'A short botanical loop at 1,820–2,005 m in a glacial basin of the Monte Canin group, inside the Prealpi Giulie nature park, among limestone boulders and alpine flowers, with views to the Foran dal Mus karst plateau.',
+      waterDescription: 'No drinking fountain is mapped on the walk; bring water for your dog.',
+      dogNotes: 'Inside the Prealpi Giulie nature park dogs must always be on a lead (park regulation, Art. 10). Chiusaforte has no dog rule of its own, so the national rule also applies: a lead of at most 1.5 m and a muzzle carried. On the Canin cable car your dog must be on a lead and muzzled, one dog per cabin, with a 3 euro ticket for a medium or large dog.',
+      tips: 'Ride the Canin cable car up from Sella Nevea (closed cabins; dogs on a lead and muzzled, ticket for medium and large dogs) to the Rifugio Gilberti: 2 km and about 200 m of climbing, two hours with the flower panels. Keep your dog on a lead, as the park requires. No shade and sharp limestone: bring water, and check your dog’s paws.',
+      sourceLinks: [
+        { label: 'PromoTurismoFVG on Outdooractive, MIRABILA - Sentiero botanico del Bila Pec', url: 'https://www.outdooractive.com/it/route/escursione/parco-naturale-delle-prealpi-giulie/mirabila-sentiero-botanico-del-bila-pec/805328025/' },
+        { label: 'Parco naturale delle Prealpi Giulie, Regolamento del Parco (DPReg 048/2017)', url: 'https://www.parcoprealpigiulie.it/documents/893/D_P_REG_0048-2017.pdf' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'PromoTurismoFVG, animali da affezione sugli impianti', url: 'https://www.turismofvg.it/it/429630/animali-da-affezione' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'Regione Friuli Venezia Giulia, DGR 1148/2024 annex 1 (alpine Natura 2000 conservation measures)', url: 'https://mtom.regione.fvg.it/storage//2024_1148/Allegato%201%20alla%20Delibera%201148-2024.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.371846, lng: 13.461172, label: 'Rifugio Gilberti, at the top of the Canin cable car from Sella Nevea, the board’s start' },
+      waterSources: [],
+      rifugi: [],
+      desc: 'A short botanical loop from the Rifugio Gilberti, at the top of the Canin cable car, up among boulders and alpine flowers to the Bila Pec saddle in a glacial basin of Monte Canin. PromoTurismoFVG lists 2 km and 206 m of ascent.'
     }
   };
 
