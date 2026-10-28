@@ -140,9 +140,13 @@ describe('the existing-site verification boundary',()=>{
     // Segantini at the head of the Val Nambrone.
     // Then 366 and 364 with the first Valtellina walk: Arnoga to the Rifugio
     // Federico up the Val Viola, between Bormio and Livigno.
+    // Then 373 and 371 with seven more Friuli Venezia Giulia walks: the Sella
+    // Sompdogna lake, Rifugio Calvi above Sappada, Casera Canin, the Malga Confin loop
+    // on Monte Plauris, Monte Talm, the Casera Vas loop from Frassenetto and Monte
+    // Rest.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(366);
-    expect(currentSiteTrails(catalogue)).toHaveLength(364);
+    expect(catalogue).toHaveLength(373);
+    expect(currentSiteTrails(catalogue)).toHaveLength(371);
   });
 
   test('requires the artwork the public trail page needs',()=>{

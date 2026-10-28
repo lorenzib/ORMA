@@ -1312,6 +1312,23 @@
       }
     },
     {
+      "id": "fvg-anello-casera-vas-monte-buoi",
+      "approvedReviewId": "mapillary-fvg-anello-casera-vas-monte-buoi-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-anello-casera-vas-monte-buoi-frassenetto.jpg",
+        "heroImage": "images/trails/fvg-anello-casera-vas-monte-buoi-frassenetto.jpg",
+        "imageAlt": "A white church with an onion-domed bell tower on a green slope above a mountain village road, spruces and summer clouds behind",
+        "imageCredit": "Frassenetto, Forni Avoltri",
+        "imageCreditText": "Frassenetto, Forni Avoltri by igorzo",
+        "imageCreator": "igorzo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1875366542628940",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fvg-anello-lago-di-verzegnis",
       "approvedReviewId": "commons-fvg-anello-lago-di-verzegnis-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",
@@ -1325,6 +1342,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Verzegnis_VP01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-anello-malga-confin-ungarina",
+      "approvedReviewId": "mapillary-fvg-anello-malga-confin-ungarina-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-anello-malga-confin-ungarina-malga.jpg",
+        "heroImage": "images/trails/fvg-anello-malga-confin-ungarina-malga.jpg",
+        "imageAlt": "Two farm buildings with bright green roofs on a steep grassy mountainside, rocky ridges and autumn-tinted woods above under a blue sky",
+        "imageCredit": "A malga on Monte Plauris",
+        "imageCreditText": "A malga on Monte Plauris by igorzo",
+        "imageCreator": "igorzo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=310971133872481",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1414,6 +1448,57 @@
       }
     },
     {
+      "id": "fvg-lago-di-sella-sompdogna",
+      "approvedReviewId": "mapillary-fvg-lago-di-sella-sompdogna-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-lago-di-sella-sompdogna-rifugio-grego.jpg",
+        "heroImage": "images/trails/fvg-lago-di-sella-sompdogna-rifugio-grego.jpg",
+        "imageAlt": "A wooden mountain hut with a red roof in a green meadow among larches and firs, mountains and summer clouds behind",
+        "imageCredit": "The Grego hut at Sella Sompdogna",
+        "imageCreditText": "The Grego hut at Sella Sompdogna by igorzo",
+        "imageCreator": "igorzo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1006439155595530",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-monte-rest-da-passo-rest",
+      "approvedReviewId": "mapillary-fvg-monte-rest-da-passo-rest-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-monte-rest-da-passo-rest-view.jpg",
+        "heroImage": "images/trails/fvg-monte-rest-da-passo-rest-view.jpg",
+        "imageAlt": "A forested mountain with pale cliffs under grey clouds, dwarf mountain pines on a white stony ridge in the foreground",
+        "imageCredit": "The view from Monte Rest",
+        "imageCreditText": "The view from Monte Rest by igorzo",
+        "imageCreator": "igorzo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1364760102303735",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-monte-talm-da-piani-di-vas",
+      "approvedReviewId": "mapillary-fvg-monte-talm-da-piani-di-vas-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-monte-talm-da-piani-di-vas-signpost.jpg",
+        "heroImage": "images/trails/fvg-monte-talm-da-piani-di-vas-signpost.jpg",
+        "imageAlt": "Red and white trail signposts for Malga Chiampiut and the Sella di Talm in green woodland, a rocky mountain ridge under a blue sky behind",
+        "imageCredit": "Path signs below Monte Talm",
+        "imageCreditText": "Path signs below Monte Talm by igorzo",
+        "imageCreator": "igorzo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=895244294452352",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fvg-raunis-cascate-belepeit",
       "approvedReviewId": "commons-fvg-raunis-cascate-belepeit-on-route",
       "approvedAt": "2026-10-28T06:00:00.000Z",
@@ -1427,6 +1512,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chiusaforte_veduta_06.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-salita-casera-canin",
+      "approvedReviewId": "mapillary-fvg-salita-casera-canin-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-salita-casera-canin-pastures.jpg",
+        "heroImage": "images/trails/fvg-salita-casera-canin-pastures.jpg",
+        "imageAlt": "A green mountain pasture with a trail signpost and old stone ruins, wooded slopes falling to a wide valley and mountains in summer haze",
+        "imageCredit": "The pastures below Casera Canin",
+        "imageCreditText": "The pastures below Casera Canin by igorzo",
+        "imageCreator": "igorzo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=3980978801979445",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-sappada-rifugio-calvi",
+      "approvedReviewId": "mapillary-fvg-sappada-rifugio-calvi-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-sappada-rifugio-calvi-peralba.jpg",
+        "heroImage": "images/trails/fvg-sappada-rifugio-calvi-peralba.jpg",
+        "imageAlt": "A wide gravel road on an open mountainside, a jagged grey limestone range above dark forest across the valley under a clear blue sky",
+        "imageCredit": "The road to the Rifugio Calvi",
+        "imageCreditText": "The road to the Rifugio Calvi by igorzo",
+        "imageCreator": "igorzo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1059162873066285",
         "imageSourceType": "licensed-source"
       }
     },

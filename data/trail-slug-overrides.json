@@ -1173,6 +1173,41 @@
       "name": "Arnoga – Rifugio Federico, Val Viola",
       "slug": "arnoga-rifugio-federico-val-viola",
       "gloss": "the larch woods of the Val Viola to the hut below the Val Dosdè"
+    },
+    "fvg-lago-di-sella-sompdogna": {
+      "name": "Il laghetto di sella Sompdogna",
+      "slug": "laghetto-di-sella-sompdogna",
+      "gloss": "the short loop to the lake of Sella Sompdogna"
+    },
+    "fvg-sappada-rifugio-calvi": {
+      "name": "Rifugio Calvi",
+      "slug": "sappada-rifugio-calvi",
+      "gloss": "the gravel road from the Piave springs to the Rifugio Calvi"
+    },
+    "fvg-salita-casera-canin": {
+      "name": "Salita a Casera Canin: balcone panoramico sulla val Resia",
+      "slug": "salita-casera-canin",
+      "gloss": "the walk from Malga Coot to Casera Canin"
+    },
+    "fvg-anello-malga-confin-ungarina": {
+      "name": "L'anello di malga Confin e malga Ungarina",
+      "slug": "anello-malga-confin-ungarina",
+      "gloss": "the loop between Malga Confin and Malga Ungarina"
+    },
+    "fvg-monte-talm-da-piani-di-vas": {
+      "name": "Monte Talm dai Piani di Vas",
+      "slug": "monte-talm-piani-di-vas",
+      "gloss": "the loop from Piani di Vas to the summit of Monte Talm"
+    },
+    "fvg-anello-casera-vas-monte-buoi": {
+      "name": "Anello Casera Vas - Casera Monte Buoi",
+      "slug": "anello-casera-vas-monte-buoi",
+      "gloss": "the forest loop from Frassenetto to Casera Vas"
+    },
+    "fvg-monte-rest-da-passo-rest": {
+      "name": "Dal Passo Rest al Monte Rest",
+      "slug": "monte-rest-da-passo-rest",
+      "gloss": "the ridge walk from Passo Rest to Monte Rest"
     }
   }
 }
