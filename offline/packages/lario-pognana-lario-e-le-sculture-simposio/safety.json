@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lario-pognana-lario-e-le-sculture-simposio",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.2,
+    "ascentM": 160,
+    "highestPointM": 336,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 3
+  },
+  "trailhead": {
+    "lat": 45.879656,
+    "lng": 9.157744,
+    "label": "Pognana Lario town hall, the published start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.8851922,
+      "lng": 9.1571622,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.8780158,
+      "lng": 9.1589027,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "About 400 m on the lakeside provincial road, which has narrow verges and traffic: keep your dog on a short lead.",
+    "Cobbled mule tracks and steps.",
+    "The lakeside path: keep your dog out of the water near boats.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}

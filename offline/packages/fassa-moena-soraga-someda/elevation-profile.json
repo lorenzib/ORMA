@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-moena-soraga-someda",
+  "distanceKm": 6.2,
+  "ascentM": 175,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1174
+    },
+    {
+      "km": 0.5,
+      "elev": 1220
+    },
+    {
+      "km": 0.9,
+      "elev": 1269
+    },
+    {
+      "km": 1.4,
+      "elev": 1236
+    },
+    {
+      "km": 1.9,
+      "elev": 1210
+    },
+    {
+      "km": 2.4,
+      "elev": 1233
+    },
+    {
+      "km": 2.9,
+      "elev": 1205
+    },
+    {
+      "km": 3.3,
+      "elev": 1205
+    },
+    {
+      "km": 3.8,
+      "elev": 1238
+    },
+    {
+      "km": 4.3,
+      "elev": 1242
+    },
+    {
+      "km": 4.7,
+      "elev": 1236
+    },
+    {
+      "km": 5.2,
+      "elev": 1269
+    },
+    {
+      "km": 5.7,
+      "elev": 1233
+    },
+    {
+      "km": 6.1,
+      "elev": 1175
+    },
+    {
+      "km": 6.2,
+      "elev": 1174
+    }
+  ]
+}

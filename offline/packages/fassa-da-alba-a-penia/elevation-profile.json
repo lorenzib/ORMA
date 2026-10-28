@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-da-alba-a-penia",
+  "distanceKm": 4.5,
+  "ascentM": 97,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1497
+    },
+    {
+      "km": 0.3,
+      "elev": 1484
+    },
+    {
+      "km": 0.7,
+      "elev": 1486
+    },
+    {
+      "km": 1,
+      "elev": 1491
+    },
+    {
+      "km": 1.4,
+      "elev": 1496
+    },
+    {
+      "km": 1.7,
+      "elev": 1532
+    },
+    {
+      "km": 2.1,
+      "elev": 1559
+    },
+    {
+      "km": 2.4,
+      "elev": 1522
+    },
+    {
+      "km": 2.8,
+      "elev": 1514
+    },
+    {
+      "km": 3.1,
+      "elev": 1496
+    },
+    {
+      "km": 3.4,
+      "elev": 1487
+    },
+    {
+      "km": 3.8,
+      "elev": 1486
+    },
+    {
+      "km": 4.1,
+      "elev": 1486
+    },
+    {
+      "km": 4.4,
+      "elev": 1497
+    },
+    {
+      "km": 4.5,
+      "elev": 1497
+    }
+  ]
+}

@@ -1184,6 +1184,11 @@ within 25 m of the drawn line and 95% of the line within 25 m of the guide, and
 the line must be within ten per cent of the distance the operator publishes. A
 guide point with no OSM path within 50 m, or a gap the OSM network does not
 join, refuses it too. A refused walk writes nothing, and the reason is printed.
+One case is not a mismatch: an operator that publishes the line one way but
+states on the walk's page that its distance, climb and time are for going there
+and back the same way. `--there-and-back` then walks the guide out and back
+before it is judged, and the record says so (`official.there_and_back`). It is
+used only where the page says it, never to rescue a line that is merely short.
 
 **It becomes the same kind of record.** `node scripts/promote-osm-trails.js
 --region board` derives elevation, profile, terrain, water and rifugi from the

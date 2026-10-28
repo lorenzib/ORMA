@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-villabassa-mooskirche",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.5,
+    "ascentM": 21,
+    "highestPointM": 1162,
+    "expectedDuration": "0.6 hours",
+    "difficulty": "Easy",
+    "shadePercent": 20
+  },
+  "trailhead": {
+    "lat": 46.73818,
+    "lng": 12.169029,
+    "label": "Holy Trinity hospital church, Niederdorf, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7392099,
+      "lng": 12.1693947,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7378158,
+      "lng": 12.1707811,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7393608,
+      "lng": 12.1701046,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.739645,
+      "lng": 12.1692,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.739905,
+      "lng": 12.1692956,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7398167,
+      "lng": 12.1705283,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7387429,
+      "lng": 12.1672008,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The way back is a quiet paved road: watch for the odd car.",
+    "Farmed fields either side: Niederdorf bans dogs from farmed land from April to October.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}

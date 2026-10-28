@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-escursione-da-s-cristina-al-passo-sella",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 8.4,
+    "ascentM": 800,
+    "highestPointM": 2169,
+    "expectedDuration": "3.4 hours",
+    "difficulty": "Hard",
+    "shadePercent": 23
+  },
+  "trailhead": {
+    "lat": 46.55801,
+    "lng": 11.721457,
+    "label": "Santa Cristina, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5583789,
+      "lng": 11.7204914,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.558211,
+      "lng": 11.721892,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5588865,
+      "lng": 11.7234756,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5482283,
+      "lng": 11.7206246,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Long climb of 800 m.",
+    "Boulder field in the Città dei Sassi: uneven, rocky ground.",
+    "Early in the season some stretches may still hold snow.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

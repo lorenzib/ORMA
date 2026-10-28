@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-sesto-alte-saege-val-campo-di-dentro",
+  "distanceKm": 18.6,
+  "ascentM": 457,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1316
+    },
+    {
+      "km": 1.4,
+      "elev": 1315
+    },
+    {
+      "km": 2.9,
+      "elev": 1269
+    },
+    {
+      "km": 4.2,
+      "elev": 1257
+    },
+    {
+      "km": 5.7,
+      "elev": 1340
+    },
+    {
+      "km": 7.1,
+      "elev": 1419
+    },
+    {
+      "km": 8.5,
+      "elev": 1556
+    },
+    {
+      "km": 9.9,
+      "elev": 1598
+    },
+    {
+      "km": 11.3,
+      "elev": 1469
+    },
+    {
+      "km": 12.7,
+      "elev": 1342
+    },
+    {
+      "km": 14.1,
+      "elev": 1285
+    },
+    {
+      "km": 15.5,
+      "elev": 1285
+    },
+    {
+      "km": 16.9,
+      "elev": 1292
+    },
+    {
+      "km": 18.3,
+      "elev": 1313
+    },
+    {
+      "km": 18.6,
+      "elev": 1316
+    }
+  ]
+}

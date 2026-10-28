@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 12,
+    "ascentM": 734,
+    "highestPointM": 657,
+    "expectedDuration": "4 hours",
+    "difficulty": "Hard",
+    "shadePercent": 56
+  },
+  "trailhead": {
+    "lat": 45.823769,
+    "lng": 9.260938,
+    "label": "The car parks by the Segrino lake, the published start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.8239134,
+      "lng": 9.2605783,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Tricky, steep passages on the descent from the viewpoint towards Canzo: avoid it after heavy rain, when it is slippery.",
+    "Village roads in Canzo and Proserpio and a crossing of the provincial road at the start.",
+    "The Segrino lake is a protected site: keep your dog on a lead and out of the reed beds.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

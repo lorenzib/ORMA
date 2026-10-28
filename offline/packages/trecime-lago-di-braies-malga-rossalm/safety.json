@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-lago-di-braies-malga-rossalm",
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 6.6,
+    "ascentM": 846,
+    "highestPointM": 2281,
+    "expectedDuration": "2.9 hours",
+    "difficulty": "Hard",
+    "shadePercent": 35
+  },
+  "trailhead": {
+    "lat": 46.69887,
+    "lng": 12.085465,
+    "label": "Pragser Wildsee car park, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6598549,
+      "lng": 12.1190259,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A long, steep climb of almost 850 m: plan rests and water for your dog.",
+    "The lake shore is very crowded in summer: keep your dog close.",
+    "Cows graze around the Rossalm.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-27",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -152,7 +152,11 @@
     // Savoy lies west of 9°E. East of it the walker is in the region of the
     // nearest trail ORMA knows, which is how the water and hut layers are split.
     if(!fix) return 'dolomites';
-    if(fix.lng < 9) return 'savoy';
+    if(fix.lng < 9){
+      // Courmayeur and Chamonix share a meridian; the nearest locality decides.
+      var regions = window.DoloPawsRegions;
+      return regions && regions.nearestLocality && regions.nearestLocality(fix.lat, fix.lng).region === 'aosta' ? 'aosta' : 'savoy';
+    }
     var best = 'dolomites';
     var bestD = Infinity;
     (Array.isArray(window.trails) ? window.trails : []).forEach(function(trail){
@@ -245,8 +249,8 @@
         function build(){
           if(typeof gondolas === 'undefined') { reject(new Error('Lift layer unavailable')); return; }
           var lifts = gondolas.filter(function(lift){
-            var savoy = lift.country === 'FR' || (lift.from && lift.from.lng < 9);
-            return overlayRegion === 'savoy' ? savoy : !savoy;
+            var region = lift.country === 'FR' ? 'savoy' : (lift.from ? regionForFix(lift.from) : null);
+            return region === overlayRegion;
           });
           var features = lifts.map(function(lift){ return { type:'Feature', properties:{ name:lift.name, status:lift.status },
             geometry:{ type:'LineString', coordinates:[[lift.from.lng,lift.from.lat],[lift.to.lng,lift.to.lat]] } }; });

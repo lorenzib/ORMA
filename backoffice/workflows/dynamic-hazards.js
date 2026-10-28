@@ -158,6 +158,7 @@ function parseAtomFeed(xml, source = {}){
 function trailWarningArea(trail){
   const text = `${trail.area || ''} ${trail.valley || ''}`.toLowerCase();
   if(trail.region === 'savoy') return trail.province === 'haute-savoie' ? 'Haute-Savoie' : 'Savoie';
+  if(trail.region === 'aosta') return 'Valle d\'Aosta';
   if(/friuli|carnia|tarvis/.test(text)) return 'Friuli-Venezia Giulia';
   if(trail.province === 'belluno') return 'Veneto';
   if(['alto-adige', 'trentino'].includes(trail.province)) return 'Trentino-Alto Adige';
@@ -186,6 +187,7 @@ function alertAppliesToTrail(alert, trail){
     'Trentino-Alto Adige': /trentino|alto adige|s[uü]dtirol/,
     Veneto: /veneto/,
     'Friuli-Venezia Giulia': /friuli|venezia giulia/,
+    "Valle d'Aosta": /aosta|vall[eé]e d.aoste/,
   };
   return alternatives[target]?.test(area) || false;
 }

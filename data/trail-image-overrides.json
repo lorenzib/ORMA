@@ -173,6 +173,108 @@
       }
     },
     {
+      "id": "aosta-champoluc-cascata-mascognaz",
+      "approvedReviewId": "commons-aosta-champoluc-cascata-mascognaz-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/aosta-champoluc-cascata-mascognaz-champoluc.jpg",
+        "heroImage": "images/trails/aosta-champoluc-cascata-mascognaz-champoluc.jpg",
+        "imageAlt": "An aerial view down onto the village of Champoluc in a green valley, forested slopes rising on the right and snowy peaks of Monte Rosa on the horizon",
+        "imageCredit": "Champoluc and the Val d’Ayas",
+        "imageCreditText": "Champoluc and the Val d’Ayas by Hagai Agmon-Snir",
+        "imageCreator": "Hagai Agmon-Snir",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:ValAyasChampolucAug212024_03.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "aosta-periasc-antagnod",
+      "approvedReviewId": "commons-aosta-periasc-antagnod-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/aosta-periasc-antagnod-church.jpg",
+        "heroImage": "images/trails/aosta-periasc-antagnod-church.jpg",
+        "imageAlt": "The cream-coloured front of the church of San Martino in Antagnod with an arched porch, a sundial and flower boxes on a stone-paved square",
+        "imageCredit": "The church of San Martino in Antagnod",
+        "imageCreditText": "The church of San Martino in Antagnod by Capricornis crispus",
+        "imageCreator": "Capricornis crispus",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chiesa_di_San_Martino_-_Antagnod_(Ayas).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "aosta-ru-courtaud",
+      "approvedReviewId": "commons-aosta-ru-courtaud-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/aosta-ru-courtaud-channel.jpg",
+        "heroImage": "images/trails/aosta-ru-courtaud-channel.jpg",
+        "imageAlt": "A wide earth path beside a narrow irrigation channel of clear water running through a sunlit larch and spruce forest",
+        "imageCredit": "The Rû Courtaud in Ayas",
+        "imageCreditText": "The Rû Courtaud in Ayas by Tenam2",
+        "imageCreator": "Tenam2",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:R%C3%BB_Courtaud_-_Ayas.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "aosta-sentiero-della-regina",
+      "approvedReviewId": "commons-aosta-sentiero-della-regina-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/aosta-sentiero-della-regina-lago-gover.jpg",
+        "heroImage": "images/trails/aosta-sentiero-della-regina-lago-gover.jpg",
+        "imageAlt": "Lago Gover at dawn with chalets and a timber-framed villa among larches and spruces on its shore, the glaciers of Monte Rosa lit pink behind",
+        "imageCredit": "Lago Gover under Monte Rosa at dawn",
+        "imageCreditText": "Lago Gover under Monte Rosa at dawn by BeppeViews",
+        "imageCreator": "BeppeViews",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sotto_il_monte_Rosa_all%27alba.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "aosta-strada-lombarda",
+      "approvedReviewId": "commons-aosta-strada-lombarda-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/aosta-strada-lombarda-villa-peccoz.jpg",
+        "heroImage": "images/trails/aosta-strada-lombarda-villa-peccoz.jpg",
+        "imageAlt": "A tall cream-coloured villa with red shutters and balconies beside a quiet village road, forested mountainside behind under a blue sky",
+        "imageCredit": "Villa Peccoz in Gressoney-Saint-Jean",
+        "imageCreditText": "Villa Peccoz in Gressoney-Saint-Jean by Ivanbranco",
+        "imageCreator": "Ivanbranco",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ex_Hinderheim_-_Villa_Peccoz.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande",
+      "approvedReviewId": "commons-aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande-on-route",
+      "approvedAt": "2026-10-27T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande-alpenzu.jpg",
+        "heroImage": "images/trails/aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande-alpenzu.jpg",
+        "imageAlt": "Stone houses with grey slab roofs on a flowering alpine meadow, a large tree beside them and green pastures and forest below",
+        "imageCredit": "The hamlet of Alpenzù",
+        "imageCreditText": "The hamlet of Alpenzù by Francofranco56",
+        "imageCreator": "Francofranco56",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villaggio_Alpenz%C3%B9.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cadini",
       "approvedReviewId": "commons-cadini",
       "approvedAt": "2026-09-06T12:22:30.979Z",
@@ -186,6 +288,91 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lagomisurinacadini.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "campiglio-carisolo-centro-storico",
+      "approvedReviewId": "commons-campiglio-carisolo-centro-storico-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-carisolo-centro-storico-chestnut.jpg",
+        "heroImage": "images/trails/campiglio-carisolo-centro-storico-chestnut.jpg",
+        "imageAlt": "A huge old chestnut tree with a gnarled trunk and a broad green crown in a sunny grassy grove",
+        "imageCredit": "The chestnut grove at Carisolo",
+        "imageCreditText": "The chestnut grove at Carisolo by Oscar Collini",
+        "imageCreator": "Oscar Collini",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castagneto_di_Carisolo.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio",
+      "approvedReviewId": "commons-campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio-cows.jpg",
+        "heroImage": "images/trails/campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio-cows.jpg",
+        "imageAlt": "Brown and black cows grazing on a green slope beside a gravel track at Malga Ritort, spruce forest and a wide valley behind",
+        "imageCredit": "Cows grazing at Malga Ritort, at the end of the walk",
+        "imageCreditText": "Cows grazing at Malga Ritort, at the end of the walk by Marco Ober",
+        "imageCreator": "Marco Ober",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Grazing_cows_at_the_Ritorto_hut_(Adamello_Brenta_nature_reserve).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa",
+      "approvedReviewId": "commons-campiglio-laghi-di-san-giuliano-garzone-e-vacarsa-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-laghi-di-san-giuliano-garzone-e-vacarsa-lake.jpg",
+        "heroImage": "images/trails/campiglio-laghi-di-san-giuliano-garzone-e-vacarsa-lake.jpg",
+        "imageAlt": "The Lago di San Giuliano among larches and meadows, a small wooden hut on the grassy shore and forested slopes under a summer sky",
+        "imageCredit": "The Lago di San Giuliano, on the loop",
+        "imageCreditText": "The Lago di San Giuliano, on the loop by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Caderzone_Terme_-_Lago_di_San_Giuliano_04.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "campiglio-lago-ritorto-nel-blu-dipinto-di-blu",
+      "approvedReviewId": "commons-campiglio-lago-ritorto-nel-blu-dipinto-di-blu-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-lago-ritorto-nel-blu-dipinto-di-blu-brenta-view.jpg",
+        "heroImage": "images/trails/campiglio-lago-ritorto-nel-blu-dipinto-di-blu-brenta-view.jpg",
+        "imageAlt": "The pale walls and towers of the Brenta Dolomites under drifting clouds, seen across dark spruce forest from the Ritort pastures",
+        "imageCredit": "The Brenta group from the Ritort pastures",
+        "imageCreditText": "The Brenta group from the Ritort pastures by Marco Ober",
+        "imageCreator": "Marco Ober",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Brenta_Dolomites,_view_from_Ritorto_lodge_02.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "campiglio-monte-spinale-rifugio-graffer",
+      "approvedReviewId": "commons-campiglio-monte-spinale-rifugio-graffer-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/campiglio-monte-spinale-rifugio-graffer-lago-spinale.jpg",
+        "heroImage": "images/trails/campiglio-monte-spinale-rifugio-graffer-lago-spinale.jpg",
+        "imageAlt": "The small Lago Spinale in a green alpine meadow with a fence around it, grey Brenta peaks and white clouds behind",
+        "imageCredit": "The Lago Spinale, on the walk",
+        "imageCreditText": "The Lago Spinale, on the walk by FkMohr",
+        "imageCreator": "FkMohr",
+        "imageLicence": "CC BY-SA 3.0 de",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_Spinale_NO.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1040,6 +1227,159 @@
       }
     },
     {
+      "id": "fvg-anello-lago-di-verzegnis",
+      "approvedReviewId": "commons-fvg-anello-lago-di-verzegnis-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-anello-lago-di-verzegnis-lake.jpg",
+        "heroImage": "images/trails/fvg-anello-lago-di-verzegnis-lake.jpg",
+        "imageAlt": "A still turquoise reservoir between steep wooded slopes under grey clouds, a grassy bank and trees in the foreground",
+        "imageCredit": "The Lago di Verzegnis",
+        "imageCreditText": "The Lago di Verzegnis by Vid Pogacnik",
+        "imageCreator": "Vid Pogacnik",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Verzegnis_VP01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-borgo-stavoli-moggio",
+      "approvedReviewId": "commons-fvg-borgo-stavoli-moggio-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-borgo-stavoli-moggio-mule-track.jpg",
+        "heroImage": "images/trails/fvg-borgo-stavoli-moggio-mule-track.jpg",
+        "imageAlt": "A stony mule track winding down a wooded slope beside a green metal guard rail, pale rock outcrops and autumn trees around it",
+        "imageCredit": "The mule track to Stavoli",
+        "imageCreditText": "The mule track to Stavoli by Joadl",
+        "imageCreator": "Joadl",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Stavoli_2008_1004_07.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-col-dei-piais",
+      "approvedReviewId": "commons-fvg-col-dei-piais-on-route",
+      "approvedAt": "2026-10-28T06:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-col-dei-piais-san-rocco.jpg",
+        "heroImage": "images/trails/fvg-col-dei-piais-san-rocco.jpg",
+        "imageAlt": "The white front of a small chapel with a round window and red geraniums at its windows, steep green wooded slopes behind under a blue sky",
+        "imageCredit": "The chapel of San Rocco, Claut",
+        "imageCreditText": "The chapel of San Rocco, Claut by Marchetto da Trieste",
+        "imageCreator": "Marchetto da Trieste",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chiesa_di_San_Rocco_(Massurie,_Claut)_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-faggi-secolari-pustot-dordolla",
+      "approvedReviewId": "commons-fvg-faggi-secolari-pustot-dordolla-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-faggi-secolari-pustot-dordolla-dordolla.jpg",
+        "heroImage": "images/trails/fvg-faggi-secolari-pustot-dordolla-dordolla.jpg",
+        "imageAlt": "Stone and plastered houses of a small mountain village on a green meadow, a wooden frame hung with coloured flags in front, under a tall pale limestone peak and wooded slopes in sunshine",
+        "imageCredit": "Dordolla below the Creta Grauzaria",
+        "imageCreditText": "Dordolla below the Creta Grauzaria by Kaspar Nickles",
+        "imageCreator": "Kaspar Nickles",
+        "imageLicence": "CC BY-SA 3.0 at",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/at",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Friaul_Val_Aupa_Dordolla_West_credit_Kaspar_Nickles_2011.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-fontanon-di-goriuda",
+      "approvedReviewId": "commons-fvg-fontanon-di-goriuda-on-route",
+      "approvedAt": "2026-10-28T06:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-fontanon-di-goriuda-waterfall.jpg",
+        "heroImage": "images/trails/fvg-fontanon-di-goriuda-waterfall.jpg",
+        "imageAlt": "A tall white waterfall pouring down a steep wooded mountainside between spruces, green summer leaves in the foreground",
+        "imageCredit": "The Fontanon di Goriuda",
+        "imageCreditText": "The Fontanon di Goriuda by Klenje",
+        "imageCreator": "Klenje",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Fontanon_di_Goriuda.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-laghi-di-fusine",
+      "approvedReviewId": "commons-fvg-laghi-di-fusine-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-laghi-di-fusine-lower-lake.jpg",
+        "heroImage": "images/trails/fvg-laghi-di-fusine-lower-lake.jpg",
+        "imageAlt": "A turquoise mountain lake rippling in the sun, its far shore lined with yellow autumn larches and dark spruces, below the grey limestone walls of the Mangart group under a pale blue sky",
+        "imageCredit": "The Lower Fusine Lake and the Mangart group",
+        "imageCreditText": "The Lower Fusine Lake and the Mangart group by Ajznponar",
+        "imageCreator": "Ajznponar",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lower_Fusine_Lake_and_the_Mangart_Group_06.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-raunis-cascate-belepeit",
+      "approvedReviewId": "commons-fvg-raunis-cascate-belepeit-on-route",
+      "approvedAt": "2026-10-28T06:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-raunis-cascate-belepeit-chiusaforte.jpg",
+        "heroImage": "images/trails/fvg-raunis-cascate-belepeit-chiusaforte.jpg",
+        "imageAlt": "A clear green-blue river over pale stones below a concrete bridge, the yellow and white houses of a village and steep wooded mountains behind under a grey sky",
+        "imageCredit": "Chiusaforte and the Fella river",
+        "imageCreditText": "Chiusaforte and the Fella river by Sirleonidas",
+        "imageCreator": "Sirleonidas",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chiusaforte_veduta_06.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-ta-lipa-pot-corto",
+      "approvedReviewId": "commons-fvg-ta-lipa-pot-corto-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-ta-lipa-pot-corto-stolvizza.jpg",
+        "heroImage": "images/trails/fvg-ta-lipa-pot-corto-stolvizza.jpg",
+        "imageAlt": "Wooded mountains under a blue sky with thin vapour trails, yellow and green autumn trees and a meadow in the foreground in Val Resia",
+        "imageCredit": "The Julian Prealps from Stolvizza, Val Resia",
+        "imageCreditText": "The Julian Prealps from Stolvizza, Val Resia by Ajznponar",
+        "imageCreator": "Ajznponar",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Julian_Prealps_between_Cima_Tulsti_and_Bagni_Colc,_view_from_Resia_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fvg-venzone-anello-delle-chiesette",
+      "approvedReviewId": "commons-fvg-venzone-anello-delle-chiesette-on-route",
+      "approvedAt": "2026-10-28T06:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-venzone-anello-delle-chiesette-church.jpg",
+        "heroImage": "images/trails/fvg-venzone-anello-delle-chiesette-church.jpg",
+        "imageAlt": "A long low stone church with an arched porch and a square bell tower on green grass, wooded mountains under grey clouds behind",
+        "imageCredit": "A small church in the meadows outside Venzone",
+        "imageCreditText": "A small church in the meadows outside Venzone by Sirleonidas",
+        "imageCreator": "Sirleonidas",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Venzone_veduta_14.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "geotrail-bulla",
       "approvedReviewId": "commons-geotrail-bulla-on-route",
       "approvedAt": "2026-10-23T20:00:00.000Z",
@@ -1091,6 +1431,74 @@
       }
     },
     {
+      "id": "giudicarie-san-martino-bosco-scolpito",
+      "approvedReviewId": "mapillary-giudicarie-san-martino-bosco-scolpito-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/giudicarie-san-martino-bosco-scolpito-valle-del-chiese.jpg",
+        "heroImage": "images/trails/giudicarie-san-martino-bosco-scolpito-valle-del-chiese.jpg",
+        "imageAlt": "A quiet lane with wooden guardrails and old street lamps leading past a house into the green Valle del Chiese, steep wooded slopes under a blue sky",
+        "imageCredit": "The lane by the start in Pieve di Bono-Prezzo",
+        "imageCreditText": "The lane by the start in Pieve di Bono-Prezzo by zonta72",
+        "imageCreator": "zonta72",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1109854742824287",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "giudicarie-san-vigilio-senter-dei-cavai",
+      "approvedReviewId": "commons-giudicarie-san-vigilio-senter-dei-cavai-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/giudicarie-san-vigilio-senter-dei-cavai-san-vigilio.jpg",
+        "heroImage": "images/trails/giudicarie-san-vigilio-senter-dei-cavai-san-vigilio.jpg",
+        "imageAlt": "A small white stone church with a square bell tower and a grey shingle roof among dense green trees beside the clear Sarca river, seen from above",
+        "imageCredit": "The church of San Vigilio by the Sarca, Tione",
+        "imageCreditText": "The church of San Vigilio by the Sarca, Tione by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Tione_di_Trento,_chiesa_di_San_Vigilio_04.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "giudicarie-senter-dei-popi-madonna-del-lares",
+      "approvedReviewId": "mapillary-giudicarie-senter-dei-popi-madonna-del-lares-on-route",
+      "approvedAt": "2026-10-28T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/giudicarie-senter-dei-popi-madonna-del-lares-gorge-path.jpg",
+        "heroImage": "images/trails/giudicarie-senter-dei-popi-madonna-del-lares-gorge-path.jpg",
+        "imageAlt": "A gravel path with a wooden rail fence along it climbing gently through green woods, a grassy bank beside it",
+        "imageCredit": "The Senter dei Popi above Bondo",
+        "imageCreditText": "The Senter dei Popi above Bondo by zonta72",
+        "imageCreator": "zonta72",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=858852061375329",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "giudicarie-tione-bolbeno-madonna-del-lares",
+      "approvedReviewId": "mapillary-giudicarie-tione-bolbeno-madonna-del-lares-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/giudicarie-tione-bolbeno-madonna-del-lares-sanctuary.jpg",
+        "heroImage": "images/trails/giudicarie-tione-bolbeno-madonna-del-lares-sanctuary.jpg",
+        "imageAlt": "The portico of the Madonna del Lares chapel with four granite columns, geranium boxes and a checkered floor, the lit altar seen through the open door, a meadow and spruces around it",
+        "imageCredit": "The Madonna del Lares sanctuary",
+        "imageCreditText": "The Madonna del Lares sanctuary by zonta72",
+        "imageCreator": "zonta72",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=838669567007655",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "lago-carezza",
       "approvedAt": "2026-10-19T14:27:29.317Z",
       "fields": {
@@ -1121,6 +1529,142 @@
         "imageLicenceUrl": null,
         "imageSourcePage": null,
         "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "lario-alla-ricerca-di-un-panorama-unico",
+      "approvedReviewId": "commons-lario-alla-ricerca-di-un-panorama-unico-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-alla-ricerca-di-un-panorama-unico-nuvolone.jpg",
+        "heroImage": "images/trails/lario-alla-ricerca-di-un-panorama-unico-nuvolone.jpg",
+        "imageAlt": "Lake Como far below the Nuvolone viewpoint, the bare rocky Monte di Tremezzo and its lakeside villages across the water, wooded slopes in the foreground and snowy peaks in the distance",
+        "imageCredit": "Lake Como from the Nuvolone viewpoint",
+        "imageCreditText": "Lake Como from the Nuvolone viewpoint by Kaitu",
+        "imageCreator": "Kaitu",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Panoramic_view_centered_on_North_direction_from_Monte_Nuvolone.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-anello-ai-piedi-del-monte-oriolo",
+      "approvedReviewId": "commons-lario-anello-ai-piedi-del-monte-oriolo-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-anello-ai-piedi-del-monte-oriolo-crezzo.jpg",
+        "heroImage": "images/trails/lario-anello-ai-piedi-del-monte-oriolo-crezzo.jpg",
+        "imageAlt": "A small stone monument with a pointed roof and an Italian flag in the open meadows of the Conca di Crezzo, bare trees and wooded slopes behind under a blue sky",
+        "imageCredit": "The Alpine monument in the Conca di Crezzo",
+        "imageCreditText": "The Alpine monument in the Conca di Crezzo by Kaitu",
+        "imageCreator": "Kaitu",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Monumento_all%27Alpino_nella_Conca_di_Crezzo_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-brunate-e-le-sue-chiese",
+      "approvedReviewId": "commons-lario-brunate-e-le-sue-chiese-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-brunate-e-le-sue-chiese-lake-view.jpg",
+        "heroImage": "images/trails/lario-brunate-e-le-sue-chiese-lake-view.jpg",
+        "imageAlt": "Lake Como seen from the wooded hill of Brunate, the town of Como and its villas along the shore below, green hills and distant mountains behind",
+        "imageCredit": "Lake Como from Brunate",
+        "imageCreditText": "Lake Como from Brunate by Another Believer",
+        "imageCreator": "Another Believer",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Brunate,_Italy_(2025)_-_05.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-caslino-sullacqua",
+      "approvedReviewId": "commons-lario-caslino-sullacqua-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-caslino-sullacqua-lambro.jpg",
+        "heroImage": "images/trails/lario-caslino-sullacqua-lambro.jpg",
+        "imageAlt": "The Lambro river running over stones between green banks in Ponte Lambro, a park and houses on the slope above",
+        "imageCredit": "The Lambro at Ponte Lambro",
+        "imageCreditText": "The Lambro at Ponte Lambro by Gabriele Tripoli",
+        "imageCreator": "Gabriele Tripoli",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Il_Lambro_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-eupilio-tra-segrino-e-cornizzolo",
+      "approvedReviewId": "commons-lario-eupilio-tra-segrino-e-cornizzolo-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-eupilio-tra-segrino-e-cornizzolo-pusiano-lake.jpg",
+        "heroImage": "images/trails/lario-eupilio-tra-segrino-e-cornizzolo-pusiano-lake.jpg",
+        "imageAlt": "Lake Pusiano seen from the wooded slope at the Madonna della Neve sanctuary, the small tree-covered Isola dei Cipressi in the middle and houses along the shore below",
+        "imageCredit": "Lake Pusiano from the Madonna della Neve",
+        "imageCreditText": "Lake Pusiano from the Madonna della Neve by Kaitu",
+        "imageCreator": "Kaitu",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:View_on_island_Isola_dei_Cipressi,_from_Madonna_della_Neve_(Pusiano).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-il-sentiero-del-viandante",
+      "approvedReviewId": "commons-lario-il-sentiero-del-viandante-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-il-sentiero-del-viandante-lake.jpg",
+        "heroImage": "images/trails/lario-il-sentiero-del-viandante-lake.jpg",
+        "imageAlt": "Lake Como seen from a grassy terrace on the Sentiero del Viandante, an old tiled roof and trees in front and wooded mountains on the far shore",
+        "imageCredit": "Lake Como from the Sentiero del Viandante",
+        "imageCreditText": "Lake Como from the Sentiero del Viandante by schoella",
+        "imageCreator": "schoella",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Como_dal_sentiero_del_Viandante_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-pognana-lario-e-le-sculture-simposio",
+      "approvedReviewId": "commons-lario-pognana-lario-e-le-sculture-simposio-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-pognana-lario-e-le-sculture-simposio-lake.jpg",
+        "heroImage": "images/trails/lario-pognana-lario-e-le-sculture-simposio-lake.jpg",
+        "imageAlt": "The Como branch of the lake seen from the rooftops of Pognana Lario, a steep green mountain and a lakeside village on the far shore under a clear sky",
+        "imageCredit": "Lake Como from Pognana Lario",
+        "imageCreditText": "Lake Como from Pognana Lario by Sigoise",
+        "imageCreator": "Sigoise",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pognana_Lario_Panorama.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza",
+      "approvedReviewId": "commons-lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza-segrino.jpg",
+        "heroImage": "images/trails/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza-segrino.jpg",
+        "imageAlt": "The long blue Segrino lake far below a wooded slope, villages on its far shore and the larger Pusiano lake and the Brianza plain beyond",
+        "imageCredit": "The Segrino lake from the Monte Scioscia viewpoint",
+        "imageCreditText": "The Segrino lake from the Monte Scioscia viewpoint by Kaitu",
+        "imageCreator": "Kaitu",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:View_from_viewpoint_of_Scioscia.jpg",
+        "imageSourceType": "licensed-source"
       }
     },
     {
@@ -3987,6 +4531,91 @@
       }
     },
     {
+      "id": "paganella-andalo-tana-ermellino",
+      "approvedReviewId": "commons-paganella-andalo-tana-ermellino-on-route",
+      "approvedAt": "2026-10-28T02:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/paganella-andalo-tana-ermellino-meadow-path.jpg",
+        "heroImage": "images/trails/paganella-andalo-tana-ermellino-meadow-path.jpg",
+        "imageAlt": "A gravel path running through a mown meadow with hay bales between spruce woods, mountains and a blue sky with white clouds beyond",
+        "imageCredit": "Path 812 near Cavedago, on the walk",
+        "imageCreditText": "Path 812 near Cavedago, on the walk by Giorgio Galeotti",
+        "imageCreator": "Giorgio Galeotti",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sentiero_812_-_Cavedago,_Trento,_Italia_-_30_Giugno_2024.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "paganella-giro-del-lago-di-molveno",
+      "approvedReviewId": "commons-paganella-giro-del-lago-di-molveno-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/paganella-giro-del-lago-di-molveno-lake.jpg",
+        "heroImage": "images/trails/paganella-giro-del-lago-di-molveno-lake.jpg",
+        "imageAlt": "The still turquoise Lago di Molveno with pale rocks on the shore in the foreground and wooded mountains beyond under a soft evening sky",
+        "imageCredit": "The Lago di Molveno, on the loop",
+        "imageCreditText": "The Lago di Molveno, on the loop by Italo Greco",
+        "imageCreator": "Italo Greco",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Molveno_(9614678613).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "paganella-giro-della-toresela",
+      "approvedReviewId": "commons-paganella-giro-della-toresela-on-route",
+      "approvedAt": "2026-10-28T02:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/paganella-giro-della-toresela-toresela.jpg",
+        "heroImage": "images/trails/paganella-giro-della-toresela-toresela.jpg",
+        "imageAlt": "The Toresela, a small white watchtower with red-and-white corner stones and battlements, against a wooded slope and a blue sky",
+        "imageCredit": "The Toresela above Mezzolombardo",
+        "imageCreditText": "The Toresela above Mezzolombardo by MonicaBobo",
+        "imageCreator": "MonicaBobo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Toresela_facciata.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "paganella-passeggiata-del-ciclamino",
+      "approvedReviewId": "commons-paganella-passeggiata-del-ciclamino-on-route",
+      "approvedAt": "2026-10-28T08:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/paganella-passeggiata-del-ciclamino-rio-massodi.jpg",
+        "heroImage": "images/trails/paganella-passeggiata-del-ciclamino-rio-massodi.jpg",
+        "imageAlt": "A wooden-railed path beside the clear Rio Massodi stream running over rocks through green woods above Molveno",
+        "imageCredit": "The Rio Massodi above Molveno, on the walk",
+        "imageCreditText": "The Rio Massodi above Molveno, on the walk by Giorgio Galeotti",
+        "imageCreator": "Giorgio Galeotti",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rio_Massodi_-_Molveno,_Trento,_Italia_-_22_Settembre_2024_14.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "paganella-sette-passi-sette-ville",
+      "approvedReviewId": "mapillary-paganella-sette-passi-sette-ville-on-route",
+      "approvedAt": "2026-10-28T02:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/paganella-sette-passi-sette-ville-hamlet.jpg",
+        "heroImage": "images/trails/paganella-sette-passi-sette-ville-hamlet.jpg",
+        "imageAlt": "Old stone houses with orange shutters and a balcony around a small courtyard with steps and potted plants in one of the hamlets of San Lorenzo in Banale",
+        "imageCredit": "A hamlet of San Lorenzo in Banale, on the loop",
+        "imageCreditText": "A hamlet of San Lorenzo in Banale, on the loop by napo",
+        "imageCreator": "napo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=2886191348330382",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "piancavallo",
       "approvedReviewId": "commons-piancavallo",
       "approvedAt": "2026-09-05T21:14:34.033Z",
@@ -4293,6 +4922,40 @@
       }
     },
     {
+      "id": "rendena-ciclabile-javre-dare-vigo-pelugo",
+      "approvedReviewId": "commons-rendena-ciclabile-javre-dare-vigo-pelugo-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/rendena-ciclabile-javre-dare-vigo-pelugo-cycle-path.jpg",
+        "heroImage": "images/trails/rendena-ciclabile-javre-dare-vigo-pelugo-cycle-path.jpg",
+        "imageAlt": "A narrow paved path between wooden fences beside the river Sarca, green meadows and wooded mountains under a blue sky with white clouds",
+        "imageCredit": "The Val Rendena cycle path",
+        "imageCreditText": "The Val Rendena cycle path by Adert",
+        "imageCreator": "Adert",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ciclopista_Val_Rendena.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "rendena-giro-del-belvedere-giustino",
+      "approvedReviewId": "commons-rendena-giro-del-belvedere-giustino-on-route",
+      "approvedAt": "2026-10-28T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/rendena-giro-del-belvedere-giustino-town-hall.jpg",
+        "heroImage": "images/trails/rendena-giro-del-belvedere-giustino-town-hall.jpg",
+        "imageAlt": "Giustino town hall, a stone-clad building with a wide wooden roof and flags, steps and a terrace beside it, mountains under a deep blue sky",
+        "imageCredit": "Giustino town hall, on the loop",
+        "imageCreditText": "Giustino town hall, on the loop by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Giustino_-_Municipio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "santa-maddalena",
       "approvedReviewId": "commons-santa-maddalena",
       "approvedAt": "2026-09-06T14:27:06.592Z",
@@ -4395,6 +5058,57 @@
       }
     },
     {
+      "id": "trecime-bellavista-montecosta",
+      "approvedReviewId": "commons-trecime-bellavista-montecosta-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-bellavista-montecosta-niederdorf.jpg",
+        "heroImage": "images/trails/trecime-bellavista-montecosta-niederdorf.jpg",
+        "imageAlt": "A quiet street at the edge of Niederdorf with a small white chapel on the left, the parish church tower beyond and forested hills with a green meadow under a summer sky",
+        "imageCredit": "The road out of Niederdorf towards the Montecosta in August",
+        "imageCreditText": "The road out of Niederdorf towards the Montecosta in August by Codas",
+        "imageCreator": "Codas",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Scorcio_di_Villabassa.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-carbonin-rifugio-vallandro",
+      "approvedReviewId": "commons-trecime-carbonin-rifugio-vallandro-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-carbonin-rifugio-vallandro-hut.jpg",
+        "heroImage": "images/trails/trecime-carbonin-rifugio-vallandro-hut.jpg",
+        "imageAlt": "The timber-clad Dürrensteinhütte with red geraniums on its balconies, a wide gravel forecourt in front and rocks and spruces behind under a deep blue sky",
+        "imageCredit": "The Dürrensteinhütte on the Plätzwiese, where the walk ends, in September",
+        "imageCreditText": "The Dürrensteinhütte on the Plätzwiese, where the walk ends, in September by Falk2",
+        "imageCreator": "Falk2",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:J40_091_D%C3%BCrrensteinh%C3%BCtte.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-cimabanche-prato-piazza",
+      "approvedReviewId": "commons-trecime-cimabanche-prato-piazza-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-cimabanche-prato-piazza-meadow.jpg",
+        "heroImage": "images/trails/trecime-cimabanche-prato-piazza-meadow.jpg",
+        "imageAlt": "A small wooden hay hut on a rolling green meadow of the Plätzwiese, grey Dolomite peaks and a few spruces behind under a blue sky with white clouds",
+        "imageCredit": "The Plätzwiese meadows at the top of the walk, in July",
+        "imageCreditText": "The Plätzwiese meadows at the top of the walk, in July by More pics than views",
+        "imageCreator": "More pics than views",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Prato,_Piazza_Pl%C3%A4tzwiese,_Dolomiten_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-circolare-maistatt",
       "approvedReviewId": "commons-trecime-circolare-maistatt-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
@@ -4429,6 +5143,91 @@
       }
     },
     {
+      "id": "trecime-gasthof-panorama-rifugio-pendio-monte-elmo",
+      "approvedReviewId": "commons-trecime-gasthof-panorama-rifugio-pendio-monte-elmo-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-gasthof-panorama-rifugio-pendio-monte-elmo-fort.jpg",
+        "heroImage": "images/trails/trecime-gasthof-panorama-rifugio-pendio-monte-elmo-fort.jpg",
+        "imageAlt": "The rough stone wall of the Mitterberg fort beside a grassy slope with a fence, a large farmhouse on the hill above and forested mountains under cloud",
+        "imageCredit": "The Mitterberg fort where the walk starts, in October",
+        "imageCreditText": "The Mitterberg fort where the walk starts, in October by Ximonic (Simo Räsänen)",
+        "imageCreator": "Ximonic (Simo Räsänen)",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Forte_Mitterberg,_Sesto,_Trentino-Alto_Adige,_Italy,_2025_October.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-giro-delle-baite-lago-di-braies",
+      "approvedReviewId": "commons-trecime-giro-delle-baite-lago-di-braies-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-giro-delle-baite-lago-di-braies-pasture.jpg",
+        "heroImage": "images/trails/trecime-giro-delle-baite-lago-di-braies-pasture.jpg",
+        "imageAlt": "A shaggy dark brown cow grazing on a bright green alpine pasture with spruce forest behind",
+        "imageCredit": "Cattle on the pasture by the Grünwaldalm, in July",
+        "imageCreditText": "Cattle on the pasture by the Grünwaldalm, in July by Roberto Ferrari",
+        "imageCreator": "Roberto Ferrari",
+        "imageLicence": "CC BY-SA 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pascolo_(3855310627).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-haus-der-berge-rifugio-larice",
+      "approvedReviewId": "commons-trecime-haus-der-berge-rifugio-larice-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-haus-der-berge-rifugio-larice-fort.jpg",
+        "heroImage": "images/trails/trecime-haus-der-berge-rifugio-larice-fort.jpg",
+        "imageAlt": "The long stone Mitterberg fort beside a paved lane and a wooden fence on a green slope, forest and the jagged Sexten Dolomites behind under summer clouds",
+        "imageCredit": "The Mitterberg fort beside the walk, in July",
+        "imageCreditText": "The Mitterberg fort beside the walk, in July by Petr1888",
+        "imageCreator": "Petr1888",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pevnost_Mitterberg_v_sextensk%C3%A9m_%C3%BAdol%C3%AD.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-helmjet-waldruhe-sexten",
+      "approvedReviewId": "commons-trecime-helmjet-waldruhe-sexten-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-helmjet-waldruhe-sexten-fences.jpg",
+        "heroImage": "images/trails/trecime-helmjet-waldruhe-sexten-fences.jpg",
+        "imageAlt": "Rustic wooden fences, a small log hut with a water wheel and signposts on a sunny grassy slope at the forest edge",
+        "imageCredit": "Olperl’s nature park by the Helm, near the start, in September",
+        "imageCreditText": "Olperl’s nature park by the Helm, near the start, in September by Friedrich Haag",
+        "imageCreator": "Friedrich Haag",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:003_2019_09_27_Zaeune_und_Grenzmauern.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-innichen-waldkapelle-sexten",
+      "approvedReviewId": "commons-trecime-innichen-waldkapelle-sexten-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-innichen-waldkapelle-sexten-chapel.jpg",
+        "heroImage": "images/trails/trecime-innichen-waldkapelle-sexten-chapel.jpg",
+        "imageAlt": "A small wooden chapel with a little bell turret in a sunlit spruce forest, a large mossy boulder beside the gravel path in front of it",
+        "imageCredit": "The Waldkapelle in the forest above Sexten in June",
+        "imageCreditText": "The Waldkapelle in the forest above Sexten in June by Steinsplitter",
+        "imageCreator": "Steinsplitter",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Waldkapelle_Sexten_Sesto.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-lago-di-braies-malga-foresta",
       "approvedReviewId": "commons-trecime-lago-di-braies-malga-foresta-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
@@ -4442,6 +5241,91 @@
         "imageLicence": "CC BY-SA 2.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gr%C3%BCnwaldalm_-_Malga_Foresta_-_Braies.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-lago-di-braies-malga-rossalm",
+      "approvedReviewId": "commons-trecime-lago-di-braies-malga-rossalm-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-lago-di-braies-malga-rossalm-hut.jpg",
+        "heroImage": "images/trails/trecime-lago-di-braies-malga-rossalm-hut.jpg",
+        "imageAlt": "The wooden Rossalm hut and its outbuildings on a grassy alpine slope, a gravel track climbing past it towards scattered larches and pines",
+        "imageCredit": "The Rossalm, where the walk ends, in September",
+        "imageCreditText": "The Rossalm, where the walk ends, in September by Falk2",
+        "imageCreator": "Falk2",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:J40_266_Rossalmh%C3%BCtte.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-monte-casella-di-fuori",
+      "approvedReviewId": "commons-trecime-monte-casella-di-fuori-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-monte-casella-di-fuori-meadows.jpg",
+        "heroImage": "images/trails/trecime-monte-casella-di-fuori-meadows.jpg",
+        "imageAlt": "Green meadows with weathered wooden hay huts below the steep forested Gsell slopes, pale Dolomite peaks rising behind under a grey sky",
+        "imageCredit": "The Schmieden meadows below the Gsell slopes, in September",
+        "imageCreditText": "The Schmieden meadows below the Gsell slopes, in September by Friedrich Haag",
+        "imageCreator": "Friedrich Haag",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sexten_Schmiedenw%C3%A4lder_008_2019_09_26.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-monte-elmo-da-moso",
+      "approvedReviewId": "commons-trecime-monte-elmo-da-moso-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-monte-elmo-summit-view.jpg",
+        "heroImage": "images/trails/trecime-monte-elmo-summit-view.jpg",
+        "imageAlt": "The Sexten valley and the jagged Sexten Dolomites under heavy summer cloud, seen from the grassy slopes of the Helm summit",
+        "imageCredit": "The Sexten Dolomites from the Helm summit, in June",
+        "imageCreditText": "The Sexten Dolomites from the Helm summit, in June by Punteador",
+        "imageCreator": "Punteador",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Helm_%E2%80%93_Sexten_Dolomites_seen_from_the_summit.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-monte-elmo-versciaco",
+      "approvedReviewId": "commons-trecime-monte-elmo-versciaco-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-monte-elmo-versciaco-view.jpg",
+        "heroImage": "images/trails/trecime-monte-elmo-versciaco-view.jpg",
+        "imageAlt": "The pale limestone walls of the Sexten Dolomites seen from the Helm, golden larches in the valley below and a blue sky with thin cloud",
+        "imageCredit": "The Sexten Dolomites from the Helm, where the walk starts, in October",
+        "imageCreditText": "The Sexten Dolomites from the Helm, where the walk starts, in October by Ximonic (Simo Räsänen)",
+        "imageCreator": "Ximonic (Simo Räsänen)",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Camp_dei_Sassi_and_Schwalbenkofel_from_from_Monte_Elmo,_Sexten,_Pustertal,_Trentino-Alto_Adige,_Italy,_2025_October.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-rotwandwiesen-moos",
+      "approvedReviewId": "commons-trecime-rotwandwiesen-moos-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-rotwandwiesen-moos-hut.jpg",
+        "heroImage": "images/trails/trecime-rotwandwiesen-moos-hut.jpg",
+        "imageAlt": "A small wooden alpine hut with a terrace behind an orange fence on a green meadow, a path running past it and grey Dolomite peaks behind",
+        "imageCredit": "An alpine hut on the Rotwandwiesen, near the start, in July",
+        "imageCreditText": "An alpine hut on the Rotwandwiesen, near the start, in July by wurmi001",
+        "imageCreator": "wurmi001",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:H%C3%BCtte_-_panoramio_(5).jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -4463,6 +5347,23 @@
       }
     },
     {
+      "id": "trecime-sasso-di-sesto",
+      "approvedReviewId": "commons-trecime-sasso-di-sesto-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-sasso-di-sesto-boedenseen.jpg",
+        "heroImage": "images/trails/trecime-sasso-di-sesto-boedenseen.jpg",
+        "imageAlt": "Two small mountain lakes in a stony high valley below grey Dolomite walls with patches of late snow, seen from the slope above under a cloudy sky",
+        "imageCredit": "The Bödenseen beside path 102, in June",
+        "imageCreditText": "The Bödenseen beside path 102, in June by Punteador",
+        "imageCreator": "Punteador",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:B%C3%B6denseen_%E2%80%93_both_lakes_from_the_slope_above.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-sentiero-gustav-mahler",
       "approvedReviewId": "commons-trecime-sentiero-gustav-mahler-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
@@ -4476,6 +5377,91 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Toblach_Grand_Hotel_1070362.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-sesto-alte-saege-val-campo-di-dentro",
+      "approvedReviewId": "commons-trecime-sesto-alte-saege-val-campo-di-dentro-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-sesto-alte-saege-sextner-bach.jpg",
+        "heroImage": "images/trails/trecime-sesto-alte-saege-sextner-bach.jpg",
+        "imageAlt": "A clear, shallow mountain stream in a wide gravel bed between bushes and forested slopes in the Sexten valley, in morning light",
+        "imageCredit": "The Sextner Bach beside the path, in August",
+        "imageCreditText": "The Sextner Bach beside the path, in August by Giorgio Galeotti",
+        "imageCreator": "Giorgio Galeotti",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rio_di_Sesto_(Sextner_Bach)_-_Sesto,_Bolzano,_Italia_-_6_Agosto_2026_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-sesto-cappella-del-bosco",
+      "approvedReviewId": "commons-trecime-sesto-cappella-del-bosco-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-sesto-cappella-del-bosco-chapel.jpg",
+        "heroImage": "images/trails/trecime-sesto-cappella-del-bosco-chapel.jpg",
+        "imageAlt": "A small weathered wooden chapel with a little bell turret among tall spruces, a carved wooden figure in front and a mossy boulder beside it",
+        "imageCredit": "The Waldkapelle where the walk ends, in July",
+        "imageCreditText": "The Waldkapelle where the walk ends, in July by Steinsplitter",
+        "imageCreator": "Steinsplitter",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Waldkapelle_Sexten_2.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-sesto-chiesa-gasthof-panorama",
+      "approvedReviewId": "commons-trecime-sesto-chiesa-gasthof-panorama-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-sesto-chiesa-gasthof-panorama-view.jpg",
+        "heroImage": "images/trails/trecime-sesto-chiesa-gasthof-panorama-view.jpg",
+        "imageAlt": "A jagged grey Dolomite massif rising above dark forested slopes under a clear blue sky, seen from the slopes above Sexten",
+        "imageCredit": "The Sexten Dolomites from the walk above Sexten, in September",
+        "imageCreditText": "The Sexten Dolomites from the walk above Sexten, in September by Friedrich Haag",
+        "imageCreator": "Friedrich Haag",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sexten_Au%C3%9Fergesell_002_2019_09_27.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-sesto-san-candido",
+      "approvedReviewId": "commons-trecime-sesto-san-candido-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-sesto-san-candido-meadows.jpg",
+        "heroImage": "images/trails/trecime-sesto-san-candido-meadows.jpg",
+        "imageAlt": "Green meadows dotted with small wooden hay huts below a steep forested hill, a pale Dolomite peak rising behind under a blue sky",
+        "imageCredit": "The Schmieden meadows above Sexten, beside path 5, in September",
+        "imageCreditText": "The Schmieden meadows above Sexten, beside path 5, in September by Friedrich Haag",
+        "imageCreator": "Friedrich Haag",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sexten_Schmiedenw%C3%A4lder_009_2019_09_27.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "trecime-villabassa-lanaweg",
+      "approvedReviewId": "commons-trecime-villabassa-lanaweg-on-route",
+      "approvedAt": "2026-10-28T00:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-circolare-villabassa-lanaweg-church.jpg",
+        "heroImage": "images/trails/trecime-circolare-villabassa-lanaweg-church.jpg",
+        "imageAlt": "The pink baroque parish church of St. Stephen in Niederdorf with its tall square tower, wrought-iron grave crosses in the churchyard in front and wooded hills under grey cloud",
+        "imageCredit": "The parish church of St. Stephen in Niederdorf, by the start, in July",
+        "imageCreditText": "The parish church of St. Stephen in Niederdorf, by the start, in July by Mattana",
+        "imageCreator": "Mattana",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villabassa-Niederdorf,_Santo_Stefano_002.JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -4497,6 +5483,193 @@
       }
     },
     {
+      "id": "valdisole-bivacco-malga-baselga",
+      "approvedReviewId": "commons-valdisole-bivacco-malga-baselga-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-bivacco-malga-baselga-lake-south.jpg",
+        "heroImage": "images/trails/valdisole-bivacco-malga-baselga-lake-south.jpg",
+        "imageAlt": "A rushing stream running into Lago dei Caprioli, spruces and a wooden hut on the far shore, cloudy mountains behind",
+        "imageCredit": "Lago dei Caprioli from the south",
+        "imageCreditText": "Lago dei Caprioli from the south by Matteo Ianeselli",
+        "imageCreator": "Matteo Ianeselli",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pellizzano-lago_dei_Caprioli-south.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-fazzon-lago-dei-caprioli",
+      "approvedReviewId": "commons-valdisole-fazzon-lago-dei-caprioli-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-fazzon-lago-dei-caprioli-lake-north.jpg",
+        "heroImage": "images/trails/valdisole-fazzon-lago-dei-caprioli-lake-north.jpg",
+        "imageAlt": "The green Lago dei Caprioli with a tiny wooded island, larches and spruces rising on the slopes behind and a grassy shore in front",
+        "imageCredit": "Lago dei Caprioli from the north",
+        "imageCreditText": "Lago dei Caprioli from the north by Matteo Ianeselli",
+        "imageCreator": "Matteo Ianeselli",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pellizzano-lago_dei_Caprioli-north.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-lago-dei-caprioli-malga-alta-di-fazzon",
+      "approvedReviewId": "commons-valdisole-lago-dei-caprioli-malga-alta-di-fazzon-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-lago-dei-caprioli-malga-alta-di-fazzon-lake-summer.jpg",
+        "heroImage": "images/trails/valdisole-lago-dei-caprioli-malga-alta-di-fazzon-lake-summer.jpg",
+        "imageAlt": "A wide summer view of Lago dei Caprioli, a green lake ringed by grass and spruce forest with stepping stones along the shore",
+        "imageCredit": "Lago dei Caprioli in July",
+        "imageCreditText": "Lago dei Caprioli in July by Mauro Cavallo",
+        "imageCreator": "Mauro Cavallo",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Trentino_-_Val_di_Sole_-_Lago_dei_Caprioli,_panoramica_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-marilleva-1400-malga-alta-di-fazzon",
+      "approvedReviewId": "commons-valdisole-marilleva-1400-malga-alta-di-fazzon-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-marilleva-1400-malga-alta-di-fazzon-lake-autumn.jpg",
+        "heroImage": "images/trails/valdisole-marilleva-1400-malga-alta-di-fazzon-lake-autumn.jpg",
+        "imageAlt": "Lago dei Caprioli mirror-still in autumn, golden larches and dark spruces reflected in blue water, a wooden hut on the far shore and snowy peaks in the distance",
+        "imageCredit": "Lago dei Caprioli in autumn",
+        "imageCreditText": "Lago dei Caprioli in autumn by Luigi Mengato",
+        "imageCreator": "Luigi Mengato",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_dei_Caprioli_(6295703583).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-monclassico-presson-meridiane",
+      "approvedReviewId": "commons-valdisole-monclassico-presson-meridiane-on-route",
+      "approvedAt": "2026-10-28T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-monclassico-presson-meridiane-san-vigilio.jpg",
+        "heroImage": "images/trails/valdisole-monclassico-presson-meridiane-san-vigilio.jpg",
+        "imageAlt": "The white baroque front of the church of San Vigilio in Monclassico with a stone stair, a slender bell tower and wooded slopes behind",
+        "imageCredit": "The church of San Vigilio in Monclassico, on the loop",
+        "imageCreditText": "The church of San Vigilio in Monclassico, on the loop by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Monclassico,_chiesa_di_San_Vigilio_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-ortise-malga-stabli",
+      "approvedReviewId": "commons-valdisole-ortise-malga-stabli-on-route",
+      "approvedAt": "2026-10-28T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-ortise-malga-stabli-san-cristoforo.jpg",
+        "heroImage": "images/trails/valdisole-ortise-malga-stabli-san-cristoforo.jpg",
+        "imageAlt": "The small white church of San Cristoforo in Ortisè with its tall bell tower and a stone terrace, larch-covered slopes behind under a clear blue sky",
+        "imageCredit": "The church of San Cristoforo in Ortisè, by the start",
+        "imageCreditText": "The church of San Cristoforo in Ortisè, by the start by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ortis%C3%A9,_chiesa_di_San_Cristoforo_03.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-passo-tonale-forte-mero",
+      "approvedReviewId": "commons-valdisole-passo-tonale-forte-mero-on-route",
+      "approvedAt": "2026-10-28T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-passo-tonale-forte-mero-forte-mero.jpg",
+        "heroImage": "images/trails/valdisole-passo-tonale-forte-mero-forte-mero.jpg",
+        "imageAlt": "The low grass-covered ruin of Forte Mero in a green clearing among larches and spruces, wooden picnic tables in front and glaciated peaks behind",
+        "imageCredit": "Forte Mero, at the end of the walk",
+        "imageCreditText": "Forte Mero, at the end of the walk by Jumk18",
+        "imageCreator": "Jumk18",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vermiglio_-_Forte_Mero_-_202209102041.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-passo-tonale-forte-mero-forte-zaccarana",
+      "approvedReviewId": "commons-valdisole-passo-tonale-forte-mero-forte-zaccarana-on-route",
+      "approvedAt": "2026-10-28T01:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-passo-tonale-forte-mero-forte-zaccarana-forte-zaccarana.jpg",
+        "heroImage": "images/trails/valdisole-passo-tonale-forte-mero-forte-zaccarana-forte-zaccarana.jpg",
+        "imageAlt": "The weathered stone walls of the ruined Forte Zaccarana with dark gun ports and an arched doorway, a grassy yard in front and clouds overhead",
+        "imageCredit": "Forte Zaccarana (Werk Tonale), on the loop",
+        "imageCreditText": "Forte Zaccarana (Werk Tonale), on the loop by Jumk18",
+        "imageCreator": "Jumk18",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vermiglio_-_Forte_Saccarana_-_202209102043.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-rifugio-stavel-denza",
+      "approvedReviewId": "commons-valdisole-rifugio-stavel-denza-on-route",
+      "approvedAt": "2026-10-27T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-rifugio-stavel-denza-hut.jpg",
+        "heroImage": "images/trails/valdisole-rifugio-stavel-denza-hut.jpg",
+        "imageAlt": "The stone Rifugio Denza with its wooden upper floor on a rocky alpine meadow, the glaciers and grey peaks of the Presanella behind under a blue sky",
+        "imageCredit": "Rifugio Denza",
+        "imageCreditText": "Rifugio Denza by nardi1987",
+        "imageCreator": "nardi1987",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rifugio_Denza_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-arte-e-storia",
+      "approvedReviewId": "commons-valgardena-arte-e-storia-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-arte-e-storia-castle.jpg",
+        "heroImage": "images/trails/valgardena-arte-e-storia-castle.jpg",
+        "imageAlt": "The ruined walls of Castel Wolkenstein built into a pale limestone cliff, with larch and spruce forest below and the meadows and houses of Selva in the valley beyond",
+        "imageCredit": "The ruins of Castel Wolkenstein above Selva",
+        "imageCreditText": "The ruins of Castel Wolkenstein above Selva by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ciastel_Wolkenstein_Gherd%C3%ABina.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-escursione-al-brogles",
+      "approvedReviewId": "commons-valgardena-escursione-al-brogles-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-al-brogles-schienboden.jpg",
+        "heroImage": "images/trails/valgardena-escursione-al-brogles-schienboden.jpg",
+        "imageAlt": "Wide green alpine pastures dotted with stone pines on the Resciesa, the jagged grey peaks of the Odle and their scree slopes rising behind under a pale summer sky",
+        "imageCredit": "The Resciesa pastures below the Odle",
+        "imageCreditText": "The Resciesa pastures below the Odle by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Odles_Eures_de_Bredles_Schienboden.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valgardena-escursione-al-resciesa",
       "approvedReviewId": "mapillary-valgardena-escursione-al-resciesa-on-route",
       "approvedAt": "2026-10-28T09:00:00.000Z",
@@ -4510,6 +5683,57 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=378218130159169",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-escursione-al-seeurasas",
+      "approvedReviewId": "commons-valgardena-escursione-al-seeurasas-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-al-seeurasas-san-giacomo.jpg",
+        "heroImage": "images/trails/valgardena-escursione-al-seeurasas-san-giacomo.jpg",
+        "imageAlt": "The white San Giacomo church with its tall slender spire on a green meadow edged by spruce, a small house beside it, and the Sassolungo towering in the distance under dark clouds",
+        "imageCredit": "San Giacomo above Ortisei, on the way to the Sëurasas",
+        "imageCreditText": "San Giacomo above Ortisei, on the way to the Sëurasas by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Dlieja_da_Sacun_cun_Saslonch.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-escursione-al-terrazzo-panoramico-seeurasas",
+      "approvedReviewId": "commons-valgardena-escursione-al-terrazzo-panoramico-seeurasas-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-al-terrazzo-panoramico-seeurasas-ortisei.jpg",
+        "heroImage": "images/trails/valgardena-escursione-al-terrazzo-panoramico-seeurasas-ortisei.jpg",
+        "imageAlt": "Looking down from the grassy Sëurasas ridge over golden larches to Ortisei spread along the floor of Val Gardena, forested slopes and farm meadows on either side, hazy hills beyond",
+        "imageCredit": "Ortisei from the Sëurasas",
+        "imageCreditText": "Ortisei from the Sëurasas by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Urtijei_from_Seurasass.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-escursione-da-s-cristina-al-passo-sella",
+      "approvedReviewId": "commons-valgardena-escursione-da-s-cristina-al-passo-sella-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-da-s-cristina-al-passo-sella-comici.jpg",
+        "heroImage": "images/trails/valgardena-escursione-da-s-cristina-al-passo-sella-comici.jpg",
+        "imageAlt": "The white Rifugio Emilio Comici with blue shutters and climbing holds painted on its walls, a wooden fence and gravel in front, and the grey cliffs of the Sassolungo rising behind",
+        "imageCredit": "The Rifugio Emilio Comici below the Sassolungo",
+        "imageCreditText": "The Rifugio Emilio Comici below the Sassolungo by Leo72",
+        "imageCreator": "Leo72",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rifugio_Emilio_Comici_2.JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -4531,6 +5755,40 @@
       }
     },
     {
+      "id": "valgardena-escursione-nella-vallunga",
+      "approvedReviewId": "commons-valgardena-escursione-nella-vallunga-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-nella-vallunga-san-silvestro.jpg",
+        "heroImage": "images/trails/valgardena-escursione-nella-vallunga-san-silvestro.jpg",
+        "imageAlt": "A wide sunlit meadow on the floor of the Vallunga with a gravel path in the foreground, the small white San Silvestro chapel among spruces and golden larches, and pale limestone cliffs rising on both sides under a deep blue sky",
+        "imageCredit": "The Vallunga meadows and the San Silvestro chapel",
+        "imageCreditText": "The Vallunga meadows and the San Silvestro chapel by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Langental_Val_Longia.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-escursione-ortisei-passo-sella",
+      "approvedReviewId": "commons-valgardena-escursione-ortisei-passo-sella-on-route",
+      "approvedAt": "2026-10-28T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-escursione-ortisei-passo-sella-citta-dei-sassi.jpg",
+        "heroImage": "images/trails/valgardena-escursione-ortisei-passo-sella-citta-dei-sassi.jpg",
+        "imageAlt": "Grey boulders and stone pines scattered across green alpine grass in the Città dei Sassi, the pale walls of the Sella group rising behind under a blue sky with white clouds",
+        "imageCredit": "The Città dei Sassi below the Sella",
+        "imageCreditText": "The Città dei Sassi below the Sella by Marie-Lan Taÿ Pamart",
+        "imageCreator": "Marie-Lan Taÿ Pamart",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sassolungo_Citt%C3%A0_dei_Sassi_20200819_n1.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valgardena-giro-della-via-crucis",
       "approvedReviewId": "mapillary-valgardena-giro-della-via-crucis-on-route",
       "approvedAt": "2026-10-28T09:00:00.000Z",
@@ -4544,6 +5802,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=377866916885609",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-giro-storico-del-paese-di-ortisei",
+      "approvedReviewId": "commons-valgardena-giro-storico-del-paese-di-ortisei-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-giro-storico-del-paese-di-ortisei-church.jpg",
+        "heroImage": "images/trails/valgardena-giro-storico-del-paese-di-ortisei-church.jpg",
+        "imageAlt": "The pale yellow baroque parish church of Ortisei with its red onion-domed bell tower, a stone wall and flowering shrubs in front and a forested slope behind under a blue sky with clouds",
+        "imageCredit": "The parish church of Ortisei",
+        "imageCreditText": "The parish church of Ortisei by H. Zell",
+        "imageCreator": "H. Zell",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Parish_church_St._Ulrich_-_Urtij%C3%ABi.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -4582,6 +5857,91 @@
       }
     },
     {
+      "id": "valgardena-percorso-dei-masi-tradizionali",
+      "approvedReviewId": "commons-valgardena-percorso-dei-masi-tradizionali-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-percorso-dei-masi-tradizionali-iender.jpg",
+        "heroImage": "images/trails/valgardena-percorso-dei-masi-tradizionali-iender.jpg",
+        "imageAlt": "A traditional farmhouse on a green meadow slope above Santa Cristina, larches and spruces framing the view down the forested Iender valley to farms and the Odle peaks under a blue sky",
+        "imageCredit": "A farm above the Iender valley from Praulëta",
+        "imageCreditText": "A farm above the Iender valley from Praulëta by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Val_Iender_Santa_Cristina.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-raida-dl-luech-giro-del-paese",
+      "approvedReviewId": "commons-valgardena-raida-dl-luech-giro-del-paese-on-route",
+      "approvedAt": "2026-10-28T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-raida-dl-luech-giro-del-paese-tervela.jpg",
+        "heroImage": "images/trails/valgardena-raida-dl-luech-giro-del-paese-tervela.jpg",
+        "imageAlt": "The Tervela waterfall pouring down a rock face into a stream among lush green bushes, a wooden footbridge across the stream and a gravel path with a rustic rail in the foreground",
+        "imageCredit": "The Tervela waterfall and its footbridge",
+        "imageCreditText": "The Tervela waterfall and its footbridge by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pisciadoi_dl_Tervela_dinst%C3%A0_Santa_Cristina.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-seceda-da-col-raiser",
+      "approvedReviewId": "commons-valgardena-seceda-da-col-raiser-on-route",
+      "approvedAt": "2026-10-28T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-seceda-da-col-raiser-odle.jpg",
+        "heroImage": "images/trails/valgardena-seceda-da-col-raiser-odle.jpg",
+        "imageAlt": "Wide green pastures on the Seceda dotted with wooden huts and a gravel track, the jagged grey Odle peaks rising on the left and the Puez group beyond under a clear blue sky",
+        "imageCredit": "The Seceda pastures below the Odle",
+        "imageCreditText": "The Seceda pastures below the Odle by NorbertNagel",
+        "imageCreator": "NorbertNagel",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Odle,_Puez,_Sella_and_Langkofel_groups_from_Seceda,_South_Tyrol.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-seceda-da-cristauta-pic",
+      "approvedReviewId": "commons-valgardena-seceda-da-cristauta-pic-on-route",
+      "approvedAt": "2026-10-28T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-seceda-da-cristauta-pic-sassolungo.jpg",
+        "heroImage": "images/trails/valgardena-seceda-da-cristauta-pic-sassolungo.jpg",
+        "imageAlt": "A green meadow slope above Santa Cristina framed by spruces and a wooden fence, the grey Sassolungo towering over the forested valley under a blue sky with white clouds",
+        "imageCredit": "The Sassolungo from the meadows above Santa Cristina",
+        "imageCreditText": "The Sassolungo from the meadows above Santa Cristina by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Saslonch_da_Santa_Cristina_Runcaudie.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-seceda-dal-rifugio-firenze",
+      "approvedReviewId": "commons-valgardena-seceda-dal-rifugio-firenze-on-route",
+      "approvedAt": "2026-10-28T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-seceda-dal-rifugio-firenze-cisles.jpg",
+        "heroImage": "images/trails/valgardena-seceda-dal-rifugio-firenze-cisles.jpg",
+        "imageAlt": "A small green pond among tall larches and spruces on the Cisles alp near the Rifugio Firenze, a gravel path in the foreground and the pale Odle peaks behind",
+        "imageCredit": "The Lech de Ciaulonch on the Cisles alp",
+        "imageCreditText": "The Lech de Ciaulonch on the Cisles alp by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lech_de_Ciaulonch_Ncisles_Gherd%C3%ABina.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valgardena-tour-alla-volta-del-lech-sant",
       "approvedReviewId": "mapillary-valgardena-tour-alla-volta-del-lech-sant-on-route",
       "approvedAt": "2026-10-28T09:00:00.000Z",
@@ -4595,6 +5955,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=1245395036599629",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-uciei-de-freeines",
+      "approvedReviewId": "commons-valgardena-uciei-de-freeines-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-uciei-de-freeines-col-raiser.jpg",
+        "heroImage": "images/trails/valgardena-uciei-de-freeines-col-raiser.jpg",
+        "imageAlt": "A flowering alpine meadow on Col Raiser with a small group of spruces, the grey Odle and Stevia peaks and their pale scree slopes behind under a summer sky with white clouds",
+        "imageCredit": "The Odle and the Stevia from Col Raiser",
+        "imageCreditText": "The Odle and the Stevia from Col Raiser by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Odles_y_Stevia_da_Col_Raiser.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-val-danna-percorso-kneipp",
+      "approvedReviewId": "commons-valgardena-val-danna-percorso-kneipp-on-route",
+      "approvedAt": "2026-10-28T16:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-val-danna-percorso-kneipp-stream.jpg",
+        "heroImage": "images/trails/valgardena-val-danna-percorso-kneipp-stream.jpg",
+        "imageAlt": "The Val d’Anna stream tumbling over low stone weirs through a wooded gorge, a gravel path climbing beside it on the right among spruces",
+        "imageCredit": "The Val d’Anna stream above Ortisei",
+        "imageCreditText": "The Val d’Anna stream above Ortisei by Boboseiptu",
+        "imageCreator": "Boboseiptu",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rio_Val_d%27Anna_-_Ruf_de_Val_d%27Ana.jpg",
         "imageSourceType": "licensed-source"
       }
     },

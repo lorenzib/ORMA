@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "rendena-giro-del-belvedere-giustino",
+  "distanceKm": 1.8,
+  "ascentM": 53,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 774
+    },
+    {
+      "km": 0.2,
+      "elev": 778
+    },
+    {
+      "km": 0.3,
+      "elev": 776
+    },
+    {
+      "km": 0.4,
+      "elev": 765
+    },
+    {
+      "km": 0.6,
+      "elev": 765
+    },
+    {
+      "km": 0.7,
+      "elev": 788
+    },
+    {
+      "km": 0.8,
+      "elev": 797
+    },
+    {
+      "km": 1,
+      "elev": 765
+    },
+    {
+      "km": 1.2,
+      "elev": 760
+    },
+    {
+      "km": 1.3,
+      "elev": 760
+    },
+    {
+      "km": 1.4,
+      "elev": 756
+    },
+    {
+      "km": 1.6,
+      "elev": 767
+    },
+    {
+      "km": 1.7,
+      "elev": 772
+    },
+    {
+      "km": 1.8,
+      "elev": 774
+    }
+  ]
+}

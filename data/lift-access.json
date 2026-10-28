@@ -99,6 +99,105 @@
           "notes": "The walk starts at the top of the Resciesa funicular from Ortisei, a railway with closed cars. Dogs ride on a lead and muzzled."
         }
       }
+    },
+    {
+      "id": "trecime-monte-elmo-versciaco",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Vierschach – Helm gondola (Versciaco – Monte Elmo)",
+          "notes": "The walk starts at the top of the Vierschach – Helm gondola, whose cabins are closed, and ends on foot in Vierschach. Keep your dog on a lead in the cabin and carry a muzzle."
+        }
+      }
+    },
+    {
+      "id": "valgardena-escursione-al-brogles",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Resciesa funicular (Ortisei)",
+          "notes": "The walk starts at the top of the Resciesa funicular from Ortisei, a railway with closed cars. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "valgardena-uciei-de-freeines",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Col Raiser gondola (Santa Cristina)",
+          "notes": "The walk starts at the top of the Col Raiser gondola from Santa Cristina, with closed cabins, and ends at its valley station. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "valgardena-seceda-da-col-raiser",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Col Raiser gondola (Santa Cristina)",
+          "notes": "The walk starts at the top of the Col Raiser gondola from Santa Cristina, with closed cabins; the Seceda cable car down to Ortisei is closed too. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "valgardena-seceda-dal-rifugio-firenze",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "optional",
+          "name": "Seceda cable car and Col Raiser gondola",
+          "notes": "The walk is on foot; the way down can be by the closed Seceda cable car to Ortisei or the Col Raiser gondola. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "valgardena-seceda-da-cristauta-pic",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "optional",
+          "name": "Seceda cable car and Col Raiser gondola",
+          "notes": "The walk is on foot; the way down can be by the closed Seceda cable car to Ortisei or the Col Raiser gondola. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "trecime-rotwandwiesen-moos",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Rotwand gondola (Bad Moos – Rotwandwiesen)",
+          "notes": "The walk starts at the top of the Rotwand gondola from Bad Moos, whose cabins are closed, and ends on foot at the valley station car park. Keep your dog on a lead in the cabin and carry a muzzle."
+        }
+      }
+    },
+    {
+      "id": "trecime-helmjet-waldruhe-sexten",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Helmjet gondola (Sexten – Helm)",
+          "notes": "The walk starts at the top of the Helmjet gondola from Sexten, whose cabins are closed, and ends on foot in Sexten. Keep your dog on a lead in the cabin and carry a muzzle."
+        }
+      }
+    },
+    {
+      "id": "campiglio-monte-spinale-rifugio-graffer",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Spinale gondola (Madonna di Campiglio)",
+          "notes": "The walk starts at the top station of the Spinale gondola from Madonna di Campiglio; its cabins are closed. It ends back at the same station."
+        }
+      }
     }
   ]
 }

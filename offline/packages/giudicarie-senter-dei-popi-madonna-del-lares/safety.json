@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "trailId": "giudicarie-senter-dei-popi-madonna-del-lares",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.2,
+    "ascentM": 93,
+    "highestPointM": 855,
+    "expectedDuration": "1.5 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 75
+  },
+  "trailhead": {
+    "lat": 45.999444,
+    "lng": 10.695705,
+    "label": "Località Fiana, Bondo, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.9992743,
+      "lng": 10.6954115,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.0004192,
+      "lng": 10.6942061,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.002268,
+      "lng": 10.6939255,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.0064984,
+      "lng": 10.7048248,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.0215528,
+      "lng": 10.7288557,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Parts of this walk are exposed; keep your dog close and on a short lead.",
+    "A suspension bridge over the gorge of the Arnò and a walkway between the rock and the riverbed in the first kilometre.",
+    "The path by the streams is damp and slippery, and can stay icy in spring.",
+    "About half on quiet tarmac lanes through Breguzzo, open to cars.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
