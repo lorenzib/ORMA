@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-ta-lipa-pot-corto",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.5,
+    "ascentM": 152,
+    "highestPointM": 599,
+    "expectedDuration": "1.75 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 51
+  },
+  "trailhead": {
+    "lat": 46.362068,
+    "lng": 13.350169,
+    "label": "Via Pustigost by the bar-trattoria All’arrivo, Stolvizza di Resia, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A steep descent over rocks and gravel to the Potok waterfall.",
+    "Short stretches on a quiet tarred road through Zamlin.",
+    "Ticks are common in the region: check your dog after the walk.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

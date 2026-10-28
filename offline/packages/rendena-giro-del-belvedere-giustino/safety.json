@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "rendena-giro-del-belvedere-giustino",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 1.8,
+    "ascentM": 53,
+    "highestPointM": 797,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.148552,
+    "lng": 10.768561,
+    "label": "Giustino town hall, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.1490378,
+      "lng": 10.7684635,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1513487,
+      "lng": 10.767943,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1521513,
+      "lng": 10.7665672,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Village lanes and a short stretch of pavement beside the main road.",
+    "A long flight of steps down to Via Palazzin.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

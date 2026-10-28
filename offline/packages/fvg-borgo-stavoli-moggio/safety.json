@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-borgo-stavoli-moggio",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.9,
+    "ascentM": 379,
+    "highestPointM": 570,
+    "expectedDuration": "3.1 hours",
+    "difficulty": "Hard",
+    "shadePercent": 51
+  },
+  "trailhead": {
+    "lat": 46.40013,
+    "lng": 13.162681,
+    "label": "Campiolo, by the parking places at the start of path CAI 417, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Parts of this walk are exposed; keep your dog close and on a short lead.",
+    "A mule track along steep slopes above the Glagnò gorge, with guard rails in places: keep your dog on a short lead.",
+    "A long steady climb of about 380 m.",
+    "Not advised in bad weather or the hottest summer hours.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}
