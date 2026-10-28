@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-col-dei-piais",
+  "distanceKm": 4.7,
+  "ascentM": 285,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 597
+    },
+    {
+      "km": 0.4,
+      "elev": 616
+    },
+    {
+      "km": 0.7,
+      "elev": 674
+    },
+    {
+      "km": 1.1,
+      "elev": 757
+    },
+    {
+      "km": 1.4,
+      "elev": 771
+    },
+    {
+      "km": 1.8,
+      "elev": 749
+    },
+    {
+      "km": 2.2,
+      "elev": 834
+    },
+    {
+      "km": 2.5,
+      "elev": 827
+    },
+    {
+      "km": 2.9,
+      "elev": 822
+    },
+    {
+      "km": 3.2,
+      "elev": 819
+    },
+    {
+      "km": 3.6,
+      "elev": 714
+    },
+    {
+      "km": 4,
+      "elev": 676
+    },
+    {
+      "km": 4.3,
+      "elev": 635
+    },
+    {
+      "km": 4.7,
+      "elev": 597
+    }
+  ]
+}

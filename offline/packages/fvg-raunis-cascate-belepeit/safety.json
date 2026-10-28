@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-raunis-cascate-belepeit",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.8,
+    "ascentM": 333,
+    "highestPointM": 716,
+    "expectedDuration": "3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 79
+  },
+  "trailhead": {
+    "lat": 46.408373,
+    "lng": 13.310382,
+    "label": "Chiusaforte town hall, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Steep steps and a steep, fast descent from the falls.",
+    "Brambles on the path near the village.",
+    "The Alpe Adria cycle path at the end: keep your dog close to the edge, bikes are fast.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

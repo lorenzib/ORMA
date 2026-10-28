@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-venzone-anello-delle-chiesette",
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.6,
+    "ascentM": 99,
+    "highestPointM": 316,
+    "expectedDuration": "1 hour",
+    "difficulty": "Moderate",
+    "shadePercent": 47
+  },
+  "trailhead": {
+    "lat": 46.333675,
+    "lng": 13.139266,
+    "label": "Historic centre of Venzone, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Short stretches on town streets and a tarred lane.",
+    "Stony path between dry-stone walls, slippery when wet.",
+    "Roe deer in the woods: keep your dog on the lead.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-28",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-venzone-anello-delle-chiesette",
+  "distanceKm": 2.5,
+  "ascentM": 99,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 237
+    },
+    {
+      "km": 0.2,
+      "elev": 234
+    },
+    {
+      "km": 0.4,
+      "elev": 238
+    },
+    {
+      "km": 0.6,
+      "elev": 250
+    },
+    {
+      "km": 0.8,
+      "elev": 313
+    },
+    {
+      "km": 1,
+      "elev": 316
+    },
+    {
+      "km": 1.2,
+      "elev": 300
+    },
+    {
+      "km": 1.4,
+      "elev": 299
+    },
+    {
+      "km": 1.6,
+      "elev": 249
+    },
+    {
+      "km": 1.8,
+      "elev": 233
+    },
+    {
+      "km": 1.9,
+      "elev": 237
+    },
+    {
+      "km": 2.2,
+      "elev": 232
+    },
+    {
+      "km": 2.3,
+      "elev": 232
+    },
+    {
+      "km": 2.5,
+      "elev": 237
+    }
+  ]
+}

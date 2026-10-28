@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-seceda-da-cristauta-pic",
+  "distanceKm": 6.7,
+  "ascentM": 861,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1764
+    },
+    {
+      "km": 0.5,
+      "elev": 1830
+    },
+    {
+      "km": 1,
+      "elev": 1882
+    },
+    {
+      "km": 1.6,
+      "elev": 1901
+    },
+    {
+      "km": 2,
+      "elev": 1989
+    },
+    {
+      "km": 2.5,
+      "elev": 2042
+    },
+    {
+      "km": 3.1,
+      "elev": 2129
+    },
+    {
+      "km": 3.6,
+      "elev": 2026
+    },
+    {
+      "km": 4.1,
+      "elev": 2127
+    },
+    {
+      "km": 4.6,
+      "elev": 2184
+    },
+    {
+      "km": 5.1,
+      "elev": 2323
+    },
+    {
+      "km": 5.6,
+      "elev": 2366
+    },
+    {
+      "km": 6.1,
+      "elev": 2426
+    },
+    {
+      "km": 6.6,
+      "elev": 2477
+    },
+    {
+      "km": 6.7,
+      "elev": 2460
+    }
+  ]
+}
