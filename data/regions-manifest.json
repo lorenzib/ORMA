@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T00:49:24.731Z",
+  "generatedAt": "2026-10-28T01:08:12.166Z",
   "regions": {
     "dolomites": {
-      "trailCount": 265,
-      "trails": "data/regions/dolomites-trails.js?v=d924cf0e69e6",
+      "trailCount": 268,
+      "trails": "data/regions/dolomites-trails.js?v=ab0a30034334",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -270,6 +270,9 @@
         "valgardena-uciei-de-freeines": "data/trail-details/valgardena-uciei-de-freeines.js?v=facff542fa89",
         "valgardena-val-danna-percorso-kneipp": "data/trail-details/valgardena-val-danna-percorso-kneipp.js?v=70863539e42a",
         "valgardena-giro-storico-del-paese-di-ortisei": "data/trail-details/valgardena-giro-storico-del-paese-di-ortisei.js?v=d2975027794d",
+        "valgardena-seceda-da-col-raiser": "data/trail-details/valgardena-seceda-da-col-raiser.js?v=0169d92d3e3a",
+        "valgardena-seceda-dal-rifugio-firenze": "data/trail-details/valgardena-seceda-dal-rifugio-firenze.js?v=37ed7c5e059b",
+        "valgardena-escursione-ortisei-passo-sella": "data/trail-details/valgardena-escursione-ortisei-passo-sella.js?v=0d5148594d80",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -653,6 +656,9 @@
     "valgardena-uciei-de-freeines": "dolomites",
     "valgardena-val-danna-percorso-kneipp": "dolomites",
     "valgardena-giro-storico-del-paese-di-ortisei": "dolomites",
+    "valgardena-seceda-da-col-raiser": "dolomites",
+    "valgardena-seceda-dal-rifugio-firenze": "dolomites",
+    "valgardena-escursione-ortisei-passo-sella": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1060,6 +1066,9 @@
     "valgardena-uciei-de-freeines": "uciei-de-freines",
     "valgardena-val-danna-percorso-kneipp": "val-d-anna",
     "valgardena-giro-storico-del-paese-di-ortisei": "historic-ortisei",
+    "valgardena-seceda-da-col-raiser": "col-raiser-seceda",
+    "valgardena-seceda-dal-rifugio-firenze": "seceda-via-rifugio-firenze",
+    "valgardena-escursione-ortisei-passo-sella": "ortisei-passo-sella",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1397,6 +1406,9 @@
     "uciei-de-freines": "valgardena-uciei-de-freeines",
     "val-d-anna": "valgardena-val-danna-percorso-kneipp",
     "historic-ortisei": "valgardena-giro-storico-del-paese-di-ortisei",
+    "col-raiser-seceda": "valgardena-seceda-da-col-raiser",
+    "seceda-via-rifugio-firenze": "valgardena-seceda-dal-rifugio-firenze",
+    "ortisei-passo-sella": "valgardena-escursione-ortisei-passo-sella",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

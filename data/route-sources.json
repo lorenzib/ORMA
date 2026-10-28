@@ -2361,6 +2361,30 @@
       "quote": "Distanza 4,6 km · Salita 179 m · Durata 1:25 ore",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-seceda-da-col-raiser": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-col-raiser-stazione-a-monte/810055439/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a monte)",
+      "quote": "Distanza 3,5 km · Salita 423 m · Durata 1:35 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T20:00:00.000Z"
+    },
+    "valgardena-seceda-dal-rifugio-firenze": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-col-raiser-stazione-a-valle-rifugio-firenze/808744765/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a valle) - Rifugio Firenze",
+      "quote": "Distanza 7,9 km · Salita 983 m · Durata 3:25 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T20:00:00.000Z"
+    },
+    "valgardena-escursione-ortisei-passo-sella": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-ortisei-passo-sella/65027101/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione Ortisei - Passo Sella",
+      "quote": "Distanza 12,4 km · Salita 1101 m · Durata 4:28 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T20:00:00.000Z"
     }
   }
 }

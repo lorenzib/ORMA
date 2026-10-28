@@ -49253,6 +49253,226 @@
         { km: 4.1, lat: 46.57452, lng: 11.67089, osmId: 'node/2756043799', name: 'The Classic Cafe Stetteneck' }
       ],
       desc: 'A town walk round the historic centre of Ortisei, past the late-19th-century villas and sculptors’ workshops, up Via Rascesa and back past Plan de Mureda, the oldest villa in the village. The board lists 4.6 km and 179 m of ascent.'
+    },
+    'valgardena-seceda-da-col-raiser': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 4).
+      // The Val Gardena tourist board’s walk “Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a monte)”, drawn on 15 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Santa Cristina (its 2010 dog regulation: lead ≤1.5 m, muzzle carried).
+      // It grazes the edge of the Puez-Odle park (1%; lead, no strict reserve zone) and the Seceda rock-face natural monument. Our profile ends at about 2,460 m against the board’s 2,517 m high point: the line follows the board’s own line, and the coarse elevation model rounds off the summit.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Col Raiser – Mastlé – Seceda, Santa Cristina',
+      distance: 3.5,
+      elevation: 423,
+      hours: '1.6',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way up from the top of the Col Raiser gondola on forest road 2 and path 1A across the Mastlé pastures to the Seceda, where the Ridge Line trail begins; ride the Seceda cable car down to Ortisei or come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The pastures below the Seceda with the Odle, September (NorbertNagel, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 3.5 km from Top station of the Col Raiser gondola, above Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 15 OSM ways along the board’s published line, 3.4 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Forest road 2 and path 1A: from the top station of the Col Raiser gondola on forest road 2 towards the Seceda; at the second fork onto path 1A, which climbs straight to the Seceda, the start of the Ridge Line trail.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1.8 (OSM nodes 7737540070).',
+        elevation: 'Official 3.5 km, 423 m up and 10 m down, 1:35 h, highest point 2,517 m, lowest 2,094 m (S. Cristina – Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Dolomites Val Gardena tourist board, Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a monte) (valgardena.it and its Outdooractive tour)',
+          'Gemeinde St. Christina / Comune di Santa Cristina Valgardena, Gemeindeverordnung zur Hundehaltung (Ratsbeschluss Nr. 2, 08.02.2010), Art. 4 and 8: a lead of at most 1.5 m in public places, a muzzle carried, no dogs on farmed meadows in the growing season',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site or biotope on the line beyond a 1% brush with the Puez-Odle park and Natura 2000 IT3110027 at the top; it touches the Seceda rock-face natural monument (085_G08), whose rules protect the cliff and set no rule on dogs',
+          'Naturpark Puez-Geisler / Parco naturale Puez-Odle (DLH 19/2013 rules of conduct): dogs only under strict supervision, on a lead, never roaming; Natura 2000 IT3110027 Gardena – Valle Lunga – Puez: the Province’s objectives and conservation measures (Giunta provinciale, 19 December 2025) set no rule on dogs; the park has no strict reserve zone',
+          'OpenStreetMap ways along the board’s line (15 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 7,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['At the Seceda top station the ridge path beyond runs along a sheer north face: keep your dog on a short lead there', 'Cattle graze the Mastlé and Seceda pastures in summer: keep your distance', 'Open alpine slopes with no shade', 'Early in the season some stretches may still hold snow'],
+      terrainType: 'Gravel forest road and alpine path across pasture',
+      shadeDescription: 'Almost no shade: the whole climb crosses open alpine pasture.',
+      terrainDescription: 'A steady climb at 2,100–2,500 m from the Col Raiser gondola across the Mastlé pastures below the Odle to the Seceda, on a gravel road and an alpine path.',
+      waterDescription: 'One drinking fountain at about km 1.8; huts on the way and at the top.',
+      dogNotes: 'Santa Cristina’s dog regulation requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs off farmed meadows in the growing season, so stay on the path across the pastures. Cattle graze the alp in summer; dogs ride the gondola and the Seceda cable car on a lead and muzzled.',
+      tips: 'Ride the Col Raiser gondola up from Santa Cristina (closed cabins; dogs on a lead and muzzled): 3.5 km and about 420 m of climbing to the Seceda, an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle. There is no shade: go early on hot days and carry water. Keep well back from the edge at the top.',
+      sourceLinks: [
+        { label: 'Val Gardena, Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a monte)', url: 'https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-col-raiser-stazione-a-monte/810055439/' },
+        { label: 'Outdooractive, Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a monte) (Dolomites Val Gardena tourist board)', url: 'https://www.outdooractive.com/it/r/810055439' },
+        { label: 'St. Christina / Santa Cristina, dog regulation (2010)', url: 'https://www.gemeinde.stchristina.bz.it/system/web/GetDocument.ashx?cts=1536582042&fileId=1004815' },
+        { label: 'South Tyrol nature parks, rules of conduct', url: 'https://naturparks.provinz.bz.it/de/verhaltensregeln-im-naturpark' },
+        { label: 'Province of Bolzano, Gardena – Valle Lunga – Puez (IT3110027): objectives and conservation measures (PDF)', url: 'https://assets-eu-01.kc-usercontent.com/e90ea1ed-9101-0155-579f-5243d49e1f43/3f8796ca-71a1-4ce2-b653-b10bc39252d8/PAB_IT3110027%20-%20obiettivi%20e%20misure.pdf' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'Val Gardena, holidays with your dog', url: 'https://www.valgardena.it/it/in-vacanza-col-cane/' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.585126, lng: 11.745771, label: 'Top station of the Col Raiser gondola, above Santa Cristina, the board’s start' },
+      waterSources: [
+        { km: 1.8, lat: 46.5947482, lng: 11.7330589, osmId: 'node/7737540070', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.5858, lng: 11.74562, osmId: 'way/29751171', name: 'Odles' },
+        { km: 1, lat: 46.5911, lng: 11.73681, osmId: 'way/127051060', name: 'Fermeda Hütte - Baita Fermeda' },
+        { km: 1.6, lat: 46.59485, lng: 11.73351, osmId: 'way/41950774', name: 'Baita Daniel' },
+        { km: 2, lat: 46.59487, lng: 11.72981, osmId: 'way/41950775', name: 'Mastle' },
+        { km: 2.5, lat: 46.59772, lng: 11.72714, osmId: 'way/84867557', name: 'Sofie-Hütte - Baita Sofie' },
+        { km: 2.8, lat: 46.59802, lng: 11.72448, osmId: 'node/9679415726', name: 'Utia Seceda' }
+      ],
+      desc: 'A climb from the top of the Col Raiser gondola across the Mastlé pastures below the Odle to the Seceda, the start of its famous ridge. The board lists 3.5 km and 423 m of ascent one way.'
+    },
+    'valgardena-seceda-dal-rifugio-firenze': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 4).
+      // The Val Gardena tourist board’s walk “Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a valle) - Rifugio Firenze”, drawn on 26 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Santa Cristina and Selva (their own 2010 dog regulations: lead ≤1.5 m, muzzle carried).
+      // About an eighth is in the Puez-Odle park and Natura 2000 IT3110027 (lead; no dog rule in the 2025 measures; no strict reserve zone). Our profile ends at about 2,460 m against the board’s 2,517 m high point: the line follows the board’s own line, and the coarse elevation model rounds off the summit.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Col Raiser valley station – Rifugio Firenze – Seceda, Santa Cristina',
+      distance: 7.9,
+      elevation: 983,
+      hours: '3.4',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way up from the Col Raiser gondola valley station above Santa Cristina on path 1 to the Rifugio Firenze, then on paths 2 and 1A across the pastures to the Seceda; ride the Seceda cable car down to Ortisei or the Col Raiser gondola back to the start.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lech de Ciaulonch pond on the Cisles alp, August (Wolfgang Moroder, CC BY-SA 3.0), 13 m from the line.',
+        route: 'Official one-way walk 7.9 km from Col Raiser gondola valley station, above Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 26 OSM ways along the board’s published line, 8 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Paths 1, 2 and 1A: from the Col Raiser gondola valley station on path 1 up to the Rifugio Firenze; from there on path 2, then path 1A across the panoramic slopes to the Seceda, the start of the Ridge Line trail.',
+        mapPoints: 'Start at the board’s start; drinking water at km 2.8, at km 3.5, at km 6.2 (OSM nodes 5114422338, 5111795361, 7737540070).',
+        elevation: 'Official 7.9 km, 983 m up and 15 m down, 3:25 h, highest point 2,510 m, lowest 1,546 m (S. Cristina – Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Dolomites Val Gardena tourist board, Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a valle) - Rifugio Firenze (valgardena.it and its Outdooractive tour)',
+          'Gemeinde St. Christina / Comune di Santa Cristina Valgardena, Gemeindeverordnung zur Hundehaltung (Ratsbeschluss Nr. 2, 08.02.2010), Art. 4 and 8: a lead of at most 1.5 m in public places, a muzzle carried, no dogs on farmed meadows in the growing season',
+          'Gemeinde Wolkenstein / Comune di Selva di Val Gardena, Gemeindeverordnung über die Haltung und Führung von Hunden (Ratsbeschluss Nr. 5, 05.02.2010), Art. 4 and 8: a lead of at most 1.5 m in public places, a muzzle carried, no dogs on farmed meadows in the growing season, no bathing in public fountains',
+          'Naturpark Puez-Geisler / Parco naturale Puez-Odle (DLH 19/2013 rules of conduct): dogs only under strict supervision, on a lead, never roaming; Natura 2000 IT3110027 Gardena – Valle Lunga – Puez: the Province’s objectives and conservation measures (Giunta provinciale, 19 December 2025) set no rule on dogs; the park has no strict reserve zone. About an eighth of the line is inside the park and the site',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): it touches the Seceda rock-face natural monument (085_G08), whose rules protect the cliff and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (26 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['At the Seceda top station the ridge path beyond runs along a sheer north face: keep your dog on a short lead there', 'Long climb of nearly 1,000 m', 'Cattle graze the Cisles, Mastlé and Seceda pastures in summer', 'Early in the season some stretches may still hold snow'],
+      terrainType: 'Gravel tracks and alpine paths through forest and pasture',
+      shadeDescription: 'About a quarter runs through forest on the lower slopes; the upper pastures are open.',
+      terrainDescription: 'A long climb at 1,550–2,500 m from the Col Raiser valley station through forest and the Cisles alp past the Rifugio Firenze to the Seceda, on gravel tracks and alpine paths.',
+      waterDescription: 'Drinking water at about km 2.8, km 3.5 and km 6.2; many huts on the way, including the Rifugio Firenze at km 3.3.',
+      dogNotes: 'Santa Cristina and Selva each require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows in the growing season, so stay on the path across the pastures. The middle stretch is in the Puez-Odle nature park, where dogs must stay on a lead and never roam.',
+      tips: 'Start at the Col Raiser gondola valley station above Santa Cristina: 7.9 km and nearly 1,000 m of climbing one way to the Seceda, about three and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Rest at the Rifugio Firenze, keep back from the edge at the top, and ride the closed Seceda cable car or Col Raiser gondola down (dogs muzzled).',
+      sourceLinks: [
+        { label: 'Val Gardena, Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a valle) - Rifugio Firenze', url: 'https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-col-raiser-stazione-a-valle-rifugio-firenze/808744765/' },
+        { label: 'Outdooractive, Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a valle) - Rifugio Firenze (Dolomites Val Gardena tourist board)', url: 'https://www.outdooractive.com/it/r/808744765' },
+        { label: 'St. Christina / Santa Cristina, dog regulation (2010)', url: 'https://www.gemeinde.stchristina.bz.it/system/web/GetDocument.ashx?cts=1536582042&fileId=1004815' },
+        { label: 'Wolkenstein / Selva, dog regulation (2010)', url: 'https://www.selva.eu/system/web/Verordnung.aspx?detailonr=225185593&menuonr=219901528' },
+        { label: 'South Tyrol nature parks, rules of conduct', url: 'https://naturparks.provinz.bz.it/de/verhaltensregeln-im-naturpark' },
+        { label: 'Province of Bolzano, Gardena – Valle Lunga – Puez (IT3110027): objectives and conservation measures (PDF)', url: 'https://assets-eu-01.kc-usercontent.com/e90ea1ed-9101-0155-579f-5243d49e1f43/3f8796ca-71a1-4ce2-b653-b10bc39252d8/PAB_IT3110027%20-%20obiettivi%20e%20misure.pdf' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'Val Gardena, holidays with your dog', url: 'https://www.valgardena.it/it/in-vacanza-col-cane/' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.564826, lng: 11.736379, label: 'Col Raiser gondola valley station, above Santa Cristina, the board’s start' },
+      waterSources: [
+        { km: 2.8, lat: 46.5823037, lng: 11.7562588, osmId: 'node/5114422338', label: 'Drinking fountain' },
+        { km: 3.5, lat: 46.58752, lng: 11.7581601, osmId: 'node/5111795361', label: 'Drinking fountain' },
+        { km: 6.2, lat: 46.5947482, lng: 11.7330589, osmId: 'node/7737540070', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.56487, lng: 11.73366, osmId: 'node/6528315958', name: 'Mesc da Paratoni' },
+        { km: 1.6, lat: 46.57642, lng: 11.7473, osmId: 'way/121497030', name: 'Baita Sangon' },
+        { km: 5.3, lat: 46.5911, lng: 11.73681, osmId: 'way/127051060', name: 'Fermeda Hütte - Baita Fermeda' },
+        { km: 6.4, lat: 46.59487, lng: 11.72981, osmId: 'way/41950775', name: 'Mastle' },
+        { km: 7.4, lat: 46.59802, lng: 11.72448, osmId: 'node/9679415726', name: 'Utia Seceda' }
+      ],
+      desc: 'A long climb from the Col Raiser valley station above Santa Cristina past the Rifugio Firenze and across the pastures below the Odle to the Seceda. The board lists 7.9 km and 983 m of ascent one way.'
+    },
+    'valgardena-escursione-ortisei-passo-sella': {
+      // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 4).
+      // The Val Gardena tourist board’s walk “Escursione Ortisei - Passo Sella”, drawn on 84 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Ortisei, Santa Cristina and Selva (their own dog regulations: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site or park; it crosses the Città dei Sassi natural monument and Ortisei’s historic ensemble, neither of which sets a dog rule. Our line is 13.5 km against the board’s 12.4 km (9%), within the builder’s 10% check.
+      // The stored line follows the board’s own Outdooractive tour.
+      area: 'Ortisei – Tervela waterfall – Monte Pana – Rifugio Comici – Passo Sella',
+      distance: 12.4,
+      elevation: 1101,
+      hours: '4.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Ortisei along the old railway path towards Santa Cristina, up path 30B past the Tervela waterfall to Monte Pana, on paths 23 and 528 by Tramans to the Rifugio Comici, and through the Città dei Sassi on paths 526 and 526C to the Passo Sella; back by bus 471 to Plan and a connecting bus to Ortisei.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-27',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Città dei Sassi boulder field with the Sella behind, August (Marie-Lan Taÿ Pamart, CC BY 4.0), on the line.',
+        route: 'Official one-way walk 12.4 km from Ortisei, as the Val Gardena tourist board publishes it; the stored line is drawn on 84 OSM ways along the board’s published line, 13.5 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Old railway path, then paths 30B, 23, 528, 526 and 526C: from Ortisei along the old railway path towards Santa Cristina; before the village onto path 30B up to Monte Pana, past the Tervela waterfall; at the junction onto path 23, then path 528 towards Tramans to the Rifugio Comici; from there paths 526 and 526C through the Città dei Sassi to the Passo Sella. Back the same way, or bus 471 to Selva (Plan) and bus 350, 306 or 352 to Ortisei.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.3, at km 0.7, at km 3.2, at km 3.9 (OSM nodes 7831357086, 7831367385, 9151291238, 13985445559, 6652727100, 7831356985, 6652727098, 7831367386, 7823639986, 7872930685).',
+        elevation: 'Official 12.4 km, 1101 m up and 125 m down, 4:28 h, highest point 2,248 m, lowest 1,215 m (Ortisei – Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Dolomites Val Gardena tourist board, Escursione Ortisei - Passo Sella (valgardena.it and its Outdooractive tour)',
+          'Gemeinde St. Ulrich / Comune di Ortisei, Verordnung über die Haltung und das Führen von Hunden (Gemeinderat Nr. 28, 06.08.2019), Art. 4 and 6: a lead of at most 1.5 m on all public ground, a muzzle carried (worn in public premises and on public transport), no dogs on farmed land',
+          'Gemeinde St. Christina / Comune di Santa Cristina Valgardena, Gemeindeverordnung zur Hundehaltung (Ratsbeschluss Nr. 2, 08.02.2010), Art. 4 and 8: a lead of at most 1.5 m in public places, a muzzle carried, no dogs on farmed meadows in the growing season',
+          'Gemeinde Wolkenstein / Comune di Selva di Val Gardena, Gemeindeverordnung über die Haltung und Führung von Hunden (Ratsbeschluss Nr. 5, 05.02.2010), Art. 4 and 8: a lead of at most 1.5 m in public places, a muzzle carried, no dogs on farmed meadows in the growing season, no bathing in public fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): no Natura 2000 site, park or biotope on the line; it crosses the Città dei Sassi natural monument (116_L01) and Ortisei’s historic ensemble, whose rules protect the land and buildings and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (84 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-27'
+      },
+      shadeCoverage: 11,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Long day: 12 km and 1,100 m of climbing', 'Boulder field in the Città dei Sassi: uneven, rocky ground', 'Beside the Tervela waterfall: keep your dog out of the water', 'Town streets with traffic in Ortisei and a road crossing at Monte Pana'],
+      terrainType: 'Old railway path, mountain paths and boulder field',
+      shadeDescription: 'Mostly open: only about a tenth runs through forest.',
+      terrainDescription: 'A long climb at 1,215–2,250 m from Ortisei along the old railway path, past the Tervela waterfall to Monte Pana, through the forest below the Sassolungo to the Rifugio Comici and through the Città dei Sassi to the Passo Sella.',
+      waterDescription: 'Many drinking fountains in Ortisei and along the railway path in the first 4 km, and one at about km 6.7; none higher up. Huts at the Rifugio Comici and at the Passo Sella.',
+      dogNotes: 'Ortisei, Santa Cristina and Selva each require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows. On the bus back dogs need a lead, a muzzle and a ticket.',
+      tips: 'Start in Ortisei: 12.4 km and about 1,100 m of climbing one way, about four and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Fill water bottles before the climb from Monte Pana, take care in the boulder field, and plan the bus back from the Passo Sella (line 471 to Plan, then 350, 306 or 352); dogs ride muzzled with a ticket.',
+      sourceLinks: [
+        { label: 'Val Gardena, Escursione Ortisei - Passo Sella', url: 'https://www.valgardena.it/it/outdoor/base/outdoor/escursione-ortisei-passo-sella/65027101/' },
+        { label: 'Outdooractive, Escursione Ortisei - Passo Sella (Dolomites Val Gardena tourist board)', url: 'https://www.outdooractive.com/it/r/65027101' },
+        { label: 'St. Ulrich / Ortisei, dog regulation (2019)', url: 'https://www.comune.ortisei.bz.it/system/web/GetDocument.ashx?fileId=1093922&cts=1565705929' },
+        { label: 'St. Christina / Santa Cristina, dog regulation (2010)', url: 'https://www.gemeinde.stchristina.bz.it/system/web/GetDocument.ashx?cts=1536582042&fileId=1004815' },
+        { label: 'Wolkenstein / Selva, dog regulation (2010)', url: 'https://www.selva.eu/system/web/Verordnung.aspx?detailonr=225185593&menuonr=219901528' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'Val Gardena, holidays with your dog', url: 'https://www.valgardena.it/it/in-vacanza-col-cane/' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.573572, lng: 11.673947, label: 'Ortisei, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.574218, lng: 11.673789, osmId: 'node/7831357086', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.573862, lng: 11.6743886, osmId: 'node/7831367385', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.5741969, lng: 11.6737006, osmId: 'node/9151291238', label: 'Drinking fountain at the start' },
+        { km: 0, lat: 46.5738338, lng: 11.6745945, osmId: 'node/13985445559', label: 'Drinking fountain at the start' },
+        { km: 0.3, lat: 46.5731101, lng: 11.6769044, osmId: 'node/6652727100', label: 'Drinking fountain' },
+        { km: 0.3, lat: 46.573388, lng: 11.676573, osmId: 'node/7831356985', label: 'Drinking fountain' },
+        { km: 0.7, lat: 46.571844, lng: 11.6810386, osmId: 'node/6652727098', label: 'Drinking fountain' },
+        { km: 0.7, lat: 46.57199, lng: 11.681069, osmId: 'node/7831367386', label: 'Drinking fountain' },
+        { km: 3.2, lat: 46.5613264, lng: 11.7066981, osmId: 'node/7823639986', label: 'Drinking fountain' },
+        { km: 3.9, lat: 46.559111, lng: 11.714923, osmId: 'node/7872930685', label: 'Drinking fountain' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.57386, lng: 11.673, osmId: 'node/1594790717', name: 'Corso' },
+        { km: 0, lat: 46.57421, lng: 11.6716, osmId: 'node/2756046760', name: 'La Cërcia Vinotheque' },
+        { km: 0, lat: 46.57393, lng: 11.67329, osmId: 'node/9151291236', name: 'Zur Goldenen Traube' },
+        { km: 0, lat: 46.57451, lng: 11.67131, osmId: 'node/11801472767', name: 'Cafe Adler' },
+        { km: 0.6, lat: 46.57063, lng: 11.67891, osmId: 'way/41926476', name: 'Tubladel' },
+        { km: 10.6, lat: 46.52866, lng: 11.74808, osmId: 'way/41964731', name: 'Emilio-Comici-Hütte - Rifugio Emilio Comici' }
+      ],
+      desc: 'A long climb from Ortisei along the old railway path and past the Tervela waterfall to Monte Pana, then below the Sassolungo to the Rifugio Comici and through the Città dei Sassi to the Passo Sella. The board lists 12.4 km and 1,101 m of ascent one way.'
     }
   };
 

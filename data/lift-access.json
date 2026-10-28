@@ -132,6 +132,28 @@
           "notes": "The walk starts at the top of the Col Raiser gondola from Santa Cristina, with closed cabins, and ends at its valley station. Dogs ride on a lead and muzzled."
         }
       }
+    },
+    {
+      "id": "valgardena-seceda-da-col-raiser",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Col Raiser gondola (Santa Cristina)",
+          "notes": "The walk starts at the top of the Col Raiser gondola from Santa Cristina, with closed cabins; the Seceda cable car down to Ortisei is closed too. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "valgardena-seceda-dal-rifugio-firenze",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "optional",
+          "name": "Seceda cable car and Col Raiser gondola",
+          "notes": "The walk is on foot; the way down can be by the closed Seceda cable car to Ortisei or the Col Raiser gondola. Dogs ride on a lead and muzzled."
+        }
+      }
     }
   ]
 }
