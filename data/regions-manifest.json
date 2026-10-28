@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T00:34:37.125Z",
+  "generatedAt": "2026-10-28T00:40:53.914Z",
   "regions": {
     "dolomites": {
-      "trailCount": 256,
-      "trails": "data/regions/dolomites-trails.js?v=5e1174b3b82a",
+      "trailCount": 258,
+      "trails": "data/regions/dolomites-trails.js?v=71d724140685",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -261,6 +261,8 @@
         "paganella-andalo-tana-ermellino": "data/trail-details/paganella-andalo-tana-ermellino.js?v=3498649837b5",
         "paganella-giro-della-toresela": "data/trail-details/paganella-giro-della-toresela.js?v=4a30c2bc6e94",
         "paganella-sette-passi-sette-ville": "data/trail-details/paganella-sette-passi-sette-ville.js?v=72479e6a7f6a",
+        "trecime-villabassa-lanaweg": "data/trail-details/trecime-villabassa-lanaweg.js?v=b05cf2fc15ac",
+        "trecime-giro-delle-baite-lago-di-braies": "data/trail-details/trecime-giro-delle-baite-lago-di-braies.js?v=7d937d0eb033",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -635,6 +637,8 @@
     "paganella-andalo-tana-ermellino": "dolomites",
     "paganella-giro-della-toresela": "dolomites",
     "paganella-sette-passi-sette-ville": "dolomites",
+    "trecime-villabassa-lanaweg": "dolomites",
+    "trecime-giro-delle-baite-lago-di-braies": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1033,6 +1037,8 @@
     "lario-il-sentiero-del-viandante": "sentiero-del-viandante-varenna-bellano",
     "lario-caslino-sullacqua": "caslino-derba-and-the-lambro",
     "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "monte-scioscia-viewpoint-loop",
+    "trecime-villabassa-lanaweg": "niederdorf-lanaweg-loop",
+    "trecime-giro-delle-baite-lago-di-braies": "pragser-wildsee-huts-circuit",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1361,6 +1367,8 @@
     "sentiero-del-viandante-varenna-bellano": "lario-il-sentiero-del-viandante",
     "caslino-derba-and-the-lambro": "lario-caslino-sullacqua",
     "monte-scioscia-viewpoint-loop": "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza",
+    "niederdorf-lanaweg-loop": "trecime-villabassa-lanaweg",
+    "pragser-wildsee-huts-circuit": "trecime-giro-delle-baite-lago-di-braies",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

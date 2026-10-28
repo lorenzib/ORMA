@@ -2042,6 +2042,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
     },
+    "trecime-giro-delle-baite-lago-di-braies": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-giro-estivo-giro-delle-baite-lago-di-braies_73638",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "escursione/giro estivo - giro delle baite Lago di Braies",
+      "quote": "Lunghezza 7,5 km · Durata 4:30 · Salita 590 m · Discesa 590 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
     "trecime-haus-der-berge-rifugio-larice": {
       "url": "https://www.dreizinnen.com/it/activity/escursione-haus-der-berge-rifugio-larice_14721",
       "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
@@ -2119,6 +2127,14 @@
       "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
       "name": "Passeggiata: Sesto - San Candido",
       "quote": "Lunghezza 19,3 km · Durata 5:30 · Salita 462 m · Discesa 460 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-villabassa-lanaweg": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-circolare-villabassa-lanaweg_605",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione circolare: Villabassa - Lanaweg",
+      "quote": "Lunghezza 5,3 km · Durata 1:37 · Salita 232 m · Discesa 232 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T00:00:00.000Z"
     },
