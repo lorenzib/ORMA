@@ -103,6 +103,8 @@
     ['Malè', 46.3530, 10.9130, 'Val di Sole', 'dolomites', 'trentino'],
     ['Dimaro', 46.3260, 10.8720, 'Val di Sole', 'dolomites', 'trentino'],
     ['Vermiglio', 46.2970, 10.6910, 'Val di Sole', 'dolomites', 'trentino'],
+    // The Trentino side of the pass; without it the forts walks fell to Ponte di Legno.
+    ['Passo del Tonale (Vermiglio)', 46.2600, 10.6100, 'Val di Sole', 'dolomites', 'trentino'],
     ['Cogolo (Peio)', 46.3570, 10.6710, 'Val di Sole', 'dolomites', 'trentino'],
     ['San Bernardo (Rabbi)', 46.4010, 10.8480, 'Val di Sole', 'dolomites', 'trentino'],
     ['Cles', 46.3640, 11.0350, 'Val di Non', 'dolomites', 'trentino'],
