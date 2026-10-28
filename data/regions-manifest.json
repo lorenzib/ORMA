@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T01:57:40.325Z",
+  "generatedAt": "2026-10-28T09:33:28.640Z",
   "regions": {
     "dolomites": {
-      "trailCount": 275,
-      "trails": "data/regions/dolomites-trails.js?v=db990fe2df78",
+      "trailCount": 276,
+      "trails": "data/regions/dolomites-trails.js?v=1933f81e1f95",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -280,6 +280,7 @@
         "trecime-sasso-di-sesto": "data/trail-details/trecime-sasso-di-sesto.js?v=dd68a52eaf5f",
         "trecime-monte-elmo-da-moso": "data/trail-details/trecime-monte-elmo-da-moso.js?v=cafd30711f91",
         "trecime-sesto-alte-saege-val-campo-di-dentro": "data/trail-details/trecime-sesto-alte-saege-val-campo-di-dentro.js?v=8a6a4d2d4f30",
+        "trecime-cimabanche-prato-piazza": "data/trail-details/trecime-cimabanche-prato-piazza.js?v=6e9bb7755ac3",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -677,6 +678,7 @@
     "trecime-sasso-di-sesto": "dolomites",
     "trecime-monte-elmo-da-moso": "dolomites",
     "trecime-sesto-alte-saege-val-campo-di-dentro": "dolomites",
+    "trecime-cimabanche-prato-piazza": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1102,6 +1104,7 @@
     "trecime-sasso-di-sesto": "fischleintal-sextner-stein",
     "trecime-monte-elmo-da-moso": "moos-helm",
     "trecime-sesto-alte-saege-val-campo-di-dentro": "sexten-innerfeldtal",
+    "trecime-cimabanche-prato-piazza": "cimabanche-plaetzwiese",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1453,6 +1456,7 @@
     "fischleintal-sextner-stein": "trecime-sasso-di-sesto",
     "moos-helm": "trecime-monte-elmo-da-moso",
     "sexten-innerfeldtal": "trecime-sesto-alte-saege-val-campo-di-dentro",
+    "cimabanche-plaetzwiese": "trecime-cimabanche-prato-piazza",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

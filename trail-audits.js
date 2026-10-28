@@ -50180,6 +50180,68 @@
         { km: 9, lat: 46.67457, lng: 12.29723, osmId: 'way/83855898', name: 'Dreischusterhütte - Rifugio Tre Scarperi' }
       ],
       desc: 'A long, gentle walk from Sexten past the Alte Säge up the Innerfeldtal to the head of the valley, and back. The board lists 19.7 km and 457 m of ascent, there and back.'
+    },
+    'trecime-cimabanche-prato-piazza': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 6).
+      // The Tre Cime Dolomites tourist board’s walk “Escursione estiva: Cimabanche – Prato Piazza”, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Communes: Toblach (own regulation) and Prags (own regulation, national rule for lead length and muzzle).
+      // 99% of the line is in the Fanes-Sennes-Prags nature park (IT3110049, dogs on a lead, no reserve zones); the line stays at least 209 m from Cortina d’Ampezzo and so from the Dolomiti d’Ampezzo park.
+      // The stored line follows the GPX the board offers on the walk’s page.
+      area: 'Cimabanche – Knappenfußtal – Plätzwiese, Toblach and Prags',
+      distance: 4.4,
+      elevation: 494,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Cimabanche pass in the Höhlensteintal on path 18 through forest and dwarf pine to the head of the Knappenfußtal, past a small waterfall, and up the zigzags to the Plätzwiese. Come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Plätzwiese meadows with a hay hut, at the top of the walk, in July (More pics than views, CC BY 3.0), 16 m from the line.',
+        route: 'Official one-way walk 4.4 km from the Cimabanche pass, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 9 OSM ways along the GPX on the board’s page, 4.5 km, with 100% of the board’s line within 25 m of it.',
+        routeNumbers: 'Path 18: from the Cimabanche pass in the Höhlensteintal through forest and dwarf pine to the end of the Knappenfußtal, where a small waterfall comes into view; then right up the zigzag path to the Plätzwiese, a high plateau at about 2,000 m. Back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water is mapped on the line.',
+        elevation: 'Official 4.4 km, 494 m up and 25 m down, 2 h, highest point 1,990 m, lowest 1,522 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board (Drei Zinnen Dolomites), Escursione estiva: Cimabanche – Prato Piazza (dreizinnen.com, with the GPX offered on the page)',
+          'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden (January 2010 text), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields',
+          'Gemeinde Prags, Verordnung über die Haltung von Hunden (council resolution 24/R/06 of 17 October 2006), Art. 2: dogs on a lead in public places; it sets no lead length and no muzzle rule outdoors, so the national rule (Ministry of Health ordinance of 6 August 2013, extended to September 2027) adds a lead of at most 1.5 m and a muzzle carried',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); the Fanes-Sennes-Prags protection decree (no. 72/V/LS of 4 March 1980) sets no reserve zone and no other rule on dogs',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): 99% of the line is in the Fanes-Sennes-Prags nature park and Natura 2000 site IT3110049; OSM municipal boundaries put the line at least 209 m from Cortina d’Ampezzo, where the Dolomiti d’Ampezzo park lies',
+          'OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steady climb of almost 500 m, with zigzags in the upper part', 'No drinking water is mapped before the Plätzwiese: carry water for your dog', 'Cows graze on the Plätzwiese'],
+      terrainType: 'Forest and mountain paths',
+      shadeDescription: 'About half shaded: the lower part runs through forest and dwarf pine; the zigzags and the Plätzwiese are open.',
+      terrainDescription: 'A climb at 1,520–1,990 m from the Cimabanche pass up the quiet Knappenfußtal past a small waterfall to the Plätzwiese, a high plateau facing the Hohe Gaisl and Monte Cristallo.',
+      waterDescription: 'No drinking fountain is mapped on the line: carry water for your dog. The Berggasthof Plätzwiese at km 4.3 serves food in summer.',
+      dogNotes: 'Toblach requires a lead of at most 1.5 m on all public ground and a muzzle carried; Prags requires a lead in public places, and the national rule sets it at no more than 1.5 m with a muzzle carried. Almost the whole walk is in the Fanes-Sennes-Prags nature park, where dogs must be on a lead at all times. Cows graze on the Plätzwiese.',
+      tips: 'Start at the Cimabanche pass on the road from Toblach to Cortina: 4.4 km and almost 500 m of climbing one way, two hours to the Plätzwiese, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and carry water.',
+      sourceLinks: [
+        { label: 'Tre Cime Dolomites, Escursione estiva: Cimabanche – Prato Piazza', url: 'https://www.dreizinnen.com/it/activity/escursione-estiva-cimabanche-prato-piazza_735' },
+        { label: 'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.toblach.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Gemeinde Prags, Verordnung über die Haltung von Hunden', url: 'https://www.gemeinde.prags.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.623455, lng: 12.190587, label: 'Cimabanche pass, Höhlensteintal, the board’s start' },
+      waterSources: [],
+      rifugi: [
+        { km: 4.3, lat: 46.65388, lng: 12.17925, osmId: 'way/103700852', name: 'Berggasthof Plätzwiese - Rifugio Prato Piazza' }
+      ],
+      desc: 'A climb from the Cimabanche pass on path 18 up the Knappenfußtal past a small waterfall to the Plätzwiese. The board lists 4.4 km and 494 m of ascent, one way.'
     }
   };
 
