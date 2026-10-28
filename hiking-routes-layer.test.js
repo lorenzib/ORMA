@@ -224,3 +224,55 @@ describe('satellite and 3D stay under the walk', () => {
     });
   });
 });
+
+describe('the walk lets the satellite path show through', () => {
+  const fs = require('fs');
+  const path = require('path');
+  const paintMap = () => {
+    const layers = {};
+    return {
+      layers,
+      getLayer: id => layers[id],
+      addLayer: layer => { layers[layer.id] = { ...layer, paint: { ...layer.paint } }; },
+      setPaintProperty: (id, key, value) => { layers[id].paint[key] = value; },
+    };
+  };
+
+  test('satellite fades the casing and corridor, and switching back restores them', () => {
+    const map = paintMap();
+    style.addRouteLine(map, { id: 'walk', source: 'walk', color: '#c80', beforeId: null });
+    const before = { casing: map.layers['walk-casing'].paint['line-opacity'], line: map.layers.walk.paint['line-opacity'] };
+
+    style.setLinesOnImagery(map, 'walk', true);
+    expect(map.layers['walk-casing'].paint['line-opacity']).toBe(style.ROUTE_LINE_ON_IMAGERY.casing);
+    expect(map.layers.walk.paint['line-opacity']).toBe(style.ROUTE_LINE_ON_IMAGERY.line);
+    expect(style.ROUTE_LINE_ON_IMAGERY.casing).toBeLessThan(before.casing);
+    expect(style.ROUTE_LINE_ON_IMAGERY.line).toBeLessThan(before.line);
+
+    expect(map.layers['walk-casing'].paint['line-opacity']).toBe(0);
+
+    style.setLinesOnImagery(map, 'walk', false);
+    expect(map.layers['walk-casing'].paint['line-opacity']).toBe(before.casing);
+    expect(map.layers.walk.paint['line-opacity']).toBe(before.line);
+  });
+
+  test('our grey routes fade on satellite too, and come back', () => {
+    const map = paintMap();
+    map.addLayer({ id: style.HIKING_LINE_LAYER, paint: { 'line-opacity': style.HIKING_LINE_OPACITY.map } });
+    style.setLinesOnImagery(map, null, true);
+    expect(map.layers[style.HIKING_LINE_LAYER].paint['line-opacity']).toBe(style.HIKING_LINE_OPACITY.imagery);
+    expect(style.HIKING_LINE_OPACITY.imagery).toBeLessThan(style.HIKING_LINE_OPACITY.map);
+    style.setLinesOnImagery(map, null, false);
+    expect(map.layers[style.HIKING_LINE_LAYER].paint['line-opacity']).toBe(style.HIKING_LINE_OPACITY.map);
+  });
+
+  test('a walk that is not on the map yet is left alone', () => {
+    expect(() => style.setLinesOnImagery(paintMap(), 'walk', true)).not.toThrow();
+  });
+
+  test('the trail page fades its walk when satellite turns on, and when the walk arrives on satellite', () => {
+    const text = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    expect(text).toContain("setLinesOnImagery(map, 'single-trail-path-line', sat)");
+    expect(text).toContain("setLinesOnImagery(map, 'single-trail-path-line', true)");
+  });
+});
