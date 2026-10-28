@@ -868,6 +868,30 @@ describe('returning homepage region + valley filters', () => {
     expect(fitItems).toContain('The 3.6 km distance is comfortable.');
   });
 
+  test('a Not recommended card asks why not, and never says it fits', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    context.recommendTrail.mockImplementation(() => ({
+      scoringVersion:'1.6.0', score:49, category:'not-recommended', confidence:'high',
+      positiveReasons:[{ code:'trail.terrain.within-tolerance', message:'Terrain is fine.' }],
+      factors:[
+        { code:'trail.heat.high', message:'Runs warm.', impact:-10 },
+        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
+      ],
+      cautions:[{ message:'This route runs warm.' }],
+      hardStops:[], unknowns:[],
+    }));
+    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liApplyLocationGeography();', context);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+
+    const list = document.querySelector('#returningCustomerHomepage') || document.body;
+    expect(list.textContent).not.toContain('Why it fits Teo');
+    expect(document.querySelector('.li-answer-explanation').textContent).toContain('Not the problem here');
+    // The first card starts open; closing it shows the question it asks.
+    const toggle = document.querySelector('[data-why-toggle]');
+    toggle.click();
+    expect(toggle.textContent).toContain('Why not for Teo');
+  });
+
   test('the reasons stop at four, so the cautions are not buried', async () => {
     // Seven reasons against two cautions is lopsided, and on a card about
     // whether a walk suits a dog the cautions are the half worth reading.

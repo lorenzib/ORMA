@@ -31,6 +31,11 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(controller).toContain('root.dataset.scoringVersion = view.scoringVersion');
   });
 
+  test('only a strong option gets the green tick on the fine line', () => {
+    expect(controller).toContain("view.fineTone === 'reassure' ? '' : ' is-neutral'");
+    expect(html).toContain('.recommendation-fine.is-neutral::before{content:none;}');
+  });
+
   test('conclusion, reasons, cautions, and unknowns come from one presentation', () => {
     expect(controller).toContain('view.conclusion');
     expect(controller).toContain('view.reasons');
