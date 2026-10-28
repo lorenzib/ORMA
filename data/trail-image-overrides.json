@@ -1618,6 +1618,23 @@
       }
     },
     {
+      "id": "gailtal-auernig-hoehenweg",
+      "approvedReviewId": "commons-gailtal-auernig-hoehenweg-on-route",
+      "approvedAt": "2026-10-28T09:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/gailtal-nassfeld-pass-summer.jpg",
+        "heroImage": "images/trails/gailtal-nassfeld-pass-summer.jpg",
+        "imageAlt": "Spruce woods and green alpine meadows above the Nassfeld pass, with a pale limestone peak behind, in summer",
+        "imageCredit": "The Nassfeld pass in summer",
+        "imageCreditText": "The Nassfeld pass in summer by emax",
+        "imageCreator": "emax",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Nassfeld_in_Summer_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "geotrail-bulla",
       "approvedReviewId": "commons-geotrail-bulla-on-route",
       "approvedAt": "2026-10-23T20:00:00.000Z",

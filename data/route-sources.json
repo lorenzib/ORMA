@@ -2817,6 +2817,14 @@
       "quote": "2.3 km Strecke · 2.5 h Dauer · 37 hm Aufstieg · 37 hm Abstieg",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "gailtal-auernig-hoehenweg": {
+      "url": "https://www.nassfeld.at/de/Tour/Auernig-Hoehenweg-Auernig-1825-m-Garnitzenberg-1950-m-Gugga-1928-m_t_28071",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Auernig Höhenweg – Auernig (1825 m) – Garnitzenberg (1950 m) – Gugga (1928 m)",
+      "quote": "5.6 km Strecke · 3 h Dauer · 441 hm Aufstieg · 441 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
     }
   }
 }

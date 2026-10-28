@@ -1303,6 +1303,11 @@
       "name": "Was(s)erleben nature trail, Weissensee east shore",
       "slug": "wasserleben-nature-trail-weissensee",
       "gloss": "the nature park’s short water trail at the east end of the lake"
+    },
+    "gailtal-auernig-hoehenweg": {
+      "name": "Auernig ridge walk, Nassfeld",
+      "slug": "auernig-ridge-walk-nassfeld",
+      "gloss": "the fossil ridge on the Austrian–Italian border east of the Nassfeld pass"
     }
   }
 }

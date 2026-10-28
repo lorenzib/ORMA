@@ -59973,6 +59973,70 @@ function effectiveOverrides(profile, adjustOverride){
 
       ],
       desc: 'Naturpark Weissensee’s short nature trail about water at the east end of the lake, on lakeside footways, a boardwalk and woodland paths. The board lists 2.3 km and 37 m of ascent.'
+    },
+    'gailtal-auernig-hoehenweg': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 3, the Nassfeld border walk).
+      // NLW Tourismus’s walk “Auernig Höhenweg – Auernig (1825 m) – Garnitzenberg (1950 m) – Gugga (1928 m)” (nassfeld.at), drawn on 24 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Hermagor-Pressegger See (Austria) and, on the ridge, Pontebba (Italy). Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Nassfeld pass – Auernig – Garnitzenberg',
+      distance: 5.6,
+      elevation: 441,
+      hours: '3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Nassfeld pass east along the Auernig ridge, the border between Austria and Italy and a classic site for 300-million-year-old marine fossils, over the Garnitzen saddle towards the Garnitzenberg and the Gugga, and back down on mountain paths and the lanes of the Sonnenalpe to the pass.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Nassfeld pass at the start, in August (emax on Wikimedia Commons, CC BY 3.0), 41 m from the line.',
+        route: 'Official loop 5.6 km from the Nassfeld pass (1,530 m) on the border, as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 24 OSM ways along the board’s published line, 5.9 km.',
+        routeNumbers: 'From the Nassfeld pass along the lanes of the Sonnenalpe, then east on the mountain path up the Auernig ridge along the border over the Garnitzen saddle towards the Garnitzenberg and the Gugga, and back down on the paths and lanes on the Austrian side to the pass.',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line.',
+        elevation: 'Official 5.6 km, 441 m up and 441 m down, about 3 h (NLW Tourismus, nassfeld.at); our line runs 1,538–1,910 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Auernig Höhenweg – Auernig (1825 m) – Garnitzenberg (1950 m) – Gugga (1928 m) (nassfeld.at, with its Outdooractive line)',
+          'Hermagor-Pressegger See has no lead order of its own (RIS, Carinthian municipal law: only its dog-tax, market and cemetery ordinances), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Pontebba publishes no dog rule of its own (none found on its website or by search), so ORMA’s Italian standard applies on the Italian side: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m in places open to the public, and a muzzle carried; Regione Friuli Venezia Giulia, LR 20/2012 art. 21',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): No national park, Natura 2000 site or nature reserve on or within 300 m of the Austrian part of the line (Land Kärnten INSPIRE protected sites). On the Italian side about 15% of the line, on the ridge, lies in ZSC/ZPS IT3320004 Monte Auernig e Monte Corona (Regione Friuli Venezia Giulia SITI_PROT layers); its conservation measures (DGR 1148/2024, annex 1) set no rule on walkers or dogs, and ban no access. No park, reserve or biotope on the line; the Pramollo bog biotope is 385 m away.',
+          'OpenStreetMap ways along the board’s line (24 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.25,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 2 km of the ridge path is graded by OpenStreetMap as demanding mountain hiking (T3): rocky and steeper in places, for sure-footed walkers and dogs; no exposed or fixed-rope sections are mapped', 'The ridge is open and high: turn back if a storm builds, and carry water as none is mapped on the walk', 'Cattle may graze the alpine pastures in summer: short lead, give the herd room', 'About 1.8 km on the paved lanes of the Sonnenalpe and 130 m on the Nassfeld pass road (B90, 50 km/h): keep your dog close', 'Chairlifts cross the ridge; the walk does not use them'],
+      terrainType: 'Mountain paths on an open ridge, with paved lanes round the pass',
+      shadeDescription: 'About a quarter in spruce and larch woods on the way up; the ridge itself is open and exposed to sun and wind.',
+      terrainDescription: 'A loop at 1,530–1,915 m: about two thirds on mountain paths, including a rougher stretch of nearly 2 km along the ridge, and the rest on the paved lanes of the Sonnenalpe round the pass.',
+      waterDescription: 'No drinking fountain is mapped on the walk; carry water for your dog. Inns at the Nassfeld pass at the start.',
+      dogNotes: 'Hermagor-Pressegger See has no lead order of its own (RIS, Carinthian municipal law: only its dog-tax, market and cemetery ordinances); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Cattle graze the alpine pastures in summer: keep the lead short and give the herd room; if cattle threaten, let the dog go and move away. Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49). About a seventh of the ridge runs on the Italian side in Pontebba, which publishes no dog rule of its own, so ORMA’s Italian standard applies there: Italian law (Ministry of Health ordinance, renewed 2026) asks for a lead of at most 1.5 m in places open to the public and a muzzle carried, both of which the Carinthian rule already covers.',
+      tips: 'Start at the Nassfeld pass (1,530 m) on the border: 5.6 km and about 441 m of climbing, about 3 h. A short but high ridge walk on the border: go in settled weather, carry water and keep your dog on a short lead on the rougher ridge path and near cattle. Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Auernig Höhenweg – Auernig (1825 m) – Garnitzenberg (1950 m) – Gugga (1928 m)', url: 'https://www.nassfeld.at/de/Tour/Auernig-Hoehenweg-Auernig-1825-m-Garnitzenberg-1950-m-Gugga-1928-m_t_28071' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)', url: 'https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/' },
+        { label: 'Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)', url: 'https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities' },
+        { label: 'Regione Friuli Venezia Giulia, DGR 1148/2024 annex 1 (alpine Natura 2000 conservation measures)', url: 'https://mtom.regione.fvg.it/storage//2024_1148/Allegato%201%20alla%20Delibera%201148-2024.pdf' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.560747, lng: 13.275779, label: 'the Nassfeld pass (1,530 m) on the border, the board’s start' },
+      waterSources: [],
+      rifugi: [
+
+      ],
+      desc: 'A loop from the Nassfeld pass along the Auernig ridge on the Austrian–Italian border, known for its 300-million-year-old marine fossils, towards the Garnitzenberg and the Gugga. The board lists 5.6 km and 441 m of ascent.'
     }
   };
 
