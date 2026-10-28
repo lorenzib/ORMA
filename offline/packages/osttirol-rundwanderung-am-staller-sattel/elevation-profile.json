@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osttirol-rundwanderung-am-staller-sattel",
+  "distanceKm": 4.7,
+  "ascentM": 70,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1968
+    },
+    {
+      "km": 0.4,
+      "elev": 1964
+    },
+    {
+      "km": 0.7,
+      "elev": 1974
+    },
+    {
+      "km": 1.1,
+      "elev": 2006
+    },
+    {
+      "km": 1.4,
+      "elev": 2025
+    },
+    {
+      "km": 1.8,
+      "elev": 2057
+    },
+    {
+      "km": 2.1,
+      "elev": 2027
+    },
+    {
+      "km": 2.5,
+      "elev": 2025
+    },
+    {
+      "km": 2.9,
+      "elev": 2016
+    },
+    {
+      "km": 3.2,
+      "elev": 2016
+    },
+    {
+      "km": 3.6,
+      "elev": 2072
+    },
+    {
+      "km": 3.9,
+      "elev": 2030
+    },
+    {
+      "km": 4.3,
+      "elev": 1993
+    },
+    {
+      "km": 4.7,
+      "elev": 1968
+    }
+  ]
+}

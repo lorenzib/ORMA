@@ -135,13 +135,18 @@ describe('the existing-site verification boundary',()=>{
     // Then 361 and 359 with the first Austrian walks, in East Tyrol: the Schloss
     // Weißenstein loop at Matrei, the Umbal Falls, the Ködnitz culture walk at Kals
     // and the Obersee loop at the Staller Sattel.
-    // Then 367 and 365 with six more East Tyrol walks: the Kreuzweg to Klaunz and
+    // Then 365 and 363 with four more Adamello Brenta walks: the Lago di Nambino,
+    // Madonna di Campiglio up to Monte Spinale, and two loops to the Rifugio
+    // Segantini at the head of the Val Nambrone.
+    // Then 366 and 364 with the first Valtellina walk: Arnoga to the Rifugio
+    // Federico up the Val Viola, between Bormio and Livigno.
+    // Then 372 and 370 with six more East Tyrol walks: the Kreuzweg to Klaunz and
     // the St. Nikolaus church walk at Matrei, the Weg der Sinne and the Kreuzweg to
     // Maria Schnee at Virgen, the children's nature trail at Kals and the water
     // trail at St. Jakob in Defereggen.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(367);
-    expect(currentSiteTrails(catalogue)).toHaveLength(365);
+    expect(catalogue).toHaveLength(372);
+    expect(currentSiteTrails(catalogue)).toHaveLength(370);
   });
 
   test('requires the artwork the public trail page needs',()=>{
