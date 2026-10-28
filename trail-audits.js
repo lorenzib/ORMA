@@ -52438,6 +52438,556 @@
 
       ],
       desc: 'A loop from the Sonnenalpe Nassfeld across the summer pastures to two alpine dairies that make Gailtaler Almkäse. The board lists 8.7 km and 295 m of ascent.'
+    },
+    'weissensee-nordic-6-rothns-bichl': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
+      // NLW Tourismus’s walk “Trail 6 „Rothn’s Bichl“ – Nordic Walking” (nassfeld.at), drawn on 23 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Weißensee. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Techendorf – Rothn’s Bichl',
+      distance: 5.9,
+      elevation: 89,
+      hours: '1.3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from car park P 7 on the south shore at Techendorf, a few metres along the lakeside road, then up on forest tracks and a woodland path to the Rothn’s Bichl south of the village, with views over the lake, and back down to the start.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The south shore at Techendorf by the start, in July (Joadl on Wikimedia Commons, CC BY-SA 3.0 AT), 56 m from the line.',
+        route: 'Official loop 5.9 km from car park P 7 on the south shore at Techendorf, as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 23 OSM ways along the board’s published line, 5.9 km.',
+        routeNumbers: 'From car park P 7 at Techendorf briefly along the lakeside road (L7a), then on the signed Nordic walking trail 6 up the forest tracks and woodland path to the Rothn’s Bichl and back down to the start.',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line.',
+        elevation: 'Official 5.9 km, 89 m up and 89 m down, about 1:20 h (the board’s Nordic walking time; NLW Tourismus, nassfeld.at); the board gives 929–1,019 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Trail 6 „Rothn’s Bichl“ – Nordic Walking (nassfeld.at, with its Outdooractive line)',
+          'Weißensee has no lead order of its own (RIS, Carinthian municipal law: no dog ordinance of any kind), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): About 87% of the line lies in the Weißensee landscape protection area (LGBl. 48/1970) and Naturpark Weißensee (LGBl. 29/2006). A landscape protection area can only make building-type works subject to a permit (K-NSG 2002 § 25), and the nature park ordinance declares the park and its signs; we found no visitor or dog rule in either. No national park or nature reserve on or within 300 m (Land Kärnten INSPIRE protected sites). It passes the Buchbichl, a natural monument, 9 m away.',
+          'OpenStreetMap ways along the board’s line (23 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.3,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 80 m on the lakeside road (L7a) at Techendorf, signed 30 km/h: keep your dog close', 'Forest tracks open to forestry vehicles'],
+      terrainType: 'Forest tracks and a woodland path, with a short stretch on the lakeside road',
+      shadeDescription: 'About a third in woodland; the tracks at the edge of the woods and the lakeside start are open.',
+      terrainDescription: 'A loop at 929–1,019 m on gravel forest tracks and a short woodland path, with about 80 m on the lakeside road (L7a, 30 km/h) at Techendorf.',
+      waterDescription: 'No drinking fountain is mapped on the line; inns and cafés in Techendorf at the start.',
+      dogNotes: 'Weißensee has no lead order of its own (RIS, Carinthian municipal law: no dog ordinance of any kind); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49).',
+      tips: 'Start at car park P 7 on the south shore at Techendorf: 5.9 km and about 89 m of climbing, about 1:20 h (the board’s Nordic walking time). The Nordic walking trails start at the centre “Süd” by car park P 7. The board’s time is a Nordic walking pace, so allow longer at a dog’s pace. Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Trail 6 „Rothn’s Bichl“ – Nordic Walking', url: 'https://www.nassfeld.at/de/Tour/Trail-6-Rothn-s-Bichl-Nordic-Walking_t_27586' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.714212, lng: 13.29428, label: 'car park P 7 on the south shore at Techendorf, the board’s start (Nordic Walking centre “Süd”)' },
+      waterSources: [],
+      rifugi: [
+
+      ],
+      desc: 'One of the Weissensee’s signed Nordic walking trails: a loop from the south shore at Techendorf up into the woods of the Rothn’s Bichl. The board lists 5.9 km and 89 m of ascent.'
+    },
+    'weissensee-nordic-5-genoesns-bruendl': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
+      // NLW Tourismus’s walk “Trail 5 „Genösn’s Bründl“ – Nordic Walking” (nassfeld.at), drawn on 16 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Weißensee. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Techendorf – Genösn’s Bründl',
+      distance: 3.5,
+      elevation: 88,
+      hours: '0.8',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from car park P 7 on the south shore at Techendorf, a few metres along the lakeside road, then up on forest tracks and a woodland path south of the village, with views over the lake, and back down to the start.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A jetty on the shore at Techendorf by the start, in October (Fillei S Photos For A Moment Of Nostalgia, from 500px via Wikimedia Commons, CC BY 3.0), 14 m from the line.',
+        route: 'Official loop 3.5 km from car park P 7 on the south shore at Techendorf, as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 16 OSM ways along the board’s published line, 3.5 km.',
+        routeNumbers: 'From car park P 7 at Techendorf briefly along the lakeside road (L7a), then on the signed Nordic walking trail 5 up the forest tracks and woodland path above the village and back down to the start.',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line.',
+        elevation: 'Official 3.5 km, 88 m up and 88 m down, about 50 min (the board’s Nordic walking time; NLW Tourismus, nassfeld.at); the board gives 931–1,019 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Trail 5 „Genösn’s Bründl“ – Nordic Walking (nassfeld.at, with its Outdooractive line)',
+          'Weißensee has no lead order of its own (RIS, Carinthian municipal law: no dog ordinance of any kind), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): About 82% of the line lies in the Weißensee landscape protection area (LGBl. 48/1970) and Naturpark Weißensee (LGBl. 29/2006). A landscape protection area can only make building-type works subject to a permit (K-NSG 2002 § 25), and the nature park ordinance declares the park and its signs; we found no visitor or dog rule in either. No national park or nature reserve on or within 300 m (Land Kärnten INSPIRE protected sites). It passes the Buchbichl, a natural monument, 9 m away.',
+          'OpenStreetMap ways along the board’s line (16 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.2,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 80 m on the lakeside road (L7a) at Techendorf, signed 30 km/h: keep your dog close', 'Forest tracks open to forestry vehicles'],
+      terrainType: 'Forest tracks and a woodland path, with a short stretch on the lakeside road',
+      shadeDescription: 'About a fifth in woodland; the tracks above the village are mostly open.',
+      terrainDescription: 'A short loop at 931–1,019 m on gravel forest tracks and a woodland path, with about 80 m on the lakeside road (L7a, 30 km/h) at Techendorf.',
+      waterDescription: 'No drinking fountain is mapped on the line; inns and cafés in Techendorf at the start.',
+      dogNotes: 'Weißensee has no lead order of its own (RIS, Carinthian municipal law: no dog ordinance of any kind); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49).',
+      tips: 'Start at car park P 7 on the south shore at Techendorf: 3.5 km and about 88 m of climbing, about 50 min (the board’s Nordic walking time). The Nordic walking trails start at the centre “Süd” by car park P 7. The board’s time is a Nordic walking pace, so allow longer at a dog’s pace. Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Trail 5 „Genösn’s Bründl“ – Nordic Walking', url: 'https://www.nassfeld.at/de/Tour/Trail-5-Genoesn-s-Bruendl-Nordic-Walking_t_27618' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.714267, lng: 13.294199, label: 'car park P 7 on the south shore at Techendorf, the board’s start (Nordic Walking centre “Süd”)' },
+      waterSources: [],
+      rifugi: [
+
+      ],
+      desc: 'The shortest of the Weissensee’s signed Nordic walking loops, from the south shore at Techendorf into the woods above the village. The board lists 3.5 km and 88 m of ascent.'
+    },
+    'weissensee-nordic-7-franz-josephs-hoehe': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
+      // NLW Tourismus’s walk “Trail 7 „Franz-Josephs-Höhe“ – Nordic Walking” (nassfeld.at), drawn on 34 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Weißensee. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Techendorf – Franz-Josephs-Höhe',
+      distance: 9,
+      elevation: 162,
+      hours: '2.1',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from car park P 7 on the south shore at Techendorf, a few metres along the lakeside road, then on forest tracks and woodland paths through the woods and meadows above the south shore, past the Franz-Josephs-Höhe viewpoint over the lake, and back to the start.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The western lake from the bridge at Techendorf by the start, in June (Prunk on Wikimedia Commons, CC BY-SA 3.0), 74 m from the line.',
+        route: 'Official loop 9 km from car park P 7 on the south shore at Techendorf, as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 34 OSM ways along the board’s published line, 8.9 km.',
+        routeNumbers: 'From car park P 7 at Techendorf briefly along the lakeside road (L7a), then on the signed Nordic walking trail 7 on the forest tracks and paths above the south shore past the Franz-Josephs-Höhe, and back down to the start.',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line.',
+        elevation: 'Official 9 km, 162 m up and 162 m down, about 2:05 h (the board’s Nordic walking time; NLW Tourismus, nassfeld.at); the board gives 930–1,028 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Trail 7 „Franz-Josephs-Höhe“ – Nordic Walking (nassfeld.at, with its Outdooractive line)',
+          'Weißensee has no lead order of its own (RIS, Carinthian municipal law: no dog ordinance of any kind), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): About 89% of the line lies in the Weißensee landscape protection area (LGBl. 48/1970) and Naturpark Weißensee (LGBl. 29/2006). A landscape protection area can only make building-type works subject to a permit (K-NSG 2002 § 25), and the nature park ordinance declares the park and its signs; we found no visitor or dog rule in either. No national park or nature reserve on or within 300 m (Land Kärnten INSPIRE protected sites). It passes the Buchbichl, a natural monument, 9 m away.',
+          'OpenStreetMap ways along the board’s line (34 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.5,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 80 m on the lakeside road (L7a) at Techendorf, signed 30 km/h: keep your dog close', 'Forest tracks open to forestry vehicles'],
+      terrainType: 'Forest tracks and woodland paths, with a short stretch on the lakeside road',
+      shadeDescription: 'About half in woodland; the meadows and the lakeside start are open.',
+      terrainDescription: 'A loop at 930–1,028 m, three quarters on gravel forest tracks and the rest on woodland paths, with about 80 m on the lakeside road (L7a, 30 km/h) at Techendorf.',
+      waterDescription: 'No drinking fountain is mapped on the line; inns and cafés in Techendorf at the start.',
+      dogNotes: 'Weißensee has no lead order of its own (RIS, Carinthian municipal law: no dog ordinance of any kind); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49).',
+      tips: 'Start at car park P 7 on the south shore at Techendorf: 9 km and about 162 m of climbing, about 2:05 h (the board’s Nordic walking time). The Nordic walking trails start at the centre “Süd” by car park P 7. The board’s time is a Nordic walking pace, so allow longer at a dog’s pace. Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Trail 7 „Franz-Josephs-Höhe“ – Nordic Walking', url: 'https://www.nassfeld.at/de/Tour/Trail-7-Franz-Josephs-Hoehe-Nordic-Walking_t_27879' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.712949, lng: 13.294797, label: 'car park P 7 on the south shore at Techendorf, the board’s start (Nordic Walking centre “Süd”)' },
+      waterSources: [],
+      rifugi: [
+
+      ],
+      desc: 'The longest of the signed Nordic walking loops on the Weissensee’s south shore, through the woods and meadows above Techendorf to the Franz-Josephs-Höhe. The board lists 9 km and 162 m of ascent.'
+    },
+    'weissensee-nordic-2-urschitz': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
+      // NLW Tourismus’s walk “Trail 2 „Urschitz“ – Nordic Walking” (nassfeld.at), drawn on 25 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Weißensee. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Gatschach – Urschitz',
+      distance: 7.3,
+      elevation: 129,
+      hours: '1.8',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Promenadenweg in Gatschach, west of Techendorf, across the Praditz road and up onto farm and forest tracks above the north shore, along the Nördlicher Waldweg, and back down to the lakeside promenade.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path below the Gebanzkogel, a natural monument, near the start, in June (Aidexxx on Wikimedia Commons, CC BY-SA 4.0), 6 m from the line.',
+        route: 'Official loop 7.3 km from the Promenadenweg in Gatschach by the Wiesenhof, as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 25 OSM ways along the board’s published line, 7.3 km.',
+        routeNumbers: 'From the Promenadenweg in Gatschach across the Praditz road (L7), on the signed Nordic walking trail 2 up the farm and forest tracks above the north shore, along the Nördlicher Waldweg, and back down to the Promenadenweg.',
+        mapPoints: 'Start at the board’s start; drinking water from OSM listed below.',
+        elevation: 'Official 7.3 km, 129 m up and 129 m down, about 1:50 h (the board’s Nordic walking time; NLW Tourismus, nassfeld.at); the board gives 930–1,055 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Trail 2 „Urschitz“ – Nordic Walking (nassfeld.at, with its Outdooractive line)',
+          'Weißensee has no lead order of its own (RIS, Carinthian municipal law: no dog ordinance of any kind), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): About 59% of the line lies in the Weißensee landscape protection area (LGBl. 48/1970) and Naturpark Weißensee (LGBl. 29/2006). A landscape protection area can only make building-type works subject to a permit (K-NSG 2002 § 25), and the nature park ordinance declares the park and its signs; we found no visitor or dog rule in either. No national park or nature reserve on or within 300 m (Land Kärnten INSPIRE protected sites). It passes the Gebanzkogel, a natural monument, 8 m away.',
+          'OpenStreetMap ways along the board’s line (25 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.25,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 1 km of steeper, rougher track and path that OpenStreetMap grades as demanding mountain hiking (T3): sure-footed walking, no exposure', 'Crosses the Praditz road (L7) near the start: keep your dog close', 'Farm and forest tracks open to vehicles'],
+      terrainType: 'Farm and forest tracks and woodland paths, some of them steep and rough',
+      shadeDescription: 'Mostly open tracks and meadow edges; short stretches in the woods along the Nördlicher Waldweg. OpenStreetMap maps little woodland along the line.',
+      terrainDescription: 'A loop at 930–1,055 m, about three quarters on gravel farm and forest tracks and the rest on woodland paths; about 1 km of steeper, rougher track and path.',
+      waterDescription: 'A spring mapped as drinking water about 4.7 km in, and a drinking-water tap near the end above Gatschach.',
+      dogNotes: 'Weißensee has no lead order of its own (RIS, Carinthian municipal law: no dog ordinance of any kind); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49).',
+      tips: 'Start at the Promenadenweg in Gatschach by the Wiesenhof: 7.3 km and about 129 m of climbing, about 1:50 h (the board’s Nordic walking time). The Nordic walking trails on the north shore start at the centre “Nord” on the Promenadenweg in Gatschach. Take care on the rougher, steeper stretches. The board’s time is a Nordic walking pace, so allow longer at a dog’s pace. Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Trail 2 „Urschitz“ – Nordic Walking', url: 'https://www.nassfeld.at/de/Tour/Trail-2-Urschitz-Nordic-Walking_t_35319' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.717501, lng: 13.284644, label: 'the Promenadenweg in Gatschach by the Wiesenhof, the board’s start (Nordic Walking centre “Nord”)' },
+      waterSources: [
+        { km: 4.7, lat: 46.7256251, lng: 13.2694554, osmId: 'node/14173120384', label: 'Spring mapped as drinking water' },
+        { km: 6.9, lat: 46.7201849, lng: 13.2814245, osmId: 'node/13298268774', label: 'Drinking-water tap above Gatschach' }
+      ],
+      rifugi: [
+
+      ],
+      desc: 'A signed Nordic walking loop from the lakeside promenade at Gatschach up onto the tracks and woodland paths above the Weissensee’s north shore. The board lists 7.3 km and 129 m of ascent.'
+    },
+    'weissensee-nordic-8-naggler-alm': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
+      // NLW Tourismus’s walk “Trail 8 „Naggler Alm – Alpine Walking“” (nassfeld.at), drawn on 22 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Weißensee. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Techendorf – Naggler Alm',
+      distance: 3.1,
+      elevation: 385,
+      hours: '1.1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way uphill from car park P 7 on the south shore at Techendorf, on tracks and steep woodland paths to the Naggler Alm at about 1,330 m; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The lake from the wooded slope on the way up, in August (Löwe 48 on Wikimedia Commons, CC BY-SA 3.0), 68 m from the line.',
+        route: 'Official one-way walk 3.1 km from car park P 7 on the south shore at Techendorf, as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 22 OSM ways along the board’s published line, 3.1 km.',
+        routeNumbers: 'From car park P 7 at Techendorf through the village, then on the signed Nordic walking trail 8 up the forest tracks and steep woodland paths to the Naggler Alm; return the same way.',
+        mapPoints: 'Start at the board’s start; no drinking fountain is mapped on the line.',
+        elevation: 'Official 3.1 km, 385 m up and 0 m down, about 1:05 h uphill, one way (the board’s Nordic walking time; NLW Tourismus, nassfeld.at); the board gives 942–1,328 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Trail 8 „Naggler Alm – Alpine Walking“ (nassfeld.at, with its Outdooractive line)',
+          'Weißensee has no lead order of its own (RIS, Carinthian municipal law: no dog ordinance of any kind), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): About 92% of the line lies in the Weißensee landscape protection area (LGBl. 48/1970) and Naturpark Weißensee (LGBl. 29/2006). A landscape protection area can only make building-type works subject to a permit (K-NSG 2002 § 25), and the nature park ordinance declares the park and its signs; we found no visitor or dog rule in either. No national park or nature reserve on or within 300 m (Land Kärnten INSPIRE protected sites). It passes the Buchbichl, a natural monument, 31 m away.',
+          'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.45,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Steep: 385 m of climbing in 3.1 km, with about 500 m of steep, rough track that OpenStreetMap grades as demanding mountain hiking (T3): sure-footed walking, no exposure', 'Cattle may graze the Naggler Alm pastures in summer: short lead, give the herd room', 'Forest tracks open to forestry vehicles', 'The Weissensee Bergbahn from Techendorf is a chairlift: plan to walk back down'],
+      terrainType: 'Forest tracks and steep woodland paths',
+      shadeDescription: 'Just under half in woodland; the tracks and the alm pastures at the top are open.',
+      terrainDescription: 'A steady climb from 942 to 1,328 m on forest tracks and woodland paths, with concrete steps near the start and about 500 m of steep, rough track.',
+      waterDescription: 'No drinking fountain is mapped on the line; the Naggler Alm hut at the top serves food and drink in season.',
+      dogNotes: 'Weißensee has no lead order of its own (RIS, Carinthian municipal law: no dog ordinance of any kind); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Cattle graze the alpine pastures in summer: keep the lead short and give the herd room; if cattle threaten, let the dog go and move away. Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49).',
+      tips: 'Start at car park P 7 on the south shore at Techendorf: 3.1 km and about 385 m of climbing, about 1:05 h uphill, one way (the board’s Nordic walking time); come back the same way. Walk back down: the Weissensee Bergbahn is a chairlift. Cattle may graze the alm pastures, so keep your dog on a short lead throughout. The board’s time is a Nordic walking pace, so allow longer at a dog’s pace. Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Trail 8 „Naggler Alm – Alpine Walking“', url: 'https://www.nassfeld.at/de/Tour/Trail-8-Naggler-Alm-Alpine-Walking_t_35330' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.712949, lng: 13.294797, label: 'car park P 7 on the south shore at Techendorf, the board’s start (Nordic Walking centre “Süd”)' },
+      waterSources: [],
+      rifugi: [
+
+      ],
+      desc: 'The steep Nordic walking trail from the south shore at Techendorf up through the woods to the Naggler Alm. The board lists 3.1 km and 385 m of ascent, one way.'
+    },
+    'weissensee-techendorf-tschabitscher-kreuzwirt': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
+      // NLW Tourismus’s walk “Techendorf-Tschabitscher-Kreuzwirt” (nassfeld.at), drawn on 34 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Weißensee. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Techendorf – Tschabitscher – Kreuzwirt',
+      distance: 6.5,
+      elevation: 177,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the bridge in Techendorf west above the north shore, past the Tschabitscher farm on forest tracks and the Nördlicher Waldweg, to the Kreuzwirt on the Weißensee road (B87) at the west end of the valley; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Techendorf and the lake by the start, in October (Vid Pogacnik on Wikimedia Commons, CC BY-SA 4.0), 146 m from the line.',
+        route: 'Official one-way walk 6.5 km from the bridge in Techendorf, as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 34 OSM ways along the board’s published line, 6.5 km.',
+        routeNumbers: 'From the bridge in Techendorf along the village road (L7a/L7), up past the Tschabitscher farm onto the forest tracks and the Nördlicher Waldweg above the north shore, west to the Techendorfer Straße (L7) and the Weißensee road (B87) at the Kreuzwirt; return the same way.',
+        mapPoints: 'Start at the board’s start; drinking water from OSM listed below.',
+        elevation: 'Official 6.5 km, 177 m up and 145 m down, about 2 h one way (NLW Tourismus, nassfeld.at); the board gives 934–1,103 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Techendorf-Tschabitscher-Kreuzwirt (nassfeld.at, with its Outdooractive line)',
+          'Weißensee has no lead order of its own (RIS, Carinthian municipal law: no dog ordinance of any kind), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): About 62% of the line lies in the Weißensee landscape protection area (LGBl. 48/1970) and Naturpark Weißensee (LGBl. 29/2006). A landscape protection area can only make building-type works subject to a permit (K-NSG 2002 § 25), and the nature park ordinance declares the park and its signs; we found no visitor or dog rule in either. No national park or nature reserve on or within 300 m (Land Kärnten INSPIRE protected sites).',
+          'OpenStreetMap ways along the board’s line (34 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.25,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 150 m on the Weißensee road (B87) and 150 m on the Techendorfer Straße (L7) at the Kreuzwirt end, and about 200 m on the L7 (50 km/h) near Techendorf: keep your dog close on a short lead', 'About 1 km of steeper, rougher track and path that OpenStreetMap grades as demanding mountain hiking (T3): sure-footed walking, no exposure', 'Farm animals around the Tschabitscher farm: short lead'],
+      terrainType: 'Farm and forest tracks, woodland paths and lanes, with short road stretches at both ends',
+      shadeDescription: 'Mostly open tracks and meadow edges with views over the lake; short stretches in the woods along the Nördlicher Waldweg. OpenStreetMap maps little woodland along the line.',
+      terrainDescription: 'A walk at 934–1,103 m, about two thirds on forest tracks and woodland paths and the rest on lanes; about 1 km of steeper, rougher track and path, and about 500 m on main roads at the Kreuzwirt end.',
+      waterDescription: 'A spring mapped as drinking water about 2.6 km in. Inns in Techendorf at the start and the Kreuzwirt at the end.',
+      dogNotes: 'Weißensee has no lead order of its own (RIS, Carinthian municipal law: no dog ordinance of any kind); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Cattle graze the alpine pastures in summer: keep the lead short and give the herd room; if cattle threaten, let the dog go and move away. Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49).',
+      tips: 'Start at the bridge in Techendorf: 6.5 km and about 177 m of climbing, about 2 h one way; come back the same way. Keep your dog on a short lead on the road stretches at both ends and by the farm. Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Techendorf-Tschabitscher-Kreuzwirt', url: 'https://www.nassfeld.at/de/Tour/Techendorf-Tschabitscher-Kreuzwirt_t_65527' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.717036, lng: 13.294771, label: 'the bridge in Techendorf, the board’s start' },
+      waterSources: [
+        { km: 2.6, lat: 46.7256251, lng: 13.2694554, osmId: 'node/14173120384', label: 'Spring mapped as drinking water' }
+      ],
+      rifugi: [
+
+      ],
+      desc: 'A walk from Techendorf above the Weissensee’s north shore, past the Tschabitscher farm to the Kreuzwirt at the west end of the valley, with views over the lake and into the Drau valley. The board lists 6.5 km and 177 m of ascent, one way.'
+    },
+    'weissensee-slow-trail': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
+      // NLW Tourismus’s walk “Slow Trail Weissensee” (nassfeld.at), drawn on 21 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Weißensee and Stockenboi. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Ronacherfels – Weissensee east shore',
+      distance: 6.7,
+      elevation: 72,
+      hours: '2.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way along the north shore from the Ronacherfels past the cliffs of the Kleine Steinwand to the east end of the lake, mostly on a narrow path through the woods just above the water; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Kleine Steinwand cliffs beside the path, in September (Mefusbren69 on Wikimedia Commons, public domain), 61 m from the line.',
+        route: 'Official one-way walk 6.7 km from the Ronacherfels on the north shore, as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 21 OSM ways along the board’s published line, 6.7 km.',
+        routeNumbers: 'From the Ronacherfels east along the lakeside path past the Kleine Steinwand to the east shore, ending by the boat landing; return the same way.',
+        mapPoints: 'Start at the board’s start; drinking water from OSM listed below.',
+        elevation: 'Official 6.7 km, 72 m up and 73 m down, about 2:30 h one way (NLW Tourismus, nassfeld.at); the board gives 930–1,003 m; the stored profile, sampled from a terrain model, reads up to 1,066 m where the path runs below steep slopes, but the path stays close to the lake.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Slow Trail Weissensee (nassfeld.at, with its Outdooractive line)',
+          'Weißensee and Stockenboi, which holds the east shore, have no lead order of their own (RIS, Carinthian municipal law: no dog ordinance in either), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): The whole line lies in the Weißensee landscape protection area (LGBl. 48/1970) and Naturpark Weißensee (LGBl. 29/2006). A landscape protection area can only make building-type works subject to a permit (K-NSG 2002 § 25), and the nature park ordinance declares the park and its signs; we found no visitor or dog rule in either. No national park or nature reserve on or within 300 m (Land Kärnten INSPIRE protected sites). It passes within 10 m of the Natura 2000 site “In der Laka” (beech forest, LGBl. 98/2018), whose ordinance sets no access or dog rule.',
+          'OpenStreetMap ways along the board’s line (21 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.65,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A narrow lakeside path with roots and short steps that runs right above the water in places: keep your dog close', 'The boardwalk at the east end is shared with cyclists', 'Swimmers and boats near the shore in summer'],
+      terrainType: 'A narrow lakeside path through the woods, with footways and a lane at the east end',
+      shadeDescription: 'About two thirds in woodland along the shore; the ends at the Ronacherfels and the east shore are open.',
+      terrainDescription: 'A nearly level walk at 930–1,003 m, mostly on a narrow natural path along the north shore with roots and a few short steps, then footways, a short boardwalk and a lane at the east end.',
+      waterDescription: 'Drinking water at the Ronacherfels at the start, at a fountain about 1.4 km in and on the east shore near the end.',
+      dogNotes: 'Weißensee and Stockenboi, which holds the east shore, have no lead order of their own (RIS, Carinthian municipal law: no dog ordinance in either); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49).',
+      tips: 'Start at the Ronacherfels on the north shore: 6.7 km and about 72 m of climbing, about 2:30 h one way; come back the same way. The path is narrow and runs just above the water in places, so keep your dog close. Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Slow Trail Weissensee', url: 'https://www.nassfeld.at/de/Tour/Slow-Trail-Weissensee_t_35042' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Europaschutzgebiet „In der Laka“ (LGBl. 98/2018)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40018952/LKT40018952.html' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.709715, lng: 13.34445, label: 'the Ronacherfels on the north shore, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.7097544, lng: 13.3444568, osmId: 'node/9734276739', label: 'Drinking water at the Ronacherfels' },
+        { km: 1.4, lat: 46.7060572, lng: 13.3620603, osmId: 'node/10083886517', label: 'Drinking-water fountain (Brunnen)' },
+        { km: 5.8, lat: 46.7026256, lng: 13.4127859, osmId: 'node/13071273801', label: 'Drinking water on the east shore' }
+      ],
+      rifugi: [
+
+      ],
+      desc: 'A quiet, nearly level path along the Weissensee’s north shore from the Ronacherfels past the Kleine Steinwand to the east end of the lake, with a viewing platform on the way. The board lists 6.7 km and 72 m of ascent, one way.'
+    },
+    'weissensee-ortsee-ronacherfels': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
+      // NLW Tourismus’s walk “Ortsee über Ronacherfels und Kleine Steinwand – Weissensee” (nassfeld.at), drawn on 29 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Weißensee and Stockenboi. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Neusach – Ronacherfels – east shore',
+      distance: 8.5,
+      elevation: 69,
+      hours: '2.8',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way along the north shore from Neusach past the Ronacherfels and the cliffs of the Kleine Steinwand to the east end of the lake, towards the Ortsee; the only path linking the two ends of the lake by land. Come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The north shore near the start, in September (Mefusbren69 on Wikimedia Commons, public domain), 22 m from the line.',
+        route: 'Official one-way walk 8.5 km from Neusach on the north shore, as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 29 OSM ways along the board’s published line, 8.5 km.',
+        routeNumbers: 'From Neusach along the village lane, then east on the lakeside path past the Ronacherfels and the Kleine Steinwand to the east shore, ending by the boat landing; return the same way.',
+        mapPoints: 'Start at the board’s start; drinking water from OSM listed below.',
+        elevation: 'Official 8.5 km, 69 m up and 76 m down, about 2:50 h one way (NLW Tourismus, nassfeld.at); the board gives 930–1,003 m; the stored profile, sampled from a terrain model, reads up to 1,052 m where the path runs below steep slopes, but the path stays close to the lake.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Ortsee über Ronacherfels und Kleine Steinwand – Weissensee (nassfeld.at, with its Outdooractive line)',
+          'Weißensee and Stockenboi, which holds the east shore, have no lead order of their own (RIS, Carinthian municipal law: no dog ordinance in either), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): About 84% of the line lies in the Weißensee landscape protection area (LGBl. 48/1970) and Naturpark Weißensee (LGBl. 29/2006). A landscape protection area can only make building-type works subject to a permit (K-NSG 2002 § 25), and the nature park ordinance declares the park and its signs; we found no visitor or dog rule in either. No national park or nature reserve on or within 300 m (Land Kärnten INSPIRE protected sites). It passes within 10 m of the Natura 2000 site “In der Laka” (beech forest, LGBl. 98/2018), whose ordinance sets no access or dog rule.',
+          'OpenStreetMap ways along the board’s line (29 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.65,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 500 m on village lanes in Neusach (30–50 km/h): keep your dog close', 'A narrow lakeside path with roots and short steps that runs right above the water in places: keep your dog close', 'The boardwalk at the east end is shared with cyclists', 'Swimmers and boats near the shore in summer'],
+      terrainType: 'A narrow lakeside path through the woods, with lanes in Neusach and footways at the east end',
+      shadeDescription: 'About two thirds in woodland along the shore; Neusach and the east shore are open.',
+      terrainDescription: 'A nearly level walk at 930–1,003 m, mostly on a narrow natural path along the north shore with roots and a few short steps, with village lanes in Neusach and footways and a short boardwalk at the east end.',
+      waterDescription: 'Drinking water in Neusach at the start, at the Ronacherfels, at a fountain about 3.3 km in and on the east shore near the end.',
+      dogNotes: 'Weißensee and Stockenboi, which holds the east shore, have no lead order of their own (RIS, Carinthian municipal law: no dog ordinance in either); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49).',
+      tips: 'Start at Neusach on the north shore: 8.5 km and about 69 m of climbing, about 2:50 h one way; come back the same way. The path is narrow and runs just above the water in places, so keep your dog close. Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Ortsee über Ronacherfels und Kleine Steinwand – Weissensee', url: 'https://www.nassfeld.at/de/Tour/Ortsee-ueber-Ronacherfels-und-Kleine-Steinwand-Weissensee_t_35049' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Europaschutzgebiet „In der Laka“ (LGBl. 98/2018)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40018952/LKT40018952.html' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.715123, lng: 13.322662, label: 'Neusach on the north shore, where the board’s line begins' },
+      waterSources: [
+        { km: 0, lat: 46.7150329, lng: 13.3225862, osmId: 'node/2353616006', label: 'Drinking water in Neusach' },
+        { km: 1.8, lat: 46.7097544, lng: 13.3444568, osmId: 'node/9734276739', label: 'Drinking water at the Ronacherfels' },
+        { km: 3.3, lat: 46.7060572, lng: 13.3620603, osmId: 'node/10083886517', label: 'Drinking-water fountain (Brunnen)' },
+        { km: 7.7, lat: 46.7026256, lng: 13.4127859, osmId: 'node/13071273801', label: 'Drinking water on the east shore' }
+      ],
+      rifugi: [
+
+      ],
+      desc: 'The lakeside walk along the Weissensee’s north shore from Neusach past the Ronacherfels and the Kleine Steinwand to the east end, the only path linking the two ends of the lake by land. The board lists 8.5 km and 69 m of ascent, one way.'
+    },
+    'weissensee-wasserleben': {
+      // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
+      // NLW Tourismus’s walk “Was(s)erleben im Naturpark Weißensee” (nassfeld.at), drawn on 19 OSM ways along the line it publishes on Outdooractive
+      // (data/board-line-routes.geojson). Commune: Stockenboi (east shore), beside Weißensee. Dog rules: ORMA’s Austrian standard
+      // (docs/editorial/austria-sources-and-dog-rules.md), the commune’s own rule first.
+      area: 'Weissensee east shore',
+      distance: 2.3,
+      elevation: 37,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the boat landing and large car park at the roundabout on the east shore, along the lakeside footways and a boardwalk, a little way into the woods, and back along the shore and the Stockenboier Straße to the start.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-28',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The lake from the woods on the east shore, in August (Gerdsch on Wikimedia Commons, CC BY-SA 3.0 AT), 52 m from the line.',
+        route: 'Official loop 2.3 km from the boat landing and large car park on the east shore, as NLW Tourismus publishes it on nassfeld.at; the stored line is drawn on 19 OSM ways along the board’s published line, 2.3 km.',
+        routeNumbers: 'From the boat landing at the east-shore roundabout along the lakeside footways and boardwalk, round through the woods on paths and a track, and back along the shore and the Stockenboier Straße (L32) to the start.',
+        mapPoints: 'Start at the board’s start; drinking water from OSM listed below.',
+        elevation: 'Official 2.3 km, 37 m up and 37 m down, about 2:30 h with the stations (NLW Tourismus, nassfeld.at); the board gives 929–964 m; the stored profile, sampled from a terrain model, reads up to 1,018 m where the path runs below steep slopes, but the path stays close to the lake.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'NLW Tourismus, Was(s)erleben im Naturpark Weißensee (nassfeld.at, with its Outdooractive line)',
+          'Weißensee and Stockenboi, which holds the east shore, have no lead order of their own (RIS, Carinthian municipal law: no dog ordinance in either), so ORMA’s Carinthia default applies',
+          'Carinthia’s dog rules (ORMA’s Austrian standard, approved 27 October 2026): K-HHWS-VO § 1 (LGBl. 62/2025), a lead at all times in hunting grounds outside villages; K-LSiG § 8, a lead or a muzzle in busy public places; K-JG § 49, a hunting warden may kill a dog that chases game',
+          'Land Kärnten protected sites (INSPIRE, gis.ktn.gv.at open data): The whole line lies in the Weißensee landscape protection area (LGBl. 48/1970) and Naturpark Weißensee (LGBl. 29/2006). A landscape protection area can only make building-type works subject to a permit (K-NSG 2002 § 25), and the nature park ordinance declares the park and its signs; we found no visitor or dog rule in either. No national park or nature reserve on or within 300 m (Land Kärnten INSPIRE protected sites). It passes within 59 m of the Natura 2000 site “In der Laka” (beech forest, LGBl. 98/2018), whose ordinance sets no access or dog rule.',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-28'
+      },
+      shadeCoverage: 0.3,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 120 m on the Stockenboier Straße (L32) by the roundabout at the start: keep your dog close', 'Footways and the boardwalk are shared with cyclists', 'The east shore is busy with bathers in summer: keep your dog close by the beaches'],
+      terrainType: 'Lakeside footways, a boardwalk and woodland paths',
+      shadeDescription: 'About a third in woodland; the lakeside footways are open.',
+      terrainDescription: 'A short, nearly level loop at 929–964 m on lakeside footways, a wooden boardwalk, woodland paths and a short track, with about 120 m beside the Stockenboier Straße (L32).',
+      waterDescription: 'Drinking water on the east shore about 0.5 km in; cafés by the boat landing.',
+      dogNotes: 'Weißensee and Stockenboi, which holds the east shore, have no lead order of their own (RIS, Carinthian municipal law: no dog ordinance in either); ORMA’s Carinthia standard applies. Keep your dog on a lead for the whole walk and carry a muzzle: Carinthian law requires a lead at all times in hunting grounds outside villages (K-HHWS-VO § 1), and a lead or a muzzle in busy public places in the village (K-LSiG § 8). Under the Carinthian hunting law a hunting warden may kill a dog that chases game (K-JG § 49).',
+      tips: 'Start at the boat landing and large car park on the east shore: 2.3 km and about 37 m of climbing, about 2:30 h with the stations. A short nature trail with stations about water, so the board allows plenty of time. The east shore is busy in summer, so keep your dog close. Carry a muzzle for buses.',
+      sourceLinks: [
+        { label: 'Nassfeld-Pressegger See, Was(s)erleben im Naturpark Weißensee', url: 'https://www.nassfeld.at/de/Tour/Was-s-erleben-im-Naturpark-Weissensee_t_35075' },
+        { label: 'Kärntner Hundehaltungs- und Wildschutzverordnung § 1 (dogs on a lead in hunting grounds)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40020563/LKT40020563.html' },
+        { label: 'Kärntner Landessicherheitsgesetz § 8 (dogs in public places)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40004491/LKT40004491.html' },
+        { label: 'Kärntner Jagdgesetz 2000 § 49 (dogs chasing game)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40015329/LKT40015329.html' },
+        { label: 'Europaschutzgebiet „In der Laka“ (LGBl. 98/2018)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LKT40018952/LKT40018952.html' },
+        { label: 'Land Kärnten, protected sites (INSPIRE open data)', url: 'https://www.data.gv.at/katalog/datasets/83662edf-6db4-4d86-a2b3-4f839290d011' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.699423, lng: 13.413701, label: 'the boat landing and large car park at the roundabout on the east shore, the board’s start' },
+      waterSources: [
+        { km: 0.5, lat: 46.7026256, lng: 13.4127859, osmId: 'node/13071273801', label: 'Drinking water on the east shore' }
+      ],
+      rifugi: [
+
+      ],
+      desc: 'Naturpark Weissensee’s short nature trail about water at the east end of the lake, on lakeside footways, a boardwalk and woodland paths. The board lists 2.3 km and 37 m of ascent.'
     }
   };
 

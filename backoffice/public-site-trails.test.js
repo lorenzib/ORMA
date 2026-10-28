@@ -153,9 +153,12 @@ describe('the existing-site verification boundary',()=>{
     // Then 383 and 381 with the first Carinthian walks: the Gail river walk at Maria
     // Luggau, the Tuffbad loop in the Lesachtal and the alpine cheese walk from the
     // Sonnenalpe Nassfeld.
+    // Then 392 and 390 with nine Weissensee walks: five Nordic walking trails
+    // round Techendorf and Gatschach, the Kreuzwirt walk, the Slow Trail, the
+    // north-shore walk from Neusach and the Was(s)erleben nature trail.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(383);
-    expect(currentSiteTrails(catalogue)).toHaveLength(381);
+    expect(catalogue).toHaveLength(392);
+    expect(currentSiteTrails(catalogue)).toHaveLength(390);
   });
 
   test('requires the artwork the public trail page needs',()=>{

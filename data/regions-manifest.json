@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T12:34:49.816Z",
+  "generatedAt": "2026-10-28T14:44:23.370Z",
   "regions": {
     "dolomites": {
       "trailCount": 287,
@@ -423,8 +423,8 @@
       "optional": []
     },
     "tyrol": {
-      "trailCount": 13,
-      "trails": "data/regions/tyrol-trails.js?v=7ddff27b40c0",
+      "trailCount": 22,
+      "trails": "data/regions/tyrol-trails.js?v=d859ef095776",
       "details": {
         "osttirol-rundwanderung-schloss-weissenstein": "data/trail-details/osttirol-rundwanderung-schloss-weissenstein.js?v=505f9f1fa778",
         "osttirol-naturkraftweg-umbalfaelle": "data/trail-details/osttirol-naturkraftweg-umbalfaelle.js?v=40335ca2a8f1",
@@ -438,7 +438,16 @@
         "osttirol-wassererlebnisweg-st-jakob-i-d": "data/trail-details/osttirol-wassererlebnisweg-st-jakob-i-d.js?v=dded64d35664",
         "lesachtal-spazierweg-maria-luggau-gailweg": "data/trail-details/lesachtal-spazierweg-maria-luggau-gailweg.js?v=dab77041c8f1",
         "lesachtal-tuffbad": "data/trail-details/lesachtal-tuffbad.js?v=b771d811e6a5",
-        "gailtal-almkaese-sonnenalpe": "data/trail-details/gailtal-almkaese-sonnenalpe.js?v=8ec14c665f2e"
+        "gailtal-almkaese-sonnenalpe": "data/trail-details/gailtal-almkaese-sonnenalpe.js?v=8ec14c665f2e",
+        "weissensee-nordic-6-rothns-bichl": "data/trail-details/weissensee-nordic-6-rothns-bichl.js?v=08aecd223bc6",
+        "weissensee-nordic-5-genoesns-bruendl": "data/trail-details/weissensee-nordic-5-genoesns-bruendl.js?v=e04e417689bc",
+        "weissensee-nordic-7-franz-josephs-hoehe": "data/trail-details/weissensee-nordic-7-franz-josephs-hoehe.js?v=beb0d910f2fc",
+        "weissensee-slow-trail": "data/trail-details/weissensee-slow-trail.js?v=e9a5fed611b2",
+        "weissensee-wasserleben": "data/trail-details/weissensee-wasserleben.js?v=1e6632e9e4a4",
+        "weissensee-nordic-2-urschitz": "data/trail-details/weissensee-nordic-2-urschitz.js?v=a6de2a77ecbd",
+        "weissensee-nordic-8-naggler-alm": "data/trail-details/weissensee-nordic-8-naggler-alm.js?v=080c76971569",
+        "weissensee-techendorf-tschabitscher-kreuzwirt": "data/trail-details/weissensee-techendorf-tschabitscher-kreuzwirt.js?v=d72cff8707ad",
+        "weissensee-ortsee-ronacherfels": "data/trail-details/weissensee-ortsee-ronacherfels.js?v=596ff2168b78"
       },
       "water": "data/regions/tyrol-water.geojson",
       "hutsBars": "data/regions/tyrol-huts-bars.geojson",
@@ -829,7 +838,16 @@
     "osttirol-wassererlebnisweg-st-jakob-i-d": "tyrol",
     "lesachtal-spazierweg-maria-luggau-gailweg": "tyrol",
     "lesachtal-tuffbad": "tyrol",
-    "gailtal-almkaese-sonnenalpe": "tyrol"
+    "gailtal-almkaese-sonnenalpe": "tyrol",
+    "weissensee-nordic-6-rothns-bichl": "tyrol",
+    "weissensee-nordic-5-genoesns-bruendl": "tyrol",
+    "weissensee-nordic-7-franz-josephs-hoehe": "tyrol",
+    "weissensee-slow-trail": "tyrol",
+    "weissensee-wasserleben": "tyrol",
+    "weissensee-nordic-2-urschitz": "tyrol",
+    "weissensee-nordic-8-naggler-alm": "tyrol",
+    "weissensee-techendorf-tschabitscher-kreuzwirt": "tyrol",
+    "weissensee-ortsee-ronacherfels": "tyrol"
   },
   "trailSlug": {
     "alpe-siusi": "alpe-di-siusi-meadow-loop",
@@ -1214,6 +1232,15 @@
     "lesachtal-spazierweg-maria-luggau-gailweg": "gailweg-maria-luggau",
     "lesachtal-tuffbad": "tuffbad-loop-lesachtal",
     "gailtal-almkaese-sonnenalpe": "alpine-cheese-walk-sonnenalpe-nassfeld",
+    "weissensee-nordic-6-rothns-bichl": "rothns-bichl-loop-weissensee",
+    "weissensee-nordic-5-genoesns-bruendl": "genoesns-bruendl-loop-weissensee",
+    "weissensee-nordic-7-franz-josephs-hoehe": "franz-josephs-hoehe-loop-weissensee",
+    "weissensee-slow-trail": "slow-trail-weissensee",
+    "weissensee-wasserleben": "wasserleben-nature-trail-weissensee",
+    "weissensee-nordic-2-urschitz": "urschitz-loop-weissensee",
+    "weissensee-nordic-8-naggler-alm": "naggler-alm-climb-weissensee",
+    "weissensee-techendorf-tschabitscher-kreuzwirt": "techendorf-kreuzwirt-walk-weissensee",
+    "weissensee-ortsee-ronacherfels": "neusach-east-shore-lakeside-walk-weissensee",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1599,6 +1626,15 @@
     "gailweg-maria-luggau": "lesachtal-spazierweg-maria-luggau-gailweg",
     "tuffbad-loop-lesachtal": "lesachtal-tuffbad",
     "alpine-cheese-walk-sonnenalpe-nassfeld": "gailtal-almkaese-sonnenalpe",
+    "rothns-bichl-loop-weissensee": "weissensee-nordic-6-rothns-bichl",
+    "genoesns-bruendl-loop-weissensee": "weissensee-nordic-5-genoesns-bruendl",
+    "franz-josephs-hoehe-loop-weissensee": "weissensee-nordic-7-franz-josephs-hoehe",
+    "slow-trail-weissensee": "weissensee-slow-trail",
+    "wasserleben-nature-trail-weissensee": "weissensee-wasserleben",
+    "urschitz-loop-weissensee": "weissensee-nordic-2-urschitz",
+    "naggler-alm-climb-weissensee": "weissensee-nordic-8-naggler-alm",
+    "techendorf-kreuzwirt-walk-weissensee": "weissensee-techendorf-tschabitscher-kreuzwirt",
+    "neusach-east-shore-lakeside-walk-weissensee": "weissensee-ortsee-ronacherfels",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

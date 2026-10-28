@@ -2745,6 +2745,78 @@
       "quote": "8.7 km Strecke · 2.5 h Dauer · 295 hm Aufstieg · 300 hm Abstieg",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-nordic-6-rothns-bichl": {
+      "url": "https://www.nassfeld.at/de/Tour/Trail-6-Rothn-s-Bichl-Nordic-Walking_t_27586",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Trail 6 „Rothn’s Bichl“ – Nordic Walking",
+      "quote": "5.9 km Strecke · 1.3 h Dauer · 89 hm Aufstieg · 89 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-nordic-5-genoesns-bruendl": {
+      "url": "https://www.nassfeld.at/de/Tour/Trail-5-Genoesn-s-Bruendl-Nordic-Walking_t_27618",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Trail 5 „Genösn’s Bründl“ – Nordic Walking",
+      "quote": "3.5 km Strecke · 0.8 h Dauer · 88 hm Aufstieg · 88 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-nordic-7-franz-josephs-hoehe": {
+      "url": "https://www.nassfeld.at/de/Tour/Trail-7-Franz-Josephs-Hoehe-Nordic-Walking_t_27879",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Trail 7 „Franz-Josephs-Höhe“ – Nordic Walking",
+      "quote": "9 km Strecke · 2.1 h Dauer · 162 hm Aufstieg · 162 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-nordic-2-urschitz": {
+      "url": "https://www.nassfeld.at/de/Tour/Trail-2-Urschitz-Nordic-Walking_t_35319",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Trail 2 „Urschitz“ – Nordic Walking",
+      "quote": "7.3 km Strecke · 1.8 h Dauer · 129 hm Aufstieg · 129 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-nordic-8-naggler-alm": {
+      "url": "https://www.nassfeld.at/de/Tour/Trail-8-Naggler-Alm-Alpine-Walking_t_35330",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Trail 8 „Naggler Alm – Alpine Walking“",
+      "quote": "3.1 km Strecke · 1.1 h Dauer · 385 hm Aufstieg · 0 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-techendorf-tschabitscher-kreuzwirt": {
+      "url": "https://www.nassfeld.at/de/Tour/Techendorf-Tschabitscher-Kreuzwirt_t_65527",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Techendorf-Tschabitscher-Kreuzwirt",
+      "quote": "6.5 km Strecke · 2 h Dauer · 177 hm Aufstieg · 145 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-slow-trail": {
+      "url": "https://www.nassfeld.at/de/Tour/Slow-Trail-Weissensee_t_35042",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Slow Trail Weissensee",
+      "quote": "6.7 km Strecke · 2.5 h Dauer · 72 hm Aufstieg · 73 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-ortsee-ronacherfels": {
+      "url": "https://www.nassfeld.at/de/Tour/Ortsee-ueber-Ronacherfels-und-Kleine-Steinwand-Weissensee_t_35049",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Ortsee über Ronacherfels und Kleine Steinwand – Weissensee",
+      "quote": "8.5 km Strecke · 2.8 h Dauer · 69 hm Aufstieg · 76 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-wasserleben": {
+      "url": "https://www.nassfeld.at/de/Tour/Was-s-erleben-im-Naturpark-Weissensee_t_35075",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Was(s)erleben im Naturpark Weißensee",
+      "quote": "2.3 km Strecke · 2.5 h Dauer · 37 hm Aufstieg · 37 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
     }
   }
 }
