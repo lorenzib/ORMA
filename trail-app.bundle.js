@@ -64169,16 +64169,22 @@ function initHikeMode(map, trail, options){
   // the stated distance. Scaling position by the full distance put the walker
   // at the finish the moment they reached the turnaround -- 5.5 km at Rifugio
   // Nuvolau, with the whole descent still to come.
-  const outAndBack = trail.routeShape === 'out-and-back';
+  const closes = metersBetween(
+    trail.path[0][0], trail.path[0][1],
+    trail.path[trail.path.length - 1][0], trail.path[trail.path.length - 1][1]
+  ) <= 75;
+  // Only a there-and-back drawn one way is one leg. A board walk drawn out and
+  // back again (the Tre Cime board's, and any built with --there-and-back)
+  // closes on itself and is already the whole walk; halving it put the walker
+  // at the far end with half the way out still to go.
+  const outAndBack = trail.routeShape === 'out-and-back' && !closes;
   // Declared shape wins over guessing from the ends. A there-and-back whose
   // line is later completed closes on itself, and closure alone would then
   // read it as a loop and switch off the next-water and next-hut readouts.
+  // A lollipop closes too, but its stem is walked twice: not a loop either.
   const isLoop = trail.routeShape
     ? trail.routeShape === 'loop'
-    : metersBetween(
-      trail.path[0][0], trail.path[0][1],
-      trail.path[trail.path.length - 1][0], trail.path[trail.path.length - 1][1]
-    ) <= 75;
+    : closes;
   // How far out the walk has reached, so the return leg can be told from the
   // outbound one. Both are the same line in the same direction of travel.
   let furthestRouteM = 0;
