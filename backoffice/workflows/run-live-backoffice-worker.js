@@ -993,7 +993,7 @@ async function recordHandVerifications(store, options = {}){
   if(plan.orchestration){
     const next={...plan.orchestration,generatedAt:at,summary:summarizeOrchestration(plan.orchestration.trails)};
     const errors=validateTrailOrchestration(next);if(errors.length)throw new Error(errors.join('; '));
-    await store.setArtifact('trail-orchestration',next,{handVerificationsAt:at});
+    await store.setArtifact('trail-orchestration',compactOrchestration(next),{handVerificationsAt:at});
   }
   const retired=[];
   if(typeof store.completeSystemJob==='function'){
@@ -1002,7 +1002,7 @@ async function recordHandVerifications(store, options = {}){
       retired.push(id);
     }
   }
-  return {recorded:plan.recorded,withdrawn:plan.withdrawn,retiredJobs:retired};
+  return {recorded:plan.recorded,withdrawn:plan.withdrawn,compacted:plan.compacted,retiredJobs:retired};
 }
 
 /**
