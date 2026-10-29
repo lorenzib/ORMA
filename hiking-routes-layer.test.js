@@ -256,6 +256,23 @@ describe('the walk lets the satellite path show through', () => {
     expect(map.layers.walk.paint['line-opacity']).toBe(before.line);
   });
 
+  test('the corridor is one solid pale colour, so overlaps leave no darker knots', () => {
+    expect(style.paleColour('#000000')).toBe('#9e9e9e');
+    expect(style.paleColour('#ffffff')).toBe('#ffffff');
+    expect(style.paleColour('#4A7856', 0)).toBe('#4a7856');
+    expect(style.paleColour(['get', 'colour'])).toEqual(['get', 'colour']);
+    const map = paintMap();
+    style.addRouteLine(map, { id: 'walk', source: 'walk', color: '#c80000', beforeId: null });
+    expect(map.layers.walk.paint['line-color']).toBe(style.paleColour('#c80000'));
+    expect(map.layers.walk.paint['line-opacity']).toBe(1);
+  });
+
+  test('the corridor sits under the contours, else under the marked network', () => {
+    const has = ids => ({ getLayer: id => ids.includes(id), getStyle: () => ({ layers: [] }) });
+    expect(style.walkCorridorBeforeId(has([style.CONTOUR_LINE_LAYER, style.HIKING_LINE_LAYER]))).toBe(style.CONTOUR_LINE_LAYER);
+    expect(style.walkCorridorBeforeId(has([style.HIKING_LINE_LAYER]))).toBe(style.HIKING_LINE_LAYER);
+  });
+
   test('our grey routes fade on satellite too, and come back', () => {
     const map = paintMap();
     map.addLayer({ id: style.HIKING_LINE_LAYER, paint: { 'line-opacity': style.HIKING_LINE_OPACITY.map } });

@@ -661,6 +661,33 @@
   }
 
   /**
+   * Where a walk's corridor goes: under the relief and the whole marked
+   * network, so the contours and the dashed path the walker follows draw
+   * over it. Contours added later still land above it (they go just under
+   * the network).
+   */
+  function walkCorridorBeforeId(map) {
+    if (map && map.getLayer(CONTOUR_LINE_LAYER)) return CONTOUR_LINE_LAYER;
+    return networkLayerId(map);
+  }
+
+  /**
+   * A route colour washed toward white. The corridor is drawn solid in this
+   * instead of translucent in the full colour: a translucent line paints
+   * twice wherever the walk bends back over itself, which left darker knots.
+   */
+  function paleColour(color, amount) {
+    const match = /^#([0-9a-f]{6})$/i.exec(String(color || ''));
+    if (!match) return color;
+    const mix = amount === undefined ? 0.62 : amount;
+    const value = parseInt(match[1], 16);
+    return '#' + [16, 8, 0].map(shift => {
+      const channel = (value >> shift) & 255;
+      return Math.round(channel + (255 - channel) * mix).toString(16).padStart(2, '0');
+    }).join('');
+  }
+
+  /**
    * Turn down the base style so the hiking network can be the loudest thing
    * on the map. Shops, ATMs, road shields and aerodromes are not why anyone
    * opens a dog-walking map; peaks, huts, water and settlement names are.
@@ -900,11 +927,12 @@
         'line-width': widthRamp(1.5, 2, 2.5, 3, scale),
         'line-gap-width': widthRamp(7, 12, 18, 26, scale),
       },
-      // A light tint on purpose: the dashed path the walker follows has to
-      // read through it, not just its numbers.
+      // Solid and pale on purpose: it sits under the contours and the dashed
+      // path, so they read through it, and a solid line has no darker knots
+      // where the walk overlaps itself.
       line: {
-        'line-color': color,
-        'line-opacity': 0.35,
+        'line-color': paleColour(color),
+        'line-opacity': 1,
         'line-width': widthRamp(7, 12, 18, 26, scale),
       },
     };
@@ -920,10 +948,10 @@
     const id = config.id;
     if (!map || !source || !id || map.getLayer(id)) return null;
     const paint = routeLinePaint(config.color || '#2E4034', config);
-    // Default to sitting under Waymarked's raster, so the route highlights the
-    // marked path instead of covering it; with our own network, between the
-    // dashed routes and their numbers.
-    const fallbackBefore = walkLineBeforeId(map);
+    // Default to sitting under the contours and the marked network (or
+    // Waymarked's raster), so the route highlights the path instead of
+    // covering it.
+    const fallbackBefore = walkCorridorBeforeId(map);
     const beforeId = config.beforeId !== undefined ? config.beforeId : fallbackBefore;
     const target = beforeId && map.getLayer(beforeId) ? beforeId : undefined;
     const layout = { 'line-join': 'round', 'line-cap': 'round' };
@@ -1076,6 +1104,8 @@
     walkRouteStretches,
     networkLayerId,
     walkLineBeforeId,
+    walkCorridorBeforeId,
+    paleColour,
     quietBasemap,
     calmBasemap,
     routeLinePaint,
@@ -69386,7 +69416,7 @@ function applyDetailRouteColor(color){
   window._dolopawsTrailRouteColor = color;
   const map = window._dolopawsTrailMap;
   if(!map || !map.isStyleLoaded || !map.isStyleLoaded()) return;
-  if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', color);
+  if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', window.ORMAMapStyle.paleColour(color));
   if(map.getLayer('single-trail-direction-arrows')) map.setPaintProperty('single-trail-direction-arrows', 'text-halo-color', color);
 }
 
@@ -71800,15 +71830,15 @@ function renderTrail(t){
             geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
           },
         });
-        // The route is a translucent match-colour corridor with a white
-        // casing, over the dashed grey routes and under their numbers, so the
-        // numbers a walker follows stay readable. (Under Waymarked's raster
-        // instead, when the page has fallen back to it.)
+        // The route is a pale match-colour corridor edged in white, under the
+        // contours and the dashed routes, so the path a walker follows and
+        // its numbers draw over it. (Under Waymarked's raster instead, when
+        // the page has fallen back to it.)
         window.ORMAMapStyle.addRouteLine(map, {
           id: 'single-trail-path-line',
           source: 'single-trail-path',
           color: selectedRouteColor,
-          beforeId: window.ORMAMapStyle.walkLineBeforeId(map),
+          beforeId: window.ORMAMapStyle.walkCorridorBeforeId(map),
         });
         // Satellite may already be on by the time the walk arrives.
         if(map.getLayer('satellite-layer') && map.getLayoutProperty('satellite-layer', 'visibility') === 'visible'){
