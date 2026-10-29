@@ -245,7 +245,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20261006-1');
-    expect(html).toContain('trail-app.bundle.js?v=20261029-3');
+    expect(html).toContain('trail-app.bundle.js?v=20261029-4');
     expect(html).toContain('trail-mobile.css?v=20260904-3');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
@@ -758,7 +758,7 @@ describe('trail page map controls', () => {
     expect(trail).toContain("ORMAMapStyle.addRouteLine(map, {");
     expect(trail).toContain("id: 'single-trail-path-line',");
     expect(trail).toContain('color: selectedRouteColor,');
-    expect(trail).toContain('beforeId: window.ORMAMapStyle.walkLineBeforeId(map),');
+    expect(trail).toContain('beforeId: window.ORMAMapStyle.walkCorridorBeforeId(map),');
     expect(trail).toContain("'line-color': '#858D88'");
     // No route-number shields on the detail map: the hiking network numbers
     // every route itself, and shields would only fight those for space.

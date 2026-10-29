@@ -1832,11 +1832,12 @@ function initTrailMap(){
     trailMapInstance.addSource('trail-selected-route', {
       type:'geojson', data:{ type:'FeatureCollection', features:[] },
     });
-    // The chosen walk matches the detail page: thin white edges and a
-    // light match-colour corridor under the route numbers, and the
+    // The chosen walk matches the detail page: thin white edges and a pale
+    // match-colour corridor under the contours and the dashed routes, and the
     // routes it follows numbered beside it (setSelectedTrailRoute).
     // The catalogue rails above remain subdued; the selected route is the
     // only corridor that should read as the walk the owner has chosen.
+    const corridorBeforeId = window.ORMAMapStyle.walkCorridorBeforeId(trailMapInstance);
     trailMapInstance.addLayer({
       id:'trail-selected-route-casing', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
@@ -1845,15 +1846,15 @@ function initTrailMap(){
         'line-width':['interpolate',['linear'],['zoom'],8,1.5,12,2,14,2.5,17,3],
         'line-gap-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26],
       },
-    }, railsBeforeId);
+    }, corridorBeforeId);
     trailMapInstance.addLayer({
       id:'trail-selected-route-line', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
       paint:{
-        'line-color':['coalesce',['get','routeColor'],'#4A7856'],
-        'line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26], 'line-opacity':0.35,
+        'line-color':['coalesce',['get','routeColorPale'],window.ORMAMapStyle.paleColour('#4A7856')],
+        'line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26], 'line-opacity':1,
       },
-    }, railsBeforeId);
+    }, corridorBeforeId);
     trailMapInstance.addLayer({
       id:'trail-selected-route-arrows', type:'symbol', source:'trail-selected-route',
       layout:{
@@ -2249,7 +2250,7 @@ function setSelectedTrailRoute(trail, options){
     type:'FeatureCollection',
     features:visible ? [{
       type:'Feature',
-      properties:{ id:trail.id, routeColor },
+      properties:{ id:trail.id, routeColor, routeColorPale:window.ORMAMapStyle.paleColour(routeColor) },
       geometry:{ type:'LineString', coordinates:route.map(([lat, lng]) => [lng, lat]) },
     }] : [],
   });

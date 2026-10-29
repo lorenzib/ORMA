@@ -31,7 +31,7 @@ function applyDetailRouteColor(color){
   window._dolopawsTrailRouteColor = color;
   const map = window._dolopawsTrailMap;
   if(!map || !map.isStyleLoaded || !map.isStyleLoaded()) return;
-  if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', color);
+  if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', window.ORMAMapStyle.paleColour(color));
   if(map.getLayer('single-trail-direction-arrows')) map.setPaintProperty('single-trail-direction-arrows', 'text-halo-color', color);
 }
 
@@ -2445,15 +2445,15 @@ function renderTrail(t){
             geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
           },
         });
-        // The route is a translucent match-colour corridor with a white
-        // casing, over the dashed grey routes and under their numbers, so the
-        // numbers a walker follows stay readable. (Under Waymarked's raster
-        // instead, when the page has fallen back to it.)
+        // The route is a pale match-colour corridor edged in white, under the
+        // contours and the dashed routes, so the path a walker follows and
+        // its numbers draw over it. (Under Waymarked's raster instead, when
+        // the page has fallen back to it.)
         window.ORMAMapStyle.addRouteLine(map, {
           id: 'single-trail-path-line',
           source: 'single-trail-path',
           color: selectedRouteColor,
-          beforeId: window.ORMAMapStyle.walkLineBeforeId(map),
+          beforeId: window.ORMAMapStyle.walkCorridorBeforeId(map),
         });
         // Satellite may already be on by the time the walk arrives.
         if(map.getLayer('satellite-layer') && map.getLayoutProperty('satellite-layer', 'visibility') === 'visible'){
