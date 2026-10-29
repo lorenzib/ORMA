@@ -30,7 +30,7 @@ describe('shared map quality profile', () => {
     pages.forEach(([page, mapScript]) => {
       const html = read(page);
       if(page === 'trail.html'){
-        expect(html).toContain('trail-app.bundle.js?v=20261029-2');
+        expect(html).toContain('trail-app.bundle.js?v=20261029-3');
         expect(html).not.toContain('<script src="map-runtime.js');
         return;
       }
@@ -109,8 +109,11 @@ describe('shared map quality profile', () => {
     // A solid line ON TOP buries Waymarked's own route line and its numbered
     // shields, which is why we used to reprint the numbers ourselves. The
     // route goes below the raster as a translucent corridor instead.
-    expect(style).toContain("'line-opacity': 0.55");
-    expect(style).toContain('widthRamp(10, 16, 23, 33, scale)');
+    expect(style).toContain("'line-opacity': 0.35");
+    // The casing is two thin edges around the corridor, not a white band
+    // under it, so the path inside the corridor is not washed out.
+    expect(style).toContain('widthRamp(1.5, 2, 2.5, 3, scale)');
+    expect(style).toContain("'line-gap-width': widthRamp(7, 12, 18, 26, scale)");
     expect(style).toContain('widthRamp(7, 12, 18, 26, scale)');
     // Default insertion point: under the Waymarked raster where a map still
     // draws it, between our dashed routes and their numbers where it draws
