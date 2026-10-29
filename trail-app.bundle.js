@@ -48710,6 +48710,60 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1',
       routeShape: 'lollipop',
       routeShapeNote: 'A loop from Piazza Verdi in Cavalese down through the old railway tunnel under the Parco della Pieve, across the meadows to the ice stadium and back up through the park past the parish church. A loop on a stem: the first 280 m from the start is walked both ways, out and home.',
+      // Directions 29 October 2026: the board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Piazza Verdi in Cavalese, the tourist board’s start.",
+        "sequence": "Via Bresadola onto the old railway track, through the tunnel under the Parco della Pieve, across the meadows to the Hotel Panorama, up Via Cavazal to the ice stadium, up through the park to the parish church, and back along the lime-tree avenue.",
+        "switches": "Right into Via della Pieve, then right into Via Bresadola. Left at the ice stadium. Right up the steps at the little hut. Left at the tennis courts, towards the bar.",
+        "steps": [
+          {
+            "text": "From Piazza Verdi walk along Viale Mendini, turn right into Via della Pieve, then right again into Via Bresadola.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The road is tarred at first, then gravel, and follows the old track of the Val di Fiemme railway. Go through the old railway tunnel under the Parco della Pieve and carry on across the meadows until you are level with the Hotel Panorama.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Walk up Via Cavazal. At the ice stadium turn left along the pavement as far as the little hut.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "There, take the steps on the right up to the park’s viewpoint, then follow the paved path to the tennis courts.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn left, towards the bar, and follow the panoramic walk to the parish church of Santa Maria Assunta and the shrine of the Madonna Addolorata.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From there, take the avenue lined with very old lime trees back to the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Cavalese, passeggiata panoramica: directions",
+            "authority": "Fiemme and Cembra tourist board (visitfiemme.it)",
+            "url": "https://www.visitfiemme.it/it/activity/cavalese-passeggiata-panoramica_9752",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
@@ -48843,6 +48897,54 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1',
       routeShape: 'loop',
       routeShapeNote: 'A short loop from the hamlet of Roda up through the wood above the valley cycle path to the Rio Sadole stream, and back down past the Mas del Marino.',
+      // Directions 29 October 2026: the board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the hamlet of Roda, Ziano di Fiemme, the tourist board’s start.",
+        "sequence": "Up Via Baster, across the cycle path towards Bosin, then up through the wood to the Rio Sadole stream, and back down a dirt track past the Mas del Marino to the cycle path and Roda.",
+        "switches": "Right across the cycle path after 150 m. Sharp left before the first houses of Bosin. Down the dirt track at the Rio Sadole. Left on the cycle path back to Roda.",
+        "steps": [
+          {
+            "text": "From Roda take Via Baster.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "After 150 m, cross the cycle path on your right and carry on along a path for about 300 m towards Bosin, until you see the first houses of the hamlet.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn sharp left. The path climbs towards the Cercenai road until it reaches the Rio Sadole stream.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Here take the dirt track going down, past the Mas del Marino, to the Fiemme cycle path.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn left to reach Roda and the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Le Cascatelle di Ziano di Fiemme: directions",
+            "authority": "Fiemme and Cembra tourist board (visitfiemme.it)",
+            "url": "https://www.visitfiemme.it/it/activity/le-cascatelle-di-ziano-di-fiemme_9658",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
@@ -49494,6 +49596,48 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '4.5',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the church in Grauno along the botanical path through the woods to Capriana, then by Cao de Villa on paths and forest roads up to the Fontana d’Ao hut and back down the old cobbled road to Grauno.',
+      // Directions 29 October 2026: the board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the church in Grauno, the tourist board’s start.",
+        "sequence": "Up the cobbled lane and along the signed path to Capriana, then by the signs for Cao de Villa on paths and forest roads up to the Rifugio Fontana d’Ao, and down the cobbled road to Grauno.",
+        "switches": "After about 100 m up the cobbled lane, take the level track on the right, signed for Capriana. To come back, follow the signs for Cao de Villa.",
+        "steps": [
+          {
+            "text": "From the church in Grauno go up the cobbled lane. After about 100 m, take the level track on the right, following the signs for Capriana.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Stay on the same signed path all the way to Capriana.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "To come back, follow the signs for Cao de Villa and carry on along paths and forest roads up to the Rifugio Fontana d’Ao.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Then go down the cobbled road to Grauno.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Sentiero botanico naturalistico: directions",
+            "authority": "Fiemme and Cembra tourist board (visitfiemme.it)",
+            "url": "https://www.visitfiemme.it/it/activity/sentiero-botanico-naturalistico_9640",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
@@ -49778,6 +49922,36 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '0.5',
       routeShape: 'lollipop',
       routeShapeNote: 'A short loop round the shore of the Lago Santo above Cembra, from the car park at the end of the lake road. A loop on a stem: the first 160 m from the start is walked both ways, out and home.',
+      // Directions 29 October 2026: the board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park at the end of the provincial road to the Lago Santo, the tourist board’s start.",
+        "sequence": "Down to the bathing area, then round the lake anticlockwise on the lakeside road and back to the car park.",
+        "switches": "At the bathing area, take the road round the lake and keep the water on your left: the board describes the loop anticlockwise.",
+        "steps": [
+          {
+            "text": "From the car park, go down to the bathing area and take the road that runs round the lake.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Walk round the lake anticlockwise and back to the car park. The climb is very small, so the board says you can also go the other way round.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Il Lago Santo: directions",
+            "authority": "Fiemme and Cembra tourist board (visitfiemme.it)",
+            "url": "https://www.visitfiemme.it/it/activity/il-lago-santo_63413",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-27',
@@ -49899,6 +50073,48 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the lake car park into the wooded Val Fredda with its old ice pits, then round the Lago di Lases, over the footbridge between the lake and the Palù degli Sfrondoni and back along the opposite shore.',
+      // Directions 29 October 2026: the board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park on the SP 71 by the Lago di Lases, the tourist board’s start.",
+        "sequence": "Left along the lake shore, off into the woods to the Val Fredda and its ice pits, back to the shore and round to the south end of the lake, over the small bridge and back along the opposite shore.",
+        "switches": "Soon after reaching the lake, follow the signs off the lakeside path into the woods. At the south end of the lake, cross the small bridge.",
+        "steps": [
+          {
+            "text": "From the car park on the SP 71, walk to the lake and follow the path along the shore to the left.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Soon after, follow the signs to leave the lakeside path and go into the woods to the Val Fredda.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "After seeing this part of the protected area, go back to the lakeside path and follow it to the south end of the lake.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross the small bridge between the lake and the Palù degli Sfrondoni wetland, and walk back to the start along the opposite shore.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Il Lago di Lases e le buse del giaz: directions",
+            "authority": "Fiemme and Cembra tourist board (visitfiemme.it)",
+            "url": "https://www.visitfiemme.it/it/activity/il-lago-di-lases-e-le-buse-del-giaz_9812",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-27',
@@ -50020,6 +50236,54 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2',
       routeShape: 'out-and-back',
       routeShapeNote: 'Out and back: from Ville di Giovo up through the woods on forest tracks to the Dos Paion viewpoint on Monte Corona, and back the same way.',
+      // Directions 29 October 2026: the board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the centre of Ville di Giovo, the tourist board’s start.",
+        "sequence": "Up to the plateau above Ville, along the road towards Monte Corona past the last apple orchards, left onto a forest road round the mountain to the fork for the Dos Paion viewpoint, and back the same way.",
+        "switches": "Soon after the last apple orchards, turn left onto the forest road. At the fork, take the path up to the Dos Paion viewpoint.",
+        "steps": [
+          {
+            "text": "From the centre of Ville, where you can still see the remains of the Castello della Rosa, climb towards the woods on the plateau above the village.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "There, take the road towards Monte Corona, past the last apple orchards.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Soon a forest road turns off on the left: follow it.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The route goes round the mountain into thick woods of beech, pine and fir, until it reaches the fork where the path to the Dos Paion viewpoint starts.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the top there are tables, benches and a big metal cross, with the view over the lower Val di Cembra. The board lists this as a there-and-back walk: come back the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Passeggiata al belvedere del Dos Paion sul Monte Corona: directions",
+            "authority": "Fiemme and Cembra tourist board (visitfiemme.it)",
+            "url": "https://www.visitfiemme.it/it/activity/passeggiata-al-belvedere-del-dos-paion-sul-monte-corona_9837",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-27',
@@ -50258,6 +50522,48 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1',
       routeShape: 'loop',
       routeShapeNote: 'A short loop from the top of Grauno past the church, up the cobbled lane and along a level track into the woods, then down a woodland path back into the village and up through its lanes to the start.',
+      // Directions 29 October 2026: the board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park by the Castelet services centre at the top of Grauno, the tourist board’s start.",
+        "sequence": "Past the church and up the cobbled lane, along the first level track into the woods, down a woodland path back towards Grauno, along Via Orti to the roundabout by the cemetery, and back up to the start.",
+        "switches": "At the top of the cobbled lane, take the first level track into the woods, signed for Capriana. Leave it where a path goes down through the woods back towards Grauno.",
+        "steps": [
+          {
+            "text": "From the car park by the Castelet services centre, walk towards the church and go up the cobbled lane.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Following the signs for Capriana, take the first level track into the woods.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on until you meet a path that goes down through the woods back towards Grauno.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Continue along Via Orti to the roundabout at the bottom of the village, near the cemetery, and from there walk back up to the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Le erbe della salute: directions",
+            "authority": "Fiemme and Cembra tourist board (visitfiemme.it)",
+            "url": "https://www.visitfiemme.it/it/activity/le-erbe-della-salute_63414",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-27',
@@ -50374,6 +50680,48 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2.5',
       routeShape: 'lollipop',
       routeShapeNote: 'From Grumes across the SS 612 and up the quiet lanes and a short path to the scattered farmsteads of the Masi di Grumes, round among them, and back down. A loop on a stem: the first 1 km from the start is walked both ways, out and home.',
+      // Directions 29 October 2026: the board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in Grumes. The tourist board’s directions begin at the village square; it suggests parking at the free “Le Fontanelle” car park near the theatre.",
+        "sequence": "Up beside the church to the SS 612, across it and up past the old chestnut grove to the upper farms (Masi Alti), then down after Maso Giovanni to the lower farms (Masi Bassi) and back to the start.",
+        "switches": "At the SS 612 near the Green Grill, cross the road. After Maso Giovanni, turn down towards the Masi Bassi.",
+        "steps": [
+          {
+            "text": "From the village square, walk up beside the church to the SS 612 main road, near the Green Grill.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross the road and start climbing towards the Masi di Grumes, past the old chestnut grove.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on up to the Masi Alti, the upper farms.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "After Maso Giovanni, go down towards the Masi Bassi, the lower farms, and back to the start. The board says the walk is on quiet tarred roads.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Il Giro dei Masi di Grumes: directions",
+            "authority": "Fiemme and Cembra tourist board (visitfiemme.it)",
+            "url": "https://www.visitfiemme.it/it/activity/il-giro-dei-masi-di-grumes_9684",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-27',
@@ -50437,6 +50785,60 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2',
       routeShape: 'out-and-back',
       routeShapeNote: 'Out and back: from the Solaiolo car park up a gravel forest road past the Palù Longa biotope to the meadow and hut of Le Malghette (Krabes Alm), and back mostly the same way.',
+      // Directions 29 October 2026: the board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Solaiolo car park, the tourist board’s start.",
+        "sequence": "Up the gravel road in three climbs, past the lane to the Palù Longa lake and the little stone hut, to the big meadow and the Le Malghette hut, and back the same way.",
+        "switches": "After the stone hut, ignore the road on the left and go straight on. At the big meadow, go up to the hut by the cobbled lane on the right, or stay on the gravel road and turn right at the signs.",
+        "steps": [
+          {
+            "text": "The first climb starts at the car park (up to 18%). At its top there is a small stream on your left.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Then comes the second, longer climb (up to 16%). The road is gravel but firm.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Where it levels out, a short way on, a small gravel lane on the left leads to the shore of the little lake of the Palù Longa biotope, with its water lilies.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back on the main road, a little further on, there is a small stone hut with boards about local plants and animals by the fence. Ignore the road on the left and go straight on up the third and steepest climb (up to 18%).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Where it levels out, the big meadow begins on your right, with the Le Malghette hut at the top. Go up by the cobbled lane on the right (up to 20%), or stay on the gravel road and turn right following the signs.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back the same way. For the first stretch the board suggests the gravel road rather than the cobbles, and to watch out for the drainage channels on the first way down.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Montagna Senza Limiti, la “scalata” alle Malghette: directions",
+            "authority": "Fiemme and Cembra tourist board (visitfiemme.it)",
+            "url": "https://www.visitfiemme.it/it/activity/montagna-senza-limiti-la-scalata-alle-malghette_46674",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-27',
@@ -50675,6 +51077,42 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Malga Vernera Bassa on marked paths and forest roads over the summer pastures up towards Malga Vernera Alta and back; it can be walked either way.',
+      // Directions 29 October 2026: the board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park at Malga Vernera Bassa, the tourist board’s start.",
+        "sequence": "Along path SAT E469A at the edge of the pasture, past Malga Vernera Alta to the forest road “Bosco dalle Piane”, then along it to the little alpine chapel and back to the start. It can be walked either way round.",
+        "switches": "Just after Malga Vernera Bassa, take path SAT E469A. Where it meets the forest road “Bosco dalle Piane”, follow the road.",
+        "steps": [
+          {
+            "text": "A short way from Malga Vernera Bassa, take path SAT E469A, which keeps to the edge of the pasture.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "It passes Malga Vernera Alta, which is no longer used and whose barn has collapsed, and carries on until it reaches the forest road “Bosco dalle Piane”.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Follow that road to the little alpine chapel, and you are soon back at the start. The board says you can also walk the loop the other way round.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Sui pascoli di Malga Vernera: directions",
+            "authority": "Fiemme and Cembra tourist board (visitfiemme.it)",
+            "url": "https://www.visitfiemme.it/it/activity/sui-pascoli-di-malga-vernera_63417",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-27',
@@ -67564,7 +68002,7 @@ function initTrailReports(map, trail){
     return match ? `${Number(match[3])} ${MONTHS[Number(match[2]) - 1]} ${match[1]}` : '';
   }
 
-  const STEPS_BADGE = 'No trail numbers on this walk: follow these landmarks';
+  const STEPS_BADGE = 'This walk has no trail number of its own: follow these landmarks';
 
   /**
    * A walk with no trail numbers, given turn by turn (OPERATING_STANDARD.md,
