@@ -30,6 +30,16 @@ describe('every Verified walk shows directions on its page',()=>{
     const withdrawn=trails.filter(trail=>trail.graduation&&trail.graduation.blockers
       &&/page shows no directions/.test(String(trail.graduation.blockers.routeNumbers||'')));
     expect(withdrawn.length).toBeGreaterThan(0);
-    for(const trail of withdrawn) expect(bar.isVerified(trail)).toBe(false);
+    for(const trail of withdrawn){
+      expect(bar.isVerified(trail)).toBe(false);
+    }
+  });
+
+  test('a walk whose seal was withdrawn keeps its hand research from the pipeline',()=>{
+    // materialize-approved-publications.js refuses a publication over a
+    // walk marked sealWithdrawn, as it does over a Verified one.
+    const marked=trails.filter(trail=>trail.sealWithdrawn);
+    expect(marked.length).toBeGreaterThanOrEqual(78);
+    for(const trail of marked) expect(trail.sealWithdrawn.reason).toBe('no-directions-on-page');
   });
 });
