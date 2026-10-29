@@ -69,6 +69,12 @@ describe('loop handling reads the declared shape', () => {
     expect(source).toMatch(/trail\.routeShape\s*\n?\s*\?\s*trail\.routeShape === 'loop'/);
   });
 
+  test('a there-and-back drawn both ways is not halved', () => {
+    // The Tre Cime board walks and board lines built --there-and-back are
+    // stored out and back again, so the line is already the whole walk.
+    expect(source).toContain("trail.routeShape === 'out-and-back' && !closes");
+  });
+
   test('a resumed walk remembers how far out it got', () => {
     // Otherwise the return leg reads as outbound until the walker gets past
     // wherever the app restarted.
