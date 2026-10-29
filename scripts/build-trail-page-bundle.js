@@ -52,6 +52,8 @@ const SOURCES = [
   'trail-route-refs.js',
   // Says once where the route directions came from; trail-blueprint.js reads it.
   'route-guidance-sources.js',
+  // One-way walks seen there and back; trail.js and trail-recommendation.js read it.
+  'route-return.js',
   'trail.js',
   'trail-blueprint.js',
   'trail-detail-ui.js',
