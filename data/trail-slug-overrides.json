@@ -1363,6 +1363,16 @@
       "name": "The Kienberg legends loop",
       "slug": "kienberg-legends-loop",
       "gloss": "from Casteldarne over the Kienberg and back on the Way of the Cross"
+    },
+    "eggental-dal-passo-costalunga-al-lago-di-carezza": {
+      "name": "Passo Costalunga to Lake Carezza",
+      "slug": "costalunga-to-lake-carezza",
+      "gloss": "down through the Latemar forest to the Karersee"
+    },
+    "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": {
+      "name": "Lake Carezza to the Stadlalm",
+      "slug": "lake-carezza-to-stadlalm",
+      "gloss": "along the Karersee and the Templ forest road to the hut"
     }
   }
 }
