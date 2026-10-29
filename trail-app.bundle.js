@@ -62690,6 +62690,142 @@ function effectiveOverrides(profile, adjustOverride){
       ],
       startPoint: { lat: 46.79796, lng: 11.83901, label: 'The car park by the Koflerhof in Casteldarne (Ehrenburg), the board’s start' },
       desc: 'A loop from Casteldarne over the wooded Kienberg, past farms and the Plattnerhof of the local legend, towards Mantana and back on the historic Way of the Cross. The board lists 11.8 km and 417 m of ascent.'
+    },
+    'eggental-dal-passo-costalunga-al-lago-di-carezza': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Eggental batch 1).
+      // “Dal Passo Costalunga al Lago di Carezza”, published by the Eggental tourist board (Eggental Tourismus), drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: San Giovanni di Fassa at the pass (no dog rule published, national rule) and Welschnofen (its 2023 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // The last stretch, about 30%, is in the Karersee natural monument, where access stops at the lake fence; no dog rule. No Natura 2000 site or park.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Passo Costalunga – Lago di Carezza, Welschnofen',
+      distance: 4.4,
+      elevation: 18,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way, mostly downhill, from Passo Costalunga (Karerpass) through the Latemar forest on paths 21, 13 and 10 to the Lago di Carezza (Karersee); come back the same way or take bus 180 or 184 back up.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at Passo Costalunga (Karerpass), by the Antermont restaurant, the board’s start; buses 180 and 184 stop at the pass.",
+        "sequence": "Walk past the Antermont restaurant and across a meadow to path 21. Follow 21 to the junction with path 13, then take 13, a comfortable forest road through the Latemar forest, to path 10, which leads straight down to the Lago di Carezza.",
+        "switches": "Two turns: at the junction with path 13 leave 21 for 13, and where 13 meets path 10 take 10 to the lake.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental Tourismus), Dal Passo Costalunga al Lago di Carezza (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055748",
+            "authority": "Eggental tourist board (Eggental Tourismus)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lago di Carezza seen from above at the end of the walk, in August (Jonathan.astolfi on Wikimedia Commons, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official one-way walk 4.4 km from Passo Costalunga, as the Eggental tourist board (Eggental Tourismus) publishes it; the stored line is drawn on 17 OSM ways along the board’s published line, 4.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 21, 13 and 10: from Passo Costalunga past the Antermont restaurant across a meadow to path 21; follow 21 to the junction with path 13, then 13 along a comfortable forest road to path 10, which leads straight to the Lago di Carezza.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.4 km, 18 m up and 225 m down, 1:05 h, highest point 1,764 m, lowest 1,540 m (Eggental tourist board (Eggental Tourismus), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental Tourismus), Dal Passo Costalunga al Lago di Carezza (its Outdooractive tour, also listed on suedtirol.info and eggental.com)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule): a lead of at most 1.5 m and a muzzle carried in public places',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds; no bathing in fountains or troughs',
+          'Welschnofen landscape plan (PPC-21058) Art. 3(4): the Karersee is a natural monument with access only up to the fence; no Natura 2000 site, park or biotope on the line (Province of Bolzano landscape-plan layers, WFS)',
+          'OpenStreetMap ways along the board’s line (17 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 27,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The start crosses an open meadow and the Pra di Tori ski slope at the pass: keep your dog on the path and off the meadow', 'At the Karersee keep outside the fence: the lake is a natural monument', 'Busy around the lake in summer: keep your dog close'],
+      terrainType: 'Meadow path, forest roads and forest paths',
+      shadeDescription: 'Partly shaded: about a quarter runs through mapped forest; the Latemar forest has open clearings, and the meadow at the pass is in full sun.',
+      terrainDescription: 'An easy, mostly downhill walk at 1,540–1,765 m from Passo Costalunga through the Latemar forest, famous for its resonance spruce used for violins, to the emerald Lago di Carezza under the Latemar and the Catinaccio.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Welschnofen requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs off farmed meadows, out of playgrounds and cemeteries, and out of fountains and troughs. The first few hundred metres at the pass are in San Giovanni di Fassa, which publishes no dog rule, so the national rule applies there: the same lead and muzzle. At the lake stay outside the fence.',
+      tips: 'Start at Passo Costalunga by the Antermont restaurant: 4.4 km one way, mostly downhill (18 m up, 225 m down), about an hour. Keep your dog on a lead of at most 1.5 m, carry a muzzle and keep off the meadows. No drinking water on the way: bring water for your dog. Buses 180 and 184 link the lake and the pass if you do not want to walk back up.',
+      sourceLinks: [
+        { label: 'Outdooractive, Dal Passo Costalunga al Lago di Carezza (Eggental tourist board (Eggental Tourismus))', url: 'https://www.outdooractive.com/it/r/810055748' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.40415, lng: 11.60918, label: 'Passo Costalunga (Karerpass), by the Antermont restaurant, the board’s start' },
+      desc: 'A gentle walk from Passo Costalunga through the Latemar forest, known for its resonance spruce, down to the emerald Lago di Carezza under the Latemar and Catinaccio. The board lists 4.4 km, 18 m up and 225 m down.'
+    },
+    'eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Eggental batch 1).
+      // “Escursione per famiglie dal Lago di Carezza alla malga Stadl Alm”, published by the Eggental tourist board (Eggental Tourismus), drawn on 10 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Welschnofen (its 2023 dog regulation: lead ≤1.5 m, muzzle carried, no dogs in playgrounds or on farmed meadows).
+      // The first stretch along the lake, about 7%, is in the Karersee natural monument, where access stops at the lake fence; no dog rule. No Natura 2000 site or park.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Lago di Carezza – Stadlalm, Welschnofen',
+      distance: 4.2,
+      elevation: 32,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Lago di Carezza car park, along the lake and on the broad forest road “Templ” (path 8), then paths 25A and 25 to the Stadlalm; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Lago di Carezza (Karersee) car park, 1,519 m, the board’s start; buses 180 and 184 stop there.",
+        "sequence": "Go through the underpass and walk along the right side of the lake to the start of the forest road “Templ”, path 8. Follow this broad forest road to the junction signed for the Stadlalm, then take path 25A and then path 25 to the hut.",
+        "switches": "Two turns: at the lake leave the shore path for path 8 (“Templ”), and at the Stadlalm junction leave 8 for 25A, which joins 25 to the hut.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental Tourismus), Escursione per famiglie dal Lago di Carezza alla malga Stadl Alm (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810054675",
+            "authority": "Eggental tourist board (Eggental Tourismus)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The shore path along the Lago di Carezza at the start of the walk, in July (orbic on Mapillary, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official one-way walk 4.2 km from the Lago di Carezza car park, as the Eggental tourist board (Eggental Tourismus) publishes it; the stored line is drawn on 10 OSM ways along the board’s published line, 4.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 8, 25A and 25: from the Lago di Carezza car park go through the underpass and along the right side of the lake to the forest road “Templ”, path 8; follow 8 to the junction for the Stadlalm, then paths 25A and 25 to the hut.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 7468241992).',
+        elevation: 'Official 4.2 km, 32 m up and 83 m down, 1:05 h, highest point 1,549 m, lowest 1,465 m (Eggental tourist board (Eggental Tourismus), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental Tourismus), Escursione per famiglie dal Lago di Carezza alla malga Stadl Alm (its Outdooractive tour, also listed on suedtirol.info and eggental.com)',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds; no bathing in fountains or troughs',
+          'Welschnofen landscape plan (PPC-21058) Art. 3(4): the Karersee is a natural monument with access only up to the fence; no Natura 2000 site, park or biotope on the line (Province of Bolzano landscape-plan layers, WFS)',
+          'OpenStreetMap ways along the board’s line (10 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 21,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Busy around the lake in summer: keep your dog close and outside the lake fence', 'About 12% on tarred lanes near the lake and the hut: watch for local traffic', 'The Stadlalm has a playground and farm animals: dogs may not enter the playground, and keep your dog away from the animals'],
+      terrainType: 'Shore path, forest road and gravel paths',
+      shadeDescription: 'Partly shaded: about a fifth runs through mapped forest; much of the forest road is open after storm clearing, and the meadows by the hut are in full sun.',
+      terrainDescription: 'An easy, nearly flat family walk at 1,465–1,550 m from the Lago di Carezza along the shore and on the broad forest road “Templ” to the Stadlalm, at the foot of the Catinaccio and the Latemar; the board says it suits pushchairs.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Welschnofen requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of playgrounds and cemeteries, off farmed meadows, and out of fountains and troughs. The Stadlalm has a playground and farm animals: keep your dog out of the playground and away from the animals. At the lake stay outside the fence.',
+      tips: 'Start at the Lago di Carezza car park: 4.2 km one way, almost flat (32 m up, 83 m down), about an hour; come back the same way. Keep your dog on a lead of at most 1.5 m, carry a muzzle and keep off the meadows. Drinking water at the start; the Stadlalm is open in summer only.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione per famiglie dal Lago di Carezza alla malga Stadl Alm (Eggental tourist board (Eggental Tourismus))', url: 'https://www.outdooractive.com/it/r/810054675' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.41032, lng: 11.57585, label: 'Lago di Carezza (Karersee) car park, the board’s start' },
+      desc: 'An easy family walk from the Lago di Carezza along the shore and the forest road “Templ” to the Stadlalm, with farm animals and wide views of the Catinaccio and Latemar. The board lists 4.2 km, 32 m up and 83 m down.'
     }
   };
 

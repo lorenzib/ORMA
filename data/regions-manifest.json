@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-29T12:12:38.590Z",
+  "generatedAt": "2026-10-29T15:52:41.506Z",
   "regions": {
     "dolomites": {
-      "trailCount": 298,
-      "trails": "data/regions/dolomites-trails.js?v=35b2795c822d",
+      "trailCount": 300,
+      "trails": "data/regions/dolomites-trails.js?v=68160bb70baa",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -303,6 +303,8 @@
         "kronplatz-san-lorenzo-maria-sares": "data/trail-details/kronplatz-san-lorenzo-maria-sares.js?v=aeddfec214a2",
         "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": "data/trail-details/kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle.js?v=f64c19b9058f",
         "kronplatz-passeggiata-leggendaria-sul-kienberg": "data/trail-details/kronplatz-passeggiata-leggendaria-sul-kienberg.js?v=321c5a660002",
+        "eggental-dal-passo-costalunga-al-lago-di-carezza": "data/trail-details/eggental-dal-passo-costalunga-al-lago-di-carezza.js?v=6e847803a691",
+        "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": "data/trail-details/eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl.js?v=a0e9aa1453de",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -765,6 +767,8 @@
     "kronplatz-san-lorenzo-maria-sares": "dolomites",
     "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": "dolomites",
     "kronplatz-passeggiata-leggendaria-sul-kienberg": "dolomites",
+    "eggental-dal-passo-costalunga-al-lago-di-carezza": "dolomites",
+    "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1277,6 +1281,8 @@
     "kronplatz-san-lorenzo-maria-sares": "st-lorenzen-maria-saalen",
     "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": "niederolang-bad-bergfall",
     "kronplatz-passeggiata-leggendaria-sul-kienberg": "kienberg-legends-loop",
+    "eggental-dal-passo-costalunga-al-lago-di-carezza": "costalunga-to-lake-carezza",
+    "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": "lake-carezza-to-stadlalm",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1683,6 +1689,8 @@
     "st-lorenzen-maria-saalen": "kronplatz-san-lorenzo-maria-sares",
     "niederolang-bad-bergfall": "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle",
     "kienberg-legends-loop": "kronplatz-passeggiata-leggendaria-sul-kienberg",
+    "costalunga-to-lake-carezza": "eggental-dal-passo-costalunga-al-lago-di-carezza",
+    "lake-carezza-to-stadlalm": "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
