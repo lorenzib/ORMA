@@ -71,6 +71,7 @@
     'giudicarie-senter-dei-popi-madonna-del-lares': "Senter dei Popi – Madonna del Lares",
     'kronplatz-attraverso-il-sentiero-panoramico-a-brunico': "Panoramic path from Olang to Bruneck",
     'kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina': "Antermoia to Rina",
+    'kronplatz-passeggiata-san-vigilio-le-dla-creda': "San Vigilio to Lé dla Creda",
     'kronplatz-passeggiata-valdaora-monguelfo': "Olang to Welsberg by the reservoir",
     'lago-braies': "Lago di Braies Seeweg circuit",
     'lago-carezza': "Lago di Carezza Loop",
