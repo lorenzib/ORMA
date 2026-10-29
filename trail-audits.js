@@ -53766,6 +53766,114 @@
       ],
       startPoint: { lat: 46.783032, lng: 11.90238, label: 'The east car park of San Lorenzo di Sebato, the board’s start' },
       desc: 'A walk from San Lorenzo di Sebato on paths 8A and 9, past St. Martin and up the Stations of the Cross to the pilgrimage church of Maria Sares. The board lists 4.9 km and 170 m of ascent.'
+    },
+    'kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 3).
+      // Olang tourist board (Tourismusverein Olang)’s walk “Valdaora di Sotto - Casola - Bagni di Pervalle”, drawn on 33 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried; no dogs in cemeteries, parks or playgrounds: the line passes the Niederolang cemetery wall but does not enter it).
+      // No Natura 2000 site or park; 10% in landscape or ensemble protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Valdaora di Sotto – Bad Bergfall, Olang',
+      distance: 4.9,
+      elevation: 318,
+      hours: '1.6',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the parish church of Valdaora di Sotto (Niederolang) on path 32B, past Casola and through the forest, up to Bad Bergfall (Bagni di Pervalle); come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The parish church of St. Peter and Agnes in Valdaora di Sotto, where the walk starts, in October (Muck on Wikimedia Commons, CC BY-SA 4.0), 16 m from the line.',
+        route: 'Official one-way walk 4.9 km from the parish church of Valdaora di Sotto, as the Olang tourist board (Tourismusverein Olang) publishes it; the stored line is drawn on 33 OSM ways along the board’s published line, 4.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 32B: from the parish church of Valdaora di Sotto (Niederolang) follow 32B south out of the village on the lane In der Länge, then on farm roads past Casola and on forest roads up to Bad Bergfall (Bagni di Pervalle), the old sulphur-spring baths. Come back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 1.1 and km 4.4 (OSM nodes 3451774094, 13063167149, 13479318522).',
+        elevation: 'Official 4.9 km, 318 m up and 25 m down, 1:37 h, highest point 1,314 m, lowest 1,021 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Olang tourist board (Tourismusverein Olang), Valdaora di Sotto - Casola - Bagni di Pervalle (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Olang / Comune di Valdaora, Verordnung betreffend die Haltung von Hunden und anderen Tieren (Gemeinderat Nr. 11, 25.02.2010, amended Nr. 5, 23.02.2026), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds and parks, or on farmed meadows and fields in the growing season; no bathing in fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 10% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (33 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 38,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About two thirds on tarred lanes and farm roads: watch for local traffic and tractors', 'The lane out of the village passes the cemetery wall: dogs may not enter the cemetery', 'Hay meadows beside the farm roads: keep your dog off them in the growing season'],
+      terrainType: 'Tarred lanes, farm roads and forest roads',
+      shadeDescription: 'Partly shaded: about two fifths runs through forest on the climb to Bad Bergfall; the lanes out of the village are open.',
+      terrainDescription: 'A steady climb at 1,020–1,315 m from Valdaora di Sotto on path 32B, across the meadows past Casola and through the forest to Bad Bergfall, the old baths with sulphur springs.',
+      waterDescription: 'Drinking water at the start, km 1.1 and km 4.4; places to eat on the way.',
+      dogNotes: 'Olang requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of cemeteries, parks and playgrounds, off farmed meadows in the growing season, and out of the fountains. The walk passes the Niederolang cemetery wall: do not go in.',
+      tips: 'Start by the parish church of Valdaora di Sotto and follow path 32B: 4.9 km one way, about 320 m up, an hour and a half; come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Olang requires, and keep off the hay meadows. Drinking water at the start, at km 1.1 and near Bad Bergfall.',
+      sourceLinks: [
+        { label: 'Outdooractive, Valdaora di Sotto - Casola - Bagni di Pervalle (Olang tourist board (Tourismusverein Olang))', url: 'https://www.outdooractive.com/it/r/807440420' },
+        { label: 'Gemeinde Olang, dog regulation (2010, amended 2026)', url: 'https://www.gemeinde.olang.bz.it/system/web/GetDocument.ashx?cts=1792490199&fileId=179640' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.76773, lng: 12.01723, label: 'Valdaora di Sotto (Niederolang), by the parish church, the board’s start' },
+      desc: 'A walk from Valdaora di Sotto on path 32B, across meadows past Casola and through quiet forest up to Bad Bergfall and its sulphur springs. The board lists 4.9 km, 318 m up and 25 m down.'
+    },
+    'kronplatz-passeggiata-leggendaria-sul-kienberg': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 3).
+      // Kiens tourist board (Tourismusverein Kiens)’s walk “Passeggiata leggendaria sul Kienberg”, drawn on 40 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Kiens (no dog regulation found, national rule) and St. Lorenzen (its 2009 dog regulation: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site or park; 2% in landscape or ensemble protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Casteldarne – Kienberg – Mantana, Pustertal',
+      distance: 11.8,
+      elevation: 417,
+      hours: '3.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car park by the Koflerhof in Casteldarne (Ehrenburg) on the Kienberg path past the Plattnerhof and over the Kienberg towards Mantana and Ronchi, and back to Casteldarne on the Way of the Cross, path 10A.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The gravel path 10A through flowering meadows above Casteldarne, near the start and end of the loop, in May, with snow only on the distant peaks (davidinosauro on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official loop 11.8 km from the car park by the Koflerhof in Casteldarne, as the Kiens tourist board (Tourismusverein Kiens) publishes it; the stored line is drawn on 40 OSM ways along the board’s published line, 11.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the car park by the Koflerhof in Casteldarne follow the Kienberg path towards Mantana, past the Plattnerhof and over the broad wooded ridge of the Kienberg; from Mantana go on towards Ronchi, then take the historic Way of the Cross, path 10A, back to Casteldarne.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.1, km 0.2, km 5.8 and km 8.9 (OSM nodes 12055127715, 12055127716, 12055127708, 1872561195, 6696661485, 7597838085, 12791498122).',
+        elevation: 'Official 11.8 km, 417 m up and 417 m down, 3:28 h, highest point 1,140 m, lowest 803 m (Kiens tourist board (Tourismusverein Kiens), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Kiens tourist board (Tourismusverein Kiens), Passeggiata leggendaria sul Kienberg (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Kiens: no dog regulation found on its website (the commune’s document search does not list one). Neighbouring communes use the same 2010 provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Marktgemeinde St. Lorenzen / Comune di San Lorenzo di Sebato, Gemeindeverordnung über die Haltung und Führung von Hunden (Beschluss des Gemeinderates Nr. 25, 29.12.2009): a lead of at most 1.5 m on public ground and a muzzle carried; no dogs in cemeteries, playgrounds or kindergarten and primary-school yards, or on farmed meadows and fields in the growing season; no bathing in the village fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 2% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (40 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 64,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Lanes through Casteldarne and past the Kienberg farms: watch for local traffic and farm dogs', 'A long loop with about 420 m of climbing: take enough water for your dog', 'Meadows on the Kienberg and around Mantana: keep your dog off them in the growing season'],
+      terrainType: 'Forest paths, gravel tracks and farm lanes',
+      shadeDescription: 'Mostly shaded: nearly two thirds runs through the Kienberg woods; the stretches past the farms and around Mantana are open.',
+      terrainDescription: 'A long loop at 800–1,140 m from Casteldarne over the Kienberg, a wooded hill rising like an island above the Pustertal, past the farm of the Plattnerhof legend and back on the old Way of the Cross.',
+      waterDescription: 'Drinking water at the start, km 0.1, km 0.2, km 5.8 and km 8.9; places to eat on the way.',
+      dogNotes: 'Kiens has no dog regulation we could find, so the national rule applies there: a lead of at most 1.5 m and a muzzle carried. Around Mantana the walk is in St. Lorenzen, which requires the same and keeps dogs off farmed meadows in the growing season, out of playgrounds and cemeteries, and out of the fountains.',
+      tips: 'Start at the car park by the Koflerhof in Casteldarne: an 11.8 km loop, about 420 m of climbing, three and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and keep off the meadows. Drinking water at the start and on the way, but carry some for your dog.',
+      sourceLinks: [
+        { label: 'Outdooractive, Passeggiata leggendaria sul Kienberg (Kiens tourist board (Tourismusverein Kiens))', url: 'https://www.outdooractive.com/it/r/16570385' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Marktgemeinde St. Lorenzen, dog regulation (2009)', url: 'https://www.gemeinde.stlorenzen.bz.it/system/web/GetDocument.ashx?cts=1434451081&fileId=884603' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.79796, lng: 11.83901, label: 'The car park by the Koflerhof in Casteldarne (Ehrenburg), the board’s start' },
+      desc: 'A loop from Casteldarne over the wooded Kienberg, past farms and the Plattnerhof of the local legend, towards Mantana and back on the historic Way of the Cross. The board lists 11.8 km and 417 m of ascent.'
     }
   };
 
