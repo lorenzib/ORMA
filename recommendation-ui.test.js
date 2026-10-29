@@ -20,7 +20,7 @@ describe('UX-04 canonical recommendation journey', () => {
     // The card scores against today when the forecast has landed, and against
     // the route alone before it has. Nothing else supplies currentConditions,
     // so this is the only place the "today" in the pitch actually enters.
-    expect(controller).toContain('recommendTrail(trail, subjectFor(profile), conditions)');
+    expect(controller).toContain('recommendTrail(scored, subjectFor(profile), conditions)');
     // Absent weather and no warnings stay undefined rather than being guessed
     // at; warnings ride alongside the weather when either exists.
     expect(controller).toContain('window.DoloPawsCurrentConditions || warnings.length');
