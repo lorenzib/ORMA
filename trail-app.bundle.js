@@ -60452,6 +60452,218 @@ function effectiveOverrides(profile, adjustOverride){
         { km: 5.3, lat: 46.71486, lng: 11.87912, osmId: 'node/12859740355', name: 'Bar Rosa' }
       ],
       desc: 'A walk from Antermoia over the sunny farm slopes of Colac and Val and through the forest to Rina. The board lists 5.5 km, 143 m up and 222 m down.'
+    },
+    'kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
+      // San Vigilio Dolomites tourist board’s walk “Passeggiata senza barriere: Brach - Pieve di Marebbe”, drawn on 4 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Enneberg (no dog regulation found, national rule).
+      // No Natura 2000 site or park; 59% in landscape or ensemble protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Brach – Pieve di Marebbe, Marebbe',
+      distance: 0.9,
+      elevation: 5,
+      hours: '0.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the hamlet of Brach along a quiet tarred road into the village of Pieve di Marebbe (La Pli de Mareo); come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The tall white Moregg house in Pieve di Marebbe, at the end of the walk, in August (Leitzsche on Wikimedia Commons, CC0), 24 m from the line.',
+        route: 'Official one-way walk 0.9 km from the hamlet of Brach above Pieve di Marebbe, as the San Vigilio Dolomites tourist board publishes it; the stored line is drawn on 4 OSM ways along the board’s published line, 0.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the hamlet of Brach, at the board’s start, follow the quiet tarred road east along the slope into the village of Pieve di Marebbe (La Pli de Mareo); there is no turning off it. Come back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 0.7 (OSM nodes 2971237933, 7321426386).',
+        elevation: 'Official 0.9 km, 5 m up and 31 m down, 0:30 h, highest point 1,311 m, lowest 1,280 m (San Vigilio Dolomites tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'San Vigilio Dolomites tourist board, Passeggiata senza barriere: Brach - Pieve di Marebbe (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Enneberg: no dog regulation found on its website (the commune’s document search does not list one). Neighbouring communes use the same 2010 provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 59% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (4 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 5,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['On a quiet tarred road the whole way, with no pavement: keep your dog close for the odd car', 'Hay meadows beside the road: keep your dog off them in summer'],
+      terrainType: 'Quiet tarred road',
+      shadeDescription: 'Open: the road runs across sunny meadows with almost no shade.',
+      terrainDescription: 'A short, nearly level walk at 1,280–1,310 m on a quiet road from Brach into Pieve di Marebbe, with views over San Vigilio to the Fanes-Sennes-Prags nature park; suitable for wheelchairs and pushchairs.',
+      waterDescription: 'Drinking water at the start and km 0.7; places to eat on the way.',
+      dogNotes: 'Enneberg has no dog regulation we could find, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep off the hay meadows too, as the neighbouring communes require.',
+      tips: 'Start in Brach: 0.9 km one way on a quiet road, nearly level, half an hour; come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and keep off the hay meadows. Cafés in Pieve di Marebbe at the end.',
+      sourceLinks: [
+        { label: 'Outdooractive, Passeggiata senza barriere: Brach - Pieve di Marebbe (San Vigilio Dolomites tourist board)', url: 'https://www.outdooractive.com/it/r/800341743' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.720361, lng: 11.908837, label: 'The hamlet of Brach above Pieve di Marebbe, the board’s start' },
+      desc: 'A short, barrier-free walk on a quiet road from the hamlet of Brach into Pieve di Marebbe, with views over San Vigilio. The board lists 0.9 km, 5 m up and 31 m down.'
+    },
+    'kronplatz-valdaora-di-sopra-goste': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
+      // Olang tourist board (Tourismusverein Olang)’s walk “Valdaora di Sopra - Goste”, drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried; no dogs in parks or playgrounds, which the line does not enter).
+      // No Natura 2000 site or park; 24% in landscape or ensemble protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Valdaora di Sopra – Alte Goste, Olang',
+      distance: 2.5,
+      elevation: 106,
+      hours: '0.8',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Valdaora di Sopra (Oberolang) on path 21B, the Lottersteig, to the old Goste inn (Alte Goste) by the Olang reservoir; come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The tarred path between birches and spruces by the Olang reservoir dam, near the Goste, in September (voschix on Mapillary, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official one-way walk 2.5 km from Valdaora di Sopra, as the Olang tourist board (Tourismusverein Olang) publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 2.5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 21B, the Lottersteig: from Valdaora di Sopra (Oberolang) follow 21B east out of the village, through meadows and then forest above the Olang reservoir, to the old Goste inn (Alte Goste). Come back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 13073881258, 7740656285, 2206612489, 7740656585).',
+        elevation: 'Official 2.5 km, 106 m up and 80 m down, 0:45 h, highest point 1,092 m, lowest 1,030 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Olang tourist board (Tourismusverein Olang), Valdaora di Sopra - Goste (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Olang / Comune di Valdaora, Verordnung betreffend die Haltung von Hunden und anderen Tieren (Gemeinderat Nr. 11, 25.02.2010, amended Nr. 5, 23.02.2026), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds and parks, or on farmed meadows and fields in the growing season; no bathing in fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 24% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 43,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Mostly tarred lanes through Valdaora di Sopra and out to the Goste: watch for local traffic', 'Near the reservoir the path meets the Pustertal cycle path: keep your dog close for cyclists', 'Hay meadows beside the path: keep your dog off them in the growing season'],
+      terrainType: 'Tarred lanes and forest path',
+      shadeDescription: 'Partly shaded: about two fifths runs through forest above the reservoir; the stretch out of the village is open.',
+      terrainDescription: 'A short walk at 1,030–1,090 m from Valdaora di Sopra on path 21B, across meadows and through forest to the old Goste inn by the Olang reservoir.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Olang requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs off farmed meadows in the growing season, out of the fountains, and out of parks and playgrounds. The walk does not enter the park in Valdaora di Sopra.',
+      tips: 'Start in Valdaora di Sopra and follow path 21B: 2.5 km one way, about 105 m up, three quarters of an hour; come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Olang requires, and keep off the hay meadows. Fountains in the village; food at the Alte Goste at the end.',
+      sourceLinks: [
+        { label: 'Outdooractive, Valdaora di Sopra - Goste (Olang tourist board (Tourismusverein Olang))', url: 'https://www.outdooractive.com/it/r/807440421' },
+        { label: 'Gemeinde Olang, dog regulation (2010, amended 2026)', url: 'https://www.gemeinde.olang.bz.it/system/web/GetDocument.ashx?cts=1792490199&fileId=179640' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.757916, lng: 12.038482, label: 'Valdaora di Sopra (Oberolang), the board’s start' },
+      desc: 'A short walk from Valdaora di Sopra on path 21B, the Lottersteig, across meadows and through forest to the old Goste inn by the Olang reservoir. The board lists 2.5 km, 106 m up and 80 m down.'
+    },
+    'kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
+      // Bruneck Kronplatz Tourismus’s walk “Sentiero della roggia a Gais (Sentieri degli elementi)”, drawn on 27 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Gais (no dog regulation found, national rule).
+      // No Natura 2000 site or park; 12% in landscape or ensemble protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Gais, north of Bruneck',
+      distance: 5.3,
+      elevation: 140,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the parish church of Gais over the Ahr, up through the village to the forest, along the level irrigation channel path (Waalweg) and back down through meadows and fields.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The parish church of Gais, where the loop starts and ends, in August (Michielverbeek on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official loop 5.3 km from the parish church of Gais, as the Bruneck Kronplatz Tourismus publishes it; the stored line is drawn on 27 OSM ways along the board’s published line, 5.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the parish church of Gais walk towards Via Talfrieden, cross the bridge over the Ahr and go north-east between the houses to the forest, where the channel path begins; follow it level through the wooded slopes southwards to its end north of the Bärentalhof farm, then turn right on the broad gravel track and back down through meadows and fields to the church.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.1, km 0.3, km 1.4 and km 4.5 (OSM nodes 11030344676, 4579647896, 6724381693, 2615627002).',
+        elevation: 'Official 5.3 km, 140 m up and 140 m down, 2:00 h, highest point 949 m, lowest 841 m (Bruneck Kronplatz Tourismus, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Bruneck Kronplatz Tourismus, Sentiero della roggia a Gais (Sentieri degli elementi) (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Gais: no dog regulation found on its website (the commune’s document search does not list one). Neighbouring communes use the same 2010 provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 12% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 30,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The channel path runs level along a steep wooded slope: keep your dog close at the edge', 'Do not let your dog into the irrigation channel or the Ahr', 'Lanes through Gais and over the Ahr bridge, with local traffic', 'Meadows and fields on the way back: keep your dog off them in the growing season'],
+      terrainType: 'Footpath, gravel tracks and lanes',
+      shadeDescription: 'Partly shaded: the channel path, about a third of the loop, runs through forest; the village lanes and the meadows on the way back are open.',
+      terrainDescription: 'A gentle loop at 840–950 m from Gais, with a level stretch along an old irrigation channel through the forest and wide views over the Tauferer valley on the way back.',
+      waterDescription: 'Drinking water at km 0.1, km 0.3, km 1.4 and km 4.5; places to eat on the way.',
+      dogNotes: 'Gais has no dog regulation we could find, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep off the meadows and fields too, as the neighbouring communes require, and keep your dog out of the channel.',
+      tips: 'Start at the parish church of Gais: a 5.3 km loop, about 140 m of climbing, two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle, keep it out of the channel and off the meadows. Water and cafés in Gais.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sentiero della roggia a Gais (Sentieri degli elementi) (Bruneck Kronplatz Tourismus)', url: 'https://www.outdooractive.com/it/r/27623622' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.837581, lng: 11.945214, label: 'The parish church of Gais, the board’s start' },
+      desc: 'A loop from Gais along an old irrigation channel through the forest and back across meadows and fields, with views of the mountains round the Tauferer valley. The board lists 5.3 km and 140 m of ascent.'
+    },
+    'kronplatz-san-lorenzo-maria-sares': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
+      // Bruneck Kronplatz Tourismus’s walk “San Lorenzo – Maria Sares”, drawn on 33 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: St. Lorenzen (its 2009 dog regulation: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site or park; 26% in landscape or ensemble protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'San Lorenzo di Sebato – Maria Sares, Pustertal',
+      distance: 4.9,
+      elevation: 170,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the east car park of San Lorenzo di Sebato on paths 8A and 9, past St. Martin and up the Stations of the Cross to the pilgrimage church of Maria Sares (Maria Saalen); come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Loreto church at Maria Sares, at the end of the walk, in June (Leitzsche on Wikimedia Commons, CC0), 9 m from the line.',
+        route: 'Official one-way walk 4.9 km from the east car park of San Lorenzo di Sebato, as the Bruneck Kronplatz Tourismus publishes it; the stored line is drawn on 33 OSM ways along the board’s published line, 4.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 8A and 9: from the east car park of San Lorenzo walk west to the main square and through the Marktl; at the pharmacy turn left onto path 8A towards St. Martin; near St. Martin take path 9 up the Stations of the Cross to Maria Sares. Come back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.5 and km 1 (OSM nodes 2038685178, 3109138118, 5295228221, 10066930057, 12082428214, 11078506163).',
+        elevation: 'Official 4.9 km, 170 m up and 6 m down, 1:00 h, highest point 980 m, lowest 810 m (Bruneck Kronplatz Tourismus, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Bruneck Kronplatz Tourismus, San Lorenzo – Maria Sares (its Outdooractive tour, also listed on suedtirol.info)',
+          'Marktgemeinde St. Lorenzen / Comune di San Lorenzo di Sebato, Gemeindeverordnung über die Haltung und Führung von Hunden (Beschluss des Gemeinderates Nr. 25, 29.12.2009): a lead of at most 1.5 m on public ground and a muzzle carried; no dogs in cemeteries, playgrounds or kindergarten and primary-school yards, or on farmed meadows and fields in the growing season; no bathing in the village fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 26% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (33 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 23,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Town streets and the market area in San Lorenzo at the start', 'Farm roads on paths 8A and 9: watch for tractors and farm dogs', 'Sunny, open climb to Maria Sares: carry water for your dog on warm days', 'Hay meadows beside the paths: keep your dog off them in the growing season'],
+      terrainType: 'Lanes, gravel farm roads and footpath',
+      shadeDescription: 'Mostly open: about a quarter runs through woodland; the rest crosses sunny meadows and farm slopes.',
+      terrainDescription: 'A walk at 810–980 m from San Lorenzo di Sebato past the hamlet of St. Martin and up the Stations of the Cross to the 17th-century Loreto church of Maria Sares, one of the main pilgrimage places of the Pustertal.',
+      waterDescription: 'Drinking water at the start, km 0.5 and km 1; places to eat on the way.',
+      dogNotes: 'St. Lorenzen requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs off farmed meadows and fields in the growing season, out of playgrounds and cemeteries, and out of the village fountains. Leave your dog outside the church.',
+      tips: 'Start at the east car park in San Lorenzo: 4.9 km one way on paths 8A and 9, about 170 m up; the board gives an hour one way. Come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as St. Lorenzen requires, and keep off the meadows. Shade is scarce, so carry water; the Saalerwirt inn is beside the church at the end.',
+      sourceLinks: [
+        { label: 'Outdooractive, San Lorenzo – Maria Sares (Bruneck Kronplatz Tourismus)', url: 'https://www.outdooractive.com/it/r/35857532' },
+        { label: 'Marktgemeinde St. Lorenzen, dog regulation (2009)', url: 'https://www.gemeinde.stlorenzen.bz.it/system/web/GetDocument.ashx?cts=1434451081&fileId=884603' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.783032, lng: 11.90238, label: 'The east car park of San Lorenzo di Sebato, the board’s start' },
+      desc: 'A walk from San Lorenzo di Sebato on paths 8A and 9, past St. Martin and up the Stations of the Cross to the pilgrimage church of Maria Sares. The board lists 4.9 km and 170 m of ascent.'
     }
   };
 
