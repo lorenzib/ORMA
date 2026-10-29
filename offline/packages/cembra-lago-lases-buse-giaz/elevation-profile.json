@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cembra-lago-lases-buse-giaz",
+  "distanceKm": 4.8,
+  "ascentM": 150,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 686
+    },
+    {
+      "km": 0.4,
+      "elev": 642
+    },
+    {
+      "km": 0.7,
+      "elev": 676
+    },
+    {
+      "km": 1.1,
+      "elev": 687
+    },
+    {
+      "km": 1.5,
+      "elev": 688
+    },
+    {
+      "km": 1.9,
+      "elev": 693
+    },
+    {
+      "km": 2.2,
+      "elev": 705
+    },
+    {
+      "km": 2.6,
+      "elev": 777
+    },
+    {
+      "km": 2.9,
+      "elev": 743
+    },
+    {
+      "km": 3.3,
+      "elev": 678
+    },
+    {
+      "km": 3.7,
+      "elev": 633
+    },
+    {
+      "km": 4.1,
+      "elev": 653
+    },
+    {
+      "km": 4.4,
+      "elev": 643
+    },
+    {
+      "km": 4.8,
+      "elev": 660
+    }
+  ]
+}

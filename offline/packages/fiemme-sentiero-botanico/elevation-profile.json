@@ -1,69 +1,69 @@
 {
   "schemaVersion": 1,
-  "trailId": "kronplatz-passeggiata-leggendaria-sul-kienberg",
+  "trailId": "fiemme-sentiero-botanico",
   "distanceKm": 11.8,
-  "ascentM": 417,
+  "ascentM": 300,
   "source": "ORMA route profile",
   "points": [
     {
       "km": 0,
-      "elev": 813
+      "elev": 1017
     },
     {
       "km": 0.9,
-      "elev": 898
+      "elev": 1056
     },
     {
       "km": 1.8,
-      "elev": 987
+      "elev": 1018
     },
     {
       "km": 2.7,
-      "elev": 1055
+      "elev": 999
     },
     {
       "km": 3.6,
-      "elev": 1089
+      "elev": 945
     },
     {
       "km": 4.5,
-      "elev": 953
+      "elev": 964
     },
     {
       "km": 5.4,
-      "elev": 924
+      "elev": 1033
     },
     {
       "km": 6.3,
-      "elev": 876
+      "elev": 1127
     },
     {
       "km": 7.2,
-      "elev": 878
+      "elev": 1158
     },
     {
       "km": 8.1,
-      "elev": 853
+      "elev": 1260
     },
     {
-      "km": 9,
-      "elev": 893
+      "km": 9.1,
+      "elev": 1308
     },
     {
       "km": 9.9,
-      "elev": 883
+      "elev": 1291
     },
     {
       "km": 10.8,
-      "elev": 858
+      "elev": 1209
     },
     {
       "km": 11.7,
-      "elev": 814
+      "elev": 1034
     },
     {
       "km": 11.8,
-      "elev": 813
+      "elev": 1017
     }
   ]
 }

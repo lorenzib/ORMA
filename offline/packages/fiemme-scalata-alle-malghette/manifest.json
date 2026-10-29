@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "trailId": "kronplatz-passeggiata-leggendaria-sul-kienberg",
-  "name": "The Kienberg legends loop",
+  "trailId": "fiemme-scalata-alle-malghette",
+  "name": "La “scalata” alle Malghette",
   "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T12:27:19.832Z",
+  "generatedAt": "2026-10-29T14:31:09.143Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1842873,
+  "packageBytes": 213730,
   "packageBudgetBytes": 5242880,
   "bounds": {
-    "south": 46.76779,
-    "west": 11.83123,
-    "north": 46.80155,
-    "east": 11.88341
+    "south": 46.2879,
+    "west": 11.35136,
+    "north": 46.30223,
+    "east": 11.37825
   },
   "image": {
     "width": 1200,
-    "height": 1134
+    "height": 926
   },
   "mapCorridor": {
     "strategy": "fixed-bounds-svg-v1",
@@ -24,20 +24,20 @@
       1
     ],
     "width": 1200,
-    "height": 1134
+    "height": 926
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 8618,
-    "edgeCount": 8626,
-    "trailNodeCount": 614,
+    "nodeCount": 712,
+    "edgeCount": 720,
+    "trailNodeCount": 215,
     "maxRejoinRouteM": 1500
   },
   "elevationProfile": {
     "strategy": "route-profile-v1",
     "pointCount": 15,
-    "distanceKm": 11.8,
-    "ascentM": 417,
+    "distanceKm": 3.9,
+    "ascentM": 163,
     "source": "ORMA route profile",
     "demPackaged": false
   },
@@ -198,42 +198,42 @@
     {
       "role": "map",
       "required": true,
-      "label": "The Kienberg legends loop OSM offline map",
+      "label": "La “scalata” alle Malghette OSM offline map",
       "url": "map.svg",
-      "bytes": 1259717,
-      "sha256": "48c3c9d5234b7faec78f03730525dcc6aeadf2ed8fa4461362dafe41758d7631"
+      "bytes": 48342,
+      "sha256": "adec5b4b0a48029aa6ca54bf6c7e8f0fcb7a765961da3dc0b458881e488533e1"
     },
     {
       "role": "route",
       "required": true,
-      "label": "The Kienberg legends loop route",
+      "label": "La “scalata” alle Malghette route",
       "url": "route.geojson",
-      "bytes": 39219,
-      "sha256": "61c8f005ddc4b8ac7a7c9c2f32072ebed4642efebe4ac185854940c1139731ae"
+      "bytes": 23463,
+      "sha256": "52b964a26414276be187c639aa61204b5023ac601b9097348bf1e90a945b3c01"
     },
     {
       "role": "footpath-network",
       "required": true,
-      "label": "The Kienberg legends loop routable footpath corridor",
+      "label": "La “scalata” alle Malghette routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 434850,
-      "sha256": "b0d0d11736172d3ffd1e6d44cd840d7aac826520ae46578b1aee53dbcbc44630"
+      "bytes": 34054,
+      "sha256": "956ac5420a676bf2dad038bc918cad9fba25bc647efa2faa5bff35d85cd22dec"
     },
     {
       "role": "elevation-profile",
       "required": true,
-      "label": "The Kienberg legends loop stored route elevation profile",
+      "label": "La “scalata” alle Malghette stored route elevation profile",
       "url": "elevation-profile.json",
-      "bytes": 901,
-      "sha256": "c722805ecb5db0c6dc93cc6a275302d22ca40596140e6ab0fc0227a37800e512"
+      "bytes": 893,
+      "sha256": "fefa7814b8614650f5c56c79426097df552263052819428b68deb29a12161b11"
     },
     {
       "role": "safety",
       "required": true,
-      "label": "The Kienberg legends loop safety information",
+      "label": "La “scalata” alle Malghette safety information",
       "url": "safety.json",
-      "bytes": 2695,
-      "sha256": "3e7a9a2931feeaf7ffb63c06a32213d2e56d6b9899ffb6c1eeb6f5d9918d8913"
+      "bytes": 1487,
+      "sha256": "a2be45b4d01bdf1655fa760bd4a9dad4774a1028fc17723a751f26a7173b01ab"
     }
   ]
 }

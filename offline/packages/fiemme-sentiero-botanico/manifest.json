@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "trailId": "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle",
-  "name": "Valdaora di Sotto to Bad Bergfall",
+  "trailId": "fiemme-sentiero-botanico",
+  "name": "Sentiero botanico naturalistico",
   "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T12:25:53.752Z",
+  "generatedAt": "2026-10-29T14:17:54.133Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 948624,
+  "packageBytes": 819240,
   "packageBudgetBytes": 5242880,
   "bounds": {
-    "south": 46.72851,
-    "west": 11.98986,
-    "north": 46.77132,
-    "east": 12.03673
+    "south": 46.22777,
+    "west": 11.29364,
+    "north": 46.26529,
+    "east": 11.34127
   },
   "image": {
     "width": 1200,
-    "height": 1600
+    "height": 1367
   },
   "mapCorridor": {
     "strategy": "fixed-bounds-svg-v1",
@@ -24,20 +24,20 @@
       1
     ],
     "width": 1200,
-    "height": 1600
+    "height": 1367
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 6031,
-    "edgeCount": 6072,
-    "trailNodeCount": 239,
+    "nodeCount": 4623,
+    "edgeCount": 4678,
+    "trailNodeCount": 481,
     "maxRejoinRouteM": 1500
   },
   "elevationProfile": {
     "strategy": "route-profile-v1",
-    "pointCount": 14,
-    "distanceKm": 4.9,
-    "ascentM": 318,
+    "pointCount": 15,
+    "distanceKm": 11.8,
+    "ascentM": 300,
     "source": "ORMA route profile",
     "demPackaged": false
   },
@@ -198,42 +198,42 @@
     {
       "role": "map",
       "required": true,
-      "label": "Valdaora di Sotto to Bad Bergfall OSM offline map",
+      "label": "Sentiero botanico naturalistico OSM offline map",
       "url": "map.svg",
-      "bytes": 524399,
-      "sha256": "894fd2d1ef2b212ef21d56adfdf3e4c8ed2a0d9486a3c894e3a8e8c0ff5f2550"
+      "bytes": 451375,
+      "sha256": "f213ba27a6c04250ab951f496f6c65cb04d51ff201cbcd59ec16142b88451d7a"
     },
     {
       "role": "route",
       "required": true,
-      "label": "Valdaora di Sotto to Bad Bergfall route",
+      "label": "Sentiero botanico naturalistico route",
       "url": "route.geojson",
-      "bytes": 14821,
-      "sha256": "91040b7163edb1182ec36f6c0a5219d27cdb6cbc5d81bea1723d9c9c77e65ebe"
+      "bytes": 31728,
+      "sha256": "6de70a5f274922177687ad020b4a7b2c981a0c7a744c4976ee87f99a0f02668f"
     },
     {
       "role": "footpath-network",
       "required": true,
-      "label": "Valdaora di Sotto to Bad Bergfall routable footpath corridor",
+      "label": "Sentiero botanico naturalistico routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 301073,
-      "sha256": "c79120e1f252a9b927933184d19bae901be97cb148967cdbde9370db79cfde9e"
+      "bytes": 228083,
+      "sha256": "10fce87e24eb8443669476b21ba2d1cde0658cc99d3df4643f800d81ca4562d5"
     },
     {
       "role": "elevation-profile",
       "required": true,
-      "label": "Valdaora di Sotto to Bad Bergfall stored route elevation profile",
+      "label": "Sentiero botanico naturalistico stored route elevation profile",
       "url": "elevation-profile.json",
-      "bytes": 865,
-      "sha256": "fb5b5ae69709b2c6d4d488c567afcbb791e79a1f1130d9691768066ddcc5897f"
+      "bytes": 891,
+      "sha256": "a97950eb88215837b78743419066f2facd2f16e35d68c0227b99991b6bc20675"
     },
     {
       "role": "safety",
       "required": true,
-      "label": "Valdaora di Sotto to Bad Bergfall safety information",
+      "label": "Sentiero botanico naturalistico safety information",
       "url": "safety.json",
-      "bytes": 1975,
-      "sha256": "977ae500ccc5d4f165ffc33c5be643bd7589b74df247f27969b75f70069bf9da"
+      "bytes": 1672,
+      "sha256": "62c8bb371191e8cfa42f624b934c914477ac146cb9ae5f35bdc3802d9e0353c8"
     }
   ]
 }

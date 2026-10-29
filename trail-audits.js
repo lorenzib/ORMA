@@ -39451,7 +39451,7 @@
       desc: 'An easy loop at the head of the Val di Fassa, up one bank of the Avisio from Canazei to Alba and Penìa and back down the other, past a river beach, playgrounds and a small climbing crag. The APT lists 6.3 km and 58 m of ascent.'
     },
     'fassa-sentiero-della-foresta': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Sentiero della Foresta”, tagged “animali accettati”. The line
@@ -39519,7 +39519,7 @@
       desc: 'A level forest trail at 2,000 m from Ciampedie to the Gardeccia hollow below the Rosengarten, with 24 totems on the secrets of the forest and the mountain. You reach it by the Catinaccio cable car from Vigo. The APT lists 3 km one way and 6 m of ascent.'
     },
     'fassa-antichi-bagnes': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Agli antichi Bagnes del principe vescovo di Bressanone”, tagged “animali accettati”. The line
@@ -39590,7 +39590,7 @@
       desc: 'A short loop from Pozza through the wood to the Aloch sulphur spring, where the prince-bishop of Brixen ran baths from 1493, and back along the Avisio. The APT lists 3 km and 48 m of ascent.'
     },
     'fassa-borgo-dei-patins': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “A Vigo, nel borgo diffuso dei “patins””, tagged “animali accettati”. The line
@@ -39658,7 +39658,7 @@
       desc: 'A sunny loop through the scattered hamlets of Vigo di Fassa, among them Costa and Larcioné, facing the Rosengarten. The APT lists 3.1 km and 82 m of ascent.'
     },
     'fassa-prato-di-sorte': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Quel Prato di Sorte...”, tagged “animali accettati”. The line
@@ -39726,7 +39726,7 @@
       desc: 'An easy loop from Moena over the Prato di Sorte, a great hay meadow at the foot of the Sas da Ciamp with a painted chapel, and back along the Avisio. The APT lists 5.5 km and 61 m of ascent.'
     },
     'fassa-passato-ritrovato': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Il passato ritrovato: tra antichi masi e restaurati tobiè”, tagged “animali accettati”. The line
@@ -39798,7 +39798,7 @@
       desc: 'A walk on the sunny slope from Canazei to Pian, one of the oldest hamlets in the Val di Fassa, past old farms and restored wooden barns facing the Sassolungo. The APT lists 6.2 km and 152 m of ascent.'
     },
     'fassa-santuario-dei-pellegrini': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Al santuario medievale dei pellegrini di Fassa”, tagged “animali accettati”. The line
@@ -39866,7 +39866,7 @@
       desc: 'A short climb from Vigo di Fassa to the medieval church of Santa Giuliana, the valley’s patron saint, and back through the larch wood. The APT lists 2.7 km and 132 m of ascent.'
     },
     'fassa-malga-aloch': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Storie di vita contadina a Malga Aloch e Masc Aloch”, tagged “animali accettati”. The line
@@ -40005,7 +40005,7 @@
       desc: 'A level family loop from Pozza over the Ciancoal meadows to Pera, with its dairy, and back past the Molin de Pèzol, the last working watermill in the Val di Fassa. The APT lists 3.7 km and 38 m of ascent.'
     },
     'fassa-pastori-erranti': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (new-trail batch 11).
       // APT Val di Fassa’s walk “Sulla via degli antichi pastori erranti”, tagged “animali accettati”. The line
@@ -40146,7 +40146,7 @@
       desc: 'A gentle loop from Vigo along the meadows above Pozza to Pera, on the old Ladin farmland, facing the Costabella and the Vallaccia. The APT lists 7.9 km and 176 m of ascent.'
     },
     'fassa-alpe-di-fuciade': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (new-trail batch 11).
       // APT Val di Fassa’s walk “Dal Passo all’Alpe di Fuciade, inseguendo i sapori ladini”, tagged “animali accettati”. The line
@@ -40215,7 +40215,7 @@
       desc: 'An almost level walk from the San Pellegrino pass to the Fuciade alp, a wide pasture of old wooden hay barns and chapels facing the Marmolada. The APT lists 6.9 km and 94 m of ascent.'
     },
     'fassa-borgo-di-tamion': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 12).
       // APT Val di Fassa’s walk “Alla scoperta del borgo ladino di Tamion”, tagged “animali accettati”. The line
@@ -40287,7 +40287,7 @@
       desc: 'A steady climb from Soraga past the chapel of Barbide and above the red sandstone gorge to Tamion, a hamlet of old barns and a small church in the meadows, facing the Sassolungo. The APT lists 4.7 km and 339 m of ascent, there and back.'
     },
     'fassa-da-alba-a-penia': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 12).
       // APT Val di Fassa’s walk “Da Alba a Penìa, l’ultimo borgo prima della Marmolada”, tagged “animali accettati”. The line
@@ -40357,7 +40357,7 @@
       desc: 'An easy walk from Alba to Penìa, the last village before the Marmolada, with a loop through its old Ladin houses to the onion-domed church and the Venetian sawmill, under the wall of the Gran Vernel. The APT lists 4.5 km and 97 m of ascent.'
     },
     'fassa-val-freida': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 12).
       // APT Val di Fassa’s walk “Sulle tracce dei pastori all’imbocco della Val Freida”, tagged “animali accettati”. The line
@@ -40425,7 +40425,7 @@
       desc: 'A short walk from Malga Boer through the pastures and old hay barns below the San Pellegrino pass to the Rifugio Flora Alpina at the mouth of Val Freida, facing the Marmolada and the Pale. The APT lists 2.8 km and 116 m of ascent, there and back.'
     },
     'fassa-moena-soraga-acqua': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 12).
       // APT Val di Fassa’s walk “Da Moena a Soraga, dove l’acqua ha segnato la storia”, tagged “animali accettati”. The line
@@ -40496,7 +40496,7 @@
       desc: 'An easy walk from Moena over the farmland above the Soraga reservoir to Soraga and its riverside park, past the El Mas farm and a covered footbridge, facing the Catinaccio and the Sassolungo. The APT lists 4.8 km and 139 m of ascent, there and back.'
     },
     'fassa-dipinti-del-giotto': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 13).
       // APT Val di Fassa’s walk “Sulle tracce dei dipinti del Giotto della Val di Fassa”, tagged “animali accettati”. The line
@@ -40634,7 +40634,7 @@
       desc: 'A short climb from Moena through Ciajeole, its oldest quarter, to Malga Roncac at the edge of the larch wood, with the whole of Moena below and the Catinaccio across the valley. The APT lists 3 km and 137 m of ascent.'
     },
     'fassa-moena-soraga-someda': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 13).
       // APT Val di Fassa’s walk “Da Moena a Soraga, la natura a due passi da casa”, tagged “animali accettati”. The line
@@ -40707,7 +40707,7 @@
       desc: 'From Moena up to the hamlet of Someda and its little church, then across the meadows above the Soraga reservoir, past a boundary stone of 1551, to Soraga, facing the Catinaccio and the Latemar. The APT lists 6.1 km and 175 m of ascent, there and back.'
     },
     'primiero-fiera-pieve': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “Fiera-Pieve”, marked Dog-friendly on its
@@ -40780,7 +40780,7 @@
       desc: 'A short, level loop through the old mining town of Fiera di Primiero and the parish village of Pieve, past palaces, chapels and the church of Santa Maria Assunta. The APT lists 2.6 km and 22 m of ascent.'
     },
     'primiero-transacqua': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “Transacqua”, marked Dog-friendly on its
@@ -40851,7 +40851,7 @@
       desc: 'A short loop from Fiera di Primiero into the old village of Transacqua, past frescoed houses, wayside shrines and Piazza San Marco. The APT lists 2.3 km and 37 m of ascent.'
     },
     'primiero-tonadico': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “Tonadico”, marked Dog-friendly on its
@@ -40924,7 +40924,7 @@
       desc: 'A gentle loop round the village of Tonadico, below the Pale di San Martino, past Palazzo Scopoli, painted houses and the church of San Vittore. The APT lists 4 km and 57 m of ascent.'
     },
     'primiero-siror': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “Siror”, marked Dog-friendly on its
@@ -40996,7 +40996,7 @@
       desc: 'A gentle loop up to the old village of Siror, past octagonal fountains, painted houses and haylofts to the church of Sant’Andrea. The APT lists 3.9 km and 69 m of ascent.'
     },
     'primiero-la-guana-di-primiero': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “La Guana di Primiero”, marked Dog-friendly on its
@@ -41067,7 +41067,7 @@
       desc: 'An easy loop from Fiera di Primiero to Navoi to see the Guana, a giant wooden lizard by Marco Martalar built from trees felled by storm Vaia, and back through Transacqua. The APT lists 3 km and 47 m of ascent.'
     },
     'primiero-percorso-verde': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “Percorso Verde (I percorsi del benessere)”, marked Dog-friendly on its
@@ -41139,7 +41139,7 @@
       desc: 'A short, step-free loop from the Parco Clarofonte in Fiera di Primiero along Via Lungo Canali, with one of the best views of the Pale di San Martino from the valley. The APT lists 1.6 km and 23 m of ascent.'
     },
     'primiero-anello-molaren-via-nova-marine': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 2).
       // APT San Martino di Castrozza’s walk “Anello Molaren - Via Nova - Marine”, marked Dog-friendly.
@@ -41211,7 +41211,7 @@
       desc: 'A loop from Mezzano along the panoramic Via Molaren path to Pieve and back on the old Via Nova track, with wide views of the Pale di San Martino. The APT lists 5.8 km and 176 m of ascent.'
     },
     'primiero-san-martino-di-castrozza-val-di-roda-prati-col': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 2).
       // APT San Martino di Castrozza’s walk “San Martino di Castrozza - Val di Roda - Prati Col”, marked Dog-friendly.
@@ -41283,7 +41283,7 @@
       desc: 'A half-day loop from San Martino di Castrozza up the Val di Roda forest road past a waterfall and back over the Prati Col meadows, with views of the Pale di San Martino. The APT lists 5.9 km and 154 m of ascent.'
     },
     'primiero-anello-di-valpiana': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 2).
       // APT San Martino di Castrozza’s walk “Anello di Valpiana”, marked Dog-friendly.
@@ -41414,7 +41414,7 @@
       desc: 'A loop above Mezzano along the beech-wooded crest of Monte Cordognè to the meadows and old chapel of San Giovanni, with views of the Vette Feltrine and the Val Noana lake. The APT lists 5 km and 181 m of ascent.'
     },
     'cortina-castello-di-botestagno': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (new-trail Belluno batch 1).
       // Cortina Marketing’s walk “Al Castello di Botestagno”, drawn on 19 OSM ways along the line it publishes
@@ -41603,7 +41603,7 @@
       desc: 'A gentle loop on the wooded slope west of Cortina from Malga Peziè de Parù to the Locanda del Cantoniere and Baita Resch, three traditional places to eat. The board lists 4.3 km and 185 m of ascent.'
     },
     'cortina-mortisa-e-le-grotte-di-volpera': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (new-trail Belluno batch 1).
       // Cortina Marketing’s walk “Mortisa e le Grotte di Volpera”, drawn on 27 OSM ways along the line it publishes
@@ -41669,7 +41669,7 @@
       desc: 'An easy walk from the centre of Cortina through the old hamlets of Crignes and Mortisa to the boulders and small caves of Volpera. The board lists 5.9 km and 221 m of ascent.'
     },
     'cortina-sotecordes': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (new-trail Belluno batch 1).
       // Cortina Marketing’s walk “Escursione di Sotecordes”, drawn on 21 OSM ways along the line it publishes
@@ -41790,8 +41790,6 @@
       desc: 'Ring 50 of the Lozzo di Cadore network: a short loop on the Pian dei Buoi plateau from the Forte Basso di Col Vidal past the First World War positions of the Cinque Imbocchi, facing the Marmarole. The official sheet gives about 3 km, 130 m of climb and 1 h 30.'
     },
     'fiemme-cavalese-passeggiata-panoramica': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 1).
       // APT Val di Fiemme’s walk “Cavalese - Passeggiata panoramica”. The line is drawn on 31 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -41858,7 +41856,7 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -41868,7 +41866,7 @@
         mapPoints: 'Start at Cavalese (Piazza Verdi), the APT’s start; drinking water at the start, at km 0.4 and at km 0.8 (OSM nodes 274303877, 274301855, 4572848719).',
         elevation: 'Official 3 km, 100 m up and 100 m down, 1 h, highest point 998 m, lowest 935 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -41979,8 +41977,6 @@
       desc: 'A level loop through Cavalese along the Rio Gambis promenade, past the bell tower of San Sebastiano and the Marcialonga finish, laid out by the APT for wheelchairs. The APT lists 3 km and 42 m of ascent.'
     },
     'fiemme-cascatelle-di-ziano': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 1).
       // APT Val di Fiemme’s walk “Le Cascatelle di Ziano di Fiemme”. The line is drawn on 6 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -42041,7 +42037,7 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -42051,7 +42047,7 @@
         mapPoints: 'Start at Ziano di Fiemme (Roda), the APT’s start; drinking water none mapped.',
         elevation: 'Official 2.2 km, 100 m up and 100 m down, 1 h, highest point 1,048 m, lowest 973 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -42153,7 +42149,7 @@
       desc: 'An easy loop from Cavalese to Castello di Fiemme and back, along a sunny terrace facing the Lagorai, laid out by the APT for wheelchairs. The APT lists 4.8 km and 65 m of ascent.'
     },
     'fiemme-larici-verso-anterivo': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 2).
       // APT Val di Fiemme’s walk “Passeggiata col passeggino tra i larici verso Anterivo”. The line is drawn on 33 OSM ways
@@ -42279,7 +42275,7 @@
       desc: 'An easy walk from Varena across the open meadows of Spianez, a sunny balcony over the lower Val di Fiemme, out on a gravel track and back through the lower village. The APT lists 8.6 km and 120 m of ascent.'
     },
     'primiero-malga-ces': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 3).
       // APT San Martino di Castrozza’s walk “San Martino di Castrozza - Malga Ces”.
@@ -42355,7 +42351,7 @@
       desc: 'A walk from the centre of San Martino di Castrozza through the forest to Malga Ces and back the same way, with views of the Pale di San Martino. The APT lists 7.8 km and 218 m of ascent.'
     },
     'fiemme-pradi-da-le-fior': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 3).
       // APT Val di Fiemme’s walk “I Pradi da le Fior”. The line is drawn on 7 OSM ways
@@ -42686,8 +42682,6 @@
       desc: 'A walk from the Rifugio Vederna along a forest road and meadows to the Croce degli Alpini, a great cross above the Primiero valley with views of the Pale di San Martino and the Vette Feltrine. The APT lists 8.2 km and 300 m of ascent.'
     },
     'fiemme-sentiero-botanico': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 4).
       // APT Val di Fiemme’s walk “Sentiero botanico naturalistico”. The line is drawn on 16 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -42742,7 +42736,7 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -42752,7 +42746,7 @@
         mapPoints: 'Start at Grauno (the church of San Martino), the APT’s start; drinking water at the start and at km 5.5 (OSM nodes 10093184783, 1239897159).',
         elevation: 'Official 11.8 km, 300 m up and 300 m down, 4 h 30 min, highest point 1,297 m, lowest 904 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -42790,7 +42784,7 @@
       desc: 'A long, gentle loop through the woods from Grauno in the Val di Cembra to Capriana on a botanical path, then up to the Fontana d’Ao hut and back down an old cobbled road. The APT lists 11.8 km and 300 m of ascent.'
     },
     'primiero-ponte-su-funi': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 5).
       // APT San Martino di Castrozza’s walk “Ponte su Funi Rio San Piero da Mezzano”, marked Dog-friendly.
@@ -42943,7 +42937,7 @@
       desc: 'A one-way walk along the old Via Nova from Pieve to Passo Gobbera, past more than forty old fruit trees and over a 70 m rope suspension bridge above the Rio San Piero. The APT lists 8 km and 321 m of ascent.'
     },
     'primiero-malga-valcigolera': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 6).
       // APT San Martino di Castrozza’s walk “San Martino di Castrozza - Malga Valcigolera”.
@@ -43018,8 +43012,6 @@
       desc: 'A walk from the centre of San Martino di Castrozza through the forest of the Val Cigolera to Malga Valcigolera and back, with a wide view of the Pale di San Martino at the top. The APT lists 9.1 km and 431 m of ascent.'
     },
     'cembra-lago-santo': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
       // APT Fiemme Cembra’s walk “Il Lago Santo”. The line is drawn on 19 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -43062,7 +43054,7 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -43072,7 +43064,7 @@
         mapPoints: 'Start at Lago Santo car park, Cembra, the APT’s start; drinking water none mapped.',
         elevation: 'Official 1.1 km, 10 m up and 10 m down, 20 min, highest point 1,203 m, lowest 1,193 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -43110,7 +43102,7 @@
       desc: 'A short, flat loop round the Lago Santo, a small lake in the woods above Cembra, with a dog-bathing area of its own. The APT lists 1.1 km and 10 m of ascent.'
     },
     'cembra-pietra-del-futuro': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
       // APT Fiemme Cembra’s walk “La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases”. The line is drawn on 39 OSM ways
@@ -43173,8 +43165,6 @@
       desc: 'A short walk from the porphyry village of Lases down to its lake and along the shore, with an audio guide recorded by the village schoolchildren. The APT lists 2.7 km and 61 m of ascent, one way.'
     },
     'cembra-lago-lases-buse-giaz': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
       // APT Fiemme Cembra’s walk “Il Lago di Lases e le buse del giaz”. The line is drawn on 51 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -43229,7 +43219,7 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -43239,7 +43229,7 @@
         mapPoints: 'Start at Lago di Lases car park on the SP 71, the APT’s start; drinking water at km 0.2 (OSM nodes 9837867879).',
         elevation: 'Official 4.9 km, 150 m up and 150 m down, 2 h, highest point 766 m, lowest 631 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -43338,8 +43328,6 @@
       desc: 'A loop from Lisignago through the vineyards of the lower Val di Cembra to the hilltop chapel of San Leonardo, down to the Rio Ischiele and back by Maso Spedenal. The APT lists 4.4 km and 280 m of ascent.'
     },
     'cembra-dos-paion': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
       // APT Fiemme Cembra’s walk “Passeggiata al belvedere del Dos Paion sul Monte Corona”. The line is drawn on 19 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -43400,7 +43388,7 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -43410,7 +43398,7 @@
         mapPoints: 'Start at Ville di Giovo (Piazza della Crosara), the APT’s start; drinking water at the start (OSM nodes 8170134089).',
         elevation: 'Official 6 km, 308 m up and 308 m down, 2 h 02 min, highest point 1,014 m, lowest 707 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -43445,7 +43433,7 @@
       desc: 'A walk from Ville di Giovo up through the woods of Monte Corona to the Dos Paion viewpoint over the vineyards of the lower Val di Cembra, and back the same way. The APT lists 6 km and 308 m of ascent.'
     },
     'cembra-rifugio-potzmauer': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
       // APT Fiemme Cembra’s walk “Al Rifugio Potzmauer”. The line is drawn on 24 OSM ways
@@ -43628,8 +43616,6 @@
       desc: 'A loop from the village of Sevignano, with its wooden owls and artworks, through larch and beech woods to the meadows of Fontane, the great beech of Fo Gross and the fields of Prada. The APT lists 4 km and 200 m of ascent.'
     },
     'cembra-erbe-della-salute': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
       // APT Fiemme Cembra’s walk “Le erbe della salute”. The line is drawn on 18 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -43684,7 +43670,7 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -43694,7 +43680,7 @@
         mapPoints: 'Start at Grauno (Centro servizi Castelet, at the top of the village), the APT’s start; drinking water at the start (OSM nodes 10093184780).',
         elevation: 'Official 2.1 km, 100 m up and 100 m down, 1 h, highest point 1,008 m, lowest 938 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -43788,8 +43774,6 @@
       desc: 'A loop from Ville di Giovo through the vineyards and woods to the top of Monte Corona and its viewpoint, along the ridge and down through a cleft in the rock. The APT lists 7.2 km and 390 m of ascent.'
     },
     'cembra-giro-masi-grumes': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
       // APT Fiemme Cembra’s walk “Il Giro dei Masi di Grumes”. The line is drawn on 38 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -43844,7 +43828,7 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -43854,7 +43838,7 @@
         mapPoints: 'Start at Grumes (“Le Fontanelle” car park by the theatre), the APT’s start; drinking water at the start, at km 0.5, at km 1.9 and at km 2.7 (OSM nodes 10935265406, 12919075815, 12920693303, 3626852675).',
         elevation: 'Official 6.8 km, 250 m up and 250 m down, 2 h 30 min, highest point 1,111 m, lowest 851 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -43895,8 +43879,6 @@
       desc: 'A walk from Grumes up the quiet lanes to the Masi di Grumes, old farmsteads on the sunny slopes of the upper Val di Cembra, and back. The APT lists 6.8 km and 250 m of ascent.'
     },
     'fiemme-scalata-alle-malghette': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 3).
       // APT Val di Fiemme’s walk “Montagna Senza Limiti - La “scalata” alle Malghette”. The line is drawn on 22 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -43963,7 +43945,7 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -43973,7 +43955,7 @@
         mapPoints: 'Start at Solaiolo car park, the APT’s start; drinking water at km 1.6 (OSM nodes 13075995675).',
         elevation: 'Official 3.9 km, 163 m up and 163 m down, 2 h, highest point 1,541 m, lowest 1,378 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -44014,7 +43996,7 @@
       desc: 'A walk from Solaiolo up a forest road past the Palù Longa bog lake to the meadow and hut of Le Malghette, laid out by the APT for all-terrain wheelchairs, and back the same way. The APT lists 3.9 km and 163 m of ascent.'
     },
     'cembra-piz-de-le-agole': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 3).
       // APT Fiemme Cembra’s walk “Il Piz de le Agole, balcone sulla valle”. The line is drawn on 48 OSM ways
@@ -44134,7 +44116,7 @@
       desc: 'A loop from Grumes down the Rio dei Molini past old water mills, a Venetian sawmill and a forge, on woodland paths and footbridges, and back up to the village. The APT lists 5.3 km and 400 m of ascent.'
     },
     'cembra-monte-pat-malga-vernera': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 4).
       // APT Fiemme Cembra’s walk “Dalla Baita Monte Pat a Malga Vernera”. The line is drawn on 7 OSM ways
@@ -44193,8 +44175,6 @@
       desc: 'A short walk on a forest road from the Baita Monte Pat above Montesover to the summer pastures of Malga Vernera, and back the same way; the APT tags it as dog-friendly. The APT lists 2.3 km and 183 m of ascent.'
     },
     'cembra-pascoli-malga-vernera': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 4).
       // APT Fiemme Cembra’s walk “Sui Pascoli di Malga Vernera”. The line is drawn on 11 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -44243,7 +44223,7 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -44253,7 +44233,7 @@
         mapPoints: 'Start at Malga Vernera Bassa car park, the APT’s start; drinking water at km 0.5 and at km 1.2 (OSM nodes 9796103998, 4072074994).',
         elevation: 'Official 3.6 km, 185 m up and 185 m down, 1 h 10 min, highest point 1,863 m, lowest 1,678 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -44359,7 +44339,7 @@
       desc: 'An easy loop from La Villa to the small lake Lech da Sompunt below the Sas dla Crusc, down to Pedraces and back along the river. The board lists 7.5 km and 172 m of ascent.'
     },
     'altabadia-escursione-corvara-colfosco': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Correction 28 October 2026: Corvara does publish a dog regulation (Gemeinderat Nr. 17, 27.06.2011);
       // the record first said it had none. Its rules are the same as the national rule plus no farmed meadows.
@@ -44430,7 +44410,7 @@
       desc: 'A short loop from Corvara up to Colfosco and back across the valley pastures beside the Rü de Pisciadú, below the Sella. The board lists 4.8 km and 128 m of ascent.'
     },
     'altabadia-sentiero-degli-artisti-tru-di-artisc': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 1).
       // The Alta Badia tourist board’s walk “Sentiero degli artisti - Tru di artisć”, drawn on 37 OSM ways along the line it publishes
@@ -44499,7 +44479,7 @@
       desc: 'The artists’ path from La Villa along the San Cassiano stream to San Cassiano and on through meadows to Armentarola. The board lists 5.2 km and 245 m of ascent, one way.'
     },
     'altabadia-escursione-corvara-la-villa': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Correction 28 October 2026: Corvara does publish a dog regulation (Gemeinderat Nr. 17, 27.06.2011);
       // the record first said it had none. Its rules are the same as the national rule plus no farmed meadows.
@@ -44636,7 +44616,7 @@
       desc: 'A long loop from Pederoa up to the farms of Picedac, Aiarëi and Costa and back beside the river, in the quiet lower Val Badia. The board lists 13.5 km and 407 m of ascent.'
     },
     'altabadia-da-furnacia-a-la-crusc': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 2).
       // The Alta Badia tourist board’s walk “Da Furnacia a La Crusc”, drawn on 9 OSM ways along the line it publishes
@@ -44771,7 +44751,7 @@
       desc: 'A long loop from La Val past the chapel of Santa Barbara and the Rit lake to the high Rit meadows and the Ütia da Rit, and back through Spëscia. The board lists 14.1 km and 728 m of ascent.'
     },
     'altabadia-da-san-cassiano-al-pralongia-fino-a-corvara': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Correction 28 October 2026: Corvara does publish a dog regulation (Gemeinderat Nr. 17, 27.06.2011);
       // the record first said it had none. Its rules are the same as the national rule plus no farmed meadows.
@@ -44848,7 +44828,7 @@
       desc: 'A high walk from the top of the Piz Sorega gondola across the Pralongiá plateau past the Bioch hut and the Pralongiá inn, and down on foot to Corvara. The board lists 8.7 km, 128 m up and 581 m down.'
     },
     'altabadia-passeggiata-borest-cascate-del-pisciadu': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Correction 28 October 2026: Corvara does publish a dog regulation (Gemeinderat Nr. 17, 27.06.2011);
       // the record first said it had none. Its rules are the same as the national rule plus no farmed meadows.
@@ -44917,7 +44897,7 @@
       desc: 'A short walk from Corvara up the Rü de Pisciadú stream to the Pisciadú waterfall at the foot of the Sella. The board lists 3.7 km and 204 m of ascent, one way.'
     },
     'valgardena-tour-alla-volta-del-lech-sant': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
       // The Val Gardena tourist board’s walk “Tour alla volta del Lech Sant”, drawn on 9 OSM ways along the line it publishes
@@ -44980,7 +44960,7 @@
       desc: 'A gentle walk there and back from Cristauta above Santa Cristina through the forest to the Lech Sant, a small lake on the Mastlé alp below the Odle. The board lists 7.7 km and 349 m of ascent.'
     },
     'valgardena-passeggiata-da-ortisei-a-s-cristina': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
       // The Val Gardena tourist board’s walk “Passeggiata da Ortisei a S. Cristina”, drawn on 47 OSM ways along the line it publishes
@@ -45054,7 +45034,7 @@
       desc: 'An easy valley loop from the church of Ortisei along the Luis Trenker promenade and the stream to the Alpe di Siusi cable car and back. The board lists 7.2 km and 147 m of ascent.'
     },
     'valgardena-escursione-al-resciesa': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
       // The Val Gardena tourist board’s walk “Escursione al Resciesa”, drawn on 19 OSM ways along the line it publishes
@@ -45184,7 +45164,7 @@
       desc: 'A long high loop from the Resciesa above Ortisei past the chapel of Santa Croce and the Passo Valluzza to the Brogles alp below the Odle, in the Puez-Odle nature park. The board lists 13 km and 422 m of ascent.'
     },
     'valgardena-giro-della-via-crucis': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
       // The Val Gardena tourist board’s walk “Giro della Via Crucis”, drawn on 22 OSM ways along the line it publishes
@@ -45254,7 +45234,7 @@
       desc: 'A short loop above Santa Cristina along the Way of the Cross with its fourteen bronze stations, over the Col da Mëssa to Plesdinaz and back. The board lists 3.3 km and 138 m of ascent.'
     },
     'valgardena-passeggiata-alla-chiesetta-di-san-giacomo': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
       // The Val Gardena tourist board’s walk “Passeggiata alla chiesetta di San Giacomo”, drawn on 25 OSM ways along the line it publishes
@@ -45322,7 +45302,7 @@
       desc: 'A walk from Ortisei by the Via del Dialogo and the Col de Flam up through the forest to the little church of San Giacomo, back down the same path and home by the Val d’Anna. The board lists 6 km and 330 m of ascent.'
     },
     'trecime-dobbiaco-lago-di-dobbiaco': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
       // The Tre Cime Dolomites tourist board’s walk “Dobbiaco – Lago di Dobbiaco, percorso naturalistico attorno al lago”, drawn on 65 OSM ways along the line it publishes
@@ -45394,7 +45374,7 @@
       desc: 'A level walk from Toblach to the Toblacher See and along the nature trail on its west shore, and back. The board lists 7.9 km and 61 m of ascent.'
     },
     'trecime-sentiero-gustav-mahler': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
       // The Tre Cime Dolomites tourist board’s walk “Sentiero Gustav Mahler”, drawn on 36 OSM ways along the line it publishes
@@ -45459,7 +45439,7 @@
       desc: 'A short loop from Neu-Toblach through the forest to Altschluderbach, where Gustav Mahler spent his last summers, and back on the cycle path. The board lists 4.7 km and 72 m of ascent.'
     },
     'trecime-san-candido-costa-dei-nosellari-dobbiaco': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
       // The Tre Cime Dolomites tourist board’s walk “San Candido – Costa dei Nosellari – Dobbiaco”, drawn on 19 OSM ways along the line it publishes
@@ -45537,7 +45517,7 @@
       desc: 'A walk from Innichen up the Schlosstal and over the Haselsberg farms to Toblach, back by train or bus. The board lists 4.8 km and 161 m of ascent, one way.'
     },
     'trecime-bagni-di-san-candido': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
       // The Tre Cime Dolomites tourist board’s walk “Escursione a tema: Bagni di San Candido”, drawn on 19 OSM ways along the line it publishes
@@ -45686,7 +45666,7 @@
       desc: 'A gentle loop from Niederdorf across the Maistatt meadows to a warm spring and back through the forest. The board lists 4.8 km and 133 m of ascent.'
     },
     'trecime-villabassa-mooskirche': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
       // The Tre Cime Dolomites tourist board’s walk “Villabassa – giro del bosco "Mooskirche" – Villabassa”, drawn on 21 OSM ways along the line it publishes
@@ -45757,7 +45737,7 @@
       desc: 'A flat family loop from Niederdorf to the Gothic chapel of St. Magdalena in Moos and back between the fields. The board lists 2.5 km and 21 m of ascent.'
     },
     'trecime-lago-di-braies-malga-foresta': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
       // The Tre Cime Dolomites tourist board’s walk “Lago di Braies – Malga Foresta”, drawn on 9 OSM ways along the line it publishes
@@ -46149,7 +46129,7 @@
       desc: 'A flat loop on the floor of the Val Rendena along both banks of the Sarca, between Javrè, Darè, Vigo and Pelugo, mostly on the cycle path and quiet lanes. The APT lists 7.2 km and 79 m of ascent.'
     },
     'valdisole-fazzon-lago-dei-caprioli': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Val di Sole’s walk “Passeggiata dal Rifugio Fazzon al Lago dei Caprioli”, drawn on 9 OSM ways along the line it publishes
@@ -46217,7 +46197,7 @@
       desc: 'A very short walk there and back on the Fazzon plain above Pellizzano from Rifugio Fazzon to the Lago dei Caprioli, a green lake among larches. The APT lists 1.5 km and 62 m of ascent.'
     },
     'valdisole-lago-dei-caprioli-malga-alta-di-fazzon': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Val di Sole’s walk “Lago dei Caprioli - Malga Alta di Fazzon”, drawn on 5 OSM ways along the line it publishes
@@ -46289,7 +46269,7 @@
       desc: 'A short climb through the woods from the Lago dei Caprioli to the farm at Malga Alta di Fazzon and back, with a view over the upper Val di Peio. The APT lists 3.1 km and 237 m of ascent.'
     },
     'valdisole-marilleva-1400-malga-alta-di-fazzon': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Val di Sole’s walk “Marilleva 1400 - Malga Alta di Fazzon”, drawn on 12 OSM ways along the line it publishes
@@ -46366,7 +46346,7 @@
       desc: 'A forest walk from Marilleva 1400 along the hillside to the farm at Malga Alta di Fazzon and down to the Lago dei Caprioli. The APT lists 4.4 km, 211 m of ascent and 352 m of descent, one way.'
     },
     'valdisole-bivacco-malga-baselga': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Val di Sole’s walk “Bivacco Malga Baselga”, drawn on 17 OSM ways along the line it publishes
@@ -46436,7 +46416,7 @@
       desc: 'A demanding climb from the Lago dei Caprioli through larch woods into the wild Val Baselga to a bivouac at 2,000 m, with views of the Cevedale. The APT lists 6.9 km and 740 m of ascent.'
     },
     'valdisole-rifugio-stavel-denza': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Val di Sole’s walk “Rifugio Stavel «Francesco Denza»”, drawn on 17 OSM ways along the line it publishes
@@ -46505,7 +46485,7 @@
       desc: 'A high walk there and back in the Val di Stavel above Vermiglio on First World War paths to Rifugio Denza, under the north face and glaciers of the Presanella. The APT lists 7.3 km and 594 m of ascent.'
     },
     'valgardena-escursione-nella-vallunga': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 2).
       // The Val Gardena tourist board’s walk “Escursione nella Vallunga”, drawn on 47 OSM ways along the line it publishes
@@ -46573,7 +46553,7 @@
       desc: 'An easy out-and-back up the Vallunga above Selva, past the San Silvestro chapel to the pastures under the valley’s limestone walls, in the Puez-Odle nature park. The board lists 7.5 km and 201 m of ascent.'
     },
     'valgardena-escursione-al-terrazzo-panoramico-seeurasas': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 2).
       // The Val Gardena tourist board’s walk “Escursione al terrazzo panoramico Sëurasas”, drawn on 17 OSM ways along the line it publishes
@@ -46716,7 +46696,7 @@
       desc: 'A loop from Santa Cristina past the old mountain farms above the village, with boards telling each farm’s story in old photographs. The board lists 7.4 km and 450 m of ascent.'
     },
     'valgardena-raida-dl-luech-giro-del-paese': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 2).
       // The Val Gardena tourist board’s walk “"Raida dl luech" - Giro del paese”, drawn on 42 OSM ways along the line it publishes
@@ -46799,7 +46779,7 @@
       desc: 'A short loop round Santa Cristina along the Cisles stream to the Tervela waterfall, back through the forest and up the Triech path to the church. The board lists 3.9 km and 151 m of ascent.'
     },
     'trecime-innichen-waldkapelle-sexten': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 2).
       // The Tre Cime Dolomites tourist board’s walk “Cimitero dei soldati "Burg" – Cappella del bosco – Sesto”, drawn on 27 OSM ways along the line it publishes
@@ -46873,7 +46853,7 @@
       desc: 'A walk from Innichen through the forest past the hidden Waldkapelle and down by old farms to Sexten. The board lists 8 km and 400 m of ascent, one way.'
     },
     'trecime-bellavista-montecosta': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 2).
       // The Tre Cime Dolomites tourist board’s walk “Escursione estiva: Bellavista Montecosta”, drawn on 25 OSM ways along the line it publishes
@@ -46947,7 +46927,7 @@
       desc: 'A climb from Niederdorf up the Montecosta past old farms to the Bellavista viewpoint above the Pustertal. The board lists 5.7 km and 360 m of ascent, one way.'
     },
     'trecime-lago-di-braies-malga-rossalm': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 2).
       // The Tre Cime Dolomites tourist board’s walk “Lago di Braies – Malga Rossalm”, drawn on 23 OSM ways along the line it publishes
@@ -47011,7 +46991,7 @@
       desc: 'A long climb from the Pragser Wildsee on paths 1 and 4 to the Rossalm pastures. The board lists 6.6 km and 846 m of ascent, one way.'
     },
     'trecime-carbonin-rifugio-vallandro': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 2).
       // The Tre Cime Dolomites tourist board’s walk “Carbonin – Rifugio Vallandro”, drawn on 18 OSM ways along the line it publishes
@@ -47079,7 +47059,7 @@
       desc: 'A climb from Schluderbach up the forest road on path 37 to the Dürrensteinhütte on the Plätzwiese. The board lists 6 km and 579 m of ascent, one way.'
     },
     'trecime-monte-elmo-versciaco': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 2).
       // The Tre Cime Dolomites tourist board’s walk “Sentiero nel bosco fino a Versciaco”, drawn on 35 OSM ways along the line it publishes
@@ -47344,7 +47324,7 @@
       desc: 'A loop from Brogno above Bellagio up to the Nuvolone viewpoint, the “most beautiful place in the world” over all three arms of the lake, and back through the woods by Rovenza. The portal lists 7.9 km and 679 m of ascent.'
     },
     'lario-anello-ai-piedi-del-monte-oriolo': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Lombardy batch 1).
       // in-Lombardia, the official tourism portal of Regione Lombardia: “Anello ai piedi del Monte Oriolo” by Lago di Como GAL, drawn on 48 OSM ways along its published GPX
@@ -47478,7 +47458,7 @@
       desc: 'A loop from Carella above the Segrino lake up the way of the cross to the Madonna della Neve and the Alpe di Carella, and back down the cobbled mule track to Mariaga. The portal lists 5.24 km and 397 m of ascent.'
     },
     'aosta-ru-courtaud': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Valle d'Aosta batch 1).
       // The Valle d'Aosta path register's route “Ru Courtaud” (07_S21), drawn on 19 OSM ways along the GPX the register exports
@@ -47549,7 +47529,7 @@
       desc: 'A gentle walk at about 1,900–2,000 m along the Rû Courtaud, a medieval irrigation channel that contours the slope above Antagnod and Champoluc, on a wide path through larch woods and pastures. The regional path register lists 5.9 km and 174 m of ascent, one way.'
     },
     'aosta-champoluc-cascata-mascognaz': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Valle d'Aosta batch 1).
       // The Valle d'Aosta path register's route “Champoluc - Cascata Mascognaz” (07_S50), drawn on 11 OSM ways along the GPX the register exports
@@ -47616,7 +47596,7 @@
       desc: 'A short, steady climb at 1,560–1,810 m from the centre of Champoluc up a forest path to the Mascognaz waterfall. The regional path register lists 1.6 km and 255 m of ascent, one way.'
     },
     'aosta-periasc-antagnod': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Valle d'Aosta batch 1).
       // The Valle d'Aosta path register's route “Periasc - Antagnod” (07_S65), drawn on 9 OSM ways along the GPX the register exports
@@ -47687,7 +47667,7 @@
       desc: 'A short climb at 1,500–1,680 m from the hamlet of Périasc on the valley floor up an old mule track to the village of Antagnod and its church. The regional path register lists 1 km and 176 m of ascent, one way.'
     },
     'aosta-sentiero-della-regina': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Valle d'Aosta batch 1).
       // The Valle d'Aosta path register's route “Sentiero della Regina” (33_S32), drawn on 17 OSM ways along the GPX the register exports
@@ -47758,7 +47738,7 @@
       desc: 'An easy walk at about 1,380–1,440 m along the valley side above Gressoney-Saint-Jean, past Lago Gover to Castel Savoia, the summer residence of Queen Margherita. The regional path register lists 3.4 km and 104 m of ascent, one way.'
     },
     'aosta-strada-lombarda': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Valle d'Aosta batch 1).
       // The Valle d'Aosta path register's route “Strada Lombarda” (33_S33), drawn on 42 OSM ways along the GPX the register exports
@@ -47830,7 +47810,7 @@
       desc: 'An easy walk at about 1,370–1,440 m on the valley floor through Gressoney-Saint-Jean, on the old valley road, the Strada Lombarda, and a dirt road beside the Lys. The regional path register lists 4.3 km and 155 m of ascent, one way.'
     },
     'aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Valle d'Aosta batch 1).
       // The Valle d'Aosta path register's route “Villaggi di Alpenzu piccolo e Alpenzu grande” (33_S46), drawn on 11 OSM ways along the GPX the register exports
@@ -47895,7 +47875,7 @@
       desc: 'A steady climb at about 1,610–1,860 m on the Walser path up the east side of the valley to the stone hamlets of Alpenzù Piccolo and Alpenzù Grande. The regional path register lists 3.3 km and 311 m of ascent, one way.'
     },
     'trecime-sesto-san-candido': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 3).
       // The Tre Cime Dolomites tourist board’s walk “Passeggiata: Sesto – San Candido”, drawn on 55 OSM ways along the line it publishes
@@ -47986,7 +47966,7 @@
       desc: 'A long walk from Moos through Sexten and down the valley on path 5 to Innichen, and back. The board lists 19.3 km and 462 m of ascent, there and back.'
     },
     'trecime-sesto-chiesa-gasthof-panorama': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 3).
       // The Tre Cime Dolomites tourist board’s walk “Sesto chiesa parrocchiale – Gasthof Panorama”, drawn on 21 OSM ways along the line it publishes
@@ -48052,7 +48032,7 @@
       desc: 'A short climb from Sexten up the Mitterberg road to the Gasthof Panorama, and back. The board lists 6 km and 248 m of ascent, there and back.'
     },
     'trecime-haus-der-berge-rifugio-larice': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 3).
       // The Tre Cime Dolomites tourist board’s walk “Haus der Berge – Rifugio Larice”, drawn on 91 OSM ways along the line it publishes
@@ -48116,7 +48096,7 @@
       desc: 'A climb from Sexten past the Kiniger farms and the Gasthof Panorama up the forest road to the Lärchenhütte, and back. The board lists 8 km and 538 m of ascent, there and back.'
     },
     'trecime-gasthof-panorama-rifugio-pendio-monte-elmo': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 3).
       // The Tre Cime Dolomites tourist board’s walk “Gasthof Panorama – Rifugio Pendio Monte Elmo”, drawn on 21 OSM ways along the line it publishes
@@ -48177,7 +48157,7 @@
       desc: 'A short, level walk from the Mitterberg fort past the Gasthof Panorama to the Helmhanghütte, and back. The board lists 2 km and 60 m of ascent, there and back.'
     },
     'trecime-sesto-cappella-del-bosco': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 3).
       // The Tre Cime Dolomites tourist board’s walk “Da Sesto alla Cappella del Bosco”, drawn on 9 OSM ways along the line it publishes
@@ -48243,7 +48223,7 @@
       desc: 'A short climb on the meditation path from Sexten past old farms to the Waldkapelle in the forest, and back. The board lists 3.7 km and 209 m of ascent, there and back.'
     },
     'giudicarie-senter-dei-popi-madonna-del-lares': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 2).
       // APT Madonna di Campiglio’s walk “Senter dei Popi - Madonna del Lares”, drawn on 18 OSM ways along the line it publishes
@@ -48319,7 +48299,7 @@
       desc: 'A streamside walk from Bondo along the Fiana and Arnò, past a gorge on a suspension bridge and through Breguzzo to the Madonna del Lares sanctuary. The APT lists 4.2 km and 93 m of ascent, one way.'
     },
     'rendena-giro-del-belvedere-giustino': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 2).
       // APT Madonna di Campiglio’s walk “Giro del Belvedere”, drawn on 20 OSM ways along the line it publishes
@@ -48387,7 +48367,7 @@
       desc: 'A short loop through the lanes of Giustino and along a grassy path above the village, with views up the Val Rendena. The APT lists 1.8 km and 53 m of ascent.'
     },
     'valdisole-monclassico-presson-meridiane': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 2).
       // APT Val di Sole’s walk “Monclassico e Presson - I paesi delle Meridiane”, drawn on 17 OSM ways along the line it publishes
@@ -48463,7 +48443,7 @@
       desc: 'A short, level loop through Monclassico and Presson, two Val di Sole villages whose houses carry more than fifty painted sundials. The APT lists 1.7 km and 39 m of ascent.'
     },
     'valdisole-passo-tonale-forte-mero-forte-zaccarana': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 2).
       // APT Val di Sole’s walk “Passo Tonale Forte Mero e Forte Zaccarana”, drawn on 15 OSM ways along the line it publishes
@@ -48534,7 +48514,7 @@
       desc: 'A high loop from Passo del Tonale over the plateau to Forte Mero and Forte Zaccarana, two Austro-Hungarian forts with wide views of the Presanella. The APT lists 9.1 km and 250 m of ascent.'
     },
     'valdisole-passo-tonale-forte-mero': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 2).
       // APT Val di Sole’s walk “Passo Tonale - Forte Mero”, drawn on 6 OSM ways along the line it publishes
@@ -48600,7 +48580,7 @@
       desc: 'An easy, gently downhill walk from Passo del Tonale over the plateau to Forte Mero, an Austro-Hungarian fort of the First World War. The APT lists 3.7 km, 31 m of ascent and 154 m of descent, one way.'
     },
     'valdisole-ortise-malga-stabli': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 2).
       // APT Val di Sole’s walk “Ortisé - Malga Stabli”, drawn on 11 OSM ways along the line it publishes
@@ -48851,7 +48831,7 @@
       desc: 'A loop from the hilltop village of Dordolla in the Val Aupa up to the centuries-old beeches of Pustot and back on the valley’s old mule tracks. PromoTurismoFVG lists 4.9 km and 395 m of ascent.'
     },
     'fvg-borgo-stavoli-moggio': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
       // PromoTurismoFVG’s walk “Il borgo isolato di Stavoli di Moggio” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
@@ -48912,7 +48892,7 @@
       desc: 'An out-and-back walk on the old mule track from Campiolo along the Glagnò stream to Stavoli, a stone hamlet reached only on foot. PromoTurismoFVG lists 6.9 km and 379 m of ascent.'
     },
     'fvg-anello-lago-di-verzegnis': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
       // PromoTurismoFVG’s walk “Anello del Lago di Verzegnis” (its verified Outdooractive account, author Prime Alps). The line is drawn
@@ -49039,7 +49019,7 @@
       desc: 'A nearly level loop from Andalo past its little lake and through the woods to the Tana dell’Ermellino at Priori. The APT lists 3.8 km and 32 m of ascent.'
     },
     'paganella-giro-della-toresela': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 3).
       // APT Dolomiti Paganella’s walk “Giro della Toresela”, drawn on 12 OSM ways along the line it publishes
@@ -49201,7 +49181,7 @@
       desc: 'A gentle loop through the old stone hamlets of San Lorenzo in Banale, past small churches and fountains below the Brenta Dolomites. The APT lists 3.8 km and 107 m of ascent.'
     },
     'lario-il-sentiero-del-viandante': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Lombardy batch 2).
       // in-Lombardia, the official tourism portal of Regione Lombardia: “Il Sentiero del Viandante” by Orobie Active, drawn on 86 OSM ways along its published GPX
@@ -49274,7 +49254,7 @@
       desc: 'The old Sentiero del Viandante along the east shore of Lake Como, one way from Varenna past the castle of Vezio and the hamlets of Perledo to Bellano. The portal lists 8 km and 400 m of ascent.'
     },
     'lario-caslino-sullacqua': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Lombardy batch 2).
       // in-Lombardia, the official tourism portal of Regione Lombardia: “Caslino sull’acqua” by Lago di Como GAL, drawn on 58 OSM ways along its published GPX
@@ -49342,7 +49322,7 @@
       desc: 'A short loop from Caslino d’Erba station through the old village and along the Piot stream to the Acqua Santa spring, across the Lambro to Ponte Lambro and back by Castelmarte. The portal lists 5.32 km and 447 m of ascent.'
     },
     'lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Lombardy batch 2).
       // in-Lombardia, the official tourism portal of Regione Lombardia: “Salendo al Monte Scioscia ad ammirare la Brianza” by Lago di Como GAL, drawn on 63 OSM ways along its published GPX
@@ -49416,7 +49396,7 @@
       desc: 'A loop from the Segrino lake up to the Monte Scioscia viewpoint over the Segrino and Pusiano lakes, down to Canzo and back through the woods by Proserpio. The portal lists 12 km and 734 m of ascent.'
     },
     'trecime-villabassa-lanaweg': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 4).
       // The Tre Cime Dolomites tourist board’s walk “Escursione circolare: Villabassa – Lanaweg”, drawn on 23 OSM ways along the line it publishes
@@ -49498,7 +49478,7 @@
       desc: 'An easy loop from Niederdorf up to the old Sinna Mihle and along the level Lanaweg, back across the Langwiesn meadows. The board lists 5.3 km and 232 m of ascent.'
     },
     'trecime-giro-delle-baite-lago-di-braies': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 4).
       // The Tre Cime Dolomites tourist board’s walk “Giro delle baite del Lago di Braies”, drawn on 29 OSM ways along the line it publishes
@@ -49629,7 +49609,7 @@
       desc: 'A short walk from Selva along the old Way of the Cross under the Stevia cliffs, past the ruins of Castel Wolkenstein, to the San Silvestro chapel at the mouth of the Vallunga. The board lists 2.1 km, 76 m up and 124 m down.'
     },
     'valgardena-escursione-al-brogles': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 3).
       // The Val Gardena tourist board’s walk “Escursione al Brogles”, drawn on 10 OSM ways along the line it publishes
@@ -49692,7 +49672,7 @@
       desc: 'A nearly level walk from the Resciesa funicular above Ortisei across high pastures below the Odle to the Brogles alp, in the Puez-Odle nature park. The board lists 4.9 km and 126 m of ascent one way.'
     },
     'valgardena-escursione-al-seeurasas': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 3).
       // The Val Gardena tourist board’s walk “Escursione al Sëurasas”, drawn on 13 OSM ways along the line it publishes
@@ -49840,7 +49820,7 @@
       desc: 'A long climb from Santa Cristina over Monte Pana and through the forest to the Rifugio Comici, then through the Città dei Sassi boulder field below the Sassolungo to the Passo Sella. The board lists 8.4 km and 800 m of ascent one way.'
     },
     'valgardena-uciei-de-freeines': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 3).
       // The Val Gardena tourist board’s walk “Uciei de Frëines: Arte che invita – Il sentiero dei richiami degli uccelli”, drawn on 14 OSM ways along the line it publishes
@@ -49906,7 +49886,7 @@
       desc: 'A gentle downhill walk from the top of the Col Raiser gondola through meadows and forest to Santa Cristina, along the Troi de Frëines and its bird-call art stations. The board lists 5.1 km and 560 m of descent.'
     },
     'valgardena-val-danna-percorso-kneipp': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 3).
       // The Val Gardena tourist board’s walk “Val d'Anna - percorso Kneipp”, drawn on 15 OSM ways along the line it publishes
@@ -50051,7 +50031,7 @@
       desc: 'A town walk round the historic centre of Ortisei, past the late-19th-century villas and sculptors’ workshops, up Via Rascesa and back past Plan de Mureda, the oldest villa in the village. The board lists 4.6 km and 179 m of ascent.'
     },
     'valgardena-seceda-da-col-raiser': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 4).
       // The Val Gardena tourist board’s walk “Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a monte)”, drawn on 15 OSM ways along the line it publishes
@@ -50346,7 +50326,7 @@
       desc: 'A long climb from Cristauta above Santa Cristina through the forest to the Sëurasas, then over the pastures by Monte Pic and the Passo Cuca to the Seceda. The board lists 6.3 km and 861 m of ascent one way.'
     },
     'fvg-fontanon-di-goriuda': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 2).
       // PromoTurismoFVG’s walk “Fontanon di Goriuda” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
@@ -50589,7 +50569,7 @@
       desc: 'An easy short loop from the walled town of Venzone through hazel woods and meadows to the small churches of Santa Caterina and Saints James and Anna, rebuilt after the 1976 earthquake. PromoTurismoFVG lists 2.6 km and 99 m of ascent.'
     },
     'trecime-monte-casella-di-fuori': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 5).
       // The Tre Cime Dolomites tourist board’s walk “Giro per il Monte Casella di Fuori”, drawn on 39 OSM ways along the line it publishes
@@ -50664,7 +50644,7 @@
       desc: 'A long loop from Sexten through the Gsell valley to the Außergsell and Innergsell meadows and back through the Fischleintal. The board lists 13.2 km and 832 m of ascent.'
     },
     'trecime-rotwandwiesen-moos': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 5).
       // The Tre Cime Dolomites tourist board’s walk “Passeggiata nella Valle di Sesto”, drawn on 19 OSM ways along the line it publishes
@@ -50729,7 +50709,7 @@
       desc: 'A downhill walk from the Rotwandwiesen, reached by gondola, along the forest road to Signaue and down through the forest to Moos. The board lists 4.8 km and 570 m of descent.'
     },
     'trecime-helmjet-waldruhe-sexten': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 5).
       // The Tre Cime Dolomites tourist board’s walk “Stazione a monte Monte Elmo – Baita del Cacciatore – Gasthof Waldruhe – Sesto”, drawn on 34 OSM ways along the line it publishes
@@ -50799,7 +50779,7 @@
       desc: 'A downhill walk from the Helm, reached by gondola, on the fairy-tale path past the Jägerhütte and the Waldruhe to Sexten. The board lists 5.3 km and 744 m of descent.'
     },
     'trecime-sasso-di-sesto': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 5).
       // The Tre Cime Dolomites tourist board’s walk “Escursione in montagna: Sasso di Sesto”, drawn on 31 OSM ways along the line it publishes
@@ -50870,7 +50850,7 @@
       desc: 'A long high walk from the Fischleintal up the Altensteintal to the Sextner Stein facing the Drei Zinnen, and back. The board lists 16.6 km and 1,071 m of ascent, there and back.'
     },
     'trecime-monte-elmo-da-moso': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 5).
       // The Tre Cime Dolomites tourist board’s walk “Escursione: Monte Elmo”, drawn on 47 OSM ways along the line it publishes
@@ -50931,7 +50911,7 @@
       desc: 'A steep climb from Moos past the Helmhanghütte and up the Heimatsteig ridge to the Helm summit, and back. The board lists 10.2 km and 1,063 m of ascent, there and back.'
     },
     'trecime-sesto-alte-saege-val-campo-di-dentro': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 5).
       // The Tre Cime Dolomites tourist board’s walk “Sesto – Alte Säge – Val Campo di Dentro”, drawn on 123 OSM ways along the line it publishes
@@ -51006,7 +50986,7 @@
       desc: 'A long, gentle walk from Sexten past the Alte Säge up the Innerfeldtal to the head of the valley, and back. The board lists 19.7 km and 457 m of ascent, there and back.'
     },
     'trecime-cimabanche-prato-piazza': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 6).
       // The Tre Cime Dolomites tourist board’s walk “Escursione estiva: Cimabanche – Prato Piazza”, drawn on 9 OSM ways along the line it publishes
@@ -51070,7 +51050,7 @@
       desc: 'A climb from the Cimabanche pass on path 18 up the Knappenfußtal past a small waterfall to the Plätzwiese. The board lists 4.4 km and 494 m of ascent, one way.'
     },
     'campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
       // APT Madonna di Campiglio’s walk “Escursione a Malga Ritort da Madonna di Campiglio”, drawn on 17 OSM ways along the line it publishes
@@ -51212,7 +51192,7 @@
       desc: 'A climb from Patascoss past Malga Ritorto and across the wild Pian dei Mughi to the Lago Ritorto, facing the Brenta Dolomites, in the Adamello Brenta Nature Park. The APT lists 5.4 km and 339 m of ascent, one way.'
     },
     'campiglio-laghi-di-san-giuliano-garzone-e-vacarsa': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
       // APT Madonna di Campiglio’s walk “Laghi di San Giuliano, Garzonè e Vacarsa”, drawn on 9 OSM ways along the line it publishes
@@ -51286,7 +51266,7 @@
       desc: 'A long mountain loop above Caderzone past the San Giuliano, Garzonè and Vacarsa lakes and over a 2,175 m pass, in the Adamello Brenta Nature Park. The APT lists 11 km and 665 m of ascent.'
     },
     'campiglio-monte-spinale-rifugio-graffer': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
       // APT Madonna di Campiglio’s walk “Monte Spinale - Rifugio Graffer”, drawn on 15 OSM ways along the line it publishes
@@ -51678,7 +51658,7 @@
       desc: 'A short loop from the centre of Matrei in Osttirol to the park below Schloss Weißenstein, with animal sculptures and nature boards along the way. The board lists 3.2 km and 88 m of ascent.'
     },
     'osttirol-naturkraftweg-umbalfaelle': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 1, the first Austrian walks).
       // The Osttirol tourist board’s walk “NaturKraftWeg Umbalfälle”, drawn on 27 OSM ways along the GPX it publishes
@@ -51865,7 +51845,7 @@
       desc: 'An easy loop at 2,000 m below the Staller Sattel at the head of the Defereggen valley, up to the Obersee, along the lake and back over the Staller Almen. The board lists 4.7 km and 70 m of ascent.'
     },
     'campiglio-trekking-al-lago-di-nambino': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 5).
       // APT Madonna di Campiglio’s walk “Trekking al Lago di Nambino”, drawn on 9 OSM ways along the line it publishes
@@ -51932,7 +51912,7 @@
       desc: 'A short climb through spruce forest from the Piana di Nambino to the Lago di Nambino and its rifugio, in the Adamello Brenta Nature Park. The APT lists 3.1 km and 154 m of ascent.'
     },
     'campiglio-madonna-di-campiglio-monte-spinale': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 5).
       // APT Madonna di Campiglio’s walk “Madonna di Campiglio - Monte Spinale”, drawn on 11 OSM ways along the line it publishes
@@ -52019,7 +51999,7 @@
       desc: 'A steady climb from Madonna di Campiglio through the woods to the high pastures of Monte Spinale and its 360° view, in the Adamello Brenta Nature Park. The APT lists 4.1 km and 567 m of ascent, one way.'
     },
     'campiglio-trekking-al-rifugio-segantini': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 5).
       // APT Madonna di Campiglio’s walk “Trekking al Rifugio Segantini”, drawn on 14 OSM ways along the line it publishes
@@ -52090,7 +52070,7 @@
       desc: 'A high loop at the head of the Val Nambrone up a panoramic ridge to the Rifugio Segantini, below the walls of the Presanella. The APT lists 4.9 km and 397 m of ascent.'
     },
     'campiglio-valina-d-amola-rifugio-segantini-cornisello': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 5).
       // APT Madonna di Campiglio’s walk “Valina d’Amola - Rifugio Segantini - Cornisello”, drawn on 17 OSM ways along the line it publishes
@@ -52229,7 +52209,7 @@
       desc: 'A one-way walk up the Val Viola from Arnoga, between Bormio and Livigno, through stone pine and larch woods past the Baite dell’Orsa to the Rifugio Federico with its view over the Val Dosdè. The portal lists 7 km and 562 m of ascent.'
     },
     'osttirol-spazierweg-kreuzweg': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 2).
       // The Osttirol tourist board’s walk “Spazierweg “Kreuzweg””, drawn on 21 OSM ways along the GPX it publishes
@@ -52295,7 +52275,7 @@
       desc: 'A short loop from the centre of Matrei in Osttirol up the Stations of the Cross to the old hamlet and chapel of Klaunz above the parish church. The board lists 3 km and 130 m of ascent.'
     },
     'osttirol-spazierweg-nikolauskirche': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 2).
       // The Osttirol tourist board’s walk “Spazierweg “Nikolauskirche””, drawn on 50 OSM ways along the GPX it publishes
@@ -52364,7 +52344,7 @@
       desc: 'A loop from the centre of Matrei in Osttirol across the Isel to the Romanesque church of St. Nikolaus, with its 13th-century frescoes, and back along the river. The board lists 5.7 km and 140 m of ascent.'
     },
     'osttirol-weg-der-sinne-virgen': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 2).
       // The Osttirol tourist board’s walk “Weg der Sinne Virgen”, drawn on 40 OSM ways along the GPX it publishes
@@ -52429,7 +52409,7 @@
       desc: 'A family loop below Virgen through fields and woods along the Mellitzbach, with 19 hands-on stations, a water playground and an open-air “landscape cinema”, rebuilt in 2025. The board lists 3.6 km and 149 m of ascent.'
     },
     'osttirol-themenweg-kreuzweg-virgen': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 2).
       // The Osttirol tourist board’s walk “Themenweg “Kreuzweg Virgen””, drawn on 17 OSM ways along the GPX it publishes
@@ -52494,7 +52474,7 @@
       desc: 'A short walk there and back from Virgen along the Stations of the Cross, fifteen serpentine blocks with bronze reliefs, to the pilgrimage church of Maria Schnee at Obermauern. The board lists 3.15 km and 104 m of ascent.'
     },
     'osttirol-kinder-naturerlebnispfad-kals-ag': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail East Tyrol batch 2).
       // The Osttirol tourist board’s walk “Kinder-Naturerlebnispfad Kals a.G.”, drawn on 14 OSM ways along the GPX it publishes
@@ -52623,7 +52603,7 @@
       desc: 'A flat loop along the Schwarzach from St. Jakob in Defereggen, past ponds and springs and boards on the river and the 1966 flood. The board lists 8.7 km and 41 m of ascent.'
     },
     'fvg-lago-di-sella-sompdogna': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 3).
       // PromoTurismoFVG’s walk “Il laghetto di sella Sompdogna” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
@@ -52684,7 +52664,7 @@
       desc: 'A short loop on the Sella Sompdogna saddle through larch and fir woods to a small mountain lake below the Jôf di Montasio, past the Grego hut. PromoTurismoFVG lists 2.2 km and 123 m of ascent.'
     },
     'fvg-sappada-rifugio-calvi': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 3).
       // PromoTurismoFVG’s walk “Rifugio Calvi” (its verified Outdooractive account, author Giovanni Borella). The line is drawn
@@ -53006,7 +52986,7 @@
       desc: 'A long forest loop from Frassenetto in the upper Val Degano to the summer pastures of Casera Vas and Casera Monte dei Buoi, among larch, fir and big limestone boulders. PromoTurismoFVG lists 11.1 km and 659 m of ascent.'
     },
     'fvg-monte-rest-da-passo-rest': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (Friuli Venezia Giulia batch 3).
       // PromoTurismoFVG’s walk “Dal Passo Rest al Monte Rest” (its verified Outdooractive account, author PromoTurismoFVG Montagna). The line is drawn
@@ -53136,7 +53116,7 @@
       desc: 'A short botanical loop from the Rifugio Gilberti, at the top of the Canin cable car, up among boulders and alpine flowers to the Bila Pec saddle in a glacial basin of Monte Canin. PromoTurismoFVG lists 2 km and 206 m of ascent.'
     },
     'lesachtal-spazierweg-maria-luggau-gailweg': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 1, the first Carinthian walks).
       // NLW Tourismus’s walk “Spazierweg Maria Luggau – Gailweg” (nassfeld.at), drawn on 11 OSM ways along the line it publishes on Outdooractive
@@ -53199,7 +53179,7 @@
       desc: 'A short loop from the pilgrimage village of Maria Luggau down to the Gail and along the river. The board lists 1.6 km and 76 m of ascent.'
     },
     'lesachtal-tuffbad': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 1, the first Carinthian walks).
       // NLW Tourismus’s walk “Wander- und Spazierweg Tuffbad” (nassfeld.at), drawn on 8 OSM ways along the line it publishes on Outdooractive
@@ -53323,7 +53303,7 @@
       desc: 'A loop from the Sonnenalpe Nassfeld across the summer pastures to two alpine dairies that make Gailtaler Almkäse. The board lists 8.7 km and 295 m of ascent.'
     },
     'weissensee-nordic-6-rothns-bichl': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
       // NLW Tourismus’s walk “Trail 6 „Rothn’s Bichl“ – Nordic Walking” (nassfeld.at), drawn on 23 OSM ways along the line it publishes on Outdooractive
@@ -53384,7 +53364,7 @@
       desc: 'One of the Weissensee’s signed Nordic walking trails: a loop from the south shore at Techendorf up into the woods of the Rothn’s Bichl. The board lists 5.9 km and 89 m of ascent.'
     },
     'weissensee-nordic-5-genoesns-bruendl': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
       // NLW Tourismus’s walk “Trail 5 „Genösn’s Bründl“ – Nordic Walking” (nassfeld.at), drawn on 16 OSM ways along the line it publishes on Outdooractive
@@ -53445,7 +53425,7 @@
       desc: 'The shortest of the Weissensee’s signed Nordic walking loops, from the south shore at Techendorf into the woods above the village. The board lists 3.5 km and 88 m of ascent.'
     },
     'weissensee-nordic-7-franz-josephs-hoehe': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
       // NLW Tourismus’s walk “Trail 7 „Franz-Josephs-Höhe“ – Nordic Walking” (nassfeld.at), drawn on 34 OSM ways along the line it publishes on Outdooractive
@@ -53570,7 +53550,7 @@
       desc: 'A signed Nordic walking loop from the lakeside promenade at Gatschach up onto the tracks and woodland paths above the Weissensee’s north shore. The board lists 7.3 km and 129 m of ascent.'
     },
     'weissensee-nordic-8-naggler-alm': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
       // NLW Tourismus’s walk “Trail 8 „Naggler Alm – Alpine Walking“” (nassfeld.at), drawn on 22 OSM ways along the line it publishes on Outdooractive
@@ -53631,7 +53611,7 @@
       desc: 'The steep Nordic walking trail from the south shore at Techendorf up through the woods to the Naggler Alm. The board lists 3.1 km and 385 m of ascent, one way.'
     },
     'weissensee-techendorf-tschabitscher-kreuzwirt': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
       // NLW Tourismus’s walk “Techendorf-Tschabitscher-Kreuzwirt” (nassfeld.at), drawn on 34 OSM ways along the line it publishes on Outdooractive
@@ -53694,7 +53674,7 @@
       desc: 'A walk from Techendorf above the Weissensee’s north shore, past the Tschabitscher farm to the Kreuzwirt at the west end of the valley, with views over the lake and into the Drau valley. The board lists 6.5 km and 177 m of ascent, one way.'
     },
     'weissensee-slow-trail': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
       // NLW Tourismus’s walk “Slow Trail Weissensee” (nassfeld.at), drawn on 21 OSM ways along the line it publishes on Outdooractive
@@ -53760,7 +53740,7 @@
       desc: 'A quiet, nearly level path along the Weissensee’s north shore from the Ronacherfels past the Kleine Steinwand to the east end of the lake, with a viewing platform on the way. The board lists 6.7 km and 72 m of ascent, one way.'
     },
     'weissensee-ortsee-ronacherfels': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Carinthia batch 2, the Weissensee walks).
       // NLW Tourismus’s walk “Ortsee über Ronacherfels und Kleine Steinwand – Weissensee” (nassfeld.at), drawn on 29 OSM ways along the line it publishes on Outdooractive
@@ -53957,7 +53937,7 @@
       desc: 'A loop from the Nassfeld pass along the Auernig ridge on the Austrian–Italian border, known for its 300-million-year-old marine fossils, towards the Garnitzenberg and the Gugga. The board lists 5.6 km and 441 m of ascent.'
     },
     'kronplatz-passeggiata-valdaora-monguelfo': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // Olang tourist board (Tourismusverein Olang)’s walk “Passeggiata Valdaora - Monguelfo”, drawn on 30 OSM ways along the line it publishes
@@ -54086,7 +54066,7 @@
       desc: 'A short themed loop above San Vigilio through pine forest and meadows, with boards telling the legends of the Kingdom of Fanes. The board lists 2.8 km and 60 m of ascent.'
     },
     'kronplatz-passeggiata-san-vigilio-le-dla-creda': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // San Vigilio Dolomites tourist board’s walk “Passeggiata: San Vigilio - Lé dla Creda”, drawn on 22 OSM ways along the line it publishes
@@ -54149,7 +54129,7 @@
       desc: 'A gentle walk from the centre of San Vigilio up the wooded Rudo valley, past the Ciamaor beach, to the little lake Lé dla Creda. The board lists 3.5 km and 86 m of ascent, one way.'
     },
     'kronplatz-attraverso-il-sentiero-panoramico-a-brunico': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // Olang tourist board (Tourismusverein Olang)’s walk “Attraverso il Sentiero Panoramico a Brunico”, drawn on 38 OSM ways along the line it publishes
@@ -54220,7 +54200,7 @@
       desc: 'A gently descending walk from Niederolang along the slope above the Pustertal, through the Riedwald to Lamprechtsburg castle and into Bruneck. The board lists 8.6 km, 45 m up and 231 m down.'
     },
     'kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // San Vigilio Dolomites tourist board’s walk “Escursione da Antermoia attraverso Colac - Val a Rina”, drawn on 16 OSM ways along the line it publishes
@@ -54282,7 +54262,7 @@
       desc: 'A walk from Antermoia over the sunny farm slopes of Colac and Val and through the forest to Rina. The board lists 5.5 km, 143 m up and 222 m down.'
     },
     'kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
       // San Vigilio Dolomites tourist board’s walk “Passeggiata senza barriere: Brach - Pieve di Marebbe”, drawn on 4 OSM ways along the line it publishes
@@ -54337,7 +54317,7 @@
       desc: 'A short, barrier-free walk on a quiet road from the hamlet of Brach into Pieve di Marebbe, with views over San Vigilio. The board lists 0.9 km, 5 m up and 31 m down.'
     },
     'kronplatz-valdaora-di-sopra-goste': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
       // Olang tourist board (Tourismusverein Olang)’s walk “Valdaora di Sopra - Goste”, drawn on 22 OSM ways along the line it publishes
@@ -54392,7 +54372,7 @@
       desc: 'A short walk from Valdaora di Sopra on path 21B, the Lottersteig, across meadows and through forest to the old Goste inn by the Olang reservoir. The board lists 2.5 km, 106 m up and 80 m down.'
     },
     'kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
       // Bruneck Kronplatz Tourismus’s walk “Sentiero della roggia a Gais (Sentieri degli elementi)”, drawn on 27 OSM ways along the line it publishes
@@ -54447,7 +54427,7 @@
       desc: 'A loop from Gais along an old irrigation channel through the forest and back across meadows and fields, with views of the mountains round the Tauferer valley. The board lists 5.3 km and 140 m of ascent.'
     },
     'kronplatz-san-lorenzo-maria-sares': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: no Verified board walk shows directions on its page.
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
       // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
       // Bruneck Kronplatz Tourismus’s walk “San Lorenzo – Maria Sares”, drawn on 33 OSM ways along the line it publishes
@@ -54502,6 +54482,8 @@
       desc: 'A walk from San Lorenzo di Sebato on paths 8A and 9, past St. Martin and up the Stations of the Cross to the pilgrimage church of Maria Sares. The board lists 4.9 km and 170 m of ascent.'
     },
     'kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle': {
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
+      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 3).
       // Olang tourist board (Tourismusverein Olang)’s walk “Valdaora di Sotto - Casola - Bagni di Pervalle”, drawn on 33 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried; no dogs in cemeteries, parks or playgrounds: the line passes the Niederolang cemetery wall but does not enter it).
@@ -54514,7 +54496,7 @@
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the parish church of Valdaora di Sotto (Niederolang) on path 32B, past Casola and through the forest, up to Bad Bergfall (Bagni di Pervalle); come back the same way.',
       curated: true,
-      tier: 'route-audited',
+      tier: 'under-review',
       reviewedAt: '2026-10-29',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -54524,7 +54506,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start, km 1.1 and km 4.4 (OSM nodes 3451774094, 13063167149, 13479318522).',
         elevation: 'Official 4.9 km, 318 m up and 25 m down, 1:37 h, highest point 1,314 m, lowest 1,021 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -54555,6 +54537,8 @@
       desc: 'A walk from Valdaora di Sotto on path 32B, across meadows past Casola and through quiet forest up to Bad Bergfall and its sulphur springs. The board lists 4.9 km, 318 m up and 25 m down.'
     },
     'kronplatz-passeggiata-leggendaria-sul-kienberg': {
+      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
+      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 3).
       // Kiens tourist board (Tourismusverein Kiens)’s walk “Passeggiata leggendaria sul Kienberg”, drawn on 40 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Kiens (no dog regulation found, national rule) and St. Lorenzen (its 2009 dog regulation: lead ≤1.5 m, muzzle carried).
@@ -54567,7 +54551,7 @@
       routeShape: 'loop',
       routeShapeNote: 'A loop from the car park by the Koflerhof in Casteldarne (Ehrenburg) on the Kienberg path past the Plattnerhof and over the Kienberg towards Mantana and Ronchi, and back to Casteldarne on the Way of the Cross, path 10A.',
       curated: true,
-      tier: 'route-audited',
+      tier: 'under-review',
       reviewedAt: '2026-10-29',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -54577,7 +54561,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start, km 0.1, km 0.2, km 5.8 and km 8.9 (OSM nodes 12055127715, 12055127716, 12055127708, 1872561195, 6696661485, 7597838085, 12791498122).',
         elevation: 'Official 11.8 km, 417 m up and 417 m down, 3:28 h, highest point 1,140 m, lowest 803 m (Kiens tourist board (Tourismusverein Kiens), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
