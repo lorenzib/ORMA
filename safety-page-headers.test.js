@@ -7,7 +7,7 @@ const pages = [
   ['altitude-with-your-dog.html', 'altitude-with-your-dog-v1.jpg'],
   ['breed-group-caveats.html', 'breed-group-considerations-dogs-v3.jpg'],
   ['dogs-on-cable-cars.html', 'dogs-on-cable-cars-hero-v6.jpg'],
-  ['heat-overheating.html', 'dog-hydration-lake-unbranded-v1.jpg'],
+  ['heat-overheating.html', 'heat-hydration-stream-dog-v1.jpg'],
   ['paw-protection.html', 'paw-protection-forest-dog-v4.jpg'],
   ['livestock-guard-dogs.html', 'livestock-guardian-dogs-v1.jpg'],
   ['dogs-at-rifugi.html', 'dogs-at-rifugi.jpg'],
