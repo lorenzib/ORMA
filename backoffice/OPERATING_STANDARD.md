@@ -1060,8 +1060,12 @@ So the record is copied across, honestly:
   own orchestration state, **`verified-by-hand`**. Never to
   `ready-for-editorial`: the evidence policy did not pass it, and saying it did
   would make the pipeline's own pass rate a lie.
-- The state keeps who verified it, when, on which sources, and where the
-  pipeline had got to (`handVerification.previousState`). A walk verified by
+- The state keeps who verified it, when, how many sources it rests on, and
+  where the pipeline had got to (`handVerification.previousState`). The
+  sources themselves stay in the published record and the board reads them
+  from there: copied onto every record they were most of the orchestration,
+  and on 28 October they took it past Firestore's per-document ceiling and
+  stopped the worker (#1143). A walk verified by
   hand before the pipeline ever admitted it gets a record too, so the intake
   never admits it to be researched again.
 - A trail the evidence policy had already passed is left as it is.

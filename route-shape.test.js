@@ -43,6 +43,12 @@ describe('a walk that does not return to its start', () => {
     expect(assessGeometry(tooShort, { routeShape:'out-and-back' }).issues).toContain('implausibly-short');
   });
 
+  test('a lollipop must close, like a loop', () => {
+    // Out along a stem, round a loop, back down the stem: it ends where it began.
+    expect(assessGeometry(openRoute, { routeShape:'lollipop' }).issues).toContain('not-closed-loop');
+    expect(assessGeometry(closedRoute, { routeShape:'lollipop' }).status).toBe('passed');
+  });
+
   test('a loop that does close is unaffected', () => {
     expect(assessGeometry(closedRoute).issues).not.toContain('not-closed-loop');
   });
@@ -57,6 +63,12 @@ describe('the declaration is a verified fact, not a flag', () => {
     expect(trail.routeShape).toBe('out-and-back');
   });
 
+  test('a lollipop can be declared', () => {
+    const [trail] = applyVerifiedTrailOverrides([{ id:'t1' }],
+      entry({ routeShape:'lollipop', routeShapeNote:'Up the valley path, round the lake, back the same way.' }));
+    expect(trail.routeShape).toBe('lollipop');
+  });
+
   test('a shape without a reason is refused', () => {
     // An assertion nobody can check later is worse than none.
     expect(() => applyVerifiedTrailOverrides([{ id:'t1' }],
@@ -69,6 +81,6 @@ describe('the declaration is a verified fact, not a flag', () => {
   });
 
   test('the shapes offered are the shapes the validator knows', () => {
-    expect(ROUTE_SHAPES).toEqual(['loop','out-and-back','point-to-point']);
+    expect(ROUTE_SHAPES).toEqual(['loop','out-and-back','point-to-point','lollipop']);
   });
 });

@@ -1805,6 +1805,23 @@
       }
     },
     {
+      "id": "kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe",
+      "approvedReviewId": "commons-kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe-on-route",
+      "approvedAt": "2026-10-29T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe-moregg.jpg",
+        "heroImage": "images/trails/kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe-moregg.jpg",
+        "imageAlt": "The tall white Moregg house in Pieve di Marebbe with flower boxes and barred windows, a car on the lane in front and green meadows on the slope behind",
+        "imageCredit": "The Moregg house in Pieve di Marebbe",
+        "imageCreditText": "The Moregg house in Pieve di Marebbe by Leitzsche",
+        "imageCreator": "Leitzsche",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Enneberg-Moregg.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "kronplatz-passeggiata-valdaora-monguelfo",
       "approvedReviewId": "mapillary-kronplatz-passeggiata-valdaora-monguelfo-on-route",
       "approvedAt": "2026-10-28T18:00:00.000Z",
@@ -1822,6 +1839,40 @@
       }
     },
     {
+      "id": "kronplatz-san-lorenzo-maria-sares",
+      "approvedReviewId": "commons-kronplatz-san-lorenzo-maria-sares-on-route",
+      "approvedAt": "2026-10-29T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-san-lorenzo-maria-sares-church.jpg",
+        "heroImage": "images/trails/kronplatz-san-lorenzo-maria-sares-church.jpg",
+        "imageAlt": "The small pink-plastered Loreto church of Maria Sares with a painted gable, an onion-domed bell tower and a bench beside the steps",
+        "imageCredit": "The Loreto church at Maria Sares",
+        "imageCreditText": "The Loreto church at Maria Sares by Leitzsche",
+        "imageCreator": "Leitzsche",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:StLorenzen-KircheMariaSaalen.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi",
+      "approvedReviewId": "commons-kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi-on-route",
+      "approvedAt": "2026-10-29T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi-church.jpg",
+        "heroImage": "images/trails/kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi-church.jpg",
+        "imageAlt": "The stone parish church of Gais with its clock tower, a wooden farmhouse and wrapped hay bales in front, and wooded mountains under a blue sky",
+        "imageCredit": "The parish church of Gais",
+        "imageCreditText": "The parish church of Gais by Michielverbeek",
+        "imageCreator": "Michielverbeek",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gais,_Pfarrkirche_Sankt_Johannes_Evangelist_Dm14869_IMG_1161_2019-08-04_12.32.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "kronplatz-sentiero-tematico-tru-dles-liondes",
       "approvedReviewId": "mapillary-kronplatz-sentiero-tematico-tru-dles-liondes-on-route",
       "approvedAt": "2026-10-28T18:00:00.000Z",
@@ -1835,6 +1886,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=323993905810567",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "kronplatz-valdaora-di-sopra-goste",
+      "approvedReviewId": "mapillary-kronplatz-valdaora-di-sopra-goste-on-route",
+      "approvedAt": "2026-10-29T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-valdaora-di-sopra-goste-reservoir-path.jpg",
+        "heroImage": "images/trails/kronplatz-valdaora-di-sopra-goste-reservoir-path.jpg",
+        "imageAlt": "A tarred path between birches and spruces beside the Olang reservoir, with the dam tower and a fenced bank on the left",
+        "imageCredit": "The path by the Olang reservoir",
+        "imageCreditText": "The path by the Olang reservoir by voschix",
+        "imageCreator": "voschix",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=838606750067335",
         "imageSourceType": "licensed-source"
       }
     },
