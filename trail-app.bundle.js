@@ -3158,6 +3158,8 @@ ${points}
     'fiemme-cavalese-passeggiata-panoramica': "Cavalese - Passeggiata panoramica",
     'fiemme-scalata-alle-malghette': "La “scalata” alle Malghette",
     'fiemme-sentiero-botanico': "Sentiero botanico naturalistico",
+    'kronplatz-passeggiata-leggendaria-sul-kienberg': "The Kienberg legends loop",
+    'kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle': "Valdaora di Sotto to Bad Bergfall",
     'lago-braies': "Lago di Braies Seeweg circuit",
     'lago-carezza': "Lago di Carezza Loop",
     'osm-11517208': "La Croix des Salles",
