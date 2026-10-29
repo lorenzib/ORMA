@@ -1353,6 +1353,16 @@
       "name": "San Lorenzo to Maria Sares",
       "slug": "st-lorenzen-maria-saalen",
       "gloss": "paths 8A and 9 to the pilgrimage church"
+    },
+    "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": {
+      "name": "Valdaora di Sotto to Bad Bergfall",
+      "slug": "niederolang-bad-bergfall",
+      "gloss": "path 32B up to the old sulphur-spring baths"
+    },
+    "kronplatz-passeggiata-leggendaria-sul-kienberg": {
+      "name": "The Kienberg legends loop",
+      "slug": "kienberg-legends-loop",
+      "gloss": "from Casteldarne over the Kienberg and back on the Way of the Cross"
     }
   }
 }

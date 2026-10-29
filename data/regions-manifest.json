@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-29T01:20:34.550Z",
+  "generatedAt": "2026-10-29T11:08:45.518Z",
   "regions": {
     "dolomites": {
-      "trailCount": 296,
-      "trails": "data/regions/dolomites-trails.js?v=f3c2d479635a",
+      "trailCount": 298,
+      "trails": "data/regions/dolomites-trails.js?v=35b2795c822d",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -301,6 +301,8 @@
         "kronplatz-valdaora-di-sopra-goste": "data/trail-details/kronplatz-valdaora-di-sopra-goste.js?v=1fa16dba836e",
         "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": "data/trail-details/kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi.js?v=7717d8784e79",
         "kronplatz-san-lorenzo-maria-sares": "data/trail-details/kronplatz-san-lorenzo-maria-sares.js?v=aeddfec214a2",
+        "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": "data/trail-details/kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle.js?v=f64c19b9058f",
+        "kronplatz-passeggiata-leggendaria-sul-kienberg": "data/trail-details/kronplatz-passeggiata-leggendaria-sul-kienberg.js?v=321c5a660002",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -761,6 +763,8 @@
     "kronplatz-valdaora-di-sopra-goste": "dolomites",
     "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": "dolomites",
     "kronplatz-san-lorenzo-maria-sares": "dolomites",
+    "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": "dolomites",
+    "kronplatz-passeggiata-leggendaria-sul-kienberg": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1271,6 +1275,8 @@
     "kronplatz-valdaora-di-sopra-goste": "oberolang-alte-goste",
     "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": "gais-waalweg-loop",
     "kronplatz-san-lorenzo-maria-sares": "st-lorenzen-maria-saalen",
+    "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": "niederolang-bad-bergfall",
+    "kronplatz-passeggiata-leggendaria-sul-kienberg": "kienberg-legends-loop",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1675,6 +1681,8 @@
     "oberolang-alte-goste": "kronplatz-valdaora-di-sopra-goste",
     "gais-waalweg-loop": "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi",
     "st-lorenzen-maria-saalen": "kronplatz-san-lorenzo-maria-sares",
+    "niederolang-bad-bergfall": "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle",
+    "kienberg-legends-loop": "kronplatz-passeggiata-leggendaria-sul-kienberg",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

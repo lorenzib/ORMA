@@ -160,9 +160,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 398 and 396 with five Kronplatz walks, and 402 and 400 with four more:
     // Brach to Pieve di Marebbe, Valdaora di Sopra to the Alte Goste, the Gais
     // channel path loop and San Lorenzo to Maria Sares.
+    // Then 404 and 402 with two more: Valdaora di Sotto to Bad Bergfall and
+    // the Kienberg legends loop.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(402);
-    expect(currentSiteTrails(catalogue)).toHaveLength(400);
+    expect(catalogue).toHaveLength(404);
+    expect(currentSiteTrails(catalogue)).toHaveLength(402);
   });
 
   test('requires the artwork the public trail page needs',()=>{
