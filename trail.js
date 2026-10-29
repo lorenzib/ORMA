@@ -44,109 +44,11 @@ function trailProductBadge(type, label){
   if(window.DoloPawsIcons) return window.DoloPawsIcons.badgeHtml(type, label);
   return `<span class="dp-badge dp-badge--${type}"><span>${label}</span></span>`;
 }
-function trailProductIcon(type, size = 16){
-  return window.DoloPawsIcons ? window.DoloPawsIcons.renderIconSvg(type, { mode:'inline', color:'currentColor', size }) : '';
-}
-function withoutLeadingSymbol(label){
-  return String(label || '').replace(/^[^\p{L}\p{N}]+/u, '');
-}
 function trustedWaterLabel(trail, label){
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.waterPointLabel(trail, label) : label;
 }
 function trustedStartLabel(trail, label){
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.startPointLabel(trail, label) : label;
-}
-
-// ---- On this route --------------------------------------------------------
-// Only what has been checked: operational facts (rifugi dog policy, lift
-// muzzle rules) from the route_operational_fact table, and water points on a
-// trail whose water has been reviewed. The table is filled by the editorial
-// process; until it holds a fact for this trail there is nothing to list, and
-// the card stays hidden rather than naming places nobody has checked.
-function renderOnThisRoute(t, table){
-  const api = window.DoloPawsOperationalFacts;
-  if(!api) return '';
-  const rows = api.rowsFor(t, table);
-  if(!rows.length) return '';
-
-  const items = rows.map(row => {
-    const where = row.km !== null ? `Km ${row.km}, ` : '';
-    const kind = api.ENTITY_LABEL[row.entityType] || '';
-    // No verified fact means no policy line at all. Never a guess, never blank.
-    const policy = row.policyLabel
-      ? `<span class="td2-onroute-policy">${escapeLiftPopupText(row.policyLabel)}</span>`
-      : '';
-    const notes = row.notes ? `<span class="td2-onroute-note">${escapeLiftPopupText(row.notes)}</span>` : '';
-    const stamp = `<span class="td2-onroute-stamp is-${escapeLiftPopupText(row.state)}">${escapeLiftPopupText(row.label)}</span>`;
-    return `<li><span class="td2-onroute-name">${escapeLiftPopupText(where)}${escapeLiftPopupText(row.entityName)}</span>` +
-      `<span class="td2-onroute-kind">${escapeLiftPopupText(kind)}</span>${policy}${notes}${stamp}</li>`;
-  }).join('');
-
-  // No heading of its own: #td2OnRouteCard supplies "On this route" above it,
-  // and a card that states its own title twice is the repetition this page
-  // was just cleared of.
-  return `
-    <div style="margin-bottom:14px;" id="td2OnRoute">
-      <ul class="td2-onroute">${items}</ul>
-    </div>`;
-}
-
-// The table is small and rarely changes, so it is fetched once per page and
-// the card is painted again if a checked fact applies to this trail. A failed
-// fetch leaves the card as it was.
-function hydrateOnThisRoute(t){
-  const api = window.DoloPawsOperationalFacts;
-  if(!api) return;
-  const prefix = location.pathname.includes('/trails/') ? '../' : '';
-  fetch(`${prefix}data/route-operational-facts.json`, { cache:'no-store' })
-    .then(response => response.ok ? response.json() : null)
-    .then(table => {
-      if(!table || !api.rowsFor(t, table).length) return;
-      paintOnRouteCard(t, table);
-    })
-    .catch(() => {});
-}
-
-// The body of the "On this route" card: the checked places on the walk, then
-// the water on it.
-//
-// Water is listed only where it has been reviewed. An unreviewed point carries
-// ", availability can change", which is the same "nobody has checked" the
-// places used to say, and the dog-safety column already tells the reader to
-// bring their own water in that case.
-function renderTrailDetailContent(t, table){
-  const reviewed = window.DoloPawsTrailTrust
-    && window.DoloPawsTrailTrust.categoryVerified(t, 'water');
-  const water = reviewed && Array.isArray(t.waterSources) ? t.waterSources : [];
-  const places = renderOnThisRoute(t, table || null);
-
-  // Water reads in the same list as the places above it.
-  const waterHtml = water.length > 0
-    ? `<div style="margin-bottom:4px;">
-      <div class="dp-inline-status" style="font-weight:700;color:var(--ink);margin-bottom:4px;">${trailProductIcon('water')}<span>${withoutLeadingSymbol(window.t('trail.waterHead'))}</span></div>
-      <ul class="td2-onroute">${water.map(w =>
-        `<li><span class="td2-onroute-name">Km ${w.km}, ${trustedWaterLabel(t, w.label)}</span></li>`).join('')}</ul>`
-      + '</div>'
-    : '';
-
-  return `${places}${waterHtml}`;
-}
-
-// Writes the card and reveals it only when the route has something checked to
-// name. Falls back to the retired hidden node for a visitor whose browser
-// still has the previous trail.html, which has no card to write into.
-function paintOnRouteCard(t, table){
-  const body = document.getElementById('td2OnRouteBody');
-  const card = document.getElementById('td2OnRouteCard');
-  const markup = renderTrailDetailContent(t, table);
-  if(!table) setTimeout(() => hydrateOnThisRoute(t), 0);
-  if(!body || !card){
-    const legacy = document.getElementById('trailDetailContent');
-    if(legacy) legacy.innerHTML = markup;
-    return;
-  }
-  body.innerHTML = markup;
-  card.hidden = !markup;
 }
 
 function distMeters(a, b){
@@ -1912,8 +1814,6 @@ function renderTrail(t){
     // never keeps the guest teaser (and vice versa after logout).
     window.addEventListener('dolopaws-auth-changed', paintMatch);
   })();
-
-  paintOnRouteCard(t);
 
   // "Good to know", curated insights (history, geology, best practice)
   // with cited sources, for trails that have them in trails-data.js.

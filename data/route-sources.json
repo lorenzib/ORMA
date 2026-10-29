@@ -2865,6 +2865,38 @@
       "quote": "Distanza 5,5 km · Durata 1:37 h · Salita 143 m · Discesa 222 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-28T18:00:00.000Z"
+    },
+    "kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe": {
+      "url": "https://www.outdooractive.com/it/r/800341743",
+      "publisher": "San Vigilio Dolomites tourist board (Outdooractive, suedtirol.info)",
+      "name": "Passeggiata senza barriere: Brach - Pieve di Marebbe",
+      "quote": "Distanza 0,9 km · Durata 0:30 h · Salita 5 m · Discesa 31 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "kronplatz-valdaora-di-sopra-goste": {
+      "url": "https://www.outdooractive.com/it/r/807440421",
+      "publisher": "Olang tourist board (Tourismusverein Olang) (Outdooractive, suedtirol.info)",
+      "name": "Valdaora di Sopra - Goste",
+      "quote": "Distanza 2,5 km · Durata 0:45 h · Salita 106 m · Discesa 80 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": {
+      "url": "https://www.outdooractive.com/it/r/27623622",
+      "publisher": "Bruneck Kronplatz Tourismus (Outdooractive, suedtirol.info)",
+      "name": "Sentiero della roggia a Gais (Sentieri degli elementi)",
+      "quote": "Distanza 5,3 km · Durata 2:00 h · Salita 140 m · Discesa 140 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "kronplatz-san-lorenzo-maria-sares": {
+      "url": "https://www.outdooractive.com/it/r/35857532",
+      "publisher": "Bruneck Kronplatz Tourismus (Outdooractive, suedtirol.info)",
+      "name": "San Lorenzo – Maria Sares",
+      "quote": "Distanza 4,9 km · Durata 1:00 h · Salita 170 m · Discesa 6 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T18:00:00.000Z"
     }
   }
 }

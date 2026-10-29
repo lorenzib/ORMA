@@ -84,105 +84,39 @@ describe('the directions check', () => {
 });
 
 // Every Verified board walk clears the bar, except the ones that failed it
-// when it was introduced on 28 October 2026. Those wait on a decision -- fix
-// the line or the shape label, or take the seal off -- and leave this list
-// when they pass or lose the seal. Nothing is added to it: a new walk that
-// fails the bar is not published Verified.
+// when it was introduced on 28 October 2026. 67 of those lost the seal the
+// same day (their line folds or runs over itself, or they had no directions).
+// The 27 left here have a sound line whose shape the page names wrongly;
+// they leave this list when the label is fixed. Nothing is added to it: a new
+// walk that fails the bar is not published Verified.
 const AWAITING_DECISION = [
-  "fassa-da-canazei-a-penia",
   "fassa-borgo-dei-patins",
   "fassa-passato-ritrovato",
   "fassa-malga-aloch",
-  "fassa-molin-de-pezol",
-  "fassa-segreti-di-una-volta",
   "fassa-alpe-di-fuciade",
   "primiero-siror",
-  "primiero-anello-poit-cordogne-san-giovanni",
   "cortina-castello-di-botestagno",
-  "cortina-malga-ra-stua",
-  "cortina-passeggiata-gourmet",
   "cortina-sotecordes",
   "fiemme-cavalese-passeggiata-panoramica",
-  "fiemme-passeggiata-insolita",
-  "fiemme-giro-cavalese-castello",
-  "fiemme-varena-spianez",
-  "fiemme-passo-oclini",
-  "fiemme-masi-comunicanti",
-  "primiero-monte-vederna",
-  "primiero-malga-crel",
-  "primiero-via-della-frutta-antica",
   "cembra-lago-santo",
-  "cembra-san-leonardo-lisignago",
   "cembra-rifugio-potzmauer",
-  "cembra-giro-monte-corona",
   "cembra-giro-masi-grumes",
-  "cembra-castello-segonzano",
-  "cembra-paese-beghei",
-  "cembra-vecchi-mestieri-grumes",
-  "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt",
-  "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa",
-  "altabadia-da-la-val-ai-prati-di-rit",
   "valgardena-tour-alla-volta-del-lech-sant",
-  "valgardena-escursione-dalla-cappella-santa-croce-al-brogles",
   "valgardena-passeggiata-alla-chiesetta-di-san-giacomo",
   "trecime-dobbiaco-lago-di-dobbiaco",
   "trecime-sentiero-gustav-mahler",
-  "trecime-circolare-maistatt",
   "fassa-da-alba-a-penia",
-  "fassa-ciajeole-malga-roncac",
-  "giudicarie-tione-bolbeno-madonna-del-lares",
-  "giudicarie-san-martino-bosco-scolpito",
   "valdisole-fazzon-lago-dei-caprioli",
   "valdisole-bivacco-malga-baselga",
   "valdisole-rifugio-stavel-denza",
-  "rendena-ciclabile-javre-dare-vigo-pelugo",
-  "giudicarie-san-vigilio-senter-dei-cavai",
-  "valgardena-percorso-dei-masi-tradizionali",
-  "lario-brunate-e-le-sue-chiese",
-  "lario-pognana-lario-e-le-sculture-simposio",
-  "lario-alla-ricerca-di-un-panorama-unico",
-  "lario-eupilio-tra-segrino-e-cornizzolo",
   "valdisole-passo-tonale-forte-mero-forte-zaccarana",
-  "fvg-laghi-di-fusine",
-  "fvg-ta-lipa-pot-corto",
-  "fvg-faggi-secolari-pustot-dordolla",
-  "paganella-andalo-tana-ermellino",
-  "paganella-sette-passi-sette-ville",
   "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza",
-  "valgardena-arte-e-storia",
-  "valgardena-escursione-da-s-cristina-al-passo-sella",
-  "valgardena-giro-storico-del-paese-di-ortisei",
-  "valgardena-seceda-dal-rifugio-firenze",
-  "valgardena-escursione-ortisei-passo-sella",
-  "valgardena-seceda-da-cristauta-pic",
-  "fvg-col-dei-piais",
-  "fvg-raunis-cascate-belepeit",
-  "fvg-venzone-anello-delle-chiesette",
-  "campiglio-lago-ritorto-nel-blu-dipinto-di-blu",
-  "campiglio-carisolo-centro-storico",
-  "paganella-giro-del-lago-di-molveno",
-  "paganella-passeggiata-del-ciclamino",
-  "osttirol-rundwanderung-schloss-weissenstein",
   "osttirol-naturkraftweg-umbalfaelle",
-  "osttirol-kulturweg-koednitz",
-  "osttirol-rundwanderung-am-staller-sattel",
   "campiglio-trekking-al-rifugio-segantini",
-  "bormio-da-arnoga-al-rifugio-federico",
   "osttirol-themenweg-kreuzweg-virgen",
   "osttirol-kinder-naturerlebnispfad-kals-ag",
-  "osttirol-wassererlebnisweg-st-jakob-i-d",
-  "fvg-salita-casera-canin",
-  "fvg-anello-malga-confin-ungarina",
-  "fvg-monte-talm-da-piani-di-vas",
-  "fvg-anello-casera-vas-monte-buoi",
   "fvg-monte-rest-da-passo-rest",
-  "fvg-mirabila-sentiero-botanico-bila-pec",
   "lesachtal-tuffbad",
-  "gailtal-almkaese-sonnenalpe",
-  "weissensee-wasserleben",
-  "weissensee-nordic-2-urschitz",
-  "gailtal-auernig-hoehenweg",
-  "kronplatz-sentiero-tematico-tru-dles-liondes",
 ];
 
 describe('every Verified board walk clears the bar', () => {
@@ -200,9 +134,12 @@ describe('every Verified board walk clears the bar', () => {
     expect(AWAITING_DECISION.filter(id => !stillFailing.has(id))).toEqual([]);
   });
 
-  test('Ortisei – Passo Sella, the walk this bar was set for, fails it on its spurs', () => {
-    const ortisei = results.find(result => result.id === 'valgardena-escursione-ortisei-passo-sella');
-    expect(ortisei.line.kind).toBe('folds');
-    expect(ortisei.line.spurs.map(spur => spur.metres).some(metres => metres > 400)).toBe(true);
+  test('Ortisei – Passo Sella, the walk this bar was set for, fails it on its spurs and is not Verified', () => {
+    const routes = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'data', 'board-line-routes.geojson'), 'utf8'));
+    const feature = routes.features.find(item => item.properties.trail_id === 'valgardena-escursione-ortisei-passo-sella');
+    const line = bar.lineShape(feature.geometry.coordinates.map(([lng, lat]) => [lat, lng]), { declared: 'point-to-point' });
+    expect(line.kind).toBe('folds');
+    expect(line.spurs.map(spur => spur.metres).some(metres => metres > 400)).toBe(true);
+    expect(results.map(result => result.id)).not.toContain('valgardena-escursione-ortisei-passo-sella');
   });
 });
