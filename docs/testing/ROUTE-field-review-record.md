@@ -46,7 +46,7 @@ Complete one record per route and package version.
 | Field | Result |
 |---|---|
 | Trail ID | `lago-carezza` |
-| Package version | `2026.10.24-beta.23` |
+| Package version | `2026.10.29-beta.24` |
 | Reviewed at (ISO date/time and timezone) |  |
 | Reviewer |  |
 | Weather and recent conditions |  |
@@ -62,6 +62,8 @@ Complete one record per route and package version.
 | Offline safety context understandable | Pass / Fail |
 | Defect IDs and notes |  |
 | Overall result | Pass / Fail |
+
+Revision `2026.10.29-beta.24` changes only the status (OFF-08): Lago di Carezza lost its Verified seal on 29 October 2026 because its page shows no directions, so the package now says "ORMA hasn't verified this route yet" instead of `source-verified`. The route, map and profile are unchanged from beta.23.
 
 ## Alpe di Siusi Meadow Loop
 

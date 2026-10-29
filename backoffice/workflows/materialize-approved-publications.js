@@ -108,7 +108,10 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
       continue;
     }
     const prior = priorById.get(item.targetTrailId);
-    const verifiedByHand = prior?.tier === 'route-audited' && prior?.graduation?.status === 'verified';
+    // A hand-verified walk whose seal was withdrawn until its directions are
+    // written keeps its hand research: the pipeline may not replace it either.
+    const verifiedByHand = (prior?.tier === 'route-audited' && prior?.graduation?.status === 'verified')
+      || Boolean(prior?.sealWithdrawn);
     const lineSetByHand = (overrides?.trails || []).some(entry =>
       entry?.id === item.targetTrailId && entry?.verificationScope === 'routeLine');
     if(verifiedByHand || lineSetByHand){
