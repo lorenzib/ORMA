@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-tonadico",
+  "generatedAt": "2026-10-29T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4,
+    "ascentM": 57,
+    "highestPointM": 764,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.179716,
+    "lng": 11.830565,
+    "label": "Parcheggi in prossimità del parco Vallombrosa, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.1798578,
+      "lng": 11.8299134,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1835128,
+      "lng": 11.8397362,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1822938,
+      "lng": 11.8390185,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1768901,
+      "lng": 11.8355232,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "About three quarters on tarmac, village streets open to cars.",
+    "Crossings of busy roads, as the APT warns.",
+    "About 700 m on a natural path.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-29",
+      "licence": "ODbL"
+    }
+  ]
+}

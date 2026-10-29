@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-tonadico",
+  "distanceKm": 3.8,
+  "ascentM": 57,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 733
+    },
+    {
+      "km": 0.3,
+      "elev": 723
+    },
+    {
+      "km": 0.6,
+      "elev": 741
+    },
+    {
+      "km": 0.9,
+      "elev": 750
+    },
+    {
+      "km": 1.2,
+      "elev": 754
+    },
+    {
+      "km": 1.5,
+      "elev": 751
+    },
+    {
+      "km": 1.8,
+      "elev": 764
+    },
+    {
+      "km": 2,
+      "elev": 757
+    },
+    {
+      "km": 2.4,
+      "elev": 752
+    },
+    {
+      "km": 2.7,
+      "elev": 733
+    },
+    {
+      "km": 3,
+      "elev": 723
+    },
+    {
+      "km": 3.2,
+      "elev": 720
+    },
+    {
+      "km": 3.5,
+      "elev": 713
+    },
+    {
+      "km": 3.8,
+      "elev": 722
+    }
+  ]
+}

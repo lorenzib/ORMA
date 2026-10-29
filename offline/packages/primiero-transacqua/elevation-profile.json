@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-transacqua",
+  "distanceKm": 2.2,
+  "ascentM": 37,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 707
+    },
+    {
+      "km": 0.2,
+      "elev": 714
+    },
+    {
+      "km": 0.3,
+      "elev": 713
+    },
+    {
+      "km": 0.6,
+      "elev": 726
+    },
+    {
+      "km": 0.7,
+      "elev": 724
+    },
+    {
+      "km": 0.9,
+      "elev": 730
+    },
+    {
+      "km": 1,
+      "elev": 729
+    },
+    {
+      "km": 1.2,
+      "elev": 739
+    },
+    {
+      "km": 1.4,
+      "elev": 735
+    },
+    {
+      "km": 1.5,
+      "elev": 734
+    },
+    {
+      "km": 1.7,
+      "elev": 715
+    },
+    {
+      "km": 1.9,
+      "elev": 711
+    },
+    {
+      "km": 2.1,
+      "elev": 703
+    },
+    {
+      "km": 2.2,
+      "elev": 711
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-malga-valcigolera",
+  "generatedAt": "2026-10-29T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 9.1,
+    "ascentM": 431,
+    "highestPointM": 1879,
+    "expectedDuration": "3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 64
+  },
+  "trailhead": {
+    "lat": 46.262093,
+    "lng": 11.802128,
+    "label": "San Martino di Castrozza, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.2633779,
+      "lng": 11.8017222,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Village streets and road crossings in San Martino at the start and end.",
+    "Forest road shared with forestry vehicles.",
+    "An optional steeper path on the way up.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-29",
+      "licence": "ODbL"
+    }
+  ]
+}

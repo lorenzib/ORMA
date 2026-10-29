@@ -68,6 +68,16 @@
     'osm-7549783': "Anello del Troi de le Ciaure",
     'osm-9937537': "Le Mont Jovet",
     'prato-piazza': "Prato Piazza (Plätzwiese)",
+    'primiero-anello-di-valpiana': "Anello di Valpiana",
+    'primiero-fiera-pieve': "Fiera-Pieve",
+    'primiero-la-guana-di-primiero': "La Guana di Primiero",
+    'primiero-malga-ces': "San Martino di Castrozza - Malga Ces",
+    'primiero-malga-valcigolera': "San Martino di Castrozza - Malga Valcigolera",
+    'primiero-percorso-verde': "Percorso Verde (I percorsi del benessere)",
+    'primiero-san-martino-di-castrozza-val-di-roda-prati-col': "San Martino di Castrozza - Val di Roda - Prati Col",
+    'primiero-siror': "Siror",
+    'primiero-tonadico': "Tonadico",
+    'primiero-transacqua': "Transacqua",
     'tre-cime': "Tre Cime di Lavaredo classic circuit",
   };
   // </offline-package-registry>
