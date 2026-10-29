@@ -80,7 +80,7 @@
     return match ? `${Number(match[3])} ${MONTHS[Number(match[2]) - 1]} ${match[1]}` : '';
   }
 
-  const STEPS_BADGE = 'No trail numbers on this walk: follow these landmarks';
+  const STEPS_BADGE = 'This walk has no trail number of its own: follow these landmarks';
 
   /**
    * A walk with no trail numbers, given turn by turn (OPERATING_STANDARD.md,
