@@ -7020,7 +7020,9 @@ function effectiveOverrides(profile, adjustOverride){
       ],
       imagePlaceholder: true,
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-21',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -7030,12 +7032,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Two water points and the suggested start were traced to exact source coordinates.',
         elevation: 'Profile present and scaled to 4.2 km; headline ascent corrected from the sampled 181 m to the official 100 m. Official time 1:30 h, 4.2 km, 100 m (Bezirksgemeinschaft Eisacktal overview board).'
       },
-      graduation: {
-        status: 'verified',
-        required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        blockers: {}
-      },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -7246,7 +7243,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 110,
       hours: '1–1.5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-22',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -7256,12 +7255,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'No drinking-water node lies within 150 m of the line; the start is where path 1/A meets the loop at the small lake (the car park beside it is private).',
         elevation: 'Headline ascent corrected from the sampled 156 m to the official 112 m (rounded to 110 m). Official time 1 h 01 min, 112 m up (Südtirol.info).'
       },
-      graduation: {
-        status: 'verified',
-        required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        blockers: {}
-      },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -7339,7 +7333,9 @@ function effectiveOverrides(profile, adjustOverride){
       "exposure": false,
       "surfaceHazards": [],
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -7349,9 +7345,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start moved to the official car park; tap and toilets traced to OSM.",
         "elevation": "Headline ascent corrected to the official 20 m."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -7363,22 +7357,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -7430,7 +7409,9 @@ function effectiveOverrides(profile, adjustOverride){
       "exposure": false,
       "surfaceHazards": [],
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -7440,9 +7421,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the official gym car park; water point and Mont-Benoît basin traced to OSM.",
         "elevation": "Official climb 270 m."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -7454,22 +7433,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -7525,7 +7489,9 @@ function effectiveOverrides(profile, adjustOverride){
       "exposure": false,
       "surfaceHazards": [],
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -7535,9 +7501,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the Place de la Corderie car park named by the official page; tap at the Maison du Guiers traced to OSM.",
         "elevation": "Official 173 m of climb (the topo PDF gives 145 m)."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -7549,22 +7513,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -7620,7 +7569,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/160/129/13533600/13-La-boucle-du-marais-des-chassettes.pdf"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -7630,9 +7581,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the plan d'eau car park named by the official sheet; no water on the line.",
         "elevation": "Official 16 m of climb."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -7644,22 +7593,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -8698,7 +8632,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://hautesavoiemontblanc-tourisme.com/offres/balade-du-plateau-dassy-au-lac-vert-par-la-passerelle-du-nant-bordon-passy-fr-5866028/"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -8708,9 +8644,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the official Place Tobé point (50 m from the old one); tap at the lake traced to OSM.",
         "elevation": "393 m on the line; the GPX gives 407 m, the fiche 300 m."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -8722,22 +8656,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -10079,7 +9998,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://www.la-norma.fr/en/equipement/les-escaliers-walking-trail-la-norma/"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -10089,9 +10010,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the Avenières leisure base named by the official page; taps and springs traced to OSM along the new line.",
         "elevation": "Official 180 m of climb; profile recomputed for the new line."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -10103,22 +10022,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -10173,7 +10077,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://www.valloire.net/sit/le-sentier-ecosylve-de-valloire-5841280/"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -10183,9 +10089,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at La Borgé on the line; taps traced to OSM.",
         "elevation": "305 m of climb on the line; the page's 387 m is for the longer version."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -10197,22 +10101,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -13595,7 +13484,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://hautesavoiemontblanc-tourisme.com/offres/ombres-sur-lalpage-parcours-de-decouverte-lullin-fr-5867320/"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -13605,9 +13496,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the official summer car park (Apidae point); no tap on the line.",
         "elevation": "Official 250 m of climb; profile recomputed for the new line."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -13619,22 +13508,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -15643,7 +15517,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://hautesavoiemontblanc-tourisme.com/offres/le-chemin-des-diligences-vallorcine-fr-5868893/"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -15653,9 +15529,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the official Le Buet point; fountains traced to OSM along the new line.",
         "elevation": "About 220 m of climb there and back, measured on terrain data; the fiche gives none."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -15667,22 +15541,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -15747,7 +15606,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://www.aixlesbains-rivieradesalpes.com/equipement/randonnee-pedestre-les-marais-dalbens-entrelacs/"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -15757,9 +15618,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the cemetery car park named by the official page; no tap within 450 m of the line.",
         "elevation": "Official 22 m of climb."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -15771,22 +15630,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -15886,7 +15730,9 @@ function effectiveOverrides(profile, adjustOverride){
       // 6.60 km. Villnöss: lead of at most 1.5 m, no dogs on meadows.
       area: 'St. Peter, Villnöss / Funes',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-22',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -15896,7 +15742,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the official point in St. Peter; the village fountain (OSM node 9668988276) and three streams traced to exact coordinates.',
         elevation: 'Official 322 m up and down, highest point 1,395 m; profile sampled along the rebuilt line. Official time 2 h 01 min (Südtirol.info, Tourismusgenossenschaft Odles).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -15934,7 +15780,9 @@ function effectiveOverrides(profile, adjustOverride){
       // a muzzle carried; the lake is a natural monument fenced off.
       area: 'Carezza, Welschnofen / Nova Levante',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-22',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -15944,7 +15792,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the car park (GPX first point); drinking water at OSM node 7468241992 just past the underpass.',
         elevation: 'Official 21 m up, high point 1,554 m, low point 1,539 m; profile drawn from the official high and low points because the terrain model is too coarse for the lakeshore. Official time 20 min (Val d’Ega Turismo).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -16039,7 +15887,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 422,
       hours: '3',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -16049,7 +15899,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Lajen Dorfplatz on the loop; drinking-water points traced to OSM nodes in Lajen, Ried and Albions (the decorative fountain node 7727344250 is not drinking water).',
         elevation: 'Official 422 m up and down, highest point 1,095 m, lowest 743 m, 3 h, in place of the sampled 377 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -16098,7 +15948,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 172,
       hours: '1',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -16108,7 +15960,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Vahrn Dorfparkplatz (official start point); drinking water at the Kneipp park, OSM node 4394596723, 6 m from the line.',
         elevation: 'Official 3.1 km, 172 m up and down, high point 791 m, low point 646 m, 58 minutes.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -16155,7 +16007,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 301,
       hours: '2–2.5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -16165,7 +16019,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Seiser Alm Bahn mountain station (OSM node 102561714); drinking water at OSM node 8949692865 near km 2.6 and the Laranzer Schwaige near km 5.4.',
         elevation: 'Official 301 m up and 475 m down, highest point 1,957 m, 2 h 10 min, in place of the recorded 233 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -16210,7 +16064,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 38,
       hours: '2',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -16220,7 +16076,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the info board on the St. Walburg dam (OSM node 3740490405), bus stop Ulten, Zoggler Staudamm beside it; drinking water OSM node 14245045764 at km 0.7.',
         elevation: 'Official 7.7 km, 38 m up and down, 1:58 h, high point 1,149 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -16401,7 +16257,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://eggental.com/en/activity/middle-circular-route-at-lake-carezza_5711"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -16411,9 +16269,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the official Karersee car park; tap at the visitor centre traced to OSM.",
         "elevation": "Official 69 m of climb (was 99)."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -16425,22 +16281,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -16502,7 +16343,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://eggental.com/en/activity/long-circular-route-at-lake-carezza_5705"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -16512,9 +16355,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the official Karersee car park (GPX start); tap at the visitor centre traced to OSM.",
         "elevation": "Official 98 m of climb (was 162)."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -16526,22 +16367,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -16585,7 +16411,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 532,
       hours: '3–3.5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -16595,7 +16423,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Niederrasen parish church (official GPX start); refill fountain at the primary school, OSM node 13232510593, 26 m from the line at the start and finish.',
         elevation: 'Official 9.3 km, 532 m up and down, 3 h 20, high point 1,517 m, low point 1,028 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -16641,7 +16469,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 332,
       hours: '3',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -16651,7 +16481,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in the Oberolang village centre (official start 46.757554, 12.040268); drinking fountains OSM node 2206612489 at the start and node 7740656585 on the return into the village.',
         elevation: 'Official 7.7 km, 332 m up and 335 m down, 2:55 h, high point 1,337 m, low point 1,071 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -16702,7 +16532,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 134,
       hours: '1',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -16712,7 +16544,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start on Bergerplatz (official GPX start); municipal drinking fountain OSM node 2429287832 on the square (seasonal).',
         elevation: 'Official 3.21 km, 134 m up and down, 0:58 h, high point 1,348 m, low point 1,233 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -16785,7 +16617,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://cortina.dolomiti.org/it/escursioni/al-rifugio-nuvolau/"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -16795,9 +16629,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the path 443 trailhead board above the Passo Giau car park; huts traced to OSM.",
         "elevation": "Official 612 m of climb."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -16809,22 +16641,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -16896,7 +16713,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://www.castelfeder.info/de/castelfeder/touren/rid-64923703-.html"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -16906,9 +16725,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start in Salurn village centre as the official page states; taps traced to OSM.",
         "elevation": "Official 194 m of climb (was 259)."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -16920,22 +16737,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -17191,7 +16993,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 278,
       hours: '2.5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -17201,7 +17005,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Pedraces bus stop (official GPX start); drinking water at the start (OSM nodes 7777367653, 12966592504) and at Lech da Sompunt (node 1352468995, 51 m from the line).',
         elevation: 'Official 7.6 km, 278 m up and down, 2:30 h, high point 1,601 m, low point 1,327 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -17246,7 +17050,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 282,
       hours: '2.5–3',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -17256,7 +17062,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the La Villa bus stop in front of the tourist office (official coordinates); drinking fountain Mür dl Giat (OSM node 4319958092) at the start and drinking water in San Leonardo (node 14136654019) at km 5.4.',
         elevation: 'Official 9.3 km, 282 m up and down, 2:40 h, high point 1,533 m, low point 1,363 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -17302,7 +17108,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 267,
       hours: '2',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -17312,7 +17120,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at La Val church, by the tourist office and bus stop (official GPX start); fountain OSM node 8264695632, 16 m from the line at the start and finish.',
         elevation: 'Official 5.6 km, 267 m up and down, 2 h, high point 1,617 m, low point 1,350 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -17359,7 +17167,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 345,
       hours: '2–2.5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -17369,7 +17179,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Panider Sattel, the Pas Pinëi bus stop (OSM relation start node); seasonal drinking fountain by Pufels church (OSM node 4988589237), about 115 m off the path at halfway.',
         elevation: 'Official 6.9 km, 345 m up and down, 2:09 h, high point 1,599 m, low point 1,435 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -17427,7 +17237,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://www.sarntal.com/fileadmin/user_upload/Wanderbus_2025_dt.pdf"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -17437,9 +17249,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the bus stop by the lake's southern outflow, as the brochure states; taps traced to OSM.",
         "elevation": "Flat ('völlig flach'); the small figure shown is measured on the line."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -17451,22 +17261,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -17526,7 +17321,9 @@ function effectiveOverrides(profile, adjustOverride){
         "url": "https://suedtirol.live/de/tour/rundweg-langfenn-t22081"
       },
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -17536,9 +17333,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the Schermoos bus stop by the loop; no tap mapped on the line.",
         "elevation": "141 m of climb (suedtirol.live); was 165."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -17550,22 +17345,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -19110,7 +18890,9 @@ function effectiveOverrides(profile, adjustOverride){
       "desc": "An easy loop from the centre of Vöran up to the Beimstein Knott, the red porphyry knoll above the village. Path 16 leads east past the Oberwirt to below the Grüner Baum inn; path 12 climbs through the woods to the summit, which looks straight down on Vöran and across the Etsch valley. Back down path 12 to the first junction, then forest path 14 returns to the village. The official figures are 3.7 km and about 1 h 10 min.\n\nVöran's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows and fields, so keep to the path where it crosses the hay meadows.",
       "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Vöran requires, and stay off the meadows. The summit is bare rock with a steep drop on the village side, so keep your dog close there. About 600 m runs along the provincial road, including a short 90 km/h stretch with no pavement: walk single file. Drinking water is mapped in the village centre; dogs may not bathe in the village fountains. Roughly half the walk is in forest, the rest on open, sunny ground.",
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -19120,9 +18902,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start in Vöran centre by the church, the official start; water traced to OSM.",
         "elevation": "About 140 m of climb measured on the line (the official page gives 106 m)."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -19134,22 +18914,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -21117,7 +20882,9 @@ function effectiveOverrides(profile, adjustOverride){
       "desc": "The Altrei village walk ('Dorfwanderung Altrei'), an easy family loop of 2.3 km round the hill village of Altrei. From the Rathausplatz it follows Gottschalkstraße to the Hof am Orth and Kreuzackerstraße to the Lochmannhof, then marker 5 out to Pichl along the edge of the Trudner Horn nature park, and back past the old Brechelofen to the start. About 40 minutes and 80 m of climb; it is also walked in winter.\n\nAltrei publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. The Pichl section runs along the nature park's edge, where dogs must be kept on a lead and never left to roam.",
       "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle, as the national rule requires; never let it roam near the nature park. About half the walk is on village streets with some traffic, including the 50 km/h through-road, so keep close there. Taps are mapped all round the village. Most of the loop is open and sunny, and some sections can be slippery when wet.",
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -21127,9 +20894,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the Rathausplatz, the official start (was a bus stop 120 m off the route); taps traced to OSM.",
         "elevation": "Official 80 m of climb; profile recomputed for the new line."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -21141,22 +20906,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -21297,7 +21047,9 @@ function effectiveOverrides(profile, adjustOverride){
       "desc": "The Planets Path at Gummer: a 9.1 km loop from the Max Valier observatory across the sunny plateau above the Eggental, with a scale model of the solar system along the way. Path 5 leads east past the Oberegger farm (Mars) to Malgeier (Saturn), down by a small moor and across the provincial road; paths 1/3 and 1 climb past the Lärchenwald inn (Uranus) to the high point near 1,420 m (Neptune), and path 5A returns by the Learn pond and Tschigg (Pluto). About 3 hours and 262 m of up and down; officially easy to walk, and tagged dog-friendly.\n\nKarneid's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows and fields, and may not bathe in fountains or cattle troughs.",
       "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Karneid requires, and keep it off the meadows; the loop passes several working farms and cowsheds. There is nowhere to eat or drink on the loop and no mapped tap, so bring water for you both; the Unteregger inn is at the start. Take care crossing the provincial road. Only about a third is in forest, so it is warm on sunny afternoons. Through the moor near Malgeier, keep your dog close so it does not disturb wildlife.",
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -21307,9 +21059,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the Max Valier observatory, the official start; no water on the loop, as the official page warns.",
         "elevation": "Official 262 m of up and down."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -21321,22 +21071,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -22297,7 +22032,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 379,
       hours: '3.5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -22307,7 +22044,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Natz village centre by the church (official start, bus stop Natz Kirche); drinking water at the church (OSM nodes 8491650106, 7434819736), near Viums (1388893213, 1404697279) and in Schabs (8648731851, 121 m off).',
         elevation: 'Official 11 km, 379 m up and 385 m down, 3:30 h, high point 898 m, low point 809 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -22358,7 +22095,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 360,
       hours: '3–3.5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -22368,7 +22107,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Albeins Kindergarten bus stop (OSM node 2440142154), by the parking and overview board; six drinking-water points within 125 m of the line (OSM nodes 7452719619, 8766283130, 7484003619, 7594621912, 7418766922, 939307151).',
         elevation: 'Official 12 km, 360 m up and down, 3:15 h, high point 897 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -22416,7 +22155,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 78,
       hours: '0.75',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -22426,7 +22167,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Welsberg tourist office (official start), 180 m from the loop; drinking fountains OSM nodes 9006242959 (25 m off), 10916470437 (main square) and 5167581904 (tourist office).',
         elevation: 'Official 2.3 km, 78 m up and down, 0:39 h, 1,085–1,163 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -22472,7 +22213,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 130,
       hours: '1.5–2',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -22482,7 +22225,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Welsberg tourist office (official start); fountains in the village (OSM nodes 5167581904, 9006242959, 10916470437) and the Taistner Bach crossing at km 3.9 (way 507522282).',
         elevation: 'Official 6.2 km, 130 m up and down, 1:42 h, 1,084–1,211 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -22530,7 +22273,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 233,
       hours: '2.5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -22540,7 +22285,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Niederrasen village centre at the Dorfrundweg guidepost (OSM node 2048599383); spring at the Oberrasen barbecue site (node 9001872395) and fountains in Oberrasen and Niederrasen.',
         elevation: 'Official 8.6 km, 233 m up and 222 m down, 2:25 h, 1,000–1,190 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -22588,7 +22333,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 454,
       hours: '3.5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -22598,7 +22345,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Streda Passua in Runggaditsch (official GPX start); about thirty drinking fountains within 150 m from Ortisei on, ten listed with OSM node ids.',
         elevation: 'Official 12.2 km, 454 m up and 2 m down, 3:30 h, 1,141–1,595 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -22655,7 +22402,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 164,
       hours: '1.25–1.5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -22665,7 +22414,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the free car park at the Jochtal cable-car valley station (OSM way 939788336, the official start); drinking-water taps in the village centre (OSM nodes 3661313096, 12058755879), a short detour.',
         elevation: 'Official 5.1 km, 164 m up and down, 1 h 19 min, high point 1,459 m, low point 1,296 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -22711,7 +22460,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 413,
       hours: '2.5–3',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -22721,7 +22472,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Compatsch gondola top station (official start, OSM node 102561714); drinking-water tap at the Arnika Hütte (OSM node 9980117889), and seasonal huts on the loop.',
         elevation: 'Official 8.4 km, 413 m up and down, 2 h 36, lowest 1,852 m, highest 2,173 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -22772,7 +22523,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 191,
       hours: '1–1.5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -22782,7 +22535,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the village square in Verdings (official start); seasonal drinking fountain in Verdings, OSM node 13780461719, 13 m from the line.',
         elevation: 'Official 3.2 km, 191 m up and down, 1:01 h, high point 963 m, low point 774 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -22828,7 +22581,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 329,
       hours: '2–2.5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -22838,7 +22593,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Parkplatz Zentrum in Terenten (official start); Dorfbrunnen drinking fountain, OSM node 7318188985, 40 m off the line at the start and finish.',
         elevation: 'Official 7.2 km, 329 m up and down, 2 h 13 min, high point 1,458 m, low point 1,196 m.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -25185,7 +24940,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 90,
       hours: '1',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -25195,7 +24952,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Zans car park by Treffpunkt Zans (official start, bus stop Zanser Alm); three fountains on the loop (OSM nodes 7782927585, 7614513085, 7612516685).',
         elevation: 'Official 3.0 km, 90 m up and down, 1 h (Südtirol.info, Cooperativa Turistica Odles).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -25244,7 +25001,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 286,
       hours: '1.5–2',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -25254,7 +25013,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Adlerbrücke on the Stufels side (official start); drinking fountains at the start (OSM node 7559202719) and by Elvas church (node 7559966242).',
         elevation: 'Official 5.1 km, 286 m up and down, 1 h 37 min, 559–845 m (Südtirol.info, Brixen Tourismus).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -25303,7 +25062,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 642,
       hours: '4–5',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -25313,7 +25074,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Würzjoch / Passo delle Erbe car park (official start); drinking-water points at km 8.0 (OSM node 11385735871) and at Fornella (node 13007206242), a spring at km 1.7 (node 1430150379).',
         elevation: 'Official 12.9 km, 642 m up and down, 4 h 01, between 1,966 and 2,359 m (Südtirol.info, Cooperativa Turistica San Vigilio/San Martin).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -25366,7 +25127,9 @@ function effectiveOverrides(profile, adjustOverride){
       elevation: 321,
       hours: '4',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -25376,7 +25139,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Schulhausplatz in Pfalzen (official start); fountains at the sports area (OSM node 10770868015) and the Issinger Weiher (nodes 2961150856, 3112867974, 5853793656).',
         elevation: 'Official 14.1 km, 321 m up and down, 3:55 h (Bruneck Kronplatz Tourismus, Outdooractive tour 810055605); Südtirol.info lists 382 m and 3 h 58.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -25426,7 +25189,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'point-to-point',
       routeShapeNote: 'A one-way walk from the Kurhaus along the Passer promenades and up through Obermais to the Trauttmansdorff gardens; city buses link the gardens and the centre.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -25436,7 +25201,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Kurhaus on the Passer promenade (official start point); fountains at the Kurpromenade, the Wandelhalle, the Moritzbrunnen and near Trauttmansdorff (OSM nodes 7318188885, 2386375747, 2908798745, 6637131450).',
         elevation: 'Official 3.2 km, 109 m of ascent, 55 minutes (Südtirol.info, Kurverwaltung Meran).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -25492,7 +25257,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'point-to-point',
       routeShapeNote: 'A one-way walk along the Sonnenberg from Partschins to Naturns (186 m up, 295 m down); the Vinschgau train and buses bring walkers back to Partschins and Rabland.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -25502,7 +25269,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Partschins village centre; fountains in Partschins at the start (OSM nodes 10963532210, 5170518350) and at St. Prokulus at the end (node 1871798860).',
         elevation: 'Official 7.7 km, 186 m up and 295 m down, 2 h 30 min, high point 718 m (Tourismusverein Partschins, Rabland und Töll).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -25554,7 +25321,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'point-to-point',
       routeShapeNote: 'A one-way walk along the irrigation channel from Oberplars to Gratsch, almost level and mostly downhill (29 m up, 158 m down); buses 213, 235 and 237 bring walkers back to Algund.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -25564,7 +25333,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Waalweg entrance at Oberplars by the Kneipp station, bus stop Abzweigung Oberplars (official start); drinking fountains at the start (OSM node 14060882982) and near Gratsch (nodes 2908895966, 2908895965).',
         elevation: 'Official 4.5 km, 29 m up and 158 m down, 1 h 08 min, high point 498 m (Tourismusbüro Algund, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -25620,7 +25389,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'point-to-point',
       routeShapeNote: 'A one-way walk down the Passeier valley along the Maiser Waal from Saltaus to Meran (46 m up, 215 m down); bus 240 brings walkers back to Saltaus.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -25630,7 +25401,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start below Saltaus on the way down from the Hirzer cable car car park (official start); drinking water at km 2.7 and in Obermais at km 7.7 (OSM nodes 2434584523, 11080586884).',
         elevation: 'Official 9.4 km, 46 m up and 215 m down, 2 h 30 min, high point 487 m (Tourismusverein Passeiertal, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -30383,7 +30154,9 @@ function effectiveOverrides(profile, adjustOverride){
       "desc": "An easy 8.3 km round walk from the centre of Naturns up to the Wallburgboden, an old cult site on the Sonnenberg. Paths 39 and 91 climb past the Wiedenplatzer Keller, then the level Wallburgweg runs west past the Waalerhütte through open woodland and dry scrub to the Wallburgboden. Back the same way to the turn signed Schwalbennest, then gently down past the Schwalbennest and the Maurbamhof to the village. Officially 2.5 hours and 349 m of climb, up to about 790 m. The tourist board lists it among its walks for holidays with dogs.\n\nNaturns publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. About 2 km cross the Sonnenberg steppe biotope, a Natura 2000 site where dogs may not run free and sheep and goats may graze.",
       "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle: the national rule requires it, and in the Sonnenberg biotope dogs may not roam. This south-facing slope is hot and dry with little real shade, so walk it in spring, autumn or early in the day and carry water: there is none above the village. Watch for cars on the village streets and farm roads, and keep your dog close where the path runs near short drops. There are places to stop at the Wiedenplatzer Keller and the Schwalbennest.",
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -30393,9 +30166,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start in Naturns centre, the official start; water in the village traced to OSM.",
         "elevation": "Official 349 m of climb and 2:30 h."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -30407,22 +30178,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -30657,7 +30413,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'point-to-point',
       routeShapeNote: 'A one-way walk along the Marlinger Waal from Lana above Tscherms and Marling to Töll; buses 213 and 211 bring walkers back to Lana by way of Meran.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -30667,7 +30425,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the top of the Raffeinweg above Lana, by the Waalheim car park (official start); drinking water at km 0.5 and km 4.7 (OSM nodes 10770850207, 4416462238).',
         elevation: 'Official 10.5 km, 150 m up and down, 3 h 30 min, high point 550 m (Tourismusverein Lana und Umgebung, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -30721,7 +30479,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from the Aschbach cable car top station along path 27A towards the Egger farms and round the forest nature trail.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -30731,7 +30491,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Aschbach cable car top station (official start and end); drinking fountains at the start (OSM nodes 4881672757, 6442027816).',
         elevation: 'Official 3.2 km, 152 m up and down, 1 h, 1,339–1,429 m (Tourismusverein Algund, Südtirol.info); a second board record of the same loop gives 3.4 km and 1 h 10.'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -30774,7 +30534,9 @@ function effectiveOverrides(profile, adjustOverride){
       // on the line.
       area: 'Schennaberg, Schenna / Scena',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -30784,7 +30546,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Verdins behind the parish church, bus stop Verdins (official start); drinking water in Verdins (OSM node 7318188908, km 0.3), at the Kleebrunnen (node 12192996889, km 5.6) and in St. Georgen (node 7318189189, km 7.9).',
         elevation: 'Official 8 km, 450 m up and 550 m down, 2 h 30 min, high point 1,100 m (Tourismusverein Schenna, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -30844,7 +30606,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Tschirland past the Restaurant Ramilia, up through the woods to the Gsindboden viewpoint and back down by the Tschirlander Heide.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -30854,7 +30618,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Tschirland village centre by the Tschirlander Hof, Citybus 264 stop Tschirlander Hof (official start); drinking water at the start (OSM node 4881698545).',
         elevation: 'Official 4.6 km, 216 m up and down, 1 h 25 min, 579–776 m (Tourismusgenossenschaft Naturns, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -32974,7 +32738,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Terenten village centre up the Terner Bach past the old mills and the earth pyramids, and back over the meadows by the village ski lift.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -32984,7 +32750,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Terenten village centre by the car park and the bus stop Terenten Dorf (official start); drinking fountains on the village square and by St. Georg church (OSM nodes 7318188985, 2328513538).',
         elevation: 'Official 4.5 km, 235 m up and down, 1 h 30 min, 1,210–1,436 m (Ski- und Almregion Gitschberg Jochtal, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -33032,7 +32798,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Katharinaberg by Durst and the Versanthöfe, a stretch of the Sonnenberg road, Kopfron, Wand and Unterperfl, back to the village.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -33042,7 +32810,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Katharinaberg village centre by the free car park, bus 261 stop Katharinaberg (official start); the Refill fountain on the village square is about 100 m from the line.',
         elevation: 'Official 8.2 km, 514 m up and down, 2 h 40 min, 1,180–1,470 m (Tourismusgenossenschaft Schnalstal, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -33088,7 +32856,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A short loop from the edge of Salurn village centre up the Titschenbach to the waterfall and the spring-water boards, and back down the Kapellenweg.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -33098,7 +32868,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Quellenpromenade by the car park at the edge of Salurn village centre (official start); drinking fountains at km 0.1, 0.3 and 1.1 (OSM nodes 447945723, 1380842711, way 884832961).',
         elevation: 'Official 1.2 km, 115 m up and down, 30 min, 218–301 m (Tourismusgenossenschaft Südtirols Süden, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -33762,7 +33532,9 @@ function effectiveOverrides(profile, adjustOverride){
       "desc": "A 6.7 km loop from the Chalets de Bise above Vacheresse over three cols to the Lac de Darbon, on the departmental walking network: up via La Salle and the Col de Bise to the Col de Pavis, across to the lake, and back by the Col de Floray with a steep final descent to the chalets. Officially 3 hours 30 and 640 m of climb, between 1,500 and 1,955 m, rated quite difficult; the route is open from 1 June to 15 October.\n\nDogs must be kept on a lead the whole way: about 60% of the walk lies in the Cornettes de Bise biotope protection area, the commune requires a lead and forbids swimming in the lake for animals too, and the route page asks for it because of herds and wildlife. Herds with livestock guardian dogs graze here, and the department strongly advises against bringing pet dogs near the herds.",
       "tips": "This is guardian-dog country: the department says pet dogs are strongly discouraged near the herds, so think twice before bringing yours, and keep it on a short lead the whole way. If a guardian dog approaches, let it, do not force your way through; in a conflict, drop the lead, do not step in and do not pick your dog up. Dogs may not swim in the Lac de Darbon. There is no shade and no water after the chalets, so carry plenty and go early. Watch the cliff edge near the lake and take the steep descent slowly. Open 1 June to 15 October.",
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -33772,9 +33544,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the Parking des Chalets de Bise, the official start; water only at the chalets.",
         "elevation": "Official 640 m of climb and 3h30."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -33786,22 +33556,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -40886,7 +40641,9 @@ function effectiveOverrides(profile, adjustOverride){
       "desc": "A forest loop climbing from Landry church to the Ragairon chalet and the hamlet of Les Charmettes above the Tarentaise: follow the GR5 signs, then those of the Circuit de Ragairon, past Le Martorey and the Charbonnet stream. The tourist office rates it difficult and gives 731 m of climb and 4 hours 30; its page says 8.4 km, while its own GPS track, which walks the first 1.4 km out and back, measures 9.9 km. Most of it is in the woods.\n\nThere is no specific dog rule on this walk and no protected area; French law forbids letting dogs stray, and requires a lead off the paths in woods and fields from 15 April to 30 June.",
       "tips": "Keep your dog close and on a lead near Les Charmettes, where the tourist office says cows often graze. The climb is long but mostly shaded. There is drinking water at the start; the tap at Les Charmettes is marked not drinkable, so carry water. Watch for farm and ski-service vehicles on the tracks, and for paragliders taking off at Les Charmettes.",
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -40896,9 +40653,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the free car park by the Saint-Michel church, the official start; drinking water at the start.",
         "elevation": "Official 731 m of climb and 270 minutes."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -40910,22 +40665,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -42130,7 +41870,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Neustift abbey through the northernmost vineyards of the Eisack valley to the Wetterkreuz and Gasthaus Sunnegg, back along the Eisack cycle path and the Höfeweg.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -42140,7 +41882,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the large car park of Neustift abbey, bus stop Neustift Kloster (official start); drinking water at the start and at km 2.3, 3.6, 5.4 and 6.0 (OSM nodes 8663117307, 13875144101, 9852744717, 8663117305, 11332444269).',
         elevation: 'Official 6.1 km, 215 m up and down, 1 h 46 min, 572–725 m (Brixen Tourismus, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -42192,7 +41934,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Antholz Niedertal past the fishing pond, up the forest road to the Walderhöfe, down to Bad Salomonsbrunn and back along the cycle path and the stream.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -42202,7 +41946,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Antholz Niedertal, bus 431 stop Antholz Niedertal (official start); Refill drinking fountains at the start and at km 2.6 (OSM nodes 7318189286, 7318189385).',
         elevation: 'Official 3.1 km, 30 m up and down, 1 h, 1,094–1,120 m (Tourismusgenossenschaft Antholzertal, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -42249,7 +41993,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Antholz Mittertal by the Ausserwegersäge, road 11 and path 6A past the Wanzler Hof to the Eggerhöfe, and back to the village.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -42259,7 +42005,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Antholz Mittertal village centre, bus 431 stop Antholz Mittertal (official start); Refill drinking fountains in the village at km 0–0.3 (OSM nodes 7318188890, 7318188891, 7318188894).',
         elevation: 'Official 4.4 km, 150 m up and down, 1 h 30 min, 1,236–1,349 m (Tourismusgenossenschaft Antholzertal, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -45145,7 +44891,9 @@ function effectiveOverrides(profile, adjustOverride){
       "desc": "The nature discovery trail on the Plateau des Glières, a very easy waymarked loop with twelve information panels across the high meadows, wetland and forest of the plateau, from the col des Glières car park past the Mémoire du Maquis. The tourist office gives 4 km, 2 hours 30 and 100 m of climb, at about 1,400 m.\n\nDogs must be kept on a lead: the plateau's brochure asks it because herds and working dogs graze the alpages in summer, and the plateau is a Natura 2000 site whose charter asks the same.",
       "tips": "Keep your dog on a lead throughout: cattle and their working dogs graze the plateau in summer, and the Département's alpage notices ask walkers to respect the herds. There is no drinking water on the loop, so bring some; there is a restaurant near the car park. Part of the loop follows a gravel farm track where vehicles may pass. The meadows are open, but about 40% of the walk is in the forest.",
       "curated": true,
-      "tier": "route-audited",
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      "tier": "under-review",
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -45155,9 +44903,7 @@ function effectiveOverrides(profile, adjustOverride){
         "mapPoints": "Start at the col des Glières car park, the official start; no drinking water on the loop.",
         "elevation": "Official 100 m of climb and 2h30."
       },
-      "graduation": {
-        "status": "verified",
-        "required": [
+      "graduation": { "status": "in-progress", "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -45169,22 +44915,7 @@ function effectiveOverrides(profile, adjustOverride){
           "livestock",
           "surfaceHazards",
           "access"
-        ],
-        "completed": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ],
-        "blockers": {}
-      },
+        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
       "verified": {
         "categories": [
           "water",
@@ -45325,7 +45056,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from the Töll weir on the Etsch cycle path past Bad Egart to Rabland, up through the meadows to Partschins and its church, and back by Vertigen.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -45335,7 +45068,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Töll weir and hydroelectric plant (official start); drinking water at km 3.1 and 3.9 in Rabland, 6.8 and 8.2 (OSM nodes 3700119815, 10963532211, 5613755761, 5953349388).',
         elevation: 'Official 8.2 km, 171 m up and down, 2 h 15 min, 505–641 m (Tourismusverein Partschins, Rabland und Töll, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -45402,7 +45135,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Tabland church out on road 4 past the Ritz’n Mühle and the shooting range, up path 4 through the wood to the Birkenwald, across to the Hasler Weide and down past the Ragoier and Oberwötzel farms.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -45412,7 +45147,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the village square by the school and church in Tabland, Citybus 264 from Naturns (official start); no drinking water is mapped on the loop.',
         elevation: 'Official 5.1 km, 233 m up and down, 2 h, 657–870 m (Tourismusgenossenschaft Naturns, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -45459,7 +45194,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from the Gasthaus Eggerhof car park up path 9 to a viewpoint at about 1,450 m, round on path 27 and back down past the St. Martin chapel and the inn.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -45469,7 +45206,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the public car park of the Gasthaus Eggerhof, terminus of bus 268 (official start); drinking water at km 0.6 (a seasonal Refill fountain) and km 4.0 (OSM nodes 7599250885, 4988635567, 4881664878).',
         elevation: 'Official 4.3 km, 213 m up and 216 m down, 1 h 30 min, 1,276–1,450 m (Tourismusverein Marling, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -45524,7 +45261,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from the Monte Pana car park past the Sporthotel and Franz Baumann’s chapel, through meadows and wood to a small pond, and back by the Monte Pana cross-country centre.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -45534,7 +45273,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the car park at the top of Monte Pana (official start); a Kneipp foot basin at km 1.9; no drinking water is mapped on the loop.',
         elevation: 'Official 2.7 km, 64 m up and down, 45 min, 1,624–1,686 m (Tourismusverein St. Christina, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -45578,7 +45317,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Feldthurns village past Schloss Velthurns, on the Keschtnweg (12A) to Schnauders, along the Panoramaweg to the Glangerhof and the Kloasnerhof, and back through the hamlet of Guln.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -45588,7 +45329,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Feldthurns village centre by Schloss Velthurns (official start); drinking water at the village fountain at the start (OSM node 2506252488).',
         elevation: 'Official 7.0 km, 249 m up and 247 m down, 2 h 2 min, 847–1,014 m (Brixen Tourismus, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -45638,7 +45379,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'Once round the Antholzer See at about 1,640 m, from the biathlon centre car park and bus stop, past the Seerestaurant and the information boards.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -45648,7 +45391,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the biathlon centre car park, bus stop Antholzer See (official start); a drinking fountain at km 1.8 by the Seerestaurant, marked as not for dogs (OSM node 289158036).',
         elevation: 'Official 3.4 km, 79 m up and down, 1 h 30 min, 1,641–1,680 m (Tourismusverein Antholzertal, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -45703,7 +45446,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'point-to-point',
       routeShapeNote: 'A one-way walk on the old postal path from Lajen by Tschöfas, Tanirz and St. Peter to St. Ulrich in Gröden (500 m up, 386 m down); back the same way or by bus.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -45713,7 +45458,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Lajen village (official start); drinking water at km 0, 0.2, 1.3, 5.0, 10.2, 10.3, 11.4 and 11.5 (OSM nodes 11808110869, 11808110969, 7072384866, 7727344198, 7727322865, 7727322863, 8193286317, 6665174752); end in St. Ulrich centre.',
         elevation: 'Official 11.9 km, 500 m up and 386 m down, 3 h 36 min, 1,091–1,291 m (Tourismusverein Lajen, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -45853,7 +45598,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from the Rathausplatz in Sand in Taufers over the Ahr, up the castle promenade to Burg Taufers, along the Wasserweg to the Cascade and back over the meadows.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -45863,7 +45610,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the Rathausplatz in Sand in Taufers (official start); drinking water at the start, at km 1.2 and at km 5.3 (OSM nodes 9180091759, 14017483401, 12587149301).',
         elevation: 'Official 6 km, 201 m up and down, 3 h, 859–1,010 m (Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -45922,7 +45669,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A short loop from the church in Aicha round the village and its orchards, following the Dorfrundweg symbol.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -45932,7 +45681,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the church of St. Nikolaus in Aicha (official start); drinking water near the church at km 2.2 (OSM node 289017239).',
         elevation: 'Official 2.3 km, 89 m up and down, 45 min, 724–798 m (Brixen Tourismus, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -46039,7 +45788,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Kiens village centre to Ehrenburg, past the Roman milestone, Ehrenburg castle and the baroque parish church, and back through the farmland of the Pustertal.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -46049,7 +45800,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Kiens village centre (official start); drinking water at km 0.1 (OSM node 6807612586); the Roman milestone at km 1.3.',
         elevation: 'Official 3.1 km, 70 m up and 81 m down, 52 min, highest point 826 m (Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -46099,7 +45850,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Teis on path 11 by the Nafner Wetterkreuz to the St. Bartholomäus chapel in Nafen, down the old burial path 4 to Albeins, and back up forest road 9 past the Kasseroler and Gufelfelder farms to Teis.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -46109,7 +45862,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start in Teis village centre (official start); drinking water in Nafen at km 1.3 (seasonal), in Albeins at km 4.8 and in Teis at the end (OSM nodes 7605802985, 7452719619, 4810096608, 7589458385).',
         elevation: 'Official 8.5 km, 448 m up and down, 2 h 40 min, highest point 953 m, lowest about 580 m at Albeins (Tourismusverein Villnöss, Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -46169,7 +45922,9 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A short loop round the summit of the Kronplatz at about 2,250 m, marked “A”, past the Concordia 2000 peace bell, the MMM Corones and LUMEN museums and a series of viewpoints.',
       curated: true,
-      tier: 'route-audited',
+      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
+      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
+      tier: 'under-review',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -46179,7 +45934,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the cable car top stations on the Kronplatz summit (official start); no drinking water is mapped on the loop, but several restaurants sit on it.',
         elevation: 'Official 2.4 km, 75 m up and down, 40 min, highest point 2,275 m (Südtirol.info).'
       },
-      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
