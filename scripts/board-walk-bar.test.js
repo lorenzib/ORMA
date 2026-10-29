@@ -86,38 +86,11 @@ describe('the directions check', () => {
 // Every Verified board walk clears the bar, except the ones that failed it
 // when it was introduced on 28 October 2026. 67 of those lost the seal the
 // same day (their line folds or runs over itself, or they had no directions).
-// The 27 left here have a sound line whose shape the page names wrongly;
-// they leave this list when the label is fixed. Nothing is added to it: a new
+// The 27 that remained had a sound line whose shape the page named wrongly;
+// the 11 there-and-backs were relabelled on 29 October and the 16 loops on a
+// stem declared the same day, so the list is empty. Nothing is added to it: a new
 // walk that fails the bar is not published Verified.
-const AWAITING_DECISION = [
-  "fassa-borgo-dei-patins",
-  "fassa-passato-ritrovato",
-  "fassa-malga-aloch",
-  "fassa-alpe-di-fuciade",
-  "primiero-siror",
-  "cortina-castello-di-botestagno",
-  "cortina-sotecordes",
-  "fiemme-cavalese-passeggiata-panoramica",
-  "cembra-lago-santo",
-  "cembra-rifugio-potzmauer",
-  "cembra-giro-masi-grumes",
-  "valgardena-tour-alla-volta-del-lech-sant",
-  "valgardena-passeggiata-alla-chiesetta-di-san-giacomo",
-  "trecime-dobbiaco-lago-di-dobbiaco",
-  "trecime-sentiero-gustav-mahler",
-  "fassa-da-alba-a-penia",
-  "valdisole-fazzon-lago-dei-caprioli",
-  "valdisole-bivacco-malga-baselga",
-  "valdisole-rifugio-stavel-denza",
-  "valdisole-passo-tonale-forte-mero-forte-zaccarana",
-  "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza",
-  "osttirol-naturkraftweg-umbalfaelle",
-  "campiglio-trekking-al-rifugio-segantini",
-  "osttirol-themenweg-kreuzweg-virgen",
-  "osttirol-kinder-naturerlebnispfad-kals-ag",
-  "fvg-monte-rest-da-passo-rest",
-  "lesachtal-tuffbad",
-];
+const AWAITING_DECISION = [];
 
 describe('every Verified board walk clears the bar', () => {
   const results = bar.audit();

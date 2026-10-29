@@ -346,6 +346,15 @@ body{background:#EFECE2;}
 
 /* --- stat strip --- */
 .td2-stat{display:flex;gap:0;margin-top:22px;border-top:1px solid rgba(255,255,255,.12);}
+.td2-route-switch{display:flex;align-items:center;flex-wrap:wrap;gap:0;margin-top:20px;}
+.td2-route-switch + .td2-stat{margin-top:12px;}
+.td2-route-switch button{font:inherit;font-size:13px;font-weight:700;padding:7px 14px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;cursor:pointer;}
+.td2-route-switch button:first-child{border-radius:999px 0 0 999px;}
+.td2-route-switch button + button{border-left:none;border-radius:0 999px 999px 0;}
+.td2-route-switch button.is-on{background:#fff;color:#1F2A22;}
+.td2-route-switch button:focus-visible{outline:2px solid #9FE1CB;outline-offset:2px;}
+.td2-route-switch-note{font-size:12px;color:#A9B7AB;margin-left:12px;}
+.recommendation-route-view{margin:6px 0 0;font-size:13.5px;line-height:1.5;color:var(--ink-soft,#5b6358);}
 .td2-stat .f{flex:1;padding:16px 4px 18px;}
 .td2-stat .f + .f{border-left:1px solid rgba(255,255,255,.12);padding-left:16px;}
 .td2-stat .f b{display:block;font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-.02em;font-size:26px;color:#fff;}
@@ -807,6 +816,12 @@ body{background:#EFECE2;}
 
 /* Dense facts immediately under the title. The dog fit has a dedicated card
    beside the map, so the old match cell does not compete in the header. */
+.td2-hero .td2-facts-block{grid-area:facts;min-width:0;}
+.td2-hero .td2-facts-block .td2-route-switch{margin:0 0 10px;}
+@media (max-width:560px){
+  .td2-hero .td2-facts-block .td2-route-switch{margin:12px 0 10px;}
+  .td2-route-switch-note{flex-basis:100%;margin:6px 0 0;}
+}
 .td2-hero .td2-stat{grid-area:facts;display:flex;align-items:center;flex-wrap:nowrap;gap:0;margin:0;border:0;white-space:nowrap;overflow-x:auto;scrollbar-width:none;}
 .td2-hero .td2-stat::-webkit-scrollbar{display:none;}
 .td2-hero .td2-stat .f{display:inline-flex;align-items:baseline;gap:5px;flex:0 0 auto;padding:0 14px;color:#EAF1E8;}
@@ -1504,6 +1519,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
   })();
 </script>
-<script src="trail-app.bundle.js?v=20261028-1" defer></script>
+<script src="trail-app.bundle.js?v=20261029-1" defer></script>
 </body>
 </html>
