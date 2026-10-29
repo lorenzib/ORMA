@@ -6360,7 +6360,13 @@ function recommendTrail(trail, subject, currentConditions){
   if(!adapter || typeof adapter.recommendLegacyTrail !== 'function'){
     throw new Error('Canonical scoring adapters are unavailable.');
   }
-  return adapter.recommendLegacyTrail(trail, subject || {}, currentConditions);
+  // A one-way walk is scored there and back unless the reader switched its
+  // page to one way, so a card and the trail page give the same number
+  // (route-return.js; a copy it has already made passes through unchanged).
+  const routeReturn = window.ORMARouteReturn;
+  const walked = routeReturn && typeof routeReturn.forView === 'function'
+    ? routeReturn.forView(trail) : trail;
+  return adapter.recommendLegacyTrail(walked, subject || {}, currentConditions);
 }
 
 function scoreTrail(trail, subject, currentConditions){
@@ -67713,11 +67719,13 @@ function initTrailReports(map, trail){
   }
 
   // The view the reader picked on this page. Not remembered between pages: a
-  // walk opens on the authority's own one-way figures.
-  let current=VIEWS.ONE_WAY;
+  // one-way walk opens there and back, the way most people walk it without a
+  // bus or lift home, and the reader can switch to the authority's one-way
+  // figures. Every list and card reads the same default (scoring.js).
+  let current=VIEWS.OUT_AND_BACK;
   function view(){return current;}
   function setView(next){
-    const value=next===VIEWS.OUT_AND_BACK?VIEWS.OUT_AND_BACK:VIEWS.ONE_WAY;
+    const value=next===VIEWS.ONE_WAY?VIEWS.ONE_WAY:VIEWS.OUT_AND_BACK;
     if(value===current)return;
     current=value;
     if(typeof window!=='undefined'&&typeof window.dispatchEvent==='function'&&typeof CustomEvent==='function'){
@@ -69584,8 +69592,8 @@ function renderTrail(t){
     wrap.setAttribute('role', 'group');
     wrap.setAttribute('aria-label', routeLabel('trail.routeView.label', 'Show the figures for'));
     const views = [
-      [routeReturn.VIEWS.ONE_WAY, routeLabel('trail.routeView.oneWay', 'One way')],
       [routeReturn.VIEWS.OUT_AND_BACK, routeLabel('trail.routeView.outAndBack', 'Out and back')],
+      [routeReturn.VIEWS.ONE_WAY, routeLabel('trail.routeView.oneWay', 'One way')],
     ];
     const note = document.createElement('span');
     note.className = 'td2-route-switch-note';
@@ -71047,6 +71055,7 @@ if(document.querySelector('.td2')){
     // The forecast usually arrives after the first paint. Without this the card
     // keeps a score calculated before the day was known.
     window.addEventListener('dolopaws-conditions-ready', paintPersonalMatch);
+    window.addEventListener('orma-route-view-changed', paintPersonalMatch);
 
     // Trail description inside the white box
     const descEl = $('matchDescription');
