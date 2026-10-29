@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "trailId": "lago-carezza",
   "generatedAt": "2026-07-27T00:00:00Z",
-  "verificationStatus": "source-verified",
+  "verificationStatus": "not-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 1.3,
@@ -27,6 +27,7 @@
     }
   ],
   "cautions": [
+    "ORMA hasn’t verified this route yet. Follow local signs.",
     "The lake is fenced and swimming is not permitted.",
     "Carry water even though a fountain is listed.",
     "Follow local signs, lead rules and temporary closures."

@@ -152,8 +152,10 @@ describe('a walk verified or re-lined by hand is not republished by the pipeline
   test('a hand-verified walk is refused and its record left alone',()=>{
     // Tru di Lëc: verified by hand on 23 October, like St. Magdalena, and an
     // imported walk the lane's fixtures can build.
+    // Its seal was withdrawn on 29 October 2026 for want of directions; the
+    // hand-verified record still must not be overwritten by the lane.
     const trail=record('osm-9493733');
-    expect(trail.tier).toBe('route-audited');
+    expect(trail.tier).toBe('under-review');
     const result=publish(trail);
     expect(result.entries).toEqual([]);
     expect(result.overrides.trails).toEqual([]);

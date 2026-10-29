@@ -88,7 +88,10 @@ describe('the free lane, across the whole catalogue',()=>{
   });
   const published=outcomes.filter(outcome=>outcome.entry);
   const blocked=outcomes.filter(outcome=>outcome.blocked);
-  const handVerified=trails.filter(record=>record.tier==='route-audited'&&record.graduation?.status==='verified');
+  // A walk whose seal was withdrawn until its directions are written keeps
+  // its hand research, so it is refused like a Verified one.
+  const handVerified=trails.filter(record=>(record.tier==='route-audited'&&record.graduation?.status==='verified')
+    ||record.sealWithdrawn);
 
   test('the catalogue is the real one',()=>{
     expect(trails.length).toBeGreaterThan(150);
