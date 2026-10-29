@@ -8432,9 +8432,9 @@ function effectiveOverrides(profile, adjustOverride){
       "startPoint": {
         "lat": 45.94953,
         "lng": 6.74153,
-        "label": "Lakeside path below the Lac Vert car park; the official start is the Plaine-Joux car park, 321 chemin des Parchets, 400 m up the road"
+        "label": "Chemin des Parchets at Plaine-Joux, by a water tap, about 200 m east of the Plaine-Joux car park (321 chemin des Parchets), where the tourist office starts the walk"
       },
-      "desc": "An easy loop at about 1,300 m around Passy's emerald Lac Vert, a protected natural site where Mont Blanc reflects in water so clear you can see sunken trunks. The path circles the lake on its balcony and passes the lakeside restaurant, in a conifer forest below the Fiz cliffs. The official route starts at the Plaine-Joux car park and walks 400 m down the paved road to the lake; officially 3.1 km and 100 m of climb, about an hour, suitable for beginners.\n\nDogs must be kept on a lead, and they are not allowed in the lake, according to the official route page. Sled dogs live here in summer and winter. Most of the walk is shaded by conifers.",
+      "desc": "An easy loop at about 1,300 m around Passy's emerald Lac Vert, a protected natural site where Mont Blanc reflects in water so clear you can see sunken trunks. The path circles the lake on its balcony and passes the lakeside restaurant, in a conifer forest below the Fiz cliffs. The official route starts at the Plaine-Joux car park and follows the paved road for 400 m before a path turns down towards the lake; officially 3.1 km and 100 m of climb, about an hour, suitable for beginners.\n\nDogs must be kept on a lead, and they are not allowed in the lake, according to the official route page. Sled dogs live here in summer and winter. Most of the walk is shaded by conifers.",
       "tips": "Keep the lead on: it is the official rule, and sled dogs are kept nearby all year. Dogs may not go into the lake, and swimming is banned for people too, so use the taps by the lake (mapped) for water. The approach from the Plaine-Joux car park follows a paved road, and the loop crosses it once: keep your dog close there. The lake is busy in summer, so come early for a quiet lap.",
       "shadeCoverage": 60,
       "heatRisk": "low",
@@ -8442,6 +8442,59 @@ function effectiveOverrides(profile, adjustOverride){
       "surfaceHazards": [
         "The paved access road from the Plaine-Joux car park, crossed once on the loop"
       ],
+      // Directions 28 October 2026: the tourist office's "Topo / step by step", the same text on
+      // passy-mont-blanc.com and combloux.com. OpenStreetMap places what it names on ORMA's line: the
+      // path down before the cabins is way 799846629, meeting the line about 450 m in; the road crossing
+      // is node 2007273424 (0.8 km); the viewpoint node 11734201069 sits about 20 m from the balcony path;
+      // the tap by the lake board is node 2990395315; the shore boardwalks are ways tagged bridge=boardwalk.
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start on the Chemin des Parchets road at Plaine-Joux, by a water tap, about 200 m east of the Plaine-Joux car park (321 chemin des Parchets), where the tourist office starts the walk.",
+        "sequence": "Down through the forest below the Cabanes du Mont-Blanc to the road, across it onto the balcony path round the Lac Vert, down to the lake restaurant and a lap of the shore, then back up the road and the same path to the start.",
+        "switches": "Where you first meet the road, about 800 m in, cross it and take the path straight in front of you. After the restaurant, walk up the road to that crossing and take the path you came down by.",
+        "steps": [
+          {
+            "text": "Leave the road on the gravel track going down on your right, then follow the forest path below the Cabanes du Mont-Blanc cabins. The tourist office's route stays on the road for 400 m from the car park and takes the path down on the right just before the cabins; it joins this path about 450 m from the start.",
+            "from": [1, 0]
+          },
+          {
+            "text": "About 800 m from the start you meet the road again. Cross it and take the path straight in front of you.",
+            "from": [0, 1]
+          },
+          {
+            "text": "This path goes round the lake on its balcony, above the water, past a viewpoint.",
+            "from": [0, 1]
+          },
+          {
+            "text": "Carry on down to the lake restaurant, below you, about 1.8 km from the start. There is a water tap beside the lake information board.",
+            "from": [0, 1]
+          },
+          {
+            "text": "The ORMA line also takes the lakeside path round the water's edge, partly on boardwalks, and comes back to the restaurant. Dogs may not go into the lake.",
+            "from": [1, 0]
+          },
+          {
+            "text": "To go back, walk up the road to where you crossed it, then take the path you came down by, back to the start.",
+            "from": [0]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "Boucle du Lac Vert, step by step",
+            "authority": "Office de Tourisme de Passy Mont-Blanc",
+            "url": "https://www.passy-mont-blanc.com/en/itineraire/boucle-du-lac-vert/",
+            "reviewedAt": "2026-10-28"
+          },
+          {
+            "tag": "map",
+            "label": "OpenStreetMap",
+            "authority": "the walk (relation 6250300) and the paths, cabins, viewpoint and taps along it",
+            "url": "https://www.openstreetmap.org/relation/6250300",
+            "reviewedAt": "2026-10-28"
+          }
+        ]
+      },
       "routeNumberSource": {
         "provider": "Office de Tourisme de Combloux / Passy (Apidae)",
         "name": "Boucle du Lac Vert",
@@ -8455,7 +8508,7 @@ function effectiveOverrides(profile, adjustOverride){
         "photo": "Commons, Mangatome, CC BY-SA 3.0, the Lac Vert itself, which the loop circles.",
         "route": "Published line 3.61 km; official 3.1 km. The lake circuit matches the official GPX within about 20 m; the line leaves out the 400 m road approach from Plaine-Joux and takes a slightly different link path. Stated in the text.",
         "routeNumbers": "No number; the official topo describes the loop by landmark (Cabanes du Mont-Blanc, balcony path, lakeside restaurant) with no switch to another route.",
-        "mapPoints": "Start on the lakeside path; the official Plaine-Joux car park named in the text; taps traced to OSM.",
+        "mapPoints": "Start where the line leaves the Chemin des Parchets road at Plaine-Joux, by the tap (OSM node 8938976418), about 200 m from the Plaine-Joux car park the official text starts from; taps traced to OSM. Corrected 28 October 2026: the label used to put this start below the Lac Vert car park, about 1 km away.",
         "elevation": "Official 100 m of climb."
       },
       "graduation": {
@@ -67496,7 +67549,61 @@ function initTrailReports(map, trail){
     return { lines: stripped, note };
   }
 
-  const api = { SOURCES, splitSources };
+  const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+    'August', 'September', 'October', 'November', 'December'];
+  function readOn(value) {
+    const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(value || ''));
+    return match ? `${Number(match[3])} ${MONTHS[Number(match[2]) - 1]} ${match[1]}` : '';
+  }
+
+  const STEPS_BADGE = 'No trail numbers on this walk: follow these landmarks';
+
+  /**
+   * A walk with no trail numbers, given turn by turn (OPERATING_STANDARD.md,
+   * "A walk with no number says how to follow it"). Each step names the
+   * sources it rests on by their place in `guidance.sources`, and each source
+   * carries the short tag the card prints after the step -- "tourist office",
+   * "map" -- so a reader can tell the operator's own words from what ORMA read
+   * off OpenStreetMap to place them.
+   *
+   * All or nothing: a step citing no source, or a source with no https link,
+   * date or tag, and the card shows the Route and Key turns lines instead,
+   * which every landmark record still carries.
+   */
+  function landmarkSteps(guidance) {
+    if (!guidance || guidance.mode !== 'landmarks') return null;
+    const sources = Array.isArray(guidance.sources) ? guidance.sources : [];
+    const steps = Array.isArray(guidance.steps) ? guidance.steps : [];
+    const usable = index => {
+      const source = sources[index];
+      return Boolean(source && String(source.tag || '').trim() && String(source.label || '').trim()
+        && /^https:\/\//.test(source.url || '') && readOn(source.reviewedAt));
+    };
+    const sourced = step => Boolean(step && String(step.text || '').trim()
+      && Array.isArray(step.from) && step.from.length > 0 && step.from.every(usable));
+    if (!steps.length || !steps.every(sourced)) return null;
+    const used = [...new Set(steps.flatMap(step => step.from))].sort((a, b) => a - b);
+    return {
+      badge: STEPS_BADGE,
+      steps: steps.map(step => ({
+        text: String(step.text).trim(),
+        tags: [...new Set(step.from.map(index => String(sources[index].tag).trim()))],
+      })),
+      // One line per source: `${before}${label}${after}`, the label linked.
+      credits: used.map(index => {
+        const source = sources[index];
+        const by = String(source.authority || '').trim();
+        return {
+          before: `Steps marked “${String(source.tag).trim()}”: `,
+          label: String(source.label).trim(),
+          url: source.url,
+          after: `${by ? `, ${by}` : ''}, read ${readOn(source.reviewedAt)}.`,
+        };
+      }),
+    };
+  }
+
+  const api = { SOURCES, STEPS_BADGE, splitSources, landmarkSteps };
   global.DoloPawsRouteGuidanceSources = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
@@ -71099,19 +71206,33 @@ if(document.querySelector('.td2')){
     };
     // Each value ends with where it came from; the card says that once, under
     // the lines, instead of after every one of them (route-guidance-sources.js).
+    // A walk with no numbers, turn by turn: the steps take the place of the
+    // Route and Key turns lines, each tagged with the source it rests on.
+    const guidanceSteps = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
+      ? window.DoloPawsRouteGuidanceSources.landmarkSteps(verifiedRouteGuidance)
+      : null;
     const guidanceSplit = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
       ? window.DoloPawsRouteGuidanceSources.splitSources([
         ['Start', verifiedRouteGuidance.start],
-        ...(guidanceStatus ? [['Trail numbers', guidanceStatus]] : []),
-        [guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route', verifiedRouteGuidance.sequence],
-        [guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch', verifiedRouteGuidance.switches],
+        ...(guidanceStatus && !guidanceSteps ? [['Trail numbers', guidanceStatus]] : []),
+        ...(guidanceSteps ? [] : [
+          [guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route', verifiedRouteGuidance.sequence],
+          [guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch', verifiedRouteGuidance.switches],
+        ]),
       ])
       : null;
     const guidanceLines = guidanceSplit ? guidanceSplit.lines : [];
+    const stepsMarkup = guidanceSteps
+      ? `<ol class="td2-route-steps">${guidanceSteps.steps.map(step =>
+        `<li>${esc(step.text)} <span class="td2-route-step-from">${esc(step.tags.join(', '))}</span></li>`).join('')}</ol>${
+        guidanceSteps.credits.map(credit => `<p class="td2-route-source">${esc(credit.before)}<a href="${
+          esc(credit.url)}" target="_blank" rel="noopener">${esc(credit.label)}</a>${esc(credit.after)}</p>`).join('')}`
+      : '';
     const routeRefMarkup = verifiedRouteGuidance && guidanceSplit
-      ? `${routeBadges}<div class="s">${guidanceLines.map(([label, text]) => label === 'Start'
+      ? `${routeBadges}<div class="s">${guidanceSteps ? `<p class="td2-route-badge">${esc(guidanceSteps.badge)}</p>` : ''}${
+        guidanceLines.map(([label, text]) => label === 'Start'
         ? `<p>${startLine(text)}</p>`
-        : `<p><b>${esc(label)}:</b> ${esc(text)}</p>`).join('')}${
+        : `<p><b>${esc(label)}:</b> ${esc(text)}</p>`).join('')}${stepsMarkup}${
         guidanceSplit.note ? `<p class="td2-route-source">${esc(guidanceSplit.note)}</p>` : ''
       }</div>`
       : routeRefs.length

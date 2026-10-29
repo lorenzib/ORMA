@@ -1986,6 +1986,21 @@ over both.
 Saying nothing was the worse option. A walker expecting to follow "route 23"
 who arrives to find only name-boards has been let down by a blank page.
 
+**Turn by turn, each step saying where it came from** (added 29 October 2026;
+no rule above changes). A hand-verified walk with no numbers can carry its
+landmark directions as numbered `steps` beside the `start`, `sequence` and
+`switches` it always has. Each step names the sources it rests on, and each
+source carries a short tag the card prints after the step ("tourist office",
+"map"), an https link and the date it was read. The operator's own route
+description is the source of the turns. OpenStreetMap is used only to place
+what that description names, or to describe where ORMA's line differs from
+it, and those steps are tagged "map". A step that rests on nothing, or on a
+source with no link or date, drops the whole card back to its Route and Key
+turns lines, so an unsourced step is never shown. The rule lives in
+`route-guidance-sources.js` (`landmarkSteps`), which both the trail page and
+the app use. Boucle du Lac Vert was the first, on 28 October 2026, from the
+Passy tourist office's "step by step".
+
 ### A measurement that could not be taken says so
 
 Three outcomes, not two: the survey found numbers, it looked and found none, or

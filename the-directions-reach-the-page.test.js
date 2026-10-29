@@ -5,7 +5,7 @@ const path=require('path');
 const {directionsSection}=require('./scripts/generate-trail-pages');
 const {loadProductionTrails}=require('./scripts/load-production-trails');
 const routeRefs=require('./trail-route-refs.js');
-const {SOURCES}=require('./route-guidance-sources.js');
+const {SOURCES,STEPS_BADGE,landmarkSteps}=require('./route-guidance-sources.js');
 
 const ROOT=__dirname;
 const read=file=>fs.readFileSync(path.join(ROOT,file),'utf8');
@@ -38,7 +38,13 @@ describe('the directions reach the crawlable page',()=>{
       const rendered=text(section);
       expect({id:trail.id,heading:rendered.startsWith('How to follow this route')})
         .toEqual({id:trail.id,heading:true});
-      for(const field of ['start','sequence','switches']){
+      // A walk given step by step shows its steps in place of the Route and
+      // Key turns lines, which stay in the record for the gate.
+      const stepped=landmarkSteps(trail.routeNumberGuidance);
+      for(const step of stepped?stepped.steps:[])
+        expect({id:trail.id,step:step.text,present:rendered.includes(plain(step.text))})
+          .toEqual({id:trail.id,step:step.text,present:true});
+      for(const field of stepped?['start']:['start','sequence','switches']){
         // The source sentence a value ends with is said once under the lines
         // rather than after each one, so the line is the value without it and
         // the note naming that source must be on the page.
@@ -108,6 +114,52 @@ describe('the directions reach the crawlable page',()=>{
     expect(landmarks).not.toContain('Where to switch');
   });
 
+  // A walk with no numbers, turn by turn (OPERATING_STANDARD.md, "A walk with
+  // no number says how to follow it"): every step says what it rests on.
+  const stepGuidance=()=>({mode:'landmarks',start:'Start at the square.',
+    sequence:'Cross the fields to the bridge.',switches:'Turn left at the bridge.',
+    steps:[{text:'Cross the fields.',from:[0]},{text:'At the bridge, by the mill, turn left.',from:[0,1]}],
+    sources:[{tag:'tourist office',label:'The loop, step by step',authority:'Town tourist office',
+      url:'https://example.org/loop',reviewedAt:'2026-10-28'},
+    {tag:'map',label:'OpenStreetMap',url:'https://www.openstreetmap.org/relation/1',reviewedAt:'2026-10-28'}]});
+
+  test('steps are numbered, each tagged with its source, and replace Route and Key turns',()=>{
+    const html=directionsSection({routeNumberGuidance:stepGuidance()});
+    const rendered=text(html);
+    expect(rendered).toContain(STEPS_BADGE);
+    expect(html).toContain('<li>Cross the fields. <span class="sp-route-step-from">tourist office</span></li>');
+    expect(html).toContain('<li>At the bridge, by the mill, turn left. <span class="sp-route-step-from">tourist office, map</span></li>');
+    expect(html).toContain('Steps marked “tourist office”: <a href="https://example.org/loop" rel="noopener">The loop, step by step</a>, Town tourist office, read 28 October 2026.');
+    expect(html).toContain('Steps marked “map”: <a href="https://www.openstreetmap.org/relation/1" rel="noopener">OpenStreetMap</a>, read 28 October 2026.');
+    expect(rendered).not.toContain('Route:');
+    expect(rendered).not.toContain('Key turns:');
+  });
+
+  test('one unsourced step and the card falls back to Route and Key turns',()=>{
+    const broken=[
+      guidance=>{guidance.steps[1].from=[];},
+      guidance=>{guidance.steps[1].from=[5];},
+      guidance=>{guidance.sources[1].url='http://www.openstreetmap.org/relation/1';},
+      guidance=>{delete guidance.sources[0].reviewedAt;},
+      guidance=>{guidance.sources[0].tag=' ';},
+      guidance=>{guidance.mode='numbered';},
+    ];
+    for(const [index,breakIt] of broken.entries()){
+      const guidance=stepGuidance();breakIt(guidance);
+      const rendered=text(directionsSection({routeNumberGuidance:guidance}));
+      expect({index,steps:rendered.includes('Cross the fields.')&&!rendered.includes('Cross the fields to'),
+        route:rendered.includes('Cross the fields to the bridge.')}).toEqual({index,steps:false,route:true});
+    }
+  });
+
+  // A typo in a stored record would otherwise drop it back to the summary
+  // lines in silence.
+  test('every walk that stores steps has every step sourced',()=>{
+    const stored=trails.filter(trail=>trail.routeNumberGuidance&&trail.routeNumberGuidance.steps);
+    expect(stored.map(trail=>trail.id)).toContain('osm-6250300');
+    expect(stored.filter(trail=>!landmarkSteps(trail.routeNumberGuidance)).map(trail=>trail.id)).toEqual([]);
+  });
+
   // The sentence that says whether ORMA confirmed how the numbers appear on
   // local signs. The app dropped it, so the card stated a number sequence as
   // though the signage were settled.
@@ -144,6 +196,12 @@ describe('the page and the app describe the route the same way',()=>{
   test('both choose the landmark labels on the same condition',()=>{
     expect(page).toContain("guidance.mode === 'landmarks'");
     expect(blueprint).toContain("verifiedRouteGuidance.mode === 'landmarks'");
+  });
+
+  test('both draw the steps from the one shared helper',()=>{
+    for(const source of [page,blueprint])expect(source).toContain('landmarkSteps(');
+    expect(page).toContain('sp-route-step-from');
+    expect(blueprint).toContain('td2-route-step-from');
   });
 
   test('both print the signage caveat only when there is one',()=>{
