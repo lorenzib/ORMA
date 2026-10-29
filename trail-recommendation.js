@@ -128,7 +128,16 @@
     const conditions = window.DoloPawsCurrentConditions || warnings.length
       ? { status:'not-provided', ...(window.DoloPawsCurrentConditions || {}), warnings }
       : undefined;
-    const recommendation = recommendTrail(trail, subjectFor(profile), conditions);
+    // A one-way walk is scored as the reader chose to see it: one way, or
+    // there and back on the same paths (route-return.js).
+    const routeReturn = window.ORMARouteReturn;
+    const oneWay = !!(routeReturn && routeReturn.isOneWay(trail));
+    const scored = oneWay ? routeReturn.forView(trail) : trail;
+    const recommendation = recommendTrail(scored, subjectFor(profile), conditions);
+    const routeNote = !oneWay ? ''
+      : `<p class="recommendation-route-view">${esc(scored !== trail
+        ? tr('recommendation.routeView.back', 'Scored for walking there and back: {km} km, about {climb} m up and the same down. The time is an estimate.', { km:scored.distance, climb:scored.elevation })
+        : tr('recommendation.routeView.oneWay', 'Scored for one way. This walk ends away from its start, so plan how you will get back.'))}</p>`;
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
       translate:window.t,
@@ -167,6 +176,7 @@
         '<div>' +
           `<div class="recommendation-kicker">${esc(view.contextLabel)}</div>` +
           `<h2>${esc(view.conclusion)} ${score} ${chip}</h2>` +
+          routeNote +
           gapCta +
         '</div>' +
       '</div>' +
@@ -309,4 +319,5 @@
   window.addEventListener('dolopaws-dog-profile-saved', renderCurrent);
   window.addEventListener('dolopaws-conditions-ready', renderCurrent);
   window.addEventListener('orma-area-warnings-ready', renderCurrent);
+  window.addEventListener('orma-route-view-changed', renderCurrent);
 })();
