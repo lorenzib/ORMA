@@ -14,6 +14,8 @@
     'cembra-lago-santo': "Il Lago Santo",
     'cembra-pascoli-malga-vernera': "Sui Pascoli di Malga Vernera",
     'cinque-torri-assisted': "Cinque Torri three-refuges assisted circuit",
+    'eggental-dal-passo-costalunga-al-lago-di-carezza': "Passo Costalunga to Lake Carezza",
+    'eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl': "Lake Carezza to the Stadlalm",
     'fassa-alpe-di-fuciade': "Alpe di Fuciade",
     'fassa-antichi-bagnes': "Agli antichi Bagnes",
     'fassa-borgo-dei-patins': "Vigo, borgo dei patins",
