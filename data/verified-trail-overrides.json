@@ -67776,60 +67776,6 @@
           ]
         }
       }
-    },
-    {
-      "id": "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle",
-      "verificationScope": "routeGuidance",
-      "reviewedAt": "2026-10-29",
-      "fields": {
-        "routeNumberStatus": "official-numbered-route",
-        "routeNumberSource": {
-          "provider": "Olang tourist board (Tourismusverein Olang)",
-          "name": "Valdaora di Sotto - Casola - Bagni di Pervalle",
-          "url": "https://www.outdooractive.com/it/r/807440420"
-        },
-        "routeNumberGuidance": {
-          "mode": "numbered",
-          "start": "Start in Valdaora di Sotto (Niederolang), by the parish church of St. Peter and Agnes, the board’s start, and look for the signs for path 32B.",
-          "sequence": "Follow path 32B south out of the village on the lane In der Länge, past the cemetery wall, then on quiet farm roads across the meadows past Casola. The path climbs on forest roads through the woods to Bad Bergfall (Bagni di Pervalle), known for its sulphur springs, where the walk ends. Come back the same way.",
-          "switches": "None: stay on 32B, which the board describes as well signposted, all the way to Bad Bergfall. Do not take the forest roads that branch off towards Geiselsberg or Furkelpass.",
-          "sources": [
-            {
-              "label": "Olang tourist board (Tourismusverein Olang), Valdaora di Sotto - Casola - Bagni di Pervalle (Outdooractive, route description)",
-              "url": "https://www.outdooractive.com/it/r/807440420",
-              "authority": "Olang tourist board (Tourismusverein Olang)",
-              "reviewedAt": "2026-10-29"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": "kronplatz-passeggiata-leggendaria-sul-kienberg",
-      "verificationScope": "routeGuidance",
-      "reviewedAt": "2026-10-29",
-      "fields": {
-        "routeNumberStatus": "official-numbered-route",
-        "routeNumberSource": {
-          "provider": "Kiens tourist board (Tourismusverein Kiens)",
-          "name": "Passeggiata leggendaria sul Kienberg",
-          "url": "https://www.outdooractive.com/it/r/16570385"
-        },
-        "routeNumberGuidance": {
-          "mode": "numbered",
-          "start": "Start at the car park by the Koflerhof in Casteldarne (Ehrenburg), the board’s start; trains and buses 401 and 460 stop in Casteldarne, a few minutes’ walk away.",
-          "sequence": "Follow the Kienberg path (Sentiero del Kienberg) towards Mantana, through woods and past the Kienberg farms and the Plattnerhof of the legend, up onto the broad ridge of the Kienberg. Go on down towards Mantana and then Ronchi. From Ronchi follow the historic Way of the Cross, path 10A, with its stations, back to Casteldarne.",
-          "switches": "Two turns. After the Kienberg ridge keep towards Mantana and then Ronchi. At Ronchi leave the Kienberg path for path 10A, the Way of the Cross, and follow it back to the start.",
-          "sources": [
-            {
-              "label": "Kiens tourist board (Tourismusverein Kiens), Passeggiata leggendaria sul Kienberg (Outdooractive, route description)",
-              "url": "https://www.outdooractive.com/it/r/16570385",
-              "authority": "Kiens tourist board (Tourismusverein Kiens)",
-              "reviewedAt": "2026-10-29"
-            }
-          ]
-        }
-      }
     }
   ],
   "contractVersion": "1.0.0"

@@ -55553,8 +55553,7 @@
       desc: 'A walk from San Lorenzo di Sebato on paths 8A and 9, past St. Martin and up the Stations of the Cross to the pilgrimage church of Maria Sares. The board lists 4.9 km and 170 m of ascent.'
     },
     'kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 29 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 3).
       // Olang tourist board (Tourismusverein Olang)’s walk “Valdaora di Sotto - Casola - Bagni di Pervalle”, drawn on 33 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried; no dogs in cemeteries, parks or playgrounds: the line passes the Niederolang cemetery wall but does not enter it).
@@ -55566,8 +55565,22 @@
       hours: '1.6',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the parish church of Valdaora di Sotto (Niederolang) on path 32B, past Casola and through the forest, up to Bad Bergfall (Bagni di Pervalle); come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in Valdaora di Sotto (Niederolang), by the parish church of St. Peter and Agnes, the board’s start, and look for the signs for path 32B.",
+        "sequence": "Follow path 32B south out of the village on the lane In der Länge, past the cemetery wall, then on quiet farm roads across the meadows past Casola. The path climbs on forest roads through the woods to Bad Bergfall (Bagni di Pervalle), known for its sulphur springs, where the walk ends. Come back the same way.",
+        "switches": "None: stay on 32B, which the board describes as well signposted, all the way to Bad Bergfall. Do not take the forest roads that branch off towards Geiselsberg or Furkelpass.",
+        "sources": [
+          {
+            "label": "Olang tourist board (Tourismusverein Olang), Valdaora di Sotto - Casola - Bagni di Pervalle (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/807440420",
+            "authority": "Olang tourist board (Tourismusverein Olang)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-29',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55577,7 +55590,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start, km 1.1 and km 4.4 (OSM nodes 3451774094, 13063167149, 13479318522).',
         elevation: 'Official 4.9 km, 318 m up and 25 m down, 1:37 h, highest point 1,314 m, lowest 1,021 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55608,8 +55621,7 @@
       desc: 'A walk from Valdaora di Sotto on path 32B, across meadows past Casola and through quiet forest up to Bad Bergfall and its sulphur springs. The board lists 4.9 km, 318 m up and 25 m down.'
     },
     'kronplatz-passeggiata-leggendaria-sul-kienberg': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 29 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 3).
       // Kiens tourist board (Tourismusverein Kiens)’s walk “Passeggiata leggendaria sul Kienberg”, drawn on 40 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Kiens (no dog regulation found, national rule) and St. Lorenzen (its 2009 dog regulation: lead ≤1.5 m, muzzle carried).
@@ -55621,8 +55633,22 @@
       hours: '3.5',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the car park by the Koflerhof in Casteldarne (Ehrenburg) on the Kienberg path past the Plattnerhof and over the Kienberg towards Mantana and Ronchi, and back to Casteldarne on the Way of the Cross, path 10A.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park by the Koflerhof in Casteldarne (Ehrenburg), the board’s start; trains and buses 401 and 460 stop in Casteldarne, a few minutes’ walk away.",
+        "sequence": "Follow the Kienberg path (Sentiero del Kienberg) towards Mantana, through woods and past the Kienberg farms and the Plattnerhof of the legend, up onto the broad ridge of the Kienberg. Go on down towards Mantana and then Ronchi. From Ronchi follow the historic Way of the Cross, path 10A, with its stations, back to Casteldarne.",
+        "switches": "Two turns. After the Kienberg ridge keep towards Mantana and then Ronchi. At Ronchi leave the Kienberg path for path 10A, the Way of the Cross, and follow it back to the start.",
+        "sources": [
+          {
+            "label": "Kiens tourist board (Tourismusverein Kiens), Passeggiata leggendaria sul Kienberg (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16570385",
+            "authority": "Kiens tourist board (Tourismusverein Kiens)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-29',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55632,7 +55658,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start, km 0.1, km 0.2, km 5.8 and km 8.9 (OSM nodes 12055127715, 12055127716, 12055127708, 1872561195, 6696661485, 7597838085, 12791498122).',
         elevation: 'Official 11.8 km, 417 m up and 417 m down, 3:28 h, highest point 1,140 m, lowest 803 m (Kiens tourist board (Tourismusverein Kiens), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
