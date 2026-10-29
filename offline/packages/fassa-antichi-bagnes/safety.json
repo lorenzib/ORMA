@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-antichi-bagnes",
+  "generatedAt": "2026-10-29T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3,
+    "ascentM": 48,
+    "highestPointM": 1328,
+    "expectedDuration": "0.75 hours",
+    "difficulty": "Easy",
+    "shadePercent": 18
+  },
+  "trailhead": {
+    "lat": 46.430301,
+    "lng": 11.686314,
+    "label": "Pozza di Fassa (Piaza de Comun), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.4308146,
+      "lng": 11.6874519,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4296872,
+      "lng": 11.693716,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4237103,
+      "lng": 11.6866793,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 1.2 km on tarmac, partly the valley cycle and foot path shared with bikes.",
+    "Forest paths with roots near the spring.",
+    "Village streets in Pozza open to cars.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-29",
+      "licence": "ODbL"
+    }
+  ]
+}

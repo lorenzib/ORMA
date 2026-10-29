@@ -39395,6 +39395,59 @@
       hours: '1.5',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the centre of Canazei up the Avisio to Alba and Penìa on one bank and back on the other, over wooden bridges; it ends in Canazei about 230 m from where it starts.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the tourist office on the main square of Canazei, the tourist board’s start.",
+        "sequence": "Down Strèda Roma and Strèda de Cercenà past the football pitch and the Dòlaondes pool, over the Pènt de la Roa, up the Avisio on Strèda dò Veisc to Penìa, back down the other bank to the ice stadium, back to the Pènt de la Roa and home on the Ciasates walk.",
+        "switches": "Left into Strèda de Cercenà. Left after the Pènt de la Roa. Keep right at Penìa to cross the Avisio. Over the bridge on the right at the ice stadium. Left onto the Ciasates walk after recrossing the Pènt de la Roa.",
+        "steps": [
+          {
+            "text": "From the tourist office on the main square, walk down Strèda Roma past the playground. At the junction turn left into Strèda de Cercenà, towards the football pitch, and walk along its left side towards the Baita al Parco.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross the little bridge and, opposite the Dòlaondes swimming centre, take the gravel road behind the ski school building to the edge of the village and the “Pènt de la Roa” bridge.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross it and turn left onto the tarred lane Strèda dò Veisc, which follows the Avisio closely, mostly level, through shady copses and open ground. About halfway there is a well-equipped playground.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on to the provincial road at the entrance to Penìa. From there, keeping right, cross the bridge over the Avisio and take the lane along the river on the other bank.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the ice stadium, cross the bridge on the right and come back the same way as far as the Pènt de la Roa.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross it and turn left onto the “Ciasates” walk, which runs back to Canazei through copses and clearings, gently downhill. By the ski lift, cross a wooden footbridge and return to the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Da Canazei a Penìa: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/38079215",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'under-review',
       reviewedAt: '2026-10-24',
@@ -39519,8 +39572,6 @@
       desc: 'A level forest trail at 2,000 m from Ciampedie to the Gardeccia hollow below the Rosengarten, with 24 totems on the secrets of the forest and the mountain. You reach it by the Catinaccio cable car from Vigo. The APT lists 3 km one way and 6 m of ascent.'
     },
     'fassa-antichi-bagnes': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Agli antichi Bagnes del principe vescovo di Bressanone”, tagged “animali accettati”. The line
       // is drawn on 29 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -39534,8 +39585,49 @@
       hours: '0.75',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Piaza de Comun in Pozza through the wood to the Aloch sulphur spring and back along the Avisio on the cycle and foot path between Vigo and Pozza.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Piaza de Comun in Pozza, the tourist board’s start.",
+        "sequence": "Up the pavement towards the lifts, right through the Freina quarter, down a path through a light wood to the cycle and foot path from Soraga, and back along the Avisio to Pozza.",
+        "switches": "Right where Strada de Meida meets Strada de Freina, by the Florart florist. At the fork after the road turns to gravel, take the path down to the right. Right onto the cycle and foot path.",
+        "steps": [
+          {
+            "text": "From Piaza de Comun, walk up the road on the pavement towards the ski lifts.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Where Strada de Meida meets Strada de Freina, by the Florart florist, turn right and walk gently uphill through the Freina quarter, among houses and old hay barns. The road soon turns to gravel.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "A little further on, at the fork, take the path that drops slightly to the right into a light, open wood. It carries on level until it meets the cycle and foot path coming from Soraga.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn right, past the water treatment works and then along the Avisio, back to the start. Just before the square, on the right, is the Torn de Poza, a 17th-century watchtower, privately owned and not open to visitors.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Agli antichi Bagnes del principe vescovo di Bressanone: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/38026217",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -39545,7 +39637,7 @@
         mapPoints: 'Start at Pozza di Fassa (Piaza de Comun), the APT’s start; drinking water at the start, at km 0.5 and at km 1.3 (OSM nodes 737144778, 294679925, 12175341419).',
         elevation: 'Official 3 km, 48 m up and 48 m down, 45 min, highest point 1,337 m, lowest 1,288 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -39590,8 +39682,6 @@
       desc: 'A short loop from Pozza through the wood to the Aloch sulphur spring, where the prince-bishop of Brixen ran baths from 1493, and back along the Avisio. The APT lists 3 km and 48 m of ascent.'
     },
     'fassa-borgo-dei-patins': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “A Vigo, nel borgo diffuso dei “patins””, tagged “animali accettati”. The line
       // is drawn on 27 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -39605,8 +39695,49 @@
       hours: '1',
       routeShape: 'lollipop',
       routeShapeNote: 'A loop from Strada Rezia in Vigo through the scattered hamlets of the village, among them Costa and Larcioné, and back. A loop on a stem: the first 220 m from the start is walked both ways, out and home.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the tourist office in Strada Rezia, Vigo, the tourist board’s start.",
+        "sequence": "Along Strada Rezia, across the Passo Costalunga road into Strada de Val, up Strada de Somcosta, down Strada de Larcioné to the south of the village, onto the country lane from Soraga, and back along Strada dal Dos and the path beside the main road.",
+        "switches": "Across the Costalunga road into Strada de Val. Right at the fork up Strada de Somcosta. Left down Strada de Larcioné just past the Hotel Belvedere. Right into Strada dal Dos.",
+        "steps": [
+          {
+            "text": "From the tourist office, walk along Strada Rezia to the main road that leads to the Passo Costalunga (Carezza). Cross it and take Strada de Val to the Val quarter, on the right bank of the Ruf de Val.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the fork, go right and climb the steep Strada de Somcosta.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Just past the Hotel Belvedere, go down to the left on Strada de Larcioné, towards the south side of the village, and join the country lane that comes from Soraga.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn right into Strada dal Dos and follow the path, in places beside the main road, back to the centre.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "A Vigo, nel borgo diffuso dei “patins”: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/802245917",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -39616,7 +39747,7 @@
         mapPoints: 'Start at Vigo di Fassa (Strada Rezia), the APT’s start; drinking water at the start, at km 0.4 and at km 1 (OSM nodes 2405075281, 6278639064, 4304787435).',
         elevation: 'Official 3.1 km, 82 m up and 82 m down, 55 min, highest point 1,426 m, lowest 1,350 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -39658,8 +39789,6 @@
       desc: 'A sunny loop through the scattered hamlets of Vigo di Fassa, among them Costa and Larcioné, facing the Rosengarten. The APT lists 3.1 km and 82 m of ascent.'
     },
     'fassa-prato-di-sorte': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Quel Prato di Sorte...”, tagged “animali accettati”. The line
       // is drawn on 33 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -39673,8 +39802,55 @@
       hours: '1.5',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Piaz de Sotegrava in Moena over the great meadow of the Prato di Sorte at the foot of the Sas da Ciamp, back along the Avisio; it ends in Moena about 120 m from where it starts.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Piaz de Sotegrava in Moena, the tourist board’s start.",
+        "sequence": "Strada C. Dellantonio and the Troi de Sèn Vile up past the church of San Vigilio, across the Prato di Sorte and down to the craft zone, Strada de Prealon to the sports ground, the cycle path towards Predazzo, over the Avisio at Le Giare and back to Moena through the wood, Strada de le Pegne and the Navalge sports centre, and L Vial to the start.",
+        "switches": "Left past the church and car parks. Right into Strada de Prealon. Across the main road onto the cycle path. Over the Avisio bridge at Le Giare, then straight away left. Keep right out of the wood.",
+        "steps": [
+          {
+            "text": "From Piaz de Sotegrava, head for the church of San Vigilio: along Strada C. Dellantonio, then up the footpath “Troi de Sèn Vile”. Past the church and the car parks, turn left.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on along the easy tarred road across the whole Prato di Sorte (Pra de Sort). After a long level stretch it drops quickly towards the craft zone of Moena. At a junction turn right into Strada de Prealon; in a few minutes you are at the “C. Benatti” sports ground.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross the main road and follow the cycle path towards Predazzo. Past the last sheds of the craft zone on the right, bear slightly left, cross the bridge over the Avisio at “Le Giare” and turn straight away left, leaving the cycle path on your right, back towards Moena.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "An easy gravel forest path enters the wood and climbs the opposite bank of the Avisio. Out of the wood, keep right and carry on along a white road to Strada de le Pegne.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross the road and follow the lane past the playground and down to the Navalge sports centre. Past the car park, cross the road coming down from the Passo San Pellegrino and return to the start along “L Vial”.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Quel prato di sorte: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/37904523",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -39684,7 +39860,7 @@
         mapPoints: 'Start at Moena (Piaz de Sotegrava), the APT’s start; drinking water at the start, at km 4.6 and at km 5.3 (OSM nodes 1884458673, 5841706846, 3787633104).',
         elevation: 'Official 5.5 km, 61 m up and 61 m down, 1 h 30 min, highest point 1,193 m, lowest 1,132 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -39726,8 +39902,6 @@
       desc: 'An easy loop from Moena over the Prato di Sorte, a great hay meadow at the foot of the Sas da Ciamp with a painted chapel, and back along the Avisio. The APT lists 5.5 km and 61 m of ascent.'
     },
     'fassa-passato-ritrovato': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Il passato ritrovato: tra antichi masi e restaurati tobiè”, tagged “animali accettati”. The line
       // is drawn on 39 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -39741,8 +39915,55 @@
       hours: '2',
       routeShape: 'lollipop',
       routeShapeNote: 'A loop from Piaz G. Marconi in Canazei along the slope facing the Sassolungo to the old hamlet of Pian above Campitello and back to Canazei. A loop on a stem: the first 900 m from the start is walked both ways, out and home.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the tourist office on the main square of Canazei, the tourist board’s start.",
+        "sequence": "Down Strèda Roma and along Strèda del Ciuch beside the Gries meadows, through the wood and along the Avisio to Campitello, up the Via Crucis to Pian, down Strèda de Pian to the So Ronch forest road, through the Park Hotel Il Caminetto car park, across the main road and down to Strèda Franz Dantone, then back along Strèda del Ciuch.",
+        "switches": "Straight on into Strèda del Ciuch. In Campitello, Strèda dò Ruf, then up the steps on the right and right at the Marian shrine. Left at the hairpin onto So Ronch. Right down the gravel lane just after the wooden Canazei sign.",
+        "steps": [
+          {
+            "text": "From the tourist office on the main square, walk down Strèda Roma past the playground. At the junction carry straight on along Strèda del Ciuch, beside the Gries meadows. Leaving Canazei, the lane enters the wood for about 400 m, then follows the bank of the Avisio to the first houses of Campitello.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Take Strèda Veia to the square, then Strèda dò Ruf. Where Strèda de Salin meets Strèda Sènc Felip e Giacum, climb the steps on the right (the old Col Rodella chairlift station).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on and, opposite the Marian shrine, keep right up the steep path lined with the chapels of the Via Crucis, built in 1760, to Pian, one of the oldest settlements in the valley.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Go down to the right on Strèda de Pian to a hairpin, where you take the “So Ronch” forest road on the left. Follow it to the car park of the Park Hotel Il Caminetto, cross it to the left and come out on the main road.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross the road and, just after the wooden sign at the start of Canazei, take the gravel lane down on the right onto Strèda Franz Dantone. At the junction with Strèda del Ciuch, come back the way you came.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Il passato ritrovato tra antichi masi e restaurati tobie: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/41639219",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -39752,7 +39973,7 @@
         mapPoints: 'Start at Canazei (Piaz G. Marconi), the APT’s start; drinking water at the start, at km 1.9, at km 2.4 and at km 4.7 (OSM nodes 7810377008, 639924483, 12105678587, 2632585633).',
         elevation: 'Official 6.2 km, 152 m up and 153 m down, 2 h, highest point 1,539 m, lowest 1,411 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -39798,8 +40019,6 @@
       desc: 'A walk on the sunny slope from Canazei to Pian, one of the oldest hamlets in the Val di Fassa, past old farms and restored wooden barns facing the Sassolungo. The APT lists 6.2 km and 152 m of ascent.'
     },
     'fassa-santuario-dei-pellegrini': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Al santuario medievale dei pellegrini di Fassa”, tagged “animali accettati”. The line
       // is drawn on 23 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -39813,8 +40032,49 @@
       hours: '1.25',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Strada Rezia in Vigo up to the medieval church of Santa Giuliana on the Ciaslir de Vich and back down through the larch wood.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the centre of Vigo, the tourist board’s start.",
+        "sequence": "Up Strada de Piz to the covered fountain, a few metres of Strada de Sent’Uiana, the avenue across the meadow and along the pastures to the First World War cemetery and the sanctuary of Santa Giuliana; on along the gravel road to the path from Valongia, down Strada de Pontac and back along Strada Rezia.",
+        "switches": "Straight on at the covered fountain into Strada de Sent’Uiana, then after about 20 m the avenue on the left. Behind the church, the gravel road to the path from Valongia, then down. Left along Strada Rezia.",
+        "steps": [
+          {
+            "text": "From the little central square of Vigo (Piaz de Vich), walk up Strada de Piz to the covered fountain, then carry straight on along Strada de Sent’Uiana for about 20 m.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Take the avenue on the left that cuts across the meadow, then climbs round the grassy slope at the edge of the woods. The track follows the rolling pastures to the gate of the First World War cemetery, watched over by the great bell of the Madonna “Regina della Pace”.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The gravel path, paved for its last stretch, leads to the wall of the sanctuary of Santa Giuliana, with the chapel of San Maurizio beside it.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From the rise behind the church, carry on along the easy gravel road until it meets the path coming from Valongia, and go downhill. At the first houses it becomes Strada de Pontac and joins Strada Rezia; turn left along it back to the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Al santuario medievale dei pellegrini di Fassa: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/38000437",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -39824,7 +40084,7 @@
         mapPoints: 'Start at Vigo di Fassa (Strada Rezia), the APT’s start; drinking water at the start, at km 0.7 and at km 2.3 (OSM nodes 2405075281, 294112531, 3761993182).',
         elevation: 'Official 2.7 km, 132 m up and 132 m down, 1 h 20 min, highest point 1,524 m, lowest 1,393 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -39866,8 +40126,6 @@
       desc: 'A short climb from Vigo di Fassa to the medieval church of Santa Giuliana, the valley’s patron saint, and back through the larch wood. The APT lists 2.7 km and 132 m of ascent.'
     },
     'fassa-malga-aloch': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Storie di vita contadina a Malga Aloch e Masc Aloch”, tagged “animali accettati”. The line
       // is drawn on 19 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -39881,8 +40139,49 @@
       hours: '0.5',
       routeShape: 'out-and-back',
       routeShapeNote: 'There and back the same way: from Piaza de Comun in Pozza through trees and meadows to the Masc Aloch farm and Malga Aloch, and back to Pozza on the same tracks.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Piaza de Comun in Pozza, the tourist board’s start.",
+        "sequence": "Up the pavement towards the lifts, right through the Freina quarter, on along the forest road to Masc Aloch and Malga Aloch, and back the same way.",
+        "switches": "Right where Strada de Meida meets Strada de Freina, by the Florart florist. Gently uphill at the first fork, then straight on at the second.",
+        "steps": [
+          {
+            "text": "From Piaza de Comun, walk up the road on the pavement towards the ski lifts.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Where Strada de Meida meets Strada de Freina, by the Florart florist, turn right and walk through the Freina quarter, among houses and old hay barns. The road soon turns to gravel.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "A little further on, at the fork, carry on gently uphill to a second junction. Go straight on along the easy forest road to the Masc Aloch farm, which sells its own produce, and then the Malga Aloch restaurant.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Storie di vita contadina a Malga Aloch e Masc Aloch: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/38025468",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -39892,7 +40191,7 @@
         mapPoints: 'Start at Pozza di Fassa (Piaza de Comun), the APT’s start; drinking water at the start (OSM nodes 294679925).',
         elevation: 'Official 2 km, 58 m up and 58 m down, 35 min, highest point 1,386 m, lowest 1,328 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -39949,6 +40248,53 @@
       hours: '1',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Piaza de Comun in Pozza over the Ciancoal meadows to Pera, past the dairy and the Molin de Pèzol watermill, and back to Pozza.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Piaza de Comun in Pozza, the tourist board’s start.",
+        "sequence": "Along Strada Promenada enlogia Ruf, over a footbridge and up the Avisio on the Re Laurino walk to the Ciancoal meadows and Piciocaa, back past the Fraine snow park, then Strada de Ciancoal, Strada del Piz and Strada Sas da le Undesc back to Strada Promenada enlogia Ruf.",
+        "switches": "Left over the first footbridge. Left before the second bridge, up the Avisio. Coming back, the leftmost path just after the Fraine snow park. Right at the fork into Strada del Piz. Right straight after the bridge into Strada Sas da le Undesc.",
+        "steps": [
+          {
+            "text": "From Piaza de Comun, take Strada Promenada enlogia Ruf. Near a footbridge on the left, cross it. Before the second bridge, turn left and follow the lane up the Avisio (the Re Laurino walk).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "After a short ramp the way levels out and enters a copse dotted with wooden carvings of animals and gnomes. Come out onto the Ciancoal meadows and carry on to Piciocaa, with a votive chapel and a children’s play area.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn back and, just past the “Fraine” snow park, take the leftmost path towards the north of Pozza, beside the cross-country ski loop.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Enter Strada de Ciancoal and at the fork turn right into Strada del Piz. Past the fountain on the left you reach a bridge.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross it and turn straight away right into Strada Sas da le Undesc, which runs downhill beside the Ruf de Sèn Nicolò back to Strada Promenada enlogia Ruf and the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Ruote del tempo al Molin de Pezol ancora funzionante: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/38027154",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'under-review',
       reviewedAt: '2026-10-24',
@@ -40005,8 +40351,6 @@
       desc: 'A level family loop from Pozza over the Ciancoal meadows to Pera, with its dairy, and back past the Molin de Pèzol, the last working watermill in the Val di Fassa. The APT lists 3.7 km and 38 m of ascent.'
     },
     'fassa-pastori-erranti': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (new-trail batch 11).
       // APT Val di Fassa’s walk “Sulla via degli antichi pastori erranti”, tagged “animali accettati”. The line
       // is drawn on 52 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -40020,8 +40364,61 @@
       hours: '2.25',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Strada Rezia in Vigo up to the hamlets of Vallonga and Tamion on the old shepherds’ tracks, and back down to Vigo.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the tourist office in Strada Rezia, Vigo, the tourist board’s start.",
+        "sequence": "Towards the Passo Costalunga to the Ruf de Vael bridge, up Strada de Pontac and the gravel track to a picnic area, down the tarred road to Valongia and its chapel, across the main road through the Grave valleys up to Tamion, down Strada de Tamion and the path to Larcioné, and back along the lane from Soraga and Strada dal Dos.",
+        "switches": "Right up Strada de Pontac. Left at the fork, over the footbridge. Left down the tarred road across the clearing. Left at the Valongia chapel and obliquely across the main road. Keep right after the second stream, then right on the gravel road. In Larcioné, right then left, and right into Strada dal Dos.",
+        "steps": [
+          {
+            "text": "From the tourist office in Strada Rezia, head towards the Passo Carezza (Costalunga) as far as the bridge over the Ruf de Vael. Take Strada de Pontac on the right, up the stream bank. After the last house it turns to gravel.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the fork keep left and cross the footbridge a little upstream. A fine stretch of panoramic path leads to a hollow; carry on gently up, then level, to a picnic area with benches, tables and children’s games.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "On the far side of the clearing go down left on the tarred road until it meets the lane to Valongia. Walk to the hamlet and up to the chapel of San Giovanni Nepomuceno, where you go left.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross the main road obliquely and go down to the “Grave”, a run of small valleys with streams: cross them with care, as there can be ice. After the second stream keep right, then climb steadily to a gravel road and follow it to the right. In a few minutes you are in Tamion.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From the church, follow Strada de Tamion to the south end of the hamlet, then turn left onto the path towards Vigo. Cross the wooden footbridge over the Ruf de Pociole and you soon reach Larcioné.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Enter on Strada de Pociole, turn right and straight away left, past the last houses, onto the country lane from Soraga. Turn right into Strada dal Dos and follow the path, in places beside the main road, back to the centre.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Sulla via degli antichi pastori erranti: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/38000950",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -40031,7 +40428,7 @@
         mapPoints: 'Start at Vigo di Fassa (Strada Rezia), the APT’s start; drinking water at the start, at km 2.3, at km 5.1 and at km 6.4 (OSM nodes 2405075281, 453286398, 4304787435, 6278639064).',
         elevation: 'Official 7.2 km, 245 m up and 245 m down, 2 h 20 min, highest point 1,545 m, lowest 1,350 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -40089,6 +40486,53 @@
       hours: '2.25',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Strada de Piz in Vigo along the top of the meadows above Pozza to Pera, between the wood and the fields, and back.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the centre of Vigo, the tourist board’s start.",
+        "sequence": "Up Strada de Piz, right at the covered fountain, over the Ruf de Pantl and along the forest road above Pozza to Pera; back towards Pozza on the pavement or across the Ciancoal meadows, from the Media roundabout along Strada di Bagnes, over the Avisio footbridge, up Strada de Pala Verda, past the parish church of San Giovanni, and Strada Antersief, Strada Roma and Strada Rezia to the centre.",
+        "switches": "Right by the covered fountain. At the Media roundabout, Strada di Bagnes. Past the water treatment works, over the footbridge and up Strada de Pala Verda. Across the main road beside the wall of the San Giovanni parish church.",
+        "steps": [
+          {
+            "text": "From the centre of Vigo, walk up Strada de Piz and turn right by a covered fountain. A little further on, cross the Ruf de Pantl stream and carry on along an easy gravel forest road, mostly shaded, with benches and tables in the open spots.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The road runs above Pozza, then loses height across the meadows near the first houses of Pera (Strada de la Taboca).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Once at the main road, walk towards the centre of Pozza along the pavement, or on the walk across the Ciancoal meadows. From the Media roundabout, follow Strada di Bagnes, past the QC Terme spa.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past the water treatment works, cross the footbridge over the Avisio and walk up Strada de Pala Verda.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross the main road and follow the lane along the wall of the parish church of San Giovanni, then Strada Antersief, Strada Roma and Strada Rezia back to the centre.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "I segreti di una volta della tradizione contadina di montagna: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/38024391",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'under-review',
       reviewedAt: '2026-10-26',
@@ -40146,8 +40590,6 @@
       desc: 'A gentle loop from Vigo along the meadows above Pozza to Pera, on the old Ladin farmland, facing the Costabella and the Vallaccia. The APT lists 7.9 km and 176 m of ascent.'
     },
     'fassa-alpe-di-fuciade': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (new-trail batch 11).
       // APT Val di Fassa’s walk “Dal Passo all’Alpe di Fuciade, inseguendo i sapori ladini”, tagged “animali accettati”. The line
       // is drawn on 15 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -40161,8 +40603,43 @@
       hours: '2',
       routeShape: 'out-and-back',
       routeShapeNote: 'There and back the same way: from Passo San Pellegrino across the open basin to the Fuciade alp, with its old hay barns, chapels and refuge, and back to the pass on the same track.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Passo San Pellegrino, the tourist board’s start.",
+        "sequence": "About 200 m down the far side of the pass, left onto the tarred road to the car park by the Hotel Miralago, then the easy, mostly level road to the Fuciade basin and the Rifugio Fuchiade, and back the same way.",
+        "switches": "Left onto the tarred road at the bridge over the ski run, about 200 m below the pass.",
+        "steps": [
+          {
+            "text": "From Passo San Pellegrino, go down the far side for about 200 m. At a bridge over a ski run, turn left onto the tarred road, which soon reaches the car park by the Hotel Miralago.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From there an easy, mostly level road leads to the Fuciade basin, a limestone amphitheatre under l’Om, Jigolé and the Sas de Valfreida, dotted with hay barns (“tabià”), most of them rebuilt after the First World War.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The walk ends at the Rifugio Fuchiade restaurant. Come back the same way, on foot or in the horse-drawn carriage.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Dal Passo all’Alpe di Fuciade, inseguendo i sapori ladini: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/37940398",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -40172,7 +40649,7 @@
         mapPoints: 'Start at Passo San Pellegrino (Moena), the APT’s start; drinking water at km 2.5 and at km 3.3 (OSM nodes 5960811423, 459953579).',
         elevation: 'Official 6.9 km, 94 m up and 94 m down, 2 h, highest point 1,973 m, lowest 1,894 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -40215,8 +40692,6 @@
       desc: 'An almost level walk from the San Pellegrino pass to the Fuciade alp, a wide pasture of old wooden hay barns and chapels facing the Marmolada. The APT lists 6.9 km and 94 m of ascent.'
     },
     'fassa-borgo-di-tamion': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 12).
       // APT Val di Fassa’s walk “Alla scoperta del borgo ladino di Tamion”, tagged “animali accettati”. The line
       // is drawn on 35 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -40232,8 +40707,55 @@
       hours: '2',
       routeShape: 'out-and-back',
       routeShapeNote: 'Up from the square in Soraga through the hamlet of Barbide and along a forest road above the red sandstone gorge to the meadows and the hamlet of Tamion, then back down the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in Soraga, at the tourist office, the tourist board’s start.",
+        "sequence": "Strada del Cioch and Strada de Barbida to the Barbide chapel, under the arch, up Strada de Parlaut past the Arnica Mountain Hotel, along the road above the red sandstone gorge to the meadows of Tamion and its church, and back the same way.",
+        "switches": "Right in front of the Barbide chapel, right again under the arch, then left. Right at the top of Strada de Parlaut.",
+        "steps": [
+          {
+            "text": "From the tourist office of Soraga, go to the central square and take Strada del Cioch, then Strada de Barbida to the Barbide quarter.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "In front of the little church, turn right and straight away right again, under an archway. Past the arch, turn left and go straight on for about 150 m.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Climb Strada de Parlaut past the Arnica Mountain Hotel, and at the top of the rise turn right. The way runs along the steep red sandstone cliffs, with the gorge below; the climb is hard, but the middle part is well shaded.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come out into small meadows that grow wider until you reach the level ground. A small rise on the left is a good viewpoint, over Soraga and Moena to the south and Tamion to the north. The lane winds up through the meadows.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "By an old hay barn you enter Tamion. Walk up to the centre of the hamlet and its little church. Come back the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Alla scoperta del borgo ladino di Tamion: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/801487737",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -40243,7 +40765,7 @@
         mapPoints: 'Start at Soraga di Fassa (Piaz Bepo Roch), the APT’s start; drinking fountains in Soraga in the first half kilometre (OSM nodes 6453004674, 1538180181, 6453004641, 1662566505).',
         elevation: 'Official 4.7 km, 339 m up and 339 m down, 2 h 03 min, highest point 1,545 m, lowest 1,207 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -40287,8 +40809,6 @@
       desc: 'A steady climb from Soraga past the chapel of Barbide and above the red sandstone gorge to Tamion, a hamlet of old barns and a small church in the meadows, facing the Sassolungo. The APT lists 4.7 km and 339 m of ascent, there and back.'
     },
     'fassa-da-alba-a-penia': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 12).
       // APT Val di Fassa’s walk “Da Alba a Penìa, l’ultimo borgo prima della Marmolada”, tagged “animali accettati”. The line
       // is drawn on 32 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -40303,8 +40823,55 @@
       hours: '1.25',
       routeShape: 'lollipop',
       routeShapeNote: 'From Alba along the Avisio past the ice stadium to Penìa, a short loop up through the old village and down past the Venetian sawmill of La Sia, then back to Alba the same way. A loop on a stem: the first 1.4 km from the start is walked both ways, out and home.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the tourist office in Alba, the tourist board’s start.",
+        "sequence": "Along the main road towards Canazei to Strèda de Dolèda, down past the ice stadium, over the wooden footbridge to the playground, north to Penìa; up Strèda de Treve to the church of Santi Rocco e Sebastiano, along Strèda de Treve and down Strèda Vernel to La Sia, and back to Alba the same way.",
+        "switches": "Right into Strèda de Dolèda. Right up Strèda de Treve in Penìa, a short detour left on Strèda Don Luigi Baroldi to the church, then right down Strèda Vernel. Right onto the lane just past the Hotel Agomer on the way back.",
+        "steps": [
+          {
+            "text": "From the tourist office in Alba, walk along the main road towards Canazei to where Strèda de Dolèda leaves it on the right. Go down it to the ice stadium, then cross the wooden footbridge to the playground.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on north along the lane to the main road at the entrance to Penìa. Follow the road towards the Passo Fedaia and, shortly after, turn right uphill on Strèda de Treve, into the oldest part of the village, past the Cèsa Dovolavilla.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the top, make a short detour left along Strèda Don Luigi Baroldi, through old houses, to the little square with its fountain and the church of Santi Rocco e Sebastiano, with its onion-domed bell tower.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Go back and carry on along Strèda de Treve through the whole hamlet, facing the north face of the Gran Vernel. Then take Strèda Vernel on the right down to the main road. Cross it and head for La Sia, the old Venetian sawmill (open in summer only).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Walk back towards Alba on the pavement, heading south. Just past the Hotel Agomer, take the lane on the right and follow your outward route back to the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Da Alba a Penìa, l’ultimo borgo prima della Marmolada: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/810153437",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -40314,7 +40881,7 @@
         mapPoints: 'Start at Alba di Canazei (Strèda de Costa), the APT’s start; drinking water at the start, at km 1.3 and at km 1.5 (OSM nodes 639924501, 12179849556, 7727120952).',
         elevation: 'Official 4.5 km, 97 m up and 97 m down, 1 h 10 min, highest point 1,550 m, lowest 1,473 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -40425,8 +40992,6 @@
       desc: 'A short walk from Malga Boer through the pastures and old hay barns below the San Pellegrino pass to the Rifugio Flora Alpina at the mouth of Val Freida, facing the Marmolada and the Pale. The APT lists 2.8 km and 116 m of ascent, there and back.'
     },
     'fassa-moena-soraga-acqua': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 12).
       // APT Val di Fassa’s walk “Da Moena a Soraga, dove l’acqua ha segnato la storia”, tagged “animali accettati”. The line
       // is drawn on 19 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -40441,8 +41006,49 @@
       hours: '1.25',
       routeShape: 'out-and-back',
       routeShapeNote: 'From the centre of Moena up through Col dei Soldai and along the farm lane over the meadows above the Soraga reservoir to Palua, down into Soraga and across the covered footbridge to the riverside park, then back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Piaz de Sotegrava in the centre of Moena, the tourist board’s start.",
+        "sequence": "Up Strada Salejada, Strada de Moene and Strada Saslonch past Col dei Soldai and the El Mas farm, along the farm lane above the Soraga lake to Palua, down into Soraga past the Hotel Miravalle and over the covered footbridge to the Vischia de Sach park, and back the same way.",
+        "switches": "Right at the Dante fountain onto Strada de Moene, then left into Strada Saslonch. Down at Palua into Soraga.",
+        "steps": [
+          {
+            "text": "From Piaz de Sotegrava, walk up Strada Salejada. At the fork, in front of the “del Dante” fountain, turn right into Strada de Moene and then left into Strada Saslonch.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past the last houses of Col dei Soldai, carry on beyond the El Mas farm onto a tarred farm lane that crosses the meadows above the Soraga lake, facing the Catinaccio and the Sassolungo.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At Palua, go down into the centre of Soraga along the street of the same name, past the Decrestina wooden-toy workshop.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on past the Hotel Miravalle towards “Vischia de Sach” and cross the covered footbridge into the riverside park, home to cormorants, herons and ducks. Come back the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Da Moena a Soraga, dove l’acqua ha segnato la storia: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/65325200",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -40452,7 +41058,7 @@
         mapPoints: 'Start at Moena (Piaz de Sotegrava), the APT’s start; drinking fountains in Moena in the first 200 m and in Soraga at km 2.3 (OSM nodes 1884458673, 3780887514, 6453004674).',
         elevation: 'Official 4.8 km, 139 m up and 139 m down, 1 h 20 min, highest point 1,257 m, lowest 1,170 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -40496,8 +41102,6 @@
       desc: 'An easy walk from Moena over the farmland above the Soraga reservoir to Soraga and its riverside park, past the El Mas farm and a covered footbridge, facing the Catinaccio and the Sassolungo. The APT lists 4.8 km and 139 m of ascent, there and back.'
     },
     'fassa-dipinti-del-giotto': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 13).
       // APT Val di Fassa’s walk “Sulle tracce dei dipinti del Giotto della Val di Fassa”, tagged “animali accettati”. The line
       // is drawn on 30 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -40512,8 +41116,55 @@
       hours: '1.5',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Mazzin up a farm track to the hamlet of Ronch below Muncion, across the meadows and down the old Via Crucis to Pera, and back to Mazzin along the Avisio.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the centre of Mazzin, the tourist board’s start.",
+        "sequence": "Over the Ruf de Udai, up a gravel track to the Muncion road and Ronch, along a level lane through meadows and spruce, down beside the Via Crucis to Rualp in Pera, across the main road and the Avisio, and back to Mazzin on the lane along the river.",
+        "switches": "Right up the gravel track off Strèda de Col da Chieve. Left down the lane opposite the first hay barn in Ronch. Right onto the level where the Via Crucis gets steeper. Left down into Rualp. Left along the river after the Avisio bridge.",
+        "steps": [
+          {
+            "text": "From the centre of Mazzin, cross the bridge over the Ruf de Udai heading south, walk a short way along Strèda de Col da Chieve, then climb the gravel track on the right to the bend of the road to Muncion.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Walk up that road for about 300 m. In Ronch, opposite a fine hay barn (the first building on the right), go down left along a lane that soon levels out, through meadows and patches of spruce.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Start down along the edge of the meadows below Muncion, beside the Via Crucis. As soon as the descent gets steeper, leave the wide way and go right, on the level, to an old barn turned into a house.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Go down left into the Rualp quarter. Over the bridge on the Ruf de Soal, carry on along Strada Ciadenac to the main road, cross it and take Strada Jumela to the bridge over the Avisio.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross it and take the tarred lane on the left along the river. After a long, nearly level stretch, climb a short, steep ramp. At the bridge, cross to the other bank and walk up Strèda de Chiavacia and then Strèda dò Ruf into the village.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Sulle tracce dei dipinti del Giotto della Val di Fassa: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/38039594",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -40523,7 +41174,7 @@
         mapPoints: 'Start at Mazzin (Strèda de Capitel del Moro), the APT’s start; drinking water at the start, at km 0.9, at km 1.9 and at km 4.2 (OSM nodes 2997205620, 302580698, 302580832, 10003029604).',
         elevation: 'Official 4.7 km, 152 m up and 153 m down, 1 h 25 min, highest point 1,473 m, lowest 1,323 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -40581,6 +41232,47 @@
       hours: '1',
       routeShape: 'loop',
       routeShapeNote: 'Up from the centre of Moena through the old quarter of Ciajeole to Malga Roncac at the edge of the larch wood, then back down, mostly the same way and for the last stretch by Strada de Rancolin, Strada Saslonch and Strada de Moene.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Piaz de Sotegrava in the centre of Moena, the tourist board’s start.",
+        "sequence": "Up Strada Salejada and Strada de la Madonina past the Dante fountain and the Ciajeole chapel, up Strada de Even and Strada de Roncac to Malga Roncac; back the same way to the Strada de Even junction, then Strada de Rancolin, Strada Saslonch and Strada de Moene to Strada Salejada.",
+        "switches": "Straight on at the fork onto Strada de la Madonina. On the way back, left at the junction with Strada de Even onto Strada de Rancolin.",
+        "steps": [
+          {
+            "text": "From Piaz de Sotegrava, walk up Strada Salejada. At the fork carry straight on along Strada de la Madonina, past the “del Dante” fountain and the chapel of Ciajeòle.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Keep climbing on Strada de Even and Strada de Roncac, with the view opening over Moena. Past the last houses the road climbs more gently.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "After a couple of bends you reach Malga Roncac, at the edge of a clearing ringed by larches, with a view towards the San Pellegrino valley.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back the same way as far as the junction with Strada de Even, then take Strada de Rancolin on the left, then Strada Saslonch and Strada de Moene. They bring you back to Strada Salejada and, in a few minutes, the square.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Passi nella storia: dall’antico rione di Ciajeole a Malga Roncac: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/65358337",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'under-review',
       reviewedAt: '2026-10-27',
@@ -40634,8 +41326,6 @@
       desc: 'A short climb from Moena through Ciajeole, its oldest quarter, to Malga Roncac at the edge of the larch wood, with the whole of Moena below and the Catinaccio across the valley. The APT lists 3 km and 137 m of ascent.'
     },
     'fassa-moena-soraga-someda': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 13).
       // APT Val di Fassa’s walk “Da Moena a Soraga, la natura a due passi da casa”, tagged “animali accettati”. The line
       // is drawn on 59 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -40651,8 +41341,55 @@
       hours: '1.75',
       routeShape: 'out-and-back',
       routeShapeNote: 'From Piaz de Ramon in Moena up to Someda and its church, along Strada del Termen and Strada de Roisc above the reservoir past the boundary stone of 1551 to Soraga Alta and down into Soraga, then back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Piaz de Ramon in Moena, the tourist board’s start.",
+        "sequence": "Through the narrow passage and up the steps to Strada de Someda, to Someda and its church, along Strada Frate E. Chiocchetti-Lenz, Strada del Termen and Strada de Roisc to Soraga Alta, down Troi de Pala into Soraga, and back the same way.",
+        "switches": "Up the steps on the right after the narrow passage. Left at the church square onto Strada Frate E. Chiocchetti-Lenz. From Strada de Roisc, down the steep Troi de Pala to the main road by the Hotel Al Lago.",
+        "steps": [
+          {
+            "text": "From Piaz de Ramon, go through the narrow passage and climb the steps on the right onto Strada de Someda.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Walk up to the first houses of Someda, below the rock face of the Piz Meda, and to the little square in front of the church of Santi Rocco, Sebastiano e Fabiano.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Take Strada Frate E. Chiocchetti-Lenz on the left, past the small First World War exhibition, and carry on along Strada del Termen, with a wide view over Moena, Soraga and the Catinaccio. On the boundary between Moena and Soraga, by the stream on the right, is a boundary stone of 1551.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on along Strada de Roisc to Soraga Alta (Soraga Auta).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Leave Strada de Roisc down the steep Troi de Pala to the main road, cross it by the Hotel Al Lago, and follow Strada de Pont to the tourist office in Soraga: the way the board gives for starting from Soraga, walked in reverse. Come back the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Da Moena a Soraga: la natura a due passi da casa: directions to follow",
+            "authority": "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/803917703",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -40662,7 +41399,7 @@
         mapPoints: 'Start at Moena (Piaz de Ramon), the APT’s start; drinking water in Moena, in Someda at km 0.7, at km 1.5, km 2.1 and km 2.5, and in Soraga at km 3.1 (OSM nodes 1884458673, 3778675477, 6452561225, 4314641273, 1660548569, 6453004674).',
         elevation: 'Official 6.1 km, 175 m up and 175 m down, 1 h 50 min, highest point 1,272 m, lowest 1,169 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [

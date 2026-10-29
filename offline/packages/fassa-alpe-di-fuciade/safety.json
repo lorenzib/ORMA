@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-alpe-di-fuciade",
+  "generatedAt": "2026-10-29T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.9,
+    "ascentM": 94,
+    "highestPointM": 1984,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 40
+  },
+  "trailhead": {
+    "lat": 46.37846,
+    "lng": 11.796859,
+    "label": "Passo San Pellegrino (Moena), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.3877621,
+      "lng": 11.8216465,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3927358,
+      "lng": 11.8277933,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Open alpine pasture at about 1,900–1,970 m with cattle in summer: keep your distance.",
+    "Gravel track shared with the refuge’s vehicles and, in some years, a horse-drawn carriage.",
+    "No shade on the open basin, strong sun and wind.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-29",
+      "licence": "ODbL"
+    }
+  ]
+}
