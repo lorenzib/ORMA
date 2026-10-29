@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-29T16:38:10.338Z",
+  "generatedAt": "2026-10-29T17:13:24.665Z",
   "regions": {
     "dolomites": {
       "trailCount": 300,
-      "trails": "data/regions/dolomites-trails.js?v=68160bb70baa",
+      "trails": "data/regions/dolomites-trails.js?v=de4c7b185ec6",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -301,8 +301,8 @@
         "kronplatz-valdaora-di-sopra-goste": "data/trail-details/kronplatz-valdaora-di-sopra-goste.js?v=1fa16dba836e",
         "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": "data/trail-details/kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi.js?v=7717d8784e79",
         "kronplatz-san-lorenzo-maria-sares": "data/trail-details/kronplatz-san-lorenzo-maria-sares.js?v=aeddfec214a2",
-        "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": "data/trail-details/kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle.js?v=f64c19b9058f",
-        "kronplatz-passeggiata-leggendaria-sul-kienberg": "data/trail-details/kronplatz-passeggiata-leggendaria-sul-kienberg.js?v=321c5a660002",
+        "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": "data/trail-details/kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle.js?v=370fcf078608",
+        "kronplatz-passeggiata-leggendaria-sul-kienberg": "data/trail-details/kronplatz-passeggiata-leggendaria-sul-kienberg.js?v=2511c8354988",
         "eggental-dal-passo-costalunga-al-lago-di-carezza": "data/trail-details/eggental-dal-passo-costalunga-al-lago-di-carezza.js?v=6e847803a691",
         "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": "data/trail-details/eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl.js?v=a0e9aa1453de",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
