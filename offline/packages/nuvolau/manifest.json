@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "nuvolau",
   "name": "Passo Giau to Rifugio Nuvolau",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:44:38.120Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:32:47.054Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 477122,
@@ -217,7 +217,7 @@
       "label": "Passo Giau to Rifugio Nuvolau routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 134899,
-      "sha256": "1c5a0dec7206e40031a7f8a61f582bbb3b66df130a94230faa0ce78510f6f03b"
+      "sha256": "bcbe2d7182774bd39bc3130ebfd2662635bf31f99585a270698f5de0a5b164d5"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Passo Giau to Rifugio Nuvolau safety information",
       "url": "safety.json",
       "bytes": 1382,
-      "sha256": "3545c1cf7418bbda75f3325545739ec637a47449fb8132a7f3c051bb2af134a6"
+      "sha256": "7b42b08f041b01e6299b3fa8481d240f737762b809417a92bd98301c7b711554"
     }
   ]
 }

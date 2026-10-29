@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-6404258",
   "name": "Rundweg Salla",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:19.487Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:48:20.002Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 599771,
@@ -217,7 +217,7 @@
       "label": "Rundweg Salla routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 137087,
-      "sha256": "fe36051d0c598fd3cafa48d5960d5e64e98038ab72861d5ea7428e56ae6a9ce7"
+      "sha256": "f650945348537d9df022f423ba9a5bd4bbebb22c06ff05f13d35468d31fd2b8d"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Rundweg Salla safety information",
       "url": "safety.json",
       "bytes": 1629,
-      "sha256": "27251910b4a875cfb93eb71026a119a68abe857a1d98f1af32d4368c12d6a88e"
+      "sha256": "ebe1876478c7c8d846b90428bbd9733363e95c548562c464f9f421dae58d9c90"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12150790",
   "name": "Giro dei Capitelli - Kapellenrunde",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:21.767Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:07:40.702Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 578360,
@@ -217,7 +217,7 @@
       "label": "Giro dei Capitelli - Kapellenrunde routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 94876,
-      "sha256": "b50ebd7ee289cd37e8cc1bfdf854aa7252d284e3aaabaf0f6cdbbc4609189b28"
+      "sha256": "947670b5c9f6b5717931ef40fffa32f0f32bf1c944fac907198fc483ded50120"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Giro dei Capitelli - Kapellenrunde safety information",
       "url": "safety.json",
       "bytes": 2093,
-      "sha256": "3cc9e39d75fa98ce1f130f4409b467184deaabf5a4cdde9e44844ef41144c33f"
+      "sha256": "96a07cc61da00050f5f41b5d5eb21708a925ea3ef8ddc3afa33f5db909de8e3f"
     }
   ]
 }

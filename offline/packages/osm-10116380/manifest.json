@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-10116380",
   "name": "Itinéraire découverte de la nature",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:15.744Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:38:10.594Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 344190,
+  "packageBytes": 344537,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.96028,
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Itinéraire découverte de la nature OSM offline map",
       "url": "map.svg",
-      "bytes": 134245,
-      "sha256": "97cb8965d1e27a4da871dfe3ae64c653174c925a7a9263337d13bb520f2f87a2"
+      "bytes": 134592,
+      "sha256": "b55d13329bbeaf64181bdc43a40b48ebfc6d4ecff36d5119a4b929f640370250"
     },
     {
       "role": "route",
@@ -217,7 +217,7 @@
       "label": "Itinéraire découverte de la nature routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 69131,
-      "sha256": "af6d516bf9e7760ebf0c3350356bde1568e2e04241dc367691d509d441fd6a85"
+      "sha256": "96f20ca453c9e44b53f119b218d59b9569f4bc6f0bbbf767ffaa417f5db03fbc"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Itinéraire découverte de la nature safety information",
       "url": "safety.json",
       "bytes": 1244,
-      "sha256": "d268b2bf05f09cfa09515f79029e178828a98fa51b9930ad162fb24cb153510c"
+      "sha256": "fd1d810f3e85fc3f15883a7823c742cb4d94b7e16df7e1e8335c9d9d971c85b1"
     }
   ]
 }

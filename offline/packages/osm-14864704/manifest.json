@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-14864704",
   "name": "Boucle du Taillefer",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:18.148Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:39:48.412Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 661544,
@@ -217,7 +217,7 @@
       "label": "Boucle du Taillefer routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 156694,
-      "sha256": "45498140c0440ed2d1c2238a113c4174acb4b9f2fa8b28daf931b5b4bb7c0305"
+      "sha256": "f83316777a42c1d308c6ad06ef9b1e67a7962e73ab691ebb6cb4e23d5015d0a0"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Boucle du Taillefer safety information",
       "url": "safety.json",
       "bytes": 1287,
-      "sha256": "3e19b8659c9fdd0eed67622bd3a796d52d1d8094581ddedcf63eb7b9d1000afa"
+      "sha256": "ac51ff02dec0ff5b3e1b9c16cde78f76700a4010d58e07c022bcefea30921fc3"
     }
   ]
 }

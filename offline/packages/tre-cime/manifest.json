@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "tre-cime",
   "name": "Tre Cime di Lavaredo classic circuit",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:44:38.012Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:31:38.097Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 515665,
@@ -217,7 +217,7 @@
       "label": "Tre Cime di Lavaredo classic circuit routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 176313,
-      "sha256": "980df23d362cce4990aafd26aa55f6baee910e22c3cd3b5d1007e9618c323c37"
+      "sha256": "fc018deaadeb69d549115de6791bc132a601fe0ca54b354eca4f58a37529a42a"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Tre Cime di Lavaredo classic circuit safety information",
       "url": "safety.json",
       "bytes": 1244,
-      "sha256": "d1459740020787691512e60f9e7ebc3ebbf1b0e928200ebb9b08132b1773b4f0"
+      "sha256": "f0c374e92d681249e7e3ee7a8cefeb93acad7e30705fa460624a36315c6f6554"
     }
   ]
 }

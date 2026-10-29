@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-malga-aloch",
   "name": "Malga Aloch e Masc Aloch",
-  "version": "2026.10.26-beta.1",
-  "generatedAt": "2026-10-26T10:28:54.693Z",
+  "version": "2026.10.29-beta.1",
+  "generatedAt": "2026-10-29T14:45:23.647Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 416067,
@@ -217,7 +217,7 @@
       "label": "Malga Aloch e Masc Aloch routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 63468,
-      "sha256": "9c721c65367819cc13ea43750105c41e9826e3037e7d39daac3730a985ad0942"
+      "sha256": "e65a58daf744a653f23773b20f115fd20506a1d668c7456822722b9798dcf56c"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Malga Aloch e Masc Aloch safety information",
       "url": "safety.json",
       "bytes": 1450,
-      "sha256": "785e3ea15efd64138731df13e2ff9c63e79c988d63230224bd9766c68ab517ee"
+      "sha256": "edc03c45fa648402d050c90d54273d7b2ee100555ddb08e6dd0b30eb7e69ad5e"
     }
   ]
 }

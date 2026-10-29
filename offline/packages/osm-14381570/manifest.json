@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-14381570",
   "name": "Albanne",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:11.822Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T13:24:55.086Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 582289,
@@ -217,7 +217,7 @@
       "label": "Albanne routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 233189,
-      "sha256": "5e201eed9dd360d18597437830205592167e3e7063d3e4e11c805df23c0466e7"
+      "sha256": "5db09b7d8e9e0823c86bfdd39a07097f9195c1fd851d3e6eed571169018ececd"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Albanne safety information",
       "url": "safety.json",
       "bytes": 2219,
-      "sha256": "398799e4e56b6a683e0a648bca66807a2528d327914dbfd2e808462e6037c123"
+      "sha256": "53e74a07b3b3b743587ca32c233dcfd16ccc5d179d0adb1d4da0e4fc8280e256"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-11791915",
   "name": "Dorfrundweg Aicha",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:52:53.404Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:51:00.236Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 504978,
@@ -217,7 +217,7 @@
       "label": "Dorfrundweg Aicha routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 78515,
-      "sha256": "129439be365a5695a05c7f2454e5a9a31b4341845702b7083ac9ff9353d27c70"
+      "sha256": "06d36a660ed841114a997537415326b68357d1e8b37c26b7a5fe10ded5530c63"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Dorfrundweg Aicha safety information",
       "url": "safety.json",
       "bytes": 1517,
-      "sha256": "390803bfc6ceb7980f80fab88a15f43916e68fee91aaaa481993db6dc4232656"
+      "sha256": "965ca1eb44e210421f90895079c142acce11ba03930aea1f292582fa7dd2449d"
     }
   ]
 }

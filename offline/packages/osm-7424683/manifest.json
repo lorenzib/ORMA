@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7424683",
   "name": "Marlinger Waalweg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:46:00.142Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:28:06.389Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 2523672,
+  "packageBytes": 2523476,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62276,
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Marlinger Waalweg OSM offline map",
       "url": "map.svg",
-      "bytes": 1354179,
-      "sha256": "afb67210cec74a6302568ba83c26adb15c46face5d8d5ac306c19c303709ef5c"
+      "bytes": 1353983,
+      "sha256": "64fa779f5ac9953141058d694c791bb98b82290a197109db4bf25287ad12de7b"
     },
     {
       "role": "route",
@@ -217,7 +217,7 @@
       "label": "Marlinger Waalweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 1048025,
-      "sha256": "d087508f65fde685af1afcccb3aff5292afd4c7161104d72438beca3f94b953e"
+      "sha256": "396a7b255aff71622027d1040496649772ac85fb970d0d731465feb63b8e4767"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Marlinger Waalweg safety information",
       "url": "safety.json",
       "bytes": 1700,
-      "sha256": "16b2805b28a2ed6ab451ca78cb581e856dd500571fa6834c6520aaa603604a95"
+      "sha256": "cb3f96e94ae9b531f9483592db1ddd019d97ffb80bae5cab3d077ce091815ac2"
     }
   ]
 }

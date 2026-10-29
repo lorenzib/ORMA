@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-15791408",
   "name": "Giro di Bedolpian",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:56.006Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:20:12.348Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 496926,
@@ -217,7 +217,7 @@
       "label": "Giro di Bedolpian routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 66217,
-      "sha256": "25396d4716fac7023340061f728753a4b59d9577618aa22c6ab8f894c734f8fd"
+      "sha256": "70d2e30814f57ba13b7c92e652bdfef6ad6f69b05da6e2609572a00f2be38187"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Giro di Bedolpian safety information",
       "url": "safety.json",
       "bytes": 1346,
-      "sha256": "d9ab1b7f146cb04da5dc9e19fcd644530088f90665da95000a4e12ba97414ed4"
+      "sha256": "011992f85508f804d359d929fd329a7b39f11f8fe59b8e9ac090c8f318c39b12"
     }
   ]
 }

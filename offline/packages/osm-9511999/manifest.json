@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-9511999",
   "name": "Tru dles Viles",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:20.445Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:59:08.760Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1127386,
@@ -217,7 +217,7 @@
       "label": "Tru dles Viles routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 386495,
-      "sha256": "0545ae9a887b99c0dc8dc58bf7106bf441a3559d5872c5583d2c1172ca25f365"
+      "sha256": "c0a5a324b69c60062b550ad8b0d02b59b22f57d2d6dca4b4316cad69fa676d55"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Tru dles Viles safety information",
       "url": "safety.json",
       "bytes": 1849,
-      "sha256": "4124b05cdc6b88863d0cab89c24dd9a88f7547855ac7a94e347e45564925ebf2"
+      "sha256": "1fd0674f42c636658803b39b10c108d499fb504e6a40c6688946712f3bd83801"
     }
   ]
 }

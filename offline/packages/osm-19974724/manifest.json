@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-19974724",
   "name": "Mittlerer Rundweg am Karer See",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:58.231Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:23:07.991Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 375578,
@@ -217,7 +217,7 @@
       "label": "Mittlerer Rundweg am Karer See routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 57583,
-      "sha256": "87240b3bce71c53892d87639ae667fbee021ad411ebe3d3982d67715f8f61ca3"
+      "sha256": "99cfcd765989a6769c93469ee294bed67a2364f6d339a36f70e28ec755e1bd08"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Mittlerer Rundweg am Karer See safety information",
       "url": "safety.json",
       "bytes": 1433,
-      "sha256": "472abd42f6a33d20ed0cc76fa2dbe2025cd5ab36053c65b6fa033bc70f1742d4"
+      "sha256": "5073f77ce1d9a2e479c05d30dde54233d5ed992a2bb34165a02f55c5d1ee33e7"
     }
   ]
 }

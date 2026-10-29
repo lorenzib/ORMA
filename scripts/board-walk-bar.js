@@ -248,7 +248,9 @@ function audit(root = ROOT) {
         operator: feature ? feature.properties.operator : trail.operator,
         line,
         directions,
-        passes: line.clean && directions.written,
+        // 29 October 2026: the directions must be on the page, not only in
+        // the research notes, or the walk cannot be followed.
+        passes: line.clean && directions.written && directions.shownOnPage,
       };
     });
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-16218739",
   "name": "Circuit du Ragairon",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:12.017Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T13:26:48.837Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 568888,
@@ -217,7 +217,7 @@
       "label": "Circuit du Ragairon routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 143253,
-      "sha256": "a9884b4fd4a12c844f060d9711d614f2c518214af4c0922143266a7d934cd69f"
+      "sha256": "34730bc49705e37a11065dc83e3e6663d414dbfd0f841fdf24b009f421abdfd9"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Circuit du Ragairon safety information",
       "url": "safety.json",
       "bytes": 1411,
-      "sha256": "bc0050bb0fec01ebde2516a0555139def5f1519523cbe4e60ff952d242ad66fd"
+      "sha256": "66b7238195948bd4b60e8dca5e5b98ee9f96c6f3f291612674c18593fbb3a4a2"
     }
   ]
 }

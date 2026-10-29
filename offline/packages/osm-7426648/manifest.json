@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7426648",
   "name": "Algunder Waalweg",
-  "version": "2026.10.24-beta.3",
-  "generatedAt": "2026-10-24T17:45:59.005Z",
+  "version": "2026.10.29-beta.4",
+  "generatedAt": "2026-10-29T12:26:07.741Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1508291,
+  "packageBytes": 1508235,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67544,
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Algunder Waalweg OSM offline map",
       "url": "map.svg",
-      "bytes": 902749,
-      "sha256": "efae3fc79cb9434087500567ddd1a17d44518ae37351cfd995bae432fc4a69bf"
+      "bytes": 902693,
+      "sha256": "1203a93c016b5fff0890107c48f5496d6a327747a44d494157cb513cd9ed901a"
     },
     {
       "role": "route",
@@ -217,7 +217,7 @@
       "label": "Algunder Waalweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 491985,
-      "sha256": "5ed472b6d6f4fd771ce4562d8c042f9adf6099a9d7d45c9b150b664b2c23b65b"
+      "sha256": "adc3fb8198ca2a8c7bc054d8157ade0c8f1ebbb589aacf566fb55d51f1106767"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Algunder Waalweg safety information",
       "url": "safety.json",
       "bytes": 1895,
-      "sha256": "58abc913f1b3296695ffe323791cb92e60f10de8091a22a450745689f8ac5a7d"
+      "sha256": "aad6f1c15869059ec2a60b14a593a9ec380de904836186e57c8e3b91a29a3864"
     }
   ]
 }

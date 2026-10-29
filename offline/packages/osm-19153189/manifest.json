@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-19153189",
   "name": "Le Belvédère (Saint-Pierre-d'Albigny)",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:18.538Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:42:12.383Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 594368,
+  "packageBytes": 594939,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.56837,
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Le Belvédère (Saint-Pierre-d'Albigny) OSM offline map",
       "url": "map.svg",
-      "bytes": 405842,
-      "sha256": "8f994f701dcbf88b0fd37b901bfe2fc572ad7fdacf040a64e54f7287e3097def"
+      "bytes": 406413,
+      "sha256": "574906b53b82ab3fd073a8e25bee7e4578836f7bcbd048081713ef2760ac682e"
     },
     {
       "role": "route",
@@ -217,7 +217,7 @@
       "label": "Le Belvédère (Saint-Pierre-d'Albigny) routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 76159,
-      "sha256": "957b2aec5556c8345e4675a98913776165102fff7bdfefed9b8f49e61aa56682"
+      "sha256": "3fd9526c4a90b562ee31451480e8c768b0eec57fc9507807023fa320a8a24d81"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Le Belvédère (Saint-Pierre-d'Albigny) safety information",
       "url": "safety.json",
       "bytes": 1116,
-      "sha256": "4a82de45ba874f1248abce84f8685ced5ac8f17d8baf7e53a4a428a8ae1e4714"
+      "sha256": "b73f154e52bdb4cf6473720f7b1b186bc359ea069724cdb81744f53293bdfb72"
     }
   ]
 }

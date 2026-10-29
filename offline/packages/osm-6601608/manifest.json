@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-6601608",
   "name": "Naturerlebnispfad Sand in Taufers",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:52:24.687Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:50:13.250Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 485144,
@@ -217,7 +217,7 @@
       "label": "Naturerlebnispfad Sand in Taufers routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 94878,
-      "sha256": "f74794fe90dc647c1e68ba1b0e325c98c6a029f3e6139add41d7462a91382b3d"
+      "sha256": "4d338722090c92f229a4ecdc4109c7403adc8bc8d96de368b008447c9c7db2aa"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Naturerlebnispfad Sand in Taufers safety information",
       "url": "safety.json",
       "bytes": 1771,
-      "sha256": "64c9d59b94ab2ec15f0d476947b787ae935c269a78843350602b3181f3e376d1"
+      "sha256": "a322ba503825dfb2162363b556121e7ce9cea05cc6e9867c75113ec1025d2791"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-3707731",
   "name": "Gratschenbergrunde",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:53:30.386Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:54:08.199Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 483078,
@@ -217,7 +217,7 @@
       "label": "Gratschenbergrunde routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 120254,
-      "sha256": "3f3ad0c24ae0c210f6037749151054e2b5d0da401a78a45b81877eded2ee6f2d"
+      "sha256": "521d3b4ba23f36a0a468f2188567cd2e276b8a43fdffb73314166001453d9c35"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Gratschenbergrunde safety information",
       "url": "safety.json",
       "bytes": 1772,
-      "sha256": "c64d5ced762764e7e10b20c8fc15a696fbb4bbd0837b0fff83adce91f8ad68b7"
+      "sha256": "a0914d2a3b6537b00b83d1e0edf9107145c5dbf654797902bf566d82fc1d79c7"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-19064561",
   "name": "Ombres sur l'Alpage",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:12.071Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T13:27:21.324Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 451749,
@@ -217,7 +217,7 @@
       "label": "Ombres sur l'Alpage routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 106396,
-      "sha256": "7eff8b0c9d678cae2e2c798f8128a5710696b5a120d520ef66087f7dbc22141f"
+      "sha256": "e65973411770fb1231df30df50df05eccfbd0d75fba3aba0474a93b416ce1595"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Ombres sur l'Alpage safety information",
       "url": "safety.json",
       "bytes": 1220,
-      "sha256": "39139b0c1a1c83660794670d7c3d9370b7b020602877f1687bf34cd1033f6103"
+      "sha256": "65a44da75d32759ca81d0bff56b4be4ccbc3fc4dfb10309d4faf9cbb637f9739"
     }
   ]
 }

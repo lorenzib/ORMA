@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-15591346",
   "name": "Sentier des Buis",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:18.701Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:42:48.459Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 965330,
+  "packageBytes": 967957,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.50109,
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sentier des Buis OSM offline map",
       "url": "map.svg",
-      "bytes": 598903,
-      "sha256": "8bef6e77c24e6bca2ff160e6127ae6f10e4dcc57766e5aca0bee39065bb3a491"
+      "bytes": 601530,
+      "sha256": "f653bff4f79326a8b3c3010a61d524593d2c5299087e5dea97d004ba335f051c"
     },
     {
       "role": "route",
@@ -217,7 +217,7 @@
       "label": "Sentier des Buis routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 246481,
-      "sha256": "9b8c4b9a44c71a16fa40646c9ec29d1b9db8ea098f4209176e70dc9da3661e22"
+      "sha256": "291ecebee30f2f1e89b504d1fb42aed29382bacb8b5674ca778ff672e15b14a8"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Sentier des Buis safety information",
       "url": "safety.json",
       "bytes": 1444,
-      "sha256": "ab0ba00caec1a3f5a0c08ba6d287f5c2ab50173d49d52fb54aa4b344c65caf28"
+      "sha256": "c55fec5b288ad52be19ee0b358e475300995ce0f59441dc90912f229e8724b66"
     }
   ]
 }

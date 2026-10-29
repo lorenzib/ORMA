@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-123162",
   "name": "Planetenweg - Sentiero dei pianeti",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:18.911Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:44:02.738Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 717545,
+  "packageBytes": 718344,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.44688,
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Planetenweg - Sentiero dei pianeti OSM offline map",
       "url": "map.svg",
-      "bytes": 480766,
-      "sha256": "afb6b190b9260b1d1729cf88fbdd9251e7cefa2a64793518e30af73ba999eaf2"
+      "bytes": 481565,
+      "sha256": "3be54131fd5625f533235711082bf4e1887909ea19da25f9f8a9a87a42f479d6"
     },
     {
       "role": "route",
@@ -217,7 +217,7 @@
       "label": "Planetenweg - Sentiero dei pianeti routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 117133,
-      "sha256": "48056703d9a27aa3c9c34944125a567b4dc365238aa15068e5509ed9eb44780c"
+      "sha256": "e0fd962d6bdf2101accfbc7f18898efd62da219b37944c73e4663ef37c5b6b92"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Planetenweg - Sentiero dei pianeti safety information",
       "url": "safety.json",
       "bytes": 1296,
-      "sha256": "0189a9b29f998bca59d95879e30a04ced5b4a0d2a5b39c3a70eddf9c5376c609"
+      "sha256": "e3eb3cd201cb099fc3d7088fe2023da0c03f6c0b54b946a2f579a5f34eab8b4a"
     }
   ]
 }

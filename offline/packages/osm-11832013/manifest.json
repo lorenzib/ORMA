@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-11832013",
   "name": "Seerundweg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:21.369Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:04:31.562Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 249671,
@@ -217,7 +217,7 @@
       "label": "Seerundweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 36477,
-      "sha256": "06dbf29b8ff18eea03dacea9344fd7dd1580728a8ff577305fa8b24ff161ad9c"
+      "sha256": "9c3452a7cb99ebed2c95fd7d0cd1eccd7b07c390de51be457836dd28e9a7d8ea"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Seerundweg safety information",
       "url": "safety.json",
       "bytes": 1567,
-      "sha256": "1a76532fcb836ab4c56e109bf668050cd1b057e729e0950d068a55fe1361ea0d"
+      "sha256": "0968d6fa90be938abef72a51107cbd6c721869e337197ef5ad94ce39edf87606"
     }
   ]
 }

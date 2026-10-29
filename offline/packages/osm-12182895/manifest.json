@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12182895",
   "name": "Talrundweg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:22.521Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:14:10.304Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1506728,
@@ -217,7 +217,7 @@
       "label": "Talrundweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 590096,
-      "sha256": "debaaa41ac1d7bc73c1bde80e981de626919f1edc7fc8e65352acb3a0068d02e"
+      "sha256": "4e3663f86339e5fcb199c3e366360e92103e53bfdb423c74c2390c27d6e5a85e"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Talrundweg safety information",
       "url": "safety.json",
       "bytes": 2006,
-      "sha256": "a2c17bd760dbd2c38a360caec79f069953ad36e6198c834520a52f4d0b35f238"
+      "sha256": "4e6f839a5d2cafe4bb32765fdcafd22e6318b000113cbb5007666ae4f278e304"
     }
   ]
 }

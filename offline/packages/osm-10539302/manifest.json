@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-10539302",
   "name": "Sentier éco-sylve de Poingt-Ravier",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:11.358Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T13:10:30.673Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 735289,
@@ -217,7 +217,7 @@
       "label": "Sentier éco-sylve de Poingt-Ravier routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 217351,
-      "sha256": "6910e76851a6ef897a27d323d853b6209884b40447453ee0253615a34dd3c113"
+      "sha256": "95c3f7610dbc27a8cf5fe1306f3eb090a11c9621d82c3dabe6fd981716c55c8c"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Sentier éco-sylve de Poingt-Ravier safety information",
       "url": "safety.json",
       "bytes": 2152,
-      "sha256": "a41931cea7f6e25966fdf98fb6144d4b4bb94b9f69ce846fabb86a8c9eff4bd2"
+      "sha256": "eb864288d607b6b26ff04e93a0ce146f1b0dfc535053b61371483530b6343cde"
     }
   ]
 }

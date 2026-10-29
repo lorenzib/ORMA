@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-passato-ritrovato",
   "name": "Il passato ritrovato",
-  "version": "2026.10.26-beta.1",
-  "generatedAt": "2026-10-26T10:25:36.912Z",
+  "version": "2026.10.29-beta.1",
+  "generatedAt": "2026-10-29T14:43:23.329Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 552273,
@@ -217,7 +217,7 @@
       "label": "Il passato ritrovato routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 138315,
-      "sha256": "3c278f2a9428a50952208907dcfb179f3ed88ec9db78136f2eea48efdafb0b32"
+      "sha256": "50d1758d024efa7e9ae7f64e08cd3fc5e51b677905b253e0381950f6aac0f30b"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Il passato ritrovato safety information",
       "url": "safety.json",
       "bytes": 1942,
-      "sha256": "40f815a5c359f2c121cdb12841cbac796c0e257b57f902f5ddf696fc8528a3b5"
+      "sha256": "70bfe743f8d6ebdf1e9bd2b1d213f6884f986d97e1c7d5f16ab0775ad57f4090"
     }
   ]
 }
