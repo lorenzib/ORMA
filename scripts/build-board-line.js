@@ -482,6 +482,17 @@ async function main(options = {}) {
     say('[board-line] Nothing was changed.');
     return { status: 'refused', reasons: verdict.reasons, verdict };
   }
+  // Close to the guide is not the same as followable: Ortisei – Passo Sella
+  // was 100% on the guide and still ran 400 m up a road and back. A line that
+  // folds or runs over itself is refused here; whether its shape matches what
+  // the page calls it is checked once the audit says (board-walk-bar.test.js).
+  const shape = require('./board-walk-bar').lineShape(drawn.line, { declared: args.thereAndBack ? 'out-and-back' : 'any' });
+  say(`[board-line]   the line reads as ${shape.kind === 'out-and-back' ? 'an out-and-back' : `a ${shape.kind} line`}, ${Math.round(shape.overlap * 100)}% walked twice.`);
+  if (shape.kind === 'folds' || shape.kind === 'overlaps') {
+    for (const problem of shape.problems) say(`[board-line]   refused: ${problem}`);
+    say('[board-line] Nothing was changed.');
+    return { status: 'refused', reasons: shape.problems, verdict, shape };
+  }
 
   const round = p => [Math.round(p[1] * 1e6) / 1e6, Math.round(p[0] * 1e6) / 1e6];
   const feature = {
