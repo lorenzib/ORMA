@@ -2913,6 +2913,22 @@
       "quote": "Distanza 11,8 km · Durata 3:28 h · Salita 417 m · Discesa 417 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "eggental-dal-passo-costalunga-al-lago-di-carezza": {
+      "url": "https://www.outdooractive.com/it/r/810055748",
+      "publisher": "Eggental tourist board (Eggental Tourismus) (Outdooractive, suedtirol.info)",
+      "name": "Dal Passo Costalunga al Lago di Carezza",
+      "quote": "Distanza 4,4 km · Durata 1:05 h · Salita 18 m · Discesa 225 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": {
+      "url": "https://www.outdooractive.com/it/r/810054675",
+      "publisher": "Eggental tourist board (Eggental Tourismus) (Outdooractive, suedtirol.info)",
+      "name": "Escursione per famiglie dal Lago di Carezza alla malga Stadl Alm",
+      "quote": "Distanza 4,2 km · Durata 1:05 h · Salita 32 m · Discesa 83 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
     }
   }
 }

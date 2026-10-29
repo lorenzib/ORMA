@@ -802,6 +802,40 @@
       }
     },
     {
+      "id": "eggental-dal-passo-costalunga-al-lago-di-carezza",
+      "approvedReviewId": "commons-eggental-dal-passo-costalunga-al-lago-di-carezza-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-dal-passo-costalunga-al-lago-di-carezza-lake.jpg",
+        "heroImage": "images/trails/eggental-dal-passo-costalunga-al-lago-di-carezza-lake.jpg",
+        "imageAlt": "The turquoise Lago di Carezza from above, ringed by pale stones and spruce forest, with the road and pink fireweed in the foreground",
+        "imageCredit": "The Lago di Carezza from above",
+        "imageCreditText": "The Lago di Carezza from above by Jonathan.astolfi",
+        "imageCreator": "Jonathan.astolfi",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_Carezza_08-2022.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl",
+      "approvedReviewId": "mapillary-eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl-lake-path.jpg",
+        "heroImage": "images/trails/eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl-lake-path.jpg",
+        "imageAlt": "The gravel shore path beside the turquoise Lago di Carezza, with a wooden fence, tall grass and pink flowers, walkers ahead and spruce forest and cloud-capped mountains behind",
+        "imageCredit": "The shore path at the Lago di Carezza",
+        "imageCreditText": "The shore path at the Lago di Carezza by orbic",
+        "imageCreator": "orbic",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=315894090873003",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fassa-alpe-di-fuciade",
       "approvedReviewId": "commons-fassa-alpe-di-fuciade-on-route",
       "approvedAt": "2026-10-26T15:00:00.000Z",
