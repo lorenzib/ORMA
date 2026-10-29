@@ -1477,9 +1477,9 @@
       "startPoint": {
         "lat": 45.94953,
         "lng": 6.74153,
-        "label": "Lakeside path below the Lac Vert car park; the official start is the Plaine-Joux car park, 321 chemin des Parchets, 400 m up the road"
+        "label": "Chemin des Parchets at Plaine-Joux, by a water tap, about 200 m east of the Plaine-Joux car park (321 chemin des Parchets), where the tourist office starts the walk"
       },
-      "desc": "An easy loop at about 1,300 m around Passy's emerald Lac Vert, a protected natural site where Mont Blanc reflects in water so clear you can see sunken trunks. The path circles the lake on its balcony and passes the lakeside restaurant, in a conifer forest below the Fiz cliffs. The official route starts at the Plaine-Joux car park and walks 400 m down the paved road to the lake; officially 3.1 km and 100 m of climb, about an hour, suitable for beginners.\n\nDogs must be kept on a lead, and they are not allowed in the lake, according to the official route page. Sled dogs live here in summer and winter. Most of the walk is shaded by conifers.",
+      "desc": "An easy loop at about 1,300 m around Passy's emerald Lac Vert, a protected natural site where Mont Blanc reflects in water so clear you can see sunken trunks. The path circles the lake on its balcony and passes the lakeside restaurant, in a conifer forest below the Fiz cliffs. The official route starts at the Plaine-Joux car park and follows the paved road for 400 m before a path turns down towards the lake; officially 3.1 km and 100 m of climb, about an hour, suitable for beginners.\n\nDogs must be kept on a lead, and they are not allowed in the lake, according to the official route page. Sled dogs live here in summer and winter. Most of the walk is shaded by conifers.",
       "tips": "Keep the lead on: it is the official rule, and sled dogs are kept nearby all year. Dogs may not go into the lake, and swimming is banned for people too, so use the taps by the lake (mapped) for water. The approach from the Plaine-Joux car park follows a paved road, and the loop crosses it once: keep your dog close there. The lake is busy in summer, so come early for a quiet lap.",
       "shadeCoverage": 60,
       "heatRisk": "low",
@@ -1487,6 +1487,59 @@
       "surfaceHazards": [
         "The paved access road from the Plaine-Joux car park, crossed once on the loop"
       ],
+      // Directions 28 October 2026: the tourist office's "Topo / step by step", the same text on
+      // passy-mont-blanc.com and combloux.com. OpenStreetMap places what it names on ORMA's line: the
+      // path down before the cabins is way 799846629, meeting the line about 450 m in; the road crossing
+      // is node 2007273424 (0.8 km); the viewpoint node 11734201069 sits about 20 m from the balcony path;
+      // the tap by the lake board is node 2990395315; the shore boardwalks are ways tagged bridge=boardwalk.
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start on the Chemin des Parchets road at Plaine-Joux, by a water tap, about 200 m east of the Plaine-Joux car park (321 chemin des Parchets), where the tourist office starts the walk.",
+        "sequence": "Down through the forest below the Cabanes du Mont-Blanc to the road, across it onto the balcony path round the Lac Vert, down to the lake restaurant and a lap of the shore, then back up the road and the same path to the start.",
+        "switches": "Where you first meet the road, about 800 m in, cross it and take the path straight in front of you. After the restaurant, walk up the road to that crossing and take the path you came down by.",
+        "steps": [
+          {
+            "text": "Leave the road on the gravel track going down on your right, then follow the forest path below the Cabanes du Mont-Blanc cabins. The tourist office's route stays on the road for 400 m from the car park and takes the path down on the right just before the cabins; it joins this path about 450 m from the start.",
+            "from": [1, 0]
+          },
+          {
+            "text": "About 800 m from the start you meet the road again. Cross it and take the path straight in front of you.",
+            "from": [0, 1]
+          },
+          {
+            "text": "This path goes round the lake on its balcony, above the water, past a viewpoint.",
+            "from": [0, 1]
+          },
+          {
+            "text": "Carry on down to the lake restaurant, below you, about 1.8 km from the start. There is a water tap beside the lake information board.",
+            "from": [0, 1]
+          },
+          {
+            "text": "The ORMA line also takes the lakeside path round the water's edge, partly on boardwalks, and comes back to the restaurant. Dogs may not go into the lake.",
+            "from": [1, 0]
+          },
+          {
+            "text": "To go back, walk up the road to where you crossed it, then take the path you came down by, back to the start.",
+            "from": [0]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "Boucle du Lac Vert, step by step",
+            "authority": "Office de Tourisme de Passy Mont-Blanc",
+            "url": "https://www.passy-mont-blanc.com/en/itineraire/boucle-du-lac-vert/",
+            "reviewedAt": "2026-10-28"
+          },
+          {
+            "tag": "map",
+            "label": "OpenStreetMap",
+            "authority": "the walk (relation 6250300) and the paths, cabins, viewpoint and taps along it",
+            "url": "https://www.openstreetmap.org/relation/6250300",
+            "reviewedAt": "2026-10-28"
+          }
+        ]
+      },
       "routeNumberSource": {
         "provider": "Office de Tourisme de Combloux / Passy (Apidae)",
         "name": "Boucle du Lac Vert",
@@ -1500,7 +1553,7 @@
         "photo": "Commons, Mangatome, CC BY-SA 3.0, the Lac Vert itself, which the loop circles.",
         "route": "Published line 3.61 km; official 3.1 km. The lake circuit matches the official GPX within about 20 m; the line leaves out the 400 m road approach from Plaine-Joux and takes a slightly different link path. Stated in the text.",
         "routeNumbers": "No number; the official topo describes the loop by landmark (Cabanes du Mont-Blanc, balcony path, lakeside restaurant) with no switch to another route.",
-        "mapPoints": "Start on the lakeside path; the official Plaine-Joux car park named in the text; taps traced to OSM.",
+        "mapPoints": "Start where the line leaves the Chemin des Parchets road at Plaine-Joux, by the tap (OSM node 8938976418), about 200 m from the Plaine-Joux car park the official text starts from; taps traced to OSM. Corrected 28 October 2026: the label used to put this start below the Lac Vert car park, about 1 km away.",
         "elevation": "Official 100 m of climb."
       },
       "graduation": {
