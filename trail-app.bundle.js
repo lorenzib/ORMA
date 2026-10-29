@@ -8438,9 +8438,9 @@ function effectiveOverrides(profile, adjustOverride){
       "startPoint": {
         "lat": 45.94953,
         "lng": 6.74153,
-        "label": "Lakeside path below the Lac Vert car park; the official start is the Plaine-Joux car park, 321 chemin des Parchets, 400 m up the road"
+        "label": "Chemin des Parchets at Plaine-Joux, by a water tap, about 200 m east of the Plaine-Joux car park (321 chemin des Parchets), where the tourist office starts the walk"
       },
-      "desc": "An easy loop at about 1,300 m around Passy's emerald Lac Vert, a protected natural site where Mont Blanc reflects in water so clear you can see sunken trunks. The path circles the lake on its balcony and passes the lakeside restaurant, in a conifer forest below the Fiz cliffs. The official route starts at the Plaine-Joux car park and walks 400 m down the paved road to the lake; officially 3.1 km and 100 m of climb, about an hour, suitable for beginners.\n\nDogs must be kept on a lead, and they are not allowed in the lake, according to the official route page. Sled dogs live here in summer and winter. Most of the walk is shaded by conifers.",
+      "desc": "An easy loop at about 1,300 m around Passy's emerald Lac Vert, a protected natural site where Mont Blanc reflects in water so clear you can see sunken trunks. The path circles the lake on its balcony and passes the lakeside restaurant, in a conifer forest below the Fiz cliffs. The official route starts at the Plaine-Joux car park and follows the paved road for 400 m before a path turns down towards the lake; officially 3.1 km and 100 m of climb, about an hour, suitable for beginners.\n\nDogs must be kept on a lead, and they are not allowed in the lake, according to the official route page. Sled dogs live here in summer and winter. Most of the walk is shaded by conifers.",
       "tips": "Keep the lead on: it is the official rule, and sled dogs are kept nearby all year. Dogs may not go into the lake, and swimming is banned for people too, so use the taps by the lake (mapped) for water. The approach from the Plaine-Joux car park follows a paved road, and the loop crosses it once: keep your dog close there. The lake is busy in summer, so come early for a quiet lap.",
       "shadeCoverage": 60,
       "heatRisk": "low",
@@ -8448,6 +8448,59 @@ function effectiveOverrides(profile, adjustOverride){
       "surfaceHazards": [
         "The paved access road from the Plaine-Joux car park, crossed once on the loop"
       ],
+      // Directions 28 October 2026: the tourist office's "Topo / step by step", the same text on
+      // passy-mont-blanc.com and combloux.com. OpenStreetMap places what it names on ORMA's line: the
+      // path down before the cabins is way 799846629, meeting the line about 450 m in; the road crossing
+      // is node 2007273424 (0.8 km); the viewpoint node 11734201069 sits about 20 m from the balcony path;
+      // the tap by the lake board is node 2990395315; the shore boardwalks are ways tagged bridge=boardwalk.
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start on the Chemin des Parchets road at Plaine-Joux, by a water tap, about 200 m east of the Plaine-Joux car park (321 chemin des Parchets), where the tourist office starts the walk.",
+        "sequence": "Down through the forest below the Cabanes du Mont-Blanc to the road, across it onto the balcony path round the Lac Vert, down to the lake restaurant and a lap of the shore, then back up the road and the same path to the start.",
+        "switches": "Where you first meet the road, about 800 m in, cross it and take the path straight in front of you. After the restaurant, walk up the road to that crossing and take the path you came down by.",
+        "steps": [
+          {
+            "text": "Leave the road on the gravel track going down on your right, then follow the forest path below the Cabanes du Mont-Blanc cabins. The tourist office's route stays on the road for 400 m from the car park and takes the path down on the right just before the cabins; it joins this path about 450 m from the start.",
+            "from": [1, 0]
+          },
+          {
+            "text": "About 800 m from the start you meet the road again. Cross it and take the path straight in front of you.",
+            "from": [0, 1]
+          },
+          {
+            "text": "This path goes round the lake on its balcony, above the water, past a viewpoint.",
+            "from": [0, 1]
+          },
+          {
+            "text": "Carry on down to the lake restaurant, below you, about 1.8 km from the start. There is a water tap beside the lake information board.",
+            "from": [0, 1]
+          },
+          {
+            "text": "The ORMA line also takes the lakeside path round the water's edge, partly on boardwalks, and comes back to the restaurant. Dogs may not go into the lake.",
+            "from": [1, 0]
+          },
+          {
+            "text": "To go back, walk up the road to where you crossed it, then take the path you came down by, back to the start.",
+            "from": [0]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "Boucle du Lac Vert, step by step",
+            "authority": "Office de Tourisme de Passy Mont-Blanc",
+            "url": "https://www.passy-mont-blanc.com/en/itineraire/boucle-du-lac-vert/",
+            "reviewedAt": "2026-10-28"
+          },
+          {
+            "tag": "map",
+            "label": "OpenStreetMap",
+            "authority": "the walk (relation 6250300) and the paths, cabins, viewpoint and taps along it",
+            "url": "https://www.openstreetmap.org/relation/6250300",
+            "reviewedAt": "2026-10-28"
+          }
+        ]
+      },
       "routeNumberSource": {
         "provider": "Office de Tourisme de Combloux / Passy (Apidae)",
         "name": "Boucle du Lac Vert",
@@ -8461,7 +8514,7 @@ function effectiveOverrides(profile, adjustOverride){
         "photo": "Commons, Mangatome, CC BY-SA 3.0, the Lac Vert itself, which the loop circles.",
         "route": "Published line 3.61 km; official 3.1 km. The lake circuit matches the official GPX within about 20 m; the line leaves out the 400 m road approach from Plaine-Joux and takes a slightly different link path. Stated in the text.",
         "routeNumbers": "No number; the official topo describes the loop by landmark (Cabanes du Mont-Blanc, balcony path, lakeside restaurant) with no switch to another route.",
-        "mapPoints": "Start on the lakeside path; the official Plaine-Joux car park named in the text; taps traced to OSM.",
+        "mapPoints": "Start where the line leaves the Chemin des Parchets road at Plaine-Joux, by the tap (OSM node 8938976418), about 200 m from the Plaine-Joux car park the official text starts from; taps traced to OSM. Corrected 28 October 2026: the label used to put this start below the Lac Vert car park, about 1 km away.",
         "elevation": "Official 100 m of climb."
       },
       "graduation": {
@@ -60674,6 +60727,114 @@ function effectiveOverrides(profile, adjustOverride){
       ],
       startPoint: { lat: 46.783032, lng: 11.90238, label: 'The east car park of San Lorenzo di Sebato, the board’s start' },
       desc: 'A walk from San Lorenzo di Sebato on paths 8A and 9, past St. Martin and up the Stations of the Cross to the pilgrimage church of Maria Sares. The board lists 4.9 km and 170 m of ascent.'
+    },
+    'kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 3).
+      // Olang tourist board (Tourismusverein Olang)’s walk “Valdaora di Sotto - Casola - Bagni di Pervalle”, drawn on 33 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried; no dogs in cemeteries, parks or playgrounds: the line passes the Niederolang cemetery wall but does not enter it).
+      // No Natura 2000 site or park; 10% in landscape or ensemble protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Valdaora di Sotto – Bad Bergfall, Olang',
+      distance: 4.9,
+      elevation: 318,
+      hours: '1.6',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the parish church of Valdaora di Sotto (Niederolang) on path 32B, past Casola and through the forest, up to Bad Bergfall (Bagni di Pervalle); come back the same way.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The parish church of St. Peter and Agnes in Valdaora di Sotto, where the walk starts, in October (Muck on Wikimedia Commons, CC BY-SA 4.0), 16 m from the line.',
+        route: 'Official one-way walk 4.9 km from the parish church of Valdaora di Sotto, as the Olang tourist board (Tourismusverein Olang) publishes it; the stored line is drawn on 33 OSM ways along the board’s published line, 4.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 32B: from the parish church of Valdaora di Sotto (Niederolang) follow 32B south out of the village on the lane In der Länge, then on farm roads past Casola and on forest roads up to Bad Bergfall (Bagni di Pervalle), the old sulphur-spring baths. Come back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 1.1 and km 4.4 (OSM nodes 3451774094, 13063167149, 13479318522).',
+        elevation: 'Official 4.9 km, 318 m up and 25 m down, 1:37 h, highest point 1,314 m, lowest 1,021 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Olang tourist board (Tourismusverein Olang), Valdaora di Sotto - Casola - Bagni di Pervalle (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Olang / Comune di Valdaora, Verordnung betreffend die Haltung von Hunden und anderen Tieren (Gemeinderat Nr. 11, 25.02.2010, amended Nr. 5, 23.02.2026), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds and parks, or on farmed meadows and fields in the growing season; no bathing in fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 10% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (33 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 38,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About two thirds on tarred lanes and farm roads: watch for local traffic and tractors', 'The lane out of the village passes the cemetery wall: dogs may not enter the cemetery', 'Hay meadows beside the farm roads: keep your dog off them in the growing season'],
+      terrainType: 'Tarred lanes, farm roads and forest roads',
+      shadeDescription: 'Partly shaded: about two fifths runs through forest on the climb to Bad Bergfall; the lanes out of the village are open.',
+      terrainDescription: 'A steady climb at 1,020–1,315 m from Valdaora di Sotto on path 32B, across the meadows past Casola and through the forest to Bad Bergfall, the old baths with sulphur springs.',
+      waterDescription: 'Drinking water at the start, km 1.1 and km 4.4; places to eat on the way.',
+      dogNotes: 'Olang requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of cemeteries, parks and playgrounds, off farmed meadows in the growing season, and out of the fountains. The walk passes the Niederolang cemetery wall: do not go in.',
+      tips: 'Start by the parish church of Valdaora di Sotto and follow path 32B: 4.9 km one way, about 320 m up, an hour and a half; come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Olang requires, and keep off the hay meadows. Drinking water at the start, at km 1.1 and near Bad Bergfall.',
+      sourceLinks: [
+        { label: 'Outdooractive, Valdaora di Sotto - Casola - Bagni di Pervalle (Olang tourist board (Tourismusverein Olang))', url: 'https://www.outdooractive.com/it/r/807440420' },
+        { label: 'Gemeinde Olang, dog regulation (2010, amended 2026)', url: 'https://www.gemeinde.olang.bz.it/system/web/GetDocument.ashx?cts=1792490199&fileId=179640' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.76773, lng: 12.01723, label: 'Valdaora di Sotto (Niederolang), by the parish church, the board’s start' },
+      desc: 'A walk from Valdaora di Sotto on path 32B, across meadows past Casola and through quiet forest up to Bad Bergfall and its sulphur springs. The board lists 4.9 km, 318 m up and 25 m down.'
+    },
+    'kronplatz-passeggiata-leggendaria-sul-kienberg': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 3).
+      // Kiens tourist board (Tourismusverein Kiens)’s walk “Passeggiata leggendaria sul Kienberg”, drawn on 40 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Kiens (no dog regulation found, national rule) and St. Lorenzen (its 2009 dog regulation: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site or park; 2% in landscape or ensemble protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Casteldarne – Kienberg – Mantana, Pustertal',
+      distance: 11.8,
+      elevation: 417,
+      hours: '3.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car park by the Koflerhof in Casteldarne (Ehrenburg) on the Kienberg path past the Plattnerhof and over the Kienberg towards Mantana and Ronchi, and back to Casteldarne on the Way of the Cross, path 10A.',
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The gravel path 10A through flowering meadows above Casteldarne, near the start and end of the loop, in May, with snow only on the distant peaks (davidinosauro on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official loop 11.8 km from the car park by the Koflerhof in Casteldarne, as the Kiens tourist board (Tourismusverein Kiens) publishes it; the stored line is drawn on 40 OSM ways along the board’s published line, 11.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the car park by the Koflerhof in Casteldarne follow the Kienberg path towards Mantana, past the Plattnerhof and over the broad wooded ridge of the Kienberg; from Mantana go on towards Ronchi, then take the historic Way of the Cross, path 10A, back to Casteldarne.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.1, km 0.2, km 5.8 and km 8.9 (OSM nodes 12055127715, 12055127716, 12055127708, 1872561195, 6696661485, 7597838085, 12791498122).',
+        elevation: 'Official 11.8 km, 417 m up and 417 m down, 3:28 h, highest point 1,140 m, lowest 803 m (Kiens tourist board (Tourismusverein Kiens), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Kiens tourist board (Tourismusverein Kiens), Passeggiata leggendaria sul Kienberg (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Kiens: no dog regulation found on its website (the commune’s document search does not list one). Neighbouring communes use the same 2010 provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Marktgemeinde St. Lorenzen / Comune di San Lorenzo di Sebato, Gemeindeverordnung über die Haltung und Führung von Hunden (Beschluss des Gemeinderates Nr. 25, 29.12.2009): a lead of at most 1.5 m on public ground and a muzzle carried; no dogs in cemeteries, playgrounds or kindergarten and primary-school yards, or on farmed meadows and fields in the growing season; no bathing in the village fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 2% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (40 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 64,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Lanes through Casteldarne and past the Kienberg farms: watch for local traffic and farm dogs', 'A long loop with about 420 m of climbing: take enough water for your dog', 'Meadows on the Kienberg and around Mantana: keep your dog off them in the growing season'],
+      terrainType: 'Forest paths, gravel tracks and farm lanes',
+      shadeDescription: 'Mostly shaded: nearly two thirds runs through the Kienberg woods; the stretches past the farms and around Mantana are open.',
+      terrainDescription: 'A long loop at 800–1,140 m from Casteldarne over the Kienberg, a wooded hill rising like an island above the Pustertal, past the farm of the Plattnerhof legend and back on the old Way of the Cross.',
+      waterDescription: 'Drinking water at the start, km 0.1, km 0.2, km 5.8 and km 8.9; places to eat on the way.',
+      dogNotes: 'Kiens has no dog regulation we could find, so the national rule applies there: a lead of at most 1.5 m and a muzzle carried. Around Mantana the walk is in St. Lorenzen, which requires the same and keeps dogs off farmed meadows in the growing season, out of playgrounds and cemeteries, and out of the fountains.',
+      tips: 'Start at the car park by the Koflerhof in Casteldarne: an 11.8 km loop, about 420 m of climbing, three and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and keep off the meadows. Drinking water at the start and on the way, but carry some for your dog.',
+      sourceLinks: [
+        { label: 'Outdooractive, Passeggiata leggendaria sul Kienberg (Kiens tourist board (Tourismusverein Kiens))', url: 'https://www.outdooractive.com/it/r/16570385' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Marktgemeinde St. Lorenzen, dog regulation (2009)', url: 'https://www.gemeinde.stlorenzen.bz.it/system/web/GetDocument.ashx?cts=1434451081&fileId=884603' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.79796, lng: 11.83901, label: 'The car park by the Koflerhof in Casteldarne (Ehrenburg), the board’s start' },
+      desc: 'A loop from Casteldarne over the wooded Kienberg, past farms and the Plattnerhof of the local legend, towards Mantana and back on the historic Way of the Cross. The board lists 11.8 km and 417 m of ascent.'
     }
   };
 
@@ -67394,7 +67555,61 @@ function initTrailReports(map, trail){
     return { lines: stripped, note };
   }
 
-  const api = { SOURCES, splitSources };
+  const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+    'August', 'September', 'October', 'November', 'December'];
+  function readOn(value) {
+    const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(value || ''));
+    return match ? `${Number(match[3])} ${MONTHS[Number(match[2]) - 1]} ${match[1]}` : '';
+  }
+
+  const STEPS_BADGE = 'No trail numbers on this walk: follow these landmarks';
+
+  /**
+   * A walk with no trail numbers, given turn by turn (OPERATING_STANDARD.md,
+   * "A walk with no number says how to follow it"). Each step names the
+   * sources it rests on by their place in `guidance.sources`, and each source
+   * carries the short tag the card prints after the step -- "tourist office",
+   * "map" -- so a reader can tell the operator's own words from what ORMA read
+   * off OpenStreetMap to place them.
+   *
+   * All or nothing: a step citing no source, or a source with no https link,
+   * date or tag, and the card shows the Route and Key turns lines instead,
+   * which every landmark record still carries.
+   */
+  function landmarkSteps(guidance) {
+    if (!guidance || guidance.mode !== 'landmarks') return null;
+    const sources = Array.isArray(guidance.sources) ? guidance.sources : [];
+    const steps = Array.isArray(guidance.steps) ? guidance.steps : [];
+    const usable = index => {
+      const source = sources[index];
+      return Boolean(source && String(source.tag || '').trim() && String(source.label || '').trim()
+        && /^https:\/\//.test(source.url || '') && readOn(source.reviewedAt));
+    };
+    const sourced = step => Boolean(step && String(step.text || '').trim()
+      && Array.isArray(step.from) && step.from.length > 0 && step.from.every(usable));
+    if (!steps.length || !steps.every(sourced)) return null;
+    const used = [...new Set(steps.flatMap(step => step.from))].sort((a, b) => a - b);
+    return {
+      badge: STEPS_BADGE,
+      steps: steps.map(step => ({
+        text: String(step.text).trim(),
+        tags: [...new Set(step.from.map(index => String(sources[index].tag).trim()))],
+      })),
+      // One line per source: `${before}${label}${after}`, the label linked.
+      credits: used.map(index => {
+        const source = sources[index];
+        const by = String(source.authority || '').trim();
+        return {
+          before: `Steps marked “${String(source.tag).trim()}”: `,
+          label: String(source.label).trim(),
+          url: source.url,
+          after: `${by ? `, ${by}` : ''}, read ${readOn(source.reviewedAt)}.`,
+        };
+      }),
+    };
+  }
+
+  const api = { SOURCES, STEPS_BADGE, splitSources, landmarkSteps };
   global.DoloPawsRouteGuidanceSources = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
@@ -71000,19 +71215,33 @@ if(document.querySelector('.td2')){
     };
     // Each value ends with where it came from; the card says that once, under
     // the lines, instead of after every one of them (route-guidance-sources.js).
+    // A walk with no numbers, turn by turn: the steps take the place of the
+    // Route and Key turns lines, each tagged with the source it rests on.
+    const guidanceSteps = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
+      ? window.DoloPawsRouteGuidanceSources.landmarkSteps(verifiedRouteGuidance)
+      : null;
     const guidanceSplit = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
       ? window.DoloPawsRouteGuidanceSources.splitSources([
         ['Start', verifiedRouteGuidance.start],
-        ...(guidanceStatus ? [['Trail numbers', guidanceStatus]] : []),
-        [guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route', verifiedRouteGuidance.sequence],
-        [guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch', verifiedRouteGuidance.switches],
+        ...(guidanceStatus && !guidanceSteps ? [['Trail numbers', guidanceStatus]] : []),
+        ...(guidanceSteps ? [] : [
+          [guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route', verifiedRouteGuidance.sequence],
+          [guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch', verifiedRouteGuidance.switches],
+        ]),
       ])
       : null;
     const guidanceLines = guidanceSplit ? guidanceSplit.lines : [];
+    const stepsMarkup = guidanceSteps
+      ? `<ol class="td2-route-steps">${guidanceSteps.steps.map(step =>
+        `<li>${esc(step.text)} <span class="td2-route-step-from">${esc(step.tags.join(', '))}</span></li>`).join('')}</ol>${
+        guidanceSteps.credits.map(credit => `<p class="td2-route-source">${esc(credit.before)}<a href="${
+          esc(credit.url)}" target="_blank" rel="noopener">${esc(credit.label)}</a>${esc(credit.after)}</p>`).join('')}`
+      : '';
     const routeRefMarkup = verifiedRouteGuidance && guidanceSplit
-      ? `${routeBadges}<div class="s">${guidanceLines.map(([label, text]) => label === 'Start'
+      ? `${routeBadges}<div class="s">${guidanceSteps ? `<p class="td2-route-badge">${esc(guidanceSteps.badge)}</p>` : ''}${
+        guidanceLines.map(([label, text]) => label === 'Start'
         ? `<p>${startLine(text)}</p>`
-        : `<p><b>${esc(label)}:</b> ${esc(text)}</p>`).join('')}${
+        : `<p><b>${esc(label)}:</b> ${esc(text)}</p>`).join('')}${stepsMarkup}${
         guidanceSplit.note ? `<p class="td2-route-source">${esc(guidanceSplit.note)}</p>` : ''
       }</div>`
       : routeRefs.length

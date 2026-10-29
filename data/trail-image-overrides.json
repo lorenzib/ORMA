@@ -1788,6 +1788,23 @@
       }
     },
     {
+      "id": "kronplatz-passeggiata-leggendaria-sul-kienberg",
+      "approvedReviewId": "mapillary-kronplatz-passeggiata-leggendaria-sul-kienberg-on-route",
+      "approvedAt": "2026-10-29T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-passeggiata-leggendaria-sul-kienberg-meadow-path.jpg",
+        "heroImage": "images/trails/kronplatz-passeggiata-leggendaria-sul-kienberg-meadow-path.jpg",
+        "imageAlt": "A gravel path through green meadows with white wildflowers above Casteldarne, with houses, the church spire and wooded mountains behind and a 10A waymark on a crash barrier",
+        "imageCredit": "Path 10A above Casteldarne",
+        "imageCreditText": "Path 10A above Casteldarne by davidinosauro",
+        "imageCreator": "davidinosauro",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1226541401556704",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "kronplatz-passeggiata-san-vigilio-le-dla-creda",
       "approvedReviewId": "mapillary-kronplatz-passeggiata-san-vigilio-le-dla-creda-on-route",
       "approvedAt": "2026-10-28T18:00:00.000Z",
@@ -1903,6 +1920,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=838606750067335",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle",
+      "approvedReviewId": "commons-kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle-on-route",
+      "approvedAt": "2026-10-29T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle-church.jpg",
+        "heroImage": "images/trails/kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle-church.jpg",
+        "imageAlt": "The cream-coloured parish church of Valdaora di Sotto with a painted Madonna on its wall, a clock tower and the churchyard with flowers in front, under a cloudy sky",
+        "imageCredit": "The parish church of Valdaora di Sotto",
+        "imageCreditText": "The parish church of Valdaora di Sotto by Muck",
+        "imageCreator": "Muck",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:St._Petrus_und_Agnes_(Niederolang)-01.jpg",
         "imageSourceType": "licensed-source"
       }
     },

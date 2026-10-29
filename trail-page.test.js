@@ -385,7 +385,8 @@ describe('trail page map controls', () => {
     expect(blueprint).toContain('marked only on the verified section');
     expect(blueprint).toContain('aroundGrid.innerHTML = routeRefMarkup ? renderCards([routeCard])');
     expect(blueprint).toContain('<b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route.');
-    expect(blueprint).toContain('? `${routeBadges}<div class="s">${guidanceLines.map(');
+    expect(blueprint).toContain('? `${routeBadges}<div class="s">${guidanceSteps ? `<p class="td2-route-badge">');
+    expect(blueprint).toContain('guidanceLines.map(([label, text]) => label === \'Start\'');
     expect(blueprint).not.toContain('does not publish a usable trail number or numbered switch');
     expect(html).toContain('.td2-route-ref{display:inline-flex;');
     expect(html).toContain('.td2-route-switch-list{display:grid;');
