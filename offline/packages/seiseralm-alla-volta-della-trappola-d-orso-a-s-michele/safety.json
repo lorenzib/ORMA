@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "trailId": "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele",
+  "generatedAt": "2026-10-29T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 14,
+    "ascentM": 567,
+    "highestPointM": 1476,
+    "expectedDuration": "4 hours",
+    "difficulty": "Hard",
+    "shadePercent": 44
+  },
+  "trailhead": {
+    "lat": 46.56793,
+    "lng": 11.5596,
+    "label": "The centre of Kastelruth (Castelrotto), the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.568384,
+      "lng": 11.559146,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5681608,
+      "lng": 11.5577216,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5698714,
+      "lng": 11.5595787,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.569988,
+      "lng": 11.559902,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.572643,
+      "lng": 11.600672,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5653262,
+      "lng": 11.5718593,
+      "label": "Behälter \"Niglal\" 210 m³",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.566957,
+      "lng": 11.562081,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 170 m along the Panider road (SP64) near Passo Pinei, and crossings of the San Michele road: keep your dog close.",
+    "Lanes past the farms around Kastelruth and San Michele: watch for local traffic and farm dogs.",
+    "The path out of Kastelruth passes the churchyard wall: dogs should not go in.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-29"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-29",
+      "licence": "ODbL"
+    }
+  ]
+}

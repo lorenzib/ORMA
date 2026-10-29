@@ -1373,6 +1373,26 @@
       "name": "Lake Carezza to the Stadlalm",
       "slug": "lake-carezza-to-stadlalm",
       "gloss": "along the Karersee and the Templ forest road to the hut"
+    },
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": {
+      "name": "Mont Sëuc to the Sporthotel Sonne",
+      "slug": "mont-seuc-to-sporthotel-sonne",
+      "gloss": "barrier-free on path 9 across the Alpe di Siusi"
+    },
+    "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": {
+      "name": "Passo Nigra to Tiers by the Jocher farm",
+      "slug": "passo-nigra-to-tiers",
+      "gloss": "through the Val Nigra and over the Forcella del Lupo"
+    },
+    "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": {
+      "name": "Umes, Hofer Alpl and Malga Tuff loop",
+      "slug": "umes-hofer-alpl-malga-tuff",
+      "gloss": "under the Sciliar and past the Lago di Fiè"
+    },
+    "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": {
+      "name": "Kastelruth bear-trap loop",
+      "slug": "kastelruth-bear-trap-loop",
+      "gloss": "past San Michele to the bear trap and Passo Pinei"
     }
   }
 }

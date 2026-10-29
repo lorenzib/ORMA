@@ -2929,6 +2929,38 @@
       "quote": "Distanza 4,2 km · Durata 1:05 h · Salita 32 m · Discesa 83 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": {
+      "url": "https://www.outdooractive.com/it/r/810054454",
+      "publisher": "Ortisei tourist board (DOLOMITES Val Gardena) (Outdooractive, suedtirol.info)",
+      "name": "Escursione senza barriere all’Alpe di Siusi",
+      "quote": "Distanza 1,4 km · Durata 0:21 h · Salita 0 m · Discesa 138 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": {
+      "url": "https://www.outdooractive.com/it/r/810055751",
+      "publisher": "Tiers am Rosengarten tourist board (Seiser Alm Marketing) (Outdooractive, suedtirol.info)",
+      "name": "Dal Passo Nigra al Maso Jocher e attraverso la Forcella del Lupo a Tires",
+      "quote": "Distanza 13,7 km · Durata 4:08 h · Salita 431 m · Discesa 856 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": {
+      "url": "https://www.outdooractive.com/it/r/16570256",
+      "publisher": "Völs am Schlern tourist board (Seiser Alm Marketing) (Outdooractive, suedtirol.info)",
+      "name": "Escursione da Umes alla Malga Hofer e a Malga Tuff",
+      "quote": "Distanza 8,3 km · Durata 3:00 h · Salita 476 m · Discesa 476 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": {
+      "url": "https://www.outdooractive.com/it/r/62653103",
+      "publisher": "Kastelruth tourist board (Seiser Alm Marketing) (Outdooractive, suedtirol.info)",
+      "name": "Alla volta della trappola d’orso a S. Michele",
+      "quote": "Distanza 14 km · Durata 4:12 h · Salita 567 m · Discesa 567 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
     }
   }
 }
