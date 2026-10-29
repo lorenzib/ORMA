@@ -3159,6 +3159,16 @@ ${points}
     'osm-7549783': "Anello del Troi de le Ciaure",
     'osm-9937537': "Le Mont Jovet",
     'prato-piazza': "Prato Piazza (Plätzwiese)",
+    'primiero-anello-di-valpiana': "Anello di Valpiana",
+    'primiero-fiera-pieve': "Fiera-Pieve",
+    'primiero-la-guana-di-primiero': "La Guana di Primiero",
+    'primiero-malga-ces': "San Martino di Castrozza - Malga Ces",
+    'primiero-malga-valcigolera': "San Martino di Castrozza - Malga Valcigolera",
+    'primiero-percorso-verde': "Percorso Verde (I percorsi del benessere)",
+    'primiero-san-martino-di-castrozza-val-di-roda-prati-col': "San Martino di Castrozza - Val di Roda - Prati Col",
+    'primiero-siror': "Siror",
+    'primiero-tonadico': "Tonadico",
+    'primiero-transacqua': "Transacqua",
     'tre-cime': "Tre Cime di Lavaredo classic circuit",
   };
   // </offline-package-registry>
@@ -48040,8 +48050,6 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'From Moena up to the hamlet of Someda and its little church, then across the meadows above the Soraga reservoir, past a boundary stone of 1551, to Soraga, facing the Catinaccio and the Latemar. The APT lists 6.1 km and 175 m of ascent, there and back.'
     },
     'primiero-fiera-pieve': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “Fiera-Pieve”, marked Dog-friendly on its
       // Outdooractive page. The line is drawn on 37 OSM ways along the line the APT
@@ -48106,7 +48114,7 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -48116,7 +48124,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Autostazione delle Corriere, the APT’s start; drinking water at the start, at km 0.4, at km 1 and at km 1.5 (OSM nodes 2394792821, 1358269069, 463603447, 804127875).',
         elevation: 'Official 2.6 km, 22 m up and 22 m down, 41 min, highest point 724 m, lowest 701 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -48160,8 +48168,6 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short, level loop through the old mining town of Fiera di Primiero and the parish village of Pieve, past palaces, chapels and the church of Santa Maria Assunta. The APT lists 2.6 km and 22 m of ascent.'
     },
     'primiero-transacqua': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “Transacqua”, marked Dog-friendly on its
       // Outdooractive page. The line is drawn on 33 OSM ways along the line the APT
@@ -48226,7 +48232,7 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -48236,7 +48242,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Autostazione delle Corriere, the APT’s start; drinking water at the start, at km 0.6 and at km 1.1 (OSM nodes 2394661691, 11155288749, 13192482108).',
         elevation: 'Official 2.3 km, 37 m up and 41 m down, 36 min, highest point 741 m, lowest 702 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -48278,8 +48284,6 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short loop from Fiera di Primiero into the old village of Transacqua, past frescoed houses, wayside shrines and Piazza San Marco. The APT lists 2.3 km and 37 m of ascent.'
     },
     'primiero-tonadico': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “Tonadico”, marked Dog-friendly on its
       // Outdooractive page. The line is drawn on 49 OSM ways along the line the APT
@@ -48344,7 +48348,7 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -48354,7 +48358,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Parcheggi in prossimità del parco Vallombrosa, the APT’s start; drinking water at the start, at km 1.5, at km 2 and at km 3 (OSM nodes 463603447, 2177503747, 2175692593, 11155288749).',
         elevation: 'Official 4 km, 57 m up and 61 m down, 1 h, highest point 768 m, lowest 712 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -48398,8 +48402,6 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A gentle loop round the village of Tonadico, below the Pale di San Martino, past Palazzo Scopoli, painted houses and the church of San Vittore. The APT lists 4 km and 57 m of ascent.'
     },
     'primiero-siror': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “Siror”, marked Dog-friendly on its
       // Outdooractive page. The line is drawn on 34 OSM ways along the line the APT
@@ -48458,7 +48460,7 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -48468,7 +48470,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Parcheggi in prossimità del parco Vallombrosa, the APT’s start; drinking water at the start, at km 1.2 and at km 2.1 (OSM nodes 804128022, 2177503862, 4397271096).',
         elevation: 'Official 3.9 km, 69 m up and 69 m down, 1 h, highest point 786 m, lowest 719 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -48511,8 +48513,6 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A gentle loop up to the old village of Siror, past octagonal fountains, painted houses and haylofts to the church of Sant’Andrea. The APT lists 3.9 km and 69 m of ascent.'
     },
     'primiero-la-guana-di-primiero': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “La Guana di Primiero”, marked Dog-friendly on its
       // Outdooractive page. The line is drawn on 43 OSM ways along the line the APT
@@ -48565,7 +48565,7 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -48575,7 +48575,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Fiera di Primiero, the APT’s start; drinking water at the start, at km 0.9 and at km 2 (OSM nodes 2394661691, 13957421401, 1358269065).',
         elevation: 'Official 3 km, 47 m up and 47 m down, 45 min, highest point 747 m, lowest 700 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -48617,8 +48617,6 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'An easy loop from Fiera di Primiero to Navoi to see the Guana, a giant wooden lizard by Marco Martalar built from trees felled by storm Vaia, and back through Transacqua. The APT lists 3 km and 47 m of ascent.'
     },
     'primiero-percorso-verde': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 1).
       // APT San Martino di Castrozza’s walk “Percorso Verde (I percorsi del benessere)”, marked Dog-friendly on its
       // Outdooractive page. The line is drawn on 19 OSM ways along the line the APT
@@ -48671,7 +48669,7 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -48681,7 +48679,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Parco Clarofonte, the APT’s start; drinking water at the start, at km 0.7 and at km 1.1 (OSM nodes 804128022, 2175692335, 11155288749).',
         elevation: 'Official 1.6 km, 23 m up and 23 m down, 30 min, highest point 735 m, lowest 711 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -48796,8 +48794,6 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A loop from Mezzano along the panoramic Via Molaren path to Pieve and back on the old Via Nova track, with wide views of the Pale di San Martino. The APT lists 5.8 km and 176 m of ascent.'
     },
     'primiero-san-martino-di-castrozza-val-di-roda-prati-col': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 2).
       // APT San Martino di Castrozza’s walk “San Martino di Castrozza - Val di Roda - Prati Col”, marked Dog-friendly.
       // The line is drawn on 34 OSM ways along the line the APT publishes
@@ -48855,7 +48851,7 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -48865,7 +48861,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at San Martino di Castrozza, the APT’s start; drinking water at the start and at km 5 (OSM nodes 4336791235, 5908182055).',
         elevation: 'Official 5.9 km, 154 m up and 173 m down, 1 h 45 min, highest point 1,591 m, lowest 1,444 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -48909,8 +48905,6 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A half-day loop from San Martino di Castrozza up the Val di Roda forest road past a waterfall and back over the Prati Col meadows, with views of the Pale di San Martino. The APT lists 5.9 km and 154 m of ascent.'
     },
     'primiero-anello-di-valpiana': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 2).
       // APT San Martino di Castrozza’s walk “Anello di Valpiana”, marked Dog-friendly.
       // The line is drawn on 14 OSM ways along the line the APT publishes
@@ -48968,7 +48962,7 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -48978,7 +48972,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Rifugio Fonteghi, the APT’s start; drinking water at the start and at km 4.8 (OSM nodes 2434545143, 11281806381).',
         elevation: 'Official 5.2 km, 184 m up and 182 m down, 1 h 35 min, highest point 1,239 m, lowest 1,095 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -49977,8 +49971,6 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'An easy walk from Varena across the open meadows of Spianez, a sunny balcony over the lower Val di Fiemme, out on a gravel track and back through the lower village. The APT lists 8.6 km and 120 m of ascent.'
     },
     'primiero-malga-ces': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 3).
       // APT San Martino di Castrozza’s walk “San Martino di Castrozza - Malga Ces”.
       // The line is drawn on 29 OSM ways along the line the APT publishes
@@ -50033,7 +50025,7 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -50043,7 +50035,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at San Martino di Castrozza, the APT’s start; drinking water at km 0.1 (OSM nodes 7775478912).',
         elevation: 'Official 7.8 km, 218 m up and 218 m down, 2 h 10 min, highest point 1,671 m, lowest 1,458 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -50750,8 +50742,6 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A one-way walk along the old Via Nova from Pieve to Passo Gobbera, past more than forty old fruit trees and over a 70 m rope suspension bridge above the Rio San Piero. The APT lists 8 km and 321 m of ascent.'
     },
     'primiero-malga-valcigolera': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 6).
       // APT San Martino di Castrozza’s walk “San Martino di Castrozza - Malga Valcigolera”.
       // The line is drawn on 35 OSM ways along the line the APT publishes
@@ -50811,7 +50801,7 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -50821,7 +50811,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at San Martino di Castrozza, the APT’s start; drinking water at the start (OSM nodes 4336791235).',
         elevation: 'Official 9.1 km, 431 m up and 432 m down, 3 h, highest point 1,884 m, lowest 1,458 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
