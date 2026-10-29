@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-6453504",
   "name": "Walderlebnispfad Aschbach",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:46:00.192Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:29:34.392Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 219747,
@@ -217,7 +217,7 @@
       "label": "Walderlebnispfad Aschbach routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 57914,
-      "sha256": "2e7209ac7d39d91625466cf6022fdcdcafc4d4330ecc6460b9246b7a450b9e00"
+      "sha256": "87be1ef54c0b92b8a7b1fe3d738118c05e2ef157d56ac2d26b7e753062ebb16d"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Walderlebnispfad Aschbach safety information",
       "url": "safety.json",
       "bytes": 1640,
-      "sha256": "eef0af2c1f894a81ab656856b12c6758234311109e900f8645bc0c6e9e1ea814"
+      "sha256": "d1c8f0c4d5d683a069f30489954ef8c295b1aa5536bf42f3826d2dd02be29bef"
     }
   ]
 }

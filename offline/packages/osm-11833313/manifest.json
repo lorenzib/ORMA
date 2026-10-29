@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-11833313",
   "name": "Römerweg Kiens",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:54:02.049Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:54:44.250Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1105532,
@@ -217,7 +217,7 @@
       "label": "Römerweg Kiens routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 132557,
-      "sha256": "4fa9b1321ddb9919916970e862a7212ee825502316ba4072606c7a0f400d72d4"
+      "sha256": "63a30f7bfb308024c3846505971d032e56dfe333df41d5e501df434f1c2c26e8"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Römerweg Kiens safety information",
       "url": "safety.json",
       "bytes": 1400,
-      "sha256": "413784cafaadc44cf48295d9c3eb310a9c898415ecbf1a0fea9837516095a764"
+      "sha256": "6475719666258766e495724fd9791f77b2a0b33f2877cc0fdff2204f4bad4b20"
     }
   ]
 }

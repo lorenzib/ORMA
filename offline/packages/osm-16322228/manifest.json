@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-16322228",
   "name": "Boucle du Marais des Chassettes",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:18.378Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:41:00.972Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 981544,
+  "packageBytes": 981981,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.54539,
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Boucle du Marais des Chassettes OSM offline map",
       "url": "map.svg",
-      "bytes": 678142,
-      "sha256": "38a06feee771b31a83ae3d1553bfbfe46142676b0f7d1b9dba0e498282c87833"
+      "bytes": 678579,
+      "sha256": "528953fd677aee70a3b351ef4ed27df6123f15ef4a3c9d935342c8283f150d0a"
     },
     {
       "role": "route",
@@ -217,7 +217,7 @@
       "label": "Boucle du Marais des Chassettes routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 192129,
-      "sha256": "8a63d7287ce63219d9cd123d8765bbce55a597290690a2dcbf7ec3cf39250ea9"
+      "sha256": "89b66551da815a2aa394ce6e80d0b29efcdc2bb509e52d0a11622d9f4a6216d5"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Boucle du Marais des Chassettes safety information",
       "url": "safety.json",
       "bytes": 1139,
-      "sha256": "0b896c734a7755b2a0e4ff3837f948d535dd9e7ee5d2b72eceed59bbbc3b7b57"
+      "sha256": "b0eec9bdabd37531b821cf098dd1c49d6d1e89af2da15ffbc67454dab187f634"
     }
   ]
 }

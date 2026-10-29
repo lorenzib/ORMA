@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-1506470",
   "name": "Sissiweg - Sentiero Sissi",
-  "version": "2026.10.24-beta.3",
-  "generatedAt": "2026-10-24T17:45:58.490Z",
+  "version": "2026.10.29-beta.4",
+  "generatedAt": "2026-10-29T12:24:36.673Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1177821,
+  "packageBytes": 1177873,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65671,
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sissiweg - Sentiero Sissi OSM offline map",
       "url": "map.svg",
-      "bytes": 790693,
-      "sha256": "97f4e21549bd63ba22445d38214222d68c594ad9af1463d5747d60e7f65d69c4"
+      "bytes": 790745,
+      "sha256": "6bd56c593264b820a3c51c61a3c1d5642442815505f7c6b79eb70d15ac8434a1"
     },
     {
       "role": "route",
@@ -217,7 +217,7 @@
       "label": "Sissiweg - Sentiero Sissi routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 274928,
-      "sha256": "f70508593bf9f490a081d6b803ebf6a55c632f8727ba8076f079740338232840"
+      "sha256": "ac79b87e0f5d0c5646a1664aee614f83a008fdddc325448b7359fc36b58f1dde"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Sissiweg - Sentiero Sissi safety information",
       "url": "safety.json",
       "bytes": 2155,
-      "sha256": "617a772f0284a4b4bb74865b189b4e116b9eaef04e1ea331c537f7a8c258d0ea"
+      "sha256": "b5c91c899ce14aabc840c36e0effe671c5edd91903b4d734001677f5d1e822b9"
     }
   ]
 }

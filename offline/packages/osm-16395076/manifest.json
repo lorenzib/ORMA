@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-16395076",
   "name": "Boucle du Lac de la Thuile",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:18.443Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:41:37.016Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 438255,
+  "packageBytes": 440934,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.5243,
@@ -28,8 +28,8 @@
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 894,
-    "edgeCount": 906,
+    "nodeCount": 895,
+    "edgeCount": 907,
     "trailNodeCount": 187,
     "maxRejoinRouteM": 1500
   },
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Boucle du Lac de la Thuile OSM offline map",
       "url": "map.svg",
-      "bytes": 285598,
-      "sha256": "c81a2dfd0176b1e07a2439d2c5d34660149c1043d0a6b9d669c2bbfc05ee6f9a"
+      "bytes": 288195,
+      "sha256": "107a096beee0a37bcdf36adc1ca5438f84239e5365e0a8a2adc4231ec7dc0786"
     },
     {
       "role": "route",
@@ -216,8 +216,8 @@
       "required": true,
       "label": "Boucle du Lac de la Thuile routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 43162,
-      "sha256": "6a405d746cfa87675977a31186fa89dd4808d651a2bab02e5b48cd15fb2d767b"
+      "bytes": 43244,
+      "sha256": "616fdb2c1ca9b275c26de32bbfc51de289afedd5543b2a78271a532969bd93ca"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Boucle du Lac de la Thuile safety information",
       "url": "safety.json",
       "bytes": 1122,
-      "sha256": "60db2f6ae9cd1e1ac2a373af25ba89d1c87cc50a8db299eeb07e534dc8eb57c0"
+      "sha256": "27bc758fa786c6192f670a3fe7f2315247cb7f70a665b39e5cd2ee58cf634c58"
     }
   ]
 }

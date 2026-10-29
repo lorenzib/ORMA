@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-3982382",
   "name": "Circuit Béatrice de Savoie",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:44:39.480Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:36:59.256Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 524705,
@@ -217,7 +217,7 @@
       "label": "Circuit Béatrice de Savoie routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 89580,
-      "sha256": "066e3de6a84d6292bec6ad8b4f6037e32c0114e19b5778f692344640c1d72d53"
+      "sha256": "1a0a03c069a2a4001d211fd968141d7de2ae6b5e471793df79396c216f0d1dbf"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Circuit Béatrice de Savoie safety information",
       "url": "safety.json",
       "bytes": 1130,
-      "sha256": "ac6769421dfcf58c3475b9f11cf4783f5bac29cdec8505ca7d5ac030f881dae7"
+      "sha256": "6d095a122e0c63bef0a12b3f8d59f2a89ad9d7cfa500afcc88e692702925f27a"
     }
   ]
 }

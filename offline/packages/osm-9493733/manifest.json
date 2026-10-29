@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-9493733",
   "name": "Tru di Lëc",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:20.288Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:55:47.233Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 596617,
@@ -217,7 +217,7 @@
       "label": "Tru di Lëc routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 147748,
-      "sha256": "337198a40181c4443ca67c00eef01588340bb101a2200cb652e7a802dad85ec6"
+      "sha256": "0aae9a7e491393b3e6b3e4efb8a9cae295e3829d952a0bde860fa3769c36cda7"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Tru di Lëc safety information",
       "url": "safety.json",
       "bytes": 1794,
-      "sha256": "ddc29e98bc0b832bd5b69b6f83cfa7e55ddc21fa696e61e2241f49094d836c6e"
+      "sha256": "b0dd5acd947f015fff1f7f6ce0c77d3dd0e37ddaa8d40dc601c87cbe1b87a653"
     }
   ]
 }

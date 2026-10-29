@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-11780502",
   "name": "Naturerlebnispfad Zans",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:20.801Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:00:52.824Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 284649,
@@ -217,7 +217,7 @@
       "label": "Naturerlebnispfad Zans routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 45980,
-      "sha256": "64c9e201689a76064aebc6b112ca515c1ae767c9639870e82dd0689ec495e123"
+      "sha256": "63ef2540a92ef3c390b68422cef62c33e0046aa741aa4fd70269c3ea5c30db6f"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Naturerlebnispfad Zans safety information",
       "url": "safety.json",
       "bytes": 1769,
-      "sha256": "b4bf80c926425a61963279acddc512aad9fe6031c67eea9c61c093c11a85907a"
+      "sha256": "06d3e7c6b5d0c17d919404973197083f5030f4b60bd4d7e03936027e6fe979e6"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7426666",
   "name": "Maiser Waalweg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:59.733Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:26:47.651Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 4116084,
+  "packageBytes": 4115865,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.66096,
@@ -28,8 +28,8 @@
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 31605,
-    "edgeCount": 31996,
+    "nodeCount": 31599,
+    "edgeCount": 31990,
     "trailNodeCount": 798,
     "maxRejoinRouteM": 1500
   },
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Maiser Waalweg OSM offline map",
       "url": "map.svg",
-      "bytes": 2364525,
-      "sha256": "ef01f0b7446aa6a1d3171d007cee87fda797c5cb324749608c8be91a8d9748fa"
+      "bytes": 2364595,
+      "sha256": "9c3f07f26b411a1a7f3ad51d34e1bdb9c40010e1731badade1d74a1791520164"
     },
     {
       "role": "route",
@@ -216,8 +216,8 @@
       "required": true,
       "label": "Maiser Waalweg routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 1631517,
-      "sha256": "5ddb3d9aa4c9c9281a3d212c0c1eb11b38f32c30ddf327e4fd57411c2d03fbb0"
+      "bytes": 1631228,
+      "sha256": "2b6c618ac2df0d09bb71c7aaeeeff37a0211c9a579dfe5adfb7b66d7512cf15b"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Maiser Waalweg safety information",
       "url": "safety.json",
       "bytes": 1712,
-      "sha256": "c5fd1ca88ad4f8549a6115fc82c511ba5932c996c26809c941d49b437d644e65"
+      "sha256": "c951464035f5d85778ae98ea151fe5efe69de5ed89b62d7b9844ca853342a8eb"
     }
   ]
 }

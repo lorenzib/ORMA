@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12731853",
   "name": "Rundweg Laugen Elvas",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:22.734Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:16:07.630Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 399986,
@@ -217,7 +217,7 @@
       "label": "Rundweg Laugen Elvas routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 92441,
-      "sha256": "f737100b9b58ac575835368c3315e79816b355099c0bf7bbe4c6912681418755"
+      "sha256": "1498e3fdfe7e60710892196465e4bbfe6eb44833ab0801a67de4aa236404db2b"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Rundweg Laugen Elvas safety information",
       "url": "safety.json",
       "bytes": 1448,
-      "sha256": "1cebc4dcee41fbcf427f2de74ee51a4607dfc67b646c1f055aa0fb9574c5ad7c"
+      "sha256": "83a02b0afff80662da233617119239a3e20fccfe8a98ae68aa744ddc6976bc29"
     }
   ]
 }

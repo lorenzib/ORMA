@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "santa-maddalena",
   "name": "Rundweg St. Magdalena",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:44:37.926Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:30:22.425Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 713206,
@@ -217,7 +217,7 @@
       "label": "Rundweg St. Magdalena routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 89320,
-      "sha256": "7c74346107d51583254fcebe0d3bfca83f859fe8988bec0a0ca623a1c611af27"
+      "sha256": "d127d58316b5eac2348e316e62a34371a6abe3cb5356b40628febff1d7fe38ad"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Rundweg St. Magdalena safety information",
       "url": "safety.json",
       "bytes": 1678,
-      "sha256": "5ec5d15d5ab8c44b032023a8230a3c3a1b4a9ff4793610ac95e6f26cfc28c3fb"
+      "sha256": "950c87654c1183f711d5ea8f2255e7246fb1d8790283135064a83fbc1659939c"
     }
   ]
 }

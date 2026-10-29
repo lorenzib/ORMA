@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-13491868",
   "name": "Birmehlweg - Sentiero Birmehl",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:23.133Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:19:13.199Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 529278,
@@ -217,7 +217,7 @@
       "label": "Birmehlweg - Sentiero Birmehl routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 86805,
-      "sha256": "231192e57a415cb2475b411e6932a314068b3ae54e8cde2b45ecac0c77a2ac4a"
+      "sha256": "50da41a3e862d20baadf76898527cd4fe66d8d61c909c2b19107105a419645aa"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Birmehlweg - Sentiero Birmehl safety information",
       "url": "safety.json",
       "bytes": 1485,
-      "sha256": "d594493ad13cbc55743c1096835a670e703499898a2ace8d5072d32210760fba"
+      "sha256": "470e95d2b6a3ffb8a0d11267284314e753e2b2f03b8353f4150a5f5ac6bee0a6"
     }
   ]
 }

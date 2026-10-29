@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-7567918",
   "name": "Seerundweg Antholzer See",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:51:21.153Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:45:08.880Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 318557,
@@ -217,7 +217,7 @@
       "label": "Seerundweg Antholzer See routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 44165,
-      "sha256": "09b1da23a4b83a3ae88552e3352837e7c1de07cd5cf758a2818310e84f48e01a"
+      "sha256": "397f4db4d68d569c14e5a379e503ebb6863c9398f5b566b78590ff5ca07f2e7f"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Seerundweg Antholzer See safety information",
       "url": "safety.json",
       "bytes": 1306,
-      "sha256": "b37f0564225f5a45c80afa4eaccc6fb4b884aaa999e8de90d7804f63b1e26c79"
+      "sha256": "f427e6fd92bdccb29da009ba28ec32fccdaae34f457e6f64548c6bd17f2371dd"
     }
   ]
 }

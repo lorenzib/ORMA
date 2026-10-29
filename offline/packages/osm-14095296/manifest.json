@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14095296",
   "name": "Les Marais d'Albens",
-  "version": "2026.10.24-beta.3",
-  "generatedAt": "2026-10-24T17:45:18.222Z",
+  "version": "2026.10.29-beta.4",
+  "generatedAt": "2026-10-29T11:40:26.821Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 533578,
+  "packageBytes": 558649,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.78551,
@@ -28,8 +28,8 @@
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 2221,
-    "edgeCount": 2235,
+    "nodeCount": 2250,
+    "edgeCount": 2263,
     "trailNodeCount": 266,
     "maxRejoinRouteM": 1500
   },
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Les Marais d'Albens OSM offline map",
       "url": "map.svg",
-      "bytes": 311160,
-      "sha256": "b2673618526aa67c7dfe7fce6d2d7d6911a41315b650fb3f436b09ed5e494b47"
+      "bytes": 334742,
+      "sha256": "da536b97778473d584940361f16cb88e827ec84082ef1fc280db9a399e7405b8"
     },
     {
       "role": "route",
@@ -216,8 +216,8 @@
       "required": true,
       "label": "Les Marais d'Albens routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 109655,
-      "sha256": "31b3d6af1c0b56b6be25a25a36ec006d5608b9588cf0ef4617acf795f351308f"
+      "bytes": 111144,
+      "sha256": "49ca0826b80491a6567377a121352870dfed213c178c77295f20bd9d3df003f7"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Les Marais d'Albens safety information",
       "url": "safety.json",
       "bytes": 1239,
-      "sha256": "96c870461155cc3a3e30b50c1b15bf88246ed4e3ef7eb1029239b9ab8ded867c"
+      "sha256": "0357c2ab6290b80b8d66b506e2d5954985d59c698b89e2916f69f465a71bccbc"
     }
   ]
 }

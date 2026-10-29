@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12173984",
   "name": "Große Schlossrunde",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:22.309Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:10:06.163Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 743252,
@@ -217,7 +217,7 @@
       "label": "Große Schlossrunde routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 170303,
-      "sha256": "ef90de7fa5aa6d58540a14463de1a8abfa7646f499e8fdda65ab8fbf17a80cfd"
+      "sha256": "7ccfb2f84977c79a3cd063da9c3c0fc561d7bcf38ddf90e5401487fa38bd3970"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Große Schlossrunde safety information",
       "url": "safety.json",
       "bytes": 1988,
-      "sha256": "25ff8ab0bfeee94130abedae41930955d5abe8daf933532019e4c6229c13356f"
+      "sha256": "1befa565b7ae710c4b739539289ee693c072adbf6622de00467580f49161bbd8"
     }
   ]
 }

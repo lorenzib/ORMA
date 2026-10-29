@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "sentiero-del-trenino",
   "name": "Sentiero del Trenino",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:44:39.398Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:36:29.170Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 3204649,
+  "packageBytes": 3204457,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.53309,
@@ -28,8 +28,8 @@
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 26318,
-    "edgeCount": 26775,
+    "nodeCount": 26314,
+    "edgeCount": 26772,
     "trailNodeCount": 1096,
     "maxRejoinRouteM": 1500
   },
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sentiero del Trenino OSM offline map",
       "url": "map.svg",
-      "bytes": 1732458,
-      "sha256": "bfea6e9fa2384865de2b1c24fc9e16c3a95270a95a1ce4deafdc95184fcbeb15"
+      "bytes": 1732447,
+      "sha256": "8f45f21b979de355fdc99aed4f0e2449cba967d83aba652a567dc88af8473071"
     },
     {
       "role": "route",
@@ -216,8 +216,8 @@
       "required": true,
       "label": "Sentiero del Trenino routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 1352922,
-      "sha256": "896be8bc68947191bcf9ad6bef92de83b94548b74f37f5ca5198158b78c0b0a7"
+      "bytes": 1352741,
+      "sha256": "215a00ad016a44322b69d548c5f908ba8ec2bd4181c0a63cce23813e8d00a35b"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Sentiero del Trenino safety information",
       "url": "safety.json",
       "bytes": 3014,
-      "sha256": "878d94c964c34173e29b0d07149b42eb1c37cf86752e52e907b01edf4d0b2cb6"
+      "sha256": "18b13ef5f29182ead44a53b3a3cdb7ef06f985341b26e37c240c5985eb1015d5"
     }
   ]
 }

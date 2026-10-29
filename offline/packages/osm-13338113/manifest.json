@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-13338113",
   "name": "Lac de Darbon",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:11.586Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T13:15:53.374Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 501476,
+  "packageBytes": 502396,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.32693,
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lac de Darbon OSM offline map",
       "url": "map.svg",
-      "bytes": 201840,
-      "sha256": "b6c0cb2cba1295306bdb54a0b7b06b55e3f433c1b56000e72541fcf6af1e3c15"
+      "bytes": 202760,
+      "sha256": "4ec825cd5a6a06e3bb9a5347c82da12a71a7d55d2c1cc26b4b67e85d96575b0f"
     },
     {
       "role": "route",
@@ -217,7 +217,7 @@
       "label": "Lac de Darbon routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 181881,
-      "sha256": "cc73979add84df431a660b1c1bfe558a441658aee14f0e54566af08a013b0360"
+      "sha256": "fd2f7300036ce41650f2ee7c01a33db6c48618df99932d9c098cdfb22cf42efa"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Lac de Darbon safety information",
       "url": "safety.json",
       "bytes": 1784,
-      "sha256": "620f5c5ca0a3bd6710d896062629d7b8469d54e2e781bc14b657ba169526048a"
+      "sha256": "50db6dcab96ddb9eb23db9798d55d82bb0c48af570e9ceaa00d92dde753a1678"
     }
   ]
 }

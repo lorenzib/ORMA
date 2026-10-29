@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-19541366",
   "name": "Lac Blanc",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:12.104Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T13:29:01.626Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 336539,
@@ -217,7 +217,7 @@
       "label": "Lac Blanc routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 112998,
-      "sha256": "b594a539f563f942c4730eedf582457a7dc22835e478b0555102c835aa1c42c6"
+      "sha256": "d9c29df66f293330abf8b30d2ca69e2546f9f0e0c7dec274eb6abf5fa256dcc2"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Lac Blanc safety information",
       "url": "safety.json",
       "bytes": 1223,
-      "sha256": "c001ed325fdad1d9e07c1fb33f217a6966045aa143fd918fce9351cc856e169e"
+      "sha256": "1510841a82e3ea7bab68377159da0fc7fdeec63e71c16ba94f009bba10b6d0ec"
     }
   ]
 }

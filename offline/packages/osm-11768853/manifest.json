@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-11768853",
   "name": "Panoramaweg in Feldthurns",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:50:53.128Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:44:36.083Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 642507,
@@ -217,7 +217,7 @@
       "label": "Panoramaweg in Feldthurns routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 156917,
-      "sha256": "ed1f93ab0125ff0199a9c3b1a584f88ee44743b60d47530ff9e2022dd0f86f89"
+      "sha256": "697d764ed85f3320d377684cb3651739a7f11490b7449eec5157f7b51c524999"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Panoramaweg in Feldthurns safety information",
       "url": "safety.json",
       "bytes": 1569,
-      "sha256": "a7320b3687481b556d75c9af562f22eca16cb45eb6b64a600b123edaf090feec"
+      "sha256": "0b1a6c99cd8185c1c257b212151e05d53a6e9da9699e5032e55b499c9dfb4d07"
     }
   ]
 }

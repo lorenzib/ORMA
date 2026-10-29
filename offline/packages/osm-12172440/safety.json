@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "trailId": "osm-12172440",
-  "generatedAt": "2026-10-23T00:00:00Z",
+  "generatedAt": "2026-10-29T00:00:00Z",
   "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
@@ -52,7 +52,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-10-23",
+      "downloadedAt": "2026-10-29",
       "licence": "ODbL"
     }
   ]
