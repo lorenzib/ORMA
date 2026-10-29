@@ -1719,20 +1719,29 @@ function renderTrail(t){
   (function(){
     const factsEl = document.getElementById('trailFacts');
     if(!factsEl) return;
+    // A one-way walk gets a switch to see it walked there and back: the facts,
+    // the Match cell and the verdict card all follow it (route-return.js).
+    const routeReturn = window.ORMARouteReturn;
+    const oneWay = !!(routeReturn && routeReturn.isOneWay(t));
+    if(oneWay) renderRouteSwitch(factsEl, routeReturn);
+    let statMatch, statMatchLink, statMatchVal, statMatchSub;
+    function renderFacts(){
+    const shown = oneWay ? routeReturn.forView(t) : t;
+    const back = shown !== t;
     const facts = [
-      [`${t.distance} km`, window.t('trail.fact.distance')],
-      [`${t.elevation} m`, window.t('trail.fact.ascent')],
-      [`${t.hours} h`, window.t('trail.fact.duration')],
-    ].filter(([val]) => !/^null|^undefined/.test(val)); // hide facts the data honestly lacks
+      [`${shown.distance} km`, window.t('trail.fact.distance')],
+      [`${shown.elevation} m`, back ? routeLabel('trail.fact.ascentBack', 'Up, same down') : window.t('trail.fact.ascent')],
+      [`${back ? '≈ ' : ''}${shown.hours} h`, window.t('trail.fact.duration')],
+    ].filter(([val]) => !/null|undefined/.test(val)); // hide facts the data honestly lacks
     if(Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1){
       facts.splice(2, 0, [`${Math.max(...t.elevationProfile.map(p => p.elev))} m`, window.t('trail.fact.high')]);
     }
     // Difficulty cell, mirrors the homepage's derivation from real fields so
     // the hero stat strip matches the design's five-cell layout.
     (function(){
-      const asc = Number(t.elevation) || 0;
+      const asc = Number(shown.elevation) || 0;
       const rank = Number(t.terrainRank) || 0;
-      const km = Number(t.distance) || 0;
+      const km = Number(shown.distance) || 0;
       const diff = (asc >= 400 || (rank >= 2 && asc >= 250)) ? 'Hard'
         : (asc >= 180 || km >= 6 || rank >= 2) ? 'Moderate' : 'Easy';
       facts.push([diff, window.t('trail.fact.difficulty')]);
@@ -1750,10 +1759,12 @@ function renderTrail(t){
       + multiDayCell
       + facts.map(([val, label]) =>
         `<span class="f"><b>${val}</b><span>${label}</span></span>`).join('');
-    const statMatch = document.getElementById('statMatch');
-    const statMatchLink = document.getElementById('statMatchLink');
-    const statMatchVal = document.getElementById('statMatchVal');
-    const statMatchSub = document.getElementById('statMatchSub');
+    statMatch = document.getElementById('statMatch');
+    statMatchLink = document.getElementById('statMatchLink');
+    statMatchVal = document.getElementById('statMatchVal');
+    statMatchSub = document.getElementById('statMatchSub');
+    }
+    renderFacts();
 
     // Personal match, needs a logged-in profile. Guests see the facts
     // plus an honest invitation: the score exists, it just isn't theirs yet.
@@ -1780,7 +1791,8 @@ function renderTrail(t){
       }
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if(!profile){ paintMatchTeaser(); return; }
-        const recommendation = recommendTrail(t, effectiveOverrides(profile, null),
+        const scored = oneWay ? routeReturn.forView(t) : t;
+        const recommendation = recommendTrail(scored, effectiveOverrides(profile, null),
           window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(t));
         const n = recommendation.score;
         applyDetailRouteColor(detailRouteColorForScore(n));
@@ -1813,7 +1825,63 @@ function renderTrail(t){
     // Repaint when auth state resolves or changes, so a logged-in visitor
     // never keeps the guest teaser (and vice versa after logout).
     window.addEventListener('dolopaws-auth-changed', paintMatch);
+    if(oneWay){
+      window.addEventListener('orma-route-view-changed', () => {
+        renderFacts();
+        if(window.DoloPawsAuth) paintMatch();
+      });
+    }
   })();
+
+  function routeLabel(key, fallback){
+    const text = window.t ? window.t(key) : '';
+    return text && text !== key ? text : fallback;
+  }
+
+  // Two buttons, one pressed, above the facts strip. The walk opens on the
+  // authority's own one-way figures.
+  function renderRouteSwitch(factsEl, routeReturn){
+    if(document.getElementById('routeViewSwitch')) return;
+    const wrap = document.createElement('div');
+    wrap.id = 'routeViewSwitch';
+    wrap.className = 'td2-route-switch';
+    wrap.setAttribute('role', 'group');
+    wrap.setAttribute('aria-label', routeLabel('trail.routeView.label', 'Show the figures for'));
+    const views = [
+      [routeReturn.VIEWS.OUT_AND_BACK, routeLabel('trail.routeView.outAndBack', 'Out and back')],
+      [routeReturn.VIEWS.ONE_WAY, routeLabel('trail.routeView.oneWay', 'One way')],
+    ];
+    const note = document.createElement('span');
+    note.className = 'td2-route-switch-note';
+    const paint = () => {
+      wrap.querySelectorAll('button').forEach(button => {
+        const on = button.dataset.routeView === routeReturn.view();
+        button.classList.toggle('is-on', on);
+        button.setAttribute('aria-pressed', String(on));
+      });
+      note.textContent = routeReturn.view() === routeReturn.VIEWS.OUT_AND_BACK
+        ? routeLabel('trail.routeView.noteBack', 'Walking back the same way')
+        : routeLabel('trail.routeView.noteOneWay', 'Ends away from the start');
+    };
+    views.forEach(([value, label]) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.routeView = value;
+      button.textContent = label;
+      button.addEventListener('click', () => { routeReturn.setView(value); paint(); });
+      wrap.appendChild(button);
+    });
+    wrap.appendChild(note);
+    paint();
+    // The hero lays its parts out by grid area, so the switch and the strip
+    // share the facts area inside one block rather than the switch landing in
+    // a row of its own.
+    const block = document.createElement('div');
+    block.className = 'td2-facts-block';
+    factsEl.parentNode.insertBefore(block, factsEl);
+    block.appendChild(wrap);
+    block.appendChild(factsEl);
+  }
 
   // "Good to know", curated insights (history, geology, best practice)
   // with cited sources, for trails that have them in trails-data.js.

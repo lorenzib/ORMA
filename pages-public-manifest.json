@@ -141,6 +141,7 @@
     "route-planner.html",
     "route-planner.js",
     "route-rejoin.js",
+    "route-return.js",
     "safety-guide.html",
     "saved.html",
     "scoring-conditions.js",

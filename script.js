@@ -3594,9 +3594,14 @@ function liExposureLabel(exposure){
 // Row meta per the design TrailRow: "7.5 km · 150 m climb · 2–2.5 h · little shade"
 // Cautions follow the measured facts, gravest first.
 function liRowMeta(t){
-  const parts = [`${t.distance} km`];
-  if(Number.isFinite(t.elevation)) parts.push(`${t.elevation} m climb`);
-  if(t.hours) parts.push(`${t.hours} h`);
+  // A one-way walk is shown, and scored, there and back (route-return.js).
+  const routeReturn = window.ORMARouteReturn;
+  const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
+  const back = shown !== t;
+  const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:shown.distance }) : ''; return v && v !== key ? v : fallback; };
+  const parts = [back ? tr('card.thereAndBack', `${shown.distance} km there and back`) : `${t.distance} km`];
+  if(Number.isFinite(shown.elevation)) parts.push(`${shown.elevation} m climb`);
+  if(shown.hours) parts.push(`${back ? '≈ ' : ''}${shown.hours} h`);
   const exposure = liExposureLabel(t.exposure);
   if(exposure) parts.push(exposure);
   const shade = liShadeLabel(t.shadeCoverage);

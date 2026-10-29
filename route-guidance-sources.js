@@ -73,7 +73,61 @@
     return { lines: stripped, note };
   }
 
-  const api = { SOURCES, splitSources };
+  const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+    'August', 'September', 'October', 'November', 'December'];
+  function readOn(value) {
+    const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(value || ''));
+    return match ? `${Number(match[3])} ${MONTHS[Number(match[2]) - 1]} ${match[1]}` : '';
+  }
+
+  const STEPS_BADGE = 'This walk has no trail number of its own: follow these landmarks';
+
+  /**
+   * A walk with no trail numbers, given turn by turn (OPERATING_STANDARD.md,
+   * "A walk with no number says how to follow it"). Each step names the
+   * sources it rests on by their place in `guidance.sources`, and each source
+   * carries the short tag the card prints after the step -- "tourist office",
+   * "map" -- so a reader can tell the operator's own words from what ORMA read
+   * off OpenStreetMap to place them.
+   *
+   * All or nothing: a step citing no source, or a source with no https link,
+   * date or tag, and the card shows the Route and Key turns lines instead,
+   * which every landmark record still carries.
+   */
+  function landmarkSteps(guidance) {
+    if (!guidance || guidance.mode !== 'landmarks') return null;
+    const sources = Array.isArray(guidance.sources) ? guidance.sources : [];
+    const steps = Array.isArray(guidance.steps) ? guidance.steps : [];
+    const usable = index => {
+      const source = sources[index];
+      return Boolean(source && String(source.tag || '').trim() && String(source.label || '').trim()
+        && /^https:\/\//.test(source.url || '') && readOn(source.reviewedAt));
+    };
+    const sourced = step => Boolean(step && String(step.text || '').trim()
+      && Array.isArray(step.from) && step.from.length > 0 && step.from.every(usable));
+    if (!steps.length || !steps.every(sourced)) return null;
+    const used = [...new Set(steps.flatMap(step => step.from))].sort((a, b) => a - b);
+    return {
+      badge: STEPS_BADGE,
+      steps: steps.map(step => ({
+        text: String(step.text).trim(),
+        tags: [...new Set(step.from.map(index => String(sources[index].tag).trim()))],
+      })),
+      // One line per source: `${before}${label}${after}`, the label linked.
+      credits: used.map(index => {
+        const source = sources[index];
+        const by = String(source.authority || '').trim();
+        return {
+          before: `Steps marked “${String(source.tag).trim()}”: `,
+          label: String(source.label).trim(),
+          url: source.url,
+          after: `${by ? `, ${by}` : ''}, read ${readOn(source.reviewedAt)}.`,
+        };
+      }),
+    };
+  }
+
+  const api = { SOURCES, STEPS_BADGE, splitSources, landmarkSteps };
   global.DoloPawsRouteGuidanceSources = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

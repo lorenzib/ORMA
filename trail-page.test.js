@@ -245,7 +245,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20261006-1');
-    expect(html).toContain('trail-app.bundle.js?v=20261028-1');
+    expect(html).toContain('trail-app.bundle.js?v=20261029-2');
     expect(html).toContain('trail-mobile.css?v=20260904-3');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
@@ -385,7 +385,8 @@ describe('trail page map controls', () => {
     expect(blueprint).toContain('marked only on the verified section');
     expect(blueprint).toContain('aroundGrid.innerHTML = routeRefMarkup ? renderCards([routeCard])');
     expect(blueprint).toContain('<b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route.');
-    expect(blueprint).toContain('? `${routeBadges}<div class="s">${guidanceLines.map(');
+    expect(blueprint).toContain('? `${routeBadges}<div class="s">${guidanceSteps ? `<p class="td2-route-badge">');
+    expect(blueprint).toContain('guidanceLines.map(([label, text]) => label === \'Start\'');
     expect(blueprint).not.toContain('does not publish a usable trail number or numbered switch');
     expect(html).toContain('.td2-route-ref{display:inline-flex;');
     expect(html).toContain('.td2-route-switch-list{display:grid;');

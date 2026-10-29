@@ -552,6 +552,7 @@
     // The forecast usually arrives after the first paint. Without this the card
     // keeps a score calculated before the day was known.
     window.addEventListener('dolopaws-conditions-ready', paintPersonalMatch);
+    window.addEventListener('orma-route-view-changed', paintPersonalMatch);
 
     // Trail description inside the white box
     const descEl = $('matchDescription');
@@ -711,19 +712,33 @@
     };
     // Each value ends with where it came from; the card says that once, under
     // the lines, instead of after every one of them (route-guidance-sources.js).
+    // A walk with no numbers, turn by turn: the steps take the place of the
+    // Route and Key turns lines, each tagged with the source it rests on.
+    const guidanceSteps = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
+      ? window.DoloPawsRouteGuidanceSources.landmarkSteps(verifiedRouteGuidance)
+      : null;
     const guidanceSplit = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
       ? window.DoloPawsRouteGuidanceSources.splitSources([
         ['Start', verifiedRouteGuidance.start],
-        ...(guidanceStatus ? [['Trail numbers', guidanceStatus]] : []),
-        [guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route', verifiedRouteGuidance.sequence],
-        [guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch', verifiedRouteGuidance.switches],
+        ...(guidanceStatus && !guidanceSteps ? [['Trail numbers', guidanceStatus]] : []),
+        ...(guidanceSteps ? [] : [
+          [guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route', verifiedRouteGuidance.sequence],
+          [guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch', verifiedRouteGuidance.switches],
+        ]),
       ])
       : null;
     const guidanceLines = guidanceSplit ? guidanceSplit.lines : [];
+    const stepsMarkup = guidanceSteps
+      ? `<ol class="td2-route-steps">${guidanceSteps.steps.map(step =>
+        `<li>${esc(step.text)} <span class="td2-route-step-from">${esc(step.tags.join(', '))}</span></li>`).join('')}</ol>${
+        guidanceSteps.credits.map(credit => `<p class="td2-route-source">${esc(credit.before)}<a href="${
+          esc(credit.url)}" target="_blank" rel="noopener">${esc(credit.label)}</a>${esc(credit.after)}</p>`).join('')}`
+      : '';
     const routeRefMarkup = verifiedRouteGuidance && guidanceSplit
-      ? `${routeBadges}<div class="s">${guidanceLines.map(([label, text]) => label === 'Start'
+      ? `${routeBadges}<div class="s">${guidanceSteps ? `<p class="td2-route-badge">${esc(guidanceSteps.badge)}</p>` : ''}${
+        guidanceLines.map(([label, text]) => label === 'Start'
         ? `<p>${startLine(text)}</p>`
-        : `<p><b>${esc(label)}:</b> ${esc(text)}</p>`).join('')}${
+        : `<p><b>${esc(label)}:</b> ${esc(text)}</p>`).join('')}${stepsMarkup}${
         guidanceSplit.note ? `<p class="td2-route-source">${esc(guidanceSplit.note)}</p>` : ''
       }</div>`
       : routeRefs.length
