@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "kronplatz-sentiero-tematico-tru-dles-liondes",
+  "distanceKm": 2.9,
+  "ascentM": 60,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1203
+    },
+    {
+      "km": 0.2,
+      "elev": 1229
+    },
+    {
+      "km": 0.5,
+      "elev": 1219
+    },
+    {
+      "km": 0.7,
+      "elev": 1224
+    },
+    {
+      "km": 0.9,
+      "elev": 1222
+    },
+    {
+      "km": 1.1,
+      "elev": 1226
+    },
+    {
+      "km": 1.3,
+      "elev": 1232
+    },
+    {
+      "km": 1.5,
+      "elev": 1245
+    },
+    {
+      "km": 1.7,
+      "elev": 1243
+    },
+    {
+      "km": 2,
+      "elev": 1233
+    },
+    {
+      "km": 2.2,
+      "elev": 1226
+    },
+    {
+      "km": 2.4,
+      "elev": 1226
+    },
+    {
+      "km": 2.6,
+      "elev": 1210
+    },
+    {
+      "km": 2.8,
+      "elev": 1203
+    },
+    {
+      "km": 2.9,
+      "elev": 1203
+    }
+  ]
+}
