@@ -58,13 +58,20 @@ describe('a one-way walk seen there and back', () => {
     expect(routeReturn.outAndBack({ ...level, routeShape:'loop' })).toBeNull();
   });
 
-  test('forView follows the chosen view and never changes the record', () => {
-    expect(routeReturn.forView(level)).toBe(level);
-    routeReturn.setView(routeReturn.VIEWS.OUT_AND_BACK);
+  test('a one-way walk opens there and back, and one way is the choice', () => {
+    // Most readers walk back to the car, so the default is the walk back.
+    expect(routeReturn.view()).toBe(routeReturn.VIEWS.OUT_AND_BACK);
     expect(routeReturn.forView(level).distance).toBe(5.2);
     expect(level.distance).toBe(2.6);
     routeReturn.setView(routeReturn.VIEWS.ONE_WAY);
     expect(routeReturn.forView(level)).toBe(level);
+    routeReturn.setView(routeReturn.VIEWS.OUT_AND_BACK);
+    expect(routeReturn.forView(level).distance).toBe(5.2);
+  });
+
+  test('a copy already worked out is not doubled again', () => {
+    const copy = routeReturn.forView(level);
+    expect(routeReturn.forView(copy)).toBe(copy);
   });
 });
 

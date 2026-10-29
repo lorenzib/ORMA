@@ -978,6 +978,7 @@
 <script src="scoring/recommendation-v1.js?v=20260917-1"></script>
 <script src="scoring/recommendation-adapters-v1.js?v=20260917-1"></script>
 <script src="scoring-conditions.js?v=1"></script>
+<script src="route-return.js?v=20261029-1"></script>
 <script src="scoring.js?v=20260815-4"></script>
 <script type="module" src="firebase-init.js?v=20260917-1"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
@@ -1747,11 +1748,12 @@
         const provenance = icons
           ? icons.badgeHtml(provStyle, provenanceLabel)
           : `<span class="badge-pill badge-${provStyle}">${provenanceLabel}</span>`;
-        // A one-way walk's figures cover one direction; the card says so and
-        // gives the walk back, so nobody plans 3.5 km for a 7 km day.
-        const oneWay = t.routeShape === 'point-to-point' && Number(t.distance) > 0
-          ? `${bt('card.oneWay', 'One way')} (${bt('card.thereAndBack', '{km} km there and back', { km: Math.round(Number(t.distance) * 20) / 10 })})` : null;
-        const meta = [t.distance ? `${t.distance} km` : null, t.elevation != null ? `${t.elevation} m climb` : null, t.hours ? `${t.hours} h` : null, oneWay, t.area]
+        // A one-way walk is shown, and scored, there and back, so nobody
+        // plans 3.5 km for a 7 km day (route-return.js).
+        const routeReturn = window.ORMARouteReturn;
+        const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
+        const back = shown !== t;
+        const meta = [shown.distance ? (back ? bt('card.thereAndBack', '{km} km there and back', { km: shown.distance }) : `${shown.distance} km`) : null, shown.elevation != null ? `${shown.elevation} m climb` : null, shown.hours ? `${back ? '≈ ' : ''}${shown.hours} h` : null, t.area]
           .filter(Boolean).join(' · ');
         const verdict = matchVerdict(t);
         const tier = verdict.label;
