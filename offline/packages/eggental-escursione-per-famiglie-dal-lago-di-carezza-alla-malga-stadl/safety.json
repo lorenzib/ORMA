@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl",
+  "generatedAt": "2026-10-29T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.2,
+    "ascentM": 32,
+    "highestPointM": 1571,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 21
+  },
+  "trailhead": {
+    "lat": 46.41032,
+    "lng": 11.57585,
+    "label": "Lago di Carezza (Karersee) car park, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.410942,
+      "lng": 11.575629,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Busy around the lake in summer: keep your dog close and outside the lake fence.",
+    "About 12% on tarred lanes near the lake and the hut: watch for local traffic.",
+    "The Stadlalm has a playground and farm animals: dogs may not enter the playground, and keep your dog away from the animals.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-29"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-29",
+      "licence": "ODbL"
+    }
+  ]
+}

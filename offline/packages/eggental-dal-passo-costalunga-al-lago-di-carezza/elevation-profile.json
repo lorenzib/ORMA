@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "eggental-dal-passo-costalunga-al-lago-di-carezza",
+  "distanceKm": 4.4,
+  "ascentM": 18,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1753
+    },
+    {
+      "km": 0.3,
+      "elev": 1759
+    },
+    {
+      "km": 0.7,
+      "elev": 1744
+    },
+    {
+      "km": 1,
+      "elev": 1746
+    },
+    {
+      "km": 1.3,
+      "elev": 1762
+    },
+    {
+      "km": 1.7,
+      "elev": 1713
+    },
+    {
+      "km": 2,
+      "elev": 1678
+    },
+    {
+      "km": 2.4,
+      "elev": 1668
+    },
+    {
+      "km": 2.7,
+      "elev": 1622
+    },
+    {
+      "km": 3,
+      "elev": 1617
+    },
+    {
+      "km": 3.3,
+      "elev": 1604
+    },
+    {
+      "km": 3.7,
+      "elev": 1579
+    },
+    {
+      "km": 4,
+      "elev": 1566
+    },
+    {
+      "km": 4.4,
+      "elev": 1534
+    }
+  ]
+}
