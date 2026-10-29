@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle",
+  "distanceKm": 4.9,
+  "ascentM": 318,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1020
+    },
+    {
+      "km": 0.4,
+      "elev": 1040
+    },
+    {
+      "km": 0.8,
+      "elev": 1061
+    },
+    {
+      "km": 1.1,
+      "elev": 1078
+    },
+    {
+      "km": 1.5,
+      "elev": 1073
+    },
+    {
+      "km": 2,
+      "elev": 1089
+    },
+    {
+      "km": 2.3,
+      "elev": 1109
+    },
+    {
+      "km": 2.6,
+      "elev": 1153
+    },
+    {
+      "km": 3,
+      "elev": 1157
+    },
+    {
+      "km": 3.4,
+      "elev": 1190
+    },
+    {
+      "km": 3.8,
+      "elev": 1227
+    },
+    {
+      "km": 4.1,
+      "elev": 1284
+    },
+    {
+      "km": 4.5,
+      "elev": 1310
+    },
+    {
+      "km": 4.9,
+      "elev": 1322
+    }
+  ]
+}
