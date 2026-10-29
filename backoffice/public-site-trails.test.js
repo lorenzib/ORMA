@@ -157,9 +157,12 @@ describe('the existing-site verification boundary',()=>{
     // round Techendorf and Gatschach, the Kreuzwirt walk, the Slow Trail, the
     // north-shore walk from Neusach and the Was(s)erleben nature trail.
     // Then 393 and 391 with the Auernig ridge walk on the border at the Nassfeld.
+    // Then 398 and 396 with five Kronplatz walks, and 402 and 400 with four more:
+    // Brach to Pieve di Marebbe, Valdaora di Sopra to the Alte Goste, the Gais
+    // channel path loop and San Lorenzo to Maria Sares.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(398);
-    expect(currentSiteTrails(catalogue)).toHaveLength(396);
+    expect(catalogue).toHaveLength(402);
+    expect(currentSiteTrails(catalogue)).toHaveLength(400);
   });
 
   test('requires the artwork the public trail page needs',()=>{

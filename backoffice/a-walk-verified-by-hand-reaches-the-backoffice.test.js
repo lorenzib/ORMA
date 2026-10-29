@@ -29,7 +29,7 @@ describe('a walk verified by hand reaches the backoffice', () => {
     expect(recorded.state).toBe(HAND_STATE);
     expect(recorded.blockers).toEqual([]);
     expect(recorded.handVerification).toEqual({ reviewedAt: '2026-10-23', reviewedBy: 'ORMA route audit',
-      sources: ['Tourist board page', 'Province trail register'], recordedAt: AT, previousState: 'evidence-research' });
+      sourceCount: 2, recordedAt: AT, previousState: 'evidence-research' });
     expect(validateTrailOrchestration(plan.orchestration)).toEqual([]);
   });
 
@@ -98,7 +98,7 @@ describe('a walk verified by hand reaches the backoffice', () => {
       completeSystemJob: async (id, fields) => retired.push([id, fields]),
     };
     const result = await recordHandVerifications(store, { productionTrails: [byHand('a')], at: AT });
-    expect(result).toEqual({ recorded: ['a'], withdrawn: [], retiredJobs: ['q-a'] });
+    expect(result).toEqual({ recorded: ['a'], withdrawn: [], compacted: [], retiredJobs: ['q-a'] });
     expect(writes[0][0]).toBe('trail-orchestration');
     expect(writes[0][1].summary.states).toEqual({ [HAND_STATE]: 1 });
     expect(retired[0][1]).toMatchObject({ retiredReason: RETIRED_REASON, retiredFrom: 'queued' });
@@ -138,7 +138,7 @@ describe('the pipeline leaves a hand-verified trail alone', () => {
 describe('the board shows it beside Passed, not inside it', () => {
   const board = (flows, trails) => buildTrailBoard({ trails, orchestration: orchestration(flows), at: AT, slugs: {} });
 
-  test('a recorded hand verification is its own stage with its sources, and no disagreement', () => {
+  test('a recorded hand verification is its own stage with its sources, read from the published record, and no disagreement', () => {
     const recorded = planHandVerifications({ trails: [byHand('a')], orchestration: orchestration([flow('a', 'rejected')]), at: AT }).orchestration;
     const b = board(recorded.trails, [byHand('a')]);
     const row = b.trails[0];

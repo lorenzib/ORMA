@@ -245,7 +245,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20261006-1');
-    expect(html).toContain('trail-app.bundle.js?v=20261016-1');
+    expect(html).toContain('trail-app.bundle.js?v=20261029-1');
     expect(html).toContain('trail-mobile.css?v=20260904-3');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
@@ -348,9 +348,9 @@ describe('trail page map controls', () => {
     const story = document.querySelector('.td2-story');
     const contentColumn = document.querySelector('.td2-content-column');
     const sidebarColumn = document.querySelector('.td2-sidebar-column');
-    // What the walk is, then what is on it, then what other people said.
+    // What the walk is, then what other people said.
     expect(Array.from(story.children).map(node => node.id)).toEqual([
-      'td2AboutCard', 'td2OnRouteCard', 'td2PhotosCard', 'td2ReviewsCard'
+      'td2AboutCard', 'td2PhotosCard', 'td2ReviewsCard'
     ]);
     expect(story.parentElement).toBe(contentColumn);
     expect(story.previousElementSibling.classList.contains('td2-map-stack')).toBe(true);
@@ -439,57 +439,26 @@ describe('trail page map controls', () => {
   });
 
 
-  // The rifugi, the lifts and the water points were rendered into
-  // #trailDetailContent, which carries the `hidden` attribute. From 15 July
-  // until this change every visitor got the markup and none of them could see
-  // it: a walk past three rifugi and a stream named none of them, and only
-  // dots on the map said otherwise. 130 of the 162 trails have something to
-  // name here.
-  test('what the route passes is in a card a visitor can see', () => {
+  // The "On this route" card listed water points by km, which the map and
+  // the itinerary already show. It was removed on 28 Oct 2026 at the owner's
+  // request; nothing on the page may write it back.
+  test('the trail page has no "On this route" card', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const trailJs = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
+    const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
 
-    // A card of its own, hidden until something is written into it.
-    expect(html).toContain('<div class="td2-card td2-section" id="td2OnRouteCard" hidden>');
-    expect(html).toContain('<div id="td2OnRouteBody"></div>');
-
-    // Written to the visible card, never again to the retired hidden node.
-    expect(trailJs).toContain('paintOnRouteCard(t);');
-    expect(trailJs).not.toContain("document.getElementById('trailDetailContent').innerHTML = renderTrailDetailContent(t)");
-    expect(trailJs).toContain('card.hidden = !markup;');
-  });
-
-  // 0 of 473 places on the route had a checked dog policy, so every row read
-  // "Not yet verified, check before you go". The card now lists only what has
-  // been checked, and stays hidden where nothing has.
-  test('the on-route card lists only what has been checked', () => {
-    const trailJs = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
-
-    expect(trailJs).toContain("window.DoloPawsTrailTrust.categoryVerified(t, 'water')");
-    expect(trailJs).not.toContain('Carry a backup supply.');
-    // The facts table is fetched even when nothing is listed yet, so a fact
-    // checked later shows without another change to the page.
-    expect(trailJs).toContain('if(!table) setTimeout(() => hydrateOnThisRoute(t), 0);');
-    expect(trailJs).not.toContain("if(!api || !document.getElementById('td2OnRoute')) return;");
-  });
-
-  test('the on-route card states each thing once', () => {
-    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
-    const trailJs = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
-
-    // The card's own kick is the heading; the list inside must not repeat it.
-    expect(html).toContain('<div class="td2-kick" style="margin-bottom:14px;">On this route</div>');
-    expect(trailJs).not.toContain("<span>On this route</span>");
-
-    // The old "Rifugi on the way" list named the same huts at the same
-    // kilometres as the places list directly above it.
-    expect(trailJs).not.toContain("window.t('trail.rifugiHead')");
-
-    // Unreviewed water is no longer listed, so neither caveat is needed.
-    expect(trailJs).not.toContain('Availability can change. Carry a backup supply.');
-
-    // Water reads in the same list as the places above it.
-    expect(trailJs).toContain('<ul class="td2-onroute">${water.map(w =>');
+    expect(html).not.toContain('td2OnRouteCard');
+    expect(html).not.toContain('>On this route<');
+    for (const source of [trailJs, bundle]) {
+      expect(source).not.toContain('paintOnRouteCard');
+      expect(source).not.toContain('renderOnThisRoute');
+      expect(source).not.toContain('td2-onroute');
+    }
+    expect(bundle).not.toContain('// ---- route-operational-facts.js ----');
+    expect(css).not.toContain('.td2-onroute');
+    // The map keeps its water markers.
+    expect(trailJs).toContain("addWaypoint(w, 'water'");
   });
 
   test('card copy normalises long dash separators', () => {

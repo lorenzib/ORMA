@@ -3597,6 +3597,12 @@ function liRowMeta(t){
   const parts = [`${t.distance} km`];
   if(Number.isFinite(t.elevation)) parts.push(`${t.elevation} m climb`);
   if(t.hours) parts.push(`${t.hours} h`);
+  // A one-way walk's figures cover one direction; say so, with the walk back.
+  if(t.routeShape === 'point-to-point' && Number(t.distance) > 0){
+    const km = Math.round(Number(t.distance) * 20) / 10;
+    const tr = (key, fallback) => { const v = window.t ? window.t(key, { km }) : ''; return v && v !== key ? v : fallback; };
+    parts.push(`${tr('card.oneWay', 'One way')} (${tr('card.thereAndBack', `${km} km there and back`)})`);
+  }
   const exposure = liExposureLabel(t.exposure);
   if(exposure) parts.push(exposure);
   const shade = liShadeLabel(t.shadeCoverage);

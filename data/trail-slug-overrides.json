@@ -1333,6 +1333,26 @@
       "name": "Antermoia to Rina",
       "slug": "antermoia-colac-rina",
       "gloss": "the farm-slope walk from Antermoia to Rina"
+    },
+    "kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe": {
+      "name": "Brach to Pieve di Marebbe",
+      "slug": "brach-pieve-di-marebbe",
+      "gloss": "the barrier-free road walk into La Pli de Mareo"
+    },
+    "kronplatz-valdaora-di-sopra-goste": {
+      "name": "Valdaora di Sopra to the Alte Goste",
+      "slug": "oberolang-alte-goste",
+      "gloss": "path 21B to the old inn by the Olang reservoir"
+    },
+    "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": {
+      "name": "The Gais channel path loop",
+      "slug": "gais-waalweg-loop",
+      "gloss": "the level irrigation-channel path through the woods above Gais"
+    },
+    "kronplatz-san-lorenzo-maria-sares": {
+      "name": "San Lorenzo to Maria Sares",
+      "slug": "st-lorenzen-maria-saalen",
+      "gloss": "paths 8A and 9 to the pilgrimage church"
     }
   }
 }

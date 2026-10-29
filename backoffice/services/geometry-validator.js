@@ -23,7 +23,9 @@ function distanceMeters(a, b){
 //
 // The shape defaults to 'loop', so nothing changes for a trail that has not
 // been declared: only a trail whose shape a human has stated is judged by it.
-const ROUTE_SHAPES = Object.freeze(['loop', 'out-and-back', 'point-to-point']);
+// A lollipop is a loop on a stem walked both ways: it comes back to its start,
+// so it is held to closing like a loop.
+const ROUTE_SHAPES = Object.freeze(['loop', 'out-and-back', 'point-to-point', 'lollipop']);
 
 // `roundtrip` is OSM's own statement about whether a route comes back to where it
 // started, and this catalogue already trusts it elsewhere — see
@@ -37,7 +39,7 @@ const ROUTE_SHAPES = Object.freeze(['loop', 'out-and-back', 'point-to-point']);
 // neither says anything. Only an explicit tag counts — inferring "not a loop"
 // from a missing tag would fault nothing and exempt everything.
 function isCircularRoute(options = {}){
-  if(ROUTE_SHAPES.includes(options.routeShape)) return options.routeShape === 'loop';
+  if(ROUTE_SHAPES.includes(options.routeShape)) return options.routeShape === 'loop' || options.routeShape === 'lollipop';
   if(options.roundtrip === true) return true;
   if(options.roundtrip === false) return false;
   return true;

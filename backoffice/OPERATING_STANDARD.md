@@ -1060,8 +1060,12 @@ So the record is copied across, honestly:
   own orchestration state, **`verified-by-hand`**. Never to
   `ready-for-editorial`: the evidence policy did not pass it, and saying it did
   would make the pipeline's own pass rate a lie.
-- The state keeps who verified it, when, on which sources, and where the
-  pipeline had got to (`handVerification.previousState`). A walk verified by
+- The state keeps who verified it, when, how many sources it rests on, and
+  where the pipeline had got to (`handVerification.previousState`). The
+  sources themselves stay in the published record and the board reads them
+  from there: copied onto every record they were most of the orchestration,
+  and on 28 October they took it past Firestore's per-document ceiling and
+  stopped the worker (#1143). A walk verified by
   hand before the pipeline ever admitted it gets a record too, so the intake
   never admits it to be researched again.
 - A trail the evidence policy had already passed is left as it is.
@@ -1082,6 +1086,49 @@ So the record is copied across, honestly:
   keeps meaning what the evidence policy approved. "Record and site disagree"
   is kept for a real disagreement: a record that says verified by hand while
   the site does not.
+
+## A board walk is Verified only if it can be followed
+
+> Proposed 28 October 2026; takes effect when merged.
+
+A walk from a tourist board's list is drawn on OSM paths along the line the
+board publishes (`scripts/build-board-line.js`). The builder checked that the
+drawn line was the board's walk -- 95% of each within 25 m of the other, the
+length within 10% -- and that was taken as enough. It is not. Ortisei – Passo
+Sella passed at 100% and went Verified with a line that runs 400 m up a road
+and straight back, and again 200 m further on, and a page whose only direction
+was "Follow the mapped ORMA line and local destination signs".
+
+So a board walk is Verified only when, besides the authority's climb and time
+and the rest of the hand audit:
+
+- **The line is clean.** It never goes out along a path and comes straight
+  back mid-walk (more than 50 m retraced on the same path -- longer than any
+  snapping step), and it never runs over itself, unless the audit declares
+  that shape: an `out-and-back` turns once near the middle, a `lollipop` walks
+  its stem both ways. A real side trip -- to a waterfall, a viewpoint -- is
+  declared in the audit as `sideTrips: [{ km, note }]`. A line that is an
+  out-and-back while the page calls it a loop fails until the label is right.
+- **It has directions.** The audit's route sentence says where to start and
+  which way to go, with path numbers or named turns.
+
+Where it is enforced:
+
+- `build-board-line.js` refuses a line that folds or runs over itself, and
+  writes nothing.
+- `scripts/board-walk-bar.test.js` fails the build for any Verified board walk
+  that does not clear both checks. The walks that failed when the bar arrived
+  are listed there by name, awaiting a decision -- fix the line or the label,
+  or take the seal off -- and leave the list when they pass or lose the seal.
+  Nothing is added to it.
+- `node scripts/board-walk-bar.js` lists the failures, with where on each line
+  the problem is.
+
+**Not yet true:** the trail page does not print the audit's route sentence.
+It shows route numbers or structured guidance only, and board walks have
+neither, so every board walk's page still reads "No verified numbered sequence
+is currently recorded". Until the page prints the sentence, the directions
+check is met in the record and not on the page.
 
 ## The funnel reaches the page
 
