@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-5479112",
   "name": "Chemin des Diligences",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:11.216Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T13:05:26.419Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1232304,
@@ -217,7 +217,7 @@
       "label": "Chemin des Diligences routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 442887,
-      "sha256": "fbe0e751b3db421f93f1a660a78292d74e169f6f52c36d1ae02ac0bf16866a57"
+      "sha256": "4e731705dfffe354cdfd3301fcfa36112ff1cac24daaf497bb8aefa55da3088e"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Chemin des Diligences safety information",
       "url": "safety.json",
       "bytes": 3711,
-      "sha256": "b946b0114446261526227d87174e0cb56fda497d6e15ca7bc7202374d79d5bb0"
+      "sha256": "ec13630d1499e4ebecaebd749d4599ae5af5128c7ce1a2cae861ebc0b211b3b4"
     }
   ]
 }

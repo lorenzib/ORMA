@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-14375158",
   "name": "Crêt de la Parenche",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:11.640Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T13:16:37.084Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 509634,
@@ -217,7 +217,7 @@
       "label": "Crêt de la Parenche routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 188005,
-      "sha256": "1aac7a71f510df9feba220919e9c86e315b64800fad5548d3ef696f49b112c28"
+      "sha256": "a4cd326c318a7f84d539a73cae399bff5e88670e2c31130950ce8d3171c8149a"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Crêt de la Parenche safety information",
       "url": "safety.json",
       "bytes": 1417,
-      "sha256": "dd08a5855ddb74d3e489264ee086aa82761f6f00fd6a260613d83e6d5cf76dcb"
+      "sha256": "6591e5931658471dc2ccd82958f06b8cffa215354404f213846745324a97d71f"
     }
   ]
 }

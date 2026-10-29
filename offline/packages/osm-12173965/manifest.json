@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12173965",
   "name": "Kleine Schlossrunde",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:22.201Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:09:25.393Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 473645,
@@ -217,7 +217,7 @@
       "label": "Kleine Schlossrunde routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 70451,
-      "sha256": "1e7e98797efa67bcbed00efef56acc17bbb64866ca50ff9f5a16d5faf3cc7a43"
+      "sha256": "e4a50891839ea4baa3bc736a9d7991c7bde136890d8fe1c345bdc988081a3b7b"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Kleine Schlossrunde safety information",
       "url": "safety.json",
       "bytes": 1759,
-      "sha256": "869e06003ba921fbb714de3bfcce44a21619e12cb9cd8e7547b306d66a24df28"
+      "sha256": "6323f37a27717acb1b02e35f6ee7cffc877f47083c959d56edfa833f4a2ac0a9"
     }
   ]
 }

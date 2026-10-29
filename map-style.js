@@ -675,16 +675,20 @@
       };
     }
     return {
+      // Two thin white edges, not a white band: the gap is the corridor's own
+      // width, so nothing white is painted under the walk and the path,
+      // contours and terrain inside the corridor keep their colours.
       casing: {
         'line-color': config.casingColor || '#FFFFFF',
         'line-opacity': 0.9,
-        'line-width': widthRamp(10, 16, 23, 33, scale),
+        'line-width': widthRamp(1.5, 2, 2.5, 3, scale),
+        'line-gap-width': widthRamp(7, 12, 18, 26, scale),
       },
-      // Translucent on purpose: the marked route draws through it, and the
-      // terrain underneath still reads.
+      // A light tint on purpose: the dashed path the walker follows has to
+      // read through it, not just its numbers.
       line: {
         'line-color': color,
-        'line-opacity': 0.55,
+        'line-opacity': 0.35,
         'line-width': widthRamp(7, 12, 18, 26, scale),
       },
     };
@@ -719,7 +723,7 @@
   // On satellite the photo itself shows the path, so the white casing goes
   // and the corridor becomes a light tint: still clearly "your walk", but
   // the real track shows through it.
-  const ROUTE_LINE_ON_IMAGERY = { casing: 0, line: 0.4 };
+  const ROUTE_LINE_ON_IMAGERY = { casing: 0, line: 0.3 };
 
   /**
    * Fade the walk (a line made by addRouteLine) and our hiking routes over

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-16180587",
   "name": "Balade du Plateau d'Assy au Lac Vert",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:11.942Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T13:26:04.451Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 656705,
@@ -217,7 +217,7 @@
       "label": "Balade du Plateau d'Assy au Lac Vert routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 268997,
-      "sha256": "f17fbdb8b24ad4d3ba0dfad58f3dbef104b154ce9628a00336b5ca3fd6d88bfd"
+      "sha256": "49e2949c1b316ac208c76c41fc90388336b4b2e24268bae7eca42067c930bc5e"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Balade du Plateau d'Assy au Lac Vert safety information",
       "url": "safety.json",
       "bytes": 1381,
-      "sha256": "d4d4448d468b25dfe562ba773674bfb0af4eaca8e6d6d582de0e8f0d3fded8e1"
+      "sha256": "6da1c1df4667ce6d2ccbd7001fffc0b37d2b42ca5196a5eaa4549b60377e45a2"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-borgo-dei-patins",
   "name": "Vigo, borgo dei patins",
-  "version": "2026.10.26-beta.1",
-  "generatedAt": "2026-10-26T10:23:49.375Z",
+  "version": "2026.10.29-beta.1",
+  "generatedAt": "2026-10-29T14:40:30.189Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 480393,
@@ -217,7 +217,7 @@
       "label": "Vigo, borgo dei patins routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 82364,
-      "sha256": "5c8fe0b94babc93874068e0573e470e8dc7531a9b6e4a3ff5c7a97c1e262a891"
+      "sha256": "114b12e9ef7026381b8eff1bfb1fbd1b578a4c67cd0bbfab83b42e2d29072355"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Vigo, borgo dei patins safety information",
       "url": "safety.json",
       "bytes": 1841,
-      "sha256": "ec2356889cb56fd400dac1032b7909fbe1dcb402270171be7d62ed31e7ca312e"
+      "sha256": "c6c6f8203eb0bbfac248cd1dc43cbbcb766a6ce1f104978ec61d4cb9d7ac6b6b"
     }
   ]
 }

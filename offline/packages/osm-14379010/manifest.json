@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-14379010",
   "name": "Croix de Pralognan",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:11.763Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T13:18:54.465Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 489179,
@@ -217,7 +217,7 @@
       "label": "Croix de Pralognan routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 182342,
-      "sha256": "13a4e43819c6d1c62fd9cad91ce27cc07eab83a896209b9330d65bae61f4f782"
+      "sha256": "d307c64c5fc0514699583af42c0a5d270c1eb4cd651e450b78233444d56284b0"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Croix de Pralognan safety information",
       "url": "safety.json",
       "bytes": 1356,
-      "sha256": "95d700906d80d941b4d79d60b038ed6ac360edde16a33e45d3f61db64ae6a729"
+      "sha256": "f280db33e908a62d60a642d652e68bed3eabb52308a251d7f253dab4422320d2"
     }
   ]
 }

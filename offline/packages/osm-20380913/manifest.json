@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-20380913",
   "name": "Hinzlweg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:49:14.594Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:36:56.579Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 353805,
@@ -217,7 +217,7 @@
       "label": "Hinzlweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 89030,
-      "sha256": "cce32283d83e3b6744e54ec6fd43764e3c71e58b14f9a13cf38842a1dbe2f13a"
+      "sha256": "6e6759f1bea9b6a90e1d200a82b90b70c5afaf9dbe62ea14b3b2e46abe2a5ee2"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Hinzlweg safety information",
       "url": "safety.json",
       "bytes": 1436,
-      "sha256": "218dafec4aa15b5aa6e98fba375443fbdfa2e40da1f533b1e681eb17ea896d33"
+      "sha256": "52442d3d2a10a0bbb698529fa56b51b0fceb728fb17fd0ba09eeda7ed336b036"
     }
   ]
 }

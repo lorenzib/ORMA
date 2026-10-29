@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-11764094",
   "name": "Dörferrunde: Natz, Raas, Schabs and Viums",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:20.721Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:59:43.038Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1463291,
@@ -217,7 +217,7 @@
       "label": "Dörferrunde: Natz, Raas, Schabs and Viums routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 288413,
-      "sha256": "656edf31859a89f9952916a10ee3c0f8e93590edcef7ad32e6be62f956b6e696"
+      "sha256": "ccdc90b03f6d24bff1b3f50784125ce07f8655da18174a4c6604aa4b82004da1"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Dörferrunde: Natz, Raas, Schabs and Viums safety information",
       "url": "safety.json",
       "bytes": 2161,
-      "sha256": "ab8bda1e60656537bc906c734c7c3f361f218afe8aa5f7037c4bd8c3e1d02d16"
+      "sha256": "962dc04db89394e6040729548e7d7f0296a33d6af7079338ef143fcddec370c9"
     }
   ]
 }

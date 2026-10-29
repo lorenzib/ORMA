@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11839597",
   "name": "Fenn Promenade",
-  "version": "2026.10.24-beta.3",
-  "generatedAt": "2026-10-24T17:45:21.408Z",
+  "version": "2026.10.29-beta.4",
+  "generatedAt": "2026-10-29T12:05:21.844Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 341932,
+  "packageBytes": 342522,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.53471,
@@ -28,8 +28,8 @@
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 1136,
-    "edgeCount": 1143,
+    "nodeCount": 1140,
+    "edgeCount": 1146,
     "trailNodeCount": 108,
     "maxRejoinRouteM": 1500
   },
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Fenn Promenade OSM offline map",
       "url": "map.svg",
-      "bytes": 170342,
-      "sha256": "a1de395d153f426ff987bbcbb0a13c031b01ebd92ea3d2cf20cb92896a50fc5f"
+      "bytes": 170760,
+      "sha256": "7d048ed213e835857dc238c51bf562bbc4c798e8e041abff8f1fdb5c527617f6"
     },
     {
       "role": "route",
@@ -216,8 +216,8 @@
       "required": true,
       "label": "Fenn Promenade routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 56238,
-      "sha256": "ea68e158451e32e7fb78df4c2da2e9ac3e56b4e4d3ee150b522e5f5c8ce6e054"
+      "bytes": 56410,
+      "sha256": "3cc55e1e099f57f19977c8231486cf74d237ab2bc101ded04e317405552f54e6"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Fenn Promenade safety information",
       "url": "safety.json",
       "bytes": 1140,
-      "sha256": "e095025dead50cc0ae3bd828b8b9c3420d82216ebc45bf63b196ef488783d113"
+      "sha256": "f6241d8f3d2384431c081d3010309b75511d8942852327d159aa39f407db3091"
     }
   ]
 }

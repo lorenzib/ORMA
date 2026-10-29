@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-19974725",
   "name": "Langer Rundweg am Karer See",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:58.285Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:23:52.782Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 423143,
@@ -217,7 +217,7 @@
       "label": "Langer Rundweg am Karer See routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 84017,
-      "sha256": "6d309030efe51df186e59c287e97b13401db42decda280b639221f3ff0b96196"
+      "sha256": "2d9a79a0a7557dbbb30ddc0b09d1e8e00969c0cb7e5afbf606833a328e1e30f0"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Langer Rundweg am Karer See safety information",
       "url": "safety.json",
       "bytes": 1401,
-      "sha256": "1b2b71a86bac176f7feb234af5053f30109b9ff7b62cb2c46d6fbca37f70638e"
+      "sha256": "12b194adfffb9ca0fb0216484816ccb9e1d2546cbaac39a307e7640b414b5283"
     }
   ]
 }

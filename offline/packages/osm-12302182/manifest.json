@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12302182",
   "name": "Dorfrundweg Niedertal",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:47:09.308Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:34:44.419Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 349028,
@@ -217,7 +217,7 @@
       "label": "Dorfrundweg Niedertal routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 43648,
-      "sha256": "0c8284cb4d79ce34489de9f99ea50e2b144d5ff917427371a1615affe3a42b55"
+      "sha256": "0fe14a66b79d9ccca364ac22da72d2dc66af3f5e36de6afc2f61e11b57a0fc7a"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Dorfrundweg Niedertal safety information",
       "url": "safety.json",
       "bytes": 1672,
-      "sha256": "9f8bef0e48a168bab5db707d542c42c60bf63acd68e4671f6fdf4c2d9cec5c0c"
+      "sha256": "afb2ba38dd9db9a3b4fcf9ea6cec56b8d61e84353835587c6285d62889b783e5"
     }
   ]
 }

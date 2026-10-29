@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-1671736",
   "name": "Höfeweg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:46:00.400Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:30:07.957Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1440747,
@@ -217,7 +217,7 @@
       "label": "Höfeweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 529309,
-      "sha256": "1b73c6a6f3a8d299b24946c6813600778fde725d1eac80617734c8427b9cbadf"
+      "sha256": "dce3424730eb93c8538422b5f93a6b8fb54dd45d890e2cd3b9e467d572f036a5"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Höfeweg safety information",
       "url": "safety.json",
       "bytes": 1827,
-      "sha256": "b6bddacbbb7638fc513087af6b7e29c69fe6eb9a4ad551a701213cbe18899652"
+      "sha256": "7d6562e7a8dae06ceec6b6787e504f902ec1ff1fa568caf6959dae6e69409b39"
     }
   ]
 }

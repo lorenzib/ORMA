@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-14381584",
   "name": "Beaumollard",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:11.863Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T13:25:26.851Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 431597,
@@ -217,7 +217,7 @@
       "label": "Beaumollard routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 147516,
-      "sha256": "24195d7cc3c8f5920924a13f106a40c7397062db1b038f073d02949291b87a14"
+      "sha256": "df26c575628584399bb9d862c4d389840fa2f27a5b6bcf7e57f577b76b723ee7"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Beaumollard safety information",
       "url": "safety.json",
       "bytes": 1540,
-      "sha256": "e5600266092ce458c63071559a1c1e33399fe61ddfe940e9796875c6e745fedc"
+      "sha256": "ed0959427b4a7e445ef930f62801cd856a0d77969cf3142cf37f2de22a974ef9"
     }
   ]
 }

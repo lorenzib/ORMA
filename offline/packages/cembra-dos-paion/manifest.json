@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "cembra-dos-paion",
   "name": "Passeggiata al belvedere del Dos Paion sul Monte Corona",
-  "version": "2026.10.27-beta.1",
-  "generatedAt": "2026-10-27T13:40:47.075Z",
+  "version": "2026.10.29-beta.1",
+  "generatedAt": "2026-10-29T14:20:21.923Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 528694,
@@ -217,7 +217,7 @@
       "label": "Passeggiata al belvedere del Dos Paion sul Monte Corona routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 89462,
-      "sha256": "5a7f7cacf6ad932d4ade4ddf70eae238f702ce9d896878863edee1a9304ddb76"
+      "sha256": "a6db1cc3422cc679ce185b2a457260119e681e175bb3a1c2f59c1e37b953292d"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Passeggiata al belvedere del Dos Paion sul Monte Corona safety information",
       "url": "safety.json",
       "bytes": 1479,
-      "sha256": "c44c7ce4d1f187fbe91dc44ce2e67aba3fbed3bf9591b6ef9874f853e586fbeb"
+      "sha256": "fa53bb1a4e71a0abaf7e5ac4b3e55da5806ba43248d01f33bf3bb7df3dd218c3"
     }
   ]
 }

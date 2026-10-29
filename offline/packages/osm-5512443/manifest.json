@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-5512443",
   "name": "Wallburgweg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:19.163Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:45:55.703Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 836199,
@@ -217,7 +217,7 @@
       "label": "Wallburgweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 224132,
-      "sha256": "68e644079f71c4eae1633f656eec30ba03b1fcf3480ebae1d33ed0f5f1f52478"
+      "sha256": "4f526186bd761fefcc8c562d7109b791957a49c92b1ac5e62c3e08af3993fda5"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Wallburgweg safety information",
       "url": "safety.json",
       "bytes": 1696,
-      "sha256": "1277f23cf68547b3305f3974519cf08befbb728c16b0fa1bd5bc14ab6d1d5bed"
+      "sha256": "f619133158c73d1a79574d5a27d9a2474b00153096f41c786a8f3e1ebc9a95bc"
     }
   ]
 }

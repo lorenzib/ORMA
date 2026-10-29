@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-5597577",
   "name": "Rundweg Gsindboden",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:46:00.431Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:30:58.799Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 342118,
@@ -217,7 +217,7 @@
       "label": "Rundweg Gsindboden routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 105543,
-      "sha256": "ef1d760c6c3ffd4d5e0f671aad09b083abd75a08377637a9310febfb51884d3d"
+      "sha256": "8ecc3a97896bacf2ba5e653473ee5b239844b57ee6c2f1e70de9759a73bf579e"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Rundweg Gsindboden safety information",
       "url": "safety.json",
       "bytes": 1532,
-      "sha256": "95b025c112e5927021692f3063f7f592314a43b3f26c6437eeb9b6425efbcdd1"
+      "sha256": "d83f5c064e70c4033e3f7c6ba6db68be95029c6df2dafe830ae42fe79471ebc8"
     }
   ]
 }

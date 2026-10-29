@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12745924",
   "name": "Circuit des escaliers",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:11.525Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T13:14:57.962Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 453971,
@@ -217,7 +217,7 @@
       "label": "Circuit des escaliers routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 109086,
-      "sha256": "351f52adb26f7fbfcfa5e87a07dc21e0a9f70b033878b1a3df9206b439ef535f"
+      "sha256": "a9e8e20893a8cd16207eb3f3cd330a1dd919970e15a748afe165a0893ed324dc"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Circuit des escaliers safety information",
       "url": "safety.json",
       "bytes": 1696,
-      "sha256": "29baac05a5316303b093d520b4a67e15fd94d9397491b18e12dc8905d8f71ae3"
+      "sha256": "13bc764d507525132543f01d738c6ed1ebe9add71834085774b3fd323ef37035"
     }
   ]
 }

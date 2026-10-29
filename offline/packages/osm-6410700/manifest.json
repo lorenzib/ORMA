@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-6410700",
   "name": "Dolomitenblickrunde",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:19.590Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:50:28.964Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 729073,
@@ -217,7 +217,7 @@
       "label": "Dolomitenblickrunde routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 206903,
-      "sha256": "c7cb79416c51f6f76c147f079669fdb2c119fb4211e304e088f8bcf7b8a93a80"
+      "sha256": "3ba529febd27896e657052a2e8fafb263271ed86e5e2ef154d5e7d6dffd4d0a0"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Dolomitenblickrunde safety information",
       "url": "safety.json",
       "bytes": 1480,
-      "sha256": "baa33fdd110df52645b4b7d4cec7b82679b036ffc539217fef8dab549cd9aa58"
+      "sha256": "25bc36fed7768ff2013d8054401e65a8f2f5ad48915f7c22955dd3eb9afc54e1"
     }
   ]
 }

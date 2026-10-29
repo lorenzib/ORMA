@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12736753",
   "name": "Albeins-Klerant-Milland - Albes-Cleran-Millan",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:22.923Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T12:17:00.880Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1237519,
@@ -217,7 +217,7 @@
       "label": "Albeins-Klerant-Milland - Albes-Cleran-Millan routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 383571,
-      "sha256": "80e7129402f63fb62266fe2d1c971c591e84a5006e9ae2fadb344176d5c36784"
+      "sha256": "8c6be66360de10ce66e4c1ee58a2601d12bccb863df3d7e8de8803407b9399b1"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Albeins-Klerant-Milland - Albes-Cleran-Millan safety information",
       "url": "safety.json",
       "bytes": 2381,
-      "sha256": "286a08790c17388d19b08dfca858f68e44b0dc52865d6ae4ee1b9d17ba4895bc"
+      "sha256": "1e00d6ed6fc2702b4a390da3f2ce41a222192a787ded43353ecf1b3cd14a796e"
     }
   ]
 }

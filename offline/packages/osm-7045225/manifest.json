@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-7045225",
   "name": "Giro del Fausior",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:19.734Z",
+  "version": "2026.10.29-beta.3",
+  "generatedAt": "2026-10-29T11:51:01.794Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 886323,
@@ -217,7 +217,7 @@
       "label": "Giro del Fausior routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 211470,
-      "sha256": "c7069739223fe3de5ea424d7899efcb55ac801a1113a86044426f91d1e44979c"
+      "sha256": "46da5c5ea555db7232373b313fc86966b3750bfc5f0c217c917eef9f3f6b4c85"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Giro del Fausior safety information",
       "url": "safety.json",
       "bytes": 1843,
-      "sha256": "76a2e4508198828a3be497b2f27c1526ed824149a776320c2262098251b8cf47"
+      "sha256": "73bb652d7368b02911625a5834317b4d903fa4cee679b592afe99db08e82ade4"
     }
   ]
 }
