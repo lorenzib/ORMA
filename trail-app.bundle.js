@@ -48419,6 +48419,53 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '0.75',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the bus station in Fiera di Primiero through the old town to Pieve, the parish church and the cemetery, and back.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the bus station (autostazione delle corriere) in Fiera di Primiero, the tourist board’s start.",
+        "sequence": "Up Viale Italia, over the bridge and along Via Lungo Canali into the Parco Clarofonte, out to Viale Sartori and on by Via Monte Grappa to the Parco Vallombrosa, Via San Francesco and Via Giuseppe Terrabugio to the main road, up the Rivetta Enrico Koch past the church, Piazza Val d’Aosta and Via San Rocco, Via degli Orti, and back down the Rivetta and along the main road.",
+        "switches": "Right over the bridge, then left at the first footbridge into Via Lungo Canali. Left into Via San Francesco. Right of the church. Left into Via degli Orti after 300 m of Via San Rocco.",
+        "steps": [
+          {
+            "text": "From the bus station, go up Viale Italia and cross the bridge on the right. At the first footbridge turn left into Via Lungo Canali and enter the Parco Clarofonte.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Leave the park by the little bridge to Viale Sartori and carry straight on along Via Monte Grappa to the Parco Vallombrosa.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on left along Via San Francesco and Via Giuseppe Terrabugio to the main road (SS50). Climb the Rivetta Enrico Koch and go on to the right of the church, across Piazza Val d’Aosta to Via San Rocco.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Stay on Via San Rocco for 300 m, then turn left into Via degli Orti.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Go back down the Rivetta Enrico Koch and follow the main road past the Bar Sport back to the bus station.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Fiera-Pieve: directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/23513958",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
@@ -48490,6 +48537,53 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '0.5',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the bus station in Fiera di Primiero across the river into Transacqua, round its old streets and square, and back.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the bus station (autostazione delle corriere) in Fiera di Primiero, the tourist board’s start.",
+        "sequence": "Across Viale Italia, over the Canali bridge and 500 m along its right bank, up a narrow lane to the Hotel Belvedere, Via Venezia and the lane past the Hotel Castelpietra, the tarred path below the church of San Marco, Via Scalette to Piazza San Marco, Via Fossi, Via delle Fonti and the wooden bridge back to the bus station.",
+        "switches": "Right at the Canali bridge, then straight away left along the river. Right up a narrow lane after 500 m. Right towards the Hotel Castelpietra, right at the fork. Left at the Piazza San Marco roundabout. Right into Via delle Fonti.",
+        "steps": [
+          {
+            "text": "From the bus station, cross Viale Italia, turn right at the bridge over the Canali and straight away left, along the right bank of the river for 500 m.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn right up a narrow lane to the Hotel Belvedere. Carry on along Via Venezia for 100 m, then turn right towards the Hotel Castelpietra.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Follow the alley to the fork, turn right and carry on along the tarred path that passes below the church of San Marco.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Go gently down Via Scalette to the roundabout in Piazza San Marco, turn left and stay on Via Fossi for 400 m.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At Via delle Fonti turn right to the wooden bridge, and back to the bus station.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Transacqua: directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/23514265",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
@@ -48559,6 +48653,53 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the car parks by the Vallombrosa park round the village of Tonadico and back.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car parks by the Parco Vallombrosa, the tourist board’s start.",
+        "sequence": "Over the wooden bridge on the Cismon, through a narrow passage to the main road (Via Roma), up Via Sass Maor, Via San Giacomo, Via Rioni and Via Siror past Palazzo Scopoli, through the old centre by Via San Giacomo, Piazza Piubago and Via Scopoli, down to the Canali, over the footbridge by the Lanterna Verde and along Via Lungo Canali and the Parco Clarofonte back to the car park.",
+        "switches": "Left after the wooden bridge, right by a small park. Straight across the main road up Via Sass Maor, left after 250 m into Via San Giacomo, right at the junction. Left at Via Sass Maor, left again into Via Rioni, right into Via Siror. Right by the church, down to the Canali.",
+        "steps": [
+          {
+            "text": "From the car park, cross the wooden bridge over the Cismon and carry on to the left until you are near a small park. Turn right and, through a narrow passage, reach the main road (SS50, Via Roma).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross it and go straight on, gently uphill, along Via Sass Maor for 250 m, then turn left into Via San Giacomo. At the junction turn right, staying on the same street.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Where it meets Via Sass Maor, turn left and then left again into Via Rioni. Then turn right into Via Siror.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past Palazzo Scopoli, carry on through the old centre by Via San Giacomo, Piazza Piubago and Via Scopoli. Near the church, turn right and go down towards the Canali river.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross the wooden footbridge by the Lanterna Verde pizzeria and follow the river along Via Lungo Canali, then cross the Parco Clarofonte back to the car park by the Parco Vallombrosa.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Tonadico: directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/23514755",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
@@ -48630,6 +48771,47 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1',
       routeShape: 'lollipop',
       routeShapeNote: 'A loop from the car parks by the Vallombrosa park up to the village of Siror, round its streets and back. A loop on a stem: the first 1 km from the start is walked both ways, out and home.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car parks by the Parco Vallombrosa, the tourist board’s start.",
+        "sequence": "Along the Cismon for 1 km to the bridge to Via Rivetta, across the main road, Via Calleselle, Via Larga, Via Civerton, Via Caspeda, Via Corradini and Via Sant’Andrea to the main road, Via Schoenberg back to the bridge, and along the Cismon to the car park.",
+        "switches": "Keep left at the fork after the main road, then right into Via Calleselle and right towards Via Larga. Left after 100 m up Via Civerton. Left into Via Caspeda. Right into Via Sant’Andrea.",
+        "steps": [
+          {
+            "text": "From the car park, walk along the Cismon for 1 km to the bridge that leads to Via Rivetta. Follow Via Rivetta across the main road (SS50).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the fork keep left, then turn right into Via Calleselle and right again towards Via Larga. After 100 m turn left, gently uphill, into Via Civerton and carry on to the fork.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Take Via Caspeda on the left to a bend that leads into Via Corradini. Carry on to Via Sant’Andrea, on the right, which takes you to the main road.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Follow the main road to the start of Via Schoenberg, and walk it back to the bridge you crossed earlier. Return along the Cismon to the car park.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Siror: directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/23515939",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
@@ -48700,6 +48882,41 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '0.75',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the car park by the bus station in Fiera di Primiero along the cycle and foot path, up to Navoi and the Guana, and back through Transacqua.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park by the bus station in Fiera di Primiero, the tourist board’s start.",
+        "sequence": "Over the wooden bridge, along the cycle and foot path towards Navoi, left up the commune road to Navoi and the Guana, on along Via Navoi to Transacqua, left into Via Risorgimento by the music school, and back to Fiera.",
+        "switches": "Left up the commune road where the cycle path to Mezzano drops away (signs for the Guana). Left into Via Risorgimento by the Scuola Musicale di Primiero.",
+        "steps": [
+          {
+            "text": "From the car park by the bus station, cross the wooden bridge and take the cycle and foot path towards Navoi.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Where the cycle path down to Mezzano leaves it, turn left onto the commune road that climbs to Navoi, following the signs for the Guana. The Guana is about 10 more minutes on foot.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "To finish the loop, carry on along Via Navoi to Transacqua. By the Scuola Musicale di Primiero turn left into Via Risorgimento and follow it to Fiera di Primiero and back to the bus station.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "La Guana di Primiero: directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/810318018",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
@@ -48769,6 +48986,41 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '0.5',
       routeShape: 'loop',
       routeShapeNote: 'A short loop from the Parco Clarofonte in Fiera over the Cismon, along the pavement towards Tonadico, over the Canali and back along Via Lungo Canali. About half of it is also on the Tonadico village walk.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Parco Clarofonte in Fiera di Primiero, the tourist board’s start.",
+        "sequence": "Towards the bridge over the Cismon, keeping right to the Brunet Hotels junction, on the pavement towards the Tonadico sports field to the Hotel Tre Ponti junction, right over the Canali and right down Via Lungo Canali back to the park.",
+        "switches": "Keep right after the Cismon bridge. Right at the Hotel Tre Ponti junction, over the Canali, then right again down Via Lungo Canali.",
+        "steps": [
+          {
+            "text": "From the Parco Clarofonte, head for the bridge over the Cismon and carry on, keeping right, to the junction by the Brunet Hotels.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From there go towards the Tonadico sports field, staying on the pavement, as far as the junction by the Hotel Tre Ponti.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn right over the bridge on the Canali, then right again, down Via Lungo Canali, back to the Parco Clarofonte.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Percorso Verde (I percorsi del benessere): directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/810847366",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
@@ -48908,6 +49160,47 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1.75',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the centre of San Martino di Castrozza up the Val di Roda forest road from the Colverde lift station, down a path to the Prati Col meadows and back into the village on Via Fontanelle or Via Pez Gajard. The walk uses no lift.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the centre of San Martino di Castrozza, the tourist board’s start.",
+        "sequence": "To the Colverde lift station, up the Val di Roda forest road, down the path to the Prati Col, and back down the tarred road to the centre.",
+        "switches": "Onto the Val di Roda forest road at the Colverde lifts. Off it onto the path down to the Prati Col.",
+        "steps": [
+          {
+            "text": "From the centre of San Martino, walk to the bottom station of the Colverde lifts.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Take the Val di Roda forest road.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Leave it for the path that goes down to the Prati Col.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From there, go down the tarred road and follow it back to the centre of San Martino di Castrozza.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "San Martino di Castrozza - Val di Roda - Prati Col: directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/810399072",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
@@ -48978,6 +49271,47 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1.5',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the Rifugio Fonteghi in the Val Noana up the Valpiana Aie forest road to Malga Valpiana, past the Casina Forestale di Valpiana and the meadows of Valpiana di Sopra, and down a path back to the rifugio.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Rifugio Fonteghi, the tourist board’s start.",
+        "sequence": "Along the road on the right, up the Valpiana Aie forest road to Malga Valpiana, down the gravel road to the Casina Forestale di Valpiana, along the level gravel road on Monte Piadochìn through Valpiana di Sopra, and down a path to the rifugio.",
+        "switches": "Right onto the Valpiana Aie forest road after about ten minutes. Right down the gravel road at Malga Valpiana. Right again at the Casina Forestale.",
+        "steps": [
+          {
+            "text": "From the Rifugio Fonteghi, take the road that leaves on the right. After about ten minutes, turn right onto the forest road called “Valpiana Aie”, which climbs in hairpins to Malga Valpiana.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the malga, take the gravel road down to the right and carry on to the Casina Forestale di Valpiana.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "There, turn right again onto the gravel road past the Casina. It runs level along the side of Monte Piadochìn, with the meadows of Valpiana di Sotto below.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The road winds through the meadows and huts of Valpiana di Sopra. Beyond them it becomes a path that goes down back to the Rifugio Fonteghi.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Anello di Valpiana: directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/811789531",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
@@ -49045,6 +49379,41 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the car park at Fedai near Poit along the wooded crest of Monte Cordognè, down towards Falasorni, over the meadows of San Giovanni below its old chapel, and back by Poit.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park at Fedai, the tourist board’s start.",
+        "sequence": "The signed path up the crest of Monte Cordognè and down towards Falasorni, left along the tarred road and a path to the San Giovanni meadows and chapel, on along the tarred road to Poit, and down left to the car park.",
+        "switches": "Follow the signs for the walk from the car park. Left on reaching the tarred road, then the path on the left to the meadows. Left down the road at Poit.",
+        "steps": [
+          {
+            "text": "From the car park at Fedai, follow the signs for the walk. The path climbs at first along the crest of Monte Cordognè, with viewpoints over the Vette Feltrine, San Giovanni, the Val Noana lake and the Primiero valley, then goes down towards Falasorni.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back on the tarred road, carry on left towards the San Giovanni meadows: first along the road, then on the path on the left that leads straight to the meadows. You can walk up to the old chapel of San Giovanni.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on along the tarred road and, at Poit, take the road down on the left. In a couple of minutes it brings you back to the car park.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Anello Poit - Cordognè - San Giovanni: directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/29921340",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'under-review',
       reviewedAt: '2026-10-26',
@@ -49963,6 +50332,41 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2.25',
       routeShape: 'out-and-back',
       routeShapeNote: 'Out and back: from the centre of San Martino di Castrozza past the Plank pond to Scacciapensieri, up the forest road and a path on the side of the valley to Malga Ces, and back the same way. The 7.8 km counts both ways.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the centre of San Martino di Castrozza, the tourist board’s start.",
+        "sequence": "Towards the Plank pond, on along the forest road at Scacciapensieri, then the signs for Malga Ces on the forest road and a path up the left side of the valley; back the same way.",
+        "switches": "From Scacciapensieri, follow the signs for Malga Ces. Off the forest road onto the path up the left side of the valley.",
+        "steps": [
+          {
+            "text": "From the centre of San Martino di Castrozza, head for the Plank pond and carry on along the forest road at Scacciapensieri.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From there, follow the signs for Malga Ces: first on the forest road through the woods, then on an easy path up the left side of the valley (looking up it). About 30 more minutes bring you to Malga Ces.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "San Martino di Castrozza - Malga Ces: directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/812171998",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
@@ -50224,6 +50628,47 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2.5',
       routeShape: 'out-and-back',
       routeShapeNote: 'Out and back: from the Prà delle Nasse car park in San Martino di Castrozza along the path beside the Prà delle Nasse bog to the Ces lift station, up the forest road towards the Lago di Calaita and the last climb to Malga Crel, and back the same way, the APT returning past the campsite and the sports hall for the last stretch.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Prà delle Nasse car park, the tourist board’s start.",
+        "sequence": "A few metres up the road towards Malga Ces, left on the path signed “O piccolo” beside the Prà delle Nasse bog to the Ces lifts, towards the Ostello San Martino, up the forest road on the right, the signs for the Lago di Calaita to the Malga Crel fork and the last climb; back on the forest road to the campsite and past the sports hall.",
+        "switches": "Left after a few metres onto the path signed “O piccolo”. Up the forest road on the right after the Ostello. At the top, the signs for the Lago di Calaita, then the fork for Malga Crel.",
+        "steps": [
+          {
+            "text": "From the Prà delle Nasse car park, take the road up towards Malga Ces for a few metres, then turn left following the signs “O piccolo”.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Follow the path beside the Prà delle Nasse bog; it soon brings you to the Ces lift area (the Colbricon Express gondola station).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on towards the Ostello San Martino, then take the forest road that climbs on the right. At the top of the climb, follow the signs for the Lago di Calaita to the fork for Malga Crel. The last climb leads straight to the malga, with a view of the Pale di San Martino.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "To come back, follow the forest road down to the campsite, then head for the sports hall (Palazzetto dello Sport) and back to the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "San Martino di Castrozza - Malga Crel: directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/37204797",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'under-review',
       reviewedAt: '2026-10-26',
@@ -50300,6 +50745,41 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2',
       routeShape: 'out-and-back',
       routeShapeNote: 'Out and back: from the Rifugio Vederna up the forest road signed for the Croce degli Alpini to the meadows by Cima Vederna, a short marked path to the great metal cross above the Primiero valley, and back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Rifugio Vederna, the tourist board’s start.",
+        "sequence": "The forest road signed “Croce degli Alpini” up to the meadows near Cima Vederna, then the marked path on the right to the cross; back the same way.",
+        "switches": "At the level meadow, the marked path on the right.",
+        "steps": [
+          {
+            "text": "From the Rifugio Vederna, take the forest road signed “Croce degli Alpini”. It climbs gently to the meadows near Cima Vederna, on the left of the clearing.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "On the level meadow, follow the easy marked path on the right to the huge metal cross above the Primiero valley: the Croce degli Alpini.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Passeggiata a Monte Vederna – Croce degli Alpini: directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/21373844",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'under-review',
       reviewedAt: '2026-10-26',
@@ -50618,6 +51098,47 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '3',
       routeShape: 'out-and-back',
       routeShapeNote: 'Out and back: from the centre of San Martino di Castrozza past the sports hall and the Plank pond to Scacciapensieri, up the forest road through the woods of the Val Cigolera to Malga Valcigolera, and back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the centre of San Martino di Castrozza, the tourist board’s start.",
+        "sequence": "Towards Scacciapensieri past the sports hall and the Plank pond, then the signs for Malga Valcigolera up the forest road (or the steeper path) through the woods of the valley; back the same way.",
+        "switches": "From Scacciapensieri, follow the signs for Malga Valcigolera. After the first stretch, stay on the forest road or take the steeper path.",
+        "steps": [
+          {
+            "text": "From the centre of San Martino di Castrozza, head for Scacciapensieri, past the sports hall (Palazzetto dello Sport) and the Plank pond.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From Scacciapensieri, follow the signs for Malga Valcigolera along the forest road that climbs through the woods of the valley.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "After the first stretch you can stay on the forest road to the malga, or turn off onto the path, which is a little steeper and saves about 10 minutes. At the malga there is a view of the Pale di San Martino.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "San Martino di Castrozza - Malga Valcigolera: directions to follow",
+            "authority": "San Martino di Castrozza, Primiero and Vanoi tourist board (APT San Martino di Castrozza), on Outdooractive",
+            "url": "https://www.outdooractive.com/it/r/812093313",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-26',
