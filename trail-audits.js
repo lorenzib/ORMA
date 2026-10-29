@@ -183,6 +183,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-21',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -406,6 +407,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-22',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -496,6 +498,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -572,6 +575,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -652,6 +656,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -732,6 +737,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -1795,6 +1801,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -3161,6 +3168,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -3240,6 +3248,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -6647,6 +6656,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -8680,6 +8690,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -8769,6 +8780,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -8893,6 +8905,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-22',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -8943,6 +8956,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-22',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -9050,6 +9064,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -9111,6 +9126,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -9170,6 +9186,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -9227,6 +9244,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -9420,6 +9438,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -9506,6 +9525,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -9574,6 +9594,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -9632,6 +9653,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -9695,6 +9717,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -9780,6 +9803,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -9876,6 +9900,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -10156,6 +10181,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -10213,6 +10239,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -10271,6 +10298,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -10330,6 +10358,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -10400,6 +10429,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -10484,6 +10514,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -12053,6 +12084,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -14045,6 +14077,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -14210,6 +14243,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -15195,6 +15229,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -15258,6 +15293,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -15318,6 +15354,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -15376,6 +15413,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -15436,6 +15474,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -15496,6 +15535,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -15565,6 +15605,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -15623,6 +15664,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -15686,6 +15728,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -15744,6 +15787,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -18103,6 +18147,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -18164,6 +18209,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -18225,6 +18271,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -18290,6 +18337,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -18352,6 +18400,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -18420,6 +18469,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -18484,6 +18534,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -18552,6 +18603,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -23317,6 +23369,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -23576,6 +23629,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -23642,6 +23696,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -23697,6 +23752,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -23769,6 +23825,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -25901,6 +25958,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -25961,6 +26019,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -26019,6 +26078,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -26695,6 +26755,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -33804,6 +33865,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -35033,6 +35095,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -35097,6 +35160,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -35156,6 +35220,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -38054,6 +38119,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       "tier": "under-review",
+      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -38219,6 +38285,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -38298,6 +38365,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -38357,6 +38425,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -38424,6 +38493,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -38480,6 +38550,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -38542,6 +38613,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -38609,6 +38681,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -38761,6 +38834,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -38832,6 +38906,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -38951,6 +39026,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -39013,6 +39089,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -39085,6 +39162,7 @@
       // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
       // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
       tier: 'under-review',
+      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
