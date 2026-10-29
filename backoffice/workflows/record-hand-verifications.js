@@ -15,7 +15,7 @@
  * So the record is copied across, honestly: the trail moves to its own state,
  * `verified-by-hand`, never to `ready-for-editorial` -- the evidence policy did
  * not approve it, and saying so would make the pipeline's own pass rate a lie.
- * The state keeps who verified it, when, on which sources, and where the
+ * The state keeps who verified it, when, how many sources, and where the
  * pipeline had got to. Queued work the trail still owns is retired, because a
  * walk verified by hand is changed by hand and research on it is credit spent
  * on an answer nobody will use.
@@ -23,6 +23,14 @@
  * A seal later taken off by hand (the climb-and-time rule withdrew six on 24
  * October) sends the trail to `imported`, resting: it reopens only when a
  * source appears, the same as any walk with nothing official to research from.
+ *
+ * The sources themselves are not copied. Until 29 October every record carried
+ * the trail's whole source list -- up to twelve long sentences, already in
+ * `trail-audits.js` -- and with 244 walks verified by hand that list was most of
+ * the orchestration. On 28 October it took the artifact past Firestore's
+ * 1,048,487-byte ceiling and every worker pass failed on its first write
+ * (#1143). The board reads the sources from the published record, the one
+ * place they live; the orchestration keeps the count.
  *
  * Pure, so the worker pass and the push-triggered sync cannot disagree.
  */
@@ -38,22 +46,42 @@ function verifiedByHand(trail){
   return trail?.tier === 'route-audited' && trail?.graduation?.status === 'verified';
 }
 
+/** The sources a hand verification rests on, from the published record. */
+function handSources(trail){
+  const sources = Array.isArray(trail?.verified?.sources) ? trail.verified.sources : [];
+  return sources.map(String).slice(0, MAX_SOURCES);
+}
+
 function handRecord(trail, at){
   const sources = Array.isArray(trail?.verified?.sources) ? trail.verified.sources : [];
   return {
     reviewedAt: trail.reviewedAt || trail.verifiedAt || trail?.verified?.date || null,
     reviewedBy: trail.reviewedBy || null,
-    sources: sources.map(String).slice(0, MAX_SOURCES),
+    sourceCount: sources.length,
     recordedAt: at,
   };
+}
+
+/**
+ * A record written before 29 October still carries the copied source list.
+ * Dropped wherever it is found, so the artifact shrinks on its next write
+ * rather than waiting for each walk to be re-verified. Returns whether it did.
+ */
+function dropCopiedSources(flow){
+  const hand = flow?.handVerification;
+  if(!hand || hand.sources === undefined) return false;
+  const { sources, ...kept } = hand;
+  flow.handVerification = { ...kept, sourceCount: kept.sourceCount ?? (Array.isArray(sources) ? sources.length : 0) };
+  return true;
 }
 
 /**
  * @param trails         the production catalogue
  * @param orchestration  the `trail-orchestration` artifact (may be null)
  * @param jobs           queued jobs, to find the ones a hand-verified trail owns
- * @returns {{orchestration, recorded, withdrawn, retireJobIds}} orchestration is
- *          null when nothing changed, so a caller writes only when it must
+ * @returns {{orchestration, recorded, withdrawn, compacted, retireJobIds}}
+ *          orchestration is null when nothing changed, so a caller writes only
+ *          when it must
  */
 function planHandVerifications({ trails = [], orchestration = null, jobs = [], at = new Date().toISOString() } = {}){
   const base = orchestration || { contractVersion: '1.0.0', publicMutationAllowed: false, trails: [] };
@@ -62,6 +90,7 @@ function planHandVerifications({ trails = [], orchestration = null, jobs = [], a
   const byHand = new Map(trails.filter(verifiedByHand).map(trail => [String(trail.id), trail]));
   const recorded = [];
   const withdrawn = [];
+  const compacted = next.trails.filter(dropCopiedSources).map(flow => String(flow.trailId || flow.candidateId));
   for(const [id, trail] of byHand){
     const flow = flows.get(id);
     // The evidence policy passed it before it was checked by hand: that is
@@ -111,8 +140,8 @@ function planHandVerifications({ trails = [], orchestration = null, jobs = [], a
   const retireJobIds = (jobs || [])
     .filter(job => job && job.status === 'queued' && settled.has(String(job.candidateId)))
     .map(job => job.id);
-  const changed = recorded.length > 0 || withdrawn.length > 0;
-  return { orchestration: changed ? next : null, recorded, withdrawn, retireJobIds };
+  const changed = recorded.length > 0 || withdrawn.length > 0 || compacted.length > 0;
+  return { orchestration: changed ? next : null, recorded, withdrawn, compacted, retireJobIds };
 }
 
-module.exports = { HAND_STATE, HAND_STAGE, WITHDRAWN_STAGE, RETIRED_REASON, verifiedByHand, planHandVerifications };
+module.exports = { HAND_STATE, HAND_STAGE, WITHDRAWN_STAGE, RETIRED_REASON, MAX_SOURCES, verifiedByHand, handSources, planHandVerifications };
