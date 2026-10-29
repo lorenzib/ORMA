@@ -268,21 +268,37 @@ function directionsSection(t) {
       `${index ? '<span class="sp-route-ref-arrow" aria-hidden="true">\u2192</span>' : ''}`
       + `<span class="sp-route-ref">${escapeHtml(ref)}</span>`).join('')}</div>`
     : '';
+  // A walk with no numbers, turn by turn: the steps take the place of the
+  // Route and Key turns lines, each tagged with the source it rests on.
+  const stepped = routeGuidanceSources.landmarkSteps(guidance);
   // Each value ends with where it came from; the page says that once, under
   // the lines, instead of after every one of them.
   const { lines, note } = routeGuidanceSources.splitSources([
     ['Start', start],
-    ...(status ? [['Trail numbers', status]] : []),
-    [landmarkLed ? 'Route' : 'Trail numbers and route', sequence],
-    [landmarkLed ? 'Key turns' : 'Where to switch', switches],
+    ...(status && !stepped ? [['Trail numbers', status]] : []),
+    ...(stepped ? [] : [
+      [landmarkLed ? 'Route' : 'Trail numbers and route', sequence],
+      [landmarkLed ? 'Key turns' : 'Where to switch', switches],
+    ]),
   ]);
+  // Styled here rather than in the page head, so only the pages that have
+  // steps carry the rules for them.
+  const steps = stepped
+    ? `\n    <style>.sp-route-badge{display:inline-block;margin:6px 0 2px;padding:3px 10px;border-radius:8px;background:#FBF1DC;color:#6B4A12;font-size:13px;}`
+      + '.sp-route-steps{display:grid;gap:8px;margin:10px 0;padding-left:22px;}.sp-route-steps li::marker{color:#B54835;font-weight:800;}'
+      + `.sp-route-step-from{color:#657369;font-size:12px;white-space:nowrap;}</style>
+    <ol class="sp-route-steps">${stepped.steps.map(step =>
+      `<li>${escapeHtml(step.text)} <span class="sp-route-step-from">${escapeHtml(step.tags.join(', '))}</span></li>`).join('')}</ol>${
+      stepped.credits.map(credit => `\n    <p class="sp-route-source">${escapeHtml(credit.before)}<a href="${
+        escapeHtml(credit.url)}" rel="noopener">${escapeHtml(credit.label)}</a>${escapeHtml(credit.after)}</p>`).join('')}`
+    : '';
   return `<h2>How to follow this route</h2>
-    ${shields}
+    ${shields}${stepped ? `<p class="sp-route-badge">${escapeHtml(stepped.badge)}</p>` : ''}
     ${lines.map(([label, text]) => label === 'Start' && /^Start\b/.test(text)
     // "Start: Start at …" read the word twice; the sentence's own first word
     // takes the bold instead (trail-blueprint.js does the same in the app).
     ? `<p><b>Start</b>${escapeHtml(text.slice(5))}</p>`
-    : `<p><b>${escapeHtml(label)}:</b> ${escapeHtml(text)}</p>`).join('\n    ')}${
+    : `<p><b>${escapeHtml(label)}:</b> ${escapeHtml(text)}</p>`).join('\n    ')}${steps}${
     note ? `\n    <p class="sp-route-source">${escapeHtml(note)}</p>` : ''}`;
 }
 
