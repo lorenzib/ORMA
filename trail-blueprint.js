@@ -552,6 +552,7 @@
     // The forecast usually arrives after the first paint. Without this the card
     // keeps a score calculated before the day was known.
     window.addEventListener('dolopaws-conditions-ready', paintPersonalMatch);
+    window.addEventListener('orma-route-view-changed', paintPersonalMatch);
 
     // Trail description inside the white box
     const descEl = $('matchDescription');

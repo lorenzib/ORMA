@@ -1848,8 +1848,8 @@ function renderTrail(t){
     wrap.setAttribute('role', 'group');
     wrap.setAttribute('aria-label', routeLabel('trail.routeView.label', 'Show the figures for'));
     const views = [
-      [routeReturn.VIEWS.ONE_WAY, routeLabel('trail.routeView.oneWay', 'One way')],
       [routeReturn.VIEWS.OUT_AND_BACK, routeLabel('trail.routeView.outAndBack', 'Out and back')],
+      [routeReturn.VIEWS.ONE_WAY, routeLabel('trail.routeView.oneWay', 'One way')],
     ];
     const note = document.createElement('span');
     note.className = 'td2-route-switch-note';
