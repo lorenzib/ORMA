@@ -1224,6 +1224,15 @@ is the same rule the sweep asks Overpass for as six set expressions. Two
 readings of one rule, so a test reads the query out of the source and puts
 every condition in it to the predicate. Dogs are the reason the rule exists.
 
+**A numbered route OSM leaves unnamed takes the operator's name.** Many walks a
+tourist board publishes are numbered routes that OpenStreetMap carries with a
+ref and no name, and the importer refused every one as "the relation has no
+name". `--name "<name>"` supplies the name the operator publishes, for a
+relation that has none. It never replaces a name OSM already gives (renaming is
+what `data/trail-slug-overrides.json` is for), it does not get a walk past the
+dog screening, and the page it names is cited in the trail's verification
+record like every other fact.
+
 Three things it will not do:
 
 - **Re-import a walk already on file.** That would rewrite a line the
