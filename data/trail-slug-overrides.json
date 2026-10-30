@@ -1393,6 +1393,21 @@
       "name": "Kastelruth bear-trap loop",
       "slug": "kastelruth-bear-trap-loop",
       "gloss": "past San Michele to the bear trap and Passo Pinei"
+    },
+    "villnoess-ranui-zannes": {
+      "name": "Ranui to Zannes",
+      "slug": "ranui-to-zannes",
+      "gloss": "through the woods on path 33 under the Odle"
+    },
+    "villnoess-da-russis-fino-al-passo-delle-erbe": {
+      "name": "Ponte Russis to Passo delle Erbe",
+      "slug": "russis-to-passo-delle-erbe",
+      "gloss": "on the lower Günther-Messner path under the Aferer Geisler"
+    },
+    "villnoess-dolorama-3a-tappa": {
+      "name": "Dolorama stage 3: Rifugio Genova to Resciesa",
+      "slug": "dolorama-genova-to-resciesa",
+      "gloss": "under the Odle by the Brogles hut"
     }
   }
 }

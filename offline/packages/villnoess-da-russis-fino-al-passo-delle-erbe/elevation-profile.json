@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "villnoess-da-russis-fino-al-passo-delle-erbe",
+  "distanceKm": 8,
+  "ascentM": 554,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1729
+    },
+    {
+      "km": 0.6,
+      "elev": 1904
+    },
+    {
+      "km": 1.3,
+      "elev": 1969
+    },
+    {
+      "km": 1.8,
+      "elev": 2014
+    },
+    {
+      "km": 2.5,
+      "elev": 2081
+    },
+    {
+      "km": 3,
+      "elev": 2083
+    },
+    {
+      "km": 3.7,
+      "elev": 2068
+    },
+    {
+      "km": 4.3,
+      "elev": 1995
+    },
+    {
+      "km": 4.9,
+      "elev": 2041
+    },
+    {
+      "km": 5.5,
+      "elev": 2099
+    },
+    {
+      "km": 6.1,
+      "elev": 2074
+    },
+    {
+      "km": 6.7,
+      "elev": 2055
+    },
+    {
+      "km": 7.3,
+      "elev": 2004
+    },
+    {
+      "km": 7.9,
+      "elev": 1994
+    },
+    {
+      "km": 8,
+      "elev": 1999
+    }
+  ]
+}
