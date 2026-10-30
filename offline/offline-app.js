@@ -28,7 +28,6 @@
     packageState: document.getElementById('packageState'),
     mapSection: document.getElementById('mapSection'),
     factsSection: document.getElementById('factsSection'),
-    sourceSection: document.getElementById('sourceSection'),
     failure: document.getElementById('failure'),
     failureMessage: document.getElementById('failureMessage'),
     offlineMap: document.getElementById('offlineMap'),
@@ -62,9 +61,6 @@
     facts: document.getElementById('facts'),
     cautions: document.getElementById('cautions'),
     emergency: document.getElementById('emergency'),
-    verificationNotice: document.getElementById('verificationNotice'),
-    packageMeta: document.getElementById('packageMeta'),
-    licenceLink: document.getElementById('licenceLink'),
     networkState: document.getElementById('networkState'),
     elevation: document.getElementById('offlineElevation'),
     elevationArea: document.getElementById('offlineElevationArea'),
@@ -102,17 +98,10 @@
       : `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   }
 
-  // The offline map says what the trail page says about the same route: a
-  // Verified trail's map is drawn from the line verified against official
-  // sources, so it is Verified here too (OFF-08).
-  function verificationLabel(status){
-    if(status === 'source-verified') return 'Verified route, same as the trail page.';
-    if(status === 'not-verified') return 'ORMA hasn\u2019t verified this route yet. Follow local signs.';
-    return 'Trail review status unavailable.';
-  }
-
+  // A route ORMA has not verified says so under the title (OFF-08). A
+  // Verified one shows nothing there: the header was crowded, and the trail
+  // page already carries the seal.
   function routeStatusLabel(status){
-    if(status === 'source-verified') return '\u2713 Verified by ORMA against official sources';
     if(status === 'not-verified') return 'Not yet verified by ORMA';
     return '';
   }
@@ -126,7 +115,6 @@
   function showFailure(message){
     elements.mapSection.hidden = true;
     elements.factsSection.hidden = true;
-    elements.sourceSection.hidden = true;
     elements.failure.hidden = false;
     elements.packageState.textContent = 'Package verification failed.';
     elements.failureMessage.textContent = message;
@@ -787,15 +775,12 @@
         elements.cautions.appendChild(item);
       });
       elements.emergency.textContent = `${safety.emergency.number}. ${safety.emergency.note}`;
-      elements.verificationNotice.textContent = verificationLabel(manifest.verificationStatus);
       const routeStatus = document.getElementById('routeStatus');
       if(routeStatus && routeStatusLabel(manifest.verificationStatus)){
         routeStatus.textContent = routeStatusLabel(manifest.verificationStatus);
         routeStatus.dataset.status = manifest.verificationStatus;
         routeStatus.hidden = false;
       }
-      elements.packageMeta.textContent = `Package ${manifest.version} · scoring ${manifest.scoringVersion || 'not recorded'} · generated ${manifest.generatedAt.slice(0, 10)} · ${manifest.attribution}`;
-      elements.licenceLink.href = manifest.licenceUrl;
       elements.locationButton.addEventListener('click', () => startLocation(manifest.bounds));
       elements.rejoinButton.addEventListener('click', () => {
         manualRejoinActive = true;
@@ -805,7 +790,6 @@
 
       elements.mapSection.hidden = false;
       elements.factsSection.hidden = false;
-      elements.sourceSection.hidden = false;
     }catch(error){
       showFailure(error.message || 'A required package resource is unavailable.');
     }
