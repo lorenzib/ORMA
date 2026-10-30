@@ -450,7 +450,7 @@
 
     // Dog pill, the shared switcher pattern (map, journal, safety guide,
     // collections and the profile page all use this same control): avatar +
-    // name opens a "Switch dog" panel with the dog list and a manage link.
+    // name opens a "Switch dog" panel; each dog card opens that dog's profile.
     // The cached account summary carries every dog plus the active id, so the
     // same switcher works on Firebase-backed and static pages.
     function buildAccountPill(name){
@@ -511,29 +511,14 @@
           txt.appendChild(meta);
         }
         row.appendChild(txt);
-        row.addEventListener('click', async () => {
-          if(d.id === activeId){ setOpen(false); return; }
-          // Dismiss the dog panel immediately. A slow profile sync must never
-          // leave an open navigation layer sitting above the rest of the site.
+        // A dog card opens that dog's profile. account.html makes the dog
+        // active itself when ?dog= names another one, so no switch happens
+        // here and no separate "Manage dog profiles" link is needed.
+        row.addEventListener('click', () => {
           setOpen(false);
-          row.disabled = true;
-          if(window.DoloPawsAuth && typeof window.DoloPawsAuth.selectDogProfile === 'function'){
-            try {
-              const ok = await window.DoloPawsAuth.selectDogProfile(d.id);
-              if(ok) window.location.reload();
-              else row.disabled = false;
-            } catch(error){
-              row.disabled = false;
-            }
-            return;
-          }
-          // Static pages have no Firebase client. Keep the local choice so
-          // their dog-specific copy switches immediately on reload.
-          try {
-            const next = { ...summary, activeDogId:d.id, name:d.name, breed:d.breed, fitness:d.fitness };
-            localStorage.setItem('dolopaws-profile-summary', JSON.stringify(next));
-          } catch(e){}
-          window.location.reload();
+          window.location.href = prefix + 'account.html?'
+            + (d.id ? 'dog=' + encodeURIComponent(d.id) + '&' : '')
+            + 'next=' + encodeURIComponent(pagePath);
         });
         menu.appendChild(row);
       });
@@ -546,14 +531,6 @@
       addLink.textContent = copy('mobile.addDog', '＋ Add another dog');
       addLink.setAttribute('data-i18n', 'mobile.addDog');
       menu.appendChild(addLink);
-      const manage = document.createElement('a');
-      manage.className = 'nav-dogmenu-manage';
-      manage.href = prefix + 'account.html?'
-        + (activeId ? 'dog=' + encodeURIComponent(activeId) + '&' : '')
-        + 'next=' + encodeURIComponent(pagePath);
-      manage.textContent = copy('mobile.manageDogs', 'Manage dog profiles →');
-      manage.setAttribute('data-i18n', 'mobile.manageDogs');
-      menu.appendChild(manage);
 
       function menuDiv(){
         const div = document.createElement('div');
