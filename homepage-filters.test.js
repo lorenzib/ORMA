@@ -492,17 +492,31 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelector('.li-match-reason')).toBeNull();
   });
 
-  test('opens the active dog editor from the dog row and both manage links', () => {
+  test('each dog card opens that dog in account.html, active or not', () => {
     const context = loadHomepageContext(sampleTrails);
     context.localStorage.getItem = key => key === 'dolopaws-profile-summary'
-      ? JSON.stringify({ hasProfile:true, activeDogId:'teo', dogs:[{ id:'teo', name:'Teo', breed:'Mutt', fitness:'moderate' }] })
+      ? JSON.stringify({ hasProfile:true, activeDogId:'teo', dogs:[
+        { id:'teo', name:'Teo', breed:'Mutt', fitness:'moderate' },
+        { id:'eddie', name:'Eddie', breed:'Podenco Andaluz', fitness:'high' },
+      ] })
       : null;
     vm.runInContext('renderLiHeader({ id:"teo", name:"Teo", breed:"Mutt", fitness:"moderate" });', context);
 
-    expect(document.getElementById('liManageLink').getAttribute('href')).toBe('account.html?dog=teo&next=%2F');
-    expect(document.getElementById('liGreetManageLink').getAttribute('href')).toBe('account.html?dog=teo&next=%2F');
-    document.querySelector('#liDogList .nav-dogmenu-row').click();
+    // A member with a dog has no separate manage link: the cards are it.
+    expect(document.getElementById('liManageLink').hidden).toBe(true);
+    expect(document.getElementById('liGreetManageLink').hidden).toBe(true);
+    const rows = document.querySelectorAll('#liDogList .nav-dogmenu-row');
+    rows[0].click();
     expect(context.location.href).toBe('account.html?dog=teo&next=%2F');
+    rows[1].click();
+    expect(context.location.href).toBe('account.html?dog=eddie&next=%2F');
+  });
+
+  test('keeps a set-up link for a member with no dog yet', () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('renderLiHeader(null);', context);
+    expect(document.getElementById('liManageLink').hidden).toBe(false);
+    expect(document.getElementById('liGreetManageLink').hidden).toBe(false);
   });
 
   test('a ?region deep link still scopes the list to that region', async () => {
@@ -866,6 +880,30 @@ describe('returning homepage region + valley filters', () => {
     expect(fitItems.length).toBeGreaterThan(0);
     expect(fitItems.every(text => /^[A-Z].*\.$/.test(text.trim()))).toBe(true);
     expect(fitItems).toContain('The 3.6 km distance is comfortable.');
+  });
+
+  test('a Not recommended card asks why not, and never says it fits', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    context.recommendTrail.mockImplementation(() => ({
+      scoringVersion:'1.6.0', score:49, category:'not-recommended', confidence:'high',
+      positiveReasons:[{ code:'trail.terrain.within-tolerance', message:'Terrain is fine.' }],
+      factors:[
+        { code:'trail.heat.high', message:'Runs warm.', impact:-10 },
+        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
+      ],
+      cautions:[{ message:'This route runs warm.' }],
+      hardStops:[], unknowns:[],
+    }));
+    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liApplyLocationGeography();', context);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+
+    const list = document.querySelector('#returningCustomerHomepage') || document.body;
+    expect(list.textContent).not.toContain('Why it fits Teo');
+    expect(document.querySelector('.li-answer-explanation').textContent).toContain('Not the problem here');
+    // The first card starts open; closing it shows the question it asks.
+    const toggle = document.querySelector('[data-why-toggle]');
+    toggle.click();
+    expect(toggle.textContent).toContain('Why not for Teo');
   });
 
   test('the reasons stop at four, so the cautions are not buried', async () => {

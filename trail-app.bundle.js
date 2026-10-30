@@ -74657,6 +74657,21 @@ if(document.querySelector('.td2')){
     // The rows the card lists one by one, and the positives it folds into a
     // single "fine for" line. Cost rows keep their points; a positive stays a
     // row only when it has no short form.
+    // "Fine for Teo: ..." under "Not recommended" reads as reassurance and
+    // contradicts the verdict above it. Only a strong option says "fine";
+    // the other verdicts list the same items as neutral facts and say plainly
+    // that they do not outweigh the reasons above.
+    const fineLineFor = (categoryKey, name, items) => {
+      if(categoryKey === 'not-recommended'){
+        return tr('recommendation.fine.line.not-recommended',
+          'Not the problem here: {items}. These do not outweigh the reasons above.', { name, items });
+      }
+      if(categoryKey === 'possible-with-cautions'){
+        return tr('recommendation.fine.line.possible-with-cautions',
+          'Not a concern for {name}: {items}. The reasons above still apply.', { name, items });
+      }
+      return tr('recommendation.fine.line', 'Fine for {name}: {items}.', { name, items });
+    };
     const finePhrase = entry => {
       const fallback = FINE_PHRASES[entry.code];
       if(!fallback) return null;
@@ -74786,9 +74801,10 @@ if(document.querySelector('.td2')){
       // The same positives as sentences, for a card that lists them rather
       // than folding them into fineLine.
       fits,
-      fineLine:fine.length
-        ? tr('recommendation.fine.line', 'Fine for {name}: {items}.', { name:subject, items:joined })
-        : null,
+      fineLine:fine.length ? fineLineFor(recommendation.category, subject, joined) : null,
+      // Only a strong option gets the reassuring tick. Under any other verdict
+      // the line is information, not comfort, and must not read as a verdict.
+      fineTone:recommendation.category === 'strong-option' ? 'reassure' : 'neutral',
       // The floor is not a factor the reader can act on, and rendering its
       // positive impact alongside the costs reads as a bonus. It closes the
       // list as a note instead, explaining why the total stops where it does.
@@ -74989,7 +75005,7 @@ if(document.querySelector('.td2')){
         `<span class="recommendation-factor-reason">${esc(factor.message)}</span></li>`;
     }).join('');
     const fine = view.fineLine
-      ? `<p class="recommendation-fine">${esc(view.fineLine)}</p>`
+      ? `<p class="recommendation-fine${view.fineTone === 'reassure' ? '' : ' is-neutral'}">${esc(view.fineLine)}</p>`
       : '';
     const note = view.breakdownNote
       ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
