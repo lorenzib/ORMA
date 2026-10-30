@@ -36,6 +36,61 @@ function decodeArtifactData(document){
     : document.data;
 }
 
+/**
+ * An artifact larger than one Firestore property, split across documents.
+ *
+ * `dossier-review-queue` is fitted to a budget so it never fails a write, but
+ * a budget under one property's 1,048,487 bytes holds about 400 waiting
+ * reviews at their worst, and on 29 October 2026 the catalogue reached 406
+ * trails. Splitting the queue is the fix its compaction test asked for. It is
+ * done here, where the bytes are written, so the twenty places that read the
+ * queue go on calling getArtifact and see one object.
+ *
+ * Under SHARD_BYTES nothing changes: the artifact is one document in json-v1,
+ * exactly as before. Over it, the JSON text is cut into pieces of at most
+ * SHARD_BYTES and written in one batch: the first piece on the artifact's own
+ * document, marked json-shards-v1 with the count, the rest on `<id>~shard-N`.
+ * Every piece carries the same token, so a reader that catches a write half
+ * applied sees two tokens and reads again rather than joining two versions.
+ */
+const SHARDED_ARTIFACT_ENCODING = 'json-shards-v1';
+const SHARD_BYTES = 900_000;
+const MAX_ARTIFACT_SHARDS = 8;
+const MAX_ARTIFACT_BYTES = SHARD_BYTES * MAX_ARTIFACT_SHARDS;
+
+function shardDocumentId(id, index){ return `${id}~shard-${index}`; }
+
+/** Cut UTF-8 text into pieces of at most maxBytes without splitting a character. */
+function splitUtf8(text, maxBytes = SHARD_BYTES){
+  const buffer = Buffer.from(text, 'utf8');
+  const pieces = [];
+  let start = 0;
+  while(start < buffer.length){
+    let end = Math.min(start + maxBytes, buffer.length);
+    // A continuation byte (10xxxxxx) is mid-character: step back to its start.
+    while(end < buffer.length && end > start && (buffer[end] & 0xC0) === 0x80) end -= 1;
+    pieces.push(buffer.subarray(start, end).toString('utf8'));
+    start = end;
+  }
+  return pieces.length ? pieces : [''];
+}
+
+function artifactPieces(data){
+  const { data:text } = encodeArtifactData(data);
+  if(Buffer.byteLength(text, 'utf8') <= SHARD_BYTES) return null;
+  const pieces = splitUtf8(text);
+  if(pieces.length > MAX_ARTIFACT_SHARDS){
+    throw new RangeError(`Backoffice artifact is ${Buffer.byteLength(text, 'utf8')} bytes, over the ${MAX_ARTIFACT_BYTES}-byte limit of ${MAX_ARTIFACT_SHARDS} shards`);
+  }
+  return pieces;
+}
+
+/** Join a sharded artifact's pieces, or null when they come from different writes. */
+function joinArtifactPieces(head, shards){
+  if(shards.some(shard => !shard || shard.shardToken !== head.shardToken)) return null;
+  return JSON.parse([head.data, ...shards.map(shard => shard.data)].join(''));
+}
+
 function adminApp(options = {}){
   if(getApps().length) return getApps()[0];
   const raw = options.serviceAccountJson || process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
@@ -116,21 +171,77 @@ class FirestoreBackofficeStore {
     for(const id of (Array.isArray(ids) ? ids : [ids])) if(id) this.jobCache.delete(String(id));
   }
 
+  /** How many pieces each artifact was last seen in, so a shrinking write can drop the spares. */
+  get artifactShardCounts(){ if(!this._artifactShardCounts) this._artifactShardCounts = new Map(); return this._artifactShardCounts; }
+
   async getArtifact(id){
     if(this.artifactCache.has(id)) return this.artifactCache.get(id);
-    const snapshot = await this.db.collection(COLLECTIONS.artifacts).doc(id).get();
-    this.usage.read(1,'artifact-get');
-    const data=snapshot.exists ? decodeArtifactData(snapshot.data()) : null;
-    this.artifactCache.set(id,data);return data;
+    const collection = this.db.collection(COLLECTIONS.artifacts);
+    // Twice at most: a second try covers a reader that met a write half applied.
+    for(let attempt = 0; attempt < 2; attempt += 1){
+      const snapshot = await collection.doc(id).get();
+      this.usage.read(1,'artifact-get');
+      const head = snapshot.exists ? snapshot.data() : null;
+      if(!head || head.dataEncoding !== SHARDED_ARTIFACT_ENCODING){
+        this.artifactShardCounts.set(id, 1);
+        const data = decodeArtifactData(head);
+        this.artifactCache.set(id,data);return data;
+      }
+      const refs = Array.from({ length:head.shardCount - 1 }, (_, index) => collection.doc(shardDocumentId(id, index + 1)));
+      const snapshots = refs.length ? await this.db.getAll(...refs) : [];
+      this.usage.read(refs.length,'artifact-get-shard');
+      const data = joinArtifactPieces(head, snapshots.map(shard => (shard.exists ? shard.data() : null)));
+      if(data !== null){
+        this.artifactShardCounts.set(id, head.shardCount);
+        this.artifactCache.set(id,data);return data;
+      }
+    }
+    throw new Error(`Backoffice artifact ${id} is split across documents from different writes`);
   }
 
   async setArtifact(id, data, metadata = {}){
-    await this.db.collection(COLLECTIONS.artifacts).doc(id).set({
-      contractVersion: '1.0.0', artifactId: id, ...metadata,
-      ...encodeArtifactData(data), updatedAt: FieldValue.serverTimestamp(),
-    }, { merge: true });
-    this.usage.write(1,'artifact-set');
+    const collection = this.db.collection(COLLECTIONS.artifacts);
+    const pieces = artifactPieces(data);
+    const previous = this.artifactShardCounts.get(id) || 1;
+    if(!pieces){
+      await collection.doc(id).set({
+        contractVersion: '1.0.0', artifactId: id, ...metadata,
+        ...encodeArtifactData(data), updatedAt: FieldValue.serverTimestamp(),
+      }, { merge: true });
+      this.usage.write(1,'artifact-set');
+      await this.dropArtifactShards(id, 1, previous);
+    } else {
+      const shardToken = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+      const batch = this.db.batch();
+      batch.set(collection.doc(id), {
+        contractVersion: '1.0.0', artifactId: id, ...metadata,
+        data: pieces[0], dataEncoding: SHARDED_ARTIFACT_ENCODING,
+        shardCount: pieces.length, shardToken, updatedAt: FieldValue.serverTimestamp(),
+      }, { merge: true });
+      pieces.slice(1).forEach((piece, index) => batch.set(collection.doc(shardDocumentId(id, index + 1)), {
+        contractVersion: '1.0.0', artifactId: shardDocumentId(id, index + 1), shardOf: id,
+        shardIndex: index + 1, shardToken, data: piece, updatedAt: FieldValue.serverTimestamp(),
+      }));
+      await batch.commit();
+      this.usage.write(pieces.length,'artifact-set');
+      await this.dropArtifactShards(id, pieces.length, previous);
+    }
+    this.artifactShardCounts.set(id, pieces ? pieces.length : 1);
     this.artifactCache.set(id,data);
+  }
+
+  /**
+   * Delete the pieces a smaller write no longer uses. Only the ones this store
+   * saw: an unread artifact may leave spares behind, which nothing reads,
+   * because the head's count says how many pieces belong to it.
+   */
+  async dropArtifactShards(id, from, previous){
+    if(previous <= from) return;
+    const collection = this.db.collection(COLLECTIONS.artifacts);
+    const batch = this.db.batch();
+    for(let index = from; index < previous; index += 1) batch.delete(collection.doc(shardDocumentId(id, index)));
+    await batch.commit();
+    this.usage.write(previous - from,'artifact-shard-delete');
   }
 
   async setArtifactIfAbsent(id,data,metadata={}){
@@ -592,5 +703,7 @@ class FirestoreBackofficeStore {
 
 module.exports = {
   COLLECTIONS, ARTIFACT_DATA_ENCODING, encodeArtifactData, decodeArtifactData,
+  SHARDED_ARTIFACT_ENCODING, SHARD_BYTES, MAX_ARTIFACT_SHARDS, MAX_ARTIFACT_BYTES,
+  shardDocumentId, splitUtf8, joinArtifactPieces,
   adminApp, backofficeDb, FirestoreBackofficeStore,
 };

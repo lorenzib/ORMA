@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12118490",
   "name": "Le Balcon des Plagnes",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:11.406Z",
+  "version": "2026.10.30-beta.5",
+  "generatedAt": "2026-10-30T16:15:34.687Z",
   "scoringVersion": "1.7.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 424872,
+  "packageBytes": 421965,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.30187,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9702,
-      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
+      "bytes": 8882,
+      "sha256": "dd318d4d668e40f5960f4f2aeb5fd3137d713746aaf06fd99a69424e69e8e5a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11639,
-      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
+      "bytes": 10637,
+      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 35211,
-      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -201,7 +201,7 @@
       "label": "Le Balcon des Plagnes OSM offline map",
       "url": "map.svg",
       "bytes": 202453,
-      "sha256": "2b8b95b42ab3f34216852fff5df28f0299b470d8ec2caa1ef88123dd24f5b2d7"
+      "sha256": "fa9eb74878e5d7d4154972546b0ec2d62f72bfd84eca33d0bc77535fbebcd561"
     },
     {
       "role": "route",
@@ -217,7 +217,7 @@
       "label": "Le Balcon des Plagnes routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 107974,
-      "sha256": "581d9c2debe0ac1b126bf0dcb61eb3dafaacd1c1bfd917d55f5cc4857da59848"
+      "sha256": "aab356c111a2c27472e0dd023095b06b06c8f6223da2ff5a78a3c66e41c6f04e"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Le Balcon des Plagnes safety information",
       "url": "safety.json",
       "bytes": 1393,
-      "sha256": "be353ada2613685a9d4d1fc1c0f30c44d340a42c53d8a4b56ea3b457a3d1126b"
+      "sha256": "dad1c3c2367605b845afc1990015d5a1310a6634a0025b3fcd62dc64d1a84b84"
     }
   ]
 }

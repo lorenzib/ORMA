@@ -160,9 +160,14 @@ describe('the existing-site verification boundary',()=>{
     // Then 398 and 396 with five Kronplatz walks, and 402 and 400 with four more:
     // Brach to Pieve di Marebbe, Valdaora di Sopra to the Alte Goste, the Gais
     // channel path loop and San Lorenzo to Maria Sares.
+    // Then 404 and 402 with two more: Valdaora di Sotto to Bad Bergfall and
+    // the Kienberg legends loop. Then 406 and 404 with the first two Eggental
+    // walks: Passo Costalunga to Lake Carezza and Lake Carezza to the Stadlalm.
+    // Then 410 and 408 with four Seiser Alm walks: Mont Sëuc to the Sporthotel
+    // Sonne, Passo Nigra to Tiers, the Umes loop and the Kastelruth bear-trap loop.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(402);
-    expect(currentSiteTrails(catalogue)).toHaveLength(400);
+    expect(catalogue).toHaveLength(410);
+    expect(currentSiteTrails(catalogue)).toHaveLength(408);
   });
 
   test('requires the artwork the public trail page needs',()=>{

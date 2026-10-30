@@ -187,7 +187,51 @@ describe('it adds one walk and nothing else',()=>{
     expect(await run(['--relation','1','--region','narnia'],{})).toBeNull();
     expect(await run(['--apply'],{})).toBeNull();
     expect(parseArgs(['--relation','7','--region=savoy','--apply']))
-      .toEqual({relation:7,region:'savoy',apply:true});
+      .toEqual({relation:7,region:'savoy',apply:true,name:null});
+    expect(parseArgs(['--relation','7','--name','Jochrunde']).name).toBe('Jochrunde');
+    expect(parseArgs(['--relation','7','--name=  Jochrunde ']).name).toBe('Jochrunde');
+    expect(parseArgs(['--relation','7','--name','  ']).name).toBeNull();
+  });
+});
+
+describe('a numbered route OSM leaves unnamed takes the operator’s name',()=>{
+  // Tourist boards publish many walks that OSM carries as a ref with no name,
+  // and every one was refused for it.
+  const unnamed=()=>{const rel=relation();const {name,...tags}=rel.tags;return {...rel,tags};};
+
+  test('without --name it is still refused for having no name',async()=>{
+    const file=emptyRoutes();
+    const result=await run(['--relation','987654321','--apply'],
+      {routesPath:file,fetchQuery:answering(unnamed(),PATH_WAY)});
+    expect(result.status).toBe('refused');
+    expect(result.reasons).toContain('the relation has no name');
+  });
+
+  test('with --name it is written under that name, its ref kept',async()=>{
+    const file=emptyRoutes();
+    const result=await run(['--relation','987654321','--name','Jochrunde','--apply'],
+      {routesPath:file,fetchQuery:answering(unnamed(),PATH_WAY)});
+    expect(result.status).toBe('added');
+    const [feature]=JSON.parse(fs.readFileSync(file,'utf8')).features;
+    expect(feature.properties).toMatchObject({osm_relation:987654321,name:'Jochrunde',ref:'99'});
+  });
+
+  test('--name never replaces a name OSM already gives',async()=>{
+    const file=emptyRoutes();
+    const result=await run(['--relation','987654321','--name','Something Else','--apply'],
+      {routesPath:file,fetchQuery:answering(relation(),PATH_WAY)});
+    expect(result).toEqual({status:'already-named',name:'Testweg Kastelruth'});
+    expect(JSON.parse(fs.readFileSync(file,'utf8')).features).toEqual([]);
+  });
+
+  test('and a name does not get a walk past the dog screening',async()=>{
+    const file=emptyRoutes();
+    const rel=unnamed();rel.tags.dog='no';
+    const result=await run(['--relation','987654321','--name','Jochrunde','--apply'],
+      {routesPath:file,fetchQuery:answering(rel,PATH_WAY)});
+    expect(result.status).toBe('refused');
+    expect(result.reasons).toContain('relation tagged dog=no');
+    expect(JSON.parse(fs.readFileSync(file,'utf8')).features).toEqual([]);
   });
 });
 

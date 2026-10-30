@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele",
+  "distanceKm": 14,
+  "ascentM": 567,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1071
+    },
+    {
+      "km": 1.1,
+      "elev": 1093
+    },
+    {
+      "km": 2.2,
+      "elev": 1128
+    },
+    {
+      "km": 3.2,
+      "elev": 1209
+    },
+    {
+      "km": 4.3,
+      "elev": 1211
+    },
+    {
+      "km": 5.3,
+      "elev": 1361
+    },
+    {
+      "km": 6.4,
+      "elev": 1476
+    },
+    {
+      "km": 7.5,
+      "elev": 1442
+    },
+    {
+      "km": 8.5,
+      "elev": 1402
+    },
+    {
+      "km": 9.6,
+      "elev": 1318
+    },
+    {
+      "km": 10.7,
+      "elev": 1255
+    },
+    {
+      "km": 11.7,
+      "elev": 1245
+    },
+    {
+      "km": 12.8,
+      "elev": 1132
+    },
+    {
+      "km": 13.9,
+      "elev": 1054
+    },
+    {
+      "km": 14,
+      "elev": 1071
+    }
+  ]
+}

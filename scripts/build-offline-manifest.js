@@ -9,8 +9,8 @@ const root = path.resolve(__dirname, '..');
 // The two hand-built pilots. Their revisions are typed here on purpose: the
 // physical device-test gates name them, so moving one is a decision.
 const configs = {
-  'lago-carezza': { name:'Lago di Carezza Loop', height:1140, version:'2026.10.24-beta.23', verificationStatus:'source-verified' },
-  'alpe-siusi': { name:'Alpe di Siusi Meadow Loop', height:720, version:'2026.10.24-beta.11', verificationStatus:'not-verified' },
+  'lago-carezza': { name:'Lago di Carezza Loop', height:1140, version:'2026.10.30-beta.26', verificationStatus:'source-verified' },
+  'alpe-siusi': { name:'Alpe di Siusi Meadow Loop', height:720, version:'2026.10.30-beta.12', verificationStatus:'not-verified' },
 };
 
 // A generated package has no device test tied to it, so its revision moves on

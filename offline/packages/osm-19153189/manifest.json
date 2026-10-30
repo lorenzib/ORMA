@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-19153189",
   "name": "Le Belvédère (Saint-Pierre-d'Albigny)",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:18.538Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T16:15:35.610Z",
   "scoringVersion": "1.7.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 594368,
+  "packageBytes": 592032,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.56837,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9702,
-      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
+      "bytes": 8882,
+      "sha256": "dd318d4d668e40f5960f4f2aeb5fd3137d713746aaf06fd99a69424e69e8e5a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11639,
-      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
+      "bytes": 10637,
+      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 35211,
-      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Le Belvédère (Saint-Pierre-d'Albigny) OSM offline map",
       "url": "map.svg",
-      "bytes": 405842,
-      "sha256": "8f994f701dcbf88b0fd37b901bfe2fc572ad7fdacf040a64e54f7287e3097def"
+      "bytes": 406413,
+      "sha256": "574906b53b82ab3fd073a8e25bee7e4578836f7bcbd048081713ef2760ac682e"
     },
     {
       "role": "route",
@@ -217,7 +217,7 @@
       "label": "Le Belvédère (Saint-Pierre-d'Albigny) routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 76159,
-      "sha256": "957b2aec5556c8345e4675a98913776165102fff7bdfefed9b8f49e61aa56682"
+      "sha256": "2b1e98372b0b2da12dcd0c72632d98b06a08a25b1171f106db8556d34418c5f2"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Le Belvédère (Saint-Pierre-d'Albigny) safety information",
       "url": "safety.json",
       "bytes": 1116,
-      "sha256": "4a82de45ba874f1248abce84f8685ced5ac8f17d8baf7e53a4a428a8ae1e4714"
+      "sha256": "5480467e3d2ab9860e85356404f81d4b349aa5c0dfb18d2b324461d4d60bc31c"
     }
   ]
 }

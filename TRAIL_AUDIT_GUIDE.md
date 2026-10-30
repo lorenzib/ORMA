@@ -19,20 +19,22 @@ Never describe desk research as a field visit. A trail may still graduate from
 a thorough desk review, but every check must be supported by named, appropriate,
 current sources. An unsuccessful source search is a blocker, not verification.
 
-## The ten graduation checks
+## The eleven graduation checks
 
-A trail becomes verified only when all ten checks pass:
+A trail becomes verified only when all eleven checks pass:
 
 1. Photo/licensing
 2. Route geometry
-3. Exact map-point coordinates
-4. Elevation profile and headline ascent
-5. Water
-6. Heat and shade
-7. Exposure
-8. Livestock and guardian dogs
-9. Surface hazards
-10. Dog access and leash rules
+3. Directions (`routeNumbers`): where to start and which way to go, by trail
+   numbers or by named turns, shown on the page
+4. Exact map-point coordinates
+5. Elevation profile and headline ascent
+6. Water
+7. Heat and shade
+8. Exposure
+9. Livestock and guardian dogs
+10. Surface hazards
+11. Dog access and leash rules
 
 **A trail sits in one of three tiers, all shown to visitors: `under-review`
 (imported OSM data, audit not yet run — shown but flagged unvetted, rating
@@ -43,11 +45,11 @@ data integrity and screens for hard disqualifiers — it does **not** judge how
 dangerous the trail is; per-dog severity is the Layer-2 match %'s job
 (`SCORING.md`), which models heat × distance × shade × water and the dog's
 own profile. See "What the route-audit produces" and "Trail tiers" in
-`VERIFICATION.md` for the full model. The ten checks play four roles, not one
+`VERIFICATION.md` for the full model. The eleven checks play four roles, not one
 flat list:
 
-- **Data-integrity gates — hard blocks:** the four presentation checks
-  (photo, geometry, map points, elevation). Wrong data means the trail stays
+- **Data-integrity gates — hard blocks:** the five route checks
+  (photo, geometry, directions, map points, elevation). Wrong data means the trail stays
   a candidate.
 - **Hard disqualifiers:** dogs prohibited (national reserve / protected area)
   → **remove** the trail; officially marked dangerous for humans (SAC
@@ -291,7 +293,7 @@ Reference files:
 11. Open the live local detail page and visually confirm the header, map line,
     markers/clusters, elevation chart, sources, and review date.
 12. Run all required tests.
-13. Promote the trail to route-audited only if all ten checks pass and it is
+13. Promote the trail to route-audited only if all eleven checks pass and it is
     enriched. Otherwise keep it under review and record exact evidence blockers.
 14. Report what was corrected, whether the trail was promoted, what remains
     blocked, and name the next trail in your working order.

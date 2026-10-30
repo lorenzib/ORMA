@@ -27,7 +27,7 @@ if(location.protocol !== 'file:' && location.pathname === '/index.html'){
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
 <link rel="stylesheet" href="styles.css?v=20260917-4">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260916-1">
-  <link rel="stylesheet" href="homepage-editorial.css?v=20260917-1">
+  <link rel="stylesheet" href="homepage-editorial.css?v=20261030-3">
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
 </head>
 <body>
@@ -169,7 +169,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <div class="li-menu-kick">Switch dog</div>
           <div id="liDogList"></div>
           <button type="button" class="li-menu-item" id="liAddDogBtn">＋ Add another dog</button>
-          <a class="li-menu-item" id="liManageLink" href="account.html?next=%2F">Manage dog profiles →</a>
+          <a class="li-menu-item" id="liManageLink" href="account.html?next=%2F" hidden>Set up your dog's profile</a>
           <div class="li-menu-div" role="separator"></div>
           <a class="li-menu-item" href="saved.html">Saved trails</a>
           <a class="li-menu-item" href="downloads.html">Downloaded trails</a>
@@ -202,7 +202,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <div class="li-menu-kick">Switch dog</div>
           <div id="liGreetDogList"></div>
           <button type="button" class="li-menu-item" id="liGreetAddDogBtn">＋ Add another dog</button>
-          <a class="li-menu-item" id="liGreetManageLink" href="account.html?next=%2F">Manage dog profiles →</a>
+          <a class="li-menu-item" id="liGreetManageLink" href="account.html?next=%2F" hidden>Set up your dog's profile</a>
         </div>
       </div>
       <div class="li-dog-copy">
@@ -418,6 +418,9 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <div class="li-list-title-row">
           <h2 class="li-list-title" id="companionListTitle">Trails</h2>
           <span class="li-list-count" id="companionListCount"></span>
+          <!-- Out of the area and filters into the whole catalogue, still ranked
+               for the dog; once there it offers the way back. -->
+          <button type="button" class="li-list-showall" id="liShowAllTrails" hidden>Show all trails</button>
           <div class="li-list-tools">
             <!-- ORMA's own menu, like Filters and the headline's: a native
                  select opened the system's grey popup inside a pill. -->
@@ -554,6 +557,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="scoring/recommendation-v1.js?v=20260917-1" defer></script>
 <script src="scoring/recommendation-adapters-v1.js?v=20260917-1" defer></script>
 <script src="scoring-conditions.js?v=1" defer></script>
+<script src="route-return.js?v=20261029-1" defer></script>
 <script src="scoring.js?v=20260815-4" defer></script>
 <!-- Translates each scored factor by its code and folds the costless positives
      into one line, so a card says "Fine for Eddie: the terrain, the 3.6 km
@@ -573,12 +577,12 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="auth-ui.js?v=20260916-2" defer></script>
 <script src="discovery-state.js?v=20261007-1" defer></script>
 <script src="map-runtime.js?v=20260826-1" defer></script>
-<script src="map-style.js?v=20261028-1" defer></script>
+<script src="map-style.js?v=20261029-2" defer></script>
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260826-1" defer></script>
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
 <script src="trail-route-refs.js?v=20260903-1" defer></script>
-<script src="script.js?v=20260917-5" defer></script>
+<script src="script.js?v=20261030-1" defer></script>
 <script src="dog-wizard.js?v=20260917-1" defer></script>
 <script src="collections-data.js?v=20260909-1" defer></script>
 <script src="trail-weather-window.js?v=20260906-1"></script><script src="homepage-conditions.js?v=20260908-2"></script><script src="homepage-search.js?v=20261007-1" defer></script>

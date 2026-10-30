@@ -22,6 +22,8 @@ describe('Lago di Carezza offline package', () => {
   test('declares the expected beta status and geographic bounds', () => {
     expect(manifest.schemaVersion).toBe(1);
     expect(manifest.trailId).toBe('lago-carezza');
+    // Withdrawn 29 October 2026 for want of directions, Verified again on 30
+    // October once the page printed the route audit's directions (beta.25).
     expect(manifest.verificationStatus).toBe('source-verified');
     expect(manifest.scoringVersion).toBe(scoring.VERSION);
     expect(manifest.elevationProfile).toMatchObject({
@@ -135,7 +137,8 @@ describe('Lago di Carezza offline package', () => {
     expect(shell).not.toContain('Stored evidence snapshot');
     expect(shell).not.toContain('evidenceList');
     expect(app).not.toContain('Freshness unknown');
-    expect(app).toContain('Verified route, same as the trail page.');
+    expect(app).not.toContain('Verified by ORMA against official sources');
+    expect(app).toContain('Not yet verified by ORMA');
   });
 
   test('presents downloaded route essentials and stored map context clearly', () => {
@@ -146,7 +149,8 @@ describe('Lago di Carezza offline package', () => {
     expect(shell).toContain('class="route-at-a-glance"');
     expect(shell).toContain('id="mapDistance"');
     expect(shell).toContain('id="mapAnnotations"');
-    expect(shell).toContain('class="package-details"');
+    expect(shell).not.toContain('Package status');
+    expect(shell).not.toContain('Files verified');
     expect(app).toContain('renderMapDetails(safety, manifest.bounds)');
     expect(app).toContain('Start / finish');
     expect(css).toContain('.route-at-a-glance');

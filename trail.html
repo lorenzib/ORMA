@@ -710,6 +710,8 @@ body{background:#EFECE2;}
 .recommendation-breakdown-note{margin:10px 0 0;color:#6B7A6E;font:600 12px/1.5 'Inter',sans-serif;}
 .recommendation-fine{display:flex;gap:8px;align-items:baseline;margin:10px 0 0;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
 .recommendation-fine::before{content:'✓';flex:none;color:#4A7856;font-weight:900;}
+/* Under a cautious or Not recommended verdict the line is information, not reassurance: no green tick. */
+.recommendation-fine.is-neutral::before{content:none;}
 .recommendation-factors+.recommendation-fine{padding-top:9px;border-top:1px solid #E5E2D8;}
 .recommendation-add-dog{appearance:none;border:0;background:none;padding:0;cursor:pointer;color:#3E7A91;font:700 12.5px 'Inter',sans-serif;text-align:left;}
 .recommendation-add-dog:hover{text-decoration:underline;}
@@ -930,6 +932,12 @@ body{background:#EFECE2;}
 .td2-route-ref-list{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:9px;}
 .td2-route-ref{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;box-sizing:border-box;padding:5px 10px;border:3px solid #B54835;border-radius:8px;background:#fff;color:#202821;font:800 15px/1 'Inter',sans-serif;box-shadow:0 1px 2px rgba(32,40,33,.08);}
 .td2-route-refs .td2-route-source{margin-top:4px;color:#657369;font-size:13px;line-height:1.5;}
+.td2-route-refs .td2-route-source a{color:inherit;text-decoration:underline;}
+.td2-route-refs .td2-route-badge{display:inline-block;margin:0 0 8px;padding:3px 10px;border-radius:8px;background:#FBF1DC;color:#6B4A12;font-size:13px;line-height:1.5;}
+.td2-route-steps{display:grid;gap:8px;margin:10px 0;padding-left:22px;}
+.td2-route-steps li{padding-left:3px;}
+.td2-route-steps li::marker{color:#B54835;font-weight:800;}
+.td2-route-step-from{color:#657369;font-size:12px;white-space:nowrap;}
 .td2-route-ref-arrow{color:#657369;font-size:17px;font-weight:800;}
 .td2-route-switch-list{display:grid;gap:8px;margin:12px 0 0;padding-left:22px;color:#4f5e53;font:500 13px/1.55 'Inter',sans-serif;}
 .td2-route-switch-list li{padding-left:3px;}
@@ -1519,6 +1527,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
   })();
 </script>
-<script src="trail-app.bundle.js?v=20261029-1" defer></script>
+<script src="trail-app.bundle.js?v=20261030-1" defer></script>
 </body>
 </html>

@@ -221,6 +221,9 @@ let activeValley = 'all';
 // Held in memory only: a reload returns to the stored typed area anyway, which
 // is the same answer by a different route.
 let liContextBeforeMapArea = null;
+// What "Show all trails" in the list header left: the area and the filters,
+// so its "Back to Alta Pusteria" puts both back. Memory only, like the above.
+let liContextBeforeShowAll = null;
 // When our own reframing (fitBounds) should be finished by. Movement before
 // then is ours, not the reader's, and must not be read as "look here instead".
 // A deadline rather than a one-shot flag: an eased fitBounds, and the resize
@@ -1050,6 +1053,8 @@ function liApplyMapViewport(view){
 function liSetLocationContext(context){
   const next = liValidLocationContext(context);
   if(!next) return;
+  // Choosing any real place by another door makes the way back stale.
+  if(!liIsAllTrailsContext(next)) liContextBeforeShowAll = null;
   liLocationContext = next;
   // A new area supersedes the old map framing and selection; the filters and
   // the date are about the dog and the day, so they stay.
@@ -1096,6 +1101,45 @@ function liResetLocationContext(){
   if(typeof window.CustomEvent === 'function'){
     window.dispatchEvent(new window.CustomEvent('dolopaws-home-location-context-changed', { detail:{ ready:true } }));
   }
+}
+
+// The list header's "Show all trails": out of the area, the map area and the
+// filters into the whole catalogue, still ranked for the dog. The area is
+// not remembered (the all-trails context is transient), so a reload still
+// opens on the reader's own area.
+function liShowAllTrails(){
+  const base = liLocationContext && liLocationContext.kind === 'map' ? liContextBeforeMapArea : liLocationContext;
+  // Already on all trails with only a filter or a pan to clear: keep the
+  // earlier way back rather than overwriting it with "all trails".
+  if(base && !liIsAllTrailsContext(base)){
+    liContextBeforeShowAll = { context:base, filters:{ ...liFilters }, savedOnly:showingSavedOnly };
+  }
+  liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false, duration: 'day', lifts: '' };
+  showingSavedOnly = false;
+  liSetLocationContext({ ...LI_ALL_TRAILS_CONTEXT });
+}
+
+function liBackFromAllTrails(){
+  const saved = liContextBeforeShowAll;
+  if(!saved) return;
+  liContextBeforeShowAll = null;
+  liFilters = { ...saved.filters };
+  showingSavedOnly = saved.savedOnly;
+  liSetLocationContext(saved.context);
+}
+
+// One button, three states: narrowed -> "Show all trails"; on all trails
+// with a place to return to -> "Back to <area>"; otherwise nothing to offer.
+function liSyncShowAllButton(){
+  const button = document.getElementById('liShowAllTrails');
+  if(!button) return;
+  const narrowed = !liIsAllTrailsContext(liLocationContext) || liActiveFilterCount() > 0 || !!liQuery.trim();
+  const back = !narrowed && liContextBeforeShowAll;
+  button.hidden = !narrowed && !back;
+  button.dataset.mode = back ? 'back' : 'all';
+  button.textContent = back
+    ? `Back to ${liDisplayLocationLabel(back.context.label) || 'your area'}`
+    : 'Show all trails';
 }
 
 liApplyLocationGeography();
@@ -1832,24 +1876,29 @@ function initTrailMap(){
     trailMapInstance.addSource('trail-selected-route', {
       type:'geojson', data:{ type:'FeatureCollection', features:[] },
     });
-    // The chosen walk matches the detail page: a white casing and a
-    // translucent match-colour corridor under the route numbers, and the
+    // The chosen walk matches the detail page: thin white edges and a pale
+    // match-colour corridor under the contours and the dashed routes, and the
     // routes it follows numbered beside it (setSelectedTrailRoute).
     // The catalogue rails above remain subdued; the selected route is the
     // only corridor that should read as the walk the owner has chosen.
+    const corridorBeforeId = window.ORMAMapStyle.walkCorridorBeforeId(trailMapInstance);
     trailMapInstance.addLayer({
       id:'trail-selected-route-casing', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
-      paint:{ 'line-color':'#FFFFFF', 'line-width':['interpolate',['linear'],['zoom'],8,10,12,16,14,23,17,33], 'line-opacity':0.9 },
-    }, railsBeforeId);
+      paint:{
+        'line-color':'#FFFFFF', 'line-opacity':0.9,
+        'line-width':['interpolate',['linear'],['zoom'],8,1.5,12,2,14,2.5,17,3],
+        'line-gap-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26],
+      },
+    }, corridorBeforeId);
     trailMapInstance.addLayer({
       id:'trail-selected-route-line', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
       paint:{
-        'line-color':['coalesce',['get','routeColor'],'#4A7856'],
-        'line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26], 'line-opacity':0.55,
+        'line-color':['coalesce',['get','routeColorPale'],window.ORMAMapStyle.paleColour('#4A7856')],
+        'line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26], 'line-opacity':1,
       },
-    }, railsBeforeId);
+    }, corridorBeforeId);
     trailMapInstance.addLayer({
       id:'trail-selected-route-arrows', type:'symbol', source:'trail-selected-route',
       layout:{
@@ -2245,7 +2294,7 @@ function setSelectedTrailRoute(trail, options){
     type:'FeatureCollection',
     features:visible ? [{
       type:'Feature',
-      properties:{ id:trail.id, routeColor },
+      properties:{ id:trail.id, routeColor, routeColorPale:window.ORMAMapStyle.paleColour(routeColor) },
       geometry:{ type:'LineString', coordinates:route.map(([lat, lng]) => [lng, lat]) },
     }] : [],
   });
@@ -2837,30 +2886,14 @@ function renderLiDogLists(profile){
       meta.textContent = [dog.breed, dog.fitness ? dog.fitness + ' fitness' : null].filter(Boolean).join(' · ');
       copy.append(name, meta);
       row.append(avatar, copy);
-      row.addEventListener('click', async () => {
-        // The account dropdown is not a modal. Always dismiss it first so an
-        // active-dog click or a slow network request can never block the page.
+      // A dog card opens that dog's profile. account.html makes the dog
+      // active itself when ?dog= names another one.
+      row.addEventListener('click', () => {
+        // The account dropdown is not a modal. Dismiss it first.
         liCloseMenus();
-        if(dog.id === activeId){
-          window.location.href = `account.html?dog=${encodeURIComponent(dog.id)}&next=%2F`;
-          return;
-        }
-        if(!window.DoloPawsAuth || !window.DoloPawsAuth.selectDogProfile) return;
-        row.disabled = true;
-        row.setAttribute('aria-busy', 'true');
-        try {
-          // selectDogProfile dispatches dolopaws-dog-profile-saved, which
-          // refreshes scores and dog context in place. Reloading here was
-          // redundant and could strand the homepage during a slow reload.
-          await window.DoloPawsAuth.selectDogProfile(dog.id);
-        } catch(error){
-          // Keep the rest of the homepage usable even if profile sync fails.
-        } finally {
-          if(row.isConnected){
-            row.disabled = false;
-            row.removeAttribute('aria-busy');
-          }
-        }
+        window.location.href = dog.id
+          ? `account.html?dog=${encodeURIComponent(dog.id)}&next=%2F`
+          : 'account.html?next=%2F';
       });
       list.appendChild(row);
     });
@@ -2879,15 +2912,11 @@ function renderLiHeader(profile){
   liFillAvatar(document.getElementById('liGreetAvatar'), profile);
   liFillAvatar(document.getElementById('liDogCtxAvatar'), profile);
   renderLiDogLists(profile);
+  // The dog cards open each profile, so this link is only for a member
+  // who has no dog yet.
   ['liManageLink','liGreetManageLink'].forEach(id => {
-    const manage = document.getElementById(id);
-    if(!manage) return;
-    manage.textContent = (profile && profile.name)
-      ? 'Manage dog profiles →'
-      : "Set up your dog's profile";
-    manage.href = profile && profile.id
-      ? `account.html?dog=${encodeURIComponent(profile.id)}&next=%2F`
-      : 'account.html?next=%2F';
+    const setup = document.getElementById(id);
+    if(setup) setup.hidden = Boolean(profile && profile.name);
   });
   const matchLabel = document.getElementById('liMatchSecLabel');
   if(matchLabel) matchLabel.textContent = (profile && profile.name)
@@ -3268,6 +3297,12 @@ function initLoggedInShell(){
       liSetLocationContext(liRegionContext(button.dataset.liRegion));
     });
   });
+  const showAllButton = document.getElementById('liShowAllTrails');
+  if(showAllButton) showAllButton.addEventListener('click', () => {
+    liCloseMenus();
+    if(showAllButton.dataset.mode === 'back') liBackFromAllTrails();
+    else liShowAllTrails();
+  });
   const nudgeButton = document.getElementById('liLocationNudgeBtn');
   if(nudgeButton) nudgeButton.addEventListener('click', liRequestCurrentLocation);
   const nudgeDismiss = document.getElementById('liLocationNudgeDismiss');
@@ -3594,15 +3629,14 @@ function liExposureLabel(exposure){
 // Row meta per the design TrailRow: "7.5 km · 150 m climb · 2–2.5 h · little shade"
 // Cautions follow the measured facts, gravest first.
 function liRowMeta(t){
-  const parts = [`${t.distance} km`];
-  if(Number.isFinite(t.elevation)) parts.push(`${t.elevation} m climb`);
-  if(t.hours) parts.push(`${t.hours} h`);
-  // A one-way walk's figures cover one direction; say so, with the walk back.
-  if(t.routeShape === 'point-to-point' && Number(t.distance) > 0){
-    const km = Math.round(Number(t.distance) * 20) / 10;
-    const tr = (key, fallback) => { const v = window.t ? window.t(key, { km }) : ''; return v && v !== key ? v : fallback; };
-    parts.push(`${tr('card.oneWay', 'One way')} (${tr('card.thereAndBack', `${km} km there and back`)})`);
-  }
+  // A one-way walk is shown, and scored, there and back (route-return.js).
+  const routeReturn = window.ORMARouteReturn;
+  const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
+  const back = shown !== t;
+  const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:shown.distance }) : ''; return v && v !== key ? v : fallback; };
+  const parts = [back ? tr('card.thereAndBack', `${shown.distance} km there and back`) : `${t.distance} km`];
+  if(Number.isFinite(shown.elevation)) parts.push(`${shown.elevation} m climb`);
+  if(shown.hours) parts.push(`${back ? '≈ ' : ''}${shown.hours} h`);
   const exposure = liExposureLabel(t.exposure);
   if(exposure) parts.push(exposure);
   const shade = liShadeLabel(t.shadeCoverage);
@@ -3792,6 +3826,16 @@ function liNewForMeaning(profile){
   return `It now scores ${NEW_MATCH_THRESHOLD}% or more for ${liPersonalisationText(liScoredSubject(profile))}, and it did not at your last visit.`;
 }
 
+// "Why it fits Teo" above a card whose verdict says no contradicts it.
+// Such a card asks why not, and lists what was fine as a plain fact.
+function liIsNotRecommended(trail){
+  return Boolean(trail && trail.recommendation && trail.recommendation.category === 'not-recommended');
+}
+
+function liWhyLabel(trail, dogName){
+  return liIsNotRecommended(trail) ? `Why not for ${dogName}` : `Why it fits ${dogName}`;
+}
+
 function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   const recommendation = trail && trail.recommendation;
   const view = liRecommendationView(trail, profile);
@@ -3833,7 +3877,7 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
     bullets.length ? `<ul>${items(bullets)}</ul>` : '',
   ].join('');
   const fit = fitBody
-    ? `<div><b>Why it fits ${liPersonalisationText(dogName)}</b>${fitBody}</div>`
+    ? `<div><b>${liIsNotRecommended(trail) ? 'Not the problem here' : `Why it fits ${liPersonalisationText(dogName)}`}</b>${fitBody}</div>`
     : '';
   // Cautions first (hard stops already lead them), then what is simply not
   // known, which is a different kind of statement and belongs after. Only
@@ -3874,7 +3918,7 @@ function liWhyPanelId(trailId){ return `li-why-${encodeURIComponent(trailId)}`; 
 function liWhyToggleHtml(trail, profile, open){
   const dogName = liScoredSubject(profile);
   return `<button type="button" class="li-bar-act li-why-toggle" data-why-toggle aria-expanded="${open}" aria-controls="${liWhyPanelId(trail.id)}">` +
-    `<span class="li-why-label">${open ? 'Hide the reasons' : `Why it fits ${liPersonalisationText(dogName)}`}</span>` +
+    `<span class="li-why-label">${open ? 'Hide the reasons' : liPersonalisationText(liWhyLabel(trail, dogName))}</span>` +
     `<span class="li-why-caret" aria-hidden="true">▾</span></button>`;
 }
 
@@ -3978,6 +4022,7 @@ async function renderReturningHomepage(profile, options = {}){
   if(titleEl) titleEl.textContent = `${n} ${showingSavedOnly ? 'saved ' : ''}${n === 1 ? 'trail' : 'trails'}`;
   const countEl = document.getElementById('companionListCount');
   if(countEl) countEl.textContent = LI_SORT_ORDER_WORDS[sortKey] || LI_SORT_ORDER_WORDS.match;
+  liSyncShowAllButton();
 
   renderLiConditionsCard(profile, displayList);
 
@@ -4093,8 +4138,10 @@ async function renderReturningHomepage(profile, options = {}){
       if(label){
         const row = toggle.closest('.li-row');
         const trail = trails.find(item => row && item.id === row.dataset.id);
-        const dogName = liScoredSubject(currentProfileForAdjust);
-        label.textContent = open ? 'Hide the reasons' : `Why it fits ${dogName}`;
+        // The scored copy carries the verdict the label has to match.
+        const scored = pageList.find(item => row && item.id === row.dataset.id) || trail;
+        const dogName = liScoredSubject(profile || currentProfileForAdjust);
+        label.textContent = open ? 'Hide the reasons' : liWhyLabel(scored, dogName);
         if(open) warmTrailDetail(trail);
       }
     });

@@ -75,7 +75,7 @@ function loadHomepageContext(testTrails){
     <a id="liManageLink"></a>
     <a id="liGreetManageLink"></a>
     <h1 id="returningHeading"></h1>
-    <h2 id="companionListTitle"></h2><span id="companionListCount"></span>
+    <h2 id="companionListTitle"></h2><span id="companionListCount"></span><button id="liShowAllTrails" type="button" hidden>Show all trails</button>
     <div id="returningTrailList"></div>
     <button id="liSearchThisArea" type="button" class="li-search-area" hidden>Search this area</button>
     <button id="savedTrailsBtn"></button>
@@ -289,6 +289,49 @@ describe('returning homepage region + valley filters', () => {
     expect(vm.runInContext('liContextBeforeMapArea.kind', context)).toBe('area');
   });
 
+  test('"Show all trails" leaves the area and filters, and "Back to" restores both', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val Gardena", label:"Val Gardena" });`, context);
+    vm.runInContext('liFilters = { ...liFilters, shade:"good" }; renderReturningHomepage(null);', context);
+    const button = document.getElementById('liShowAllTrails');
+    expect(button.hidden).toBe(false);
+    expect(button.textContent).toBe('Show all trails');
+
+    // The click handler picks the action from data-mode.
+    expect(button.dataset.mode).toBe('all');
+    vm.runInContext('liShowAllTrails();', context);
+    expect(vm.runInContext('liIsAllTrailsContext(liLocationContext)', context)).toBe(true);
+    expect(vm.runInContext('liActiveFilterCount()', context)).toBe(0);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
+    expect(button.textContent).toBe('Back to Val Gardena');
+
+    expect(button.dataset.mode).toBe('back');
+    vm.runInContext('liBackFromAllTrails();', context);
+    expect(vm.runInContext('liLocationContext.label', context)).toBe('Val Gardena');
+    expect(vm.runInContext('liFilters.shade', context)).toBe('good');
+    expect(button.textContent).toBe('Show all trails');
+  });
+
+  test('"Show all trails" from a panned map goes back to the area, not the viewport', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val Gardena", label:"Val Gardena" });`, context);
+    context.__view = viewport(6, 45, 7, 46);
+    await vm.runInContext('liApplyMapViewport(__view);', context);
+    vm.runInContext('liShowAllTrails();', context);
+    expect(document.getElementById('liShowAllTrails').textContent).toBe('Back to Val Gardena');
+  });
+
+  test('choosing another area forgets the way back', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val Gardena", label:"Val Gardena" });`, context);
+    vm.runInContext('liShowAllTrails(); liSetLocationContext(liRegionContext("savoy"));', context);
+    expect(vm.runInContext('liContextBeforeShowAll', context)).toBe(null);
+    expect(document.getElementById('liShowAllTrails').textContent).toBe('Show all trails');
+  });
+
   test('"Change" with nothing typed offers the areas the map is showing', async () => {
     const context = loadHomepageContext(sampleTrails);
     context.__view = viewport(6, 45, 7, 46);
@@ -492,17 +535,31 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelector('.li-match-reason')).toBeNull();
   });
 
-  test('opens the active dog editor from the dog row and both manage links', () => {
+  test('each dog card opens that dog in account.html, active or not', () => {
     const context = loadHomepageContext(sampleTrails);
     context.localStorage.getItem = key => key === 'dolopaws-profile-summary'
-      ? JSON.stringify({ hasProfile:true, activeDogId:'teo', dogs:[{ id:'teo', name:'Teo', breed:'Mutt', fitness:'moderate' }] })
+      ? JSON.stringify({ hasProfile:true, activeDogId:'teo', dogs:[
+        { id:'teo', name:'Teo', breed:'Mutt', fitness:'moderate' },
+        { id:'eddie', name:'Eddie', breed:'Podenco Andaluz', fitness:'high' },
+      ] })
       : null;
     vm.runInContext('renderLiHeader({ id:"teo", name:"Teo", breed:"Mutt", fitness:"moderate" });', context);
 
-    expect(document.getElementById('liManageLink').getAttribute('href')).toBe('account.html?dog=teo&next=%2F');
-    expect(document.getElementById('liGreetManageLink').getAttribute('href')).toBe('account.html?dog=teo&next=%2F');
-    document.querySelector('#liDogList .nav-dogmenu-row').click();
+    // A member with a dog has no separate manage link: the cards are it.
+    expect(document.getElementById('liManageLink').hidden).toBe(true);
+    expect(document.getElementById('liGreetManageLink').hidden).toBe(true);
+    const rows = document.querySelectorAll('#liDogList .nav-dogmenu-row');
+    rows[0].click();
     expect(context.location.href).toBe('account.html?dog=teo&next=%2F');
+    rows[1].click();
+    expect(context.location.href).toBe('account.html?dog=eddie&next=%2F');
+  });
+
+  test('keeps a set-up link for a member with no dog yet', () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('renderLiHeader(null);', context);
+    expect(document.getElementById('liManageLink').hidden).toBe(false);
+    expect(document.getElementById('liGreetManageLink').hidden).toBe(false);
   });
 
   test('a ?region deep link still scopes the list to that region', async () => {
@@ -866,6 +923,30 @@ describe('returning homepage region + valley filters', () => {
     expect(fitItems.length).toBeGreaterThan(0);
     expect(fitItems.every(text => /^[A-Z].*\.$/.test(text.trim()))).toBe(true);
     expect(fitItems).toContain('The 3.6 km distance is comfortable.');
+  });
+
+  test('a Not recommended card asks why not, and never says it fits', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    context.recommendTrail.mockImplementation(() => ({
+      scoringVersion:'1.6.0', score:49, category:'not-recommended', confidence:'high',
+      positiveReasons:[{ code:'trail.terrain.within-tolerance', message:'Terrain is fine.' }],
+      factors:[
+        { code:'trail.heat.high', message:'Runs warm.', impact:-10 },
+        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
+      ],
+      cautions:[{ message:'This route runs warm.' }],
+      hardStops:[], unknowns:[],
+    }));
+    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liApplyLocationGeography();', context);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+
+    const list = document.querySelector('#returningCustomerHomepage') || document.body;
+    expect(list.textContent).not.toContain('Why it fits Teo');
+    expect(document.querySelector('.li-answer-explanation').textContent).toContain('Not the problem here');
+    // The first card starts open; closing it shows the question it asks.
+    const toggle = document.querySelector('[data-why-toggle]');
+    toggle.click();
+    expect(toggle.textContent).toContain('Why not for Teo');
   });
 
   test('the reasons stop at four, so the cautions are not buried', async () => {

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "eggental-dal-passo-costalunga-al-lago-di-carezza",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.4,
+    "ascentM": 18,
+    "highestPointM": 1762,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 27
+  },
+  "trailhead": {
+    "lat": 46.40415,
+    "lng": 11.60918,
+    "label": "Passo Costalunga (Karerpass), by the Antermont restaurant, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The start crosses an open meadow and the Pra di Tori ski slope at the pass: keep your dog on the path and off the meadow.",
+    "At the Karersee keep outside the fence: the lake is a natural monument.",
+    "Busy around the lake in summer: keep your dog close.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-29"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -40,13 +40,14 @@ route-audit and the match % are two different systems: the audit establishes
 audit must not try to re-litigate severity — if it did, it would duplicate
 the scoring engine badly and hide the interactions the score captures well.
 
-So the ten checks sort into four roles, not one flat pass/fail list — and a
+So the eleven checks sort into four roles, not one flat pass/fail list — and a
 fifth requirement, content enrichment, sits alongside them before a trail
 can publish as route-audited.
 
-### 1. Data-integrity gates — hard blocks (the four presentation checks)
+### 1. Data-integrity gates — hard blocks (the five route checks)
 
-Photo/licensing, route geometry, map-point coordinates, elevation. These
+Photo/licensing, route geometry, directions (route numbers, or named turns
+for a walk without numbers), map-point coordinates, elevation. These
 must be correct to publish, because they decide whether the listing can be
 trusted at all. They carry no dog-safety content themselves; they are about
 honesty of the record.
@@ -208,7 +209,7 @@ The six canonical category names (match the checklist above and the keys
   category you didn't actually check against a listed source.
 - `source` records how the trail entered the catalogue. `curated: false` means
   it has not graduated; `curated: true` means it passed the full standard.
-  Only a record with all six safety categories and all four presentation/data
+  Only a record with all six safety categories and all five route
   checks may be described to visitors as verified.
 - Add `reviewedAt`, `reviewedBy`, and route-specific `sourceLinks` so the
   visitor can inspect the dated review record rather than seeing a generic
@@ -220,14 +221,14 @@ The six canonical category names (match the checklist above and the keys
 ## Tracking graduation: the `graduation` field
 
 `verified.categories` records the six safety checks. `graduation` combines
-those with the four presentation/data checks required before an imported trail
+those with the five route checks required before an imported trail
 can become verified:
 
 ```js
 graduation: {
   status: 'in-progress',
-  required: ['photo','route','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'],
-  completed: ['photo','route','mapPoints','elevation'],
+  required: ['photo','route','routeNumbers','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'],
+  completed: ['photo','route','routeNumbers','mapPoints','elevation'],
   blockers: {
     water: 'Mapped locations exist, but current flow is not confirmed.'
   }
@@ -236,7 +237,7 @@ graduation: {
 
 - A check enters `completed` only when its evidence and source are recorded.
 - `blockers` must explain why each unresolved check cannot yet pass.
-- `status: 'verified'` is valid only when all ten required checks are complete.
+- `status: 'verified'` is valid only when all eleven required checks are complete.
 - Until then the trail remains `curated: false` and its rating remains an
   estimate, even if its route line and headline facts are correct.
 - No-source-found is a blocker, not a successful check.
@@ -253,13 +254,13 @@ graduation: {
    actually says (or doesn't).
 3. Fill in only what a source supports. Leave the rest unknown — an
    unverified field beats a guessed one.
-4. Validate photo rights, geometry, exact waypoint coordinates and elevation;
-   record those four checks in `graduation.completed` only when they pass.
+4. Validate photo rights, geometry, directions, exact waypoint coordinates and
+   elevation; record those five checks in `graduation.completed` only when they pass.
 5. Add newly-resolved safety category names to `verified.categories`, the
    source(s) to `verified.sources`, and today's date — plus the matching
    dated prose comment above the entry.
 6. Mirror every supported safety category in `graduation.completed`. If all
-   ten checks pass, set `graduation.status: 'verified'` and `curated: true`.
+   eleven checks pass, set `graduation.status: 'verified'` and `curated: true`.
    Otherwise keep the trail imported and list the blockers.
 7. If a source rules the route out for dogs (protected area, mandatory
    off-leash zone, alpine-grade terrain), remove it from `trails-data.js`

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-moena-soraga-someda",
   "name": "Da Moena a Soraga, la natura a due passi da casa",
-  "version": "2026.10.27-beta.1",
-  "generatedAt": "2026-10-27T22:51:07.939Z",
+  "version": "2026.10.30-beta.3",
+  "generatedAt": "2026-10-30T16:15:34.132Z",
   "scoringVersion": "1.7.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 757639,
+  "packageBytes": 754732,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.37271,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9702,
-      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
+      "bytes": 8882,
+      "sha256": "dd318d4d668e40f5960f4f2aeb5fd3137d713746aaf06fd99a69424e69e8e5a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11639,
-      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
+      "bytes": 10637,
+      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 35211,
-      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -217,7 +217,7 @@
       "label": "Da Moena a Soraga, la natura a due passi da casa routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 150876,
-      "sha256": "f8b9910bb832df4984f0e29f6509e680957ba92ca5b4b1bfc2f0a8ba1239b7fd"
+      "sha256": "b07e8348d6a472056467af8d824ff73ba21edf1c6ae2cb25d1d85b6db5d06063"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Da Moena a Soraga, la natura a due passi da casa safety information",
       "url": "safety.json",
       "bytes": 2364,
-      "sha256": "86ee2281bf07ac339d21e2afbae2045aae6908817376d63c629b05b7122efd69"
+      "sha256": "593ea4f44ee2db537a48b07f82e24d898052f33f8b19f072f8ca36726d81e635"
     }
   ]
 }
