@@ -1148,11 +1148,16 @@ Where it is enforced:
 - `node scripts/board-walk-bar.js` lists the failures, with where on each line
   the problem is.
 
-**Not yet true:** the trail page does not print the audit's route sentence.
-It shows route numbers or structured guidance only, and board walks have
-neither, so every board walk's page still reads "No verified numbered sequence
-is currently recorded". Until the page prints the sentence, the directions
-check is met in the record and not on the page.
+**The page prints the sentence** (30 October 2026). A walk with no trail
+numbers and no structured guidance block shows the audit's route sentence
+under "How to follow this route", with a line saying it comes from ORMA's
+route audit, in the app and on the static page alike. Only a sentence that
+clears the directions check above is printed; anything shorter still reads
+"No verified numbered sequence is currently recorded". The test lives in one
+place, `writtenDirections` in `trail-route-refs.js`, and the bar and both
+renderers ask it. Printing the sentence does not give a seal back: a walk
+whose seal was withdrawn for want of directions regains it by a deliberate
+edit to its record, as before.
 
 ## The funnel reaches the page
 

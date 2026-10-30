@@ -30,6 +30,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const { meters, densify } = require('./build-board-line');
+const { writtenDirections } = require('../trail-route-refs');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -191,24 +192,14 @@ function lineShape(line, { declared = 'point-to-point', sideTrips = [] } = {}) {
  * no second place, is not directions.
  */
 function directionsOf(trail) {
-  const text = String((trail && trail.routeAudit && trail.routeAudit.routeNumbers) || '').trim();
-  const problems = [];
-  if (!text) {
-    problems.push('no written directions');
-  } else {
-    const words = text.split(/\s+/).length;
-    const hasStart = /\b(from|start|begin|leave|at the)\b/i.test(text);
-    const hasWay = /\b(to|towards|onto|then|up|down|along|past|through|across|over|via|back)\b/i.test(text);
-    if (words < 15) problems.push(`the directions are only ${words} words`);
-    if (!hasStart || !hasWay) problems.push('the directions do not say where to start and which way to go');
-  }
-  // What the page shows today. The trail page prints route numbers or a
-  // structured guidance block; the audit's sentence is not one of them, so a
-  // board walk's page reads "No verified numbered sequence is currently recorded".
-  const shownOnPage = Boolean(trail && (trail.routeNumberGuidance
+  const { text, problems, written } = writtenDirections(trail);
+  // What the page shows: route numbers, a structured guidance block, or --
+  // since 30 October 2026 -- the audit's sentence itself, when it is written
+  // well enough to follow (trail-blueprint.js and generate-trail-pages.js).
+  const shownOnPage = Boolean(trail && (trail.routeNumberGuidance || written
     || ['routeRefs', 'routeNumbers', 'trailRefs', 'trailNumbers', 'ref', 'decisionPoints', 'routeRefSegments']
       .some(key => trail[key] != null && (!Array.isArray(trail[key]) || trail[key].length))));
-  return { text, problems, written: !problems.length, shownOnPage };
+  return { text, problems, written, shownOnPage };
 }
 
 /** The trails as the site sees them, with the audit overlay applied. */
