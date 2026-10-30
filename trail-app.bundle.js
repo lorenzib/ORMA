@@ -6629,7 +6629,10 @@ function effectiveOverrides(profile, adjustOverride){
   }
 
   const REVIEW_CATEGORIES = Object.freeze(['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access']);
-  const GRADUATION_CATEGORIES = Object.freeze(['photo', 'route', 'mapPoints', 'elevation', ...REVIEW_CATEGORIES]);
+  // The eleven checks, in the order the desk and the board list them. This is
+  // only the fallback for a record that names no `required` list; it said ten
+  // for months because it had left out routeNumbers, the directions check.
+  const GRADUATION_CATEGORIES = Object.freeze(['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', ...REVIEW_CATEGORIES]);
   const hasSourceReview = trail => !!(trail && trail.verified && Array.isArray(trail.verified.categories));
   // An absent `verified` field means no category review is recorded, so no
   // category is verified. Defaulting the other way let an unreviewed trail
