@@ -531,7 +531,9 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liAccountName').textContent).toBe('Teo');
     expect(document.getElementById('liDogCtxName').textContent).toBe('Teo');
     expect(document.querySelector('.li-match-lbl').textContent).toBe('For Teo');
-    expect(document.querySelector('.li-match').getAttribute('title').length).toBeGreaterThan(10);
+    // The reasons are the card's own "Why it fits" list, not a tooltip of the
+    // engine's sentences.
+    expect(document.querySelector('.li-match').hasAttribute('title')).toBe(false);
     expect(document.querySelector('.li-match-reason')).toBeNull();
   });
 
