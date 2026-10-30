@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup B: What's out now | ORMA mockup</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../alpine-plants-guide.css">
+<link rel="stylesheet" href="../../guides/safety-guide-system.css">
+<link rel="stylesheet" href="mockups.css">
+</head>
+<body class="apg-page safety-guide-article">
+<div class="topnav">
+  <a class="brand" href="/"><img src="../../logo.svg" alt="">ORMA</a>
+  <div class="links">
+    <a href="../../browse-trails.html">Trails</a>
+    <a href="../../collections.html">Collections</a>
+    <a href="../../safety-guide.html" class="active">Safety library</a>
+    <a href="../../journal.html">My walk journal</a>
+  </div>
+</div>
+<header class="apg-hero safety-photo-header section-page-head content-canvas" id="mainContent" style="--safety-photo-position:center center;">
+  <img class="safety-photo-header__image" src="../../images/editorial/safety-library/flowers-plants-dogs.jpg" alt="" width="1200" height="800">
+  <a class="safety-back-link" href="index.html">&larr; All flower-page mockups</a>
+  <div class="apg-hero-copy">
+    <span class="fm-mock-tag">Mockup B · What’s out now</span>
+    <div class="safety-topic">Safety library / Plants &amp; trail edges</div>
+    <h1>What’s growing on the trail this month?</h1>
+    <p class="section-page-subtitle">Pick a month and where you’re walking. You’ll see what’s in flower, what’s still around, and which plants to keep out of your dog’s mouth.</p>
+  </div>
+</header>
+<main class="fm-wrap" id="alpinePlantsMock">
+  <p class="fb-intro-line"><span class="fm-dot fm-dot--caution"></span><span>If your dog chews something, tap <b>“My dog ate a plant”</b> at the bottom of the screen any time.</span></p>
+  <section class="fb-picker" aria-label="Choose month and place">
+    <p class="fm-eyebrow">1 · When are you walking?</p>
+    <div class="fb-months" id="fbMonths" role="group" aria-label="Month"></div>
+    <div class="fb-legend"><span><span class="fm-dot fm-dot--dangerous"></span>Dangerous</span><span><span class="fm-dot fm-dot--caution"></span>In-between</span><span><span class="fm-dot fm-dot--safe"></span>Low concern</span><span>Bars = plants in flower that month</span></div>
+    <p class="fm-eyebrow" style="margin-top:20px">2 · Where are you walking?</p>
+    <div class="fb-habitats" id="fbHabitats" role="group" aria-label="Habitat"></div>
+  </section>
+  <div class="fb-summary"><h2 id="fbTitle"></h2><p id="fbSub"></p></div>
+  <div class="fb-grid" id="fbNow"></div>
+  <div class="fb-summary"><h2 id="fbAlsoTitle" style="font-size:22px"></h2><p>Not in flower, but leaves, berries or bulbs are still there.</p></div>
+  <div class="fb-grid" id="fbAlso"></div>
+</main>
+<div class="fb-sheet" id="fbSheet" role="dialog" aria-modal="true" aria-label="Plant details"><div class="fb-sheet-bg" data-close></div><div class="fb-sheet-panel"><button class="fb-close" type="button" data-close aria-label="Close">×</button><div id="fbSheetBody"></div></div></div>
+<button class="fb-fab" type="button" id="fbFab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10Z"/></svg>My dog ate a plant</button>
+<script src="../../mobile-nav.js"></script>
+<script src="../../alpine-plants-guide.js"></script>
+<script src="mockups.js"></script>
+<script>
+(function(){
+  const M = window.FlowerMock;
+  const HABS = [['', 'Anywhere', ''], ['meadow', 'Meadow', 'golden-cinquefoil'], ['woodland', 'Woodland', 'lily-of-the-valley'], ['wet', 'Streamside', 'water-hemlock'], ['rocky', 'Rocky ground', 'hens-and-chicks'], ['village', 'Village & gardens', 'tulip']];
+  const SEASON_OF = m => m <= 2 || m === 12 ? 'winter' : m <= 5 ? 'spring' : m <= 8 ? 'summer' : 'autumn';
+  const MONTH_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const state = { month:new Date().getMonth() + 1, habitat:'' };
+  const sheet = document.getElementById('fbSheet');
+  let plants = [];
+
+  function tile(p, flowering){
+    return `<button class="fb-tile" type="button" data-id="${p.id}">${M.tag(p.safety)}<img src="${M.img(p)}" alt=""><b>${M.esc(p.commonName)}<small>${flowering ? 'In flower now' : M.esc(p.habitats.slice(0, 2).join(', '))}</small></b></button>`;
+  }
+  function openPlant(p){
+    document.getElementById('fbSheetBody').innerHTML = `<img src="${M.img(p)}" alt="${M.esc(p.image && p.image.alt)}"><div class="fb-sheet-body">${M.tag(p.safety)}
+      <h3>${M.esc(p.commonName)}</h3><i class="fm-muted">${M.esc(p.scientificName)}</i>
+      <h4>What to do</h4><p style="margin:0">${M.avoidText(p)}</p>
+      <h4>How to recognise it</h4><ul>${(p.identification || []).map(x => `<li>${M.esc(x)}</li>`).join('')}</ul>
+      <h4>Flowers</h4>${M.monthsBar(p, true)}
+      <h4>Where it grows</h4><p style="margin:0">${M.esc(p.habitats.join(', '))}. ${M.esc(p.elevation || '')}</p>
+      <h4>Watch your dog for</h4><p style="margin:0">${M.esc((p.symptoms || []).join(', '))}</p></div>`;
+    sheet.classList.add('open');
+  }
+  function openHelp(){
+    document.getElementById('fbSheetBody').innerHTML = `<div class="fb-sheet-body" style="padding-top:60px"><p class="fm-eyebrow">Stay calm. Three steps.</p><h3>My dog ate a plant</h3>
+      <ol class="fm-help-steps" style="display:grid;grid-template-columns:1fr;margin-top:16px">
+      <li><b>Move away</b>Lead your dog away and stop any more chewing.</li>
+      <li><b>Take photos</b>The whole plant, leaves, flowers or berries, and where it grew. Note the time and how much.</li>
+      <li><b>Call your vet</b>Or the nearest emergency clinic, even if your dog seems fine.</li></ol>
+      <p class="fm-help-dont" style="display:block;margin-top:12px">Don’t make your dog sick or give food, milk or medicine unless a vet tells you to.</p>
+      <h4>Not sure which plant?</h4><p style="margin:0">Close this and scroll the photos for this month. The red ones are the ones to mention first.</p></div>`;
+    sheet.classList.add('open');
+  }
+  function render(){
+    const inHab = p => !state.habitat || M.habitatFacets(p).includes(state.habitat);
+    const months = document.getElementById('fbMonths');
+    months.innerHTML = M.MONTH_SHORT.map((m, i) => {
+      const f = plants.filter(p => inHab(p) && (p.floweringMonths || []).includes(i + 1));
+      const bar = (k, c) => { const n = f.filter(p => p.safety === k).length; return `<i class="${c}" style="height:${n ? 4 + n * 5 : 0}px"></i>`; };
+      return `<button class="fb-month" type="button" data-month="${i + 1}" aria-pressed="${state.month === i + 1}"><span class="fb-bars">${bar('dangerous','d')}${bar('caution','c')}${bar('safe','s')}</span>${m}</button>`;
+    }).join('');
+    document.getElementById('fbHabitats').innerHTML = HABS.map(([k, l, img]) => `<button class="fb-hab${k ? '' : ' fb-hab--all'}" type="button" data-hab="${k}" aria-pressed="${state.habitat === k}" ${img ? `style="background-image:url(../../images/editorial/alpine-plants/${img}.jpg)"` : ''}><span>${l}</span></button>`).join('');
+    const season = SEASON_OF(state.month);
+    const now = plants.filter(p => inHab(p) && (p.floweringMonths || []).includes(state.month));
+    const also = plants.filter(p => inHab(p) && !now.includes(p) && p.season.includes(season));
+    const danger = now.filter(p => p.safety === 'dangerous').length;
+    const where = state.habitat ? ` · ${HABS.find(h => h[0] === state.habitat)[1].toLowerCase()}` : '';
+    document.getElementById('fbTitle').textContent = `In flower in ${MONTH_LONG[state.month - 1]}${where}`;
+    document.getElementById('fbSub').textContent = now.length ? `${now.length} plants, ${danger} dangerous for dogs.` : 'Nothing on our list is in flower this month.';
+    document.getElementById('fbNow').innerHTML = now.map(p => tile(p, true)).join('');
+    document.getElementById('fbAlsoTitle').textContent = `Also around in ${season} (${also.length})`;
+    document.getElementById('fbAlso').innerHTML = also.map(p => tile(p, false)).join('');
+  }
+  document.addEventListener('click', e => {
+    const m = e.target.closest('[data-month]'); if(m){ state.month = Number(m.dataset.month); render(); return; }
+    const h = e.target.closest('[data-hab]'); if(h){ state.habitat = h.dataset.hab; render(); return; }
+    const t = e.target.closest('.fb-tile'); if(t){ openPlant(plants.find(p => p.id === t.dataset.id)); return; }
+    if(e.target.closest('[data-close]')) sheet.classList.remove('open');
+    if(e.target.closest('#fbFab')) openHelp();
+  });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') sheet.classList.remove('open'); });
+  M.load().then(list => {
+    plants = list; render();
+    if(location.hash === '#demo-plant') openPlant(plants.find(p => p.id === 'autumn-crocus'));
+    if(location.hash === '#demo-help') openHelp();
+  });
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup C: Learn to spot them | ORMA mockup</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../alpine-plants-guide.css">
+<link rel="stylesheet" href="../../guides/safety-guide-system.css">
+<link rel="stylesheet" href="mockups.css">
+</head>
+<body class="apg-page safety-guide-article">
+<div class="topnav">
+  <a class="brand" href="/"><img src="../../logo.svg" alt="">ORMA</a>
+  <div class="links">
+    <a href="../../browse-trails.html">Trails</a>
+    <a href="../../collections.html">Collections</a>
+    <a href="../../safety-guide.html" class="active">Safety library</a>
+    <a href="../../journal.html">My walk journal</a>
+  </div>
+</div>
+<header class="apg-hero safety-photo-header section-page-head content-canvas" id="mainContent" style="--safety-photo-position:center center;">
+  <img class="safety-photo-header__image" src="../../images/editorial/safety-library/flowers-plants-dogs.jpg" alt="" width="1200" height="800">
+  <a class="safety-back-link" href="index.html">&larr; All flower-page mockups</a>
+  <div class="apg-hero-copy">
+    <span class="fm-mock-tag">Mockup C · Learn to spot them</span>
+    <div class="safety-topic">Safety library / Plants &amp; trail edges</div>
+    <h1>Can you spot the plants your dog should avoid?</h1>
+    <p class="section-page-subtitle">Test yourself with real trail photos, then flip any card to see what to do. If your dog has already chewed something, the helper walks you through it.</p>
+  </div>
+</header>
+<main class="fm-wrap" id="alpinePlantsMock">
+  <div class="fc-top">
+    <section class="fc-panel" aria-labelledby="fcHelpTitle">
+      <p class="fm-eyebrow">If it already happened</p>
+      <h2 class="fm-section-title" id="fcHelpTitle">My dog chewed a plant</h2>
+      <div class="fc-steps" role="list" id="fcSteps">
+        <button type="button" data-step="0" aria-current="step">1 · Move away</button>
+        <button type="button" data-step="1">2 · Photograph</button>
+        <button type="button" data-step="2">3 · Call your vet</button>
+      </div>
+      <div class="fc-step" data-panel="0">
+        <h3>Lead your dog away</h3>
+        <p>Stop any more chewing. Check the mouth for bits of leaf or berry, but don’t put your fingers far in.</p>
+        <button class="fc-next" type="button" data-step="1">Done, next step →</button>
+      </div>
+      <div class="fc-step" data-panel="1" hidden>
+        <h3>Take photos and notes</h3>
+        <p>Tick as you go. Your vet will ask for these.</p>
+        <label class="fc-check"><input type="checkbox">The whole plant, and where it was growing</label>
+        <label class="fc-check"><input type="checkbox">Close-ups of leaves, flowers or berries</label>
+        <label class="fc-check"><input type="checkbox">The time, and roughly how much was eaten</label>
+        <button class="fc-next" type="button" data-step="2">Next step →</button>
+      </div>
+      <div class="fc-step" data-panel="2" hidden>
+        <h3>Call your vet now</h3>
+        <p>Or the nearest emergency clinic, even if your dog seems fine. Some plants act hours later.</p>
+        <p class="fm-help-dont" style="display:block">Don’t make your dog sick or give food, milk or medicine unless a vet tells you to.</p>
+      </div>
+    </section>
+    <section class="fc-panel" aria-labelledby="fcQuizTitle">
+      <p class="fm-eyebrow">Quick self-check</p>
+      <h2 class="fm-section-title" id="fcQuizTitle">Safe or not?</h2>
+      <div class="fc-quiz-photo"><img id="fcQuizImg" alt=""><b id="fcQuizName"></b></div>
+      <div class="fc-answers" id="fcAnswers">
+        <button type="button" data-guess="dangerous">Dangerous</button>
+        <button type="button" data-guess="caution">In-between</button>
+        <button type="button" data-guess="safe">Low concern</button>
+      </div>
+      <p class="fc-reveal" id="fcReveal" aria-live="polite"></p>
+      <div class="fc-score"><span id="fcScore">0 of 5</span><button type="button" id="fcNext" hidden>Next plant →</button></div>
+    </section>
+  </div>
+  <div class="fc-filter">
+    <div><p class="fm-eyebrow">All 33 plants</p><h2 class="fm-section-title">Tap a card to flip it</h2></div>
+    <div class="fm-chip-row" id="fcRisk" role="group" aria-label="Risk for dogs"></div>
+  </div>
+  <div class="fc-grid" id="fcGrid"></div>
+</main>
+<script src="../../mobile-nav.js"></script>
+<script src="../../alpine-plants-guide.js"></script>
+<script src="mockups.js"></script>
+<script>
+(function(){
+  const M = window.FlowerMock;
+  let plants = [], quiz = [], qi = 0, score = 0, risk = '';
+  function showStep(n){
+    document.querySelectorAll('[data-panel]').forEach(p => { p.hidden = Number(p.dataset.panel) !== n; });
+    document.querySelectorAll('#fcSteps button').forEach(b => {
+      const i = Number(b.dataset.step);
+      b.toggleAttribute('aria-current', i === n); if(i === n) b.setAttribute('aria-current', 'step');
+      b.classList.toggle('done', i < n);
+    });
+  }
+  function showQuiz(){
+    const p = quiz[qi];
+    document.getElementById('fcQuizImg').src = M.img(p);
+    document.getElementById('fcQuizName').textContent = p.commonName;
+    document.getElementById('fcReveal').textContent = '';
+    document.getElementById('fcNext').hidden = true;
+    document.querySelectorAll('#fcAnswers button').forEach(b => { b.className = ''; b.disabled = false; });
+    document.getElementById('fcScore').textContent = `Plant ${qi + 1} of ${quiz.length} · ${score} right`;
+  }
+  function guess(g){
+    const p = quiz[qi];
+    if(g === p.safety) score++;
+    document.querySelectorAll('#fcAnswers button').forEach(b => { b.disabled = true; if(b.dataset.guess === p.safety) b.className = 'right'; else if(b.dataset.guess === g) b.className = 'wrong'; });
+    document.getElementById('fcReveal').innerHTML = `<b>${g === p.safety ? 'Right.' : `It’s ${M.RISK[p.safety].label.toLowerCase()}.`}</b> ${M.avoidText(p)}`;
+    document.getElementById('fcScore').textContent = `Plant ${qi + 1} of ${quiz.length} · ${score} right`;
+    document.getElementById('fcNext').hidden = qi >= quiz.length - 1;
+  }
+  function card(p){
+    return `<button class="fc-flip" type="button" aria-pressed="false" aria-label="${M.esc(p.commonName)}, ${M.RISK[p.safety].label}. Tap to flip."><div class="fc-flip-inner">
+      <div class="fc-face fc-front"><img src="${M.img(p)}" alt=""><span class="fc-hint">Tap ↻</span><div><h3>${M.esc(p.commonName)}</h3>${M.tag(p.safety)}</div></div>
+      <div class="fc-face fc-back">${M.tag(p.safety)}<h3>${M.esc(p.commonName)}</h3><p><b>Avoid:</b> ${M.avoidText(p)}</p><p><b>Look for:</b> ${M.esc((p.identification || [])[0] || '')}</p><p><b>Flowers:</b></p>${M.monthsBar(p, true)}</div>
+    </div></button>`;
+  }
+  function render(){
+    document.getElementById('fcRisk').innerHTML = [['','All'],['dangerous','Dangerous'],['caution','In-between'],['safe','Low concern']]
+      .map(([k, l]) => `<button class="fm-chip" type="button" data-risk="${k}" aria-pressed="${risk === k}">${k ? `<span class="fm-dot fm-dot--${k}"></span>` : ''}${l}</button>`).join('');
+    document.getElementById('fcGrid').innerHTML = plants.filter(p => !risk || p.safety === risk).map(card).join('');
+  }
+  document.addEventListener('click', e => {
+    const s = e.target.closest('[data-step]'); if(s){ showStep(Number(s.dataset.step)); return; }
+    const g = e.target.closest('[data-guess]'); if(g){ guess(g.dataset.guess); return; }
+    if(e.target.closest('#fcNext')){ qi++; showQuiz(); return; }
+    const r = e.target.closest('[data-risk]'); if(r){ risk = r.dataset.risk; render(); return; }
+    const f = e.target.closest('.fc-flip'); if(f){ const on = f.classList.toggle('flipped'); f.setAttribute('aria-pressed', String(on)); }
+  });
+  M.load().then(list => {
+    plants = list;
+    // A fixed mix so the quiz always includes look-alike pairs worth learning.
+    quiz = ['monkshood', 'cornflower', 'autumn-crocus', 'common-yarrow', 'poison-hemlock'].map(id => plants.find(p => p.id === id)).filter(Boolean);
+    showQuiz(); render();
+    if(location.hash === '#demo'){ showStep(1); document.querySelector('.fc-check input').checked = true; guess('safe'); document.querySelectorAll('.fc-flip')[1].click(); }
+  });
+})();
+
+</script>
+</body>
+</html>
