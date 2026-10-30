@@ -26,6 +26,11 @@ describe('every Verified walk shows directions on its page',()=>{
     expect(without).toEqual([]);
   });
 
+  test('a walk still withdrawn has no directions a walker could follow',()=>{
+    for(const trail of trails.filter(t=>t.sealWithdrawn))
+      expect({id:trail.id,shown:bar.directionsOf(trail).shownOnPage}).toEqual({id:trail.id,shown:false});
+  });
+
   test('a walk withdrawn for want of directions says so in its blocker',()=>{
     const withdrawn=trails.filter(trail=>trail.graduation&&trail.graduation.blockers
       &&/page shows no directions/.test(String(trail.graduation.blockers.routeNumbers||'')));
@@ -38,8 +43,10 @@ describe('every Verified walk shows directions on its page',()=>{
   test('a walk whose seal was withdrawn keeps its hand research from the pipeline',()=>{
     // materialize-approved-publications.js refuses a publication over a
     // walk marked sealWithdrawn, as it does over a Verified one.
+    // 78 withdrawn on 29 October; on 30 October the 55 whose written
+    // directions the page now prints (#1199) had their seal restored.
     const marked=trails.filter(trail=>trail.sealWithdrawn);
-    expect(marked.length).toBeGreaterThanOrEqual(78);
+    expect(marked.length).toBeGreaterThan(0);
     for(const trail of marked) expect(trail.sealWithdrawn.reason).toBe('no-directions-on-page');
   });
 });
