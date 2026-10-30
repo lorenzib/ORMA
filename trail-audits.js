@@ -45083,8 +45083,7 @@
       desc: 'A short loop round the village of Grauno, past its church and through the woods where healing herbs grow. The APT lists 2.1 km and 100 m of ascent.'
     },
     'cembra-giro-monte-corona': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.80 (100 m), km 5.17 (64 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turns at km 4.80, km 5.17 are side trips the board describes, declared in sideTrips. Its first stretch out of the village is walked both ways, so it is a lollipop, not a loop; the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
       // APT Fiemme Cembra’s walk “Giro panoramico sul Monte Corona”. The line is drawn on 19 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -45094,10 +45093,11 @@
       distance: 7.2,
       elevation: 390,
       hours: '2.5',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A loop from Ville di Giovo up through the vineyards and the woods below the cliffs to the top of Monte Corona and its viewpoint, along the ridge and down through a cleft in the rock to a gravel road and back to the village.',
+      sideTrips: [{ km: 4.8, note: 'Up to the top of Monte Corona and back to the path.' }, { km: 5.17, note: 'Out to the viewpoint and back: the board says it has a large cross, tables and benches, and a panorama board.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -45107,7 +45107,7 @@
         mapPoints: 'Start at Ville di Giovo, the APT’s start; drinking water at the start (OSM nodes 8170134089).',
         elevation: 'Official 7.2 km, 390 m up and 390 m down, 2 h 40 min, highest point 1,021 m, lowest 705 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.80 (100 m), km 5.17 (64 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -47251,8 +47251,7 @@
       desc: 'A short climb from Tione along the Arnò stream to Bolbeno and up through the woods to the Madonna del Lares, a chapel in a quiet clearing. The APT lists 3.1 km and 238 m of ascent, one way.'
     },
     'giudicarie-san-martino-bosco-scolpito': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.23 (131 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turns at km 3.23 are side trips the board describes, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Madonna di Campiglio’s walk “San Martino e il sentiero del bosco scolpito”, drawn on 19 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Commune: Pieve di Bono-Prezzo (animal regulation, Art. 7).
@@ -47263,8 +47262,9 @@
       hours: '1.8',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the car park by the information office below Cologna up through the woods past carved wooden sculptures and a picnic glade to the ruined church of San Martino, then down a steep, narrow path towards the village.',
+      sideTrips: [{ km: 3.23, note: 'Out to the ruined chapel of San Martino and its view over the Valle del Chiese, and back, as the board describes.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -47274,7 +47274,7 @@
         mapPoints: 'Start at the APT’s start below Cologna; drinking water at km 3, at km 3.9 and at km 4.1 (OSM nodes 2568331930, 2568332294, 2568332356).',
         elevation: 'Official 4.4 km, 250 m up and 216 m down, 1 h 45 min, highest point 730 m, lowest 497 m (Madonna di Campiglio Azienda per il Turismo); the stored profile runs 496–718 m.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.23 (131 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -50138,8 +50138,7 @@
       desc: 'An easy loop from Stolvizza in Val Resia to the Potok waterfall, through pine woods past the Casa Resiana and the hamlet of Zamlin, and back up to the village. PromoTurismoFVG lists 5.5 km and 152 m of ascent.'
     },
     'fvg-faggi-secolari-pustot-dordolla': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 0.48 (259 m), km 2.94 (130 m), km 3.19 (243 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turns at km 0.48, km 2.94, km 3.19 are side trips the board describes, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
       // PromoTurismoFVG’s walk “I faggi secolari di Pustot a Dordolla” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
       // on 41 OSM ways along the line it publishes (data/board-line-routes.geojson).
@@ -50151,8 +50150,9 @@
       hours: '2.35',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Dordolla along the old road to the hamlet of Drentus, up to the centuries-old beech trees of Pustot, and back down to Dordolla on the old mule tracks to the hayfields.',
+      sideTrips: [{ km: 0.48, note: 'The short detour from Dordolla to the Spissande waterfall and back, which the board offers.' }, { km: 2.94, note: 'Out to one of the old beeches of Pustot and back: the board says these trees are the main point of the walk.' }, { km: 3.19, note: 'Out to another of the old Pustot beeches and back.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -50162,7 +50162,7 @@
         mapPoints: 'Start at Dordolla village, Val Aupa, the board’s start; drinking water none mapped.',
         elevation: 'Official 4.9 km, 395 m up and 394 m down, 2 h 20 min, highest point 960 m, lowest 611 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 0.48 (259 m), km 2.94 (130 m), km 3.19 (243 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
