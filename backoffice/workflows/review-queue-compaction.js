@@ -266,11 +266,17 @@ function compactReviewQueue(queue) {
 }
 
 /**
- * Firestore's ceiling, less room for one more review to arrive before the next
- * write. Writing right up to the limit means the pass that adds a trail is the
- * pass that fails, which is exactly how this artifact broke.
+ * The most the queue may hold, well inside what the store can write.
+ *
+ * Until 30 October 2026 this was 700 KB, under one Firestore property's
+ * 1,048,487 bytes, which held about 400 waiting reviews at their worst; the
+ * catalogue reached 406 trails the day before. The store now writes an
+ * artifact over 900 KB in pieces across several documents (json-shards-v1,
+ * up to MAX_ARTIFACT_BYTES), so the budget is three pieces' worth: about 1,050
+ * reviews at their worst, and far from the store's own limit so the pass that
+ * adds a review is never the pass that fails, which is how this artifact broke.
  */
-const QUEUE_BUDGET = 700_000;
+const QUEUE_BUDGET = 2_700_000;
 
 function itemBytes(item) {
   return Buffer.byteLength(JSON.stringify(item) || '', 'utf8');
