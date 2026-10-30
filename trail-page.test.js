@@ -217,7 +217,7 @@ describe('trail page map controls', () => {
     expect(document.querySelector('.td-safety-intro')).toBeNull();
 
     expect(blueprint).toContain("['route', 'Route effort'");
-    expect(blueprint).toContain('trust.heatAssessment(t)');
+    expect(blueprint).toContain('trust.heatAssessment(t, conditions)');
     expect(blueprint).toContain('if (!item || item.ok) return;');
     expect(blueprint).toContain("box.innerHTML = rows.map(rowMarkup).join('');");
     expect(blueprint).not.toContain('more consideration');
