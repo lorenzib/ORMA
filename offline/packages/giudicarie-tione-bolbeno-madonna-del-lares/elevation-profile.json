@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "giudicarie-tione-bolbeno-madonna-del-lares",
+  "distanceKm": 3.2,
+  "ascentM": 238,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 587
+    },
+    {
+      "km": 0.2,
+      "elev": 576
+    },
+    {
+      "km": 0.5,
+      "elev": 566
+    },
+    {
+      "km": 0.7,
+      "elev": 569
+    },
+    {
+      "km": 1,
+      "elev": 581
+    },
+    {
+      "km": 1.2,
+      "elev": 582
+    },
+    {
+      "km": 1.5,
+      "elev": 601
+    },
+    {
+      "km": 1.7,
+      "elev": 632
+    },
+    {
+      "km": 2,
+      "elev": 630
+    },
+    {
+      "km": 2.2,
+      "elev": 663
+    },
+    {
+      "km": 2.4,
+      "elev": 676
+    },
+    {
+      "km": 2.7,
+      "elev": 696
+    },
+    {
+      "km": 2.9,
+      "elev": 742
+    },
+    {
+      "km": 3.1,
+      "elev": 790
+    },
+    {
+      "km": 3.2,
+      "elev": 790
+    }
+  ]
+}

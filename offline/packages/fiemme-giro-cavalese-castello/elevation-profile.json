@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fiemme-giro-cavalese-castello",
+  "distanceKm": 4.7,
+  "ascentM": 65,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 996
+    },
+    {
+      "km": 0.4,
+      "elev": 1004
+    },
+    {
+      "km": 0.7,
+      "elev": 1024
+    },
+    {
+      "km": 1.1,
+      "elev": 1010
+    },
+    {
+      "km": 1.4,
+      "elev": 1023
+    },
+    {
+      "km": 1.8,
+      "elev": 1017
+    },
+    {
+      "km": 2.2,
+      "elev": 1013
+    },
+    {
+      "km": 2.5,
+      "elev": 986
+    },
+    {
+      "km": 2.9,
+      "elev": 956
+    },
+    {
+      "km": 3.3,
+      "elev": 958
+    },
+    {
+      "km": 3.6,
+      "elev": 964
+    },
+    {
+      "km": 4,
+      "elev": 969
+    },
+    {
+      "km": 4.3,
+      "elev": 977
+    },
+    {
+      "km": 4.7,
+      "elev": 996
+    }
+  ]
+}
