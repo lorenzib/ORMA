@@ -3784,6 +3784,16 @@ function liNewForMeaning(profile){
   return `It now scores ${NEW_MATCH_THRESHOLD}% or more for ${liPersonalisationText(liScoredSubject(profile))}, and it did not at your last visit.`;
 }
 
+// "Why it fits Teo" above a card whose verdict says no contradicts it.
+// Such a card asks why not, and lists what was fine as a plain fact.
+function liIsNotRecommended(trail){
+  return Boolean(trail && trail.recommendation && trail.recommendation.category === 'not-recommended');
+}
+
+function liWhyLabel(trail, dogName){
+  return liIsNotRecommended(trail) ? `Why not for ${dogName}` : `Why it fits ${dogName}`;
+}
+
 function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   const recommendation = trail && trail.recommendation;
   const view = liRecommendationView(trail, profile);
@@ -3825,7 +3835,7 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
     bullets.length ? `<ul>${items(bullets)}</ul>` : '',
   ].join('');
   const fit = fitBody
-    ? `<div><b>Why it fits ${liPersonalisationText(dogName)}</b>${fitBody}</div>`
+    ? `<div><b>${liIsNotRecommended(trail) ? 'Not the problem here' : `Why it fits ${liPersonalisationText(dogName)}`}</b>${fitBody}</div>`
     : '';
   // Cautions first (hard stops already lead them), then what is simply not
   // known, which is a different kind of statement and belongs after. Only
@@ -3866,7 +3876,7 @@ function liWhyPanelId(trailId){ return `li-why-${encodeURIComponent(trailId)}`; 
 function liWhyToggleHtml(trail, profile, open){
   const dogName = liScoredSubject(profile);
   return `<button type="button" class="li-bar-act li-why-toggle" data-why-toggle aria-expanded="${open}" aria-controls="${liWhyPanelId(trail.id)}">` +
-    `<span class="li-why-label">${open ? 'Hide the reasons' : `Why it fits ${liPersonalisationText(dogName)}`}</span>` +
+    `<span class="li-why-label">${open ? 'Hide the reasons' : liPersonalisationText(liWhyLabel(trail, dogName))}</span>` +
     `<span class="li-why-caret" aria-hidden="true">▾</span></button>`;
 }
 
@@ -4085,8 +4095,10 @@ async function renderReturningHomepage(profile, options = {}){
       if(label){
         const row = toggle.closest('.li-row');
         const trail = trails.find(item => row && item.id === row.dataset.id);
-        const dogName = liScoredSubject(currentProfileForAdjust);
-        label.textContent = open ? 'Hide the reasons' : `Why it fits ${dogName}`;
+        // The scored copy carries the verdict the label has to match.
+        const scored = pageList.find(item => row && item.id === row.dataset.id) || trail;
+        const dogName = liScoredSubject(profile || currentProfileForAdjust);
+        label.textContent = open ? 'Hide the reasons' : liWhyLabel(scored, dogName);
         if(open) warmTrailDetail(trail);
       }
     });
