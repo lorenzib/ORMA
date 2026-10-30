@@ -41,8 +41,7 @@ verified route.
 | Place | Verified trail | Not Verified |
 | --- | --- | --- |
 | Trail page, before download | "Offline map not downloaded. Same verified route, saved to your phone." | "Offline map not downloaded." |
-| Offline map page, under the title | Verified by ORMA against official sources | Not yet verified by ORMA |
-| Offline map page, package status | Verified route, same as the trail page. | ORMA hasn't verified this route yet. Follow local signs. |
+| Offline map page, under the title | (nothing, since 30 October 2026) | Not yet verified by ORMA |
 | Downloaded trails list | Verified by ORMA | Not yet verified by ORMA |
 
 `offline-beta-scope.test.js` checks that every package's manifest, safety sheet
