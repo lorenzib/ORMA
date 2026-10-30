@@ -56594,6 +56594,211 @@
       ],
       startPoint: { lat: 46.56793, lng: 11.5596, label: 'The centre of Kastelruth (Castelrotto), the board’s start' },
       desc: 'A loop from Kastelruth past the church of San Michele and its lake to the bear trap of the local legend, through the forest to Passo Pinei and back past Tiosels. The board lists 14 km and 567 m of ascent.'
+    },
+    'villnoess-ranui-zannes': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Villnöss batch 1).
+      // “Ranui - Zannes”, published by the Villnöss tourist board (Tourismusverein Villnöss), drawn on 10 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Villnöss (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Ranui – Zannes, Villnöss (Val di Funes)',
+      distance: 3.4,
+      elevation: 296,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way, gently uphill, from the Ranui car park by the Waldschenke on forest path 33 through the woods to Zannes; come back the same way or by bus.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Ranui car park, next to the Waldschenke restaurant, the board’s start.",
+        "sequence": "Follow forest path 33 through the woods, climbing gently all the way to Zannes.",
+        "switches": "None: stay on path 33 from the car park to Zannes.",
+        "sources": [
+          {
+            "label": "Villnöss tourist board (Tourismusverein Villnöss), Ranui - Zannes (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055210",
+            "authority": "Villnöss tourist board (Tourismusverein Villnöss)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The forest road of path 33 near Zannes, in July (asturksever on Mapillary, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official one-way walk 3.4 km from the Ranui car park, as the Villnöss tourist board (Tourismusverein Villnöss) publishes it; the stored line is drawn on 10 OSM ways along the board’s published line, 3.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 33: from the Ranui car park by the Waldschenke restaurant follow forest path 33 through the woods to Zannes.',
+        mapPoints: 'Start at the board’s start; drinking water at km 3.2 (OSM nodes 7612516685).',
+        elevation: 'Official 3.4 km, 296 m up and 2 m down, 1:11 h, highest point 1,675 m, lowest 1,379 m (Villnöss tourist board (Tourismusverein Villnöss), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Villnöss tourist board (Tourismusverein Villnöss), Ranui - Zannes (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Villnöss / Comune di Funes, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 16/2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries or on farmed meadows and fields; no bathing in the village fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 0% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (10 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 48,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Forest road shared with occasional service traffic near both ends', 'Meadows around Zannes are farmed: keep your dog on the path'],
+      terrainType: 'Forest road and forest path',
+      shadeDescription: 'Mostly shaded: about half runs through mapped forest and much of the rest through open woodland.',
+      terrainDescription: 'An easy, gently rising walk at 1,380–1,675 m from Ranui through the woods to Zannes, below the Odle (Geisler) peaks in the Val di Funes.',
+      waterDescription: 'Drinking water at km 3.2; places to eat on the way.',
+      dogNotes: 'Villnöss requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of cemeteries and off farmed meadows and fields; dogs may not bathe in the village fountains.',
+      tips: 'Start at the Ranui car park by the Waldschenke: 3.4 km one way, about 300 m up, an hour and ten minutes; come back the same way or by the valley bus. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water near Zannes, at km 3.2.',
+      sourceLinks: [
+        { label: 'Outdooractive, Ranui - Zannes (Villnöss tourist board (Tourismusverein Villnöss))', url: 'https://www.outdooractive.com/it/r/810055210' },
+        { label: 'Gemeinde Villnöss, dog regulation', url: 'https://www.gemeinde.villnoess.bz.it/system/web/GetDocument.ashx?cts=1789663369&fileId=1048678' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.63377, lng: 11.72889, label: 'Ranui car park, by the Waldschenke restaurant, the board’s start' },
+      desc: 'An easy forest walk on path 33 from Ranui up through the woods to Zannes under the Odle. The board lists 3.4 km and 296 m up.'
+    },
+    'villnoess-da-russis-fino-al-passo-delle-erbe': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Villnöss batch 1).
+      // “Da Russis fino al Passo delle Erbe”, published by the Villnöss tourist board (Tourismusverein Villnöss), drawn on 12 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Villnöss (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows) and San Martin de Tor (no dog regulation found, national rule); about 88% in the Puez-Odle nature park, dogs on a lead.
+      // About 88% is in the Puez-Odle nature park (Natura 2000 IT3110026), where dogs stay on a lead; no reserve zone on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Ponte Russis – Günther-Messner path – Passo delle Erbe, Villnöss',
+      distance: 8,
+      elevation: 554,
+      hours: '2.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Ponte Russis on the lower part of the Günther-Messner path past the Rodelwiesen meadows to the start of the Forcella de Pütia path, then path 8A to Passo delle Erbe; the board suggests the bus, since start and end differ.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at Ponte Russis (Russisbrücke), the board’s start; the board suggests travelling by bus, since the walk ends elsewhere.",
+        "sequence": "Follow the lower part of the Günther-Messner path past the Rodelwiesen meadows to where the path to the Forcella de Pütia begins, then take path 8A to Passo delle Erbe.",
+        "switches": "One turn: at the start of the Forcella de Pütia path leave the Günther-Messner path for path 8A to Passo delle Erbe.",
+        "sources": [
+          {
+            "label": "Villnöss tourist board (Tourismusverein Villnöss), Da Russis fino al Passo delle Erbe (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/65390947",
+            "authority": "Villnöss tourist board (Tourismusverein Villnöss)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Aferer Geisler above the Günther-Messner path in the Val di Funes, in July (Guillaume Baviere on Wikimedia Commons, CC BY-SA 2.0), 1 m from the line.',
+        route: 'Official one-way walk 8 km from Ponte Russis, as the Villnöss tourist board (Tourismusverein Villnöss) publishes it; the stored line is drawn on 12 OSM ways along the board’s published line, 8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From Ponte Russis along the lower part of the Günther-Messner path past the Rodelwiesen meadows to the start of the Forcella de Pütia path, then path 8A to Passo delle Erbe.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1.7, km 6.1 and km 6.8 (OSM nodes 4600218839, 1430150379, 13007206242).',
+        elevation: 'Official 8 km, 554 m up and 299 m down, 2:41 h, highest point 2,135 m, lowest 1,735 m (Villnöss tourist board (Tourismusverein Villnöss), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Villnöss tourist board (Tourismusverein Villnöss), Da Russis fino al Passo delle Erbe (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Villnöss / Comune di Funes, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 16/2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries or on farmed meadows and fields; no bathing in the village fountains',
+          'Comun de San Martin de Tor: no dog regulation found on its website. Neighbouring communes use the same 2010 provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Naturpark Puez-Geisler / Parco naturale Puez-Odle (Natura 2000 IT3110026), decree D.P.G.P. 31 October 1977, n. 29/V/LS, and the Province of Bolzano code of conduct for the nature parks: dogs on a lead; about 88% of the line is in the park. The site’s objectives and conservation measures (Giunta provinciale, 19 December 2025) and the Province’s ZPS measures (DGP 229/2008) set no rule on dogs or on walking the paths',
+          'OpenStreetMap ways along the board’s line (12 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 15,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['High, open terrain at 1,735–2,135 m: little shade and quick weather changes', 'Cows graze the alpine pastures in summer: keep your dog close', 'Scree and rocky stretches below the Aferer Geisler: watch your dog’s paws'],
+      terrainType: 'Mountain paths and alpine meadows',
+      shadeDescription: 'Mostly open: about a sixth runs through mapped woodland; the meadows and scree below the peaks are in full sun.',
+      terrainDescription: 'A walk at 1,735–2,135 m from Ponte Russis on the lower Günther-Messner path under the Aferer Geisler and up to Passo delle Erbe, with the Sas de Pütia ahead.',
+      waterDescription: 'Drinking water at km 1.7, km 6.1 and km 6.8; places to eat on the way.',
+      dogNotes: 'Most of the walk is in the Puez-Odle nature park, where dogs stay on a lead at all times. Villnöss requires a lead of at most 1.5 m and a muzzle carried and keeps dogs off farmed meadows; near Passo delle Erbe the walk is in San Martin de Tor, where no dog regulation was found, so the national rule applies: the same lead and muzzle.',
+      tips: 'Start at Ponte Russis: 8 km one way, about 550 m up and 300 m down, two and a half hours; take the bus back from Passo delle Erbe. Keep your dog on a lead of at most 1.5 m and carry a muzzle; the park asks for a lead throughout. Drinking water around km 1.7 and km 6.',
+      sourceLinks: [
+        { label: 'Outdooractive, Da Russis fino al Passo delle Erbe (Villnöss tourist board (Tourismusverein Villnöss))', url: 'https://www.outdooractive.com/it/r/65390947' },
+        { label: 'Gemeinde Villnöss, dog regulation', url: 'https://www.gemeinde.villnoess.bz.it/system/web/GetDocument.ashx?cts=1789663369&fileId=1048678' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.66005, lng: 11.75184, label: 'Ponte Russis (Russisbrücke), the board’s start' },
+      desc: 'A walk on the lower Günther-Messner path from Ponte Russis under the jagged Aferer Geisler, across alpine meadows and up path 8A to Passo delle Erbe. The board lists 8 km, 554 m up and 299 m down.'
+    },
+    'villnoess-dolorama-3a-tappa': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Villnöss batch 1).
+      // “Dolorama 3a tappa”, published by the Lajen tourist board (Dolorama trail), drawn on 38 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Villnöss (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows) and Ortisei (its 2019 dog regulation: the same); about 75% in the Puez-Odle nature park, dogs on a lead.
+      // About 75% is in the Puez-Odle nature park (Natura 2000 IT3110026), where dogs stay on a lead; no reserve zone on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Rifugio Genova – Brogles – Rifugio Resciesa (Villnöss / Ortisei)',
+      distance: 15.7,
+      elevation: 633,
+      hours: '4.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way, the third stage of the Dolorama trail: from the Rifugio Genova (Schlüterhütte) on path 33 under the Odle through pine forest to the Brogles hut, then path 35 south-west across the Resciesa meadows to the Rifugio Resciesa.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Rifugio Genova (Schlüterhütte), the end of Dolorama stage 2 and the board’s start of stage 3.",
+        "sequence": "Follow path 33 through pine forest under the 3,000 m Odle peaks to the Brogles hut. From there take path 35 south-west, gently downhill through the meadows and pastures of the Resciesa, to the Rifugio Resciesa.",
+        "switches": "One change: at the end of path 33 continue on path 35 towards the Rifugio Resciesa.",
+        "sources": [
+          {
+            "label": "Lajen tourist board (Dolorama trail), Dolorama 3a tappa (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/38332052",
+            "authority": "Lajen tourist board (Dolorama trail)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Odle peaks above the forest on path 33, in August (ciropom on Mapillary, CC BY-SA 4.0), 10 m from the line.',
+        route: 'Official one-way walk 15.7 km from the Rifugio Genova, as the Lajen tourist board (Dolorama trail) publishes it; the stored line is drawn on 38 OSM ways along the board’s published line, 15.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 33 and 35: from the Rifugio Genova follow path 33 through pine forest under the Odle to the Brogles hut, then path 35 south-west across the meadows and pastures of the Resciesa to the Rifugio Resciesa.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 4.3, km 7.2 and km 9.2 (OSM nodes 11364126170, 7721098001, 1938189486, 12066997804).',
+        elevation: 'Official 15.7 km, 633 m up and 751 m down, 4:45 h, highest point 2,302 m, lowest 1,866 m (Lajen tourist board (Dolorama trail), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Lajen tourist board (Dolorama trail), Dolorama 3a tappa (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Villnöss / Comune di Funes, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 16/2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries or on farmed meadows and fields; no bathing in the village fountains',
+          'Gemeinde St. Ulrich / Comune di Ortisei, Verordnung über die Haltung und das Führen von Hunden (Gemeinderat Nr. 28, 06.08.2019), Art. 4 and 6: a lead of at most 1.5 m on all public ground, a muzzle carried (worn in public premises and on public transport), no dogs on farmed land',
+          'Naturpark Puez-Geisler / Parco naturale Puez-Odle (Natura 2000 IT3110026), decree D.P.G.P. 31 October 1977, n. 29/V/LS, and the Province of Bolzano code of conduct for the nature parks: dogs on a lead; about 75% of the line is in the park. The site’s objectives and conservation measures (Giunta provinciale, 19 December 2025) and the Province’s ZPS measures (DGP 229/2008) set no rule on dogs or on walking the paths',
+          'OpenStreetMap ways along the board’s line (38 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 24,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A long high walk, 15.7 km at 1,870–2,300 m, starting at a hut with no road: plan water and turn-back points', 'Cows graze the Brogles and Resciesa pastures in summer: keep your dog close', 'Rocky stretches under the Odle: watch your dog’s paws'],
+      terrainType: 'Mountain paths, forest paths and alpine meadows',
+      shadeDescription: 'Mostly open: about a quarter runs through mapped forest under the Odle; the Brogles and Resciesa meadows are in full sun.',
+      terrainDescription: 'The third stage of the Dolorama trail at 1,870–2,300 m, from the Rifugio Genova under the Odle peaks to the Brogles hut and across the high Resciesa meadows to the Rifugio Resciesa above Ortisei.',
+      waterDescription: 'Drinking water at the start, km 4.3, km 7.2 and km 9.2; places to eat on the way.',
+      dogNotes: 'Three quarters of the walk is in the Puez-Odle nature park, where dogs stay on a lead at all times. Villnöss and Ortisei both require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows.',
+      tips: 'This is stage 3 of the Dolorama trail: 15.7 km one way from the Rifugio Genova to the Rifugio Resciesa, about 630 m up and 750 m down, nearly five hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at the start and around km 4, 7 and 9.',
+      sourceLinks: [
+        { label: 'Outdooractive, Dolorama 3a tappa (Lajen tourist board (Dolorama trail))', url: 'https://www.outdooractive.com/it/r/38332052' },
+        { label: 'Gemeinde Villnöss, dog regulation', url: 'https://www.gemeinde.villnoess.bz.it/system/web/GetDocument.ashx?cts=1789663369&fileId=1048678' },
+        { label: 'St. Ulrich / Ortisei, dog regulation (2019)', url: 'https://www.comune.ortisei.bz.it/system/web/GetDocument.ashx?fileId=1093922&cts=1565705929' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.63529, lng: 11.80501, label: 'Rifugio Genova (Schlüterhütte), the board’s start of stage 3' },
+      desc: 'The third stage of the Dolorama trail, from the Rifugio Genova under the Odle peaks to the Brogles hut and across the Resciesa meadows to the Rifugio Resciesa above Ortisei. The board lists 15.7 km, 633 m up and 751 m down.'
     }
   };
 

@@ -179,6 +179,9 @@
     'valgardena-escursione-dalla-cappella-santa-croce-al-brogles': "Santa Croce – Brogles",
     'valgardena-percorso-dei-masi-tradizionali': "Santa Cristina farms path",
     'valley-view': "Val di Funes Panorama Trail",
+    'villnoess-da-russis-fino-al-passo-delle-erbe': "Ponte Russis to Passo delle Erbe",
+    'villnoess-dolorama-3a-tappa': "Dolorama stage 3: Rifugio Genova to Resciesa",
+    'villnoess-ranui-zannes': "Ranui to Zannes",
   };
   // </offline-package-registry>
   const PACKAGES = Object.freeze(Object.fromEntries(Object.keys(PACKAGE_NAMES).map(trailId => [trailId, Object.freeze({

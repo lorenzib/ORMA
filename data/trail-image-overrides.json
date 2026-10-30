@@ -6690,6 +6690,57 @@
       }
     },
     {
+      "id": "villnoess-da-russis-fino-al-passo-delle-erbe",
+      "approvedReviewId": "commons-villnoess-da-russis-fino-al-passo-delle-erbe-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/villnoess-da-russis-fino-al-passo-delle-erbe-aferer-geisler.jpg",
+        "heroImage": "images/trails/villnoess-da-russis-fino-al-passo-delle-erbe-aferer-geisler.jpg",
+        "imageAlt": "The jagged dark-red rock towers of the Aferer Geisler above pale scree slopes, under a dramatic sky with white clouds",
+        "imageCredit": "The Aferer Geisler from the Günther-Messner path",
+        "imageCreditText": "The Aferer Geisler from the Günther-Messner path by Guillaume Baviere",
+        "imageCreator": "Guillaume Baviere",
+        "imageLicence": "CC BY-SA 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Italy_2016-07-18_(28388240513).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "villnoess-dolorama-3a-tappa",
+      "approvedReviewId": "mapillary-villnoess-dolorama-3a-tappa-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/villnoess-dolorama-3a-tappa-odle.jpg",
+        "heroImage": "images/trails/villnoess-dolorama-3a-tappa-odle.jpg",
+        "imageAlt": "The grey rock towers of the Odle rising out of drifting cloud above a dark spruce forest",
+        "imageCredit": "The Odle above the Dolorama trail",
+        "imageCreditText": "The Odle above the Dolorama trail by ciropom",
+        "imageCreator": "ciropom",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=3751401008304638",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "villnoess-ranui-zannes",
+      "approvedReviewId": "mapillary-villnoess-ranui-zannes-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/villnoess-ranui-zannes-forest-road.jpg",
+        "heroImage": "images/trails/villnoess-ranui-zannes-forest-road.jpg",
+        "imageAlt": "A gravel forest road between tall spruce trees and green undergrowth under a blue summer sky",
+        "imageCredit": "Path 33 near Zannes",
+        "imageCreditText": "Path 33 near Zannes by asturksever",
+        "imageCreator": "asturksever",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=284749910008624",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "weissensee-nordic-2-urschitz",
       "approvedReviewId": "commons-weissensee-nordic-2-urschitz-on-route",
       "approvedAt": "2026-10-28T09:00:00.000Z",

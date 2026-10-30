@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "villnoess-ranui-zannes",
+  "distanceKm": 3.4,
+  "ascentM": 296,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1376
+    },
+    {
+      "km": 0.3,
+      "elev": 1409
+    },
+    {
+      "km": 0.5,
+      "elev": 1431
+    },
+    {
+      "km": 0.8,
+      "elev": 1467
+    },
+    {
+      "km": 1,
+      "elev": 1504
+    },
+    {
+      "km": 1.3,
+      "elev": 1550
+    },
+    {
+      "km": 1.6,
+      "elev": 1553
+    },
+    {
+      "km": 1.8,
+      "elev": 1595
+    },
+    {
+      "km": 2.1,
+      "elev": 1609
+    },
+    {
+      "km": 2.3,
+      "elev": 1626
+    },
+    {
+      "km": 2.6,
+      "elev": 1639
+    },
+    {
+      "km": 2.8,
+      "elev": 1647
+    },
+    {
+      "km": 3.1,
+      "elev": 1654
+    },
+    {
+      "km": 3.3,
+      "elev": 1674
+    },
+    {
+      "km": 3.4,
+      "elev": 1674
+    }
+  ]
+}
