@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-borgo-di-tamion",
   "name": "Alla scoperta del borgo ladino di Tamion",
-  "version": "2026.10.27-beta.1",
-  "generatedAt": "2026-10-27T22:43:43.438Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:14:31.070Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 490341,
@@ -217,7 +217,7 @@
       "label": "Alla scoperta del borgo ladino di Tamion routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 84285,
-      "sha256": "9de79b76143fc9129a07a7767608a59970bb9bff1cf60fe030b8ecd660a01329"
+      "sha256": "686875315a7effbf2a1187be90969e88a0fb0ee253efd61437f16fc84a8c3ed9"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Alla scoperta del borgo ladino di Tamion safety information",
       "url": "safety.json",
       "bytes": 2106,
-      "sha256": "247df548911bca88223f99c2a7bbd2ab40b5ca0095f5ca3b21ef55faf4faa1d1"
+      "sha256": "96fb473c725e998d0f21cf48735e9c9e22a8813fe466f0c9cecb0dac98291b51"
     }
   ]
 }

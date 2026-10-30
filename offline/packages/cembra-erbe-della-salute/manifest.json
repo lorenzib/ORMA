@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "cembra-erbe-della-salute",
   "name": "Le erbe della salute",
-  "version": "2026.10.27-beta.1",
-  "generatedAt": "2026-10-27T14:03:00.881Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:12:36.131Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 466624,
@@ -217,7 +217,7 @@
       "label": "Le erbe della salute routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 52073,
-      "sha256": "da0466fdac8dad24c954c2545508ae18c69f86af729e759c5ef467356dcfa060"
+      "sha256": "d320d062f131f50f3096bc6935cce5319795c4549dc6ca9569a7586138c639f9"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Le erbe della salute safety information",
       "url": "safety.json",
       "bytes": 1420,
-      "sha256": "302b126bde3fe37e538364971a96deaced44f0cd577d39aa00dddeb098b0423c"
+      "sha256": "7535a781a5ddf51957e94ff0cfe8f162aeab4923de8b967c46215e5c7c4486be"
     }
   ]
 }

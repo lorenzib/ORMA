@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "primiero-percorso-verde",
   "name": "Percorso Verde (I percorsi del benessere)",
-  "version": "2026.10.26-beta.1",
-  "generatedAt": "2026-10-26T18:08:04.769Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T13:58:27.218Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 753155,
@@ -217,7 +217,7 @@
       "label": "Percorso Verde (I percorsi del benessere) routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 108631,
-      "sha256": "1fa9f6288b35005c4ee8de0682daf7d3f2bbeb1cc6e735ac87667cec51ac8aa3"
+      "sha256": "d15ab920c04c7536f19c7a7ed256b1a47dafcca13a82a66ebbd6c1025ae04f5f"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Percorso Verde (I percorsi del benessere) safety information",
       "url": "safety.json",
       "bytes": 1816,
-      "sha256": "8163b45a1b2872e4b182a67244addc900f688726bf7e99ecc566ada0f1817a86"
+      "sha256": "d3b30cada500cbf2c21e0ac87e48fc36578d5e4911e9c49c8a281ee017cb7527"
     }
   ]
 }

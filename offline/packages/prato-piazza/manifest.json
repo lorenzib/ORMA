@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "prato-piazza",
   "name": "Prato Piazza (Plätzwiese)",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:44:38.059Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T12:31:58.175Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 342878,
@@ -217,7 +217,7 @@
       "label": "Prato Piazza (Plätzwiese) routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 76953,
-      "sha256": "f5ed07f9f512ece5ae4441e6899fd50a10c3c94b1b4c9c376d4d12ce792197bc"
+      "sha256": "3e13e1dc6848314ad57f41eddb29c5fb648e6e14a834d2140370e08e641c5312"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Prato Piazza (Plätzwiese) safety information",
       "url": "safety.json",
       "bytes": 1740,
-      "sha256": "60db6a5c5d4e4ff5dc9120c2cb57f8c0cae01341866bc718b5445032e6e3e380"
+      "sha256": "0c52d668fce06f2491a59079bf593365ca797c593b99bb21f3fa7204d6f7b374"
     }
   ]
 }

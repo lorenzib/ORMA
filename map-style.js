@@ -445,6 +445,33 @@
   }
 
   /**
+   * Where a walk's corridor goes: under the relief and the whole marked
+   * network, so the contours and the dashed path the walker follows draw
+   * over it. Contours added later still land above it (they go just under
+   * the network).
+   */
+  function walkCorridorBeforeId(map) {
+    if (map && map.getLayer(CONTOUR_LINE_LAYER)) return CONTOUR_LINE_LAYER;
+    return networkLayerId(map);
+  }
+
+  /**
+   * A route colour washed toward white. The corridor is drawn solid in this
+   * instead of translucent in the full colour: a translucent line paints
+   * twice wherever the walk bends back over itself, which left darker knots.
+   */
+  function paleColour(color, amount) {
+    const match = /^#([0-9a-f]{6})$/i.exec(String(color || ''));
+    if (!match) return color;
+    const mix = amount === undefined ? 0.62 : amount;
+    const value = parseInt(match[1], 16);
+    return '#' + [16, 8, 0].map(shift => {
+      const channel = (value >> shift) & 255;
+      return Math.round(channel + (255 - channel) * mix).toString(16).padStart(2, '0');
+    }).join('');
+  }
+
+  /**
    * Turn down the base style so the hiking network can be the loudest thing
    * on the map. Shops, ATMs, road shields and aerodromes are not why anyone
    * opens a dog-walking map; peaks, huts, water and settlement names are.
@@ -605,6 +632,31 @@
     ];
   }
 
+  // The engine's verdict, as the three tiers. A strong score the engine
+  // downgraded (an unreviewed category that matters) is amber, not green,
+  // because the words beside it say "Possible with cautions".
+  const FIT_FOR_CATEGORY = Object.freeze({
+    'strong-option': 'good',
+    'possible-with-cautions': 'fair',
+    'not-recommended': 'poor',
+  });
+
+  function fitForCategory(category) {
+    return FIT_FOR_CATEGORY[category] || '';
+  }
+
+  // Colour by a feature's `fit` (good/fair/poor); a feature without one falls
+  // back to its score, and one with neither is the unknown grey.
+  function fitColourExpression(fitProperty, scoreProperty) {
+    return [
+      'match', ['coalesce', ['get', fitProperty || 'fit'], ''],
+      'good', MATCH_COLOURS.good,
+      'fair', MATCH_COLOURS.fair,
+      'poor', MATCH_COLOURS.poor,
+      matchColourExpression(scoreProperty || 'score'),
+    ];
+  }
+
   function widthRamp(a, b, c, d, scale) {
     const factor = scale || 1;
     return [
@@ -650,16 +702,21 @@
       };
     }
     return {
+      // Two thin white edges, not a white band: the gap is the corridor's own
+      // width, so nothing white is painted under the walk and the path,
+      // contours and terrain inside the corridor keep their colours.
       casing: {
         'line-color': config.casingColor || '#FFFFFF',
         'line-opacity': 0.9,
-        'line-width': widthRamp(10, 16, 23, 33, scale),
+        'line-width': widthRamp(1.5, 2, 2.5, 3, scale),
+        'line-gap-width': widthRamp(7, 12, 18, 26, scale),
       },
-      // Translucent on purpose: the marked route draws through it, and the
-      // terrain underneath still reads.
+      // Solid and pale on purpose: it sits under the contours and the dashed
+      // path, so they read through it, and a solid line has no darker knots
+      // where the walk overlaps itself.
       line: {
-        'line-color': color,
-        'line-opacity': 0.55,
+        'line-color': paleColour(color),
+        'line-opacity': 1,
         'line-width': widthRamp(7, 12, 18, 26, scale),
       },
     };
@@ -675,10 +732,10 @@
     const id = config.id;
     if (!map || !source || !id || map.getLayer(id)) return null;
     const paint = routeLinePaint(config.color || '#2E4034', config);
-    // Default to sitting under Waymarked's raster, so the route highlights the
-    // marked path instead of covering it; with our own network, between the
-    // dashed routes and their numbers.
-    const fallbackBefore = walkLineBeforeId(map);
+    // Default to sitting under the contours and the marked network (or
+    // Waymarked's raster), so the route highlights the path instead of
+    // covering it.
+    const fallbackBefore = walkCorridorBeforeId(map);
     const beforeId = config.beforeId !== undefined ? config.beforeId : fallbackBefore;
     const target = beforeId && map.getLayer(beforeId) ? beforeId : undefined;
     const layout = { 'line-join': 'round', 'line-cap': 'round' };
@@ -694,7 +751,7 @@
   // On satellite the photo itself shows the path, so the white casing goes
   // and the corridor becomes a light tint: still clearly "your walk", but
   // the real track shows through it.
-  const ROUTE_LINE_ON_IMAGERY = { casing: 0, line: 0.4 };
+  const ROUTE_LINE_ON_IMAGERY = { casing: 0, line: 0.3 };
 
   /**
    * Fade the walk (a line made by addRouteLine) and our hiking routes over
@@ -816,6 +873,8 @@
     MATCH_FAIR,
     matchColour,
     matchColourExpression,
+    fitForCategory,
+    fitColourExpression,
     addWaymarkedHiking,
     setWaymarkedVisible,
     HIKING_SOURCE,
@@ -829,6 +888,8 @@
     walkRouteStretches,
     networkLayerId,
     walkLineBeforeId,
+    walkCorridorBeforeId,
+    paleColour,
     quietBasemap,
     calmBasemap,
     routeLinePaint,

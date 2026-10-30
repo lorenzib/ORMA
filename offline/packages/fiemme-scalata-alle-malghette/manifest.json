@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fiemme-scalata-alle-malghette",
   "name": "La “scalata” alle Malghette",
-  "version": "2026.10.27-beta.1",
-  "generatedAt": "2026-10-27T14:18:38.336Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:13:24.355Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 213730,
@@ -217,7 +217,7 @@
       "label": "La “scalata” alle Malghette routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 34054,
-      "sha256": "9dc0e36e0cfe1899b33bb274bf81fd4e05b12638f581a0bf832dc11f68c4f9f5"
+      "sha256": "11a410abf3f3a82cf0ed426685c82ab6c31cfeae83a810a333d2244b6c6781e7"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "La “scalata” alle Malghette safety information",
       "url": "safety.json",
       "bytes": 1487,
-      "sha256": "3a9eb87ce2be9d4b5d5d39f25d20881ead51486aaac3061eb859f251b286692f"
+      "sha256": "9b072b3f392bca35e62bbf8156bf7bb22ecaf7564a79757e45d5e7c06e132906"
     }
   ]
 }

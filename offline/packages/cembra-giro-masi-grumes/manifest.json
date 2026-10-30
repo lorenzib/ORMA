@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "cembra-giro-masi-grumes",
   "name": "Il Giro dei Masi di Grumes",
-  "version": "2026.10.27-beta.1",
-  "generatedAt": "2026-10-27T14:01:26.838Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:08:08.702Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 666221,
@@ -217,7 +217,7 @@
       "label": "Il Giro dei Masi di Grumes routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 114001,
-      "sha256": "c2d4439d5c257ba370cf92037615b8480302fa80dfa98e111178c2462b7ead23"
+      "sha256": "fc5269340329f8cf62a6b78e7ed58c66c57f62b83bddea28480a94140d14cc16"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Il Giro dei Masi di Grumes safety information",
       "url": "safety.json",
       "bytes": 1974,
-      "sha256": "76963cb3f0a0fbc75301c7eca4d65417782af1e483afb56644b490f8de9b7d81"
+      "sha256": "02bd85527465c6523f874e64ff81080c3263cbfcabde16fe215e1dcfa5576ff4"
     }
   ]
 }

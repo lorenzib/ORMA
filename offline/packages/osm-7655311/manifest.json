@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-7655311",
   "name": "Sonnenberger Panoramaweg - Sentiero",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:58.763Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:09:57.934Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1721675,
@@ -217,7 +217,7 @@
       "label": "Sonnenberger Panoramaweg - Sentiero routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 570262,
-      "sha256": "e4bc034ef5cd54b75529d843a961fdfcda528c9b3fd9fa9897070e30ad5b66aa"
+      "sha256": "0543ddbe2d9dc5a679dad56ae95fc04a359ee5efee89b765f3d6b8ea1204fa54"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Sonnenberger Panoramaweg - Sentiero safety information",
       "url": "safety.json",
       "bytes": 1915,
-      "sha256": "3219fadbdab9242c49c1ad36317ec3aa7af300ce6b6e9244e76d7342185cd48e"
+      "sha256": "e0b9bb9b3b4227c516703da36b2e245d557e19b85e0afa835a4fa8208a9cfdd4"
     }
   ]
 }

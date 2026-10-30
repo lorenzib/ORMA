@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 5.3,
+    "ascentM": 140,
+    "highestPointM": 953,
+    "expectedDuration": "2 hours",
+    "difficulty": "Easy",
+    "shadePercent": 30
+  },
+  "trailhead": {
+    "lat": 46.837581,
+    "lng": 11.945214,
+    "label": "The parish church of Gais, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.8370689,
+      "lng": 11.9478798,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.8355605,
+      "lng": 11.9478765,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.8395791,
+      "lng": 11.9615116,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.833788,
+      "lng": 11.9495648,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The channel path runs level along a steep wooded slope: keep your dog close at the edge.",
+    "Do not let your dog into the irrigation channel or the Ahr.",
+    "Lanes through Gais and over the Ahr bridge, with local traffic.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-29"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

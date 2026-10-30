@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-7547653",
   "name": "Anello dei Forti",
-  "version": "2026.10.26-beta.1",
-  "generatedAt": "2026-10-26T20:57:18.562Z",
+  "version": "2026.10.30-beta.3",
+  "generatedAt": "2026-10-30T12:47:42.223Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 294732,
@@ -217,7 +217,7 @@
       "label": "Anello dei Forti routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 48929,
-      "sha256": "0cbd2618edf48f3ca25226104c4b0217339c4d29585a07e281688c60b7578785"
+      "sha256": "8f128bfac27e1ecfc999e6775aa2c1e17c72ad7b8d0f4cc50e077f969f0a7afb"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Anello dei Forti safety information",
       "url": "safety.json",
       "bytes": 1465,
-      "sha256": "745c9214f090142f056ab60223367d2e7d2ec87254bf09d4fd21e205aa765449"
+      "sha256": "833c04caa8257ffa9b7f7d0c659516d619524e520d3dd2d708522e5a82779da2"
     }
   ]
 }

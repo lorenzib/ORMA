@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-11795251",
   "name": "Dörferrundweg (Vintl)",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:21.122Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T12:53:57.632Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1617221,
@@ -217,7 +217,7 @@
       "label": "Dörferrundweg (Vintl) routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 384079,
-      "sha256": "10a372a69c77a27f4d6dce1d254df008717278d9f1c4b1936352a8b95c298d3b"
+      "sha256": "920d9edf334eea09722c27b709a43a6aa14689e91ca92f3744c4ce2b5cfcf45b"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Dörferrundweg (Vintl) safety information",
       "url": "safety.json",
       "bytes": 2554,
-      "sha256": "9af16f5cc3c5595280ffba4079150641a6efd8521ceb1d78d8d20cfb113d3b10"
+      "sha256": "394dae6019cc40ed3d00d7caaa5e4edb74561aa4bb684bf40dc107e3d532687a"
     }
   ]
 }

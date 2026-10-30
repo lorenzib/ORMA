@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-sentiero-della-foresta",
   "name": "Sentiero della Foresta",
-  "version": "2026.10.26-beta.1",
-  "generatedAt": "2026-10-26T10:22:40.958Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T14:57:17.130Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 322386,
@@ -217,7 +217,7 @@
       "label": "Sentiero della Foresta routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 66190,
-      "sha256": "2cfb44d8808e98272e4703b8e7cb432d8cf616519b8db866ea55d98766237356"
+      "sha256": "e0ecddb5a19d137dd5b67009d84420ea169e59b88853d4a40e68f7b166c80442"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Sentiero della Foresta safety information",
       "url": "safety.json",
       "bytes": 1512,
-      "sha256": "69e60ecedafd196d4bf4664a6075707f35d825cf3e3aa1855d36d1cf72ff69f1"
+      "sha256": "5b356d0e1ed8d6fc77fdde2980a710ab5bccf888baf5cb50cad07150bfd7f53f"
     }
   ]
 }

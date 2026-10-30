@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "primiero-fiera-pieve",
   "name": "Fiera-Pieve",
-  "version": "2026.10.26-beta.1",
-  "generatedAt": "2026-10-26T18:04:16.607Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T13:52:55.039Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 704453,
@@ -217,7 +217,7 @@
       "label": "Fiera-Pieve routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 116868,
-      "sha256": "9b9c396ff409a8648af2e3e1e35d5159d2f19096784d71140d9e2d40b51c6b05"
+      "sha256": "c0838bb2913421dfe5d3d2cadeb16e76f32aa81efc32d8c50eb98821f8e82804"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Fiera-Pieve safety information",
       "url": "safety.json",
       "bytes": 2027,
-      "sha256": "14b4d491ae97e463dbea0a5a57b683ab4b7ed21303eff2749da260f45740213e"
+      "sha256": "8b657d07595a738861c722def262d2fb7a5d9abc1528c796560619842155c976"
     }
   ]
 }

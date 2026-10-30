@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-19855818",
   "name": "Boucle des cascades",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:12.177Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T13:44:54.805Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 554536,
@@ -217,7 +217,7 @@
       "label": "Boucle des cascades routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 188664,
-      "sha256": "b7f28b2ce866081bd37e9c77a9d1813c8cd988197a0a03f4e5177992412d27f9"
+      "sha256": "3214a9c40a821dca731f33f29e547a07e62d0c6edc7013601408b10bf74a659a"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Boucle des cascades safety information",
       "url": "safety.json",
       "bytes": 1372,
-      "sha256": "c014ce937886baa8a26231b77e4a2911e6743c9fe795dc9b65c44551ef523490"
+      "sha256": "87a5a6035372e169d8254eeafacf1cb000b5d2069b3502ae38539346de0c9a42"
     }
   ]
 }

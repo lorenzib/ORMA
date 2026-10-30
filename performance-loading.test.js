@@ -10,7 +10,7 @@ describe('PERF-02 asset and regional loading contract', () => {
     const detail = read('trail.html');
     [homepage, detail].forEach(html => expect(html).not.toContain('unpkg.com/maplibre-gl@5.24.0'));
     expect(homepage).toContain('map-runtime.js?v=20260826-1');
-    expect(detail).toContain('trail-app.bundle.js?v=20261016-1');
+    expect(detail).toContain('trail-app.bundle.js?v=20261030-1');
     const runtime = read('map-runtime.js');
     expect(runtime).toContain('IntersectionObserver');
     expect(runtime).toContain("rootMargin: opts.rootMargin || '320px 0px'");
@@ -129,7 +129,7 @@ describe('PERF-02 asset and regional loading contract', () => {
 
   test('trail application code ships as one ordered, reproducible request', () => {
     const page = read('trail.html');
-    expect(page).toContain('<script src="trail-app.bundle.js?v=20261016-1" defer>');
+    expect(page).toContain('<script src="trail-app.bundle.js?v=20261030-1" defer>');
     expect(page).not.toContain('<script src="map-runtime.js');
     expect(page).not.toContain('<script src="trail.js');
     expect(trailBundle.SOURCES.length).toBeGreaterThan(40);
@@ -149,8 +149,9 @@ describe('PERF-02 asset and regional loading contract', () => {
     // The chosen route sits under the route numbers, and the routes it follows
     // are numbered beside it, so we no longer reprint shields.
     expect(homepage).not.toContain("id:'trail-selected-route-number'");
-    expect(homepage).toMatch(/id:'trail-selected-route-casing'[\s\S]*?\}, railsBeforeId\);/);
-    expect(homepage).toMatch(/id:'trail-selected-route-line'[\s\S]*?'line-opacity':0\.55[\s\S]*?\}, railsBeforeId\);/);
+    expect(homepage).toContain('const corridorBeforeId = window.ORMAMapStyle.walkCorridorBeforeId(trailMapInstance);');
+    expect(homepage).toMatch(/id:'trail-selected-route-casing'[\s\S]*?\}, corridorBeforeId\);/);
+    expect(homepage).toMatch(/id:'trail-selected-route-line'[\s\S]*?'line-opacity':1,[\s\S]*?\}, corridorBeforeId\);/);
     expect(homepage).toContain("function setSelectedTrailRoute(trail, options)");
     expect(homepage).toContain('window.ORMAMapStyle.setHikingWalk(trailMapInstance, visible ? route.map(([lat, lng]) => [lng, lat]) : null);');
     expect(homepage).toContain('setSelectedTrailRoute(t);');

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12142337",
   "name": "Rundweg Peitlerkofel",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:21.679Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:02:01.999Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1098575,
@@ -217,7 +217,7 @@
       "label": "Rundweg Peitlerkofel routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 212316,
-      "sha256": "35689b1aedafe0c447a3759c839e16f8a519fe00ea4192c4473a2ba4bb26385c"
+      "sha256": "f45e13a2d75cfb83e6783932310e12826aa8f87ccda827ed01bb61a27c0a9b04"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Rundweg Peitlerkofel safety information",
       "url": "safety.json",
       "bytes": 2007,
-      "sha256": "4254b6151fec7bb5dbbe35163d98f427c55f1893d9230ae3d03e080c39154357"
+      "sha256": "8b63763475cdc2a1eda4bf163e918cc6c8389fd1821da0254eab00cee02057d4"
     }
   ]
 }

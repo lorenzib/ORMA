@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "valley-view",
   "name": "Val di Funes Panorama Trail",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:44:38.356Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:33:15.508Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1020503,
@@ -217,7 +217,7 @@
       "label": "Val di Funes Panorama Trail routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 219190,
-      "sha256": "c886574b665eb2047e15d32075e9a7ca6fccbef7036ae610772c4d97d2c64436"
+      "sha256": "b0775c4815ec8eda47f63d088f3f14b77a144c508c8688dbe21ec443ad7d6ae1"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Val di Funes Panorama Trail safety information",
       "url": "safety.json",
       "bytes": 1984,
-      "sha256": "17f465d86bc57fac9726450af62fbd3c18a6f40313ea8dda3cf8dae686d8125f"
+      "sha256": "668cf9588fc831aeac80db2ffeba4fd8241c598c61bbd81ffd290b540a32aa1e"
     }
   ]
 }

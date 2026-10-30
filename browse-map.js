@@ -49,6 +49,8 @@
         // to colour a pin by it would have called every unrated trail moderate.
         risk:String(trail.safetyLevel || ''),
         score:Number.isFinite(score) ? score : 0,
+        // The verdict's tier, so a pin is the colour of the words on its card.
+        fit:String(view.fit || ''),
         saved:view.saved ? 1 : 0,
       },
     };
@@ -70,11 +72,21 @@
     let popup = null;
     let terrainOn = false;
 
+    function verdictFor(trail){
+      return typeof settings.verdictFor === 'function' ? (settings.verdictFor(trail) || null) : null;
+    }
+
+    function fitFor(trail){
+      const verdict = verdictFor(trail);
+      return verdict && root.ORMAMapStyle ? root.ORMAMapStyle.fitForCategory(verdict.category) : '';
+    }
+
     function data(){
       return {
         type:'FeatureCollection',
         features:trails.map(trail => trailFeature(trail, {
           score:typeof settings.scoreFor === 'function' ? settings.scoreFor(trail) : trail.score,
+          fit:fitFor(trail),
           saved:typeof settings.savedFor === 'function' ? settings.savedFor(trail) : trail.saved,
         })).filter(Boolean),
       };
@@ -108,7 +120,11 @@
       return coordinates.length > 1 ? {
         type:'Feature',
         geometry:{ type:'LineString', coordinates },
-        properties:{ id:String(trail.id || '') },
+        properties:{
+          id:String(trail.id || ''),
+          fit:fitFor(trail),
+          score:Number(typeof settings.scoreFor === 'function' ? settings.scoreFor(trail) : trail.score) || 0,
+        },
       } : { type:'FeatureCollection', features:[] };
     }
 
@@ -135,9 +151,15 @@
         trail.distance ? `${trail.distance} km` : '',
         trail.hours ? `${trail.hours} h` : '',
       ].filter(Boolean).join(' · ');
+      // The same verdict, for the same dog, as the trail's card in the list.
+      const verdict = verdictFor(trail);
+      const subject = typeof settings.subjectLabel === 'function' ? settings.subjectLabel() : '';
+      const verdictLine = verdict && verdict.label
+        ? `<p class="browse-map-popup__verdict">${subject ? `<small>${escapeHtml(subject)}</small>` : ''}<b style="color:${escapeHtml(verdict.color || '#2E4034')}">${escapeHtml(verdict.label)}</b></p>`
+        : '';
       popup = new root.maplibregl.Popup({ offset:18, closeButton:true, maxWidth:'250px' })
         .setLngLat(coordinate)
-        .setHTML(`<div class="browse-map-popup"><strong>${escapeHtml(trail.name || 'Trail')}</strong>${metadata ? `<span>${escapeHtml(metadata)}</span>` : ''}<b>Dog suitability at a glance</b><a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(trail.id) : (trail.id)))}">Open trail →</a></div>`)
+        .setHTML(`<div class="browse-map-popup"><strong>${escapeHtml(trail.name || 'Trail')}</strong>${metadata ? `<span>${escapeHtml(metadata)}</span>` : ''}${verdictLine}<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(trail.id) : (trail.id)))}">Open trail →</a></div>`)
         .addTo(map);
     }
 
@@ -211,12 +233,13 @@
 
     function installLayers(){
       map.addSource('browse-trails', { type:'geojson', data:data() });
+      const fitColour = root.ORMAMapStyle
+        ? root.ORMAMapStyle.fitColourExpression('fit', 'score')
+        : '#3e7a91';
       map.addLayer({
         id:'browse-trails-individual', type:'circle', source:'browse-trails',
         paint:{
-          'circle-color':root.ORMAMapStyle
-            ? root.ORMAMapStyle.matchColourExpression('score')
-            : '#3e7a91',
+          'circle-color':fitColour,
           'circle-radius':7,
           'circle-stroke-width':2.5,
           'circle-stroke-color':[
@@ -232,13 +255,22 @@
       map.addLayer({
         id:'browse-trails-selected', type:'circle', source:'browse-trails',
         filter:['==', ['get','id'], '__none__'],
-        paint:{ 'circle-color':'#2e4034', 'circle-radius':9, 'circle-stroke-color':'#fff', 'circle-stroke-width':3 },
+        paint:{ 'circle-color':fitColour, 'circle-radius':9, 'circle-stroke-color':'#fff', 'circle-stroke-width':3 },
       });
+      // The picked walk keeps its fit colour: a dark green line under a red
+      // "Not recommended" card read as a good fit. A white casing keeps a
+      // red or amber line clear of the pins in the same colours.
       map.addSource('browse-selected-route', { type:'geojson', data:{ type:'FeatureCollection', features:[] } });
       map.addLayer({
+        id:'browse-selected-route-casing', type:'line', source:'browse-selected-route',
+        layout:{ 'line-join':'round', 'line-cap':'round' },
+        paint:{ 'line-color':'#fff', 'line-width':7, 'line-opacity':0.9 },
+      }, 'browse-trails-individual');
+      map.addLayer({
         id:'browse-selected-route-line', type:'line', source:'browse-selected-route',
-        paint:{ 'line-color':'#2e4034', 'line-width':4, 'line-opacity':0.9 },
-      });
+        layout:{ 'line-join':'round', 'line-cap':'round' },
+        paint:{ 'line-color':fitColour, 'line-width':4, 'line-opacity':0.95 },
+      }, 'browse-trails-individual');
 
       map.on('click', 'browse-trails-individual', event => {
         const feature = event.features && event.features[0];

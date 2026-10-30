@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-3202880",
   "name": "Rundweg Montiggler Seen",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:18.947Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:43:18.614Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 352250,
@@ -217,7 +217,7 @@
       "label": "Rundweg Montiggler Seen routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 100884,
-      "sha256": "c72da741f9715dfe060ec98a2c8db46e7c5348bb561a699e06fcfe2ebf8123cb"
+      "sha256": "b8307def11899eb15d57104bd85091c7506fd75719b4bb6134f269e3190c5a36"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Rundweg Montiggler Seen safety information",
       "url": "safety.json",
       "bytes": 1353,
-      "sha256": "0f6d1faedfee1a5eff839d54cf5c55101491ae05a130ff8b19fcd893c2a47577"
+      "sha256": "0804e644067a69dc9c0a071f9537b9f6630e6b33b7c6e0c491ff83c56c0cd26f"
     }
   ]
 }

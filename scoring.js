@@ -25,7 +25,13 @@ function recommendTrail(trail, subject, currentConditions){
   if(!adapter || typeof adapter.recommendLegacyTrail !== 'function'){
     throw new Error('Canonical scoring adapters are unavailable.');
   }
-  return adapter.recommendLegacyTrail(trail, subject || {}, currentConditions);
+  // A one-way walk is scored there and back unless the reader switched its
+  // page to one way, so a card and the trail page give the same number
+  // (route-return.js; a copy it has already made passes through unchanged).
+  const routeReturn = window.ORMARouteReturn;
+  const walked = routeReturn && typeof routeReturn.forView === 'function'
+    ? routeReturn.forView(trail) : trail;
+  return adapter.recommendLegacyTrail(walked, subject || {}, currentConditions);
 }
 
 function scoreTrail(trail, subject, currentConditions){

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-11860429",
   "name": "Roda dles Viles",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:21.453Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:57:47.806Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 400773,
@@ -217,7 +217,7 @@
       "label": "Roda dles Viles routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 83168,
-      "sha256": "73bb99d72bb6fac97724403b549778b63762b08d5feb03fedc04913c96a68eff"
+      "sha256": "a733c7a03a5368affeb098fbffca0efa4776ef29a818e19cae3ab71176ec3c30"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Roda dles Viles safety information",
       "url": "safety.json",
       "bytes": 1458,
-      "sha256": "bdc60f84fb43203401459ec646efed4896383034cc1b33ac7f46b379125abf33"
+      "sha256": "522dae7601ab8938593717123ff1548b661266167b2b79002db9a50dee2556b0"
     }
   ]
 }

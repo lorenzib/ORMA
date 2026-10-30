@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-da-alba-a-penia",
   "name": "Da Alba a Penìa",
-  "version": "2026.10.27-beta.1",
-  "generatedAt": "2026-10-27T22:44:22.427Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:15:07.531Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 385674,
@@ -217,7 +217,7 @@
       "label": "Da Alba a Penìa routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 91472,
-      "sha256": "291f4d1a659fc452da6e25b8e4ef8aba34c4dff9da8f81a0637eb2945078ac58"
+      "sha256": "7e78e2dee6b76df6fdb55d7c0e6c9610cbc2d05fa8a969e72b83d2d141eadcac"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Da Alba a Penìa safety information",
       "url": "safety.json",
       "bytes": 1826,
-      "sha256": "5eeb665b0480507e152f2d2ea1a7910a6288d74def3dc063d72d593d0704c3a2"
+      "sha256": "8288a22dba85018613e7e4598338609a94900f69d8a1067de5748195f5264ba2"
     }
   ]
 }

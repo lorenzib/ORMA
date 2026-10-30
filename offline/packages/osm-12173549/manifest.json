@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12173549",
   "name": "Mühlenweg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:46:00.509Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:19:26.367Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 651385,
@@ -217,7 +217,7 @@
       "label": "Mühlenweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 154745,
-      "sha256": "c3bafc696e2799b7468949e4b6fca5adb1a6aceee471482dc6483d310b5a452b"
+      "sha256": "eb04e971428b2185da16e3609f268701c05e5c71ab252c12bb254f19027acae8"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Mühlenweg safety information",
       "url": "safety.json",
       "bytes": 1689,
-      "sha256": "a4d9a5eff36c5952f9e1e8a4e78b748ba7d7e1b4e2cb157c36e5a9972d16a5a7"
+      "sha256": "76457e7909709e40f9d998078f70946b27c55ba84371fe66026a8bc73699c130"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-9937537",
   "name": "Le Mont Jovet",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:55:11.266Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T13:35:21.316Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 464151,
@@ -217,7 +217,7 @@
       "label": "Le Mont Jovet routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 181869,
-      "sha256": "cc140a4b945393939cfd592943c3f1de82fb2d5847549797da671926f31a21c4"
+      "sha256": "81f74e742151b42ca8c8af54fdec045c91575f158079281e351954f529dcc040"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Le Mont Jovet safety information",
       "url": "safety.json",
       "bytes": 1394,
-      "sha256": "bcb0f996d90ab24ff939831248292d3c2714fbd52dd28738e95a2471e9eb7c5b"
+      "sha256": "6b75f8a5e6ac93eb3de21e8c403455c198e858a2c6b0363b1c386ba9f6ef0a0d"
     }
   ]
 }

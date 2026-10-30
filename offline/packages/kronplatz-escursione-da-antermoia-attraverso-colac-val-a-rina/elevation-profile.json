@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina",
+  "distanceKm": 5.5,
+  "ascentM": 143,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1525
+    },
+    {
+      "km": 0.4,
+      "elev": 1563
+    },
+    {
+      "km": 0.8,
+      "elev": 1610
+    },
+    {
+      "km": 1.3,
+      "elev": 1587
+    },
+    {
+      "km": 1.7,
+      "elev": 1535
+    },
+    {
+      "km": 2.1,
+      "elev": 1571
+    },
+    {
+      "km": 2.5,
+      "elev": 1586
+    },
+    {
+      "km": 3,
+      "elev": 1605
+    },
+    {
+      "km": 3.4,
+      "elev": 1549
+    },
+    {
+      "km": 3.8,
+      "elev": 1557
+    },
+    {
+      "km": 4.2,
+      "elev": 1479
+    },
+    {
+      "km": 4.6,
+      "elev": 1467
+    },
+    {
+      "km": 5.1,
+      "elev": 1445
+    },
+    {
+      "km": 5.4,
+      "elev": 1450
+    },
+    {
+      "km": 5.5,
+      "elev": 1450
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-9648632",
   "name": "Pana Raida",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:50:23.735Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:29:27.373Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 244700,
@@ -217,7 +217,7 @@
       "label": "Pana Raida routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 44758,
-      "sha256": "49c020e2e19978491a872a710e3ad2ea4445ad911d170b712bccc42245b801aa"
+      "sha256": "a12548d7e0d148b77cef7f34cb9d933003e3c30c7a7d106380bf516de9510ddf"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Pana Raida safety information",
       "url": "safety.json",
       "bytes": 1313,
-      "sha256": "879520f0bf6c25a7b995ab47aab307b78ddb53e3d2e14525d3849cbc66019d02"
+      "sha256": "fc14e03c2f1d4430c9ab9e5405b769b6074393ea82458d88377ad6fbf8d13f22"
     }
   ]
 }

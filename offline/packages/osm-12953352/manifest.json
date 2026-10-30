@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12953352",
   "name": "Archeopfad Brixen",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:23.061Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:07:31.786Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 896145,
@@ -217,7 +217,7 @@
       "label": "Archeopfad Brixen routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 230980,
-      "sha256": "a6c0d8718f9142435b2e9f2cfe565721acaf3cf83bbfa5c15b6ce22b7d6131c1"
+      "sha256": "cc0d253911ae831f5fb35698773d2a2e79978abfc2f3e21f6c550c6730c62437"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Archeopfad Brixen safety information",
       "url": "safety.json",
       "bytes": 1937,
-      "sha256": "bce5dc08b0b22c7415b323ef6b7695fbc974ea9d1e924a7ab6bb87e8345822b6"
+      "sha256": "a33fb738b9706c05e920c57c8d155bd47bd2b2b04e0663a76503cb25735df1c4"
     }
   ]
 }

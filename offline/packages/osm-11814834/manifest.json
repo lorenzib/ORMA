@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-11814834",
   "name": "Geotrail Bula - Pufels - Bulla",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:21.267Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:54:46.635Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 850412,
@@ -217,7 +217,7 @@
       "label": "Geotrail Bula - Pufels - Bulla routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 97753,
-      "sha256": "645ea3645f8546a4fdba43f6841a384024abf436249518cad36b1ec42aba0ec6"
+      "sha256": "967cfe79e9e9b3c98ace6c4f4a34ec9d186a90b5ce5e35868070c3cccdefcb06"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Geotrail Bula - Pufels - Bulla safety information",
       "url": "safety.json",
       "bytes": 1691,
-      "sha256": "59450d6a6e5b4cfdc777710abcaa3edacf98c8839f03780dde1654cc60d624c0"
+      "sha256": "f4665a086f126e77f3614ad755e359ac4323e06de6b7753d27feab194d3cbf34"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-7446701",
   "name": "Waltner Rundweg 18",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:19.792Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T12:47:14.192Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 482589,
@@ -217,7 +217,7 @@
       "label": "Waltner Rundweg 18 routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 134211,
-      "sha256": "d16f90f9c60ca178987662823ad23cf0f748e866677064433778843cc8f313e3"
+      "sha256": "a9c28ca7ff83c1dead78b149f3393f2788fd63df1ff45410c8ebb75599619d90"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Waltner Rundweg 18 safety information",
       "url": "safety.json",
       "bytes": 1803,
-      "sha256": "cc635e3721185ef4078bee12689ee923b80e9df3c7c4cadaa8a44e3b1d5e80df"
+      "sha256": "f751d4de44063a491f75fcf21b0a8a8f4a4a333344496caec48f018df9f600e5"
     }
   ]
 }

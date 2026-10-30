@@ -765,7 +765,8 @@ is.
 
 ## Compaction may drop what is bulky, not what decides
 
-`dossier-review-queue` is one Firestore property with a 1,024 KB ceiling, and a
+`dossier-review-queue` was one Firestore property with a 1,024 KB ceiling until
+30 October 2026 (see *The queue is split across documents* below), and a
 waiting review keeps a summary of each specialist output rather than the record.
 That is a size measure. It was also deciding verdicts.
 
@@ -810,6 +811,29 @@ be sitting in an artifact under a name that moved. The output now carries why
 the detail is unreadable and the gate reports that as its own blocker. Not
 finding an answer and not being able to read the answer back are different
 problems, and they looked identical in the one place that decides a trail.
+
+### The queue is split across documents
+
+On 29 October 2026 the catalogue reached 406 trails, and the test holding the
+headroom above failed: at about 2.6 KB a waiting review at its worst, one
+property holds about 400. Its own comment said what that meant: the queue needs
+splitting, not a looser test.
+
+**The store splits it, so nothing that reads it changes.** Any artifact whose
+JSON passes 900 KB is written in pieces in one batch: the first piece on the
+artifact's own document, marked `json-shards-v1` with the count, the rest on
+`<id>~shard-N`, up to eight. Every piece carries one token, and a reader that
+finds two tokens — a write half applied — reads again and refuses rather than
+join two versions. A smaller write deletes the pieces it no longer uses. Under
+900 KB an artifact is one `json-v1` document, exactly as before. The worker's
+store and the desk's browser reader both do this; the twenty places that read
+the queue go on calling `getArtifact`.
+
+**The queue's budget is now 2.7 MB**, three pieces: about 1,050 waiting reviews
+at their worst, and under half of what the store can write, so the pass that
+adds a review is still never the pass that fails. The tiers that degrade the
+queue over budget are unchanged. A queue over 900 KB costs one read per piece,
+which only happens when that many reviews are waiting.
 
 ## One badge rule for the page and the app
 
@@ -1060,8 +1084,12 @@ So the record is copied across, honestly:
   own orchestration state, **`verified-by-hand`**. Never to
   `ready-for-editorial`: the evidence policy did not pass it, and saying it did
   would make the pipeline's own pass rate a lie.
-- The state keeps who verified it, when, on which sources, and where the
-  pipeline had got to (`handVerification.previousState`). A walk verified by
+- The state keeps who verified it, when, how many sources it rests on, and
+  where the pipeline had got to (`handVerification.previousState`). The
+  sources themselves stay in the published record and the board reads them
+  from there: copied onto every record they were most of the orchestration,
+  and on 28 October they took it past Firestore's per-document ceiling and
+  stopped the worker (#1143). A walk verified by
   hand before the pipeline ever admitted it gets a record too, so the intake
   never admits it to be researched again.
 - A trail the evidence policy had already passed is left as it is.
@@ -1082,6 +1110,54 @@ So the record is copied across, honestly:
   keeps meaning what the evidence policy approved. "Record and site disagree"
   is kept for a real disagreement: a record that says verified by hand while
   the site does not.
+
+## A board walk is Verified only if it can be followed
+
+> Proposed 28 October 2026; takes effect when merged.
+
+A walk from a tourist board's list is drawn on OSM paths along the line the
+board publishes (`scripts/build-board-line.js`). The builder checked that the
+drawn line was the board's walk -- 95% of each within 25 m of the other, the
+length within 10% -- and that was taken as enough. It is not. Ortisei – Passo
+Sella passed at 100% and went Verified with a line that runs 400 m up a road
+and straight back, and again 200 m further on, and a page whose only direction
+was "Follow the mapped ORMA line and local destination signs".
+
+So a board walk is Verified only when, besides the authority's climb and time
+and the rest of the hand audit:
+
+- **The line is clean.** It never goes out along a path and comes straight
+  back mid-walk (more than 50 m retraced on the same path -- longer than any
+  snapping step), and it never runs over itself, unless the audit declares
+  that shape: an `out-and-back` turns once near the middle, a `lollipop` walks
+  its stem both ways. A real side trip -- to a waterfall, a viewpoint -- is
+  declared in the audit as `sideTrips: [{ km, note }]`. A line that is an
+  out-and-back while the page calls it a loop fails until the label is right.
+- **It has directions.** The audit's route sentence says where to start and
+  which way to go, with path numbers or named turns.
+
+Where it is enforced:
+
+- `build-board-line.js` refuses a line that folds or runs over itself, and
+  writes nothing.
+- `scripts/board-walk-bar.test.js` fails the build for any Verified board walk
+  that does not clear both checks. The walks that failed when the bar arrived
+  are listed there by name, awaiting a decision -- fix the line or the label,
+  or take the seal off -- and leave the list when they pass or lose the seal.
+  Nothing is added to it.
+- `node scripts/board-walk-bar.js` lists the failures, with where on each line
+  the problem is.
+
+**The page prints the sentence** (30 October 2026). A walk with no trail
+numbers and no structured guidance block shows the audit's route sentence
+under "How to follow this route", with a line saying it comes from ORMA's
+route audit, in the app and on the static page alike. Only a sentence that
+clears the directions check above is printed; anything shorter still reads
+"No verified numbered sequence is currently recorded". The test lives in one
+place, `writtenDirections` in `trail-route-refs.js`, and the bar and both
+renderers ask it. Printing the sentence does not give a seal back: a walk
+whose seal was withdrawn for want of directions regains it by a deliberate
+edit to its record, as before.
 
 ## The funnel reaches the page
 
@@ -1938,6 +2014,21 @@ over both.
 
 Saying nothing was the worse option. A walker expecting to follow "route 23"
 who arrives to find only name-boards has been let down by a blank page.
+
+**Turn by turn, each step saying where it came from** (added 29 October 2026;
+no rule above changes). A hand-verified walk with no numbers can carry its
+landmark directions as numbered `steps` beside the `start`, `sequence` and
+`switches` it always has. Each step names the sources it rests on, and each
+source carries a short tag the card prints after the step ("tourist office",
+"map"), an https link and the date it was read. The operator's own route
+description is the source of the turns. OpenStreetMap is used only to place
+what that description names, or to describe where ORMA's line differs from
+it, and those steps are tagged "map". A step that rests on nothing, or on a
+source with no link or date, drops the whole card back to its Route and Key
+turns lines, so an unsourced step is never shown. The rule lives in
+`route-guidance-sources.js` (`landmarkSteps`), which both the trail page and
+the app use. Boucle du Lac Vert was the first, on 28 October 2026, from the
+Passy tourist office's "step by step".
 
 ### A measurement that could not be taken says so
 

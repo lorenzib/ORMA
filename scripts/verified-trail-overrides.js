@@ -78,7 +78,7 @@ function applyVerifiedTrailOverrides(trails, artifact){
     // it for failing to close and every later run reads the same answer.
     const shape = entry && entry.fields && entry.fields.routeShape;
     const isRouteShapeVerification = entry && entry.verificationScope === 'routeShape'
-      && ['loop','out-and-back','point-to-point'].includes(shape)
+      && ['loop','out-and-back','point-to-point','lollipop'].includes(shape)
       && typeof entry.fields.routeShapeNote === 'string' && entry.fields.routeShapeNote.trim().length > 0;
     // Where a walk is best begun is a human call too. The import pipeline
     // anchors a start to the nearest mapped access point within 400 m of the

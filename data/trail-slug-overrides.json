@@ -1308,6 +1308,91 @@
       "name": "Auernig ridge walk, Nassfeld",
       "slug": "auernig-ridge-walk-nassfeld",
       "gloss": "the fossil ridge on the Austrian–Italian border east of the Nassfeld pass"
+    },
+    "kronplatz-passeggiata-valdaora-monguelfo": {
+      "name": "Olang to Welsberg by the reservoir",
+      "slug": "olang-welsberg-reservoir-path",
+      "gloss": "the cycle-path walk past the Olang reservoir"
+    },
+    "kronplatz-sentiero-tematico-tru-dles-liondes": {
+      "name": "Tru dles Liondes",
+      "slug": "tru-dles-liondes",
+      "gloss": "the legends loop above San Vigilio"
+    },
+    "kronplatz-passeggiata-san-vigilio-le-dla-creda": {
+      "name": "San Vigilio to Lé dla Creda",
+      "slug": "san-vigilio-le-dla-creda",
+      "gloss": "the walk up the Rudo valley to the little lake"
+    },
+    "kronplatz-attraverso-il-sentiero-panoramico-a-brunico": {
+      "name": "Panoramic path from Olang to Bruneck",
+      "slug": "olang-bruneck-panoramic-path",
+      "gloss": "the slope walk past Lamprechtsburg into Bruneck"
+    },
+    "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina": {
+      "name": "Antermoia to Rina",
+      "slug": "antermoia-colac-rina",
+      "gloss": "the farm-slope walk from Antermoia to Rina"
+    },
+    "kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe": {
+      "name": "Brach to Pieve di Marebbe",
+      "slug": "brach-pieve-di-marebbe",
+      "gloss": "the barrier-free road walk into La Pli de Mareo"
+    },
+    "kronplatz-valdaora-di-sopra-goste": {
+      "name": "Valdaora di Sopra to the Alte Goste",
+      "slug": "oberolang-alte-goste",
+      "gloss": "path 21B to the old inn by the Olang reservoir"
+    },
+    "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": {
+      "name": "The Gais channel path loop",
+      "slug": "gais-waalweg-loop",
+      "gloss": "the level irrigation-channel path through the woods above Gais"
+    },
+    "kronplatz-san-lorenzo-maria-sares": {
+      "name": "San Lorenzo to Maria Sares",
+      "slug": "st-lorenzen-maria-saalen",
+      "gloss": "paths 8A and 9 to the pilgrimage church"
+    },
+    "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": {
+      "name": "Valdaora di Sotto to Bad Bergfall",
+      "slug": "niederolang-bad-bergfall",
+      "gloss": "path 32B up to the old sulphur-spring baths"
+    },
+    "kronplatz-passeggiata-leggendaria-sul-kienberg": {
+      "name": "The Kienberg legends loop",
+      "slug": "kienberg-legends-loop",
+      "gloss": "from Casteldarne over the Kienberg and back on the Way of the Cross"
+    },
+    "eggental-dal-passo-costalunga-al-lago-di-carezza": {
+      "name": "Passo Costalunga to Lake Carezza",
+      "slug": "costalunga-to-lake-carezza",
+      "gloss": "down through the Latemar forest to the Karersee"
+    },
+    "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": {
+      "name": "Lake Carezza to the Stadlalm",
+      "slug": "lake-carezza-to-stadlalm",
+      "gloss": "along the Karersee and the Templ forest road to the hut"
+    },
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": {
+      "name": "Mont Sëuc to the Sporthotel Sonne",
+      "slug": "mont-seuc-to-sporthotel-sonne",
+      "gloss": "barrier-free on path 9 across the Alpe di Siusi"
+    },
+    "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": {
+      "name": "Passo Nigra to Tiers by the Jocher farm",
+      "slug": "passo-nigra-to-tiers",
+      "gloss": "through the Val Nigra and over the Forcella del Lupo"
+    },
+    "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": {
+      "name": "Umes, Hofer Alpl and Malga Tuff loop",
+      "slug": "umes-hofer-alpl-malga-tuff",
+      "gloss": "under the Sciliar and past the Lago di Fiè"
+    },
+    "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": {
+      "name": "Kastelruth bear-trap loop",
+      "slug": "kastelruth-bear-trap-loop",
+      "gloss": "past San Michele to the bear trap and Passo Pinei"
     }
   }
 }

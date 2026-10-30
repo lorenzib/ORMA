@@ -21,7 +21,7 @@ const path = require('path');
 const evidence = require('../../trust/evidence-v1.js');
 const { actionsFor, ROUTE_STATES, RESEARCH_STATES } = require('./trail-requests');
 const { WITHDRAWN_STAGE } = require('./record-hand-verifications');
-const { verifiedByHand } = require('./record-hand-verifications');
+const { verifiedByHand, handSources } = require('./record-hand-verifications');
 
 const CHECKS = Object.freeze(['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation',
   'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access']);
@@ -178,8 +178,10 @@ function entryFor(trail, flow, publication, jobOwed, slug, paidResearch){
     entry.next = badge === 'verified' ? 'Verified by hand' : 'Recorded as verified by hand; the site has not caught up';
     entry.detail = [hand.reviewedAt ? `Checked ${hand.reviewedAt} against official sources` : 'Checked against official sources',
       hand.previousState ? `the pipeline had reached ${hand.previousState.replace(/-/g, ' ')}` : 'never admitted to the pipeline'].join('; ');
+    // The sources are read from the published record: the orchestration keeps
+    // only their count (record-hand-verifications, #1143).
     entry.hand = { reviewedAt: hand.reviewedAt || null, reviewedBy: hand.reviewedBy || null,
-      sources: hand.sources || [], previousState: hand.previousState || null };
+      sources: handSources(trail), previousState: hand.previousState || null };
     // The record says verified; if the site does not, somebody should know.
     if(badge !== 'verified') entry.flag = 'disagree';
   }else if(TERMINAL.has(state)){

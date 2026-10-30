@@ -36,7 +36,41 @@ describe('Trails page map', () => {
     expect(source).not.toContain('point_count');
     expect(source).not.toContain('getClusterExpansionZoom');
     expect(source).toContain("id:'browse-trails-individual'");
-    expect(source).toContain("matchColourExpression('score')");
+    expect(source).toContain("fitColourExpression('fit', 'score')");
+  });
+
+  test('a pin carries its verdict tier, so it is the colour of its card', () => {
+    expect(trailFeature({ id:'x', lat:46.6, lng:11.7 }, { score:90, fit:'fair' }).properties.fit).toBe('fair');
+    expect(trailFeature({ id:'x', lat:46.6, lng:11.7 }, { score:90 }).properties.fit).toBe('');
+  });
+
+  test('the picked walk is drawn in its fit colour, not a fixed green', () => {
+    const source=fs.readFileSync('browse-map.js','utf8');
+    const line=source.slice(source.indexOf("id:'browse-selected-route-line'"));
+    expect(line.slice(0, line.indexOf('});'))).toContain("'line-color':fitColour");
+    expect(source).not.toContain("'line-color':'#2e4034'");
+    const dot=source.slice(source.indexOf("id:'browse-trails-selected'"));
+    expect(dot.slice(0, dot.indexOf('});'))).toContain("'circle-color':fitColour");
+  });
+
+  test('the popup says the verdict, not a heading with nothing under it', () => {
+    const source=fs.readFileSync('browse-map.js','utf8');
+    expect(source).not.toContain('Dog suitability at a glance');
+    expect(source).toContain('browse-map-popup__verdict');
+    const html=fs.readFileSync('browse-trails.html','utf8');
+    expect(html).toContain('verdictFor:matchVerdict');
+    expect(html).toContain('subjectLabel:scoredSubjectLabel');
+  });
+
+  test('the map has a key, in the pins\' own colours and the verdicts\' own words', () => {
+    const html=fs.readFileSync('browse-trails.html','utf8');
+    expect(html).toContain('id="browseMapKey"');
+    ['strong-option','possible-with-cautions','not-recommended'].forEach(category => {
+      expect(html).toContain(`data-category="${category}"`);
+    });
+    expect(html).toContain('OrmaMatchVerdict.categoryLabel(label.dataset.category, window.t)');
+    ['good','fair','poor'].forEach(fit => expect(html).toContain(`data-fit="${fit}"`));
+    expect(html).toContain('window.ORMAMapStyle.MATCH_COLOURS[dot.dataset.fit]');
   });
 
   test('the Trails page includes the linked catalogue and map controls', () => {
@@ -48,7 +82,7 @@ describe('Trails page map', () => {
     expect(html).toContain('id="browseSearchArea"');
     expect(html).toContain('data-browse-view="list"');
     expect(html).toContain('data-browse-view="map"');
-    expect(html).toContain('src="browse-map.js?v=20261007-1"');
+    expect(html).toContain('src="browse-map.js?v=20261028-1"');
     expect(html).toContain('scoreFor:matchScore');
     expect(html).toContain('savedFor:trail => !!currentFavorites[trail.id]');
   });

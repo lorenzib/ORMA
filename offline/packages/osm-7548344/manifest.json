@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-7548344",
   "name": "Anello del Sole",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:19.944Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T12:49:10.454Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 467330,
@@ -217,7 +217,7 @@
       "label": "Anello del Sole routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 83901,
-      "sha256": "f08130a371dba92a1d4e9d126c5dc652f6f33febd23874b79a639c05f44e28e0"
+      "sha256": "f509fb6a65e469fd8193d249261703a0ce7971ce27c73d47f5dbea298f820287"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Anello del Sole safety information",
       "url": "safety.json",
       "bytes": 1125,
-      "sha256": "7f52a3e9de792e76d73662fd6d9352bbcee2cf4080c6581e33f27abbee7ba00c"
+      "sha256": "008ac256374890a8898351d8e06d795bd9b10dbcbf74a6e54d4f1cd16c6ad144"
     }
   ]
 }

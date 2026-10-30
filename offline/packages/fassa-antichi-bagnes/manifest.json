@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-antichi-bagnes",
   "name": "Agli antichi Bagnes",
-  "version": "2026.10.26-beta.1",
-  "generatedAt": "2026-10-26T10:23:23.128Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T13:45:42.544Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 491269,
@@ -217,7 +217,7 @@
       "label": "Agli antichi Bagnes routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 92358,
-      "sha256": "b237c18d6e3449614f2741f360404c1cfbf47b9790ba37fd707a91989fdb4ac5"
+      "sha256": "51a4c35ec299cfc5c4c6bfef97e56c7baca5bc039b4ae67fd93ca04144cf19e6"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Agli antichi Bagnes safety information",
       "url": "safety.json",
       "bytes": 1777,
-      "sha256": "7a46c41c75427913f579017e5aed3084424b243708fe0ff8aa75db1cad43888d"
+      "sha256": "d8d64947380a427b66e117f60ec822b288797c04942844dcd201575de2fba5f4"
     }
   ]
 }

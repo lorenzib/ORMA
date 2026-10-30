@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12302191",
   "name": "Dorfrundweg Rasen",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:22.689Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:06:14.269Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 643779,
+  "packageBytes": 645048,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.7723,
@@ -28,8 +28,8 @@
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 2762,
-    "edgeCount": 2777,
+    "nodeCount": 2746,
+    "edgeCount": 2758,
     "trailNodeCount": 333,
     "maxRejoinRouteM": 1500
   },
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Dorfrundweg Rasen OSM offline map",
       "url": "map.svg",
-      "bytes": 388330,
-      "sha256": "0569c2a479ccbd0785b6a7b1834d72c4b92ae5aaf1495c51961f325d7725b541"
+      "bytes": 390450,
+      "sha256": "6fe03ed3cf0f395ace2925083565003e2a302a6506f8f187600aef73d7bc747a"
     },
     {
       "role": "route",
@@ -216,8 +216,8 @@
       "required": true,
       "label": "Dorfrundweg Rasen routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 137837,
-      "sha256": "bd1987c34f435fd0076d0676f75f3d632d1423ce3a63ff75d119426cd0ec2b96"
+      "bytes": 136986,
+      "sha256": "d8c7f47cecb32baa492e31aac0b0f23d244c08153014e3f959b75276309b360e"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Dorfrundweg Rasen safety information",
       "url": "safety.json",
       "bytes": 2435,
-      "sha256": "6a31acf89fe150c7c8e64db3f9bd7f73c8b65acfb7dacd4204c975160bc927a4"
+      "sha256": "65524f773f36a3225839affc7ed1ef3516973c4495b23d68d3bfeb335d9d7a44"
     }
   ]
 }

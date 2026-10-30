@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12172440",
   "name": "Natur- und Kulturweg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:22.136Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:03:51.481Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 748349,
@@ -217,7 +217,7 @@
       "label": "Natur- und Kulturweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 207130,
-      "sha256": "4c038fb20160501220177178f35a8a79a3bbd7c903f837b7a4773120b8a879dd"
+      "sha256": "875109c2b7e178af3bad81342e2f53eae06a765fdba6b62dea555f9d27594305"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Natur- und Kulturweg safety information",
       "url": "safety.json",
       "bytes": 1675,
-      "sha256": "ad4d39622a26e2ae79e9b06cba4153c5e98770f2edd8a57c9bc2b16516b3ad6f"
+      "sha256": "cf3e314e6444a26d6bf8e71d8b9286404af343c3e77fee3fdf4ca95aded49f54"
     }
   ]
 }
