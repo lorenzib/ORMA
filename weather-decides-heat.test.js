@@ -166,8 +166,8 @@ describe('Important for your dog', () => {
 
 // On 30 Oct 2026 the Lago di Braies card told Teo "Today is cool enough." In
 // late October that is always true, and it took a slot from a reason that
-// said something. The reason is shown only when the day comes within
-// HEAT_QUESTION_MARGIN_C of the line where a dog starts losing heat points.
+// said something. Heat is a real risk in summer, or on a very hot spring day,
+// so that is when the reason is shown.
 describe('"Today is cool enough" only when heat was a question', () => {
   const decision = require('./recommendation-decision.js');
   const BRAIES = require('./scoring/recommendation-adapters-v1.js').normalizeTrail(
@@ -175,40 +175,56 @@ describe('"Today is cool enough" only when heat was a question', () => {
   const ORDINARY = { fitness:'moderate', ageYears:4, weightKg:20 };
   const SENSITIVE = { ...ORDINARY, traits:{ heatSensitive:true } };
   const run = (dog, conditions) => engine.calculateRecommendation({ dog, trail:BRAIES, currentConditions:conditions });
+  const shown = result => result.positiveReasons.map(entry => entry.code).includes('conditions.heat.low');
   const fits = result => decision.present(result, { dogName:'Teo' }).fits;
 
-  test('the line is the one the score charges from, for every dog', () => {
+  test('the snapshot carries the walk day at the trailhead', () => {
+    expect(day([8, 9], '2026-10-30T09:00').date).toBe('2026-10-30');
+  });
+
+  test('the spring line is the one the score charges from, for every dog', () => {
     expect(engine.COOL_DAY_MAX_C).toBe(weatherWindow.WARM_C);
     expect(engine.HEAT_QUESTION_MARGIN_C).toBe(5);
   });
 
   test('a cool October day for an ordinary dog lists no heat reason', () => {
     const october = run(ORDINARY, day([4, 6, 8, 9, 9, 8], '2026-10-30T09:00'));
-    expect(october.positiveReasons.map(entry => entry.code)).not.toContain('conditions.heat.low');
+    expect(shown(october)).toBe(false);
     expect(october.positiveReasons.map(entry => entry.code)).not.toContain('trail.heat.low');
     expect(fits(october)).not.toContain('Today is cool enough.');
   });
 
-  test('a warm day just under a heat-sensitive dog\'s line still lists it', () => {
-    const warm = day([15, 17, 19, 20, 21, 20], '2026-06-10T08:00');
+  test('autumn and winter never list it, even on a mild day', () => {
+    expect(shown(run(SENSITIVE, day([14, 17, 19, 20, 21], '2026-09-20T09:00')))).toBe(false);
+    expect(shown(run(SENSITIVE, day([12, 15, 18, 19], '2026-02-15T10:00')))).toBe(false);
+  });
+
+  test('summer lists it whenever the day stays cool, for any dog', () => {
+    const july = run(ORDINARY, day([10, 12, 14, 15, 14], '2026-07-15T08:00'));
+    expect(shown(july)).toBe(true);
+    expect(fits(july)).toContain('Today is cool enough.');
+  });
+
+  test('a warm spring day just under a heat-sensitive dog\'s line still lists it', () => {
+    const warm = day([15, 17, 19, 20, 21, 20], '2026-05-10T08:00');
     expect(warm.dayMaxC).toBeLessThan(engine.COOL_DAY_MAX_C);
     const result = run(SENSITIVE, warm);
-    expect(result.positiveReasons.map(entry => entry.code)).toContain('conditions.heat.low');
+    expect(shown(result)).toBe(true);
     expect(fits(result)).toContain('Today is cool enough.');
   });
 
-  test('dropping the reason does not move the score', () => {
+  test('an ordinary spring day does not, and the score does not move', () => {
     // 16 °C and 17 °C sit either side of the margin and are both cool days,
     // so nothing else in the reading changes between them.
-    const quiet = run(SENSITIVE, day([12, 14, 16, 16], '2026-10-30T09:00'));
-    const shown = run(SENSITIVE, day([12, 14, 17, 17], '2026-10-30T09:00'));
-    expect(quiet.positiveReasons.map(entry => entry.code)).not.toContain('conditions.heat.low');
-    expect(shown.positiveReasons.map(entry => entry.code)).toContain('conditions.heat.low');
-    expect(quiet.score).toBe(shown.score);
-    expect(quiet.category).toBe(shown.category);
+    const quiet = run(SENSITIVE, day([12, 14, 16, 16], '2026-04-20T09:00'));
+    const warmer = run(SENSITIVE, day([12, 14, 17, 17], '2026-04-20T09:00'));
+    expect(shown(quiet)).toBe(false);
+    expect(shown(warmer)).toBe(true);
+    expect(quiet.score).toBe(warmer.score);
+    expect(quiet.category).toBe(warmer.category);
   });
 
-  test('a snapshot without a day maximum falls back to the current reading', () => {
+  test('a snapshot without a date falls back to the forecast', () => {
     expect(engine.heatWasAQuestion({ status:'known', heatRisk:'low', temperatureC:10 })).toBe(false);
     expect(engine.heatWasAQuestion({ status:'known', heatRisk:'low', temperatureC:19 })).toBe(true);
     // Knowing nothing, it keeps saying what it said before.

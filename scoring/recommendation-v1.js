@@ -108,15 +108,31 @@
       && conditions.heatRisk === 'low' && !conditions.hotFromLabel;
   }
 
-  // "Today's temperatures are comfortable" is only news on a day they might
-  // not have been. Every dog starts losing heat points at the same line
-  // (COOL_DAY_MAX_C; a heat-sensitive dog loses more, not sooner), so the
-  // reason is shown when the day gets within this margin of it. On an 11 °C
-  // October day it is always true and pushed out reasons that said something.
-  // It costs nothing either way: this only decides whether it is said.
+  // "Today's temperatures are comfortable" is only news when heat was a real
+  // risk. In the Alps that is summer (June to August) or an unusually hot
+  // spring day; in autumn and winter it is always true, and on 30 Oct 2026 it
+  // took a slot from reasons that said something. A spring day counts when
+  // its high comes within HEAT_QUESTION_MARGIN_C of the line where every dog
+  // starts losing heat points (COOL_DAY_MAX_C; a heat-sensitive dog loses
+  // more, not sooner). It costs nothing either way: this only decides whether
+  // it is said.
   const HEAT_QUESTION_MARGIN_C = 5;
 
+  function seasonOf(conditions){
+    const match = conditions && typeof conditions.date === 'string'
+      ? conditions.date.match(/^\d{4}-(\d{2})-\d{2}$/) : null;
+    if(!match) return null;
+    const month = Number(match[1]);
+    if(month >= 6 && month <= 8) return 'summer';
+    if(month >= 3 && month <= 5) return 'spring';
+    return 'cold';
+  }
+
   function heatWasAQuestion(conditions){
+    const season = seasonOf(conditions);
+    if(season === 'summer') return true;
+    if(season === 'cold') return false;
+    // Spring, or a snapshot without a date: the forecast decides.
     const max = dayMaxOf(conditions);
     const peak = max !== null ? max
       : conditions && Number.isFinite(conditions.temperatureC) ? conditions.temperatureC : null;
