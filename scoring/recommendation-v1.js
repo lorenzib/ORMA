@@ -357,8 +357,14 @@
     }
 
     const descent = numberOrNull(metrics.descentM);
+    // Descent is only scored for a fragile or giant dog, and only past 400 m,
+    // so an unknown descent is only worth saying where it could reach that: a
+    // climb over 400 m or unknown, or a walk that is not known to come back to
+    // its start (a one-way walk can come down further than it goes up).
     if(descent === null){
-      unknowns.push(item('trail.descent.unknown', 'Total descent is unknown.'));
+      if((dog.fragile || dog.giant) && (ascent === null || ascent > 400 || metrics.routeType !== 'loop')){
+        unknowns.push(item('trail.descent.unknown', 'Total descent is unknown.'));
+      }
     }else if((dog.fragile || dog.giant) && descent > 400){
       penalise(Math.min(20, Math.ceil((descent - 400) / 100) * 4), item('trail.descent.joint-load',
         'The sustained descent may place extra load on joints.'));
