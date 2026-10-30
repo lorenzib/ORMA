@@ -495,10 +495,55 @@
       "exposure": false,
       "surfaceHazards": [],
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the village-hall car park (salle des fêtes) in La Thuile, the tourist office’s start.",
+        "sequence": "Across the field to the small wood, along the lake on a dirt path to the road, left along the lake road past the inn and the town hall into the village, then left past the cemetery back to the start.",
+        "switches": "Left onto the road, then left again at the junction. After the town hall, left past the cemetery.",
+        "steps": [
+          {
+            "text": "With the village hall on your right, head straight across the field towards the small wood.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "A dirt path runs along the lake and meets the road after a few minutes.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn left and follow the road for 100 m, then keep left at the junction. You walk along the lake for about 10 minutes on a tarred lane.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Pass the lake inn on your right, then the town hall, and head into the village.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn left past the cemetery. A few more minutes on the road bring you back to the start. Watch for cars on this stretch.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "La boucle du lac de la Thuile, step by step",
+            "authority": "Grand Chambéry Alpes Tourisme",
+            "url": "https://explore.chamberymontagnes.com/fr/itineraires/la-boucle-du-lac-de-la-thuile",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -508,7 +553,9 @@
         "mapPoints": "Start moved to the official car park; tap and toilets traced to OSM.",
         "elevation": "Headline ascent corrected to the official 20 m."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -520,7 +567,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -572,10 +634,56 @@
       "exposure": false,
       "surfaceHazards": [],
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the gym car park (parking du gymnase) in Saint-Pierre-d’Albigny, where the club’s trail circuits begin.",
+        "sequence": "Up through the forest above Saint-Pierre-d’Albigny to the viewpoint, on to Mont Benoît, then down by the Col du Taccon and the hamlet of La Noiriat.",
+        "switches": "Follow the circuit’s plates, a trail-shoe print with an arrow for the direction.",
+        "steps": [
+          {
+            "text": "From the gym car park, follow the circuit’s plates: a trail-shoe print, with an arrow for the direction.",
+            "from": [
+              1
+            ]
+          },
+          {
+            "text": "Climb quickly into the forest above the town to a viewpoint over Mont Blanc, the Beaufortain, the Grand Arc, the Lauzière, Belledonne and the Chartreuse.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Go on to the Mont Benoît area.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back down by the Col du Taccon and the hamlet of La Noiriat.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "walking club",
+            "label": "Circuit du belvédère",
+            "authority": "Amicale Pédestre de l’Arclusaz",
+            "url": "https://ap-arclusaz.fr/fr/rb/324820/circuit-du-belvedere",
+            "reviewedAt": "2026-10-30"
+          },
+          {
+            "tag": "walking club",
+            "label": "The club’s trail circuits",
+            "authority": "Amicale Pédestre de l’Arclusaz",
+            "url": "https://ap-arclusaz.fr/fr/rb/335220/lassociation-et-les-parcours-trail",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -585,7 +693,9 @@
         "mapPoints": "Start at the official gym car park; water point and Mont-Benoît basin traced to OSM.",
         "elevation": "Official climb 270 m."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -597,7 +707,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -1798,10 +1923,49 @@
         "url": "https://hautesavoiemontblanc-tourisme.com/offres/balade-du-plateau-dassy-au-lac-vert-par-la-passerelle-du-nant-bordon-passy-fr-5866028/"
       },
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the Place Tobé car park, below the Notre-Dame-de-Toute-Grâce church, Plateau d’Assy, the tourist office’s start.",
+        "sequence": "Past the former Sancellemoz sanatorium (Promenade Marie Curie), then the old Lac Vert road over the Nant Bordon footbridge to the lake, and back the same way.",
+        "switches": "After Sancellemoz, take the old Lac Vert road. Back the same way.",
+        "steps": [
+          {
+            "text": "Walk past the former Sancellemoz sanatorium, on the Promenade Marie Curie.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Then take the old Lac Vert road, which leads straight to the lake. It crosses the Nant Bordon on a suspension footbridge.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "You can walk round the lake to see it from a little higher up. Dogs may not go into the water.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back to the start the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "Balade du Plateau d’Assy au Lac Vert par la passerelle du Nant Bordon",
+            "authority": "Office de Tourisme de Passy, on Haute-Savoie Mont-Blanc",
+            "url": "https://hautesavoiemontblanc-tourisme.com/offres/balade-du-plateau-dassy-au-lac-vert-par-la-passerelle-du-nant-bordon-passy-fr-5866028/",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -1811,7 +1975,9 @@
         "mapPoints": "Start at the official Place Tobé point (50 m from the old one); tap at the lake traced to OSM.",
         "elevation": "393 m on the line; the GPX gives 407 m, the fiche 300 m."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -1823,7 +1989,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -8687,10 +8868,55 @@
         "url": "https://hautesavoiemontblanc-tourisme.com/offres/le-chemin-des-diligences-vallorcine-fr-5868893/"
       },
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at Le Buet station and car park, Vallorcine, the tourist office’s start.",
+        "sequence": "Under the railway to Les Montets, over the Eau Noire to the main road, through Le Nant, Le Morzay, Le Crot, Le Sizeray and Le Mollard to Barberine, and back the same way.",
+        "switches": "After Le Nant, the small road on the left to Le Morzay. Back the same way.",
+        "steps": [
+          {
+            "text": "From Le Buet, the tourist office’s route passes under the railway to the hamlet of Les Montets, crosses the Eau Noire and reaches the main road.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Go on to the hamlet of Le Nant, then take the small road on the left to Le Morzay.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Follow it towards Le Plan-Droit to the hamlet of Le Crot, just before Le Sizeray, and go to the Sizeray church with its distinctive avalanche wall.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on to the hamlet of Le Mollard, then to Barberine, whose museum opens in July and August.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back the same way, or by train: the Swiss station is 10 minutes away (a border: carry identity papers).",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "Le chemin des Diligences",
+            "authority": "Office de Tourisme de la Vallée de Chamonix-Mont-Blanc, on Haute-Savoie Mont-Blanc",
+            "url": "https://hautesavoiemontblanc-tourisme.com/offres/le-chemin-des-diligences-vallorcine-fr-5868893/",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -8700,7 +8926,9 @@
         "mapPoints": "Start at the official Le Buet point; fountains traced to OSM along the new line.",
         "elevation": "About 220 m of climb there and back, measured on terrain data; the fiche gives none."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -8712,7 +8940,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -8777,10 +9020,79 @@
         "url": "https://www.aixlesbains-rivieradesalpes.com/equipement/randonnee-pedestre-les-marais-dalbens-entrelacs/"
       },
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the Albens cemetery car park, the tourist office’s start.",
+        "sequence": "Along the cemetery wall into the Deysse forest, along the river Deysse to the mill and the Crosagny ponds, back to the Braille sign, through Braille, over the railway past the oil depot and back through the forest.",
+        "switches": "Right at the first junction for the forest pond, there and back. Left along the Deysse. Left at the mill. Right at the “Braille” sign. Right on re-entering the forest.",
+        "steps": [
+          {
+            "text": "Walk along the cemetery wall into the Deysse state forest.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the first junction, turn right for the forest pond (there and back), or carry straight on.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Take the small bridge in front of you and wind through the forest.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn left and follow the river Deysse for 2.6 km.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the mill, turn left and carry on to the shore of the Crosagny ponds. You can walk along them but not round them.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back the same way and turn right at the “Braille” sign. Walk through the village of Braille.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry straight on after the wash-house, cross the railway and follow the “dépôt pétrolier” sign.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Pass the depot on your left. The road becomes a stony track: stay on it.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Enter the Deysse forest again and turn right.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "Les Marais d’Albens, step by step",
+            "authority": "Aix-les-Bains Riviera des Alpes tourist office",
+            "url": "https://www.aixlesbains-rivieradesalpes.com/equipement/randonnee-pedestre-les-marais-dalbens-entrelacs/",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -8790,7 +9102,9 @@
         "mapPoints": "Start at the cemetery car park named by the official page; no tap within 450 m of the line.",
         "elevation": "Official 22 m of climb."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -8802,7 +9116,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -26752,10 +27081,55 @@
       "desc": "A 6.7 km loop from the Chalets de Bise above Vacheresse over three cols to the Lac de Darbon, on the departmental walking network: up via La Salle and the Col de Bise to the Col de Pavis, across to the lake, and back by the Col de Floray with a steep final descent to the chalets. Officially 3 hours 30 and 640 m of climb, between 1,500 and 1,955 m, rated quite difficult; the route is open from 1 June to 15 October.\n\nDogs must be kept on a lead the whole way: about 60% of the walk lies in the Cornettes de Bise biotope protection area, the commune requires a lead and forbids swimming in the lake for animals too, and the route page asks for it because of herds and wildlife. Herds with livestock guardian dogs graze here, and the department strongly advises against bringing pet dogs near the herds.",
       "tips": "This is guardian-dog country: the department says pet dogs are strongly discouraged near the herds, so think twice before bringing yours, and keep it on a short lead the whole way. If a guardian dog approaches, let it, do not force your way through; in a conflict, drop the lead, do not step in and do not pick your dog up. Dogs may not swim in the Lac de Darbon. There is no shade and no water after the chalets, so carry plenty and go early. Watch the cliff edge near the lake and take the steep descent slowly. Open 1 June to 15 October.",
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the Chalets de Bise car park, Vacheresse, the department’s start.",
+        "sequence": "Over the three cols: the Col de Bise, the Col de Pavis, down to the Lac de Darbon, up to the Col de Floray, then steeply down to the Chalets de Bise.",
+        "switches": "At each col, on towards the next: Bise, Pavis, the lake, Floray.",
+        "steps": [
+          {
+            "text": "From the Chalets de Bise, cross the Bise alpine pastures and climb to the Col de Bise (1,915 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Go on to the Col de Pavis (1,944 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Then on to the Lac de Darbon (1,813 m), a good place for a picnic.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Climb to your last col, the Col de Floray (1,940 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "A steep descent brings you back to the Chalets de Bise.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "department",
+            "label": "Lac de Darbon par les 3 cols",
+            "authority": "Conseil départemental de la Haute-Savoie, on Cirkwi",
+            "url": "https://www.cirkwi.com/fr/circuit/137458",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -26765,7 +27139,9 @@
         "mapPoints": "Start at the Parking des Chalets de Bise, the official start; water only at the chalets.",
         "elevation": "Official 640 m of climb and 3h30."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -26777,7 +27153,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -33862,10 +34253,49 @@
       "desc": "A forest loop climbing from Landry church to the Ragairon chalet and the hamlet of Les Charmettes above the Tarentaise: follow the GR5 signs, then those of the Circuit de Ragairon, past Le Martorey and the Charbonnet stream. The tourist office rates it difficult and gives 731 m of climb and 4 hours 30; its page says 8.4 km, while its own GPS track, which walks the first 1.4 km out and back, measures 9.9 km. Most of it is in the woods.\n\nThere is no specific dog rule on this walk and no protected area; French law forbids letting dogs stray, and requires a lead off the paths in woods and fields from 15 April to 30 June.",
       "tips": "Keep your dog close and on a lead near Les Charmettes, where the tourist office says cows often graze. The climb is long but mostly shaded. There is drinking water at the start; the tap at Les Charmettes is marked not drinkable, so carry water. Watch for farm and ski-service vehicles on the tracks, and for paragliders taking off at Les Charmettes.",
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the Saint-Michel church in Landry, where there is a free car park; the tourist office’s start.",
+        "sequence": "On the GR5 to the start of the circuit, then the Circuit de Ragairon up the old mule track through Le Martorey and past the Charbonnet stream to Ragairon, and back by Les Charmettes.",
+        "switches": "Follow the GR5 signs first, then the “Circuit de Ragairon” signs.",
+        "steps": [
+          {
+            "text": "From the church, follow the GR5 signs to the start of the circuit, then the “Circuit de Ragairon” signs.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The old mule track climbs through several hamlets, among them Le Martorey with its listed house with a column.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past the Charbonnet stream you reach Ragairon, with its single alpine chalet and barn.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Before the way back, the circuit passes the hamlet of Les Charmettes, where cows often graze.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "Le circuit de Ragairon",
+            "authority": "Office de Tourisme de Peisey-Vallandry",
+            "url": "https://www.peisey-vallandry.com/pedestre/le-circuit-de-ragairon.html",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -33875,7 +34305,9 @@
         "mapPoints": "Start at the free car park by the Saint-Michel church, the official start; drinking water at the start.",
         "elevation": "Official 731 m of climb and 270 minutes."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -33887,7 +34319,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
