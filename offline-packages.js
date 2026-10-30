@@ -29,6 +29,7 @@
     'fassa-pastori-erranti': "Sulla via degli antichi pastori erranti",
     'fassa-prato-di-sorte': "Prato di Sorte",
     'fassa-santuario-dei-pellegrini': "Al santuario di Santa Giuliana",
+    'fassa-sentiero-della-foresta': "Sentiero della Foresta",
     'fiemme-cascatelle-di-ziano': "Le Cascatelle di Ziano di Fiemme",
     'fiemme-cavalese-passeggiata-panoramica': "Cavalese - Passeggiata panoramica",
     'fiemme-scalata-alle-malghette': "La “scalata” alle Malghette",
