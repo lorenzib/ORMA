@@ -39619,8 +39619,9 @@
       desc: 'An easy loop at the head of the Val di Fassa, up one bank of the Avisio from Canazei to Alba and Penìa and back down the other, past a river beach, playgrounds and a small climbing crag. The APT lists 6.3 km and 58 m of ascent.'
     },
     'fassa-sentiero-della-foresta': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      // Corrected 30 October 2026: the walk follows SAT path 540, as the APT's directions say and OSM
+      // relation 7224444 confirms for 96% of the line (km 0.09 to the end); it was recorded as having no number.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Sentiero della Foresta”, tagged “animali accettati”. The line
       // is drawn on 10 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -39634,18 +39635,32 @@
       hours: '1',
       routeShape: 'point-to-point',
       routeShapeNote: 'A one-way walk from the top station of the Catinaccio cable car at Ciampedie through the forest to the Gardeccia hollow below the Rosengarten; walk back the same way to the cable car.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the top station of the Catinaccio cable car at Ciampedie, reached in a few minutes from Vigo di Fassa; the board’s start.",
+        "sequence": "Walk towards the Rifugio Ciampedie, go down a short ramp and carry on along the level to the Rifugio Negritella, where path 540 begins. Path 540 crosses the ski run and goes into a stone-pine forest, up and down, with the Larséch walls on your right and the east face of the Catinaccio to the west, until the forest thins and you reach the Gardeccia hollow. Come back the same way; the board also suggests the Sentiero delle Leggende from Gardeccia to Pian Pecei and the chairlift back up to Ciampedie.",
+        "switches": "One: at the Rifugio Negritella join path 540, and stay on it to Gardeccia.",
+        "sources": [
+          {
+            "label": "APT Val di Fassa, Sentiero della Foresta (Outdooractive, directions to follow)",
+            "url": "https://www.outdooractive.com/it/r/63862495",
+            "authority": "APT Val di Fassa",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Ciampedie plateau at the start, with walkers on the gravel path below the Rosengarten, in August (Adert, CC BY-SA 4.0).',
         route: 'Official one-way walk 3 km from Vigo di Fassa (stazione a monte funivia Ciampedie), as APT Val di Fassa publishes it; the stored line is drawn on 10 OSM ways along the APT’s published line, 3 km, with 100% of the APT line within 25 m of it.',
-        routeNumbers: 'No route number: from the top station of the Catinaccio cable car at Ciampedie (reached from Vigo) on the wide, level forest track between the Larséch walls and the Rosengarten to the Gardeccia hollow, past 24 nature totems for children.',
+        routeNumbers: 'SAT path 540: from the top station of the Catinaccio cable car at Ciampedie (reached from Vigo) past the Rifugio Ciampedie to the Rifugio Negritella, where 540 begins, then on 540 through the forest between the Larséch walls and the Rosengarten to the Gardeccia hollow, past 24 nature totems for children. The APT’s directions name path 540; OSM relation 7224444 (SAT 540) carries 96% of the line.',
         mapPoints: 'Start at Vigo di Fassa (stazione a monte funivia Ciampedie), the APT’s start; drinking water at km 2.8 (OSM nodes 4306282333).',
         elevation: 'Official 3 km, 6 m up and 46 m down, 55 min, highest point 1,994 m, lowest 1,948 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
