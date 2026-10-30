@@ -46,7 +46,7 @@
         `<span class="recommendation-factor-reason">${esc(factor.message)}</span></li>`;
     }).join('');
     const fine = view.fineLine
-      ? `<p class="recommendation-fine">${esc(view.fineLine)}</p>`
+      ? `<p class="recommendation-fine${view.fineTone === 'reassure' ? '' : ' is-neutral'}">${esc(view.fineLine)}</p>`
       : '';
     const note = view.breakdownNote
       ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`

@@ -106,7 +106,10 @@
     // Nothing to caution about: say what fits, folded into one line rather
     // than listed sentence by sentence. The column heading already names the
     // dog, so the phrases do not repeat it.
-    const fine = view && !concerns.length ? view.fine.slice(0, 4) : [];
+    // Never under a Not recommended verdict: there the list reads as
+    // reassurance that contradicts the verdict in the row above.
+    const fine = view && !concerns.length && recommendation.category !== 'not-recommended'
+      ? view.fine.slice(0, 4) : [];
     // A missing profile field is not a property of a trail, and in a table
     // comparing trails for one dog it would be the same on every column.
     const unknownCount = view ? view.trailUnknowns.length : 0;
