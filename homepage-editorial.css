@@ -335,6 +335,12 @@
 #returningCustomerHomepage .li-list-title-row{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:6px 12px;margin:0;}
 #returningCustomerHomepage .li-list-title{margin:0;font:700 18px/1.2 'Bricolage Grotesque',sans-serif;color:var(--ink);}
 .li-list-count{color:var(--ink-soft);font:600 12px 'Inter',sans-serif;}
+/* "Show all trails" / "Back to <area>": a quiet link beside the count it
+   changes, not another pill competing with Sort. */
+.li-list-showall{padding:4px 2px;border:0;background:none;color:var(--accent);font:700 12px 'Inter',sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer;white-space:nowrap;}
+.li-list-showall:hover{color:var(--ink);}
+.li-list-showall:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+.li-list-showall[hidden]{display:none;}
 .li-list-tools{flex:none;display:flex;align-items:center;gap:8px;margin-left:auto;}
 #returningCustomerHomepage .li-list-title-row>div{flex:none;width:auto;}
 .li-sort-wrap{position:relative;}
@@ -403,6 +409,21 @@
 #returningCustomerHomepage .li-list-count{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
 #returningCustomerHomepage .li-saved-toggle .li-saved-word{display:none;}
 #returningCustomerHomepage .li-saved-toggle{padding:0 10px;}
+/* With "Show all trails" in the row the order words run out of room well
+   before the window is narrow, and "best fit fi…" says less than nothing; Sort
+   already names the order, so they go whole once the list itself is narrow. */
+#returningCustomerHomepage .li-list-head{container-type:inline-size;}
+@container (max-width:720px){
+  #returningCustomerHomepage .li-list-count{display:none;}
+}
+/* A phone's sheet has room for the count and the controls but not the link
+   as well, so the controls take their own line underneath rather than Hide
+   reasons being pushed off the edge: "300 trails  Show all trails" above,
+   Sort, reasons and Saved below. */
+@container (max-width:480px){
+  #returningCustomerHomepage .li-list-title-row{flex-wrap:wrap;}
+  #returningCustomerHomepage .li-list-tools{order:3;flex-basis:100%;margin-left:0;}
+}
 @media (max-width:420px){
   /* Very narrow: the order words give way before the controls do. */
   #returningCustomerHomepage .li-list-count{display:none;}

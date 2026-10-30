@@ -27,7 +27,7 @@ if(location.protocol !== 'file:' && location.pathname === '/index.html'){
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
 <link rel="stylesheet" href="styles.css?v=20260917-4">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260916-1">
-  <link rel="stylesheet" href="homepage-editorial.css?v=20260917-1">
+  <link rel="stylesheet" href="homepage-editorial.css?v=20261030-3">
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
 </head>
 <body>
@@ -418,6 +418,9 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <div class="li-list-title-row">
           <h2 class="li-list-title" id="companionListTitle">Trails</h2>
           <span class="li-list-count" id="companionListCount"></span>
+          <!-- Out of the area and filters into the whole catalogue, still ranked
+               for the dog; once there it offers the way back. -->
+          <button type="button" class="li-list-showall" id="liShowAllTrails" hidden>Show all trails</button>
           <div class="li-list-tools">
             <!-- ORMA's own menu, like Filters and the headline's: a native
                  select opened the system's grey popup inside a pill. -->
@@ -579,7 +582,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="dog-routes-layer.js?v=20260826-1" defer></script>
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
 <script src="trail-route-refs.js?v=20260903-1" defer></script>
-<script src="script.js?v=20261029-2" defer></script>
+<script src="script.js?v=20261030-1" defer></script>
 <script src="dog-wizard.js?v=20260917-1" defer></script>
 <script src="collections-data.js?v=20260909-1" defer></script>
 <script src="trail-weather-window.js?v=20260906-1"></script><script src="homepage-conditions.js?v=20260908-2"></script><script src="homepage-search.js?v=20261007-1" defer></script>
