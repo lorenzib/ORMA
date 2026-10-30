@@ -40363,8 +40363,7 @@
       desc: 'A short walk from Pozza to the Masc Aloch farm and Malga Aloch, with its sunny terrace facing the Rosengarten. The APT lists 2 km and 58 m of ascent.'
     },
     'fassa-molin-de-pezol': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.56 (425 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 1.56 is the board’s own side trip, declared in sideTrips, and its first stretch is walked both ways, so it is a lollipop, not a loop; the line passes the board-walk bar.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Ruote del tempo: al Molin de Pèzol ancora funzionante”, tagged “animali accettati”. The line
       // is drawn on 26 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -40376,8 +40375,9 @@
       distance: 3.7,
       elevation: 38,
       hours: '1',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A loop from Piaza de Comun in Pozza over the Ciancoal meadows to Pera, past the dairy and the Molin de Pèzol watermill, and back to Pozza.',
+      sideTrips: [{ km: 1.56, note: 'Out to Piciocaa on the Ciancoal meadows and back: the APT’s directions carry on to Piciocaa and then say to turn back, and the APT’s own line turns there.' }],
       routeNumberGuidance: {
         "mode": "landmarks",
         "start": "Start at Piaza de Comun in Pozza, the tourist board’s start.",
@@ -40426,7 +40426,7 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -40436,7 +40436,7 @@
         mapPoints: 'Start at Pozza di Fassa (Piaza de Comun), the APT’s start; drinking water at the start, at km 2.6 and at km 3.1 (OSM nodes 737144778, 298689646, 1358282328).',
         elevation: 'Official 3.7 km, 38 m up and 28 m down, 55 min, highest point 1,330 m, lowest 1,303 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.56 (425 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -40601,8 +40601,8 @@
       desc: 'A loop from Vigo di Fassa on the old shepherds’ tracks to the hamlets of Vallonga and Tamion, with their 18th-century church and restored barns. The APT lists 7.2 km and 245 m of ascent.'
     },
     'fassa-segreti-di-una-volta': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.48 (76 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 1.48 (76 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 7.9 km on 63 OSM ways with 98% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (new-trail batch 11).
       // APT Val di Fassa’s walk “I segreti di una volta della tradizione contadina di montagna”, tagged “animali accettati”. The line
       // is drawn on 66 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -40664,17 +40664,17 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Pozza and the meadows above it, which the walk follows, from the Buffaure cable car in July (Bbruno, CC BY-SA 3.0), 155 m from the line.',
-        route: 'Official loop 7.9 km from Vigo di Fassa (Strada de Piz), as APT Val di Fassa publishes it; the stored line is drawn on 66 OSM ways along the APT’s published line, 8.1 km, with 99% of the APT line within 25 m of it.',
+        route: 'Official loop 7.9 km from Vigo di Fassa (Strada de Piz), as APT Val di Fassa publishes it; the stored line is drawn on 63 OSM ways along the APT’s published line, 7.9 km, with 98% of the APT line within 25 m of it.',
         routeNumbers: 'No route number: from Strada de Piz in Vigo along the edge of the wood above the meadows of Pozza, once fields of barley, rye and potatoes divided among every heir, to Pera, and back, facing the Costabella ridge and the Vallaccia group.',
         mapPoints: 'Start at Vigo di Fassa (Strada de Piz), the APT’s start; drinking water at the start, at km 3, at km 3.5 and at km 5.2 (OSM nodes 2405075281, 10111574534, 302580832, 11067225731).',
         elevation: 'Official 7.9 km, 176 m up and 176 m down, 2 h 20 min, highest point 1,424 m, lowest 1,287 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.48 (76 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -41348,8 +41348,7 @@
       desc: 'A gentle loop from Mazzin past roofed village fountains to the hamlet of Ronch, down the old Via Crucis to Pera and its church of San Lorenzo, and back along the Avisio. The APT lists 4.7 km and 152 m of ascent.'
     },
     'fassa-ciajeole-malga-roncac': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.43 (808 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 1.43 is the board’s own side trip, declared in sideTrips, and its first stretch is walked both ways, so it is a lollipop, not a loop; the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 13).
       // APT Val di Fassa’s walk “Passi nella storia: dall’antico rione di Ciajeole a Malga Roncac”, tagged “animali accettati”. The line
       // is drawn on 14 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -41360,8 +41359,9 @@
       distance: 3,
       elevation: 137,
       hours: '1',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'Up from the centre of Moena through the old quarter of Ciajeole to Malga Roncac at the edge of the larch wood, then back down, mostly the same way and for the last stretch by Strada de Rancolin, Strada Saslonch and Strada de Moene.',
+      sideTrips: [{ km: 1.43, note: 'Up to Malga Roncac and back the same way as far as the Strada de Even junction, as the APT’s directions say.' }],
       routeNumberGuidance: {
         "mode": "landmarks",
         "start": "Start at Piaz de Sotegrava in the centre of Moena, the tourist board’s start.",
@@ -41404,7 +41404,7 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -41414,7 +41414,7 @@
         mapPoints: 'Start at Moena (Piaz de Sotegrava), the APT’s start; drinking fountains in Moena in the first 200 m (OSM nodes 1884458673, 3780887514, 9048236785); food at Malga Roncac, km 1.1.',
         elevation: 'Official 3 km, 137 m up and 137 m down, 1 h, highest point 1,306 m, lowest 1,170 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.43 (808 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -42535,8 +42535,8 @@
       desc: 'A shaded forest loop in the Val Noana from the Rifugio Fonteghi to Malga Valpiana and the meadows of Valpiana, among great firs and beeches. The APT lists 5.2 km and 184 m of ascent.'
     },
     'primiero-anello-poit-cordogne-san-giovanni': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.70 (168 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 3.70 (168 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 5.2 km on 10 OSM ways with 96% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 2).
       // APT San Martino di Castrozza’s walk “Anello Poit - Cordognè - San Giovanni”.
       // The line is drawn on 13 OSM ways along the line the APT publishes
@@ -42588,17 +42588,17 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The old chapel of San Giovanni above the meadows the walk crosses, in August (Nick Savchenko, CC BY-SA 2.0), 47 m from the line.',
-        route: 'Official loop 5 km from Poit, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 13 OSM ways along the APT’s published line, 5.5 km, with 99% of the APT line within 25 m of it.',
+        route: 'Official loop 5 km from Poit, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 10 OSM ways along the APT’s published line, 5.2 km, with 96% of the APT line within 25 m of it.',
         routeNumbers: 'No route number: from the car park at Fedai along the signed path up the crest of Monte Cordognè, with views of the Vette Feltrine, San Giovanni, the Val Noana lake and the Primiero valley, down towards Falasorni; left on the road and then a path onto the San Giovanni meadows, where a short climb leads to the old chapel, then along the road to Poit and down to the car park.',
         mapPoints: 'Start at Poit, the APT’s start; drinking water at km 2.4 and at km 4.4 (OSM nodes 3326240920, 7684807194).',
         elevation: 'Official 5 km, 181 m up and 179 m down, 2 h, highest point 1,301 m, lowest 1,157 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.70 (168 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -42695,8 +42695,7 @@
       desc: 'A short history walk from Sant’Uberto, at the entrance to the Ampezzo Dolomites park, up to the ruins of the medieval castle of Botestagno over the Boite valley. The board lists 2.6 km and 80 m of ascent.'
     },
     'cortina-malga-ra-stua': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.24 (224 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 3.24 is the board’s own side trip, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (new-trail Belluno batch 1).
       // Cortina Marketing’s walk “Verso Malga Ra Stua”, drawn on 15 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Cortina’s Polizia Urbana Art. 36 requires a lead. The Ampezzo
@@ -42709,8 +42708,9 @@
       hours: '2.5',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the Sant’Uberto car park (“tornichè”) up path 6 through the forest and the gorge of the Boite to Malga Ra Stua, and back.',
+      sideTrips: [{ km: 3.24, note: 'Out to the hut of Malga Ra Stua and back: the walk goes to the meadow and the hut and back, and the board’s own line turns at the hut.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -42720,7 +42720,7 @@
         mapPoints: 'Start at the board’s start; drinking water at km 2 (OSM nodes 10035808374).',
         elevation: 'Official 6.3 km, 332 m up and 331 m down, 2 h 30 min, highest point 1,686 m, lowest 1,440 m (Cortina Marketing). The board’s Outdooractive page gives 6.3 km, 283 m and 2 h 30; the record carries the board page’s 332 m.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.24 (224 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -42760,8 +42760,8 @@
       desc: 'A walk from Sant’Uberto up the forest and the waterfalls of the Boite to Malga Ra Stua, in the Ampezzo Dolomites park. The board lists 6.3 km and 332 m of ascent.'
     },
     'cortina-passeggiata-gourmet': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.67 (73 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 1.67 (73 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 4.5 km on 13 OSM ways with 100% of the board's line within 25 m of it; its start is walked both ways, so it is a lollipop, as the board’s directions say, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (new-trail Belluno batch 1).
       // Cortina Marketing’s walk “Passeggiata gourmet”, drawn on 16 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Cortina’s Polizia Urbana Art. 36 requires a lead.
@@ -42771,20 +42771,20 @@
       distance: 4.3,
       elevation: 185,
       hours: '2.25',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A loop from Malga Peziè de Parù on path 406 (Sentiero Allaria) to the Locanda del Cantoniere, on to Baita Resch and back on path 406, past three places to eat.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Punta Marietta seen from Vervei on the walk, in October (Ximonic, CC BY-SA 4.0), 7 m from the line.',
-        route: 'Official loop 4.3 km from Malga Pezié de Parù, as Cortina Marketing publishes it; the stored line is drawn on 16 OSM ways along the board’s published line, 4.6 km, with 100% of the board’s line within 25 m of it.',
+        route: 'Official loop 4.3 km from Malga Pezié de Parù, as Cortina Marketing publishes it; the stored line is drawn on 13 OSM ways along the board’s published line, 4.5 km, with 100% of the board’s line within 25 m of it.',
         routeNumbers: 'Paths 406 and 403: from the car park by Malga Peziè de Parù on path 406, the Sentiero Allaria, to the Locanda del Cantoniere on the Dolomites road (about 30 minutes), on to the junction with path 403 and right to Baita Resch, then back on path 406 to the start.',
         mapPoints: 'Start at the board’s start; drinking water at km 0.1 (OSM nodes 5829868885).',
         elevation: 'Official 4.3 km, 185 m up and 185 m down, 2 h 15 min, highest point 1,687 m, lowest 1,533 m (Cortina Marketing). The board’s Outdooractive page gives 4.3 km, 157 m and 1 h 45; the record carries the board page’s 185 m and 2 h 15.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.67 (73 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -43300,8 +43300,8 @@
       desc: 'A short loop from Roda through the damp wood above Ziano di Fiemme, crossing little mountain streams to the Rio Sadole. The APT lists 2.2 km and 100 m of ascent.'
     },
     'fiemme-giro-cavalese-castello': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.54 (132 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 4.54 (132 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 4.7 km on 33 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 1).
       // APT Val di Fiemme’s walk “Montagna Senza Limiti - Giro ad anello Cavalese - Castello di Fiemme”. The line is drawn on 33 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -43314,17 +43314,17 @@
       routeShape: 'loop',
       routeShapeNote: 'A loop from the hospital in Cavalese along the cycle and foot path above the meadows of Carano, down to Castello di Fiemme, and back up by quiet lanes to Cavalese.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Cavalese, its bell tower and the mountains behind, seen from beside the hospital where the walk starts, in June (Mario Penner, CC BY 3.0), 59 m from the line.',
-        route: 'Official loop 4.8 km from Cavalese (hospital car park), as APT Val di Fiemme publishes it; the stored line is drawn on 33 OSM ways along the APT’s published line, 5 km, with 100% of the APT line within 25 m of it.',
+        route: 'Official loop 4.8 km from Cavalese (hospital car park), as APT Val di Fiemme publishes it; the stored line is drawn on 33 OSM ways along the APT’s published line, 4.7 km, with 99% of the APT line within 25 m of it.',
         routeNumbers: 'No route number: one of the APT’s “Montagna Senza Limiti” walks, laid out for wheelchairs, all on tarmac. From the hospital down Via Dossi and up Via Val di Ronco to Via Trento, along the level cycle and foot path past the Hotel Garden and the dairy, a terrace facing the Lagorai, across the Strada Statale and down to Via Latemar and Via Dolomiti in Castello di Fiemme, past the Roman village remains seen under glass, then back over a wooden bridge, a short 11% climb to a wayside shrine, Via Marmolaia and Via Dossi to the hospital.',
         mapPoints: 'Start at Cavalese (hospital car park), the APT’s start; drinking water at the start and at km 2.7 (OSM nodes 288480079, 261081761).',
         elevation: 'Official 4.8 km, 65 m up and 65 m down, 1 h 30 min, highest point 1,008 m, lowest 945 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.54 (132 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -43431,8 +43431,7 @@
       desc: 'A level stroll from the Prà del Manz meadows above Capriana through the larch woods to the hill village of Anterivo / Altrei in South Tyrol, and back the same way. The APT lists 5.5 km and 60 m of ascent.'
     },
     'fiemme-varena-spianez': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.12 (2555 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 4.12 is the board’s own side trip, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 2).
       // APT Val di Fiemme’s walk “Col passeggino tra Varena e Spianez”. The line is drawn on 25 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -43444,8 +43443,9 @@
       hours: '2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the square in Varena down past the church and out across the sunny meadows on the Passeggiata Spianez to the Maso Spianez farm, and back by the same track and then the lanes through the lower village.',
+      sideTrips: [{ km: 4.12, note: 'Out across the Spianez meadows to the Maso Spianez farm and back by the same track, as the board’s directions say.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -43455,7 +43455,7 @@
         mapPoints: 'Start at Varena (the village square), the APT’s start; drinking water at the start and at km 1.2 (OSM nodes 7120336090, 284761499).',
         elevation: 'Official 8.6 km, 120 m up and 120 m down, 2 h, highest point 1,194 m, lowest 1,068 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.12 (2555 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -43665,8 +43665,8 @@
       desc: 'A short, gentle walk from Malga Sass above Valfloriana along the Prai de le Fior forest road, through larch woods and flowering meadows with wide views, and back the same way. The APT lists 3.1 km and 103 m of ascent.'
     },
     'fiemme-passo-oclini': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.54 (72 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 3.54 (72 m), a step the board's own line never takes (it never comes within 25 m of the turn), so that stretch was cut.
+      // The line is now 4.7 km on 14 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 3).
       // APT Val di Fiemme’s walk “Passo Oclini, tra il Corno Nero e il Corno Bianco”. The line is drawn on 15 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -43679,17 +43679,17 @@
       routeShape: 'loop',
       routeShapeNote: 'A loop from the Passo Oclini car park along the level forest road to Malga Gurndin and on to the Isi Hütte, then back to the pass on a path across the pasture.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The little Maria Schnee chapel of 1911 by the Berghotel Jochgrimm at the start, with the Corno Bianco / Weißhorn behind, in September (HaSt, CC BY-SA 4.0), 30 m from the line.',
-        route: 'Official loop 4.7 km from Passo Oclini / Jochgrimm car park, as APT Val di Fiemme publishes it; the stored line is drawn on 15 OSM ways along the APT’s published line, 4.9 km, with 99% of the APT line within 25 m of it.',
+        route: 'Official loop 4.7 km from Passo Oclini / Jochgrimm car park, as APT Val di Fiemme publishes it; the stored line is drawn on 14 OSM ways along the APT’s published line, 4.7 km, with 99% of the APT line within 25 m of it.',
         routeNumbers: 'No route number: from the car park at Passo Oclini / Jochgrimm, between the Corno Nero and the Corno Bianco, along the level forest road (Forststraße Oberradein – Gurndin – Jochgrimm, closed to private cars) for about 45 minutes to Malga Gurndin, on along the road following the signs for the Isi Hütte (Kalditscher Wirt), then back to the pass on a path across the pasture, following the signs for Passo Oclini.',
         mapPoints: 'Start at Passo Oclini / Jochgrimm car park, the APT’s start; drinking water none mapped.',
         elevation: 'Official 4.7 km, 160 m up and 160 m down, 1 h 30 min, highest point 1,991 m, lowest 1,834 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.54 (72 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -43727,8 +43727,8 @@
       desc: 'An easy loop from the Passo Oclini / Jochgrimm through larch woods and alpine pastures to Malga Gurndin and the Isi Hütte, under the Corno Nero and the Corno Bianco. The APT lists 4.7 km and 160 m of ascent.'
     },
     'fiemme-masi-comunicanti': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.54 (103 m), km 4.65 (52 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 4.49 (52 m, twice), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 7.2 km on 38 OSM ways with 100% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 3).
       // APT Val di Fiemme’s walk “Masi Comunicanti”. The line is drawn on 38 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -43741,17 +43741,17 @@
       routeShape: 'loop',
       routeShapeNote: 'A loop from Capriana down to the Avisio, along the river past the old farmsteads of Maso Lio, Le Caneve, Maso Ponte and Rover, up to the hamlet of Carbonare and back to Capriana past the Meneghina mill.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The church of the Immacolata in Carbonare, which the walk passes, in July (Syrio, CC BY-SA 4.0), 11 m from the line.',
-        route: 'Official loop 7.4 km from Capriana (Piazza Roma), as APT Val di Fiemme publishes it; the stored line is drawn on 38 OSM ways along the APT’s published line, 7.4 km, with 100% of the APT line within 25 m of it.',
+        route: 'Official loop 7.4 km from Capriana (Piazza Roma), as APT Val di Fiemme publishes it; the stored line is drawn on 38 OSM ways along the APT’s published line, 7.2 km, with 100% of the APT line within 25 m of it.',
         routeNumbers: 'No route number: from Piazza Roma in Capriana down to the Val di Cembra road (SS612) by the Ristorante Miravalle and the turning for Maso Lio, to Maso Lio and Le Caneve, then a path along the Avisio to Maso Ponte and Maso Rover. From the fountain at Rover up the road to cross the SS612 again, up the concrete ramp opposite to the path for Carbonare, then back to Capriana on the tarred road to the Meneghina mill and the path beside the road into the village.',
         mapPoints: 'Start at Capriana (Piazza Roma), the APT’s start; drinking water at the start, at km 3.8, at km 5.2 and at km 6.9 (OSM nodes 1239897159, 7540293505, 1886719937, 1239897166).',
         elevation: 'Official 7.4 km, 400 m up and 400 m down, 4 h, highest point 1,018 m, lowest 688 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.54 (103 m), km 4.65 (52 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -44188,8 +44188,8 @@
       desc: 'A loop from Mezzano along the old Via Nova and over a 70 m rope suspension bridge high above the Rio San Piero to Imer, back through meadows and fruit trees. The APT lists 6.2 km and 240 m of ascent.'
     },
     'primiero-via-della-frutta-antica': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.31 (89 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 3.31 (89 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 7.9 km on 29 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 5).
       // APT San Martino di Castrozza’s walk “La via della frutta antica”.
       // The line is drawn on 30 OSM ways along the line the APT publishes
@@ -44208,17 +44208,17 @@
       routeShape: 'point-to-point',
       routeShapeNote: 'A one-way walk from Pieve along the old Via Nova above Mezzano and Imer to Passo Gobbera, past more than forty old fruit trees. Back the same way, by the bus that passes Passo Gobbera, or on the signed paths down to Mezzano or Imer.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The main street of Fiera di Primiero by Pieve, near the start, the Pale di San Martino behind, in August (laniuscollurio on Mapillary, CC BY-SA 4.0), 69 m from the line.',
-        route: 'Official one-way walk 8 km from Pieve, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 30 OSM ways along the APT’s published line, 8.1 km, with 100% of the APT line within 25 m of it.',
+        route: 'Official one-way walk 8 km from Pieve, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 29 OSM ways along the APT’s published line, 7.9 km, with 99% of the APT line within 25 m of it.',
         routeNumbers: 'SAT trail 357 for much of the way: from the church of Santa Maria Assunta in Pieve along Via San Rocco south-west to the Capitello della Peste and the signed start; up the mule track (357) to the Piani di Molaren; following the signs for Passo Gobbera to the road to Camp; across it, the path leads shortly to the rope bridge over the Rio San Piero. Over it, on path and then road to Solàn and the Col dei Fagheri fork; right to Solàn Grant and its great beech, left on a gravel road and a woodland path, across a small valley and up right to the Col dei Betteghe, then down to Passo Gobbera.',
         mapPoints: 'Start at Pieve church, the APT’s start; drinking water at the start, at km 0.4, at km 1.5 and at km 3.2 (OSM nodes 804127875, 5735811691, 1563103883, 820911498).',
         elevation: 'Official 8 km, 321 m up and 52 m down, 3 h, highest point 1,038 m, lowest 717 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.31 (89 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -44637,8 +44637,7 @@
       desc: 'A loop round the Lago di Lases and up into the cool Val Fredda with its old ice pits, through the Lona-Lases nature reserve. The APT lists 4.9 km and 150 m of ascent.'
     },
     'cembra-san-leonardo-lisignago': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 0.46 (74 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 0.46 is the board’s own side trip, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
       // APT Fiemme Cembra’s walk “San Leonardo e le campagne di Lisignago”. The line is drawn on 21 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -44650,8 +44649,9 @@
       hours: '2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Lisignago down through the vineyards to the hilltop chapel of San Leonardo, on to the Rio Ischiele, up through the woods to Maso Spedenal and back across the fields.',
+      sideTrips: [{ km: 0.46, note: 'Up to the hilltop chapel of San Leonardo and back: the board’s directions go to the chapel, and the board’s own line turns beside it.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -44661,7 +44661,7 @@
         mapPoints: 'Start at Lisignago, behind the church of San Biagio, the APT’s start; drinking water none mapped.',
         elevation: 'Official 4.4 km, 280 m up and 280 m down, 2 h, highest point 582 m, lowest 395 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 0.46 (74 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -44923,8 +44923,7 @@
       desc: 'A loop through the hamlets of Segonzano, past the ruined Castello di Segonzano on its rock and down towards the Avisio, back through the little gorge of Prà. The APT lists 6.1 km and 190 m of ascent.'
     },
     'cembra-paese-beghei': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.25 (273 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 1.25 is the board’s own side trip, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
       // APT Fiemme Cembra’s walk “Il paese dei “Beghei””. The line is drawn on 20 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -44936,8 +44935,9 @@
       hours: '2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Sevignano up through the lanes of the village with its wooden owls and artworks, through the larch wood to the meadows of Fontane and the great beech of Fo Gross, down a forest road to Prada and back on a level lane.',
+      sideTrips: [{ km: 1.25, note: 'The board’s short detour right on a forest road to the Fo Gross, the great old beech of Sevignano, and back.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -44947,7 +44947,7 @@
         mapPoints: 'Start at Sevignano (car park by the war memorial on the SP 71), the APT’s start; drinking water at the start (OSM nodes 12873942865).',
         elevation: 'Official 4 km, 200 m up and 200 m down, 2 h, highest point 895 m, lowest 687 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.25 (273 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -45083,8 +45083,7 @@
       desc: 'A short loop round the village of Grauno, past its church and through the woods where healing herbs grow. The APT lists 2.1 km and 100 m of ascent.'
     },
     'cembra-giro-monte-corona': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.80 (100 m), km 5.17 (64 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turns at km 4.80, km 5.17 are side trips the board describes, declared in sideTrips. Its first stretch out of the village is walked both ways, so it is a lollipop, not a loop; the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
       // APT Fiemme Cembra’s walk “Giro panoramico sul Monte Corona”. The line is drawn on 19 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -45094,10 +45093,11 @@
       distance: 7.2,
       elevation: 390,
       hours: '2.5',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A loop from Ville di Giovo up through the vineyards and the woods below the cliffs to the top of Monte Corona and its viewpoint, along the ridge and down through a cleft in the rock to a gravel road and back to the village.',
+      sideTrips: [{ km: 4.8, note: 'Up to the top of Monte Corona and back to the path.' }, { km: 5.17, note: 'Out to the viewpoint and back: the board says it has a large cross, tables and benches, and a panorama board.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -45107,7 +45107,7 @@
         mapPoints: 'Start at Ville di Giovo, the APT’s start; drinking water at the start (OSM nodes 8170134089).',
         elevation: 'Official 7.2 km, 390 m up and 390 m down, 2 h 40 min, highest point 1,021 m, lowest 705 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.80 (100 m), km 5.17 (64 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -45637,8 +45637,8 @@
       desc: 'A short loop over the summer pastures of Malga Vernera above Sover, on marked paths and forest roads with wide views over the Val di Cembra. The APT lists 3.6 km and 185 m of ascent.'
     },
     'altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.92 (97 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 3.92 (97 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 7.6 km on 50 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 1).
       // The Alta Badia tourist board’s walk “Escursione da La Villa al lago Lech da Sompunt”, drawn on 53 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Badia (own dog regulation, lead and muzzle).
@@ -45651,17 +45651,17 @@
       routeShape: 'loop',
       routeShapeNote: 'A loop from La Villa up through meadows and forest to the small lake Lech da Sompunt, down through Ciaminades to Pedraces, and back to La Villa on a quiet path along the river.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Pedraces in Badia, where the loop comes down to the main road before following the river back, in June (Tiia Monto, CC BY-SA 3.0), 2 m from the line.',
-        route: 'Official loop 7.5 km from La Villa bus stop, as the Alta Badia tourist board publishes it; the stored line is drawn on 53 OSM ways along the board’s published line, 7.8 km, with 99% of the board’s line within 25 m of it.',
+        route: 'Official loop 7.5 km from La Villa bus stop, as the Alta Badia tourist board publishes it; the stored line is drawn on 50 OSM ways along the board’s published line, 7.6 km, with 99% of the board’s line within 25 m of it.',
         routeNumbers: 'From the La Villa bus stop up road no. 11 to the top of the village; right of the parish church, along the small tarred lane past the houses, gently up across the meadow (a ski slope in winter) and along the forest on an easy path to Lech da Sompunt (45 min), where the Sas dla Crusc is reflected in the water; then gently down to Ciaminades and Pedraces, and back to La Villa on a quiet path beside the river.',
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.4, at km 1.4 and at km 1.9 (OSM nodes 4319958092, 2464363648, 1352469015, 1352468995).',
         elevation: 'Official 7.5 km, 172 m up and 174 m down, 2 h 30 min, highest point 1,492 m, lowest 1,318 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.92 (97 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -45921,8 +45921,8 @@
       desc: 'A gentle walk down the valley from Corvara to La Villa beside the stream, on the “Tru dl’ega”. The board lists 5.1 km, 21 m up and 132 m down, one way.'
     },
     'altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 13.58 (437 m), km 14.02 (341 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 13.58 (437 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 13.5 km on 27 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 2).
       // The Alta Badia tourist board’s walk “Da Pederoa ai masi Picedac, Aiarëi e Costa fino a Pederoa”, drawn on 35 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: La Val (no regulation, national rule); Badia (own dog regulation, lead and muzzle).
@@ -45935,17 +45935,17 @@
       routeShape: 'loop',
       routeShapeNote: 'A loop from Pederoa in the lower Val Badia up a quiet road to the farms of Picedac, on path 8 past Aiarëi to Costa, and back down path 8A beside the river.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Forest and high farms above La Val from the meadows on the loop, in June (Amelia Pridgeon, CC BY 4.0), 7 m from the line.',
-        route: 'Official loop 13.5 km from Pederoa, opposite the Pizzeria Traföi, as the Alta Badia tourist board publishes it; the stored line is drawn on 35 OSM ways along the board’s published line, 14.4 km, with 99% of the board’s line within 25 m of it.',
+        route: 'Official loop 13.5 km from Pederoa, opposite the Pizzeria Traföi, as the Alta Badia tourist board publishes it; the stored line is drawn on 27 OSM ways along the board’s published line, 13.5 km, with 99% of the board’s line within 25 m of it.',
         routeNumbers: 'Paths 8 and 8A: from Pederoa, opposite the Pizzeria Traföi, along a road with little traffic towards Picedac for about 3.5 km; from Picedac on path 8 past the farms of Aiarëi to Costa, then path 8A down beside the river back to Pederoa.',
         mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
         elevation: 'Official 13.5 km, 407 m up and 407 m down, 3 h 50 min, highest point 1,546 m, lowest 1,140 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 13.58 (437 m), km 14.02 (341 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -46052,8 +46052,7 @@
       desc: 'A climb from Furnacia above La Val across the edge of the Armentara meadows to the sanctuary of Santa Croce below the Sas dla Crusc. The board lists 4.2 km and 324 m of ascent, one way.'
     },
     'altabadia-da-la-val-ai-prati-di-rit': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 10.68 (109 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 10.68 is the board’s own side trip, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 3).
       // The Alta Badia tourist board’s walk “Da La Val ai prati di Rit”, drawn on 59 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: La Val (no regulation, national rule).
@@ -46065,8 +46064,9 @@
       hours: '4.75',
       routeShape: 'loop',
       routeShapeNote: 'A loop from La Val up past the chapel of Santa Barbara and the farms of Ciablun, Runch and Biei to the small Rit lake and the high Rit meadows, along a grassy ridge to the Ütia da Rit and back down through Spëscia.',
+      sideTrips: [{ km: 10.68, note: 'The board’s short detour right to the Rit cross, the best viewpoint, and back.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -46076,7 +46076,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 6.9 and at km 11.9 (OSM nodes 8264695632, 1407390138, 2445015358).',
         elevation: 'Official 14.1 km, 728 m up and 728 m down, 4 h 45 min, highest point 2,021 m, lowest 1,295 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 10.68 (109 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -46467,8 +46467,7 @@
       desc: 'A short high loop from the top of the Resciesa funicular above Ortisei to the summit cross and the chapel of Santa Croce, in the Puez-Odle nature park. The board lists 5 km and 197 m of ascent.'
     },
     'valgardena-escursione-dalla-cappella-santa-croce-al-brogles': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 8.79 (2454 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 8.79 is the board’s own side trip, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
       // The Val Gardena tourist board’s walk “Escursione dalla Cappella Santa Croce al Brogles”, drawn on 25 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Ortisei (its 2019 dog regulation: lead ≤1.5 m, muzzle carried).
@@ -46480,8 +46479,9 @@
       hours: '3.8',
       routeShape: 'loop',
       routeShapeNote: 'A long high loop from the top of the Resciesa funicular past the Rifugio Resciesa and the chapel of Santa Croce to the summit cross, along the ridge to the Passo Valluzza and the Brogles alp, and back across the Costa dl Cason.',
+      sideTrips: [{ km: 8.79, note: 'Out on path 35 to the Brogles saddle and back along the Costa dl Cason on path 35, as the board’s directions say.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -46491,7 +46491,7 @@
         mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
         elevation: 'Official 13 km, 422 m up and 422 m down, 3 h 48 min, highest point 2,282 m, lowest 2,012 m (Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 8.79 (2454 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -47169,8 +47169,8 @@
       desc: 'A short walk from the Pragser Wildsee along its west shore and up path 19 to the Grünwaldalm. The board lists 2.1 km and 118 m of ascent, one way.'
     },
     'giudicarie-tione-bolbeno-madonna-del-lares': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.61 (119 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 1.61 (114 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 3.2 km on 19 OSM ways with 96% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Madonna di Campiglio’s walk “Tione di Trento - Bolbeno - Madonna del Lares”, drawn on 19 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Borgo Lares 88% (no regulation, national rule) and Tione di Trento 12% (Art. 30).
@@ -47182,17 +47182,17 @@
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from Via Baita in Tione along the cycle path beside the Arnò to Bolbeno, past the ski slope and up the tarmac forest road and a short stepped path to the Madonna del Lares chapel; come back the same way, downhill.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The portico of the Madonna del Lares chapel at the end of the walk, in August (zonta72 on Mapillary, CC BY-SA 4.0), 5 m from the line.',
-        route: 'Official one-way walk 3.1 km from Via Baita, Tione di Trento, as APT Madonna di Campiglio publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 3.4 km, with 99% of the APT’s line within 25 m of it.',
+        route: 'Official one-way walk 3.1 km from Via Baita, Tione di Trento, as APT Madonna di Campiglio publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 3.2 km, with 96% of the APT’s line within 25 m of it.',
         routeNumbers: 'Not a numbered route: from Tione onto the cycle path coming down from the Val Rendena, through the woods beside the Arnò stream to Bolbeno (Borgo Lares); past the ski slope, up the tarmac forest road towards the Madonna del Lares with views of Tione and the Rendena mountains; just after the viewpoint a stone fountain on the left; then left onto a path that climbs a few steps through the woods to the clearing and the chapel. Back the same way.',
         mapPoints: 'Start at the APT’s start in Via Baita, Tione; drinking water at the start, at km 1, at km 1.2, at km 1.6, at km 2.6 and at km 3.1 (OSM nodes 2378442143, 9530598419, 9530618721, 850580827, 8548378118, 674032225, 674032223, 1868799976).',
         elevation: 'Official 3.1 km, 238 m up and 30 m down, 1 h 15 min, highest point 794 m, lowest 557 m (Madonna di Campiglio Azienda per il Turismo); the stored profile runs 566–790 m.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.61 (119 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -47251,8 +47251,7 @@
       desc: 'A short climb from Tione along the Arnò stream to Bolbeno and up through the woods to the Madonna del Lares, a chapel in a quiet clearing. The APT lists 3.1 km and 238 m of ascent, one way.'
     },
     'giudicarie-san-martino-bosco-scolpito': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.23 (131 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turns at km 3.23 are side trips the board describes, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Madonna di Campiglio’s walk “San Martino e il sentiero del bosco scolpito”, drawn on 19 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Commune: Pieve di Bono-Prezzo (animal regulation, Art. 7).
@@ -47263,8 +47262,9 @@
       hours: '1.8',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the car park by the information office below Cologna up through the woods past carved wooden sculptures and a picnic glade to the ruined church of San Martino, then down a steep, narrow path towards the village.',
+      sideTrips: [{ km: 3.23, note: 'Out to the ruined chapel of San Martino and its view over the Valle del Chiese, and back, as the board describes.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -47274,7 +47274,7 @@
         mapPoints: 'Start at the APT’s start below Cologna; drinking water at km 3, at km 3.9 and at km 4.1 (OSM nodes 2568331930, 2568332294, 2568332356).',
         elevation: 'Official 4.4 km, 250 m up and 216 m down, 1 h 45 min, highest point 730 m, lowest 497 m (Madonna di Campiglio Azienda per il Turismo); the stored profile runs 496–718 m.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.23 (131 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -47421,8 +47421,8 @@
       desc: 'A level loop from Tione through the riverside woods by the chapel of San Vigilio, over a swinging rope bridge across the Sarca and back along the cycle path. The APT lists 7.2 km and 91 m of ascent.'
     },
     'rendena-ciclabile-javre-dare-vigo-pelugo': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.38 (104 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 4.38 (102 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 7.2 km on 38 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Madonna di Campiglio’s walk “Giro della Ciclabile Javrè - Darè - Vigo - Pelugo”, drawn on 46 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Porte di Rendena 81% and Pelugo 17% (neither publishes a dog regulation, national rule).
@@ -47434,17 +47434,17 @@
       routeShape: 'loop',
       routeShapeNote: 'A loop from the information point at Villa Rendena down to the Val Rendena cycle path, south to the bridge over the Sarca, back north on the far bank by lanes, a track and a path to Parco Masere, and south again on the cycle path and a quiet road to the start.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Val Rendena cycle path beside the Sarca, on the line, in October (Adert, CC BY-SA 4.0), 9 m from the line.',
-        route: 'Official loop 7.2 km from the Porte di Rendena information point, Villa Rendena, as APT Madonna di Campiglio publishes it; the stored line is drawn on 46 OSM ways along the APT’s published line, 7.4 km, with 99% of the APT’s line within 25 m of it.',
+        route: 'Official loop 7.2 km from the Porte di Rendena information point, Villa Rendena, as APT Madonna di Campiglio publishes it; the stored line is drawn on 38 OSM ways along the APT’s published line, 7.2 km, with 99% of the APT’s line within 25 m of it.',
         routeNumbers: 'Not a numbered route: from the information point at Villa Rendena a few metres north on the main road, then the first lane down on the right to the cycle and foot path; south on it to the bridge over the Sarca; across, and north on the tarmac lane on the far bank; at the concrete bridge, without crossing, straight on along a lane that becomes a track and then a path to Parco Masere; from the park south on the cycle path and a stretch of side road back to the start.',
         mapPoints: 'Start at the APT’s start, the Porte di Rendena information point; drinking water at km 2.4 and at km 2.9 (OSM nodes 6482400507, 7681382942, 7681382941, 7681382943).',
         elevation: 'Official 7.2 km, 79 m up and 56 m down, 2 h 30 min, highest point 628 m, lowest 571 m (Madonna di Campiglio Azienda per il Turismo); the stored profile runs 578–624 m.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.38 (104 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -47986,8 +47986,8 @@
       desc: 'A climb from Cristauta above Santa Cristina through larch forest to the Sëurasas alp and its summit cross, with a view over all three villages of Val Gardena. The board lists 6.6 km and 449 m of ascent.'
     },
     'valgardena-percorso-dei-masi-tradizionali': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 2.68 (92 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 2.68 (92 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 7.2 km on 41 OSM ways with 98% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 2).
       // The Val Gardena tourist board’s walk “Percorso dei masi tradizionali”, drawn on 44 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Santa Cristina (its 2010 dog regulation: lead ≤1.5 m, muzzle carried).
@@ -48000,17 +48000,17 @@
       routeShape: 'loop',
       routeShapeNote: 'A loop from the parish square of Santa Cristina, signed as the traditional farms path, up past the mountain farms above the village and back down.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'A farm above the Iender valley seen from Praulëta, October with no snow (Wolfgang Moroder, CC BY-SA 3.0), 5 m from the line.',
-        route: 'Official loop 7.4 km from Parish square of Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 44 OSM ways along the board’s published line, 7.4 km, with 100% of the board’s line within 25 m of it.',
+        route: 'Official loop 7.4 km from Parish square of Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 41 OSM ways along the board’s published line, 7.2 km, with 98% of the board’s line within 25 m of it.',
         routeNumbers: 'Signed “Percorso dei masi tradizionali”: from the parish square of Santa Cristina follow the farms-path signs past the mountain farms above the village, with boards showing old photographs of each farm, and back to the square.',
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.4, at km 0.8, at km 0.9, at km 2.3, at km 6.5 (OSM nodes 6693914655, 7823614885, 7872930685, 7727413030, 7703479736, 7727413050, 4958710983, 6634281019, 7872975485).',
         elevation: 'Official 7.4 km, 450 m up and 450 m down, 2:25 h, highest point 1,822 m, lowest 1,420 m (S. Cristina – Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 2.68 (92 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -48632,8 +48632,8 @@
       desc: 'A short loop from the town hall of Pognana Lario down to the lake and back along the old Strada Regia, past the ten stone sculptures of the 1986 symposium. The portal lists 4.2 km and 160 m of ascent.'
     },
     'lario-alla-ricerca-di-un-panorama-unico': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 5.04 (81 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 5.03 (81 m), a step the board's own line never takes (it never comes within 25 m of the turn), so that stretch was cut.
+      // The line is now 7.9 km on 20 OSM ways with 100% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Lombardy batch 1).
       // in-Lombardia, the official tourism portal of Regione Lombardia: “Alla ricerca di un panorama unico” by Lago di Como GAL, drawn on 22 OSM ways along its published GPX
       // (data/board-line-routes.geojson). Communes: Bellagio (own rule covers the Borgo, the lakefront and the parks, not this walk; national rule).
@@ -48645,17 +48645,17 @@
       routeShape: 'loop',
       routeShapeNote: 'A loop from Brogno up a steep path to the Nuvolone viewpoint over the three arms of the lake, round the foot of Monte Nuvolone to its bocchetta, and back through the woods above Rovenza.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Lake Como, Monte di Tremezzo and the Tremezzina shore from the Nuvolone viewpoint, on the loop, in late December with snow only on the far peaks (Kaitu, CC BY-SA 4.0), 1 m from the line.',
-        route: 'Official loop 7.9 km from Brogno, Bellagio, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 22 OSM ways along the published GPX, 8.1 km, with 100% of the published line within 25 m of it.',
+        route: 'Official loop 7.9 km from Brogno, Bellagio, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 20 OSM ways along the published GPX, 7.9 km, with 100% of the published line within 25 m of it.',
         routeNumbers: 'From Brogno, on the SP41 Vallassina road, take the lane left off the main road and soon the path climbing steeply left, following the signs for the Belvedere del Nuvolone: almost 500 m of climbing in 2 km to the viewpoint. On more gently to the fork for the summit of Monte Nuvolone (1,092 m); keep left for the Bocchetta del Nuvolone (938 m) and do not take the short, rough summit path. At the bocchetta follow the signs for Monte San Primo across a small clearing and through the wood to some buildings below Ceppo del Mucchio, then down the steep concrete road in hairpins to the tarmac; left towards Rovenza to the first hairpin, then straight on along the dirt mule track signed for Brogno, through the wood to a votive chapel; left round it and down the path back to Brogno.',
         mapPoints: 'Start at the published start; no drinking water mapped on the line.',
         elevation: 'Official 7.9 km, 679 m up, 3 h 30 min (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL). The stored line follows the published GPX.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 5.04 (81 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -50016,8 +50016,8 @@
       desc: 'An easy hillside road from the mountain village of Ortisè to the restored Malga Stabli, a terrace over the Val di Sole with views of the Brenta Dolomites and the Presanella. The APT lists 7.2 km and 342 m of ascent.'
     },
     'fvg-laghi-di-fusine': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 2.07 (80 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 2.07 (80 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 5.3 km on 43 OSM ways with 98% of the board's line within 25 m of it; its start is walked both ways, so it is a lollipop, as the board’s directions say, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
       // PromoTurismoFVG’s walk “Laghi di Fusine” (its verified Outdooractive account, author PromoTurismoFVG Montagna). The line is drawn
       // on 43 OSM ways along the line it publishes (data/board-line-routes.geojson).
@@ -50027,20 +50027,20 @@
       distance: 5.4,
       elevation: 104,
       hours: '2',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A loop from the lower lake car park round the Lower Fusine Lake, over a moraine ridge to the Upper Lake and round its western shore, and back along the promenade past the Capanna Edelweiss.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Lower Fusine Lake with autumn larches and the Mangart group behind, on the loop, on 13 October 2026 without snow (Ajznponar, CC0), 0 m from the line.',
-        route: 'Official loop 5.4 km from Lower lake car park past Scichizza, Fusine in Valromana, as PromoTurismoFVG publishes it; the stored line is drawn on 43 OSM ways along the published line, 5.5 km, with 100% of the published line within 25 m of it.',
+        route: 'Official loop 5.4 km from Lower lake car park past Scichizza, Fusine in Valromana, as PromoTurismoFVG publishes it; the stored line is drawn on 43 OSM ways along the published line, 5.3 km, with 98% of the published line within 25 m of it.',
         routeNumbers: 'No route number given: from the car park past the houses of Scichizza, a short stretch through the forest on boardwalks, along the Lower Lake past the streams that feed it with the Mangart and Ponze walls ahead, through beech and spruce over a moraine ridge with large erratic boulders to the Upper Lake; along its western shore to the wide southern plain, then back on the broad promenade to the Capanna Edelweiss and the start, by the lake path or the tarred road.',
         mapPoints: 'Start at Lower lake car park past Scichizza, Fusine in Valromana, the board’s start; drinking water none mapped.',
         elevation: 'Official 5.4 km, 104 m up and 104 m down, 2 h, highest point 980 m, lowest 878 m (PromoTurismoFVG, author PromoTurismoFVG Montagna).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 2.07 (80 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -50138,8 +50138,7 @@
       desc: 'An easy loop from Stolvizza in Val Resia to the Potok waterfall, through pine woods past the Casa Resiana and the hamlet of Zamlin, and back up to the village. PromoTurismoFVG lists 5.5 km and 152 m of ascent.'
     },
     'fvg-faggi-secolari-pustot-dordolla': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 0.48 (259 m), km 2.94 (130 m), km 3.19 (243 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turns at km 0.48, km 2.94, km 3.19 are side trips the board describes, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
       // PromoTurismoFVG’s walk “I faggi secolari di Pustot a Dordolla” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
       // on 41 OSM ways along the line it publishes (data/board-line-routes.geojson).
@@ -50151,8 +50150,9 @@
       hours: '2.35',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Dordolla along the old road to the hamlet of Drentus, up to the centuries-old beech trees of Pustot, and back down to Dordolla on the old mule tracks to the hayfields.',
+      sideTrips: [{ km: 0.48, note: 'The short detour from Dordolla to the Spissande waterfall and back, which the board offers.' }, { km: 2.94, note: 'Out to one of the old beeches of Pustot and back: the board says these trees are the main point of the walk.' }, { km: 3.19, note: 'Out to another of the old Pustot beeches and back.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -50162,7 +50162,7 @@
         mapPoints: 'Start at Dordolla village, Val Aupa, the board’s start; drinking water none mapped.',
         elevation: 'Official 4.9 km, 395 m up and 394 m down, 2 h 20 min, highest point 960 m, lowest 611 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 0.48 (259 m), km 2.94 (130 m), km 3.19 (243 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -50321,8 +50321,7 @@
       desc: 'A short loop round the eastern arm of the Lago di Verzegnis, across the Ambiesta dam and back through the woods over suspension bridges, with views of Monte Amariana. PromoTurismoFVG lists 2.6 km and 93 m of ascent.'
     },
     'paganella-andalo-tana-ermellino': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.88 (349 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 1.88 is the board’s own side trip, declared in sideTrips, and its first stretch is walked both ways, so it is a lollipop, not a loop; the line passes the board-walk bar.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 3).
       // APT Dolomiti Paganella’s walk “Passeggiata da Andalo alla Tana dell’Ermellino”, drawn on 15 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Cavedago and Andalo (neither publishes a dog regulation, national rule).
@@ -50331,10 +50330,11 @@
       distance: 3.8,
       elevation: 32,
       hours: '1',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A nearly level loop from the riding stables in the Andalo Life park along the gravel road beside the lake and through the woods to the Tana dell’Ermellino at Priori, and back.',
+      sideTrips: [{ km: 1.88, note: 'Out through the woods to the Tana dell’Ermellino at Priori and back, as the board’s directions say.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -50344,7 +50344,7 @@
         mapPoints: 'Start at the APT’s start, the Andalo Life park; no drinking fountain is mapped on the line.',
         elevation: 'Official 3.8 km, 32 m up and 32 m down, 1 h 03 min, highest point 1,044 m (Priori), lowest 1,013 m (Andalo) (Visit Paganella).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.88 (349 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [

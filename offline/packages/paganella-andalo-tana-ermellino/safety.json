@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "trailId": "paganella-andalo-tana-ermellino",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.8,
+    "ascentM": 32,
+    "highestPointM": 1065,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 67
+  },
+  "trailhead": {
+    "lat": 46.172096,
+    "lng": 11.003644,
+    "label": "Andalo Life park, the APT’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Mostly tarmac and gravel road, shared with bikes and the odd car.",
+    "The Andalo Life park and the lake shore are busy with families and horses from the riding stables.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

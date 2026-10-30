@@ -2371,13 +2371,25 @@
       return prompt;
     }
 
+    // The account's selected dog and how many it has, or null when the
+    // account could not be read.
+    async function accountDogs(){
+      let dogState = null;
+      try { dogState = await win.DoloPawsAuth.getDogProfiles(); } catch(error){}
+      if(!dogState || dogState.loadError || !Array.isArray(dogState.dogs)) return null;
+      const existing = dogState.dogs.find(dog => dog.id === dogState.activeDogId) || dogState.dogs[0] || null;
+      return { existing, count:dogState.dogs.length };
+    }
+
     async function showMigration(user){
       if(!user || !win.DoloPawsAuth) return;
       const record = load(storage);
       if(!(record && record.dogDraft)) return;
-      let existing = null;
-      try { existing = await win.DoloPawsAuth.getDogProfile(); } catch(error){}
-      const state = migrationState(load(storage), existing);
+      // A read that failed is not an account with no dogs. Offering to save
+      // then would let the guest dog land over the account's selected dog.
+      const account = await accountDogs();
+      if(!account) return;
+      const state = migrationState(load(storage), account.existing);
       if(state.kind === 'none') return;
       const prompt = promptElement();
       const title = prompt.querySelector('#guestMigrationTitle');
@@ -2413,8 +2425,14 @@
       if(migrate) migrate.addEventListener('click', async () => {
         migrate.disabled = true;
         status.textContent = 'Checking your account…';
-        const latest = await win.DoloPawsAuth.getDogProfile();
-        if(latest && (latest.name || latest.breed || latest.photo)){
+        const latestAccount = await accountDogs();
+        if(!latestAccount){
+          status.textContent = 'Your account could not be checked. Your device draft is unchanged.';
+          migrate.disabled = false;
+          return;
+        }
+        const latest = latestAccount.existing;
+        if(latestAccount.count || latest && (latest.name || latest.breed || latest.photo)){
           status.textContent = 'An account profile now exists, so the device draft was not copied.';
           migrate.remove();
           return;
@@ -2707,6 +2725,10 @@
     if(!(pending && pending.name && window.DoloPawsAuth)) return true;
     const state = typeof window.DoloPawsAuth.getDogProfiles === 'function'
       ? await window.DoloPawsAuth.getDogProfiles() : null;
+    // Could not read the account: it may well have dogs. Writing now could
+    // land the guest's dog over the selected one, so keep it on the device;
+    // the account page retries the handoff once the read works.
+    if(state && state.loadError) return false;
     const dogs = state && Array.isArray(state.dogs) ? state.dogs : [];
     // A completed write followed by a retried handoff must not duplicate the
     // same dog. Nothing to decide here: it is the same dog, described the same.
@@ -2752,7 +2774,14 @@
     }
     closeModal();
     const target = safeReturnTarget(activeReturnTarget);
-    if(target) window.location.replace(target);
+    if(!target) return;
+    // Wait (briefly) for the account's dogs and saved count to be cached
+    // before leaving. The next page paints its header from that cache, and
+    // navigating first used to cancel the read, so it showed no dogs.
+    if(window.DoloPawsAuth && typeof window.DoloPawsAuth.profileSummaryReady === 'function'){
+      try { await window.DoloPawsAuth.profileSummaryReady(); } catch(err){}
+    }
+    window.location.replace(target);
   }
 
   function openModal(){
@@ -3132,34 +3161,53 @@ ${points}
   // <offline-package-registry>
   const PACKAGE_NAMES = {
     'alpe-siusi': "Alpe di Siusi Meadow Loop",
+    'altabadia-da-la-val-ai-prati-di-rit': "La Val – Prati di Rit",
+    'altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa': "Pederoa – Picedac – Costa",
+    'altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt': "La Villa – Lech da Sompunt",
     'cembra-dos-paion': "Passeggiata al belvedere del Dos Paion sul Monte Corona",
     'cembra-erbe-della-salute': "Le erbe della salute",
     'cembra-giro-masi-grumes': "Il Giro dei Masi di Grumes",
+    'cembra-giro-monte-corona': "Giro panoramico sul Monte Corona",
     'cembra-lago-lases-buse-giaz': "Il Lago di Lases e le buse del giaz",
     'cembra-lago-santo': "Il Lago Santo",
+    'cembra-paese-beghei': "Il paese dei “Beghei”",
     'cembra-pascoli-malga-vernera': "Sui Pascoli di Malga Vernera",
+    'cembra-san-leonardo-lisignago': "San Leonardo e le campagne di Lisignago",
     'cinque-torri-assisted': "Cinque Torri three-refuges assisted circuit",
+    'cortina-malga-ra-stua': "Malga Ra Stua",
+    'cortina-passeggiata-gourmet': "Passeggiata gourmet",
     'eggental-dal-passo-costalunga-al-lago-di-carezza': "Passo Costalunga to Lake Carezza",
     'eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl': "Lake Carezza to the Stadlalm",
     'fassa-alpe-di-fuciade': "Alpe di Fuciade",
     'fassa-antichi-bagnes': "Agli antichi Bagnes",
     'fassa-borgo-dei-patins': "Vigo, borgo dei patins",
     'fassa-borgo-di-tamion': "Alla scoperta del borgo ladino di Tamion",
+    'fassa-ciajeole-malga-roncac': "Passi nella storia: da Ciajeole a Malga Roncac",
     'fassa-da-alba-a-penia': "Da Alba a Penìa",
     'fassa-dipinti-del-giotto': "Sulle tracce dei dipinti del Giotto della Val di Fassa",
     'fassa-malga-aloch': "Malga Aloch e Masc Aloch",
     'fassa-moena-soraga-acqua': "Da Moena a Soraga, dove l'acqua ha segnato la storia",
     'fassa-moena-soraga-someda': "Da Moena a Soraga, la natura a due passi da casa",
+    'fassa-molin-de-pezol': "Molin de Pèzol",
     'fassa-passato-ritrovato': "Il passato ritrovato",
     'fassa-pastori-erranti': "Sulla via degli antichi pastori erranti",
     'fassa-prato-di-sorte': "Prato di Sorte",
     'fassa-santuario-dei-pellegrini': "Al santuario di Santa Giuliana",
+    'fassa-segreti-di-una-volta': "I segreti di una volta",
     'fassa-sentiero-della-foresta': "Sentiero della Foresta",
     'fiemme-cascatelle-di-ziano': "Le Cascatelle di Ziano di Fiemme",
     'fiemme-cavalese-passeggiata-panoramica': "Cavalese - Passeggiata panoramica",
+    'fiemme-giro-cavalese-castello': "Giro ad anello Cavalese - Castello di Fiemme",
+    'fiemme-masi-comunicanti': "Masi Comunicanti",
+    'fiemme-passo-oclini': "Passo Oclini, tra il Corno Nero e il Corno Bianco",
     'fiemme-scalata-alle-malghette': "La “scalata” alle Malghette",
     'fiemme-sentiero-botanico': "Sentiero botanico naturalistico",
+    'fiemme-varena-spianez': "Col passeggino tra Varena e Spianez",
+    'fvg-faggi-secolari-pustot-dordolla': "I faggi secolari di Pustot a Dordolla",
+    'fvg-laghi-di-fusine': "Laghi di Fusine",
     'giro-del-bulacia': "Giro della Bullaccia",
+    'giudicarie-san-martino-bosco-scolpito': "San Martino – Bosco Scolpito",
+    'giudicarie-tione-bolbeno-madonna-del-lares': "Tione – Bolbeno – Madonna del Lares",
     'kronplatz-attraverso-il-sentiero-panoramico-a-brunico': "Panoramic path from Olang to Bruneck",
     'kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina': "Antermoia to Rina",
     'kronplatz-passeggiata-leggendaria-sul-kienberg': "The Kienberg legends loop",
@@ -3172,6 +3220,7 @@ ${points}
     'kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle': "Valdaora di Sotto to Bad Bergfall",
     'lago-braies': "Lago di Braies Seeweg circuit",
     'lago-carezza': "Lago di Carezza Loop",
+    'lario-alla-ricerca-di-un-panorama-unico': "Brogno to the Nuvolone viewpoint",
     'osm-10220399': "Martinsweg",
     'osm-11270309': "Passeggiata delle Sorgenti - Quellenpromenade",
     'osm-11517208': "La Croix des Salles",
@@ -3258,8 +3307,10 @@ ${points}
     'osm-9511999': "Tru dles Viles",
     'osm-9648632': "Pana Raida",
     'osm-9937537': "Le Mont Jovet",
+    'paganella-andalo-tana-ermellino': "Andalo – Tana dell’Ermellino",
     'prato-piazza': "Prato Piazza (Plätzwiese)",
     'primiero-anello-di-valpiana': "Anello di Valpiana",
+    'primiero-anello-poit-cordogne-san-giovanni': "Anello Poit - Cordognè - San Giovanni",
     'primiero-fiera-pieve': "Fiera-Pieve",
     'primiero-la-guana-di-primiero': "La Guana di Primiero",
     'primiero-malga-ces': "San Martino di Castrozza - Malga Ces",
@@ -3269,6 +3320,8 @@ ${points}
     'primiero-siror': "Siror",
     'primiero-tonadico': "Tonadico",
     'primiero-transacqua': "Transacqua",
+    'primiero-via-della-frutta-antica': "La via della frutta antica",
+    'rendena-ciclabile-javre-dare-vigo-pelugo': "Javrè – Pelugo cycle path loop",
     'santa-maddalena': "Rundweg St. Magdalena",
     'seiseralm-alla-volta-della-trappola-d-orso-a-s-michele': "Kastelruth bear-trap loop",
     'seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del': "Passo Nigra to Tiers by the Jocher farm",
@@ -3277,6 +3330,8 @@ ${points}
     'sentiero-del-trenino': "Sentiero del Trenino",
     'sentiero-hans-e-paula-steger': "Sentiero Hans e Paula Steger",
     'tre-cime': "Tre Cime di Lavaredo classic circuit",
+    'valgardena-escursione-dalla-cappella-santa-croce-al-brogles': "Santa Croce – Brogles",
+    'valgardena-percorso-dei-masi-tradizionali': "Santa Cristina farms path",
     'valley-view': "Val di Funes Panorama Trail",
     'villnoess-da-russis-fino-al-passo-delle-erbe': "Ponte Russis to Passo delle Erbe",
     'villnoess-dolorama-3a-tappa': "Dolorama stage 3: Rifugio Genova to Resciesa",
@@ -5184,7 +5239,7 @@ function breedInsights(name){
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
-  const VERSION = '1.6.0';
+  const VERSION = '1.7.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -5263,6 +5318,44 @@ function breedInsights(name){
     'route', 'exposure', 'surfaceHazards', 'access',
   ]);
 
+  // A route's sun exposure is a risk only on a warm day. "Little shade" and
+  // "hot tarmac" describe a July afternoon; at 11 °C in October they describe
+  // nothing a dog will feel. The forecast for the walk day decides: when it
+  // stays below the trail page's own "warm" line (22 °C) all day, the route's
+  // heat and shade cost nothing. With no forecast, or one without a day
+  // maximum, nothing is assumed and the route keeps its summer reading.
+  const COOL_DAY_MAX_C = 22;
+  // Cold is a note, never a cost: ORMA knows the temperature and the dog's
+  // weight, but not its coat or whether the day is wet, so it can say what to
+  // carry and cannot size a risk.
+  const COLD_DAY_MAX_C = 5;
+  const SMALL_DOG_KG = 5;
+
+  function dayMaxOf(conditions){
+    return conditions && conditions.status === 'known' && typeof conditions.dayMaxC === 'number'
+      && Number.isFinite(conditions.dayMaxC) ? conditions.dayMaxC : null;
+  }
+
+  function isCoolDay(conditions){
+    const max = dayMaxOf(conditions);
+    return max !== null && max < COOL_DAY_MAX_C
+      && conditions.heatRisk === 'low' && !conditions.hotFromLabel;
+  }
+
+  function isColdDay(conditions){
+    const max = dayMaxOf(conditions);
+    return max !== null && max <= COLD_DAY_MAX_C;
+  }
+
+  // A recorded caution that is only about heat: "Hot tarmac (about 80%
+  // paved)", "Little shade on hot days". One that also names rain, snow or
+  // storms stays, because that half of it is still true on a cool day.
+  // `\bhot\b` does not match "Hotel" or "hottest".
+  function isHeatOnlyHazard(text){
+    text = String(text || '');
+    return /\b(?:hot|heats? up|sunny)\b/i.test(text) && !/weather|rain|snow|storm/i.test(text);
+  }
+
   function item(code, message, vars, messageKey){
     return { code, message, vars:vars || null, messageKey:messageKey || code, impact:0 };
   }
@@ -5327,7 +5420,7 @@ function breedInsights(name){
     const orthopedic = conditions.has('joints') || conditions.has('back')
       || conditions.has('recovering') || traits.backRisk === true;
     const giant = traits.giant === true || (weight !== null && weight >= 45);
-    const toy = weight !== null && weight < 5;
+    const toy = weight !== null && weight < SMALL_DOG_KG;
     const behaviour = deriveBehaviour(dog);
     // A declared low heat tolerance adds sensitivity. A declared robust
     // tolerance deliberately removes nothing: heat injury is fast and
@@ -5384,6 +5477,7 @@ function breedInsights(name){
       chairliftDeclared,
       chairliftSafe,
       impairedVision: conditions.has('vision'),
+      small: toy,
       behaviour,
       // Confidence measures evidence quality, not behavioural detail, so
       // behaviour deliberately does not enter completeness. Adding it would
@@ -5513,7 +5607,12 @@ function breedInsights(name){
       positives.push(item('trail.exposure.none-known', 'No exposed section is recorded.'));
     }
 
-    if(suitability.heatRisk === 'high'){
+    // On a cool walk day the route's heat and shade are not charged and not
+    // praised: today's temperatures already appear as the reason they are fine.
+    const coolDay = isCoolDay(conditions);
+    if(coolDay){
+      // nothing: see isCoolDay
+    }else if(suitability.heatRisk === 'high'){
       penalise(dog.heatSensitive ? 25 : 12, item('trail.heat.high', dog.heatSensitive
         ? 'The route has high heat risk and this dog is heat-sensitive.'
         : 'The route has high baseline heat risk.', null,
@@ -5530,7 +5629,9 @@ function breedInsights(name){
     }
 
     const shade = numberOrNull(suitability.shadePercent);
-    if(shade === null){
+    if(coolDay){
+      // nothing: see isCoolDay
+    }else if(shade === null){
       unknowns.push(item('trail.shade.unknown', 'Shade coverage is unknown.'));
     }else if(shade < 20){
       penalise(10, item('trail.shade.very-low', 'The route has very little shade.'));
@@ -5540,8 +5641,11 @@ function breedInsights(name){
       positives.push(item('trail.shade.good', 'The route has substantial shade.'));
     }
 
-    const hazards = Array.isArray(suitability.surfaceHazards)
+    const recordedHazards = Array.isArray(suitability.surfaceHazards)
       ? suitability.surfaceHazards : null;
+    const hazards = recordedHazards && coolDay
+      ? recordedHazards.filter(hazard => !isHeatOnlyHazard(hazard))
+      : recordedHazards;
     if(hazards === null){
       unknowns.push(item('trail.surface-hazards.unknown', 'Surface hazards are unknown.'));
     }else if(hazards.length){
@@ -5865,6 +5969,11 @@ function breedInsights(name){
       }else{
         unknowns.push(item('conditions.heat.unknown', 'Current heat conditions are unavailable.'));
       }
+      if(isColdDay(conditions) && dog.small){
+        cautions.push(item('conditions.cold.small',
+          `The forecast stays cold (up to ${conditions.dayMaxC} °C). A small dog chills fast at rests, so bring a coat.`,
+          { max:conditions.dayMaxC }));
+      }
     }else{
       unknowns.push(item('conditions.not-included',
         'Current weather and trail conditions are not included in this recommendation.'));
@@ -5975,6 +6084,11 @@ function breedInsights(name){
   return {
     VERSION,
     FITNESS,
+    COOL_DAY_MAX_C,
+    COLD_DAY_MAX_C,
+    isCoolDay,
+    isColdDay,
+    isHeatOnlyHazard,
     CHAIRLIFT_MAX_KG,
     calculateRecommendation,
   };
@@ -6808,8 +6922,47 @@ function effectiveOverrides(profile, adjustOverride){
       : { ok: false, title: 'Water', detail: 'No water source is listed for this route. Carry enough for the dog, roughly 0.5 l per 10 kg on a warm day.' };
   }
 
-  function heatAssessment(trail) {
+  // The walk-day forecast, read by the same rule the score uses, so this
+  // section and the score cannot disagree about whether today is warm. No
+  // forecast (or no engine) means nothing is assumed: the summer reading stays.
+  const engine = () => root.DoloPawsRecommendationV1 || null;
+  const coolDay = conditions => !!(engine() && engine().isCoolDay(conditions));
+  const coldDay = conditions => !!(engine() && engine().isColdDay(conditions));
+  const heatOnly = hazard => !!(engine() && engine().isHeatOnlyHazard(hazard));
+
+  // Recorded cautions arrive as one list. Cars and bikes are not something a
+  // dog walks on, so they are told apart from what is underfoot, and a caution
+  // that is only about heat ("Hot tarmac") belongs with heat.
+  const TRAFFIC_HAZARD = /\b(?:roads?|crossings?|traffic|cars?|vehicles?|cycl\w*|bikes?|streets?|zebra|SS\d+|SP\d+|km\/h)\b/i;
+  function recordedHazards(trail) {
+    const all = (Array.isArray(trail && trail.surfaceHazards) ? trail.surfaceHazards : [])
+      .map(hazard => String(hazard || '').trim().replace(/[.;]+$/, ''))
+      .filter(Boolean);
+    const heat = all.filter(heatOnly);
+    const rest = all.filter(hazard => !heat.includes(hazard));
+    return {
+      heat,
+      traffic: rest.filter(hazard => TRAFFIC_HAZARD.test(hazard)),
+      underfoot: rest.filter(hazard => !TRAFFIC_HAZARD.test(hazard)),
+    };
+  }
+
+  function heatAssessment(trail, conditions) {
     const shade = typeof trail.shadeCoverage === 'number' ? trail.shadeCoverage : null;
+    // A cool day makes the route's sun exposure irrelevant; a cold one turns
+    // the advice the other way.
+    if (coldDay(conditions)) {
+      return { ok: false, title: 'Cold day', guide: null, detail: `The forecast stays cold, up to ${conditions.dayMaxC} °C. Keep rests short, dry your dog after wet stretches, and bring a coat for a small or short-coated dog.` };
+    }
+    if (coolDay(conditions)) {
+      return { ok: true, title: 'Heat & shade', detail: `The forecast stays cool, up to ${conditions.dayMaxC} °C, so sun and shade do not matter for this walk.` };
+    }
+    const hot = recordedHazards(trail).heat;
+    const withHot = result => (result && hot.length && !result.ok ? { ...result, items: hot } : result);
+    return withHot(summerHeat(trail, shade));
+  }
+
+  function summerHeat(trail, shade) {
     if (!categoryVerified(trail, 'heat')) {
       return { ok: false, title: 'Plan for limited shade', detail: 'Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.' };
     }
@@ -6846,12 +6999,23 @@ function effectiveOverrides(profile, adjustOverride){
     return null;
   }
 
+  // What is underfoot, said first, then each recorded caution as its own item.
+  // Pad advice fits the ground: rough ground cuts pads, smooth ground does not.
   function surfaceAssessment(trail) {
-    if (Number(trail.terrainRank) === 0 && !(trail.surfaceHazards || []).length) return null;
-    const hazards = Array.isArray(trail.surfaceHazards) && trail.surfaceHazards.length
-      ? ` Reported hazards: ${trail.surfaceHazards.join('; ')}.`
-      : '';
-    return { ok: false, title: 'Surface & footing', detail: `${trail.terrainType || 'Variable mountain terrain'}.${hazards} Check pads at breaks and consider booties for tender paws.` };
+    const underfoot = recordedHazards(trail).underfoot;
+    if (Number(trail.terrainRank) === 0 && !underfoot.length) return null;
+    const ground = String(trail.terrainType || 'Variable mountain terrain').trim().replace(/[.;]+$/, '').replace(/:\s+/, ', ');
+    const rough = Number(trail.terrainRank) > 0 || /rock|scree|stony|stones|boulder|roots/i.test(ground);
+    const detail = `Underfoot: ${ground.charAt(0).toLowerCase()}${ground.slice(1)}.`
+      + (rough ? ' Check pads at breaks.' : '');
+    return { ok: false, title: 'Surface & footing', detail, items: underfoot };
+  }
+
+  // Roads, crossings and bikes: a lead question, not a paw question.
+  function trafficAssessment(trail) {
+    const traffic = recordedHazards(trail).traffic;
+    if (!traffic.length) return null;
+    return { ok: false, title: 'Roads & traffic', detail: 'Keep your dog on a short lead in these places:', items: traffic };
   }
 
   function assessmentNote(trail) {
@@ -6879,6 +7043,7 @@ function effectiveOverrides(profile, adjustOverride){
     exposureAssessment,
     livestockAssessment,
     surfaceAssessment,
+    trafficAssessment,
     assessmentNote,
   });
 })(window);
@@ -47250,8 +47415,7 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short walk from Pozza to the Masc Aloch farm and Malga Aloch, with its sunny terrace facing the Rosengarten. The APT lists 2 km and 58 m of ascent.'
     },
     'fassa-molin-de-pezol': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.56 (425 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 1.56 is the board’s own side trip, declared in sideTrips, and its first stretch is walked both ways, so it is a lollipop, not a loop; the line passes the board-walk bar.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Ruote del tempo: al Molin de Pèzol ancora funzionante”, tagged “animali accettati”. The line
       // is drawn on 26 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -47263,8 +47427,9 @@ function effectiveOverrides(profile, adjustOverride){
       distance: 3.7,
       elevation: 38,
       hours: '1',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A loop from Piaza de Comun in Pozza over the Ciancoal meadows to Pera, past the dairy and the Molin de Pèzol watermill, and back to Pozza.',
+      sideTrips: [{ km: 1.56, note: 'Out to Piciocaa on the Ciancoal meadows and back: the APT’s directions carry on to Piciocaa and then say to turn back, and the APT’s own line turns there.' }],
       routeNumberGuidance: {
         "mode": "landmarks",
         "start": "Start at Piaza de Comun in Pozza, the tourist board’s start.",
@@ -47313,7 +47478,7 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -47323,7 +47488,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Pozza di Fassa (Piaza de Comun), the APT’s start; drinking water at the start, at km 2.6 and at km 3.1 (OSM nodes 737144778, 298689646, 1358282328).',
         elevation: 'Official 3.7 km, 38 m up and 28 m down, 55 min, highest point 1,330 m, lowest 1,303 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.56 (425 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -47488,8 +47653,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A loop from Vigo di Fassa on the old shepherds’ tracks to the hamlets of Vallonga and Tamion, with their 18th-century church and restored barns. The APT lists 7.2 km and 245 m of ascent.'
     },
     'fassa-segreti-di-una-volta': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.48 (76 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 1.48 (76 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 7.9 km on 63 OSM ways with 98% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (new-trail batch 11).
       // APT Val di Fassa’s walk “I segreti di una volta della tradizione contadina di montagna”, tagged “animali accettati”. The line
       // is drawn on 66 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -47551,17 +47716,17 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Pozza and the meadows above it, which the walk follows, from the Buffaure cable car in July (Bbruno, CC BY-SA 3.0), 155 m from the line.',
-        route: 'Official loop 7.9 km from Vigo di Fassa (Strada de Piz), as APT Val di Fassa publishes it; the stored line is drawn on 66 OSM ways along the APT’s published line, 8.1 km, with 99% of the APT line within 25 m of it.',
+        route: 'Official loop 7.9 km from Vigo di Fassa (Strada de Piz), as APT Val di Fassa publishes it; the stored line is drawn on 63 OSM ways along the APT’s published line, 7.9 km, with 98% of the APT line within 25 m of it.',
         routeNumbers: 'No route number: from Strada de Piz in Vigo along the edge of the wood above the meadows of Pozza, once fields of barley, rye and potatoes divided among every heir, to Pera, and back, facing the Costabella ridge and the Vallaccia group.',
         mapPoints: 'Start at Vigo di Fassa (Strada de Piz), the APT’s start; drinking water at the start, at km 3, at km 3.5 and at km 5.2 (OSM nodes 2405075281, 10111574534, 302580832, 11067225731).',
         elevation: 'Official 7.9 km, 176 m up and 176 m down, 2 h 20 min, highest point 1,424 m, lowest 1,287 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.48 (76 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -48235,8 +48400,7 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A gentle loop from Mazzin past roofed village fountains to the hamlet of Ronch, down the old Via Crucis to Pera and its church of San Lorenzo, and back along the Avisio. The APT lists 4.7 km and 152 m of ascent.'
     },
     'fassa-ciajeole-malga-roncac': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.43 (808 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 1.43 is the board’s own side trip, declared in sideTrips, and its first stretch is walked both ways, so it is a lollipop, not a loop; the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Fassa batch 13).
       // APT Val di Fassa’s walk “Passi nella storia: dall’antico rione di Ciajeole a Malga Roncac”, tagged “animali accettati”. The line
       // is drawn on 14 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
@@ -48247,8 +48411,9 @@ function effectiveOverrides(profile, adjustOverride){
       distance: 3,
       elevation: 137,
       hours: '1',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'Up from the centre of Moena through the old quarter of Ciajeole to Malga Roncac at the edge of the larch wood, then back down, mostly the same way and for the last stretch by Strada de Rancolin, Strada Saslonch and Strada de Moene.',
+      sideTrips: [{ km: 1.43, note: 'Up to Malga Roncac and back the same way as far as the Strada de Even junction, as the APT’s directions say.' }],
       routeNumberGuidance: {
         "mode": "landmarks",
         "start": "Start at Piaz de Sotegrava in the centre of Moena, the tourist board’s start.",
@@ -48291,7 +48456,7 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -48301,7 +48466,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Moena (Piaz de Sotegrava), the APT’s start; drinking fountains in Moena in the first 200 m (OSM nodes 1884458673, 3780887514, 9048236785); food at Malga Roncac, km 1.1.',
         elevation: 'Official 3 km, 137 m up and 137 m down, 1 h, highest point 1,306 m, lowest 1,170 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.43 (808 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -49422,8 +49587,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A shaded forest loop in the Val Noana from the Rifugio Fonteghi to Malga Valpiana and the meadows of Valpiana, among great firs and beeches. The APT lists 5.2 km and 184 m of ascent.'
     },
     'primiero-anello-poit-cordogne-san-giovanni': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.70 (168 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 3.70 (168 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 5.2 km on 10 OSM ways with 96% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 2).
       // APT San Martino di Castrozza’s walk “Anello Poit - Cordognè - San Giovanni”.
       // The line is drawn on 13 OSM ways along the line the APT publishes
@@ -49475,17 +49640,17 @@ function effectiveOverrides(profile, adjustOverride){
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The old chapel of San Giovanni above the meadows the walk crosses, in August (Nick Savchenko, CC BY-SA 2.0), 47 m from the line.',
-        route: 'Official loop 5 km from Poit, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 13 OSM ways along the APT’s published line, 5.5 km, with 99% of the APT line within 25 m of it.',
+        route: 'Official loop 5 km from Poit, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 10 OSM ways along the APT’s published line, 5.2 km, with 96% of the APT line within 25 m of it.',
         routeNumbers: 'No route number: from the car park at Fedai along the signed path up the crest of Monte Cordognè, with views of the Vette Feltrine, San Giovanni, the Val Noana lake and the Primiero valley, down towards Falasorni; left on the road and then a path onto the San Giovanni meadows, where a short climb leads to the old chapel, then along the road to Poit and down to the car park.',
         mapPoints: 'Start at Poit, the APT’s start; drinking water at km 2.4 and at km 4.4 (OSM nodes 3326240920, 7684807194).',
         elevation: 'Official 5 km, 181 m up and 179 m down, 2 h, highest point 1,301 m, lowest 1,157 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.70 (168 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -49582,8 +49747,7 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short history walk from Sant’Uberto, at the entrance to the Ampezzo Dolomites park, up to the ruins of the medieval castle of Botestagno over the Boite valley. The board lists 2.6 km and 80 m of ascent.'
     },
     'cortina-malga-ra-stua': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.24 (224 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 3.24 is the board’s own side trip, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (new-trail Belluno batch 1).
       // Cortina Marketing’s walk “Verso Malga Ra Stua”, drawn on 15 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Cortina’s Polizia Urbana Art. 36 requires a lead. The Ampezzo
@@ -49596,8 +49760,9 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2.5',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the Sant’Uberto car park (“tornichè”) up path 6 through the forest and the gorge of the Boite to Malga Ra Stua, and back.',
+      sideTrips: [{ km: 3.24, note: 'Out to the hut of Malga Ra Stua and back: the walk goes to the meadow and the hut and back, and the board’s own line turns at the hut.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -49607,7 +49772,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the board’s start; drinking water at km 2 (OSM nodes 10035808374).',
         elevation: 'Official 6.3 km, 332 m up and 331 m down, 2 h 30 min, highest point 1,686 m, lowest 1,440 m (Cortina Marketing). The board’s Outdooractive page gives 6.3 km, 283 m and 2 h 30; the record carries the board page’s 332 m.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.24 (224 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -49647,8 +49812,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A walk from Sant’Uberto up the forest and the waterfalls of the Boite to Malga Ra Stua, in the Ampezzo Dolomites park. The board lists 6.3 km and 332 m of ascent.'
     },
     'cortina-passeggiata-gourmet': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.67 (73 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 1.67 (73 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 4.5 km on 13 OSM ways with 100% of the board's line within 25 m of it; its start is walked both ways, so it is a lollipop, as the board’s directions say, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (new-trail Belluno batch 1).
       // Cortina Marketing’s walk “Passeggiata gourmet”, drawn on 16 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Cortina’s Polizia Urbana Art. 36 requires a lead.
@@ -49658,20 +49823,20 @@ function effectiveOverrides(profile, adjustOverride){
       distance: 4.3,
       elevation: 185,
       hours: '2.25',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A loop from Malga Peziè de Parù on path 406 (Sentiero Allaria) to the Locanda del Cantoniere, on to Baita Resch and back on path 406, past three places to eat.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Punta Marietta seen from Vervei on the walk, in October (Ximonic, CC BY-SA 4.0), 7 m from the line.',
-        route: 'Official loop 4.3 km from Malga Pezié de Parù, as Cortina Marketing publishes it; the stored line is drawn on 16 OSM ways along the board’s published line, 4.6 km, with 100% of the board’s line within 25 m of it.',
+        route: 'Official loop 4.3 km from Malga Pezié de Parù, as Cortina Marketing publishes it; the stored line is drawn on 13 OSM ways along the board’s published line, 4.5 km, with 100% of the board’s line within 25 m of it.',
         routeNumbers: 'Paths 406 and 403: from the car park by Malga Peziè de Parù on path 406, the Sentiero Allaria, to the Locanda del Cantoniere on the Dolomites road (about 30 minutes), on to the junction with path 403 and right to Baita Resch, then back on path 406 to the start.',
         mapPoints: 'Start at the board’s start; drinking water at km 0.1 (OSM nodes 5829868885).',
         elevation: 'Official 4.3 km, 185 m up and 185 m down, 2 h 15 min, highest point 1,687 m, lowest 1,533 m (Cortina Marketing). The board’s Outdooractive page gives 4.3 km, 157 m and 1 h 45; the record carries the board page’s 185 m and 2 h 15.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.67 (73 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -50187,8 +50352,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short loop from Roda through the damp wood above Ziano di Fiemme, crossing little mountain streams to the Rio Sadole. The APT lists 2.2 km and 100 m of ascent.'
     },
     'fiemme-giro-cavalese-castello': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.54 (132 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 4.54 (132 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 4.7 km on 33 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 1).
       // APT Val di Fiemme’s walk “Montagna Senza Limiti - Giro ad anello Cavalese - Castello di Fiemme”. The line is drawn on 33 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -50201,17 +50366,17 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from the hospital in Cavalese along the cycle and foot path above the meadows of Carano, down to Castello di Fiemme, and back up by quiet lanes to Cavalese.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Cavalese, its bell tower and the mountains behind, seen from beside the hospital where the walk starts, in June (Mario Penner, CC BY 3.0), 59 m from the line.',
-        route: 'Official loop 4.8 km from Cavalese (hospital car park), as APT Val di Fiemme publishes it; the stored line is drawn on 33 OSM ways along the APT’s published line, 5 km, with 100% of the APT line within 25 m of it.',
+        route: 'Official loop 4.8 km from Cavalese (hospital car park), as APT Val di Fiemme publishes it; the stored line is drawn on 33 OSM ways along the APT’s published line, 4.7 km, with 99% of the APT line within 25 m of it.',
         routeNumbers: 'No route number: one of the APT’s “Montagna Senza Limiti” walks, laid out for wheelchairs, all on tarmac. From the hospital down Via Dossi and up Via Val di Ronco to Via Trento, along the level cycle and foot path past the Hotel Garden and the dairy, a terrace facing the Lagorai, across the Strada Statale and down to Via Latemar and Via Dolomiti in Castello di Fiemme, past the Roman village remains seen under glass, then back over a wooden bridge, a short 11% climb to a wayside shrine, Via Marmolaia and Via Dossi to the hospital.',
         mapPoints: 'Start at Cavalese (hospital car park), the APT’s start; drinking water at the start and at km 2.7 (OSM nodes 288480079, 261081761).',
         elevation: 'Official 4.8 km, 65 m up and 65 m down, 1 h 30 min, highest point 1,008 m, lowest 945 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.54 (132 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -50318,8 +50483,7 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A level stroll from the Prà del Manz meadows above Capriana through the larch woods to the hill village of Anterivo / Altrei in South Tyrol, and back the same way. The APT lists 5.5 km and 60 m of ascent.'
     },
     'fiemme-varena-spianez': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.12 (2555 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 4.12 is the board’s own side trip, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 2).
       // APT Val di Fiemme’s walk “Col passeggino tra Varena e Spianez”. The line is drawn on 25 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -50331,8 +50495,9 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the square in Varena down past the church and out across the sunny meadows on the Passeggiata Spianez to the Maso Spianez farm, and back by the same track and then the lanes through the lower village.',
+      sideTrips: [{ km: 4.12, note: 'Out across the Spianez meadows to the Maso Spianez farm and back by the same track, as the board’s directions say.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -50342,7 +50507,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Varena (the village square), the APT’s start; drinking water at the start and at km 1.2 (OSM nodes 7120336090, 284761499).',
         elevation: 'Official 8.6 km, 120 m up and 120 m down, 2 h, highest point 1,194 m, lowest 1,068 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.12 (2555 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -50552,8 +50717,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short, gentle walk from Malga Sass above Valfloriana along the Prai de le Fior forest road, through larch woods and flowering meadows with wide views, and back the same way. The APT lists 3.1 km and 103 m of ascent.'
     },
     'fiemme-passo-oclini': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.54 (72 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 3.54 (72 m), a step the board's own line never takes (it never comes within 25 m of the turn), so that stretch was cut.
+      // The line is now 4.7 km on 14 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 3).
       // APT Val di Fiemme’s walk “Passo Oclini, tra il Corno Nero e il Corno Bianco”. The line is drawn on 15 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -50566,17 +50731,17 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from the Passo Oclini car park along the level forest road to Malga Gurndin and on to the Isi Hütte, then back to the pass on a path across the pasture.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The little Maria Schnee chapel of 1911 by the Berghotel Jochgrimm at the start, with the Corno Bianco / Weißhorn behind, in September (HaSt, CC BY-SA 4.0), 30 m from the line.',
-        route: 'Official loop 4.7 km from Passo Oclini / Jochgrimm car park, as APT Val di Fiemme publishes it; the stored line is drawn on 15 OSM ways along the APT’s published line, 4.9 km, with 99% of the APT line within 25 m of it.',
+        route: 'Official loop 4.7 km from Passo Oclini / Jochgrimm car park, as APT Val di Fiemme publishes it; the stored line is drawn on 14 OSM ways along the APT’s published line, 4.7 km, with 99% of the APT line within 25 m of it.',
         routeNumbers: 'No route number: from the car park at Passo Oclini / Jochgrimm, between the Corno Nero and the Corno Bianco, along the level forest road (Forststraße Oberradein – Gurndin – Jochgrimm, closed to private cars) for about 45 minutes to Malga Gurndin, on along the road following the signs for the Isi Hütte (Kalditscher Wirt), then back to the pass on a path across the pasture, following the signs for Passo Oclini.',
         mapPoints: 'Start at Passo Oclini / Jochgrimm car park, the APT’s start; drinking water none mapped.',
         elevation: 'Official 4.7 km, 160 m up and 160 m down, 1 h 30 min, highest point 1,991 m, lowest 1,834 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.54 (72 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -50614,8 +50779,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'An easy loop from the Passo Oclini / Jochgrimm through larch woods and alpine pastures to Malga Gurndin and the Isi Hütte, under the Corno Nero and the Corno Bianco. The APT lists 4.7 km and 160 m of ascent.'
     },
     'fiemme-masi-comunicanti': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.54 (103 m), km 4.65 (52 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 4.49 (52 m, twice), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 7.2 km on 38 OSM ways with 100% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 3).
       // APT Val di Fiemme’s walk “Masi Comunicanti”. The line is drawn on 38 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -50628,17 +50793,17 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Capriana down to the Avisio, along the river past the old farmsteads of Maso Lio, Le Caneve, Maso Ponte and Rover, up to the hamlet of Carbonare and back to Capriana past the Meneghina mill.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The church of the Immacolata in Carbonare, which the walk passes, in July (Syrio, CC BY-SA 4.0), 11 m from the line.',
-        route: 'Official loop 7.4 km from Capriana (Piazza Roma), as APT Val di Fiemme publishes it; the stored line is drawn on 38 OSM ways along the APT’s published line, 7.4 km, with 100% of the APT line within 25 m of it.',
+        route: 'Official loop 7.4 km from Capriana (Piazza Roma), as APT Val di Fiemme publishes it; the stored line is drawn on 38 OSM ways along the APT’s published line, 7.2 km, with 100% of the APT line within 25 m of it.',
         routeNumbers: 'No route number: from Piazza Roma in Capriana down to the Val di Cembra road (SS612) by the Ristorante Miravalle and the turning for Maso Lio, to Maso Lio and Le Caneve, then a path along the Avisio to Maso Ponte and Maso Rover. From the fountain at Rover up the road to cross the SS612 again, up the concrete ramp opposite to the path for Carbonare, then back to Capriana on the tarred road to the Meneghina mill and the path beside the road into the village.',
         mapPoints: 'Start at Capriana (Piazza Roma), the APT’s start; drinking water at the start, at km 3.8, at km 5.2 and at km 6.9 (OSM nodes 1239897159, 7540293505, 1886719937, 1239897166).',
         elevation: 'Official 7.4 km, 400 m up and 400 m down, 4 h, highest point 1,018 m, lowest 688 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.54 (103 m), km 4.65 (52 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -51075,8 +51240,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A loop from Mezzano along the old Via Nova and over a 70 m rope suspension bridge high above the Rio San Piero to Imer, back through meadows and fruit trees. The APT lists 6.2 km and 240 m of ascent.'
     },
     'primiero-via-della-frutta-antica': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.31 (89 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 3.31 (89 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 7.9 km on 29 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Primiero batch 5).
       // APT San Martino di Castrozza’s walk “La via della frutta antica”.
       // The line is drawn on 30 OSM ways along the line the APT publishes
@@ -51095,17 +51260,17 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'point-to-point',
       routeShapeNote: 'A one-way walk from Pieve along the old Via Nova above Mezzano and Imer to Passo Gobbera, past more than forty old fruit trees. Back the same way, by the bus that passes Passo Gobbera, or on the signed paths down to Mezzano or Imer.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The main street of Fiera di Primiero by Pieve, near the start, the Pale di San Martino behind, in August (laniuscollurio on Mapillary, CC BY-SA 4.0), 69 m from the line.',
-        route: 'Official one-way walk 8 km from Pieve, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 30 OSM ways along the APT’s published line, 8.1 km, with 100% of the APT line within 25 m of it.',
+        route: 'Official one-way walk 8 km from Pieve, as the APT San Martino di Castrozza publishes it; the stored line is drawn on 29 OSM ways along the APT’s published line, 7.9 km, with 99% of the APT line within 25 m of it.',
         routeNumbers: 'SAT trail 357 for much of the way: from the church of Santa Maria Assunta in Pieve along Via San Rocco south-west to the Capitello della Peste and the signed start; up the mule track (357) to the Piani di Molaren; following the signs for Passo Gobbera to the road to Camp; across it, the path leads shortly to the rope bridge over the Rio San Piero. Over it, on path and then road to Solàn and the Col dei Fagheri fork; right to Solàn Grant and its great beech, left on a gravel road and a woodland path, across a small valley and up right to the Col dei Betteghe, then down to Passo Gobbera.',
         mapPoints: 'Start at Pieve church, the APT’s start; drinking water at the start, at km 0.4, at km 1.5 and at km 3.2 (OSM nodes 804127875, 5735811691, 1563103883, 820911498).',
         elevation: 'Official 8 km, 321 m up and 52 m down, 3 h, highest point 1,038 m, lowest 717 m (APT San Martino di Castrozza).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.31 (89 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -51524,8 +51689,7 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A loop round the Lago di Lases and up into the cool Val Fredda with its old ice pits, through the Lona-Lases nature reserve. The APT lists 4.9 km and 150 m of ascent.'
     },
     'cembra-san-leonardo-lisignago': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 0.46 (74 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 0.46 is the board’s own side trip, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
       // APT Fiemme Cembra’s walk “San Leonardo e le campagne di Lisignago”. The line is drawn on 21 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -51537,8 +51701,9 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Lisignago down through the vineyards to the hilltop chapel of San Leonardo, on to the Rio Ischiele, up through the woods to Maso Spedenal and back across the fields.',
+      sideTrips: [{ km: 0.46, note: 'Up to the hilltop chapel of San Leonardo and back: the board’s directions go to the chapel, and the board’s own line turns beside it.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -51548,7 +51713,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Lisignago, behind the church of San Biagio, the APT’s start; drinking water none mapped.',
         elevation: 'Official 4.4 km, 280 m up and 280 m down, 2 h, highest point 582 m, lowest 395 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 0.46 (74 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -51810,8 +51975,7 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A loop through the hamlets of Segonzano, past the ruined Castello di Segonzano on its rock and down towards the Avisio, back through the little gorge of Prà. The APT lists 6.1 km and 190 m of ascent.'
     },
     'cembra-paese-beghei': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.25 (273 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 1.25 is the board’s own side trip, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
       // APT Fiemme Cembra’s walk “Il paese dei “Beghei””. The line is drawn on 20 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -51823,8 +51987,9 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Sevignano up through the lanes of the village with its wooden owls and artworks, through the larch wood to the meadows of Fontane and the great beech of Fo Gross, down a forest road to Prada and back on a level lane.',
+      sideTrips: [{ km: 1.25, note: 'The board’s short detour right on a forest road to the Fo Gross, the great old beech of Sevignano, and back.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -51834,7 +51999,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Sevignano (car park by the war memorial on the SP 71), the APT’s start; drinking water at the start (OSM nodes 12873942865).',
         elevation: 'Official 4 km, 200 m up and 200 m down, 2 h, highest point 895 m, lowest 687 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.25 (273 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -51970,8 +52135,7 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short loop round the village of Grauno, past its church and through the woods where healing herbs grow. The APT lists 2.1 km and 100 m of ascent.'
     },
     'cembra-giro-monte-corona': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.80 (100 m), km 5.17 (64 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turns at km 4.80, km 5.17 are side trips the board describes, declared in sideTrips. Its first stretch out of the village is walked both ways, so it is a lollipop, not a loop; the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
       // APT Fiemme Cembra’s walk “Giro panoramico sul Monte Corona”. The line is drawn on 19 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -51981,10 +52145,11 @@ function effectiveOverrides(profile, adjustOverride){
       distance: 7.2,
       elevation: 390,
       hours: '2.5',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A loop from Ville di Giovo up through the vineyards and the woods below the cliffs to the top of Monte Corona and its viewpoint, along the ridge and down through a cleft in the rock to a gravel road and back to the village.',
+      sideTrips: [{ km: 4.8, note: 'Up to the top of Monte Corona and back to the path.' }, { km: 5.17, note: 'Out to the viewpoint and back: the board says it has a large cross, tables and benches, and a panorama board.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -51994,7 +52159,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Ville di Giovo, the APT’s start; drinking water at the start (OSM nodes 8170134089).',
         elevation: 'Official 7.2 km, 390 m up and 390 m down, 2 h 40 min, highest point 1,021 m, lowest 705 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.80 (100 m), km 5.17 (64 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -52524,8 +52689,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short loop over the summer pastures of Malga Vernera above Sover, on marked paths and forest roads with wide views over the Val di Cembra. The APT lists 3.6 km and 185 m of ascent.'
     },
     'altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.92 (97 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 3.92 (97 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 7.6 km on 50 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 1).
       // The Alta Badia tourist board’s walk “Escursione da La Villa al lago Lech da Sompunt”, drawn on 53 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Badia (own dog regulation, lead and muzzle).
@@ -52538,17 +52703,17 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from La Villa up through meadows and forest to the small lake Lech da Sompunt, down through Ciaminades to Pedraces, and back to La Villa on a quiet path along the river.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Pedraces in Badia, where the loop comes down to the main road before following the river back, in June (Tiia Monto, CC BY-SA 3.0), 2 m from the line.',
-        route: 'Official loop 7.5 km from La Villa bus stop, as the Alta Badia tourist board publishes it; the stored line is drawn on 53 OSM ways along the board’s published line, 7.8 km, with 99% of the board’s line within 25 m of it.',
+        route: 'Official loop 7.5 km from La Villa bus stop, as the Alta Badia tourist board publishes it; the stored line is drawn on 50 OSM ways along the board’s published line, 7.6 km, with 99% of the board’s line within 25 m of it.',
         routeNumbers: 'From the La Villa bus stop up road no. 11 to the top of the village; right of the parish church, along the small tarred lane past the houses, gently up across the meadow (a ski slope in winter) and along the forest on an easy path to Lech da Sompunt (45 min), where the Sas dla Crusc is reflected in the water; then gently down to Ciaminades and Pedraces, and back to La Villa on a quiet path beside the river.',
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.4, at km 1.4 and at km 1.9 (OSM nodes 4319958092, 2464363648, 1352469015, 1352468995).',
         elevation: 'Official 7.5 km, 172 m up and 174 m down, 2 h 30 min, highest point 1,492 m, lowest 1,318 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.92 (97 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -52808,8 +52973,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A gentle walk down the valley from Corvara to La Villa beside the stream, on the “Tru dl’ega”. The board lists 5.1 km, 21 m up and 132 m down, one way.'
     },
     'altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 13.58 (437 m), km 14.02 (341 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 13.58 (437 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 13.5 km on 27 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 2).
       // The Alta Badia tourist board’s walk “Da Pederoa ai masi Picedac, Aiarëi e Costa fino a Pederoa”, drawn on 35 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: La Val (no regulation, national rule); Badia (own dog regulation, lead and muzzle).
@@ -52822,17 +52987,17 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Pederoa in the lower Val Badia up a quiet road to the farms of Picedac, on path 8 past Aiarëi to Costa, and back down path 8A beside the river.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Forest and high farms above La Val from the meadows on the loop, in June (Amelia Pridgeon, CC BY 4.0), 7 m from the line.',
-        route: 'Official loop 13.5 km from Pederoa, opposite the Pizzeria Traföi, as the Alta Badia tourist board publishes it; the stored line is drawn on 35 OSM ways along the board’s published line, 14.4 km, with 99% of the board’s line within 25 m of it.',
+        route: 'Official loop 13.5 km from Pederoa, opposite the Pizzeria Traföi, as the Alta Badia tourist board publishes it; the stored line is drawn on 27 OSM ways along the board’s published line, 13.5 km, with 99% of the board’s line within 25 m of it.',
         routeNumbers: 'Paths 8 and 8A: from Pederoa, opposite the Pizzeria Traföi, along a road with little traffic towards Picedac for about 3.5 km; from Picedac on path 8 past the farms of Aiarëi to Costa, then path 8A down beside the river back to Pederoa.',
         mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
         elevation: 'Official 13.5 km, 407 m up and 407 m down, 3 h 50 min, highest point 1,546 m, lowest 1,140 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 13.58 (437 m), km 14.02 (341 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -52939,8 +53104,7 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A climb from Furnacia above La Val across the edge of the Armentara meadows to the sanctuary of Santa Croce below the Sas dla Crusc. The board lists 4.2 km and 324 m of ascent, one way.'
     },
     'altabadia-da-la-val-ai-prati-di-rit': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 10.68 (109 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 10.68 is the board’s own side trip, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Alta Badia batch 3).
       // The Alta Badia tourist board’s walk “Da La Val ai prati di Rit”, drawn on 59 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: La Val (no regulation, national rule).
@@ -52952,8 +53116,9 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '4.75',
       routeShape: 'loop',
       routeShapeNote: 'A loop from La Val up past the chapel of Santa Barbara and the farms of Ciablun, Runch and Biei to the small Rit lake and the high Rit meadows, along a grassy ridge to the Ütia da Rit and back down through Spëscia.',
+      sideTrips: [{ km: 10.68, note: 'The board’s short detour right to the Rit cross, the best viewpoint, and back.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -52963,7 +53128,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 6.9 and at km 11.9 (OSM nodes 8264695632, 1407390138, 2445015358).',
         elevation: 'Official 14.1 km, 728 m up and 728 m down, 4 h 45 min, highest point 2,021 m, lowest 1,295 m (Società Cooperativa Turistica Alta Badia). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 10.68 (109 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -53354,8 +53519,7 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short high loop from the top of the Resciesa funicular above Ortisei to the summit cross and the chapel of Santa Croce, in the Puez-Odle nature park. The board lists 5 km and 197 m of ascent.'
     },
     'valgardena-escursione-dalla-cappella-santa-croce-al-brogles': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 8.79 (2454 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 8.79 is the board’s own side trip, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 1).
       // The Val Gardena tourist board’s walk “Escursione dalla Cappella Santa Croce al Brogles”, drawn on 25 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Ortisei (its 2019 dog regulation: lead ≤1.5 m, muzzle carried).
@@ -53367,8 +53531,9 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '3.8',
       routeShape: 'loop',
       routeShapeNote: 'A long high loop from the top of the Resciesa funicular past the Rifugio Resciesa and the chapel of Santa Croce to the summit cross, along the ridge to the Passo Valluzza and the Brogles alp, and back across the Costa dl Cason.',
+      sideTrips: [{ km: 8.79, note: 'Out on path 35 to the Brogles saddle and back along the Costa dl Cason on path 35, as the board’s directions say.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -53378,7 +53543,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
         elevation: 'Official 13 km, 422 m up and 422 m down, 3 h 48 min, highest point 2,282 m, lowest 2,012 m (Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 8.79 (2454 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -54056,8 +54221,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short walk from the Pragser Wildsee along its west shore and up path 19 to the Grünwaldalm. The board lists 2.1 km and 118 m of ascent, one way.'
     },
     'giudicarie-tione-bolbeno-madonna-del-lares': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.61 (119 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 1.61 (114 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 3.2 km on 19 OSM ways with 96% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Madonna di Campiglio’s walk “Tione di Trento - Bolbeno - Madonna del Lares”, drawn on 19 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Borgo Lares 88% (no regulation, national rule) and Tione di Trento 12% (Art. 30).
@@ -54069,17 +54234,17 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from Via Baita in Tione along the cycle path beside the Arnò to Bolbeno, past the ski slope and up the tarmac forest road and a short stepped path to the Madonna del Lares chapel; come back the same way, downhill.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The portico of the Madonna del Lares chapel at the end of the walk, in August (zonta72 on Mapillary, CC BY-SA 4.0), 5 m from the line.',
-        route: 'Official one-way walk 3.1 km from Via Baita, Tione di Trento, as APT Madonna di Campiglio publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 3.4 km, with 99% of the APT’s line within 25 m of it.',
+        route: 'Official one-way walk 3.1 km from Via Baita, Tione di Trento, as APT Madonna di Campiglio publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 3.2 km, with 96% of the APT’s line within 25 m of it.',
         routeNumbers: 'Not a numbered route: from Tione onto the cycle path coming down from the Val Rendena, through the woods beside the Arnò stream to Bolbeno (Borgo Lares); past the ski slope, up the tarmac forest road towards the Madonna del Lares with views of Tione and the Rendena mountains; just after the viewpoint a stone fountain on the left; then left onto a path that climbs a few steps through the woods to the clearing and the chapel. Back the same way.',
         mapPoints: 'Start at the APT’s start in Via Baita, Tione; drinking water at the start, at km 1, at km 1.2, at km 1.6, at km 2.6 and at km 3.1 (OSM nodes 2378442143, 9530598419, 9530618721, 850580827, 8548378118, 674032225, 674032223, 1868799976).',
         elevation: 'Official 3.1 km, 238 m up and 30 m down, 1 h 15 min, highest point 794 m, lowest 557 m (Madonna di Campiglio Azienda per il Turismo); the stored profile runs 566–790 m.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.61 (119 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -54138,8 +54303,7 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short climb from Tione along the Arnò stream to Bolbeno and up through the woods to the Madonna del Lares, a chapel in a quiet clearing. The APT lists 3.1 km and 238 m of ascent, one way.'
     },
     'giudicarie-san-martino-bosco-scolpito': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.23 (131 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turns at km 3.23 are side trips the board describes, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Madonna di Campiglio’s walk “San Martino e il sentiero del bosco scolpito”, drawn on 19 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Commune: Pieve di Bono-Prezzo (animal regulation, Art. 7).
@@ -54150,8 +54314,9 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1.8',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the car park by the information office below Cologna up through the woods past carved wooden sculptures and a picnic glade to the ruined church of San Martino, then down a steep, narrow path towards the village.',
+      sideTrips: [{ km: 3.23, note: 'Out to the ruined chapel of San Martino and its view over the Valle del Chiese, and back, as the board describes.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -54161,7 +54326,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the APT’s start below Cologna; drinking water at km 3, at km 3.9 and at km 4.1 (OSM nodes 2568331930, 2568332294, 2568332356).',
         elevation: 'Official 4.4 km, 250 m up and 216 m down, 1 h 45 min, highest point 730 m, lowest 497 m (Madonna di Campiglio Azienda per il Turismo); the stored profile runs 496–718 m.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.23 (131 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -54308,8 +54473,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A level loop from Tione through the riverside woods by the chapel of San Vigilio, over a swinging rope bridge across the Sarca and back along the cycle path. The APT lists 7.2 km and 91 m of ascent.'
     },
     'rendena-ciclabile-javre-dare-vigo-pelugo': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.38 (104 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 4.38 (102 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 7.2 km on 38 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Madonna di Campiglio’s walk “Giro della Ciclabile Javrè - Darè - Vigo - Pelugo”, drawn on 46 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Porte di Rendena 81% and Pelugo 17% (neither publishes a dog regulation, national rule).
@@ -54321,17 +54486,17 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from the information point at Villa Rendena down to the Val Rendena cycle path, south to the bridge over the Sarca, back north on the far bank by lanes, a track and a path to Parco Masere, and south again on the cycle path and a quiet road to the start.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Val Rendena cycle path beside the Sarca, on the line, in October (Adert, CC BY-SA 4.0), 9 m from the line.',
-        route: 'Official loop 7.2 km from the Porte di Rendena information point, Villa Rendena, as APT Madonna di Campiglio publishes it; the stored line is drawn on 46 OSM ways along the APT’s published line, 7.4 km, with 99% of the APT’s line within 25 m of it.',
+        route: 'Official loop 7.2 km from the Porte di Rendena information point, Villa Rendena, as APT Madonna di Campiglio publishes it; the stored line is drawn on 38 OSM ways along the APT’s published line, 7.2 km, with 99% of the APT’s line within 25 m of it.',
         routeNumbers: 'Not a numbered route: from the information point at Villa Rendena a few metres north on the main road, then the first lane down on the right to the cycle and foot path; south on it to the bridge over the Sarca; across, and north on the tarmac lane on the far bank; at the concrete bridge, without crossing, straight on along a lane that becomes a track and then a path to Parco Masere; from the park south on the cycle path and a stretch of side road back to the start.',
         mapPoints: 'Start at the APT’s start, the Porte di Rendena information point; drinking water at km 2.4 and at km 2.9 (OSM nodes 6482400507, 7681382942, 7681382941, 7681382943).',
         elevation: 'Official 7.2 km, 79 m up and 56 m down, 2 h 30 min, highest point 628 m, lowest 571 m (Madonna di Campiglio Azienda per il Turismo); the stored profile runs 578–624 m.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.38 (104 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -54873,8 +55038,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A climb from Cristauta above Santa Cristina through larch forest to the Sëurasas alp and its summit cross, with a view over all three villages of Val Gardena. The board lists 6.6 km and 449 m of ascent.'
     },
     'valgardena-percorso-dei-masi-tradizionali': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 2.68 (92 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 2.68 (92 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 7.2 km on 41 OSM ways with 98% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 2).
       // The Val Gardena tourist board’s walk “Percorso dei masi tradizionali”, drawn on 44 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Santa Cristina (its 2010 dog regulation: lead ≤1.5 m, muzzle carried).
@@ -54887,17 +55052,17 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from the parish square of Santa Cristina, signed as the traditional farms path, up past the mountain farms above the village and back down.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'A farm above the Iender valley seen from Praulëta, October with no snow (Wolfgang Moroder, CC BY-SA 3.0), 5 m from the line.',
-        route: 'Official loop 7.4 km from Parish square of Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 44 OSM ways along the board’s published line, 7.4 km, with 100% of the board’s line within 25 m of it.',
+        route: 'Official loop 7.4 km from Parish square of Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 41 OSM ways along the board’s published line, 7.2 km, with 98% of the board’s line within 25 m of it.',
         routeNumbers: 'Signed “Percorso dei masi tradizionali”: from the parish square of Santa Cristina follow the farms-path signs past the mountain farms above the village, with boards showing old photographs of each farm, and back to the square.',
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.4, at km 0.8, at km 0.9, at km 2.3, at km 6.5 (OSM nodes 6693914655, 7823614885, 7872930685, 7727413030, 7703479736, 7727413050, 4958710983, 6634281019, 7872975485).',
         elevation: 'Official 7.4 km, 450 m up and 450 m down, 2:25 h, highest point 1,822 m, lowest 1,420 m (S. Cristina – Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 2.68 (92 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55519,8 +55684,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short loop from the town hall of Pognana Lario down to the lake and back along the old Strada Regia, past the ten stone sculptures of the 1986 symposium. The portal lists 4.2 km and 160 m of ascent.'
     },
     'lario-alla-ricerca-di-un-panorama-unico': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 5.04 (81 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 5.03 (81 m), a step the board's own line never takes (it never comes within 25 m of the turn), so that stretch was cut.
+      // The line is now 7.9 km on 20 OSM ways with 100% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Lombardy batch 1).
       // in-Lombardia, the official tourism portal of Regione Lombardia: “Alla ricerca di un panorama unico” by Lago di Como GAL, drawn on 22 OSM ways along its published GPX
       // (data/board-line-routes.geojson). Communes: Bellagio (own rule covers the Borgo, the lakefront and the parks, not this walk; national rule).
@@ -55532,17 +55697,17 @@ function effectiveOverrides(profile, adjustOverride){
       routeShape: 'loop',
       routeShapeNote: 'A loop from Brogno up a steep path to the Nuvolone viewpoint over the three arms of the lake, round the foot of Monte Nuvolone to its bocchetta, and back through the woods above Rovenza.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Lake Como, Monte di Tremezzo and the Tremezzina shore from the Nuvolone viewpoint, on the loop, in late December with snow only on the far peaks (Kaitu, CC BY-SA 4.0), 1 m from the line.',
-        route: 'Official loop 7.9 km from Brogno, Bellagio, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 22 OSM ways along the published GPX, 8.1 km, with 100% of the published line within 25 m of it.',
+        route: 'Official loop 7.9 km from Brogno, Bellagio, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 20 OSM ways along the published GPX, 7.9 km, with 100% of the published line within 25 m of it.',
         routeNumbers: 'From Brogno, on the SP41 Vallassina road, take the lane left off the main road and soon the path climbing steeply left, following the signs for the Belvedere del Nuvolone: almost 500 m of climbing in 2 km to the viewpoint. On more gently to the fork for the summit of Monte Nuvolone (1,092 m); keep left for the Bocchetta del Nuvolone (938 m) and do not take the short, rough summit path. At the bocchetta follow the signs for Monte San Primo across a small clearing and through the wood to some buildings below Ceppo del Mucchio, then down the steep concrete road in hairpins to the tarmac; left towards Rovenza to the first hairpin, then straight on along the dirt mule track signed for Brogno, through the wood to a votive chapel; left round it and down the path back to Brogno.',
         mapPoints: 'Start at the published start; no drinking water mapped on the line.',
         elevation: 'Official 7.9 km, 679 m up, 3 h 30 min (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL). The stored line follows the published GPX.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 5.04 (81 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -56903,8 +57068,8 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'An easy hillside road from the mountain village of Ortisè to the restored Malga Stabli, a terrace over the Val di Sole with views of the Brenta Dolomites and the Presanella. The APT lists 7.2 km and 342 m of ascent.'
     },
     'fvg-laghi-di-fusine': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 2.07 (80 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the drawn line went out and straight back at km 2.07 (80 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 5.3 km on 43 OSM ways with 98% of the board's line within 25 m of it; its start is walked both ways, so it is a lollipop, as the board’s directions say, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
       // PromoTurismoFVG’s walk “Laghi di Fusine” (its verified Outdooractive account, author PromoTurismoFVG Montagna). The line is drawn
       // on 43 OSM ways along the line it publishes (data/board-line-routes.geojson).
@@ -56914,20 +57079,20 @@ function effectiveOverrides(profile, adjustOverride){
       distance: 5.4,
       elevation: 104,
       hours: '2',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A loop from the lower lake car park round the Lower Fusine Lake, over a moraine ridge to the Upper Lake and round its western shore, and back along the promenade past the Capanna Edelweiss.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Lower Fusine Lake with autumn larches and the Mangart group behind, on the loop, on 13 October 2026 without snow (Ajznponar, CC0), 0 m from the line.',
-        route: 'Official loop 5.4 km from Lower lake car park past Scichizza, Fusine in Valromana, as PromoTurismoFVG publishes it; the stored line is drawn on 43 OSM ways along the published line, 5.5 km, with 100% of the published line within 25 m of it.',
+        route: 'Official loop 5.4 km from Lower lake car park past Scichizza, Fusine in Valromana, as PromoTurismoFVG publishes it; the stored line is drawn on 43 OSM ways along the published line, 5.3 km, with 98% of the published line within 25 m of it.',
         routeNumbers: 'No route number given: from the car park past the houses of Scichizza, a short stretch through the forest on boardwalks, along the Lower Lake past the streams that feed it with the Mangart and Ponze walls ahead, through beech and spruce over a moraine ridge with large erratic boulders to the Upper Lake; along its western shore to the wide southern plain, then back on the broad promenade to the Capanna Edelweiss and the start, by the lake path or the tarred road.',
         mapPoints: 'Start at Lower lake car park past Scichizza, Fusine in Valromana, the board’s start; drinking water none mapped.',
         elevation: 'Official 5.4 km, 104 m up and 104 m down, 2 h, highest point 980 m, lowest 878 m (PromoTurismoFVG, author PromoTurismoFVG Montagna).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 2.07 (80 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -57025,8 +57190,7 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'An easy loop from Stolvizza in Val Resia to the Potok waterfall, through pine woods past the Casa Resiana and the hamlet of Zamlin, and back up to the village. PromoTurismoFVG lists 5.5 km and 152 m of ascent.'
     },
     'fvg-faggi-secolari-pustot-dordolla': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 0.48 (259 m), km 2.94 (130 m), km 3.19 (243 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turns at km 0.48, km 2.94, km 3.19 are side trips the board describes, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Friuli Venezia Giulia batch 1).
       // PromoTurismoFVG’s walk “I faggi secolari di Pustot a Dordolla” (its verified Outdooractive account, author Parco Naturale Prealpi Giulie). The line is drawn
       // on 41 OSM ways along the line it publishes (data/board-line-routes.geojson).
@@ -57038,8 +57202,9 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2.35',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Dordolla along the old road to the hamlet of Drentus, up to the centuries-old beech trees of Pustot, and back down to Dordolla on the old mule tracks to the hayfields.',
+      sideTrips: [{ km: 0.48, note: 'The short detour from Dordolla to the Spissande waterfall and back, which the board offers.' }, { km: 2.94, note: 'Out to one of the old beeches of Pustot and back: the board says these trees are the main point of the walk.' }, { km: 3.19, note: 'Out to another of the old Pustot beeches and back.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -57049,7 +57214,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at Dordolla village, Val Aupa, the board’s start; drinking water none mapped.',
         elevation: 'Official 4.9 km, 395 m up and 394 m down, 2 h 20 min, highest point 960 m, lowest 611 m (PromoTurismoFVG, author Parco Naturale Prealpi Giulie).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 0.48 (259 m), km 2.94 (130 m), km 3.19 (243 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -57208,8 +57373,7 @@ function effectiveOverrides(profile, adjustOverride){
       desc: 'A short loop round the eastern arm of the Lago di Verzegnis, across the Ambiesta dam and back through the woods over suspension bridges, with views of Monte Amariana. PromoTurismoFVG lists 2.6 km and 93 m of ascent.'
     },
     'paganella-andalo-tana-ermellino': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.88 (349 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 1.88 is the board’s own side trip, declared in sideTrips, and its first stretch is walked both ways, so it is a lollipop, not a loop; the line passes the board-walk bar.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 3).
       // APT Dolomiti Paganella’s walk “Passeggiata da Andalo alla Tana dell’Ermellino”, drawn on 15 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Cavedago and Andalo (neither publishes a dog regulation, national rule).
@@ -57218,10 +57382,11 @@ function effectiveOverrides(profile, adjustOverride){
       distance: 3.8,
       elevation: 32,
       hours: '1',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A nearly level loop from the riding stables in the Andalo Life park along the gravel road beside the lake and through the woods to the Tana dell’Ermellino at Priori, and back.',
+      sideTrips: [{ km: 1.88, note: 'Out through the woods to the Tana dell’Ermellino at Priori and back, as the board’s directions say.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -57231,7 +57396,7 @@ function effectiveOverrides(profile, adjustOverride){
         mapPoints: 'Start at the APT’s start, the Andalo Life park; no drinking fountain is mapped on the line.',
         elevation: 'Official 3.8 km, 32 m up and 32 m down, 1 h 03 min, highest point 1,044 m (Priori), lowest 1,013 m (Andalo) (Visit Paganella).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.88 (349 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -64670,7 +64835,7 @@ function findOwnPoiMatch(name, lng, lat){
 
 // ---- trail-routing-coverage.js ----
 // Generated by scripts/build-trail-routing-coverage.js. Do not edit.
-window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalkingRouteM":5000,"trails":{"alpe-siusi":{"graphUrl":"offline/packages/alpe-siusi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5305,"west":11.6165,"north":46.5429,"east":11.6466},"nodeCount":1367,"edgeCount":1372,"retrievedAt":null},"cadini":{"graphUrl":"routing-graphs/cadini.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55649444125045,"west":12.229910941417796,"north":46.65695555874955,"east":12.366869058582203},"nodeCount":6866,"edgeCount":6975,"retrievedAt":"2026-08-27T17:15:15.218Z"},"cembra-dos-paion":{"graphUrl":"offline/packages/cembra-dos-paion/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16451,"west":11.14552,"north":46.18571,"east":11.16849},"nodeCount":1853,"edgeCount":1864,"retrievedAt":"2026-10-30"},"cembra-erbe-della-salute":{"graphUrl":"offline/packages/cembra-erbe-della-salute/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.22589,"west":11.29137,"north":46.2395,"east":11.30847},"nodeCount":1059,"edgeCount":1076,"retrievedAt":"2026-10-30"},"cembra-giro-masi-grumes":{"graphUrl":"offline/packages/cembra-giro-masi-grumes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.21122,"west":11.26051,"north":46.22755,"east":11.29985},"nodeCount":2281,"edgeCount":2323,"retrievedAt":"2026-10-30"},"cembra-lago-lases-buse-giaz":{"graphUrl":"offline/packages/cembra-lago-lases-buse-giaz/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13193,"west":11.21086,"north":46.1547,"east":11.23552},"nodeCount":1853,"edgeCount":1863,"retrievedAt":"2026-10-30"},"cembra-lago-santo":{"graphUrl":"offline/packages/cembra-lago-santo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.19126,"west":11.20002,"north":46.20072,"east":11.21495},"nodeCount":443,"edgeCount":451,"retrievedAt":"2026-10-30"},"cembra-pascoli-malga-vernera":{"graphUrl":"offline/packages/cembra-pascoli-malga-vernera/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.20463,"west":11.341,"north":46.22085,"east":11.36331},"nodeCount":867,"edgeCount":873,"retrievedAt":"2026-10-30"},"cinque-torri-assisted":{"graphUrl":"offline/packages/cinque-torri-assisted/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50444,"west":12.03299,"north":46.5237,"east":12.06425},"nodeCount":2161,"edgeCount":2197,"retrievedAt":"2026-10-30"},"eggental-dal-passo-costalunga-al-lago-di-carezza":{"graphUrl":"offline/packages/eggental-dal-passo-costalunga-al-lago-di-carezza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39722,"west":11.57009,"north":46.41554,"east":11.61439},"nodeCount":2930,"edgeCount":2959,"retrievedAt":"2026-10-30"},"eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl":{"graphUrl":"offline/packages/eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39934,"west":11.53719,"north":46.4175,"east":11.58106},"nodeCount":2078,"edgeCount":2085,"retrievedAt":"2026-10-30"},"fassa-alpe-di-fuciade":{"graphUrl":"offline/packages/fassa-alpe-di-fuciade/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37487,"west":11.79147,"north":46.39617,"east":11.83293},"nodeCount":1417,"edgeCount":1425,"retrievedAt":"2026-10-30"},"fassa-antichi-bagnes":{"graphUrl":"offline/packages/fassa-antichi-bagnes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.4168,"west":11.67959,"north":46.43411,"east":11.69844},"nodeCount":1814,"edgeCount":1876,"retrievedAt":"2026-10-30"},"fassa-borgo-dei-patins":{"graphUrl":"offline/packages/fassa-borgo-dei-patins/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40851,"west":11.6625,"north":46.42364,"east":11.67897},"nodeCount":1599,"edgeCount":1656,"retrievedAt":"2026-10-30"},"fassa-borgo-di-tamion":{"graphUrl":"offline/packages/fassa-borgo-di-tamion/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39008,"west":11.65199,"north":46.41047,"east":11.67417},"nodeCount":1683,"edgeCount":1694,"retrievedAt":"2026-10-30"},"fassa-da-alba-a-penia":{"graphUrl":"offline/packages/fassa-da-alba-a-penia/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45238,"west":11.77749,"north":46.4676,"east":11.80706},"nodeCount":1878,"edgeCount":1894,"retrievedAt":"2026-10-30"},"fassa-dipinti-del-giotto":{"graphUrl":"offline/packages/fassa-dipinti-del-giotto/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43666,"west":11.68315,"north":46.46118,"east":11.70985},"nodeCount":1708,"edgeCount":1721,"retrievedAt":"2026-10-30"},"fassa-malga-aloch":{"graphUrl":"offline/packages/fassa-malga-aloch/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.41967,"west":11.6837,"north":46.43322,"east":11.69845},"nodeCount":1254,"edgeCount":1306,"retrievedAt":"2026-10-30"},"fassa-moena-soraga-acqua":{"graphUrl":"offline/packages/fassa-moena-soraga-acqua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37313,"west":11.64914,"north":46.39714,"east":11.67526},"nodeCount":3008,"edgeCount":3046,"retrievedAt":"2026-10-30"},"fassa-moena-soraga-someda":{"graphUrl":"offline/packages/fassa-moena-soraga-someda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37271,"west":11.65151,"north":46.3973,"east":11.67825},"nodeCount":2978,"edgeCount":3011,"retrievedAt":"2026-10-30"},"fassa-passato-ritrovato":{"graphUrl":"offline/packages/fassa-passato-ritrovato/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46963,"west":11.73523,"north":46.48659,"east":11.77626},"nodeCount":2732,"edgeCount":2812,"retrievedAt":"2026-10-30"},"fassa-pastori-erranti":{"graphUrl":"offline/packages/fassa-pastori-erranti/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40282,"west":11.65036,"north":46.42371,"east":11.67838},"nodeCount":2190,"edgeCount":2245,"retrievedAt":"2026-10-30"},"fassa-prato-di-sorte":{"graphUrl":"offline/packages/fassa-prato-di-sorte/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.35471,"west":11.63764,"north":46.38023,"east":11.66594},"nodeCount":1928,"edgeCount":1937,"retrievedAt":"2026-10-30"},"fassa-santuario-dei-pellegrini":{"graphUrl":"offline/packages/fassa-santuario-dei-pellegrini/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.41478,"west":11.65641,"north":46.42694,"east":11.6785},"nodeCount":1774,"edgeCount":1834,"retrievedAt":"2026-10-30"},"fassa-sentiero-della-foresta":{"graphUrl":"offline/packages/fassa-sentiero-della-foresta/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42992,"west":11.63471,"north":46.45065,"east":11.67},"nodeCount":1377,"edgeCount":1398,"retrievedAt":"2026-10-30"},"fiemme-cascatelle-di-ziano":{"graphUrl":"offline/packages/fiemme-cascatelle-di-ziano/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28099,"west":11.56997,"north":46.2926,"east":11.59062},"nodeCount":858,"edgeCount":865,"retrievedAt":"2026-10-30"},"fiemme-cavalese-passeggiata-panoramica":{"graphUrl":"offline/packages/fiemme-cavalese-passeggiata-panoramica/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28133,"west":11.45426,"north":46.29386,"east":11.47402},"nodeCount":2069,"edgeCount":2210,"retrievedAt":"2026-10-30"},"fiemme-scalata-alle-malghette":{"graphUrl":"offline/packages/fiemme-scalata-alle-malghette/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.2879,"west":11.35136,"north":46.30223,"east":11.37825},"nodeCount":712,"edgeCount":720,"retrievedAt":"2026-10-30"},"fiemme-sentiero-botanico":{"graphUrl":"offline/packages/fiemme-sentiero-botanico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.22777,"west":11.29364,"north":46.26529,"east":11.34127},"nodeCount":4623,"edgeCount":4678,"retrievedAt":"2026-10-30"},"geotrail-bulla":{"graphUrl":"routing-graphs/geotrail-bulla.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.51903444125045,"west":11.55345269315764,"north":46.62516555874955,"east":11.70241730684236},"nodeCount":9385,"edgeCount":9572,"retrievedAt":"2026-08-27T17:18:08.640Z"},"giro-del-bulacia":{"graphUrl":"routing-graphs/giro-del-bulacia.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50077344125045,"west":11.533750303446165,"north":46.60936095874955,"east":11.686425896553834},"nodeCount":9853,"edgeCount":9930,"retrievedAt":"2026-08-27T17:18:27.370Z"},"giro-del-sasso-lungo":{"graphUrl":"routing-graphs/giro-del-sasso-lungo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45471214125045,"west":11.632413276592942,"north":46.57778705874955,"east":11.82497362340706},"nodeCount":20598,"edgeCount":20981,"retrievedAt":"2026-08-27T17:19:01.411Z"},"kronplatz-attraverso-il-sentiero-panoramico-a-brunico":{"graphUrl":"offline/packages/kronplatz-attraverso-il-sentiero-panoramico-a-brunico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.76361,"west":11.93289,"north":46.80032,"east":12.02223},"nodeCount":14137,"edgeCount":14399,"retrievedAt":"2026-10-30"},"kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina":{"graphUrl":"offline/packages/kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68709,"west":11.83999,"north":46.7183,"east":11.8833},"nodeCount":4542,"edgeCount":4527,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-leggendaria-sul-kienberg":{"graphUrl":"offline/packages/kronplatz-passeggiata-leggendaria-sul-kienberg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.76779,"west":11.83123,"north":46.80155,"east":11.88341},"nodeCount":8618,"edgeCount":8626,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-san-vigilio-le-dla-creda":{"graphUrl":"offline/packages/kronplatz-passeggiata-san-vigilio-le-dla-creda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67769,"west":11.9257,"north":46.69837,"east":11.96749},"nodeCount":2161,"edgeCount":2173,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe":{"graphUrl":"offline/packages/kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71539,"west":11.90359,"north":46.72395,"east":11.92442},"nodeCount":657,"edgeCount":648,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-valdaora-monguelfo":{"graphUrl":"offline/packages/kronplatz-passeggiata-valdaora-monguelfo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.74369,"west":12.03936,"north":46.7731,"east":12.1109},"nodeCount":8051,"edgeCount":8166,"retrievedAt":"2026-10-30"},"kronplatz-san-lorenzo-maria-sares":{"graphUrl":"offline/packages/kronplatz-san-lorenzo-maria-sares/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75981,"west":11.85908,"north":46.78662,"east":11.90793},"nodeCount":7151,"edgeCount":7183,"retrievedAt":"2026-10-30"},"kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi":{"graphUrl":"offline/packages/kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82282,"west":11.93989,"north":46.84289,"east":11.96716},"nodeCount":1918,"edgeCount":2018,"retrievedAt":"2026-10-30"},"kronplatz-valdaora-di-sopra-goste":{"graphUrl":"offline/packages/kronplatz-valdaora-di-sopra-goste/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75296,"west":12.03323,"north":46.76532,"east":12.06259},"nodeCount":1147,"edgeCount":1172,"retrievedAt":"2026-10-30"},"kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle":{"graphUrl":"offline/packages/kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.72851,"west":11.98986,"north":46.77132,"east":12.03673},"nodeCount":6031,"edgeCount":6072,"retrievedAt":"2026-10-30"},"lago-braies":{"graphUrl":"routing-graphs/lago-braies.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64417944125045,"west":12.014860548903378,"north":46.745157558749554,"east":12.154071451096621},"nodeCount":2510,"edgeCount":2550,"retrievedAt":"2026-08-27T17:16:50.407Z"},"lago-carezza":{"graphUrl":"offline/packages/lago-carezza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.407,"west":11.5718,"north":46.4113,"east":11.5784},"nodeCount":224,"edgeCount":223,"retrievedAt":null},"lago-sorapis":{"graphUrl":"routing-graphs/lago-sorapis.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47704444125045,"west":12.139152431687037,"north":46.60112555874955,"east":12.294177568312962},"nodeCount":3815,"edgeCount":3854,"retrievedAt":"2026-08-27T17:17:07.622Z"},"nuvolau":{"graphUrl":"routing-graphs/nuvolau.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44016444125045,"west":11.980511149703753,"north":46.540225558749555,"east":12.122418850296247},"nodeCount":7292,"edgeCount":7418,"retrievedAt":"2026-08-27T17:16:21.759Z"},"osm-10116283":{"graphUrl":"routing-graphs/osm-10116283.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91896444125045,"west":6.266709454636495,"north":46.01604555874955,"east":6.406880545363505},"nodeCount":6521,"edgeCount":6598,"retrievedAt":"2026-08-27T17:20:59.197Z"},"osm-10116380":{"graphUrl":"routing-graphs/osm-10116380.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91895444125045,"west":6.268138865501141,"north":46.01706555874955,"east":6.411921134498859},"nodeCount":5610,"edgeCount":5678,"retrievedAt":"2026-08-27T17:41:31.286Z"},"osm-10220399":{"graphUrl":"offline/packages/osm-10220399/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65113,"west":11.09524,"north":46.66559,"east":11.12413},"nodeCount":1167,"edgeCount":1179,"retrievedAt":"2026-10-30"},"osm-1116675":{"graphUrl":"routing-graphs/osm-1116675.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61417444125045,"west":12.30487349355897,"north":46.71087555874955,"east":12.443416506441029},"nodeCount":4150,"edgeCount":4215,"retrievedAt":"2026-08-27T20:14:51.910Z"},"osm-1116680":{"graphUrl":"routing-graphs/osm-1116680.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63077444125045,"west":12.285241785323949,"north":46.74662555874955,"east":12.451178214676052},"nodeCount":11996,"edgeCount":12255,"retrievedAt":"2026-08-27T20:25:39.850Z"},"osm-11270309":{"graphUrl":"offline/packages/osm-11270309/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.23386,"west":11.20861,"north":46.24283,"east":11.22519},"nodeCount":1421,"edgeCount":1495,"retrievedAt":"2026-10-30"},"osm-11517208":{"graphUrl":"routing-graphs/osm-11517208.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.82466444125045,"west":6.5280025665062515,"north":45.933155558749554,"east":6.686357433493749},"nodeCount":20707,"edgeCount":21016,"retrievedAt":"2026-08-27T17:42:36.366Z"},"osm-11764094":{"graphUrl":"offline/packages/osm-11764094/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73736,"west":11.65734,"north":46.77376,"east":11.69919},"nodeCount":5789,"edgeCount":5860,"retrievedAt":"2026-10-30"},"osm-11768853":{"graphUrl":"offline/packages/osm-11768853/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65606,"west":11.5761,"north":46.68027,"east":11.6096},"nodeCount":3141,"edgeCount":3118,"retrievedAt":"2026-10-30"},"osm-11774783":{"graphUrl":"routing-graphs/osm-11774783.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.603354441250445,"west":11.528868487262596,"north":46.69691555874955,"east":11.665491512737404},"nodeCount":10234,"edgeCount":10377,"retrievedAt":"2026-08-27T17:10:19.838Z"},"osm-11775760":{"graphUrl":"offline/packages/osm-11775760/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73545,"west":11.62126,"north":46.74953,"east":11.6417},"nodeCount":1523,"edgeCount":1539,"retrievedAt":"2026-10-30"},"osm-11775923":{"graphUrl":"offline/packages/osm-11775923/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.72641,"west":11.63788,"north":46.74908,"east":11.66339},"nodeCount":3465,"edgeCount":3514,"retrievedAt":"2026-10-30"},"osm-11780502":{"graphUrl":"routing-graphs/osm-11780502.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58839444125045,"west":11.691435852533683,"north":46.683155558749554,"east":11.837114147466316},"nodeCount":7359,"edgeCount":7425,"retrievedAt":"2026-08-27T17:10:42.226Z"},"osm-11795251":{"graphUrl":"offline/packages/osm-11795251/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.79966,"west":11.71249,"north":46.82551,"east":11.77545},"nodeCount":7649,"edgeCount":7697,"retrievedAt":"2026-10-30"},"osm-11814834":{"graphUrl":"offline/packages/osm-11814834/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56036,"west":11.61356,"north":46.58384,"east":11.64231},"nodeCount":2023,"edgeCount":2008,"retrievedAt":"2026-10-30"},"osm-11828233":{"graphUrl":"offline/packages/osm-11828233/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.83137,"west":11.61317,"north":46.85494,"east":11.63902},"nodeCount":2189,"edgeCount":2204,"retrievedAt":"2026-10-30"},"osm-11832013":{"graphUrl":"offline/packages/osm-11832013/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.7355,"west":11.43425,"north":46.74905,"east":11.45676},"nodeCount":739,"edgeCount":736,"retrievedAt":"2026-10-30"},"osm-11833313":{"graphUrl":"offline/packages/osm-11833313/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.79597,"west":11.82088,"north":46.80987,"east":11.84417},"nodeCount":2589,"edgeCount":2606,"retrievedAt":"2026-10-30"},"osm-11839597":{"graphUrl":"offline/packages/osm-11839597/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.53471,"west":11.46113,"north":46.54726,"east":11.47905},"nodeCount":1140,"edgeCount":1146,"retrievedAt":"2026-10-30"},"osm-11860429":{"graphUrl":"offline/packages/osm-11860429/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.6539,"west":11.91342,"north":46.66987,"east":11.93607},"nodeCount":1648,"edgeCount":1663,"retrievedAt":"2026-10-30"},"osm-12118490":{"graphUrl":"offline/packages/osm-12118490/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.30187,"west":6.34749,"north":45.32242,"east":6.37269},"nodeCount":2283,"edgeCount":2296,"retrievedAt":"2026-10-30"},"osm-12121346":{"graphUrl":"offline/packages/osm-12121346/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.27641,"west":6.36649,"north":45.2968,"east":6.38956},"nodeCount":2284,"edgeCount":2295,"retrievedAt":"2026-10-30"},"osm-12121798":{"graphUrl":"offline/packages/osm-12121798/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.24532,"west":6.41497,"north":45.25782,"east":6.43429},"nodeCount":1484,"edgeCount":1507,"retrievedAt":"2026-10-30"},"osm-12142337":{"graphUrl":"routing-graphs/osm-12142337.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60084444125045,"west":11.739506138448354,"north":46.71983555874955,"east":11.916233861551646},"nodeCount":13008,"edgeCount":13108,"retrievedAt":"2026-08-27T17:10:52.434Z"},"osm-12164395":{"graphUrl":"offline/packages/osm-12164395/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81348,"west":11.70925,"north":46.84542,"east":11.74427},"nodeCount":5454,"edgeCount":5470,"retrievedAt":"2026-10-30"},"osm-12172440":{"graphUrl":"offline/packages/osm-12172440/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82544,"west":11.75103,"north":46.84606,"east":11.78333},"nodeCount":4076,"edgeCount":4138,"retrievedAt":"2026-10-30"},"osm-12173549":{"graphUrl":"offline/packages/osm-12173549/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82624,"west":11.76648,"north":46.84636,"east":11.78855},"nodeCount":3066,"edgeCount":3114,"retrievedAt":"2026-10-30"},"osm-12173965":{"graphUrl":"offline/packages/osm-12173965/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75363,"west":12.10025,"north":46.76438,"east":12.11973},"nodeCount":1386,"edgeCount":1426,"retrievedAt":"2026-10-30"},"osm-12182895":{"graphUrl":"offline/packages/osm-12182895/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61928,"west":11.32843,"north":46.6788,"east":11.39347},"nodeCount":11644,"edgeCount":11734,"retrievedAt":"2026-10-30"},"osm-12190657":{"graphUrl":"offline/packages/osm-12190657/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57259,"west":11.26569,"north":46.59378,"east":11.29048},"nodeCount":1012,"edgeCount":1011,"retrievedAt":"2026-10-30"},"osm-12302137":{"graphUrl":"offline/packages/osm-12302137/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.84673,"west":12.0838,"north":46.87064,"east":12.11003},"nodeCount":1518,"edgeCount":1534,"retrievedAt":"2026-10-30"},"osm-12302182":{"graphUrl":"offline/packages/osm-12302182/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81871,"west":12.07776,"north":46.83533,"east":12.09741},"nodeCount":880,"edgeCount":897,"retrievedAt":"2026-10-30"},"osm-12302191":{"graphUrl":"offline/packages/osm-12302191/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.7723,"west":12.03174,"north":46.80726,"east":12.07136},"nodeCount":2746,"edgeCount":2758,"retrievedAt":"2026-10-30"},"osm-123162":{"graphUrl":"routing-graphs/osm-123162.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40658444125045,"west":11.391321942194814,"north":46.50572555874955,"east":11.556188057805185},"nodeCount":10365,"edgeCount":10504,"retrievedAt":"2026-08-27T19:56:49.589Z"},"osm-12736753":{"graphUrl":"offline/packages/osm-12736753/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67235,"west":11.62528,"north":46.71065,"east":11.67137},"nodeCount":7545,"edgeCount":7692,"retrievedAt":"2026-10-30"},"osm-12737724":{"graphUrl":"offline/packages/osm-12737724/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64764,"west":11.60524,"north":46.67923,"east":11.63978},"nodeCount":4474,"edgeCount":4488,"retrievedAt":"2026-10-30"},"osm-12953352":{"graphUrl":"offline/packages/osm-12953352/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71343,"west":11.65174,"north":46.73625,"east":11.67671},"nodeCount":4484,"edgeCount":4685,"retrievedAt":"2026-10-30"},"osm-13338113":{"graphUrl":"offline/packages/osm-13338113/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.32693,"west":6.74281,"north":46.35217,"east":6.77156},"nodeCount":3863,"edgeCount":3876,"retrievedAt":"2026-10-30"},"osm-13491868":{"graphUrl":"routing-graphs/osm-13491868.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60683444125045,"west":11.506114355606796,"north":46.70026555874955,"east":11.638455644393204},"nodeCount":9379,"edgeCount":9498,"retrievedAt":"2026-08-27T17:11:05.150Z"},"osm-14095296":{"graphUrl":"routing-graphs/osm-14095296.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.74418444125045,"west":5.884595618989789,"north":45.853015558749554,"east":6.027074381010211},"nodeCount":6410,"edgeCount":6594,"retrievedAt":"2026-08-27T19:24:39.004Z"},"osm-14375158":{"graphUrl":"offline/packages/osm-14375158/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20806,"west":6.39918,"north":45.23123,"east":6.43601},"nodeCount":3965,"edgeCount":4006,"retrievedAt":"2026-10-30"},"osm-14376573":{"graphUrl":"offline/packages/osm-14376573/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.19973,"west":6.3841,"north":45.21655,"east":6.40706},"nodeCount":1243,"edgeCount":1250,"retrievedAt":"2026-10-30"},"osm-14378946":{"graphUrl":"offline/packages/osm-14378946/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20923,"west":6.39867,"north":45.23124,"east":6.42434},"nodeCount":2983,"edgeCount":3012,"retrievedAt":"2026-10-30"},"osm-14379010":{"graphUrl":"offline/packages/osm-14379010/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20806,"west":6.39918,"north":45.23123,"east":6.43284},"nodeCount":3861,"edgeCount":3901,"retrievedAt":"2026-10-30"},"osm-14381570":{"graphUrl":"offline/packages/osm-14381570/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20183,"west":6.39812,"north":45.23123,"east":6.42942},"nodeCount":4902,"edgeCount":4965,"retrievedAt":"2026-10-30"},"osm-14381584":{"graphUrl":"offline/packages/osm-14381584/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.21117,"west":6.39918,"north":45.23124,"east":6.4289},"nodeCount":3140,"edgeCount":3172,"retrievedAt":"2026-10-30"},"osm-14864704":{"graphUrl":"routing-graphs/osm-14864704.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.761084441250446,"west":6.1280243865015525,"north":45.872825558749554,"east":6.270315613498448},"nodeCount":10976,"edgeCount":11300,"retrievedAt":"2026-08-27T19:19:58.714Z"},"osm-1506470":{"graphUrl":"offline/packages/osm-1506470/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65671,"west":11.1564,"north":46.67523,"east":11.18876},"nodeCount":5326,"edgeCount":5552,"retrievedAt":"2026-10-30"},"osm-15591346":{"graphUrl":"routing-graphs/osm-15591346.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.459774441250445,"west":5.98503178827734,"north":45.56897555874955,"east":6.14100821172266},"nodeCount":16088,"edgeCount":16629,"retrievedAt":"2026-08-27T19:56:33.029Z"},"osm-15791408":{"graphUrl":"offline/packages/osm-15791408/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13917,"west":11.22856,"north":46.1549,"east":11.25188},"nodeCount":1386,"edgeCount":1408,"retrievedAt":"2026-10-30"},"osm-16180587":{"graphUrl":"offline/packages/osm-16180587/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.93358,"west":6.70581,"north":45.95601,"east":6.75957},"nodeCount":5612,"edgeCount":5706,"retrievedAt":"2026-10-30"},"osm-16218739":{"graphUrl":"offline/packages/osm-16218739/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.55579,"west":6.73839,"north":45.57494,"east":6.7721},"nodeCount":2852,"edgeCount":2908,"retrievedAt":"2026-10-30"},"osm-16322228":{"graphUrl":"routing-graphs/osm-16322228.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.50406444125045,"west":5.904177110685752,"north":45.60305555874955,"east":6.043782889314248},"nodeCount":14377,"edgeCount":15276,"retrievedAt":"2026-08-27T19:24:42.898Z"},"osm-16363583":{"graphUrl":"routing-graphs/osm-16363583.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.55814444125045,"west":5.799788796148411,"north":45.66849555874955,"east":5.9486112038515895},"nodeCount":10179,"edgeCount":10964,"retrievedAt":"2026-08-27T19:25:16.148Z"},"osm-16365005":{"graphUrl":"routing-graphs/osm-16365005.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.51677444125045,"west":5.9944446829961535,"north":45.62962555874955,"east":6.139465317003847},"nodeCount":8626,"edgeCount":8701,"retrievedAt":"2026-08-27T19:56:44.815Z"},"osm-16395076":{"graphUrl":"routing-graphs/osm-16395076.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.48297444125045,"west":5.9889733229959266,"north":45.57818555874955,"east":6.1254666770040735},"nodeCount":7951,"edgeCount":8074,"retrievedAt":"2026-08-27T19:39:22.742Z"},"osm-1671736":{"graphUrl":"offline/packages/osm-1671736/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67673,"west":11.18372,"north":46.71706,"east":11.22782},"nodeCount":10591,"edgeCount":10640,"retrievedAt":"2026-10-30"},"osm-18055492":{"graphUrl":"routing-graphs/osm-18055492.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.79283444125045,"west":6.56720827118181,"north":45.90343555874955,"east":6.7415217288181895},"nodeCount":24364,"edgeCount":24659,"retrievedAt":"2026-08-27T19:04:06.346Z"},"osm-19153189":{"graphUrl":"routing-graphs/osm-19153189.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.527044441250446,"west":6.091252260695849,"north":45.62359555874955,"east":6.237467739304152},"nodeCount":6531,"edgeCount":6666,"retrievedAt":"2026-08-27T19:39:31.023Z"},"osm-19541366":{"graphUrl":"offline/packages/osm-19541366/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.28654,"west":6.5791,"north":45.30153,"east":6.61461},"nodeCount":2298,"edgeCount":2366,"retrievedAt":"2026-10-30"},"osm-19855818":{"graphUrl":"offline/packages/osm-19855818/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.4373,"west":6.41848,"north":45.46194,"east":6.44702},"nodeCount":3895,"edgeCount":3951,"retrievedAt":"2026-10-30"},"osm-20347406":{"graphUrl":"routing-graphs/osm-20347406.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91896444125045,"west":6.266689958139611,"north":46.04945555874955,"east":6.458980041860389},"nodeCount":10492,"edgeCount":10630,"retrievedAt":"2026-08-27T17:42:14.560Z"},"osm-20380913":{"graphUrl":"offline/packages/osm-20380913/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62343,"west":10.96177,"north":46.64204,"east":10.98874},"nodeCount":1786,"edgeCount":1860,"retrievedAt":"2026-10-30"},"osm-2179746":{"graphUrl":"routing-graphs/osm-2179746.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.29053444125045,"west":11.224413051871634,"north":46.385315558749554,"east":11.359506948128365},"nodeCount":9415,"edgeCount":9648,"retrievedAt":"2026-08-27T20:26:16.794Z"},"osm-2376630":{"graphUrl":"offline/packages/osm-2376630/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66777,"west":10.9307,"north":46.69258,"east":10.96319},"nodeCount":2200,"edgeCount":2207,"retrievedAt":"2026-10-30"},"osm-3202880":{"graphUrl":"routing-graphs/osm-3202880.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37478444125045,"west":11.219838865920021,"north":46.47579555874955,"east":11.36296113407998},"nodeCount":15379,"edgeCount":15878,"retrievedAt":"2026-08-27T20:42:27.979Z"},"osm-3707731":{"graphUrl":"offline/packages/osm-3707731/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64876,"west":11.61479,"north":46.66703,"east":11.6456},"nodeCount":2446,"edgeCount":2459,"retrievedAt":"2026-10-30"},"osm-3982382":{"graphUrl":"routing-graphs/osm-3982382.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.39130444125045,"west":5.68870273280012,"north":45.49504555874955,"east":5.8256372671998795},"nodeCount":3515,"edgeCount":3604,"retrievedAt":"2026-08-27T17:19:14.273Z"},"osm-5479112":{"graphUrl":"offline/packages/osm-5479112/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.01551,"west":6.91028,"north":46.05405,"east":6.95192},"nodeCount":9443,"edgeCount":9518,"retrievedAt":"2026-10-30"},"osm-5512443":{"graphUrl":"routing-graphs/osm-5512443.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60554444125045,"west":10.914493091157304,"north":46.70364555874955,"east":11.079186908842695},"nodeCount":7217,"edgeCount":7345,"retrievedAt":"2026-08-27T20:44:08.748Z"},"osm-5597577":{"graphUrl":"offline/packages/osm-5597577/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62561,"west":10.98047,"north":46.64607,"east":11.00282},"nodeCount":2129,"edgeCount":2200,"retrievedAt":"2026-10-30"},"osm-6244965":{"graphUrl":"offline/packages/osm-6244965/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.8005,"west":11.84283,"north":46.82695,"east":11.90723},"nodeCount":7080,"edgeCount":7191,"retrievedAt":"2026-10-30"},"osm-6250300":{"graphUrl":"routing-graphs/osm-6250300.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.903254441250446,"west":6.676860309200672,"north":45.99598555874955,"east":6.821329690799328},"nodeCount":10787,"edgeCount":11000,"retrievedAt":"2026-08-27T17:19:25.153Z"},"osm-6401355":{"graphUrl":"offline/packages/osm-6401355/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73267,"west":11.94824,"north":46.74448,"east":11.96751},"nodeCount":1286,"edgeCount":1304,"retrievedAt":"2026-10-30"},"osm-6404258":{"graphUrl":"routing-graphs/osm-6404258.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.701494441250446,"west":11.972922724716238,"north":46.80611555874955,"east":12.149147275283761},"nodeCount":13366,"edgeCount":13635,"retrievedAt":"2026-08-27T20:44:30.610Z"},"osm-6404633":{"graphUrl":"routing-graphs/osm-6404633.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16376444125045,"west":11.631540823974001,"north":46.26285555874955,"east":11.774189176025999},"nodeCount":7270,"edgeCount":7350,"retrievedAt":"2026-08-27T20:44:44.284Z"},"osm-6404634":{"graphUrl":"routing-graphs/osm-6404634.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16376444125045,"west":11.636474806635869,"north":46.25611555874955,"east":11.770655193364131},"nodeCount":6487,"edgeCount":6560,"retrievedAt":"2026-08-27T21:01:51.031Z"},"osm-6410700":{"graphUrl":"routing-graphs/osm-6410700.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.721594441250446,"west":11.985686129252224,"north":46.82971555874955,"east":12.151803870747777},"nodeCount":10637,"edgeCount":10778,"retrievedAt":"2026-08-27T21:01:57.131Z"},"osm-6453504":{"graphUrl":"offline/packages/osm-6453504/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63271,"west":11.06288,"north":46.6488,"east":11.0833},"nodeCount":1158,"edgeCount":1173,"retrievedAt":"2026-10-30"},"osm-6601608":{"graphUrl":"offline/packages/osm-6601608/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.909,"west":11.94163,"north":46.92795,"east":11.97331},"nodeCount":1871,"edgeCount":1902,"retrievedAt":"2026-10-30"},"osm-6823031":{"graphUrl":"routing-graphs/osm-6823031.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73590444125045,"west":11.873350912645975,"north":46.84038555874955,"east":12.025849087354025},"nodeCount":25710,"edgeCount":26439,"retrievedAt":"2026-08-27T21:02:49.999Z"},"osm-7045225":{"graphUrl":"routing-graphs/osm-7045225.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13172444125045,"west":10.986518368918368,"north":46.24825555874955,"east":11.141551631081631},"nodeCount":10547,"edgeCount":10783,"retrievedAt":"2026-08-27T21:02:54.311Z"},"osm-7086961":{"graphUrl":"routing-graphs/osm-7086961.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.128294441250446,"west":11.533400512335708,"north":46.231105558749555,"east":11.676629487664291},"nodeCount":2576,"edgeCount":2583,"retrievedAt":"2026-08-27T21:11:22.127Z"},"osm-7388748":{"graphUrl":"routing-graphs/osm-7388748.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46005444125045,"west":12.341487742111875,"north":46.55934555874955,"east":12.493212257888125},"nodeCount":10355,"edgeCount":10591,"retrievedAt":"2026-08-27T21:11:40.719Z"},"osm-7424683":{"graphUrl":"offline/packages/osm-7424683/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62276,"west":11.08183,"north":46.6843,"east":11.14908},"nodeCount":20523,"edgeCount":20732,"retrievedAt":"2026-10-30"},"osm-7426648":{"graphUrl":"offline/packages/osm-7426648/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67544,"west":11.09013,"north":46.69898,"east":11.14735},"nodeCount":9817,"edgeCount":9904,"retrievedAt":"2026-10-30"},"osm-7426666":{"graphUrl":"offline/packages/osm-7426666/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66096,"west":11.1533,"north":46.73023,"east":11.22905},"nodeCount":31589,"edgeCount":31982,"retrievedAt":"2026-10-30"},"osm-7446701":{"graphUrl":"offline/packages/osm-7446701/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81439,"west":11.27692,"north":46.83618,"east":11.33001},"nodeCount":2726,"edgeCount":2713,"retrievedAt":"2026-10-30"},"osm-7546708":{"graphUrl":"routing-graphs/osm-7546708.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44345444125045,"west":12.36812824682951,"north":46.54177555874955,"east":12.50749175317049},"nodeCount":10650,"edgeCount":10913,"retrievedAt":"2026-08-27T21:11:54.539Z"},"osm-7547653":{"graphUrl":"routing-graphs/osm-7547653.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46785444125045,"west":12.363839203471993,"north":46.565765558749554,"east":12.507590796528007},"nodeCount":7277,"edgeCount":7395,"retrievedAt":"2026-08-27T21:11:59.022Z"},"osm-7547983":{"graphUrl":"routing-graphs/osm-7547983.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43600444125045,"west":12.340097032272725,"north":46.53457555874955,"east":12.487892967727275},"nodeCount":11364,"edgeCount":11629,"retrievedAt":"2026-08-27T21:12:19.499Z"},"osm-7548201":{"graphUrl":"routing-graphs/osm-7548201.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47499444125045,"west":12.374697843622796,"north":46.57753555874955,"east":12.527532156377204},"nodeCount":5951,"edgeCount":6007,"retrievedAt":"2026-08-27T21:12:23.188Z"},"osm-7548344":{"graphUrl":"offline/packages/osm-7548344/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47477,"west":12.41932,"north":46.48885,"east":12.44329},"nodeCount":1675,"edgeCount":1738,"retrievedAt":"2026-10-30"},"osm-7549783":{"graphUrl":"offline/packages/osm-7549783/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.48829,"west":12.43636,"north":46.51038,"east":12.46043},"nodeCount":1946,"edgeCount":1969,"retrievedAt":"2026-10-30"},"osm-7567918":{"graphUrl":"offline/packages/osm-7567918/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.87786,"west":12.15239,"north":46.89282,"east":12.17983},"nodeCount":937,"edgeCount":948,"retrievedAt":"2026-10-30"},"osm-7655311":{"graphUrl":"offline/packages/osm-7655311/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64858,"west":11.00248,"north":46.68784,"east":11.07999},"nodeCount":11285,"edgeCount":11388,"retrievedAt":"2026-10-30"},"osm-8396539":{"graphUrl":"offline/packages/osm-8396539/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66147,"west":11.05617,"north":46.69073,"east":11.09787},"nodeCount":5897,"edgeCount":5904,"retrievedAt":"2026-10-30"},"osm-9450411":{"graphUrl":"offline/packages/osm-9450411/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56675,"west":11.5589,"north":46.61633,"east":11.67916},"nodeCount":16477,"edgeCount":16597,"retrievedAt":"2026-10-30"},"osm-9492594":{"graphUrl":"offline/packages/osm-9492594/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59866,"west":11.53897,"north":46.62667,"east":11.56955},"nodeCount":3744,"edgeCount":3742,"retrievedAt":"2026-10-30"},"osm-9493733":{"graphUrl":"offline/packages/osm-9493733/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59262,"west":11.87255,"north":46.61921,"east":11.90157},"nodeCount":2915,"edgeCount":2916,"retrievedAt":"2026-10-30"},"osm-9511999":{"graphUrl":"offline/packages/osm-9511999/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57931,"west":11.88494,"north":46.61899,"east":11.92825},"nodeCount":7626,"edgeCount":7660,"retrievedAt":"2026-10-30"},"osm-9648632":{"graphUrl":"offline/packages/osm-9648632/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.54267,"west":11.70635,"north":46.55503,"east":11.72714},"nodeCount":930,"edgeCount":951,"retrievedAt":"2026-10-30"},"osm-9933643":{"graphUrl":"routing-graphs/osm-9933643.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.46001444125045,"west":6.603237869650619,"north":45.55805555874955,"east":6.7443221303493806},"nodeCount":14632,"edgeCount":14901,"retrievedAt":"2026-08-27T17:20:33.017Z"},"osm-9937537":{"graphUrl":"offline/packages/osm-9937537/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.48919,"west":6.6296,"north":45.51733,"east":6.67286},"nodeCount":3843,"edgeCount":3877,"retrievedAt":"2026-10-30"},"piancavallo":{"graphUrl":"routing-graphs/piancavallo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.05039444125045,"west":12.458888920919806,"north":46.15883555874955,"east":12.616651079080192},"nodeCount":21111,"edgeCount":21289,"retrievedAt":"2026-08-27T17:17:48.733Z"},"prato-piazza":{"graphUrl":"routing-graphs/prato-piazza.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.595274441250446,"west":12.113642309733521,"north":46.69867555874955,"east":12.263057690266479},"nodeCount":3142,"edgeCount":3186,"retrievedAt":"2026-08-27T17:15:57.299Z"},"primiero-anello-di-valpiana":{"graphUrl":"offline/packages/primiero-anello-di-valpiana/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.12724,"west":11.83934,"north":46.14301,"east":11.8682},"nodeCount":1639,"edgeCount":1642,"retrievedAt":"2026-10-30"},"primiero-fiera-pieve":{"graphUrl":"offline/packages/primiero-fiera-pieve/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16873,"west":11.8185,"north":46.18362,"east":11.83636},"nodeCount":2235,"edgeCount":2332,"retrievedAt":"2026-10-30"},"primiero-la-guana-di-primiero":{"graphUrl":"offline/packages/primiero-la-guana-di-primiero/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16336,"west":11.81958,"north":46.17905,"east":11.8396},"nodeCount":2533,"edgeCount":2660,"retrievedAt":"2026-10-30"},"primiero-malga-ces":{"graphUrl":"offline/packages/primiero-malga-ces/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.25342,"west":11.7677,"north":46.27396,"east":11.80707},"nodeCount":3149,"edgeCount":3168,"retrievedAt":"2026-10-30"},"primiero-malga-valcigolera":{"graphUrl":"offline/packages/primiero-malga-valcigolera/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.24853,"west":11.75586,"north":46.26987,"east":11.80733},"nodeCount":3510,"edgeCount":3530,"retrievedAt":"2026-10-30"},"primiero-percorso-verde":{"graphUrl":"offline/packages/primiero-percorso-verde/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17234,"west":11.82588,"north":46.18389,"east":11.84318},"nodeCount":2055,"edgeCount":2182,"retrievedAt":"2026-10-30"},"primiero-san-martino-di-castrozza-val-di-roda-prati-col":{"graphUrl":"offline/packages/primiero-san-martino-di-castrozza-val-di-roda-prati-col/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.24584,"west":11.7977,"north":46.2678,"east":11.83087},"nodeCount":1875,"edgeCount":1860,"retrievedAt":"2026-10-30"},"primiero-siror":{"graphUrl":"offline/packages/primiero-siror/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17444,"west":11.81962,"north":46.19445,"east":11.84131},"nodeCount":3214,"edgeCount":3321,"retrievedAt":"2026-10-30"},"primiero-tonadico":{"graphUrl":"offline/packages/primiero-tonadico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17217,"west":11.82538,"north":46.18851,"east":11.84652},"nodeCount":2778,"edgeCount":2928,"retrievedAt":"2026-10-30"},"primiero-transacqua":{"graphUrl":"offline/packages/primiero-transacqua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16912,"west":11.82417,"north":46.18184,"east":11.84262},"nodeCount":2304,"edgeCount":2400,"retrievedAt":"2026-10-30"},"santa-maddalena":{"graphUrl":"routing-graphs/santa-maddalena.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59590444125045,"west":11.650737359001882,"north":46.68969555874955,"east":11.785922640998118},"nodeCount":6748,"edgeCount":6817,"retrievedAt":"2026-08-27T17:09:57.888Z"},"sassolungo":{"graphUrl":"routing-graphs/sassolungo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45471444125045,"west":11.63240987611249,"north":46.577785558749554,"east":11.83336012388751},"nodeCount":20798,"edgeCount":21180,"retrievedAt":"2026-08-27T17:16:32.997Z"},"seceda":{"graphUrl":"routing-graphs/seceda.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.53061444125045,"west":11.658993879765028,"north":46.64480555874955,"east":11.824916120234972},"nodeCount":17322,"edgeCount":17676,"retrievedAt":"2026-08-27T17:15:07.870Z"},"seiseralm-alla-volta-della-trappola-d-orso-a-s-michele":{"graphUrl":"offline/packages/seiseralm-alla-volta-della-trappola-d-orso-a-s-michele/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56039,"west":11.55437,"north":46.59095,"east":11.62846},"nodeCount":5697,"edgeCount":5711,"retrievedAt":"2026-10-30"},"seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del":{"graphUrl":"offline/packages/seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43766,"west":11.52563,"north":46.47503,"east":11.59119},"nodeCount":7746,"edgeCount":7774,"retrievedAt":"2026-10-30"},"seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff":{"graphUrl":"offline/packages/seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.49924,"west":11.51315,"north":46.52498,"east":11.54464},"nodeCount":2479,"edgeCount":2522,"retrievedAt":"2026-10-30"},"seiseralm-escursione-senza-barriere-all-alpe-di-siusi":{"graphUrl":"offline/packages/seiseralm-escursione-senza-barriere-all-alpe-di-siusi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55029,"west":11.65544,"north":46.56163,"east":11.67452},"nodeCount":732,"edgeCount":732,"retrievedAt":"2026-10-30"},"sentiero-del-trenino":{"graphUrl":"routing-graphs/sentiero-del-trenino.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50122394125045,"west":11.579771099956796,"north":46.620546058749554,"east":11.834705400043205},"nodeCount":31869,"edgeCount":32496,"retrievedAt":"2026-08-27T17:18:53.015Z"},"sentiero-hans-e-paula-steger":{"graphUrl":"routing-graphs/sentiero-hans-e-paula-steger.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47457534125045,"west":11.55202977961426,"north":46.58771235874955,"east":11.73381722038574},"nodeCount":16978,"edgeCount":17096,"retrievedAt":"2026-08-27T17:18:30.960Z"},"tre-cime":{"graphUrl":"routing-graphs/tre-cime.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56729029125045,"west":12.21890409925356,"north":46.68179013874955,"east":12.380584860746438},"nodeCount":9099,"edgeCount":9213,"retrievedAt":"2026-08-27T17:15:12.018Z"},"valley-view":{"graphUrl":"routing-graphs/valley-view.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60012444125045,"west":11.624142315781222,"north":46.69381555874955,"east":11.781507684218777},"nodeCount":9655,"edgeCount":9750,"retrievedAt":"2026-08-27T17:10:02.955Z"},"villnoess-da-russis-fino-al-passo-delle-erbe":{"graphUrl":"offline/packages/villnoess-da-russis-fino-al-passo-delle-erbe/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64896,"west":11.7466,"north":46.67915,"east":11.81992},"nodeCount":4737,"edgeCount":4729,"retrievedAt":"2026-10-30"},"villnoess-dolorama-3a-tappa":{"graphUrl":"offline/packages/villnoess-dolorama-3a-tappa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58615,"west":11.65556,"north":46.64989,"east":11.81024},"nodeCount":21122,"edgeCount":21280,"retrievedAt":"2026-10-30"},"villnoess-ranui-zannes":{"graphUrl":"offline/packages/villnoess-ranui-zannes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62412,"west":11.72366,"north":46.64359,"east":11.7709},"nodeCount":2302,"edgeCount":2311,"retrievedAt":"2026-10-30"}}});
+window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalkingRouteM":5000,"trails":{"alpe-siusi":{"graphUrl":"offline/packages/alpe-siusi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5305,"west":11.6165,"north":46.5429,"east":11.6466},"nodeCount":1367,"edgeCount":1372,"retrievedAt":null},"altabadia-da-la-val-ai-prati-di-rit":{"graphUrl":"offline/packages/altabadia-da-la-val-ai-prati-di-rit/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.6429,"west":11.91851,"north":46.67463,"east":11.97157},"nodeCount":4524,"edgeCount":4569,"retrievedAt":"2026-10-30"},"altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa":{"graphUrl":"offline/packages/altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61897,"west":11.86936,"north":46.67107,"east":11.92628},"nodeCount":7947,"edgeCount":7948,"retrievedAt":"2026-10-30"},"altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt":{"graphUrl":"offline/packages/altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57901,"west":11.88187,"north":46.61351,"east":11.91954},"nodeCount":6439,"edgeCount":6464,"retrievedAt":"2026-10-30"},"cadini":{"graphUrl":"routing-graphs/cadini.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55649444125045,"west":12.229910941417796,"north":46.65695555874955,"east":12.366869058582203},"nodeCount":6866,"edgeCount":6975,"retrievedAt":"2026-08-27T17:15:15.218Z"},"cembra-dos-paion":{"graphUrl":"offline/packages/cembra-dos-paion/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16451,"west":11.14552,"north":46.18571,"east":11.16849},"nodeCount":1853,"edgeCount":1864,"retrievedAt":"2026-10-30"},"cembra-erbe-della-salute":{"graphUrl":"offline/packages/cembra-erbe-della-salute/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.22589,"west":11.29137,"north":46.2395,"east":11.30847},"nodeCount":1059,"edgeCount":1076,"retrievedAt":"2026-10-30"},"cembra-giro-masi-grumes":{"graphUrl":"offline/packages/cembra-giro-masi-grumes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.21122,"west":11.26051,"north":46.22755,"east":11.29985},"nodeCount":2281,"edgeCount":2323,"retrievedAt":"2026-10-30"},"cembra-giro-monte-corona":{"graphUrl":"offline/packages/cembra-giro-monte-corona/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16159,"west":11.1375,"north":46.18438,"east":11.16405},"nodeCount":2259,"edgeCount":2258,"retrievedAt":"2026-10-30"},"cembra-lago-lases-buse-giaz":{"graphUrl":"offline/packages/cembra-lago-lases-buse-giaz/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13193,"west":11.21086,"north":46.1547,"east":11.23552},"nodeCount":1853,"edgeCount":1863,"retrievedAt":"2026-10-30"},"cembra-lago-santo":{"graphUrl":"offline/packages/cembra-lago-santo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.19126,"west":11.20002,"north":46.20072,"east":11.21495},"nodeCount":443,"edgeCount":451,"retrievedAt":"2026-10-30"},"cembra-paese-beghei":{"graphUrl":"offline/packages/cembra-paese-beghei/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16628,"west":11.24187,"north":46.18168,"east":11.26519},"nodeCount":1577,"edgeCount":1612,"retrievedAt":"2026-10-30"},"cembra-pascoli-malga-vernera":{"graphUrl":"offline/packages/cembra-pascoli-malga-vernera/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.20463,"west":11.341,"north":46.22085,"east":11.36331},"nodeCount":867,"edgeCount":873,"retrievedAt":"2026-10-30"},"cembra-san-leonardo-lisignago":{"graphUrl":"offline/packages/cembra-san-leonardo-lisignago/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.15226,"west":11.17063,"north":46.17018,"east":11.19186},"nodeCount":1763,"edgeCount":1767,"retrievedAt":"2026-10-30"},"cinque-torri-assisted":{"graphUrl":"offline/packages/cinque-torri-assisted/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50444,"west":12.03299,"north":46.5237,"east":12.06425},"nodeCount":2161,"edgeCount":2197,"retrievedAt":"2026-10-30"},"cortina-malga-ra-stua":{"graphUrl":"offline/packages/cortina-malga-ra-stua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59944,"west":12.08466,"north":46.6293,"east":12.11726},"nodeCount":1548,"edgeCount":1566,"retrievedAt":"2026-10-30"},"cortina-passeggiata-gourmet":{"graphUrl":"offline/packages/cortina-passeggiata-gourmet/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.51224,"west":12.08589,"north":46.52762,"east":12.10562},"nodeCount":602,"edgeCount":603,"retrievedAt":"2026-10-30"},"eggental-dal-passo-costalunga-al-lago-di-carezza":{"graphUrl":"offline/packages/eggental-dal-passo-costalunga-al-lago-di-carezza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39722,"west":11.57009,"north":46.41554,"east":11.61439},"nodeCount":2930,"edgeCount":2959,"retrievedAt":"2026-10-30"},"eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl":{"graphUrl":"offline/packages/eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39934,"west":11.53719,"north":46.4175,"east":11.58106},"nodeCount":2078,"edgeCount":2085,"retrievedAt":"2026-10-30"},"fassa-alpe-di-fuciade":{"graphUrl":"offline/packages/fassa-alpe-di-fuciade/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37487,"west":11.79147,"north":46.39617,"east":11.83293},"nodeCount":1417,"edgeCount":1425,"retrievedAt":"2026-10-30"},"fassa-antichi-bagnes":{"graphUrl":"offline/packages/fassa-antichi-bagnes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.4168,"west":11.67959,"north":46.43411,"east":11.69844},"nodeCount":1814,"edgeCount":1876,"retrievedAt":"2026-10-30"},"fassa-borgo-dei-patins":{"graphUrl":"offline/packages/fassa-borgo-dei-patins/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40851,"west":11.6625,"north":46.42364,"east":11.67897},"nodeCount":1599,"edgeCount":1656,"retrievedAt":"2026-10-30"},"fassa-borgo-di-tamion":{"graphUrl":"offline/packages/fassa-borgo-di-tamion/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39008,"west":11.65199,"north":46.41047,"east":11.67417},"nodeCount":1683,"edgeCount":1694,"retrievedAt":"2026-10-30"},"fassa-ciajeole-malga-roncac":{"graphUrl":"offline/packages/fassa-ciajeole-malga-roncac/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37313,"west":11.64592,"north":46.38616,"east":11.66612},"nodeCount":1275,"edgeCount":1295,"retrievedAt":"2026-10-30"},"fassa-da-alba-a-penia":{"graphUrl":"offline/packages/fassa-da-alba-a-penia/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45238,"west":11.77749,"north":46.4676,"east":11.80706},"nodeCount":1878,"edgeCount":1894,"retrievedAt":"2026-10-30"},"fassa-dipinti-del-giotto":{"graphUrl":"offline/packages/fassa-dipinti-del-giotto/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43666,"west":11.68315,"north":46.46118,"east":11.70985},"nodeCount":1708,"edgeCount":1721,"retrievedAt":"2026-10-30"},"fassa-malga-aloch":{"graphUrl":"offline/packages/fassa-malga-aloch/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.41967,"west":11.6837,"north":46.43322,"east":11.69845},"nodeCount":1254,"edgeCount":1306,"retrievedAt":"2026-10-30"},"fassa-moena-soraga-acqua":{"graphUrl":"offline/packages/fassa-moena-soraga-acqua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37313,"west":11.64914,"north":46.39714,"east":11.67526},"nodeCount":3008,"edgeCount":3046,"retrievedAt":"2026-10-30"},"fassa-moena-soraga-someda":{"graphUrl":"offline/packages/fassa-moena-soraga-someda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37271,"west":11.65151,"north":46.3973,"east":11.67825},"nodeCount":2978,"edgeCount":3011,"retrievedAt":"2026-10-30"},"fassa-molin-de-pezol":{"graphUrl":"offline/packages/fassa-molin-de-pezol/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42627,"west":11.68082,"north":46.44362,"east":11.70241},"nodeCount":2077,"edgeCount":2139,"retrievedAt":"2026-10-30"},"fassa-passato-ritrovato":{"graphUrl":"offline/packages/fassa-passato-ritrovato/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46963,"west":11.73523,"north":46.48659,"east":11.77626},"nodeCount":2732,"edgeCount":2812,"retrievedAt":"2026-10-30"},"fassa-pastori-erranti":{"graphUrl":"offline/packages/fassa-pastori-erranti/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40282,"west":11.65036,"north":46.42371,"east":11.67838},"nodeCount":2190,"edgeCount":2245,"retrievedAt":"2026-10-30"},"fassa-prato-di-sorte":{"graphUrl":"offline/packages/fassa-prato-di-sorte/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.35471,"west":11.63764,"north":46.38023,"east":11.66594},"nodeCount":1928,"edgeCount":1937,"retrievedAt":"2026-10-30"},"fassa-santuario-dei-pellegrini":{"graphUrl":"offline/packages/fassa-santuario-dei-pellegrini/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.41478,"west":11.65641,"north":46.42694,"east":11.6785},"nodeCount":1774,"edgeCount":1834,"retrievedAt":"2026-10-30"},"fassa-segreti-di-una-volta":{"graphUrl":"offline/packages/fassa-segreti-di-una-volta/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.41618,"west":11.66723,"north":46.4458,"east":11.70242},"nodeCount":5003,"edgeCount":5163,"retrievedAt":"2026-10-30"},"fassa-sentiero-della-foresta":{"graphUrl":"offline/packages/fassa-sentiero-della-foresta/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42992,"west":11.63471,"north":46.45065,"east":11.67},"nodeCount":1377,"edgeCount":1398,"retrievedAt":"2026-10-30"},"fiemme-cascatelle-di-ziano":{"graphUrl":"offline/packages/fiemme-cascatelle-di-ziano/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28099,"west":11.56997,"north":46.2926,"east":11.59062},"nodeCount":858,"edgeCount":865,"retrievedAt":"2026-10-30"},"fiemme-cavalese-passeggiata-panoramica":{"graphUrl":"offline/packages/fiemme-cavalese-passeggiata-panoramica/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28133,"west":11.45426,"north":46.29386,"east":11.47402},"nodeCount":2069,"edgeCount":2210,"retrievedAt":"2026-10-30"},"fiemme-giro-cavalese-castello":{"graphUrl":"offline/packages/fiemme-giro-cavalese-castello/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.27795,"west":11.42983,"north":46.29609,"east":11.46202},"nodeCount":3541,"edgeCount":3630,"retrievedAt":"2026-10-30"},"fiemme-masi-comunicanti":{"graphUrl":"offline/packages/fiemme-masi-comunicanti/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.25256,"west":11.3323,"north":46.27554,"east":11.35723},"nodeCount":1804,"edgeCount":1801,"retrievedAt":"2026-10-30"},"fiemme-passo-oclini":{"graphUrl":"offline/packages/fiemme-passo-oclini/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.33768,"west":11.42207,"north":46.35207,"east":11.45682},"nodeCount":1394,"edgeCount":1398,"retrievedAt":"2026-10-30"},"fiemme-scalata-alle-malghette":{"graphUrl":"offline/packages/fiemme-scalata-alle-malghette/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.2879,"west":11.35136,"north":46.30223,"east":11.37825},"nodeCount":712,"edgeCount":720,"retrievedAt":"2026-10-30"},"fiemme-sentiero-botanico":{"graphUrl":"offline/packages/fiemme-sentiero-botanico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.22777,"west":11.29364,"north":46.26529,"east":11.34127},"nodeCount":4623,"edgeCount":4678,"retrievedAt":"2026-10-30"},"fiemme-varena-spianez":{"graphUrl":"offline/packages/fiemme-varena-spianez/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.29102,"west":11.45108,"north":46.31002,"east":11.49139},"nodeCount":2722,"edgeCount":2767,"retrievedAt":"2026-10-30"},"fvg-faggi-secolari-pustot-dordolla":{"graphUrl":"offline/packages/fvg-faggi-secolari-pustot-dordolla/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.4587,"west":13.18725,"north":46.47309,"east":13.2109},"nodeCount":1578,"edgeCount":1593,"retrievedAt":"2026-10-30"},"fvg-laghi-di-fusine":{"graphUrl":"offline/packages/fvg-laghi-di-fusine/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46952,"west":13.65755,"north":46.49221,"east":13.68227},"nodeCount":1373,"edgeCount":1389,"retrievedAt":"2026-10-30"},"geotrail-bulla":{"graphUrl":"routing-graphs/geotrail-bulla.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.51903444125045,"west":11.55345269315764,"north":46.62516555874955,"east":11.70241730684236},"nodeCount":9385,"edgeCount":9572,"retrievedAt":"2026-08-27T17:18:08.640Z"},"giro-del-bulacia":{"graphUrl":"routing-graphs/giro-del-bulacia.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50077344125045,"west":11.533750303446165,"north":46.60936095874955,"east":11.686425896553834},"nodeCount":9853,"edgeCount":9930,"retrievedAt":"2026-08-27T17:18:27.370Z"},"giro-del-sasso-lungo":{"graphUrl":"routing-graphs/giro-del-sasso-lungo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45471214125045,"west":11.632413276592942,"north":46.57778705874955,"east":11.82497362340706},"nodeCount":20598,"edgeCount":20981,"retrievedAt":"2026-08-27T17:19:01.411Z"},"giudicarie-san-martino-bosco-scolpito":{"graphUrl":"offline/packages/giudicarie-san-martino-bosco-scolpito/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91558,"west":10.62716,"north":45.93457,"east":10.64765},"nodeCount":1344,"edgeCount":1336,"retrievedAt":"2026-10-30"},"giudicarie-tione-bolbeno-madonna-del-lares":{"graphUrl":"offline/packages/giudicarie-tione-bolbeno-madonna-del-lares/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.01737,"west":10.72012,"north":46.03561,"east":10.74313},"nodeCount":1493,"edgeCount":1533,"retrievedAt":"2026-10-30"},"kronplatz-attraverso-il-sentiero-panoramico-a-brunico":{"graphUrl":"offline/packages/kronplatz-attraverso-il-sentiero-panoramico-a-brunico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.76361,"west":11.93289,"north":46.80032,"east":12.02223},"nodeCount":14137,"edgeCount":14399,"retrievedAt":"2026-10-30"},"kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina":{"graphUrl":"offline/packages/kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68709,"west":11.83999,"north":46.7183,"east":11.8833},"nodeCount":4542,"edgeCount":4527,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-leggendaria-sul-kienberg":{"graphUrl":"offline/packages/kronplatz-passeggiata-leggendaria-sul-kienberg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.76779,"west":11.83123,"north":46.80155,"east":11.88341},"nodeCount":8618,"edgeCount":8626,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-san-vigilio-le-dla-creda":{"graphUrl":"offline/packages/kronplatz-passeggiata-san-vigilio-le-dla-creda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67769,"west":11.9257,"north":46.69837,"east":11.96749},"nodeCount":2161,"edgeCount":2173,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe":{"graphUrl":"offline/packages/kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71539,"west":11.90359,"north":46.72395,"east":11.92442},"nodeCount":657,"edgeCount":648,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-valdaora-monguelfo":{"graphUrl":"offline/packages/kronplatz-passeggiata-valdaora-monguelfo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.74369,"west":12.03936,"north":46.7731,"east":12.1109},"nodeCount":8051,"edgeCount":8166,"retrievedAt":"2026-10-30"},"kronplatz-san-lorenzo-maria-sares":{"graphUrl":"offline/packages/kronplatz-san-lorenzo-maria-sares/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75981,"west":11.85908,"north":46.78662,"east":11.90793},"nodeCount":7151,"edgeCount":7183,"retrievedAt":"2026-10-30"},"kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi":{"graphUrl":"offline/packages/kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82282,"west":11.93989,"north":46.84289,"east":11.96716},"nodeCount":1918,"edgeCount":2018,"retrievedAt":"2026-10-30"},"kronplatz-valdaora-di-sopra-goste":{"graphUrl":"offline/packages/kronplatz-valdaora-di-sopra-goste/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75296,"west":12.03323,"north":46.76532,"east":12.06259},"nodeCount":1147,"edgeCount":1172,"retrievedAt":"2026-10-30"},"kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle":{"graphUrl":"offline/packages/kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.72851,"west":11.98986,"north":46.77132,"east":12.03673},"nodeCount":6031,"edgeCount":6072,"retrievedAt":"2026-10-30"},"lago-braies":{"graphUrl":"routing-graphs/lago-braies.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64417944125045,"west":12.014860548903378,"north":46.745157558749554,"east":12.154071451096621},"nodeCount":2510,"edgeCount":2550,"retrievedAt":"2026-08-27T17:16:50.407Z"},"lago-carezza":{"graphUrl":"offline/packages/lago-carezza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.407,"west":11.5718,"north":46.4113,"east":11.5784},"nodeCount":224,"edgeCount":223,"retrievedAt":null},"lago-sorapis":{"graphUrl":"routing-graphs/lago-sorapis.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47704444125045,"west":12.139152431687037,"north":46.60112555874955,"east":12.294177568312962},"nodeCount":3815,"edgeCount":3854,"retrievedAt":"2026-08-27T17:17:07.622Z"},"lario-alla-ricerca-di-un-panorama-unico":{"graphUrl":"offline/packages/lario-alla-ricerca-di-un-panorama-unico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.93203,"west":9.21943,"north":45.96263,"east":9.25276},"nodeCount":2663,"edgeCount":2675,"retrievedAt":"2026-10-30"},"nuvolau":{"graphUrl":"routing-graphs/nuvolau.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44016444125045,"west":11.980511149703753,"north":46.540225558749555,"east":12.122418850296247},"nodeCount":7292,"edgeCount":7418,"retrievedAt":"2026-08-27T17:16:21.759Z"},"osm-10116283":{"graphUrl":"routing-graphs/osm-10116283.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91896444125045,"west":6.266709454636495,"north":46.01604555874955,"east":6.406880545363505},"nodeCount":6521,"edgeCount":6598,"retrievedAt":"2026-08-27T17:20:59.197Z"},"osm-10116380":{"graphUrl":"routing-graphs/osm-10116380.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91895444125045,"west":6.268138865501141,"north":46.01706555874955,"east":6.411921134498859},"nodeCount":5610,"edgeCount":5678,"retrievedAt":"2026-08-27T17:41:31.286Z"},"osm-10220399":{"graphUrl":"offline/packages/osm-10220399/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65113,"west":11.09524,"north":46.66559,"east":11.12413},"nodeCount":1167,"edgeCount":1179,"retrievedAt":"2026-10-30"},"osm-1116675":{"graphUrl":"routing-graphs/osm-1116675.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61417444125045,"west":12.30487349355897,"north":46.71087555874955,"east":12.443416506441029},"nodeCount":4150,"edgeCount":4215,"retrievedAt":"2026-08-27T20:14:51.910Z"},"osm-1116680":{"graphUrl":"routing-graphs/osm-1116680.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63077444125045,"west":12.285241785323949,"north":46.74662555874955,"east":12.451178214676052},"nodeCount":11996,"edgeCount":12255,"retrievedAt":"2026-08-27T20:25:39.850Z"},"osm-11270309":{"graphUrl":"offline/packages/osm-11270309/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.23386,"west":11.20861,"north":46.24283,"east":11.22519},"nodeCount":1421,"edgeCount":1495,"retrievedAt":"2026-10-30"},"osm-11517208":{"graphUrl":"routing-graphs/osm-11517208.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.82466444125045,"west":6.5280025665062515,"north":45.933155558749554,"east":6.686357433493749},"nodeCount":20707,"edgeCount":21016,"retrievedAt":"2026-08-27T17:42:36.366Z"},"osm-11764094":{"graphUrl":"offline/packages/osm-11764094/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73736,"west":11.65734,"north":46.77376,"east":11.69919},"nodeCount":5789,"edgeCount":5860,"retrievedAt":"2026-10-30"},"osm-11768853":{"graphUrl":"offline/packages/osm-11768853/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65606,"west":11.5761,"north":46.68027,"east":11.6096},"nodeCount":3141,"edgeCount":3118,"retrievedAt":"2026-10-30"},"osm-11774783":{"graphUrl":"routing-graphs/osm-11774783.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.603354441250445,"west":11.528868487262596,"north":46.69691555874955,"east":11.665491512737404},"nodeCount":10234,"edgeCount":10377,"retrievedAt":"2026-08-27T17:10:19.838Z"},"osm-11775760":{"graphUrl":"offline/packages/osm-11775760/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73545,"west":11.62126,"north":46.74953,"east":11.6417},"nodeCount":1523,"edgeCount":1539,"retrievedAt":"2026-10-30"},"osm-11775923":{"graphUrl":"offline/packages/osm-11775923/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.72641,"west":11.63788,"north":46.74908,"east":11.66339},"nodeCount":3465,"edgeCount":3514,"retrievedAt":"2026-10-30"},"osm-11780502":{"graphUrl":"routing-graphs/osm-11780502.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58839444125045,"west":11.691435852533683,"north":46.683155558749554,"east":11.837114147466316},"nodeCount":7359,"edgeCount":7425,"retrievedAt":"2026-08-27T17:10:42.226Z"},"osm-11795251":{"graphUrl":"offline/packages/osm-11795251/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.79966,"west":11.71249,"north":46.82551,"east":11.77545},"nodeCount":7649,"edgeCount":7697,"retrievedAt":"2026-10-30"},"osm-11814834":{"graphUrl":"offline/packages/osm-11814834/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56036,"west":11.61356,"north":46.58384,"east":11.64231},"nodeCount":2023,"edgeCount":2008,"retrievedAt":"2026-10-30"},"osm-11828233":{"graphUrl":"offline/packages/osm-11828233/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.83137,"west":11.61317,"north":46.85494,"east":11.63902},"nodeCount":2189,"edgeCount":2204,"retrievedAt":"2026-10-30"},"osm-11832013":{"graphUrl":"offline/packages/osm-11832013/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.7355,"west":11.43425,"north":46.74905,"east":11.45676},"nodeCount":739,"edgeCount":736,"retrievedAt":"2026-10-30"},"osm-11833313":{"graphUrl":"offline/packages/osm-11833313/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.79597,"west":11.82088,"north":46.80987,"east":11.84417},"nodeCount":2589,"edgeCount":2606,"retrievedAt":"2026-10-30"},"osm-11839597":{"graphUrl":"offline/packages/osm-11839597/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.53471,"west":11.46113,"north":46.54726,"east":11.47905},"nodeCount":1140,"edgeCount":1146,"retrievedAt":"2026-10-30"},"osm-11860429":{"graphUrl":"offline/packages/osm-11860429/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.6539,"west":11.91342,"north":46.66987,"east":11.93607},"nodeCount":1648,"edgeCount":1663,"retrievedAt":"2026-10-30"},"osm-12118490":{"graphUrl":"offline/packages/osm-12118490/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.30187,"west":6.34749,"north":45.32242,"east":6.37269},"nodeCount":2283,"edgeCount":2296,"retrievedAt":"2026-10-30"},"osm-12121346":{"graphUrl":"offline/packages/osm-12121346/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.27641,"west":6.36649,"north":45.2968,"east":6.38956},"nodeCount":2284,"edgeCount":2295,"retrievedAt":"2026-10-30"},"osm-12121798":{"graphUrl":"offline/packages/osm-12121798/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.24532,"west":6.41497,"north":45.25782,"east":6.43429},"nodeCount":1484,"edgeCount":1507,"retrievedAt":"2026-10-30"},"osm-12142337":{"graphUrl":"routing-graphs/osm-12142337.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60084444125045,"west":11.739506138448354,"north":46.71983555874955,"east":11.916233861551646},"nodeCount":13008,"edgeCount":13108,"retrievedAt":"2026-08-27T17:10:52.434Z"},"osm-12164395":{"graphUrl":"offline/packages/osm-12164395/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81348,"west":11.70925,"north":46.84542,"east":11.74427},"nodeCount":5454,"edgeCount":5470,"retrievedAt":"2026-10-30"},"osm-12172440":{"graphUrl":"offline/packages/osm-12172440/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82544,"west":11.75103,"north":46.84606,"east":11.78333},"nodeCount":4076,"edgeCount":4138,"retrievedAt":"2026-10-30"},"osm-12173549":{"graphUrl":"offline/packages/osm-12173549/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82624,"west":11.76648,"north":46.84636,"east":11.78855},"nodeCount":3066,"edgeCount":3114,"retrievedAt":"2026-10-30"},"osm-12173965":{"graphUrl":"offline/packages/osm-12173965/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75363,"west":12.10025,"north":46.76438,"east":12.11973},"nodeCount":1386,"edgeCount":1426,"retrievedAt":"2026-10-30"},"osm-12182895":{"graphUrl":"offline/packages/osm-12182895/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61928,"west":11.32843,"north":46.6788,"east":11.39347},"nodeCount":11644,"edgeCount":11734,"retrievedAt":"2026-10-30"},"osm-12190657":{"graphUrl":"offline/packages/osm-12190657/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57259,"west":11.26569,"north":46.59378,"east":11.29048},"nodeCount":1012,"edgeCount":1011,"retrievedAt":"2026-10-30"},"osm-12302137":{"graphUrl":"offline/packages/osm-12302137/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.84673,"west":12.0838,"north":46.87064,"east":12.11003},"nodeCount":1518,"edgeCount":1534,"retrievedAt":"2026-10-30"},"osm-12302182":{"graphUrl":"offline/packages/osm-12302182/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81871,"west":12.07776,"north":46.83533,"east":12.09741},"nodeCount":880,"edgeCount":897,"retrievedAt":"2026-10-30"},"osm-12302191":{"graphUrl":"offline/packages/osm-12302191/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.7723,"west":12.03174,"north":46.80726,"east":12.07136},"nodeCount":2746,"edgeCount":2758,"retrievedAt":"2026-10-30"},"osm-123162":{"graphUrl":"routing-graphs/osm-123162.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40658444125045,"west":11.391321942194814,"north":46.50572555874955,"east":11.556188057805185},"nodeCount":10365,"edgeCount":10504,"retrievedAt":"2026-08-27T19:56:49.589Z"},"osm-12736753":{"graphUrl":"offline/packages/osm-12736753/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67235,"west":11.62528,"north":46.71065,"east":11.67137},"nodeCount":7545,"edgeCount":7692,"retrievedAt":"2026-10-30"},"osm-12737724":{"graphUrl":"offline/packages/osm-12737724/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64764,"west":11.60524,"north":46.67923,"east":11.63978},"nodeCount":4474,"edgeCount":4488,"retrievedAt":"2026-10-30"},"osm-12953352":{"graphUrl":"offline/packages/osm-12953352/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71343,"west":11.65174,"north":46.73625,"east":11.67671},"nodeCount":4484,"edgeCount":4685,"retrievedAt":"2026-10-30"},"osm-13338113":{"graphUrl":"offline/packages/osm-13338113/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.32693,"west":6.74281,"north":46.35217,"east":6.77156},"nodeCount":3863,"edgeCount":3876,"retrievedAt":"2026-10-30"},"osm-13491868":{"graphUrl":"routing-graphs/osm-13491868.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60683444125045,"west":11.506114355606796,"north":46.70026555874955,"east":11.638455644393204},"nodeCount":9379,"edgeCount":9498,"retrievedAt":"2026-08-27T17:11:05.150Z"},"osm-14095296":{"graphUrl":"routing-graphs/osm-14095296.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.74418444125045,"west":5.884595618989789,"north":45.853015558749554,"east":6.027074381010211},"nodeCount":6410,"edgeCount":6594,"retrievedAt":"2026-08-27T19:24:39.004Z"},"osm-14375158":{"graphUrl":"offline/packages/osm-14375158/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20806,"west":6.39918,"north":45.23123,"east":6.43601},"nodeCount":3965,"edgeCount":4006,"retrievedAt":"2026-10-30"},"osm-14376573":{"graphUrl":"offline/packages/osm-14376573/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.19973,"west":6.3841,"north":45.21655,"east":6.40706},"nodeCount":1243,"edgeCount":1250,"retrievedAt":"2026-10-30"},"osm-14378946":{"graphUrl":"offline/packages/osm-14378946/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20923,"west":6.39867,"north":45.23124,"east":6.42434},"nodeCount":2983,"edgeCount":3012,"retrievedAt":"2026-10-30"},"osm-14379010":{"graphUrl":"offline/packages/osm-14379010/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20806,"west":6.39918,"north":45.23123,"east":6.43284},"nodeCount":3861,"edgeCount":3901,"retrievedAt":"2026-10-30"},"osm-14381570":{"graphUrl":"offline/packages/osm-14381570/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20183,"west":6.39812,"north":45.23123,"east":6.42942},"nodeCount":4902,"edgeCount":4965,"retrievedAt":"2026-10-30"},"osm-14381584":{"graphUrl":"offline/packages/osm-14381584/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.21117,"west":6.39918,"north":45.23124,"east":6.4289},"nodeCount":3140,"edgeCount":3172,"retrievedAt":"2026-10-30"},"osm-14864704":{"graphUrl":"routing-graphs/osm-14864704.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.761084441250446,"west":6.1280243865015525,"north":45.872825558749554,"east":6.270315613498448},"nodeCount":10976,"edgeCount":11300,"retrievedAt":"2026-08-27T19:19:58.714Z"},"osm-1506470":{"graphUrl":"offline/packages/osm-1506470/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65671,"west":11.1564,"north":46.67523,"east":11.18876},"nodeCount":5326,"edgeCount":5552,"retrievedAt":"2026-10-30"},"osm-15591346":{"graphUrl":"routing-graphs/osm-15591346.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.459774441250445,"west":5.98503178827734,"north":45.56897555874955,"east":6.14100821172266},"nodeCount":16088,"edgeCount":16629,"retrievedAt":"2026-08-27T19:56:33.029Z"},"osm-15791408":{"graphUrl":"offline/packages/osm-15791408/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13917,"west":11.22856,"north":46.1549,"east":11.25188},"nodeCount":1386,"edgeCount":1408,"retrievedAt":"2026-10-30"},"osm-16180587":{"graphUrl":"offline/packages/osm-16180587/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.93358,"west":6.70581,"north":45.95601,"east":6.75957},"nodeCount":5612,"edgeCount":5706,"retrievedAt":"2026-10-30"},"osm-16218739":{"graphUrl":"offline/packages/osm-16218739/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.55579,"west":6.73839,"north":45.57494,"east":6.7721},"nodeCount":2852,"edgeCount":2908,"retrievedAt":"2026-10-30"},"osm-16322228":{"graphUrl":"routing-graphs/osm-16322228.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.50406444125045,"west":5.904177110685752,"north":45.60305555874955,"east":6.043782889314248},"nodeCount":14377,"edgeCount":15276,"retrievedAt":"2026-08-27T19:24:42.898Z"},"osm-16363583":{"graphUrl":"routing-graphs/osm-16363583.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.55814444125045,"west":5.799788796148411,"north":45.66849555874955,"east":5.9486112038515895},"nodeCount":10179,"edgeCount":10964,"retrievedAt":"2026-08-27T19:25:16.148Z"},"osm-16365005":{"graphUrl":"routing-graphs/osm-16365005.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.51677444125045,"west":5.9944446829961535,"north":45.62962555874955,"east":6.139465317003847},"nodeCount":8626,"edgeCount":8701,"retrievedAt":"2026-08-27T19:56:44.815Z"},"osm-16395076":{"graphUrl":"routing-graphs/osm-16395076.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.48297444125045,"west":5.9889733229959266,"north":45.57818555874955,"east":6.1254666770040735},"nodeCount":7951,"edgeCount":8074,"retrievedAt":"2026-08-27T19:39:22.742Z"},"osm-1671736":{"graphUrl":"offline/packages/osm-1671736/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67673,"west":11.18372,"north":46.71706,"east":11.22782},"nodeCount":10591,"edgeCount":10640,"retrievedAt":"2026-10-30"},"osm-18055492":{"graphUrl":"routing-graphs/osm-18055492.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.79283444125045,"west":6.56720827118181,"north":45.90343555874955,"east":6.7415217288181895},"nodeCount":24364,"edgeCount":24659,"retrievedAt":"2026-08-27T19:04:06.346Z"},"osm-19153189":{"graphUrl":"routing-graphs/osm-19153189.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.527044441250446,"west":6.091252260695849,"north":45.62359555874955,"east":6.237467739304152},"nodeCount":6531,"edgeCount":6666,"retrievedAt":"2026-08-27T19:39:31.023Z"},"osm-19541366":{"graphUrl":"offline/packages/osm-19541366/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.28654,"west":6.5791,"north":45.30153,"east":6.61461},"nodeCount":2298,"edgeCount":2366,"retrievedAt":"2026-10-30"},"osm-19855818":{"graphUrl":"offline/packages/osm-19855818/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.4373,"west":6.41848,"north":45.46194,"east":6.44702},"nodeCount":3895,"edgeCount":3951,"retrievedAt":"2026-10-30"},"osm-20347406":{"graphUrl":"routing-graphs/osm-20347406.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91896444125045,"west":6.266689958139611,"north":46.04945555874955,"east":6.458980041860389},"nodeCount":10492,"edgeCount":10630,"retrievedAt":"2026-08-27T17:42:14.560Z"},"osm-20380913":{"graphUrl":"offline/packages/osm-20380913/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62343,"west":10.96177,"north":46.64204,"east":10.98874},"nodeCount":1786,"edgeCount":1860,"retrievedAt":"2026-10-30"},"osm-2179746":{"graphUrl":"routing-graphs/osm-2179746.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.29053444125045,"west":11.224413051871634,"north":46.385315558749554,"east":11.359506948128365},"nodeCount":9415,"edgeCount":9648,"retrievedAt":"2026-08-27T20:26:16.794Z"},"osm-2376630":{"graphUrl":"offline/packages/osm-2376630/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66777,"west":10.9307,"north":46.69258,"east":10.96319},"nodeCount":2200,"edgeCount":2207,"retrievedAt":"2026-10-30"},"osm-3202880":{"graphUrl":"routing-graphs/osm-3202880.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37478444125045,"west":11.219838865920021,"north":46.47579555874955,"east":11.36296113407998},"nodeCount":15379,"edgeCount":15878,"retrievedAt":"2026-08-27T20:42:27.979Z"},"osm-3707731":{"graphUrl":"offline/packages/osm-3707731/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64876,"west":11.61479,"north":46.66703,"east":11.6456},"nodeCount":2446,"edgeCount":2459,"retrievedAt":"2026-10-30"},"osm-3982382":{"graphUrl":"routing-graphs/osm-3982382.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.39130444125045,"west":5.68870273280012,"north":45.49504555874955,"east":5.8256372671998795},"nodeCount":3515,"edgeCount":3604,"retrievedAt":"2026-08-27T17:19:14.273Z"},"osm-5479112":{"graphUrl":"offline/packages/osm-5479112/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.01551,"west":6.91028,"north":46.05405,"east":6.95192},"nodeCount":9443,"edgeCount":9518,"retrievedAt":"2026-10-30"},"osm-5512443":{"graphUrl":"routing-graphs/osm-5512443.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60554444125045,"west":10.914493091157304,"north":46.70364555874955,"east":11.079186908842695},"nodeCount":7217,"edgeCount":7345,"retrievedAt":"2026-08-27T20:44:08.748Z"},"osm-5597577":{"graphUrl":"offline/packages/osm-5597577/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62561,"west":10.98047,"north":46.64607,"east":11.00282},"nodeCount":2129,"edgeCount":2200,"retrievedAt":"2026-10-30"},"osm-6244965":{"graphUrl":"offline/packages/osm-6244965/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.8005,"west":11.84283,"north":46.82695,"east":11.90723},"nodeCount":7080,"edgeCount":7191,"retrievedAt":"2026-10-30"},"osm-6250300":{"graphUrl":"routing-graphs/osm-6250300.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.903254441250446,"west":6.676860309200672,"north":45.99598555874955,"east":6.821329690799328},"nodeCount":10787,"edgeCount":11000,"retrievedAt":"2026-08-27T17:19:25.153Z"},"osm-6401355":{"graphUrl":"offline/packages/osm-6401355/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73267,"west":11.94824,"north":46.74448,"east":11.96751},"nodeCount":1286,"edgeCount":1304,"retrievedAt":"2026-10-30"},"osm-6404258":{"graphUrl":"routing-graphs/osm-6404258.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.701494441250446,"west":11.972922724716238,"north":46.80611555874955,"east":12.149147275283761},"nodeCount":13366,"edgeCount":13635,"retrievedAt":"2026-08-27T20:44:30.610Z"},"osm-6404633":{"graphUrl":"routing-graphs/osm-6404633.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16376444125045,"west":11.631540823974001,"north":46.26285555874955,"east":11.774189176025999},"nodeCount":7270,"edgeCount":7350,"retrievedAt":"2026-08-27T20:44:44.284Z"},"osm-6404634":{"graphUrl":"routing-graphs/osm-6404634.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16376444125045,"west":11.636474806635869,"north":46.25611555874955,"east":11.770655193364131},"nodeCount":6487,"edgeCount":6560,"retrievedAt":"2026-08-27T21:01:51.031Z"},"osm-6410700":{"graphUrl":"routing-graphs/osm-6410700.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.721594441250446,"west":11.985686129252224,"north":46.82971555874955,"east":12.151803870747777},"nodeCount":10637,"edgeCount":10778,"retrievedAt":"2026-08-27T21:01:57.131Z"},"osm-6453504":{"graphUrl":"offline/packages/osm-6453504/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63271,"west":11.06288,"north":46.6488,"east":11.0833},"nodeCount":1158,"edgeCount":1173,"retrievedAt":"2026-10-30"},"osm-6601608":{"graphUrl":"offline/packages/osm-6601608/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.909,"west":11.94163,"north":46.92795,"east":11.97331},"nodeCount":1871,"edgeCount":1902,"retrievedAt":"2026-10-30"},"osm-6823031":{"graphUrl":"routing-graphs/osm-6823031.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73590444125045,"west":11.873350912645975,"north":46.84038555874955,"east":12.025849087354025},"nodeCount":25710,"edgeCount":26439,"retrievedAt":"2026-08-27T21:02:49.999Z"},"osm-7045225":{"graphUrl":"routing-graphs/osm-7045225.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13172444125045,"west":10.986518368918368,"north":46.24825555874955,"east":11.141551631081631},"nodeCount":10547,"edgeCount":10783,"retrievedAt":"2026-08-27T21:02:54.311Z"},"osm-7086961":{"graphUrl":"routing-graphs/osm-7086961.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.128294441250446,"west":11.533400512335708,"north":46.231105558749555,"east":11.676629487664291},"nodeCount":2576,"edgeCount":2583,"retrievedAt":"2026-08-27T21:11:22.127Z"},"osm-7388748":{"graphUrl":"routing-graphs/osm-7388748.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46005444125045,"west":12.341487742111875,"north":46.55934555874955,"east":12.493212257888125},"nodeCount":10355,"edgeCount":10591,"retrievedAt":"2026-08-27T21:11:40.719Z"},"osm-7424683":{"graphUrl":"offline/packages/osm-7424683/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62276,"west":11.08183,"north":46.6843,"east":11.14908},"nodeCount":20523,"edgeCount":20732,"retrievedAt":"2026-10-30"},"osm-7426648":{"graphUrl":"offline/packages/osm-7426648/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67544,"west":11.09013,"north":46.69898,"east":11.14735},"nodeCount":9817,"edgeCount":9904,"retrievedAt":"2026-10-30"},"osm-7426666":{"graphUrl":"offline/packages/osm-7426666/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66096,"west":11.1533,"north":46.73023,"east":11.22905},"nodeCount":31589,"edgeCount":31982,"retrievedAt":"2026-10-30"},"osm-7446701":{"graphUrl":"offline/packages/osm-7446701/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81439,"west":11.27692,"north":46.83618,"east":11.33001},"nodeCount":2726,"edgeCount":2713,"retrievedAt":"2026-10-30"},"osm-7546708":{"graphUrl":"routing-graphs/osm-7546708.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44345444125045,"west":12.36812824682951,"north":46.54177555874955,"east":12.50749175317049},"nodeCount":10650,"edgeCount":10913,"retrievedAt":"2026-08-27T21:11:54.539Z"},"osm-7547653":{"graphUrl":"routing-graphs/osm-7547653.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46785444125045,"west":12.363839203471993,"north":46.565765558749554,"east":12.507590796528007},"nodeCount":7277,"edgeCount":7395,"retrievedAt":"2026-08-27T21:11:59.022Z"},"osm-7547983":{"graphUrl":"routing-graphs/osm-7547983.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43600444125045,"west":12.340097032272725,"north":46.53457555874955,"east":12.487892967727275},"nodeCount":11364,"edgeCount":11629,"retrievedAt":"2026-08-27T21:12:19.499Z"},"osm-7548201":{"graphUrl":"routing-graphs/osm-7548201.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47499444125045,"west":12.374697843622796,"north":46.57753555874955,"east":12.527532156377204},"nodeCount":5951,"edgeCount":6007,"retrievedAt":"2026-08-27T21:12:23.188Z"},"osm-7548344":{"graphUrl":"offline/packages/osm-7548344/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47477,"west":12.41932,"north":46.48885,"east":12.44329},"nodeCount":1675,"edgeCount":1738,"retrievedAt":"2026-10-30"},"osm-7549783":{"graphUrl":"offline/packages/osm-7549783/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.48829,"west":12.43636,"north":46.51038,"east":12.46043},"nodeCount":1946,"edgeCount":1969,"retrievedAt":"2026-10-30"},"osm-7567918":{"graphUrl":"offline/packages/osm-7567918/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.87786,"west":12.15239,"north":46.89282,"east":12.17983},"nodeCount":937,"edgeCount":948,"retrievedAt":"2026-10-30"},"osm-7655311":{"graphUrl":"offline/packages/osm-7655311/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64858,"west":11.00248,"north":46.68784,"east":11.07999},"nodeCount":11285,"edgeCount":11388,"retrievedAt":"2026-10-30"},"osm-8396539":{"graphUrl":"offline/packages/osm-8396539/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66147,"west":11.05617,"north":46.69073,"east":11.09787},"nodeCount":5897,"edgeCount":5904,"retrievedAt":"2026-10-30"},"osm-9450411":{"graphUrl":"offline/packages/osm-9450411/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56675,"west":11.5589,"north":46.61633,"east":11.67916},"nodeCount":16477,"edgeCount":16597,"retrievedAt":"2026-10-30"},"osm-9492594":{"graphUrl":"offline/packages/osm-9492594/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59866,"west":11.53897,"north":46.62667,"east":11.56955},"nodeCount":3744,"edgeCount":3742,"retrievedAt":"2026-10-30"},"osm-9493733":{"graphUrl":"offline/packages/osm-9493733/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59262,"west":11.87255,"north":46.61921,"east":11.90157},"nodeCount":2915,"edgeCount":2916,"retrievedAt":"2026-10-30"},"osm-9511999":{"graphUrl":"offline/packages/osm-9511999/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57931,"west":11.88494,"north":46.61899,"east":11.92825},"nodeCount":7626,"edgeCount":7660,"retrievedAt":"2026-10-30"},"osm-9648632":{"graphUrl":"offline/packages/osm-9648632/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.54267,"west":11.70635,"north":46.55503,"east":11.72714},"nodeCount":930,"edgeCount":951,"retrievedAt":"2026-10-30"},"osm-9933643":{"graphUrl":"routing-graphs/osm-9933643.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.46001444125045,"west":6.603237869650619,"north":45.55805555874955,"east":6.7443221303493806},"nodeCount":14632,"edgeCount":14901,"retrievedAt":"2026-08-27T17:20:33.017Z"},"osm-9937537":{"graphUrl":"offline/packages/osm-9937537/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.48919,"west":6.6296,"north":45.51733,"east":6.67286},"nodeCount":3843,"edgeCount":3877,"retrievedAt":"2026-10-30"},"paganella-andalo-tana-ermellino":{"graphUrl":"offline/packages/paganella-andalo-tana-ermellino/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16851,"west":10.9972,"north":46.18891,"east":11.01931},"nodeCount":1355,"edgeCount":1387,"retrievedAt":"2026-10-30"},"piancavallo":{"graphUrl":"routing-graphs/piancavallo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.05039444125045,"west":12.458888920919806,"north":46.15883555874955,"east":12.616651079080192},"nodeCount":21111,"edgeCount":21289,"retrievedAt":"2026-08-27T17:17:48.733Z"},"prato-piazza":{"graphUrl":"routing-graphs/prato-piazza.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.595274441250446,"west":12.113642309733521,"north":46.69867555874955,"east":12.263057690266479},"nodeCount":3142,"edgeCount":3186,"retrievedAt":"2026-08-27T17:15:57.299Z"},"primiero-anello-di-valpiana":{"graphUrl":"offline/packages/primiero-anello-di-valpiana/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.12724,"west":11.83934,"north":46.14301,"east":11.8682},"nodeCount":1639,"edgeCount":1642,"retrievedAt":"2026-10-30"},"primiero-anello-poit-cordogne-san-giovanni":{"graphUrl":"offline/packages/primiero-anello-poit-cordogne-san-giovanni/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13297,"west":11.81609,"north":46.15151,"east":11.85132},"nodeCount":1747,"edgeCount":1748,"retrievedAt":"2026-10-30"},"primiero-fiera-pieve":{"graphUrl":"offline/packages/primiero-fiera-pieve/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16873,"west":11.8185,"north":46.18362,"east":11.83636},"nodeCount":2235,"edgeCount":2332,"retrievedAt":"2026-10-30"},"primiero-la-guana-di-primiero":{"graphUrl":"offline/packages/primiero-la-guana-di-primiero/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16336,"west":11.81958,"north":46.17905,"east":11.8396},"nodeCount":2533,"edgeCount":2660,"retrievedAt":"2026-10-30"},"primiero-malga-ces":{"graphUrl":"offline/packages/primiero-malga-ces/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.25342,"west":11.7677,"north":46.27396,"east":11.80707},"nodeCount":3149,"edgeCount":3168,"retrievedAt":"2026-10-30"},"primiero-malga-valcigolera":{"graphUrl":"offline/packages/primiero-malga-valcigolera/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.24853,"west":11.75586,"north":46.26987,"east":11.80733},"nodeCount":3510,"edgeCount":3530,"retrievedAt":"2026-10-30"},"primiero-percorso-verde":{"graphUrl":"offline/packages/primiero-percorso-verde/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17234,"west":11.82588,"north":46.18389,"east":11.84318},"nodeCount":2055,"edgeCount":2182,"retrievedAt":"2026-10-30"},"primiero-san-martino-di-castrozza-val-di-roda-prati-col":{"graphUrl":"offline/packages/primiero-san-martino-di-castrozza-val-di-roda-prati-col/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.24584,"west":11.7977,"north":46.2678,"east":11.83087},"nodeCount":1875,"edgeCount":1860,"retrievedAt":"2026-10-30"},"primiero-siror":{"graphUrl":"offline/packages/primiero-siror/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17444,"west":11.81962,"north":46.19445,"east":11.84131},"nodeCount":3214,"edgeCount":3321,"retrievedAt":"2026-10-30"},"primiero-tonadico":{"graphUrl":"offline/packages/primiero-tonadico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17217,"west":11.82538,"north":46.18851,"east":11.84652},"nodeCount":2778,"edgeCount":2928,"retrievedAt":"2026-10-30"},"primiero-transacqua":{"graphUrl":"offline/packages/primiero-transacqua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16912,"west":11.82417,"north":46.18184,"east":11.84262},"nodeCount":2304,"edgeCount":2400,"retrievedAt":"2026-10-30"},"primiero-via-della-frutta-antica":{"graphUrl":"offline/packages/primiero-via-della-frutta-antica/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.14398,"west":11.75288,"north":46.17836,"east":11.83221},"nodeCount":12582,"edgeCount":12798,"retrievedAt":"2026-10-30"},"rendena-ciclabile-javre-dare-vigo-pelugo":{"graphUrl":"offline/packages/rendena-ciclabile-javre-dare-vigo-pelugo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.05735,"west":10.7043,"north":46.0893,"east":10.73885},"nodeCount":4921,"edgeCount":4983,"retrievedAt":"2026-10-30"},"santa-maddalena":{"graphUrl":"routing-graphs/santa-maddalena.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59590444125045,"west":11.650737359001882,"north":46.68969555874955,"east":11.785922640998118},"nodeCount":6748,"edgeCount":6817,"retrievedAt":"2026-08-27T17:09:57.888Z"},"sassolungo":{"graphUrl":"routing-graphs/sassolungo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45471444125045,"west":11.63240987611249,"north":46.577785558749554,"east":11.83336012388751},"nodeCount":20798,"edgeCount":21180,"retrievedAt":"2026-08-27T17:16:32.997Z"},"seceda":{"graphUrl":"routing-graphs/seceda.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.53061444125045,"west":11.658993879765028,"north":46.64480555874955,"east":11.824916120234972},"nodeCount":17322,"edgeCount":17676,"retrievedAt":"2026-08-27T17:15:07.870Z"},"seiseralm-alla-volta-della-trappola-d-orso-a-s-michele":{"graphUrl":"offline/packages/seiseralm-alla-volta-della-trappola-d-orso-a-s-michele/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56039,"west":11.55437,"north":46.59095,"east":11.62846},"nodeCount":5697,"edgeCount":5711,"retrievedAt":"2026-10-30"},"seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del":{"graphUrl":"offline/packages/seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43766,"west":11.52563,"north":46.47503,"east":11.59119},"nodeCount":7746,"edgeCount":7774,"retrievedAt":"2026-10-30"},"seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff":{"graphUrl":"offline/packages/seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.49924,"west":11.51315,"north":46.52498,"east":11.54464},"nodeCount":2479,"edgeCount":2522,"retrievedAt":"2026-10-30"},"seiseralm-escursione-senza-barriere-all-alpe-di-siusi":{"graphUrl":"offline/packages/seiseralm-escursione-senza-barriere-all-alpe-di-siusi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55029,"west":11.65544,"north":46.56163,"east":11.67452},"nodeCount":732,"edgeCount":732,"retrievedAt":"2026-10-30"},"sentiero-del-trenino":{"graphUrl":"routing-graphs/sentiero-del-trenino.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50122394125045,"west":11.579771099956796,"north":46.620546058749554,"east":11.834705400043205},"nodeCount":31869,"edgeCount":32496,"retrievedAt":"2026-08-27T17:18:53.015Z"},"sentiero-hans-e-paula-steger":{"graphUrl":"routing-graphs/sentiero-hans-e-paula-steger.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47457534125045,"west":11.55202977961426,"north":46.58771235874955,"east":11.73381722038574},"nodeCount":16978,"edgeCount":17096,"retrievedAt":"2026-08-27T17:18:30.960Z"},"tre-cime":{"graphUrl":"routing-graphs/tre-cime.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56729029125045,"west":12.21890409925356,"north":46.68179013874955,"east":12.380584860746438},"nodeCount":9099,"edgeCount":9213,"retrievedAt":"2026-08-27T17:15:12.018Z"},"valgardena-escursione-dalla-cappella-santa-croce-al-brogles":{"graphUrl":"offline/packages/valgardena-escursione-dalla-cappella-santa-croce-al-brogles/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58877,"west":11.64889,"north":46.62078,"east":11.72652},"nodeCount":3144,"edgeCount":3161,"retrievedAt":"2026-10-30"},"valgardena-percorso-dei-masi-tradizionali":{"graphUrl":"offline/packages/valgardena-percorso-dei-masi-tradizionali/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5555,"west":11.7039,"north":46.57621,"east":11.74439},"nodeCount":4645,"edgeCount":4722,"retrievedAt":"2026-10-30"},"valley-view":{"graphUrl":"routing-graphs/valley-view.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60012444125045,"west":11.624142315781222,"north":46.69381555874955,"east":11.781507684218777},"nodeCount":9655,"edgeCount":9750,"retrievedAt":"2026-08-27T17:10:02.955Z"},"villnoess-da-russis-fino-al-passo-delle-erbe":{"graphUrl":"offline/packages/villnoess-da-russis-fino-al-passo-delle-erbe/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64896,"west":11.7466,"north":46.67915,"east":11.81992},"nodeCount":4737,"edgeCount":4729,"retrievedAt":"2026-10-30"},"villnoess-dolorama-3a-tappa":{"graphUrl":"offline/packages/villnoess-dolorama-3a-tappa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58615,"west":11.65556,"north":46.64989,"east":11.81024},"nodeCount":21122,"edgeCount":21280,"retrievedAt":"2026-10-30"},"villnoess-ranui-zannes":{"graphUrl":"offline/packages/villnoess-ranui-zannes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62412,"west":11.72366,"north":46.64359,"east":11.7709},"nodeCount":2302,"edgeCount":2311,"retrievedAt":"2026-10-30"}}});
 ;
 
 // ---- trail-access-directions.js ----
@@ -69162,6 +69327,26 @@ function initDetailPois(map, trail){
     return null;
   }
 
+  // The warmest the rest of the day gets, the current reading included. A cool
+  // morning is not a cool day: 11 °C at eight can still be 26 °C by two.
+  function dayMax(input,temp){
+    const times=Array.isArray(input&&input.hourlyTimes)?input.hourlyTimes:[];
+    const temps=Array.isArray(input&&input.hourlyTemps)?input.hourlyTemps:[];
+    const today=dayKey(input&&input.currentTime);
+    const nowMinute=minuteOfDay(input&&input.currentTime);
+    let max=temp;
+    if(!today||nowMinute===null||times.length!==temps.length)return Math.round(max);
+    for(let index=0;index<times.length;index+=1){
+      if(dayKey(times[index])!==today)continue;
+      const minute=minuteOfDay(times[index]);
+      const value=Number(temps[index]);
+      // The current hour counts: a reading at 14:00 still describes 14:20.
+      if(minute===null||!Number.isFinite(value)||minute+60<=nowMinute)continue;
+      if(value>max)max=value;
+    }
+    return Math.round(max);
+  }
+
   // Today's heat, in the vocabulary the recommendation engine reads.
   function currentConditions(input){
     const temp=Number(input&&input.temperatureC);
@@ -69171,6 +69356,10 @@ function initDetailPois(map, trail){
     return {
       status:'known',
       heatRisk,
+      temperatureC:Math.round(temp),
+      // What decides whether a route's sun exposure matters on this day. The
+      // engine reads a route's own heat and shade only when this is warm.
+      dayMaxC:dayMax(input,temp),
       // Only present when the forecast actually crosses the threshold later
       // today. Absent means the engine says nothing about an hour.
       hotFromLabel:onset&&heatRisk!=='high'?onset.label:null,
@@ -73993,19 +74182,31 @@ if(document.querySelector('.td2')){
     }
   })();
 
-  /* ---- Dog safety tab: Good/Caution rows from real trail fields ---- */
+  /* ---- Dog safety tab: Good/Caution rows from real trail fields ----
+     Painted once from the route, then again when the forecast lands: heat
+     and hot ground only matter on a warm day, so the rows follow the weather. */
   (function safetyRows() {
     const box = $('dogSafetyRows');
     if (!box) return;
+    const paint = () => paintSafetyRows(box, window.DoloPawsWeatherWindow
+      ? window.DoloPawsWeatherWindow.scoringConditions(window.DoloPawsCurrentConditions)
+      : null);
+    paint();
+    window.addEventListener('dolopaws-conditions-ready', paint);
+  })();
+
+  function paintSafetyRows(box, conditions) {
     const text = `${t.tips || ''} ${t.desc || ''} ${(t.surfaceHazards || []).join(' ')}`.toLowerCase();
     const hasWater = Array.isArray(t.waterSources) && t.waterSources.length > 0;
     const shade = typeof t.shadeCoverage === 'number' ? t.shadeCoverage : null;
     const maxAlt = Math.max(0, ...(t.elevationProfile || []).map(p => Number(p.elev) || 0));
     const rows = [];
-    const caution = (title, sub, guideId) => rows.push({ title, sub, guideId });
+    const caution = (title, sub, guideId, items) => rows.push({ title, sub, guideId, items: items || [] });
+    // An assessment may name its own guide, or none (`guide: null`) when no
+    // guide fits, such as cold advice on a page whose guide is about heat.
     const addAssessment = (item, guideId) => {
       if (!item || item.ok) return;
-      caution(item.title, item.detail, guideId);
+      caution(item.title, item.detail, item.guide === undefined ? guideId : item.guide, item.items);
     };
 
     addAssessment(trust ? trust.exposureAssessment(t) : (t.exposure
@@ -74015,7 +74216,8 @@ if(document.querySelector('.td2')){
     addAssessment(trust ? trust.surfaceAssessment(t) : (Number(t.terrainRank) !== 0
       ? { ok: false, title: 'Surface hazards', detail: (t.terrainType || 'Gravel and mixed rock') + '. Check pads at breaks; consider booties for tender paws.' }
       : null), 'paws');
-    addAssessment(trust ? trust.heatAssessment(t) : null, 'heat');
+    addAssessment(trust ? trust.trafficAssessment(t) : null, null);
+    addAssessment(trust ? trust.heatAssessment(t, conditions) : null, 'heat');
     addAssessment(trust ? trust.waterAssessment(t) : (hasWater
       ? { ok: true, title: 'Water', detail: 'A water source is mapped on this route. Bring a bowl.' }
       : { ok: false, title: 'Water', detail: 'No water source is mapped. Carry enough for the dog.' }), 'water');
@@ -74028,10 +74230,14 @@ if(document.querySelector('.td2')){
     const rowMarkup = r => `
       <div class="safety-row is-caution"${r.guideId ? ` data-guide-id="${esc(r.guideId)}"` : ''}>
         <span class="pill">Caution</span>
-        <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small></span>
+        <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small>${r.items.length
+          ? `<ul class="safety-row-items">${r.items.map(entry => `<li>${esc(entry)}</li>`).join('')}</ul>`
+          : ''}</span>
       </div>`;
     box.innerHTML = rows.map(rowMarkup).join('');
-  })();
+    // A repaint drops the guide links trail-recommendation.js added; it adds
+    // them again on the same event, and only to rows that lack one.
+  }
 
   /* ---- Getting there + getting around, keep travel to the trailhead
      separate from the numbered waymarks used once the walk begins. ----- */
@@ -75073,8 +75279,8 @@ if(document.querySelector('.td2')){
     paws:Object.freeze({
       id:'paws',
       href:'guides/paw-protection.html',
-      label:'Protecting paw pads on rocky terrain',
-      summary:'Prepare for rough surfaces and recognise pad damage.',
+      label:'Looking after paw pads',
+      summary:'Rough ground, hot tarmac and how to spot pad damage.',
     }),
     exposure:Object.freeze({
       id:'exposure',

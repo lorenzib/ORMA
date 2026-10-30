@@ -221,6 +221,9 @@ let activeValley = 'all';
 // Held in memory only: a reload returns to the stored typed area anyway, which
 // is the same answer by a different route.
 let liContextBeforeMapArea = null;
+// What "Show all trails" in the list header left: the area and the filters,
+// so its "Back to Alta Pusteria" puts both back. Memory only, like the above.
+let liContextBeforeShowAll = null;
 // When our own reframing (fitBounds) should be finished by. Movement before
 // then is ours, not the reader's, and must not be read as "look here instead".
 // A deadline rather than a one-shot flag: an eased fitBounds, and the resize
@@ -1050,6 +1053,8 @@ function liApplyMapViewport(view){
 function liSetLocationContext(context){
   const next = liValidLocationContext(context);
   if(!next) return;
+  // Choosing any real place by another door makes the way back stale.
+  if(!liIsAllTrailsContext(next)) liContextBeforeShowAll = null;
   liLocationContext = next;
   // A new area supersedes the old map framing and selection; the filters and
   // the date are about the dog and the day, so they stay.
@@ -1096,6 +1101,45 @@ function liResetLocationContext(){
   if(typeof window.CustomEvent === 'function'){
     window.dispatchEvent(new window.CustomEvent('dolopaws-home-location-context-changed', { detail:{ ready:true } }));
   }
+}
+
+// The list header's "Show all trails": out of the area, the map area and the
+// filters into the whole catalogue, still ranked for the dog. The area is
+// not remembered (the all-trails context is transient), so a reload still
+// opens on the reader's own area.
+function liShowAllTrails(){
+  const base = liLocationContext && liLocationContext.kind === 'map' ? liContextBeforeMapArea : liLocationContext;
+  // Already on all trails with only a filter or a pan to clear: keep the
+  // earlier way back rather than overwriting it with "all trails".
+  if(base && !liIsAllTrailsContext(base)){
+    liContextBeforeShowAll = { context:base, filters:{ ...liFilters }, savedOnly:showingSavedOnly };
+  }
+  liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false, duration: 'day', lifts: '' };
+  showingSavedOnly = false;
+  liSetLocationContext({ ...LI_ALL_TRAILS_CONTEXT });
+}
+
+function liBackFromAllTrails(){
+  const saved = liContextBeforeShowAll;
+  if(!saved) return;
+  liContextBeforeShowAll = null;
+  liFilters = { ...saved.filters };
+  showingSavedOnly = saved.savedOnly;
+  liSetLocationContext(saved.context);
+}
+
+// One button, three states: narrowed -> "Show all trails"; on all trails
+// with a place to return to -> "Back to <area>"; otherwise nothing to offer.
+function liSyncShowAllButton(){
+  const button = document.getElementById('liShowAllTrails');
+  if(!button) return;
+  const narrowed = !liIsAllTrailsContext(liLocationContext) || liActiveFilterCount() > 0 || !!liQuery.trim();
+  const back = !narrowed && liContextBeforeShowAll;
+  button.hidden = !narrowed && !back;
+  button.dataset.mode = back ? 'back' : 'all';
+  button.textContent = back
+    ? `Back to ${liDisplayLocationLabel(back.context.label) || 'your area'}`
+    : 'Show all trails';
 }
 
 liApplyLocationGeography();
@@ -2807,8 +2851,7 @@ function liFillAvatar(el, profile){
 // instead of flashing the signed-in fallback between completed renders.
 function liResolveActiveProfile(profile){
   if(profile && profile.name) return profile;
-  let summary = null;
-  try { summary = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); } catch(e){}
+  const summary = liCachedSummary();
   if(!(summary && summary.hasProfile !== false)) return profile;
   const dogs = Array.isArray(summary.dogs) ? summary.dogs : [];
   const active = dogs.find(dog => dog && dog.id === summary.activeDogId) || dogs[0];
@@ -2816,9 +2859,18 @@ function liResolveActiveProfile(profile){
   return summary.name ? summary : profile;
 }
 
+// firebase-init.js keeps the summary it last wrote in memory as well. Prefer
+// it: a phone with a full localStorage refuses the write, and the stored copy
+// is then the guest's, with no dogs, even after a refresh.
+function liCachedSummary(){
+  const auth = typeof window !== 'undefined' ? window.DoloPawsAuth : null;
+  const live = auth ? auth.profileSummary : undefined;
+  if(live !== undefined) return live && typeof live === 'object' ? live : null;
+  try { return JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); } catch(e){ return null; }
+}
+
 function renderLiDogLists(profile){
-  let summary = null;
-  try { summary = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); } catch(e){}
+  const summary = liCachedSummary();
   const dogs = summary && Array.isArray(summary.dogs) && summary.dogs.length
     ? summary.dogs : profile ? [profile] : [];
   const activeId = summary && summary.activeDogId || (profile && profile.id);
@@ -3252,6 +3304,12 @@ function initLoggedInShell(){
       liCloseMenus();
       liSetLocationContext(liRegionContext(button.dataset.liRegion));
     });
+  });
+  const showAllButton = document.getElementById('liShowAllTrails');
+  if(showAllButton) showAllButton.addEventListener('click', () => {
+    liCloseMenus();
+    if(showAllButton.dataset.mode === 'back') liBackFromAllTrails();
+    else liShowAllTrails();
   });
   const nudgeButton = document.getElementById('liLocationNudgeBtn');
   if(nudgeButton) nudgeButton.addEventListener('click', liRequestCurrentLocation);
@@ -3972,6 +4030,7 @@ async function renderReturningHomepage(profile, options = {}){
   if(titleEl) titleEl.textContent = `${n} ${showingSavedOnly ? 'saved ' : ''}${n === 1 ? 'trail' : 'trails'}`;
   const countEl = document.getElementById('companionListCount');
   if(countEl) countEl.textContent = LI_SORT_ORDER_WORDS[sortKey] || LI_SORT_ORDER_WORDS.match;
+  liSyncShowAllButton();
 
   renderLiConditionsCard(profile, displayList);
 
@@ -4596,12 +4655,17 @@ async function applyHomepageAuthState(e){
         const pendingRaw = localStorage.getItem('dolopaws-pending-dog-profile');
         if(pendingRaw){
           const pending = JSON.parse(pendingRaw);
-          const existing = await window.DoloPawsAuth.getDogProfile();
-          if(pending && pending.name && (!existing || !existing.name)){
-            await window.DoloPawsAuth.setDogProfile(pending);
+          const state = await window.DoloPawsAuth.getDogProfiles();
+          // An unreadable account is not an empty one: writing the guest dog
+          // now would land it over the account's selected dog. Keep the
+          // device copy; the account page retries once the read works.
+          if(state && !state.loadError){
+            if(pending && pending.name && !state.dogs.length){
+              await window.DoloPawsAuth.setDogProfile(pending);
+            }
+            localStorage.removeItem('dolopaws-pending-dog-profile');
+            localStorage.removeItem('dolopaws-dog-draft'); // guest draft now redundant
           }
-          localStorage.removeItem('dolopaws-pending-dog-profile');
-          localStorage.removeItem('dolopaws-dog-draft'); // guest draft now redundant
         }
       } catch(err){ /* never block login on handoff */ }
 

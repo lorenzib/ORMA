@@ -5,7 +5,7 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
-  const VERSION = '1.6.0';
+  const VERSION = '1.7.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -84,6 +84,44 @@
     'route', 'exposure', 'surfaceHazards', 'access',
   ]);
 
+  // A route's sun exposure is a risk only on a warm day. "Little shade" and
+  // "hot tarmac" describe a July afternoon; at 11 °C in October they describe
+  // nothing a dog will feel. The forecast for the walk day decides: when it
+  // stays below the trail page's own "warm" line (22 °C) all day, the route's
+  // heat and shade cost nothing. With no forecast, or one without a day
+  // maximum, nothing is assumed and the route keeps its summer reading.
+  const COOL_DAY_MAX_C = 22;
+  // Cold is a note, never a cost: ORMA knows the temperature and the dog's
+  // weight, but not its coat or whether the day is wet, so it can say what to
+  // carry and cannot size a risk.
+  const COLD_DAY_MAX_C = 5;
+  const SMALL_DOG_KG = 5;
+
+  function dayMaxOf(conditions){
+    return conditions && conditions.status === 'known' && typeof conditions.dayMaxC === 'number'
+      && Number.isFinite(conditions.dayMaxC) ? conditions.dayMaxC : null;
+  }
+
+  function isCoolDay(conditions){
+    const max = dayMaxOf(conditions);
+    return max !== null && max < COOL_DAY_MAX_C
+      && conditions.heatRisk === 'low' && !conditions.hotFromLabel;
+  }
+
+  function isColdDay(conditions){
+    const max = dayMaxOf(conditions);
+    return max !== null && max <= COLD_DAY_MAX_C;
+  }
+
+  // A recorded caution that is only about heat: "Hot tarmac (about 80%
+  // paved)", "Little shade on hot days". One that also names rain, snow or
+  // storms stays, because that half of it is still true on a cool day.
+  // `\bhot\b` does not match "Hotel" or "hottest".
+  function isHeatOnlyHazard(text){
+    text = String(text || '');
+    return /\b(?:hot|heats? up|sunny)\b/i.test(text) && !/weather|rain|snow|storm/i.test(text);
+  }
+
   function item(code, message, vars, messageKey){
     return { code, message, vars:vars || null, messageKey:messageKey || code, impact:0 };
   }
@@ -148,7 +186,7 @@
     const orthopedic = conditions.has('joints') || conditions.has('back')
       || conditions.has('recovering') || traits.backRisk === true;
     const giant = traits.giant === true || (weight !== null && weight >= 45);
-    const toy = weight !== null && weight < 5;
+    const toy = weight !== null && weight < SMALL_DOG_KG;
     const behaviour = deriveBehaviour(dog);
     // A declared low heat tolerance adds sensitivity. A declared robust
     // tolerance deliberately removes nothing: heat injury is fast and
@@ -205,6 +243,7 @@
       chairliftDeclared,
       chairliftSafe,
       impairedVision: conditions.has('vision'),
+      small: toy,
       behaviour,
       // Confidence measures evidence quality, not behavioural detail, so
       // behaviour deliberately does not enter completeness. Adding it would
@@ -334,7 +373,12 @@
       positives.push(item('trail.exposure.none-known', 'No exposed section is recorded.'));
     }
 
-    if(suitability.heatRisk === 'high'){
+    // On a cool walk day the route's heat and shade are not charged and not
+    // praised: today's temperatures already appear as the reason they are fine.
+    const coolDay = isCoolDay(conditions);
+    if(coolDay){
+      // nothing: see isCoolDay
+    }else if(suitability.heatRisk === 'high'){
       penalise(dog.heatSensitive ? 25 : 12, item('trail.heat.high', dog.heatSensitive
         ? 'The route has high heat risk and this dog is heat-sensitive.'
         : 'The route has high baseline heat risk.', null,
@@ -351,7 +395,9 @@
     }
 
     const shade = numberOrNull(suitability.shadePercent);
-    if(shade === null){
+    if(coolDay){
+      // nothing: see isCoolDay
+    }else if(shade === null){
       unknowns.push(item('trail.shade.unknown', 'Shade coverage is unknown.'));
     }else if(shade < 20){
       penalise(10, item('trail.shade.very-low', 'The route has very little shade.'));
@@ -361,8 +407,11 @@
       positives.push(item('trail.shade.good', 'The route has substantial shade.'));
     }
 
-    const hazards = Array.isArray(suitability.surfaceHazards)
+    const recordedHazards = Array.isArray(suitability.surfaceHazards)
       ? suitability.surfaceHazards : null;
+    const hazards = recordedHazards && coolDay
+      ? recordedHazards.filter(hazard => !isHeatOnlyHazard(hazard))
+      : recordedHazards;
     if(hazards === null){
       unknowns.push(item('trail.surface-hazards.unknown', 'Surface hazards are unknown.'));
     }else if(hazards.length){
@@ -686,6 +735,11 @@
       }else{
         unknowns.push(item('conditions.heat.unknown', 'Current heat conditions are unavailable.'));
       }
+      if(isColdDay(conditions) && dog.small){
+        cautions.push(item('conditions.cold.small',
+          `The forecast stays cold (up to ${conditions.dayMaxC} °C). A small dog chills fast at rests, so bring a coat.`,
+          { max:conditions.dayMaxC }));
+      }
     }else{
       unknowns.push(item('conditions.not-included',
         'Current weather and trail conditions are not included in this recommendation.'));
@@ -796,6 +850,11 @@
   return {
     VERSION,
     FITNESS,
+    COOL_DAY_MAX_C,
+    COLD_DAY_MAX_C,
+    isCoolDay,
+    isColdDay,
+    isHeatOnlyHazard,
     CHAIRLIFT_MAX_KG,
     calculateRecommendation,
   };

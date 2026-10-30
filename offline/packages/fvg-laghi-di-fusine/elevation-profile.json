@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-laghi-di-fusine",
+  "distanceKm": 5.3,
+  "ascentM": 104,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 892
+    },
+    {
+      "km": 0.4,
+      "elev": 914
+    },
+    {
+      "km": 0.8,
+      "elev": 950
+    },
+    {
+      "km": 1.2,
+      "elev": 955
+    },
+    {
+      "km": 1.6,
+      "elev": 974
+    },
+    {
+      "km": 2,
+      "elev": 961
+    },
+    {
+      "km": 2.4,
+      "elev": 955
+    },
+    {
+      "km": 2.9,
+      "elev": 932
+    },
+    {
+      "km": 3.2,
+      "elev": 930
+    },
+    {
+      "km": 3.6,
+      "elev": 965
+    },
+    {
+      "km": 4.1,
+      "elev": 954
+    },
+    {
+      "km": 4.5,
+      "elev": 927
+    },
+    {
+      "km": 4.9,
+      "elev": 917
+    },
+    {
+      "km": 5.3,
+      "elev": 878
+    }
+  ]
+}

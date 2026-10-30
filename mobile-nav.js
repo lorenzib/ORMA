@@ -316,6 +316,10 @@
   }
 
   function authSummary(){
+    // firebase-init.js keeps the summary it last wrote in memory too: a full
+    // localStorage refuses the write, and the stored copy is then stale.
+    const live = window.DoloPawsAuth && window.DoloPawsAuth.profileSummary;
+    if(live !== undefined) return live && typeof live === 'object' ? live : null;
     try {
       const raw = localStorage.getItem('dolopaws-profile-summary');
       if(!raw) return null;
@@ -703,7 +707,7 @@
           }
           // i18n first, auth-ui's modal copy calls window.t().
           const script = loadScript('i18n.js?v=20260917-1')
-            .then(() => loadScript('auth-ui.js?v=20260812-1'));
+            .then(() => loadScript('auth-ui.js?v=20261030-1'));
           // import() inside a classic script resolves against THIS script's
           // URL (the site root), not the page, resolve explicitly against
           // the document so ../ prefixes on trail pages work.
@@ -751,6 +755,15 @@
       const user = e.detail && e.detail.user;
       const s = authSummary();
       renderHeader(!!user, (s && s.name) ? String(s.name) : '');
+    });
+    // Signing in tells this page the user changed before the account's dogs
+    // are read (firebase-init.js does not hold sign-in up for it), so the
+    // render above names no dog. Redraw when the dogs arrive, or the pill
+    // and its Switch dog menu stay on "Your dog" until a refresh.
+    window.addEventListener('dolopaws-profile-summary-changed', (e) => {
+      const s = e.detail && e.detail.summary;
+      if(!s || !(window.DoloPawsAuth && window.DoloPawsAuth.currentUser)) return;
+      renderHeader(true, s.name ? String(s.name) : '');
     });
     window.addEventListener('dolopaws-dog-profile-saved', (e) => {
       const p = e.detail && e.detail.profile;

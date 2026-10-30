@@ -27,13 +27,20 @@ describe('choosing a new place keeps the dog’s filters', () => {
     expect(setter).not.toContain('liFilters =');
   });
 
-  test('only liResetAllFilters clears the filters', () => {
-    // Two writes only: the declaration, and the explicit reset action.
+  test('only the reader\u2019s own clearing actions touch the filters', () => {
+    // The declaration, Reset filters, and the list header's "Show all trails"
+    // with its "Back to <area>", which hands the same filters back. Nothing
+    // that merely changes the place may write them.
     const writes=source.split('\n').filter(line=>/\bliFilters = \{/.test(line));
-    expect(writes).toHaveLength(2);
+    expect(writes).toHaveLength(4);
     expect(writes[0]).toContain('let liFilters');
-    const reset=source.slice(source.indexOf('function liResetAllFilters'));
-    expect(reset.slice(0, 400)).toContain('liFilters = {');
+    const body=name=>{
+      const from=source.indexOf(`function ${name}(`);
+      return source.slice(from, source.indexOf('\n}\n', from));
+    };
+    expect(body('liResetAllFilters')).toContain('liFilters = {');
+    expect(body('liShowAllTrails')).toContain('liFilters = {');
+    expect(body('liBackFromAllTrails')).toContain('liFilters = { ...saved.filters }');
   });
 
 });

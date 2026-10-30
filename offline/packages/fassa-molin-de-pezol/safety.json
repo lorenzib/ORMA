@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-molin-de-pezol",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.7,
+    "ascentM": 38,
+    "highestPointM": 1328,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.430267,
+    "lng": 11.686029,
+    "label": "Pozza di Fassa (Piaza de Comun), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.4308146,
+      "lng": 11.6874519,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4309218,
+      "lng": 11.6934045,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.428992,
+      "lng": 11.6928863,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "About 1.3 km on tarmac, partly village streets open to cars.",
+    "Farm animals at the Agua Biencia farm: keep your distance.",
+    "Gravel tracks over meadows that are mown for hay: keep to the track.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}
