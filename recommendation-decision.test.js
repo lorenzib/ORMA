@@ -267,8 +267,8 @@ describe('the positives as sentences, for a card that lists them', () => {
     expect(view.fits).toEqual(['No surface hazards are recorded.', 'No exposed sections are recorded.']);
   });
 
-  test('fineLine is untouched, so the trail page reads as it did', () => {
-    const view = decision.present(withPositives(positives), { dogName:'Teo' });
+  test('fineLine is untouched for a strong option, so the trail page reads as it did', () => {
+    const view = decision.present({ ...withPositives(positives), category:'strong-option' }, { dogName:'Teo' });
     expect(view.fineLine).toBe('Fine for Teo: the terrain, the 3.6 km distance and the 39 m climb.');
   });
 });
@@ -365,8 +365,49 @@ describe('what the card leads with when it cannot show them all', () => {
   test('fine keeps the engine order, so the trail page sentence is unchanged',()=>{
     // fits is ordered for a card that shows four; fineLine is prose on the
     // trail page, and reordering it would rewrite that page's wording.
-    const view = decision.present(withPositives(mixed), { dogName:'Teo' });
+    const view = decision.present({ ...withPositives(mixed), category:'strong-option' }, { dogName:'Teo' });
     expect(view.fine[0]).toBe('dog access on a leash');
     expect(view.fineLine.startsWith('Fine for Teo: dog access on a leash,')).toBe(true);
+  });
+});
+
+describe('the fine line never contradicts the verdict', () => {
+  // The trail page said "Not recommended 49%", listed four costs, then closed
+  // with a green tick: "Fine for Teo: the terrain, the 454 m climb ...". That
+  // reads as reassurance under a verdict that says no.
+  const factors = [
+    { code:'trail.heat.high', message:'Runs warm.', impact:-10 },
+    { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
+    { code:'trail.ascent.within-range', message:'Ascent is within range.', impact:0, vars:{ ascent:'454' } },
+  ];
+  const withVerdict = (category, score) => ({
+    ...recommendation, category, score, factors,
+    positiveReasons:factors.filter(f => f.impact === 0).map(f => ({ code:f.code, message:f.message })),
+  });
+
+  test('Not recommended never says "Fine for", and says these do not outweigh the reasons', () => {
+    const view = decision.present(withVerdict('not-recommended', 49), { dogName:'Teo' });
+    expect(view.fineLine).not.toMatch(/fine for/i);
+    expect(view.fineLine).toBe('Not the problem here: the terrain and the 454 m climb. These do not outweigh the reasons above.');
+    expect(view.fineTone).toBe('neutral');
+  });
+
+  test('Possible with cautions keeps the cautions in charge', () => {
+    const view = decision.present(withVerdict('possible-with-cautions', 72), { dogName:'Teo' });
+    expect(view.fineLine).not.toMatch(/fine for/i);
+    expect(view.fineLine).toBe('Not a concern for Teo: the terrain and the 454 m climb. The reasons above still apply.');
+    expect(view.fineTone).toBe('neutral');
+  });
+
+  test('only a strong option keeps the reassuring tick', () => {
+    const view = decision.present(withVerdict('strong-option', 90), { dogName:'Teo' });
+    expect(view.fineLine).toBe('Fine for Teo: the terrain and the 454 m climb.');
+    expect(view.fineTone).toBe('reassure');
+  });
+
+  test('the Italian lines follow the verdict too', () => {
+    const source = require('fs').readFileSync(require('path').join(__dirname, 'i18n.js'), 'utf8');
+    expect(source).toContain("'recommendation.fine.line.not-recommended': 'Non è questo il problema: {items}. Non compensano i motivi qui sopra.'");
+    expect(source).toContain("'recommendation.fine.line.possible-with-cautions': 'Nessuna preoccupazione per {name}: {items}. I motivi qui sopra restano validi.'");
   });
 });
