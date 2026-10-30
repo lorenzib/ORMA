@@ -65,23 +65,27 @@ describe('empty states and long-form navigation', () => {
     const h2s = [...en.querySelectorAll('h2')].map(h => h.textContent);
     expect(h2s).toHaveLength(1);
     expect(h2s[0]).toContain('The two scores');
-    // The closing material resolves into one compact disclosure rather than
-    // another page-sized section, and stays below the page-nav threshold.
-    expect(en.querySelector('.sc-verification > summary').textContent).toContain('Verified, reviewed or imported');
-    // One card per badge the site shows, and Verified is described as checked
+    // The closing material is one line per badge rather than another
+    // page-sized section, and stays below the page-nav threshold.
+    expect(en.querySelector('.sc-trust-title').textContent).toContain('How well we know the trail');
+    // One line per badge the site shows, and Verified is described as checked
     // against official sources, never as walked or measured by ORMA.
     for(const block of document.querySelectorAll('[data-lang-block]')){
-      expect(block.querySelectorAll('.sc-status-card')).toHaveLength(3);
+      expect(block.querySelectorAll('.sc-trust-row')).toHaveLength(3);
       expect(block.querySelector('.badge-reviewed')).not.toBeNull();
     }
-    const verified = en.querySelector('.badge-verified').closest('.sc-status-card').textContent;
+    const verified = en.querySelector('.badge-verified').closest('.sc-trust-row').textContent;
     expect(verified).toContain('official sources');
+    // A board walk keeps the seal only with directions you can follow
+    // (OPERATING_STANDARD.md, "A board walk is Verified only if it can be followed").
+    expect(verified).toContain('directions');
     expect(verified).not.toMatch(/Measured and reviewed by us|our own notes/);
     expect(en.querySelectorAll('.sc-panel > .guide-section > h2')).toHaveLength(0);
-    expect(en.querySelector('.sc-community-note')).not.toBeNull();
     expect(en.querySelectorAll('.sc-methodology-content')).toHaveLength(0);
     expect(en.querySelectorAll(':scope > .sc-limits')).toHaveLength(1);
-    expect(en.querySelector('.sc-limits').textContent).toContain('Only declared, structured facts move the score');
+    expect(en.querySelector('.sc-limits').textContent).toContain('a guide, not a guarantee');
+    // Today's heat forecast does reach the score, so the page must not say otherwise.
+    expect(en.textContent).not.toContain("cannot see today's weather");
     expect(en.querySelector('.sc-limits strong')).toBeNull();
     expect(document.querySelector('.guide-page-nav[data-generated]')).toBeNull();
   });
