@@ -36,7 +36,8 @@ describe('Alpine plants guide', () => {
 
   test('cards lead with concise avoid and monitor guidance', () => {
     const card = guide.plantCard(data.plants.find(plant => plant.id === 'european-yew'));
-    expect(card).toContain('Dangerous');
+    expect(card).toContain('Toxic if eaten');
+    expect(card).not.toContain('mouth');
     expect(card).toContain('<b>Avoid:</b>');
     expect(card).toContain('<b>Monitor for:</b>');
     expect(card).toContain('class="apg-card-label apg-card-label--dangerous"');
@@ -110,7 +111,9 @@ describe('Alpine plants guide', () => {
     expect(html).not.toContain('apg-hero-mosaic');
     expect(html).not.toContain('apg-emergency-mark');
     expect(html).not.toContain('class="apg-emergency"');
-    expect(html).toContain('<details class="apg-help" id="plant-emergency">');
+    expect(html).toContain('<aside class="apg-help" id="plant-emergency" aria-labelledby="plantEmergencyHeading">');
+    expect(html).toContain('<h2 id="plantEmergencyHeading">If your dog eats a plant</h2>');
+    expect(html).not.toMatch(/your dog.s mouth/);
     expect(html).toContain('id="plantSafety"');
     expect(html).toContain('id="plantMonths"');
     expect(html).toContain('id="plantHabitat"');

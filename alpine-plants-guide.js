@@ -4,7 +4,7 @@
   const PRESENTATION = {
     safe:{ label:'Low concern', groupTitle:'Safe to pass, not to eat', icon:'shield', tone:'safe', meaning:'No known poisoning risk from normal proximity or sniffing. This does not mean edible.' },
     caution:{ label:'In-between', groupTitle:'Avoid chewing or contact', icon:'triangle', tone:'caution', meaning:'Prevent chewing, ingestion or irritating contact.' },
-    dangerous:{ label:'Dangerous', groupTitle:'Keep out of your dog’s mouth', icon:'octagon', tone:'dangerous', meaning:'Prevent chewing and keep fallen berries, seeds, bulbs and cuttings out of reach.' },
+    dangerous:{ label:'Toxic if eaten', groupTitle:'Toxic if eaten', icon:'octagon', tone:'dangerous', meaning:'Prevent chewing and keep fallen berries, seeds, bulbs and cuttings out of reach.' },
   };
   const HABITATS = {
     meadow:{ label:'Meadow / pasture', pattern:/meadow|pasture|grassland|lawn|field/i },
@@ -27,10 +27,10 @@
     'hens-and-chicks':'Discourage chewing, even though this plant is classed as non-toxic.',
     'buttercup':'Do not let your dog chew fresh flowers, leaves or stems.',
     'stinging-nettle':'Avoid face, eye, paw and bare-skin contact with the stinging hairs.',
-    'monkshood':'Keep your dog from mouthing any part of the plant.',
+    'monkshood':'Do not let your dog chew or lick any part of the plant.',
     'autumn-crocus':'Keep your dog away from flowers, leaves, seeds and bulbs.',
     'alpine-rhododendron':'Do not allow chewing of flowers, leaves or woody stems.',
-    'foxglove':'Keep all parts out of your dog’s mouth, including fallen flowers and leaves.',
+    'foxglove':'Do not let your dog chew any part, including fallen flowers and leaves.',
     'lily-of-the-valley':'Prevent chewing of leaves, flowers, berries and underground stems.',
     'european-yew':'Keep your dog from needles, twigs, seeds, red arils and hedge clippings.',
     'daffodil':'Prevent chewing and digging; bulbs carry the greatest concentration of toxin.',
@@ -160,12 +160,11 @@
     const controls = {
       query:document.getElementById('plantSearch'), safety:document.getElementById('plantSafety'),
       months:document.getElementById('plantMonths'), habitat:document.getElementById('plantHabitat'),
-      help:document.getElementById('plant-emergency'), clear:document.getElementById('plantClear'),
+      clear:document.getElementById('plantClear'),
       results:document.getElementById('plantResults'), count:document.getElementById('plantResultCount'),
       active:document.getElementById('plantActiveFilters'),
     };
     const state = stateFromUrl(window.location);
-    if(state.dangerousFirst && controls.help) controls.help.open = true;
     let plants = [];
     let activeExpandTrigger = null;
     const lightbox = document.createElement('dialog');

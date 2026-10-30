@@ -13,18 +13,10 @@
 @media(forced-colors:active){.apg-card,.apg-safety-switch button,.apg-month,.apg-chip-button,.apg-photo-expand,.apg-lightbox__close{border-color:CanvasText}.apg-badge svg,.apg-card-label svg{forced-color-adjust:auto}}
 
 
-/* Calm help strip: the first-aid steps stay one tap away without a red banner. */
-.apg-help{scroll-margin-top:90px;margin:0 0 20px;padding:16px 18px;border:1px solid var(--paper-line);border-left:4px solid var(--accent);border-radius:16px;background:var(--card)}
-.apg-help>summary{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;cursor:pointer;list-style:none}
-.apg-help>summary::-webkit-details-marker{display:none}
-.apg-help-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--safety-info-soft);color:var(--accent)}
-.apg-help-icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.apg-help-copy strong{display:block;margin-bottom:2px;font-size:16px}
-.apg-help-copy span{color:var(--ink-soft);font-size:13px;line-height:1.5}
-.apg-help-toggle{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border:1.5px solid var(--ink);border-radius:999px;font-size:13px;font-weight:700;white-space:nowrap}
-.apg-help[open] .apg-help-toggle{background:var(--ink);color:#fff}
-.apg-help[open] .apg-help-toggle{font-size:0}.apg-help[open] .apg-help-toggle::after{content:"Hide steps";font-size:13px}
-.apg-help-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 0;padding:0;list-style:none;counter-reset:apg-step}
+/* First-aid banner: the immediate steps are always on screen, in calm colours. */
+.apg-help{scroll-margin-top:90px;margin:0 0 20px;padding:18px 20px;border:1px solid var(--paper-line);border-left:4px solid var(--accent);border-radius:16px;background:var(--card)}
+.apg-help h2{margin:0 0 12px;font-size:18px}
+.apg-help-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0;padding:0;list-style:none;counter-reset:apg-step}
 .apg-help-steps li{position:relative;padding:12px 12px 12px 44px;border-radius:12px;background:var(--bg);font-size:12.5px;line-height:1.5;counter-increment:apg-step}
 .apg-help-steps li::before{content:counter(apg-step);position:absolute;left:12px;top:12px;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:800}
 .apg-help-steps b{display:block;margin-bottom:2px}
@@ -90,8 +82,7 @@
 @media(max-width:700px){
   .apg-hero-copy h1{font-size:42px}.apg-hero-copy>p{font-size:16px}
   .apg-wrap{padding-top:20px;padding-bottom:50px}
-  .apg-help>summary{grid-template-columns:auto minmax(0,1fr)}
-  .apg-help-toggle{grid-column:1/-1;justify-content:center}
+  .apg-help{padding:16px}
   .apg-tools{padding:16px}
   .apg-safety-switch{grid-template-columns:repeat(2,1fr)}
   .apg-months-picker{display:flex;overflow-x:auto;margin-inline:-16px;padding:0 16px 4px;scrollbar-width:none}
