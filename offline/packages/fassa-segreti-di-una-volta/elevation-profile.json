@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-segreti-di-una-volta",
+  "distanceKm": 7.9,
+  "ascentM": 176,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1396
+    },
+    {
+      "km": 0.6,
+      "elev": 1453
+    },
+    {
+      "km": 1.2,
+      "elev": 1428
+    },
+    {
+      "km": 1.9,
+      "elev": 1451
+    },
+    {
+      "km": 2.4,
+      "elev": 1430
+    },
+    {
+      "km": 3,
+      "elev": 1357
+    },
+    {
+      "km": 3.6,
+      "elev": 1338
+    },
+    {
+      "km": 4.3,
+      "elev": 1317
+    },
+    {
+      "km": 4.8,
+      "elev": 1309
+    },
+    {
+      "km": 5.4,
+      "elev": 1311
+    },
+    {
+      "km": 6.1,
+      "elev": 1296
+    },
+    {
+      "km": 6.6,
+      "elev": 1300
+    },
+    {
+      "km": 7.2,
+      "elev": 1350
+    },
+    {
+      "km": 7.8,
+      "elev": 1406
+    },
+    {
+      "km": 7.9,
+      "elev": 1406
+    }
+  ]
+}

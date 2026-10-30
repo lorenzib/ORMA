@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 13.5,
+    "ascentM": 407,
+    "highestPointM": 1559,
+    "expectedDuration": "3.8 hours",
+    "difficulty": "Hard",
+    "shadePercent": 64
+  },
+  "trailhead": {
+    "lat": 46.657632,
+    "lng": 11.908964,
+    "label": "Pederoa, opposite the Pizzeria Traföi, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 3.5 km on a road with little traffic up to Picedac: keep your dog close.",
+    "Farm tracks past working farms: watch for tractors and farm dogs.",
+    "The path back runs beside the river.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}
