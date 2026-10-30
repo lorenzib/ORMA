@@ -70636,9 +70636,9 @@ function initTrailReports(map, trail){
    * A walk with no trail numbers, given turn by turn (OPERATING_STANDARD.md,
    * "A walk with no number says how to follow it"). Each step names the
    * sources it rests on by their place in `guidance.sources`, and each source
-   * carries the short tag the card prints after the step -- "tourist office",
-   * "map" -- so a reader can tell the operator's own words from what ORMA read
-   * off OpenStreetMap to place them.
+   * carries a short tag -- "tourist office", "map". When a walk mixes sources
+   * the card prints the tag after each step, so a reader can tell the
+   * operator's own words from what ORMA read off OpenStreetMap to place them.
    *
    * All or nothing: a step citing no source, or a source with no https link,
    * date or tag, and the card shows the Route and Key turns lines instead,
@@ -70657,24 +70657,38 @@ function initTrailReports(map, trail){
       && Array.isArray(step.from) && step.from.length > 0 && step.from.every(usable));
     if (!steps.length || !steps.every(sourced)) return null;
     const used = [...new Set(steps.flatMap(step => step.from))].sort((a, b) => a - b);
+    // When every step rests on the same one source, a tag after each step
+    // repeats what the single credit line already says, so the tags only
+    // appear when a walk mixes sources and a reader needs to tell them apart.
+    const mixed = used.length > 1;
     return {
       badge: STEPS_BADGE,
       steps: steps.map(step => ({
         text: String(step.text).trim(),
-        tags: [...new Set(step.from.map(index => String(sources[index].tag).trim()))],
+        tags: mixed ? [...new Set(step.from.map(index => String(sources[index].tag).trim()))] : [],
       })),
-      // One line per source: `${before}${label}${after}`, the label linked.
+      // One short line per source: `${before}${label}${after}`, the label
+      // linked. The label is who published the directions, not the title of
+      // their page, which is often a long marketing line.
       credits: used.map(index => {
         const source = sources[index];
-        const by = String(source.authority || '').trim();
         return {
-          before: `Steps marked “${String(source.tag).trim()}”: `,
-          label: String(source.label).trim(),
+          before: mixed ? `Steps marked “${String(source.tag).trim()}”: ` : 'Directions: ',
+          label: creditName(source),
           url: source.url,
-          after: `${by ? `, ${by}` : ''}, read ${readOn(source.reviewedAt)}.`,
+          after: `, checked ${readOn(source.reviewedAt)}.`,
         };
       }),
     };
+  }
+
+  // "Val di Fassa tourist board (APT Val di Fassa), on Outdooractive" reads
+  // as "Val di Fassa tourist board". A map source's authority describes what
+  // was read off the map, so its label ("OpenStreetMap") names it instead.
+  function creditName(source) {
+    const authority = String(source.authority || '')
+      .replace(/,\s*on\s+[^,]+$/, '').replace(/\s*\([^)]*\)/g, '').trim();
+    return source.tag === 'map' || !authority ? String(source.label).trim() : authority;
   }
 
   const api = { SOURCES, STEPS_BADGE, splitSources, landmarkSteps };
@@ -74322,8 +74336,8 @@ if(document.querySelector('.td2')){
     const guidanceLines = guidanceSplit ? guidanceSplit.lines : [];
     const stepsMarkup = guidanceSteps
       ? `<ol class="td2-route-steps">${guidanceSteps.steps.map(step =>
-        `<li>${esc(step.text)} <span class="td2-route-step-from">${esc(step.tags.join(', '))}</span></li>`).join('')}</ol>${
-        guidanceSteps.credits.map(credit => `<p class="td2-route-source">${esc(credit.before)}<a href="${
+        `<li>${esc(step.text)}${step.tags.length ? ` <span class="td2-route-step-from">${esc(step.tags.join(', '))}</span>` : ''}</li>`).join('')}</ol>${
+        guidanceSteps.credits.map(credit => `<p class="td2-route-credit">${esc(credit.before)}<a href="${
           esc(credit.url)}" target="_blank" rel="noopener">${esc(credit.label)}</a>${esc(credit.after)}</p>`).join('')}`
       : '';
     const routeRefMarkup = verifiedRouteGuidance && guidanceSplit
