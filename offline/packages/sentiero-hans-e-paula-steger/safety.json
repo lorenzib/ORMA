@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "trailId": "sentiero-hans-e-paula-steger",
-  "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "One way",
     "distanceKm": 8.74,
@@ -34,12 +34,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "About 1.2 km on asphalt in Compatsch and Saltria and near Hotel Steger Dellai.",
     "Crosses the Seiser Alm access road and joins the Saltria road.",
     "Narrower, rougher path on route 12 down into the Saltria valley.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",
@@ -53,7 +52,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-10-23",
+      "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
   ]

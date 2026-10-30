@@ -63,8 +63,10 @@ exclude:
   # conditions is a complete map of the data model — reconnaissance we have no
   # reason to hand out.
   - firestore.rules
+  - storage.rules
   - firestore.indexes.json
   - firestore-emulator.spec.cjs
+  - storage-emulator.spec.cjs
   - firebase.json
   - firestore-debug.log
   - firebase-debug.log

@@ -74,6 +74,8 @@ describe('logged-in discovery workspace layout', () => {
     // toggle. The kicker, the news line and the fold-out of tabs are gone.
     const head = html.slice(html.indexOf('class="li-list-head"'), html.indexOf('id="returningTrailList"'));
     expect(head).toContain('<h2 class="li-list-title" id="companionListTitle">');
+    // Not "Best matches for Teo": the headline above already says "Best walk for Teo".
+    expect(fs.readFileSync('script.js', 'utf8')).not.toContain('`Best matches for ${profile.name}`');
     expect(head).toContain('id="companionListCount"');
     // ORMA's own menu, not a native select: the system popup did not match.
     expect(head).not.toContain('<select');
@@ -182,6 +184,23 @@ describe('logged-in discovery workspace layout', () => {
     expect(mobileCss).toContain('grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:36px 36px;');
     expect(mobileCss).toContain('.li-toolbar-greet{display:none;}');
     expect(html).toContain('homepage-mobile.css?v=20260916-1');
+  });
+
+  test('the ranked list can be reached between 701 and 1040 px', () => {
+    // The Map / List switch went in August; the CSS that hid the other pane
+    // stayed, so tablets saw a map and no list. With no switch in the page,
+    // no rule may hide a pane by data-pane.
+    expect(html).not.toContain('data-li-pane');
+    expect(html).not.toMatch(/class="li-body"[^>]*data-pane=/);
+    expect(css).not.toMatch(/\[data-pane=/);
+    const start = css.indexOf('@media (min-width:701px) and (max-width:1040px){');
+    expect(start).toBeGreaterThan(-1);
+    const tablet = css.slice(start, css.indexOf('\n}\n', start));
+    expect(tablet).not.toMatch(/\.li-list[^{]*\{[^}]*display:none/);
+    // Stacked, one column: the unconditional two-column .li-body rule later in
+    // the file would put a 480px list beside a squeezed map, so the tablet
+    // rule needs the id to win.
+    expect(tablet).toMatch(/#returningCustomerHomepage \.li-body\{grid-template-columns:1fr;/);
   });
 
   test('uses a dashed divider instead of a match box and keeps route facts legible', () => {

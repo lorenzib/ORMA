@@ -21,6 +21,7 @@ async function main(options = {}){
   console.log(`[hand-verifications] recorded ${result?.recorded?.length || 0}, withdrawn ${result?.withdrawn?.length || 0}, queued jobs retired ${result?.retiredJobs?.length || 0}`);
   if(result?.recorded?.length) console.log(`[hand-verifications] recorded: ${result.recorded.join(', ')}`);
   if(result?.withdrawn?.length) console.log(`[hand-verifications] withdrawn: ${result.withdrawn.join(', ')}`);
+  if(result?.compacted?.length) console.log(`[hand-verifications] dropped the copied source list from ${result.compacted.length} record(s)`);
   if(board?.error) console.error(`[hand-verifications] board not refreshed: ${board.error}`);
   else if(board) console.log(`[hand-verifications] board: ${board.verified} Verified on the site, ${board.verifiedByHand} by hand, ${board.stages?.passed} passed by the pipeline, ${board.disagree} disagree`);
   return { result, board };

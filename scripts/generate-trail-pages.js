@@ -27,6 +27,7 @@ const { loadSlugOverrides, allRetiredSlugs, validateSlugOverrides } = require('.
 // The same module the app reads its trail numbers from, so a page and a card
 // show the same numbers in the same order for the same walk.
 const routeRefs = require('../trail-route-refs.js');
+const routeGuidanceSources = require('../route-guidance-sources.js');
 
 const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'trails');
@@ -159,7 +160,8 @@ function displayStartLabel(t, label) {
   return `Mapped start suggestion, ${plainStartLabel(label)}. Check current access before travelling.`;
 }
 
-const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France' };
+const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', lombardy: 'Lombardy, Italy', friuli: 'Friuli Venezia Giulia, Italy', aosta: 'Valle d\'Aosta, Italy', tyrol: 'Tyrol & Carinthia, Austria' };
+const REGION_COUNTRY = { savoy: 'FR', tyrol: 'AT' };
 
 /**
  * One rule for the badge, shared with the app.
@@ -252,7 +254,15 @@ function formatReviewDate(value) {
 function directionsSection(t) {
   const guidance = t && t.routeNumberGuidance && typeof t.routeNumberGuidance === 'object'
     ? t.routeNumberGuidance : null;
-  if (!guidance) return '';
+  if (!guidance) {
+    // No structured guidance and no trail numbers: the route audit's own
+    // sentence, when it is one a walker can follow, in the app's words.
+    const written = routeRefs.writtenDirections(t);
+    if (!written.written || routeRefs.forTrail(t).length) return '';
+    return `<h2>How to follow this route</h2>
+    <p><b>Directions:</b> ${escapeHtml(written.text)}</p>
+    <p class="sp-route-source">${escapeHtml(routeRefs.AUDIT_DIRECTIONS_NOTE)}</p>`;
+  }
   const [start, sequence, switches] = ['start', 'sequence', 'switches']
     .map(field => String(guidance[field] || '').trim());
   // All three or none: half a set of directions is worse than none, because the
@@ -266,16 +276,38 @@ function directionsSection(t) {
       `${index ? '<span class="sp-route-ref-arrow" aria-hidden="true">\u2192</span>' : ''}`
       + `<span class="sp-route-ref">${escapeHtml(ref)}</span>`).join('')}</div>`
     : '';
-  const lines = [
+  // A walk with no numbers, turn by turn: the steps take the place of the
+  // Route and Key turns lines, each tagged with the source it rests on.
+  const stepped = routeGuidanceSources.landmarkSteps(guidance);
+  // Each value ends with where it came from; the page says that once, under
+  // the lines, instead of after every one of them.
+  const { lines, note } = routeGuidanceSources.splitSources([
     ['Start', start],
-    ...(status ? [['Trail numbers', status]] : []),
-    [landmarkLed ? 'Route' : 'Trail numbers and route', sequence],
-    [landmarkLed ? 'Key turns' : 'Where to switch', switches],
-  ];
+    ...(status && !stepped ? [['Trail numbers', status]] : []),
+    ...(stepped ? [] : [
+      [landmarkLed ? 'Route' : 'Trail numbers and route', sequence],
+      [landmarkLed ? 'Key turns' : 'Where to switch', switches],
+    ]),
+  ]);
+  // Styled here rather than in the page head, so only the pages that have
+  // steps carry the rules for them.
+  const steps = stepped
+    ? `\n    <style>.sp-route-badge{display:inline-block;margin:6px 0 2px;padding:3px 10px;border-radius:8px;background:#FBF1DC;color:#6B4A12;font-size:13px;}`
+      + '.sp-route-steps{display:grid;gap:8px;margin:10px 0;padding-left:22px;}.sp-route-steps li::marker{color:#B54835;font-weight:800;}'
+      + `.sp-route-step-from{color:#657369;font-size:12px;white-space:nowrap;}</style>
+    <ol class="sp-route-steps">${stepped.steps.map(step =>
+      `<li>${escapeHtml(step.text)} <span class="sp-route-step-from">${escapeHtml(step.tags.join(', '))}</span></li>`).join('')}</ol>${
+      stepped.credits.map(credit => `\n    <p class="sp-route-source">${escapeHtml(credit.before)}<a href="${
+        escapeHtml(credit.url)}" rel="noopener">${escapeHtml(credit.label)}</a>${escapeHtml(credit.after)}</p>`).join('')}`
+    : '';
   return `<h2>How to follow this route</h2>
-    ${shields}
-    ${lines.map(([label, text]) =>
-    `<p><b>${escapeHtml(label)}:</b> ${escapeHtml(text)}</p>`).join('\n    ')}`;
+    ${shields}${stepped ? `<p class="sp-route-badge">${escapeHtml(stepped.badge)}</p>` : ''}
+    ${lines.map(([label, text]) => label === 'Start' && /^Start\b/.test(text)
+    // "Start: Start at …" read the word twice; the sentence's own first word
+    // takes the bold instead (trail-blueprint.js does the same in the app).
+    ? `<p><b>Start</b>${escapeHtml(text.slice(5))}</p>`
+    : `<p><b>${escapeHtml(label)}:</b> ${escapeHtml(text)}</p>`).join('\n    ')}${steps}${
+    note ? `\n    <p class="sp-route-source">${escapeHtml(note)}</p>` : ''}`;
 }
 
 // Valley hub guides (add here as new area guides are published)
@@ -573,7 +605,7 @@ function trailPage(t, slug, all) {
     url: canonical,
     geo: { '@type': 'GeoCoordinates', latitude: t.lat, longitude: t.lng },
     isAccessibleForFree: !t.paid,
-    address: { '@type': 'PostalAddress', addressCountry: t.region === 'savoy' ? 'FR' : 'IT' },
+    address: { '@type': 'PostalAddress', addressCountry: REGION_COUNTRY[t.region] || 'IT' },
   };
 
   const breadcrumbLd = {
@@ -634,6 +666,7 @@ function trailPage(t, slug, all) {
   .sp-route-refs{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 4px;}
   .sp-route-ref{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;box-sizing:border-box;padding:5px 10px;border:3px solid #B54835;border-radius:8px;background:#fff;color:#202821;font:800 15px/1 'Inter',sans-serif;box-shadow:0 1px 2px rgba(32,40,33,.08);}
   .sp-route-ref-arrow{color:#657369;font-size:17px;font-weight:800;}
+  .sp-route-source{margin-top:4px;color:#657369;font-size:13px;line-height:1.5;}
   /* The photo is lazy-loaded and the credit toggle is pinned to the figure's
      corner, so the figure reserves its height up front; otherwise the toggle
      floats over whatever sits above until the image arrives. */
@@ -857,11 +890,11 @@ function updateBrowseIndex(entries) {
   const b = html.indexOf(END);
   if (a === -1 || b === -1) return console.warn('Index markers not found in browse-trails.html, skipping.');
 
-  const byRegion = { dolomites: [], savoy: [] };
+  const byRegion = { dolomites: [], savoy: [], lombardy: [], friuli: [], aosta: [], tyrol: [] };
   for (const e of entries) (byRegion[e.region] || byRegion.dolomites).push(e);
   for (const k of Object.keys(byRegion)) byRegion[k].sort((x, y) => x.name.localeCompare(y.name));
 
-  const block = ['dolomites', 'savoy']
+  const block = ['dolomites', 'savoy', 'lombardy', 'friuli', 'aosta', 'tyrol']
     .filter((r) => byRegion[r].length)
     .map(
       (r) =>

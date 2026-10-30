@@ -17,7 +17,20 @@ describe('SEC-01 Firestore configuration contract', () => {
       indexes: 'firestore.indexes.json',
     });
     expect(rules).toContain("rules_version = '2';");
-    expect(firebaseConfig.storage).toBeUndefined();
+    // JOURNAL-03: walk photos live in Storage, under their own rules file.
+    // The bucket is named, through a deploy target in .firebaserc, so a deploy
+    // releases straight to it: looking up the default bucket needs a
+    // permission the deploy account does not have.
+    expect(firebaseConfig.storage).toEqual([
+      { target: 'journal-photos', rules: 'storage.rules' },
+    ]);
+    const firebaserc = JSON.parse(fs.readFileSync(path.join(root, '.firebaserc'), 'utf8'));
+    ['dolopaws', 'demo-dolopaws'].forEach(project => {
+      expect(firebaserc.targets[project].storage).toEqual({
+        'journal-photos': ['dolopaws.firebasestorage.app'],
+      });
+    });
+    expect(client).toContain('storageBucket: "dolopaws.firebasestorage.app"');
   });
 
   test('the trail-photo staging and review collections are gone',()=>{
@@ -225,6 +238,34 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain("data.track is string && data.track.size() <= 60000");
     expect(rules).toContain('data.photo.size() <= 700000');
     expect(rules).toContain("data.note is string && data.note.size() <= 2000");
+    // Who came along: optional (not in hasAll), and bounded when present.
+    expect(rules).toContain("'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt',\n          'walkedWith', 'photoIds'\n        ])");
+    expect(rules).toContain("|| (data.walkedWith is string && data.walkedWith.size() <= 400))");
+    // Photos in Storage: optional, a list of at most six ids, each checked.
+    expect(rules).toContain("|| (data.photoIds is list && data.photoIds.size() <= 6");
+    for(let index = 0; index < 6; index += 1){
+      expect(rules).toContain(`journalPhotoIdAt(data.photoIds, ${index})`);
+    }
+  });
+
+  test('walk photos in Storage are private to their owner and bounded', () => {
+    const storageRules = fs.readFileSync(path.join(root, 'storage.rules'), 'utf8');
+    expect(storageRules).toContain("rules_version = '2';");
+    expect(storageRules).toContain('match /users/{uid}/journal/{entryId}/{photoFile}');
+    expect(storageRules).toContain("photoFile.matches('^p[a-z0-9]{6,32}[.]jpg$')");
+    expect(storageRules).toContain('request.resource.size <= 2 * 1024 * 1024');
+    expect(storageRules).toContain("request.resource.contentType == 'image/jpeg'");
+    // Every allow names the owner; everything else in the bucket is closed.
+    storageRules.split('\n').filter(line => /^\s*allow /.test(line)).forEach(line => {
+      if(/if false;/.test(line)) return;
+      expect(line).toContain('request.auth.uid == uid');
+    });
+    expect(storageRules).toContain('match /{allPaths=**} {\n      allow read, write: if false;');
+    // The photo id the client mints passes both rules.
+    const photos = require('./journal-photos.js');
+    const id = photos.newPhotoId(1770000000000);
+    expect(id).toMatch(/^p[a-z0-9]{6,32}$/);
+    expect(`${id}.jpg`).toMatch(/^p[a-z0-9]{6,32}[.]jpg$/);
   });
 
   test('post-hike outcomes are private, structured, and immutable', () => {

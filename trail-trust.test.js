@@ -126,6 +126,21 @@ describe('trail data trust states', () => {
     expect(trust.riskLabel(graduating, 'Moderate terrain')).toBe('Moderate terrain');
   });
 
+  test('a record that names no required list needs all eleven checks, directions included', () => {
+    // The fallback list said ten for months: it had left out routeNumbers, so
+    // a record without `required` could be Verified with no directions. The
+    // desk and the board both count eleven; the three must agree.
+    const trust = loadTrust();
+    const desk = fs.readFileSync(path.join(__dirname, 'trail-verify-desk.js'), 'utf8');
+    const deskChecks = [...desk.match(/GRADUATION_CHECKS=\[([\s\S]*?)\];/)[1].matchAll(/\['(\w+)',/g)].map(m => m[1]);
+    expect(deskChecks).toHaveLength(11);
+    const allButDirections = deskChecks.filter(check => check !== 'routeNumbers');
+    expect(trust.graduationProgress({ graduation:{ status:'verified', completed:allButDirections } }).verified).toBe(false);
+    const full = trust.graduationProgress({ graduation:{ status:'verified', completed:deskChecks } });
+    expect(full.verified).toBe(true);
+    expect(full.total).toBe(11);
+  });
+
   test('completed graduation uses the public route-audited wording', () => {
     const trust = loadTrust();
     const audited = {

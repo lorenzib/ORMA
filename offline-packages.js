@@ -7,14 +7,47 @@
   // <offline-package-registry>
   const PACKAGE_NAMES = {
     'alpe-siusi': "Alpe di Siusi Meadow Loop",
+    'cembra-dos-paion': "Passeggiata al belvedere del Dos Paion sul Monte Corona",
+    'cembra-erbe-della-salute': "Le erbe della salute",
+    'cembra-giro-masi-grumes': "Il Giro dei Masi di Grumes",
+    'cembra-lago-lases-buse-giaz': "Il Lago di Lases e le buse del giaz",
+    'cembra-lago-santo': "Il Lago Santo",
+    'cembra-pascoli-malga-vernera': "Sui Pascoli di Malga Vernera",
     'cinque-torri-assisted': "Cinque Torri three-refuges assisted circuit",
+    'eggental-dal-passo-costalunga-al-lago-di-carezza': "Passo Costalunga to Lake Carezza",
+    'eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl': "Lake Carezza to the Stadlalm",
+    'fassa-alpe-di-fuciade': "Alpe di Fuciade",
+    'fassa-antichi-bagnes': "Agli antichi Bagnes",
+    'fassa-borgo-dei-patins': "Vigo, borgo dei patins",
+    'fassa-borgo-di-tamion': "Alla scoperta del borgo ladino di Tamion",
+    'fassa-da-alba-a-penia': "Da Alba a Penìa",
+    'fassa-dipinti-del-giotto': "Sulle tracce dei dipinti del Giotto della Val di Fassa",
+    'fassa-malga-aloch': "Malga Aloch e Masc Aloch",
+    'fassa-moena-soraga-acqua': "Da Moena a Soraga, dove l'acqua ha segnato la storia",
+    'fassa-moena-soraga-someda': "Da Moena a Soraga, la natura a due passi da casa",
+    'fassa-passato-ritrovato': "Il passato ritrovato",
+    'fassa-pastori-erranti': "Sulla via degli antichi pastori erranti",
+    'fassa-prato-di-sorte': "Prato di Sorte",
+    'fassa-santuario-dei-pellegrini': "Al santuario di Santa Giuliana",
+    'fassa-sentiero-della-foresta': "Sentiero della Foresta",
+    'fiemme-cascatelle-di-ziano': "Le Cascatelle di Ziano di Fiemme",
+    'fiemme-cavalese-passeggiata-panoramica': "Cavalese - Passeggiata panoramica",
+    'fiemme-scalata-alle-malghette': "La “scalata” alle Malghette",
+    'fiemme-sentiero-botanico': "Sentiero botanico naturalistico",
     'giro-del-bulacia': "Giro della Bullaccia",
+    'kronplatz-attraverso-il-sentiero-panoramico-a-brunico': "Panoramic path from Olang to Bruneck",
+    'kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina': "Antermoia to Rina",
+    'kronplatz-passeggiata-leggendaria-sul-kienberg': "The Kienberg legends loop",
+    'kronplatz-passeggiata-san-vigilio-le-dla-creda': "San Vigilio to Lé dla Creda",
+    'kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe': "Brach to Pieve di Marebbe",
+    'kronplatz-passeggiata-valdaora-monguelfo': "Olang to Welsberg by the reservoir",
+    'kronplatz-san-lorenzo-maria-sares': "San Lorenzo to Maria Sares",
+    'kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi': "The Gais channel path loop",
+    'kronplatz-valdaora-di-sopra-goste': "Valdaora di Sopra to the Alte Goste",
+    'kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle': "Valdaora di Sotto to Bad Bergfall",
     'lago-braies': "Lago di Braies Seeweg circuit",
     'lago-carezza': "Lago di Carezza Loop",
-    'nuvolau': "Passo Giau to Rifugio Nuvolau",
-    'osm-10116380': "Itinéraire découverte de la nature",
     'osm-10220399': "Martinsweg",
-    'osm-10539302': "Sentier éco-sylve de Poingt-Ravier",
     'osm-11270309': "Passeggiata delle Sorgenti - Quellenpromenade",
     'osm-11517208': "La Croix des Salles",
     'osm-11764094': "Dörferrunde: Natz, Raas, Schabs and Viums",
@@ -22,7 +55,6 @@
     'osm-11775760': "Carl-Toldt-Weg",
     'osm-11775923': "Törggeleweg",
     'osm-11780502': "Naturerlebnispfad Zans",
-    'osm-11791915': "Dorfrundweg Aicha",
     'osm-11795251': "Dörferrundweg (Vintl)",
     'osm-11814834': "Geotrail Bula - Pufels - Bulla",
     'osm-11828233': "Valser Rundweg",
@@ -34,21 +66,17 @@
     'osm-12121346': "Le tour des hameaux de Montandré, Champessuit et Grenis",
     'osm-12121798': "Le terroir de Serpolière",
     'osm-12142337': "Rundweg Peitlerkofel",
-    'osm-12150790': "Giro dei Capitelli - Kapellenrunde",
     'osm-12164395': "Dörferrundweg",
     'osm-12172440': "Natur- und Kulturweg",
     'osm-12173549': "Mühlenweg",
     'osm-12173965': "Kleine Schlossrunde",
-    'osm-12173984': "Große Schlossrunde",
     'osm-12182895': "Talrundweg",
     'osm-12190657': "Rundweg Langfenn",
     'osm-12302137': "Dorfrundweg Mittertal",
     'osm-12302182': "Dorfrundweg Niedertal",
     'osm-12302191': "Dorfrundweg Rasen",
-    'osm-123162': "Planetenweg - Sentiero dei pianeti",
-    'osm-12731853': "Rundweg Laugen Elvas",
     'osm-12736753': "Albeins-Klerant-Milland - Albes-Cleran-Millan",
-    'osm-12745924': "Circuit des escaliers",
+    'osm-12737724': "Historische Rundwanderung Teis",
     'osm-12953352': "Archeopfad Brixen",
     'osm-13338113': "Lac de Darbon",
     'osm-13491868': "Birmehlweg - Sentiero Birmehl",
@@ -70,25 +98,19 @@
     'osm-16395076': "Boucle du Lac de la Thuile",
     'osm-1671736': "Höfeweg",
     'osm-18055492': "Le Mont d'Arbois - Mont Joux",
-    'osm-19064561': "Ombres sur l'Alpage",
     'osm-19153189': "Le Belvédère (Saint-Pierre-d'Albigny)",
-    'osm-19330972': "Dorfrundweg - Giro del Paese",
     'osm-19541366': "Lac Blanc",
-    'osm-19703479': "Rundweg Beimsteinkogel",
     'osm-19855818': "Boucle des cascades",
-    'osm-19974724': "Mittlerer Rundweg am Karer See",
-    'osm-19974725': "Langer Rundweg am Karer See",
     'osm-20380913': "Hinzlweg",
     'osm-2376630': "Rundweg Katharinaberg",
     'osm-3202880': "Rundweg Montiggler Seen",
     'osm-3707731': "Gratschenbergrunde",
-    'osm-3885162': "Seeweg, Val d'Ultimo",
     'osm-3982382': "Circuit Béatrice de Savoie",
     'osm-5479112': "Chemin des Diligences",
-    'osm-5512443': "Wallburgweg",
     'osm-5597577': "Rundweg Gsindboden",
     'osm-6244965': "Steine erzählen",
     'osm-6250300': "Boucle du Lac Vert",
+    'osm-6401355': "Panoramarundweg Concordia 360°",
     'osm-6404258': "Rundweg Salla",
     'osm-6410700': "Dolomitenblickrunde",
     'osm-6453504': "Walderlebnispfad Aschbach",
@@ -98,6 +120,7 @@
     'osm-7426648': "Algunder Waalweg",
     'osm-7426666': "Maiser Waalweg",
     'osm-7446701': "Waltner Rundweg 18",
+    'osm-7547653': "Anello dei Forti",
     'osm-7547983': "Anello di Valzalina",
     'osm-7548344': "Anello del Sole",
     'osm-7549783': "Anello del Troi de le Ciaure",
@@ -111,7 +134,21 @@
     'osm-9648632': "Pana Raida",
     'osm-9937537': "Le Mont Jovet",
     'prato-piazza': "Prato Piazza (Plätzwiese)",
+    'primiero-anello-di-valpiana': "Anello di Valpiana",
+    'primiero-fiera-pieve': "Fiera-Pieve",
+    'primiero-la-guana-di-primiero': "La Guana di Primiero",
+    'primiero-malga-ces': "San Martino di Castrozza - Malga Ces",
+    'primiero-malga-valcigolera': "San Martino di Castrozza - Malga Valcigolera",
+    'primiero-percorso-verde': "Percorso Verde (I percorsi del benessere)",
+    'primiero-san-martino-di-castrozza-val-di-roda-prati-col': "San Martino di Castrozza - Val di Roda - Prati Col",
+    'primiero-siror': "Siror",
+    'primiero-tonadico': "Tonadico",
+    'primiero-transacqua': "Transacqua",
     'santa-maddalena': "Rundweg St. Magdalena",
+    'seiseralm-alla-volta-della-trappola-d-orso-a-s-michele': "Kastelruth bear-trap loop",
+    'seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del': "Passo Nigra to Tiers by the Jocher farm",
+    'seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff': "Umes, Hofer Alpl and Malga Tuff loop",
+    'seiseralm-escursione-senza-barriere-all-alpe-di-siusi': "Mont Sëuc to the Sporthotel Sonne",
     'sentiero-del-trenino': "Sentiero del Trenino",
     'sentiero-hans-e-paula-steger': "Sentiero Hans e Paula Steger",
     'tre-cime': "Tre Cime di Lavaredo classic circuit",
@@ -712,6 +749,9 @@
         installedAt: inspection.metadata && inspection.metadata.installedAt || null,
         verificationStatus: manifest && manifest.verificationStatus ||
           inspection.metadata && inspection.metadata.verificationStatus || null,
+        // What the trail's latest package says, when the network allows reading
+        // it: a map downloaded before OFF-08 carries a retired label.
+        currentVerificationStatus: available && available.verificationStatus || null,
         ownership: await ownershipState(inspection.metadata, user),
         state: ['ready', 'stale'].includes(inspection.state) && updateAvailable
           ? 'update-available'
@@ -736,7 +776,7 @@
 
   function formatPackageVersion(version){
     const beta = String(version || '').match(/beta\.(\d+)$/i);
-    if(beta) return `Beta package ${beta[1]}`;
+    if(beta) return `Package ${beta[1]}`;
     return version ? `Package ${version}` : 'Package revision unavailable';
   }
 
@@ -810,6 +850,14 @@
     // trail.html carried a fixed link to the Carezza pilot, which was right
     // while it was the only package; every trail opens its own map.
     openButton.href = PACKAGES[trailId].offlineUrl;
+
+    // A Verified trail's map is the verified line itself, so the panel says so
+    // beside the trail page's badge rather than leaving it to be guessed.
+    function sameRouteNote(manifest){
+      return manifest && manifest.verificationStatus === 'source-verified'
+        ? ` ${tr('offlinePanel.sameRoute', 'Same verified route, saved to your phone.')}`
+        : '';
+    }
 
     function signedIn(){
       return !!(window.DoloPawsAuth && window.DoloPawsAuth.currentUser);
@@ -913,13 +961,13 @@
         );
       }else if(signedIn()){
         setStatus(
-          tr('offlinePanel.notDownloaded.signedIn', 'Offline map not downloaded.'),
+          `${tr('offlinePanel.notDownloaded.signedIn', 'Offline map not downloaded.')}${sameRouteNote(available)}`,
           'not-downloaded'
         );
         downloadButton.textContent = tr('offlinePanel.action.download', 'Download offline map');
       }else{
         setStatus(
-          tr('offlinePanel.notDownloaded.signedOut', 'Offline map not downloaded.'),
+          `${tr('offlinePanel.notDownloaded.signedOut', 'Offline map not downloaded.')}${sameRouteNote(available)}`,
           'not-downloaded'
         );
         downloadButton.textContent = tr('offlinePanel.action.loginDownload', 'Log in to download');

@@ -8,6 +8,10 @@ Scope amendment: 2026-08-10
 
 Account-profile amendment: 2026-08-11
 
+Catalogue and offline scope amendment: 2026-10-27
+
+Catalogue area amendment (Alps): 2026-10-27
+
 ## Purpose
 
 This charter closes the first planning cycle and fixes the target for the first
@@ -48,9 +52,11 @@ Before field testing, each selected route must have:
 - a functioning offline package;
 - an internal airplane-mode test.
 
-Cortina, the wider Dolomites, and Savoy are outside the first beta scope.
-Expansion requires evidence that the complete journey works in the initial
-region.
+The field test stays in this region (see the offline-route amendment below).
+For planning, the beta covers the published catalogue in the areas the
+catalogue area amendment below lists, under the catalogue and offline scope
+amendment. Expansion beyond those areas requires evidence that the complete
+journey works in the initial region.
 
 If repeated access to Val Gardena and Alpe di Siusi proves operationally
 impossible, the region may be replaced before recruitment by another compact
@@ -65,10 +71,56 @@ Siusi remains the in-region reference route. Carezza is the established
 architecture and airplane-mode reference route and is an explicit controlled
 test exception to the original regional boundary.
 
-This amendment does not authorize wider Dolomites or Savoy expansion. No
-other trail may advertise an offline package during the first beta until the
-two-route device and field matrix passes. Online planning and account features
-may continue to cover the wider published catalogue.
+The physical device and field matrix still runs on these two routes only.
+Since the 2026-10-27 amendment below, other Verified trails also carry an
+offline package, but the beta's offline hike-mode claim covers only these two
+routes until the matrix passes.
+
+### Catalogue and offline scope amendment (2026-10-27)
+
+The single "beta region" is split into three scopes. The full proposal and
+its reasoning are in `day-07-charter-amendment-catalogue-scope.md`.
+
+1. **Field-test scope (unchanged).** The physical gates
+   (`OFFLINE-IOS-CURRENT`, `OFFLINE-ANDROID-CURRENT`, `HIKE-RESTORE-GPS`,
+   `ROUTE-FIELD-REVIEW`) run on the two pilot routes, Lago di Carezza and
+   Alpe di Siusi, on the supported iPhone and Android targets.
+2. **Planning catalogue scope.** The beta covers, for planning, the published
+   catalogue in the areas of the catalogue area amendment below, each trail
+   showing its real status: Verified, Reviewed or Imported. The catalogue may
+   keep growing within those areas only, under the seal
+   rules of the operating standard, and never ahead of a step on the launch
+   checklist's critical path (`beta-launch-checklist.md`). Bulk import of OSM
+   relations remains frozen; a walk verified by hand from an authority's
+   published route is not that expansion.
+3. **Offline packages beyond the pilots.** Every Verified trail keeps the
+   offline package OFF-07 gives it. Its offline map carries the trail page's
+   status (OFF-08): Verified means audited against authority sources, not
+   walked with that package. Beta invitations and the offline hike-mode claim
+   name only the two pilots. If a physical device gate fails, downloads for
+   non-pilot trails are switched off until the fix passes the affected gate.
+   A Reviewed or Imported trail never gets a package.
+
+No P0 or P1 gate is removed or waived by this amendment, and recruitment stays
+closed until the readiness decision is recorded.
+
+### Catalogue area amendment (Alps, 2026-10-27)
+
+The product owner widened the planning catalogue scope on 27 October 2026. The
+catalogue may grow in these areas:
+
+- **Italy:** the Dolomites (South Tyrol, Trentino including western Trentino,
+  Belluno); Valle d'Aosta; the Lombardy mountains (Valtellina, Valchiavenna,
+  the Lake Como mountains, Val Camonica); the Friuli Venezia Giulia mountains.
+- **France:** Savoy (Savoie and Haute-Savoie).
+- **Austria:** East Tyrol (Osttirol) and Carinthia (Gailtal and Lesachtal
+  first).
+
+Only the area changes. The seal rules of the operating standard, the frozen
+bulk OSM import, the field-test scope and the launch checklist's critical path
+apply unchanged. A new country also needs its own dog-access standard before a
+walk there is sealed: Austria's was approved the same day
+(`docs/editorial/austria-sources-and-dog-rules.md`).
 
 ### Optional multiple-dog profile amendment
 
@@ -349,7 +401,7 @@ The first beta does not include:
 - social feeds;
 - badges, leaderboards, or gamification;
 - subscriptions or paid tiers;
-- new geographic regions;
+- new countries, or areas outside the catalogue area amendment;
 - voice turn-by-turn guidance;
 - continuous background GPS recording;
 - advanced multi-day itineraries;

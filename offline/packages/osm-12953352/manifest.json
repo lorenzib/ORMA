@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12953352",
   "name": "Archeopfad Brixen",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T17:48:46.124Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:07:31.786Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 895190,
+  "verificationStatus": "source-verified",
+  "packageBytes": 896145,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.71343,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Archeopfad Brixen route",
       "url": "route.geojson",
-      "bytes": 27453,
-      "sha256": "fd4ca18412e06ebb4d6214da62ac8afcca5fa8a4bdba7da021e5aed10dd339ac"
+      "bytes": 27447,
+      "sha256": "fbdeb5e5e2fbe9babbd5d6fd7d2aee3acb00939a6f03edf7b9ff5c5de366777f"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "Archeopfad Brixen routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 230980,
-      "sha256": "a6c0d8718f9142435b2e9f2cfe565721acaf3cf83bbfa5c15b6ce22b7d6131c1"
+      "sha256": "cc0d253911ae831f5fb35698773d2a2e79978abfc2f3e21f6c550c6730c62437"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Archeopfad Brixen safety information",
       "url": "safety.json",
-      "bytes": 2025,
-      "sha256": "6d75422cb75d9826d5373b88c2a540f22f745a45a9792ef62690014aea072742"
+      "bytes": 1937,
+      "sha256": "a33fb738b9706c05e920c57c8d155bd47bd2b2b04e0663a76503cb25735df1c4"
     }
   ]
 }

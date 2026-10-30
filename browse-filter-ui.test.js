@@ -4,6 +4,7 @@ const { TextEncoder, TextDecoder } = require('util');
 global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
 const { JSDOM } = require('jsdom');
+const { evaluateInto } = require('./test-support/page-runtime');
 
 function source(file){
   return fs.readFileSync(path.join(__dirname, file), 'utf8');
@@ -41,7 +42,7 @@ function reviewedTrail(){
   };
 }
 
-function setup(url, trailOverrides = {}){
+function setup(url, trailOverrides = {}, prepare = null){
   const html = source('browse-trails.html');
   const inline = Array.from(html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g))
     .map(match => match[1]).filter(body => body.includes('function renderPage'))[0];
@@ -59,6 +60,7 @@ function setup(url, trailOverrides = {}){
     return key;
   };
   window.trails = [{ ...reviewedTrail(), ...trailOverrides }];
+  if(prepare) prepare(window);
   [
     'trust/evidence-v1.js',
     'scoring/recommendation-adapters-v1.js',
@@ -73,6 +75,28 @@ function setup(url, trailOverrides = {}){
 }
 
 describe('Browse filter UI', () => {
+  test('leads with the best match, ranking the verdict the card shows before the score', () => {
+    // The wizard's "See all matches" lands here. In catalogue order its 100%
+    // match sat below trails marked Not recommended.
+    const verdicts = {
+      'declared-stop':{ score:92, category:'not-recommended' },
+      'cautions-a':{ score:70 },
+      'strong':{ score:95 },
+      'cautions-b':{ score:70 },
+      'weak':{ score:20 },
+    };
+    const window = setup('https://www.app-orma.com/browse-trails.html', {}, win => {
+      win.trails = Object.keys(verdicts).map(id => ({ ...reviewedTrail(), id, name:id }));
+      const runInPage = code => win.eval(code);
+      evaluateInto(runInPage, 'browse-trails.html', ['match-verdict.js']);
+      win.effectiveOverrides = profile => profile;
+      win.DoloPawsScoring = { recommendTrail:trail => verdicts[trail.id] };
+    });
+
+    expect(Array.from(window.document.querySelectorAll('.simple-card')).map(card => card.dataset.trailId))
+      .toEqual(['strong', 'cautions-a', 'cautions-b', 'declared-stop', 'weak']);
+  });
+
   test('explains a zero result and safely widens distance', () => {
     const window = setup('https://www.app-orma.com/browse-trails.html?distance=3&terrain=soft');
 

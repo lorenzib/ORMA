@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "trailId": "osm-11764094",
-  "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 12,
@@ -55,12 +55,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Road crossing at Hotel Seehof / Flötscher Weiher.",
     "About 300 m on Laugenstraße without a pavement.",
     "About 1.5 km of asphalt and cobbles through Natz.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",
@@ -74,7 +73,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-10-23",
+      "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
   ]

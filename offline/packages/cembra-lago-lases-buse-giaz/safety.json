@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cembra-lago-lases-buse-giaz",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.9,
+    "ascentM": 150,
+    "highestPointM": 777,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 74
+  },
+  "trailhead": {
+    "lat": 46.141371,
+    "lng": 11.218199,
+    "label": "Lago di Lases car park on the SP 71, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.1425352,
+      "lng": 11.2208318,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Forest tracks and a lakeside path with short flights of stone and wooden steps.",
+    "About 270 m on a quiet road.",
+    "A nature reserve with wetlands and nesting birds: keep your dog on the lead and out of the reeds and the water.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

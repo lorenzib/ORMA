@@ -1,0 +1,121 @@
+name: ORMA hiking route tiles
+
+# Builds the hiking network we draw ourselves in place of Waymarked Trails'
+# raster: every OSM hiking route in each region, as one folder of vector
+# tiles carrying each route's number, name and network.
+#
+# The tiles are not committed. This saves them in the Actions cache, and the
+# Pages deploy (deploy-pages.yml) copies the newest saved set into
+# data/hiking-routes/ on every deploy. On a schedule or by hand it then asks
+# for a deploy, so the refreshed routes go live the same morning.
+#
+# The tools are Ubuntu's own packages (osmium-tool, tippecanoe), so nothing is
+# built from source.
+on:
+  workflow_dispatch: {}
+  pull_request:
+    paths:
+      - scripts/build-hiking-routes.js
+      - scripts/build-hiking-route-tiles.sh
+      - .github/workflows/orma-hiking-route-tiles.yml
+  schedule:
+    - cron: '0 3 * * 1'        # Mondays; Geofabrik refreshes its extracts daily
+
+permissions:
+  contents: read
+  actions: write               # ask deploy-pages.yml to run
+  issues: write                # say so when the weekly build fails
+
+concurrency:
+  group: orma-hiking-route-tiles-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tiles:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install osmium and tippecanoe
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq osmium-tool tippecanoe sqlite3
+          osmium --version | head -1
+          tippecanoe --version
+
+      - name: Week of the extracts
+        id: week
+        run: echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
+
+      # One download a week; reruns inside the week reuse it.
+      - name: Cache the Geofabrik extracts
+        uses: actions/cache@v6
+        with:
+          path: hiking-work/*.osm.pbf
+          key: geofabrik-extracts-${{ steps.week.outputs.week }}
+
+      - name: Build the tiles
+        run: bash scripts/build-hiking-route-tiles.sh hiking-work hiking-routes
+
+      - name: Measure
+        run: |
+          set -euo pipefail
+          {
+            echo "### Hiking route tiles"
+            echo
+            echo "All regions: $(find hiking-routes -name '*.pbf' | wc -l) tiles, $(du -sh hiking-routes | cut -f1) uncompressed"
+            for counts in hiking-work/*-counts.json; do
+              region="$(basename "$counts" -counts.json)"
+              echo
+              echo "#### $region: \`$(cat "$counts")\`"
+              echo
+              echo "| Zoom | Tiles | Total KB | Largest KB | Average KB |"
+              echo "|---|---|---|---|---|"
+              # Sizes as stored compressed in the .mbtiles, roughly what a
+              # browser downloads when the server compresses.
+              sqlite3 -separator ' | ' "hiking-work/$region.mbtiles" \
+                "SELECT '| ' || zoom_level, count(*), round(sum(length(tile_data))/1024.0,1), round(max(length(tile_data))/1024.0,1), round(avg(length(tile_data))/1024.0,1) || ' |' FROM tiles GROUP BY zoom_level ORDER BY zoom_level;"
+            done
+          } >> "$GITHUB_STEP_SUMMARY"
+          cat "$GITHUB_STEP_SUMMARY"
+
+      # A new key every run; the deploy restores the newest by prefix.
+      - name: Save the tiles for the deploy
+        if: github.event_name != 'pull_request'
+        uses: actions/cache/save@v6
+        with:
+          path: hiking-routes
+          key: hiking-route-tiles-${{ github.run_id }}
+
+      - name: Ask for a deploy
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy-pages.yml --ref "${GITHUB_REF_NAME}"
+
+      - name: Pack the tiles for inspection
+        run: tar -czf hiking-routes.tar.gz hiking-routes
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hiking-routes
+          path: hiking-routes.tar.gz
+          retention-days: 14
+
+      # A failed build changes nothing anyone can see: the site keeps last
+      # week's tiles. So it opens an issue, and the next good build closes it.
+      - name: Say so when the weekly build fails
+        if: always() && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          if [ "$JOB_STATUS" = "success" ]; then
+            bash scripts/hiking-route-tiles-alert.sh clear "the weekly build succeeded on $(date -u +%F)."
+          elif [ "$JOB_STATUS" = "failure" ]; then
+            bash scripts/hiking-route-tiles-alert.sh raise "The weekly hiking route build failed on $(date -u +%F), so the maps' route tiles were not refreshed."
+          fi

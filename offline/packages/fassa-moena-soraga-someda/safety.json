@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-moena-soraga-someda",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.1,
+    "ascentM": 175,
+    "highestPointM": 1269,
+    "expectedDuration": "1.75 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 6
+  },
+  "trailhead": {
+    "lat": 46.376572,
+    "lng": 11.660212,
+    "label": "Moena (Piaz de Ramon), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.3768022,
+      "lng": 11.659712,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3769075,
+      "lng": 11.6687426,
+      "label": "Drinking fountain in Someda",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3831519,
+      "lng": 11.6672058,
+      "label": "Fontana - Ciasa Lino Defrancesco",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3881017,
+      "lng": 11.6689197,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3914494,
+      "lng": 11.6686005,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3943923,
+      "lng": 11.6652318,
+      "label": "Drinking fountain in Soraga",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A flight of steps up to Someda at the start (the APT gives a pavement detour beside it).",
+    "Mostly tarmac: village streets and farm lanes open to local traffic.",
+    "Hay meadows between Someda and Soraga Alta: keep to the lane.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

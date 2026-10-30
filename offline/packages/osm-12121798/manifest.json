@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12121798",
   "name": "Le terroir de Serpolière",
-  "version": "2026.10.24-beta.1",
-  "generatedAt": "2026-10-24T11:13:56.104Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T13:37:39.589Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 321588,
+  "verificationStatus": "source-verified",
+  "packageBytes": 322543,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.24532,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Le terroir de Serpolière route",
       "url": "route.geojson",
-      "bytes": 7556,
-      "sha256": "95b14db45439b3d9126a4d8f715a7a69f3a5a6fe295fb156b6a1690ce7d78456"
+      "bytes": 7550,
+      "sha256": "df262f7a6e8d7970542e4d3b93a7badc28af85f48a401f95a30768d1aa853f23"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "Le terroir de Serpolière routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 70226,
-      "sha256": "9f8848a38f3b85a0b51cb32526086d0eec85e64198d2d170e40c8cb455add9b7"
+      "sha256": "563afde6781fc005f0bbef4fcdaf5d7a4e924a1bff7a716cf12c911bbf244f89"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Le terroir de Serpolière safety information",
       "url": "safety.json",
-      "bytes": 1595,
-      "sha256": "b2b25fb77f85e077d47936421fe14c68c2c52742bb83b59384c5eaaf49daae42"
+      "bytes": 1507,
+      "sha256": "d1cb94a7dcdd4a1616fd15ab831a9e0e934ae0a520208ac05efdf678d3336e6f"
     }
   ]
 }

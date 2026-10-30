@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "trailId": "osm-11775923",
-  "generatedAt": "2026-10-24T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 6.1,
@@ -55,13 +55,12 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Heat risk is high on this walk: start early and carry extra water.",
     "About 550 m on the Stiftstraße and a crossing of the old Pustertaler Straße (SS49).",
     "A steep lane (15%) near km 4.4.",
     "A stretch on the Eisack cycle path, shared with bikes.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",
@@ -75,7 +74,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-10-24",
+      "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
   ]

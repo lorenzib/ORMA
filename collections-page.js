@@ -106,11 +106,16 @@
     { value:'all', label:'All countries' },
     { value:'IT', label:'Italy' },
     { value:'FR', label:'France' },
+    { value:'AT', label:'Austria' },
   ];
   const REGIONS = [
     { value:'all', label:'All regions', countryCode:'all' },
     { value:'dolomites', label:'Dolomites', countryCode:'IT' },
     { value:'savoy', label:'Savoy', countryCode:'FR' },
+    { value:'lombardy', label:'Lombardy', countryCode:'IT' },
+    { value:'friuli', label:'Friuli Venezia Giulia', countryCode:'IT' },
+    { value:'aosta', label:'Valle d\'Aosta', countryCode:'IT' },
+    { value:'tyrol', label:'Tyrol & Carinthia', countryCode:'AT' },
   ];
 
   const THEME_MATCHERS = {
@@ -119,7 +124,8 @@
     scenic: collection => /lake|lakeside|woodland|scenery|high-level/i.test(`${collection.id} ${collection.title} ${collection.subtitle} ${collection.chips.join(' ')}`),
   };
   const trailsFor = collection => api.trailsFor(collection, trails);
-  const trailInArea = trail => (country === 'all' || (country === 'IT' ? trail.region === 'dolomites' : trail.region === 'savoy'))
+  const regionCountry = region => (REGIONS.find(item => item.value === region) || { countryCode:'IT' }).countryCode;
+  const trailInArea = trail => (country === 'all' || regionCountry(trail.region) === country)
     && (region === 'all' || trail.region === region);
   const collectionInValley = collection => valley === 'all'
     || trailsFor(collection).some(trail => trail.valley === valley);
@@ -168,8 +174,11 @@
     countrySelect.value = country;
     countryDropdown.refresh();
     compactAreaTrigger(countrySelect);
+    // A region with no published walk yet (the manifest says) is not offered.
+    const manifestRegions = window.DoloPawsRegionManifest && window.DoloPawsRegionManifest.regions;
     const availableRegions = REGIONS.filter(item => item.value === 'all'
-      || country === 'all' || item.countryCode === country);
+      || ((country === 'all' || item.countryCode === country)
+        && (!manifestRegions || !manifestRegions[item.value] || manifestRegions[item.value].trailCount > 0 || item.value === region)));
     regionSelect.replaceChildren(...availableRegions.map(item => option(item, countForRegion(item.value))));
     regionSelect.value = region;
     regionDropdown.refresh();
@@ -288,20 +297,20 @@
           geometry:{ type:'LineString', coordinates:trail.path.map(([lat,lng]) => [Number(lng),Number(lat)]) },
         }));
         // Same cartography as every other ORMA map: the marked hiking network
-        // in its own colours, a quietened base, and each collection route as a
-        // cased corridor UNDERNEATH the raster so the marked path and its real
-        // numbers read down the middle. This map previously had no hiking
-        // network at all.
+        // as dashed grey routes with their numbers, a quietened base, and each
+        // collection route as a cased corridor over the dashed lines and under
+        // their numbers, so the routes stay the only colour on the map.
         const style = window.ORMAMapStyle;
         if(style) style.quietBasemap(map);
-        const beneath = style ? style.addWaymarkedHiking(map, {
+        if(style) style.addHikingRoutes(map, {
             beforeId: style.firstLabelLayerId(map),
             // This map opens at zoom 9 to frame a whole collection, and has no
             // layers control. Holding the network back until you zoom in keeps
             // the browse view calm without hiding anything behind a control
             // that does not exist here, zooming in is the affordance.
             minzoom: NETWORK_MIN_ZOOM,
-          }) : undefined;
+          });
+        const beneath = style ? style.walkLineBeforeId(map) : undefined;
         const mapMarkerElements = [];
         map.addSource('collection-inline-routes', { type:'geojson', data:{ type:'FeatureCollection', features } });
         // If the dog profile lands after this map is drawn, restyle it in place

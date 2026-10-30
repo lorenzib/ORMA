@@ -17,17 +17,22 @@ describe('Safety library', () => {
     expect(html).toMatch(/\.sg-library\{[^}]*grid-template-columns:repeat\(3/s);
   });
 
-  test('gives guide titles a stronger readable scale on desktop and mobile', () => {
-    expect(html).toMatch(/\.sg-guide-title\{[^}]*font:700 18px\/1\.16/s);
-    expect(html).toMatch(/@media\(max-width:620px\)[\s\S]*\.sg-guide-title\{font-size:17px;/s);
-    expect(html).toMatch(/@media\(max-width:620px\)[\s\S]*\.sg-guide-card\{[^}]*padding:13px 12px;/s);
+  test('lists the guides quietly: a photo, a title and one line, divided by hairlines', () => {
+    expect(html).toMatch(/\.sg-guide-title\{[^}]*font:700 17px\/1\.2/s);
+    expect(html).toMatch(/\.sg-guide-card\{[^}]*border-top:var\(--border\)/s);
+    expect(html).not.toMatch(/\.sg-guide-card\{[^}]*box-shadow/s);
+    // No small category label or arrow repeating what the title already says.
+    expect(document.querySelectorAll('.sg-guide-card .cat')).toHaveLength(0);
+    expect(document.querySelectorAll('.sg-guide-arrow')).toHaveLength(0);
+    expect(document.querySelector('.sg-library').classList.contains('sg-panel')).toBe(true);
   });
 
   test('keeps the safety header aligned with the shared page-header scale', () => {
     expect(document.querySelector('.sg-hero').classList.contains('section-page-head')).toBe(true);
     expect(document.querySelector('.sg-hero-copy').textContent.length).toBeGreaterThan(300);
     expect(document.querySelector('.sg-hero-copy').textContent).toContain('recognise early warning signs');
-    expect(html).toMatch(/\.sg-hero-copy\{[^}]*width:100%;[^}]*max-width:none/s);
+    // A readable line length rather than a paragraph running edge to edge.
+    expect(html).toMatch(/\.sg-hero-copy\{[^}]*width:100%;[^}]*max-width:72ch/s);
     expect(html).not.toContain('ORMA mountain guidance');
     expect(html).not.toMatch(/\.sg-hero h1\{[^}]*font-size:/s);
   });
@@ -38,7 +43,7 @@ describe('Safety library', () => {
     expect(html).not.toContain('Your next walk');
     expect(html).toMatch(/\.safety-library-page \.hp-prefooter\{[^}]*display:none!important/s);
     expect(html).not.toMatch(/\.sg-disclaimer\{[^}]*border-top:/s);
-    expect(html).toMatch(/\.sg-disclaimer\{[^}]*font-size:12\.5px;[^}]*white-space:nowrap/s);
+    expect(html).toMatch(/\.sg-disclaimer\{[^}]*font-size:12\.5px/s);
   });
 
   test('keeps a compact five-rule overview and prominent emergency reference', () => {
@@ -51,10 +56,14 @@ describe('Safety library', () => {
     expect(document.querySelector('.sg-emergency').textContent).toContain('European emergency');
     expect(document.querySelector('.sg-emergency').textContent).toContain('Veterinary ambulance');
     expect(document.querySelector('.sg-emergency a').getAttribute('href')).toBe('tel:112');
-    expect(html).toMatch(/\.sg-emergency\{[^}]*background:var\(--emergency-bg\)/s);
+    // 112 is the one coloured thing in the overview, and it comes first when stacked.
+    expect(html).toMatch(/\.sg-emergency-call strong\{[^}]*color:var\(--safety-stop\)/s);
+    expect(html).toMatch(/@media\(max-width:1100px\)[\s\S]*\.sg-emergency\{order:-1;/s);
+    expect(html).not.toContain('background:var(--emergency-bg)');
+    expect(html).not.toMatch(/\.sg-rules\{[^}]*background:var\(--success\)/s);
+    expect(document.querySelector('.sg-side').classList.contains('sg-panel')).toBe(true);
     expect(html).toMatch(/\.sg-rules ol\{[^}]*grid-template-columns:repeat\(5/s);
-    expect(html).toMatch(/\.sg-rules\{[^}]*background:var\(--success\)/s);
-    expect(html).toMatch(/\.sg-rules small\{[^}]*font-size:12px;[^}]*line-height:1\.45/s);
+    expect(html).toMatch(/\.sg-rules small\{[^}]*font-size:13px;[^}]*line-height:1\.45/s);
   });
 
   test('uses the same content canvas as Collections', () => {
@@ -73,8 +82,8 @@ describe('Safety library', () => {
     expect(icon).not.toBeNull();
     expect(icon.getAttribute('src')).toBe('images/editorial/safety-library/inquisitive-dog-quiz-v1.png');
     expect(icon.getAttribute('alt')).toBe('');
-    expect(html).toMatch(/\.sg-readiness-fab\{[^}]*background:var\(--success\)/s);
-    expect(html).toMatch(/\.sg-readiness-fab-icon\{[^}]*border:3px solid var\(--card\);[^}]*border-radius:50%/s);
+    expect(html).toMatch(/\.sg-readiness-fab\{[^}]*background:var\(--card\)/s);
+    expect(html).toMatch(/\.sg-readiness-fab-icon\{[^}]*border-radius:50%/s);
     expect(html).toMatch(/\.sg-readiness-fab-icon img\{[^}]*width:100%;[^}]*height:100%;[^}]*border-radius:50%;[^}]*object-fit:cover/s);
     expect(html).not.toMatch(/\.sg-readiness-fab\{[^}]*position:fixed/s);
     expect(document.querySelectorAll('#readinessQuiz .sg-question')).toHaveLength(5);
@@ -91,7 +100,7 @@ describe('Safety library', () => {
       'images/editorial/safety-library/altitude-with-your-dog-v1.jpg',
       'images/editorial/safety-library/breed-group-considerations-dogs-v3.jpg',
       'images/editorial/safety-library/dogs-on-cable-cars-v6.jpg',
-      'images/editorial/safety-library/dog-hydration-lake-unbranded-v1.jpg',
+      'images/editorial/safety-library/heat-hydration-stream-dog-v1.jpg',
       'images/editorial/safety-library/paw-protection-forest-dog-v4.jpg',
       'images/editorial/safety-library/flowers-plants-dogs.jpg',
       'images/editorial/safety-library/livestock-guardian-dogs-v1.jpg',
@@ -104,7 +113,8 @@ describe('Safety library', () => {
     const pawImage = document.querySelector('a[href="guides/paw-protection.html"] img');
     expect(pawImage.classList.contains('sg-guide-image-paw')).toBe(true);
     expect(pawImage.getAttribute('alt')).toMatch(/dog.*leash-free.*forest trail/i);
-    expect(html).toMatch(/\.sg-guide-card img\{[^}]*filter:saturate\(1\.12\) contrast\(1\.04\) brightness\(1\.01\)/s);
+    expect(html).toMatch(/\.sg-guide-card img\{[^}]*border-radius:10px;[^}]*object-fit:cover/s);
+    expect(html).not.toMatch(/\.sg-guide-card img\{[^}]*filter:/s);
     expect(html).toContain('.sg-guide-card img.sg-guide-image-paw{object-position:center 72%;}');
     expect(document.body.textContent).toContain('Flowers, plants and dogs');
   });

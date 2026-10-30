@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9492594",
   "name": "Vogelweider Rundweg",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T18:04:55.431Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:50:13.299Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 1112921,
+  "verificationStatus": "source-verified",
+  "packageBytes": 1113876,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.59866,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Vogelweider Rundweg route",
       "url": "route.geojson",
-      "bytes": 9347,
-      "sha256": "effded5874de7fc7a977ec1faf88d54b46b2e7caf8171d76166e91ba5c7f24d6"
+      "bytes": 9341,
+      "sha256": "08c371b733f5bff1d369a5d143f25925aaf2d9b9d47aab1b06d094c7e2ea9257"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "Vogelweider Rundweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 187653,
-      "sha256": "41e6938d6642b4720fba2967d3e849827a034d4e8d32fd878c68ede8b891d1e3"
+      "sha256": "a149be57529a0e1642ae4823693bdb8002b6bf7a2d042736ac68d32f929d60e0"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Vogelweider Rundweg safety information",
       "url": "safety.json",
-      "bytes": 1968,
-      "sha256": "5bf2709e2e50a2e6b75c20c0074e9401fc50672ac08a54268342bb71b08e9ccf"
+      "bytes": 1880,
+      "sha256": "38d6868eb7a9a4c2e05698d2d03ca9dd96225986ac05e5c20ab70a2c12d01a2c"
     }
   ]
 }

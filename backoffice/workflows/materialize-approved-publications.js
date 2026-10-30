@@ -1,7 +1,10 @@
 'use strict';
 
+const { inCurrentWording } = require('./route-guidance-from-record');
+const { mapInCurrentWording } = require('./route-guidance-from-map');
 const { operationalFactsFromClaims, mergeOperationalFacts } = require('./compile-operational-facts');
 const { publicationRequestIsRetryable } = require('./publication-failure-receipts');
+const { removedTrail } = require('../../scripts/removed-trails');
 
 // Savoy and the Dolomites are geographically disjoint, and the website splits
 // its runtime bundles on `trail.region`. The longitude test is the one
@@ -89,8 +92,26 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
     // ledger entry wholesale: on 23 October one would have put St. Magdalena
     // back on its old line and taken the Verified badge off it. Refused, not
     // thrown, for the same reason as a disagreeing distance.
+    // A walk removed from ORMA outright has no override entry left, so an
+    // approval written before the removal would no longer count as already
+    // materialized, and an override for a trail outside the catalogue creates
+    // it. Refused, not thrown, like the two refusals below.
+    const removed = removedTrail(item.targetTrailId);
+    if(removed){
+      refused.push({
+        candidateId:request.candidateId,
+        trailId:item.targetTrailId,
+        requestId:request.id,
+        reason:'trail-removed',
+        message:`${item.targetTrailId} (${removed.name}) was removed from ORMA on ${removed.removedAt}; a publication may not bring it back`,
+      });
+      continue;
+    }
     const prior = priorById.get(item.targetTrailId);
-    const verifiedByHand = prior?.tier === 'route-audited' && prior?.graduation?.status === 'verified';
+    // A hand-verified walk whose seal was withdrawn until its directions are
+    // written keeps its hand research: the pipeline may not replace it either.
+    const verifiedByHand = (prior?.tier === 'route-audited' && prior?.graduation?.status === 'verified')
+      || Boolean(prior?.sealWithdrawn);
     const lineSetByHand = (overrides?.trails || []).some(entry =>
       entry?.id === item.targetTrailId && entry?.verificationScope === 'routeLine');
     if(verifiedByHand || lineSetByHand){
@@ -116,6 +137,13 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
       publicationApprovalId:request.id,
     };
     delete fields.routeRef;
+    // A dossier approved before the wording changed still publishes in the old
+    // one; ORMA's own answers are rewritten on the way out, and the map's get
+    // today's words for the same numbers.
+    if(fields.routeNumberGuidance){
+      fields.routeNumberGuidance = mapInCurrentWording(inCurrentWording(fields.routeNumberGuidance,
+        fields.startPoint || priorById.get(item.targetTrailId)?.startPoint));
+    }
     const disagreement = introducedDisagreement(fields,{
       priorTrail:priorById.get(item.targetTrailId),
       outAndBack:declaredOutAndBack(overrides,item.targetTrailId),
@@ -172,6 +200,18 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
     // withdrawn walk back on the site.
     const withdrawal = index >= 0 ? next.trails[index]?.fields?.withdrawal : null;
     if(withdrawal && !entry.fields.withdrawal) entry.fields = { ...entry.fields, withdrawal };
+    // The same holds for anything else a person established on the entry this
+    // replaces. Roda de Armentara carried a hand-checked `routeRefSegments`
+    // (where trail 15A runs along it) in a `routeRefs` entry; the publication
+    // that replaced it had no such field, and the walk would have lost its
+    // numbered section -- caught only by a page test, which then failed every
+    // worker pass from 26 October. A field the publication does not supply is
+    // kept; one it does supply is its to set.
+    const replaced = index >= 0 ? next.trails[index]?.fields : null;
+    if(replaced){
+      const kept = Object.keys(replaced).filter(key => !(key in entry.fields));
+      if(kept.length) entry.fields = { ...Object.fromEntries(kept.map(key => [key, replaced[key]])), ...entry.fields };
+    }
     if(index >= 0) next.trails[index] = entry;
     else next.trails.push(entry);
     entries.push(entry);

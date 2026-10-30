@@ -224,8 +224,36 @@
     }, config.beforeId);
   }
 
+  /**
+   * The route audit's directions sentence, when it is one a walker can follow:
+   * where to start and which way to go, in at least fifteen words. A walk with
+   * neither trail numbers nor a structured guidance block showed only "No
+   * verified numbered sequence is currently recorded" while this sentence sat
+   * in its record. The board-walk bar and both renderers ask this one test.
+   */
+  function writtenDirections(trail) {
+    const text = String((trail && trail.routeAudit && trail.routeAudit.routeNumbers) || '').trim();
+    const problems = [];
+    if (!text) {
+      problems.push('no written directions');
+    } else {
+      const words = text.split(/\s+/).length;
+      const hasStart = /\b(from|start|begin|leave|at the)\b/i.test(text);
+      const hasWay = /\b(to|towards|onto|then|up|down|along|past|through|across|over|via|back)\b/i.test(text);
+      if (words < 15) problems.push(`the directions are only ${words} words`);
+      if (!hasStart || !hasWay) problems.push('the directions do not say where to start and which way to go');
+    }
+    return { text, problems, written: !problems.length };
+  }
+
+  // Printed under the sentence by both renderers, so the app and the page
+  // say the same thing about where it came from.
+  const AUDIT_DIRECTIONS_NOTE = 'From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.';
+
   const api = {
     forTrail,
+    writtenDirections,
+    AUDIT_DIRECTIONS_NOTE,
     refsFromText,
     normaliseRef,
     segmentsForTrail,

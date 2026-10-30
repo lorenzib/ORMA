@@ -42,6 +42,7 @@ const {
   fetchWithRetries, geometryOf, hardWayForDogs, evaluateRelation,
   buildPhase2Query, buildMemberWayQuery, MAX_KM,
 } = require('./fetch-dog-friendly-routes');
+const { REMOVED_TRAILS } = require('./removed-trails');
 
 const ROOT = path.resolve(__dirname, '..');
 const REGIONS = Object.freeze({
@@ -136,6 +137,12 @@ async function main(options = {}) {
   if (!Number.isInteger(args.relation) || args.relation <= 0) {
     console.log('[import] Name the walk with --relation <osm relation id>. Nothing was changed.');
     return null;
+  }
+  const removed = REMOVED_TRAILS.find(trail => Number(trail.osmRelation) === args.relation);
+  if (removed) {
+    console.log(`[import] ${removed.name} was removed from ORMA on ${removed.removedAt} (${removed.reason}).`);
+    console.log('[import] Putting it back is a human edit to data/removed-trails.json. Nothing was changed.');
+    return { status: 'removed', name: removed.name };
   }
   const routesFile = REGIONS[args.region];
   if (!routesFile) {

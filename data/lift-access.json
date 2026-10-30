@@ -55,6 +55,171 @@
           "notes": "The loop stays on the Cherz plateau at about 2,100 m and rides no lift. Reach it on foot from Passo Campolongo, a path from beside the Cherz I bottom station climbs about 220 m, or by the Cherz I chairlift (4-seat, open chairs) when it operates; the Vizza chairlift (2-seat, open) tops out 90 m from the start. The start point is named after a lift station as an access landmark, not because the route depends on it."
         }
       }
+    },
+    {
+      "id": "fassa-sentiero-della-foresta",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Catinaccio cable car (Vigo – Ciampedie)",
+          "notes": "The walk starts and ends on the Ciampedie plateau, which you reach by the closed cabins of the Catinaccio cable car from Vigo. The APT asks for a lead and a muzzle on lifts."
+        }
+      }
+    },
+    {
+      "id": "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Piz Sorega gondola (San Cassiano)",
+          "notes": "The walk starts at the top of the Piz Sorega gondola from San Cassiano; its cabins are closed. It ends on foot in Corvara."
+        }
+      }
+    },
+    {
+      "id": "valgardena-escursione-al-resciesa",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Resciesa funicular (Ortisei)",
+          "notes": "The walk starts at the top of the Resciesa funicular from Ortisei, a railway with closed cars. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "valgardena-escursione-dalla-cappella-santa-croce-al-brogles",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Resciesa funicular (Ortisei)",
+          "notes": "The walk starts at the top of the Resciesa funicular from Ortisei, a railway with closed cars. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "trecime-monte-elmo-versciaco",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Vierschach – Helm gondola (Versciaco – Monte Elmo)",
+          "notes": "The walk starts at the top of the Vierschach – Helm gondola, whose cabins are closed, and ends on foot in Vierschach. Keep your dog on a lead in the cabin and carry a muzzle."
+        }
+      }
+    },
+    {
+      "id": "valgardena-escursione-al-brogles",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Resciesa funicular (Ortisei)",
+          "notes": "The walk starts at the top of the Resciesa funicular from Ortisei, a railway with closed cars. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "valgardena-uciei-de-freeines",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Col Raiser gondola (Santa Cristina)",
+          "notes": "The walk starts at the top of the Col Raiser gondola from Santa Cristina, with closed cabins, and ends at its valley station. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "valgardena-seceda-da-col-raiser",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Col Raiser gondola (Santa Cristina)",
+          "notes": "The walk starts at the top of the Col Raiser gondola from Santa Cristina, with closed cabins; the Seceda cable car down to Ortisei is closed too. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "valgardena-seceda-dal-rifugio-firenze",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "optional",
+          "name": "Seceda cable car and Col Raiser gondola",
+          "notes": "The walk is on foot; the way down can be by the closed Seceda cable car to Ortisei or the Col Raiser gondola. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "valgardena-seceda-da-cristauta-pic",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "optional",
+          "name": "Seceda cable car and Col Raiser gondola",
+          "notes": "The walk is on foot; the way down can be by the closed Seceda cable car to Ortisei or the Col Raiser gondola. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "trecime-rotwandwiesen-moos",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Rotwand gondola (Bad Moos – Rotwandwiesen)",
+          "notes": "The walk starts at the top of the Rotwand gondola from Bad Moos, whose cabins are closed, and ends on foot at the valley station car park. Keep your dog on a lead in the cabin and carry a muzzle."
+        }
+      }
+    },
+    {
+      "id": "trecime-helmjet-waldruhe-sexten",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Helmjet gondola (Sexten – Helm)",
+          "notes": "The walk starts at the top of the Helmjet gondola from Sexten, whose cabins are closed, and ends on foot in Sexten. Keep your dog on a lead in the cabin and carry a muzzle."
+        }
+      }
+    },
+    {
+      "id": "campiglio-monte-spinale-rifugio-graffer",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Spinale gondola (Madonna di Campiglio)",
+          "notes": "The walk starts at the top station of the Spinale gondola from Madonna di Campiglio; its cabins are closed. It ends back at the same station."
+        }
+      }
+    },
+    {
+      "id": "fvg-mirabila-sentiero-botanico-bila-pec",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Canin cable car (Sella Nevea – Rifugio Gilberti)",
+          "notes": "The loop starts and ends at the Rifugio Gilberti, at the top of the Canin cable car from Sella Nevea; its cabins are closed. Dogs ride on a lead and muzzled, one per cabin, with a ticket for medium and large dogs. The hut can also be reached on foot by path CAI 635."
+        }
+      }
+    },
+    {
+      "id": "seiseralm-escursione-senza-barriere-all-alpe-di-siusi",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Seiser Alm Mont Sëuc cable car (Ortisei – Alpe di Siusi)",
+          "notes": "The walk starts at the top station of the cable car from Ortisei; its cabins are closed. The walk comes back the same way to the station."
+        }
+      }
     }
   ]
 }

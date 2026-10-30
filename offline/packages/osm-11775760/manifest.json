@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11775760",
   "name": "Carl-Toldt-Weg",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T18:07:36.518Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:52:25.429Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 418986,
+  "verificationStatus": "source-verified",
+  "packageBytes": 419941,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.73545,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Carl-Toldt-Weg route",
       "url": "route.geojson",
-      "bytes": 5075,
-      "sha256": "b48b844c1f065664f4531cc5bc918d33c74701a5a688c2c13ddb521e205da018"
+      "bytes": 5069,
+      "sha256": "4622eded90d80e424d2559da0377f284d6b2c19682ceb3990e3ebb69215a9de0"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "Carl-Toldt-Weg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 75720,
-      "sha256": "6f786ecc7a0f8828b24d63a9d21ec7a6850551ca914190d09bfd0828a1670614"
+      "sha256": "c6fbcd8db5462c3337b1b16c4c02bec4e9929c04edfcda2619c1bf39994684e7"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Carl-Toldt-Weg safety information",
       "url": "safety.json",
-      "bytes": 1677,
-      "sha256": "5c51194ac0f01ea2cd442ed50ba169a687d8ac13db9c5f5ee68c99215f54dfee"
+      "bytes": 1589,
+      "sha256": "b9c4499da59f3148f225ef85fe56667f5a49ab19317f5a6618e9beb365720511"
     }
   ]
 }

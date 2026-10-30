@@ -246,7 +246,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   // start point quietly answered from a relation that publishes none, would
   // both read to a walker as an authority's directions.
   add('map-read-guidance-says-so',
-    mapGuidance.includes('not from a published route description')
+    mapGuidance.includes('not from directions the trail\u2019s operator published')
     &&mapGuidance.includes('The mapped route follows')
     &&!mapGuidance.includes('`Follow route')
     &&mapGuidance.includes("authority: MAP_AUTHORITY")
@@ -819,7 +819,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&!dossier.includes("claim.finding==='counter-evidence'&&ormaOwnAnswer")
     // The value the reader gets says whose suggestion it is, which is what
     // makes this honest rather than a loosened gate.
-    &&recordGuidance.includes('not an operator\u2019s recommendation')
+    &&recordGuidance.includes('not one published by the trail\u2019s operator')
     &&recordGuidance.includes('CHECK_ACCESS')
     // And the report names a held contradiction as a judgement, not a bug.
     &&dryRun.includes('function contestedAnswers(routeGuidance,decidedUnwaivable)')
@@ -851,7 +851,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   // authority nobody found, would read to a walker as somebody's published
   // recommendation.
   add('orma-answers-as-orma',
-    recordGuidance.includes('not an operator\u2019s recommendation')
+    recordGuidance.includes('not one published by the trail\u2019s operator')
     &&recordGuidance.includes("authority: ORMA_AUTHORITY")
     &&recordGuidance.includes('const ORMA_AUTHORITY = \'ORMA\'')
     // The start and the numbering for any walk, and the other two only for a

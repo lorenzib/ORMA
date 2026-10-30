@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fiemme-cavalese-passeggiata-panoramica",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3,
+    "ascentM": 100,
+    "highestPointM": 997,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 3
+  },
+  "trailhead": {
+    "lat": 46.290259,
+    "lng": 11.460627,
+    "label": "Cavalese (Piazza Verdi), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.2910942,
+      "lng": 11.4592135,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.2876993,
+      "lng": 11.4585232,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.2856835,
+      "lng": 11.4634778,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Town streets and pavements at the start and end, open to cars.",
+    "An unlit former railway tunnel under the park.",
+    "Steps up to the park belvedere.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

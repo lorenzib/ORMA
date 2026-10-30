@@ -32,6 +32,7 @@ const fs = require('fs/promises');
 const nodeFs = require('fs');
 const vm = require('vm');
 const path = require('path');
+const { isRemovedRelation, REMOVED_TRAIL_IDS } = require('./removed-trails');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -45,6 +46,14 @@ const REGIONS = {
     routesFile: 'dog-friendly-routes-savoy.geojson',
     accessFile: 'data/access-points-savoy.geojson',
     outputFile: 'osm-trails-savoy-data.js'
+  },
+  // Walks an operator publishes that OpenStreetMap does not carry as one
+  // route, drawn on OSM ways by scripts/build-board-line.js. Same derivation,
+  // except that the start and the direction are the operator's.
+  board: {
+    routesFile: 'data/board-line-routes.geojson',
+    accessFile: 'data/access-points.geojson',
+    outputFile: 'board-trails-data.js'
   }
 };
 const args = process.argv.slice(2);
@@ -775,7 +784,13 @@ function pickGentlerDirection(samples, elevations) {
 }
 
 async function main() {
-  const routes = JSON.parse(await fs.readFile(ROUTES_PATH, 'utf8'));
+  // The board file starts empty and is created by the first walk drawn, so a
+  // missing one is an empty catalogue rather than a failure.
+  const routes = await fs.readFile(ROUTES_PATH, 'utf8').then(JSON.parse)
+    .catch((error) => {
+      if (REGION_KEY === 'board' && error.code === 'ENOENT') return { type: 'FeatureCollection', features: [] };
+      throw error;
+    });
   const water = JSON.parse(await fs.readFile(WATER_PATH, 'utf8'));
   const huts = JSON.parse(await fs.readFile(HUTS_PATH, 'utf8'));
   let accessIndex = null;
@@ -865,7 +880,17 @@ async function main() {
 
   for (const [n, feature] of routes.features.entries()) {
     const p = feature.properties;
-    if (PROMOTED_RELATIONS.has(Number(p.osm_relation))) {
+    // Removed outright on the owner's decision (data/removed-trails.json): the
+    // same list the scout, the importer and publication read.
+    if (isRemovedRelation(p.osm_relation) || REMOVED_TRAIL_IDS.has(p.trail_id)) {
+      console.log(`[promote] Skipping ${p.name} (${p.osm_relation}), removed from ORMA.`);
+      continue;
+    }
+    // A walk drawn along the operator's line keeps the operator's start and
+    // direction: moving it to the nearest car park, or turning a loop to its
+    // gentler side, would make the km on the page disagree with the board's.
+    const board = Boolean(p.trail_id);
+    if (!board && PROMOTED_RELATIONS.has(Number(p.osm_relation))) {
       console.log(`[promote] Skipping ${p.name} (${p.osm_relation}), already verified in trails-data.js.`);
       continue;
     }
@@ -874,7 +899,9 @@ async function main() {
     let cumKm = recomputeCumKm(pts, connectors);
 
     // --- Verified start point: anchor to the nearest real access point ---
-    let startLabel = 'Route start per OpenStreetMap — best parking/access not yet verified';
+    let startLabel = board
+      ? `${p.start_name || 'Start'} (the start ${p.operator || 'the operator'} publishes)`
+      : 'Route start per OpenStreetMap — best parking/access not yet verified';
     // Rotating a loop or turning a line round would scramble the connector
     // indices, and neither helper keeps them, so this runs on a connector-free
     // line and only on one.
@@ -889,7 +916,7 @@ async function main() {
     // Vert. Measured on 19 Oct 2026, not one of their widest gaps moves when
     // the line is rotated or reversed, and no trail that was anchored stops
     // being anchored.
-    if (accessIndex && !connectors.length) {
+    if (accessIndex && !connectors.length && !board) {
       const best = findBestAccess(pts, accessIndex);
       if (best) {
         if (isLoop) {
@@ -928,7 +955,7 @@ async function main() {
     let rating = { safetyLevel: 'moderate', terrainRank: 1 }; // conservative default if elevation unavailable
     if (elevations && elevations.length === samples.length) {
       // --- Recommended direction for loops: the gentler climb, computed ---
-      if (isLoop) {
+      if (isLoop && !board) {
         const dir = pickGentlerDirection(samples, elevations);
         if (dir.reverse) {
           pts = pts.slice().reverse();
@@ -956,7 +983,9 @@ async function main() {
       (poi) => ({ label: poi.props.name || 'Drinking water (OSM-verified location)' }));
     const rifugi = matchAlongPath(pts, cumKm, hutIndex, HUT_MATCH_METERS,
       (poi) => ({ name: poi.props.name }));
-    const entry = {
+    const entry = board ? boardEntry(p, {
+      pts, totalKm, gain, terrain, rating, elevationProfile, waterSources, rifugi, startLabel, isLoop,
+    }) : {
       id: `osm-${p.osm_relation}`,
       source: 'osm', curated: false,
       osmRelation: p.osm_relation,
@@ -994,13 +1023,16 @@ async function main() {
       // valley. Overstating this says a nearly continuous walk is broken.
       ...(connectors.length ? { osmGeometryGaps: connectors.length } : {})
     };
+    if (board) { entries.push(entry); continue; }
     if (p.leash) entry.leash = p.leash;
     if (p.dogFriendlyNotes) entry.dogNotes = p.dogFriendlyNotes;
     entries.push(entry);
   }
 
   const banner = '// AUTO-GENERATED by scripts/promote-osm-trails.js, do not edit by hand.\n'
-    + '// Curated trails live in trails-data.js; this file appends OSM-imported trails.\n'
+    + (REGION_KEY === 'board'
+      ? '// Walks drawn on OSM ways along the line their operator publishes (data/board-line-routes.geojson).\n'
+      : '// Curated trails live in trails-data.js; this file appends OSM-imported trails.\n')
     + '// Data: © OpenStreetMap contributors (ODbL); elevation: Open-Meteo (non-commercial).\n';
   const js = `${banner}(function () {\n`
     + `  const imported = ${JSON.stringify(entries)};\n`
@@ -1022,13 +1054,50 @@ async function main() {
   console.log(`[done] Wrote ${entries.length} promoted trails -> ${OUTPUT_PATH}`);
 }
 
+/**
+ * The record for a walk drawn along its operator's line.
+ *
+ * Everything measured from the line is derived exactly as for an imported
+ * relation. What differs is where it came from: the operator and its page
+ * stand where the relation and Waymarked Trails stand, and the record says the
+ * line was drawn on OSM ways rather than taken from a mapped route.
+ */
+function boardEntry(p, d) {
+  const where = nearestLocality(d.pts[0][0], d.pts[0][1]);
+  return {
+    id: p.trail_id,
+    source: 'board-line', curated: false,
+    operator: p.operator,
+    sourceUrl: p.source_url,
+    osmWays: Array.isArray(p.osm_ways) ? p.osm_ways.length : 0,
+    routeNumberStatus: 'not-listed-in-mapped-source',
+    routeNumberSource: { provider: p.operator, name: p.name || null, url: p.source_url },
+    name: p.name, area: where,
+    lat: d.pts[0][0], lng: d.pts[0][1],
+    path: d.pts.map(([la, ln]) => [Math.round(la * 1e5) / 1e5, Math.round(ln * 1e5) / 1e5]),
+    distance: d.totalKm,
+    elevation: d.gain,
+    hours: d.gain !== null ? naismithHours(d.totalKm, d.gain) : null,
+    terrainType: d.terrain.text,
+    terrainRank: d.rating.terrainRank,
+    elevationProfile: d.elevationProfile,
+    surfaceHazards: [],
+    safetyLevel: d.rating.safetyLevel,
+    waterSources: d.waterSources,
+    rifugi: d.rifugi,
+    startPoint: { lat: d.pts[0][0], lng: d.pts[0][1], label: d.startLabel },
+    desc: `${articleFor(d.totalKm)} ${d.totalKm} km ${d.isLoop ? 'loop' : 'route'} near ${where}, published by ${p.operator} and drawn on the OpenStreetMap path network along the line it publishes.`,
+    tips: `Route published by ${p.operator}; elevation, distance, mapped fountains and rifugi come from OpenStreetMap data along it. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.`,
+  };
+}
+
 // Guarded so the geometry assembly above can be tested without fetching or
 // writing anything. Running the script directly is unchanged.
 if (require.main === module) {
   main().catch((err) => { console.error(err); process.exit(1); });
 }
 
-module.exports = { articleFor, chainLines, toPath, widestGapMeters, haversineMeters,
+module.exports = { articleFor, chainLines, toPath, widestGapMeters, haversineMeters, boardEntry,
   lineMeters, recomputeCumKm, reverseConnectors,
   DROPPABLE_PIECE_M, DROPPABLE_SHARE_OF_WALK, LOOP_CLOSE_M,
   elevationKey, loadElevationCache, saveElevationCache, cachePointsToSave, fetchElevations };

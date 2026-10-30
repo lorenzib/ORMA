@@ -100,7 +100,7 @@ describe('the published site keeps operator data out', () => {
   test('does not publish repository tooling, config or manifests', () => {
     ['docs', 'scripts', 'schemas', 'test-support', 'config', 'node_modules', '.git',
       'package.json', 'package-lock.json', 'prototypes',
-      'firestore.rules', 'firestore.indexes.json', 'firebase.json',
+      'firestore.rules', 'storage.rules', 'firestore.indexes.json', 'firebase.json',
       'AGENTS.md', 'README.md', '_config.yml'].forEach(entry => {
       expect({ entry, published: inSite(entry) }).toEqual({ entry, published: false });
     });

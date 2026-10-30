@@ -11,6 +11,7 @@ const steps = [
   ['Trail evidence contract', ['run', 'audit:trail-trust']],
   ['Application and contract tests', ['test', '--', '--runInBand']],
   ['Firestore emulator authorization', ['run', 'test:firestore-rules']],
+  ['Storage emulator authorization', ['run', 'test:storage-rules']],
   ['Static links and local assets', ['run', 'test:static']],
   ['Generated artifact drift', ['run', 'check:generated']],
 ];

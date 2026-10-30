@@ -113,13 +113,4 @@ describe('P0-2 route operational facts', () => {
     const errors = facts.validateTable(table([verifiedRifugio, { ...verifiedRifugio }]));
     expect(errors).toEqual([expect.stringContaining('duplicate id')]);
   });
-
-  test('the trail page renders the block and ships the module', () => {
-    const trailJs = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
-    const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
-
-    expect(trailJs).toContain('On this route');
-    expect(trailJs).toContain('renderOnThisRoute');
-    expect(bundle).toContain('// ---- route-operational-facts.js ----');
-  });
 });

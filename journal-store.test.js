@@ -54,6 +54,25 @@ describe('JOURNAL-02 account journal store', () => {
     expect(remote.schemaVersion).toBe(1);
   });
 
+  test('who came along is optional, bounded and survives the round trip', () => {
+    // No companions: exactly the fields older rules accept, nothing more.
+    expect('walkedWith' in store.toRemote(recordedWalk(), { now: T0 })).toBe(false);
+
+    const walk = { ...recordedWalk(), walkedWith:['Teo', ' teo ', 'Luna', '', 'Marco'] };
+    const remote = store.toRemote(walk, { now: T0 });
+    // De-duplicated regardless of case, blanks dropped, one per line.
+    expect(remote.walkedWith).toBe('Teo\nLuna\nMarco');
+    expect(store.fromRemote(remote).walkedWith).toEqual(['Teo', 'Luna', 'Marco']);
+
+    // Never more than the rule's 400 characters or the store's 12 names.
+    const crowd = Array.from({ length:30 }, (_, i) => `Friend number ${i} with a long name`);
+    const bounded = store.toRemote({ ...recordedWalk(), walkedWith:crowd }, { now: T0 }).walkedWith;
+    expect(bounded.length).toBeLessThanOrEqual(400);
+    expect(bounded.split('\n').length).toBeLessThanOrEqual(store.MAX_COMPANIONS);
+    expect(store.walkedWithOf({ walkedWith:'not a list' })).toEqual(['not a list']);
+    expect(store.walkedWithOf({ walkedWith:{ dogs:1 } })).toEqual([]);
+  });
+
   test('a track too long for the account is cut on a point boundary', () => {
     const long = [[]];
     for(let i = 0; i < 20000; i++) long[0].push([46.5 + i * 0.00001, 11.6]);
@@ -112,5 +131,20 @@ describe('JOURNAL-02 account journal store', () => {
     expect(ids.size).toBe(200);
     // Every id is usable as a Firestore document id.
     ids.forEach(id => expect(id).toMatch(/^[A-Za-z0-9._:-]{1,120}$/));
+  });
+
+  test('same-millisecond ids stay distinct even when the random part repeats', () => {
+    const realRandom = Math.random;
+    const realCrypto = global.crypto;
+    try {
+      Object.defineProperty(global, 'crypto', { value: undefined, configurable: true });
+      Math.random = () => 0.5;
+      const ids = new Set();
+      for(let i = 0; i < 50; i++) ids.add(store.newId(T0 + 7));
+      expect(ids.size).toBe(50);
+    } finally {
+      Math.random = realRandom;
+      Object.defineProperty(global, 'crypto', { value: realCrypto, configurable: true });
+    }
   });
 });

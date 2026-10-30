@@ -16,56 +16,48 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260916-5">
 <style>
-.sg-hero{padding-top:32px;padding-bottom:18px;}
-.sg-hero.section-page-head--actions{align-items:center;}
+.sg-hero{padding-top:32px;padding-bottom:22px;}
+.sg-hero.section-page-head--actions{align-items:flex-end;}
 .safety-library-page .hp-prefooter{display:none!important;}
-.sg-kicker{display:block;margin-bottom:10px;color:var(--accent);font:700 10px/1.2 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;}
+.sg-kicker{display:block;margin-bottom:10px;color:var(--accent);font:700 10.5px/1.2 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;}
 .sg-hero h1{max-width:760px;}
-.sg-hero-copy{width:100%;max-width:none;margin:16px 0 0;color:var(--ink-soft);font-size:15.5px;line-height:1.72;white-space:normal;text-wrap:pretty;}
-.sg-readiness-fab{position:relative;z-index:1;display:flex;align-items:center;gap:11px;flex:none;margin-top:3px;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:9px 17px 9px 9px;background:var(--success);color:var(--card);text-align:left;cursor:pointer;box-shadow:0 10px 24px rgba(28,52,38,.2);transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease;}
-.sg-readiness-fab:hover{transform:translateY(-2px);background:var(--safety-safe);box-shadow:0 18px 38px rgba(28,52,38,.32);}
-.sg-readiness-fab:focus-visible{outline:3px solid var(--safety-caution-soft);outline-offset:3px;}
-.sg-readiness-fab-icon{display:grid;place-items:center;width:38px;height:38px;flex:none;overflow:hidden;border:3px solid var(--card);border-radius:50%;background:rgba(255,255,255,.17);font-size:18px;}
+.sg-hero-copy{width:100%;max-width:72ch;margin:14px 0 0;color:var(--ink-soft);font-size:15.5px;line-height:1.7;white-space:normal;text-wrap:pretty;}
+.sg-readiness-fab{display:flex;align-items:center;gap:10px;flex:none;border:var(--border);border-radius:999px;padding:6px 18px 6px 6px;background:var(--card);color:var(--ink);text-align:left;cursor:pointer;transition:border-color .16s ease,box-shadow .16s ease;}
+.sg-readiness-fab:hover{border-color:var(--accent);box-shadow:var(--shadow);}
+.sg-readiness-fab:focus-visible{outline:3px solid var(--safety-info-soft);outline-offset:3px;}
+.sg-readiness-fab-icon{display:block;width:40px;height:40px;flex:none;overflow:hidden;border-radius:50%;}
 .sg-readiness-fab-icon img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;}
 .sg-readiness-fab-copy{display:flex;flex-direction:column;gap:1px;}
-.sg-readiness-fab small{color:rgba(255,255,255,.75);font:700 9px/1.2 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
-.sg-readiness-fab strong{color:var(--card);font:700 14px/1.25 'Bricolage Grotesque',sans-serif;}
-.sg-layout{display:block;}
-.sg-library{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.2vw,30px);min-width:0;align-items:start;}
-.sg-category{--sg-tone:var(--safety-info);--sg-tone-soft:var(--safety-info-soft);--sg-tone-border:#BBD4DE;min-width:0;}
-.sg-category-head{min-height:66px;padding:0 0 12px;border-bottom:3px solid var(--sg-tone);}
-.sg-category-head h2{font-size:24px;line-height:1.1;}
-.sg-category-head p{margin:5px 0 0;color:var(--ink-soft);font-size:12px;line-height:1.35;}
-.sg-guide-list{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
-.sg-guide-card{display:grid;grid-template-columns:126px minmax(0,1fr) auto;gap:14px;align-items:center;min-height:112px;padding:12px;border:1px solid var(--sg-tone-border);border-radius:14px;background:var(--card);text-decoration:none;box-shadow:0 6px 18px -18px rgba(46,64,52,.35);transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease;}
-.sg-guide-card:hover{border-color:var(--sg-tone);box-shadow:0 14px 26px -18px rgba(46,64,52,.45);transform:translateY(-1px);}
-.sg-guide-card:hover .sg-guide-title{color:var(--sg-tone);}
-.sg-guide-card img{display:block;width:126px;height:84px;border:1px solid color-mix(in srgb,var(--sg-tone) 30%,#fff);border-radius:11px;object-fit:cover;background:var(--card);box-shadow:0 0 0 3px color-mix(in srgb,var(--sg-tone) 10%,transparent),0 7px 14px -9px rgba(35,51,42,.42);filter:saturate(1.12) contrast(1.04) brightness(1.01);image-rendering:auto;}
+.sg-readiness-fab small{color:var(--ink-soft);font-size:12px;line-height:1.2;}
+.sg-readiness-fab strong{color:var(--ink);font:700 15px/1.2 'Bricolage Grotesque',sans-serif;}
+.sg-panel{border:var(--border);border-radius:var(--radius-panel);background:var(--card);padding:26px 28px;}
+.sg-side{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;margin:0 0 22px;}
+.sg-rules h2,.sg-category-head h2{font-size:22px;line-height:1.15;}
+.sg-rules ol{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;list-style:none;margin:16px 0 0;padding:0;counter-reset:rule;}
+.sg-rules li{counter-increment:rule;}
+.sg-rules li::before{content:counter(rule);display:grid;place-items:center;width:24px;height:24px;margin-bottom:8px;border-radius:50%;background:var(--bg);color:var(--ink);font-size:12px;font-weight:700;}
+.sg-rules b{display:block;color:var(--ink);font-size:14px;line-height:1.3;}
+.sg-rules small{display:block;margin-top:4px;color:var(--ink-soft);font-size:13px;line-height:1.45;}
+.sg-emergency{padding-left:28px;border-left:var(--border);}
+.sg-emergency .sg-kicker{color:var(--safety-stop);}
+.sg-emergency-call{display:flex;align-items:baseline;gap:12px;margin-top:12px;text-decoration:none;}
+.sg-emergency-call strong{color:var(--safety-stop);font:700 40px/1 'Bricolage Grotesque',sans-serif;}
+.sg-emergency-call span{color:var(--ink);font-size:13.5px;line-height:1.4;}
+.sg-emergency p{margin:12px 0 0;padding-top:12px;border-top:var(--border);color:var(--ink-soft);font-size:13px;line-height:1.45;}
+.sg-emergency p b{color:var(--ink);}
+.sg-library{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px;}
+.sg-category{min-width:0;}
+.sg-category-head p{margin:4px 0 0;color:var(--ink-soft);font-size:13.5px;line-height:1.4;}
+.sg-guide-list{display:flex;flex-direction:column;margin-top:10px;}
+.sg-guide-card{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center;padding:14px 0;border-top:var(--border);text-decoration:none;}
+.sg-guide-card:hover .sg-guide-title{color:var(--accent);}
+.sg-guide-card img{display:block;width:96px;height:72px;border-radius:10px;object-fit:cover;background:var(--bg);}
 .sg-guide-card img.sg-guide-image-cable-car{object-position:center 82%;}
 .sg-guide-card img.sg-guide-image-paw{object-position:center 72%;}
 .sg-guide-card-copy{min-width:0;}
-.sg-guide-card .cat{display:block;margin-bottom:4px;color:var(--sg-tone);font:800 9.5px/1.2 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
-.sg-guide-title{display:block;font:700 18px/1.16 'Bricolage Grotesque',sans-serif;color:var(--ink);transition:color .16s ease;}
-.sg-guide-card p{margin:5px 0 0;color:var(--ink-soft);font-size:12.5px;line-height:1.45;}
-.sg-guide-arrow{color:var(--sg-tone);font-size:21px;line-height:1;}
-.sg-side{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(300px,.72fr);gap:18px;margin:0 0 36px;align-items:stretch;}
-.sg-rules{border-radius:var(--radius-panel);padding:20px 24px;background:var(--success);color:var(--card);box-shadow:var(--shadow);}
-.sg-rules .sg-kicker{margin-bottom:14px;color:var(--card);font-size:10.5px;}
-.sg-rules ol{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));list-style:none;margin:0;padding:0;}
-.sg-rules li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:7px;padding:2px 12px;border-left:1px solid rgba(255,255,255,.18);}
-.sg-rules li:first-child{border-left:0;padding-left:0;}
-.sg-rules li>span{color:var(--card);font-size:11px;font-weight:700;}
-.sg-rules b{display:block;color:var(--card);font-size:13px;line-height:1.3;}
-.sg-rules small{display:block;margin-top:4px;color:rgba(255,255,255,.84);font-size:12px;line-height:1.45;}
-.sg-emergency{display:grid;grid-template-columns:1fr 1fr;column-gap:18px;row-gap:9px;border-radius:var(--radius-panel);padding:20px 24px;background:var(--emergency-bg);color:var(--emergency-fg);box-shadow:var(--shadow);}
-.sg-emergency .sg-kicker{grid-column:1/-1;margin-bottom:0;color:var(--emergency-soft);}
-.sg-emergency-entry{display:block;padding:0;text-decoration:none;}
-.sg-emergency-entry+.sg-emergency-entry{padding-left:16px;border-left:1px solid rgba(255,255,255,.22);}
-.sg-emergency-entry span{display:block;color:var(--emergency-soft);font-size:11px;}
-.sg-emergency-entry strong{display:block;margin-top:2px;color:var(--emergency-fg);font:700 22px/1.05 'Bricolage Grotesque',sans-serif;}
-.sg-emergency-entry b{display:block;margin-top:3px;color:var(--emergency-fg);font-size:14px;}
-.sg-emergency-entry small{display:block;margin-top:4px;color:rgba(255,255,255,.82);font-size:10.5px;line-height:1.4;}
-.sg-disclaimer{margin:22px 0 0;color:var(--muted);font-size:12.5px;line-height:1.5;white-space:nowrap;}
+.sg-guide-title{display:block;font:700 17px/1.2 'Bricolage Grotesque',sans-serif;color:var(--ink);transition:color .16s ease;}
+.sg-guide-card p{margin:4px 0 0;color:var(--ink-soft);font-size:13px;line-height:1.45;}
+.sg-disclaimer{margin:22px 0 0;color:var(--muted);font-size:12.5px;line-height:1.5;}
 .sg-readiness-dialog{width:min(620px,calc(100% - 28px));max-height:calc(100dvh - 28px);padding:0;border:0;border-radius:var(--radius-modal);background:var(--card);color:var(--ink);box-shadow:var(--shadow-modal);}
 .sg-readiness-dialog::backdrop{background:rgba(23,42,28,.62);backdrop-filter:blur(3px);}
 .sg-quiz{padding:26px;}
@@ -92,40 +84,26 @@
 .sg-quiz-result-summary{margin:7px 0 0;color:var(--ink-soft);font-size:12.5px;line-height:1.5;}
 .sg-quiz-recommendations{margin:12px 0 0;padding:11px 0 0 18px;border-top:1px solid rgba(47,73,56,.13);color:var(--ink);font-size:12.5px;line-height:1.5;}
 .sg-quiz-recommendations li+li{margin-top:6px;}
-@media(max-width:900px){
+@media(max-width:1100px){
+  .sg-side{grid-template-columns:1fr;gap:22px;}
+  .sg-emergency{order:-1;padding:0 0 20px;border-left:0;border-bottom:var(--border);}
   .sg-library{grid-template-columns:1fr;gap:28px;}
-  .sg-category-head{min-height:0;}
-  .sg-guide-card{grid-template-columns:132px minmax(0,1fr) auto;}
-  .sg-guide-card img{width:132px;height:88px;}
-  .sg-side{grid-template-columns:minmax(0,1.55fr) minmax(260px,.8fr);}
-  .sg-rules ol{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px;}
-  .sg-rules li:nth-child(4){border-left:0;padding-left:0;}
 }
 @media(max-width:760px){
   .sg-hero.section-page-head--actions{align-items:flex-start;}
-  .sg-readiness-fab{margin-top:0;}
-  .sg-side{grid-template-columns:1fr;gap:12px;margin:0 0 28px;}
-  .sg-emergency{order:-1;}
-  .sg-rules ol{grid-template-columns:1fr 1fr;}
-  .sg-rules li:nth-child(odd){border-left:0;padding-left:0;}
-  .sg-rules li:nth-child(4){border-left:1px solid rgba(255,255,255,.18);padding-left:12px;}
-  .sg-disclaimer{white-space:normal;}
+  .sg-rules ol{grid-template-columns:1fr;gap:12px;}
+  .sg-rules li{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:12px;}
+  .sg-rules li::before{margin:0;}
 }
 @media(max-width:620px){
-  .sg-hero{padding:30px 18px 24px;}
+  .sg-hero{padding:30px 18px 22px;}
   .sg-wrap{padding-right:16px;padding-left:16px;}
-  .sg-layout{gap:28px;}
-  .sg-guide-card{grid-template-columns:96px minmax(0,1fr);gap:13px;padding:13px 12px;}
-  .sg-guide-card img{width:96px;height:72px;}
-  .sg-guide-title{font-size:17px;}
-  .sg-guide-arrow{display:none;}
+  .sg-panel{padding:20px 18px;}
+  .sg-guide-card{grid-template-columns:84px minmax(0,1fr);gap:13px;}
+  .sg-guide-card img{width:84px;height:64px;}
   .sg-quiz{padding:20px;}
   .sg-quiz-actions{align-items:stretch;flex-direction:column;}
   .sg-quiz-validation{margin:0;}
-  .sg-readiness-fab{margin-top:0;gap:10px;padding:8px 16px 8px 8px;}
-  .sg-readiness-fab-icon{width:46px;height:46px;border-width:2px;}
-  .sg-readiness-fab small{font-size:8px;}
-  .sg-readiness-fab strong{font-size:15.5px;}
 }
 </style>
 </head>
@@ -156,50 +134,50 @@
 <main class="sg-wrap section-page-wrap content-canvas browse-canvas-wrap">
   <!-- The rules and the emergency number come first: they are what to know
        before choosing a guide, and 112 should not sit below the fold. -->
-  <aside class="sg-side" aria-label="Mountain-safety overview">
+  <aside class="sg-side sg-panel" aria-label="Mountain-safety overview">
     <section class="sg-rules" aria-labelledby="rulesHeading">
-      <span class="sg-kicker" id="rulesHeading">The five mountain rules</span>
+      <h2 id="rulesHeading">The five mountain rules</h2>
       <ol>
-        <li><span>1</span><div><b>Check conditions</b><small>Forecast, trail status and heat exposure.</small></div></li>
-        <li><span>2</span><div><b>Carry essentials</b><small>Water, leash, muzzle and first aid.</small></div></li>
-        <li><span>3</span><div><b>Watch your dog</b><small>Behaviour changes come before collapse.</small></div></li>
-        <li><span>4</span><div><b>Protect wildlife</b><small>Use distance and keep control.</small></div></li>
-        <li><span>5</span><div><b>Leave a margin</b><small>Turning back is part of good planning.</small></div></li>
+        <li><div><b>Check conditions</b><small>Forecast, trail status and heat exposure.</small></div></li>
+        <li><div><b>Carry essentials</b><small>Water, leash, muzzle and first aid.</small></div></li>
+        <li><div><b>Watch your dog</b><small>Behaviour changes come before collapse.</small></div></li>
+        <li><div><b>Protect wildlife</b><small>Use distance and keep control.</small></div></li>
+        <li><div><b>Leave a margin</b><small>Turning back is part of good planning.</small></div></li>
       </ol>
     </section>
 
     <section class="sg-emergency" aria-labelledby="emergencyHeading">
-      <span class="sg-kicker" id="emergencyHeading">Emergency reference</span>
-      <a class="sg-emergency-entry" href="tel:112"><span>European emergency</span><strong>112</strong><small>Police, ambulance, fire or mountain rescue across the EU.</small></a>
-      <div class="sg-emergency-entry"><span>Veterinary ambulance</span><b>Varies by region</b><small>Nearest regional help and directions belong on each trail map.</small></div>
+      <span class="sg-kicker" id="emergencyHeading">In an emergency</span>
+      <a class="sg-emergency-call" href="tel:112"><strong>112</strong><span>European emergency: police, ambulance, fire or mountain rescue across the EU.</span></a>
+      <p><b>Veterinary ambulance:</b> varies by region. Nearest regional help and directions belong on each trail map.</p>
     </section>
   </aside>
 
   <div class="sg-layout">
-    <div class="sg-library" aria-label="Safety guides">
+    <div class="sg-library sg-panel" aria-label="Safety guides">
       <section class="sg-category" data-tone="info" aria-labelledby="beforeHeading">
         <div class="sg-category-head"><h2 id="beforeHeading">Before you leave</h2><p>Plan around your dog and the route</p></div>
         <div class="sg-guide-list">
-          <a class="sg-guide-card" href="guides/altitude-with-your-dog.html"><img src="images/editorial/safety-library/altitude-with-your-dog-v1.jpg" alt="A black-and-white dog running toward the camera on a shaded mountain forest trail" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Altitude</span><span class="sg-guide-title">Altitude with your dog</span><p>Acclimatisation, pace and warning signs.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/breed-group-caveats.html"><img src="images/editorial/safety-library/breed-group-considerations-dogs-v3.jpg" alt="A long-haired German Shepherd and a brindle shepherd-type dog resting together in the grass" width="1500" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Your dog</span><span class="sg-guide-title">Breed-group considerations</span><p>When standard trail advice needs adjusting.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/dogs-on-cable-cars.html"><img class="sg-guide-image-cable-car" src="images/editorial/safety-library/dogs-on-cable-cars-v6.jpg" alt="Dog wearing a blue harness resting inside a mountain cable car" width="1086" height="1448" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Access</span><span class="sg-guide-title">Dogs on cable cars</span><p>Comfort, fear signals and operator rules.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/altitude-with-your-dog.html"><img src="images/editorial/safety-library/altitude-with-your-dog-v1.jpg" alt="A black-and-white dog running toward the camera on a shaded mountain forest trail" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="sg-guide-title">Altitude with your dog</span><p>Acclimatisation, pace and warning signs.</p></span></a>
+          <a class="sg-guide-card" href="guides/breed-group-caveats.html"><img src="images/editorial/safety-library/breed-group-considerations-dogs-v3.jpg" alt="A long-haired German Shepherd and a brindle shepherd-type dog resting together in the grass" width="1500" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="sg-guide-title">Breed-group considerations</span><p>When standard trail advice needs adjusting.</p></span></a>
+          <a class="sg-guide-card" href="guides/dogs-on-cable-cars.html"><img class="sg-guide-image-cable-car" src="images/editorial/safety-library/dogs-on-cable-cars-v6.jpg" alt="Dog wearing a blue harness resting inside a mountain cable car" width="1086" height="1448" decoding="async"><span class="sg-guide-card-copy"><span class="sg-guide-title">Dogs on cable cars</span><p>Comfort, fear signals and operator rules.</p></span></a>
         </div>
       </section>
 
       <section class="sg-category" data-tone="caution" aria-labelledby="trailHeading">
         <div class="sg-category-head"><h2 id="trailHeading">On the trail</h2><p>Prevent the most common problems</p></div>
         <div class="sg-guide-list">
-          <a class="sg-guide-card" href="guides/heat-overheating.html"><img src="images/editorial/safety-library/dog-hydration-lake-unbranded-v1.jpg" alt="A dog resting in the shade beside a clear alpine lake" width="1086" height="724" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Weather &amp; body</span><span class="sg-guide-title">Heat and hydration</span><p>Water planning and recognising overheating early.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/paw-protection.html"><img class="sg-guide-image-paw" src="images/editorial/safety-library/paw-protection-forest-dog-v4.jpg" alt="Harnessed dog standing leash-free on a narrow forest trail" width="1086" height="1448" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Terrain</span><span class="sg-guide-title">Paw protection</span><p>Rock, hot ground, snow and first aid.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/alpine-plants-for-dogs.html"><img src="images/editorial/safety-library/flowers-plants-dogs.jpg" alt="Yellow alpine flowers growing beside a forest trail" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Plants</span><span class="sg-guide-title">Flowers, plants and dogs</span><p>What is safe to pass and dangerous to eat.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/heat-overheating.html"><img src="images/editorial/safety-library/heat-hydration-stream-dog-v1.jpg" alt="A small dog in a red harness drinking from a shallow alpine stream" width="1125" height="750" decoding="async"><span class="sg-guide-card-copy"><span class="sg-guide-title">Heat and hydration</span><p>Water planning and recognising overheating early.</p></span></a>
+          <a class="sg-guide-card" href="guides/paw-protection.html"><img class="sg-guide-image-paw" src="images/editorial/safety-library/paw-protection-forest-dog-v4.jpg" alt="Harnessed dog standing leash-free on a narrow forest trail" width="1086" height="1448" decoding="async"><span class="sg-guide-card-copy"><span class="sg-guide-title">Paw protection</span><p>Rock, hot ground, snow and first aid.</p></span></a>
+          <a class="sg-guide-card" href="guides/alpine-plants-for-dogs.html"><img src="images/editorial/safety-library/flowers-plants-dogs.jpg" alt="Yellow alpine flowers growing beside a forest trail" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="sg-guide-title">Flowers, plants and dogs</span><p>What is safe to pass and dangerous to eat.</p></span></a>
         </div>
       </section>
 
       <section class="sg-category" data-tone="safe" aria-labelledby="sharedHeading">
         <div class="sg-category-head"><h2 id="sharedHeading">Shared spaces</h2><p>Animals, people and facilities</p></div>
         <div class="sg-guide-list">
-          <a class="sg-guide-card" href="guides/livestock-guard-dogs.html"><img src="images/editorial/safety-library/livestock-guardian-dogs-v1.jpg" alt="Two white livestock guardian dogs patrolling an alpine pasture" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Animals</span><span class="sg-guide-title">Livestock guardian dogs</span><p>Distance, leash handling and retreating safely.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/dogs-at-rifugi.html"><img src="images/editorial/safety-library/dogs-at-rifugi.jpg" alt="A mountain rifugio below a high rocky peak" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Facilities</span><span class="sg-guide-title">Dogs at rifugi</span><p>Etiquette, food and overnight stays.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/livestock-guard-dogs.html"><img src="images/editorial/safety-library/livestock-guardian-dogs-v1.jpg" alt="Two white livestock guardian dogs patrolling an alpine pasture" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="sg-guide-title">Livestock guardian dogs</span><p>Distance, leash handling and retreating safely.</p></span></a>
+          <a class="sg-guide-card" href="guides/dogs-at-rifugi.html"><img src="images/editorial/safety-library/dogs-at-rifugi.jpg" alt="A mountain rifugio below a high rocky peak" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="sg-guide-title">Dogs at rifugi</span><p>Etiquette, food and overnight stays.</p></span></a>
         </div>
       </section>
     </div>
@@ -302,6 +280,7 @@
 <script src="trust/evidence-v1.js?v=20261006-2" defer></script>
 <script src="scoring/recommendation-v1.js?v=20260917-1" defer></script>
 <script src="scoring/recommendation-adapters-v1.js?v=20260917-1" defer></script>
+<script src="route-return.js?v=20261029-1" defer></script>
 <script src="scoring.js?v=20260815-4" defer></script>
 <script>
 (() => {

@@ -33,7 +33,8 @@ describe('empty states and long-form navigation', () => {
       'journal.editTitle',
       'journal.storage',
     ].forEach(key => expect(html).toContain(`data-i18n="${key}"`));
-    expect(html).toContain("window.t('journal.saved')");
+    // A saved walk is confirmed in the sheet that opens on it.
+    expect(html).toContain('data-i18n="journal.after.saved"');
     expect(html).toContain("window.t('journal.shareError')");
     expect(html).toContain("translate('journal.titleFor'");
   });
@@ -66,7 +67,16 @@ describe('empty states and long-form navigation', () => {
     expect(h2s[0]).toContain('The two scores');
     // The closing material resolves into one compact disclosure rather than
     // another page-sized section, and stays below the page-nav threshold.
-    expect(en.querySelector('.sc-verification > summary').textContent).toContain('Verified or imported');
+    expect(en.querySelector('.sc-verification > summary').textContent).toContain('Verified, reviewed or imported');
+    // One card per badge the site shows, and Verified is described as checked
+    // against official sources, never as walked or measured by ORMA.
+    for(const block of document.querySelectorAll('[data-lang-block]')){
+      expect(block.querySelectorAll('.sc-status-card')).toHaveLength(3);
+      expect(block.querySelector('.badge-reviewed')).not.toBeNull();
+    }
+    const verified = en.querySelector('.badge-verified').closest('.sc-status-card').textContent;
+    expect(verified).toContain('official sources');
+    expect(verified).not.toMatch(/Measured and reviewed by us|our own notes/);
     expect(en.querySelectorAll('.sc-panel > .guide-section > h2')).toHaveLength(0);
     expect(en.querySelector('.sc-community-note')).not.toBeNull();
     expect(en.querySelectorAll('.sc-methodology-content')).toHaveLength(0);

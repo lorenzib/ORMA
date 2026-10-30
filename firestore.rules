@@ -578,6 +578,12 @@ service cloud.firestore {
     // track is one string because Firestore cannot nest arrays; its "|" marks
     // are the breaks in a recording the phone could not follow all the way.
     // Keys are closed: a field nobody validates is a field nobody bounds.
+    // Rules cannot loop, so each of the six places is checked by position.
+    function journalPhotoIdAt(ids, index) {
+      return ids.size() <= index
+        || (ids[index] is string && ids[index].matches('^p[a-z0-9]{6,32}$'));
+    }
+
     function validJournalEntry(data, entryId) {
       return data.keys().hasAll([
           'schemaVersion', 'entryId', 'date', 'trail', 'trailId', 'region',
@@ -587,7 +593,8 @@ service cloud.firestore {
         && data.keys().hasOnly([
           'schemaVersion', 'entryId', 'date', 'trail', 'trailId', 'region',
           'dist', 'dur', 'cond', 'rating', 'note', 'photo', 'photos',
-          'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt'
+          'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt',
+          'walkedWith', 'photoIds'
         ])
         && data.schemaVersion == 1
         && isShortString(data.entryId, 120)
@@ -612,6 +619,17 @@ service cloud.firestore {
         && data.gaps is number && data.gaps >= 0 && data.gaps <= 500
         && data.tale is map
         && data.tale.keys().hasOnly(['paws', 'energy', 'moment'])
+        // Who came along, by name, one per line. Optional: a walk with no
+        // companions does not carry the key, so older pages still write.
+        && (!('walkedWith' in data)
+          || (data.walkedWith is string && data.walkedWith.size() <= 400))
+        // The walk's photos live in Storage (storage.rules); the walk keeps
+        // their ids. Optional for the same reason, and at most six.
+        && (!('photoIds' in data)
+          || (data.photoIds is list && data.photoIds.size() <= 6
+            && journalPhotoIdAt(data.photoIds, 0) && journalPhotoIdAt(data.photoIds, 1)
+            && journalPhotoIdAt(data.photoIds, 2) && journalPhotoIdAt(data.photoIds, 3)
+            && journalPhotoIdAt(data.photoIds, 4) && journalPhotoIdAt(data.photoIds, 5)))
         && data.updatedAt is number && data.updatedAt >= 0;
     }
 

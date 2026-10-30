@@ -190,7 +190,7 @@ jobs:
             # Carrying them here would put promoter data in a publication PR;
             # leaving them dirty trips the guard below, which is what stopped the
             # first five approved publications from opening one at all.
-            git checkout -- data/elevation-cache-dolomites.json data/elevation-cache-savoy.json
+            git checkout -- data/elevation-cache-dolomites.json data/elevation-cache-savoy.json data/elevation-cache-board.json
             git diff --quiet || {
               echo "Publication generation left tracked files unstaged:"
               git diff --name-only

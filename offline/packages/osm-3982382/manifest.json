@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-3982382",
   "name": "Circuit Béatrice de Savoie",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T17:50:54.815Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:35:34.229Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 523750,
+  "verificationStatus": "source-verified",
+  "packageBytes": 524705,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.43173,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Circuit Béatrice de Savoie route",
       "url": "route.geojson",
-      "bytes": 29539,
-      "sha256": "cfc0afff51da12aa2de8015424063648642f760c873d08701da67a56dd329df4"
+      "bytes": 29533,
+      "sha256": "54cca72adace99d3e1d81af6362c3b1e596548b1ebec644154b9a006e772f39f"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "Circuit Béatrice de Savoie routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 89580,
-      "sha256": "066e3de6a84d6292bec6ad8b4f6037e32c0114e19b5778f692344640c1d72d53"
+      "sha256": "9497ba6021ba08c2f444bf340688b9e6ac6ab706ea1ddc4ca1de7c62183f5c4e"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Circuit Béatrice de Savoie safety information",
       "url": "safety.json",
-      "bytes": 1218,
-      "sha256": "67ccab05e3c8a1e3837cd8195127faace692efc0d840a7833cb1cbbe8573250b"
+      "bytes": 1130,
+      "sha256": "3066ae0d361dfc45f829c1bb185fba3217bc800aca26d41b843f144043674f59"
     }
   ]
 }

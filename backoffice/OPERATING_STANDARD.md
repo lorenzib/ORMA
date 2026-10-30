@@ -411,7 +411,8 @@ OpenAI remains in use for trail verification and for scouting additional trails.
   `overpass-api.de`, builds only the packages that are missing or no longer
   match the trail record, and removes the package of a trail that lost the
   seal. It decides nothing: the seal is already decided, and every package
-  stays `field-review-required`. The result reaches the website the way the
+  carries its trail's status, `source-verified`, the same claim as the
+  Verified badge (OFF-08). The result reaches the website the way the
   warning snapshot does: an automatic pull request whose own quality-gate run
   the workflow approves, merges once it passes, then validates and deploys.
   The two pilots are never rebuilt by it.
@@ -764,7 +765,8 @@ is.
 
 ## Compaction may drop what is bulky, not what decides
 
-`dossier-review-queue` is one Firestore property with a 1,024 KB ceiling, and a
+`dossier-review-queue` was one Firestore property with a 1,024 KB ceiling until
+30 October 2026 (see *The queue is split across documents* below), and a
 waiting review keeps a summary of each specialist output rather than the record.
 That is a size measure. It was also deciding verdicts.
 
@@ -809,6 +811,29 @@ be sitting in an artifact under a name that moved. The output now carries why
 the detail is unreadable and the gate reports that as its own blocker. Not
 finding an answer and not being able to read the answer back are different
 problems, and they looked identical in the one place that decides a trail.
+
+### The queue is split across documents
+
+On 29 October 2026 the catalogue reached 406 trails, and the test holding the
+headroom above failed: at about 2.6 KB a waiting review at its worst, one
+property holds about 400. Its own comment said what that meant: the queue needs
+splitting, not a looser test.
+
+**The store splits it, so nothing that reads it changes.** Any artifact whose
+JSON passes 900 KB is written in pieces in one batch: the first piece on the
+artifact's own document, marked `json-shards-v1` with the count, the rest on
+`<id>~shard-N`, up to eight. Every piece carries one token, and a reader that
+finds two tokens — a write half applied — reads again and refuses rather than
+join two versions. A smaller write deletes the pieces it no longer uses. Under
+900 KB an artifact is one `json-v1` document, exactly as before. The worker's
+store and the desk's browser reader both do this; the twenty places that read
+the queue go on calling `getArtifact`.
+
+**The queue's budget is now 2.7 MB**, three pieces: about 1,050 waiting reviews
+at their worst, and under half of what the store can write, so the pass that
+adds a review is still never the pass that fails. The tiers that degrade the
+queue over budget are unchanged. A queue over 900 KB costs one read per piece,
+which only happens when that many reviews are waiting.
 
 ## One badge rule for the page and the app
 
@@ -1032,6 +1057,14 @@ hand (`tier: 'route-audited'`, graduation `verified`) or that carries a
 Like a disagreeing distance it is refused, not thrown: the rest of the batch
 still publishes. Changing such a trail is a human edit.
 
+A narrower hand edit is kept the same way. A publication replaces the trail's
+ledger entry, so anything a person set on the old entry that the publication
+does not supply -- a `routeRefs` entry's checked trail-number sections, a
+declared route shape, a withdrawal -- is carried into the new one. A field the
+publication does supply is its to set. On 26 October a publication would have
+taken Roda de Armentara's checked 15A section off the page; only a page test
+stopped it, and the worker failed every pass until this rule existed.
+
 ## A walk verified by hand is recorded in the backoffice
 
 > Proposed 24 October 2026; takes effect when merged.
@@ -1051,8 +1084,12 @@ So the record is copied across, honestly:
   own orchestration state, **`verified-by-hand`**. Never to
   `ready-for-editorial`: the evidence policy did not pass it, and saying it did
   would make the pipeline's own pass rate a lie.
-- The state keeps who verified it, when, on which sources, and where the
-  pipeline had got to (`handVerification.previousState`). A walk verified by
+- The state keeps who verified it, when, how many sources it rests on, and
+  where the pipeline had got to (`handVerification.previousState`). The
+  sources themselves stay in the published record and the board reads them
+  from there: copied onto every record they were most of the orchestration,
+  and on 28 October they took it past Firestore's per-document ceiling and
+  stopped the worker (#1143). A walk verified by
   hand before the pipeline ever admitted it gets a record too, so the intake
   never admits it to be researched again.
 - A trail the evidence policy had already passed is left as it is.
@@ -1073,6 +1110,54 @@ So the record is copied across, honestly:
   keeps meaning what the evidence policy approved. "Record and site disagree"
   is kept for a real disagreement: a record that says verified by hand while
   the site does not.
+
+## A board walk is Verified only if it can be followed
+
+> Proposed 28 October 2026; takes effect when merged.
+
+A walk from a tourist board's list is drawn on OSM paths along the line the
+board publishes (`scripts/build-board-line.js`). The builder checked that the
+drawn line was the board's walk -- 95% of each within 25 m of the other, the
+length within 10% -- and that was taken as enough. It is not. Ortisei – Passo
+Sella passed at 100% and went Verified with a line that runs 400 m up a road
+and straight back, and again 200 m further on, and a page whose only direction
+was "Follow the mapped ORMA line and local destination signs".
+
+So a board walk is Verified only when, besides the authority's climb and time
+and the rest of the hand audit:
+
+- **The line is clean.** It never goes out along a path and comes straight
+  back mid-walk (more than 50 m retraced on the same path -- longer than any
+  snapping step), and it never runs over itself, unless the audit declares
+  that shape: an `out-and-back` turns once near the middle, a `lollipop` walks
+  its stem both ways. A real side trip -- to a waterfall, a viewpoint -- is
+  declared in the audit as `sideTrips: [{ km, note }]`. A line that is an
+  out-and-back while the page calls it a loop fails until the label is right.
+- **It has directions.** The audit's route sentence says where to start and
+  which way to go, with path numbers or named turns.
+
+Where it is enforced:
+
+- `build-board-line.js` refuses a line that folds or runs over itself, and
+  writes nothing.
+- `scripts/board-walk-bar.test.js` fails the build for any Verified board walk
+  that does not clear both checks. The walks that failed when the bar arrived
+  are listed there by name, awaiting a decision -- fix the line or the label,
+  or take the seal off -- and leave the list when they pass or lose the seal.
+  Nothing is added to it.
+- `node scripts/board-walk-bar.js` lists the failures, with where on each line
+  the problem is.
+
+**The page prints the sentence** (30 October 2026). A walk with no trail
+numbers and no structured guidance block shows the audit's route sentence
+under "How to follow this route", with a line saying it comes from ORMA's
+route audit, in the app and on the static page alike. Only a sentence that
+clears the directions check above is printed; anything shorter still reads
+"No verified numbered sequence is currently recorded". The test lives in one
+place, `writtenDirections` in `trail-route-refs.js`, and the bar and both
+renderers ask it. Printing the sentence does not give a seal back: a walk
+whose seal was withdrawn for want of directions regains it by a deliberate
+edit to its record, as before.
 
 ## The funnel reaches the page
 
@@ -1159,6 +1244,55 @@ Three things it will not do:
   trail after it in a file the generated-artifact check compares byte for byte.
 
 Dry run by default, and the intake hold now names the command that clears it.
+
+## A walk its operator publishes, drawn on OSM ways
+
+Most walks a tourist board publishes are not one route in OpenStreetMap. A
+board's loop is stitched from several numbered paths, and OSM carries each
+number as its own one-way stretch: of 133 South Tyrol board walks matched to a
+numbered relation, one was a closed loop, and of 30 Val di Fassa walks the APT
+marks "dogs accepted", one matched a relation end to end. The importer starts
+from a relation, so none of these could enter the catalogue however well their
+operator documents them.
+
+`scripts/build-board-line.js` lets such a walk in. It reads the line the
+operator publishes on a page anyone can open (an Outdooractive tour page's
+schema.org data, for the Trentino boards, or the GPX a path register exports,
+saved with `--guidefile` when it has no stable address) and draws the walk on OSM ways
+along it. The published line is a **guide and is never stored or published**,
+for the reason the official GPX never is: its licence is rarely stated. What is
+stored, in `data/board-line-routes.geojson`, is the line drawn on OSM ways, the
+ways it uses, the operator, its page and the figures it publishes.
+
+**It is the operator's walk or it is refused.** 95% of the guide must lie
+within 25 m of the drawn line and 95% of the line within 25 m of the guide, and
+the line must be within ten per cent of the distance the operator publishes. A
+guide point with no OSM path within 50 m, or a gap the OSM network does not
+join, refuses it too. A refused walk writes nothing, and the reason is printed.
+One case is not a mismatch: an operator that publishes the line one way but
+states on the walk's page that its distance, climb and time are for going there
+and back the same way. `--there-and-back` then walks the guide out and back
+before it is judged, and the record says so (`official.there_and_back`). It is
+used only where the page says it, never to rescue a line that is merely short.
+
+**It becomes the same kind of record.** `node scripts/promote-osm-trails.js
+--region board` derives elevation, profile, terrain, water and rifugi from the
+line exactly as for an imported relation, into the generated
+`board-trails-data.js`, which the loader, the regional build and the
+generated-file check read like the other promoted files. Two things differ. The
+start and the direction are the operator's, so the kilometres on the page match
+the board's; an imported loop is turned to its nearest access point and gentler
+side, and this one is not. And the id is `<area>-<slug>` (`fassa-…`), never
+`osm-…`, with the operator and its page where the relation and Waymarked Trails
+stand.
+
+**It earns the seal the way every walk does.** Nothing here verifies a walk. A
+board-line trail is published *Reviewed*, and verified by hand in
+`trail-audits.js` under the same rules: an authority publishes the climb and the
+time, every commune on the line has a dog rule or the Italian default, the
+protected areas are checked, the photograph is of this place, and the line is
+as long as the walk. An operator's own "dogs accepted" flag is cited as support
+for access; it does not replace the commune's rule or the protected-area check.
 
 ## A walk the catalogue does not hold cannot be published
 
@@ -1491,6 +1625,15 @@ and job records, recorded here before the per-pass limit is raised.
 - **A withdrawn walk is a draft.** The publication carries `withdrawal`; the
   trail adapter reads it as an exclusion reason, so the walk leaves the site by
   the path every held trail takes. Lifting it is a human edit to the override.
+- **A removed walk is gone.** When the owner decides a withdrawn walk has
+  nothing left to review, it is removed outright rather than held as a draft:
+  it joins `data/removed-trails.json` and leaves the catalogue, the trail
+  board, its override and photo entries, its page and the backoffice
+  worksheets. Promotion, the new-trail scout, the scouted-walk importer and a
+  retried publication all read that one list and refuse it (the publication
+  with reason `trail-removed`). Putting one back is a human edit to that file.
+  First used 24 October 2026 for Chalets de Salvadon, Alpage de Commune and
+  Rundweg Rotwand.
 - **The trail board** flags *Off the site* and *Hand audit*, and lists the
   address of each document nobody could read.
 - **Switch:** `ORMA_SAFETY_RESEARCH_ENABLED` (repository variable, on unless
@@ -1776,12 +1919,26 @@ is better evidence than a measurement of the ways: it says what somebody
 recommends, where the map only says what is drawn.
 
 **And it says so, in the value itself.** Every map-read value ends with "Read
-from the OpenStreetMap route relations this walk is built from, not from a
-published route description", and is written descriptively -- "the mapped route
-follows 101, then 105" rather than "follow 101, then 105" -- because a relation
-recommends nothing. The provenance travels in the value and not only in the
-citation, since a value is quoted and summarised far from its source. The
-citation is the relation itself, attributed to OpenStreetMap.
+off the map (OpenStreetMap), not from directions the trail's operator
+published", and is written descriptively -- "the mapped route follows 101, then
+105" rather than "follow 101, then 105" -- because a relation recommends
+nothing. The provenance travels in the value and not only in the citation,
+since a value is quoted and summarised far from its source. The citation is the
+relation itself, attributed to OpenStreetMap. The words are a walker's, not a
+mapper's: the paths are "numbered trails", never "waymarked routes", and no
+value names a "route relation" (changed 26 October 2026; the earlier sentence,
+"Read from the OpenStreetMap route relations this walk is built from, not from
+a published route description", is still recognised where a record holds it,
+and the publisher brings a map answer approved in the old words up to date --
+the same numbers and distances, today's words -- as it does ORMA's own).
+
+**The trail page says it once.** On "How to follow this route" each line's
+source sentence comes off the line and the card ends with one note naming what
+each source covers -- "The start and the trail numbers are ORMA's suggestion.
+The route and where to switch are read off the map (OpenStreetMap). None of it
+was published by the trail's operator." Every line is still covered; the page
+just does not repeat the same sentence after each one. The rule lives in
+`route-guidance-sources.js`, shared by the trail page generator and the app.
 
 A reader is therefore always told which of the two they have, and the
 difference between a walk whose directions an operator published and one whose
@@ -1866,6 +2023,21 @@ over both.
 
 Saying nothing was the worse option. A walker expecting to follow "route 23"
 who arrives to find only name-boards has been let down by a blank page.
+
+**Turn by turn, each step saying where it came from** (added 29 October 2026;
+no rule above changes). A hand-verified walk with no numbers can carry its
+landmark directions as numbered `steps` beside the `start`, `sequence` and
+`switches` it always has. Each step names the sources it rests on, and each
+source carries a short tag the card prints after the step ("tourist office",
+"map"), an https link and the date it was read. The operator's own route
+description is the source of the turns. OpenStreetMap is used only to place
+what that description names, or to describe where ORMA's line differs from
+it, and those steps are tagged "map". A step that rests on nothing, or on a
+source with no link or date, drops the whole card back to its Route and Key
+turns lines, so an unsourced step is never shown. The rule lives in
+`route-guidance-sources.js` (`landmarkSteps`), which both the trail page and
+the app use. Boucle du Lac Vert was the first, on 28 October 2026, from the
+Passy tourist office's "step by step".
 
 ### A measurement that could not be taken says so
 
@@ -2085,10 +2257,16 @@ had been published about that walk anywhere.
 The public page has rendered exactly this for a long time -- "Suggested start,
 <place>. Check current access before travelling." Only the gate refused it.
 
-So ORMA may answer those two as ORMA. Every such value ends with "ORMA's own
-suggestion from the walk it recorded, not an operator's recommendation", and
+So ORMA may answer those two as ORMA. Every such value ends with "This is
+ORMA's suggestion, not one published by the trail's operator" (said once per
+card on the trail page, like the map's sentence), and
 the citation is ORMA's own record attributed to ORMA, because no authority was
 found and naming one would be the invention this contract exists to refuse.
+The start is a sentence a walker can use -- the place by name, or "where the
+route begins" when no car park or stop was found -- never the record's raw
+label or its coordinates, which sit on the map beside it (wording changed 24
+October 2026, after "Start at Route start per OpenStreetMap — best
+parking/access not yet verified (45.19398, 6.39891)" went live).
 The start carries "Check current access before travelling"; the numbers do not,
 because access is about whether somebody may begin there today and attaching it
 to a sentence about trail numbers warns about the wrong fact.
@@ -2146,6 +2324,14 @@ Publishing, Passed, Stopped -- and the raw state stays on the row for anyone
 who needs it. Automation health, programme health, the decision queue and the
 receipts moved unchanged to a **System** page; principle 7 still holds, with
 the overview split across the two.
+
+The System page's headline numbers say what they count (24 October 2026).
+**Agent jobs** is the worker's own count of the live lanes (`pipeline-health`),
+not the newest hundred jobs the page loads, and it names the jobs held while
+paid research is off. **Needs you** counts the decision queue and every stopped
+trail marked *You*, and those trails are listed under it -- a stopped trail is
+not a verification decision, but nothing moves it until somebody looks. The
+intake card says when admitted trails will wait because research is paused.
 
 The worker writes the board (`trail-board`) at the end of every pass, from the
 checkout's catalogue and the orchestration, because the hosted backoffice is
@@ -2333,6 +2519,13 @@ no model call and no Firestore read, and are written to
 A lookup that fails keeps the last real answer, marked stale; an outage is not
 evidence about a trail. The workflow opens a pull request only when a
 measurement changed.
+
+A run has a time budget (110 minutes in the workflow) and checks the trails
+never checked first, then those checked longest ago. When the budget runs out
+it stops, writes what it measured, and the next run carries on from there, so
+a growing catalogue is covered over consecutive runs instead of losing a whole
+run to the job's time limit. Each lookup gives up after a fixed wait (75
+seconds for an Overpass mirror, 45 for the EEA and photo hosts).
 
 **Who uses it.** A person verifying by hand starts from it instead of
 measuring again. The Ranger and the terrain analyst are handed it as a lead,

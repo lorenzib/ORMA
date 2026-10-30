@@ -160,17 +160,19 @@ describe('trail page map controls', () => {
     const toggle = document.getElementById('routesToggle');
     expect(toggle.getAttribute('aria-pressed')).toBe('true');
     expect(toggle.className).toContain('on');
-    // The waymarked overlay starts visible on both interactive maps (via the
-    // shared map-style.js helper), and both carry the always-on hillshade.
-    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map');
-    expect(home).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
+    // The hiking network starts visible on both interactive maps (our own
+    // routes via the shared map-style.js helper, Waymarked as the fallback),
+    // and both carry the always-on hillshade. The chip hides whichever is drawn.
+    expect(trail).toContain('ORMAMapStyle.addHikingRoutes(map');
+    expect(trail).toContain('window.ORMAMapStyle.setHikingRoutesVisible(map, showing);');
+    expect(home).toContain('ORMAMapStyle.addHikingRoutes(trailMapInstance');
     expect(fs.readFileSync(path.join(__dirname, 'map-style.js'), 'utf8'))
       .toContain("visibility: config.visible === false ? 'none' : 'visible'");
     // Both maps now start with the network on. The detail map always did --
     // it is the navigating surface, where trail numbers are the point -- and
     // the homepage joined it on 2026-10-14, its chip being the way off.
     expect(home).toContain('routes: true');
-    expect(home).toContain("routes:   ['waymarked-hiking-layer']");
+    expect(home).toContain('routes:   window.ORMAMapStyle.HIKING_LAYER_IDS,');
     expect(trail).toContain("id: 'base-hillshade'");
     expect(home).toContain("id: 'base-hillshade'");
   });
@@ -243,7 +245,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20261006-1');
-    expect(html).toContain('trail-app.bundle.js?v=20261016-1');
+    expect(html).toContain('trail-app.bundle.js?v=20261030-1');
     expect(html).toContain('trail-mobile.css?v=20260904-3');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
@@ -346,9 +348,9 @@ describe('trail page map controls', () => {
     const story = document.querySelector('.td2-story');
     const contentColumn = document.querySelector('.td2-content-column');
     const sidebarColumn = document.querySelector('.td2-sidebar-column');
-    // What the walk is, then what is on it, then what other people said.
+    // What the walk is, then what other people said.
     expect(Array.from(story.children).map(node => node.id)).toEqual([
-      'td2AboutCard', 'td2OnRouteCard', 'td2PhotosCard', 'td2ReviewsCard'
+      'td2AboutCard', 'td2PhotosCard', 'td2ReviewsCard'
     ]);
     expect(story.parentElement).toBe(contentColumn);
     expect(story.previousElementSibling.classList.contains('td2-map-stack')).toBe(true);
@@ -370,19 +372,21 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
     expect(bundle.indexOf('// ---- trail-route-refs.js ----')).toBeLessThan(bundle.indexOf('// ---- trail.js ----'));
     const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
-    expect(blueprint).toContain("verifiedRouteGuidance ? 'How to follow this route'");
-    expect(blueprint).toContain("routeRefs.length ? 'Waymarked trail numbers' : 'Following the route'");
+    expect(blueprint).toContain("verifiedRouteGuidance || (!routeRefs.length && auditDirections.written) ? 'How to follow this route'");
+    expect(blueprint).toContain("routeRefs.length ? 'Trail numbers' : 'Following the route'");
+    expect(blueprint).not.toMatch(/'Waymarked|Follow waymarked/);
     expect(blueprint).toContain('Begin the hike on trail <b>${esc(routeSwitches[0].from)}</b>');
     expect(blueprint).toContain('At approximately km ${esc(item.km.toFixed(1)');
     expect(blueprint).toContain('switch from trail <b>${esc(item.from)}</b> to trail <b>${esc(item.to)}</b>');
     expect(blueprint).toContain("guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'");
     expect(blueprint).toContain("guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'");
-    expect(blueprint).toContain('<b>Start:</b> ${esc(verifiedRouteGuidance.start)}');
+    expect(blueprint).toContain("? `<p>${startLine(text)}</p>`");
     expect(blueprint).toContain('for the final section to the route finish');
     expect(blueprint).toContain('marked only on the verified section');
     expect(blueprint).toContain('aroundGrid.innerHTML = routeRefMarkup ? renderCards([routeCard])');
     expect(blueprint).toContain('<b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route.');
-    expect(blueprint).toContain('? `${routeBadges}<div class="s"><p><b>Start:</b>');
+    expect(blueprint).toContain('? `${routeBadges}<div class="s">${guidanceSteps ? `<p class="td2-route-badge">');
+    expect(blueprint).toContain('guidanceLines.map(([label, text]) => label === \'Start\'');
     expect(blueprint).not.toContain('does not publish a usable trail number or numbered switch');
     expect(html).toContain('.td2-route-ref{display:inline-flex;');
     expect(html).toContain('.td2-route-switch-list{display:grid;');
@@ -425,7 +429,7 @@ describe('trail page map controls', () => {
     expect(section).toContain('<b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route.');
 
     // The sourced cases keep their real guidance.
-    expect(section).toContain('<b>Start:</b> ${esc(verifiedRouteGuidance.start)}');
+    expect(section).toContain("? `<p>${startLine(text)}</p>`");
     expect(section).toContain('Begin the hike on trail <b>${esc(routeSwitches[0].from)}</b>');
 
     // The built bundle is what the browser runs, so it has to carry the fix.
@@ -436,57 +440,26 @@ describe('trail page map controls', () => {
   });
 
 
-  // The rifugi, the lifts and the water points were rendered into
-  // #trailDetailContent, which carries the `hidden` attribute. From 15 July
-  // until this change every visitor got the markup and none of them could see
-  // it: a walk past three rifugi and a stream named none of them, and only
-  // dots on the map said otherwise. 130 of the 162 trails have something to
-  // name here.
-  test('what the route passes is in a card a visitor can see', () => {
+  // The "On this route" card listed water points by km, which the map and
+  // the itinerary already show. It was removed on 28 Oct 2026 at the owner's
+  // request; nothing on the page may write it back.
+  test('the trail page has no "On this route" card', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const trailJs = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
+    const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
 
-    // A card of its own, hidden until something is written into it.
-    expect(html).toContain('<div class="td2-card td2-section" id="td2OnRouteCard" hidden>');
-    expect(html).toContain('<div id="td2OnRouteBody"></div>');
-
-    // Written to the visible card, never again to the retired hidden node.
-    expect(trailJs).toContain('paintOnRouteCard(t);');
-    expect(trailJs).not.toContain("document.getElementById('trailDetailContent').innerHTML = renderTrailDetailContent(t)");
-    expect(trailJs).toContain('card.hidden = !markup;');
-  });
-
-  // 0 of 473 places on the route had a checked dog policy, so every row read
-  // "Not yet verified, check before you go". The card now lists only what has
-  // been checked, and stays hidden where nothing has.
-  test('the on-route card lists only what has been checked', () => {
-    const trailJs = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
-
-    expect(trailJs).toContain("window.DoloPawsTrailTrust.categoryVerified(t, 'water')");
-    expect(trailJs).not.toContain('Carry a backup supply.');
-    // The facts table is fetched even when nothing is listed yet, so a fact
-    // checked later shows without another change to the page.
-    expect(trailJs).toContain('if(!table) setTimeout(() => hydrateOnThisRoute(t), 0);');
-    expect(trailJs).not.toContain("if(!api || !document.getElementById('td2OnRoute')) return;");
-  });
-
-  test('the on-route card states each thing once', () => {
-    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
-    const trailJs = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
-
-    // The card's own kick is the heading; the list inside must not repeat it.
-    expect(html).toContain('<div class="td2-kick" style="margin-bottom:14px;">On this route</div>');
-    expect(trailJs).not.toContain("<span>On this route</span>");
-
-    // The old "Rifugi on the way" list named the same huts at the same
-    // kilometres as the places list directly above it.
-    expect(trailJs).not.toContain("window.t('trail.rifugiHead')");
-
-    // Unreviewed water is no longer listed, so neither caveat is needed.
-    expect(trailJs).not.toContain('Availability can change. Carry a backup supply.');
-
-    // Water reads in the same list as the places above it.
-    expect(trailJs).toContain('<ul class="td2-onroute">${water.map(w =>');
+    expect(html).not.toContain('td2OnRouteCard');
+    expect(html).not.toContain('>On this route<');
+    for (const source of [trailJs, bundle]) {
+      expect(source).not.toContain('paintOnRouteCard');
+      expect(source).not.toContain('renderOnThisRoute');
+      expect(source).not.toContain('td2-onroute');
+    }
+    expect(bundle).not.toContain('// ---- route-operational-facts.js ----');
+    expect(css).not.toContain('.td2-onroute');
+    // The map keeps its water markers.
+    expect(trailJs).toContain("addWaypoint(w, 'water'");
   });
 
   test('card copy normalises long dash separators', () => {
@@ -603,6 +576,7 @@ describe('trail page map controls', () => {
   });
 
   test('addTerrainToggle joins the grouped layer switch when given its 3D button', () => {
+    jest.useFakeTimers();
     const context = loadTrailScript({
       document: {
         readyState: 'loading',
@@ -640,6 +614,7 @@ describe('trail page map controls', () => {
     expect(typeof clickHandler).toBe('function');
 
     clickHandler();
+    jest.runAllTimers();
     expect(classes.has('on')).toBe(true);
     expect(attrs['aria-pressed']).toBe('true');
     // Label must stay put, the pressed state carries the meaning.
@@ -652,6 +627,70 @@ describe('trail page map controls', () => {
     expect(classes.has('on')).toBe(false);
     expect(attrs['aria-pressed']).toBe('false');
     expect(terrainCalls[1]).toBeNull();
+    jest.useRealTimers();
+  });
+
+  test('3D lifts the camera onto the ground before tilting, so the walk stays centred', () => {
+    jest.useFakeTimers();
+    const context = loadTrailScript({
+      document: {
+        readyState: 'loading',
+        getElementById: () => null,
+        querySelector: () => null,
+        querySelectorAll: () => [],
+        createElement: () => ({}),
+        addEventListener: () => {},
+      },
+    });
+    let clickHandler = null;
+    const groupBtn = {
+      textContent: '3D',
+      classList: { add: () => {}, remove: () => {} },
+      setAttribute: () => {},
+      addEventListener: (type, fn) => { if(type === 'click') clickHandler = fn; },
+    };
+    const camera = [];
+    let terrainHeight = 0;         // the terrain answers 0 until its tiles load
+    const fakeMap = {
+      setTerrain: () => {},
+      getLayer: () => true,
+      removeLayer: () => {},
+      addLayer: () => {},
+      getCenter: () => ({ lng: 11.63, lat: 46.54 }),
+      getZoom: () => 13,
+      getBearing: () => 0,
+      queryTerrainElevation: () => terrainHeight,
+      jumpTo: value => camera.push(['jump', value]),
+      easeTo: value => camera.push(['ease', value]),
+    };
+    context.addTerrainToggle(fakeMap, 'trailDetailMap', 1.5, 45, groupBtn);
+
+    clickHandler();
+    jest.advanceTimersByTime(200);
+    expect(camera).toEqual([]);    // waiting for the ground
+    terrainHeight = 2887;
+    jest.advanceTimersByTime(100);
+    // The lift happens flat, where it does not show; the tilt keeps it.
+    expect(camera[0]).toEqual(['jump', { elevation: 2887 }]);
+    expect(camera[1][0]).toBe('ease');
+    expect(camera[1][1].pitch).toBe(45);
+
+    // Turned off before the terrain answered: no late tilt.
+    clickHandler();
+    camera.length = 0;
+    terrainHeight = 0;
+    clickHandler();
+    clickHandler();
+    jest.advanceTimersByTime(2000);
+    expect(camera.filter(([kind, value]) => kind === 'ease' && value.pitch === 45)).toEqual([]);
+
+    // No terrain at all: 3D still tilts after the wait.
+    camera.length = 0;
+    clickHandler();
+    jest.advanceTimersByTime(1600);
+    expect(camera).toHaveLength(1);
+    expect(camera[0][1].pitch).toBe(45);
+    jest.useRealTimers();
   });
 
   test('hike mode keeps live elevation visible and offers explicit relief choices', () => {
@@ -703,8 +742,9 @@ describe('trail page map controls', () => {
     // route made the route the least visible thing on the map.
     expect(detailPois).toContain("'icon-allow-overlap': false");
     expect(detailPois).toContain("'icon-padding': 12");
-    // Waymarked overlay is drawn by the shared helper, in its own colours.
-    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId })');
+    // The hiking network is drawn by the shared helper, our own routes with
+    // Waymarked's raster as the fallback.
+    expect(trail).toMatch(/ORMAMapStyle\.addHikingRoutes\(map, \{\s*beforeId: firstLabelId,/);
     expect(trail).toContain('ORMAMapStyle.quietBasemap(map)');
     expect(trail).not.toContain("'raster-saturation': -0.90");
     expect(trail).not.toContain("'raster-contrast': 0.38");
@@ -713,23 +753,22 @@ describe('trail page map controls', () => {
     expect(trail).toContain('window.ORMAMapStyle.matchColour(score)');
     expect(trail).toContain('applyDetailRouteColor(detailRouteColorForScore(guestMatchScore(t)))');
     expect(trail).not.toContain('function safetyColor(');
-    // The route contours the marked path instead of covering it: it goes in
-    // BELOW the waymarked raster, so that raster draws down its middle.
+    // The route sits over the dashed routes and under their numbers (under
+    // the Waymarked raster when the page has fallen back to it).
     expect(trail).toContain("ORMAMapStyle.addRouteLine(map, {");
     expect(trail).toContain("id: 'single-trail-path-line',");
     expect(trail).toContain('color: selectedRouteColor,');
-    expect(trail).toContain('beforeId: window.ORMAMapStyle.WAYMARKED_LAYER,');
+    expect(trail).toContain('beforeId: window.ORMAMapStyle.walkCorridorBeforeId(map),');
     expect(trail).toContain("'line-color': '#858D88'");
-    // No ORMA route-number shields on the detail map. The route now
-    // highlights the marked path from underneath, so Waymarked's own numbers
-    // are visible on it and ours would only be duplicates fighting for space.
+    // No route-number shields on the detail map: the hiking network numbers
+    // every route itself, and shields would only fight those for space.
     expect(trail).not.toContain("id:'single-trail-route-number'");
     expect(trail).not.toContain('window.DoloPawsTrailRouteRefs.addShieldLayer');
     expect(html).toContain('.td2-hero{background:#243128;color:#EAF1E8;position:relative;overflow:visible;z-index:2;}');
     // Overlays still slot in below the first label layer so place names
     // stay on top in flat and 3D alike.
     expect(trail).toContain('const firstLabelId = window.ORMAMapStyle.firstLabelLayerId(map)');
-    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId })');
+    expect(trail).toMatch(/ORMAMapStyle\.addHikingRoutes\(map, \{\s*beforeId: firstLabelId,/);
     const mapStyle = fs.readFileSync(path.join(__dirname, 'map-style.js'), 'utf8');
     expect(mapStyle).toContain("'raster-resampling': 'linear'");
     expect(mapStyle).toContain("'raster-fade-duration': 120");
@@ -765,5 +804,22 @@ describe('trail page map controls', () => {
     expect(html).toContain('.community-photo{margin:0;border:0;background:transparent;scroll-snap-align:start;}');
     expect(html).toContain('grid-auto-columns:calc((100% - 8px)/2);');
     expect(html).toContain('grid-auto-columns:82%;');
+  });
+});
+
+describe('trail page for a trail that does not exist', () => {
+  test('the not-found message has a place to go on the current page', () => {
+    // It looked only for the pre-redesign .td-wrap, found nothing, and a
+    // withdrawn or mistyped link showed an empty trail with live buttons.
+    const script = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    const start = script.indexOf("document.title = window.t('trail.notFound')");
+    const block = script.slice(start, script.indexOf('improveLoopStart(trail', start));
+    const selectors = Array.from(block.matchAll(/document\.querySelector\('([^']+)'\)/g)).map(match => match[1]);
+    expect(selectors.length).toBeGreaterThan(0);
+    const page = new DOMParser().parseFromString(fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8'), 'text/html');
+    const target = selectors.map(selector => page.querySelector(selector)).find(Boolean);
+    expect(target).toBeTruthy();
+    expect(target.querySelector('#trailName')).not.toBeNull();
+    expect(block).toContain("window.t('trail.notFound')");
   });
 });

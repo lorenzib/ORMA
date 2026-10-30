@@ -46,7 +46,7 @@ Complete one record per route and package version.
 | Field | Result |
 |---|---|
 | Trail ID | `lago-carezza` |
-| Package version | `2026.10.23-beta.22` |
+| Package version | `2026.10.30-beta.25` |
 | Reviewed at (ISO date/time and timezone) |  |
 | Reviewer |  |
 | Weather and recent conditions |  |
@@ -62,13 +62,17 @@ Complete one record per route and package version.
 | Offline safety context understandable | Pass / Fail |
 | Defect IDs and notes |  |
 | Overall result | Pass / Fail |
+
+Revision `2026.10.29-beta.24` changes only the status (OFF-08): Lago di Carezza lost its Verified seal on 29 October 2026 because its page shows no directions, so the package now says "ORMA hasn't verified this route yet" instead of `source-verified`. The route, map and profile are unchanged from beta.23.
+
+Revision `2026.10.30-beta.25` changes only the status back (OFF-08): on 30 October 2026 the page began printing the route audit's written directions (#1199) and Lago di Carezza got its Verified seal back, so the package says `source-verified` again. The route, map and profile are unchanged from beta.23.
 
 ## Alpe di Siusi Meadow Loop
 
 | Field | Result |
 |---|---|
 | Trail ID | `alpe-siusi` |
-| Package version | `2026.10.23-beta.10` |
+| Package version | `2026.10.24-beta.11` |
 | Reviewed at (ISO date/time and timezone) |  |
 | Reviewer |  |
 | Weather and recent conditions |  |
@@ -85,7 +89,7 @@ Complete one record per route and package version.
 | Defect IDs and notes |  |
 | Overall result | Pass / Fail |
 
-Revision `2026.10.23-beta.10` changes no route, map, profile or safety byte: the shared offline reader now finds any trail's package by its id, and leaves out a fact a trail does not record. Revision `2026.10.06-beta.9` changed only the stated distance and the schematic elevation profile's km marks: the catalogue carried a 7.5 km hand estimate, and the geometry gate measured the approved composite (paths 7, 6 and 30) at 5.5 km. The route line, routing graph and map corridor are unchanged from beta.8. Check the distance shown against your own track as part of "Loop and direction representation accurate".
+Revision `2026.10.24-beta.11` changes only wording (OFF-08): the package now says "Not yet verified by ORMA" instead of asking for a field review; the route, map and profile are unchanged. Revision `2026.10.23-beta.10` changes no route, map, profile or safety byte: the shared offline reader now finds any trail's package by its id, and leaves out a fact a trail does not record. Revision `2026.10.06-beta.9` changed only the stated distance and the schematic elevation profile's km marks: the catalogue carried a 7.5 km hand estimate, and the geometry gate measured the approved composite (paths 7, 6 and 30) at 5.5 km. The route line, routing graph and map corridor are unchanged from beta.8. Check the distance shown against your own track as part of "Loop and direction representation accurate".
 
 ## Pass and stop rules
 

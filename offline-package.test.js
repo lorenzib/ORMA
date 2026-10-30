@@ -22,7 +22,9 @@ describe('Lago di Carezza offline package', () => {
   test('declares the expected beta status and geographic bounds', () => {
     expect(manifest.schemaVersion).toBe(1);
     expect(manifest.trailId).toBe('lago-carezza');
-    expect(manifest.verificationStatus).toBe('field-review-required');
+    // Withdrawn 29 October 2026 for want of directions, Verified again on 30
+    // October once the page printed the route audit's directions (beta.25).
+    expect(manifest.verificationStatus).toBe('source-verified');
     expect(manifest.scoringVersion).toBe(scoring.VERSION);
     expect(manifest.elevationProfile).toMatchObject({
       strategy:'route-profile-v1', pointCount:3, distanceKm:1.3, ascentM:20,
@@ -135,7 +137,7 @@ describe('Lago di Carezza offline package', () => {
     expect(shell).not.toContain('Stored evidence snapshot');
     expect(shell).not.toContain('evidenceList');
     expect(app).not.toContain('Freshness unknown');
-    expect(app).toContain('Vetted by ORMA.');
+    expect(app).toContain('Verified route, same as the trail page.');
   });
 
   test('presents downloaded route essentials and stored map context clearly', () => {

@@ -131,3 +131,122 @@ describe('which packages a run builds and removes', () => {
     expect(fs.readdirSync(dir).sort()).toEqual([...PILOT_IDS, sample.id].sort());
   });
 });
+
+describe('the publish step, run against a scratch repository', () => {
+  const { execFileSync, spawnSync } = require('child_process');
+  const publish = steps.find(step => step.name === 'Publish the offline packages').run;
+  const git = (cwd, ...args) => execFileSync('git', args, { cwd, encoding:'utf8', stdio:['ignore', 'pipe', 'pipe'] }).trim();
+
+  // A stand-in for gh that records every call. `pr list` answers with the
+  // open package PR, if any; a created PR merges at once, so the wait loop
+  // ends on its first look.
+  function fakeGh(dir){
+    const bin = path.join(dir, 'bin');
+    fs.mkdirSync(bin);
+    fs.writeFileSync(path.join(bin, 'gh'), [
+      '#!/bin/bash',
+      'echo "$*" >> "$GH_LOG"',
+      'case "$1 $2" in',
+      '  "pr list") echo "$OPEN_PR" ;;',
+      '  "pr create") echo "https://github.com/lorenzib/ORMA/pull/77" ;;',
+      '  "pr view") case "$*" in *mergeStateStatus*) echo "MERGED CLEAN" ;; *headRefOid*) echo abc ;; *) echo MERGED ;; esac ;;',
+      'esac',
+    ].join('\n'), { mode:0o755 });
+    return bin;
+  }
+
+  // origin has main with one package; the checkout is the runner's.
+  function scratch(){
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'orma-offline-publish-'));
+    const origin = path.join(dir, 'origin.git');
+    const work = path.join(dir, 'work');
+    git(dir, 'init', '--quiet', '--bare', '--initial-branch=main', origin);
+    git(dir, 'clone', '--quiet', origin, work);
+    git(work, 'config', 'user.email', 'test@example.com');
+    git(work, 'config', 'user.name', 'Test');
+    fs.mkdirSync(path.join(work, 'offline', 'packages', 'osm-1'), { recursive:true });
+    ['offline-packages.js', 'trail-routing-coverage.js', 'trail-app.bundle.js', 'README.md']
+      .forEach(file => fs.writeFileSync(path.join(work, file), 'v1\n'));
+    fs.writeFileSync(path.join(work, 'offline', 'packages', 'osm-1', 'manifest.json'), '{}\n');
+    git(work, 'add', '-A');
+    git(work, 'commit', '--quiet', '-m', 'main');
+    git(work, 'push', '--quiet', 'origin', 'HEAD:main');
+    fs.writeFileSync(path.join(work, 'changes.log'), '[stale] osm-2: no package\n');
+    return { dir, origin, work, log:path.join(dir, 'gh.log'), bin:fakeGh(dir) };
+  }
+
+  function addPackage(work){
+    fs.mkdirSync(path.join(work, 'offline', 'packages', 'osm-2'));
+    fs.writeFileSync(path.join(work, 'offline', 'packages', 'osm-2', 'manifest.json'), '{"id":"osm-2"}\n');
+    fs.writeFileSync(path.join(work, 'offline-packages.js'), 'v2\n');
+  }
+
+  function run(repo, openPr = ''){
+    const result = spawnSync('bash', ['-c', `sleep(){ :; }\n${publish}`], {
+      cwd:repo.work,
+      encoding:'utf8',
+      env:{ ...process.env, PATH:`${repo.bin}:${process.env.PATH}`, GH_LOG:repo.log, OPEN_PR:openPr, GITHUB_REPOSITORY:'lorenzib/ORMA' },
+    });
+    const calls = fs.existsSync(repo.log) ? fs.readFileSync(repo.log, 'utf8').trim().split('\n') : [];
+    const pushed = spawnSync('git', ['rev-parse', '--verify', '--quiet', 'refs/heads/orma-bot/offline-packages'], { cwd:repo.origin }).status === 0;
+    return { status:result.status, out:result.stdout + result.stderr, calls, pushed };
+  }
+
+  test('nothing to build and no open package PR: it does nothing', () => {
+    const result = run(scratch());
+    expect(result.status).toBe(0);
+    expect(result.out).toContain("Every Verified trail's offline package is current.");
+    expect(result.calls.filter(call => !call.startsWith('pr list'))).toEqual([]);
+    expect(result.pushed).toBe(false);
+  });
+
+  test('nothing to build but a package PR is still open: it closes the leftover', () => {
+    const result = run(scratch(), '1031');
+    expect(result.status).toBe(0);
+    expect(result.calls.some(call => call.startsWith('pr close 1031 --delete-branch'))).toBe(true);
+    expect(result.pushed).toBe(false);
+  });
+
+  test('main gained the same packages while it was building: it publishes nothing', () => {
+    const repo = scratch();
+    addPackage(repo.work);
+    // An earlier run's PR merges the identical files into main meanwhile.
+    const other = path.join(repo.dir, 'other');
+    git(repo.dir, 'clone', '--quiet', repo.origin, other);
+    git(other, 'config', 'user.email', 'test@example.com');
+    git(other, 'config', 'user.name', 'Test');
+    addPackage(other);
+    git(other, 'add', '-A');
+    git(other, 'commit', '--quiet', '-m', 'earlier package PR');
+    git(other, 'push', '--quiet', 'origin', 'HEAD:main');
+    const result = run(repo, '1031');
+    expect(result.status).toBe(0);
+    expect(result.out).toContain('nothing to publish');
+    expect(result.calls.some(call => call.startsWith('pr close 1031'))).toBe(true);
+    expect(result.calls.some(call => call.startsWith('pr create'))).toBe(false);
+    expect(result.pushed).toBe(false);
+  });
+
+  test('a new package: it pushes the branch, opens the PR, merges and deploys', () => {
+    const repo = scratch();
+    addPackage(repo.work);
+    const result = run(repo);
+    expect(result.status).toBe(0);
+    expect(result.pushed).toBe(true);
+    expect(git(repo.origin, 'diff', '--name-only', 'main', 'orma-bot/offline-packages').split('\n').sort())
+      .toEqual(['offline-packages.js', 'offline/packages/osm-2/manifest.json']);
+    expect(result.calls.some(call => call.startsWith('pr create --base main --head orma-bot/offline-packages'))).toBe(true);
+    expect(result.calls.some(call => call.startsWith('pr close'))).toBe(false);
+    expect(result.calls).toContain('workflow run deploy-pages.yml --ref main');
+  });
+
+  test('a change outside the generated files stops it before anything is pushed', () => {
+    const repo = scratch();
+    addPackage(repo.work);
+    fs.writeFileSync(path.join(repo.work, 'README.md'), 'changed\n');
+    const result = run(repo);
+    expect(result.status).toBe(1);
+    expect(result.out).toContain('README.md');
+    expect(result.pushed).toBe(false);
+  });
+});

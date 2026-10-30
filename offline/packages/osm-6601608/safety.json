@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "trailId": "osm-6601608",
-  "generatedAt": "2026-10-24T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 6,
@@ -41,12 +41,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "A crossing of the busy Ahrntaler Straße right at the start.",
     "A crossing of the main road near the Cascade, km 4.0.",
     "A wooden footbridge over the Ahr, km 0.3.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",
@@ -60,7 +59,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-10-24",
+      "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
   ]

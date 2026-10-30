@@ -28,8 +28,8 @@ describe('what ORMA can say about its own record',()=>{
   test('the start it already published, said to be its own suggestion',()=>{
     const claim=routeGuidanceFromRecord(RECORD)['recommended-start'];
     expect(claim.proposedValue).toContain('loop edge nearest the Plaine-Joux parking');
-    // The coordinates, so a reader can go there.
-    expect(claim.proposedValue).toContain('45.93120');
+    // The point is pinned on the map beside the words; coordinates are noise.
+    expect(claim.proposedValue).not.toContain('45.93120');
     expect(claim.proposedValue).toContain(ORMA_SUGGESTION);
     expect(claim.proposedValue).toContain(CHECK_ACCESS);
     expect(claim.sources[0].authority).toBe(ORMA_AUTHORITY);
@@ -74,6 +74,29 @@ describe('what ORMA can say about its own record',()=>{
   test('"Start here," is a phrasing of the record, not part of the place',()=>{
     expect(recordedStart({startPoint:{label:'Start here, Lift station',lat:1,lng:2}}).label)
       .toBe('Lift station');
+  });
+});
+
+describe('the start reads as a sentence for walkers',()=>{
+  const start=label=>routeGuidanceFromRecord({id:'x',startPoint:{label,lat:45.19398,lng:6.39891}})['recommended-start'].proposedValue;
+
+  test('a start with no access point found says so plainly, not how ORMA searched',()=>{
+    // Live on Circuit des Sallanches on 24 October 2026.
+    const value=start('Route start per OpenStreetMap — best parking/access not yet verified');
+    expect(value).toBe(`Start where the route begins, marked on the map. No car park or bus stop has been confirmed nearby. ${ORMA_SUGGESTION} ${CHECK_ACCESS}`);
+    expect(value).not.toMatch(/OpenStreetMap|45\.19398|not yet verified/);
+  });
+
+  test('an access point is named as a walker would say it',()=>{
+    expect(start('Start here — Parking, 47 m from the route (OSM-verified access point)'))
+      .toBe(`Start at the car park, 47 m from the route, marked on the map. ${ORMA_SUGGESTION} ${CHECK_ACCESS}`);
+    expect(start('Start here — Bus stop Kirchplatz, 10 m from the route (OSM-verified access point)'))
+      .toMatch(/^Start at the bus stop Kirchplatz, 10 m from the route, marked on the map\./);
+  });
+
+  test('a named place keeps its name',()=>{
+    expect(start('Karersee car park, Welschnofen (official start)'))
+      .toMatch(/^Start at Karersee car park, Welschnofen \(official start\), marked on the map\./);
   });
 });
 
@@ -122,5 +145,62 @@ describe('the ladder the gate climbs',()=>{
     for(const id of ROUTE_GUIDANCE_CLAIM_IDS){
       expect(supportedRouteGuidance(review,id)).toBeNull();
     }
+  });
+});
+
+describe('directions approved in the old wording are published in the new one',()=>{
+  const {inCurrentWording,LEGACY_ORMA_SUGGESTION,startSentence}=require('./workflows/route-guidance-from-record');
+  const {materializeApprovedPublications}=require('./workflows/materialize-approved-publications');
+  // Geotrail Bulla as it went live on 25 October 2026.
+  const startPoint={lat:46.5802,lng:11.6228,label:'Panider Sattel / Passo Pinei, Pas Pinëi bus stop (line 172), by Hotel Pinei Nature & Spirit'};
+  const bulla={mode:'numbered',
+    start:`Start at ${startPoint.label} (46.58020, 11.62280). ${LEGACY_ORMA_SUGGESTION} ${CHECK_ACCESS}`,
+    status:`The mapped route carries trail numbers 3A, 24; look for them at junctions. ORMA has not confirmed how they appear on local signs. ${LEGACY_ORMA_SUGGESTION}`,
+    sequence:'The mapped route runs along waymarked routes 3A, 24 and then 3A, in that order from the start.',
+    switches:'Waymarked route 3A gives way to waymarked route 24 about 2.9 km from the start.',
+    establishedBy:{start:'orma-record',status:'orma-record',sequence:'route-relations',switches:'route-relations'}};
+
+  test('ORMA’s own start is rebuilt as a sentence, and the old suggestion line is replaced everywhere',()=>{
+    const next=inCurrentWording(bulla,startPoint);
+    expect(next.start).toBe(`Start at Panider Sattel / Passo Pinei, Pas Pinëi bus stop (line 172), by Hotel Pinei Nature & Spirit, marked on the map. ${ORMA_SUGGESTION} ${CHECK_ACCESS}`);
+    expect(next.status).toContain(ORMA_SUGGESTION);
+    expect(JSON.stringify(next)).not.toContain(LEGACY_ORMA_SUGGESTION);
+    expect(next.start).not.toMatch(/46\.58020/);
+    // What the map answered is left as it was.
+    expect(next.sequence).toBe(bulla.sequence);
+    expect(next.establishedBy).toEqual(bulla.establishedBy);
+  });
+
+  test('a start an operator or an agent answered is never rewritten',()=>{
+    const official={...bulla,start:'Start at the Seiser Alm gondola (official start).',establishedBy:{...bulla.establishedBy,start:'agent-evidence'}};
+    expect(inCurrentWording(official,startPoint).start).toBe(official.start);
+  });
+
+  test('the publisher writes the new wording even from a dossier approved in the old one',()=>{
+    const path=[[46.58,11.62],[46.59,11.63],[46.58,11.62]];
+    const result=materializeApprovedPublications({
+      requests:{requests:[{id:'pub-1',candidateId:'geotrail-bulla',status:'approved-for-pr-creation'}]},
+      staging:{items:[{candidateId:'geotrail-bulla',targetTrailId:'geotrail-bulla',state:'ready-for-publication-preview',
+        proposedWebsiteFields:{name:'Geotrail Bulla',distance:2.6,startPoint,routeNumberGuidance:bulla,ormaVerified:false}}]},
+      routesByCandidate:{'geotrail-bulla':{geometry:{type:'LineString',coordinates:path.map(([lat,lng])=>[lng,lat])}}},
+      overrides:{contractVersion:'1.0.0',trails:[]},operationalFacts:{trails:[]},at:'2026-10-26T15:00:00Z'});
+    const guidance=result.overrides.trails[0].fields.routeNumberGuidance;
+    expect(guidance.start).toBe(startSentence({label:startPoint.label,lat:startPoint.lat,lng:startPoint.lng}));
+    expect(JSON.stringify(guidance)).not.toContain(LEGACY_ORMA_SUGGESTION);
+    // The map's answer keeps its numbers and distances, in today's words.
+    expect(guidance.sequence).toBe('The mapped route runs along numbered trails 3A, 24 and then 3A, in that order from the start.');
+    expect(guidance.switches).toBe('Trail 3A gives way to trail 24 about 2.9 km from the start.');
+  });
+
+  test('a map answer approved in the old wording gets the plain source line and no "waymarked"',()=>{
+    const {mapInCurrentWording,READ_FROM_MAP,LEGACY_READ_FROM_MAP}=require('./workflows/route-guidance-from-map');
+    const old={...bulla,
+      sequence:`This walk carries no route number of its own. The mapped route runs along waymarked routes 7, 7A, 16 and then 15A, in that order from the start. ${LEGACY_READ_FROM_MAP}`,
+      switches:`The mapped route runs along waymarked route 9 throughout, with no change of waymark recorded along it. ${LEGACY_READ_FROM_MAP}`};
+    const next=mapInCurrentWording(old);
+    expect(next.sequence).toBe(`This walk carries no route number of its own. The mapped route runs along numbered trails 7, 7A, 16 and then 15A, in that order from the start. ${READ_FROM_MAP}`);
+    expect(next.switches).toBe(`The mapped route runs along numbered trail 9 throughout, with no change of number recorded along it. ${READ_FROM_MAP}`);
+    expect(next.start).toBe(old.start);
+    expect(next.establishedBy).toEqual(old.establishedBy);
   });
 });

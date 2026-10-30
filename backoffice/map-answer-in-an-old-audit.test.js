@@ -2,7 +2,7 @@
 
 const {runCartographer}=require('./workflows/run-cartographer');
 const {buildCandidate}=require('./workflows/discover-trails');
-const {singleRelationGuidance}=require('./workflows/route-guidance-from-map');
+const {singleRelationGuidance,READ_FROM_MAP}=require('./workflows/route-guidance-from-map');
 const {routeGuidanceBlockingReasons,supportedRouteGuidance}=require('./workflows/compile-verified-dossier');
 
 // Nineteen of the catalogue's twenty-seven blocked trails carry a route number
@@ -65,7 +65,7 @@ describe('the map answer in an audit already on the shelf',()=>{
     expect(sequence.proposedValue).toContain('route 20');
     // Measured, and saying so in its own words rather than only in the citation.
     expect(sequence.derivedFrom).toBe('route-relations');
-    expect(sequence.proposedValue).toContain('Read from the OpenStreetMap route relations');
+    expect(sequence.proposedValue).toContain(READ_FROM_MAP);
     expect(supportedRouteGuidance(review,'route-number-switches').proposedValue)
       .toContain('no change of number recorded');
     // Cited to the relation it was read from, not to an authority.

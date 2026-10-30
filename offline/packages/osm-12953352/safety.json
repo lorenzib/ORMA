@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "trailId": "osm-12953352",
-  "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 5.4,
@@ -41,13 +41,12 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Heat risk is high on this walk: start early and carry extra water.",
     "Stone setts in the Stufels lanes.",
     "Quiet 30 km/h lanes with no pavement (about a fifth of the walk).",
     "Crossings of the Laugenstraße in Elvas and of the Elvaser Straße on the way down.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",
@@ -61,7 +60,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-10-23",
+      "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
   ]

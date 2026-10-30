@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12173549",
   "name": "Mühlenweg",
-  "version": "2026.10.24-beta.1",
-  "generatedAt": "2026-10-24T11:11:40.203Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:19:26.367Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 650430,
+  "verificationStatus": "source-verified",
+  "packageBytes": 651385,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.82624,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Mühlenweg route",
       "url": "route.geojson",
-      "bytes": 5417,
-      "sha256": "24e2f2ad52d2de0c508801617db5a0ea1e769d6dbacd5bd0eda759f4d6acb52a"
+      "bytes": 5411,
+      "sha256": "3731d8ae034c30db422146f54d0d4a16256e6f1dbc36ace156ff34f841240316"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "Mühlenweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 154745,
-      "sha256": "c3bafc696e2799b7468949e4b6fca5adb1a6aceee471482dc6483d310b5a452b"
+      "sha256": "eb04e971428b2185da16e3609f268701c05e5c71ab252c12bb254f19027acae8"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Mühlenweg safety information",
       "url": "safety.json",
-      "bytes": 1777,
-      "sha256": "d43ccbeb7f0b118213251ca90e92322d8a2d19bbf55053d4baabdc6ebc2272ed"
+      "bytes": 1689,
+      "sha256": "76457e7909709e40f9d998078f70946b27c55ba84371fe66026a8bc73699c130"
     }
   ]
 }

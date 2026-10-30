@@ -623,6 +623,104 @@ async function deleteJournalEntry(id) {
   }
 }
 
+// JOURNAL-03 — a walk's photos are files in Firebase Storage, one per photo,
+// at users/{uid}/journal/{entryId}/{photoId}.jpg (storage.rules). The SDK is
+// only loaded by a page that asks for a photo, so other pages pay nothing.
+let storageModule = null;
+function storageSdk() {
+  if (!storageModule) {
+    storageModule = import("https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js")
+      .then(sdk => ({ sdk, storage: sdk.getStorage(app) }))
+      .catch(error => { storageModule = null; throw error; });
+  }
+  return storageModule;
+}
+
+function journalPhotoRef(sdk, storage, entryId, photoId) {
+  const photos = window.DoloPawsJournalPhotos;
+  const path = currentUser && photos ? photos.photoPath(currentUser.uid, journalEntryId(entryId), photoId) : "";
+  return path ? sdk.ref(storage, path) : null;
+}
+
+async function uploadJournalPhoto(entryId, photoId, blob) {
+  if (!currentUser || !blob) return false;
+  try {
+    const { sdk, storage } = await storageSdk();
+    const target = journalPhotoRef(sdk, storage, entryId, photoId);
+    if (!target) return false;
+    await sdk.uploadBytes(target, blob, { contentType: "image/jpeg" });
+    return true;
+  } catch (e) {
+    console.error("Failed to upload a walk photo:", e);
+    return false;
+  }
+}
+
+// The photo itself, so this browser can keep a copy and the share card can
+// draw it. Needs CORS on the bucket for this site's origin.
+async function getJournalPhoto(entryId, photoId) {
+  if (!currentUser) return null;
+  try {
+    const { sdk, storage } = await storageSdk();
+    const target = journalPhotoRef(sdk, storage, entryId, photoId);
+    return target ? await sdk.getBlob(target) : null;
+  } catch (e) {
+    console.error("Failed to load a walk photo:", e);
+    return null;
+  }
+}
+
+// An address an <img> can show without CORS, for when getBlob is refused.
+async function getJournalPhotoUrl(entryId, photoId) {
+  if (!currentUser) return "";
+  try {
+    const { sdk, storage } = await storageSdk();
+    const target = journalPhotoRef(sdk, storage, entryId, photoId);
+    return target ? await sdk.getDownloadURL(target) : "";
+  } catch (e) {
+    console.error("Failed to find a walk photo:", e);
+    return "";
+  }
+}
+
+async function deleteJournalPhoto(entryId, photoId) {
+  if (!currentUser) return false;
+  try {
+    const { sdk, storage } = await storageSdk();
+    const target = journalPhotoRef(sdk, storage, entryId, photoId);
+    if (!target) return false;
+    await sdk.deleteObject(target);
+    return true;
+  } catch (e) {
+    // Already gone is as good as deleted.
+    if (e && e.code === "storage/object-not-found") return true;
+    console.error("Failed to remove a walk photo:", e);
+    return false;
+  }
+}
+
+// Every walk photo an account holds, for account deletion.
+async function deleteAllJournalPhotos(uid) {
+  const { sdk, storage } = await storageSdk();
+  let removed = 0;
+  let walks;
+  try {
+    walks = await sdk.listAll(sdk.ref(storage, `users/${uid}/journal`));
+  } catch (e) {
+    // No bucket means no photos to remove; anything else stops the deletion.
+    if (e && e.code === "storage/bucket-not-found") return 0;
+    throw e;
+  }
+  for (const walk of walks.prefixes) {
+    const files = await sdk.listAll(walk);
+    for (const item of files.items) {
+      await sdk.deleteObject(item);
+      removed += 1;
+    }
+  }
+  return removed;
+}
+
 function friendlyError(code) {
   const map = {
     "auth/email-already-in-use": "That email already has an account, try logging in instead.",
@@ -666,6 +764,8 @@ async function deleteAccount(password) {
     }
     // JOURNAL-02 put the walk journal on the server, so deleting an account
     // has to take it away again. Local copies are cleared by local-data.js.
+    // JOURNAL-03: and the walks' photos with them, before the walks that list them.
+    await deleteAllJournalPhotos(uid);
     const journalEntries = await getDocs(collection(db, "users", uid, "journal"));
     for (const entry of journalEntries.docs) {
       await deleteDoc(entry.ref);
@@ -934,6 +1034,10 @@ window.DoloPawsAuth = {
   getJournalEntries,
   saveJournalEntries,
   deleteJournalEntry,
+  uploadJournalPhoto,
+  getJournalPhoto,
+  getJournalPhotoUrl,
+  deleteJournalPhoto,
   deleteAccount,
   getContributionEligibility,
   sendContributionVerificationEmail,

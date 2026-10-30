@@ -342,11 +342,10 @@
     const source = map.getSource('draft-route');
     if(source){ source.setData(data); return; }
     const label = firstLabelLayer();
-    // The draft is a highlight under the marked network, not a line over it:
-    // while you are drawing, the paths you are snapping to have to stay
-    // visible, including their numbers, or you are tracing blind.
-    const under = map.getLayer('planner-waymarked-hiking-layer')
-      ? 'planner-waymarked-hiking-layer' : (label && label.id);
+    // The draft goes over the dashed routes but under their numbers: while
+    // you are drawing, the numbers of the paths you are snapping to have to
+    // stay visible, or you are tracing blind.
+    const under = window.ORMAMapStyle ? window.ORMAMapStyle.walkLineBeforeId(map) : (label && label.id);
     map.addSource('draft-route', { type:'geojson', data });
     map.addLayer({ id:'draft-route-case', type:'line', source:'draft-route', layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#fff','line-width':['interpolate',['linear'],['zoom'],8,10,12,16,14,23,17,33],'line-opacity':.9} }, under);
     map.addLayer({ id:'draft-route-line', type:'line', source:'draft-route', layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#2E684F','line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26],'line-opacity':.55} }, under);
@@ -386,24 +385,15 @@
     // Shops, ATMs and road shields compete with the very paths you are
     // tracing along. Turn them down; keep peaks, huts, water, place names.
     if(window.ORMAMapStyle) window.ORMAMapStyle.quietBasemap(map);
-    map.addSource('planner-waymarked-hiking', {
-      type:'raster',
-      tiles:['https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'],
-      tileSize:256,
-      attribution:'© Sarah Hoffmann (CC-BY-SA), waymarkedtrails.org',
-    });
-    map.addLayer({
-      id:'planner-waymarked-hiking-layer',
-      type:'raster',
-      source:'planner-waymarked-hiking',
-      layout:{ visibility:'visible' },
-      paint:{
-        'raster-opacity':['interpolate',['linear'],['zoom'],7,.48,10,.66,12,.84,14,1],
-        'raster-saturation':0,
-        'raster-contrast':0,
-        'raster-resampling':'linear',
-      },
-    }, label && label.id);
+    // The marked hiking network you snap to: dashed grey routes with their
+    // numbers, drawn by us from OSM route data like every other ORMA map
+    // (Waymarked's raster if our tiles cannot load).
+    if(window.ORMAMapStyle){
+      window.ORMAMapStyle.addHikingRoutes(map, {
+        beforeId: label && label.id,
+        visible: !markedRoutesButton || markedRoutesButton.getAttribute('aria-pressed') !== 'false',
+      });
+    }
     addOrmaTrailContext();
   }
 
@@ -416,7 +406,7 @@
     }));
     if(!features.length || map.getSource('planner-orma-trails')) return;
     map.addSource('planner-orma-trails', { type:'geojson', data:{ type:'FeatureCollection', features } });
-    const beforeId = map.getLayer('planner-waymarked-hiking-layer') ? 'planner-waymarked-hiking-layer' : (firstLabelLayer() || {}).id;
+    const beforeId = window.ORMAMapStyle ? window.ORMAMapStyle.walkLineBeforeId(map) : (firstLabelLayer() || {}).id;
     map.addLayer({
       id:'planner-orma-trails-halo',
       type:'line',
@@ -443,6 +433,61 @@
     }, beforeId);
   }
 
+  // The planner will route from anywhere, including a hillside with no road
+  // to it. Said when the start is chosen, not in the small print: begin where
+  // you can actually arrive.
+  const START_ADVICE = 'Tap the map to choose your start. Pick somewhere you can reach easily: a car park, bus stop, village or lift station.';
+
+  // Car parks, bus stops, stations and lift stations, from the base map's own
+  // points of interest, so this layer needs no data file and works in every
+  // region the map covers.
+  const ACCESS_CLASSES = ['parking', 'bus', 'rail', 'railway', 'aerialway'];
+  const ACCESS_LABEL = ['match', ['get', 'class'],
+    'parking', 'P', 'bus', 'Bus', 'rail', 'Train', 'railway', 'Train', 'aerialway', 'Lift', ''];
+
+  function vectorSourceId(){
+    const sources = map.getStyle().sources || {};
+    return Object.keys(sources).find(id => sources[id].type === 'vector') || 'openmaptiles';
+  }
+
+  function ensureAccessLayers(){
+    if(map.getLayer('planner-poi-access-points')) return;
+    const source = vectorSourceId();
+    const filter = ['all',
+      ['in', ['get', 'class'], ['literal', ACCESS_CLASSES]],
+      ['!=', ['get', 'subclass'], 'bicycle_parking'],
+      ['match', ['geometry-type'], ['Point', 'MultiPoint'], true, false]];
+    const beforeId = firstLabelLayer();
+    map.addLayer({
+      id:'planner-poi-access-points', type:'circle', source, 'source-layer':'poi', minzoom:12, filter,
+      layout:{ visibility:'none' },
+      paint:{
+        'circle-color':['match', ['get', 'class'], 'parking', '#2F5D8A', '#5B4A8A'],
+        'circle-radius':['interpolate', ['linear'], ['zoom'], 12, 6, 15, 9],
+        'circle-stroke-color':'#fff', 'circle-stroke-width':2, 'circle-opacity':.95,
+      },
+    }, beforeId && beforeId.id);
+    map.addLayer({
+      id:'planner-poi-access-labels', type:'symbol', source, 'source-layer':'poi', minzoom:12, filter,
+      layout:{
+        visibility:'none',
+        'text-field':['step', ['zoom'], ACCESS_LABEL, 15,
+          ['case', ['has', 'name'], ['concat', ACCESS_LABEL, ' · ', ['get', 'name']], ACCESS_LABEL]],
+        'text-font':window.ORMAMapStyle && window.ORMAMapStyle.FONT_BOLD ? window.ORMAMapStyle.FONT_BOLD : ['Noto Sans Bold'],
+        'text-size':['step', ['zoom'], 9, 15, 11],
+        'text-offset':['step', ['zoom'], ['literal', [0, 0]], 15, ['literal', [0, 1.4]]],
+        'text-anchor':['step', ['zoom'], 'center', 15, 'top'],
+        'text-allow-overlap':['step', ['zoom'], true, 15, false],
+        'text-max-width':12,
+      },
+      paint:{
+        'text-color':['step', ['zoom'], '#ffffff', 15, '#2E4034'],
+        'text-halo-color':['step', ['zoom'], 'rgba(0,0,0,0)', 15, 'rgba(255,255,252,.96)'],
+        'text-halo-width':1.3,
+      },
+    });
+  }
+
   function loadPoiData(kind){
     const dataKind = kind === 'water' ? 'water' : 'huts-bars';
     if(!poiDataCache.has(dataKind)){
@@ -467,6 +512,7 @@
   }
 
   async function ensurePoiLayers(kind){
+    if(kind === 'access'){ ensureAccessLayers(); return; }
     const sourceId = kind === 'water' ? 'planner-poi-water' : 'planner-poi-huts-bars';
     if(!map.getSource(sourceId)) map.addSource(sourceId, { type:'geojson', data:await loadPoiData(kind) });
     const pointLayer = `planner-poi-${kind}-points`;
@@ -650,7 +696,7 @@
       preview = null;
       finished = false;
       busy = false;
-      status.textContent = points.length ? config.hint : 'Tap the map to choose your start.';
+      status.textContent = points.length ? config.hint : START_ADVICE;
       drawPath([]);
       render();
       return;
@@ -701,7 +747,7 @@
     busy = false;
     drawMarkers();
     drawPath([]);
-    status.textContent = 'Tap the map to choose your start.';
+    status.textContent = START_ADVICE;
     render();
   }
 
@@ -810,9 +856,7 @@
   markedRoutesButton.addEventListener('click', () => {
     const enabled = markedRoutesButton.getAttribute('aria-pressed') !== 'true';
     markedRoutesButton.setAttribute('aria-pressed', String(enabled));
-    if(map.getLayer('planner-waymarked-hiking-layer')){
-      map.setLayoutProperty('planner-waymarked-hiking-layer', 'visibility', enabled ? 'visible' : 'none');
-    }
+    if(window.ORMAMapStyle) window.ORMAMapStyle.setHikingRoutesVisible(map, enabled);
   });
   poiButtons.forEach(button => {
     button.addEventListener('click', async () => {

@@ -719,6 +719,7 @@
       var matches = trails.map(function (t) { return { t: t, score: scoreOf(t) }; })
         .sort(function (a, b) { return b.score - a.score; });
       var dogName = state.custom ? state.custom.meta.name : ((w.name || '').trim() || yourDog());
+      var backToTrail = /^(?:trail\.html|trails\/)/.test(wizardReturn());
       el.wizStepLabel.textContent = t('hp.wizard.done.step', 'Your matches');
       el.wizTitle.textContent = t('hp.wizard.done.title', '{name}’s profile is ready', { name: dogName });
       el.wizBars.forEach(function (b) { if (b) b.className = 'on'; });
@@ -732,8 +733,8 @@
             '<strong style="color:' + ti.color + '">' + entry.score + '%</strong></a>';
         }).join('') + '</div>' +
         '<div class="hp-wiz-payoff-actions">' +
-          '<button type="button" id="hpSaveAndBrowseBtn" class="hp-search-btn">' + esc(t('hp.wizard.done.save', 'Save profile and see all matches')) + '</button>' +
-          '<button type="button" id="hpBrowseWithoutSavingBtn" class="hp-wiz-secondary">' + esc(t('hp.wizard.done.browse', 'See all matches without saving')) + '</button>' +
+          '<button type="button" id="hpSaveAndBrowseBtn" class="hp-search-btn">' + esc(backToTrail ? t('hp.wizard.done.saveTrail', 'Save profile and go back to the trail') : t('hp.wizard.done.save', 'Save profile and see all matches')) + '</button>' +
+          '<button type="button" id="hpBrowseWithoutSavingBtn" class="hp-wiz-secondary">' + esc(backToTrail ? t('hp.wizard.done.backTrail', 'Back to the trail without saving') : t('hp.wizard.done.browse', 'See all matches without saving')) + '</button>' +
         '</div>' +
         '<p class="hp-wiz-device-note">' + esc(t('hp.wizard.done.note', 'Without an account, this profile stays only on this device.')) + '</p>' +
       '</div>';
@@ -772,6 +773,15 @@
     el.wizBody.innerHTML = body;
     var nameInput = document.getElementById('hpWizName');
     if (nameInput) nameInput.addEventListener('input', function (e) { state.wiz.name = e.target.value; });
+  }
+  // The page the reader opened the wizard from (mobile-nav.js adds it as
+  // ?next=), so finishing returns them to the trail they were reading instead
+  // of the list. Only this site's own pages qualify: a crafted link cannot
+  // send a reader elsewhere.
+  function wizardReturn() {
+    var next = new URLSearchParams(window.location.search).get('next') || '';
+    if (/^(?:[a-z]+:|\/\/|\/)/i.test(next)) return '';
+    return /^(?:(?:trail|browse-trails|compare|saved|journal|collections|safety-guide)\.html|(?:trails|guides)\/[a-z0-9-]+\.html)(?:\?[^#]*)?(?:#.*)?$/i.test(next) ? next : '';
   }
   function summaryRow(k, v) { return '<div class="hp-wiz-summary-row"><span>' + esc(k) + '</span><b>' + esc(v) + '</b></div>'; }
 
@@ -986,11 +996,11 @@
     el.wizBody.addEventListener('click', function (e) {
       if (e.target.closest('#hpSaveAndBrowseBtn')) {
         closeWizard();
-        if (window.DoloPawsAuthUI) window.DoloPawsAuthUI.openSignup({ next: 'browse-trails.html' });
+        if (window.DoloPawsAuthUI) window.DoloPawsAuthUI.openSignup({ next: wizardReturn() || 'browse-trails.html' });
         return;
       }
       if (e.target.closest('#hpBrowseWithoutSavingBtn')) {
-        window.location.href = 'browse-trails.html';
+        window.location.href = wizardReturn() || 'browse-trails.html';
         return;
       }
       var b = e.target.closest('[data-wfield]'); if (!b) return;

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "trailId": "osm-12302191",
-  "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 8.6,
@@ -55,12 +55,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Near the Oberrasen barbecue site the official route passes under the Antholzer Talstraße (SP44, 90 km/h); OSM maps only a level junction there, so if you miss the underpass, cross with great care.",
     "Short stretches of village road in Oberrasen and Gepaiden.",
     "Tarmac on the Linde lane and village streets, hot in summer.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",
@@ -74,7 +73,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-10-23",
+      "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
   ]

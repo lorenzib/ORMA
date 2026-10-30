@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "trailId": "osm-6453504",
-  "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 3.2,
@@ -34,12 +34,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Forest tracks and paths with some roots and stones.",
     "Short stretches on the Aschbach village road at the start.",
     "Hunting stands and a game-feeding place by the path.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",
@@ -53,7 +52,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-10-23",
+      "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
   ]

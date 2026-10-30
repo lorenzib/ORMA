@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-08-12",
+  "asOf": "2026-10-27",
   "decision": "not-ready",
   "gates": [
     {
@@ -25,7 +25,7 @@
       "status": "pending",
       "owner": "Product owner",
       "evidence": "docs/testing/QA-04-iphone-offline-hike-session.md",
-      "summary": "Repeat the physical iPhone airplane-mode journey against the current Carezza beta.22 and Alpe di Siusi beta.10 packages.",
+      "summary": "Repeat the physical iPhone airplane-mode journey against the current Carezza beta.25 and Alpe di Siusi beta.11 packages.",
       "safeFallback": "Do not open the public beta until both current packages pass."
     },
     {
@@ -43,7 +43,7 @@
       "status": "pending",
       "owner": "Product owner",
       "evidence": "docs/testing/ROUTE-field-review-record.md",
-      "summary": "Complete and date the route-specific field review for the two pilot routes, Lago di Carezza and Alpe di Siusi. Packages for the other Verified trails (OFF-07) are offered labelled field-review-required until each has its own dated review.",
+      "summary": "Complete and date the route-specific field review for the two pilot routes, Lago di Carezza and Alpe di Siusi, as a quality check on the ground. Since OFF-08 it is not a label shown to walkers: every offline map carries its trail page's status.",
       "safeFallback": "Keep the affected route outside the controlled beta."
     },
     {

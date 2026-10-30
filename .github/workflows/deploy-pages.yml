@@ -21,6 +21,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  issues: write      # say so when the hiking route tiles are missing or stale
 
 # Never cancel a running deploy; let it finish and queue the next one.
 concurrency:
@@ -42,6 +43,64 @@ jobs:
 
       - name: Assemble the public site
         run: node scripts/build-pages-site.js _site
+
+      # The hiking network the maps draw (orma-hiking-route-tiles.yml). It is
+      # built weekly into the Actions cache, never committed; the newest
+      # saved set is published under data/hiking-routes/.
+      - name: Restore the hiking route tiles
+        id: hiking_tiles
+        uses: actions/cache/restore@v6
+        with:
+          path: hiking-routes
+          key: hiking-route-tiles-latest
+          restore-keys: hiking-route-tiles-
+
+      # Only when no set was ever saved, or the cache dropped it. If this
+      # fails too, the site still deploys and the maps fall back to
+      # Waymarked Trails' raster.
+      - name: Build the hiking route tiles
+        id: hiking_build
+        if: steps.hiking_tiles.outputs.cache-matched-key == ''
+        continue-on-error: true
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq osmium-tool tippecanoe
+          bash scripts/build-hiking-route-tiles.sh hiking-work hiking-routes
+
+      - name: Save the hiking route tiles
+        if: steps.hiking_build.outcome == 'success'
+        uses: actions/cache/save@v6
+        with:
+          path: hiking-routes
+          key: hiking-route-tiles-${{ github.run_id }}
+
+      - name: Publish the hiking route tiles
+        run: |
+          if [ -d hiking-routes ]; then
+            # -p keeps the build's file dates, which the staleness check
+            # below reads when a set has no built-at.txt.
+            cp -Rp hiking-routes _site/data/hiking-routes
+            echo "Published $(find _site/data/hiking-routes -name '*.pbf' | wc -l) hiking route tiles."
+          else
+            echo "::warning::No hiking route tiles; the maps will fall back to Waymarked Trails."
+          fi
+
+      # Catches what the weekly build's own alarm cannot: a timer that never
+      # fired, or a cache that lost every set. Opens the issue only; the next
+      # good weekly build closes it.
+      - name: Say so when the hiking route tiles are missing or stale
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          health="$(node scripts/check-hiking-route-tiles.js _site/data/hiking-routes)"
+          echo "Hiking route tiles: $health"
+          state="$(node -p "JSON.parse(process.argv[1]).state" "$health")"
+          age="$(node -p "JSON.parse(process.argv[1]).ageDays" "$health")"
+          if [ "$state" = "missing" ]; then
+            bash scripts/hiking-route-tiles-alert.sh raise-once "The site deployed with no hiking route tiles, so every map is drawing Waymarked Trails' raster instead of ORMA's routes."
+          elif [ "$state" = "stale" ]; then
+            bash scripts/hiking-route-tiles-alert.sh raise-once "The hiking route tiles on the site were built ${age} days ago. The weekly refresh has stopped."
+          fi
 
       # Fails the deploy rather than publishing operator data, and fails it
       # again if the customer site came out incomplete.

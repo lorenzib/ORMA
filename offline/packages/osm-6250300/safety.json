@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "trailId": "osm-6250300",
-  "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
     "distanceKm": 3.6,
@@ -15,14 +15,13 @@
   "trailhead": {
     "lat": 45.94953,
     "lng": 6.74153,
-    "label": "Lakeside path below the Lac Vert car park; the official start is the Plaine-Joux car park, 321 chemin des Parchets, 400 m up the road"
+    "label": "Chemin des Parchets at Plaine-Joux, by a water tap, about 200 m east of the Plaine-Joux car park (321 chemin des Parchets), where the tourist office starts the walk"
   },
   "waypoints": [],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "The paved access road from the Plaine-Joux car park, crossed once on the loop.",
     "No water point is listed on this walk: carry enough for you and your dog.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",
@@ -36,7 +35,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-10-23",
+      "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
   ]

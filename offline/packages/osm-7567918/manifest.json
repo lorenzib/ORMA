@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7567918",
   "name": "Seerundweg Antholzer See",
-  "version": "2026.10.24-beta.1",
-  "generatedAt": "2026-10-24T13:49:51.107Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:30:52.658Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 317602,
+  "verificationStatus": "source-verified",
+  "packageBytes": 318557,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.87786,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Seerundweg Antholzer See route",
       "url": "route.geojson",
-      "bytes": 4269,
-      "sha256": "24c7bce4ee5df9a7064ab6286b00383dfb74b1e774833a5439faaed3894d1de6"
+      "bytes": 4263,
+      "sha256": "2ca79ca4ac604e9ab291038b44c66080cfaa5773797c2db4a7b6cfbfd9299df5"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "Seerundweg Antholzer See routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 44165,
-      "sha256": "09b1da23a4b83a3ae88552e3352837e7c1de07cd5cf758a2818310e84f48e01a"
+      "sha256": "18e471249826a6abaf2c11fba33d966f71d6d4048ca2297f04ae6acda89fea64"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Seerundweg Antholzer See safety information",
       "url": "safety.json",
-      "bytes": 1394,
-      "sha256": "e0707902fdb7ee6f21d565d0eabbd1bc2ac46bfaae8c3264edc7e9e2406bf4cd"
+      "bytes": 1306,
+      "sha256": "4affad088703fc76bce6758077b6652a60e0e28294436fdfb843e2b1da579b46"
     }
   ]
 }

@@ -185,7 +185,7 @@ describe('walk recorder authentication restoration', () => {
       const entry = recordWith(send => {
         for(let i = 1; i <= 30; i++) send(46.5 + i * 0.0001, 11.6, T0 + i * 2000);
       });
-      expect(entry.id).toMatch(/^w\d+-[0-9a-f]{6}$/);
+      expect(entry.id).toMatch(/^w\d+-[0-9a-f]{12}(\.[0-9a-z]+)?$/);
       expect(entry.updatedAt).toBe(T0 + 30 * 2000);
       expect(window.DoloPawsJournalStore.entriesToPush([entry], [])).toEqual([entry]);
     });
@@ -231,7 +231,13 @@ describe('walk recorder authentication restoration', () => {
     expect(source).toContain('Satellite');
     expect(source).toContain('data-wr-3d');
     expect(source).toContain('Centre map on my position');
-    expect(source).toContain("'raster-opacity': 1");
-    expect(source).toMatch(/id: 'walk-line'[\s\S]*?}, 'waymarked-hiking-layer'\);/);
+    // The shared hiking network, with the trace over its lines and under its
+    // numbers; the chip hides whichever network is drawn.
+    expect(source).toContain('style.addHikingRoutes(map, { beforeId: firstLabel ? firstLabel.id : undefined });');
+    // Calmed like every other map, so base labels do not double our numbers.
+    expect(source).toMatch(/style\.quietBasemap\(map\);\s*style\.addHikingRoutes\(map/);
+    expect(source).toMatch(/id: 'walk-line'[\s\S]*?}, style\.walkLineBeforeId\(map\)\);/);
+    expect(source).toContain("layerChip('Marked hiking routes', window.ORMAMapStyle.HIKING_LAYER_IDS, true);");
+    expect(source).not.toContain('tile.waymarkedtrails.org');
   });
 });

@@ -22,7 +22,7 @@ const REGIONS = [
   { name: 'Savoy', routesFile: 'dog-friendly-routes-savoy.geojson' },
 ];
 
-const TRAIL_FILES = ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'trail-audits.js'];
+const TRAIL_FILES = ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'board-trails-data.js', 'trail-audits.js'];
 
 const ROCKY_SURFACES = new Set(['rock', 'stone', 'scree', 'mud']);
 const ROCKY_SHARE_THRESHOLD = 0.3;

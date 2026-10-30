@@ -93,9 +93,11 @@ describe('standalone draft route planner', () => {
     expect(plannerSource).toContain('DoloPawsMapRuntime.mapOptions');
     expect(plannerSource).toContain('DoloPawsMapRuntime.enhance(map)');
     expect(plannerSource).toContain('new maplibregl.GeolocateControl');
-    expect(plannerSource).toContain('tile.waymarkedtrails.org/hiking');
-    expect(plannerSource).toContain("'raster-opacity':['interpolate',['linear'],['zoom'],7,.48,10,.66,12,.84,14,1]");
-    expect(plannerSource).toContain("'raster-saturation':0");
+    // The shared hiking network (our own routes, Waymarked as the fallback),
+    // toggled by the Marked routes chip.
+    expect(plannerSource).toContain('window.ORMAMapStyle.addHikingRoutes(map, {');
+    expect(plannerSource).toContain('window.ORMAMapStyle.setHikingRoutesVisible(map, enabled);');
+    expect(plannerSource).not.toContain('tile.waymarkedtrails.org');
     expect(plannerSource).toContain("id:'planner-orma-trails-line'");
     expect(plannerHtml).toContain('data-planner-poi="water"');
     expect(plannerHtml).toContain('data-planner-poi="huts"');
@@ -390,12 +392,32 @@ describe('drawing interactions', () => {
     expect(planner.popup.content.children[0].textContent).toBe('Finish');
   });
 
+  // The planner routes from anywhere, so the moment the start is chosen is
+  // when it says to begin somewhere you can reach.
+  test('asks for a start that is easy to reach, and can show where those are', () => {
+    const advice = 'Tap the map to choose your start. Pick somewhere you can reach easily: a car park, bus stop, village or lift station.';
+    expect(plannerHtml).toContain(`aria-live="polite">${advice}</p>`);
+    expect(plannerSource).toContain(`const START_ADVICE = '${advice}';`);
+    expect(plannerSource).not.toContain("'Tap the map to choose your start.'");
+    // From the base map's own points, so it needs no data file and works in
+    // every region: car parks, bus stops, stations and lift stations.
+    expect(plannerHtml).toContain('data-planner-poi="access" aria-pressed="false">Parking &amp; bus stops</button>');
+    expect(plannerSource).toContain("const ACCESS_CLASSES = ['parking', 'bus', 'rail', 'railway', 'aerialway'];");
+    expect(plannerSource).toContain("'source-layer':'poi'");
+    expect(plannerSource).toContain("['!=', ['get', 'subclass'], 'bicycle_parking']");
+    expect(plannerSource).toContain("if(kind === 'access'){ ensureAccessLayers(); return; }");
+  });
+
   test('the map says how to draw, and says tap on a touch screen', () => {
     expect(plannerHtml).toContain('<p id="plannerGuide" class="planner-guide">');
     expect(plannerHtml).toContain('<span><span data-verb>Click</span> the map to add a point</span>');
     expect(plannerHtml).toContain('<span>Drag a dot to move it</span>');
     expect(plannerHtml).toContain('<span><span data-verb>Click</span> a dot to remove it</span>');
     expect(plannerSource).toContain("window.matchMedia('(pointer: coarse)').matches");
+    // Spacing, not dots, between the phrases: a separator dot was stranded at
+    // the start of the second line whenever the guide wrapped.
+    expect(plannerHtml).not.toMatch(/\.planner-guide>span\+span::before\{content:'·'/);
+    expect(plannerHtml).toContain('display:flex;gap:4px 22px;flex-wrap:wrap;');
   });
 
   test('a click away from the line appends a point to the end', async () => {

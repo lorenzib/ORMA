@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-moena-soraga-acqua",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.8,
+    "ascentM": 139,
+    "highestPointM": 1271,
+    "expectedDuration": "1.25 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.376718,
+    "lng": 11.659822,
+    "label": "Moena (Piaz de Sotegrava), the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.3768022,
+      "lng": 11.659712,
+      "label": "Drinking fountain at the start",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3779003,
+      "lng": 11.6579709,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3943923,
+      "lng": 11.6652318,
+      "label": "Drinking fountain in Soraga",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 2.8 km on tarmac: town streets in Moena and Soraga and a farm lane open to farm traffic.",
+    "Hay meadows and farms above the reservoir: keep to the lane.",
+    "Water birds in the riverside park at Soraga: keep your dog out of the water and on the lead.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

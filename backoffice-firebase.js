@@ -92,14 +92,33 @@ async function moderatorIdentity(){
   return result.ok?{uid:result.uid}:null;
 }
 
+// An artifact over one Firestore property is written in pieces by the worker
+// (firestore-backoffice-store.js, json-shards-v1): the head holds the first
+// piece and the count, `<id>~shard-N` the rest, all with one token. Pieces
+// from two different writes are read again rather than joined.
+async function readArtifactPieces(artifactId,head){
+  const shards=await Promise.all(Array.from({length:head.shardCount-1},(_,index)=>
+    getDoc(doc(db,'backofficeArtifacts',`${artifactId}~shard-${index+1}`))));
+  const pieces=shards.map(shard=>shard.exists()?shard.data():null);
+  if(pieces.some(piece=>!piece||piece.shardToken!==head.shardToken))return null;
+  return JSON.parse([head.data,...pieces.map(piece=>piece.data)].join(''));
+}
+
 async function getArtifact(artifactId){
   if(!await moderatorIdentity())return {ok:false,error:'moderator-required',data:null};
   try{
-    const snapshot=await getDoc(doc(db,'backofficeArtifacts',artifactId));
-    if(!snapshot.exists())return {ok:false,error:'artifact-not-found',data:null};
-    const artifact=snapshot.data();
-    const data=artifact.dataEncoding==='json-v1'?JSON.parse(artifact.data):artifact.data;
-    return {ok:true,data,updatedAt:artifact.updatedAt||null};
+    for(let attempt=0;attempt<2;attempt+=1){
+      const snapshot=await getDoc(doc(db,'backofficeArtifacts',artifactId));
+      if(!snapshot.exists())return {ok:false,error:'artifact-not-found',data:null};
+      const artifact=snapshot.data();
+      if(artifact.dataEncoding!=='json-shards-v1'){
+        const data=artifact.dataEncoding==='json-v1'?JSON.parse(artifact.data):artifact.data;
+        return {ok:true,data,updatedAt:artifact.updatedAt||null};
+      }
+      const data=await readArtifactPieces(artifactId,artifact);
+      if(data!==null)return {ok:true,data,updatedAt:artifact.updatedAt||null};
+    }
+    return {ok:false,error:'artifact-read-failed',data:null};
   }catch(error){console.error('getArtifact failed:',error);return {ok:false,error:'artifact-read-failed',data:null};}
 }
 

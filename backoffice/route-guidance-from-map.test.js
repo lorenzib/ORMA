@@ -41,7 +41,7 @@ describe('the numbers read off the map',()=>{
   test('every value carries its own provenance, because values travel',()=>{
     const claims=routeGuidanceFromMap(GUIDANCE,RELATIONS);
     for(const claim of Object.values(claims)){
-      expect(claim.proposedValue).toContain('Read from the OpenStreetMap route relations');
+      expect(claim.proposedValue).toContain(READ_FROM_MAP);
       expect(claim.derivedFrom).toBe('route-relations');
     }
   });

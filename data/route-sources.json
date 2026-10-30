@@ -10,6 +10,678 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "altabadia-da-furnacia-a-la-crusc": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/da-furnacia-a-la-crusc",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Da Furnacia a La Crusc",
+      "quote": "Percorso 4,2 km · Durata 1:30 h · Salita 324 m · Discesa 2 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T18:00:00.000Z"
+    },
+    "altabadia-da-la-val-ai-prati-di-rit": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/da-la-val-ai-prati-di-rit",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Da La Val ai prati di Rit",
+      "quote": "Percorso 14,1 km · Durata 4:45 h · Salita 728 m · Discesa 728 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T21:00:00.000Z"
+    },
+    "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Da Pederoa ai masi Picedac, Aiarëi e Costa fino a Pederoa",
+      "quote": "Percorso 13,5 km · Durata 3:50 h · Salita 407 m · Discesa 407 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T18:00:00.000Z"
+    },
+    "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/da-san-cassiano-al-pralongia-fino-a-corvara",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Da San Cassiano al Pralongiá fino a Corvara",
+      "quote": "Percorso 8,7 km · Durata 2:40 h · Salita 128 m · Discesa 581 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T21:00:00.000Z"
+    },
+    "altabadia-escursione-corvara-colfosco": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-colfosco",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Escursione Corvara - Colfosco",
+      "quote": "Percorso 4,8 km · Durata 1:20 h · Salita 128 m · Discesa 132 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "altabadia-escursione-corvara-la-villa": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-la-villa",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Escursione Corvara - La Villa",
+      "quote": "Percorso 5,1 km · Durata 1:15 h · Salita 21 m · Discesa 132 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/escursione-da-la-villa-al-lago-lech-da-sompunt",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Escursione da La Villa al lago Lech da Sompunt",
+      "quote": "Percorso 7,5 km · Durata 2:30 h · Salita 172 m · Discesa 174 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "altabadia-passeggiata-borest-cascate-del-pisciadu": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/passeggiata-borest-cascate-del-pisciadu",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Passeggiata Borest - cascate del Pisciadú",
+      "quote": "Percorso 3,7 km · Durata 1:10 h · Salita 204 m · Discesa 16 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T21:00:00.000Z"
+    },
+    "altabadia-sentiero-degli-artisti-tru-di-artisc": {
+      "url": "https://www.altabadia.org/it/tour/oadetail/oa/sentiero-degli-artisti-tru-di-artisc",
+      "publisher": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+      "name": "Sentiero degli artisti - Tru di artisć",
+      "quote": "Percorso 5,2 km · Durata 1:40 h · Salita 245 m · Discesa 46 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "aosta-champoluc-cascata-mascognaz": {
+      "url": "https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=07_S50&TIPO=S&LINGUA=it",
+      "publisher": "Regione Autonoma Valle d'Aosta, Catasto Sentieri (the regional path register) (mappe.regione.vda.it)",
+      "name": "Champoluc - Cascata Mascognaz",
+      "quote": "Dislivello positivo 255 m · Dislivello negativo 0 m · Lunghezza 1561 m · Tempo di andata 0h47",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "aosta-periasc-antagnod": {
+      "url": "https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=07_S65&TIPO=S&LINGUA=it",
+      "publisher": "Regione Autonoma Valle d'Aosta, Catasto Sentieri (the regional path register) (mappe.regione.vda.it)",
+      "name": "Periasc - Antagnod",
+      "quote": "Dislivello positivo 176 m · Dislivello negativo 0 m · Lunghezza 974 m · Tempo di andata 0h32",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "aosta-ru-courtaud": {
+      "url": "https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=07_S21&TIPO=S&LINGUA=it",
+      "publisher": "Regione Autonoma Valle d'Aosta, Catasto Sentieri (the regional path register) (mappe.regione.vda.it)",
+      "name": "Ru Courtaud",
+      "quote": "Dislivello positivo 174 m · Dislivello negativo 0 m · Lunghezza 5869 m · Tempo di andata 1h46",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "aosta-sentiero-della-regina": {
+      "url": "https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=33_S32&TIPO=S&LINGUA=it",
+      "publisher": "Regione Autonoma Valle d'Aosta, Catasto Sentieri (the regional path register) (mappe.regione.vda.it)",
+      "name": "Sentiero della Regina",
+      "quote": "Dislivello positivo 104 m · Dislivello negativo 101 m · Lunghezza 3363 m · Tempo di andata 0h56",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "aosta-strada-lombarda": {
+      "url": "https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=33_S33&TIPO=S&LINGUA=it",
+      "publisher": "Regione Autonoma Valle d'Aosta, Catasto Sentieri (the regional path register) (mappe.regione.vda.it)",
+      "name": "Strada Lombarda",
+      "quote": "Dislivello positivo 155 m · Dislivello negativo 0 m · Lunghezza 4346 m · Tempo di andata 1h11",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": {
+      "url": "https://mappe.regione.vda.it/pub/GeoSentieri/sentieri/Elenco.asp?CODICESENTIERO=33_S46&TIPO=S&LINGUA=it",
+      "publisher": "Regione Autonoma Valle d'Aosta, Catasto Sentieri (the regional path register) (mappe.regione.vda.it)",
+      "name": "Villaggi di Alpenzu piccolo e Alpenzu grande",
+      "quote": "Dislivello positivo 311 m · Dislivello negativo 0 m · Lunghezza 3338 m · Tempo di andata 1h27",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "bormio-da-arnoga-al-rifugio-federico": {
+      "url": "https://www.in-lombardia.it/itinerari/da-arnoga-al-rifugio-federico",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Orobie Active)",
+      "name": "Da Arnoga al Rifugio Federico",
+      "quote": "Durata/Lunghezza 2 ore 7km · Dislivello Salita: 562m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "campiglio-carisolo-centro-storico": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/carisolo-centro-storico",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Carisolo - centro storico",
+      "quote": "Distanza 3,5 km · Durata 1:30 h · Salita 88 m · Discesa 80 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/escursione-a-malga-ritort-da-madonna-di-campiglio",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Escursione a Malga Ritort da Madonna di Campiglio",
+      "quote": "Distanza 6 km · Durata 2:00 h · Salita 212 m · Discesa 213 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/laghi-di-san-giuliano-garzone-e-vacarsa",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Laghi di San Giuliano, Garzonè e Vacarsa",
+      "quote": "Distanza 11 km · Durata 6:00 h · Salita 665 m · Discesa 665 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "campiglio-lago-ritorto-nel-blu-dipinto-di-blu": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/lago-ritorto-nel-blu-dipinto-di-blu",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Lago Ritorto, nel blu dipinto di blu",
+      "quote": "Distanza 5,4 km · Durata 2:30 h · Salita 339 m · Discesa 2 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "campiglio-madonna-di-campiglio-monte-spinale": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/madonna-di-campiglio-monte-spinale",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Madonna di Campiglio - Monte Spinale",
+      "quote": "Distanza 4,1 km · Durata 2:00 h · Salita 567 m · Discesa 1 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T11:00:00.000Z"
+    },
+    "campiglio-monte-spinale-rifugio-graffer": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/monte-spinale-rifugio-graffer",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Monte Spinale - Rifugio Graffer",
+      "quote": "Distanza 7,5 km · Durata 2:30 h · Salita 300 m · Discesa 312 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "campiglio-trekking-al-lago-di-nambino": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/trekking-al-lago-di-nambino",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Trekking al Lago di Nambino",
+      "quote": "Distanza 3,1 km · Durata 1:30 h · Salita 154 m · Discesa 153 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T11:00:00.000Z"
+    },
+    "campiglio-trekking-al-rifugio-segantini": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/trekking-al-rifugio-segantini",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Trekking al Rifugio Segantini",
+      "quote": "Distanza 4,9 km · Durata 2:00 h · Salita 397 m · Discesa 398 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T11:00:00.000Z"
+    },
+    "campiglio-valina-d-amola-rifugio-segantini-cornisello": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/valina-d-amola-rifugio-segantini-cornisello",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Valina d'Amola - Rifugio Segantini - Cornisello",
+      "quote": "Distanza 9,4 km · Durata 5:00 h · Salita 559 m · Discesa 559 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T11:00:00.000Z"
+    },
+    "cembra-castello-segonzano": {
+      "url": "https://www.visitfiemme.it/it/activity/il-castello-di-segonzano-e-il-canyon-del-pr-_9748",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il Castello di Segonzano e il canyon del Prà",
+      "quote": "Lunghezza 6,1 km Durata 3 h 30 min Salita 190 m Discesa 186 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T15:00:00.000Z"
+    },
+    "cembra-dos-paion": {
+      "url": "https://www.visitfiemme.it/it/activity/passeggiata-al-belvedere-del-dos-paion-sul-monte-corona_9837",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Passeggiata al belvedere del Dos Paion sul Monte Corona",
+      "quote": "Lunghezza 6,0 km Durata 2 h 02 min Salita 308 m Discesa 308 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-erbe-della-salute": {
+      "url": "https://www.visitfiemme.it/it/activity/le-erbe-della-salute_63414",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Le erbe della salute",
+      "quote": "Lunghezza 2,1 km Durata 1 h 00 min Salita 100 m Discesa 100 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T15:00:00.000Z"
+    },
+    "cembra-giro-masi-grumes": {
+      "url": "https://www.visitfiemme.it/it/activity/il-giro-dei-masi-di-grumes_9684",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il Giro dei Masi di Grumes",
+      "quote": "Lunghezza 6,8 km Durata 2 h 30 min Salita 250 m Discesa 250 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T15:00:00.000Z"
+    },
+    "cembra-giro-monte-corona": {
+      "url": "https://www.visitfiemme.it/it/activity/giro-panoramico-sul-monte-corona_39031",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Giro panoramico sul Monte Corona",
+      "quote": "Lunghezza 7,2 km Durata 2 h 40 min Salita 390 m Discesa 390 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T15:00:00.000Z"
+    },
+    "cembra-lago-lases-buse-giaz": {
+      "url": "https://www.visitfiemme.it/it/activity/il-lago-di-lases-e-le-buse-del-giaz_9812",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il Lago di Lases e le buse del giaz",
+      "quote": "Lunghezza 4,9 km Durata 2 h 00 min Salita 150 m Discesa 150 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-lago-santo": {
+      "url": "https://www.visitfiemme.it/it/activity/il-lago-santo_63413",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il Lago Santo",
+      "quote": "Lunghezza 1,1 km Durata 20 min Salita 10 m Discesa 10 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-monte-pat-malga-vernera": {
+      "url": "https://www.visitfiemme.it/it/activity/dalla-baita-monte-pat-a-malga-vernera_9739",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Dalla Baita Monte Pat a Malga Vernera",
+      "quote": "Lunghezza 2,3 km Durata 1 h 00 min Salita 183 m Discesa 183 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T20:00:00.000Z"
+    },
+    "cembra-paese-beghei": {
+      "url": "https://www.visitfiemme.it/it/activity/il-paese-dei-beghei-_9886",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il paese dei “Beghei”",
+      "quote": "Lunghezza 4,0 km Durata 2 h 00 min Salita 200 m Discesa 200 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T15:00:00.000Z"
+    },
+    "cembra-pascoli-malga-vernera": {
+      "url": "https://www.visitfiemme.it/it/activity/sui-pascoli-di-malga-vernera_63417",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Sui Pascoli di Malga Vernera",
+      "quote": "Lunghezza 3,6 km Durata 1 h 10 min Salita 185 m Discesa 185 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T20:00:00.000Z"
+    },
+    "cembra-pietra-del-futuro": {
+      "url": "https://www.visitfiemme.it/it/activity/la-pietra-del-futuro-percorso-con-audioguida-dei-ragazzi-della-scuola-elementare-di-lona-lases_35376",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases",
+      "quote": "Lunghezza 2,7 km Durata 50 min Salita 61 m Discesa 63 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-piz-de-le-agole": {
+      "url": "https://www.visitfiemme.it/it/activity/il-piz-de-le-agole-balcone-sulla-valle_9623",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il Piz de le Agole, balcone sulla valle",
+      "quote": "Lunghezza 10,2 km Durata 3 h 30 min Salita 600 m Discesa 600 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T18:00:00.000Z"
+    },
+    "cembra-rifugio-potzmauer": {
+      "url": "https://www.visitfiemme.it/it/activity/al-rifugio-potzmauer_9863",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Al Rifugio Potzmauer",
+      "quote": "Lunghezza 4,8 km Durata 1 h 30 min Salita 300 m Discesa 300 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-san-leonardo-lisignago": {
+      "url": "https://www.visitfiemme.it/it/activity/san-leonardo-e-le-campagne-di-lisignago_9746",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "San Leonardo e le campagne di Lisignago",
+      "quote": "Lunghezza 4,4 km Durata 2 h 00 min Salita 280 m Discesa 280 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T12:00:00.000Z"
+    },
+    "cembra-vecchi-mestieri-grumes": {
+      "url": "https://www.visitfiemme.it/it/activity/il-sentiero-dei-vecchi-mestieri-da-grumes_9859",
+      "publisher": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+      "name": "Il Sentiero dei vecchi mestieri – da Grumes",
+      "quote": "Lunghezza 5,3 km Durata 3 h 00 min Salita 400 m Discesa 400 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T18:00:00.000Z"
+    },
+    "cortina-castello-di-botestagno": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/al-castello-di-botestagno/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org, Outdooractive)",
+      "name": "Castello di Botestagno",
+      "quote": "Tempo 0h 45’ · Lunghezza 2,6 km · Dislivello positivo 80 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T20:00:00.000Z"
+    },
+    "cortina-malga-ra-stua": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/verso-malga-ra-stua/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org, Outdooractive)",
+      "name": "Malga Ra Stua",
+      "quote": "Tempo 2 h 30’ · Lunghezza 6,3 km · Dislivello positivo 332 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T20:00:00.000Z"
+    },
+    "cortina-mortisa-e-le-grotte-di-volpera": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/mortisa-e-le-grotte-di-volpera/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org, Outdooractive)",
+      "name": "Mortisa e le Grotte di Volpera",
+      "quote": "Tempo 2 h 30’ · Lunghezza 5,9 km · Dislivello positivo 221 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T20:00:00.000Z"
+    },
+    "cortina-passeggiata-gourmet": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/passeggiata-gourmet/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org, Outdooractive)",
+      "name": "Passeggiata gourmet",
+      "quote": "Tempo 2 h 15’ · Lunghezza 4,3 km · Dislivello positivo 185 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T20:00:00.000Z"
+    },
+    "cortina-sotecordes": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/escursione-di-sotecordes/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org, Outdooractive)",
+      "name": "Escursione di Sotecordes",
+      "quote": "Tempo 3 h 30’ · Lunghezza 7,6 km · Dislivello positivo 489 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T20:00:00.000Z"
+    },
+    "fassa-alpe-di-fuciade": {
+      "url": "https://www.fassa.com/it/itinerari/dal-passo-all-alpe-di-fuciade-inseguendo-i-sapori-ladini",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Alpe di Fuciade",
+      "quote": "Distanza 6,9 km Durata 2:01 h Salita 94 m Discesa 94 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T15:00:00.000Z"
+    },
+    "fassa-antichi-bagnes": {
+      "url": "https://www.fassa.com/it/itinerari/agli-antichi-bagnes-del-principe-vescovo-di-bressanone",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Agli antichi Bagnes",
+      "quote": "Distanza 3 km Durata 0:45 h Salita 48 m Discesa 48 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-borgo-dei-patins": {
+      "url": "https://www.fassa.com/it/itinerari/a-vigo-nel-borgo-diffuso-dei-patins",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Vigo, borgo dei patins",
+      "quote": "Distanza 3,1 km Durata 0:55 h Salita 82 m Discesa 82 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-borgo-di-tamion": {
+      "url": "https://www.fassa.com/it/itinerari/alla-scoperta-del-borgo-ladino-di-tamion",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Alla scoperta del borgo ladino di Tamion",
+      "quote": "Distanza 4,7 km Durata 2:03 h Salita 339 m Discesa 339 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "fassa-ciajeole-malga-roncac": {
+      "url": "https://www.fassa.com/it/itinerari/passi-nella-storia-dall-antico-rione-di-ciajeole-a-malga-roncac",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Passi nella storia: da Ciajeole a Malga Roncac",
+      "quote": "Distanza 3 km Durata 1:00 h Salita 137 m Discesa 137 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "fassa-da-alba-a-penia": {
+      "url": "https://www.fassa.com/it/itinerari/da-alba-a-penia-l-ultimo-borgo-prima-della-marmolada",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Da Alba a Penìa",
+      "quote": "Distanza 4,5 km Durata 1:10 h Salita 97 m Discesa 97 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "fassa-da-canazei-a-penia": {
+      "url": "https://www.fassa.com/it/itinerari/da-canazei-a-penia",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Da Canazei a Penìa",
+      "quote": "Facile passeggiata ad anello … Distanza 6,3 km Durata 1:35 h Salita 58 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-dipinti-del-giotto": {
+      "url": "https://www.fassa.com/it/itinerari/sulle-tracce-dei-dipinti-del-giotto-della-val-di-fassa",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Sulle tracce dei dipinti del Giotto della Val di Fassa",
+      "quote": "Distanza 4,7 km Durata 1:25 h Salita 152 m Discesa 153 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "fassa-malga-aloch": {
+      "url": "https://www.fassa.com/it/itinerari/storie-di-vita-contadina-a-malga-aloch-e-masc-aloch",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Malga Aloch e Masc Aloch",
+      "quote": "Distanza 2 km Durata 0:35 h Salita 58 m Discesa 58 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-moena-soraga-acqua": {
+      "url": "https://www.fassa.com/it/itinerari/da-moena-a-soraga-dove-l-acqua-ha-segnato-la-storia",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Da Moena a Soraga, dove l'acqua ha segnato la storia",
+      "quote": "Distanza 4,8 km Durata 1:20 h Salita 139 m Discesa 139 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "fassa-moena-soraga-someda": {
+      "url": "https://www.fassa.com/it/itinerari/da-moena-a-soraga-la-natura-a-due-passi-da-casa",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Da Moena a Soraga, la natura a due passi da casa",
+      "quote": "Distanza 6,1 km Durata 1:50 h Salita 175 m Discesa 175 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "fassa-molin-de-pezol": {
+      "url": "https://www.fassa.com/it/itinerari/ruote-del-tempo-al-molin-de-pezol-ancora-funzionante",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Molin de Pèzol",
+      "quote": "Distanza 3,7 km Durata 0:55 h Salita 38 m Discesa 28 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-passato-ritrovato": {
+      "url": "https://www.fassa.com/it/itinerari/il-passato-ritrovato-tra-antichi-masi-e-restaurati-tobie",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Il passato ritrovato",
+      "quote": "Distanza 6,2 km Durata 2:00 h Salita 152 m Discesa 153 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-pastori-erranti": {
+      "url": "https://www.fassa.com/it/itinerari/sulla-via-degli-antichi-pastori-erranti-1",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Sulla via degli antichi pastori erranti",
+      "quote": "Distanza 7,2 km Durata 2:20 h Salita 245 m Discesa 245 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T15:00:00.000Z"
+    },
+    "fassa-prato-di-sorte": {
+      "url": "https://www.fassa.com/it/itinerari/quel-prato-di-sorte",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Prato di Sorte",
+      "quote": "Una passeggiata ad anello … Distanza 5,5 km Durata 1:30 h Salita 61 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-santuario-dei-pellegrini": {
+      "url": "https://www.fassa.com/it/itinerari/al-santuario-medievale-dei-pellegrini-di-fassa-1",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Al santuario di Santa Giuliana",
+      "quote": "Distanza 2,7 km Durata 1:20 h Salita 132 m Discesa 132 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-segreti-di-una-volta": {
+      "url": "https://www.fassa.com/it/itinerari/i-segreti-di-una-volta-della-tradizione-contadina-di-montagna",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "I segreti di una volta",
+      "quote": "Distanza 7,9 km Durata 2:20 h Salita 176 m Discesa 176 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T15:00:00.000Z"
+    },
+    "fassa-sentiero-della-foresta": {
+      "url": "https://www.fassa.com/it/itinerari/sentiero-della-foresta",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Sentiero della Foresta",
+      "quote": "Distanza 3 km Durata 0:55 h Salita 6 m Discesa 46 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-24T21:00:00.000Z"
+    },
+    "fassa-val-freida": {
+      "url": "https://www.fassa.com/it/itinerari/sulle-tracce-dei-pastori-all-imbocco-della-val-freida",
+      "publisher": "APT Val di Fassa (fassa.com, Outdooractive)",
+      "name": "Sulle tracce dei pastori all'imbocco della Val Freida",
+      "quote": "Distanza 2,8 km Durata 0:50 h Salita 116 m Discesa 116 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T22:00:00.000Z"
+    },
+    "fiemme-cascatelle-di-ziano": {
+      "url": "https://www.visitfiemme.it/it/activity/le-cascatelle-di-ziano-di-fiemme_9658",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Le Cascatelle di Ziano di Fiemme",
+      "quote": "Lunghezza 2,2 km Durata 1 h 00 min Salita 100 m Discesa 100 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "fiemme-cavalese-passeggiata-panoramica": {
+      "url": "https://www.visitfiemme.it/it/activity/cavalese-passeggiata-panoramica_9752",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Cavalese - Passeggiata panoramica",
+      "quote": "Lunghezza 3,0 km Durata 1 h 00 min Salita 100 m Discesa 100 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "fiemme-giro-cavalese-castello": {
+      "url": "https://www.visitfiemme.it/it/activity/montagna-senza-limiti-giro-ad-anello-cavalese-castello-di-fiemme_36616",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Montagna Senza Limiti - Giro ad anello Cavalese - Castello di Fiemme",
+      "quote": "Lunghezza 4,8 km Durata 1 h 30 min Salita 65 m Discesa 65 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "fiemme-larici-verso-anterivo": {
+      "url": "https://www.visitfiemme.it/it/activity/passeggiata-col-passeggino-tra-i-larici-verso-anterivo_9806",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Passeggiata col passeggino tra i larici verso Anterivo",
+      "quote": "Lunghezza 5,5 km Durata 2 h 00 min Salita 60 m Discesa 60 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T23:00:00.000Z"
+    },
+    "fiemme-masi-comunicanti": {
+      "url": "https://www.visitfiemme.it/it/activity/masi-comunicanti_9726",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Masi Comunicanti",
+      "quote": "Lunghezza 7,4 km Durata 4 h 00 min Salita 400 m Discesa 400 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T23:30:00.000Z"
+    },
+    "fiemme-passeggiata-insolita": {
+      "url": "https://www.visitfiemme.it/it/activity/montagna-senza-limiti-passeggiata-insolita-lungo-il-rio-gambis_38529",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Montagna Senza Limiti - Passeggiata insolita lungo il Rio Gambis",
+      "quote": "Lunghezza 3,0 km Durata 1 h 00 min Salita 42 m Discesa 42 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "fiemme-passo-oclini": {
+      "url": "https://www.visitfiemme.it/it/activity/passo-oclini-tra-il-corno-nero-e-il-corno-bianco_10468",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Passo Oclini, tra il Corno Nero e il Corno Bianco",
+      "quote": "Lunghezza 4,7 km Durata 1 h 30 min Salita 160 m Discesa 160 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T23:30:00.000Z"
+    },
+    "fiemme-pradi-da-le-fior": {
+      "url": "https://www.visitfiemme.it/it/activity/i-pradi-da-le-fior_63416",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "I Pradi da le Fior",
+      "quote": "Lunghezza 3,1 km Durata 55 min Salita 103 m Discesa 103 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T23:30:00.000Z"
+    },
+    "fiemme-scalata-alle-malghette": {
+      "url": "https://www.visitfiemme.it/it/activity/montagna-senza-limiti-la-scalata-alle-malghette_46674",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Montagna Senza Limiti - La “scalata” alle Malghette",
+      "quote": "Lunghezza 3,9 km Durata 2 h 00 min Salita 163 m Discesa 163 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T18:00:00.000Z"
+    },
+    "fiemme-sentiero-botanico": {
+      "url": "https://www.visitfiemme.it/it/activity/sentiero-botanico-naturalistico_9640",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Sentiero botanico naturalistico",
+      "quote": "Lunghezza 11,8 km Durata 4 h 30 min Salita 300 m Discesa 300 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T23:50:00.000Z"
+    },
+    "fiemme-varena-spianez": {
+      "url": "https://www.visitfiemme.it/it/activity/col-passeggino-tra-varena-e-spianez_9861",
+      "publisher": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+      "name": "Col passeggino tra Varena e Spianez",
+      "quote": "Lunghezza 8,6 km Durata 2 h 00 min Salita 120 m Discesa 120 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T23:00:00.000Z"
+    },
+    "fvg-anello-lago-di-verzegnis": {
+      "url": "https://www.outdooractive.com/it/route/escursione/verzegnis/anello-del-lago-di-verzegnis/808413751/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Anello del Lago di Verzegnis",
+      "quote": "Distanza 2,6 km · Durata 1:30 h · Salita 93 m · Discesa 93 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "fvg-borgo-stavoli-moggio": {
+      "url": "https://www.outdooractive.com/it/route/escursione/friuli-venezia-giulia/il-borgo-isolato-di-stavoli-di-moggio/810696096/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Il borgo isolato di Stavoli di Moggio",
+      "quote": "Distanza 6,9 km · Durata 3:05 h · Salita 379 m · Discesa 379 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "fvg-col-dei-piais": {
+      "url": "https://www.outdooractive.com/it/route/escursione/claut/col-dei-piais/805561297/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Col dei Piais",
+      "quote": "Distanza 4,9 km · Durata 1:50 h · Salita 285 m · Discesa 284 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T06:00:00.000Z"
+    },
+    "fvg-faggi-secolari-pustot-dordolla": {
+      "url": "https://www.outdooractive.com/it/route/escursione/moggio-udinese/i-faggi-secolari-di-pustot-a-dordolla/811755887/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "I faggi secolari di Pustot a Dordolla",
+      "quote": "Distanza 4,9 km · Durata 2:20 h · Salita 395 m · Discesa 394 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "fvg-fontanon-di-goriuda": {
+      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/fontanon-di-goriuda/805382080/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Fontanon di Goriuda",
+      "quote": "Distanza 0,6 km · Durata 0:15 h · Salita 50 m · Discesa 50 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T06:00:00.000Z"
+    },
+    "fvg-laghi-di-fusine": {
+      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/laghi-di-fusine/801482658/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Laghi di Fusine",
+      "quote": "Distanza 5,4 km · Durata 2:00 h · Salita 104 m · Discesa 104 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "fvg-raunis-cascate-belepeit": {
+      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/borgo-raunis-e-le-cascate-del-rio-belepeit/809189921/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Borgo Raunis e le cascate del rio Belepeit",
+      "quote": "Distanza 5,8 km · Durata 3:00 h · Salita 333 m · Discesa 333 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T06:00:00.000Z"
+    },
+    "fvg-ta-lipa-pot-corto": {
+      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/ta-lipa-pot-percorso-breve/805322923/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Ta Lipa Pot - Percorso breve",
+      "quote": "Distanza 5,5 km · Durata 1:45 h · Salita 152 m · Discesa 152 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "fvg-venzone-anello-delle-chiesette": {
+      "url": "https://www.outdooractive.com/it/route/escursione/venzone/sentiero-natura-anello-delle-chiesette-di-venzone/805854151/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Sentiero Natura - Anello delle chiesette di Venzone",
+      "quote": "Distanza 2,6 km · Durata 1:00 h · Salita 99 m · Discesa 99 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T06:00:00.000Z"
+    },
     "geotrail-bulla": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi989d38877e70605be1a85f34d9ce0f7c.geotrail-pufels.st--michael---kastelruth",
       "publisher": "Seiser Alm Marketing (via Südtirol.info / IDM Südtirol)",
@@ -34,6 +706,38 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
     },
+    "giudicarie-san-martino-bosco-scolpito": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/san-martino-e-il-sentiero-del-bosco-scolpito",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "San Martino e il sentiero del bosco scolpito",
+      "quote": "Distanza 4,4 km · Durata 1:45 h · Salita 250 m · Discesa 216 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "giudicarie-san-vigilio-senter-dei-cavai": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/chiesetta-di-san-vigilio-e-senter-dei-cavai",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Chiesetta di San Vigilio e \"Senter dei Cavai\"",
+      "quote": "Distanza 7,2 km · Durata 3:00 h · Salita 91 m · Discesa 91 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "giudicarie-senter-dei-popi-madonna-del-lares": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/senter-dei-popi-madonna-del-lares",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Senter dei Popi - Madonna del Lares",
+      "quote": "Distanza 4,2 km · Durata 1:30 h · Salita 93 m · Discesa 92 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T01:00:00.000Z"
+    },
+    "giudicarie-tione-bolbeno-madonna-del-lares": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/tione-di-trento-bolbeno-madonna-del-lares",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Tione di Trento - Bolbeno - Madonna del Lares",
+      "quote": "Distanza 3,1 km · Durata 1:15 h · Salita 238 m · Discesa 30 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
     "lago-braies": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/insider-tipps/pragser-wildsee-wandern",
       "publisher": "IDM Südtirol-Alto Adige (regional tourism board)",
@@ -57,6 +761,70 @@
       "quote": "Tempo 4 h · Lunghezza 10,5 km · Dislivello positivo 434 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
+    "lario-alla-ricerca-di-un-panorama-unico": {
+      "url": "https://www.in-lombardia.it/itinerari/alla-ricerca-di-un-panorama-unico",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Alla ricerca di un panorama unico",
+      "quote": "Durata/Lunghezza 3h e 30min 7.90km · Dislivello Salita: 679m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "lario-anello-ai-piedi-del-monte-oriolo": {
+      "url": "https://www.in-lombardia.it/itinerari/anello-ai-piedi-del-monte-oriolo",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Anello ai piedi del Monte Oriolo",
+      "quote": "Durata/Lunghezza 3h 9.18km · Dislivello Salita: 580m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "lario-brunate-e-le-sue-chiese": {
+      "url": "https://www.in-lombardia.it/itinerari/brunate-e-le-sue-chiese",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Brunate e le sue Chiese",
+      "quote": "Durata/Lunghezza 3h 5.49km · Dislivello Salita: 300m Discesa: 300m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "lario-caslino-sullacqua": {
+      "url": "https://www.in-lombardia.it/itinerari/caslino-sullacqua",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Caslino sull’acqua",
+      "quote": "Durata/Lunghezza 2h 5.32km · Dislivello Salita: 447m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "lario-eupilio-tra-segrino-e-cornizzolo": {
+      "url": "https://www.in-lombardia.it/itinerari/eupilio-tra-segrino-e-cornizzolo",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Eupilio tra Segrino e Cornizzolo",
+      "quote": "Durata/Lunghezza 2h 5.24km · Dislivello Salita: 397m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "lario-il-sentiero-del-viandante": {
+      "url": "https://www.in-lombardia.it/itinerari/il-sentiero-del-viandante",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Orobie Active)",
+      "name": "Il Sentiero del Viandante",
+      "quote": "Durata/Lunghezza 4,30 ore 8km · Dislivello Salita: 400m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "lario-pognana-lario-e-le-sculture-simposio": {
+      "url": "https://www.in-lombardia.it/itinerari/pognana-lario-e-le-sculture-simposio",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Percorso delle sculture: Simposio Internazionale di Scultura",
+      "quote": "Durata/Lunghezza 2h 4.20km · Dislivello Salita: 160m Discesa: 160m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": {
+      "url": "https://www.in-lombardia.it/itinerari/salendo-al-monte-scioscia-ad-ammirare-la-brianza",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Salendo al Monte Scioscia ad ammirare la Brianza",
+      "quote": "Durata/Lunghezza 4h 12km · Dislivello Salita: 734m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
     },
     "nuvolau": {
       "url": "https://cortina.dolomiti.org/it/escursioni/al-rifugio-nuvolau/",
@@ -482,6 +1250,14 @@
       "foundBy": "orma-route-source-sweep",
       "verifiedAt": "2026-10-23T21:00:00.000Z"
     },
+    "osm-12737724": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi520af6ed7242950f94a791101d75eae7.historische-rundwanderung-in-teis.teis",
+      "publisher": "Tourismusverein Villnöss via IDM suedtirol.info",
+      "name": "Historische Rundwanderung in Teis",
+      "quote": "Strecke 8.5 Km Dauer 2h:40 min Aufstieg 448 m Abstieg 448 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-25T03:00:00.000Z"
+    },
     "osm-12745924": {
       "url": "https://www.la-norma.fr/en/equipement/les-escaliers-walking-trail-la-norma/",
       "publisher": "Haute Maurienne Vanoise Tourisme (La Norma)",
@@ -850,6 +1626,14 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osm-6401355": {
+      "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi8abfb40f4c78aa85e234ec52885516af.panoramarundweg-concordia-360.reischach",
+      "publisher": "IDM suedtirol.info",
+      "name": "Panoramarundweg Concordia 360°",
+      "quote": "Strecke 2.4 Km Dauer 0h:40 min Aufstieg 75 m Abstieg 75 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-25T03:00:00.000Z"
+    },
     "osm-6404258": {
       "url": "https://www.olang.com/de/activity/spaziergang-oberolang-salla-oberolang_5019",
       "publisher": "Tourismusverein Olang / Olang-Valdaora",
@@ -969,6 +1753,14 @@
       "quote": "Dauer 2:30 h · Länge 8,4 km · Höhenmeter bergauf 368 hm",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T12:00:00.000Z"
+    },
+    "osm-7547653": {
+      "url": "https://www.lozzodicadore.eu/sito/node/192",
+      "publisher": "Comune di Lozzo di Cadore / CAI",
+      "name": "50 - Anello dei Forti",
+      "quote": "Dislivello in salita: 130 m; lunghezza: circa 3 km; tempo medio di percorrenza: 1 h 30'; difficoltà: percorso di tipo E (escursionistico).",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T20:00:00.000Z"
     },
     "osm-7547983": {
       "url": "https://www.lozzodicadore.eu/sito/node/186",
@@ -1106,6 +1898,78 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-22T12:00:00.000Z"
     },
+    "osttirol-kulturweg-koednitz": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/kulturweg-koednitz",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Kulturweg Ködnitz",
+      "quote": "Streckenlänge 1.7 km · Höhenmeter Bergauf 34 hm · Bergab 33 hm · Gehzeit Gesamt 1 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-naturkraftweg-umbalfaelle": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/naturkraftweg-umbalfaelle",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "NaturKraftWeg Umbalfälle",
+      "quote": "Streckenlänge 5.97 km · Höhenmeter Bergauf 257 hm · Bergab 257 hm · Gehzeit Gesamt 2:30 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-rundwanderung-am-staller-sattel": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/rundwanderung-am-staller-sattel",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Rundwanderung am Staller Sattel",
+      "quote": "Streckenlänge 4.7 km · Höhenmeter Bergauf 70 hm · Bergab 70 hm · Gehzeit Gesamt 1:20 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-rundwanderung-schloss-weissenstein": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/rundwanderung-schloss-weissenstein",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Rundwanderung Schloss Weißenstein",
+      "quote": "Streckenlänge 3.21 km · Höhenmeter Bergauf 88 hm · Bergab 88 hm · Gehzeit Gesamt 1 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "paganella-andalo-tana-ermellino": {
+      "url": "https://ktips.visitpaganella.it/it/itinerari/passeggiata-da-andalo-alla-tana-dell-ermellino",
+      "publisher": "Visit Paganella, APT Dolomiti di Brenta Paganella (visitpaganella.it, Outdooractive)",
+      "name": "Passeggiata da Andalo alla Tana dell'Ermellino",
+      "quote": "Distanza 3,8 km · Durata 1:03 h · Salita 32 m · Discesa 32 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T02:00:00.000Z"
+    },
+    "paganella-giro-del-lago-di-molveno": {
+      "url": "https://ktips.visitpaganella.it/it/itinerari/giro-del-lago-di-molveno",
+      "publisher": "Visit Paganella, APT Dolomiti di Brenta Paganella (visitpaganella.it, Outdooractive)",
+      "name": "Giro del lago di Molveno",
+      "quote": "Distanza 10,1 km · Durata 2:15 h · Salita 232 m · Discesa 233 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "paganella-giro-della-toresela": {
+      "url": "https://ktips.visitpaganella.it/it/itinerari/giro-della-toresela",
+      "publisher": "Visit Paganella, APT Dolomiti di Brenta Paganella (visitpaganella.it, Outdooractive)",
+      "name": "Giro della Toresela",
+      "quote": "Distanza 1,4 km · Durata 0:30 h · Salita 66 m · Discesa 66 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T02:00:00.000Z"
+    },
+    "paganella-passeggiata-del-ciclamino": {
+      "url": "https://ktips.visitpaganella.it/it/itinerari/passeggiata-del-ciclamino",
+      "publisher": "Visit Paganella, APT Dolomiti di Brenta Paganella (visitpaganella.it, Outdooractive)",
+      "name": "Passeggiata del Ciclamino",
+      "quote": "Distanza 2,8 km · Durata 0:50 h · Salita 76 m · Discesa 110 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T08:00:00.000Z"
+    },
+    "paganella-sette-passi-sette-ville": {
+      "url": "https://ktips.visitpaganella.it/it/itinerari/sette-passi-per-sette-ville-san-lorenzo-dorsino",
+      "publisher": "Visit Paganella, APT Dolomiti di Brenta Paganella (visitpaganella.it, Outdooractive)",
+      "name": "Sette passi per sette Ville",
+      "quote": "Distanza 3,8 km · Durata 1:10 h · Salita 107 m · Discesa 108 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T02:00:00.000Z"
+    },
     "piancavallo": {
       "url": "https://www.mypiancavallo.com/info/il-territorio/cartina-sentieri.html",
       "publisher": "MyPiancavallo, hosting the Piancavallo trail map reprinted by Promo Tur Servizi in collaboration with AIAT Piancavallo e Dolomiti Friulane",
@@ -1121,6 +1985,150 @@
       "quote": "Du startest vom Parkplatz zum Berggasthaus Plätzwiese und gehst weiter auf die Straße zur Dürrensteinhütte Nr.37.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:04:08.598Z"
+    },
+    "primiero-anello-di-valpiana": {
+      "url": "https://www.sanmartino.com/it/itinerari/anello-di-valpiana",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Anello di Valpiana",
+      "quote": "Distanza 5,2 km Durata 1:35 h Salita 184 m Discesa 182 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-anello-molaren-via-nova-marine": {
+      "url": "https://www.sanmartino.com/it/itinerari/anello-molaren-via-nova-marine",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Anello Molaren - Via Nova - Marine",
+      "quote": "Distanza 5,8 km Durata 1:40 h Salita 176 m Discesa 176 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-anello-poit-cordogne-san-giovanni": {
+      "url": "https://www.sanmartino.com/it/itinerari/anello-poit-cordogne-san-giovanni",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Anello Poit - Cordognè - San Giovanni",
+      "quote": "Distanza 5 km Durata 2:00 h Salita 181 m Discesa 179 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-fiera-pieve": {
+      "url": "https://www.sanmartino.com/it/itinerari/fiera-pieve",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Fiera-Pieve",
+      "quote": "Distanza 2,6 km Durata 0:41 h Salita 22 m Discesa 22 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-la-guana-di-primiero": {
+      "url": "https://www.sanmartino.com/it/itinerari/la-guana-di-primiero",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "La Guana di Primiero",
+      "quote": "Distanza 3 km Durata 0:45 h Salita 47 m Discesa 47 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-malga-ces": {
+      "url": "https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-malga-ces",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "San Martino di Castrozza - Malga Ces",
+      "quote": "Distanza 7,8 km Durata 2:10 h Salita 218 m Discesa 218 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-malga-crel": {
+      "url": "https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-malga-crel",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "San Martino di Castrozza - Malga Crel",
+      "quote": "Distanza 9,2 km Durata 2:30 h Salita 260 m Discesa 264 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-malga-valcigolera": {
+      "url": "https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-malga-valcigolera",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "San Martino di Castrozza - Malga Valcigolera",
+      "quote": "Distanza 9,1 km Durata 3:00 h Salita 431 m Discesa 432 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-monte-vederna": {
+      "url": "https://www.sanmartino.com/it/itinerari/passeggiata-a-monte-vederna-croce-degli-alpini",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Passeggiata a Monte Vederna – Croce degli Alpini",
+      "quote": "Distanza 8,2 km Durata 2:00 h Salita 300 m Discesa 300 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-percorso-verde": {
+      "url": "https://www.sanmartino.com/it/itinerari/percorso-verde-i-percorsi-del-benessere",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Percorso Verde (I percorsi del benessere)",
+      "quote": "Distanza 1,6 km Durata 0:30 h Salita 23 m Discesa 23 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-ponte-su-funi": {
+      "url": "https://www.sanmartino.com/it/itinerari/ponte-su-funi-rio-san-piero-da-mezzano",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Ponte su Funi Rio San Piero da Mezzano",
+      "quote": "Distanza 6,2 km Durata 2:05 h Salita 240 m Discesa 243 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-san-martino-di-castrozza-val-di-roda-prati-col": {
+      "url": "https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-val-di-roda-prati-col",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "San Martino di Castrozza - Val di Roda - Prati Col",
+      "quote": "Distanza 5,9 km Durata 1:45 h Salita 154 m Discesa 173 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "primiero-siror": {
+      "url": "https://www.sanmartino.com/it/itinerari/siror",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Siror",
+      "quote": "Distanza 3,9 km Durata 1:00 h Salita 69 m Discesa 69 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-tonadico": {
+      "url": "https://www.sanmartino.com/it/itinerari/tonadico",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Tonadico",
+      "quote": "Distanza 4 km Durata 1:00 h Salita 57 m Discesa 61 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-transacqua": {
+      "url": "https://www.sanmartino.com/it/itinerari/transacqua",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "Transacqua",
+      "quote": "Distanza 2,3 km Durata 0:36 h Salita 37 m Discesa 41 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T18:00:00.000Z"
+    },
+    "primiero-via-della-frutta-antica": {
+      "url": "https://www.sanmartino.com/it/itinerari/la-via-della-frutta-antica",
+      "publisher": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+      "name": "La via della frutta antica",
+      "quote": "Distanza 8 km Durata 3:00 h Salita 321 m Discesa 52 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-26T21:00:00.000Z"
+    },
+    "rendena-ciclabile-javre-dare-vigo-pelugo": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/giro-della-ciclabile-javre-dare-vigo-pelugo",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Giro della Ciclabile Javrè - Darè - Vigo - Pelugo",
+      "quote": "Distanza 7,2 km · Durata 2:30 h · Salita 79 m · Discesa 56 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "rendena-giro-del-belvedere-giustino": {
+      "url": "https://www.campigliodolomiti.it/it/itinerari/giro-del-belvedere",
+      "publisher": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+      "name": "Giro del Belvedere",
+      "quote": "Distanza 1,8 km · Durata 1:00 h · Salita 53 m · Discesa 53 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T01:00:00.000Z"
     },
     "santa-maddalena": {
       "url": "https://www.odlesdolomites.com/en/activities/48ACC63FE1421483734B750F6788CED9",
@@ -1146,6 +2154,454 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T20:14:56.229Z"
     },
+    "trecime-bagni-di-san-candido": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-a-tema-bagni-di-san-candido_630",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione a tema: Bagni di San Candido",
+      "quote": "Lunghezza 3,3 km · Durata 1:00 · Salita 145 m · Discesa 57 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-bellavista-montecosta": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-bellavista-montecosta_640",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione estiva: Bellavista Montecosta",
+      "quote": "Lunghezza 5,7 km · Durata 1:52 · Salita 360 m · Discesa 90 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-carbonin-rifugio-vallandro": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-carbonin-rifugio-vallandro_832",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione estiva: Carbonin - Rifugio Vallandro",
+      "quote": "Lunghezza 6,0 km · Durata 2:00 · Salita 579 m · Discesa 66 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-cimabanche-prato-piazza": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-cimabanche-prato-piazza_735",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione estiva: Cimabanche - Prato Piazza",
+      "quote": "Lunghezza 4,4 km · Durata 2:00 · Salita 494 m · Discesa 25 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-circolare-maistatt": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-circolare-maistatt-_50004",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione circolare Maistatt",
+      "quote": "Lunghezza 4,8 km · Durata 1:21 · Salita 133 m · Discesa 133 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-dobbiaco-lago-di-dobbiaco": {
+      "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-dobbiaco-lago-di-dobbiaco-percorso-naturalistico-attorno-al-lago-dobbiaco_553",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Sentiero tematico: Dobbiaco – Lago di Dobbiaco – percorso naturalistico attorno al lago - Dobbiaco",
+      "quote": "Lunghezza 7,9 km · Durata 2:30 · Salita 61 m · Discesa 61 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": {
+      "url": "https://www.dreizinnen.com/it/activity/passeggiata-con-il-passeggino-gasthof-panorama-rifugio-pendio-monte-elmo_7510",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Passeggiata con il passeggino: Gasthof Panorama – Rifugio Pendio Monte Elmo",
+      "quote": "Lunghezza 2,0 km · Durata 0:40 · Salita 60 m · Discesa 64 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-giro-delle-baite-lago-di-braies": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-giro-estivo-giro-delle-baite-lago-di-braies_73638",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "escursione/giro estivo - giro delle baite Lago di Braies",
+      "quote": "Lunghezza 7,5 km · Durata 4:30 · Salita 590 m · Discesa 590 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-haus-der-berge-rifugio-larice": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-haus-der-berge-rifugio-larice_14721",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione: Haus der Berge - Rifugio Larice",
+      "quote": "Lunghezza 8,0 km · Durata 3:05 · Salita 538 m · Discesa 539 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-helmjet-waldruhe-sexten": {
+      "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-stazione-a-monte-della-funivia-monte-elmo-baita-del-cacciatore-gasthof-waldruhe-sesto_50095",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Sentiero tematico:  stazione a monte della funivia Monte Elmo – Baita del Cacciatore – Gasthof Waldruhe - Sesto",
+      "quote": "Lunghezza 5,3 km · Durata 1:35 · Salita 7 m · Discesa 744 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-innichen-waldkapelle-sexten": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-cimitero-dei-soldati-burg-capella-del-bosco-sesto_560",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione: Cimitero dei soldati \"Burg\" - Capella del bosco - Sesto",
+      "quote": "Lunghezza 8,0 km · Durata 3:00 · Salita 400 m · Discesa 257 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-lago-di-braies-malga-foresta": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-lago-di-braies-malga-foresta-_651",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione estiva Lago di Braies - Malga Foresta",
+      "quote": "Lunghezza 2,1 km · Durata 1:00 · Salita 118 m · Discesa 18 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-lago-di-braies-malga-rossalm": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-lago-di-braies-malga-rossalm-_473",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione estiva - Lago di Braies - Malga Rossalm",
+      "quote": "Lunghezza 6,6 km · Durata 2:56 · Salita 846 m · Discesa 158 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-monte-casella-di-fuori": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-in-montagna-giro-per-il-monte-casella-di-fuori_701",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione in montagna: Giro per il Monte Casella di Fuori",
+      "quote": "Lunghezza 13,2 km · Durata 5:05 · Salita 832 m · Discesa 833 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-monte-elmo-da-moso": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-monte-elmo-_50062",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione: Monte Elmo",
+      "quote": "Lunghezza 10,2 km · Durata 5:05 · Salita 1.063 m · Discesa 1.063 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-monte-elmo-versciaco": {
+      "url": "https://www.dreizinnen.com/it/activity/sentiero-nel-bosco-fino-a-versciaco_68483",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Sentiero nel bosco fino a Versciaco",
+      "quote": "Lunghezza 7,9 km · Durata 2:45 · Salita 61 m · Discesa 911 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-rotwandwiesen-moos": {
+      "url": "https://www.dreizinnen.com/it/activity/passeggiata-nella-valle-di-sesto_68498",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Passeggiata nella Valle di Sesto",
+      "quote": "Lunghezza 4,8 km · Durata 2:10 · Salita 1 m · Discesa 570 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-san-candido-costa-dei-nosellari-dobbiaco": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-san-candido-costa-dei-nosellari-dobbiaco_628",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione: San Candido - Costa dei Nosellari - Dobbiaco",
+      "quote": "Lunghezza 4,8 km · Durata 1:50 · Salita 161 m · Discesa 109 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-sasso-di-sesto": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-in-montagna-sasso-di-sesto-_424",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione in montagna: Sasso di Sesto",
+      "quote": "Lunghezza 16,6 km · Durata 6:25 · Salita 1.071 m · Discesa 1.075 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-sentiero-gustav-mahler": {
+      "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-sentiero-gustav-mahler_50104",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Sentiero tematico: Sentiero Gustav Mahler",
+      "quote": "Lunghezza 4,7 km · Durata 2:00 · Salita 72 m · Discesa 72 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-sesto-alte-saege-val-campo-di-dentro": {
+      "url": "https://www.dreizinnen.com/it/activity/passeggiata-con-il-passeggino-sesto-alte-s-ge-val-campo-di-dentro_49959",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Passeggiata con il passeggino: Sesto - Alte Säge - Val Campo di Dentro",
+      "quote": "Lunghezza 19,7 km · Durata 5:20 · Salita 457 m · Discesa 457 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-sesto-cappella-del-bosco": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-da-sesto-alla-cappella-del-bosco-_49977",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione: Da Sesto alla Cappella del Bosco",
+      "quote": "Lunghezza 3,7 km · Durata 1:15 · Salita 209 m · Discesa 209 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-sesto-chiesa-gasthof-panorama": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-sesto-chiesa-parocchiale-gasthof-panorama-_412",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione: Sesto chiesa parocchiale – Gasthof Panorama",
+      "quote": "Lunghezza 6,0 km · Durata 2:00 · Salita 248 m · Discesa 250 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-sesto-san-candido": {
+      "url": "https://www.dreizinnen.com/it/activity/passeggiata-sesto-san-candido_724",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Passeggiata: Sesto - San Candido",
+      "quote": "Lunghezza 19,3 km · Durata 5:30 · Salita 462 m · Discesa 460 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-villabassa-lanaweg": {
+      "url": "https://www.dreizinnen.com/it/activity/escursione-circolare-villabassa-lanaweg_605",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Escursione circolare: Villabassa - Lanaweg",
+      "quote": "Lunghezza 5,3 km · Durata 1:37 · Salita 232 m · Discesa 232 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "trecime-villabassa-mooskirche": {
+      "url": "https://www.dreizinnen.com/it/activity/passeggiata-per-famiglie-villabassa-giro-del-bosco-mooskirche-villabassa_606",
+      "publisher": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+      "name": "Passeggiata per famiglie: Villabassa - giro del bosco \"Mooskirche\" - Villabassa",
+      "quote": "Lunghezza 2,5 km · Durata 0:38 · Salita 21 m · Discesa 21 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T00:00:00.000Z"
+    },
+    "valdisole-bivacco-malga-baselga": {
+      "url": "https://www.visitvaldisole.it/it/activity/bivaccomalgabaselga-37723",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Bivacco Malga Baselga",
+      "quote": "Lunghezza 6.9 km · Durata 4:30 h · Salita 740 m · Discesa 740 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "valdisole-fazzon-lago-dei-caprioli": {
+      "url": "https://www.visitvaldisole.it/it/activity/passeggiatadalrifugiofazzonallagodeicaprioli-10077",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Passeggiata dal Rifugio Fazzon al Lago dei Caprioli",
+      "quote": "Lunghezza 1.5 km · Durata 0:45 h · Salita 62 m · Discesa 62 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "valdisole-lago-dei-caprioli-malga-alta-di-fazzon": {
+      "url": "https://www.visitvaldisole.it/it/activity/lagodeicaprioli_malgaaltadifazzon-14247",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Lago dei Caprioli - Malga Alta di Fazzon",
+      "quote": "Lunghezza 3.1 km · Durata 1:15 h · Salita 237 m · Discesa 237 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "valdisole-marilleva-1400-malga-alta-di-fazzon": {
+      "url": "https://www.visitvaldisole.it/it/activity/marilleva1400_malgaaltadifazzon-37485",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Marilleva 1400 - Malga Alta di Fazzon",
+      "quote": "Lunghezza 4.4 km · Durata 2:00 h · Salita 211 m · Discesa 352 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "valdisole-monclassico-presson-meridiane": {
+      "url": "https://www.visitvaldisole.it/it/activity/monclassicoepresson_ipaesidellemeridiane-15354",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Monclassico e Presson - I paesi delle Meridiane",
+      "quote": "Lunghezza 1.7 km · Durata 1:00 h · Salita 39 m · Discesa 38 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T01:00:00.000Z"
+    },
+    "valdisole-ortise-malga-stabli": {
+      "url": "https://www.visitvaldisole.it/it/activity/ortis___malgastabli-27663",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Ortisé - Malga Stabli",
+      "quote": "Lunghezza 7.2 km · Durata 2:25 h · Salita 342 m · Discesa 342 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T01:00:00.000Z"
+    },
+    "valdisole-passo-tonale-forte-mero": {
+      "url": "https://www.visitvaldisole.it/it/activity/passotonale_fortemero-38225",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Passo Tonale - Forte Mero",
+      "quote": "Lunghezza 3.7 km · Durata 2:30 h · Salita 31 m · Discesa 154 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T01:00:00.000Z"
+    },
+    "valdisole-passo-tonale-forte-mero-forte-zaccarana": {
+      "url": "https://www.visitvaldisole.it/it/activity/passotonalefortemeroefortezaccarana-38242",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Passo Tonale Forte Mero e Forte Zaccarana",
+      "quote": "Lunghezza 9.1 km · Durata 3:30 h · Salita 250 m · Discesa 250 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T01:00:00.000Z"
+    },
+    "valdisole-rifugio-stavel-denza": {
+      "url": "https://www.visitvaldisole.it/it/activity/rifugiostavel__francescodenza__-10471",
+      "publisher": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+      "name": "Rifugio Stavel «Francesco Denza»",
+      "quote": "Lunghezza 7.3 km · Durata 4:00 h · Salita 594 m · Discesa 594 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-27T23:00:00.000Z"
+    },
+    "valgardena-arte-e-storia": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/arte-e-storia/16570787/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Arte e storia",
+      "quote": "Distanza 2,1 km · Salita 76 m · Durata 1:31 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-escursione-al-brogles": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-brogles/810055933/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione al Brogles",
+      "quote": "Distanza 4,9 km · Salita 126 m · Durata 1:22 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-escursione-al-resciesa": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-resciesa/16420468/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione al Resciesa",
+      "quote": "Distanza 5,0 km · Salita 197 m · Durata 1:29 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-escursione-al-seeurasas": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-seeurasas/811360645/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione al Sëurasas",
+      "quote": "Distanza 5,2 km · Salita 900 m · Durata 2:55 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-escursione-al-terrazzo-panoramico-seeurasas": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-terrazzo-panoramico-seeurasas/67905450/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione al terrazzo panoramico Sëurasas",
+      "quote": "Distanza 6,6 km · Salita 449 m · Durata 3:00 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "valgardena-escursione-da-s-cristina-al-passo-sella": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-da-s-cristina-al-passo-sella/810055923/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione da S. Cristina al Passo Sella",
+      "quote": "Distanza 8,4 km · Salita 800 m · Durata 3:24 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-dalla-cappella-santa-croce-al-brogles/800791260/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione dalla Cappella Santa Croce al Brogles",
+      "quote": "Distanza 13,0 km · Salita 422 m · Durata 3:48 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-escursione-nella-vallunga": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-nella-vallunga/810055896/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione nella Vallunga",
+      "quote": "Distanza 7,5 km · Salita 201 m · Durata 2:00 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "valgardena-escursione-ortisei-passo-sella": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-ortisei-passo-sella/65027101/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Escursione Ortisei - Passo Sella",
+      "quote": "Distanza 12,4 km · Salita 1101 m · Durata 4:28 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T20:00:00.000Z"
+    },
+    "valgardena-giro-della-via-crucis": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/giro-della-via-crucis/810054903/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Giro della Via Crucis",
+      "quote": "Distanza 3,3 km · Salita 138 m · Durata 1:00 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-giro-storico-del-paese-di-ortisei": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/giro-storico-del-paese-di-ortisei/810054788/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Giro storico del paese di Ortisei",
+      "quote": "Distanza 4,6 km · Salita 179 m · Durata 1:25 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-passeggiata-alla-chiesetta-di-san-giacomo": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/passeggiata-alla-chiesetta-di-san-giacomo/16570805/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Passeggiata alla chiesetta di San Giacomo",
+      "quote": "Distanza 6,0 km · Salita 330 m · Durata 2:00 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-passeggiata-da-ortisei-a-s-cristina": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/passeggiata-da-ortisei-a-s-cristina/16420476/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Passeggiata da Ortisei a S. Cristina",
+      "quote": "Distanza 7,2 km · Salita 147 m · Durata 1:57 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-percorso-dei-masi-tradizionali": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/percorso-dei-masi-tradizionali/64155465/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Percorso dei masi tradizionali",
+      "quote": "Distanza 7,4 km · Salita 450 m · Durata 2:25 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "valgardena-raida-dl-luech-giro-del-paese": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/raida-dl-luech-giro-del-paese/17086259/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "\"Raida dl luech\" - Giro del paese",
+      "quote": "Distanza 3,9 km · Salita 151 m · Durata 1:10 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "valgardena-seceda-da-col-raiser": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-col-raiser-stazione-a-monte/810055439/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a monte)",
+      "quote": "Distanza 3,5 km · Salita 423 m · Durata 1:35 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T20:00:00.000Z"
+    },
+    "valgardena-seceda-da-cristauta-pic": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-cristauta-seeurasas/810055443/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Seceda - Ridge Line da S. Cristina per Cristauta - Sëurasas",
+      "quote": "Distanza 6,3 km · Salita 861 m · Durata 3:04 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T22:00:00.000Z"
+    },
+    "valgardena-seceda-dal-rifugio-firenze": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-col-raiser-stazione-a-valle-rifugio-firenze/808744765/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a valle) - Rifugio Firenze",
+      "quote": "Distanza 7,9 km · Salita 983 m · Durata 3:25 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T20:00:00.000Z"
+    },
+    "valgardena-tour-alla-volta-del-lech-sant": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/tour-alla-volta-del-lech-sant/49659382/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Tour alla volta del Lech Sant",
+      "quote": "Distanza 7,7 km · Salita 349 m · Durata 2:40 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "valgardena-uciei-de-freeines": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/uciei-de-freeines-arte-che-invita-il-sentiero-dei-richiami-degli-uccelli/810055690/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Uciei de Frëines: Arte che invita – Il sentiero dei richiami degli uccelli",
+      "quote": "Distanza 5,1 km · Salita 3 m · Durata 1:35 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
+    "valgardena-val-danna-percorso-kneipp": {
+      "url": "https://www.valgardena.it/it/outdoor/base/outdoor/val-danna-percorso-kneipp/810054401/",
+      "publisher": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+      "name": "Val d'Anna - percorso Kneipp",
+      "quote": "Distanza 1,2 km · Salita 98 m · Durata 0:27 ore",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T16:00:00.000Z"
+    },
     "valley-view": {
       "url": "https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoi4d53fc3760a30cad25696849c7669dd5.sonnseitenweg-panoramaweg.st--peter---villnoess",
       "publisher": "Tourismusgenossenschaft Odles, via Südtirol.info (IDM Südtirol)",
@@ -1153,6 +2609,358 @@
       "quote": "Vom Bühlerhof läuft man leicht ansteigend bis zum Beginn des Panoramaweges (1389 m), der mit Berg-Symbolen markiert ist. Der Panoramaweg verläuft relativ eben bis zur Wegkreuzung mit Weg Nr. 11.",
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T19:40:50.460Z"
+    },
+    "osttirol-spazierweg-kreuzweg": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/spazierweg-kreuzweg",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Spazierweg “Kreuzweg”",
+      "quote": "Streckenlänge 3 km · Höhenmeter Bergauf 130 hm · Bergab 130 hm · Gehzeit Gesamt 1 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-spazierweg-nikolauskirche": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/spazierweg-nikolauskirche",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Spazierweg “Nikolauskirche”",
+      "quote": "Streckenlänge 5.7 km · Höhenmeter Bergauf 140 hm · Bergab 140 hm · Gehzeit Gesamt 1:45 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-weg-der-sinne-virgen": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/weg-der-sinne-virgen",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Weg der Sinne Virgen",
+      "quote": "Streckenlänge 3.6 km · Höhenmeter Bergauf 149 hm · Bergab 149 hm · Gehzeit Gesamt 1:30 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-themenweg-kreuzweg-virgen": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/themenweg-kreuzweg-virgen",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Themenweg “Kreuzweg Virgen”",
+      "quote": "Streckenlänge 3.15 km · Höhenmeter Bergauf 104 hm · Bergab 104 hm · Gehzeit Gesamt 1 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-kinder-naturerlebnispfad-kals-ag": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/kinder-naturerlebnispfad-kals-ag",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Kinder-Naturerlebnispfad Kals a.G.",
+      "quote": "Streckenlänge 4.36 km · Höhenmeter Bergauf 130 hm · Bergab 123 hm · Gehzeit Gesamt 2 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "osttirol-wassererlebnisweg-st-jakob-i-d": {
+      "url": "https://www.osttirol.com/aktiv-outdoor/wandern/detail/wassererlebnisweg-st-jakob-i-d",
+      "publisher": "Osttirol tourist board (osttirol.com, TVB Osttirol)",
+      "name": "Wassererlebnisweg St. Jakob i. D.",
+      "quote": "Streckenlänge 8.7 km · Höhenmeter Bergauf 41 hm · Bergab 40 hm · Gehzeit Gesamt 2:30 h",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "fvg-lago-di-sella-sompdogna": {
+      "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/il-laghetto-di-sella-sompdogna/806020923/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Il laghetto di sella Sompdogna",
+      "quote": "Distanza 2,2 km · Durata 0:50 h · Salita 123 m · Discesa 123 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-sappada-rifugio-calvi": {
+      "url": "https://www.outdooractive.com/it/route/escursione/sappada/24-rifugio-calvi-sappada/13988147/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Rifugio Calvi",
+      "quote": "Distanza 4 km · Durata 1:40 h · Salita 333 m · Discesa 333 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-salita-casera-canin": {
+      "url": "https://www.outdooractive.com/it/route/escursione/parco-naturale-delle-prealpi-giulie/salita-a-casera-canin-balcone-panoramico-sulla-val-resia/810597009/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Salita a Casera Canin: balcone panoramico sulla val Resia",
+      "quote": "Distanza 7,9 km · Durata 3:00 h · Salita 401 m · Discesa 401 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-anello-malga-confin-ungarina": {
+      "url": "https://www.outdooractive.com/it/route/escursione/parco-naturale-delle-prealpi-giulie/l-anello-di-malga-confin-e-malga-ungarina/810695476/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "L'anello di malga Confin e malga Ungarina",
+      "quote": "Distanza 4,7 km · Durata 2:10 h · Salita 401 m · Discesa 401 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-monte-talm-da-piani-di-vas": {
+      "url": "https://www.outdooractive.com/it/route/escursione/carnia/monte-talm-dai-piani-di-vas/805502320/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Monte Talm dai Piani di Vas",
+      "quote": "Distanza 10,6 km · Durata 4:10 h · Salita 744 m · Discesa 744 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-anello-casera-vas-monte-buoi": {
+      "url": "https://www.outdooractive.com/it/route/escursione/forni-avoltri/anello-casera-vas-casera-monte-buoi/809390935/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Anello Casera Vas - Casera Monte Buoi",
+      "quote": "Distanza 11,1 km · Durata 3:55 h · Salita 659 m · Discesa 659 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-monte-rest-da-passo-rest": {
+      "url": "https://www.outdooractive.com/it/route/escursione/tramonti-di-sopra/dal-passo-rest-al-monte-rest-itinerario-panoramico/805023851/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "Dal Passo Rest al Monte Rest",
+      "quote": "Distanza 7,6 km · Durata 3:50 h · Salita 737 m · Discesa 739 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "fvg-mirabila-sentiero-botanico-bila-pec": {
+      "url": "https://www.outdooractive.com/it/route/escursione/parco-naturale-delle-prealpi-giulie/mirabila-sentiero-botanico-del-bila-pec/805328025/",
+      "publisher": "PromoTurismoFVG (turismofvg.it, its verified Outdooractive account)",
+      "name": "MIRABILA - Sentiero botanico del Bila Pec",
+      "quote": "Distanza 2 km · Durata 2:00 h · Salita 206 m · Discesa 206 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T12:00:00.000Z"
+    },
+    "lesachtal-spazierweg-maria-luggau-gailweg": {
+      "url": "https://www.nassfeld.at/de/Tour/Spazierweg-Maria-Luggau-Gailweg_t_27590",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Spazierweg Maria Luggau – Gailweg",
+      "quote": "1.6 km Strecke · 0.5 h Dauer · 76 hm Aufstieg · 76 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "lesachtal-tuffbad": {
+      "url": "https://www.nassfeld.at/de/Tour/Wander-und-Spazierweg-Tuffbad_t_27597",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Wander- und Spazierweg Tuffbad",
+      "quote": "3 km Strecke · 0.9 h Dauer · 133 hm Aufstieg · 136 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "gailtal-almkaese-sonnenalpe": {
+      "url": "https://www.nassfeld.at/de/Tour/Slow-Food-Gailtaler-Almkaese-ab-Sonnenalpe_t_54897",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Slow Food | Gailtaler Almkäse ab Sonnenalpe",
+      "quote": "8.7 km Strecke · 2.5 h Dauer · 295 hm Aufstieg · 300 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-nordic-6-rothns-bichl": {
+      "url": "https://www.nassfeld.at/de/Tour/Trail-6-Rothn-s-Bichl-Nordic-Walking_t_27586",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Trail 6 „Rothn’s Bichl“ – Nordic Walking",
+      "quote": "5.9 km Strecke · 1.3 h Dauer · 89 hm Aufstieg · 89 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-nordic-5-genoesns-bruendl": {
+      "url": "https://www.nassfeld.at/de/Tour/Trail-5-Genoesn-s-Bruendl-Nordic-Walking_t_27618",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Trail 5 „Genösn’s Bründl“ – Nordic Walking",
+      "quote": "3.5 km Strecke · 0.8 h Dauer · 88 hm Aufstieg · 88 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-nordic-7-franz-josephs-hoehe": {
+      "url": "https://www.nassfeld.at/de/Tour/Trail-7-Franz-Josephs-Hoehe-Nordic-Walking_t_27879",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Trail 7 „Franz-Josephs-Höhe“ – Nordic Walking",
+      "quote": "9 km Strecke · 2.1 h Dauer · 162 hm Aufstieg · 162 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-nordic-2-urschitz": {
+      "url": "https://www.nassfeld.at/de/Tour/Trail-2-Urschitz-Nordic-Walking_t_35319",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Trail 2 „Urschitz“ – Nordic Walking",
+      "quote": "7.3 km Strecke · 1.8 h Dauer · 129 hm Aufstieg · 129 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-nordic-8-naggler-alm": {
+      "url": "https://www.nassfeld.at/de/Tour/Trail-8-Naggler-Alm-Alpine-Walking_t_35330",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Trail 8 „Naggler Alm – Alpine Walking“",
+      "quote": "3.1 km Strecke · 1.1 h Dauer · 385 hm Aufstieg · 0 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-techendorf-tschabitscher-kreuzwirt": {
+      "url": "https://www.nassfeld.at/de/Tour/Techendorf-Tschabitscher-Kreuzwirt_t_65527",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Techendorf-Tschabitscher-Kreuzwirt",
+      "quote": "6.5 km Strecke · 2 h Dauer · 177 hm Aufstieg · 145 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-slow-trail": {
+      "url": "https://www.nassfeld.at/de/Tour/Slow-Trail-Weissensee_t_35042",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Slow Trail Weissensee",
+      "quote": "6.7 km Strecke · 2.5 h Dauer · 72 hm Aufstieg · 73 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-ortsee-ronacherfels": {
+      "url": "https://www.nassfeld.at/de/Tour/Ortsee-ueber-Ronacherfels-und-Kleine-Steinwand-Weissensee_t_35049",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Ortsee über Ronacherfels und Kleine Steinwand – Weissensee",
+      "quote": "8.5 km Strecke · 2.8 h Dauer · 69 hm Aufstieg · 76 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "weissensee-wasserleben": {
+      "url": "https://www.nassfeld.at/de/Tour/Was-s-erleben-im-Naturpark-Weissensee_t_35075",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Was(s)erleben im Naturpark Weißensee",
+      "quote": "2.3 km Strecke · 2.5 h Dauer · 37 hm Aufstieg · 37 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "gailtal-auernig-hoehenweg": {
+      "url": "https://www.nassfeld.at/de/Tour/Auernig-Hoehenweg-Auernig-1825-m-Garnitzenberg-1950-m-Gugga-1928-m_t_28071",
+      "publisher": "NLW Tourismus Marketing GmbH (nassfeld.at: Nassfeld-Pressegger See, Lesachtal, Weissensee)",
+      "name": "Auernig Höhenweg – Auernig (1825 m) – Garnitzenberg (1950 m) – Gugga (1928 m)",
+      "quote": "5.6 km Strecke · 3 h Dauer · 441 hm Aufstieg · 441 hm Abstieg",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T09:00:00.000Z"
+    },
+    "kronplatz-passeggiata-valdaora-monguelfo": {
+      "url": "https://www.outdooractive.com/it/r/810055571",
+      "publisher": "Olang tourist board (Tourismusverein Olang) (Outdooractive, suedtirol.info)",
+      "name": "Passeggiata Valdaora - Monguelfo",
+      "quote": "Distanza 6,1 km · Durata 1:30 h · Salita 34 m · Discesa 30 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T18:00:00.000Z"
+    },
+    "kronplatz-sentiero-tematico-tru-dles-liondes": {
+      "url": "https://www.outdooractive.com/it/r/16419100",
+      "publisher": "San Vigilio Dolomites tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero tematico: Tru dles Liondes",
+      "quote": "Distanza 2,8 km · Durata 0:45 h · Salita 60 m · Discesa 60 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T18:00:00.000Z"
+    },
+    "kronplatz-passeggiata-san-vigilio-le-dla-creda": {
+      "url": "https://www.outdooractive.com/it/r/16570262",
+      "publisher": "San Vigilio Dolomites tourist board (Outdooractive, suedtirol.info)",
+      "name": "Passeggiata: San Vigilio - Lé dla Creda",
+      "quote": "Distanza 3,5 km · Durata 0:58 h · Salita 86 m · Discesa 17 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T18:00:00.000Z"
+    },
+    "kronplatz-attraverso-il-sentiero-panoramico-a-brunico": {
+      "url": "https://www.outdooractive.com/it/r/810055675",
+      "publisher": "Olang tourist board (Tourismusverein Olang) (Outdooractive, suedtirol.info)",
+      "name": "Attraverso il Sentiero Panoramico a Brunico",
+      "quote": "Distanza 8,6 km · Durata 2:20 h · Salita 45 m · Discesa 231 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T18:00:00.000Z"
+    },
+    "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina": {
+      "url": "https://www.outdooractive.com/it/r/810055911",
+      "publisher": "San Vigilio Dolomites tourist board (Outdooractive, suedtirol.info)",
+      "name": "Escursione da Antermoia attraverso Colac - Val a Rina",
+      "quote": "Distanza 5,5 km · Durata 1:37 h · Salita 143 m · Discesa 222 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-28T18:00:00.000Z"
+    },
+    "kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe": {
+      "url": "https://www.outdooractive.com/it/r/800341743",
+      "publisher": "San Vigilio Dolomites tourist board (Outdooractive, suedtirol.info)",
+      "name": "Passeggiata senza barriere: Brach - Pieve di Marebbe",
+      "quote": "Distanza 0,9 km · Durata 0:30 h · Salita 5 m · Discesa 31 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "kronplatz-valdaora-di-sopra-goste": {
+      "url": "https://www.outdooractive.com/it/r/807440421",
+      "publisher": "Olang tourist board (Tourismusverein Olang) (Outdooractive, suedtirol.info)",
+      "name": "Valdaora di Sopra - Goste",
+      "quote": "Distanza 2,5 km · Durata 0:45 h · Salita 106 m · Discesa 80 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": {
+      "url": "https://www.outdooractive.com/it/r/27623622",
+      "publisher": "Bruneck Kronplatz Tourismus (Outdooractive, suedtirol.info)",
+      "name": "Sentiero della roggia a Gais (Sentieri degli elementi)",
+      "quote": "Distanza 5,3 km · Durata 2:00 h · Salita 140 m · Discesa 140 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "kronplatz-san-lorenzo-maria-sares": {
+      "url": "https://www.outdooractive.com/it/r/35857532",
+      "publisher": "Bruneck Kronplatz Tourismus (Outdooractive, suedtirol.info)",
+      "name": "San Lorenzo – Maria Sares",
+      "quote": "Distanza 4,9 km · Durata 1:00 h · Salita 170 m · Discesa 6 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": {
+      "url": "https://www.outdooractive.com/it/r/807440420",
+      "publisher": "Olang tourist board (Tourismusverein Olang) (Outdooractive, suedtirol.info)",
+      "name": "Valdaora di Sotto - Casola - Bagni di Pervalle",
+      "quote": "Distanza 4,9 km · Durata 1:37 h · Salita 318 m · Discesa 25 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "kronplatz-passeggiata-leggendaria-sul-kienberg": {
+      "url": "https://www.outdooractive.com/it/r/16570385",
+      "publisher": "Kiens tourist board (Tourismusverein Kiens) (Outdooractive, suedtirol.info)",
+      "name": "Passeggiata leggendaria sul Kienberg",
+      "quote": "Distanza 11,8 km · Durata 3:28 h · Salita 417 m · Discesa 417 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "eggental-dal-passo-costalunga-al-lago-di-carezza": {
+      "url": "https://www.outdooractive.com/it/r/810055748",
+      "publisher": "Eggental tourist board (Eggental Tourismus) (Outdooractive, suedtirol.info)",
+      "name": "Dal Passo Costalunga al Lago di Carezza",
+      "quote": "Distanza 4,4 km · Durata 1:05 h · Salita 18 m · Discesa 225 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": {
+      "url": "https://www.outdooractive.com/it/r/810054675",
+      "publisher": "Eggental tourist board (Eggental Tourismus) (Outdooractive, suedtirol.info)",
+      "name": "Escursione per famiglie dal Lago di Carezza alla malga Stadl Alm",
+      "quote": "Distanza 4,2 km · Durata 1:05 h · Salita 32 m · Discesa 83 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": {
+      "url": "https://www.outdooractive.com/it/r/810054454",
+      "publisher": "Ortisei tourist board (DOLOMITES Val Gardena) (Outdooractive, suedtirol.info)",
+      "name": "Escursione senza barriere all’Alpe di Siusi",
+      "quote": "Distanza 1,4 km · Durata 0:21 h · Salita 0 m · Discesa 138 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": {
+      "url": "https://www.outdooractive.com/it/r/810055751",
+      "publisher": "Tiers am Rosengarten tourist board (Seiser Alm Marketing) (Outdooractive, suedtirol.info)",
+      "name": "Dal Passo Nigra al Maso Jocher e attraverso la Forcella del Lupo a Tires",
+      "quote": "Distanza 13,7 km · Durata 4:08 h · Salita 431 m · Discesa 856 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": {
+      "url": "https://www.outdooractive.com/it/r/16570256",
+      "publisher": "Völs am Schlern tourist board (Seiser Alm Marketing) (Outdooractive, suedtirol.info)",
+      "name": "Escursione da Umes alla Malga Hofer e a Malga Tuff",
+      "quote": "Distanza 8,3 km · Durata 3:00 h · Salita 476 m · Discesa 476 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": {
+      "url": "https://www.outdooractive.com/it/r/62653103",
+      "publisher": "Kastelruth tourist board (Seiser Alm Marketing) (Outdooractive, suedtirol.info)",
+      "name": "Alla volta della trappola d’orso a S. Michele",
+      "quote": "Distanza 14 km · Durata 4:12 h · Salita 567 m · Discesa 567 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
     }
   }
 }

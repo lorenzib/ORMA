@@ -70,16 +70,22 @@ function initHikeMode(map, trail, options){
   // the stated distance. Scaling position by the full distance put the walker
   // at the finish the moment they reached the turnaround -- 5.5 km at Rifugio
   // Nuvolau, with the whole descent still to come.
-  const outAndBack = trail.routeShape === 'out-and-back';
+  const closes = metersBetween(
+    trail.path[0][0], trail.path[0][1],
+    trail.path[trail.path.length - 1][0], trail.path[trail.path.length - 1][1]
+  ) <= 75;
+  // Only a there-and-back drawn one way is one leg. A board walk drawn out and
+  // back again (the Tre Cime board's, and any built with --there-and-back)
+  // closes on itself and is already the whole walk; halving it put the walker
+  // at the far end with half the way out still to go.
+  const outAndBack = trail.routeShape === 'out-and-back' && !closes;
   // Declared shape wins over guessing from the ends. A there-and-back whose
   // line is later completed closes on itself, and closure alone would then
   // read it as a loop and switch off the next-water and next-hut readouts.
+  // A lollipop closes too, but its stem is walked twice: not a loop either.
   const isLoop = trail.routeShape
     ? trail.routeShape === 'loop'
-    : metersBetween(
-      trail.path[0][0], trail.path[0][1],
-      trail.path[trail.path.length - 1][0], trail.path[trail.path.length - 1][1]
-    ) <= 75;
+    : closes;
   // How far out the walk has reached, so the return leg can be told from the
   // outbound one. Both are the same line in the same direction of travel.
   let furthestRouteM = 0;
@@ -937,6 +943,8 @@ function initHikeMode(map, trail, options){
     const matchPct = scoreEl ? parseInt(scoreEl.textContent, 10) : NaN;
 
     const photos = [];       // { file, url }
+    // As many as a journal walk keeps (JOURNAL-03).
+    const maxPhotos = window.DoloPawsJournalPhotos ? window.DoloPawsJournalPhotos.MAX_PHOTOS : 4;
     let cond = 'Comfortable';
     let shareOn = true;
     let outcomeResponse = '';
@@ -1046,6 +1054,7 @@ function initHikeMode(map, trail, options){
             <button type="button" class="hk-danger" id="hkDiscardConfirmBtn">${esc(window.t('hike.discard'))}</button>
           </div>
         </div>
+        <p class="hk-saved-note" id="hkSavedNote" role="status" hidden>✓ ${esc(window.t('hike.savedAuto'))}</p>
         <div class="hk-actions" id="hkActions">
           <button type="button" class="hk-ghost" id="hkDiscardBtn">${esc(window.t('hike.discard'))}</button>
           <button type="button" class="hk-save" id="hkSaveBtn">${esc(window.t('hike.saveJournal'))}</button>
@@ -1200,7 +1209,7 @@ function initHikeMode(map, trail, options){
         cell.appendChild(rm);
         grid.appendChild(cell);
       });
-      if (photos.length < 4){
+      if (photos.length < maxPhotos){
         const add = document.createElement('button');
         add.type = 'button';
         add.className = 'hk-add';
@@ -1213,7 +1222,7 @@ function initHikeMode(map, trail, options){
     }
 
     q('#hkPhotoInput').addEventListener('change', (e) => {
-      Array.from(e.target.files || []).slice(0, 4 - photos.length).forEach(file => {
+      Array.from(e.target.files || []).slice(0, maxPhotos - photos.length).forEach(file => {
         if (!/^image\//.test(file.type)) return;
         photos.push({ file, url: URL.createObjectURL(file) });
       });
@@ -1246,6 +1255,8 @@ function initHikeMode(map, trail, options){
       q('#hkDiscardBtn').focus();
     });
     q('#hkDiscardConfirmBtn').addEventListener('click', () => {
+      // Discarding takes back the walk that was saved when it ended.
+      if(savedEntryId) removeJournalEntry(savedEntryId);
       if(window.DoloPawsHikeCompletions){
         window.DoloPawsHikeCompletions.markFollowUp(
           completion.completionId,
@@ -1264,14 +1275,57 @@ function initHikeMode(map, trail, options){
         window.location.href = `journal.html?trail=${encodeURIComponent(trail.id)}&duration=${elapsedMinutes}&completion=${encodeURIComponent(completion.completionId)}&from=${encodeURIComponent(returnToTrail)}`;
         return;
       }
-      const journalStore = window.DoloPawsJournalStore;
-      const savedAt = Date.now();
-      const entry = {
+      // Already saved when the walk ended; Done keeps what was chosen here
+      // since (how it felt, the photos, sharing them) and opens the journal
+      // on this walk, which asks for a photo and who came along.
+      const id = savedEntryId || saveWalkNow(user);
+      const saveBtn = q('#hkSaveBtn');
+      saveBtn.disabled = true;
+      // The photos picked here go into this browser's photo store under the
+      // walk; the journal sends them to the account. Only the ones kept are
+      // listed, so a photo that could not be read is not promised.
+      keepPhotos(user, id).then(photoIds => {
+        if(id){
+          const entry = buildJournalEntry(id, Date.now());
+          if(photoIds.length) entry.photoIds = photoIds;
+          entry.photos = photoIds.length;
+          entry.shareToTrail = photoIds.length > 0 && shareOn;
+          writeJournalEntry(user, entry);
+        }
+        closeOverlay();
+        window.location.href = id ? `journal.html?saved=${encodeURIComponent(id)}` : 'journal.html';
+      });
+    });
+
+    function keepPhotos(user, entryId){
+      const journalPhotos = window.DoloPawsJournalPhotos;
+      if(!journalPhotos || !entryId || !photos.length) return Promise.resolve([]);
+      const store = journalPhotos.createLocalStore();
+      const kept = [];
+      // One at a time: full-size phone photos are heavy to decode together.
+      return photos.slice(0, maxPhotos).reduce((chain, photo) => chain.then(() =>
+        journalPhotos.downscale(photo.file).then(blob => {
+          if(!blob) return;
+          const photoId = journalPhotos.newPhotoId(Date.now());
+          return store.add(user.uid, entryId, photoId, blob).then(() => { kept.push(photoId); });
+        }).catch(() => {})
+      ), Promise.resolve()).then(() => kept);
+    }
+
+    // ---- Saved the moment the walk ends ----------------------------------
+    // A walk used to reach the journal only if "Save to journal" was pressed
+    // on this screen; closing the tab lost it. Now a signed-in walk is written
+    // as soon as this screen opens, and Discard is what takes it back.
+    let savedEntryId = null;
+    const startedAt = new Date().toISOString();
+    function journalKey(user){ return `dolopaws-journal-${user.uid}`; }
+    function buildJournalEntry(id, savedAt){
+      return {
         // A unique id per walk: journal entries now sync to the account, where
         // two devices sharing an id would mean one walk overwriting the other.
-        id: journalStore ? journalStore.newId(savedAt) : ('w' + savedAt),
+        id,
         updatedAt: savedAt,
-        date: new Date().toISOString(),
+        date: startedAt,
         trailId: trail.id,
         trail: trail.name,
         region: trail.valley || trail.area || '',
@@ -1283,24 +1337,49 @@ function initHikeMode(map, trail, options){
         photos: photos.length,
         shareToTrail: photos.length > 0 && shareOn,
       };
-      let saved = false;
+    }
+    function writeJournalEntry(user, entry){
       try {
-        const key = `dolopaws-journal-${user.uid}`;
-        const entries = JSON.parse(localStorage.getItem(key) || '[]');
-        entries.unshift(entry);
+        const key = journalKey(user);
+        const entries = JSON.parse(localStorage.getItem(key) || '[]')
+          .filter(item => item && item.id !== entry.id);
+        const previous = JSON.parse(localStorage.getItem(key) || '[]').find(item => item && item.id === entry.id);
+        // Keep anything the journal added since (a photo, who came along).
+        entries.unshift(previous ? { ...previous, ...entry } : entry);
         entries.sort((a, b) => new Date(b.date) - new Date(a.date));
         localStorage.setItem(key, JSON.stringify(entries));
-        saved = true;
-      } catch (e) { /* storage full/blocked, still leave the page gracefully */ }
-      if(saved && window.DoloPawsHikeCompletions){
-        window.DoloPawsHikeCompletions.markFollowUp(
-          completion.completionId,
-          'journal-saved'
-        );
+        return true;
+      } catch (e) { return false; /* storage full/blocked */ }
+    }
+    function removeJournalEntry(id){
+      const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+      if(!user) return;
+      try {
+        const key = journalKey(user);
+        const entries = JSON.parse(localStorage.getItem(key) || '[]').filter(item => item && item.id !== id);
+        localStorage.setItem(key, JSON.stringify(entries));
+      } catch (e) { /* nothing to take back */ }
+    }
+    function saveWalkNow(user){
+      const journalStore = window.DoloPawsJournalStore;
+      const savedAt = Date.now();
+      const id = journalStore ? journalStore.newId(savedAt) : ('w' + savedAt);
+      if(!writeJournalEntry(user, buildJournalEntry(id, savedAt))) return null;
+      if(window.DoloPawsHikeCompletions){
+        window.DoloPawsHikeCompletions.markFollowUp(completion.completionId, 'journal-saved');
       }
-      closeOverlay();
-      window.location.href = 'journal.html';
-    });
+      return id;
+    }
+    {
+      const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+      if(user){
+        savedEntryId = saveWalkNow(user);
+        if(savedEntryId){
+          q('#hkSavedNote').hidden = false;
+          q('#hkSaveBtn').textContent = window.t('hike.done');
+        }
+      }
+    }
 
     renderCond();
     renderPhotos();

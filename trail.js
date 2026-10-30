@@ -31,7 +31,7 @@ function applyDetailRouteColor(color){
   window._dolopawsTrailRouteColor = color;
   const map = window._dolopawsTrailMap;
   if(!map || !map.isStyleLoaded || !map.isStyleLoaded()) return;
-  if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', color);
+  if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', window.ORMAMapStyle.paleColour(color));
   if(map.getLayer('single-trail-direction-arrows')) map.setPaintProperty('single-trail-direction-arrows', 'text-halo-color', color);
 }
 
@@ -44,109 +44,11 @@ function trailProductBadge(type, label){
   if(window.DoloPawsIcons) return window.DoloPawsIcons.badgeHtml(type, label);
   return `<span class="dp-badge dp-badge--${type}"><span>${label}</span></span>`;
 }
-function trailProductIcon(type, size = 16){
-  return window.DoloPawsIcons ? window.DoloPawsIcons.renderIconSvg(type, { mode:'inline', color:'currentColor', size }) : '';
-}
-function withoutLeadingSymbol(label){
-  return String(label || '').replace(/^[^\p{L}\p{N}]+/u, '');
-}
 function trustedWaterLabel(trail, label){
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.waterPointLabel(trail, label) : label;
 }
 function trustedStartLabel(trail, label){
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.startPointLabel(trail, label) : label;
-}
-
-// ---- On this route --------------------------------------------------------
-// Only what has been checked: operational facts (rifugi dog policy, lift
-// muzzle rules) from the route_operational_fact table, and water points on a
-// trail whose water has been reviewed. The table is filled by the editorial
-// process; until it holds a fact for this trail there is nothing to list, and
-// the card stays hidden rather than naming places nobody has checked.
-function renderOnThisRoute(t, table){
-  const api = window.DoloPawsOperationalFacts;
-  if(!api) return '';
-  const rows = api.rowsFor(t, table);
-  if(!rows.length) return '';
-
-  const items = rows.map(row => {
-    const where = row.km !== null ? `Km ${row.km}, ` : '';
-    const kind = api.ENTITY_LABEL[row.entityType] || '';
-    // No verified fact means no policy line at all. Never a guess, never blank.
-    const policy = row.policyLabel
-      ? `<span class="td2-onroute-policy">${escapeLiftPopupText(row.policyLabel)}</span>`
-      : '';
-    const notes = row.notes ? `<span class="td2-onroute-note">${escapeLiftPopupText(row.notes)}</span>` : '';
-    const stamp = `<span class="td2-onroute-stamp is-${escapeLiftPopupText(row.state)}">${escapeLiftPopupText(row.label)}</span>`;
-    return `<li><span class="td2-onroute-name">${escapeLiftPopupText(where)}${escapeLiftPopupText(row.entityName)}</span>` +
-      `<span class="td2-onroute-kind">${escapeLiftPopupText(kind)}</span>${policy}${notes}${stamp}</li>`;
-  }).join('');
-
-  // No heading of its own: #td2OnRouteCard supplies "On this route" above it,
-  // and a card that states its own title twice is the repetition this page
-  // was just cleared of.
-  return `
-    <div style="margin-bottom:14px;" id="td2OnRoute">
-      <ul class="td2-onroute">${items}</ul>
-    </div>`;
-}
-
-// The table is small and rarely changes, so it is fetched once per page and
-// the card is painted again if a checked fact applies to this trail. A failed
-// fetch leaves the card as it was.
-function hydrateOnThisRoute(t){
-  const api = window.DoloPawsOperationalFacts;
-  if(!api) return;
-  const prefix = location.pathname.includes('/trails/') ? '../' : '';
-  fetch(`${prefix}data/route-operational-facts.json`, { cache:'no-store' })
-    .then(response => response.ok ? response.json() : null)
-    .then(table => {
-      if(!table || !api.rowsFor(t, table).length) return;
-      paintOnRouteCard(t, table);
-    })
-    .catch(() => {});
-}
-
-// The body of the "On this route" card: the checked places on the walk, then
-// the water on it.
-//
-// Water is listed only where it has been reviewed. An unreviewed point carries
-// ", availability can change", which is the same "nobody has checked" the
-// places used to say, and the dog-safety column already tells the reader to
-// bring their own water in that case.
-function renderTrailDetailContent(t, table){
-  const reviewed = window.DoloPawsTrailTrust
-    && window.DoloPawsTrailTrust.categoryVerified(t, 'water');
-  const water = reviewed && Array.isArray(t.waterSources) ? t.waterSources : [];
-  const places = renderOnThisRoute(t, table || null);
-
-  // Water reads in the same list as the places above it.
-  const waterHtml = water.length > 0
-    ? `<div style="margin-bottom:4px;">
-      <div class="dp-inline-status" style="font-weight:700;color:var(--ink);margin-bottom:4px;">${trailProductIcon('water')}<span>${withoutLeadingSymbol(window.t('trail.waterHead'))}</span></div>
-      <ul class="td2-onroute">${water.map(w =>
-        `<li><span class="td2-onroute-name">Km ${w.km}, ${trustedWaterLabel(t, w.label)}</span></li>`).join('')}</ul>`
-      + '</div>'
-    : '';
-
-  return `${places}${waterHtml}`;
-}
-
-// Writes the card and reveals it only when the route has something checked to
-// name. Falls back to the retired hidden node for a visitor whose browser
-// still has the previous trail.html, which has no card to write into.
-function paintOnRouteCard(t, table){
-  const body = document.getElementById('td2OnRouteBody');
-  const card = document.getElementById('td2OnRouteCard');
-  const markup = renderTrailDetailContent(t, table);
-  if(!table) setTimeout(() => hydrateOnThisRoute(t), 0);
-  if(!body || !card){
-    const legacy = document.getElementById('trailDetailContent');
-    if(legacy) legacy.innerHTML = markup;
-    return;
-  }
-  body.innerHTML = markup;
-  card.hidden = !markup;
 }
 
 function distMeters(a, b){
@@ -929,6 +831,27 @@ function makeIconEl(iconKey, bgColor){
   return fallback;
 }
 
+// The terrain's height under the middle of the map, or null before its
+// tiles have loaded (the terrain answers 0 until then).
+function groundElevation(map){
+  if(typeof map.queryTerrainElevation !== 'function') return null;
+  const height = map.queryTerrainElevation(map.getCenter());
+  return Number.isFinite(height) && height > 0 ? height : null;
+}
+
+// Calls back with the ground's height once the terrain knows it, or with
+// null after a second and a half, so a slow connection still gets its 3D.
+function whenGroundKnown(map, done, tries = 30){
+  const check = () => {
+    const height = groundElevation(map);
+    tries -= 1;
+    if(height !== null || tries <= 0) done(height);
+    else setTimeout(check, 50);
+  };
+  // Never synchronously: the caller finishes switching 3D on first.
+  setTimeout(check, 0);
+}
+
 function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
   // With `existingBtn`, the toggle joins the Map · Satellite · 3D group.
   let btn = existingBtn || null;
@@ -955,9 +878,7 @@ function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
       };
       map.setTerrain({ source: 'terrain-dem-3d', exaggeration });
       if(!map.getLayer('hillshade-layer')){
-        const beforeLayer = map.getLayer('waymarked-hiking-layer')
-          ? 'waymarked-hiking-layer'
-          : (map.getStyle().layers.find(layer => layer.type === 'symbol') || {}).id;
+        const beforeLayer = window.ORMAMapStyle.networkLayerId(map);
         map.addLayer({
           id: 'hillshade-layer',
           type: 'hillshade',
@@ -973,7 +894,17 @@ function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
       }
       // At close trail-detail zooms the camera can sit below a 2,000–3,000 m
       // terrain surface, blanking the map. Pull back to a safe planning zoom.
-      map.easeTo({ pitch: pitch3D, zoom: Math.min(currentZoom, 12.25), duration: 500 });
+      //
+      // And aim at the ground, not at sea level. The flat map's camera points at
+      // elevation 0, and tilted 45° a walk 2,000 m up then sits above the top
+      // of the view. An eased move drops `elevation`, so the camera is lifted
+      // with a jump while the map is still flat, where it does not show, and
+      // only then tilted. The terrain answers a moment after setTerrain.
+      whenGroundKnown(map, height => {
+        if(!elevationVisible) return;
+        if(height !== null) map.jumpTo({ elevation: height });
+        map.easeTo({ pitch: pitch3D, zoom: Math.min(currentZoom, 12.25), duration: 500 });
+      });
       if(existingBtn){ btn.classList.add('on'); btn.setAttribute('aria-pressed', 'true'); }
       else btn.textContent = window.t('trail.viewFlat');
     } else {
@@ -984,6 +915,7 @@ function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
         center: flatCamera && flatCamera.center,
         zoom: flatCamera && flatCamera.zoom,
         bearing: flatCamera && flatCamera.bearing,
+        elevation: 0,
         duration: 500,
       });
       if(existingBtn){ btn.classList.remove('on'); btn.setAttribute('aria-pressed', 'false'); }
@@ -1549,10 +1481,13 @@ function init(){
 
   if(!trail){
     document.title = window.t('trail.notFound') + ' | ORMA';
-    const wrap = document.querySelector('.td-wrap');
+    // The page body is .td2 since the redesign; this looked only for the old
+    // .td-wrap, found nothing, and left an empty trail with live Start, Save
+    // and GPX buttons on every withdrawn or mistyped link.
+    const wrap = document.querySelector('.td2') || document.querySelector('.td-wrap');
     if(wrap){
       wrap.innerHTML = `
-        <div style="max-width:620px;margin:48px auto;text-align:center;">
+        <div class="td-wrap" style="max-width:620px;margin:48px auto;text-align:center;">
           <h1>${window.t('trail.notFound')}</h1>
           <p style="margin:14px 0 24px;color:var(--ink-soft);">${window.t('trail.notFoundSub')}</p>
           <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
@@ -1784,20 +1719,29 @@ function renderTrail(t){
   (function(){
     const factsEl = document.getElementById('trailFacts');
     if(!factsEl) return;
+    // A one-way walk gets a switch to see it walked there and back: the facts,
+    // the Match cell and the verdict card all follow it (route-return.js).
+    const routeReturn = window.ORMARouteReturn;
+    const oneWay = !!(routeReturn && routeReturn.isOneWay(t));
+    if(oneWay) renderRouteSwitch(factsEl, routeReturn);
+    let statMatch, statMatchLink, statMatchVal, statMatchSub;
+    function renderFacts(){
+    const shown = oneWay ? routeReturn.forView(t) : t;
+    const back = shown !== t;
     const facts = [
-      [`${t.distance} km`, window.t('trail.fact.distance')],
-      [`${t.elevation} m`, window.t('trail.fact.ascent')],
-      [`${t.hours} h`, window.t('trail.fact.duration')],
-    ].filter(([val]) => !/^null|^undefined/.test(val)); // hide facts the data honestly lacks
+      [`${shown.distance} km`, window.t('trail.fact.distance')],
+      [`${shown.elevation} m`, back ? routeLabel('trail.fact.ascentBack', 'Up, same down') : window.t('trail.fact.ascent')],
+      [`${back ? '≈ ' : ''}${shown.hours} h`, window.t('trail.fact.duration')],
+    ].filter(([val]) => !/null|undefined/.test(val)); // hide facts the data honestly lacks
     if(Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1){
       facts.splice(2, 0, [`${Math.max(...t.elevationProfile.map(p => p.elev))} m`, window.t('trail.fact.high')]);
     }
     // Difficulty cell, mirrors the homepage's derivation from real fields so
     // the hero stat strip matches the design's five-cell layout.
     (function(){
-      const asc = Number(t.elevation) || 0;
+      const asc = Number(shown.elevation) || 0;
       const rank = Number(t.terrainRank) || 0;
-      const km = Number(t.distance) || 0;
+      const km = Number(shown.distance) || 0;
       const diff = (asc >= 400 || (rank >= 2 && asc >= 250)) ? 'Hard'
         : (asc >= 180 || km >= 6 || rank >= 2) ? 'Moderate' : 'Easy';
       facts.push([diff, window.t('trail.fact.difficulty')]);
@@ -1815,10 +1759,12 @@ function renderTrail(t){
       + multiDayCell
       + facts.map(([val, label]) =>
         `<span class="f"><b>${val}</b><span>${label}</span></span>`).join('');
-    const statMatch = document.getElementById('statMatch');
-    const statMatchLink = document.getElementById('statMatchLink');
-    const statMatchVal = document.getElementById('statMatchVal');
-    const statMatchSub = document.getElementById('statMatchSub');
+    statMatch = document.getElementById('statMatch');
+    statMatchLink = document.getElementById('statMatchLink');
+    statMatchVal = document.getElementById('statMatchVal');
+    statMatchSub = document.getElementById('statMatchSub');
+    }
+    renderFacts();
 
     // Personal match, needs a logged-in profile. Guests see the facts
     // plus an honest invitation: the score exists, it just isn't theirs yet.
@@ -1845,7 +1791,8 @@ function renderTrail(t){
       }
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if(!profile){ paintMatchTeaser(); return; }
-        const recommendation = recommendTrail(t, effectiveOverrides(profile, null),
+        const scored = oneWay ? routeReturn.forView(t) : t;
+        const recommendation = recommendTrail(scored, effectiveOverrides(profile, null),
           window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(t));
         const n = recommendation.score;
         applyDetailRouteColor(detailRouteColorForScore(n));
@@ -1878,9 +1825,63 @@ function renderTrail(t){
     // Repaint when auth state resolves or changes, so a logged-in visitor
     // never keeps the guest teaser (and vice versa after logout).
     window.addEventListener('dolopaws-auth-changed', paintMatch);
+    if(oneWay){
+      window.addEventListener('orma-route-view-changed', () => {
+        renderFacts();
+        if(window.DoloPawsAuth) paintMatch();
+      });
+    }
   })();
 
-  paintOnRouteCard(t);
+  function routeLabel(key, fallback){
+    const text = window.t ? window.t(key) : '';
+    return text && text !== key ? text : fallback;
+  }
+
+  // Two buttons, one pressed, above the facts strip. The walk opens on the
+  // authority's own one-way figures.
+  function renderRouteSwitch(factsEl, routeReturn){
+    if(document.getElementById('routeViewSwitch')) return;
+    const wrap = document.createElement('div');
+    wrap.id = 'routeViewSwitch';
+    wrap.className = 'td2-route-switch';
+    wrap.setAttribute('role', 'group');
+    wrap.setAttribute('aria-label', routeLabel('trail.routeView.label', 'Show the figures for'));
+    const views = [
+      [routeReturn.VIEWS.OUT_AND_BACK, routeLabel('trail.routeView.outAndBack', 'Out and back')],
+      [routeReturn.VIEWS.ONE_WAY, routeLabel('trail.routeView.oneWay', 'One way')],
+    ];
+    const note = document.createElement('span');
+    note.className = 'td2-route-switch-note';
+    const paint = () => {
+      wrap.querySelectorAll('button').forEach(button => {
+        const on = button.dataset.routeView === routeReturn.view();
+        button.classList.toggle('is-on', on);
+        button.setAttribute('aria-pressed', String(on));
+      });
+      note.textContent = routeReturn.view() === routeReturn.VIEWS.OUT_AND_BACK
+        ? routeLabel('trail.routeView.noteBack', 'Walking back the same way')
+        : routeLabel('trail.routeView.noteOneWay', 'Ends away from the start');
+    };
+    views.forEach(([value, label]) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.routeView = value;
+      button.textContent = label;
+      button.addEventListener('click', () => { routeReturn.setView(value); paint(); });
+      wrap.appendChild(button);
+    });
+    wrap.appendChild(note);
+    paint();
+    // The hero lays its parts out by grid area, so the switch and the strip
+    // share the facts area inside one block rather than the switch landing in
+    // a row of its own.
+    const block = document.createElement('div');
+    block.className = 'td2-facts-block';
+    factsEl.parentNode.insertBefore(block, factsEl);
+    block.appendChild(wrap);
+    block.appendChild(factsEl);
+  }
 
   // "Good to know", curated insights (history, geology, best practice)
   // with cited sources, for trails that have them in trails-data.js.
@@ -2043,14 +2044,16 @@ function renderTrail(t){
           maxzoom: 19,
           attribution: 'Imagery © Esri',
         });
-        const firstSymbol = map.getStyle().layers.find(l => l.type === 'symbol');
+        // Below our hiking routes: the first symbol layer is now their numbers,
+        // which sit above the walk, so the photo would cover the walk itself.
+        const belowRoutes = window.ORMAMapStyle.networkLayerId(map);
         map.addLayer({
           id: 'satellite-layer',
           type: 'raster',
           source: 'satellite',
           layout: { visibility: 'none' },
           paint: { 'raster-resampling': 'linear', 'raster-fade-duration': 100 },
-        }, firstSymbol && firstSymbol.id);
+        }, belowRoutes);
         return true;
       };
       layerSwitch.addEventListener('click', (e) => {
@@ -2058,6 +2061,8 @@ function renderTrail(t){
         if (!btn || !ensureSatelliteLayer()) return;
         const sat = btn.getAttribute('data-maplayer') === 'satellite';
         map.setLayoutProperty('satellite-layer', 'visibility', sat ? 'visible' : 'none');
+        // Let the real path in the photo show through the walk.
+        window.ORMAMapStyle.setLinesOnImagery(map, 'single-trail-path-line', sat);
         // The vector style's building fills sit above the raster and would
         // paint every roof grey over the photo imagery, hide them on
         // satellite.
@@ -2213,19 +2218,20 @@ function renderTrail(t){
       }
 
 
-      // Waymarked Trails' own public hiking overlay, same underlying OSM
-      // data as our base map, but with their dedicated trail-route styling
-      // (numbered routes, waymarking) that a general basemap doesn't draw.
-      //
-      // Drawn in Waymarked's own colours by map-style.js. The previous
-      // treatment desaturated it by -0.90 and pushed contrast, which turned
-      // their red route lines and route-number shields into unreadable grey
-      // smudges, the "illegible signs" complaint. Inserting before the first
-      // label layer keeps it above roads and fills but below every place name.
+      // The marked hiking network, drawn by us from OSM route data: every
+      // route a dashed grey line with its number, so the walk is the only
+      // coloured line on the map. Waymarked's raster used to sit here in its
+      // own colours; map-style.js puts it back if our tiles cannot load.
+      // The walk's path lets the routes it follows be numbered beside it.
+      // Inserting before the first label layer keeps the network above roads
+      // and fills but below every place name.
       const firstLabelId = window.ORMAMapStyle.firstLabelLayerId(map);
       window.ORMAMapStyle.quietBasemap(map);
-      window.ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId });
-      if (typeof addBaseHillshade === 'function') addBaseHillshade(map, 'waymarked-hiking-layer');
+      window.ORMAMapStyle.addHikingRoutes(map, {
+        beforeId: firstLabelId,
+        walk: Array.isArray(t.path) ? t.path.map(([lat, lng]) => [lng, lat]) : null,
+      });
+      if (typeof addBaseHillshade === 'function') addBaseHillshade(map, window.ORMAMapStyle.networkLayerId(map));
       // Elevation contours from the same DEM -- the detail a street basemap
       // lacks. Lazy-loaded and fully guarded: if the plugin fails, the map is
       // unchanged.
@@ -2241,9 +2247,7 @@ function renderTrail(t){
         routesToggleBtn.addEventListener('click', () => {
           const showing = routesToggleBtn.classList.toggle('on');
           routesToggleBtn.setAttribute('aria-pressed', showing ? 'true' : 'false');
-          if (map.getLayer('waymarked-hiking-layer')) {
-            map.setLayoutProperty('waymarked-hiking-layer', 'visibility', showing ? 'visible' : 'none');
-          }
+          window.ORMAMapStyle.setHikingRoutesVisible(map, showing);
         });
       }
 
@@ -2308,7 +2312,7 @@ function renderTrail(t){
               'line-opacity': 0.52,
               'line-dasharray': [1.5, 1.25],
             },
-          }, 'waymarked-hiking-layer');
+          }, window.ORMAMapStyle.networkLayerId(map));
           // Wide invisible twin so the thin neighbour lines are easy to hit.
           map.addLayer({
             id: 'other-trails-hit',
@@ -2317,7 +2321,7 @@ function renderTrail(t){
             minzoom: 9,
             layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
             paint: { 'line-color': '#000', 'line-width': 16, 'line-opacity': 0.01 },
-          }, 'waymarked-hiking-layer');
+          }, window.ORMAMapStyle.networkLayerId(map));
           map.addSource('nearby-trail-points', {
             type: 'geojson',
             data: {
@@ -2441,18 +2445,20 @@ function renderTrail(t){
             geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
           },
         });
-        // The route is a highlight UNDER the hiking network, not a line over
-        // it: a translucent match-colour corridor with a white casing, with
-        // the waymarked raster drawing on top. Waymarked's own route line and
-        // its numbered shields then run down the middle of the highlight, so
-        // the numbers a walker actually follows stay visible and we no longer
-        // reprint them ourselves.
+        // The route is a pale match-colour corridor edged in white, under the
+        // contours and the dashed routes, so the path a walker follows and
+        // its numbers draw over it. (Under Waymarked's raster instead, when
+        // the page has fallen back to it.)
         window.ORMAMapStyle.addRouteLine(map, {
           id: 'single-trail-path-line',
           source: 'single-trail-path',
           color: selectedRouteColor,
-          beforeId: window.ORMAMapStyle.WAYMARKED_LAYER,
+          beforeId: window.ORMAMapStyle.walkCorridorBeforeId(map),
         });
+        // Satellite may already be on by the time the walk arrives.
+        if(map.getLayer('satellite-layer') && map.getLayoutProperty('satellite-layer', 'visibility') === 'visible'){
+          window.ORMAMapStyle.setLinesOnImagery(map, 'single-trail-path-line', true);
+        }
 
         // Closed loops are intentionally direction-neutral: hikers can join
         // anywhere and walk clockwise or anticlockwise. Keep arrows only for
@@ -2482,12 +2488,10 @@ function renderTrail(t){
           // they never sit on a place name.
           }, firstLabelId);
         }
-        // No ORMA route-number shields here any more. They existed only
-        // because the old opaque route line hid Waymarked's baked-in numbers;
-        // now the raster draws above the highlight and those real numbers are
-        // visible, so a second set of our own would just be duplicates
-        // fighting them for space. The reference list still renders as text in
-        // the trail details column via trail-blueprint.js.
+        // No route-number shields here: the hiking network's own layers number
+        // every route, and the walk's routes beside the walk (map-style.js).
+        // The reference list still renders as text in the trail details column
+        // via trail-blueprint.js.
         const bounds = new maplibregl.LngLatBounds();
         t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
         map.fitBounds(bounds, { padding: 60, maxZoom: 17 });

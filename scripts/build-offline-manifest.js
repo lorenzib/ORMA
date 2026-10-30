@@ -9,8 +9,8 @@ const root = path.resolve(__dirname, '..');
 // The two hand-built pilots. Their revisions are typed here on purpose: the
 // physical device-test gates name them, so moving one is a decision.
 const configs = {
-  'lago-carezza': { name:'Lago di Carezza Loop', height:1140, version:'2026.10.23-beta.22' },
-  'alpe-siusi': { name:'Alpe di Siusi Meadow Loop', height:720, version:'2026.10.23-beta.10' },
+  'lago-carezza': { name:'Lago di Carezza Loop', height:1140, version:'2026.10.30-beta.25', verificationStatus:'source-verified' },
+  'alpe-siusi': { name:'Alpe di Siusi Meadow Loop', height:720, version:'2026.10.24-beta.11', verificationStatus:'not-verified' },
 };
 
 // A generated package has no device test tied to it, so its revision moves on
@@ -21,7 +21,12 @@ function nextGeneratedVersion(previous, now = new Date()){
   return `${date}-beta.${beta ? Number(beta[1]) + 1 : 1}`;
 }
 
+const VERIFICATION_STATUSES = Object.freeze(['source-verified', 'not-verified']);
+
 function buildManifest(trailId, config){
+  if(!VERIFICATION_STATUSES.includes(config.verificationStatus)){
+    throw new Error(`${trailId} needs a verificationStatus: ${VERIFICATION_STATUSES.join(' or ')}`);
+  }
   const packageDir = path.join(root, 'offline', 'packages', trailId);
   const graph = JSON.parse(fs.readFileSync(path.join(packageDir, 'footpath-network.json'), 'utf8'));
   const elevationProfile = JSON.parse(fs.readFileSync(path.join(packageDir, 'elevation-profile.json'), 'utf8'));
@@ -111,7 +116,7 @@ function buildManifest(trailId, config){
     // The build did not happen if nothing was rebuilt, so the stamp stands.
     generatedAt:unchanged && previous.generatedAt ? previous.generatedAt : new Date().toISOString(),
     scoringVersion:require('../scoring/recommendation-v1.js').VERSION,
-    verificationStatus:'field-review-required',
+    verificationStatus:config.verificationStatus,
     packageBytes:resources.reduce((total, item) => total + item.bytes, 0),
     packageBudgetBytes:5242880,
     bounds:graph.bounds,
@@ -147,7 +152,7 @@ function buildManifest(trailId, config){
   return manifest;
 }
 
-module.exports = { buildManifest, nextGeneratedVersion, PILOT_CONFIGS:configs };
+module.exports = { buildManifest, nextGeneratedVersion, PILOT_CONFIGS:configs, VERIFICATION_STATUSES };
 
 if(require.main === module){
   const trailId = process.argv[2];

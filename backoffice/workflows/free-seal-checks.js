@@ -37,6 +37,9 @@ const NATURA2000_CONTROL=Object.freeze({code:'IT3110049',name:'Parco Naturale Fa
 
 // Enough points to follow a walk; the service takes the line in one request.
 const MAX_LINE_POINTS=400;
+// How long to wait for one answer before trying elsewhere or giving up.
+const OVERPASS_WAIT_MS=75000;
+const FETCH_WAIT_MS=45000;
 
 function thinned(points,maximum=MAX_LINE_POINTS){
   if(points.length<=maximum)return points;
@@ -67,6 +70,10 @@ async function communesAlongLine(trailPath,options={}){
   // overpass.kumi.systems answered that way on 23 October 2026 -- and never a
   // walk that crosses none. It moves on rather than recording "none".
   const query=options.runQuery||runQuery;
+  // The query asks the server for 60 seconds; waiting the client default of
+  // three minutes on each of eight tries stalled a trail for eight minutes on
+  // 26 October 2026 and ran the weekly job out of time.
+  const timeoutMs=options.timeoutMs||OVERPASS_WAIT_MS;
   const errors=[];let answer=null;
   const endpoints=options.endpoints||DEFAULT_ENDPOINTS;
   // Twice round, because a busy mirror answering 502 one minute usually
@@ -74,7 +81,7 @@ async function communesAlongLine(trailPath,options={}){
   for(const [round,endpoint] of [...endpoints,...endpoints].entries()){
     if(round===endpoints.length&&options.retryPauseMs!==0)await new Promise(resolve=>setTimeout(resolve,options.retryPauseMs||15000));
     try{
-      const result=await query(communesQuery(samples),{...options,endpoints:[endpoint]},'Unable to look up municipalities');
+      const result=await query(communesQuery(samples),{...options,timeoutMs,endpoints:[endpoint]},'Unable to look up municipalities');
       if((result.payload?.elements||[]).some(element=>element.tags?.name)){answer=result;break;}
       errors.push(`${new URL(endpoint).host} returned no municipality`);
     }catch(error){errors.push(String(error.message||error));}
@@ -96,8 +103,14 @@ async function communesAlongLine(trailPath,options={}){
       authority:'OpenStreetMap contributors',licence:'ODbL-1.0'}};
 }
 
-async function natura2000Sites(trailPath,options={}){
+/** A fetch that gives up, so one silent server cannot hold the whole run. */
+function patientFetch(options={}){
   const fetchImpl=options.fetchImpl||((...args)=>globalThis.fetch(...args));
+  return (url,init={})=>fetchImpl(url,{...init,signal:AbortSignal.timeout(options.fetchTimeoutMs||FETCH_WAIT_MS)});
+}
+
+async function natura2000Sites(trailPath,options={}){
+  const fetchImpl=patientFetch(options);
   const geometry={paths:[thinned(usable(trailPath)).map(([lat,lng])=>[lng,lat])],spatialReference:{wkid:4326}};
   const body=new URLSearchParams({geometry:JSON.stringify(geometry),geometryType:'esriGeometryPolyline',inSR:'4326',
     spatialRel:'esriSpatialRelIntersects',outFields:'SITECODE,SITENAME',returnGeometry:'false',f:'json'});
@@ -142,7 +155,7 @@ async function photoLocation(trail,options={}){
   const page=String(trail?.imageSourcePage||'');
   if(!trail?.heroImage&&!trail?.imageIcon)return {status:'no-photo'};
   if(trail?.imageGeotag)return {status:'located',geotag:trail.imageGeotag,from:'photo-ledger'};
-  const fetchImpl=options.fetchImpl||((...args)=>globalThis.fetch(...args));
+  const fetchImpl=patientFetch(options);
   const getJson=async url=>{
     const response=await fetchImpl(url,{headers:{'user-agent':USER_AGENT}});
     if(!response.ok)throw new Error(`HTTP ${response.status} from ${new URL(url).host}`);
@@ -247,6 +260,6 @@ function freeChecksFor(artifact,trailId){
   return artifact?.trails?.[String(trailId)]||null;
 }
 
-module.exports={FREE_CHECKS_VERSION,FREE_CHECKS_FILE,NATURA2000_QUERY,NATURA2000_CONTROL,MAX_LINE_POINTS,
+module.exports={FREE_CHECKS_VERSION,FREE_CHECKS_FILE,OVERPASS_WAIT_MS,FETCH_WAIT_MS,NATURA2000_QUERY,NATURA2000_CONTROL,MAX_LINE_POINTS,
   thinned,communesQuery,communesAlongLine,natura2000Sites,natura2000Control,protectedAreasOnLine,photoLocation,
   officialDistanceFromSource,lineAgainstOfficial,freeSealChecksFor,problemsIn,loadFreeSealChecks,freeChecksFor};

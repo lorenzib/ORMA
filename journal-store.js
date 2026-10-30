@@ -11,6 +11,15 @@
   var MAX_TRACK_CHARS = 60000;    // ~3,000 points, far past a day's walking
   var MAX_PHOTO_CHARS = 700000;   // same bound dog photos already use
   var MAX_NOTE_CHARS = 2000;
+  // Who came along: your dogs and friends, by name. Kept in the account as one
+  // newline-separated string so the rule can bound it with a single size check.
+  var MAX_COMPANIONS = 12;
+  var MAX_COMPANION_CHARS = 40;
+  var MAX_WALKED_WITH_CHARS = 400;
+  // JOURNAL-03: a walk's photos are files in Firebase Storage; the walk keeps
+  // only their ids. The old inline `photo` still counts towards the six.
+  var MAX_PHOTOS = 6;
+  var PHOTO_ID = /^p[a-z0-9]{6,32}$/;
   var COORD_PRECISION = 1e5;      // ~1 m, the precision the recorder stores
 
   function text(value, limit){
@@ -93,7 +102,7 @@
       && /^data:image\/(jpeg|jpg|png|webp);base64,/.test(entry.photo)
       && entry.photo.length <= MAX_PHOTO_CHARS
       ? entry.photo : null;
-    return {
+    var remote = {
       schemaVersion: 1,
       entryId: text(entry.id, 120),
       date: text(entry.date, 40),
@@ -114,6 +123,46 @@
       tale: taleOf(entry),
       updatedAt: entryTimestamp(entry) || now,
     };
+    // Optional, and only sent when there is someone to name: a walk without
+    // companions writes exactly the fields older rules already accept.
+    var companions = walkedWithOf(entry);
+    if(companions.length) remote.walkedWith = companions.join('\n');
+    // Same for photos kept in Storage: only sent when there are some.
+    var photoIds = photoIdsOf(entry, photo ? 1 : 0);
+    if(photoIds.length) remote.photoIds = photoIds;
+    return remote;
+  }
+
+  // A clean list of names: trimmed, de-duplicated, bounded. Anything that is
+  // not a list of strings becomes an empty list rather than an error.
+  function walkedWithOf(entry){
+    var list = entry && entry.walkedWith;
+    if(typeof list === 'string') list = list.split('\n');
+    if(!Array.isArray(list)) return [];
+    var seen = new Set();
+    var clean = [];
+    list.forEach(function(name){
+      var value = text(name, MAX_COMPANION_CHARS).replace(/\n/g, ' ').trim();
+      var key = value.toLowerCase();
+      if(!value || seen.has(key) || clean.length >= MAX_COMPANIONS) return;
+      seen.add(key);
+      clean.push(value);
+    });
+    while(clean.join('\n').length > MAX_WALKED_WITH_CHARS) clean.pop();
+    return clean;
+  }
+
+  // The stored photo ids a walk carries: valid, de-duplicated, and no more
+  // than fit beside `reserved` other photos (the old inline one).
+  function photoIdsOf(entry, reserved){
+    var list = entry && entry.photoIds;
+    if(!Array.isArray(list)) return [];
+    var seen = new Set();
+    return list.filter(function(id){
+      if(typeof id !== 'string' || !PHOTO_ID.test(id) || seen.has(id)) return false;
+      seen.add(id);
+      return true;
+    }).slice(0, Math.max(0, MAX_PHOTOS - (finite(reserved) || 0)));
   }
 
   function taleOf(entry){
@@ -147,6 +196,8 @@
       segments: segments,
       gaps: finite(remote.gaps) || 0,
       tale: taleOf(remote),
+      walkedWith: walkedWithOf(remote),
+      photoIds: photoIdsOf(remote, typeof remote.photo === 'string' ? 1 : 0),
       updatedAt: finite(remote.updatedAt) || 0,
     };
   }
@@ -186,20 +237,37 @@
 
   // Entries now sync to the account, so two phones must never mint the same id
   // for two different walks in the same millisecond: one walk would overwrite
-  // the other in the account and be lost.
-  function newId(now){
-    var suffix = '';
+  // the other in the account and be lost. Six random bytes keep two devices
+  // apart; a counter keeps ids minted by this page in the same millisecond
+  // apart, so they cannot collide by chance at all. Ids are only ever compared
+  // whole, so older `w<ms>-<6 hex>` ids stay valid alongside these.
+  var ID_RANDOM_BYTES = 6;
+  var lastIdTime = null;
+  var sameTimeCount = 0;
+
+  function randomHex(byteCount){
     try {
       if(global.crypto && typeof global.crypto.getRandomValues === 'function'){
-        var bytes = new Uint8Array(3);
+        var bytes = new Uint8Array(byteCount);
         global.crypto.getRandomValues(bytes);
-        suffix = Array.prototype.map.call(bytes, function(byte){
+        return Array.prototype.map.call(bytes, function(byte){
           return ('0' + byte.toString(16)).slice(-2);
         }).join('');
       }
     } catch(e){}
-    if(!suffix) suffix = ('00000' + Math.floor(Math.random() * 16777216).toString(16)).slice(-6);
-    return 'w' + (finite(now) || 0) + '-' + suffix;
+    var hex = '';
+    for(var i = 0; i < byteCount; i++){
+      hex += ('0' + Math.floor(Math.random() * 256).toString(16)).slice(-2);
+    }
+    return hex;
+  }
+
+  function newId(now){
+    var time = finite(now) || 0;
+    if(time === lastIdTime) sameTimeCount += 1;
+    else { lastIdTime = time; sameTimeCount = 0; }
+    var id = 'w' + time + '-' + randomHex(ID_RANDOM_BYTES);
+    return sameTimeCount ? id + '.' + sameTimeCount.toString(36) : id;
   }
 
   function stamp(entry, now){
@@ -216,6 +284,10 @@
     entryTimestamp: entryTimestamp,
     flatten: flatten,
     toRemote: toRemote,
+    walkedWithOf: walkedWithOf,
+    MAX_COMPANIONS: MAX_COMPANIONS,
+    MAX_PHOTOS: MAX_PHOTOS,
+    photoIdsOf: photoIdsOf,
     fromRemote: fromRemote,
     mergeEntries: mergeEntries,
     entriesToPush: entriesToPush,

@@ -15,7 +15,7 @@ This matrix is run on the two pilot packages:
 
 Since OFF-07 (23 October 2026) every trail the site shows as Verified also has
 a package, built by `scripts/build-offline-packages.js` with the same reader,
-the same checks and the same `field-review-required` label. Those packages are
+the same checks and, since OFF-08, the same status as their trail page. Those packages are
 not device-tested one by one: they share every byte of the reader with the two
 pilots, so the pilots' results stand for the reader, and each generated
 package's own files are checked by `offline-beta-scope.test.js`. A trail that

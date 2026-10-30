@@ -269,7 +269,7 @@
     // Breadcrumb: "← Trails · {region} · {valley}"
     const crumb = $('tdBreadcrumb');
     if (crumb && /^browse-trails\.html(?:[?#]|$)/.test(crumb.getAttribute('href') || '')) {
-      const regionName = t.region === 'savoy' ? 'Savoy' : 'Dolomites';
+      const regionName = t.region === 'savoy' ? 'Savoy' : t.region === 'lombardy' ? 'Lombardy' : t.region === 'friuli' ? 'Friuli Venezia Giulia' : t.region === 'aosta' ? 'Valle d\'Aosta' : t.region === 'tyrol' ? 'Tyrol & Carinthia' : 'Dolomites';
       crumb.textContent = '← Trails · ' + regionName + (t.valley ? ' · ' + t.valley : '');
     }
 
@@ -552,6 +552,7 @@
     // The forecast usually arrives after the first paint. Without this the card
     // keeps a score calculated before the day was known.
     window.addEventListener('dolopaws-conditions-ready', paintPersonalMatch);
+    window.addEventListener('orma-route-view-changed', paintPersonalMatch);
 
     // Trail description inside the white box
     const descEl = $('matchDescription');
@@ -695,6 +696,10 @@
           <li>Stay on trail <b>${esc(routeSwitches[routeSwitches.length - 1].to)}</b> for the final section to the route finish.</li>
         </ol>`
       : '';
+    const auditDirections = window.DoloPawsTrailRouteRefs
+      ? window.DoloPawsTrailRouteRefs.writtenDirections(t)
+      : { written:false };
+    const auditDirectionsMarkup = `<div class="s"><p><b>Directions:</b> ${esc(auditDirections.text || '')}</p><p class="td2-route-source">${esc(window.DoloPawsTrailRouteRefs ? window.DoloPawsTrailRouteRefs.AUDIT_DIRECTIONS_NOTE : '')}</p></div>`;
     const noRouteNumbers = '<div class="s"><p><b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.</p></div>';
     // The status sentence says whether ORMA confirmed how the numbers appear on
     // local signs -- what a reader standing at a junction needs. It was being
@@ -702,25 +707,60 @@
     // settled. Printed when the record carries one: the five walks published
     // before the pipeline wrote that field have none.
     const guidanceStatus = verifiedRouteGuidance && String(verifiedRouteGuidance.status || '').trim();
-    const routeRefMarkup = verifiedRouteGuidance
-      ? `${routeBadges}<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p>${
-        guidanceStatus ? `<p><b>Trail numbers:</b> ${esc(guidanceStatus)}</p>` : ''
-      }<p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
+    // Most start sentences already begin "Start at …", and a "Start:" label in
+    // front of them read "Start: Start at …". The sentence's own first word
+    // takes the bold instead; a sentence that begins otherwise keeps the label.
+    const startLine = sentence => {
+      const text = String(sentence || '').trim();
+      return /^Start\b/.test(text) ? `<b>Start</b>${esc(text.slice(5))}` : `<b>Start:</b> ${esc(text)}`;
+    };
+    // Each value ends with where it came from; the card says that once, under
+    // the lines, instead of after every one of them (route-guidance-sources.js).
+    // A walk with no numbers, turn by turn: the steps take the place of the
+    // Route and Key turns lines, each tagged with the source it rests on.
+    const guidanceSteps = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
+      ? window.DoloPawsRouteGuidanceSources.landmarkSteps(verifiedRouteGuidance)
+      : null;
+    const guidanceSplit = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
+      ? window.DoloPawsRouteGuidanceSources.splitSources([
+        ['Start', verifiedRouteGuidance.start],
+        ...(guidanceStatus && !guidanceSteps ? [['Trail numbers', guidanceStatus]] : []),
+        ...(guidanceSteps ? [] : [
+          [guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route', verifiedRouteGuidance.sequence],
+          [guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch', verifiedRouteGuidance.switches],
+        ]),
+      ])
+      : null;
+    const guidanceLines = guidanceSplit ? guidanceSplit.lines : [];
+    const stepsMarkup = guidanceSteps
+      ? `<ol class="td2-route-steps">${guidanceSteps.steps.map(step =>
+        `<li>${esc(step.text)} <span class="td2-route-step-from">${esc(step.tags.join(', '))}</span></li>`).join('')}</ol>${
+        guidanceSteps.credits.map(credit => `<p class="td2-route-source">${esc(credit.before)}<a href="${
+          esc(credit.url)}" target="_blank" rel="noopener">${esc(credit.label)}</a>${esc(credit.after)}</p>`).join('')}`
+      : '';
+    const routeRefMarkup = verifiedRouteGuidance && guidanceSplit
+      ? `${routeBadges}<div class="s">${guidanceSteps ? `<p class="td2-route-badge">${esc(guidanceSteps.badge)}</p>` : ''}${
+        guidanceLines.map(([label, text]) => label === 'Start'
+        ? `<p>${startLine(text)}</p>`
+        : `<p><b>${esc(label)}:</b> ${esc(text)}</p>`).join('')}${stepsMarkup}${
+        guidanceSplit.note ? `<p class="td2-route-source">${esc(guidanceSplit.note)}</p>` : ''
+      }</div>`
       : routeRefs.length
       ? `${routeBadges}${switchGuidance || `<div class="s">${hasSectionOnlyRefs
           ? `${routeRefs.length === 1 ? 'Trail' : 'Trails'} ${esc(routeSequence)} ${routeRefs.length === 1 ? 'is' : 'are'} marked only on the verified section${routeRefs.length === 1 ? '' : 's'} shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.`
           : routeRefs.length === 1
-            ? `Follow waymarked trail <b>${esc(routeRefs[0])}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.`
+            ? `Follow trail <b>${esc(routeRefs[0])}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.`
             : `This hike uses trails ${esc(routeSequence)}, but the exact numbered switch point${routeRefs.length > 2 ? 's are' : ' is'} still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.`}</div>`}`
       // Nothing sourced to say about following this route. This card used to
       // fall back to the first paragraph of t.desc, which "About this trail"
       // prints in full a few centimetres above: on 76 of 109 Dolomites trails
       // the visitor read the same sentence twice on one card. A route with no
-      // recorded numbers says so, and says it once.
-      : noRouteNumbers;
+      // recorded numbers says so, and says it once -- unless the route audit
+      // wrote directions a walker can follow, which it prints as they stand.
+      : auditDirections.written ? auditDirectionsMarkup : noRouteNumbers;
     const routeCard = {
       ic:'',
-      t:verifiedRouteGuidance ? 'How to follow this route' : (routeSwitches.length ? 'Waymarked trail numbers and switches' : (routeRefs.length ? 'Waymarked trail numbers' : 'Following the route')),
+      t:verifiedRouteGuidance || (!routeRefs.length && auditDirections.written) ? 'How to follow this route' : (routeSwitches.length ? 'Trail numbers and switches' : (routeRefs.length ? 'Trail numbers' : 'Following the route')),
       s:routeRefMarkup,
       routeRefs:true,
     };

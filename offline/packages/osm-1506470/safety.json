@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "trailId": "osm-1506470",
-  "generatedAt": "2026-10-23T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "One way",
     "distanceKm": 3.2,
@@ -48,13 +48,12 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Heat risk is high on this walk: start early and carry extra water.",
     "About half the walk is on town streets and lanes open to cars, mostly quiet residential lanes in Obermais.",
     "Two zebra crossings, and short stretches shared with cyclists on the promenades.",
     "Stone setts on the Winterpromenade and the Passer promenade.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",
@@ -68,7 +67,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-10-23",
+      "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
   ]

@@ -172,7 +172,7 @@ describe('the static pages and the app agree on the slug', () => {
     // the expected token is per script rather than one shared value.
     const SLUG_AWARE = {
       'discovery-state': '20261007-1', 'regional-trails-loader': '20261007-2',
-      'browse-map': '20261007-1', 'compare-page': '20261007-1',
+      'browse-map': '20261028-1', 'compare-page': '20261007-1',
       'collections-page': '20261007-1', 'homepage-search': '20261007-1',
       'mobile-nav': '20261007-1', 'notifications-feed': '20261023-1',
     };

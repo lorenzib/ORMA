@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6250300",
   "name": "Boucle du Lac Vert",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T17:51:29.475Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T12:36:06.682Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 249926,
+  "verificationStatus": "source-verified",
+  "packageBytes": 250912,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.94428,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Boucle du Lac Vert route",
       "url": "route.geojson",
-      "bytes": 6145,
-      "sha256": "2152c39eb1df953866e97599d8d7eed167be0713b947099c3bd14653c66b9ef2"
+      "bytes": 6139,
+      "sha256": "76602b6bf4fe751a917c5e5f99d237ed3fb8800896a6b27834fa8ed742628014"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "Boucle du Lac Vert routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 67236,
-      "sha256": "2cb687e876f7bab7db0c27e4d04cfddacdbc0581a5f9a16f2a2172b1b94fd659"
+      "sha256": "6dd9d1da9750eaa3e35e7ebfb3934e42e32b753c1a24a19867d902c9799c0d8b"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Boucle du Lac Vert safety information",
       "url": "safety.json",
-      "bytes": 1358,
-      "sha256": "2f22a7a44f643d12fd38a0bee7a91e4d7caa89ddee52a0ffc0e25c4c5401188f"
+      "bytes": 1301,
+      "sha256": "37040b57b1bfcef958c41869b28a43b0837b25bd2ef1a954b835a5c8e97c64c1"
     }
   ]
 }

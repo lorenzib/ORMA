@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-5597577",
   "name": "Rundweg Gsindboden",
-  "version": "2026.10.23-beta.1",
-  "generatedAt": "2026-10-23T18:28:49.331Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:18:34.402Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 341163,
+  "verificationStatus": "source-verified",
+  "packageBytes": 342118,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62561,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Rundweg Gsindboden route",
       "url": "route.geojson",
-      "bytes": 6028,
-      "sha256": "b8e13f4581b2cf090b44cb020cb224b0a1d1c62dc8db59fedbca10b0ebc88d5d"
+      "bytes": 6022,
+      "sha256": "85af0e941a12a24a5a37c5f718ec832d4dcfe5d365abc2289365e04ba232af27"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "Rundweg Gsindboden routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 105543,
-      "sha256": "ef1d760c6c3ffd4d5e0f671aad09b083abd75a08377637a9310febfb51884d3d"
+      "sha256": "7e00526bd016edbbc3d7f1743634fde7c43e68b2739d0c22c9ec8b52e10f3888"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg Gsindboden safety information",
       "url": "safety.json",
-      "bytes": 1620,
-      "sha256": "9ea22315d6b7ced589f3f47a1cf3b0a3f0ae3e3846fd46b0916f3bed4f501bde"
+      "bytes": 1532,
+      "sha256": "63766f9ba9d682117b9c6dbfce6b3c95a44088202d872f54a0bed7afdf886557"
     }
   ]
 }

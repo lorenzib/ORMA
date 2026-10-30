@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cembra-giro-masi-grumes",
+  "distanceKm": 6.8,
+  "ascentM": 250,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 855
+    },
+    {
+      "km": 0.5,
+      "elev": 935
+    },
+    {
+      "km": 1.1,
+      "elev": 944
+    },
+    {
+      "km": 1.6,
+      "elev": 1010
+    },
+    {
+      "km": 2.1,
+      "elev": 1006
+    },
+    {
+      "km": 2.7,
+      "elev": 1114
+    },
+    {
+      "km": 3.2,
+      "elev": 1078
+    },
+    {
+      "km": 3.6,
+      "elev": 1069
+    },
+    {
+      "km": 4.2,
+      "elev": 1024
+    },
+    {
+      "km": 4.7,
+      "elev": 958
+    },
+    {
+      "km": 5.2,
+      "elev": 967
+    },
+    {
+      "km": 5.7,
+      "elev": 944
+    },
+    {
+      "km": 6.2,
+      "elev": 935
+    },
+    {
+      "km": 6.8,
+      "elev": 867
+    }
+  ]
+}

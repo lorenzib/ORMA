@@ -30,9 +30,12 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    # 163 trails, one Overpass, one EEA and one photo lookup each, paced at
-    # 1.5 s so the public mirrors are not hammered.
-    timeout-minutes: 120
+    # About 35 s a trail, paced so the public mirrors are not hammered. With
+    # 190 trails that no longer fits, and on 26 October 2026 the job was
+    # cancelled at 81 and kept nothing. The run now stops itself at its budget,
+    # writes what it measured, and the next run starts with the oldest checks.
+    # The job limit leaves room for one slow trail after the budget and the PR.
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -48,7 +51,7 @@ jobs:
           if [ -n "$TRAILS" ]; then
             npm run backoffice:free-checks -- "--trail=$TRAILS"
           else
-            npm run backoffice:free-checks
+            npm run backoffice:free-checks -- --budget-minutes=110
           fi
 
       - name: Open a pull request with the results

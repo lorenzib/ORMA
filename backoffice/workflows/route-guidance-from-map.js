@@ -24,7 +24,12 @@
 const MAP_AUTHORITY = 'OpenStreetMap';
 // Said in the value itself, not only in the citation, because a value is quoted
 // and summarised far from its source and has to carry its own provenance.
-const READ_FROM_MAP = 'Read from the OpenStreetMap route relations this walk is built from, not from a published route description.';
+// Plain words since 26 October 2026; the trail page prints it once per card
+// (route-guidance-sources.js), which also knows the sentence it replaced.
+const READ_FROM_MAP = 'Read off the map (OpenStreetMap), not from directions the trail’s operator published.';
+// What every map answer said before 26 October 2026. A dossier approved before
+// then still holds it, and publishes it unless rewritten.
+const LEGACY_READ_FROM_MAP = 'Read from the OpenStreetMap route relations this walk is built from, not from a published route description.';
 
 function relationUrl(externalRelationId){
   const id = String(externalRelationId || '').replace(/^relation\//, '');
@@ -55,14 +60,22 @@ function km(value){
  * what they need; what they must not read is that this walk *is* route 23,
  * because it would send them along 23 at the point the walk leaves it.
  */
+// "Waymarked" is a walker's word, not a reader's: a walk along other paths
+// names them the way the trail page's badges do, as numbered trails.
+// Back-to-back repeats are one stretch, not two: "routes 3 and then 3" read
+// as a typo.
+function distinctInOrder(sequence){
+  return (sequence || []).filter(Boolean).filter((ref, index, refs) => !index || ref !== refs[index - 1]);
+}
+
 function sequenceValue(sequence, alongOtherRoutes){
-  const refs = (sequence || []).filter(Boolean);
+  const refs = distinctInOrder(sequence);
   if(!refs.length) return null;
   // One number has no order to be in, and saying "in that order" of a single
   // route reads as though something were missing from the sentence.
   const said = refs.length === 1
-    ? (alongOtherRoutes ? `waymarked route ${refs[0]}` : `route ${refs[0]} from end to end`)
-    : `${alongOtherRoutes ? 'waymarked routes' : 'routes'} ${refs.slice(0, -1).join(', ')}`
+    ? (alongOtherRoutes ? `numbered trail ${refs[0]}` : `route ${refs[0]} from end to end`)
+    : `${alongOtherRoutes ? 'numbered trails' : 'routes'} ${refs.slice(0, -1).join(', ')}`
       + ` and then ${refs[refs.length - 1]}, in that order from the start`;
   return alongOtherRoutes
     ? `This walk carries no route number of its own. The mapped route runs along ${said}. ${READ_FROM_MAP}`
@@ -77,18 +90,18 @@ function sequenceValue(sequence, alongOtherRoutes){
  * decision point -- so it is written out rather than left null.
  */
 function switchesValue(switches, sequence, alongOtherRoutes){
-  const refs = (sequence || []).filter(Boolean);
+  const refs = distinctInOrder(sequence);
   if(!refs.length) return null;
   const changes = (switches || []).filter(change => change && change.from && change.to);
   const named = refs.length === 1
-    ? `${alongOtherRoutes ? 'waymarked route' : 'route'} ${refs[0]}`
-    : `${alongOtherRoutes ? 'waymarked routes' : 'routes'} ${refs.join(' and ')}`;
+    ? `${alongOtherRoutes ? 'numbered trail' : 'route'} ${refs[0]}`
+    : `${alongOtherRoutes ? 'numbered trails' : 'routes'} ${refs.join(' and ')}`;
   if(!changes.length){
     return alongOtherRoutes
-      ? `The mapped route runs along ${named} throughout, with no change of waymark recorded along it. ${READ_FROM_MAP}`
+      ? `The mapped route runs along ${named} throughout, with no change of number recorded along it. ${READ_FROM_MAP}`
       : `The mapped route stays on ${named} throughout, with no change of number recorded along it. ${READ_FROM_MAP}`;
   }
-  const said = alongOtherRoutes ? 'waymarked route' : 'route';
+  const said = alongOtherRoutes ? 'trail' : 'route';
   const sentences = changes.map(change => {
     const where = km(change.km);
     const near = change.landmark ? `, near ${change.landmark}` : '';
@@ -153,4 +166,31 @@ function singleRelationGuidance(relation){
   return { sequence: [String(ref)], switches: [], segments: [] };
 }
 
-module.exports = { MAP_AUTHORITY, READ_FROM_MAP, relationUrl, mapSources, sequenceValue, switchesValue, singleRelationGuidance, routeGuidanceFromMap };
+/**
+ * A map answer in today's words, whenever it was approved.
+ *
+ * The counterpart of route-guidance-from-record's inCurrentWording: the
+ * publisher runs both on the way out. Only the words change -- "waymarked
+ * route 7" becomes "trail 7" and the source line becomes the plain one -- never
+ * a number, a distance or the order, so what the map measured is what is
+ * published.
+ */
+function mapInCurrentWording(guidance){
+  if(!guidance || typeof guidance !== 'object') return guidance;
+  const next = { ...guidance };
+  for(const field of ['sequence', 'switches']){
+    if(typeof next[field] !== 'string') continue;
+    // A sentence may open on the phrase, so the capital is kept.
+    const cased = (match, said) => /^W/.test(match) ? said.charAt(0).toUpperCase() + said.slice(1) : said;
+    next[field] = next[field]
+      .split(LEGACY_READ_FROM_MAP).join(READ_FROM_MAP)
+      .replace(/waymarked route (\S+) gives way to waymarked route (\S+)/gi,
+        (match, from, to) => cased(match, `trail ${from} gives way to trail ${to}`))
+      .replace(/waymarked routes /gi, match => cased(match, 'numbered trails '))
+      .replace(/waymarked route /gi, match => cased(match, 'numbered trail '))
+      .replace('with no change of waymark recorded', 'with no change of number recorded');
+  }
+  return next;
+}
+
+module.exports = { MAP_AUTHORITY, READ_FROM_MAP, LEGACY_READ_FROM_MAP, mapInCurrentWording, relationUrl, mapSources, sequenceValue, switchesValue, singleRelationGuidance, routeGuidanceFromMap };

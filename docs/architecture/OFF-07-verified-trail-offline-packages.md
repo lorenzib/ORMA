@@ -1,7 +1,8 @@
 # OFF-07 — Offline packages for every Verified trail
 
-**Status:** Implemented 2026-10-23. Every package still requires a dated field
-review; the physical-device gates are unchanged.
+**Status:** Implemented 2026-10-23. The `field-review-required` label below was
+replaced on 2026-10-24 by OFF-08: an offline map now says what its trail page
+says. The physical-device gates are unchanged.
 
 ## Decision
 
@@ -96,6 +97,10 @@ npm run build:trail-page-bundle
 - The result is its own pull request on `orma-bot/offline-packages`, published
   the way the hazard snapshot is: the run approves the PR's quality-gate run,
   merges once it passes, and dispatches validation and the website deploy.
+  When main already has every package (nothing to build, or an earlier run's
+  PR merged the same files while this one was building), it opens nothing and
+  closes any package PR still open, because that PR could only bring back
+  older copies.
 - `--refresh` fetches every extract again, for newer OpenStreetMap data. That
   stays a hand-run job.
 

@@ -30,7 +30,7 @@ describe('shared map quality profile', () => {
     pages.forEach(([page, mapScript]) => {
       const html = read(page);
       if(page === 'trail.html'){
-        expect(html).toContain('trail-app.bundle.js?v=20261016-1');
+        expect(html).toContain('trail-app.bundle.js?v=20261030-1');
         expect(html).not.toContain('<script src="map-runtime.js');
         return;
       }
@@ -108,40 +108,47 @@ describe('shared map quality profile', () => {
     const style = read('map-style.js');
     // A solid line ON TOP buries Waymarked's own route line and its numbered
     // shields, which is why we used to reprint the numbers ourselves. The
-    // route goes below the raster as a translucent corridor instead.
-    expect(style).toContain("'line-opacity': 0.55");
-    expect(style).toContain('widthRamp(10, 16, 23, 33, scale)');
+    // route goes below the raster as a pale corridor instead, solid so it
+    // has no darker knots where the walk overlaps itself.
+    expect(style).toContain("'line-color': paleColour(color),\n        'line-opacity': 1,");
+    // The casing is two thin edges around the corridor, not a white band
+    // under it, so the path inside the corridor is not washed out.
+    expect(style).toContain('widthRamp(1.5, 2, 2.5, 3, scale)');
+    expect(style).toContain("'line-gap-width': widthRamp(7, 12, 18, 26, scale)");
     expect(style).toContain('widthRamp(7, 12, 18, 26, scale)');
-    // Default insertion point is the waymarked layer when one is present.
-    expect(style).toContain("map.getLayer(WAYMARKED_LAYER) ? WAYMARKED_LAYER : firstLabelLayerId(map)");
+    // Default insertion point: under the contours and the marked network
+    // (our dashed routes, or Waymarked's raster), so both draw over it.
+    expect(style).toContain('const fallbackBefore = walkCorridorBeforeId(map);');
+    expect(style).toMatch(/function walkCorridorBeforeId\(map\) \{\s*if \(map && map.getLayer\(CONTOUR_LINE_LAYER\)\) return CONTOUR_LINE_LAYER;\s*return networkLayerId\(map\);/);
+    expect(style).toMatch(/function walkLineBeforeId\(map\) \{\s*if \(map && map.getLayer\(HIKING_REF_LAYER\)\) return HIKING_REF_LAYER;\s*if \(map && map.getLayer\(WAYMARKED_LAYER\)\) return WAYMARKED_LAYER;/);
     // The opaque-on-top treatment stays available for maps with no raster.
     expect(style).toContain("config.mode === 'overlay'");
 
     const trail = read('trail.js');
-    expect(trail).toContain('beforeId: window.ORMAMapStyle.WAYMARKED_LAYER,');
+    expect(trail).toContain('beforeId: window.ORMAMapStyle.walkCorridorBeforeId(map),');
     // Direction arrows stay above the raster but below place names.
     expect(trail).toMatch(/id: 'single-trail-direction-arrows'[\s\S]*?\}, firstLabelId\);/);
 
-    // Route planner draws its draft under the network too, you cannot trace
-    // a path you have painted over.
-    expect(read('route-planner.js')).toContain("? 'planner-waymarked-hiking-layer' : (label && label.id)");
-    // Collection routes sit below their raster on the live inline map.
+    // Route planner draws its draft under the route numbers too, you cannot
+    // trace a path whose numbers you have painted over.
+    expect(read('route-planner.js')).toContain("const under = window.ORMAMapStyle ? window.ORMAMapStyle.walkLineBeforeId(map) : (label && label.id);");
+    // Collection routes sit below the route numbers on the live inline map.
+    expect(read('collections-page.js')).toContain('const beneath = style ? style.walkLineBeforeId(map) : undefined;');
     expect(read('collections-page.js')).toContain('beneath);');
   });
 
-  test('no map reprints route numbers that Waymarked already draws', () => {
-    // Shields survive only where an ORMA rail deliberately masks the raster:
-    // the homepage catalogue lines. Every single-route highlight relies on
-    // Waymarked's own numbers showing through.
+  test('no map reprints route numbers that the hiking network already draws', () => {
+    // Every map draws the hiking network with its own route numbers, so no
+    // highlight reprints them as shields.
     expect(read('trail.js')).not.toContain('addShieldLayer');
     const homepage = read('script.js');
     expect(homepage).not.toContain("id:'trail-selected-route-number'");
     expect(homepage).not.toContain("'trail-selected-route-refs'");
-    // The catalogue rails now contour the raster as well, so no ORMA map
+    // The catalogue rails sit under the numbers as well, so no ORMA map
     // reprints a route number anywhere.
     expect(homepage).not.toContain("id:'trail-paths-route-number'");
     expect(homepage).not.toContain('addShieldLayer');
-    expect(read('collections-page.js')).toContain('style.addWaymarkedHiking(map');
+    expect(read('collections-page.js')).toContain('style.addHikingRoutes(map, {');
   });
 
   test('green/amber/red means dog match on every map, and nothing else', () => {
@@ -249,7 +256,7 @@ describe('shared map quality profile', () => {
     expect(homepage).toContain('visible: true, minzoom: BROWSE_NETWORK_MIN_ZOOM');
     expect(homepage).toContain('const BROWSE_NETWORK_MIN_ZOOM = 12.5');
     // Still one tap to turn off: the Layers chip drives the layer either way.
-    expect(homepage).toContain("routes:   ['waymarked-hiking-layer']");
+    expect(homepage).toContain('routes:   window.ORMAMapStyle.HIKING_LAYER_IDS,');
 
     // The collection map opens at a fixed zoom 9 and has no layers control, so
     // zoom is the affordance there instead of a chip.
@@ -262,7 +269,7 @@ describe('shared map quality profile', () => {
     // zoom threshold there would show the network on some trails and not
     // others with no explanation, worse than either choice.
     const trail = read('trail.js');
-    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId })');
+    expect(trail).toMatch(/ORMAMapStyle\.addHikingRoutes\(map, \{\s*beforeId: firstLabelId,/);
     expect(trail).not.toContain('minzoom: NETWORK_MIN_ZOOM');
   });
 
@@ -321,7 +328,7 @@ describe('shared map quality profile', () => {
     });
   });
 
-  test('every map draws the shared Waymarked treatment', () => {
+  test('every map draws the shared hiking-network treatment', () => {
     ['trail.js', 'script.js', 'collections-page.js'].forEach(file => {
       const source = read(file);
       expect(source).toContain('ORMAMapStyle');
@@ -329,6 +336,14 @@ describe('shared map quality profile', () => {
       expect(source).not.toContain("'raster-saturation': -1");
     });
     expect(read('route-planner.js')).toContain('ORMAMapStyle.quietBasemap(map)');
+    expect(read('walk-page.js')).toContain('style.quietBasemap(map)');
+    // Our own routes everywhere; only map-style.js knows Waymarked's address,
+    // for the fallback.
+    ['trail.js', 'script.js', 'collections-page.js', 'route-planner.js', 'walk-page.js'].forEach(file => {
+      expect(read(file)).toContain('addHikingRoutes(');
+      expect(read(file)).not.toContain('tile.waymarkedtrails.org');
+      expect(read(file)).not.toContain('addWaymarkedHiking(');
+    });
     // collection.html is a redirect stub and loads no scripts at all.
     ['index.html', 'collections.html', 'route-planner.html', 'walk.html']
       .forEach(file => expect(read(file)).toContain('map-style.js'));

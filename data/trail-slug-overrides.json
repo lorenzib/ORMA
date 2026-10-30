@@ -268,6 +268,1131 @@
       "name": "Römerweg Kiens",
       "slug": "roemerweg-kiens",
       "gloss": "the Roman road walk"
+    },
+    "osm-12737724": {
+      "name": "Historische Rundwanderung Teis",
+      "slug": "historische-rundwanderung-teis",
+      "gloss": "the Teis history walk"
+    },
+    "osm-6401355": {
+      "name": "Panoramarundweg Concordia 360°",
+      "slug": "panoramarundweg-concordia-360",
+      "gloss": "the Kronplatz summit panorama loop"
+    },
+    "fassa-da-canazei-a-penia": {
+      "name": "Da Canazei a Penìa",
+      "slug": "da-canazei-a-penia",
+      "gloss": "the Avisio loop to Penìa"
+    },
+    "fassa-sentiero-della-foresta": {
+      "name": "Sentiero della Foresta",
+      "slug": "sentiero-della-foresta",
+      "gloss": "the forest trail from Ciampedie to Gardeccia"
+    },
+    "fassa-antichi-bagnes": {
+      "name": "Agli antichi Bagnes",
+      "slug": "antichi-bagnes-pozza",
+      "gloss": "the old baths walk in Pozza"
+    },
+    "fassa-borgo-dei-patins": {
+      "name": "Vigo, borgo dei patins",
+      "slug": "vigo-borgo-dei-patins",
+      "gloss": "the Vigo hamlets walk"
+    },
+    "fassa-prato-di-sorte": {
+      "name": "Prato di Sorte",
+      "slug": "prato-di-sorte-moena",
+      "gloss": "the Prato di Sorte loop in Moena"
+    },
+    "fassa-passato-ritrovato": {
+      "name": "Il passato ritrovato",
+      "slug": "passato-ritrovato-pian",
+      "gloss": "the old farms walk to Pian"
+    },
+    "fassa-santuario-dei-pellegrini": {
+      "name": "Al santuario di Santa Giuliana",
+      "slug": "santuario-santa-giuliana",
+      "gloss": "the pilgrims’ walk to Santa Giuliana"
+    },
+    "fassa-malga-aloch": {
+      "name": "Malga Aloch e Masc Aloch",
+      "slug": "malga-aloch-pozza",
+      "gloss": "the farm walk to Malga Aloch"
+    },
+    "fassa-molin-de-pezol": {
+      "name": "Molin de Pèzol",
+      "slug": "molin-de-pezol",
+      "gloss": "the mill walk to the Molin de Pèzol"
+    },
+    "fassa-pastori-erranti": {
+      "name": "Sulla via degli antichi pastori erranti",
+      "slug": "antichi-pastori-erranti-vigo",
+      "gloss": "the shepherds’ walk to Vallonga and Tamion"
+    },
+    "fassa-segreti-di-una-volta": {
+      "name": "I segreti di una volta",
+      "slug": "segreti-di-una-volta-pozza",
+      "gloss": "the old farmland walk above Pozza"
+    },
+    "fassa-alpe-di-fuciade": {
+      "name": "Alpe di Fuciade",
+      "slug": "alpe-di-fuciade",
+      "gloss": "the walk to the Fuciade alp"
+    },
+    "primiero-fiera-pieve": {
+      "name": "Fiera-Pieve",
+      "slug": "fiera-pieve",
+      "gloss": "the old-town walk from Fiera to Pieve"
+    },
+    "primiero-transacqua": {
+      "name": "Transacqua",
+      "slug": "transacqua",
+      "gloss": "the village walk round Transacqua"
+    },
+    "primiero-tonadico": {
+      "name": "Tonadico",
+      "slug": "tonadico",
+      "gloss": "the village walk round Tonadico"
+    },
+    "primiero-siror": {
+      "name": "Siror",
+      "slug": "siror",
+      "gloss": "the village walk to Siror"
+    },
+    "primiero-la-guana-di-primiero": {
+      "name": "La Guana di Primiero",
+      "slug": "la-guana-di-primiero",
+      "gloss": "the walk to the Guana at Navoi"
+    },
+    "primiero-percorso-verde": {
+      "name": "Percorso Verde (I percorsi del benessere)",
+      "slug": "percorso-verde-primiero",
+      "gloss": "the step-free loop along the Canali"
+    },
+    "primiero-anello-molaren-via-nova-marine": {
+      "name": "Anello Molaren - Via Nova - Marine",
+      "slug": "anello-molaren-via-nova-marine",
+      "gloss": "the Via Nova loop from Mezzano"
+    },
+    "primiero-san-martino-di-castrozza-val-di-roda-prati-col": {
+      "name": "San Martino di Castrozza - Val di Roda - Prati Col",
+      "slug": "val-di-roda-prati-col",
+      "gloss": "the Val di Roda loop from San Martino"
+    },
+    "primiero-anello-di-valpiana": {
+      "name": "Anello di Valpiana",
+      "slug": "anello-di-valpiana",
+      "gloss": "the forest loop to Malga Valpiana"
+    },
+    "primiero-anello-poit-cordogne-san-giovanni": {
+      "name": "Anello Poit - Cordognè - San Giovanni",
+      "slug": "anello-poit-cordogne-san-giovanni",
+      "gloss": "the Cordognè loop to San Giovanni"
+    },
+    "cortina-castello-di-botestagno": {
+      "name": "Castello di Botestagno",
+      "slug": "castello-di-botestagno",
+      "gloss": "the castle walk at Botestagno"
+    },
+    "cortina-malga-ra-stua": {
+      "name": "Malga Ra Stua",
+      "slug": "malga-ra-stua",
+      "gloss": "the gorge walk to Malga Ra Stua"
+    },
+    "cortina-passeggiata-gourmet": {
+      "name": "Passeggiata gourmet",
+      "slug": "passeggiata-gourmet-cortina",
+      "gloss": "the three-huts walk above Cortina"
+    },
+    "cortina-mortisa-e-le-grotte-di-volpera": {
+      "name": "Mortisa e le Grotte di Volpera",
+      "slug": "mortisa-grotte-di-volpera",
+      "gloss": "the hamlets and boulders walk above Cortina"
+    },
+    "cortina-sotecordes": {
+      "name": "Escursione di Sotecordes",
+      "slug": "sotecordes",
+      "gloss": "the Tofana di Rozes loop from Rifugio Dibona"
+    },
+    "fiemme-cavalese-passeggiata-panoramica": {
+      "name": "Cavalese - Passeggiata panoramica",
+      "slug": "cavalese-panoramic-walk",
+      "gloss": "the panoramic walk round the Parco della Pieve"
+    },
+    "fiemme-passeggiata-insolita": {
+      "name": "Passeggiata insolita lungo il Rio Gambis",
+      "slug": "rio-gambis-cavalese",
+      "gloss": "the town walk along the Rio Gambis"
+    },
+    "fiemme-cascatelle-di-ziano": {
+      "name": "Le Cascatelle di Ziano di Fiemme",
+      "slug": "cascatelle-di-ziano",
+      "gloss": "the little waterfalls walk above Roda"
+    },
+    "fiemme-giro-cavalese-castello": {
+      "name": "Giro ad anello Cavalese - Castello di Fiemme",
+      "slug": "cavalese-castello-di-fiemme-loop",
+      "gloss": "the loop from Cavalese to Castello di Fiemme"
+    },
+    "fiemme-larici-verso-anterivo": {
+      "name": "Passeggiata col passeggino tra i larici verso Anterivo",
+      "slug": "pra-del-manz-to-anterivo",
+      "gloss": "the larch-wood walk from Prà del Manz to Anterivo"
+    },
+    "fiemme-varena-spianez": {
+      "name": "Col passeggino tra Varena e Spianez",
+      "slug": "varena-spianez-loop",
+      "gloss": "the meadow walk from Varena to Spianez"
+    },
+    "primiero-malga-ces": {
+      "name": "San Martino di Castrozza - Malga Ces",
+      "slug": "malga-ces",
+      "gloss": "the forest walk from San Martino to Malga Ces"
+    },
+    "fiemme-pradi-da-le-fior": {
+      "name": "I Pradi da le Fior",
+      "slug": "pradi-da-le-fior",
+      "gloss": "the flower meadows walk from Malga Sass"
+    },
+    "fiemme-passo-oclini": {
+      "name": "Passo Oclini, tra il Corno Nero e il Corno Bianco",
+      "slug": "passo-oclini-gurndin-isi",
+      "gloss": "the loop from Passo Oclini to Malga Gurndin and the Isi Hütte"
+    },
+    "fiemme-masi-comunicanti": {
+      "name": "Masi Comunicanti",
+      "slug": "masi-comunicanti-capriana",
+      "gloss": "the walk through the old farmsteads below Capriana"
+    },
+    "primiero-malga-crel": {
+      "name": "San Martino di Castrozza - Malga Crel",
+      "slug": "malga-crel",
+      "gloss": "the forest walk from San Martino to Malga Crel"
+    },
+    "primiero-monte-vederna": {
+      "name": "Passeggiata a Monte Vederna – Croce degli Alpini",
+      "slug": "monte-vederna",
+      "gloss": "the walk from the Rifugio Vederna to the Croce degli Alpini"
+    },
+    "fiemme-sentiero-botanico": {
+      "name": "Sentiero botanico naturalistico",
+      "slug": "sentiero-botanico-grauno-capriana",
+      "gloss": "the botanical path from Grauno to Capriana"
+    },
+    "primiero-ponte-su-funi": {
+      "name": "Ponte su Funi Rio San Piero da Mezzano",
+      "slug": "ponte-su-funi",
+      "gloss": "the rope-bridge loop from Mezzano to Imer"
+    },
+    "primiero-via-della-frutta-antica": {
+      "name": "La via della frutta antica",
+      "slug": "via-della-frutta-antica",
+      "gloss": "the old-fruit walk from Pieve to Passo Gobbera"
+    },
+    "primiero-malga-valcigolera": {
+      "name": "San Martino di Castrozza - Malga Valcigolera",
+      "slug": "malga-valcigolera",
+      "gloss": "the forest walk from San Martino to Malga Valcigolera"
+    },
+    "cembra-lago-santo": {
+      "name": "Il Lago Santo",
+      "slug": "lago-santo-cembra",
+      "gloss": "the loop round the Lago Santo above Cembra"
+    },
+    "cembra-pietra-del-futuro": {
+      "name": "La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases",
+      "slug": "lases-pietra-del-futuro",
+      "gloss": "the audio-guided walk from Lases to its lake"
+    },
+    "cembra-lago-lases-buse-giaz": {
+      "name": "Il Lago di Lases e le buse del giaz",
+      "slug": "lago-di-lases-buse-del-giaz",
+      "gloss": "the loop round the Lago di Lases and the Val Fredda"
+    },
+    "cembra-san-leonardo-lisignago": {
+      "name": "San Leonardo e le campagne di Lisignago",
+      "slug": "san-leonardo-lisignago",
+      "gloss": "the vineyard loop to San Leonardo from Lisignago"
+    },
+    "cembra-dos-paion": {
+      "name": "Passeggiata al belvedere del Dos Paion sul Monte Corona",
+      "slug": "dos-paion-monte-corona",
+      "gloss": "the walk to the Dos Paion viewpoint on Monte Corona"
+    },
+    "cembra-rifugio-potzmauer": {
+      "name": "Al Rifugio Potzmauer",
+      "slug": "rifugio-potzmauer",
+      "gloss": "the woodland walk to the Rifugio Potzmauer"
+    },
+    "cembra-castello-segonzano": {
+      "name": "Il Castello di Segonzano e il canyon del Prà",
+      "slug": "castello-di-segonzano-canyon-del-pra",
+      "gloss": "the loop past the Castello di Segonzano and the Prà gorge"
+    },
+    "cembra-paese-beghei": {
+      "name": "Il paese dei “Beghei”",
+      "slug": "paese-dei-beghei-sevignano",
+      "gloss": "the village and woodland loop from Sevignano"
+    },
+    "cembra-erbe-della-salute": {
+      "name": "Le erbe della salute",
+      "slug": "erbe-della-salute-grauno",
+      "gloss": "the short herb walk round Grauno"
+    },
+    "cembra-giro-monte-corona": {
+      "name": "Giro panoramico sul Monte Corona",
+      "slug": "giro-panoramico-monte-corona",
+      "gloss": "the loop over Monte Corona from Ville di Giovo"
+    },
+    "cembra-giro-masi-grumes": {
+      "name": "Il Giro dei Masi di Grumes",
+      "slug": "giro-dei-masi-di-grumes",
+      "gloss": "the walk up to the Masi di Grumes"
+    },
+    "fiemme-scalata-alle-malghette": {
+      "name": "La “scalata” alle Malghette",
+      "slug": "scalata-alle-malghette",
+      "gloss": "the forest-road walk to the Malghette hut"
+    },
+    "cembra-piz-de-le-agole": {
+      "name": "Il Piz de le Agole, balcone sulla valle",
+      "slug": "piz-de-le-agole-lisignago",
+      "gloss": "the loop from Lisignago to the Piz de le Agole"
+    },
+    "cembra-vecchi-mestieri-grumes": {
+      "name": "Il Sentiero dei vecchi mestieri – da Grumes",
+      "slug": "sentiero-vecchi-mestieri-grumes",
+      "gloss": "the old-trades path down the Rio dei Molini from Grumes"
+    },
+    "cembra-monte-pat-malga-vernera": {
+      "name": "Dalla Baita Monte Pat a Malga Vernera",
+      "slug": "baita-monte-pat-malga-vernera",
+      "gloss": "the forest-road walk from the Baita Monte Pat to Malga Vernera"
+    },
+    "cembra-pascoli-malga-vernera": {
+      "name": "Sui Pascoli di Malga Vernera",
+      "slug": "sui-pascoli-di-malga-vernera",
+      "gloss": "the pasture loop at Malga Vernera"
+    },
+    "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": {
+      "name": "La Villa – Lech da Sompunt",
+      "slug": "la-villa-lech-da-sompunt",
+      "gloss": "the lake loop from La Villa"
+    },
+    "altabadia-escursione-corvara-colfosco": {
+      "name": "Corvara – Colfosco",
+      "slug": "corvara-colfosco",
+      "gloss": "the loop from Corvara to Colfosco"
+    },
+    "altabadia-sentiero-degli-artisti-tru-di-artisc": {
+      "name": "Tru di artisć",
+      "slug": "tru-di-artisc",
+      "gloss": "the artists’ path from La Villa to Armentarola"
+    },
+    "altabadia-escursione-corvara-la-villa": {
+      "name": "Corvara – La Villa",
+      "slug": "corvara-la-villa",
+      "gloss": "the riverside walk from Corvara to La Villa"
+    },
+    "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa": {
+      "name": "Pederoa – Picedac – Costa",
+      "slug": "pederoa-masi-picedac-costa",
+      "gloss": "the farms loop above Pederoa"
+    },
+    "altabadia-da-furnacia-a-la-crusc": {
+      "name": "Furnacia – La Crusc",
+      "slug": "furnacia-la-crusc",
+      "gloss": "the climb to the Santa Croce sanctuary"
+    },
+    "altabadia-da-la-val-ai-prati-di-rit": {
+      "name": "La Val – Prati di Rit",
+      "slug": "la-val-prati-di-rit",
+      "gloss": "the long loop to the Rit meadows"
+    },
+    "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara": {
+      "name": "San Cassiano – Pralongiá – Corvara",
+      "slug": "san-cassiano-pralongia-corvara",
+      "gloss": "the plateau walk from Piz Sorega to Corvara"
+    },
+    "altabadia-passeggiata-borest-cascate-del-pisciadu": {
+      "name": "Borest – Pisciadú waterfall",
+      "slug": "borest-pisciadu-waterfall",
+      "gloss": "the stream walk from Corvara to the Pisciadú waterfall"
+    },
+    "valgardena-tour-alla-volta-del-lech-sant": {
+      "name": "Lech Sant",
+      "slug": "lech-sant",
+      "gloss": "the forest loop to the Lech Sant"
+    },
+    "valgardena-passeggiata-da-ortisei-a-s-cristina": {
+      "name": "Ortisei valley promenade",
+      "slug": "ortisei-valley-promenade",
+      "gloss": "the Luis Trenker promenade loop"
+    },
+    "valgardena-escursione-al-resciesa": {
+      "name": "Resciesa summit loop",
+      "slug": "resciesa-summit-loop",
+      "gloss": "the high loop from the Resciesa funicular"
+    },
+    "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": {
+      "name": "Santa Croce – Brogles",
+      "slug": "santa-croce-brogles",
+      "gloss": "the high loop to the Brogles alp"
+    },
+    "valgardena-giro-della-via-crucis": {
+      "name": "Via Crucis, Santa Cristina",
+      "slug": "via-crucis-santa-cristina",
+      "gloss": "the Way of the Cross loop above Santa Cristina"
+    },
+    "valgardena-passeggiata-alla-chiesetta-di-san-giacomo": {
+      "name": "San Giacomo from Ortisei",
+      "slug": "san-giacomo-ortisei",
+      "gloss": "the forest walk to the church of San Giacomo"
+    },
+    "trecime-dobbiaco-lago-di-dobbiaco": {
+      "name": "Toblach – Lago di Dobbiaco",
+      "slug": "toblach-lago-di-dobbiaco",
+      "gloss": "the nature trail on the west shore of the Toblacher See"
+    },
+    "trecime-sentiero-gustav-mahler": {
+      "name": "Gustav Mahler path",
+      "slug": "gustav-mahler-path-toblach",
+      "gloss": "the forest loop to Mahler's composing hut at Altschluderbach"
+    },
+    "trecime-san-candido-costa-dei-nosellari-dobbiaco": {
+      "name": "Innichen – Haselsberg – Toblach",
+      "slug": "innichen-haselsberg-toblach",
+      "gloss": "the farm lane over the Haselsberg from Innichen to Toblach"
+    },
+    "trecime-bagni-di-san-candido": {
+      "name": "Wildbad Innichen",
+      "slug": "wildbad-innichen",
+      "gloss": "the forest walk up to the old spa at Wildbad Innichen"
+    },
+    "trecime-circolare-maistatt": {
+      "name": "Maistatt loop",
+      "slug": "maistatt-loop-niederdorf",
+      "gloss": "the meadow loop to Maistatt above Niederdorf"
+    },
+    "trecime-villabassa-mooskirche": {
+      "name": "Niederdorf – Mooskirche",
+      "slug": "niederdorf-mooskirche",
+      "gloss": "the woodland walk to the Moos chapel"
+    },
+    "trecime-lago-di-braies-malga-foresta": {
+      "name": "Lago di Braies – Grünwaldalm",
+      "slug": "lago-di-braies-gruenwaldalm",
+      "gloss": "the lake shore and the climb to the Grünwaldalm"
+    },
+    "fassa-borgo-di-tamion": {
+      "name": "Alla scoperta del borgo ladino di Tamion",
+      "slug": "borgo-di-tamion-soraga",
+      "gloss": "the climb from Soraga to the hamlet of Tamion"
+    },
+    "fassa-da-alba-a-penia": {
+      "name": "Da Alba a Penìa",
+      "slug": "alba-penia",
+      "gloss": "the village walk from Alba to Penìa"
+    },
+    "fassa-val-freida": {
+      "name": "Sulle tracce dei pastori all'imbocco della Val Freida",
+      "slug": "val-freida-san-pellegrino",
+      "gloss": "the meadow walk from Malga Boer into Val Freida"
+    },
+    "fassa-moena-soraga-acqua": {
+      "name": "Da Moena a Soraga, dove l'acqua ha segnato la storia",
+      "slug": "moena-soraga-avisio",
+      "gloss": "the riverside walk from Moena to Soraga"
+    },
+    "fassa-dipinti-del-giotto": {
+      "name": "Sulle tracce dei dipinti del Giotto della Val di Fassa",
+      "slug": "giotto-della-val-di-fassa-mazzin-pera",
+      "gloss": "the walk from Mazzin over Ronch to Pera"
+    },
+    "fassa-ciajeole-malga-roncac": {
+      "name": "Passi nella storia: da Ciajeole a Malga Roncac",
+      "slug": "ciajeole-malga-roncac-moena",
+      "gloss": "the climb from Moena to Malga Roncac"
+    },
+    "fassa-moena-soraga-someda": {
+      "name": "Da Moena a Soraga, la natura a due passi da casa",
+      "slug": "moena-soraga-someda",
+      "gloss": "the walk from Moena over Someda to Soraga Alta"
+    },
+    "giudicarie-tione-bolbeno-madonna-del-lares": {
+      "name": "Tione – Bolbeno – Madonna del Lares",
+      "slug": "tione-bolbeno-madonna-del-lares",
+      "gloss": "the walk up from Tione to the Madonna del Lares sanctuary"
+    },
+    "giudicarie-san-martino-bosco-scolpito": {
+      "name": "San Martino – Bosco Scolpito",
+      "slug": "san-martino-bosco-scolpito",
+      "gloss": "the carved-wood forest path above Pieve di Bono"
+    },
+    "giudicarie-san-vigilio-senter-dei-cavai": {
+      "name": "San Vigilio and the Senter dei Cavai",
+      "slug": "san-vigilio-senter-dei-cavai",
+      "gloss": "the riverside loop from Tione"
+    },
+    "rendena-ciclabile-javre-dare-vigo-pelugo": {
+      "name": "Javrè – Pelugo cycle path loop",
+      "slug": "javre-pelugo-cycle-path-loop",
+      "gloss": "the flat riverside loop on the Val Rendena cycle path"
+    },
+    "valdisole-fazzon-lago-dei-caprioli": {
+      "name": "Rifugio Fazzon – Lago dei Caprioli",
+      "slug": "fazzon-lago-dei-caprioli",
+      "gloss": "the short lake loop above Pellizzano"
+    },
+    "valdisole-lago-dei-caprioli-malga-alta-di-fazzon": {
+      "name": "Lago dei Caprioli – Malga Alta di Fazzon",
+      "slug": "lago-dei-caprioli-malga-alta-fazzon",
+      "gloss": "the climb from the lake to the high Fazzon pasture"
+    },
+    "valdisole-marilleva-1400-malga-alta-di-fazzon": {
+      "name": "Marilleva 1400 – Malga Alta di Fazzon",
+      "slug": "marilleva-1400-malga-alta-fazzon",
+      "gloss": "the forest walk from Marilleva 1400 to the Fazzon pastures"
+    },
+    "valdisole-bivacco-malga-baselga": {
+      "name": "Bivacco Malga Baselga",
+      "slug": "bivacco-malga-baselga",
+      "gloss": "the climb from Lago dei Caprioli to the Baselga shelter"
+    },
+    "valdisole-rifugio-stavel-denza": {
+      "name": "Rifugio Stavel – Francesco Denza",
+      "slug": "rifugio-stavel-denza",
+      "gloss": "the Val Stavel climb to the Denza hut under the Presanella"
+    },
+    "valgardena-escursione-nella-vallunga": {
+      "name": "Vallunga",
+      "slug": "vallunga",
+      "gloss": "the valley-floor walk up the Vallunga"
+    },
+    "valgardena-escursione-al-terrazzo-panoramico-seeurasas": {
+      "name": "Sëurasas",
+      "slug": "seurasas",
+      "gloss": "the climb from Cristauta to the Sëurasas viewpoint"
+    },
+    "valgardena-percorso-dei-masi-tradizionali": {
+      "name": "Santa Cristina farms path",
+      "slug": "santa-cristina-farms-path",
+      "gloss": "the loop past the old farms above Santa Cristina"
+    },
+    "valgardena-raida-dl-luech-giro-del-paese": {
+      "name": "Raida dl luech",
+      "slug": "raida-dl-luech",
+      "gloss": "the village loop to the Tervela waterfall"
+    },
+    "trecime-innichen-waldkapelle-sexten": {
+      "name": "Innichen – Waldkapelle – Sexten",
+      "slug": "innichen-waldkapelle-sexten",
+      "gloss": "the forest path past the Waldkapelle from Innichen to Sexten"
+    },
+    "trecime-bellavista-montecosta": {
+      "name": "Niederdorf – Bellavista",
+      "slug": "niederdorf-bellavista",
+      "gloss": "the climb from Niederdorf to the Bellavista viewpoint"
+    },
+    "trecime-lago-di-braies-malga-rossalm": {
+      "name": "Pragser Wildsee – Rossalm",
+      "slug": "pragser-wildsee-rossalm",
+      "gloss": "the long climb from the Pragser Wildsee to the Rossalm"
+    },
+    "trecime-carbonin-rifugio-vallandro": {
+      "name": "Schluderbach – Dürrensteinhütte",
+      "slug": "schluderbach-duerrensteinhuette",
+      "gloss": "the forest road from Schluderbach up to the Plätzwiese"
+    },
+    "trecime-monte-elmo-versciaco": {
+      "name": "Helm – Vierschach",
+      "slug": "helm-vierschach",
+      "gloss": "the forest path down from the Helm to Vierschach"
+    },
+    "lario-brunate-e-le-sue-chiese": {
+      "name": "Brunate churches loop",
+      "slug": "brunate-churches-loop",
+      "gloss": "the churches and the Volta lighthouse above Como"
+    },
+    "lario-pognana-lario-e-le-sculture-simposio": {
+      "name": "Pognana Lario sculpture walk",
+      "slug": "pognana-lario-sculpture-walk",
+      "gloss": "the 1986 sculptures between the village and the lake"
+    },
+    "lario-alla-ricerca-di-un-panorama-unico": {
+      "name": "Brogno to the Nuvolone viewpoint",
+      "slug": "brogno-nuvolone-viewpoint",
+      "gloss": "the viewpoint over all three arms of the lake"
+    },
+    "lario-anello-ai-piedi-del-monte-oriolo": {
+      "name": "Lasnigo, Barni and the Crezzo lake",
+      "slug": "lasnigo-barni-crezzo-lake",
+      "gloss": "the Romanesque churches of the Vallassina and the Crezzo lake"
+    },
+    "lario-eupilio-tra-segrino-e-cornizzolo": {
+      "name": "Eupilio and the Madonna della Neve",
+      "slug": "eupilio-madonna-della-neve",
+      "gloss": "the way of the cross to the Madonna della Neve and the Alpe di Carella"
+    },
+    "aosta-ru-courtaud": {
+      "name": "Rû Courtaud",
+      "slug": "ru-courtaud-ayas",
+      "gloss": "the level walk along the old irrigation channel above Antagnod"
+    },
+    "aosta-champoluc-cascata-mascognaz": {
+      "name": "Champoluc – Mascognaz waterfall",
+      "slug": "champoluc-mascognaz-waterfall",
+      "gloss": "the short climb from Champoluc to the Mascognaz waterfall"
+    },
+    "aosta-periasc-antagnod": {
+      "name": "Périasc – Antagnod",
+      "slug": "periasc-antagnod",
+      "gloss": "the old mule track from Périasc up to Antagnod"
+    },
+    "aosta-sentiero-della-regina": {
+      "name": "Sentiero della Regina",
+      "slug": "sentiero-della-regina-gressoney",
+      "gloss": "the Queen’s path along the valley side to Castel Savoia"
+    },
+    "aosta-strada-lombarda": {
+      "name": "Strada Lombarda",
+      "slug": "strada-lombarda-gressoney",
+      "gloss": "the old valley road through Gressoney-Saint-Jean"
+    },
+    "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": {
+      "name": "Alpenzù Piccolo and Alpenzù Grande",
+      "slug": "alpenzu-walser-villages",
+      "gloss": "the Walser path up to the hamlets of Alpenzù"
+    },
+    "trecime-sesto-san-candido": {
+      "name": "Sexten – Innichen and back",
+      "slug": "sexten-innichen-there-and-back",
+      "gloss": "the meadow and forest path from Moos through Sexten to Innichen and back"
+    },
+    "trecime-sesto-chiesa-gasthof-panorama": {
+      "name": "Sexten – Gasthof Panorama",
+      "slug": "sexten-gasthof-panorama",
+      "gloss": "the lane up the Mitterberg from Sexten church to the Panorama"
+    },
+    "trecime-haus-der-berge-rifugio-larice": {
+      "name": "Haus der Berge – Lärchenhütte",
+      "slug": "haus-der-berge-laerchenhuette",
+      "gloss": "the farm path and forest road from Sexten to the Lärchenhütte"
+    },
+    "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": {
+      "name": "Fort Mitterberg – Helmhanghütte",
+      "slug": "fort-mitterberg-helmhanghuette",
+      "gloss": "the level forest road from the Mitterberg fort to the Helmhanghütte"
+    },
+    "trecime-sesto-cappella-del-bosco": {
+      "name": "Sexten – Waldkapelle",
+      "slug": "sexten-waldkapelle",
+      "gloss": "the meditation path from Sexten church to the forest chapel"
+    },
+    "giudicarie-senter-dei-popi-madonna-del-lares": {
+      "name": "Senter dei Popi – Madonna del Lares",
+      "slug": "senter-dei-popi-madonna-del-lares",
+      "gloss": "the gorge path from Bondo to the Madonna del Lares"
+    },
+    "rendena-giro-del-belvedere-giustino": {
+      "name": "Giro del Belvedere",
+      "slug": "giro-del-belvedere-giustino",
+      "gloss": "the short village loop above Giustino"
+    },
+    "valdisole-monclassico-presson-meridiane": {
+      "name": "Monclassico and Presson, the sundial villages",
+      "slug": "monclassico-presson-sundials",
+      "gloss": "the village loop past the painted sundials"
+    },
+    "valdisole-passo-tonale-forte-mero-forte-zaccarana": {
+      "name": "Passo Tonale – Forte Mero and Forte Zaccarana",
+      "slug": "tonale-forte-mero-forte-zaccarana",
+      "gloss": "the loop to the two Austro-Hungarian forts below the Tonale"
+    },
+    "valdisole-passo-tonale-forte-mero": {
+      "name": "Passo Tonale – Forte Mero",
+      "slug": "tonale-forte-mero",
+      "gloss": "the gentle walk down from the Tonale to Forte Mero"
+    },
+    "valdisole-ortise-malga-stabli": {
+      "name": "Ortisè – Malga Stabli",
+      "slug": "ortise-malga-stabli",
+      "gloss": "the climb from Ortisè to the Stabli pastures"
+    },
+    "fvg-laghi-di-fusine": {
+      "name": "Laghi di Fusine",
+      "slug": "laghi-di-fusine",
+      "gloss": "the loop round the Fusine lakes"
+    },
+    "fvg-ta-lipa-pot-corto": {
+      "name": "Ta Lipa Pot - Percorso breve",
+      "slug": "ta-lipa-pot-stolvizza",
+      "gloss": "the short Ta Lipa Pot loop from Stolvizza"
+    },
+    "fvg-faggi-secolari-pustot-dordolla": {
+      "name": "I faggi secolari di Pustot a Dordolla",
+      "slug": "faggi-di-pustot-dordolla",
+      "gloss": "the loop from Dordolla to the old beeches of Pustot"
+    },
+    "fvg-borgo-stavoli-moggio": {
+      "name": "Il borgo isolato di Stavoli di Moggio",
+      "slug": "stavoli-di-moggio",
+      "gloss": "the mule track from Campiolo to the hamlet of Stavoli"
+    },
+    "fvg-anello-lago-di-verzegnis": {
+      "name": "Anello del Lago di Verzegnis",
+      "slug": "anello-lago-di-verzegnis",
+      "gloss": "the loop round the Lago di Verzegnis"
+    },
+    "paganella-andalo-tana-ermellino": {
+      "name": "Andalo – Tana dell’Ermellino",
+      "slug": "andalo-tana-ermellino",
+      "gloss": "the level forest walk from Andalo towards Cavedago"
+    },
+    "paganella-giro-della-toresela": {
+      "name": "Giro della Toresela",
+      "slug": "giro-della-toresela",
+      "gloss": "the short climb to the Toresela above Mezzolombardo"
+    },
+    "paganella-sette-passi-sette-ville": {
+      "name": "Sette passi per sette Ville",
+      "slug": "sette-passi-sette-ville",
+      "gloss": "the loop through the old hamlets of San Lorenzo in Banale"
+    },
+    "lario-il-sentiero-del-viandante": {
+      "name": "Sentiero del Viandante: Varenna – Bellano",
+      "slug": "sentiero-del-viandante-varenna-bellano",
+      "gloss": "the old travellers’ path along the lake from Varenna to Bellano"
+    },
+    "lario-caslino-sullacqua": {
+      "name": "Caslino d’Erba and the Lambro",
+      "slug": "caslino-derba-and-the-lambro",
+      "gloss": "the Piot waterfalls, the Acqua Santa spring and the Lambro"
+    },
+    "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": {
+      "name": "Monte Scioscia viewpoint loop",
+      "slug": "monte-scioscia-viewpoint-loop",
+      "gloss": "the viewpoint over the Segrino and Pusiano lakes"
+    },
+    "trecime-villabassa-lanaweg": {
+      "name": "Niederdorf – Lanaweg loop",
+      "slug": "niederdorf-lanaweg-loop",
+      "gloss": "the sunny Lana path loop above Niederdorf"
+    },
+    "trecime-giro-delle-baite-lago-di-braies": {
+      "name": "Pragser Wildsee huts circuit",
+      "slug": "pragser-wildsee-huts-circuit",
+      "gloss": "the circuit to the Kaseralm and the Grünwaldalm above the Pragser Wildsee"
+    },
+    "valgardena-arte-e-storia": {
+      "name": "Selva Way of the Cross",
+      "slug": "selva-way-of-the-cross",
+      "gloss": "the old Way of the Cross under the Stevia to San Silvestro"
+    },
+    "valgardena-escursione-al-brogles": {
+      "name": "Resciesa – Brogles",
+      "slug": "resciesa-brogles",
+      "gloss": "the high-pasture walk from the Resciesa to Brogles"
+    },
+    "valgardena-escursione-al-seeurasas": {
+      "name": "Ortisei – Sëurasas",
+      "slug": "ortisei-seurasas",
+      "gloss": "the climb from Ortisei past San Giacomo to the Sëurasas"
+    },
+    "valgardena-escursione-da-s-cristina-al-passo-sella": {
+      "name": "Santa Cristina – Passo Sella",
+      "slug": "santa-cristina-passo-sella",
+      "gloss": "the climb over Monte Pana and the Città dei Sassi to the Sella pass"
+    },
+    "valgardena-uciei-de-freeines": {
+      "name": "Uciei de Frëines",
+      "slug": "uciei-de-freines",
+      "gloss": "the bird-call art path down from Col Raiser"
+    },
+    "valgardena-val-danna-percorso-kneipp": {
+      "name": "Val d’Anna",
+      "slug": "val-d-anna",
+      "gloss": "the shaded stream walk up the Val d’Anna"
+    },
+    "valgardena-giro-storico-del-paese-di-ortisei": {
+      "name": "Historic Ortisei",
+      "slug": "historic-ortisei",
+      "gloss": "the villa and workshop walk round old Ortisei"
+    },
+    "valgardena-seceda-da-col-raiser": {
+      "name": "Col Raiser – Seceda",
+      "slug": "col-raiser-seceda",
+      "gloss": "the climb across the Mastlé pastures to the Seceda"
+    },
+    "valgardena-seceda-dal-rifugio-firenze": {
+      "name": "Seceda via the Rifugio Firenze",
+      "slug": "seceda-via-rifugio-firenze",
+      "gloss": "the long climb past the Firenze hut to the Seceda"
+    },
+    "valgardena-escursione-ortisei-passo-sella": {
+      "name": "Ortisei – Passo Sella",
+      "slug": "ortisei-passo-sella",
+      "gloss": "the long climb from Ortisei to the Sella pass"
+    },
+    "valgardena-seceda-da-cristauta-pic": {
+      "name": "Cristauta – Seceda over Monte Pic",
+      "slug": "cristauta-seceda-monte-pic",
+      "gloss": "the climb over the Sëurasas and Monte Pic to the Seceda"
+    },
+    "fvg-fontanon-di-goriuda": {
+      "name": "Fontanon di Goriuda",
+      "slug": "fontanon-di-goriuda",
+      "gloss": "the short path to the Fontanon di Goriuda waterfall"
+    },
+    "fvg-col-dei-piais": {
+      "name": "Col dei Piais",
+      "slug": "col-dei-piais-claut",
+      "gloss": "the loop from Claut up the Col dei Piais"
+    },
+    "fvg-raunis-cascate-belepeit": {
+      "name": "Borgo Raunis e le cascate del rio Belepeit",
+      "slug": "raunis-cascate-belepeit",
+      "gloss": "the loop from Chiusaforte to Raunis and the Belepeit falls"
+    },
+    "fvg-venzone-anello-delle-chiesette": {
+      "name": "Sentiero Natura - Anello delle chiesette di Venzone",
+      "slug": "venzone-anello-delle-chiesette",
+      "gloss": "the short loop to the small churches above Venzone"
+    },
+    "trecime-monte-casella-di-fuori": {
+      "name": "Außergsell – Innergsell loop",
+      "slug": "aussergsell-innergsell-loop",
+      "gloss": "the loop through the Gsell valley to the Gsell meadows above Sexten"
+    },
+    "trecime-rotwandwiesen-moos": {
+      "name": "Rotwandwiesen – Moos",
+      "slug": "rotwandwiesen-moos",
+      "gloss": "the forest road down from the Rotwandwiesen to Moos"
+    },
+    "trecime-helmjet-waldruhe-sexten": {
+      "name": "Helm – Waldruhe – Sexten",
+      "slug": "helm-waldruhe-sexten",
+      "gloss": "the fairy-tale path down from the Helm to Sexten"
+    },
+    "trecime-sasso-di-sesto": {
+      "name": "Fischleintal – Sextner Stein",
+      "slug": "fischleintal-sextner-stein",
+      "gloss": "the climb from the Fischleintal to the Sextner Stein below the Drei Zinnen"
+    },
+    "trecime-monte-elmo-da-moso": {
+      "name": "Moos – Helm",
+      "slug": "moos-helm",
+      "gloss": "the Heimatsteig ridge from Moos to the Helm summit"
+    },
+    "trecime-sesto-alte-saege-val-campo-di-dentro": {
+      "name": "Sexten – Innerfeldtal",
+      "slug": "sexten-innerfeldtal",
+      "gloss": "the larch-wood road from Sexten into the Innerfeldtal and back"
+    },
+    "trecime-cimabanche-prato-piazza": {
+      "name": "Cimabanche – Plätzwiese",
+      "slug": "cimabanche-plaetzwiese",
+      "gloss": "the forest path from Cimabanche up the Knappenfußtal to the Plätzwiese"
+    },
+    "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio": {
+      "name": "Madonna di Campiglio – Malga Ritort",
+      "slug": "campiglio-malga-ritort",
+      "gloss": "the forest walk from Campiglio to the Ritort pastures"
+    },
+    "campiglio-lago-ritorto-nel-blu-dipinto-di-blu": {
+      "name": "Lago Ritorto",
+      "slug": "lago-ritorto",
+      "gloss": "the climb from Patascoss to the Ritort lake"
+    },
+    "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa": {
+      "name": "San Giuliano, Garzonè and Vacarsa lakes",
+      "slug": "san-giuliano-garzone-vacarsa-lakes",
+      "gloss": "the high lakes loop above Caderzone"
+    },
+    "campiglio-monte-spinale-rifugio-graffer": {
+      "name": "Monte Spinale – Rifugio Graffer",
+      "slug": "monte-spinale-rifugio-graffer",
+      "gloss": "the high pasture walk from the Spinale to the Graffer hut"
+    },
+    "campiglio-carisolo-centro-storico": {
+      "name": "Carisolo old village",
+      "slug": "carisolo-old-village",
+      "gloss": "the loop through Carisolo and its chestnut grove"
+    },
+    "paganella-giro-del-lago-di-molveno": {
+      "name": "Lago di Molveno loop",
+      "slug": "lago-di-molveno-loop",
+      "gloss": "the walk round Molveno's lake"
+    },
+    "paganella-passeggiata-del-ciclamino": {
+      "name": "Passeggiata del Ciclamino",
+      "slug": "passeggiata-del-ciclamino-molveno",
+      "gloss": "the short stream walk above Molveno"
+    },
+    "osttirol-rundwanderung-schloss-weissenstein": {
+      "name": "Schloss Weißenstein loop, Matrei",
+      "slug": "schloss-weissenstein-matrei",
+      "gloss": "the castle-park loop from the centre of Matrei in Osttirol"
+    },
+    "osttirol-naturkraftweg-umbalfaelle": {
+      "name": "Umbal Falls nature walk",
+      "slug": "umbal-falls-nature-walk",
+      "gloss": "the loop along the Isel cascades above Ströden in the Virgental"
+    },
+    "osttirol-kulturweg-koednitz": {
+      "name": "Ködnitz culture walk, Kals",
+      "slug": "koednitz-culture-walk-kals",
+      "gloss": "the short heritage loop round the church and village of Kals-Ködnitz"
+    },
+    "osttirol-rundwanderung-am-staller-sattel": {
+      "name": "Obersee loop at the Staller Sattel",
+      "slug": "obersee-staller-sattel-loop",
+      "gloss": "the lake loop below the Staller Sattel pass at the head of the Defereggental"
+    },
+    "campiglio-trekking-al-lago-di-nambino": {
+      "name": "Lago di Nambino",
+      "slug": "lago-di-nambino-walk",
+      "gloss": "the short climb from the Nambino plain to its lake"
+    },
+    "campiglio-madonna-di-campiglio-monte-spinale": {
+      "name": "Madonna di Campiglio – Monte Spinale",
+      "slug": "campiglio-monte-spinale",
+      "gloss": "the climb from the village to the Spinale pastures"
+    },
+    "campiglio-trekking-al-rifugio-segantini": {
+      "name": "Rifugio Segantini loop",
+      "slug": "rifugio-segantini-loop",
+      "gloss": "the loop under the Presanella to the Segantini hut"
+    },
+    "campiglio-valina-d-amola-rifugio-segantini-cornisello": {
+      "name": "Valina d’Amola – Segantini – Cornisello",
+      "slug": "valina-amola-segantini-cornisello",
+      "gloss": "the high loop from Valina d'Amola past the Segantini hut"
+    },
+    "bormio-da-arnoga-al-rifugio-federico": {
+      "name": "Arnoga – Rifugio Federico, Val Viola",
+      "slug": "arnoga-rifugio-federico-val-viola",
+      "gloss": "the larch woods of the Val Viola to the hut below the Val Dosdè"
+    },
+    "osttirol-spazierweg-kreuzweg": {
+      "name": "Kreuzweg to Klaunz, Matrei",
+      "slug": "kreuzweg-klaunz-matrei",
+      "gloss": "the Stations of the Cross loop above the centre of Matrei in Osttirol"
+    },
+    "osttirol-spazierweg-nikolauskirche": {
+      "name": "St. Nikolaus church walk, Matrei",
+      "slug": "st-nikolaus-church-walk-matrei",
+      "gloss": "the loop across the Isel to the Romanesque church of St. Nikolaus at Matrei"
+    },
+    "osttirol-weg-der-sinne-virgen": {
+      "name": "Weg der Sinne, Virgen",
+      "slug": "weg-der-sinne-virgen",
+      "gloss": "the nature trail with hands-on stations in the fields and woods below Virgen"
+    },
+    "osttirol-themenweg-kreuzweg-virgen": {
+      "name": "Kreuzweg to Maria Schnee, Virgen",
+      "slug": "kreuzweg-maria-schnee-virgen",
+      "gloss": "the Stations of the Cross from Virgen to the pilgrimage church of Maria Schnee at Obermauern"
+    },
+    "osttirol-kinder-naturerlebnispfad-kals-ag": {
+      "name": "Children’s nature trail, Kals",
+      "slug": "kals-childrens-nature-trail",
+      "gloss": "the nature trail past the old Stockmühlen mills along the Kalserbach at Kals am Großglockner"
+    },
+    "osttirol-wassererlebnisweg-st-jakob-i-d": {
+      "name": "Water trail, St. Jakob in Defereggen",
+      "slug": "water-trail-st-jakob-defereggen",
+      "gloss": "the flat loop along the Schwarzach from St. Jakob in Defereggen"
+    },
+    "fvg-lago-di-sella-sompdogna": {
+      "name": "Il laghetto di sella Sompdogna",
+      "slug": "laghetto-di-sella-sompdogna",
+      "gloss": "the short loop to the lake of Sella Sompdogna"
+    },
+    "fvg-sappada-rifugio-calvi": {
+      "name": "Rifugio Calvi",
+      "slug": "sappada-rifugio-calvi",
+      "gloss": "the gravel road from the Piave springs to the Rifugio Calvi"
+    },
+    "fvg-salita-casera-canin": {
+      "name": "Salita a Casera Canin: balcone panoramico sulla val Resia",
+      "slug": "salita-casera-canin",
+      "gloss": "the walk from Malga Coot to Casera Canin"
+    },
+    "fvg-anello-malga-confin-ungarina": {
+      "name": "L'anello di malga Confin e malga Ungarina",
+      "slug": "anello-malga-confin-ungarina",
+      "gloss": "the loop between Malga Confin and Malga Ungarina"
+    },
+    "fvg-monte-talm-da-piani-di-vas": {
+      "name": "Monte Talm dai Piani di Vas",
+      "slug": "monte-talm-piani-di-vas",
+      "gloss": "the loop from Piani di Vas to the summit of Monte Talm"
+    },
+    "fvg-anello-casera-vas-monte-buoi": {
+      "name": "Anello Casera Vas - Casera Monte Buoi",
+      "slug": "anello-casera-vas-monte-buoi",
+      "gloss": "the forest loop from Frassenetto to Casera Vas"
+    },
+    "fvg-monte-rest-da-passo-rest": {
+      "name": "Dal Passo Rest al Monte Rest",
+      "slug": "monte-rest-da-passo-rest",
+      "gloss": "the ridge walk from Passo Rest to Monte Rest"
+    },
+    "fvg-mirabila-sentiero-botanico-bila-pec": {
+      "name": "MIRABILA - Sentiero botanico del Bila Pec",
+      "slug": "mirabila-sentiero-bila-pec",
+      "gloss": "the botanical loop from the Rifugio Gilberti to the Bila Pec saddle"
+    },
+    "lesachtal-spazierweg-maria-luggau-gailweg": {
+      "name": "Gail river walk, Maria Luggau",
+      "slug": "gailweg-maria-luggau",
+      "gloss": "the short loop from Maria Luggau down to the Gail and back"
+    },
+    "lesachtal-tuffbad": {
+      "name": "Tuffbad loop, Lesachtal",
+      "slug": "tuffbad-loop-lesachtal",
+      "gloss": "the small loop through the woods above the Tuffbad in the Lesachtal"
+    },
+    "gailtal-almkaese-sonnenalpe": {
+      "name": "Alpine cheese walk, Sonnenalpe Nassfeld",
+      "slug": "alpine-cheese-walk-sonnenalpe-nassfeld",
+      "gloss": "the loop to two Gailtal cheese alps from the Sonnenalpe Nassfeld"
+    },
+    "weissensee-nordic-6-rothns-bichl": {
+      "name": "Rothn’s Bichl loop, Weissensee",
+      "slug": "rothns-bichl-loop-weissensee",
+      "gloss": "the Nordic walking loop through the woods south of Techendorf"
+    },
+    "weissensee-nordic-5-genoesns-bruendl": {
+      "name": "Genösn’s Bründl loop, Weissensee",
+      "slug": "genoesns-bruendl-loop-weissensee",
+      "gloss": "the short Nordic walking loop into the woods south of Techendorf"
+    },
+    "weissensee-nordic-7-franz-josephs-hoehe": {
+      "name": "Franz-Josephs-Höhe loop, Weissensee",
+      "slug": "franz-josephs-hoehe-loop-weissensee",
+      "gloss": "the longer Nordic walking loop through the woods above the south shore"
+    },
+    "weissensee-nordic-2-urschitz": {
+      "name": "Urschitz loop, Weissensee",
+      "slug": "urschitz-loop-weissensee",
+      "gloss": "the Nordic walking loop on the tracks and woodland paths above Gatschach"
+    },
+    "weissensee-nordic-8-naggler-alm": {
+      "name": "Climb to the Naggler Alm, Weissensee",
+      "slug": "naggler-alm-climb-weissensee",
+      "gloss": "the steep Nordic walking climb from Techendorf to the Naggler Alm"
+    },
+    "weissensee-techendorf-tschabitscher-kreuzwirt": {
+      "name": "Techendorf to the Kreuzwirt, Weissensee",
+      "slug": "techendorf-kreuzwirt-walk-weissensee",
+      "gloss": "the walk above the north shore from Techendorf past the Tschabitscher farm to the Kreuzwirt"
+    },
+    "weissensee-slow-trail": {
+      "name": "Slow Trail Weissensee",
+      "slug": "slow-trail-weissensee",
+      "gloss": "the quiet lakeside path from the Ronacherfels to the east end of the lake"
+    },
+    "weissensee-ortsee-ronacherfels": {
+      "name": "Neusach to the east shore by the Kleine Steinwand, Weissensee",
+      "slug": "neusach-east-shore-lakeside-walk-weissensee",
+      "gloss": "the lakeside walk from Neusach past the Ronacherfels and the Kleine Steinwand to the east end"
+    },
+    "weissensee-wasserleben": {
+      "name": "Was(s)erleben nature trail, Weissensee east shore",
+      "slug": "wasserleben-nature-trail-weissensee",
+      "gloss": "the nature park’s short water trail at the east end of the lake"
+    },
+    "gailtal-auernig-hoehenweg": {
+      "name": "Auernig ridge walk, Nassfeld",
+      "slug": "auernig-ridge-walk-nassfeld",
+      "gloss": "the fossil ridge on the Austrian–Italian border east of the Nassfeld pass"
+    },
+    "kronplatz-passeggiata-valdaora-monguelfo": {
+      "name": "Olang to Welsberg by the reservoir",
+      "slug": "olang-welsberg-reservoir-path",
+      "gloss": "the cycle-path walk past the Olang reservoir"
+    },
+    "kronplatz-sentiero-tematico-tru-dles-liondes": {
+      "name": "Tru dles Liondes",
+      "slug": "tru-dles-liondes",
+      "gloss": "the legends loop above San Vigilio"
+    },
+    "kronplatz-passeggiata-san-vigilio-le-dla-creda": {
+      "name": "San Vigilio to Lé dla Creda",
+      "slug": "san-vigilio-le-dla-creda",
+      "gloss": "the walk up the Rudo valley to the little lake"
+    },
+    "kronplatz-attraverso-il-sentiero-panoramico-a-brunico": {
+      "name": "Panoramic path from Olang to Bruneck",
+      "slug": "olang-bruneck-panoramic-path",
+      "gloss": "the slope walk past Lamprechtsburg into Bruneck"
+    },
+    "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina": {
+      "name": "Antermoia to Rina",
+      "slug": "antermoia-colac-rina",
+      "gloss": "the farm-slope walk from Antermoia to Rina"
+    },
+    "kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe": {
+      "name": "Brach to Pieve di Marebbe",
+      "slug": "brach-pieve-di-marebbe",
+      "gloss": "the barrier-free road walk into La Pli de Mareo"
+    },
+    "kronplatz-valdaora-di-sopra-goste": {
+      "name": "Valdaora di Sopra to the Alte Goste",
+      "slug": "oberolang-alte-goste",
+      "gloss": "path 21B to the old inn by the Olang reservoir"
+    },
+    "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": {
+      "name": "The Gais channel path loop",
+      "slug": "gais-waalweg-loop",
+      "gloss": "the level irrigation-channel path through the woods above Gais"
+    },
+    "kronplatz-san-lorenzo-maria-sares": {
+      "name": "San Lorenzo to Maria Sares",
+      "slug": "st-lorenzen-maria-saalen",
+      "gloss": "paths 8A and 9 to the pilgrimage church"
+    },
+    "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": {
+      "name": "Valdaora di Sotto to Bad Bergfall",
+      "slug": "niederolang-bad-bergfall",
+      "gloss": "path 32B up to the old sulphur-spring baths"
+    },
+    "kronplatz-passeggiata-leggendaria-sul-kienberg": {
+      "name": "The Kienberg legends loop",
+      "slug": "kienberg-legends-loop",
+      "gloss": "from Casteldarne over the Kienberg and back on the Way of the Cross"
+    },
+    "eggental-dal-passo-costalunga-al-lago-di-carezza": {
+      "name": "Passo Costalunga to Lake Carezza",
+      "slug": "costalunga-to-lake-carezza",
+      "gloss": "down through the Latemar forest to the Karersee"
+    },
+    "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": {
+      "name": "Lake Carezza to the Stadlalm",
+      "slug": "lake-carezza-to-stadlalm",
+      "gloss": "along the Karersee and the Templ forest road to the hut"
+    },
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": {
+      "name": "Mont Sëuc to the Sporthotel Sonne",
+      "slug": "mont-seuc-to-sporthotel-sonne",
+      "gloss": "barrier-free on path 9 across the Alpe di Siusi"
+    },
+    "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": {
+      "name": "Passo Nigra to Tiers by the Jocher farm",
+      "slug": "passo-nigra-to-tiers",
+      "gloss": "through the Val Nigra and over the Forcella del Lupo"
+    },
+    "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": {
+      "name": "Umes, Hofer Alpl and Malga Tuff loop",
+      "slug": "umes-hofer-alpl-malga-tuff",
+      "gloss": "under the Sciliar and past the Lago di Fiè"
+    },
+    "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": {
+      "name": "Kastelruth bear-trap loop",
+      "slug": "kastelruth-bear-trap-loop",
+      "gloss": "past San Michele to the bear trap and Passo Pinei"
     }
   }
 }

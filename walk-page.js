@@ -79,17 +79,17 @@
       ? window.DoloPawsMapRuntime.mapOptions(walkMapOptions) : walkMapOptions);
     map.on('load', function(){
       if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(map);
-      // Same walkable-network detail as every other ORMA map: marked
-      // hiking routes plus subtle relief, under the recording trace.
+      // Same walkable-network detail as every other ORMA map: the marked
+      // hiking routes as dashed grey lines with their numbers (Waymarked's
+      // raster if our tiles cannot load), plus subtle relief, with the
+      // recording trace over the lines and under the numbers.
+      var style = window.ORMAMapStyle;
       var firstLabel = map.getStyle().layers.find(function(l){ return l.type === 'symbol'; });
-      map.addSource('waymarked-hiking', {
-        type: 'raster',
-        tiles: ['https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'],
-        tileSize: 256,
-        attribution: '© Sarah Hoffmann (CC-BY-SA), waymarkedtrails.org',
-      });
-      map.addLayer({ id: 'waymarked-hiking-layer', type: 'raster', source: 'waymarked-hiking',
-        paint: { 'raster-opacity': 1, 'raster-resampling': 'linear' } }, firstLabel ? firstLabel.id : undefined);
+      // The same calm base as every other ORMA map: the base style's own
+      // path-number labels ("25;29") and shop, parking and info icons
+      // otherwise sit beside our route numbers and compete with them.
+      style.quietBasemap(map);
+      style.addHikingRoutes(map, { beforeId: firstLabel ? firstLabel.id : undefined });
       map.addSource('terrain-dem', {
         type: 'raster-dem',
         tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
@@ -97,11 +97,11 @@
       });
       map.addLayer({ id: 'base-hillshade', type: 'hillshade', source: 'terrain-dem',
         paint: { 'hillshade-exaggeration': 0.25, 'hillshade-shadow-color': '#5A5548', 'hillshade-method': 'igor' } },
-        'waymarked-hiking-layer');
+        style.networkLayerId(map));
       map.addSource('walk', { type: 'geojson', data: routeGeo() });
       map.addLayer({ id: 'walk-line', type: 'line', source: 'walk',
         paint: { 'line-color': '#C4652F', 'line-width': 4 },
-        layout: { 'line-cap': 'round', 'line-join': 'round' } }, 'waymarked-hiking-layer');
+        layout: { 'line-cap': 'round', 'line-join': 'round' } }, style.walkLineBeforeId(map));
       map.addSource('walk-position', { type: 'geojson', data: positionGeo(latestFix) });
       map.addLayer({ id: 'walk-position-accuracy', type: 'fill', source: 'walk-position',
         filter: ['==', ['geometry-type'], 'Polygon'],
@@ -149,8 +149,22 @@
   }
 
   function regionForFix(fix){
-    // ORMA currently covers Savoy (west of 9°E) and the Dolomites.
-    return fix && fix.lng < 9 ? 'savoy' : 'dolomites';
+    // Savoy lies west of 9°E. East of it the walker is in the region of the
+    // nearest trail ORMA knows, which is how the water and hut layers are split.
+    if(!fix) return 'dolomites';
+    if(fix.lng < 9){
+      // Courmayeur and Chamonix share a meridian; the nearest locality decides.
+      var regions = window.DoloPawsRegions;
+      return regions && regions.nearestLocality && regions.nearestLocality(fix.lat, fix.lng).region === 'aosta' ? 'aosta' : 'savoy';
+    }
+    var best = 'dolomites';
+    var bestD = Infinity;
+    (Array.isArray(window.trails) ? window.trails : []).forEach(function(trail){
+      if(!trail || trail.region === 'savoy' || typeof trail.lat !== 'number' || typeof trail.lng !== 'number') return;
+      var d = Math.pow(trail.lat - fix.lat, 2) + Math.pow((trail.lng - fix.lng) * Math.cos(fix.lat * Math.PI / 180), 2);
+      if(d < bestD){ bestD = d; best = trail.region || 'dolomites'; }
+    });
+    return best;
   }
 
   function regionAsset(key){
@@ -235,8 +249,8 @@
         function build(){
           if(typeof gondolas === 'undefined') { reject(new Error('Lift layer unavailable')); return; }
           var lifts = gondolas.filter(function(lift){
-            var savoy = lift.country === 'FR' || (lift.from && lift.from.lng < 9);
-            return overlayRegion === 'savoy' ? savoy : !savoy;
+            var region = lift.country === 'FR' ? 'savoy' : (lift.from ? regionForFix(lift.from) : null);
+            return region === overlayRegion;
           });
           var features = lifts.map(function(lift){ return { type:'Feature', properties:{ name:lift.name, status:lift.status },
             geometry:{ type:'LineString', coordinates:[[lift.from.lng,lift.from.lat],[lift.to.lng,lift.to.lat]] } }; });
@@ -291,7 +305,7 @@
       });
       panel.appendChild(chip);
     }
-    layerChip('Marked hiking routes', ['waymarked-hiking-layer'], true);
+    layerChip('Marked hiking routes', window.ORMAMapStyle.HIKING_LAYER_IDS, true);
 
     function lazyLayerChip(label, loader){
       var on = false;
@@ -352,7 +366,7 @@
       });
       map.addLayer({ id:'satellite-layer', type:'raster', source:'satellite', layout:{ visibility:'none' },
         paint:{ 'raster-resampling':'linear', 'raster-fade-duration':100 } },
-        map.getLayer('waymarked-hiking-layer') ? 'waymarked-hiking-layer' : undefined);
+        window.ORMAMapStyle.networkLayerId(map));
       return true;
     }
 
@@ -568,7 +582,8 @@
       localStorage.setItem(journalKey(), JSON.stringify(entries));
     } catch(e){}
     clearDraft();
-    window.location.href = 'journal.html?recorded=1';
+    // The journal opens on this walk, asking for a photo and who came along.
+    window.location.href = 'journal.html?saved=' + encodeURIComponent(entry.id);
   }
 
   // ---- Controls ------------------------------------------------------

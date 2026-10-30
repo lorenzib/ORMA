@@ -5,6 +5,16 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(root){
   'use strict';
 
+  // Every ORMA region in Italy; "Italy" means all of them, not the Dolomites.
+  const ITALIAN_REGIONS = ['dolomites', 'lombardy', 'friuli', 'aosta'];
+  // Each country's regions and code. Austria made a third country, so the
+  // filter can no longer read "not Italy" as France.
+  const COUNTRY_REGIONS = {
+    italy: { regions: ITALIAN_REGIONS, code: 'it' },
+    france: { regions: ['savoy'], code: 'fr' },
+    austria: { regions: ['tyrol'], code: 'at' },
+  };
+
   const DISTANCES = [3, 5, 6, 10, 20];
   // Kept in step with trail-trust.js's MULTI_DAY_MIN_KM. Duplicated (not
   // imported) so this module stays standalone for the browser globals build and
@@ -95,9 +105,8 @@
     if(q && !searchable.includes(q)) return false;
     if(state.country){
       const country = String(trail.country || '').toLocaleLowerCase();
-      const expectedRegion = state.country === 'italy' ? 'dolomites' : 'savoy';
-      const expectedCode = state.country === 'italy' ? 'it' : 'fr';
-      if(trail.region !== expectedRegion && country !== state.country && country !== expectedCode) return false;
+      const expected = COUNTRY_REGIONS[state.country] || COUNTRY_REGIONS.france;
+      if(!expected.regions.includes(trail.region) && country !== state.country && country !== expected.code) return false;
     }
     if(state.region && state.region !== 'all' && trail.region !== state.region) return false;
     if(state.valley && state.valley !== 'all' && trail.valley !== state.valley) return false;
@@ -210,8 +219,12 @@
   function labelFor(key, state){
     const labels = {
       search: tr('filters.chip.search', 'Search “{q}”', { q: state.search }),
-      country: state.country === 'italy' ? tr('filters.chip.italy', 'Italy') : tr('filters.chip.france', 'France'),
-      region: state.region === 'dolomites' ? tr('filters.chip.dolomites', 'Dolomites region') : tr('filters.chip.savoy', 'Savoy region'),
+      country: state.country === 'italy' ? tr('filters.chip.italy', 'Italy')
+        : state.country === 'austria' ? tr('filters.chip.austria', 'Austria')
+        : tr('filters.chip.france', 'France'),
+      region: state.region === 'dolomites' ? tr('filters.chip.dolomites', 'Dolomites region')
+        : state.region === 'tyrol' ? tr('filters.chip.tyrol', 'Tyrol & Carinthia region')
+        : tr('filters.chip.savoy', 'Savoy region'),
       valley: state.valley,
       risk: tr('filters.chip.risk', '{risk} rating', { risk: state.risk }),
       distance: state.distance === 'u5' ? tr('filters.chip.under5', 'Under 5 km')

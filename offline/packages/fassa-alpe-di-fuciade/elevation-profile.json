@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-alpe-di-fuciade",
+  "distanceKm": 6.9,
+  "ascentM": 94,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1917
+    },
+    {
+      "km": 0.5,
+      "elev": 1921
+    },
+    {
+      "km": 1.1,
+      "elev": 1928
+    },
+    {
+      "km": 1.6,
+      "elev": 1931
+    },
+    {
+      "km": 2.1,
+      "elev": 1978
+    },
+    {
+      "km": 2.6,
+      "elev": 1984
+    },
+    {
+      "km": 3.2,
+      "elev": 1974
+    },
+    {
+      "km": 3.7,
+      "elev": 1983
+    },
+    {
+      "km": 4.2,
+      "elev": 1971
+    },
+    {
+      "km": 4.7,
+      "elev": 1965
+    },
+    {
+      "km": 5.3,
+      "elev": 1943
+    },
+    {
+      "km": 5.8,
+      "elev": 1917
+    },
+    {
+      "km": 6.4,
+      "elev": 1921
+    },
+    {
+      "km": 6.9,
+      "elev": 1917
+    }
+  ]
+}

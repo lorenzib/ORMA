@@ -39,6 +39,8 @@ const SOURCES = [
   'hike-session.js',
   // The journal's own storage shape. hike-mode.js saves a walk through it.
   'journal-store.js',
+  // Where a walk's photos wait before they reach the account.
+  'journal-photos.js',
   'hike-completions.js',
   'post-hike-outcomes.js',
   'hike-mode.js',
@@ -48,7 +50,10 @@ const SOURCES = [
   'scoring-conditions.js',
   'trail-reports.js',
   'trail-route-refs.js',
-  'route-operational-facts.js',
+  // Says once where the route directions came from; trail-blueprint.js reads it.
+  'route-guidance-sources.js',
+  // One-way walks seen there and back; trail.js and trail-recommendation.js read it.
+  'route-return.js',
   'trail.js',
   'trail-blueprint.js',
   'trail-detail-ui.js',

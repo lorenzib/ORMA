@@ -216,9 +216,15 @@ function claimNotBefore(job,now){
   return at.getTime()>(now?new Date(now).getTime():Date.now());
 }
 
+// The two lanes the specialist pass takes, and of their jobs the ones it holds
+// while paid research is off. One rule, read by the pass and by the health
+// summary the System page shows, so the page cannot call held work active.
+const SPECIALIST_JOB_TYPES=Object.freeze(['trail-verification-specialist','trail-claim-resolution']);
+const heldWhilePaidOff=job=>SPECIALIST_JOB_TYPES.includes(job?.jobType)&&!costsNoModelCall(job);
+
 async function processTrailSpecialistJobs(store,options={}){
   const workerId=options.workerId||`orma-worker-${randomUUID()}`;
-  let queued=(await store.listJobs(['queued'])).filter(job=>['trail-verification-specialist','trail-claim-resolution'].includes(job.jobType));const outcomes=[];
+  let queued=(await store.listJobs(['queued'])).filter(job=>SPECIALIST_JOB_TYPES.includes(job.jobType));const outcomes=[];
   if(options.specialistCandidateId) queued=queued.filter(job=>job.candidateId===options.specialistCandidateId);
   const intake=await store.getArtifact('new-trail-intake');
   const production=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
@@ -245,7 +251,7 @@ async function processTrailSpecialistJobs(store,options={}){
   // the 101 calls were retries on optional detail. Verification research now
   // happens by hand, so the backoffice must not spend on its own.
   const paidAllowed=options.paidResearchEnabled!==false;
-  const heldPaid=paidAllowed?0:queued.filter(job=>!costsNoModelCall(job)).length;
+  const heldPaid=paidAllowed?0:queued.filter(heldWhilePaidOff).length;
   if(!paidAllowed)queued=queued.filter(job=>costsNoModelCall(job));
   if(heldPaid)outcomes.push({status:'paid-research-off',held:heldPaid});
   const claimable=verifiableFirst(queued.filter(job=>!claimNotBefore(job,options.now)),trailById);
@@ -987,7 +993,7 @@ async function recordHandVerifications(store, options = {}){
   if(plan.orchestration){
     const next={...plan.orchestration,generatedAt:at,summary:summarizeOrchestration(plan.orchestration.trails)};
     const errors=validateTrailOrchestration(next);if(errors.length)throw new Error(errors.join('; '));
-    await store.setArtifact('trail-orchestration',next,{handVerificationsAt:at});
+    await store.setArtifact('trail-orchestration',compactOrchestration(next),{handVerificationsAt:at});
   }
   const retired=[];
   if(typeof store.completeSystemJob==='function'){
@@ -996,7 +1002,7 @@ async function recordHandVerifications(store, options = {}){
       retired.push(id);
     }
   }
-  return {recorded:plan.recorded,withdrawn:plan.withdrawn,retiredJobs:retired};
+  return {recorded:plan.recorded,withdrawn:plan.withdrawn,compacted:plan.compacted,retiredJobs:retired};
 }
 
 /**
@@ -1104,7 +1110,9 @@ async function recordPipelineHealth(store, options = {}){
     // The same list requeueOutageBlockedJobs filters on, so the desk cannot
     // promise a restart this worker will not make.
     const health = summarisePipeline(jobs, { at:options.at || new Date().toISOString(),
-      processableJobTypes:PROCESSABLE_JOB_TYPES });
+      processableJobTypes:PROCESSABLE_JOB_TYPES,
+      // The specialist pass's own test: off only when it is explicitly false.
+      paidResearchEnabled:options.paidResearchEnabled !== false, heldWhilePaidOff });
     await store.setArtifact('pipeline-health', health, { stopped:health.stopped.total });
     return health;
   }catch(error){
@@ -1112,4 +1120,4 @@ async function recordPipelineHealth(store, options = {}){
   }
 }
 
-module.exports = { sendReviewedTrailsForSafetyResearch,PROCESSABLE_JOB_TYPES,refreshPublicationStaging,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore,scoutClosureNotices, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordTrailBoard,recordHandVerifications,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { SPECIALIST_JOB_TYPES,heldWhilePaidOff,sendReviewedTrailsForSafetyResearch,PROCESSABLE_JOB_TYPES,refreshPublicationStaging,ATTEMPTS_PER_SLOT,SPECIALIST_CONCURRENCY,mapWithConcurrency,claimNotBefore,scoutClosureNotices, recordPipelineHealth,recordProgrammeHealth,recordRegionalCoverage,recordTrailBoard,recordHandVerifications,recordDayUsage, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,dispatchUnansweredGates,adjudicateStandingGates,ingestDossierReviews,ingestRouteReviews,promoteOwedLines,admitRouteChoices,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

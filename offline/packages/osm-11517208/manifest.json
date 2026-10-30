@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11517208",
   "name": "La Croix des Salles",
-  "version": "2026.10.24-beta.1",
-  "generatedAt": "2026-10-24T11:09:29.461Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T12:36:52.707Z",
   "scoringVersion": "1.6.0",
-  "verificationStatus": "field-review-required",
-  "packageBytes": 820881,
+  "verificationStatus": "source-verified",
+  "packageBytes": 821836,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.86599,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 9643,
-      "sha256": "a46509907f72d1b2d34f1b6ff70b5790bcfa7f4153bbf7f74e2a1590bb209f29"
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 11338,
-      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34522,
-      "sha256": "1bd7e39bf712ed8cff9fdb1c29a908c59123be0739c2a56c7f247c695a081ccb"
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "La Croix des Salles route",
       "url": "route.geojson",
-      "bytes": 59014,
-      "sha256": "94557a1e918e647cea8aa818ead7a0c55d2c5a33156af85f9da01f3c6b4d7747"
+      "bytes": 59008,
+      "sha256": "7e46d3e051a64f1b45df57e850d36de87cdbce70b5287604b7aea16fca26091a"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "La Croix des Salles routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 304048,
-      "sha256": "d1a6a917e817a2cbe5f9d00ee0b96193605d6eef7dd49acf58e345235fd9aa55"
+      "sha256": "3d7c34bb8e5ea65a91ca7c63c3c6b33f8020728621343b2176910453d345f701"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "La Croix des Salles safety information",
       "url": "safety.json",
-      "bytes": 1652,
-      "sha256": "6a1220b7bde16bb89163432f910e244df8f623f8308ad775a2a9eb3dbb2170d4"
+      "bytes": 1564,
+      "sha256": "f746a48c8d14cb582eb74fc77cb7843f50f4cfbd668d724e68e0a7caf204c008"
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "trailId": "osm-9450411",
-  "generatedAt": "2026-10-24T00:00:00Z",
-  "verificationStatus": "field-review-required",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
   "facts": {
     "routeType": "One way",
     "distanceKm": 11.9,
@@ -76,12 +76,11 @@
     }
   ],
   "cautions": [
-    "This package has not yet had a dated field review; check signs on the ground.",
     "Short stretches beside and across the busy Gröden road (SS242) near the Felsonnes farms, km 3.2–4.0.",
     "A steep, partly rocky forest slope above Pontives, km 8.4–9.5.",
     "Village streets in Lajen, St. Peter and St. Ulrich, and the tarmac road up to the Pedrutsch inn.",
     "Carry water even though water points are listed.",
-    "Local lead rules and temporary closures can change."
+    "Follow local signs, lead rules and temporary closures."
   ],
   "emergency": {
     "number": "112",
@@ -95,7 +94,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-10-24",
+      "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
   ]
