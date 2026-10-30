@@ -245,7 +245,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20261006-1');
-    expect(html).toContain('trail-app.bundle.js?v=20261029-4');
+    expect(html).toContain('trail-app.bundle.js?v=20261030-1');
     expect(html).toContain('trail-mobile.css?v=20260904-3');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
@@ -372,7 +372,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
     expect(bundle.indexOf('// ---- trail-route-refs.js ----')).toBeLessThan(bundle.indexOf('// ---- trail.js ----'));
     const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
-    expect(blueprint).toContain("verifiedRouteGuidance ? 'How to follow this route'");
+    expect(blueprint).toContain("verifiedRouteGuidance || (!routeRefs.length && auditDirections.written) ? 'How to follow this route'");
     expect(blueprint).toContain("routeRefs.length ? 'Trail numbers' : 'Following the route'");
     expect(blueprint).not.toMatch(/'Waymarked|Follow waymarked/);
     expect(blueprint).toContain('Begin the hike on trail <b>${esc(routeSwitches[0].from)}</b>');

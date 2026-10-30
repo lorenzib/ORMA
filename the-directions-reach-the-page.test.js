@@ -18,6 +18,10 @@ const text=html=>html.replace(/<[^>]+>/g,' ').replace(/&(amp|lt|gt|quot|#39);/g,
   .replace(/\s+/g,' ').trim();
 // A sentence as written is not HTML: nothing in it is a tag to strip.
 const plain=value=>String(value).replace(/\s+/g,' ').trim();
+// Directions are established by a guidance block, or -- for a walk with no
+// trail numbers -- by a route-audit sentence a walker can follow.
+const hasDirections=trail=>Boolean(trail.routeNumberGuidance
+  ||(!routeRefs.forTrail(trail).length&&routeRefs.writtenDirections(trail).written));
 
 /**
  * ORMA establishes four answers about following a walk, and they reached only
@@ -87,7 +91,7 @@ describe('the directions reach the crawlable page',()=>{
   });
 
   test('a trail with no established directions gets no section at all',()=>{
-    const none=trails.filter(trail=>!trail.routeNumberGuidance);
+    const none=trails.filter(trail=>!hasDirections(trail));
     expect(none.length).toBeGreaterThan(100);
     expect(none.map(directionsSection).filter(Boolean)).toEqual([]);
   });
@@ -221,9 +225,61 @@ describe('the published pages carry what the record established',()=>{
       if(!fs.existsSync(file))continue;
       const html=fs.readFileSync(file,'utf8');
       const shows=html.includes('How to follow this route');
-      if(Boolean(trail.routeNumberGuidance)!==shows)missing.push(`${trail.id}: record ${
-        trail.routeNumberGuidance?'has':'has no'} guidance, page ${shows?'shows':'does not show'} it`);
+      if(hasDirections(trail)!==shows)missing.push(`${trail.id}: record ${
+        hasDirections(trail)?'has':'has no'} directions, page ${shows?'shows':'does not show'} them`);
     }
     expect(missing).toEqual([]);
+  });
+});
+
+/**
+ * A walk with no trail numbers and no guidance block read "No verified numbered
+ * sequence is currently recorded" while its record held written directions --
+ * 222 pages on 30 October 2026. The route audit's sentence is printed when it
+ * says where to start and which way to go; anything less keeps the honest note.
+ */
+describe('a walk without numbers shows the route audit\'s directions',()=>{
+  const trails=loadProductionTrails(ROOT);
+  const eligible=trails.filter(trail=>!trail.routeNumberGuidance&&!routeRefs.forTrail(trail).length
+    &&routeRefs.writtenDirections(trail).written);
+
+  test('there are such walks',()=>{
+    expect(eligible.length).toBeGreaterThan(0);
+  });
+
+  test('each one gets the section, with the sentence and where it came from',()=>{
+    for(const trail of eligible){
+      const rendered=text(directionsSection(trail));
+      expect({id:trail.id,heading:rendered.startsWith('How to follow this route'),
+        sentence:rendered.includes(plain(trail.routeAudit.routeNumbers)),
+        note:rendered.includes(routeRefs.AUDIT_DIRECTIONS_NOTE)})
+        .toEqual({id:trail.id,heading:true,sentence:true,note:true});
+    }
+  });
+
+  test('a sentence too thin to follow is not printed as directions',()=>{
+    expect(directionsSection({routeAudit:{routeNumbers:'Yellow waymarks, as the tourist office states.'}})).toBe('');
+    expect(routeRefs.writtenDirections({}).written).toBe(false);
+    expect(routeRefs.writtenDirections({routeAudit:{routeNumbers:
+      'No route number: from the car park follow the yellow signs through the underpass to the viewing platform, then walk round the lake clockwise.'}}).written).toBe(true);
+  });
+
+  test('a walk with trail numbers keeps its numbers card rather than the sentence',()=>{
+    const trail=trails.find(t=>!t.routeNumberGuidance&&routeRefs.forTrail(t).length&&routeRefs.writtenDirections(t).written);
+    if(trail)expect(directionsSection(trail)).toBe('');
+  });
+
+  test('the app prints the same sentence and note',()=>{
+    const blueprint=read('trail-blueprint.js');
+    expect(blueprint).toContain('window.DoloPawsTrailRouteRefs.writtenDirections(t)');
+    expect(blueprint).toContain('<b>Directions:</b> ${esc(auditDirections.text');
+    expect(blueprint).toContain('DoloPawsTrailRouteRefs.AUDIT_DIRECTIONS_NOTE');
+    expect(blueprint).toContain(': auditDirections.written ? auditDirectionsMarkup : noRouteNumbers;');
+  });
+
+  test('the board-walk bar counts the printed sentence as shown',()=>{
+    const bar=require('./scripts/board-walk-bar');
+    for(const trail of eligible)expect({id:trail.id,shown:bar.directionsOf(trail).shownOnPage})
+      .toEqual({id:trail.id,shown:true});
   });
 });

@@ -69260,8 +69260,36 @@ function initTrailReports(map, trail){
     }, config.beforeId);
   }
 
+  /**
+   * The route audit's directions sentence, when it is one a walker can follow:
+   * where to start and which way to go, in at least fifteen words. A walk with
+   * neither trail numbers nor a structured guidance block showed only "No
+   * verified numbered sequence is currently recorded" while this sentence sat
+   * in its record. The board-walk bar and both renderers ask this one test.
+   */
+  function writtenDirections(trail) {
+    const text = String((trail && trail.routeAudit && trail.routeAudit.routeNumbers) || '').trim();
+    const problems = [];
+    if (!text) {
+      problems.push('no written directions');
+    } else {
+      const words = text.split(/\s+/).length;
+      const hasStart = /\b(from|start|begin|leave|at the)\b/i.test(text);
+      const hasWay = /\b(to|towards|onto|then|up|down|along|past|through|across|over|via|back)\b/i.test(text);
+      if (words < 15) problems.push(`the directions are only ${words} words`);
+      if (!hasStart || !hasWay) problems.push('the directions do not say where to start and which way to go');
+    }
+    return { text, problems, written: !problems.length };
+  }
+
+  // Printed under the sentence by both renderers, so the app and the page
+  // say the same thing about where it came from.
+  const AUDIT_DIRECTIONS_NOTE = 'From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.';
+
   const api = {
     forTrail,
+    writtenDirections,
+    AUDIT_DIRECTIONS_NOTE,
     refsFromText,
     normaliseRef,
     segmentsForTrail,
@@ -72996,6 +73024,10 @@ if(document.querySelector('.td2')){
           <li>Stay on trail <b>${esc(routeSwitches[routeSwitches.length - 1].to)}</b> for the final section to the route finish.</li>
         </ol>`
       : '';
+    const auditDirections = window.DoloPawsTrailRouteRefs
+      ? window.DoloPawsTrailRouteRefs.writtenDirections(t)
+      : { written:false };
+    const auditDirectionsMarkup = `<div class="s"><p><b>Directions:</b> ${esc(auditDirections.text || '')}</p><p class="td2-route-source">${esc(window.DoloPawsTrailRouteRefs ? window.DoloPawsTrailRouteRefs.AUDIT_DIRECTIONS_NOTE : '')}</p></div>`;
     const noRouteNumbers = '<div class="s"><p><b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.</p></div>';
     // The status sentence says whether ORMA confirmed how the numbers appear on
     // local signs -- what a reader standing at a junction needs. It was being
@@ -73051,11 +73083,12 @@ if(document.querySelector('.td2')){
       // fall back to the first paragraph of t.desc, which "About this trail"
       // prints in full a few centimetres above: on 76 of 109 Dolomites trails
       // the visitor read the same sentence twice on one card. A route with no
-      // recorded numbers says so, and says it once.
-      : noRouteNumbers;
+      // recorded numbers says so, and says it once -- unless the route audit
+      // wrote directions a walker can follow, which it prints as they stand.
+      : auditDirections.written ? auditDirectionsMarkup : noRouteNumbers;
     const routeCard = {
       ic:'',
-      t:verifiedRouteGuidance ? 'How to follow this route' : (routeSwitches.length ? 'Trail numbers and switches' : (routeRefs.length ? 'Trail numbers' : 'Following the route')),
+      t:verifiedRouteGuidance || (!routeRefs.length && auditDirections.written) ? 'How to follow this route' : (routeSwitches.length ? 'Trail numbers and switches' : (routeRefs.length ? 'Trail numbers' : 'Following the route')),
       s:routeRefMarkup,
       routeRefs:true,
     };
