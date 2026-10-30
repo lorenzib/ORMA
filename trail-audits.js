@@ -492,10 +492,55 @@
       "exposure": false,
       "surfaceHazards": [],
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the village-hall car park (salle des fêtes) in La Thuile, the tourist office’s start.",
+        "sequence": "Across the field to the small wood, along the lake on a dirt path to the road, left along the lake road past the inn and the town hall into the village, then left past the cemetery back to the start.",
+        "switches": "Left onto the road, then left again at the junction. After the town hall, left past the cemetery.",
+        "steps": [
+          {
+            "text": "With the village hall on your right, head straight across the field towards the small wood.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "A dirt path runs along the lake and meets the road after a few minutes.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn left and follow the road for 100 m, then keep left at the junction. You walk along the lake for about 10 minutes on a tarred lane.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Pass the lake inn on your right, then the town hall, and head into the village.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn left past the cemetery. A few more minutes on the road bring you back to the start. Watch for cars on this stretch.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "La boucle du lac de la Thuile, step by step",
+            "authority": "Grand Chambéry Alpes Tourisme",
+            "url": "https://explore.chamberymontagnes.com/fr/itineraires/la-boucle-du-lac-de-la-thuile",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -505,7 +550,9 @@
         "mapPoints": "Start moved to the official car park; tap and toilets traced to OSM.",
         "elevation": "Headline ascent corrected to the official 20 m."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -517,7 +564,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -569,10 +631,56 @@
       "exposure": false,
       "surfaceHazards": [],
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the gym car park (parking du gymnase) in Saint-Pierre-d’Albigny, where the club’s trail circuits begin.",
+        "sequence": "Up through the forest above Saint-Pierre-d’Albigny to the viewpoint, on to Mont Benoît, then down by the Col du Taccon and the hamlet of La Noiriat.",
+        "switches": "Follow the circuit’s plates, a trail-shoe print with an arrow for the direction.",
+        "steps": [
+          {
+            "text": "From the gym car park, follow the circuit’s plates: a trail-shoe print, with an arrow for the direction.",
+            "from": [
+              1
+            ]
+          },
+          {
+            "text": "Climb quickly into the forest above the town to a viewpoint over Mont Blanc, the Beaufortain, the Grand Arc, the Lauzière, Belledonne and the Chartreuse.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Go on to the Mont Benoît area.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back down by the Col du Taccon and the hamlet of La Noiriat.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "walking club",
+            "label": "Circuit du belvédère",
+            "authority": "Amicale Pédestre de l’Arclusaz",
+            "url": "https://ap-arclusaz.fr/fr/rb/324820/circuit-du-belvedere",
+            "reviewedAt": "2026-10-30"
+          },
+          {
+            "tag": "walking club",
+            "label": "The club’s trail circuits",
+            "authority": "Amicale Pédestre de l’Arclusaz",
+            "url": "https://ap-arclusaz.fr/fr/rb/335220/lassociation-et-les-parcours-trail",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -582,7 +690,9 @@
         "mapPoints": "Start at the official gym car park; water point and Mont-Benoît basin traced to OSM.",
         "elevation": "Official climb 270 m."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -594,7 +704,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -1789,10 +1914,49 @@
         "url": "https://hautesavoiemontblanc-tourisme.com/offres/balade-du-plateau-dassy-au-lac-vert-par-la-passerelle-du-nant-bordon-passy-fr-5866028/"
       },
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the Place Tobé car park, below the Notre-Dame-de-Toute-Grâce church, Plateau d’Assy, the tourist office’s start.",
+        "sequence": "Past the former Sancellemoz sanatorium (Promenade Marie Curie), then the old Lac Vert road over the Nant Bordon footbridge to the lake, and back the same way.",
+        "switches": "After Sancellemoz, take the old Lac Vert road. Back the same way.",
+        "steps": [
+          {
+            "text": "Walk past the former Sancellemoz sanatorium, on the Promenade Marie Curie.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Then take the old Lac Vert road, which leads straight to the lake. It crosses the Nant Bordon on a suspension footbridge.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "You can walk round the lake to see it from a little higher up. Dogs may not go into the water.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back to the start the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "Balade du Plateau d’Assy au Lac Vert par la passerelle du Nant Bordon",
+            "authority": "Office de Tourisme de Passy, on Haute-Savoie Mont-Blanc",
+            "url": "https://hautesavoiemontblanc-tourisme.com/offres/balade-du-plateau-dassy-au-lac-vert-par-la-passerelle-du-nant-bordon-passy-fr-5866028/",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-22",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -1802,7 +1966,9 @@
         "mapPoints": "Start at the official Place Tobé point (50 m from the old one); tap at the lake traced to OSM.",
         "elevation": "393 m on the line; the GPX gives 407 m, the fiche 300 m."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -1814,7 +1980,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -8678,10 +8859,55 @@
         "url": "https://hautesavoiemontblanc-tourisme.com/offres/le-chemin-des-diligences-vallorcine-fr-5868893/"
       },
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at Le Buet station and car park, Vallorcine, the tourist office’s start.",
+        "sequence": "Under the railway to Les Montets, over the Eau Noire to the main road, through Le Nant, Le Morzay, Le Crot, Le Sizeray and Le Mollard to Barberine, and back the same way.",
+        "switches": "After Le Nant, the small road on the left to Le Morzay. Back the same way.",
+        "steps": [
+          {
+            "text": "From Le Buet, the tourist office’s route passes under the railway to the hamlet of Les Montets, crosses the Eau Noire and reaches the main road.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Go on to the hamlet of Le Nant, then take the small road on the left to Le Morzay.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Follow it towards Le Plan-Droit to the hamlet of Le Crot, just before Le Sizeray, and go to the Sizeray church with its distinctive avalanche wall.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on to the hamlet of Le Mollard, then to Barberine, whose museum opens in July and August.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back the same way, or by train: the Swiss station is 10 minutes away (a border: carry identity papers).",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "Le chemin des Diligences",
+            "authority": "Office de Tourisme de la Vallée de Chamonix-Mont-Blanc, on Haute-Savoie Mont-Blanc",
+            "url": "https://hautesavoiemontblanc-tourisme.com/offres/le-chemin-des-diligences-vallorcine-fr-5868893/",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -8691,7 +8917,9 @@
         "mapPoints": "Start at the official Le Buet point; fountains traced to OSM along the new line.",
         "elevation": "About 220 m of climb there and back, measured on terrain data; the fiche gives none."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -8703,7 +8931,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -8768,10 +9011,79 @@
         "url": "https://www.aixlesbains-rivieradesalpes.com/equipement/randonnee-pedestre-les-marais-dalbens-entrelacs/"
       },
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the Albens cemetery car park, the tourist office’s start.",
+        "sequence": "Along the cemetery wall into the Deysse forest, along the river Deysse to the mill and the Crosagny ponds, back to the Braille sign, through Braille, over the railway past the oil depot and back through the forest.",
+        "switches": "Right at the first junction for the forest pond, there and back. Left along the Deysse. Left at the mill. Right at the “Braille” sign. Right on re-entering the forest.",
+        "steps": [
+          {
+            "text": "Walk along the cemetery wall into the Deysse state forest.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the first junction, turn right for the forest pond (there and back), or carry straight on.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Take the small bridge in front of you and wind through the forest.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn left and follow the river Deysse for 2.6 km.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the mill, turn left and carry on to the shore of the Crosagny ponds. You can walk along them but not round them.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back the same way and turn right at the “Braille” sign. Walk through the village of Braille.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry straight on after the wash-house, cross the railway and follow the “dépôt pétrolier” sign.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Pass the depot on your left. The road becomes a stony track: stay on it.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Enter the Deysse forest again and turn right.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "Les Marais d’Albens, step by step",
+            "authority": "Aix-les-Bains Riviera des Alpes tourist office",
+            "url": "https://www.aixlesbains-rivieradesalpes.com/equipement/randonnee-pedestre-les-marais-dalbens-entrelacs/",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -8781,7 +9093,9 @@
         "mapPoints": "Start at the cemetery car park named by the official page; no tap within 450 m of the line.",
         "elevation": "Official 22 m of climb."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -8793,7 +9107,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -26629,10 +26958,55 @@
       "desc": "A 6.7 km loop from the Chalets de Bise above Vacheresse over three cols to the Lac de Darbon, on the departmental walking network: up via La Salle and the Col de Bise to the Col de Pavis, across to the lake, and back by the Col de Floray with a steep final descent to the chalets. Officially 3 hours 30 and 640 m of climb, between 1,500 and 1,955 m, rated quite difficult; the route is open from 1 June to 15 October.\n\nDogs must be kept on a lead the whole way: about 60% of the walk lies in the Cornettes de Bise biotope protection area, the commune requires a lead and forbids swimming in the lake for animals too, and the route page asks for it because of herds and wildlife. Herds with livestock guardian dogs graze here, and the department strongly advises against bringing pet dogs near the herds.",
       "tips": "This is guardian-dog country: the department says pet dogs are strongly discouraged near the herds, so think twice before bringing yours, and keep it on a short lead the whole way. If a guardian dog approaches, let it, do not force your way through; in a conflict, drop the lead, do not step in and do not pick your dog up. Dogs may not swim in the Lac de Darbon. There is no shade and no water after the chalets, so carry plenty and go early. Watch the cliff edge near the lake and take the steep descent slowly. Open 1 June to 15 October.",
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the Chalets de Bise car park, Vacheresse, the department’s start.",
+        "sequence": "Over the three cols: the Col de Bise, the Col de Pavis, down to the Lac de Darbon, up to the Col de Floray, then steeply down to the Chalets de Bise.",
+        "switches": "At each col, on towards the next: Bise, Pavis, the lake, Floray.",
+        "steps": [
+          {
+            "text": "From the Chalets de Bise, cross the Bise alpine pastures and climb to the Col de Bise (1,915 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Go on to the Col de Pavis (1,944 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Then on to the Lac de Darbon (1,813 m), a good place for a picnic.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Climb to your last col, the Col de Floray (1,940 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "A steep descent brings you back to the Chalets de Bise.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "department",
+            "label": "Lac de Darbon par les 3 cols",
+            "authority": "Conseil départemental de la Haute-Savoie, on Cirkwi",
+            "url": "https://www.cirkwi.com/fr/circuit/137458",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -26642,7 +27016,9 @@
         "mapPoints": "Start at the Parking des Chalets de Bise, the official start; water only at the chalets.",
         "elevation": "Official 640 m of climb and 3h30."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -26654,7 +27030,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -33739,10 +34130,49 @@
       "desc": "A forest loop climbing from Landry church to the Ragairon chalet and the hamlet of Les Charmettes above the Tarentaise: follow the GR5 signs, then those of the Circuit de Ragairon, past Le Martorey and the Charbonnet stream. The tourist office rates it difficult and gives 731 m of climb and 4 hours 30; its page says 8.4 km, while its own GPS track, which walks the first 1.4 km out and back, measures 9.9 km. Most of it is in the woods.\n\nThere is no specific dog rule on this walk and no protected area; French law forbids letting dogs stray, and requires a lead off the paths in woods and fields from 15 April to 30 June.",
       "tips": "Keep your dog close and on a lead near Les Charmettes, where the tourist office says cows often graze. The climb is long but mostly shaded. There is drinking water at the start; the tap at Les Charmettes is marked not drinkable, so carry water. Watch for farm and ski-service vehicles on the tracks, and for paragliders taking off at Les Charmettes.",
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 30 October 2026: the operator's directions now sit in this record (routeNumberGuidance), so the page shows them.
+      "tier": "route-audited",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the Saint-Michel church in Landry, where there is a free car park; the tourist office’s start.",
+        "sequence": "On the GR5 to the start of the circuit, then the Circuit de Ragairon up the old mule track through Le Martorey and past the Charbonnet stream to Ragairon, and back by Les Charmettes.",
+        "switches": "Follow the GR5 signs first, then the “Circuit de Ragairon” signs.",
+        "steps": [
+          {
+            "text": "From the church, follow the GR5 signs to the start of the circuit, then the “Circuit de Ragairon” signs.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The old mule track climbs through several hamlets, among them Le Martorey with its listed house with a column.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past the Charbonnet stream you reach Ragairon, with its single alpine chalet and barn.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Before the way back, the circuit passes the hamlet of Les Charmettes, where cows often graze.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist office",
+            "label": "Le circuit de Ragairon",
+            "authority": "Office de Tourisme de Peisey-Vallandry",
+            "url": "https://www.peisey-vallandry.com/pedestre/le-circuit-de-ragairon.html",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
@@ -33752,7 +34182,9 @@
         "mapPoints": "Start at the free car park by the Saint-Michel church, the official start; drinking water at the start.",
         "elevation": "Official 731 m of climb and 270 minutes."
       },
-      "graduation": { "status": "in-progress", "required": [
+      "graduation": {
+        "status": "verified",
+        "required": [
           "photo",
           "route",
           "routeNumbers",
@@ -33764,7 +34196,22 @@
           "livestock",
           "surfaceHazards",
           "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
       "verified": {
         "categories": [
           "water",
@@ -54843,8 +55290,7 @@
       desc: 'A loop from the Nassfeld pass along the Auernig ridge on the Austrian–Italian border, known for its 300-million-year-old marine fossils, towards the Garnitzenberg and the Gugga. The board lists 5.6 km and 441 m of ascent.'
     },
     'kronplatz-passeggiata-valdaora-monguelfo': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // Olang tourist board (Tourismusverein Olang)’s walk “Passeggiata Valdaora - Monguelfo”, drawn on 30 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried); Welsberg-Taisten (its 2008 dog regulation, amended 2015: lead ≤1.5 m, muzzle carried).
@@ -54856,8 +55302,31 @@
       hours: '1.5',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from Olang along the Pustertal cycle path, past the Olang reservoir, into the centre of Welsberg; come back the same way or by the Pustertal train or bus.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in Valdaora (Olang) on the Pustertal cycle path, the board’s start.",
+        "sequence": "Along the cycle path beside the Valdaora reservoir to Monguelfo (Welsberg).",
+        "switches": "None: the walk stays on the cycle path.",
+        "steps": [
+          {
+            "text": "From Valdaora follow the cycle path along the Valdaora reservoir (Olanger Stausee) to Monguelfo (Welsberg), about an hour and a half. Walkers and cyclists share it.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Passeggiata Valdaora - Monguelfo: route description",
+            "url": "https://www.outdooractive.com/it/r/810055571",
+            "authority": "Olang tourist board (Tourismusverein Olang), on Outdooractive",
+            "reviewedAt": "2026-10-30",
+            "tag": "tourist board"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -54867,7 +55336,7 @@
         mapPoints: 'Start at the board’s start; drinking water at km 5.6 and at km 6 (OSM nodes 7850209428, 9006242959).',
         elevation: 'Official 6.1 km, 34 m up and 30 m down, 1:30 h, highest point 1,087 m, lowest 1,054 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -54972,8 +55441,7 @@
       desc: 'A short themed loop above San Vigilio through pine forest and meadows, with boards telling the legends of the Kingdom of Fanes. The board lists 2.8 km and 60 m of ascent.'
     },
     'kronplatz-passeggiata-san-vigilio-le-dla-creda': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // San Vigilio Dolomites tourist board’s walk “Passeggiata: San Vigilio - Lé dla Creda”, drawn on 22 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Enneberg (no dog regulation found, national rule).
@@ -54985,8 +55453,49 @@
       hours: '1',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the main square of San Vigilio on the “Tres La Val” path past the Ciamaor beach, up beside the Rü de Rudo stream to the small lake Lé dla Creda at the edge of the Fanes-Sennes-Prags nature park; back partly on the road, partly on the path.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the main square of San Vigilio, the board’s start; the board also lets you start from the Aqua Bad Cortina hotel.",
+        "sequence": "From the main square towards Valiares, the “Tres La Val” path to the Ciamaor beach, then on beside the Rü de Rudo stream to a small bridge and Lé dla Creda.",
+        "switches": "After the Ciamaor beach keep to the “Tres La Val” signs, on the right-hand side of the Rü de Rudo.",
+        "steps": [
+          {
+            "text": "From the main square of San Vigilio, towards Valiares, follow the “Tres La Val” path to the small Ciamaor beach.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "After the Ciamaor beach keep following the “Tres La Val” signs along the right-hand side of the Rü de Rudo stream to the small bridge.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From the bridge it is about 10 minutes on foot to the lake, Lé dla Creda.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The board’s way back to San Vigilio is partly on the tarred road and partly on the path to the right.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Passeggiata: San Vigilio - Lé dla Creda: route description",
+            "url": "https://www.outdooractive.com/it/r/16570262",
+            "authority": "San Vigilio Dolomites tourist board, on Outdooractive",
+            "reviewedAt": "2026-10-30",
+            "tag": "tourist board"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -54996,7 +55505,7 @@
         mapPoints: 'Start at the board’s start; drinking water at km 0.4, at km 1.8 and at km 3 (OSM nodes 2452257631, 7321474485, 2460531169).',
         elevation: 'Official 3.5 km, 86 m up and 17 m down, 0:58 h, highest point 1,272 m, lowest 1,202 m (San Vigilio Dolomites tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55035,8 +55544,7 @@
       desc: 'A gentle walk from the centre of San Vigilio up the wooded Rudo valley, past the Ciamaor beach, to the little lake Lé dla Creda. The board lists 3.5 km and 86 m of ascent, one way.'
     },
     'kronplatz-attraverso-il-sentiero-panoramico-a-brunico': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // Olang tourist board (Tourismusverein Olang)’s walk “Attraverso il Sentiero Panoramico a Brunico”, drawn on 38 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried); Rasen-Antholz (its 2010 dog regulation: lead ≤1.5 m, muzzle carried); Bruneck (its 2008 dog regulation, amended 2010: lead ≤1.5 m, muzzle carried).
@@ -55048,8 +55556,22 @@
       hours: '2.3',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the parish church of Niederolang on path 15 past the Riedler farms, through the Riedwald forest to Lamprechtsburg castle, then on path 14 down into Bruneck; back by the free Holidaypass bus or train.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the parish church of Valdaora di Sotto (Niederolang), the board’s start.",
+        "sequence": "Follow path 15 towards the Riedler farms and on through the Riedwald forest to Lamprechtsburg castle. From the castle carry on along path 14 to Brunico (Bruneck). The board suggests public transport for the way back to Valdaora.",
+        "switches": "One change: at Lamprechtsburg castle leave path 15 for path 14 into Brunico.",
+        "sources": [
+          {
+            "label": "Olang tourist board (Tourismusverein Olang), Attraverso il Sentiero Panoramico a Brunico (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055675",
+            "authority": "Olang tourist board (Tourismusverein Olang)",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55059,7 +55581,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 5.4, at km 5.9 and at km 6.9 (OSM nodes 3451774094, 7781001619, 11111274005, 7780549236).',
         elevation: 'Official 8.6 km, 45 m up and 231 m down, 2:20 h, highest point 1,043 m, lowest 835 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The board’s text says “about 200 m” of height difference: that is the drop to Bruneck; its figures are 45 m up and 231 m down. The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55106,8 +55628,7 @@
       desc: 'A gently descending walk from Niederolang along the slope above the Pustertal, through the Riedwald to Lamprechtsburg castle and into Bruneck. The board lists 8.6 km, 45 m up and 231 m down.'
     },
     'kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // San Vigilio Dolomites tourist board’s walk “Escursione da Antermoia attraverso Colac - Val a Rina”, drawn on 16 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Enneberg (no dog regulation found, national rule); San Martin de Tor (no dog regulation found, national rule).
@@ -55119,8 +55640,22 @@
       hours: '1.6',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the sports ground in Antermoia on path 20 up to the Colac farms, down the road to the Val farms, then on path 20A through the forest and over a wooden bridge to Rina; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start beside the sports ground in Antermoia, where path 20 begins.",
+        "sequence": "Path 20 climbs, sunny and with wide views, to the Colac farms. Follow the road down, keeping left, to the Val farms. Then path 20A, the Michael Plattner path, crosses the wood and a wooden bridge; from there go left on the road to Rina.",
+        "switches": "At the Colac farms take the road down, keeping left. At the Val farms take path 20A. After the wooden bridge turn left onto the road to Rina.",
+        "sources": [
+          {
+            "label": "San Vigilio Dolomites tourist board, Escursione da Antermoia attraverso Colac - Val a Rina (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055911",
+            "authority": "San Vigilio Dolomites tourist board",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55130,7 +55665,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 2804317886).',
         elevation: 'Official 5.5 km, 143 m up and 222 m down, 1:37 h, highest point 1,585 m, lowest 1,425 m (San Vigilio Dolomites tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55168,8 +55703,7 @@
       desc: 'A walk from Antermoia over the sunny farm slopes of Colac and Val and through the forest to Rina. The board lists 5.5 km, 143 m up and 222 m down.'
     },
     'kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
       // San Vigilio Dolomites tourist board’s walk “Passeggiata senza barriere: Brach - Pieve di Marebbe”, drawn on 4 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Enneberg (no dog regulation found, national rule).
@@ -55181,8 +55715,31 @@
       hours: '0.5',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the hamlet of Brach along a quiet tarred road into the village of Pieve di Marebbe (La Pli de Mareo); come back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the hamlet of Brach, the board’s start.",
+        "sequence": "From Brach along the quiet tarred road to the village of Pieve di Marebbe.",
+        "switches": "None: the walk stays on the one road.",
+        "steps": [
+          {
+            "text": "From the small hamlet of Brach follow the quiet tarred road to the village of Pieve di Marebbe (La Pli de Mareo).",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Passeggiata senza barriere: Brach - Pieve di Marebbe: route description",
+            "url": "https://www.outdooractive.com/it/r/800341743",
+            "authority": "San Vigilio Dolomites tourist board, on Outdooractive",
+            "reviewedAt": "2026-10-30",
+            "tag": "tourist board"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-29',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55192,7 +55749,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start and km 0.7 (OSM nodes 2971237933, 7321426386).',
         elevation: 'Official 0.9 km, 5 m up and 31 m down, 0:30 h, highest point 1,311 m, lowest 1,280 m (San Vigilio Dolomites tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55223,8 +55780,7 @@
       desc: 'A short, barrier-free walk on a quiet road from the hamlet of Brach into Pieve di Marebbe, with views over San Vigilio. The board lists 0.9 km, 5 m up and 31 m down.'
     },
     'kronplatz-valdaora-di-sopra-goste': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
       // Olang tourist board (Tourismusverein Olang)’s walk “Valdaora di Sopra - Goste”, drawn on 22 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried; no dogs in parks or playgrounds, which the line does not enter).
@@ -55236,8 +55792,22 @@
       hours: '0.8',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from Valdaora di Sopra (Oberolang) on path 21B, the Lottersteig, to the old Goste inn (Alte Goste) by the Olang reservoir; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in Valdaora di Sopra (Oberolang), the board’s start.",
+        "sequence": "Follow the Lottersteig, path 21B, from Valdaora di Sopra to the historic old Goste inn (alte Goste).",
+        "switches": "None: stay on path 21B, the Lottersteig, all the way to the old Goste.",
+        "sources": [
+          {
+            "label": "Olang tourist board (Tourismusverein Olang), Valdaora di Sopra - Goste (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/807440421",
+            "authority": "Olang tourist board (Tourismusverein Olang)",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-29',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55247,7 +55817,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 13073881258, 7740656285, 2206612489, 7740656585).',
         elevation: 'Official 2.5 km, 106 m up and 80 m down, 0:45 h, highest point 1,092 m, lowest 1,030 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55278,8 +55848,7 @@
       desc: 'A short walk from Valdaora di Sopra on path 21B, the Lottersteig, across meadows and through forest to the old Goste inn by the Olang reservoir. The board lists 2.5 km, 106 m up and 80 m down.'
     },
     'kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
       // Bruneck Kronplatz Tourismus’s walk “Sentiero della roggia a Gais (Sentieri degli elementi)”, drawn on 27 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Gais (no dog regulation found, national rule).
@@ -55291,8 +55860,49 @@
       hours: '2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the parish church of Gais over the Ahr, up through the village to the forest, along the level irrigation channel path (Waalweg) and back down through meadows and fields.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the parish church of Gais, the board’s start; bus 450 from Brunico stops at Gais, Paese.",
+        "sequence": "From the church over the Ahr and between the houses to the forest, level along the channel path to the Bärentalhof, then right and back down through meadows and fields.",
+        "switches": "Over the Ahr bridge, north-east to the forest. At the end of the channel path, north of the Bärentalhof, turn right.",
+        "steps": [
+          {
+            "text": "From the parish church of Gais head towards Via Talfrieden and cross the bridge over the Ahr.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on between the houses, north-east, to the forest, where the channel path begins: about 20 minutes from the bridge.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The channel path runs level south across the steep wooded slopes and ends north of the Bärentalhof farm, where it meets a broad gravel track.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn right and take the path that drops gently between meadows and fields back to the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Sentiero della roggia a Gais (Sentieri degli elementi): directions to follow",
+            "url": "https://www.outdooractive.com/it/r/27623622",
+            "authority": "Bruneck Kronplatz Tourismus, on Outdooractive",
+            "reviewedAt": "2026-10-30",
+            "tag": "tourist board"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-29',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55302,7 +55912,7 @@
         mapPoints: 'Start at the board’s start; drinking water at km 0.1, km 0.3, km 1.4 and km 4.5 (OSM nodes 11030344676, 4579647896, 6724381693, 2615627002).',
         elevation: 'Official 5.3 km, 140 m up and 140 m down, 2:00 h, highest point 949 m, lowest 841 m (Bruneck Kronplatz Tourismus, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55333,8 +55943,7 @@
       desc: 'A loop from Gais along an old irrigation channel through the forest and back across meadows and fields, with views of the mountains round the Tauferer valley. The board lists 5.3 km and 140 m of ascent.'
     },
     'kronplatz-san-lorenzo-maria-sares': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
       // Bruneck Kronplatz Tourismus’s walk “San Lorenzo – Maria Sares”, drawn on 33 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: St. Lorenzen (its 2009 dog regulation: lead ≤1.5 m, muzzle carried).
@@ -55346,8 +55955,22 @@
       hours: '1',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the east car park of San Lorenzo di Sebato on paths 8A and 9, past St. Martin and up the Stations of the Cross to the pilgrimage church of Maria Sares (Maria Saalen); come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the east car park of San Lorenzo di Sebato (St. Lorenzen), the board’s start; buses 401 and 460 from Brunico stop at San Lorenzo, Stazione.",
+        "sequence": "Walk west to the main square and through the Marktl. At the pharmacy turn left onto waymark 8A towards San Martino (St. Martin). Near San Martino, north-east of Michelsburg castle (not open to the public), follow waymark 9 to the Way of the Cross, which leads up to the Maria Sares sanctuary. Come back the same way.",
+        "switches": "Left at the pharmacy onto 8A. Near San Martino onto 9 and the Way of the Cross. Back the way you came.",
+        "sources": [
+          {
+            "label": "Bruneck Kronplatz Tourismus, San Lorenzo – Maria Sares (Outdooractive, directions to follow)",
+            "url": "https://www.outdooractive.com/it/r/35857532",
+            "authority": "Bruneck Kronplatz Tourismus",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-29',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55357,7 +55980,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start, km 0.5 and km 1 (OSM nodes 2038685178, 3109138118, 5295228221, 10066930057, 12082428214, 11078506163).',
         elevation: 'Official 4.9 km, 170 m up and 6 m down, 1:00 h, highest point 980 m, lowest 810 m (Bruneck Kronplatz Tourismus, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55660,6 +56283,302 @@
       ],
       startPoint: { lat: 46.41032, lng: 11.57585, label: 'Lago di Carezza (Karersee) car park, the board’s start' },
       desc: 'An easy family walk from the Lago di Carezza along the shore and the forest road “Templ” to the Stadlalm, with farm animals and wide views of the Catinaccio and Latemar. The board lists 4.2 km, 32 m up and 83 m down.'
+    },
+    'seiseralm-escursione-senza-barriere-all-alpe-di-siusi': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Seiser Alm batch 1).
+      // “Escursione senza barriere all’Alpe di Siusi”, published by the Ortisei tourist board (DOLOMITES Val Gardena), drawn on 5 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Kastelruth (its 2024 Ortspolizeiordnung plus the national rule: lead ≤1.5 m, muzzle carried) and the Seiser Alm landscape plan, which bans no dogs.
+      // No Natura 2000 site, park or natural monument on the line; the Seiser Alm landscape plan bans no dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Mont Sëuc – Sporthotel Sonne, Alpe di Siusi (Kastelruth)',
+      distance: 1.4,
+      elevation: 0,
+      hours: '0.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way, gently downhill, from the top station of the Mont Sëuc cable car from Ortisei on path 9 past the Schgaguler hut to the Sporthotel Sonne; come back the same way to the cable car.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the top station of the Mont Sëuc cable car from Ortisei (2,005 m), the board’s start.",
+        "sequence": "Take well-signed path 9 to the left, first to the Schgaguler hut, then on across the flowering alpine meadows to the Sporthotel Sonne. Come back the same way to the cable car.",
+        "switches": "One turn: leaving the station, take path 9 to the left, and stay on it to the Sporthotel Sonne.",
+        "sources": [
+          {
+            "label": "Ortisei tourist board (DOLOMITES Val Gardena), Escursione senza barriere all’Alpe di Siusi (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810054454",
+            "authority": "Ortisei tourist board (DOLOMITES Val Gardena)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Path 9 on the Alpe di Siusi with the Sassolungo behind, on the line, in July (madel on Mapillary, CC BY-SA 4.0).',
+        route: 'Official one-way walk 1.4 km from the top station of the Mont Sëuc cable car, as the Ortisei tourist board (DOLOMITES Val Gardena) publishes it; the stored line is drawn on 5 OSM ways along the board’s published line, 1.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 9: from the top station of the Mont Sëuc cable car follow path 9 to the left, past the Schgaguler hut and across the meadows to the Sporthotel Sonne; come back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 1.4 km, 0 m up and 138 m down, 0:21 h, highest point 2,001 m, lowest 1,863 m (Ortisei tourist board (DOLOMITES Val Gardena), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Ortisei tourist board (DOLOMITES Val Gardena), Escursione senza barriere all’Alpe di Siusi (its Outdooractive tour, also listed on suedtirol.info and seiseralm.it)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Gemeinde Kastelruth, Ortspolizeiordnung (Gemeinderat Nr. 57 of 4 September 2024), Art. 13: dogs never left unattended, droppings cleaned up; it sets no lead length or banned area, so the national rule sets the lead and muzzle',
+          'Landschaftlicher Gebietsplan Seiser Alm (DLH 10 February 1992 Nr. 269), Art. 2, 9 and 12: no rule bans dogs; wild animals must not be disturbed',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 0% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (5 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 21,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Cows graze the Alpe di Siusi in summer: keep your dog close and give herds a wide berth', 'About a quarter is on a service road used by hut traffic', 'Open, high meadows at 1,900–2,000 m: little shade on sunny days'],
+      terrainType: 'Wide gravel path and service road',
+      shadeDescription: 'Mostly open: about a fifth runs past mapped woodland; the meadows are in full sun.',
+      terrainDescription: 'A short, barrier-free walk at 1,860–2,000 m from the Mont Sëuc cable car across the Alpe di Siusi meadows to the Sporthotel Sonne, with the Sassolungo and Sassopiatto ahead.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'The national rule applies: a lead of at most 1.5 m and a muzzle carried. Kastelruth forbids leaving dogs unattended and requires you to clean up, and the Seiser Alm plan forbids disturbing wild animals. Check the cable car’s own conditions for dogs before you ride. Cows with calves graze here in summer.',
+      tips: 'Ride the Mont Sëuc cable car up from Ortisei and follow path 9: 1.4 km one way, gently downhill (138 m down), about 20 minutes; come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle. No drinking water mapped on the way: bring some, or stop at the huts.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione senza barriere all’Alpe di Siusi (Ortisei tourist board (DOLOMITES Val Gardena))', url: 'https://www.outdooractive.com/it/r/810054454' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Kastelruth, Ortspolizeiordnung (2024)', url: 'https://www.gemeinde.kastelruth.bz.it/de/Verwaltung/Dokumente/Ortspolizeiordnung' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.55788, lng: 11.66463, label: 'Top station of the Mont Sëuc cable car from Ortisei, the board’s start' },
+      desc: 'A short, barrier-free walk on the Alpe di Siusi from the Mont Sëuc cable car on path 9 past the Schgaguler hut to the Sporthotel Sonne, with wide views of the Sassolungo. The board lists 1.4 km and 138 m down.'
+    },
+    'seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Seiser Alm batch 1).
+      // “Dal Passo Nigra al Maso Jocher e attraverso la Forcella del Lupo a Tires”, published by the Tiers am Rosengarten tourist board (Seiser Alm Marketing), drawn on 41 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Welschnofen (its 2023 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows) and Tiers (its 2015 dog regulation, amended 2023: the same, meadows in the growing season).
+      // No Natura 2000 site, park or natural monument on the line; about 4% is in landscape protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Passo Nigra – Maso Jocher – Tiers / San Cipriano',
+      distance: 13.7,
+      elevation: 431,
+      hours: '4',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way, mostly downhill, from Passo Nigra through the Val Nigra forest to the Jocher farm, then on marked forest paths past the Schiller farm and over the Forcella del Lupo to Tiers and San Cipriano; buses link Tiers back towards Passo Nigra.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Passo Nigra (Nigerpass), the board’s start.",
+        "sequence": "Through the Val Nigra forest to the Jocher farm, then right on the marked path down many bends of forest paths to the Schiller farm, then over the Forcella del Lupo to Tiers and San Cipriano.",
+        "switches": "Right at the Jocher farm onto the marked path. Over the Forcella del Lupo towards Tiers.",
+        "steps": [
+          {
+            "text": "From Passo Nigra walk down the Val Nigra through the forest to the Jocher farm, which serves South Tyrolean dishes and cakes on a sunny terrace.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the Jocher farm take the marked path that branches off to the right. It winds down in many bends on forest paths to the Schiller farm, in a fine panoramic position.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From the Schiller farm the route crosses the Forcella del Lupo and comes down to Tiers and San Cipriano, where the walk ends.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Tiers am Rosengarten tourist board (Seiser Alm Marketing), Dal Passo Nigra al Maso Jocher e attraverso la Forcella del Lupo a Tires (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055751",
+            "authority": "Tiers am Rosengarten tourist board (Seiser Alm Marketing)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Catinaccio from Passo Nigra at the start of the walk, in early October, with only a dusting of snow on the high ledges (Ximonic on Wikimedia Commons, CC BY-SA 4.0), 28 m from the line.',
+        route: 'Official one-way walk 13.7 km from Passo Nigra, as the Tiers am Rosengarten tourist board (Seiser Alm Marketing) publishes it; the stored line is drawn on 41 OSM ways along the board’s published line, 13.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'The board gives landmarks, not path numbers: from Passo Nigra through the Val Nigra forest to the Jocher farm; there the marked path branches right and winds down on forest paths to the Schiller farm; then over the Forcella del Lupo to Tiers and San Cipriano.',
+        mapPoints: 'Start at the board’s start; drinking water at km 12.1 and km 12.9 (OSM nodes 3539345703, 4834146324, 3563965371).',
+        elevation: 'Official 13.7 km, 431 m up and 856 m down, 4:08 h, highest point 1,685 m, lowest 956 m (Tiers am Rosengarten tourist board (Seiser Alm Marketing), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tiers am Rosengarten tourist board (Seiser Alm Marketing), Dal Passo Nigra al Maso Jocher e attraverso la Forcella del Lupo a Tires (its Outdooractive tour, also listed on suedtirol.info and seiseralm.it)',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds',
+          'Gemeinde Tiers / Comune di Tires, Verordnung zur Führung und Haltung von Hunden und Tieren (Gemeinderat Nr. 48, 08.10.2015, amended Nr. 55, 28.12.2023), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds or kindergarten and primary-school yards, on farmed land in the growing season, or in tended public green spaces; no bathing in the village-centre fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 4% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (41 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 33,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A long walk, 13.7 km and 856 m down: knees and paws take a pounding; carry water for your dog until the springs near Tiers', 'Forest roads and farm lanes near the Jocher and Schiller farms: watch for local traffic and farm dogs', 'Meadows around the farms: keep your dog off them'],
+      terrainType: 'Forest roads, forest paths and farm lanes',
+      shadeDescription: 'Partly shaded: about a third runs through mapped forest, mostly in the Val Nigra; the farmland near Tiers is open.',
+      terrainDescription: 'A long, mostly downhill walk at 955–1,685 m from Passo Nigra under the Catinaccio through the Val Nigra forest, past the Jocher and Schiller farms and over the Forcella del Lupo to Tiers.',
+      waterDescription: 'Drinking water at km 12.1 and km 12.9; places to eat on the way.',
+      dogNotes: 'Welschnofen and Tiers both require a lead of at most 1.5 m and a muzzle carried, and keep dogs out of playgrounds and cemeteries and off farmed meadows (Tiers in the growing season). Tiers also bans dogs from bathing in the village-centre fountains.',
+      tips: 'Start at Passo Nigra: 13.7 km one way, 431 m up and 856 m down, about four hours; end in Tiers or San Cipriano and take the bus back. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water only near the end, around km 12: bring plenty for your dog.',
+      sourceLinks: [
+        { label: 'Outdooractive, Dal Passo Nigra al Maso Jocher e attraverso la Forcella del Lupo a Tires (Tiers am Rosengarten tourist board (Seiser Alm Marketing))', url: 'https://www.outdooractive.com/it/r/810055751' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Gemeinde Tiers, dog regulation (2015, amended 2023)', url: 'https://www.gemeinde.tiers.bz.it/system/web/verordnung.aspx?detailonr=224983319' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.45601, lng: 11.58596, label: 'Passo Nigra (Nigerpass), the board’s start' },
+      desc: 'A long walk from Passo Nigra under the Catinaccio through the Val Nigra forest to the Jocher farm, then on forest paths past the Schiller farm and over the Forcella del Lupo down to Tiers. The board lists 13.7 km, 431 m up and 856 m down.'
+    },
+    'seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Seiser Alm batch 1).
+      // “Escursione da Umes alla Malga Hofer e a Malga Tuff”, published by the Völs am Schlern tourist board (Seiser Alm Marketing), drawn on 38 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Völs am Schlern (its 2015 dog regulation, amended 2019: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows); about 68% in the Schlern-Rosengarten nature park, dogs on a lead.
+      // About 68% is in the Schlern-Rosengarten nature park (Natura 2000), where dogs stay on a lead; no reserve zone on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Umes – Hofer Alpl – Malga Tuff – Lago di Fiè, Völs am Schlern',
+      distance: 8.3,
+      elevation: 476,
+      hours: '3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the church of Umes up path 3 to the Hofer Alpl, on to Malga Tuff, past the Lago di Fiè and back down to Umes on path 2.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the church of Umes, the board’s start, and follow the signs for “Hofer Alpl, Malga Tuff”.",
+        "sequence": "Up a few hairpins, then right on path 3 (“Hofer Alpl, Sciliar”), steeply through the forest to the Hofer Alpl. On by forest road and footpath to the broad path 1 towards the Sciliar, across the Völser Bach and the pastures towards Malga Tuff. Before the hut a rocky path branches left through the forest to the Lago di Fiè. After the Huber pond take path 2 left, down a small wooded valley with a stream to Umes.",
+        "switches": "Right onto path 3 after the hairpins. Join path 1 towards Malga Tuff. Left on the rocky path to the Lago di Fiè. Left on path 2 after the Huber pond, back to Umes.",
+        "sources": [
+          {
+            "label": "Völs am Schlern tourist board (Seiser Alm Marketing), Escursione da Umes alla Malga Hofer e a Malga Tuff (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16570256",
+            "authority": "Völs am Schlern tourist board (Seiser Alm Marketing)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lago di Fiè on the loop, in July (Adert on Wikimedia Commons, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official loop 8.3 km from the church of Umes, as the Völs am Schlern tourist board (Seiser Alm Marketing) publishes it; the stored line is drawn on 38 OSM ways along the board’s published line, 8.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 3, 1 and 2: from the church of Umes follow the signs for Hofer Alpl and Malga Tuff, then path 3 steeply through the forest to the Hofer Alpl; forest road and footpath to the broad path 1 towards the Sciliar and on to Malga Tuff; a rocky path left to the Lago di Fiè; after the Huber pond path 2 back down to Umes.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.2 and km 5.5 (OSM nodes 7318189295, 4269751545, 1815540565).',
+        elevation: 'Official 8.3 km, 476 m up and 476 m down, 3:00 h, highest point 1,369 m, lowest 926 m (Völs am Schlern tourist board (Seiser Alm Marketing), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Völs am Schlern tourist board (Seiser Alm Marketing), Escursione da Umes alla Malga Hofer e a Malga Tuff (its Outdooractive tour, also listed on suedtirol.info and seiseralm.it)',
+          'Gemeinde Völs am Schlern / Comune di Fiè allo Sciliar, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 57, 23.11.2015, amended Nr. 39, 11.07.2019), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); about 68% of the line is in the Schlern-Rosengarten nature park, with no reserve zone on it',
+          'OpenStreetMap ways along the board’s line (38 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 68,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A steep climb on path 3 through the forest and a rocky path down to the Lago di Fiè: watch your dog’s footing', 'Cows on the pastures around Malga Tuff in summer: keep your dog close', 'Busy around the Lago di Fiè in summer; swimming is for people: keep your dog out of the bathing area'],
+      terrainType: 'Forest paths, forest roads and a rocky path',
+      shadeDescription: 'Mostly shaded: about two thirds runs through mapped forest; the pastures around Malga Tuff are open.',
+      terrainDescription: 'A loop at 925–1,370 m from Umes up through the forest to the Hofer Alpl and Malga Tuff under the Sciliar, and back past the Lago di Fiè and down a small wooded valley.',
+      waterDescription: 'Drinking water at the start, km 0.2 and km 5.5; places to eat on the way.',
+      dogNotes: 'Völs requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of cemeteries and playgrounds and off farmed meadows. About two thirds of the loop is in the Schlern-Rosengarten nature park, where dogs stay on a lead at all times.',
+      tips: 'Start at the church of Umes: an 8.3 km loop, about 480 m of climbing, three hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle; the nature park asks for a lead throughout. Drinking water at the start and around km 5.5.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione da Umes alla Malga Hofer e a Malga Tuff (Völs am Schlern tourist board (Seiser Alm Marketing))', url: 'https://www.outdooractive.com/it/r/16570256' },
+        { label: 'Gemeinde Völs am Schlern, dog regulation (2015, amended 2019)', url: 'https://www.gemeinde.voels.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.50283, lng: 11.51862, label: 'The church of Umes, the board’s start' },
+      desc: 'A loop from the village of Umes up through the forest to the Hofer Alpl and Malga Tuff under the Sciliar, and back past the Lago di Fiè. The board lists 8.3 km and 476 m of ascent.'
+    },
+    'seiseralm-alla-volta-della-trappola-d-orso-a-s-michele': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Seiser Alm batch 1).
+      // “Alla volta della trappola d’orso a S. Michele”, published by the Kastelruth tourist board (Seiser Alm Marketing), drawn on 68 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Kastelruth (its 2024 Ortspolizeiordnung plus the national rule: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site, park or natural monument on the line; about 7% is in landscape or ensemble protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Kastelruth – San Michele – Passo Pinei – Tiosels',
+      distance: 14,
+      elevation: 567,
+      hours: '4',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the centre of Kastelruth on path 10 past the Bremicher Platzl to San Michele and its lake, on path 10A to the bear trap and through the forest to Passo Pinei, then back on paths 7 and 8 past Wasserebene and Tiosels.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in the centre of Kastelruth (Castelrotto), the board’s start.",
+        "sequence": "Follow Bühlgasse (path 10) to the Föstl farm, cross the stream and go on to the Bremicher Platzl. Go briefly south past the Lavogler farm and gently up to San Michele and its church. Path 10 climbs gently to the San Michele lake, where 10A branches left to the bear trap of the legend and on through the forest to Passo Pinei. From the pass take path 7 to the Wasserebene sports ground, then path 8 back past Tiosels to Kastelruth.",
+        "switches": "Left onto 10A at the San Michele lake. At Passo Pinei take path 7 (the board also offers bus 172 back from the pass). At Wasserebene change to path 8 for Kastelruth.",
+        "sources": [
+          {
+            "label": "Kastelruth tourist board (Seiser Alm Marketing), Alla volta della trappola d’orso a S. Michele (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/62653103",
+            "authority": "Kastelruth tourist board (Seiser Alm Marketing)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path 7 signpost between Passo Pinei and Kastelruth on the way back, in July (highlander on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official loop 14 km from the centre of Kastelruth, as the Kastelruth tourist board (Seiser Alm Marketing) publishes it; the stored line is drawn on 68 OSM ways along the board’s published line, 14 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 10, 10A, 7 and 8: from the centre of Kastelruth on Bühlgasse (path 10) to the Föstl farm and the Bremicher Platzl, south past the Lavogler farm up to San Michele and its lake; left on 10A to the bear trap and through the forest to Passo Pinei; path 7 to the Wasserebene sports ground and path 8 back past Tiosels to Kastelruth.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.1, km 9.6, km 12.8 and km 13.6 (OSM nodes 7823149401, 12063035908, 8035392785, 8035404185, 7685503550, 8599315593, 2287184778).',
+        elevation: 'Official 14 km, 567 m up and 567 m down, 4:12 h, highest point 1,474 m, lowest 1,029 m (Kastelruth tourist board (Seiser Alm Marketing), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Kastelruth tourist board (Seiser Alm Marketing), Alla volta della trappola d’orso a S. Michele (its Outdooractive tour, also listed on suedtirol.info and seiseralm.it)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Gemeinde Kastelruth, Ortspolizeiordnung (Gemeinderat Nr. 57 of 4 September 2024), Art. 13: dogs never left unattended, droppings cleaned up; it sets no lead length or banned area, so the national rule sets the lead and muzzle',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 7% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (68 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 44,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 170 m along the Panider road (SP64) near Passo Pinei, and crossings of the San Michele road: keep your dog close', 'Lanes past the farms around Kastelruth and San Michele: watch for local traffic and farm dogs', 'The path out of Kastelruth passes the churchyard wall: dogs should not go in'],
+      terrainType: 'Lanes, forest paths and farm roads',
+      shadeDescription: 'Partly shaded: about two fifths runs through mapped forest, mostly between the San Michele lake and Passo Pinei and on the way back; the farmland around Kastelruth is open.',
+      terrainDescription: 'A long loop at 1,030–1,475 m from Kastelruth past farms and the church of San Michele to its lake and the bear trap of the legend, through the forest to Passo Pinei and back past Tiosels.',
+      waterDescription: 'Drinking water at the start, km 0.1, km 9.6, km 12.8 and km 13.6; places to eat on the way.',
+      dogNotes: 'The national rule applies: a lead of at most 1.5 m and a muzzle carried. Kastelruth forbids leaving dogs unattended and requires you to clean up. Keep your dog off the meadows around the farms.',
+      tips: 'Start in the centre of Kastelruth: a 14 km loop, about 570 m of climbing, four hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at the start and around km 10 and 13; carry some for the forest stretch.',
+      sourceLinks: [
+        { label: 'Outdooractive, Alla volta della trappola d’orso a S. Michele (Kastelruth tourist board (Seiser Alm Marketing))', url: 'https://www.outdooractive.com/it/r/62653103' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Kastelruth, Ortspolizeiordnung (2024)', url: 'https://www.gemeinde.kastelruth.bz.it/de/Verwaltung/Dokumente/Ortspolizeiordnung' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.56793, lng: 11.5596, label: 'The centre of Kastelruth (Castelrotto), the board’s start' },
+      desc: 'A loop from Kastelruth past the church of San Michele and its lake to the bear trap of the local legend, through the forest to Passo Pinei and back past Tiosels. The board lists 14 km and 567 m of ascent.'
     }
   };
 

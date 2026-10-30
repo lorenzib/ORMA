@@ -5619,6 +5619,74 @@
       }
     },
     {
+      "id": "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele",
+      "approvedReviewId": "mapillary-seiseralm-alla-volta-della-trappola-d-orso-a-s-michele-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-alla-volta-della-trappola-d-orso-a-s-michele-signpost.jpg",
+        "heroImage": "images/trails/seiseralm-alla-volta-della-trappola-d-orso-a-s-michele-signpost.jpg",
+        "imageAlt": "A wooden signpost for path 7 in green summer forest, pointing to Kastelruth and Seis one way and to Passo Pinei the other",
+        "imageCredit": "Path 7 between Passo Pinei and Kastelruth",
+        "imageCreditText": "Path 7 between Passo Pinei and Kastelruth by highlander",
+        "imageCreator": "highlander",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=494418901903124",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del",
+      "approvedReviewId": "commons-seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del-catinaccio.jpg",
+        "heroImage": "images/trails/seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del-catinaccio.jpg",
+        "imageAlt": "The grey rock walls of the Catinaccio rising above dark spruce forest, with silvery seed heads of fireweed in the foreground under a deep blue sky",
+        "imageCredit": "The Catinaccio from Passo Nigra",
+        "imageCreditText": "The Catinaccio from Passo Nigra by Ximonic (Simo Räsänen)",
+        "imageCreator": "Ximonic (Simo Räsänen)",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cima_Catinaccio_from_Nigerpass,_Salto-Sciliar,_Trentino-Alto_Adige,_Italy,_2025_October.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff",
+      "approvedReviewId": "commons-seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff-lago-di-fie.jpg",
+        "heroImage": "images/trails/seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff-lago-di-fie.jpg",
+        "imageAlt": "The calm green Lago di Fiè ringed by tall pines, with a wooden boathouse on the left and reeds in the foreground",
+        "imageCredit": "The Lago di Fiè",
+        "imageCreditText": "The Lago di Fiè by Adert",
+        "imageCreator": "Adert",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Fiè_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "seiseralm-escursione-senza-barriere-all-alpe-di-siusi",
+      "approvedReviewId": "mapillary-seiseralm-escursione-senza-barriere-all-alpe-di-siusi-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-escursione-senza-barriere-all-alpe-di-siusi-path.jpg",
+        "heroImage": "images/trails/seiseralm-escursione-senza-barriere-all-alpe-di-siusi-path.jpg",
+        "imageAlt": "A wide gravel path along a grassy slope with spruce trees, looking across the green Alpe di Siusi to the Sassolungo and Sassopiatto under a blue sky",
+        "imageCredit": "Path 9 on the Alpe di Siusi",
+        "imageCreditText": "Path 9 on the Alpe di Siusi by madel",
+        "imageCreator": "madel",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=379212996769388",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "sentiero-del-trenino",
       "approvedReviewId": "commons-sentiero-del-trenino-on-route",
       "approvedAt": "2026-10-23T23:00:00.000Z",

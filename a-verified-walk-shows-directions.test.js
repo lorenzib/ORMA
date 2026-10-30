@@ -42,11 +42,12 @@ describe('every Verified walk shows directions on its page',()=>{
 
   test('a walk whose seal was withdrawn keeps its hand research from the pipeline',()=>{
     // materialize-approved-publications.js refuses a publication over a
-    // walk marked sealWithdrawn, as it does over a Verified one.
-    // 78 withdrawn on 29 October; on 30 October the 55 whose written
-    // directions the page now prints (#1199) had their seal restored.
+    // walk marked sealWithdrawn, as it does over a Verified one. The 78
+    // withdrawn on 29 October lose the mark as their directions are written
+    // and their seal comes back, so the count only falls.
     const marked=trails.filter(trail=>trail.sealWithdrawn);
     expect(marked.length).toBeGreaterThan(0);
+    expect(marked.length).toBeLessThanOrEqual(78);
     for(const trail of marked) expect(trail.sealWithdrawn.reason).toBe('no-directions-on-page');
   });
 });

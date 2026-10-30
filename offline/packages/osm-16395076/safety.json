@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-16395076",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2,
+    "ascentM": 20,
+    "highestPointM": 887,
+    "expectedDuration": "0.75 hours",
+    "difficulty": "Easy",
+    "shadePercent": 15
+  },
+  "trailhead": {
+    "lat": 45.530335,
+    "lng": 6.053048,
+    "label": "Village-hall car park (salle des fêtes), La Thuile (official start)"
+  },
+  "waypoints": [],
+  "cautions": [
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

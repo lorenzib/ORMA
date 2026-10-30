@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "trailId": "kronplatz-san-lorenzo-maria-sares",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.9,
+    "ascentM": 170,
+    "highestPointM": 964,
+    "expectedDuration": "1 hour",
+    "difficulty": "Moderate",
+    "shadePercent": 23
+  },
+  "trailhead": {
+    "lat": 46.783032,
+    "lng": 11.90238,
+    "label": "The east car park of San Lorenzo di Sebato, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7822729,
+      "lng": 11.9024778,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.78339,
+      "lng": 11.9023006,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7842121,
+      "lng": 11.9024312,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7815109,
+      "lng": 11.9033691,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7812728,
+      "lng": 11.8985382,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7811703,
+      "lng": 11.8919235,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Town streets and the market area in San Lorenzo at the start.",
+    "Farm roads on paths 8A and 9: watch for tractors and farm dogs.",
+    "Sunny, open climb to Maria Sares: carry water for your dog on warm days.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-29"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}
