@@ -27,6 +27,39 @@ describe('one vocabulary for one score', () => {
     expect(Object.values(VERDICTS).map(entry=>entry.label))
       .toEqual(['Strong option','Possible with cautions','Not recommended']);
   });
+
+  // How scoring works once said "Good · 65–84%" and "Check · <65%", in words
+  // and cut-offs no other screen used. It explains the engine, so it uses
+  // the engine's.
+  test('the scoring page explains the same cut-offs in the same words', () => {
+    const page=fs.readFileSync('how-scoring-works.html','utf8');
+    expect(page).not.toMatch(/65[–-]84|&lt;65|Great match|Ottimo abbinamento/);
+    expect(page).toContain(`${STRONG_AT}%+`);
+    expect(page).toContain(`${POSSIBLE_AT}–${STRONG_AT-1}%`);
+    Object.values(VERDICTS).forEach(entry => expect(page).toContain(entry.label));
+  });
+
+  // The worked example once gave a 9-year-old 71%. The engine treats 8 and
+  // over as a senior and scored her 8%. Each dog's line must be what the
+  // engine says for the trail the page describes.
+  test('the two dogs on the scoring page score what the engine gives them', () => {
+    const engine=require('./scoring/recommendation-v1.js');
+    const page=fs.readFileSync('how-scoring-works.html','utf8');
+    const verified=Object.fromEntries(['route','water','heat','exposure','livestock','surfaceHazards','access'].map(key=>[key,'verified']));
+    const trail={
+      metrics:{distanceKm:12,ascentM:700,descentM:700},
+      suitability:{terrainRank:1,exposure:false,heatRisk:'moderate',shadePercent:30,surfaceHazards:[],dogAccess:{status:'allowed'}},
+      verification:{categories:verified},
+    };
+    const bruna=engine.calculateRecommendation({trail,dog:{fitness:'moderate',ageYears:6,weightKg:30,traits:{heatSensitive:true}}});
+    const luna=engine.calculateRecommendation({trail,dog:{fitness:'high',ageYears:3,weightKg:18}});
+    expect([bruna.score,bruna.category]).toEqual([71,'possible-with-cautions']);
+    expect([luna.score,luna.category]).toEqual([91,'strong-option']);
+    expect(page.match(/<small>6 years, Labrador/g)).toHaveLength(1);
+    expect(page.match(/<small>6 anni, labrador/g)).toHaveLength(1);
+    expect(page.match(/Bruna<\/span><b[^>]*>71%/g)).toHaveLength(2);
+    expect(page.match(/Luna<\/span><b[^>]*>91%/g)).toHaveLength(2);
+  });
 });
 
 // The part the score alone cannot carry.
@@ -106,6 +139,9 @@ describe('both surfaces ask the same question', () => {
       // three labels for the trail page and the homepage explanation. It is a
       // second spelling, and the test below holds the two in agreement.
       'recommendation-decision.js',
+      // How scoring works, which explains the three verdicts and their
+      // cut-offs to the reader. Its own test above holds it to the module.
+      'how-scoring-works.html',
     ]);
     // Tests name the vocabulary in order to assert on it, and nothing in a
     // test ships. Everything else is a surface.
