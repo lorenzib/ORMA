@@ -198,8 +198,47 @@
       : { ok: false, title: 'Water', detail: 'No water source is listed for this route. Carry enough for the dog, roughly 0.5 l per 10 kg on a warm day.' };
   }
 
-  function heatAssessment(trail) {
+  // The walk-day forecast, read by the same rule the score uses, so this
+  // section and the score cannot disagree about whether today is warm. No
+  // forecast (or no engine) means nothing is assumed: the summer reading stays.
+  const engine = () => root.DoloPawsRecommendationV1 || null;
+  const coolDay = conditions => !!(engine() && engine().isCoolDay(conditions));
+  const coldDay = conditions => !!(engine() && engine().isColdDay(conditions));
+  const heatOnly = hazard => !!(engine() && engine().isHeatOnlyHazard(hazard));
+
+  // Recorded cautions arrive as one list. Cars and bikes are not something a
+  // dog walks on, so they are told apart from what is underfoot, and a caution
+  // that is only about heat ("Hot tarmac") belongs with heat.
+  const TRAFFIC_HAZARD = /\b(?:roads?|crossings?|traffic|cars?|vehicles?|cycl\w*|bikes?|streets?|zebra|SS\d+|SP\d+|km\/h)\b/i;
+  function recordedHazards(trail) {
+    const all = (Array.isArray(trail && trail.surfaceHazards) ? trail.surfaceHazards : [])
+      .map(hazard => String(hazard || '').trim().replace(/[.;]+$/, ''))
+      .filter(Boolean);
+    const heat = all.filter(heatOnly);
+    const rest = all.filter(hazard => !heat.includes(hazard));
+    return {
+      heat,
+      traffic: rest.filter(hazard => TRAFFIC_HAZARD.test(hazard)),
+      underfoot: rest.filter(hazard => !TRAFFIC_HAZARD.test(hazard)),
+    };
+  }
+
+  function heatAssessment(trail, conditions) {
     const shade = typeof trail.shadeCoverage === 'number' ? trail.shadeCoverage : null;
+    // A cool day makes the route's sun exposure irrelevant; a cold one turns
+    // the advice the other way.
+    if (coldDay(conditions)) {
+      return { ok: false, title: 'Cold day', guide: null, detail: `The forecast stays cold, up to ${conditions.dayMaxC} °C. Keep rests short, dry your dog after wet stretches, and bring a coat for a small or short-coated dog.` };
+    }
+    if (coolDay(conditions)) {
+      return { ok: true, title: 'Heat & shade', detail: `The forecast stays cool, up to ${conditions.dayMaxC} °C, so sun and shade do not matter for this walk.` };
+    }
+    const hot = recordedHazards(trail).heat;
+    const withHot = result => (result && hot.length && !result.ok ? { ...result, items: hot } : result);
+    return withHot(summerHeat(trail, shade));
+  }
+
+  function summerHeat(trail, shade) {
     if (!categoryVerified(trail, 'heat')) {
       return { ok: false, title: 'Plan for limited shade', detail: 'Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.' };
     }
@@ -236,12 +275,23 @@
     return null;
   }
 
+  // What is underfoot, said first, then each recorded caution as its own item.
+  // Pad advice fits the ground: rough ground cuts pads, smooth ground does not.
   function surfaceAssessment(trail) {
-    if (Number(trail.terrainRank) === 0 && !(trail.surfaceHazards || []).length) return null;
-    const hazards = Array.isArray(trail.surfaceHazards) && trail.surfaceHazards.length
-      ? ` Reported hazards: ${trail.surfaceHazards.join('; ')}.`
-      : '';
-    return { ok: false, title: 'Surface & footing', detail: `${trail.terrainType || 'Variable mountain terrain'}.${hazards} Check pads at breaks and consider booties for tender paws.` };
+    const underfoot = recordedHazards(trail).underfoot;
+    if (Number(trail.terrainRank) === 0 && !underfoot.length) return null;
+    const ground = String(trail.terrainType || 'Variable mountain terrain').trim().replace(/[.;]+$/, '').replace(/:\s+/, ', ');
+    const rough = Number(trail.terrainRank) > 0 || /rock|scree|stony|stones|boulder|roots/i.test(ground);
+    const detail = `Underfoot: ${ground.charAt(0).toLowerCase()}${ground.slice(1)}.`
+      + (rough ? ' Check pads at breaks.' : '');
+    return { ok: false, title: 'Surface & footing', detail, items: underfoot };
+  }
+
+  // Roads, crossings and bikes: a lead question, not a paw question.
+  function trafficAssessment(trail) {
+    const traffic = recordedHazards(trail).traffic;
+    if (!traffic.length) return null;
+    return { ok: false, title: 'Roads & traffic', detail: 'Keep your dog on a short lead in these places:', items: traffic };
   }
 
   function assessmentNote(trail) {
@@ -269,6 +319,7 @@
     exposureAssessment,
     livestockAssessment,
     surfaceAssessment,
+    trafficAssessment,
     assessmentNote,
   });
 })(window);
