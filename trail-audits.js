@@ -45423,8 +45423,8 @@
       desc: 'A loop from Lisignago up through the woods to Maderlina and the Piz de le Agole, a balcony over the Val di Cembra, and back down a steep SAT path. The APT lists 10.2 km and 600 m of ascent.'
     },
     'cembra-vecchi-mestieri-grumes': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 0.45 (78 m), km 2.21 (130 m), km 2.75 (67 m), km 2.91 (163 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 2.08 is a side trip the board describes, declared in sideTrips.
+      // The drawn line also went out and straight back at km 0.39 (61 m) and km 2.91 (163 m), which no source explains; by the owner's decision that was cut. The line is now 5.1 km on 19 OSM ways with 97% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 3).
       // APT Fiemme Cembra’s walk “Il Sentiero dei vecchi mestieri – da Grumes”. The line is drawn on 21 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -45436,18 +45436,19 @@
       hours: '3',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Grumes across the SS 612 and through the woods to the Rio dei Molini, down the stream past the old mills, the Venetian sawmill and the forge, and back up to the village by road.',
+      sideTrips: [{ km: 2.08, note: 'Down to the Molino Cristofori, one of the old water mills on the Rio dei Molini that the board’s walk is about, and back.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The church of Santa Lucia in Grumes, near the start of the walk, in May (Syrio, CC BY-SA 4.0); the church is 76 m from the line.',
-        route: 'Official loop 5.3 km from Grumes (Piazza Municipio), as APT Fiemme Cembra publishes it; the stored line is drawn on 21 OSM ways along the APT’s published line, 5.5 km, with 97% of the APT line within 25 m of it.',
+        route: 'Official loop 5.3 km from Grumes (Piazza Municipio), as APT Fiemme Cembra publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 5.1 km, with 97% of the APT line within 25 m of it.',
         routeNumbers: 'No route number: from Piazza Municipio in Grumes up the lane opposite the hostel and the village shop, across the SS 612 and up the road into the woods, straight on to the junction signed Mulino Cristofori – Grauno – Sentiero dei Vecchi Mestieri, then to the Rio dei Molini and the Cristofori mill. From there the path follows the stream down on paths and footbridges past the ruins of old mills and sawmills, the Venetian sawmill, the Cristofori forge and the Nones mill, crossing the stream several times, to a tarred road; back up the road to Grumes.',
         mapPoints: 'Start at Grumes (Piazza Municipio), the APT’s start; drinking water at the start (OSM nodes 10935265406).',
         elevation: 'Official 5.3 km, 400 m up and 400 m down, 3 h, highest point 1,011 m, lowest 702 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 0.45 (78 m), km 2.21 (130 m), km 2.75 (67 m), km 2.91 (163 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -48496,8 +48497,8 @@
       desc: 'A long walk down from the Helm, reached by gondola, through the forest past the Jägerhütte to Vierschach. The board lists 7.9 km and 911 m of descent.'
     },
     'lario-brunate-e-le-sue-chiese': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.70 (173 m), km 2.90 (150 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 2.55 is a side trip the board describes, declared in sideTrips.
+      // The drawn line also went out and straight back at km 1.70 (173 m), which no source explains; by the owner's decision that was cut. The line is now 5.0 km on 54 OSM ways with 95% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Lombardy batch 1).
       // in-Lombardia, the official tourism portal of Regione Lombardia: “Brunate e le sue Chiese” by Lago di Como GAL, drawn on 54 OSM ways along its published GPX
       // (data/board-line-routes.geojson). Communes: Brunate (no regulation, national rule); Como (own rule, lead ≤1.5 m).
@@ -48508,18 +48509,19 @@
       hours: '3',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the via Laghetto car park through the old centre of Brunate, down to the Sacro Cuore church, up the old mule track to San Maurizio and the Volta lighthouse, and back down past the chapel of Sant’Antonio Abate.',
+      sideTrips: [{ km: 2.55, note: 'Up from the church of San Maurizio to the Faro Voltiano and the Tre Croci viewpoint, and back to the church, as the board’s directions say.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The first basin of Lake Como and the hills of Como from Brunate, beside the loop, in early December with no snow (Another Believer, CC BY-SA 4.0), 4 m from the line.',
-        route: 'Official loop 5.49 km from the via Laghetto car park, Brunate, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 54 OSM ways along the published GPX, 5.4 km, with 100% of the published line within 25 m of it.',
+        route: 'Official loop 5.49 km from the via Laghetto car park, Brunate, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 54 OSM ways along the published GPX, 5.0 km, with 95% of the published line within 25 m of it.',
         routeNumbers: 'From the via Laghetto car park along via Civiglio to the chapel of the Madonna della Pace, right to via Fraccia and through the old centre past the Madonna di Pompei church and the chapel of the Madonna dell’Accoglienza (via Monti, via Volta); down via Attilio Pirotta to via Parco Nidrino and the Sacro Cuore church; up via Nidrino to via Roma and the Lourdes grotto; via Pissarottino, the steps to via ai Zocc and the mule track (via Mulattiera per San Maurizio) to San Maurizio; up to the Faro Voltiano and the Tre Croci, back to the church and up the mule track to the Cao; then the path towards Civiglio, down the concrete via alla Spessa past the chapel of Sant’Antonio Abate and back to via Laghetto.',
         mapPoints: 'Start at the published start; drinking water at km 0.3, at km 0.9, at km 1.7 and at km 2.7 (OSM nodes 2851310346, 5613634931, 1904524784, 2292919024).',
         elevation: 'Official 5.49 km, 300 m up and 300 m down, 3 h (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL). The stored line follows the published GPX.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.70 (173 m), km 2.90 (150 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -48759,8 +48761,7 @@
       desc: 'A loop from Lasnigo above the Lambro to Barni and its old churches, up through the woods to the Madonnina and back past the Crezzo lake. The portal lists 9.18 km and 580 m of ascent.'
     },
     'lario-eupilio-tra-segrino-e-cornizzolo': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 3.42 (671 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 30 October 2026: the turn at km 3.42 is a side trip the board describes, declared in sideTrips.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Lombardy batch 1).
       // in-Lombardia, the official tourism portal of Regione Lombardia: “Eupilio tra Segrino e Cornizzolo” by Lago di Como GAL, drawn on 39 OSM ways along its published GPX
       // (data/board-line-routes.geojson). Communes: Eupilio (own rule, lead ≤1.5 m always, muzzle carried); Pusiano (no regulation, national rule).
@@ -48771,8 +48772,9 @@
       hours: '2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from Carella up the dirt road towards the Cornizzolo and a way of the cross to the Madonna della Neve sanctuary, on to the Alpe di Carella, and back down the old cobbled mule track to Mariaga.',
+      sideTrips: [{ km: 3.42, note: 'Up to the Trattoria Alpe Carella and back the same way to the car park below, as the board’s directions say (“si ritorna sui propri passi”).' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -48782,7 +48784,7 @@
         mapPoints: 'Start at the published start; drinking water at km 1.7 and at km 4.9 (OSM nodes 5590009130, 7083655143).',
         elevation: 'Official 5.24 km, 397 m up, 2 h (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL). The stored line follows the published GPX.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 3.42 (671 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
