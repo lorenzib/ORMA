@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12164395",
   "name": "Dörferrundweg",
-  "version": "2026.10.29-beta.3",
-  "generatedAt": "2026-10-29T12:08:12.581Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T13:03:20.808Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1516657,
@@ -217,7 +217,7 @@
       "label": "Dörferrundweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 274425,
-      "sha256": "fd304b1ace55971383b8ba21c1ada00ee7fff315dd919d35cf509beaef7c7ea8"
+      "sha256": "ae7cf0871a4244e61c453bc749aabe2715e15939ea72787f8b3cdd73326b0196"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Dörferrundweg safety information",
       "url": "safety.json",
       "bytes": 1467,
-      "sha256": "604143d198812c647d1ed86fdc4679092309516a26900070591e60a3d3b1484d"
+      "sha256": "1bc387ba7ff8001d6482e33f323f288af5b6aafb636b6f27c75c5ebe961b58d4"
     }
   ]
 }

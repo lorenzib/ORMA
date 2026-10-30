@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del",
   "name": "Passo Nigra to Tiers by the Jocher farm",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T20:47:23.647Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:39:50.657Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1159172,
@@ -217,7 +217,7 @@
       "label": "Passo Nigra to Tiers by the Jocher farm routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 379028,
-      "sha256": "f58ce44ab3d8529ecca3ba8fd74cb861061ead4f1dc266278765aa57b28d4e97"
+      "sha256": "f48e4123375d5c0a35c176491a9cad9debd3c1b4b5f5653e90ec8ff98d8abc81"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Passo Nigra to Tiers by the Jocher farm safety information",
       "url": "safety.json",
       "bytes": 1977,
-      "sha256": "4a7f5dcece020634fc39811b8c649935add44991f5b6f3a88d9635cbde779429"
+      "sha256": "39c9a88efe198b5bc4221bc59846a14f18ad5b5ea315cd020d47afc1f06ad0a9"
     }
   ]
 }

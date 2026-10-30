@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-passeggiata-leggendaria-sul-kienberg",
   "name": "The Kienberg legends loop",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T18:20:46.928Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:18:24.458Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1842873,
@@ -217,7 +217,7 @@
       "label": "The Kienberg legends loop routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 434850,
-      "sha256": "b0d0d11736172d3ffd1e6d44cd840d7aac826520ae46578b1aee53dbcbc44630"
+      "sha256": "bb700807373a52bc24e4822ce2fdb12bb27847a29ade681c777d35ae894c8b8b"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "The Kienberg legends loop safety information",
       "url": "safety.json",
       "bytes": 2695,
-      "sha256": "3e7a9a2931feeaf7ffb63c06a32213d2e56d6b9899ffb6c1eeb6f5d9918d8913"
+      "sha256": "28e664c95967ad8bfab83dcfddcca2308ae7204de25cf7731ea6d0dbb0240a72"
     }
   ]
 }

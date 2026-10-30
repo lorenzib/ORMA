@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-1506470",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 3.2,
+    "ascentM": 109,
+    "highestPointM": 396,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 10
+  },
+  "trailhead": {
+    "lat": 46.67025,
+    "lng": 11.16164,
+    "label": "Kurhaus on the Passer promenade, Meran (official start)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6704718,
+      "lng": 11.1611311,
+      "label": "Fountain on the Kurpromenade",
+      "reliability": "Seasonal; not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6686353,
+      "lng": 11.1656392,
+      "label": "Fountain at the Wandelhalle",
+      "reliability": "Seasonal; not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6677931,
+      "lng": 11.1764308,
+      "label": "Moritzbrunnen",
+      "reliability": "Seasonal; not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6602878,
+      "lng": 11.1818473,
+      "label": "Fountain near Trauttmansdorff",
+      "reliability": "Seasonal; not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "About half the walk is on town streets and lanes open to cars, mostly quiet residential lanes in Obermais.",
+    "Two zebra crossings, and short stretches shared with cyclists on the promenades.",
+    "Stone setts on the Winterpromenade and the Passer promenade.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

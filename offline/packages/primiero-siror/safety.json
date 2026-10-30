@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "trailId": "primiero-siror",
-  "generatedAt": "2026-10-29T00:00:00Z",
+  "generatedAt": "2026-10-30T00:00:00Z",
   "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
@@ -60,7 +60,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-10-29",
+      "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
   ]

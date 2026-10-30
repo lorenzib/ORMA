@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "primiero-siror",
   "name": "Siror",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T17:21:47.401Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T13:56:58.760Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 978387,
@@ -217,7 +217,7 @@
       "label": "Siror routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 167151,
-      "sha256": "38c24de77847d07e2ab4c94a8fd3efc16236bc7978e7074df4733e0c09d5a8f0"
+      "sha256": "5aceca032a32cea33d92515baed3abeec5eeaa97f3cb12173a34e34b83bbb19d"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Siror safety information",
       "url": "safety.json",
       "bytes": 1830,
-      "sha256": "3e9296e6b2ef9eb1df5fbbb925cc03b1ff4853e21b4fb093e9f17c4532c67049"
+      "sha256": "2ad87f7b049ad4c1bec32202163bdeb9a1f27d66e931acb45b0a6cb94276966c"
     }
   ]
 }

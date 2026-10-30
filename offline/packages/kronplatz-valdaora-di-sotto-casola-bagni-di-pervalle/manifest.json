@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle",
   "name": "Valdaora di Sotto to Bad Bergfall",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T18:20:10.339Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:17:54.849Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 948624,
@@ -217,7 +217,7 @@
       "label": "Valdaora di Sotto to Bad Bergfall routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 301073,
-      "sha256": "c79120e1f252a9b927933184d19bae901be97cb148967cdbde9370db79cfde9e"
+      "sha256": "826eadb3b5e243d94ccda42b9e99881ab68a0e28e54281fb3312bcae13496593"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Valdaora di Sotto to Bad Bergfall safety information",
       "url": "safety.json",
       "bytes": 1975,
-      "sha256": "977ae500ccc5d4f165ffc33c5be643bd7589b74df247f27969b75f70069bf9da"
+      "sha256": "2bb1a5d242ec4af68842aaca3450ae1984afb5468a899021ca36d221d92760cc"
     }
   ]
 }

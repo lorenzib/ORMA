@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele",
   "name": "Kastelruth bear-trap loop",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T20:49:17.381Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:42:46.650Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1069098,
@@ -217,7 +217,7 @@
       "label": "Kastelruth bear-trap loop routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 282968,
-      "sha256": "d637db0c4532983357f5f526ff2152e65ed401da16c0260d24869c47d322ffdb"
+      "sha256": "a73c22b79d7e847cc455ea52605684a746ccca613c2e931f9f23d1f2209eb900"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Kastelruth bear-trap loop safety information",
       "url": "safety.json",
       "bytes": 2703,
-      "sha256": "c6ae826821ee1b55539abf95bdc91039585e2e37daf689decc6f481a48fe50fb"
+      "sha256": "e3aea17543a52bde8b2aad7e7b9169c2c18bfd3c02226598574667fc822a8fd4"
     }
   ]
 }

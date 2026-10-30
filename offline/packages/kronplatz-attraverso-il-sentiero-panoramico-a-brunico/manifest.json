@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-attraverso-il-sentiero-panoramico-a-brunico",
   "name": "Panoramic path from Olang to Bruneck",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T12:25:59.528Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:35:40.579Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1958959,
+  "packageBytes": 1959067,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.76361,
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Panoramic path from Olang to Bruneck OSM offline map",
       "url": "map.svg",
-      "bytes": 1096346,
-      "sha256": "ba836dbbabbb7dc03d83295ccfd15ff06ec8d64111e099e59b97281b3a9d371c"
+      "bytes": 1096454,
+      "sha256": "cf95758e30df661b733cdac0d2b68ef473417319c72c54ab8bcdbeb1fb399d35"
     },
     {
       "role": "route",

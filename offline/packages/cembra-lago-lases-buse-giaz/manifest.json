@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "cembra-lago-lases-buse-giaz",
   "name": "Il Lago di Lases e le buse del giaz",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T14:19:00.470Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:06:24.983Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 623936,
@@ -217,7 +217,7 @@
       "label": "Il Lago di Lases e le buse del giaz routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 90548,
-      "sha256": "a8b5b8cdf102b1e863145e2a5e8392df13c87119e949c3cbf0c9b8db1f1cd956"
+      "sha256": "470a167c7e1e7d87081915417773d132825871a7a8e0eee67e7ea2267344d359"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Il Lago di Lases e le buse del giaz safety information",
       "url": "safety.json",
       "bytes": 1511,
-      "sha256": "d78078023b8f9ce633b8460ee90a82f3b34f711753ba5050c373977c3819cc93"
+      "sha256": "a83e6d36ea88ac35dc71037b071f67e149266e960c7928afb77541ef4b6e9b4c"
     }
   ]
 }

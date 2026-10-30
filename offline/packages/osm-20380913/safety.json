@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-20380913",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.1,
+    "ascentM": 233,
+    "highestPointM": 844,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 39
+  },
+  "trailhead": {
+    "lat": 46.635,
+    "lng": 10.9732,
+    "label": "Village square by the school and church in Tabland, Citybus 264 (official start)"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "The first and last kilometre are on tarmac roads open to cars, including the Tabland road back to the village.",
+    "A rougher stretch of path and track near km 2.4–2.7.",
+    "Rock outcrops at some of the viewpoints.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

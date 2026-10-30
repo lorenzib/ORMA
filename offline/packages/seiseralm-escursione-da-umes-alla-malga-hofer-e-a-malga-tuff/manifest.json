@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff",
   "name": "Umes, Hofer Alpl and Malga Tuff loop",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T20:48:00.708Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:40:39.855Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 674339,
@@ -217,7 +217,7 @@
       "label": "Umes, Hofer Alpl and Malga Tuff loop routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 123584,
-      "sha256": "05c94b1e20434dd71102397ceb49a4b1865b04b1dc2a1e5f7c8346d5231f58a6"
+      "sha256": "af35a25e69948340e1d7c176888f834616f8be2d66feb956d3fa60230809fa30"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Umes, Hofer Alpl and Malga Tuff loop safety information",
       "url": "safety.json",
       "bytes": 1969,
-      "sha256": "22e4362aa1a2bf42aaf634c0fc1e8d793bb393ac572799f1cb7d3b3c4cf7b441"
+      "sha256": "f48865e292fad40af9ac884932ae774f2caa99ae46c171f35d5ffc57e84499ad"
     }
   ]
 }

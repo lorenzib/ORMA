@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-18055492",
   "name": "Le Mont d'Arbois - Mont Joux",
-  "version": "2026.10.29-beta.3",
-  "generatedAt": "2026-10-29T11:39:15.022Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T12:39:08.430Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 750097,
@@ -217,7 +217,7 @@
       "label": "Le Mont d'Arbois - Mont Joux routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 242342,
-      "sha256": "7d164957df85cf8adc164c325d5a6e35030658f09d2dc667449642aa80901a49"
+      "sha256": "51d5a1e0f537f4e4e2179da258a826c13e80a386a1deaeb5d7591e8f766f69c5"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Le Mont d'Arbois - Mont Joux safety information",
       "url": "safety.json",
       "bytes": 1413,
-      "sha256": "4e36f3a2029259fdd002fb37a303349f596674d397d280d05081e60cdc6316b7"
+      "sha256": "b82dd797818ae1f8bae10e36c570451b52199fc5f681c80deb6cc4400597b80d"
     }
   ]
 }

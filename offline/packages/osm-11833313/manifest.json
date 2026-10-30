@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11833313",
+  "name": "Römerweg Kiens",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:33:19.109Z",
+  "scoringVersion": "1.6.0",
+  "verificationStatus": "source-verified",
+  "packageBytes": 1105532,
+  "packageBudgetBytes": 5242880,
+  "bounds": {
+    "south": 46.79597,
+    "west": 11.82088,
+    "north": 46.80987,
+    "east": 11.84417
+  },
+  "image": {
+    "width": 1200,
+    "height": 1047
+  },
+  "mapCorridor": {
+    "strategy": "fixed-bounds-svg-v1",
+    "scaleLevels": [
+      1
+    ],
+    "width": 1200,
+    "height": 1047
+  },
+  "routingGraph": {
+    "strategy": "osm-walking-graph-v1",
+    "nodeCount": 2589,
+    "edgeCount": 2606,
+    "trailNodeCount": 240,
+    "maxRejoinRouteM": 1500
+  },
+  "elevationProfile": {
+    "strategy": "route-profile-v1",
+    "pointCount": 13,
+    "distanceKm": 3.1,
+    "ascentM": 70,
+    "source": "ORMA route profile",
+    "demPackaged": false
+  },
+  "evidence": {
+    "version": "1.0.0",
+    "tier": "mapped",
+    "tierLabel": "Mapped route",
+    "categories": {
+      "route": {
+        "sourceState": "mapped",
+        "sourceLabel": "Mapped data",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "water": {
+        "sourceState": "mapped",
+        "sourceLabel": "Mapped data",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "heat": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "exposure": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "livestock": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "surfaceHazards": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "access": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      }
+    }
+  },
+  "attribution": "Route data © ORMA; © OpenStreetMap contributors where applicable",
+  "licenceUrl": "https://www.openstreetmap.org/copyright",
+  "resources": [
+    {
+      "role": "shell",
+      "required": true,
+      "label": "Offline trail page",
+      "url": "/offline/trail.html",
+      "bytes": 9702,
+      "sha256": "037e10850828f638ba8465d1e617967ee8e518faf87f72bb149774a1fff356a3"
+    },
+    {
+      "role": "style",
+      "required": true,
+      "label": "Offline trail styles",
+      "url": "/offline/offline.css",
+      "bytes": 11639,
+      "sha256": "f57017629472a1b9298ba99cfbe04ef2e28e96c844fcdc7e452660914d7d881b"
+    },
+    {
+      "role": "app",
+      "required": true,
+      "label": "Offline trail application",
+      "url": "/offline/offline-app.js",
+      "bytes": 35211,
+      "sha256": "ac2b6d1d72c8263c36b23f3537d6c6a2c006bff502eef63120f73087a1003aec"
+    },
+    {
+      "role": "gps-policy",
+      "required": true,
+      "label": "GPS safety policy",
+      "url": "/hike-gps-policy.js",
+      "bytes": 3987,
+      "sha256": "752e25b27a0843cfb7c3dd38958a220ea86d045564bd6d0e956e788d62f9d23a"
+    },
+    {
+      "role": "route-rejoin",
+      "required": true,
+      "label": "Offline route rejoin guidance",
+      "url": "/route-rejoin.js",
+      "bytes": 2981,
+      "sha256": "da9f712e32f9abc39071092a88c5876d297a831b75a7e0d6392c0dbde7e34c96"
+    },
+    {
+      "role": "hike-distance",
+      "required": true,
+      "label": "Direction-neutral walked distance",
+      "url": "/hike-distance.js",
+      "bytes": 2828,
+      "sha256": "d320ca20b3b59a7961834da24ca3367ba898f6850ec7206d051f9bbb9c614175"
+    },
+    {
+      "role": "footpath-router",
+      "required": true,
+      "label": "Offline mapped footpath router",
+      "url": "/footpath-router.js",
+      "bytes": 12815,
+      "sha256": "6d1aa1e1d9de371505d1bb4f006f38c2c0978abeaacb0436b27af5c4e696ad61"
+    },
+    {
+      "role": "elevation-engine",
+      "required": true,
+      "label": "Offline route elevation engine",
+      "url": "/offline-elevation.js",
+      "bytes": 2575,
+      "sha256": "6200f5e716264112ff69d82cade64f1c9df0b96674e76d9b83ae388360de77ec"
+    },
+    {
+      "role": "session",
+      "required": true,
+      "label": "Durable hike session",
+      "url": "/hike-session.js",
+      "bytes": 6484,
+      "sha256": "825cf5b9e27acc260f408e224ec2d5c3d84c27373ff2f6c98ac06fc07c01f72d"
+    },
+    {
+      "role": "completion",
+      "required": true,
+      "label": "Durable hike completion",
+      "url": "/hike-completions.js",
+      "bytes": 6065,
+      "sha256": "0abbaafe655171cc19251c14888c94e1f5c99e9c1e5c428bd8a632ee69f1fc00"
+    },
+    {
+      "role": "outcome",
+      "required": true,
+      "label": "Private post-hike outcome",
+      "url": "/post-hike-outcomes.js",
+      "bytes": 11204,
+      "sha256": "2c851a286d24d2c832075864e267e0f8714d78ee68076ae9ded5c71aabdf3c00"
+    },
+    {
+      "role": "map",
+      "required": true,
+      "label": "Römerweg Kiens OSM offline map",
+      "url": "map.svg",
+      "bytes": 861612,
+      "sha256": "c2503a1ed73943860efca357f663f139977da8b3c9bde067cf9a9e4ea119dc74"
+    },
+    {
+      "role": "route",
+      "required": true,
+      "label": "Römerweg Kiens route",
+      "url": "route.geojson",
+      "bytes": 3706,
+      "sha256": "de13ade6cc9f76e312c38c17675e978178c166ef6030438ad77630b57d16d630"
+    },
+    {
+      "role": "footpath-network",
+      "required": true,
+      "label": "Römerweg Kiens routable footpath corridor",
+      "url": "footpath-network.json",
+      "bytes": 132557,
+      "sha256": "f3777699a71d4e8861a5d9b7f81e36c930d37d3043666cdb9ac3f6588f85b558"
+    },
+    {
+      "role": "elevation-profile",
+      "required": true,
+      "label": "Römerweg Kiens stored route elevation profile",
+      "url": "elevation-profile.json",
+      "bytes": 766,
+      "sha256": "47ce4b4b89054ad8f4c5fa1f4daa1456d6e00d40996ea8aa6e8c6475c96e49ad"
+    },
+    {
+      "role": "safety",
+      "required": true,
+      "label": "Römerweg Kiens safety information",
+      "url": "safety.json",
+      "bytes": 1400,
+      "sha256": "9cbf6247c1dbe768a2f009929462e9b24874182a6ea295f93d5fab253c613bfd"
+    }
+  ]
+}

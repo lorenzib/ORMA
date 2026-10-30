@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "primiero-malga-ces",
   "name": "San Martino di Castrozza - Malga Ces",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T17:30:30.840Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:03:54.246Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 677639,
@@ -217,7 +217,7 @@
       "label": "San Martino di Castrozza - Malga Ces routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 153252,
-      "sha256": "da556a772f92c1a67b78b6b9ba7ab922f73a6a8cc50f58748e37a6b0c340ba7a"
+      "sha256": "70229871bc890b67dd516bb8a2de2295048d49eab4b6a87a07c251b0ec6ad1f5"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "San Martino di Castrozza - Malga Ces safety information",
       "url": "safety.json",
       "bytes": 1438,
-      "sha256": "554657ca95f4120a9fad507600a14b6fdbbe0df93fce20187a619a89981902d6"
+      "sha256": "2289d4d3b9336e5548546811ab8d59cf8d2ef0e2a2a162547c012833d3b49a11"
     }
   ]
 }

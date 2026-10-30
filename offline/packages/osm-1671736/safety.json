@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-1671736",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 8,
+    "ascentM": 450,
+    "highestPointM": 1090,
+    "expectedDuration": "2.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 44
+  },
+  "trailhead": {
+    "lat": 46.71199,
+    "lng": 11.20477,
+    "label": "Verdins, behind the parish church, bus stop Verdins (official start)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.712454,
+      "lng": 11.20496,
+      "label": "Drinking fountain on the Verdins village square",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6833207,
+      "lng": 11.2082948,
+      "label": "Kleebrunnen",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6837128,
+      "lng": 11.1979388,
+      "label": "Drinking fountain in St. Georgen",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A steep climb up through a meadow to the Hoferhof (the board warns of it).",
+    "About 3.5 km on farm roads and lanes open to cars.",
+    "Narrow paths (about 0.8 m) on the Höfeweg itself.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}
