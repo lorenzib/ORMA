@@ -174,7 +174,7 @@ describe('the static pages and the app agree on the slug', () => {
       'discovery-state': '20261007-1', 'regional-trails-loader': '20261007-2',
       'browse-map': '20261028-1', 'compare-page': '20261007-1',
       'collections-page': '20261007-1', 'homepage-search': '20261007-1',
-      'mobile-nav': '20261007-1', 'notifications-feed': '20261023-1',
+      'mobile-nav': '20261030-1', 'notifications-feed': '20261023-1',
     };
     const stale = [];
     for (const name of fs.readdirSync(root).filter(file => file.endsWith('.html'))) {

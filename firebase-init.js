@@ -48,10 +48,38 @@ let authResolved = false;
 let lastDogProfileError = null;
 const changeListeners = [];
 let profileSummarySyncVersion = 0;
+// The summary this page last wrote, kept in memory as well. A phone whose
+// localStorage is full refuses the write, and every surface that reads only
+// the stored copy then stays on the guest's (no dogs), even after a refresh.
+let liveProfileSummary;
+// The newest summary refresh and whose it is, so sign-in can wait for the
+// right one before it navigates away (see profileSummaryReady).
+let profileSummarySync = { uid: null, promise: Promise.resolve() };
+
+function writeProfileSummary(summary) {
+  try {
+    localStorage.setItem('dolopaws-profile-summary', JSON.stringify(summary));
+    return;
+  } catch (e) {}
+  // Out of room: the dog photos are most of the summary. Keep the dogs
+  // without them rather than keep no dogs at all.
+  try {
+    const withoutPhotos = { ...summary, dogs: (summary.dogs || []).map(dog => ({ ...dog, photo: null })) };
+    localStorage.setItem('dolopaws-profile-summary', JSON.stringify(withoutPhotos));
+  } catch (e) {
+    // Never leave the guest's or another account's copy behind.
+    try { localStorage.removeItem('dolopaws-profile-summary'); } catch (removeError) {}
+  }
+}
 
 function cacheProfileSummary(summary) {
-  if (summary) localStorage.setItem('dolopaws-profile-summary', JSON.stringify(summary));
-  else localStorage.removeItem('dolopaws-profile-summary');
+  liveProfileSummary = summary || null;
+  if (summary) writeProfileSummary(summary);
+  else {
+    try { localStorage.removeItem('dolopaws-profile-summary'); } catch (e) {}
+  }
+  // The summary travels with the event, so listeners on this page can paint
+  // it even when the stored copy could not be written.
   window.dispatchEvent(new CustomEvent('dolopaws-profile-summary-changed', {
     detail: { summary: summary || null },
   }));
@@ -70,7 +98,13 @@ onAuthStateChanged(auth, (user) => {
 // Cached multi-dog summary so static pages can paint the selected dog and
 // offer the same switcher even when they do not load Firebase themselves.
 // Cleared on logout.
-async function syncProfileSummary(user) {
+function syncProfileSummary(user) {
+  const promise = refreshProfileSummary(user);
+  profileSummarySync = { uid: user ? user.uid : null, promise };
+  return promise;
+}
+
+async function refreshProfileSummary(user) {
   const syncVersion = ++profileSummarySyncVersion;
   try {
     if (!user) { cacheProfileSummary(null); return; }
@@ -1020,6 +1054,28 @@ window.DoloPawsAuth = {
   get currentUser() { return currentUser; },
   get authResolved() { return authResolved; },
   onChange(fn) { changeListeners.push(fn); if (authResolved) fn(currentUser); },
+  // The account's dogs as this page last cached them, or undefined before
+  // the first refresh. Prefer it over localStorage, which can be full.
+  get profileSummary() { return liveProfileSummary; },
+  // Resolves once the signed-in account's summary (every dog, saved count)
+  // is cached. Sign-in waits on it before leaving the page: the next page's
+  // header paints from that cache, and a navigation used to cancel the read.
+  // Never rejects and gives up after timeoutMs, so sign-in cannot hang on it.
+  profileSummaryReady(timeoutMs = 4000) {
+    if (!currentUser) return Promise.resolve();
+    if (profileSummarySync.uid !== currentUser.uid) syncProfileSummary(currentUser);
+    const timeout = new Promise(resolve => setTimeout(resolve, timeoutMs));
+    // A newer refresh (onAuthStateChanged starting its own) makes the older
+    // one stop without writing, so wait for whichever is newest.
+    const settled = (async () => {
+      let pending;
+      do {
+        pending = profileSummarySync.promise;
+        await pending.catch(() => {});
+      } while (pending !== profileSummarySync.promise);
+    })();
+    return Promise.race([settled, timeout]);
+  },
   getFavorites,
   setFavorites,
   getDogProfile,
