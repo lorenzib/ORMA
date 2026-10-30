@@ -91,6 +91,9 @@
     'seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff': "Umes, Hofer Alpl and Malga Tuff loop",
     'seiseralm-escursione-senza-barriere-all-alpe-di-siusi': "Mont Sëuc to the Sporthotel Sonne",
     'tre-cime': "Tre Cime di Lavaredo classic circuit",
+    'villnoess-da-russis-fino-al-passo-delle-erbe': "Ponte Russis to Passo delle Erbe",
+    'villnoess-dolorama-3a-tappa': "Dolorama stage 3: Rifugio Genova to Resciesa",
+    'villnoess-ranui-zannes': "Ranui to Zannes",
   };
   // </offline-package-registry>
   const PACKAGES = Object.freeze(Object.fromEntries(Object.keys(PACKAGE_NAMES).map(trailId => [trailId, Object.freeze({

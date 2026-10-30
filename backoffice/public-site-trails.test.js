@@ -165,9 +165,11 @@ describe('the existing-site verification boundary',()=>{
     // walks: Passo Costalunga to Lake Carezza and Lake Carezza to the Stadlalm.
     // Then 410 and 408 with four Seiser Alm walks: Mont Sëuc to the Sporthotel
     // Sonne, Passo Nigra to Tiers, the Umes loop and the Kastelruth bear-trap loop.
+    // Then 413 and 411 with three Villnöss walks: Ranui to Zannes, Ponte Russis to
+    // Passo delle Erbe and Dolorama stage 3, Rifugio Genova to Resciesa.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(410);
-    expect(currentSiteTrails(catalogue)).toHaveLength(408);
+    expect(catalogue).toHaveLength(413);
+    expect(currentSiteTrails(catalogue)).toHaveLength(411);
   });
 
   test('requires the artwork the public trail page needs',()=>{

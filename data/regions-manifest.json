@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-30T12:47:01.994Z",
+  "generatedAt": "2026-10-30T13:59:32.970Z",
   "regions": {
     "dolomites": {
-      "trailCount": 304,
-      "trails": "data/regions/dolomites-trails.js?v=6acb2c0c868c",
+      "trailCount": 307,
+      "trails": "data/regions/dolomites-trails.js?v=c2fc0200e467",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -309,6 +309,9 @@
         "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": "data/trail-details/seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del.js?v=bf02abc17370",
         "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": "data/trail-details/seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff.js?v=a61e21430fe2",
         "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": "data/trail-details/seiseralm-alla-volta-della-trappola-d-orso-a-s-michele.js?v=bbeed8467741",
+        "villnoess-ranui-zannes": "data/trail-details/villnoess-ranui-zannes.js?v=27dec396051e",
+        "villnoess-da-russis-fino-al-passo-delle-erbe": "data/trail-details/villnoess-da-russis-fino-al-passo-delle-erbe.js?v=0ad365a95a5d",
+        "villnoess-dolorama-3a-tappa": "data/trail-details/villnoess-dolorama-3a-tappa.js?v=446bd1f83c2a",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -777,6 +780,9 @@
     "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": "dolomites",
     "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": "dolomites",
     "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": "dolomites",
+    "villnoess-ranui-zannes": "dolomites",
+    "villnoess-da-russis-fino-al-passo-delle-erbe": "dolomites",
+    "villnoess-dolorama-3a-tappa": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1295,6 +1301,9 @@
     "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": "passo-nigra-to-tiers",
     "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": "umes-hofer-alpl-malga-tuff",
     "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": "kastelruth-bear-trap-loop",
+    "villnoess-ranui-zannes": "ranui-to-zannes",
+    "villnoess-da-russis-fino-al-passo-delle-erbe": "russis-to-passo-delle-erbe",
+    "villnoess-dolorama-3a-tappa": "dolorama-genova-to-resciesa",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1707,6 +1716,9 @@
     "passo-nigra-to-tiers": "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del",
     "umes-hofer-alpl-malga-tuff": "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff",
     "kastelruth-bear-trap-loop": "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele",
+    "ranui-to-zannes": "villnoess-ranui-zannes",
+    "russis-to-passo-delle-erbe": "villnoess-da-russis-fino-al-passo-delle-erbe",
+    "dolorama-genova-to-resciesa": "villnoess-dolorama-3a-tappa",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

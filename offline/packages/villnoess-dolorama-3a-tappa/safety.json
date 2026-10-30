@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "villnoess-dolorama-3a-tappa",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 15.7,
+    "ascentM": 633,
+    "highestPointM": 2309,
+    "expectedDuration": "4.75 hours",
+    "difficulty": "Hard",
+    "shadePercent": 24
+  },
+  "trailhead": {
+    "lat": 46.63529,
+    "lng": 11.80501,
+    "label": "Rifugio Genova (Schlüterhütte), the board’s start of stage 3"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6352172,
+      "lng": 11.8046946,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6220269,
+      "lng": 11.7690292,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6135505,
+      "lng": 11.7439493,
+      "label": "Weißbrunn - Fontana Bianca",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6103424,
+      "lng": 11.7272312,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A long high walk, 15.7 km at 1,870–2,300 m, starting at a hut with no road: plan water and turn-back points.",
+    "Cows graze the Brogles and Resciesa pastures in summer: keep your dog close.",
+    "Rocky stretches under the Odle: watch your dog’s paws.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-29"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}
