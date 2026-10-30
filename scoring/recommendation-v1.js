@@ -108,6 +108,21 @@
       && conditions.heatRisk === 'low' && !conditions.hotFromLabel;
   }
 
+  // "Today's temperatures are comfortable" is only news on a day they might
+  // not have been. Every dog starts losing heat points at the same line
+  // (COOL_DAY_MAX_C; a heat-sensitive dog loses more, not sooner), so the
+  // reason is shown when the day gets within this margin of it. On an 11 °C
+  // October day it is always true and pushed out reasons that said something.
+  // It costs nothing either way: this only decides whether it is said.
+  const HEAT_QUESTION_MARGIN_C = 5;
+
+  function heatWasAQuestion(conditions){
+    const max = dayMaxOf(conditions);
+    const peak = max !== null ? max
+      : conditions && Number.isFinite(conditions.temperatureC) ? conditions.temperatureC : null;
+    return peak === null || peak >= COOL_DAY_MAX_C - HEAT_QUESTION_MARGIN_C;
+  }
+
   function isColdDay(conditions){
     const max = dayMaxOf(conditions);
     return max !== null && max <= COLD_DAY_MAX_C;
@@ -731,7 +746,9 @@
           hotFrom ? { hotFrom } : null,
           hotFrom ? 'conditions.heat.moderate.from' : 'conditions.heat.moderate'));
       }else if(conditions.heatRisk === 'low'){
-        positives.push(item('conditions.heat.low', 'Current heat conditions are low-risk.'));
+        if(heatWasAQuestion(conditions)){
+          positives.push(item('conditions.heat.low', 'Current heat conditions are low-risk.'));
+        }
       }else{
         unknowns.push(item('conditions.heat.unknown', 'Current heat conditions are unavailable.'));
       }
@@ -851,8 +868,10 @@
     VERSION,
     FITNESS,
     COOL_DAY_MAX_C,
+    HEAT_QUESTION_MARGIN_C,
     COLD_DAY_MAX_C,
     isCoolDay,
+    heatWasAQuestion,
     isColdDay,
     isHeatOnlyHazard,
     CHAIRLIFT_MAX_KG,
