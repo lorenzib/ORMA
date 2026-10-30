@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11860429",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.5,
+    "ascentM": 267,
+    "highestPointM": 1611,
+    "expectedDuration": "2 hours",
+    "difficulty": "Hard",
+    "shadePercent": 10
+  },
+  "trailhead": {
+    "lat": 46.657528,
+    "lng": 11.92432,
+    "label": "La Val church, by the tourist office and bus stop"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.657633,
+      "lng": 11.9245469,
+      "label": "Fountain by La Val church (start and finish)",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Asphalt village road with traffic at the start and finish.",
+    "About 400 m of narrow Cians access road shared with cars, each way.",
+    "Residential lanes through the hamlets.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

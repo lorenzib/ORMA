@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-13338113",
+  "name": "Lac de Darbon",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T16:15:34.933Z",
+  "scoringVersion": "1.6.0",
+  "verificationStatus": "source-verified",
+  "packageBytes": 499489,
+  "packageBudgetBytes": 5242880,
+  "bounds": {
+    "south": 46.32693,
+    "west": 6.74281,
+    "north": 46.35217,
+    "east": 6.77156
+  },
+  "image": {
+    "width": 1200,
+    "height": 1525
+  },
+  "mapCorridor": {
+    "strategy": "fixed-bounds-svg-v1",
+    "scaleLevels": [
+      1
+    ],
+    "width": 1200,
+    "height": 1525
+  },
+  "routingGraph": {
+    "strategy": "osm-walking-graph-v1",
+    "nodeCount": 3863,
+    "edgeCount": 3876,
+    "trailNodeCount": 1356,
+    "maxRejoinRouteM": 1500
+  },
+  "elevationProfile": {
+    "strategy": "route-profile-v1",
+    "pointCount": 15,
+    "distanceKm": 6.8,
+    "ascentM": 640,
+    "source": "ORMA route profile",
+    "demPackaged": false
+  },
+  "evidence": {
+    "version": "1.0.0",
+    "tier": "mapped",
+    "tierLabel": "Mapped route",
+    "categories": {
+      "route": {
+        "sourceState": "mapped",
+        "sourceLabel": "Mapped data",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "water": {
+        "sourceState": "mapped",
+        "sourceLabel": "Mapped data",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "heat": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "exposure": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "livestock": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "surfaceHazards": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "access": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      }
+    }
+  },
+  "attribution": "Route data © ORMA; © OpenStreetMap contributors where applicable",
+  "licenceUrl": "https://www.openstreetmap.org/copyright",
+  "resources": [
+    {
+      "role": "shell",
+      "required": true,
+      "label": "Offline trail page",
+      "url": "/offline/trail.html",
+      "bytes": 8882,
+      "sha256": "dd318d4d668e40f5960f4f2aeb5fd3137d713746aaf06fd99a69424e69e8e5a3"
+    },
+    {
+      "role": "style",
+      "required": true,
+      "label": "Offline trail styles",
+      "url": "/offline/offline.css",
+      "bytes": 10637,
+      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+    },
+    {
+      "role": "app",
+      "required": true,
+      "label": "Offline trail application",
+      "url": "/offline/offline-app.js",
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+    },
+    {
+      "role": "gps-policy",
+      "required": true,
+      "label": "GPS safety policy",
+      "url": "/hike-gps-policy.js",
+      "bytes": 3987,
+      "sha256": "752e25b27a0843cfb7c3dd38958a220ea86d045564bd6d0e956e788d62f9d23a"
+    },
+    {
+      "role": "route-rejoin",
+      "required": true,
+      "label": "Offline route rejoin guidance",
+      "url": "/route-rejoin.js",
+      "bytes": 2981,
+      "sha256": "da9f712e32f9abc39071092a88c5876d297a831b75a7e0d6392c0dbde7e34c96"
+    },
+    {
+      "role": "hike-distance",
+      "required": true,
+      "label": "Direction-neutral walked distance",
+      "url": "/hike-distance.js",
+      "bytes": 2828,
+      "sha256": "d320ca20b3b59a7961834da24ca3367ba898f6850ec7206d051f9bbb9c614175"
+    },
+    {
+      "role": "footpath-router",
+      "required": true,
+      "label": "Offline mapped footpath router",
+      "url": "/footpath-router.js",
+      "bytes": 12815,
+      "sha256": "6d1aa1e1d9de371505d1bb4f006f38c2c0978abeaacb0436b27af5c4e696ad61"
+    },
+    {
+      "role": "elevation-engine",
+      "required": true,
+      "label": "Offline route elevation engine",
+      "url": "/offline-elevation.js",
+      "bytes": 2575,
+      "sha256": "6200f5e716264112ff69d82cade64f1c9df0b96674e76d9b83ae388360de77ec"
+    },
+    {
+      "role": "session",
+      "required": true,
+      "label": "Durable hike session",
+      "url": "/hike-session.js",
+      "bytes": 6484,
+      "sha256": "825cf5b9e27acc260f408e224ec2d5c3d84c27373ff2f6c98ac06fc07c01f72d"
+    },
+    {
+      "role": "completion",
+      "required": true,
+      "label": "Durable hike completion",
+      "url": "/hike-completions.js",
+      "bytes": 6065,
+      "sha256": "0abbaafe655171cc19251c14888c94e1f5c99e9c1e5c428bd8a632ee69f1fc00"
+    },
+    {
+      "role": "outcome",
+      "required": true,
+      "label": "Private post-hike outcome",
+      "url": "/post-hike-outcomes.js",
+      "bytes": 11204,
+      "sha256": "2c851a286d24d2c832075864e267e0f8714d78ee68076ae9ded5c71aabdf3c00"
+    },
+    {
+      "role": "map",
+      "required": true,
+      "label": "Lac de Darbon OSM offline map",
+      "url": "map.svg",
+      "bytes": 202760,
+      "sha256": "4ec825cd5a6a06e3bb9a5347c82da12a71a7d55d2c1cc26b4b67e85d96575b0f"
+    },
+    {
+      "role": "route",
+      "required": true,
+      "label": "Lac de Darbon route",
+      "url": "route.geojson",
+      "bytes": 9604,
+      "sha256": "f6efe9a59514df136a09db5871a09b740c3e109d208d80c2e8161a3b5939992b"
+    },
+    {
+      "role": "footpath-network",
+      "required": true,
+      "label": "Lac de Darbon routable footpath corridor",
+      "url": "footpath-network.json",
+      "bytes": 181881,
+      "sha256": "51322a88e2ff33ab78fc287b45274900fb5d6f7cfbff641090d42ea06bf89412"
+    },
+    {
+      "role": "elevation-profile",
+      "required": true,
+      "label": "Lac de Darbon stored route elevation profile",
+      "url": "elevation-profile.json",
+      "bytes": 876,
+      "sha256": "f5ae640eb9a379dfd001dfc47bcb682c055819f92339a988134c1e5cf9273c4e"
+    },
+    {
+      "role": "safety",
+      "required": true,
+      "label": "Lac de Darbon safety information",
+      "url": "safety.json",
+      "bytes": 1784,
+      "sha256": "586919d62c343b2228230b6c394d5f97c9c25d66968c398e1533f7c5b46e8325"
+    }
+  ]
+}

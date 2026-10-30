@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-3202880",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.6,
+    "ascentM": 110,
+    "highestPointM": 555,
+    "expectedDuration": "1–1.5 hours",
+    "difficulty": "Easy",
+    "shadePercent": 90
+  },
+  "trailhead": {
+    "lat": 46.42908,
+    "lng": 11.29422,
+    "label": "North shore of the small Montiggl lake, where path 1/A arrives from Parkplatz Montiggl (1.2 km); the car park beside it is private"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 0.6 km on asphalt access roads with lido and hotel traffic.",
+    "Short stretch on the Montiggler Straße.",
+    "Roots and stones, slippery when wet.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}
