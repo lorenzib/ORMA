@@ -56001,6 +56001,302 @@
       ],
       startPoint: { lat: 46.41032, lng: 11.57585, label: 'Lago di Carezza (Karersee) car park, the board’s start' },
       desc: 'An easy family walk from the Lago di Carezza along the shore and the forest road “Templ” to the Stadlalm, with farm animals and wide views of the Catinaccio and Latemar. The board lists 4.2 km, 32 m up and 83 m down.'
+    },
+    'seiseralm-escursione-senza-barriere-all-alpe-di-siusi': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Seiser Alm batch 1).
+      // “Escursione senza barriere all’Alpe di Siusi”, published by the Ortisei tourist board (DOLOMITES Val Gardena), drawn on 5 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Kastelruth (its 2024 Ortspolizeiordnung plus the national rule: lead ≤1.5 m, muzzle carried) and the Seiser Alm landscape plan, which bans no dogs.
+      // No Natura 2000 site, park or natural monument on the line; the Seiser Alm landscape plan bans no dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Mont Sëuc – Sporthotel Sonne, Alpe di Siusi (Kastelruth)',
+      distance: 1.4,
+      elevation: 0,
+      hours: '0.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way, gently downhill, from the top station of the Mont Sëuc cable car from Ortisei on path 9 past the Schgaguler hut to the Sporthotel Sonne; come back the same way to the cable car.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the top station of the Mont Sëuc cable car from Ortisei (2,005 m), the board’s start.",
+        "sequence": "Take well-signed path 9 to the left, first to the Schgaguler hut, then on across the flowering alpine meadows to the Sporthotel Sonne. Come back the same way to the cable car.",
+        "switches": "One turn: leaving the station, take path 9 to the left, and stay on it to the Sporthotel Sonne.",
+        "sources": [
+          {
+            "label": "Ortisei tourist board (DOLOMITES Val Gardena), Escursione senza barriere all’Alpe di Siusi (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810054454",
+            "authority": "Ortisei tourist board (DOLOMITES Val Gardena)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Path 9 on the Alpe di Siusi with the Sassolungo behind, on the line, in July (madel on Mapillary, CC BY-SA 4.0).',
+        route: 'Official one-way walk 1.4 km from the top station of the Mont Sëuc cable car, as the Ortisei tourist board (DOLOMITES Val Gardena) publishes it; the stored line is drawn on 5 OSM ways along the board’s published line, 1.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 9: from the top station of the Mont Sëuc cable car follow path 9 to the left, past the Schgaguler hut and across the meadows to the Sporthotel Sonne; come back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 1.4 km, 0 m up and 138 m down, 0:21 h, highest point 2,001 m, lowest 1,863 m (Ortisei tourist board (DOLOMITES Val Gardena), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Ortisei tourist board (DOLOMITES Val Gardena), Escursione senza barriere all’Alpe di Siusi (its Outdooractive tour, also listed on suedtirol.info and seiseralm.it)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Gemeinde Kastelruth, Ortspolizeiordnung (Gemeinderat Nr. 57 of 4 September 2024), Art. 13: dogs never left unattended, droppings cleaned up; it sets no lead length or banned area, so the national rule sets the lead and muzzle',
+          'Landschaftlicher Gebietsplan Seiser Alm (DLH 10 February 1992 Nr. 269), Art. 2, 9 and 12: no rule bans dogs; wild animals must not be disturbed',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 0% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (5 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 21,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Cows graze the Alpe di Siusi in summer: keep your dog close and give herds a wide berth', 'About a quarter is on a service road used by hut traffic', 'Open, high meadows at 1,900–2,000 m: little shade on sunny days'],
+      terrainType: 'Wide gravel path and service road',
+      shadeDescription: 'Mostly open: about a fifth runs past mapped woodland; the meadows are in full sun.',
+      terrainDescription: 'A short, barrier-free walk at 1,860–2,000 m from the Mont Sëuc cable car across the Alpe di Siusi meadows to the Sporthotel Sonne, with the Sassolungo and Sassopiatto ahead.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'The national rule applies: a lead of at most 1.5 m and a muzzle carried. Kastelruth forbids leaving dogs unattended and requires you to clean up, and the Seiser Alm plan forbids disturbing wild animals. Check the cable car’s own conditions for dogs before you ride. Cows with calves graze here in summer.',
+      tips: 'Ride the Mont Sëuc cable car up from Ortisei and follow path 9: 1.4 km one way, gently downhill (138 m down), about 20 minutes; come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle. No drinking water mapped on the way: bring some, or stop at the huts.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione senza barriere all’Alpe di Siusi (Ortisei tourist board (DOLOMITES Val Gardena))', url: 'https://www.outdooractive.com/it/r/810054454' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Kastelruth, Ortspolizeiordnung (2024)', url: 'https://www.gemeinde.kastelruth.bz.it/de/Verwaltung/Dokumente/Ortspolizeiordnung' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.55788, lng: 11.66463, label: 'Top station of the Mont Sëuc cable car from Ortisei, the board’s start' },
+      desc: 'A short, barrier-free walk on the Alpe di Siusi from the Mont Sëuc cable car on path 9 past the Schgaguler hut to the Sporthotel Sonne, with wide views of the Sassolungo. The board lists 1.4 km and 138 m down.'
+    },
+    'seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Seiser Alm batch 1).
+      // “Dal Passo Nigra al Maso Jocher e attraverso la Forcella del Lupo a Tires”, published by the Tiers am Rosengarten tourist board (Seiser Alm Marketing), drawn on 41 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Welschnofen (its 2023 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows) and Tiers (its 2015 dog regulation, amended 2023: the same, meadows in the growing season).
+      // No Natura 2000 site, park or natural monument on the line; about 4% is in landscape protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Passo Nigra – Maso Jocher – Tiers / San Cipriano',
+      distance: 13.7,
+      elevation: 431,
+      hours: '4',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way, mostly downhill, from Passo Nigra through the Val Nigra forest to the Jocher farm, then on marked forest paths past the Schiller farm and over the Forcella del Lupo to Tiers and San Cipriano; buses link Tiers back towards Passo Nigra.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Passo Nigra (Nigerpass), the board’s start.",
+        "sequence": "Through the Val Nigra forest to the Jocher farm, then right on the marked path down many bends of forest paths to the Schiller farm, then over the Forcella del Lupo to Tiers and San Cipriano.",
+        "switches": "Right at the Jocher farm onto the marked path. Over the Forcella del Lupo towards Tiers.",
+        "steps": [
+          {
+            "text": "From Passo Nigra walk down the Val Nigra through the forest to the Jocher farm, which serves South Tyrolean dishes and cakes on a sunny terrace.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the Jocher farm take the marked path that branches off to the right. It winds down in many bends on forest paths to the Schiller farm, in a fine panoramic position.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From the Schiller farm the route crosses the Forcella del Lupo and comes down to Tiers and San Cipriano, where the walk ends.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Tiers am Rosengarten tourist board (Seiser Alm Marketing), Dal Passo Nigra al Maso Jocher e attraverso la Forcella del Lupo a Tires (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055751",
+            "authority": "Tiers am Rosengarten tourist board (Seiser Alm Marketing)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Catinaccio from Passo Nigra at the start of the walk, in early October, with only a dusting of snow on the high ledges (Ximonic on Wikimedia Commons, CC BY-SA 4.0), 28 m from the line.',
+        route: 'Official one-way walk 13.7 km from Passo Nigra, as the Tiers am Rosengarten tourist board (Seiser Alm Marketing) publishes it; the stored line is drawn on 41 OSM ways along the board’s published line, 13.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'The board gives landmarks, not path numbers: from Passo Nigra through the Val Nigra forest to the Jocher farm; there the marked path branches right and winds down on forest paths to the Schiller farm; then over the Forcella del Lupo to Tiers and San Cipriano.',
+        mapPoints: 'Start at the board’s start; drinking water at km 12.1 and km 12.9 (OSM nodes 3539345703, 4834146324, 3563965371).',
+        elevation: 'Official 13.7 km, 431 m up and 856 m down, 4:08 h, highest point 1,685 m, lowest 956 m (Tiers am Rosengarten tourist board (Seiser Alm Marketing), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tiers am Rosengarten tourist board (Seiser Alm Marketing), Dal Passo Nigra al Maso Jocher e attraverso la Forcella del Lupo a Tires (its Outdooractive tour, also listed on suedtirol.info and seiseralm.it)',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds',
+          'Gemeinde Tiers / Comune di Tires, Verordnung zur Führung und Haltung von Hunden und Tieren (Gemeinderat Nr. 48, 08.10.2015, amended Nr. 55, 28.12.2023), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds or kindergarten and primary-school yards, on farmed land in the growing season, or in tended public green spaces; no bathing in the village-centre fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 4% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (41 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 33,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A long walk, 13.7 km and 856 m down: knees and paws take a pounding; carry water for your dog until the springs near Tiers', 'Forest roads and farm lanes near the Jocher and Schiller farms: watch for local traffic and farm dogs', 'Meadows around the farms: keep your dog off them'],
+      terrainType: 'Forest roads, forest paths and farm lanes',
+      shadeDescription: 'Partly shaded: about a third runs through mapped forest, mostly in the Val Nigra; the farmland near Tiers is open.',
+      terrainDescription: 'A long, mostly downhill walk at 955–1,685 m from Passo Nigra under the Catinaccio through the Val Nigra forest, past the Jocher and Schiller farms and over the Forcella del Lupo to Tiers.',
+      waterDescription: 'Drinking water at km 12.1 and km 12.9; places to eat on the way.',
+      dogNotes: 'Welschnofen and Tiers both require a lead of at most 1.5 m and a muzzle carried, and keep dogs out of playgrounds and cemeteries and off farmed meadows (Tiers in the growing season). Tiers also bans dogs from bathing in the village-centre fountains.',
+      tips: 'Start at Passo Nigra: 13.7 km one way, 431 m up and 856 m down, about four hours; end in Tiers or San Cipriano and take the bus back. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water only near the end, around km 12: bring plenty for your dog.',
+      sourceLinks: [
+        { label: 'Outdooractive, Dal Passo Nigra al Maso Jocher e attraverso la Forcella del Lupo a Tires (Tiers am Rosengarten tourist board (Seiser Alm Marketing))', url: 'https://www.outdooractive.com/it/r/810055751' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Gemeinde Tiers, dog regulation (2015, amended 2023)', url: 'https://www.gemeinde.tiers.bz.it/system/web/verordnung.aspx?detailonr=224983319' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.45601, lng: 11.58596, label: 'Passo Nigra (Nigerpass), the board’s start' },
+      desc: 'A long walk from Passo Nigra under the Catinaccio through the Val Nigra forest to the Jocher farm, then on forest paths past the Schiller farm and over the Forcella del Lupo down to Tiers. The board lists 13.7 km, 431 m up and 856 m down.'
+    },
+    'seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Seiser Alm batch 1).
+      // “Escursione da Umes alla Malga Hofer e a Malga Tuff”, published by the Völs am Schlern tourist board (Seiser Alm Marketing), drawn on 38 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Völs am Schlern (its 2015 dog regulation, amended 2019: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows); about 68% in the Schlern-Rosengarten nature park, dogs on a lead.
+      // About 68% is in the Schlern-Rosengarten nature park (Natura 2000), where dogs stay on a lead; no reserve zone on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Umes – Hofer Alpl – Malga Tuff – Lago di Fiè, Völs am Schlern',
+      distance: 8.3,
+      elevation: 476,
+      hours: '3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the church of Umes up path 3 to the Hofer Alpl, on to Malga Tuff, past the Lago di Fiè and back down to Umes on path 2.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the church of Umes, the board’s start, and follow the signs for “Hofer Alpl, Malga Tuff”.",
+        "sequence": "Up a few hairpins, then right on path 3 (“Hofer Alpl, Sciliar”), steeply through the forest to the Hofer Alpl. On by forest road and footpath to the broad path 1 towards the Sciliar, across the Völser Bach and the pastures towards Malga Tuff. Before the hut a rocky path branches left through the forest to the Lago di Fiè. After the Huber pond take path 2 left, down a small wooded valley with a stream to Umes.",
+        "switches": "Right onto path 3 after the hairpins. Join path 1 towards Malga Tuff. Left on the rocky path to the Lago di Fiè. Left on path 2 after the Huber pond, back to Umes.",
+        "sources": [
+          {
+            "label": "Völs am Schlern tourist board (Seiser Alm Marketing), Escursione da Umes alla Malga Hofer e a Malga Tuff (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16570256",
+            "authority": "Völs am Schlern tourist board (Seiser Alm Marketing)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lago di Fiè on the loop, in July (Adert on Wikimedia Commons, CC BY-SA 4.0), 7 m from the line.',
+        route: 'Official loop 8.3 km from the church of Umes, as the Völs am Schlern tourist board (Seiser Alm Marketing) publishes it; the stored line is drawn on 38 OSM ways along the board’s published line, 8.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 3, 1 and 2: from the church of Umes follow the signs for Hofer Alpl and Malga Tuff, then path 3 steeply through the forest to the Hofer Alpl; forest road and footpath to the broad path 1 towards the Sciliar and on to Malga Tuff; a rocky path left to the Lago di Fiè; after the Huber pond path 2 back down to Umes.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.2 and km 5.5 (OSM nodes 7318189295, 4269751545, 1815540565).',
+        elevation: 'Official 8.3 km, 476 m up and 476 m down, 3:00 h, highest point 1,369 m, lowest 926 m (Völs am Schlern tourist board (Seiser Alm Marketing), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Völs am Schlern tourist board (Seiser Alm Marketing), Escursione da Umes alla Malga Hofer e a Malga Tuff (its Outdooractive tour, also listed on suedtirol.info and seiseralm.it)',
+          'Gemeinde Völs am Schlern / Comune di Fiè allo Sciliar, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 57, 23.11.2015, amended Nr. 39, 11.07.2019), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); about 68% of the line is in the Schlern-Rosengarten nature park, with no reserve zone on it',
+          'OpenStreetMap ways along the board’s line (38 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 68,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A steep climb on path 3 through the forest and a rocky path down to the Lago di Fiè: watch your dog’s footing', 'Cows on the pastures around Malga Tuff in summer: keep your dog close', 'Busy around the Lago di Fiè in summer; swimming is for people: keep your dog out of the bathing area'],
+      terrainType: 'Forest paths, forest roads and a rocky path',
+      shadeDescription: 'Mostly shaded: about two thirds runs through mapped forest; the pastures around Malga Tuff are open.',
+      terrainDescription: 'A loop at 925–1,370 m from Umes up through the forest to the Hofer Alpl and Malga Tuff under the Sciliar, and back past the Lago di Fiè and down a small wooded valley.',
+      waterDescription: 'Drinking water at the start, km 0.2 and km 5.5; places to eat on the way.',
+      dogNotes: 'Völs requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of cemeteries and playgrounds and off farmed meadows. About two thirds of the loop is in the Schlern-Rosengarten nature park, where dogs stay on a lead at all times.',
+      tips: 'Start at the church of Umes: an 8.3 km loop, about 480 m of climbing, three hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle; the nature park asks for a lead throughout. Drinking water at the start and around km 5.5.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione da Umes alla Malga Hofer e a Malga Tuff (Völs am Schlern tourist board (Seiser Alm Marketing))', url: 'https://www.outdooractive.com/it/r/16570256' },
+        { label: 'Gemeinde Völs am Schlern, dog regulation (2015, amended 2019)', url: 'https://www.gemeinde.voels.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.50283, lng: 11.51862, label: 'The church of Umes, the board’s start' },
+      desc: 'A loop from the village of Umes up through the forest to the Hofer Alpl and Malga Tuff under the Sciliar, and back past the Lago di Fiè. The board lists 8.3 km and 476 m of ascent.'
+    },
+    'seiseralm-alla-volta-della-trappola-d-orso-a-s-michele': {
+      // Hand audit: 29 October 2026, verified on arrival (new-trail Seiser Alm batch 1).
+      // “Alla volta della trappola d’orso a S. Michele”, published by the Kastelruth tourist board (Seiser Alm Marketing), drawn on 68 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Kastelruth (its 2024 Ortspolizeiordnung plus the national rule: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site, park or natural monument on the line; about 7% is in landscape or ensemble protection zones, which limit building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Kastelruth – San Michele – Passo Pinei – Tiosels',
+      distance: 14,
+      elevation: 567,
+      hours: '4',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the centre of Kastelruth on path 10 past the Bremicher Platzl to San Michele and its lake, on path 10A to the bear trap and through the forest to Passo Pinei, then back on paths 7 and 8 past Wasserebene and Tiosels.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in the centre of Kastelruth (Castelrotto), the board’s start.",
+        "sequence": "Follow Bühlgasse (path 10) to the Föstl farm, cross the stream and go on to the Bremicher Platzl. Go briefly south past the Lavogler farm and gently up to San Michele and its church. Path 10 climbs gently to the San Michele lake, where 10A branches left to the bear trap of the legend and on through the forest to Passo Pinei. From the pass take path 7 to the Wasserebene sports ground, then path 8 back past Tiosels to Kastelruth.",
+        "switches": "Left onto 10A at the San Michele lake. At Passo Pinei take path 7 (the board also offers bus 172 back from the pass). At Wasserebene change to path 8 for Kastelruth.",
+        "sources": [
+          {
+            "label": "Kastelruth tourist board (Seiser Alm Marketing), Alla volta della trappola d’orso a S. Michele (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/62653103",
+            "authority": "Kastelruth tourist board (Seiser Alm Marketing)",
+            "reviewedAt": "2026-10-29"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-10-29',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path 7 signpost between Passo Pinei and Kastelruth on the way back, in July (highlander on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official loop 14 km from the centre of Kastelruth, as the Kastelruth tourist board (Seiser Alm Marketing) publishes it; the stored line is drawn on 68 OSM ways along the board’s published line, 14 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 10, 10A, 7 and 8: from the centre of Kastelruth on Bühlgasse (path 10) to the Föstl farm and the Bremicher Platzl, south past the Lavogler farm up to San Michele and its lake; left on 10A to the bear trap and through the forest to Passo Pinei; path 7 to the Wasserebene sports ground and path 8 back past Tiosels to Kastelruth.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.1, km 9.6, km 12.8 and km 13.6 (OSM nodes 7823149401, 12063035908, 8035392785, 8035404185, 7685503550, 8599315593, 2287184778).',
+        elevation: 'Official 14 km, 567 m up and 567 m down, 4:12 h, highest point 1,474 m, lowest 1,029 m (Kastelruth tourist board (Seiser Alm Marketing), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Kastelruth tourist board (Seiser Alm Marketing), Alla volta della trappola d’orso a S. Michele (its Outdooractive tour, also listed on suedtirol.info and seiseralm.it)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Gemeinde Kastelruth, Ortspolizeiordnung (Gemeinderat Nr. 57 of 4 September 2024), Art. 13: dogs never left unattended, droppings cleaned up; it sets no lead length or banned area, so the national rule sets the lead and muzzle',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 7% is in landscape or ensemble protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (68 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-10-29'
+      },
+      shadeCoverage: 44,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 170 m along the Panider road (SP64) near Passo Pinei, and crossings of the San Michele road: keep your dog close', 'Lanes past the farms around Kastelruth and San Michele: watch for local traffic and farm dogs', 'The path out of Kastelruth passes the churchyard wall: dogs should not go in'],
+      terrainType: 'Lanes, forest paths and farm roads',
+      shadeDescription: 'Partly shaded: about two fifths runs through mapped forest, mostly between the San Michele lake and Passo Pinei and on the way back; the farmland around Kastelruth is open.',
+      terrainDescription: 'A long loop at 1,030–1,475 m from Kastelruth past farms and the church of San Michele to its lake and the bear trap of the legend, through the forest to Passo Pinei and back past Tiosels.',
+      waterDescription: 'Drinking water at the start, km 0.1, km 9.6, km 12.8 and km 13.6; places to eat on the way.',
+      dogNotes: 'The national rule applies: a lead of at most 1.5 m and a muzzle carried. Kastelruth forbids leaving dogs unattended and requires you to clean up. Keep your dog off the meadows around the farms.',
+      tips: 'Start in the centre of Kastelruth: a 14 km loop, about 570 m of climbing, four hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at the start and around km 10 and 13; carry some for the forest stretch.',
+      sourceLinks: [
+        { label: 'Outdooractive, Alla volta della trappola d’orso a S. Michele (Kastelruth tourist board (Seiser Alm Marketing))', url: 'https://www.outdooractive.com/it/r/62653103' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Kastelruth, Ortspolizeiordnung (2024)', url: 'https://www.gemeinde.kastelruth.bz.it/de/Verwaltung/Dokumente/Ortspolizeiordnung' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.56793, lng: 11.5596, label: 'The centre of Kastelruth (Castelrotto), the board’s start' },
+      desc: 'A loop from Kastelruth past the church of San Michele and its lake to the bear trap of the local legend, through the forest to Passo Pinei and back past Tiosels. The board lists 14 km and 567 m of ascent.'
     }
   };
 

@@ -254,7 +254,15 @@ function formatReviewDate(value) {
 function directionsSection(t) {
   const guidance = t && t.routeNumberGuidance && typeof t.routeNumberGuidance === 'object'
     ? t.routeNumberGuidance : null;
-  if (!guidance) return '';
+  if (!guidance) {
+    // No structured guidance and no trail numbers: the route audit's own
+    // sentence, when it is one a walker can follow, in the app's words.
+    const written = routeRefs.writtenDirections(t);
+    if (!written.written || routeRefs.forTrail(t).length) return '';
+    return `<h2>How to follow this route</h2>
+    <p><b>Directions:</b> ${escapeHtml(written.text)}</p>
+    <p class="sp-route-source">${escapeHtml(routeRefs.AUDIT_DIRECTIONS_NOTE)}</p>`;
+  }
   const [start, sequence, switches] = ['start', 'sequence', 'switches']
     .map(field => String(guidance[field] || '').trim());
   // All three or none: half a set of directions is worse than none, because the

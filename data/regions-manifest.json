@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-30T12:42:07.376Z",
+  "generatedAt": "2026-10-30T12:47:01.994Z",
   "regions": {
     "dolomites": {
-      "trailCount": 300,
-      "trails": "data/regions/dolomites-trails.js?v=39a80e1e2572",
+      "trailCount": 304,
+      "trails": "data/regions/dolomites-trails.js?v=6acb2c0c868c",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=430d23d3297c",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -305,6 +305,10 @@
         "kronplatz-passeggiata-leggendaria-sul-kienberg": "data/trail-details/kronplatz-passeggiata-leggendaria-sul-kienberg.js?v=2511c8354988",
         "eggental-dal-passo-costalunga-al-lago-di-carezza": "data/trail-details/eggental-dal-passo-costalunga-al-lago-di-carezza.js?v=6e847803a691",
         "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": "data/trail-details/eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl.js?v=a0e9aa1453de",
+        "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": "data/trail-details/seiseralm-escursione-senza-barriere-all-alpe-di-siusi.js?v=9b212cf959c9",
+        "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": "data/trail-details/seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del.js?v=bf02abc17370",
+        "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": "data/trail-details/seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff.js?v=a61e21430fe2",
+        "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": "data/trail-details/seiseralm-alla-volta-della-trappola-d-orso-a-s-michele.js?v=bbeed8467741",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -769,6 +773,10 @@
     "kronplatz-passeggiata-leggendaria-sul-kienberg": "dolomites",
     "eggental-dal-passo-costalunga-al-lago-di-carezza": "dolomites",
     "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": "dolomites",
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": "dolomites",
+    "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": "dolomites",
+    "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": "dolomites",
+    "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1283,6 +1291,10 @@
     "kronplatz-passeggiata-leggendaria-sul-kienberg": "kienberg-legends-loop",
     "eggental-dal-passo-costalunga-al-lago-di-carezza": "costalunga-to-lake-carezza",
     "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": "lake-carezza-to-stadlalm",
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": "mont-seuc-to-sporthotel-sonne",
+    "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": "passo-nigra-to-tiers",
+    "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": "umes-hofer-alpl-malga-tuff",
+    "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": "kastelruth-bear-trap-loop",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1691,6 +1703,10 @@
     "kienberg-legends-loop": "kronplatz-passeggiata-leggendaria-sul-kienberg",
     "costalunga-to-lake-carezza": "eggental-dal-passo-costalunga-al-lago-di-carezza",
     "lake-carezza-to-stadlalm": "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl",
+    "mont-seuc-to-sporthotel-sonne": "seiseralm-escursione-senza-barriere-all-alpe-di-siusi",
+    "passo-nigra-to-tiers": "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del",
+    "umes-hofer-alpl-malga-tuff": "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff",
+    "kastelruth-bear-trap-loop": "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
