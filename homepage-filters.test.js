@@ -75,7 +75,7 @@ function loadHomepageContext(testTrails){
     <a id="liManageLink"></a>
     <a id="liGreetManageLink"></a>
     <h1 id="returningHeading"></h1>
-    <h2 id="companionListTitle"></h2><span id="companionListCount"></span>
+    <h2 id="companionListTitle"></h2><span id="companionListCount"></span><button id="liShowAllTrails" type="button" hidden>Show all trails</button>
     <div id="returningTrailList"></div>
     <button id="liSearchThisArea" type="button" class="li-search-area" hidden>Search this area</button>
     <button id="savedTrailsBtn"></button>
@@ -287,6 +287,49 @@ describe('returning homepage region + valley filters', () => {
     // viewport as the place to go back to.
     expect(vm.runInContext('liContextBeforeMapArea.label', context)).toBe('Val Gardena');
     expect(vm.runInContext('liContextBeforeMapArea.kind', context)).toBe('area');
+  });
+
+  test('"Show all trails" leaves the area and filters, and "Back to" restores both', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val Gardena", label:"Val Gardena" });`, context);
+    vm.runInContext('liFilters = { ...liFilters, shade:"good" }; renderReturningHomepage(null);', context);
+    const button = document.getElementById('liShowAllTrails');
+    expect(button.hidden).toBe(false);
+    expect(button.textContent).toBe('Show all trails');
+
+    // The click handler picks the action from data-mode.
+    expect(button.dataset.mode).toBe('all');
+    vm.runInContext('liShowAllTrails();', context);
+    expect(vm.runInContext('liIsAllTrailsContext(liLocationContext)', context)).toBe(true);
+    expect(vm.runInContext('liActiveFilterCount()', context)).toBe(0);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
+    expect(button.textContent).toBe('Back to Val Gardena');
+
+    expect(button.dataset.mode).toBe('back');
+    vm.runInContext('liBackFromAllTrails();', context);
+    expect(vm.runInContext('liLocationContext.label', context)).toBe('Val Gardena');
+    expect(vm.runInContext('liFilters.shade', context)).toBe('good');
+    expect(button.textContent).toBe('Show all trails');
+  });
+
+  test('"Show all trails" from a panned map goes back to the area, not the viewport', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val Gardena", label:"Val Gardena" });`, context);
+    context.__view = viewport(6, 45, 7, 46);
+    await vm.runInContext('liApplyMapViewport(__view);', context);
+    vm.runInContext('liShowAllTrails();', context);
+    expect(document.getElementById('liShowAllTrails').textContent).toBe('Back to Val Gardena');
+  });
+
+  test('choosing another area forgets the way back', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val Gardena", label:"Val Gardena" });`, context);
+    vm.runInContext('liShowAllTrails(); liSetLocationContext(liRegionContext("savoy"));', context);
+    expect(vm.runInContext('liContextBeforeShowAll', context)).toBe(null);
+    expect(document.getElementById('liShowAllTrails').textContent).toBe('Show all trails');
   });
 
   test('"Change" with nothing typed offers the areas the map is showing', async () => {
