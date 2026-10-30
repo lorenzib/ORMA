@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11775760",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.1,
+    "ascentM": 172,
+    "highestPointM": 806,
+    "expectedDuration": "1 hour",
+    "difficulty": "Moderate",
+    "shadePercent": 25
+  },
+  "trailhead": {
+    "lat": 46.739042,
+    "lng": 11.636112,
+    "label": "Vahrn village car park (Dorfparkplatz), the official start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7406533,
+      "lng": 11.6295873,
+      "label": "Drinking fountain at the Kneipp park",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Short stretch on the village road (40 km/h, pavement on one side).",
+    "Road crossings in the village, including the Schalderer Straße hairpin with no pavement.",
+    "Tarmac lanes that get hot in summer (about 30% of the loop).",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

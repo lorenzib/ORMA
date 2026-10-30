@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "cinque-torri-assisted",
   "name": "Cinque Torri three-refuges assisted circuit",
-  "version": "2026.10.29-beta.3",
-  "generatedAt": "2026-10-29T13:32:39.872Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T14:20:12.077Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 338561,
@@ -217,7 +217,7 @@
       "label": "Cinque Torri three-refuges assisted circuit routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 104342,
-      "sha256": "344c51af33ff5407290a67ebd211ffe52ccb0c79ccc36083b507ba07038d0a06"
+      "sha256": "317b1a8c6ca6447d5d04c47e8516307a9877c3bd01cd06dce2249a54c717b17d"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Cinque Torri three-refuges assisted circuit safety information",
       "url": "safety.json",
       "bytes": 1115,
-      "sha256": "11b35a4507bf0f6c3cc294891db99458e698108bfa551414b2e8e4c8d607fbf7"
+      "sha256": "6a7d5838852c10f29d7be57de39d9594d1a4f0b9a7b28bec3c3521c003bab2b4"
     }
   ]
 }

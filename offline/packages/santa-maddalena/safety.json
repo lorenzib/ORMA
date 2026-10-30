@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "santa-maddalena",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.2,
+    "ascentM": 134,
+    "highestPointM": 1352,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 5
+  },
+  "trailhead": {
+    "lat": 46.641264,
+    "lng": 11.715363,
+    "label": "Bergerplatz, the central square of St. Magdalena (official start)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.641471,
+      "lng": 11.714791,
+      "label": "Municipal drinking fountain on Bergerplatz",
+      "reliability": "Seasonal; not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.642557,
+      "lng": 11.710932,
+      "label": "Drinking-water tap at the Naturparkhaus, 116 m off the route",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 2 km on asphalt farm roads, hot in summer.",
+    "Shared access roads without pavement (residents’ traffic, 30 km/h).",
+    "Short dirt steps on the meadow path.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

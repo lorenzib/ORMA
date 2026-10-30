@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11780502",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.9,
+    "ascentM": 90,
+    "highestPointM": 1758,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 58
+  },
+  "trailhead": {
+    "lat": 46.635766,
+    "lng": 11.765652,
+    "label": "Zans car park (paid) by Treffpunkt Zans, bus stop Zanser Alm"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.634295,
+      "lng": 11.77111,
+      "label": "Fountain near the picnic area",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.636531,
+      "lng": 11.759598,
+      "label": "Nature-park fountain on the trail",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6364941,
+      "lng": 11.7631223,
+      "label": "AVS hut fountain",
+      "reliability": "Seasonal; not field-verified"
+    }
+  ],
+  "cautions": [
+    "Crossing of the Zanser Straße (SP27).",
+    "The last 65 m on the SP27 over a wooden bridge into the car park.",
+    "Ice on the paths in winter.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

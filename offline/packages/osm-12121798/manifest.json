@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12121798",
   "name": "Le terroir de Serpolière",
-  "version": "2026.10.29-beta.3",
-  "generatedAt": "2026-10-29T13:14:26.859Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T13:37:39.589Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 322543,
@@ -217,7 +217,7 @@
       "label": "Le terroir de Serpolière routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 70226,
-      "sha256": "6011003aa45e49b19ca7f678f45a0da4c04f46c8f5682e4b6a0ce34bf5b9c6ec"
+      "sha256": "563afde6781fc005f0bbef4fcdaf5d7a4e924a1bff7a716cf12c911bbf244f89"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Le terroir de Serpolière safety information",
       "url": "safety.json",
       "bytes": 1507,
-      "sha256": "bad8be4a2d310a0f220caf4b83ee6f1e83b9b49b208571a7385abfe9867d4a7a"
+      "sha256": "d1cb94a7dcdd4a1616fd15ab831a9e0e934ae0a520208ac05efdf678d3336e6f"
     }
   ]
 }

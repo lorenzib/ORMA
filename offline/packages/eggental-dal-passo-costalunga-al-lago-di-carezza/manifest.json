@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "eggental-dal-passo-costalunga-al-lago-di-carezza",
   "name": "Passo Costalunga to Lake Carezza",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T16:48:17.992Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:19:00.638Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 595080,
@@ -217,7 +217,7 @@
       "label": "Passo Costalunga to Lake Carezza routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 143439,
-      "sha256": "a8c1a30f2fd758be4c94100356bc7dc079bd16e2ace8c568493f4a87343dc6f6"
+      "sha256": "ec4b6aaf6db49abe4f74198ceac51dbd327aad80bf57fdac64b6361ffc96157f"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Passo Costalunga to Lake Carezza safety information",
       "url": "safety.json",
       "bytes": 1437,
-      "sha256": "9f9b8130ac42af11d15b01fd7242e6c7470cea2bb46af73f946bc18b3fcec1ed"
+      "sha256": "dd26ba87a8339005cf505749e549396c3e07031ee5137b7087958bab074eaee3"
     }
   ]
 }

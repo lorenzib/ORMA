@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "primiero-transacqua",
   "name": "Transacqua",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T17:19:44.470Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T13:53:36.515Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 797509,
@@ -217,7 +217,7 @@
       "label": "Transacqua routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 121541,
-      "sha256": "79fc68846497bcce2aed4eb9fd0c873ba96840232bf126ce8d604fd1d0075340"
+      "sha256": "92c43e2040a0047c88af2d0febd66f7fbbf0bbbdc3d784668f75af33ff0bf94c"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Transacqua safety information",
       "url": "safety.json",
       "bytes": 1817,
-      "sha256": "2eb2773ff480a490230c59f4fd81bc0896d269b1e13e107df13e4a8bd440152e"
+      "sha256": "477bdc2b682f7137fbe39c814d006d204b895e16671d065cba33840855bd4a69"
     }
   ]
 }

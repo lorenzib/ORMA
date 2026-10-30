@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-6250300",
   "name": "Boucle du Lac Vert",
-  "version": "2026.10.29-beta.3",
-  "generatedAt": "2026-10-29T11:31:00.371Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T12:36:06.682Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 250912,
@@ -217,7 +217,7 @@
       "label": "Boucle du Lac Vert routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 67236,
-      "sha256": "d960d1744460300f56ec7a5c710d9ed25e560d5c20bf795c84a916470f7471ec"
+      "sha256": "6dd9d1da9750eaa3e35e7ebfb3934e42e32b753c1a24a19867d902c9799c0d8b"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Boucle du Lac Vert safety information",
       "url": "safety.json",
       "bytes": 1301,
-      "sha256": "e49dd329853052e52dab0855ec0e6a41373a24664017e3e827cea5abdb7e158b"
+      "sha256": "37040b57b1bfcef958c41869b28a43b0837b25bd2ef1a954b835a5c8e97c64c1"
     }
   ]
 }

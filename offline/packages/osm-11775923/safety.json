@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11775923",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.1,
+    "ascentM": 215,
+    "highestPointM": 709,
+    "expectedDuration": "1.5–2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 31
+  },
+  "trailhead": {
+    "lat": 46.7417884,
+    "lng": 11.647857,
+    "label": "Neustift abbey car park, bus stop Neustift Kloster (official start)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7420606,
+      "lng": 11.6482978,
+      "label": "Drinking water at the abbey",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7313382,
+      "lng": 11.6538415,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7383238,
+      "lng": 11.6569388,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.743984,
+      "lng": 11.6487217,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7391019,
+      "lng": 11.6504791,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "About 550 m on the Stiftstraße and a crossing of the old Pustertaler Straße (SS49).",
+    "A steep lane (15%) near km 4.4.",
+    "A stretch on the Eisack cycle path, shared with bikes.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-alpe-di-fuciade",
   "name": "Alpe di Fuciade",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T14:46:48.708Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T13:51:50.285Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 423710,
@@ -217,7 +217,7 @@
       "label": "Alpe di Fuciade routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 68489,
-      "sha256": "38478f05386b1878bcc3677f334c8d558e2f9cd3491153e9b3cee313ac3cecab"
+      "sha256": "bd4765d9d2f0d7a9ccbd5b9f2cf09f4ca2aa9eae7820825a74ef87ff351d081a"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Alpe di Fuciade safety information",
       "url": "safety.json",
       "bytes": 1670,
-      "sha256": "1852977568c8e9717701e0a3c908894399a79cfb8f6a4b22deaf9132abd1c91f"
+      "sha256": "bcfaa39e64c8d523f912d29853ddbafd1ebfc7f4cb8e625ecb22de6b29fbe884"
     }
   ]
 }

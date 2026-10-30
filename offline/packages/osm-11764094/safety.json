@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11764094",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 12,
+    "ascentM": 379,
+    "highestPointM": 901,
+    "expectedDuration": "3.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 35
+  },
+  "trailhead": {
+    "lat": 46.752606,
+    "lng": 11.680557,
+    "label": "Natz village centre, bus stop Natz Kirche (official start)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7525363,
+      "lng": 11.6804678,
+      "label": "Drinking-water tap by Natz church",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7525076,
+      "lng": 11.6809683,
+      "label": "Village fountain in Natz",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7600674,
+      "lng": 11.6903524,
+      "label": "Drinking water near Viums",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7661469,
+      "lng": 11.6818229,
+      "label": "Drinking water near Plattnerhof, Viums",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.768329,
+      "lng": 11.6658068,
+      "label": "Drinking water in Schabs, 120 m off the route",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Road crossing at Hotel Seehof / Flötscher Weiher.",
+    "About 300 m on Laugenstraße without a pavement.",
+    "About 1.5 km of asphalt and cobbles through Natz.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-11517208",
   "name": "La Croix des Salles",
-  "version": "2026.10.29-beta.3",
-  "generatedAt": "2026-10-29T11:38:43.613Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T12:36:52.707Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 821836,
@@ -217,7 +217,7 @@
       "label": "La Croix des Salles routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 304048,
-      "sha256": "19541a36880584fe47484a7cffe6634c87884f37144af4b2e354f7b1f8954a02"
+      "sha256": "3d7c34bb8e5ea65a91ca7c63c3c6b33f8020728621343b2176910453d345f701"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "La Croix des Salles safety information",
       "url": "safety.json",
       "bytes": 1564,
-      "sha256": "2fd5f61cff7053ef990d3f86fcbf4dba7561dd1eb9c0b208a966e19e9d1a3775"
+      "sha256": "f746a48c8d14cb582eb74fc77cb7843f50f4cfbd668d724e68e0a7caf204c008"
     }
   ]
 }
