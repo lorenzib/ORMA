@@ -86,6 +86,18 @@ describe('Alpine plants guide', () => {
     expect(read('alpine-plants-guide.js')).not.toContain('View safety notes');
   });
 
+  test('opened cards add severity, other names, habitat and the checked source', () => {
+    const plant = id => data.plants.find(entry => entry.id === id);
+    const nettle = guide.plantCard(plant('stinging-nettle'));
+    expect(nettle).toContain('If eaten: mild');
+    expect(nettle).toContain('<h3>Also called</h3><p>Ortica, Ortica comune, Common nettle</p>');
+    expect(nettle).toContain('<h3>Where it grows</h3>');
+    expect(nettle).toContain('class="apg-source">Source: <a href="https://');
+    expect(guide.plantCard(plant('monkshood'))).toContain('If eaten: emergency');
+    expect(guide.plantCard(plant('giant-hogweed'))).toContain('Avoid touching it too');
+    expect(guide.plantCard(plant('monkshood'))).toContain('Safe to walk past');
+  });
+
   test('a month shows plants in flower then plus those still around that season', () => {
     const plant = id => data.plants.find(entry => entry.id === id);
     const base = { query:'', safety:'', season:'', habitat:'' };

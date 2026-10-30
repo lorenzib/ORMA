@@ -75,7 +75,11 @@
 .apg-months li::before{content:"";height:7px;border-radius:2px;background:var(--sage-dim)}
 .apg-months--dangerous .is-on::before{background:var(--safety-stop)}.apg-months--caution .is-on::before{background:#C08A2E}.apg-months--safe .is-on::before{background:var(--safety-safe)}
 .apg-card.is-open{grid-column:1/-1;grid-template-columns:minmax(0,1fr) minmax(0,2fr);grid-template-areas:"visual more" "copy more"}
-.apg-card.is-open .apg-card-more{padding:6px 26px 20px;max-width:680px}
+.apg-card.is-open .apg-card-more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px;padding:6px 26px 20px}
+.apg-facts{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px!important}
+.apg-fact-pill{display:inline-flex;padding:4px 9px;border-radius:999px;background:var(--sage-dim);color:var(--ink);font-size:11px;font-weight:800}
+.apg-fact-pill--dangerous{background:var(--safety-stop-soft);color:var(--safety-stop)}.apg-fact-pill--caution{background:var(--safety-caution-soft);color:var(--safety-caution)}.apg-fact-pill--safe{background:var(--safety-safe-soft);color:var(--safety-safe)}
+.apg-source{margin-top:12px!important;color:var(--ink-soft);font-size:11.5px}.apg-source a{color:var(--accent)}
 
 @media(max-width:1100px){.apg-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:980px){.apg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.apg-help-steps{grid-template-columns:1fr}.apg-months-picker{grid-template-columns:repeat(7,1fr)}.apg-month--any{grid-column:span 1}}
@@ -89,7 +93,7 @@
   .apg-month{flex:0 0 52px}.apg-month--any{flex-basis:76px}
   .apg-grid{grid-template-columns:1fr}
   .apg-card.is-open{grid-column:auto;grid-template-columns:minmax(0,1fr);grid-template-areas:"visual" "copy" "more"}
-  .apg-card.is-open .apg-card-more{padding:0 14px 14px}
+  .apg-card.is-open .apg-card-more{display:block;padding:0 14px 14px}
   .apg-results-head{align-items:flex-start;flex-direction:column}.apg-active{justify-content:flex-start}
 }
 @media(max-width:480px){.apg-lightbox__panel{padding:7px;border-radius:15px}.apg-lightbox__image{max-width:calc(94vw - 14px);max-height:calc(86vh - 14px)}}

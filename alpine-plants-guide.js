@@ -106,6 +106,14 @@
     return months.length ? months.join(', ') : 'Varies / not applicable';
   }
 
+  // Plain-language reading of the catalogue's severity field.
+  const SEVERITY = {
+    critical:{ label:'If eaten: emergency', tone:'dangerous' },
+    high:{ label:'If eaten: serious', tone:'dangerous' },
+    moderate:{ label:'If eaten: moderate', tone:'caution' },
+    low:{ label:'If eaten: mild', tone:'safe' },
+  };
+
   function monthBar(plant){
     const flowering = new Set(plant.floweringMonths || []);
     const cells = MONTH_INITIALS.map((initial, index) => `<li class="${flowering.has(index + 1) ? 'is-on' : ''}"><span>${initial}</span></li>`).join('');
@@ -125,6 +133,11 @@
     const detailId = `plant-more-${escapeHtml(plant.id)}`;
     const identification = (plant.identification || []).slice(0, 3).map(line => `<li>${escapeHtml(line)}</li>`).join('');
     const lookalike = (plant.lookalikes || [])[0];
+    const severity = SEVERITY[plant.severity];
+    const aliases = (plant.aliases || []).map(escapeHtml).join(', ');
+    const habitats = (plant.habitats || []).slice(0, 3).map(escapeHtml).join(', ');
+    const source = (plant.evidence || [])[0];
+    const habitatsText = habitats && habitats[0].toUpperCase() + habitats.slice(1);
     return `<article class="apg-card apg-card--${status.tone}" data-plant-id="${escapeHtml(plant.id)}">
       <div class="apg-card-visual">${image}<div class="apg-card-label apg-card-label--${status.tone}">${icon(status.icon)}<span>${status.label}</span></div>${expandButton}</div>
       <div class="apg-card-copy">
@@ -135,11 +148,20 @@
         <button class="apg-more" type="button" aria-expanded="false" aria-controls="${detailId}"><span>How to recognise it</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
       </div>
       <div class="apg-card-more" id="${detailId}" hidden>
-        ${identification ? `<h3>Look for</h3><ul>${identification}</ul>` : ''}
-        ${lookalike ? `<h3>Can be confused with</h3><p>${escapeHtml(lookalike)}</p>` : ''}
-        <h3>Flowers</h3>${monthBar(plant)}
-        <p class="apg-monitor"><b>Monitor for:</b> ${escapeHtml(monitor || 'persistent vomiting, diarrhoea or unusual behaviour after chewing plant material')}.</p>
-        ${plant.interestingFact ? `<p class="apg-fact"><b>Did you know?</b> ${escapeHtml(plant.interestingFact)}</p>` : ''}
+        <div class="apg-more-col">
+          <p class="apg-facts">${severity ? `<span class="apg-fact-pill apg-fact-pill--${severity.tone}">${severity.label}</span>` : ''}<span class="apg-fact-pill">${plant.proximitySafe === false ? 'Avoid touching it too' : 'Safe to walk past'}</span></p>
+          ${plant.ingestionRisk ? `<h3>Why it matters</h3><p>${escapeHtml(plant.ingestionRisk)}</p>` : ''}
+          ${identification ? `<h3>Look for</h3><ul>${identification}</ul>` : ''}
+          ${lookalike ? `<h3>Can be confused with</h3><p>${escapeHtml(lookalike)}</p>` : ''}
+          ${aliases ? `<h3>Also called</h3><p>${aliases}</p>` : ''}
+        </div>
+        <div class="apg-more-col">
+          ${habitats ? `<h3>Where it grows</h3><p>${habitatsText}${plant.elevation ? `. ${escapeHtml(plant.elevation)}` : ''}.</p>` : ''}
+          <h3>Flowers</h3>${monthBar(plant)}
+          <p class="apg-monitor"><b>Monitor for:</b> ${escapeHtml(monitor || 'persistent vomiting, diarrhoea or unusual behaviour after chewing plant material')}.</p>
+          ${plant.interestingFact ? `<p class="apg-fact"><b>Did you know?</b> ${escapeHtml(plant.interestingFact)}</p>` : ''}
+          ${source ? `<p class="apg-source">Source: <a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)}</a></p>` : ''}
+        </div>
       </div>
     </article>`;
   }
