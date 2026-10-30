@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lario-brunate-e-le-sue-chiese",
+  "distanceKm": 5,
+  "ascentM": 300,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 698
+    },
+    {
+      "km": 0.4,
+      "elev": 712
+    },
+    {
+      "km": 0.8,
+      "elev": 684
+    },
+    {
+      "km": 1.2,
+      "elev": 709
+    },
+    {
+      "km": 1.5,
+      "elev": 727
+    },
+    {
+      "km": 1.9,
+      "elev": 799
+    },
+    {
+      "km": 2.3,
+      "elev": 890
+    },
+    {
+      "km": 2.7,
+      "elev": 877
+    },
+    {
+      "km": 3.1,
+      "elev": 934
+    },
+    {
+      "km": 3.4,
+      "elev": 924
+    },
+    {
+      "km": 3.8,
+      "elev": 940
+    },
+    {
+      "km": 4.2,
+      "elev": 805
+    },
+    {
+      "km": 4.6,
+      "elev": 725
+    },
+    {
+      "km": 5,
+      "elev": 698
+    }
+  ]
+}

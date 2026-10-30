@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cembra-vecchi-mestieri-grumes",
+  "distanceKm": 5.1,
+  "ascentM": 400,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 855
+    },
+    {
+      "km": 0.4,
+      "elev": 887
+    },
+    {
+      "km": 0.8,
+      "elev": 930
+    },
+    {
+      "km": 1.2,
+      "elev": 1011
+    },
+    {
+      "km": 1.5,
+      "elev": 1034
+    },
+    {
+      "km": 1.9,
+      "elev": 983
+    },
+    {
+      "km": 2.3,
+      "elev": 976
+    },
+    {
+      "km": 2.7,
+      "elev": 898
+    },
+    {
+      "km": 3.1,
+      "elev": 788
+    },
+    {
+      "km": 3.5,
+      "elev": 737
+    },
+    {
+      "km": 3.9,
+      "elev": 724
+    },
+    {
+      "km": 4.2,
+      "elev": 810
+    },
+    {
+      "km": 4.6,
+      "elev": 841
+    },
+    {
+      "km": 5,
+      "elev": 855
+    },
+    {
+      "km": 5.1,
+      "elev": 855
+    }
+  ]
+}

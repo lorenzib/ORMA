@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-30T19:30:42.176Z",
+  "generatedAt": "2026-10-30T19:54:43.987Z",
   "regions": {
     "dolomites": {
       "trailCount": 304,
-      "trails": "data/regions/dolomites-trails.js?v=1b8e35c44bfe",
+      "trails": "data/regions/dolomites-trails.js?v=ec09a55f6811",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -197,7 +197,7 @@
         "cembra-paese-beghei": "data/trail-details/cembra-paese-beghei.js?v=35e5bc55bfba",
         "fiemme-scalata-alle-malghette": "data/trail-details/fiemme-scalata-alle-malghette.js?v=9616575fabcd",
         "cembra-piz-de-le-agole": "data/trail-details/cembra-piz-de-le-agole.js?v=d0f0fb067623",
-        "cembra-vecchi-mestieri-grumes": "data/trail-details/cembra-vecchi-mestieri-grumes.js?v=1e0d9d4ec5b1",
+        "cembra-vecchi-mestieri-grumes": "data/trail-details/cembra-vecchi-mestieri-grumes.js?v=371cb76b4c4d",
         "cembra-monte-pat-malga-vernera": "data/trail-details/cembra-monte-pat-malga-vernera.js?v=a281b4b35d53",
         "cembra-pascoli-malga-vernera": "data/trail-details/cembra-pascoli-malga-vernera.js?v=00030517228d",
         "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": "data/trail-details/altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt.js?v=09e1829bf8a7",
@@ -379,9 +379,9 @@
     },
     "lombardy": {
       "trailCount": 9,
-      "trails": "data/regions/lombardy-trails.js?v=a4193f346ec8",
+      "trails": "data/regions/lombardy-trails.js?v=d478b25fec40",
       "details": {
-        "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=7e2f9ea8f6ea",
+        "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=fbf7190b5c12",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
         "lario-alla-ricerca-di-un-panorama-unico": "data/trail-details/lario-alla-ricerca-di-un-panorama-unico.js?v=782bc02cb493",
         "lario-anello-ai-piedi-del-monte-oriolo": "data/trail-details/lario-anello-ai-piedi-del-monte-oriolo.js?v=bf6d4cd2c031",
