@@ -696,6 +696,10 @@
           <li>Stay on trail <b>${esc(routeSwitches[routeSwitches.length - 1].to)}</b> for the final section to the route finish.</li>
         </ol>`
       : '';
+    const auditDirections = window.DoloPawsTrailRouteRefs
+      ? window.DoloPawsTrailRouteRefs.writtenDirections(t)
+      : { written:false };
+    const auditDirectionsMarkup = `<div class="s"><p><b>Directions:</b> ${esc(auditDirections.text || '')}</p><p class="td2-route-source">${esc(window.DoloPawsTrailRouteRefs ? window.DoloPawsTrailRouteRefs.AUDIT_DIRECTIONS_NOTE : '')}</p></div>`;
     const noRouteNumbers = '<div class="s"><p><b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.</p></div>';
     // The status sentence says whether ORMA confirmed how the numbers appear on
     // local signs -- what a reader standing at a junction needs. It was being
@@ -751,11 +755,12 @@
       // fall back to the first paragraph of t.desc, which "About this trail"
       // prints in full a few centimetres above: on 76 of 109 Dolomites trails
       // the visitor read the same sentence twice on one card. A route with no
-      // recorded numbers says so, and says it once.
-      : noRouteNumbers;
+      // recorded numbers says so, and says it once -- unless the route audit
+      // wrote directions a walker can follow, which it prints as they stand.
+      : auditDirections.written ? auditDirectionsMarkup : noRouteNumbers;
     const routeCard = {
       ic:'',
-      t:verifiedRouteGuidance ? 'How to follow this route' : (routeSwitches.length ? 'Trail numbers and switches' : (routeRefs.length ? 'Trail numbers' : 'Following the route')),
+      t:verifiedRouteGuidance || (!routeRefs.length && auditDirections.written) ? 'How to follow this route' : (routeSwitches.length ? 'Trail numbers and switches' : (routeRefs.length ? 'Trail numbers' : 'Following the route')),
       s:routeRefMarkup,
       routeRefs:true,
     };
