@@ -133,10 +133,26 @@ describe('the directions reach the crawlable page',()=>{
     expect(rendered).toContain(STEPS_BADGE);
     expect(html).toContain('<li>Cross the fields. <span class="sp-route-step-from">tourist office</span></li>');
     expect(html).toContain('<li>At the bridge, by the mill, turn left. <span class="sp-route-step-from">tourist office, map</span></li>');
-    expect(html).toContain('Steps marked “tourist office”: <a href="https://example.org/loop" rel="noopener">The loop, step by step</a>, Town tourist office, read 28 October 2026.');
-    expect(html).toContain('Steps marked “map”: <a href="https://www.openstreetmap.org/relation/1" rel="noopener">OpenStreetMap</a>, read 28 October 2026.');
+    expect(html).toContain('Steps marked “tourist office”: <a href="https://example.org/loop" rel="noopener">Town tourist office</a>, checked 28 October 2026.');
+    expect(html).toContain('Steps marked “map”: <a href="https://www.openstreetmap.org/relation/1" rel="noopener">OpenStreetMap</a>, checked 28 October 2026.');
     expect(rendered).not.toContain('Route:');
     expect(rendered).not.toContain('Key turns:');
+  });
+
+  // Every step from one source: a tag after each step would say the same
+  // thing three times, so the one credit line says it once, naming who
+  // published the directions rather than their page's long title.
+  test('a walk with one source is credited once, not on every step',()=>{
+    const guidance=stepGuidance();
+    guidance.steps[1].from=[0];
+    guidance.sources[0].authority='Val di Fassa tourist board (APT Val di Fassa), on Outdooractive';
+    const html=directionsSection({routeNumberGuidance:guidance});
+    expect(html).toContain('<li>Cross the fields.</li>');
+    expect(html).toContain('<li>At the bridge, by the mill, turn left.</li>');
+    expect(html).not.toContain('sp-route-step-from">');
+    expect(html).toContain('Directions: <a href="https://example.org/loop" rel="noopener">Val di Fassa tourist board</a>, checked 28 October 2026.');
+    expect(html).not.toContain('The loop, step by step');
+    expect(html).not.toContain('Steps marked');
   });
 
   test('one unsourced step and the card falls back to Route and Key turns',()=>{

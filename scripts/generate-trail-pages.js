@@ -296,8 +296,8 @@ function directionsSection(t) {
       + '.sp-route-steps{display:grid;gap:8px;margin:10px 0;padding-left:22px;}.sp-route-steps li::marker{color:#B54835;font-weight:800;}'
       + `.sp-route-step-from{color:#657369;font-size:12px;white-space:nowrap;}</style>
     <ol class="sp-route-steps">${stepped.steps.map(step =>
-      `<li>${escapeHtml(step.text)} <span class="sp-route-step-from">${escapeHtml(step.tags.join(', '))}</span></li>`).join('')}</ol>${
-      stepped.credits.map(credit => `\n    <p class="sp-route-source">${escapeHtml(credit.before)}<a href="${
+      `<li>${escapeHtml(step.text)}${step.tags.length ? ` <span class="sp-route-step-from">${escapeHtml(step.tags.join(', '))}</span>` : ''}</li>`).join('')}</ol>${
+      stepped.credits.map(credit => `\n    <p class="sp-route-credit">${escapeHtml(credit.before)}<a href="${
         escapeHtml(credit.url)}" rel="noopener">${escapeHtml(credit.label)}</a>${escapeHtml(credit.after)}</p>`).join('')}`
     : '';
   return `<h2>How to follow this route</h2>
@@ -667,6 +667,8 @@ function trailPage(t, slug, all) {
   .sp-route-ref{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;box-sizing:border-box;padding:5px 10px;border:3px solid #B54835;border-radius:8px;background:#fff;color:#202821;font:800 15px/1 'Inter',sans-serif;box-shadow:0 1px 2px rgba(32,40,33,.08);}
   .sp-route-ref-arrow{color:#657369;font-size:17px;font-weight:800;}
   .sp-route-source{margin-top:4px;color:#657369;font-size:13px;line-height:1.5;}
+  .sp-route-credit{margin-top:6px;color:#8A968C;font-size:11.5px;line-height:1.45;}
+  .sp-route-credit a{color:inherit;text-decoration:underline;text-decoration-color:rgba(138,150,140,.5);}
   /* The photo is lazy-loaded and the credit toggle is pinned to the figure's
      corner, so the figure reserves its height up front; otherwise the toggle
      floats over whatever sits above until the image arrives. */
