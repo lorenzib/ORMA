@@ -108,6 +108,36 @@
       && conditions.heatRisk === 'low' && !conditions.hotFromLabel;
   }
 
+  // "Today's temperatures are comfortable" is only news when heat was a real
+  // risk. In the Alps that is summer (June to August) or an unusually hot
+  // spring day; in autumn and winter it is always true, and on 30 Oct 2026 it
+  // took a slot from reasons that said something. A spring day counts from a
+  // 20 °C high, two degrees under the line where every dog starts losing heat
+  // points (COOL_DAY_MAX_C; a heat-sensitive dog loses more, not sooner). It
+  // costs nothing either way: this only decides whether it is said.
+  const SPRING_HEAT_FROM_C = 20;
+
+  function seasonOf(conditions){
+    const match = conditions && typeof conditions.date === 'string'
+      ? conditions.date.match(/^\d{4}-(\d{2})-\d{2}$/) : null;
+    if(!match) return null;
+    const month = Number(match[1]);
+    if(month >= 6 && month <= 8) return 'summer';
+    if(month >= 3 && month <= 5) return 'spring';
+    return 'cold';
+  }
+
+  function heatWasAQuestion(conditions){
+    const season = seasonOf(conditions);
+    if(season === 'summer') return true;
+    if(season === 'cold') return false;
+    // Spring, or a snapshot without a date: the forecast decides.
+    const max = dayMaxOf(conditions);
+    const peak = max !== null ? max
+      : conditions && Number.isFinite(conditions.temperatureC) ? conditions.temperatureC : null;
+    return peak === null || peak >= SPRING_HEAT_FROM_C;
+  }
+
   function isColdDay(conditions){
     const max = dayMaxOf(conditions);
     return max !== null && max <= COLD_DAY_MAX_C;
@@ -731,7 +761,9 @@
           hotFrom ? { hotFrom } : null,
           hotFrom ? 'conditions.heat.moderate.from' : 'conditions.heat.moderate'));
       }else if(conditions.heatRisk === 'low'){
-        positives.push(item('conditions.heat.low', 'Current heat conditions are low-risk.'));
+        if(heatWasAQuestion(conditions)){
+          positives.push(item('conditions.heat.low', 'Current heat conditions are low-risk.'));
+        }
       }else{
         unknowns.push(item('conditions.heat.unknown', 'Current heat conditions are unavailable.'));
       }
@@ -851,8 +883,10 @@
     VERSION,
     FITNESS,
     COOL_DAY_MAX_C,
+    SPRING_HEAT_FROM_C,
     COLD_DAY_MAX_C,
     isCoolDay,
+    heatWasAQuestion,
     isColdDay,
     isHeatOnlyHazard,
     CHAIRLIFT_MAX_KG,
