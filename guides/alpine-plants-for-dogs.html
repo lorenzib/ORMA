@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css?v=20260916-5">
-<link rel="stylesheet" href="../alpine-plants-guide.css?v=20260901-2">
+<link rel="stylesheet" href="../alpine-plants-guide.css?v=20261030-1">
 <link rel="stylesheet" href="safety-guide-system.css?v=20260909-1">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CollectionPage","name":"Alpine Plants Guide for Dogs","description":"A trail-first catalogue of Alpine plants and dog-safety awareness.","url":"https://www.app-orma.com/guides/alpine-plants-for-dogs.html","mainEntity":{"@type":"ItemList","numberOfItems":33}}
@@ -43,22 +43,37 @@
   <div class="apg-hero-copy">
     <div class="safety-topic">Safety library / Plants &amp; trail edges</div>
     <h1>Which Alpine plants should your dog avoid?</h1>
-    <p class="section-page-subtitle">Use the cards to see what your dog should avoid and which changes to monitor. The guide covers open trail, woodland, wet ground and the village edges around an Alpine trip.</p>
+    <p class="section-page-subtitle">Pick a risk level, the month or where you are walking. Tap any plant to see how to recognise it and when it flowers. The guide covers open trail, woodland, wet ground and the village edges around an Alpine trip.</p>
   </div>
 </header>
 
 <main class="apg-wrap content-canvas" id="alpinePlantsGuide">
-  <aside class="apg-emergency" id="plant-emergency" aria-labelledby="plantEmergencyHeading">
-    <div><h2 id="plantEmergencyHeading">Think your dog ate an unknown plant?</h2><p>Move away, take clear photos and call a veterinarian or emergency clinic promptly. Do not induce vomiting or give food, milk, charcoal or medication unless a veterinary professional tells you to.</p></div>
-    <details><summary>What to photograph and note</summary><ol><li>The whole plant, leaves, flowers or fruit and where it was growing.</li><li>The time, likely plant part and possible amount.</li><li>A sample only if it is safe and legal to collect; use gloves for unknown plants.</li></ol></details>
-  </aside>
+  <details class="apg-help" id="plant-emergency">
+    <summary>
+      <span class="apg-help-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+      <span class="apg-help-copy"><strong id="plantEmergencyHeading">Did your dog chew a plant?</strong><span>Move away, take photos and call your vet. Three steps, no panic.</span></span>
+      <span class="apg-help-toggle">What to do, step by step</span>
+    </summary>
+    <ol class="apg-help-steps">
+      <li><b>Move away</b>Lead your dog away and stop any more chewing.</li>
+      <li><b>Take photos</b>The whole plant, its leaves, flowers or fruit and where it grew. Note the time, the part eaten and roughly how much. Keep a sample only if it is safe and legal to collect, and use gloves.</li>
+      <li><b>Call your vet</b>Or the nearest emergency clinic, promptly, even if your dog seems fine.</li>
+    </ol>
+    <p class="apg-help-dont">Do not induce vomiting or give food, milk, charcoal or medication unless a vet tells you to.</p>
+  </details>
 
   <section class="apg-tools" aria-labelledby="plantFindHeading">
-    <h2 id="plantFindHeading">Search by what you can see</h2>
-    <div class="apg-filter-grid">
-      <label class="apg-field">Search plants<input id="plantSearch" type="search" placeholder="Try monkshood, red berries or purple flowers…" autocomplete="off"></label>
-      <label class="apg-field">Season<span class="area-select-shell"><select id="plantSeason" aria-label="Filter plants by season"><option value="">All seasons</option><option value="spring">Spring</option><option value="summer">Summer</option><option value="autumn">Autumn</option><option value="winter">Winter</option></select></span></label>
-      <label class="apg-field">Habitat<span class="area-select-shell"><select id="plantHabitat" aria-label="Filter plants by habitat"><option value="">All habitats</option><option value="meadow">Meadow / pasture</option><option value="woodland">Woodland / edge</option><option value="wet">Wet / streamside</option><option value="rocky">Rocky / dry</option><option value="village">Village / garden</option></select></span></label>
+    <h2 id="plantFindHeading" class="sr-only">Find a plant</h2>
+    <div class="apg-safety-switch" id="plantSafety" role="group" aria-label="Risk for dogs"></div>
+    <p class="apg-tools-note">Most dangerous first. Low concern means safe to walk past, not safe to eat.</p>
+    <label class="apg-field">Search plants<input id="plantSearch" type="search" placeholder="Try monkshood, red berries or purple flowers…" autocomplete="off"></label>
+    <div class="apg-field-group">
+      <span class="apg-field-label" id="plantMonthLabel">When are you walking? <small>Bars show plants in flower that month</small></span>
+      <div class="apg-months-picker" id="plantMonths" role="group" aria-labelledby="plantMonthLabel"></div>
+    </div>
+    <div class="apg-field-group">
+      <span class="apg-field-label" id="plantHabitatLabel">Where are you walking?</span>
+      <div class="apg-chip-row" id="plantHabitat" role="group" aria-labelledby="plantHabitatLabel"></div>
     </div>
     <div class="apg-tool-bottom"><button type="button" class="apg-clear" id="plantClear" hidden>Show all plants</button></div>
   </section>
@@ -67,7 +82,7 @@
   <div id="plantResults" aria-label="Alpine plant visual guide" aria-busy="true"><div class="apg-empty"><p>Loading the visual guide…</p></div></div>
 
   <noscript>
-    <section class="apg-method"><h2>Plants in this edition</h2><p>Enable JavaScript for filters and expandable safety cards. Treat any unknown plant cautiously.</p><table><thead><tr><th>Plant</th><th>Status</th></tr></thead><tbody>
+    <section class="apg-method"><h2>Plants in this edition</h2><p>Enable JavaScript for filters and expandable plant cards. Treat any unknown plant cautiously.</p><table><thead><tr><th>Plant</th><th>Status</th></tr></thead><tbody>
       <tr><td>Wild rose (<i>Rosa</i> spp.)</td><td>Trail-safe</td></tr><tr><td>Hens and chicks (<i>Sempervivum tectorum</i>)</td><td>Trail-safe</td></tr>
       <tr><td>Common yarrow (<i>Achillea millefolium</i>)</td><td>Use caution</td></tr><tr><td>Buttercup (<i>Ranunculus</i> spp.)</td><td>Use caution</td></tr><tr><td>Stinging nettle / ortica (<i>Urtica dioica</i>)</td><td>Use caution</td></tr><tr><td>Spring crocus (<i>Crocus vernus</i>)</td><td>Use caution</td></tr><tr><td>Roman chamomile (<i>Chamaemelum nobile</i>)</td><td>Use caution</td></tr>
       <tr><td>Monkshood (<i>Aconitum napellus</i> agg.)</td><td>Dangerous</td></tr><tr><td>Autumn crocus (<i>Colchicum autumnale</i>)</td><td>Dangerous</td></tr><tr><td>Alpine cyclamen (<i>Cyclamen purpurascens</i>)</td><td>Dangerous</td></tr><tr><td>Alpine rhododendron (<i>Rhododendron</i> spp.)</td><td>Dangerous</td></tr><tr><td>Foxglove (<i>Digitalis purpurea</i>)</td><td>Dangerous</td></tr><tr><td>Lily of the valley (<i>Convallaria majalis</i>)</td><td>Dangerous</td></tr><tr><td>European yew (<i>Taxus baccata</i>)</td><td>Dangerous</td></tr><tr><td>Daffodil (<i>Narcissus</i> spp.)</td><td>Dangerous</td></tr><tr><td>Lords-and-ladies (<i>Arum maculatum</i>)</td><td>Dangerous</td></tr><tr><td>Christmas rose (<i>Helleborus niger</i>)</td><td>Dangerous</td></tr><tr><td>Larkspur (<i>Delphinium</i> spp.)</td><td>Dangerous</td></tr><tr><td>Poison hemlock (<i>Conium maculatum</i>)</td><td>Dangerous</td></tr><tr><td>Water hemlock (<i>Cicuta</i> spp.)</td><td>Dangerous</td></tr><tr><td>Bittersweet nightshade (<i>Solanum dulcamara</i>)</td><td>Dangerous</td></tr><tr><td>Tulip (<i>Tulipa</i> spp.)</td><td>Dangerous</td></tr><tr><td>Hyacinth (<i>Hyacinthus orientalis</i>)</td><td>Dangerous</td></tr><tr><td>Wisteria (<i>Wisteria</i> spp.)</td><td>Dangerous</td></tr><tr><td>European holly (<i>Ilex aquifolium</i>)</td><td>Use caution</td></tr><tr><td>Alpine clematis (<i>Clematis alpina</i>)</td><td>Use caution</td></tr><tr><td>Iris (<i>Iris</i> spp.)</td><td>Use caution</td></tr><tr><td>Hydrangea (<i>Hydrangea</i> spp.)</td><td>Use caution</td></tr><tr><td>English ivy (<i>Hedera helix</i>)</td><td>Use caution</td></tr><tr><td>Giant hogweed and cow parsnip (<i>Heracleum</i> spp.)</td><td>Avoid contact</td></tr><tr><td>Golden cinquefoil (<i>Potentilla aurea</i>)</td><td>Low concern</td></tr><tr><td>Fireweed (<i>Chamaenerion angustifolium</i>)</td><td>Low concern</td></tr><tr><td>Cornflower (<i>Centaurea cyanus</i>)</td><td>Low concern</td></tr>
@@ -157,7 +172,6 @@
 <script src="../mobile-nav.js?v=20261006-1"></script>
 <script src="../accessibility-runtime.js?v=20260810-1" defer></script>
 <script src="../guide-navigation.js?v=20260825-1"></script>
-<script src="../area-dropdown.js?v=20260823-2" defer></script>
-<script src="../alpine-plants-guide.js?v=20260827-1" defer></script>
+<script src="../alpine-plants-guide.js?v=20261030-1" defer></script>
 </body>
 </html>

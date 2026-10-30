@@ -47,7 +47,10 @@ describe('Alpine plants guide', () => {
     expect(card).not.toContain('class="apg-card-status');
     expect(card).not.toContain('View larger photo');
     expect(card).not.toContain('Suspected ingestion');
-    expect(card).not.toContain('Look for:');
+    expect(card).toContain('class="apg-more" type="button" aria-expanded="false" aria-controls="plant-more-european-yew"');
+    expect(card).toContain('<div class="apg-card-more" id="plant-more-european-yew" hidden>');
+    expect(card).toContain('<h3>Look for</h3>');
+    expect(card).toContain('aria-label="Flowers in March, April"');
     expect(card).not.toContain('See identification, symptoms and what to do');
     expect(card).not.toContain('stinging-nettle.jpg');
     expect(card).toContain('european-yew.jpg');
@@ -82,6 +85,21 @@ describe('Alpine plants guide', () => {
     expect(read('alpine-plants-guide.js')).not.toContain('View safety notes');
   });
 
+  test('a month shows plants in flower then plus those still around that season', () => {
+    const plant = id => data.plants.find(entry => entry.id === id);
+    const base = { query:'', safety:'', season:'', habitat:'' };
+    expect(guide.seasonOfMonth(1)).toBe('winter');
+    expect(guide.seasonOfMonth(10)).toBe('autumn');
+    expect(guide.inFlower(plant('autumn-crocus'), 10)).toBe(true);
+    expect(guide.matches(plant('autumn-crocus'), { ...base, month:'10' })).toBe(true);
+    expect(guide.matches(plant('european-yew'), { ...base, month:'10' })).toBe(true);
+    expect(guide.matches(plant('daffodil'), { ...base, month:'10' })).toBe(false);
+    expect(guide.plantCard(plant('autumn-crocus'), '10')).toContain('In flower in October');
+    expect(guide.plantCard(plant('european-yew'), '10')).not.toContain('In flower in');
+    expect(guide.stateFromUrl({ search:'?month=7' }).month).toBe('7');
+    expect(guide.stateFromUrl({ search:'?month=13' }).month).toBe('');
+  });
+
   test('page puts emergency guidance before filters and results', () => {
     const html = read('guides/alpine-plants-for-dogs.html');
     expect(html.indexOf('id="plant-emergency"')).toBeLessThan(html.indexOf('id="plantFindHeading"'));
@@ -91,8 +109,11 @@ describe('Alpine plants guide', () => {
     expect(html).toContain('images/editorial/safety-library/flowers-plants-dogs.jpg');
     expect(html).not.toContain('apg-hero-mosaic');
     expect(html).not.toContain('apg-emergency-mark');
-    expect(html).toContain('class="area-select-shell"');
-    expect(html).toContain('area-dropdown.js');
+    expect(html).not.toContain('class="apg-emergency"');
+    expect(html).toContain('<details class="apg-help" id="plant-emergency">');
+    expect(html).toContain('id="plantSafety"');
+    expect(html).toContain('id="plantMonths"');
+    expect(html).toContain('id="plantHabitat"');
     expect(html).toContain('Do not induce vomiting');
     expect(html).toContain('aria-live="polite"');
     expect(html).toContain('numberOfItems":33');
@@ -124,7 +145,7 @@ describe('Alpine plants guide', () => {
   test('cards open photographs in a dismissible modal lightbox', () => {
     const css = read('alpine-plants-guide.css');
     const script = read('alpine-plants-guide.js');
-    expect(css).toContain('.apg-card{position:relative;display:grid;grid-template-columns:118px minmax(0,1fr)');
+    expect(css).toContain('.apg-card{position:relative;display:grid;grid-template-columns:minmax(0,1fr)');
     expect(css).toContain('.apg-photo-expand{position:absolute');
     expect(css).toContain('.apg-lightbox::backdrop');
     expect(css).toContain('.apg-lightbox__image{display:block;max-width:calc(92vw - 20px)');
