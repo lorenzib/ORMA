@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "giro-del-bulacia",
+  "distanceKm": 8.5,
+  "ascentM": 413,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1854
+    },
+    {
+      "km": 0.7,
+      "elev": 1926
+    },
+    {
+      "km": 1.3,
+      "elev": 2040
+    },
+    {
+      "km": 1.9,
+      "elev": 2101
+    },
+    {
+      "km": 2.6,
+      "elev": 2108
+    },
+    {
+      "km": 3.2,
+      "elev": 2139
+    },
+    {
+      "km": 3.9,
+      "elev": 2124
+    },
+    {
+      "km": 4.5,
+      "elev": 2056
+    },
+    {
+      "km": 5.2,
+      "elev": 2052
+    },
+    {
+      "km": 5.8,
+      "elev": 2013
+    },
+    {
+      "km": 6.5,
+      "elev": 2022
+    },
+    {
+      "km": 7.1,
+      "elev": 2010
+    },
+    {
+      "km": 7.8,
+      "elev": 1937
+    },
+    {
+      "km": 8.4,
+      "elev": 1865
+    },
+    {
+      "km": 8.5,
+      "elev": 1854
+    }
+  ]
+}

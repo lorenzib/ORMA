@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-9648632",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.7,
+    "ascentM": 64,
+    "highestPointM": 1687,
+    "expectedDuration": "0.75 hours",
+    "difficulty": "Easy",
+    "shadePercent": 7
+  },
+  "trailhead": {
+    "lat": 46.5514,
+    "lng": 11.7163,
+    "label": "Car park at the top of Monte Pana (official start)"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Short stretches on the Monte Pana road at the start and end, open to cars.",
+    "Small grass-covered footbridges that can be hard to see (km 1.5–1.7).",
+    "Play and activity stations along the path.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

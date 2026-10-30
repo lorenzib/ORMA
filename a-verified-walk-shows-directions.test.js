@@ -26,6 +26,11 @@ describe('every Verified walk shows directions on its page',()=>{
     expect(without).toEqual([]);
   });
 
+  test('a walk still withdrawn has no directions a walker could follow',()=>{
+    for(const trail of trails.filter(t=>t.sealWithdrawn))
+      expect({id:trail.id,shown:bar.directionsOf(trail).shownOnPage}).toEqual({id:trail.id,shown:false});
+  });
+
   test('a walk withdrawn for want of directions says so in its blocker',()=>{
     const withdrawn=trails.filter(trail=>trail.graduation&&trail.graduation.blockers
       &&/page shows no directions/.test(String(trail.graduation.blockers.routeNumbers||'')));

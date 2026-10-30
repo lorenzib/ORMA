@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-14378946",
   "name": "Lac de Pramol",
-  "version": "2026.10.29-beta.3",
-  "generatedAt": "2026-10-29T13:17:58.957Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T13:41:36.652Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 436273,
@@ -217,7 +217,7 @@
       "label": "Lac de Pramol routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 141406,
-      "sha256": "a97066fc2c2eed77b03c3cb2150e1170eaf8fbc5182316b0965d8487721b5c18"
+      "sha256": "235d25cf266200f4a05e58bf3a056106a990f6073bdb27ac3c8a3eadcc91aa3d"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Lac de Pramol safety information",
       "url": "safety.json",
       "bytes": 2117,
-      "sha256": "4fedaf525d5dc75ef8b0eae7bb08ccb0f78e9fa52e1367df6fbd7f7228b9f467"
+      "sha256": "87a4bee72f761dbf0fd2eed146e0c38259977fdb8a7b65a870d77b4dbd52b241"
     }
   ]
 }

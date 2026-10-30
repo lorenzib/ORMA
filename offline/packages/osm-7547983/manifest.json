@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-7547983",
   "name": "Anello di Valzalina",
-  "version": "2026.10.29-beta.3",
-  "generatedAt": "2026-10-29T11:53:02.019Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T12:48:16.912Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 381219,
@@ -217,7 +217,7 @@
       "label": "Anello di Valzalina routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 46560,
-      "sha256": "c84b935bfb32c2150b6bf34b6df4306cb3772fc799f34090872e630666148b6a"
+      "sha256": "1a0e64848ca072bee7af154698921783f85e784feb0defaa518d9b168aeddecb"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Anello di Valzalina safety information",
       "url": "safety.json",
       "bytes": 1275,
-      "sha256": "c2057bd094932a84c10b94dff87a57031834c925b6f08b54ccaf45cf6443547c"
+      "sha256": "359b11c5bc38fc91288f14d1e95ade6cc3f902680b4c78991d456eefd314b547"
     }
   ]
 }

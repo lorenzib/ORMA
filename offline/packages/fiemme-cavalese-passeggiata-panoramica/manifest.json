@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fiemme-cavalese-passeggiata-panoramica",
   "name": "Cavalese - Passeggiata panoramica",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T14:16:24.543Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:01:28.182Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 578856,
@@ -217,7 +217,7 @@
       "label": "Cavalese - Passeggiata panoramica routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 109184,
-      "sha256": "5a80fb412bfe4be2e9463c14161da9ec8743609d3856441cf262e22f46e167a3"
+      "sha256": "dc0b1a828caa5f00dcc98c70726ce1b814388c43152d67a6c07a7a6b28f02d95"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Cavalese - Passeggiata panoramica safety information",
       "url": "safety.json",
       "bytes": 1764,
-      "sha256": "233c80e41abd2fbb21aa856beb1b34563202548534ea400c692d12002c8753db"
+      "sha256": "8e5cae8e7b99bcfe8fa05f1fc4efb64ea2878f24321cc557643ebfdfe84db9cf"
     }
   ]
 }

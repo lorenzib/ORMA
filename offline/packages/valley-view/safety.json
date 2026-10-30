@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valley-view",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.6,
+    "ascentM": 322,
+    "highestPointM": 1426,
+    "expectedDuration": "2–2.25 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 30
+  },
+  "trailhead": {
+    "lat": 46.6422,
+    "lng": 11.6802,
+    "label": "St. Peter village centre (Villnöss), by the tourist office"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.64217,
+      "lng": 11.68013,
+      "label": "Drinking fountain, St. Peter centre",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.64393,
+      "lng": 11.69195,
+      "label": "Vikolerbach stream",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.64545,
+      "lng": 11.70249,
+      "label": "Schlatschner Bachl stream",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6456,
+      "lng": 11.69127,
+      "label": "Vikolerbach stream",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "About 1.9 km of asphalt, including the road towards Coll/Würzjoch.",
+    "Crossing of the Coller Straße.",
+    "Short flights of steps.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

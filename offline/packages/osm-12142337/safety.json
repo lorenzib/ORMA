@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12142337",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 13,
+    "ascentM": 642,
+    "highestPointM": 2343,
+    "expectedDuration": "4–5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 15
+  },
+  "trailhead": {
+    "lat": 46.67482,
+    "lng": 11.81381,
+    "label": "Würzjoch / Passo delle Erbe car park (paid June–October; bus 469 in summer)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6634504,
+      "lng": 11.8082824,
+      "label": "Spring",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6596756,
+      "lng": 11.8451064,
+      "label": "Drinking-water point on the path",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6687384,
+      "lng": 11.8329002,
+      "label": "Drinking water by the Göma hut, 130 m off the path",
+      "reliability": "Seasonal; not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6669731,
+      "lng": 11.8144716,
+      "label": "Drinking water at Fornella",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Steep, loose rock and gravel up to and down from the Peitlerscharte (up to about 35%).",
+    "Scree slopes below the Scharte.",
+    "Gravel tracks shared with mountain bikes.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

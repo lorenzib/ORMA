@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-14376573",
   "name": "Crêt de Talière",
-  "version": "2026.10.29-beta.4",
-  "generatedAt": "2026-10-29T13:17:15.152Z",
+  "version": "2026.10.30-beta.5",
+  "generatedAt": "2026-10-30T13:40:42.248Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 263474,
@@ -217,7 +217,7 @@
       "label": "Crêt de Talière routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 57236,
-      "sha256": "716e446e7e76e808e9a304be08d09426f0d8be39c776e4fa36851ba35624ba7c"
+      "sha256": "552a15c196890751389d83bdadaefa2622465ebce0d2ec99e0fc642577e97898"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Crêt de Talière safety information",
       "url": "safety.json",
       "bytes": 1153,
-      "sha256": "ba3b281cfc47b286fab874eadd416fd3c282447e392d5df09cb61b653f0587dc"
+      "sha256": "eaad6c477cb6663ce2205a578d944db1a0860ab4c45fd7d179cc04ab24494093"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-7549783",
   "name": "Anello del Troi de le Ciaure",
-  "version": "2026.10.29-beta.3",
-  "generatedAt": "2026-10-29T11:54:20.715Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T12:49:37.669Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 518459,
@@ -217,7 +217,7 @@
       "label": "Anello del Troi de le Ciaure routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 94429,
-      "sha256": "bd9b43cf537770fc6f08f1ad4666dcbaed21d47b3225f3fdbcd123992addd07b"
+      "sha256": "9034e2a27ff65530f4eb5547cde28718c885a1324c3551e1ee6e607975b07fd1"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Anello del Troi de le Ciaure safety information",
       "url": "safety.json",
       "bytes": 1609,
-      "sha256": "86fefa1b2318422725e8416eba5dc619a9e6058714a9dbcf4b7d702a279709cc"
+      "sha256": "54d46a52a739b4e24c5b0dd4881d58a7f25ed24591c9368fd27444ac165ed106"
     }
   ]
 }

@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12736753",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 11.6,
+    "ascentM": 360,
+    "highestPointM": 887,
+    "expectedDuration": "3–3.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 50
+  },
+  "trailhead": {
+    "lat": 46.6771038,
+    "lng": 11.6311032,
+    "label": "Albeins, Kindergarten bus stop (parking and overview board in the village)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6757049,
+      "lng": 11.6328023,
+      "label": "Albeins fountain (Refill Südtirol)",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6761776,
+      "lng": 11.63283,
+      "label": "Albeins drinking water",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6881776,
+      "lng": 11.6603694,
+      "label": "Klerant village fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.701707,
+      "lng": 11.663905,
+      "label": "Milland parish fountain",
+      "reliability": "Seasonal; not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.705597,
+      "lng": 11.657329,
+      "label": "Wolkensteinstraße playground fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6871569,
+      "lng": 11.6411121,
+      "label": "Stadtwerke Brixen water tap by the Eisack dam",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 2.5 km on quiet village roads without a pavement (Prasod, Klerant).",
+    "Busy street crossings in Milland (Plosestraße, Sarnser Straße).",
+    "Asphalt sections hot in summer.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12953352",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.4,
+    "ascentM": 286,
+    "highestPointM": 844,
+    "expectedDuration": "1.5–2 hours",
+    "difficulty": "Hard",
+    "shadePercent": 15
+  },
+  "trailhead": {
+    "lat": 46.717031,
+    "lng": 11.659173,
+    "label": "Adlerbrücke (Ponte Aquila), Stufels side, Adlerbrücke bus stop"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.717144,
+      "lng": 11.6591401,
+      "label": "Drinking fountain at the Adlerbrücke",
+      "reliability": "Seasonal; not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7167804,
+      "lng": 11.6587512,
+      "label": "Nepomukbrunnen, 44 m off the route",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.732186,
+      "lng": 11.66711,
+      "label": "Kirchbrunnen by Elvas church",
+      "reliability": "Seasonal; not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Stone setts in the Stufels lanes.",
+    "Quiet 30 km/h lanes with no pavement (about a fifth of the walk).",
+    "Crossings of the Laugenstraße in Elvas and of the Elvaser Straße on the way down.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

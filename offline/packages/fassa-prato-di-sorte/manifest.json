@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-prato-di-sorte",
   "name": "Prato di Sorte",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T14:42:48.029Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T13:47:02.674Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 600401,
@@ -217,7 +217,7 @@
       "label": "Prato di Sorte routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 98174,
-      "sha256": "f11b58773fcd1d20021c294e3d1297592840a626e0a2837818f38f0e5d507a4c"
+      "sha256": "9dad5a02e40b37a6d5570041b0b4ce1e60c8bcdcf7c8a84f59a1159e266f859b"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Prato di Sorte safety information",
       "url": "safety.json",
       "bytes": 1787,
-      "sha256": "645cc8618f44f05859a821b54ed571e8ab7c57dd4ca43e5214cb07b7a82a5d2f"
+      "sha256": "1b5930e79fd879e84301cb1d734e1bce1e8c3e3550cf289a95386d000c740a73"
     }
   ]
 }

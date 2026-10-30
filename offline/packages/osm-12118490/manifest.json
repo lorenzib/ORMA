@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12118490",
   "name": "Le Balcon des Plagnes",
-  "version": "2026.10.29-beta.3",
-  "generatedAt": "2026-10-29T13:11:27.592Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T13:36:17.142Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 424872,
@@ -217,7 +217,7 @@
       "label": "Le Balcon des Plagnes routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 107974,
-      "sha256": "69babb724a5a3994dee69b09e7aa64c995fabb3f2ada89e3b6c7c6eaefb9cf8d"
+      "sha256": "aab356c111a2c27472e0dd023095b06b06c8f6223da2ff5a78a3c66e41c6f04e"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Le Balcon des Plagnes safety information",
       "url": "safety.json",
       "bytes": 1393,
-      "sha256": "f608fd4ac825c4dbe5622c2996515132cd50d75ede2190aeac882b76ce7859c8"
+      "sha256": "dad1c3c2367605b845afc1990015d5a1310a6634a0025b3fcd62dc64d1a84b84"
     }
   ]
 }

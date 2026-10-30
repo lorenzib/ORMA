@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11270309",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 1.2,
+    "ascentM": 115,
+    "highestPointM": 288,
+    "expectedDuration": "0.5 hours",
+    "difficulty": "Easy",
+    "shadePercent": 71
+  },
+  "trailhead": {
+    "lat": 46.2375562,
+    "lng": 11.2148555,
+    "label": "Start of the Quellenpromenade by the car park at the edge of Salurn village centre (official start)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.2389682,
+      "lng": 11.2156826,
+      "label": "Drinking fountain on the promenade",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.2397618,
+      "lng": 11.2189027,
+      "label": "Drinking fountain by the Titschenbach",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.2379204,
+      "lng": 11.2129251,
+      "label": "Drinking fountain near the end",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Paths beside the springs and the waterfall that the board warns can be slippery when wet.",
+    "Short steps near the waterfall (km 1.0).",
+    "A short stretch on the Kapellenweg lane.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-24"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

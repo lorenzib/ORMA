@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "primiero-tonadico",
   "name": "Tonadico",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T17:21:03.686Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T13:54:36.423Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 880561,
@@ -217,7 +217,7 @@
       "label": "Tonadico routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 147170,
-      "sha256": "de8b6e5cebbe7d3f4b7a07e3e54a2803e0b771acdd0791f6176d287d6cbea992"
+      "sha256": "6aec85cf3426d15ca3936868b7d9af6d3be7c39f204ef7e8f52ba8c6d2d4fe16"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Tonadico safety information",
       "url": "safety.json",
       "bytes": 2000,
-      "sha256": "9f860c3c85a79d0a092b2fda1c7ab7316f4d2e089517d638375a41965ddc6a1e"
+      "sha256": "7afe147a6e6dd1e656de1ae5cb0c59ed32d23a0ffa8b30b69bb1768f56cb684b"
     }
   ]
 }
