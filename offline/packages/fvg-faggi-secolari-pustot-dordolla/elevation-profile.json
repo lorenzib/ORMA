@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-faggi-secolari-pustot-dordolla",
+  "distanceKm": 5.3,
+  "ascentM": 395,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 603
+    },
+    {
+      "km": 0.4,
+      "elev": 669
+    },
+    {
+      "km": 0.8,
+      "elev": 647
+    },
+    {
+      "km": 1.2,
+      "elev": 609
+    },
+    {
+      "km": 1.6,
+      "elev": 708
+    },
+    {
+      "km": 2,
+      "elev": 790
+    },
+    {
+      "km": 2.4,
+      "elev": 913
+    },
+    {
+      "km": 2.8,
+      "elev": 938
+    },
+    {
+      "km": 3.2,
+      "elev": 929
+    },
+    {
+      "km": 3.6,
+      "elev": 844
+    },
+    {
+      "km": 4,
+      "elev": 789
+    },
+    {
+      "km": 4.4,
+      "elev": 771
+    },
+    {
+      "km": 4.8,
+      "elev": 709
+    },
+    {
+      "km": 5.2,
+      "elev": 624
+    },
+    {
+      "km": 5.3,
+      "elev": 624
+    }
+  ]
+}

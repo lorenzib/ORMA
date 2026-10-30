@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt",
+  "distanceKm": 7.6,
+  "ascentM": 172,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1428
+    },
+    {
+      "km": 0.6,
+      "elev": 1478
+    },
+    {
+      "km": 1.2,
+      "elev": 1468
+    },
+    {
+      "km": 1.7,
+      "elev": 1477
+    },
+    {
+      "km": 2.3,
+      "elev": 1465
+    },
+    {
+      "km": 2.9,
+      "elev": 1402
+    },
+    {
+      "km": 3.4,
+      "elev": 1362
+    },
+    {
+      "km": 4,
+      "elev": 1329
+    },
+    {
+      "km": 4.6,
+      "elev": 1331
+    },
+    {
+      "km": 5.2,
+      "elev": 1343
+    },
+    {
+      "km": 5.7,
+      "elev": 1362
+    },
+    {
+      "km": 6.3,
+      "elev": 1381
+    },
+    {
+      "km": 6.9,
+      "elev": 1377
+    },
+    {
+      "km": 7.5,
+      "elev": 1422
+    },
+    {
+      "km": 7.6,
+      "elev": 1424
+    }
+  ]
+}

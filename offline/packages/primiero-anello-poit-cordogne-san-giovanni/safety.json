@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-anello-poit-cordogne-san-giovanni",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5,
+    "ascentM": 181,
+    "highestPointM": 1280,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 69
+  },
+  "trailhead": {
+    "lat": 46.147876,
+    "lng": 11.844815,
+    "label": "Poit, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.1374758,
+      "lng": 11.8212931,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.1420292,
+      "lng": 11.8391777,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A narrow wooded crest path with some short climbs and descents.",
+    "About 1 km on quiet tarmac roads.",
+    "Hay meadows at San Giovanni: keep to the path.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-26"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}
