@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "sentiero-hans-e-paula-steger",
   "name": "Sentiero Hans e Paula Steger",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:44:38.654Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:34:32.171Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 936986,
@@ -217,7 +217,7 @@
       "label": "Sentiero Hans e Paula Steger routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 274879,
-      "sha256": "47aade13c294ea9af53b3f487f5f2233a20f606281a5a45da63a1b7f347b5510"
+      "sha256": "d97cc34ea0cf3bd9742c44285aa64cb19491812e118f0c777cb553c6553426c4"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Sentiero Hans e Paula Steger safety information",
       "url": "safety.json",
       "bytes": 1687,
-      "sha256": "599107fc9469b8c6800ddfa5901dedbe6fc68a3e85627d2d6207b80efbefe1c9"
+      "sha256": "d87aca9feac5bafd4d81111e772b9f1ac2693093c9179a3f3555b2d450011938"
     }
   ]
 }

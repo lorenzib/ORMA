@@ -802,6 +802,40 @@
       }
     },
     {
+      "id": "eggental-dal-passo-costalunga-al-lago-di-carezza",
+      "approvedReviewId": "commons-eggental-dal-passo-costalunga-al-lago-di-carezza-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-dal-passo-costalunga-al-lago-di-carezza-lake.jpg",
+        "heroImage": "images/trails/eggental-dal-passo-costalunga-al-lago-di-carezza-lake.jpg",
+        "imageAlt": "The turquoise Lago di Carezza from above, ringed by pale stones and spruce forest, with the road and pink fireweed in the foreground",
+        "imageCredit": "The Lago di Carezza from above",
+        "imageCreditText": "The Lago di Carezza from above by Jonathan.astolfi",
+        "imageCreator": "Jonathan.astolfi",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_Carezza_08-2022.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl",
+      "approvedReviewId": "mapillary-eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl-lake-path.jpg",
+        "heroImage": "images/trails/eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl-lake-path.jpg",
+        "imageAlt": "The gravel shore path beside the turquoise Lago di Carezza, with a wooden fence, tall grass and pink flowers, walkers ahead and spruce forest and cloud-capped mountains behind",
+        "imageCredit": "The shore path at the Lago di Carezza",
+        "imageCreditText": "The shore path at the Lago di Carezza by orbic",
+        "imageCreator": "orbic",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=315894090873003",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fassa-alpe-di-fuciade",
       "approvedReviewId": "commons-fassa-alpe-di-fuciade-on-route",
       "approvedAt": "2026-10-26T15:00:00.000Z",
@@ -1788,6 +1822,23 @@
       }
     },
     {
+      "id": "kronplatz-passeggiata-leggendaria-sul-kienberg",
+      "approvedReviewId": "mapillary-kronplatz-passeggiata-leggendaria-sul-kienberg-on-route",
+      "approvedAt": "2026-10-29T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-passeggiata-leggendaria-sul-kienberg-meadow-path.jpg",
+        "heroImage": "images/trails/kronplatz-passeggiata-leggendaria-sul-kienberg-meadow-path.jpg",
+        "imageAlt": "A gravel path through green meadows with white wildflowers above Casteldarne, with houses, the church spire and wooded mountains behind and a 10A waymark on a crash barrier",
+        "imageCredit": "Path 10A above Casteldarne",
+        "imageCreditText": "Path 10A above Casteldarne by davidinosauro",
+        "imageCreator": "davidinosauro",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1226541401556704",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "kronplatz-passeggiata-san-vigilio-le-dla-creda",
       "approvedReviewId": "mapillary-kronplatz-passeggiata-san-vigilio-le-dla-creda-on-route",
       "approvedAt": "2026-10-28T18:00:00.000Z",
@@ -1903,6 +1954,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=838606750067335",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle",
+      "approvedReviewId": "commons-kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle-on-route",
+      "approvedAt": "2026-10-29T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle-church.jpg",
+        "heroImage": "images/trails/kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle-church.jpg",
+        "imageAlt": "The cream-coloured parish church of Valdaora di Sotto with a painted Madonna on its wall, a clock tower and the churchyard with flowers in front, under a cloudy sky",
+        "imageCredit": "The parish church of Valdaora di Sotto",
+        "imageCreditText": "The parish church of Valdaora di Sotto by Muck",
+        "imageCreator": "Muck",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:St._Petrus_und_Agnes_(Niederolang)-01.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -5547,6 +5615,74 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Dal_Seceda_vista_sulle_Odle.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele",
+      "approvedReviewId": "mapillary-seiseralm-alla-volta-della-trappola-d-orso-a-s-michele-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-alla-volta-della-trappola-d-orso-a-s-michele-signpost.jpg",
+        "heroImage": "images/trails/seiseralm-alla-volta-della-trappola-d-orso-a-s-michele-signpost.jpg",
+        "imageAlt": "A wooden signpost for path 7 in green summer forest, pointing to Kastelruth and Seis one way and to Passo Pinei the other",
+        "imageCredit": "Path 7 between Passo Pinei and Kastelruth",
+        "imageCreditText": "Path 7 between Passo Pinei and Kastelruth by highlander",
+        "imageCreator": "highlander",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=494418901903124",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del",
+      "approvedReviewId": "commons-seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del-catinaccio.jpg",
+        "heroImage": "images/trails/seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del-catinaccio.jpg",
+        "imageAlt": "The grey rock walls of the Catinaccio rising above dark spruce forest, with silvery seed heads of fireweed in the foreground under a deep blue sky",
+        "imageCredit": "The Catinaccio from Passo Nigra",
+        "imageCreditText": "The Catinaccio from Passo Nigra by Ximonic (Simo Räsänen)",
+        "imageCreator": "Ximonic (Simo Räsänen)",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cima_Catinaccio_from_Nigerpass,_Salto-Sciliar,_Trentino-Alto_Adige,_Italy,_2025_October.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff",
+      "approvedReviewId": "commons-seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff-lago-di-fie.jpg",
+        "heroImage": "images/trails/seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff-lago-di-fie.jpg",
+        "imageAlt": "The calm green Lago di Fiè ringed by tall pines, with a wooden boathouse on the left and reeds in the foreground",
+        "imageCredit": "The Lago di Fiè",
+        "imageCreditText": "The Lago di Fiè by Adert",
+        "imageCreator": "Adert",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Fiè_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "seiseralm-escursione-senza-barriere-all-alpe-di-siusi",
+      "approvedReviewId": "mapillary-seiseralm-escursione-senza-barriere-all-alpe-di-siusi-on-route",
+      "approvedAt": "2026-10-29T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-escursione-senza-barriere-all-alpe-di-siusi-path.jpg",
+        "heroImage": "images/trails/seiseralm-escursione-senza-barriere-all-alpe-di-siusi-path.jpg",
+        "imageAlt": "A wide gravel path along a grassy slope with spruce trees, looking across the green Alpe di Siusi to the Sassolungo and Sassopiatto under a blue sky",
+        "imageCredit": "Path 9 on the Alpe di Siusi",
+        "imageCreditText": "Path 9 on the Alpe di Siusi by madel",
+        "imageCreator": "madel",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=379212996769388",
         "imageSourceType": "licensed-source"
       }
     },

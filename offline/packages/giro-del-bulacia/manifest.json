@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "giro-del-bulacia",
   "name": "Giro della Bullaccia",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:44:38.501Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:34:02.492Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 817294,
@@ -217,7 +217,7 @@
       "label": "Giro della Bullaccia routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 156995,
-      "sha256": "145c1e196305a858481666bd62cc79edb83bee4e9f21884b77815c6f37e54af9"
+      "sha256": "9acc5011d3b3a109288e59aa4432ddeda2a54402db68050f9332136884215448"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Giro della Bullaccia safety information",
       "url": "safety.json",
       "bytes": 2099,
-      "sha256": "9dca827839187ed5ae4346dab7fbf1dc76e8c495522058812303b2ec93a2cdff"
+      "sha256": "3878c5e5ebc4156b6dd04107db673a2898d49410fd9b506bf5a7d8cfdf3c3458"
     }
   ]
 }

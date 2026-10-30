@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-11775760",
   "name": "Carl-Toldt-Weg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:20.772Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:52:25.429Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 419941,
@@ -217,7 +217,7 @@
       "label": "Carl-Toldt-Weg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 75720,
-      "sha256": "6f786ecc7a0f8828b24d63a9d21ec7a6850551ca914190d09bfd0828a1670614"
+      "sha256": "c6fbcd8db5462c3337b1b16c4c02bec4e9929c04edfcda2619c1bf39994684e7"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Carl-Toldt-Weg safety information",
       "url": "safety.json",
       "bytes": 1589,
-      "sha256": "3374e1885e53d601cca058e613dae8a62d3db237e94d669ca1bcfe33d10eecfd"
+      "sha256": "b9c4499da59f3148f225ef85fe56667f5a49ab19317f5a6618e9beb365720511"
     }
   ]
 }

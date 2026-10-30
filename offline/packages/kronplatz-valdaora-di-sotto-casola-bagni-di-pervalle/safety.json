@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.9,
+    "ascentM": 318,
+    "highestPointM": 1322,
+    "expectedDuration": "1.6 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 38
+  },
+  "trailhead": {
+    "lat": 46.76773,
+    "lng": 12.01723,
+    "label": "Valdaora di Sotto (Niederolang), by the parish church, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7676263,
+      "lng": 12.0172421,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.756941,
+      "lng": 12.0184848,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7362266,
+      "lng": 12.0043648,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About two thirds on tarred lanes and farm roads: watch for local traffic and tractors.",
+    "The lane out of the village passes the cemetery wall: dogs may not enter the cemetery.",
+    "Hay meadows beside the farm roads: keep your dog off them in the growing season.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-29"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-2376630",
   "name": "Rundweg Katharinaberg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:46:00.551Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:21:08.508Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 408895,
@@ -217,7 +217,7 @@
       "label": "Rundweg Katharinaberg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 109075,
-      "sha256": "9e60c9bf278a65a00c49dc7285153c54c5540ec4a744021d2314a85755c744a2"
+      "sha256": "5b15676fafd83567ac9825df341d6f1757ed16eddef268249c984fb8c082a28a"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Rundweg Katharinaberg safety information",
       "url": "safety.json",
       "bytes": 1371,
-      "sha256": "ec8c79f60571cc8f0da828fc799eb8d3de5f78c3ed21022a00d5f28a1a58d464"
+      "sha256": "1f5e2a0f6c93556a7a0c83ddfcdf343aef7c1520cb5fb227d2c450ac64657f9f"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-8396539",
   "name": "Kulturwanderweg Peter Mitterhofer",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:48:41.749Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:27:23.543Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1250197,
@@ -217,7 +217,7 @@
       "label": "Kulturwanderweg Peter Mitterhofer routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 295420,
-      "sha256": "d9794a2de9b2f2f3cdb90d2bd3c48a7241cd3794caafc0f22d5eb3bdbb96f86e"
+      "sha256": "2ab04ec3399abe793cf8b860e559e44d66e2448aa342a4c3659522584be2bf1e"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Kulturwanderweg Peter Mitterhofer safety information",
       "url": "safety.json",
       "bytes": 2163,
-      "sha256": "6bbc4315e9160478b6ab54269c34ab00bcf6bb4225af8f35128bf36ffe1f1743"
+      "sha256": "868b3266a0b25bb275dc8d3db8ac847e7573264c88e72c18f84ceda7079efd2a"
     }
   ]
 }

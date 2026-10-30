@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-11775923",
   "name": "Törggeleweg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:46:36.862Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:22:33.767Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 691698,
@@ -217,7 +217,7 @@
       "label": "Törggeleweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 175374,
-      "sha256": "2cd07ca58dd51e5c92466ce6c7734a644516afc45c583b31106bebbcc3a59865"
+      "sha256": "1e5645606eb6c2d8929a3622a466acd305435178d3192a16058e54777603c2c9"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Törggeleweg safety information",
       "url": "safety.json",
       "bytes": 2207,
-      "sha256": "9748949e07a1a0c33c62dc2bbe11770b76893c56d4c165e3cecbc96a1e8185de"
+      "sha256": "660ed4ea43a8d43cda50079b10fad8e476ccabb6035e43a9de846d55568f5034"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-10220399",
   "name": "Martinsweg",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:49:45.348Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:28:59.386Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 222448,
@@ -217,7 +217,7 @@
       "label": "Martinsweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 55737,
-      "sha256": "a17d4bd75e099de9dc18b8f54bc47483b8de3f077be0899ec8c5a995cf58e742"
+      "sha256": "e929e6e8b4c9eacd661c2389f87f64f3a71a3681ae7b9e30e737b5ece7e3d69e"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Martinsweg safety information",
       "url": "safety.json",
       "bytes": 1813,
-      "sha256": "c11702ad743e756061048ef8f85086a0b1b32bd411eee096f7e895fca158755f"
+      "sha256": "551dc37e4c5c9d7dc3eb80c8ba43551ee36986949378afc83b5aec1bf17c9d8f"
     }
   ]
 }

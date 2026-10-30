@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-moena-soraga-acqua",
   "name": "Da Moena a Soraga, dove l'acqua ha segnato la storia",
-  "version": "2026.10.27-beta.1",
-  "generatedAt": "2026-10-27T22:45:53.963Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:15:54.156Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 776284,
@@ -217,7 +217,7 @@
       "label": "Da Moena a Soraga, dove l'acqua ha segnato la storia routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 152139,
-      "sha256": "81ce9aa1412394501a4ad3e3e60b6b22ec8015b6b3058cf553ae8a1413ca6b20"
+      "sha256": "5bf8b978cf9223941272d3d0e05bc7a8be633f12d4096f6efccd7316ae0f590f"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Da Moena a Soraga, dove l'acqua ha segnato la storia safety information",
       "url": "safety.json",
       "bytes": 1879,
-      "sha256": "2bd38db5e10d1806d4a333145354cacc308bfe797527e3c7d1c317cd05aa02dd"
+      "sha256": "6f6d06d6d5c78b2a0abb30a0c851483652f798b9fbc9b964cc9c7ce6209a3aea"
     }
   ]
 }

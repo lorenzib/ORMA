@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9450411",
   "name": "Poststeig",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:51:50.223Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:31:27.405Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 2304243,
+  "packageBytes": 2304425,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56675,
@@ -28,9 +28,9 @@
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 16476,
-    "edgeCount": 16594,
-    "trailNodeCount": 873,
+    "nodeCount": 16477,
+    "edgeCount": 16597,
+    "trailNodeCount": 874,
     "maxRejoinRouteM": 1500
   },
   "elevationProfile": {
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Poststeig OSM offline map",
       "url": "map.svg",
-      "bytes": 1342707,
-      "sha256": "a3de19a328a12d38c8eba9582b24373f2c02947de3cb151788b607f91bb24f17"
+      "bytes": 1342779,
+      "sha256": "61ac955a274506e257c8e81117452dd61ec8d01c329a0a4f4fef02976c03de03"
     },
     {
       "role": "route",
@@ -216,8 +216,8 @@
       "required": true,
       "label": "Poststeig routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 837694,
-      "sha256": "d7fd5dd47981d37320d11a3bdc5fed2225a24e9fe90e03229a727297e2ea4a60"
+      "bytes": 837804,
+      "sha256": "63e5fc95992e1b57f390255743bfb4f2b47f779be01aad5f80fad1087b7c01e3"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Poststeig safety information",
       "url": "safety.json",
       "bytes": 2782,
-      "sha256": "10ffc74a6afe7ab8e5dc5bd3feacfc6b27fdd791bd840b2b6c83dd6ba604c2db"
+      "sha256": "738b416ec0b94f2b7662ca5cedc42fbe92107050690c1a1ae60a7a598c19ae1f"
     }
   ]
 }

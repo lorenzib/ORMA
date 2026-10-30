@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-pascoli-malga-vernera",
   "name": "Sui Pascoli di Malga Vernera",
-  "version": "2026.10.27-beta.1",
-  "generatedAt": "2026-10-27T15:51:42.377Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:13:58.008Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 200747,
+  "packageBytes": 199149,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.20463,
@@ -28,9 +28,9 @@
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 891,
-    "edgeCount": 901,
-    "trailNodeCount": 180,
+    "nodeCount": 867,
+    "edgeCount": 873,
+    "trailNodeCount": 179,
     "maxRejoinRouteM": 1500
   },
   "elevationProfile": {
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sui Pascoli di Malga Vernera OSM offline map",
       "url": "map.svg",
-      "bytes": 38185,
-      "sha256": "0b82e9179eb15634db81d579b91a599bec6e2c747e9fb0c287312b797b314b56"
+      "bytes": 37769,
+      "sha256": "802206072dc151bcd5979faee9f5518447fe855fcc40c1389eea7ab0845bf481"
     },
     {
       "role": "route",
@@ -216,8 +216,8 @@
       "required": true,
       "label": "Sui Pascoli di Malga Vernera routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 41911,
-      "sha256": "906669f836192ae1e719268302d0e12d751bf606253575a59c768206b7d8d766"
+      "bytes": 40729,
+      "sha256": "fefd2dfcc25491fa9e5879c55d6174c755a2473e33f5515d4b4274787b334505"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Sui Pascoli di Malga Vernera safety information",
       "url": "safety.json",
       "bytes": 1630,
-      "sha256": "f40155c26ac8258a7026ba14b169bfe3ec90aeb11f306ef28b782334e354ed36"
+      "sha256": "2871fc19825f546812669a2c94829219f735d361899ba6e34928fa62aeabbf9d"
     }
   ]
 }

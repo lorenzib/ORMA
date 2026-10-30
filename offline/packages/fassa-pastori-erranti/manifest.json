@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-pastori-erranti",
   "name": "Sulla via degli antichi pastori erranti",
-  "version": "2026.10.26-beta.1",
-  "generatedAt": "2026-10-26T17:40:32.887Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T13:51:11.753Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 550824,
@@ -217,7 +217,7 @@
       "label": "Sulla via degli antichi pastori erranti routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 112410,
-      "sha256": "dd77713f75aa9f433e4c760ed5dc25db1befc28308f05426103d6b4a95f3de9e"
+      "sha256": "003011e3b57baf021e8f1021111594d5a1551f4b1ce068a5dbaf09716d32a041"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Sulla via degli antichi pastori erranti safety information",
       "url": "safety.json",
       "bytes": 1973,
-      "sha256": "405eb6eb80ce5e353784b9df861ed250b990b57b463797525d1e6776690ee0b8"
+      "sha256": "7e5debb1b80a15718c1ac8e0417f7871bca2d1f7f0c25c8a6b63309def32107f"
     }
   ]
 }

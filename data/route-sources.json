@@ -2897,6 +2897,70 @@
       "quote": "Distanza 4,9 km · Durata 1:00 h · Salita 170 m · Discesa 6 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": {
+      "url": "https://www.outdooractive.com/it/r/807440420",
+      "publisher": "Olang tourist board (Tourismusverein Olang) (Outdooractive, suedtirol.info)",
+      "name": "Valdaora di Sotto - Casola - Bagni di Pervalle",
+      "quote": "Distanza 4,9 km · Durata 1:37 h · Salita 318 m · Discesa 25 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "kronplatz-passeggiata-leggendaria-sul-kienberg": {
+      "url": "https://www.outdooractive.com/it/r/16570385",
+      "publisher": "Kiens tourist board (Tourismusverein Kiens) (Outdooractive, suedtirol.info)",
+      "name": "Passeggiata leggendaria sul Kienberg",
+      "quote": "Distanza 11,8 km · Durata 3:28 h · Salita 417 m · Discesa 417 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T18:00:00.000Z"
+    },
+    "eggental-dal-passo-costalunga-al-lago-di-carezza": {
+      "url": "https://www.outdooractive.com/it/r/810055748",
+      "publisher": "Eggental tourist board (Eggental Tourismus) (Outdooractive, suedtirol.info)",
+      "name": "Dal Passo Costalunga al Lago di Carezza",
+      "quote": "Distanza 4,4 km · Durata 1:05 h · Salita 18 m · Discesa 225 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": {
+      "url": "https://www.outdooractive.com/it/r/810054675",
+      "publisher": "Eggental tourist board (Eggental Tourismus) (Outdooractive, suedtirol.info)",
+      "name": "Escursione per famiglie dal Lago di Carezza alla malga Stadl Alm",
+      "quote": "Distanza 4,2 km · Durata 1:05 h · Salita 32 m · Discesa 83 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": {
+      "url": "https://www.outdooractive.com/it/r/810054454",
+      "publisher": "Ortisei tourist board (DOLOMITES Val Gardena) (Outdooractive, suedtirol.info)",
+      "name": "Escursione senza barriere all’Alpe di Siusi",
+      "quote": "Distanza 1,4 km · Durata 0:21 h · Salita 0 m · Discesa 138 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": {
+      "url": "https://www.outdooractive.com/it/r/810055751",
+      "publisher": "Tiers am Rosengarten tourist board (Seiser Alm Marketing) (Outdooractive, suedtirol.info)",
+      "name": "Dal Passo Nigra al Maso Jocher e attraverso la Forcella del Lupo a Tires",
+      "quote": "Distanza 13,7 km · Durata 4:08 h · Salita 431 m · Discesa 856 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": {
+      "url": "https://www.outdooractive.com/it/r/16570256",
+      "publisher": "Völs am Schlern tourist board (Seiser Alm Marketing) (Outdooractive, suedtirol.info)",
+      "name": "Escursione da Umes alla Malga Hofer e a Malga Tuff",
+      "quote": "Distanza 8,3 km · Durata 3:00 h · Salita 476 m · Discesa 476 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": {
+      "url": "https://www.outdooractive.com/it/r/62653103",
+      "publisher": "Kastelruth tourist board (Seiser Alm Marketing) (Outdooractive, suedtirol.info)",
+      "name": "Alla volta della trappola d’orso a S. Michele",
+      "quote": "Distanza 14 km · Durata 4:12 h · Salita 567 m · Discesa 567 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
     }
   }
 }

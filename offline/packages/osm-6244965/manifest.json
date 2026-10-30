@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-6244965",
   "name": "Steine erzählen",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:19.401Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:44:05.494Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1370206,
@@ -217,7 +217,7 @@
       "label": "Steine erzählen routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 360149,
-      "sha256": "65d41b65677172350ae771dd633990a1bf4663a2786574d75756d2390b8c724f"
+      "sha256": "56d72d7f461a4efa1a0e02ab9f34f46b6d5ddcbec8247c8500342523d4d4cf5b"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Steine erzählen safety information",
       "url": "safety.json",
       "bytes": 2051,
-      "sha256": "9722e697b1ad379935c4cb9ddb6c0f8f7a8beca80185200d2dd9254dee330764"
+      "sha256": "de162f76d64b327440b809698f562bb32645827ff78758444fe0128e3cb3ebd8"
     }
   ]
 }

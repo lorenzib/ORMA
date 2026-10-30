@@ -188,7 +188,8 @@ describe('review queue compaction', () => {
       blockingReasons:Array.from({ length:40 }, () => 'x'.repeat(300)),
       specialistOutputs:Array.from({ length:40 }, (unused, n) => ({ agentId:`a${n}`, jobId:`j${index}`,
         result:{ summary:'s', geometry:{ coordinates:coordinates(900) } } })) });
-    const fitted = fitReviewQueue({ items:Array.from({ length:20 }, (unused, index) => heavy(index)) });
+    // Enough of them to overflow QUEUE_BUDGET (2.7 MB since the queue was split).
+    const fitted = fitReviewQueue({ items:Array.from({ length:80 }, (unused, index) => heavy(index)) });
     expect(fitted.detailWithheldReason).toBe('queue-budget');
     // r0 opened first, so it is the first to give up its detail.
     expect(fitted.detailWithheldFor[0]).toBe('r0');

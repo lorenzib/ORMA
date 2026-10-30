@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "primiero-anello-di-valpiana",
   "name": "Anello di Valpiana",
-  "version": "2026.10.26-beta.1",
-  "generatedAt": "2026-10-26T20:20:19.850Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:00:07.237Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 374804,
@@ -217,7 +217,7 @@
       "label": "Anello di Valpiana routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 79924,
-      "sha256": "309d704c65ad96c73565a557d21d76e95df5c3fd83bf29ed8315d4e9f0d3457c"
+      "sha256": "fc0dafe04fc937f383f299331ff4a2d6f710088510f9fae94702dcdcd6b531dd"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Anello di Valpiana safety information",
       "url": "safety.json",
       "bytes": 1597,
-      "sha256": "76ab9ba55205cc3fe5def1436a5e24589bf7a2794feab8c22e6426ff22e79e4a"
+      "sha256": "969f43fdff723a71316f2cbb4b4ec4224c68ab7c36ee10cc85d5cd2e1c66eea2"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "primiero-la-guana-di-primiero",
   "name": "La Guana di Primiero",
-  "version": "2026.10.26-beta.1",
-  "generatedAt": "2026-10-26T18:07:20.079Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T13:57:33.685Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 836886,
@@ -217,7 +217,7 @@
       "label": "La Guana di Primiero routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 134417,
-      "sha256": "0d4c36322ad5ff5241b199d5959bc82c6de18b945405f970755fdd367013980e"
+      "sha256": "beb0c4daab04856375343bbefa7bae4622a66182af6f4c843875e2d41f2541c6"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "La Guana di Primiero safety information",
       "url": "safety.json",
       "bytes": 1871,
-      "sha256": "9ebe4303927290f57a027e4fa4bfe9c0c998c75a6a8bca2620a01c2a0e58f9c0"
+      "sha256": "1281caa98e0c563034a66aeef06695576039539e46a411902f05ea6e1f922609"
     }
   ]
 }

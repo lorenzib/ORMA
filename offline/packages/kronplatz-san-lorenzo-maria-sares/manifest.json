@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-san-lorenzo-maria-sares",
   "name": "San Lorenzo to Maria Sares",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T10:30:16.265Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:29:59.410Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1743504,
@@ -217,7 +217,7 @@
       "label": "San Lorenzo to Maria Sares routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 358757,
-      "sha256": "46d87f78c177a83c67fdb72508a72cde41a7d1980cb759252b13b0cdebae64d6"
+      "sha256": "471de5722bc7d367d1716aab4a230e316061427ca3a54e95e7bbbc2220efdbc3"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "San Lorenzo to Maria Sares safety information",
       "url": "safety.json",
       "bytes": 2505,
-      "sha256": "9e681627db616081374436908e8405b1506bd509f1d4bf58fabf35042329139b"
+      "sha256": "f9ccd1fe31776be2f4274da65f694138dd7329624e633236be1db709c261a0ac"
     }
   ]
 }

@@ -209,6 +209,17 @@
           "notes": "The loop starts and ends at the Rifugio Gilberti, at the top of the Canin cable car from Sella Nevea; its cabins are closed. Dogs ride on a lead and muzzled, one per cabin, with a ticket for medium and large dogs. The hut can also be reached on foot by path CAI 635."
         }
       }
+    },
+    {
+      "id": "seiseralm-escursione-senza-barriere-all-alpe-di-siusi",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Seiser Alm Mont Sëuc cable car (Ortisei – Alpe di Siusi)",
+          "notes": "The walk starts at the top station of the cable car from Ortisei; its cabins are closed. The walk comes back the same way to the station."
+        }
+      }
     }
   ]
 }

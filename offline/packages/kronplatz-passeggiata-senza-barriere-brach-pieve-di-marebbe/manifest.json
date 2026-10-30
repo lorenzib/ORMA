@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe",
   "name": "Brach to Pieve di Marebbe",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T10:28:19.425Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:27:45.612Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 247939,
@@ -217,7 +217,7 @@
       "label": "Brach to Pieve di Marebbe routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 32418,
-      "sha256": "f2c19478d4d6a685090ed7f1de985719c283e0c7bc10f9a8b830b7ca5230e843"
+      "sha256": "f75d27296212c35eb30d3b80731bf90118fd3cb05af3f56f88dc26f505129d94"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Brach to Pieve di Marebbe safety information",
       "url": "safety.json",
       "bytes": 1675,
-      "sha256": "d0bd73d4d341209b12d73acccda66006cc104a9924678ef4192a8abaf0cc85b2"
+      "sha256": "fa7051f967bd3f89331fb6f0360d5c4d7cb4bcc91de3f9b4e70b066f21760d2e"
     }
   ]
 }

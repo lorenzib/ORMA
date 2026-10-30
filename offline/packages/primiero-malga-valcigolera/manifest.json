@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "primiero-malga-valcigolera",
   "name": "San Martino di Castrozza - Malga Valcigolera",
-  "version": "2026.10.27-beta.1",
-  "generatedAt": "2026-10-27T10:45:55.547Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:04:59.578Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 710364,
@@ -217,7 +217,7 @@
       "label": "San Martino di Castrozza - Malga Valcigolera routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 171057,
-      "sha256": "a6f982c8ce2e3795af8047931f4fbca5ed2e4340fae9211407d15549368d53db"
+      "sha256": "99d4b79d3348b1bfcd1f8c5a9c96e1a540b2c68414aa1b646ad24824e2c80aaf"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "San Martino di Castrozza - Malga Valcigolera safety information",
       "url": "safety.json",
       "bytes": 1443,
-      "sha256": "660049841b7c7029ca0ca3e564dc01cad832ca1c406fffbeafe85ac24d689027"
+      "sha256": "c2d501f1cc8c86692fae94d4d8582e7b0e0e8eb651d7936c2d370b0c3dc94e66"
     }
   ]
 }

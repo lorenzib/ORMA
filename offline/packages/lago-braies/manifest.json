@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "lago-braies",
   "name": "Lago di Braies Seeweg circuit",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:44:38.172Z",
+  "version": "2026.10.30-beta.4",
+  "generatedAt": "2026-10-30T12:32:29.251Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 351215,
@@ -217,7 +217,7 @@
       "label": "Lago di Braies Seeweg circuit routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 33844,
-      "sha256": "697ea62658fe83600b3b9125020dd2b6715a5ee8556ed9b4b3393d2e3728360c"
+      "sha256": "5061cf8b0f743ed69b172ef6714bff6277f621177ce4c9437d6ac89f73aea1e7"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Lago di Braies Seeweg circuit safety information",
       "url": "safety.json",
       "bytes": 1137,
-      "sha256": "2ad007c17da8e137852f99bcd50f762bcf737340f9221bc5bb9ad7b03417c2ba"
+      "sha256": "19d988338141d479f7f69b33a0a2593c7780e082fcc52e22876f509c685e5723"
     }
   ]
 }

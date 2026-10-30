@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fiemme-cascatelle-di-ziano",
   "name": "Le Cascatelle di Ziano di Fiemme",
-  "version": "2026.10.26-beta.1",
-  "generatedAt": "2026-10-26T21:00:04.140Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T14:02:22.345Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 487411,
@@ -217,7 +217,7 @@
       "label": "Le Cascatelle di Ziano di Fiemme routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 41730,
-      "sha256": "e4603f97d0009387ccff083c5ef17694875d63724f3890a75a6b75170ac64c59"
+      "sha256": "712a2a2d27c805eea9b785ac2189ab77599aab769a7deb35a0d6d0f738dc6eaa"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Le Cascatelle di Ziano di Fiemme safety information",
       "url": "safety.json",
       "bytes": 1326,
-      "sha256": "16b6d330b1c2d4d8e37060aa594feaa3f50190c7d8fe1d062f5127b43cb699fb"
+      "sha256": "8f13efdf423093ff8735eb7e9c2417868bda9e96e4ac5c1a7b38d7978146a26e"
     }
   ]
 }

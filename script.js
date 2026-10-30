@@ -1832,24 +1832,29 @@ function initTrailMap(){
     trailMapInstance.addSource('trail-selected-route', {
       type:'geojson', data:{ type:'FeatureCollection', features:[] },
     });
-    // The chosen walk matches the detail page: a white casing and a
-    // translucent match-colour corridor under the route numbers, and the
+    // The chosen walk matches the detail page: thin white edges and a pale
+    // match-colour corridor under the contours and the dashed routes, and the
     // routes it follows numbered beside it (setSelectedTrailRoute).
     // The catalogue rails above remain subdued; the selected route is the
     // only corridor that should read as the walk the owner has chosen.
+    const corridorBeforeId = window.ORMAMapStyle.walkCorridorBeforeId(trailMapInstance);
     trailMapInstance.addLayer({
       id:'trail-selected-route-casing', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
-      paint:{ 'line-color':'#FFFFFF', 'line-width':['interpolate',['linear'],['zoom'],8,10,12,16,14,23,17,33], 'line-opacity':0.9 },
-    }, railsBeforeId);
+      paint:{
+        'line-color':'#FFFFFF', 'line-opacity':0.9,
+        'line-width':['interpolate',['linear'],['zoom'],8,1.5,12,2,14,2.5,17,3],
+        'line-gap-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26],
+      },
+    }, corridorBeforeId);
     trailMapInstance.addLayer({
       id:'trail-selected-route-line', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
       paint:{
-        'line-color':['coalesce',['get','routeColor'],'#4A7856'],
-        'line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26], 'line-opacity':0.55,
+        'line-color':['coalesce',['get','routeColorPale'],window.ORMAMapStyle.paleColour('#4A7856')],
+        'line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26], 'line-opacity':1,
       },
-    }, railsBeforeId);
+    }, corridorBeforeId);
     trailMapInstance.addLayer({
       id:'trail-selected-route-arrows', type:'symbol', source:'trail-selected-route',
       layout:{
@@ -2245,7 +2250,7 @@ function setSelectedTrailRoute(trail, options){
     type:'FeatureCollection',
     features:visible ? [{
       type:'Feature',
-      properties:{ id:trail.id, routeColor },
+      properties:{ id:trail.id, routeColor, routeColorPale:window.ORMAMapStyle.paleColour(routeColor) },
       geometry:{ type:'LineString', coordinates:route.map(([lat, lng]) => [lng, lat]) },
     }] : [],
   });
@@ -3594,15 +3599,14 @@ function liExposureLabel(exposure){
 // Row meta per the design TrailRow: "7.5 km · 150 m climb · 2–2.5 h · little shade"
 // Cautions follow the measured facts, gravest first.
 function liRowMeta(t){
-  const parts = [`${t.distance} km`];
-  if(Number.isFinite(t.elevation)) parts.push(`${t.elevation} m climb`);
-  if(t.hours) parts.push(`${t.hours} h`);
-  // A one-way walk's figures cover one direction; say so, with the walk back.
-  if(t.routeShape === 'point-to-point' && Number(t.distance) > 0){
-    const km = Math.round(Number(t.distance) * 20) / 10;
-    const tr = (key, fallback) => { const v = window.t ? window.t(key, { km }) : ''; return v && v !== key ? v : fallback; };
-    parts.push(`${tr('card.oneWay', 'One way')} (${tr('card.thereAndBack', `${km} km there and back`)})`);
-  }
+  // A one-way walk is shown, and scored, there and back (route-return.js).
+  const routeReturn = window.ORMARouteReturn;
+  const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
+  const back = shown !== t;
+  const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:shown.distance }) : ''; return v && v !== key ? v : fallback; };
+  const parts = [back ? tr('card.thereAndBack', `${shown.distance} km there and back`) : `${t.distance} km`];
+  if(Number.isFinite(shown.elevation)) parts.push(`${shown.elevation} m climb`);
+  if(shown.hours) parts.push(`${back ? '≈ ' : ''}${shown.hours} h`);
   const exposure = liExposureLabel(t.exposure);
   if(exposure) parts.push(exposure);
   const shade = liShadeLabel(t.shadeCoverage);

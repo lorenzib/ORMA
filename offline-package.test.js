@@ -22,6 +22,8 @@ describe('Lago di Carezza offline package', () => {
   test('declares the expected beta status and geographic bounds', () => {
     expect(manifest.schemaVersion).toBe(1);
     expect(manifest.trailId).toBe('lago-carezza');
+    // Withdrawn 29 October 2026 for want of directions, Verified again on 30
+    // October once the page printed the route audit's directions (beta.25).
     expect(manifest.verificationStatus).toBe('source-verified');
     expect(manifest.scoringVersion).toBe(scoring.VERSION);
     expect(manifest.elevationProfile).toMatchObject({

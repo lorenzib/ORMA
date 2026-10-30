@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12190657",
   "name": "Rundweg Langfenn",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:45:22.598Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:05:44.527Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 497527,
@@ -217,7 +217,7 @@
       "label": "Rundweg Langfenn routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 48148,
-      "sha256": "349479ea3f933bf2096a928ad0a65b37bd7925f665fed67e42b4213791eec00c"
+      "sha256": "930a3ba46c6830acb20c62ca056243ea9e8acd4d3ecc6d0a8c50ee61e4051f79"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Rundweg Langfenn safety information",
       "url": "safety.json",
       "bytes": 1170,
-      "sha256": "2f893e92aff7b000279cd6cce066cb5e3c49c7e0e695c3472b13ee0558982d67"
+      "sha256": "cfd9a7219a4ccd71fb091738fc4dc17d1ef1a4cee3ea1ff47556504c56d56662"
     }
   ]
 }

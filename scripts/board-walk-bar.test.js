@@ -83,13 +83,10 @@ describe('the directions check', () => {
   });
 });
 
-// Every Verified board walk clears the bar, except the ones that failed it
-// when it was introduced on 28 October 2026. 67 of those lost the seal the
-// same day (their line folds or runs over itself, or they had no directions).
-// The 27 that remained had a sound line whose shape the page named wrongly;
-// the 11 there-and-backs were relabelled on 29 October and the 16 loops on a
-// stem declared the same day, so the list is empty. Nothing is added to it: a new
-// walk that fails the bar is not published Verified.
+// Every Verified board walk clears the bar. When it was introduced on 28
+// October 2026, 67 walks lost the seal that day; on 29 October the owner
+// withdrew the other 148, because none showed directions on its page. Nothing
+// is waiting: a walk that fails the bar is not published Verified.
 const AWAITING_DECISION = [];
 
 describe('every Verified board walk clears the bar', () => {
@@ -105,6 +102,11 @@ describe('every Verified board walk clears the bar', () => {
   test('a walk awaiting a decision leaves the list once it passes or loses the seal', () => {
     const stillFailing = new Set(results.filter(result => !result.passes).map(result => result.id));
     expect(AWAITING_DECISION.filter(id => !stillFailing.has(id))).toEqual([]);
+  });
+
+  test('directions only in the research notes are not enough: the page must show them', () => {
+    const source = require('fs').readFileSync(require('path').join(__dirname, 'board-walk-bar.js'), 'utf8');
+    expect(source).toContain('passes: line.clean && directions.written && directions.shownOnPage');
   });
 
   test('Ortisei – Passo Sella, the walk this bar was set for, fails it on its spurs and is not Verified', () => {

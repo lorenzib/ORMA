@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-valdaora-di-sopra-goste",
   "name": "Valdaora di Sopra to the Alte Goste",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T10:28:48.414Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:28:22.938Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 474110,
@@ -217,7 +217,7 @@
       "label": "Valdaora di Sopra to the Alte Goste routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 59494,
-      "sha256": "f49c4db3768956cda1b8fadf47273723a65a74dea5814d2509fc6f2d7046f23c"
+      "sha256": "daf9515a1b60f9c77112ad36dd7df4e2443e4db66622c1df8159e94d7ad7ba59"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Valdaora di Sopra to the Alte Goste safety information",
       "url": "safety.json",
       "bytes": 2119,
-      "sha256": "3da7273a0c3ac6753c53f54f31962fbe104c2aa8c8209159f5dee26e0bac18cc"
+      "sha256": "5074d7e9ab57fc7fd99e5021d59a3d0d01b8c885f94599fd795afe4775004bb2"
     }
   ]
 }

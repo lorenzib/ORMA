@@ -55,15 +55,17 @@ describe('trail presentation audits', () => {
     // page has to say exactly that, and cite where it comes from.
     const trail = loadTrails().find((candidate) => candidate.id === 'osm-12731853');
     expect(trail.curated).toBe(true);
-    expect(trail.tier).toBe('route-audited');
-    expect(trail.graduation.status).toBe('verified');
-    expect(trail.graduation.completed).toEqual(trail.graduation.required);
+    // Its seal was withdrawn on 29 October 2026 because the page shows no
+    // directions; the access check it graduated on still stands.
+    expect(trail.tier).toBe('under-review');
+    expect(trail.graduation.completed).toContain('access');
+    expect(trail.graduation.blockers.routeNumbers).toMatch(/page shows no directions/);
     expect(trail.tips).toMatch(/marked path/);
     // Corrected 23 October 2026: the walk is in Brixen, whose ordinance sets
     // the lead rule and whose landscape plan bars free-running dogs in Laugen.
     expect(trail.dogNotes).toMatch(/Brixen/);
     expect(trail.verified.sources.some((source) => /Brixen/.test(source))).toBe(true);
-    expect(trail.graduation.blockers).toEqual({});
+    expect(Object.keys(trail.graduation.blockers)).toEqual(['routeNumbers']);
     expect(trail.verified.categories).toContain('access');
     expect(trail.verified.sources.some((source) => /Natz-Schabs/.test(source))).toBe(true);
     expect(trail.sourceLinks.some((link) => /newplan\.civis\.bz\.it/.test(link.url))).toBe(true);

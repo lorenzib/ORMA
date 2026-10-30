@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12737724",
   "name": "Historische Rundwanderung Teis",
-  "version": "2026.10.24-beta.2",
-  "generatedAt": "2026-10-24T17:59:38.089Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T13:33:56.437Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 978297,
@@ -217,7 +217,7 @@
       "label": "Historische Rundwanderung Teis routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 223911,
-      "sha256": "94c9afebe194261b3a0c04b411c0e3e2128048b205fc0bac0cad5e20b4b2f81f"
+      "sha256": "86752e31e4325321b818616418f53cacd257380e5f29b577a5ca1d784a9a46da"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Historische Rundwanderung Teis safety information",
       "url": "safety.json",
       "bytes": 1977,
-      "sha256": "5950c888f9eac794e811da7928fc55e8b3f48653aabb2b9f2af5caa3f29f74d9"
+      "sha256": "fbeab56ae6299285d8d099291ae1fa470111bb013fb774719232761b043b72b3"
     }
   ]
 }

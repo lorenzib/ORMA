@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-passeggiata-san-vigilio-le-dla-creda",
   "name": "San Vigilio to Lé dla Creda",
-  "version": "2026.10.29-beta.1",
-  "generatedAt": "2026-10-29T00:11:11.045Z",
+  "version": "2026.10.30-beta.1",
+  "generatedAt": "2026-10-30T12:25:28.650Z",
   "scoringVersion": "1.6.0",
   "verificationStatus": "source-verified",
   "packageBytes": 433340,
@@ -217,7 +217,7 @@
       "label": "San Vigilio to Lé dla Creda routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 106013,
-      "sha256": "3257adde65eba7fcca392e91af3c40227a767d03861db7aa805e5714669c0bfb"
+      "sha256": "e0ffdf1b14fa06b05e706610f4c270869a3e5f3c3a4208dbfc07adb0f33fd232"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "San Vigilio to Lé dla Creda safety information",
       "url": "safety.json",
       "bytes": 1851,
-      "sha256": "fd00de4138188837aa045a265acd8a2b20aa6dd315808e0f11e25d910bfd84b7"
+      "sha256": "778a3681784687008a12e28ec8e7f1b75d119ce12ab2b9c11c754c107d50cc70"
     }
   ]
 }

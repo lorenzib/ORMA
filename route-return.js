@@ -101,11 +101,13 @@
   }
 
   // The view the reader picked on this page. Not remembered between pages: a
-  // walk opens on the authority's own one-way figures.
-  let current=VIEWS.ONE_WAY;
+  // one-way walk opens there and back, the way most people walk it without a
+  // bus or lift home, and the reader can switch to the authority's one-way
+  // figures. Every list and card reads the same default (scoring.js).
+  let current=VIEWS.OUT_AND_BACK;
   function view(){return current;}
   function setView(next){
-    const value=next===VIEWS.OUT_AND_BACK?VIEWS.OUT_AND_BACK:VIEWS.ONE_WAY;
+    const value=next===VIEWS.ONE_WAY?VIEWS.ONE_WAY:VIEWS.OUT_AND_BACK;
     if(value===current)return;
     current=value;
     if(typeof window!=='undefined'&&typeof window.dispatchEvent==='function'&&typeof CustomEvent==='function'){
