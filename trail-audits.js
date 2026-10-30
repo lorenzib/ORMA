@@ -55008,8 +55008,7 @@
       desc: 'A loop from the Nassfeld pass along the Auernig ridge on the Austrian–Italian border, known for its 300-million-year-old marine fossils, towards the Garnitzenberg and the Gugga. The board lists 5.6 km and 441 m of ascent.'
     },
     'kronplatz-passeggiata-valdaora-monguelfo': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // Olang tourist board (Tourismusverein Olang)’s walk “Passeggiata Valdaora - Monguelfo”, drawn on 30 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried); Welsberg-Taisten (its 2008 dog regulation, amended 2015: lead ≤1.5 m, muzzle carried).
@@ -55021,8 +55020,31 @@
       hours: '1.5',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from Olang along the Pustertal cycle path, past the Olang reservoir, into the centre of Welsberg; come back the same way or by the Pustertal train or bus.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in Valdaora (Olang) on the Pustertal cycle path, the board’s start.",
+        "sequence": "Along the cycle path beside the Valdaora reservoir to Monguelfo (Welsberg).",
+        "switches": "None: the walk stays on the cycle path.",
+        "steps": [
+          {
+            "text": "From Valdaora follow the cycle path along the Valdaora reservoir (Olanger Stausee) to Monguelfo (Welsberg), about an hour and a half. Walkers and cyclists share it.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Passeggiata Valdaora - Monguelfo: route description",
+            "url": "https://www.outdooractive.com/it/r/810055571",
+            "authority": "Olang tourist board (Tourismusverein Olang), on Outdooractive",
+            "reviewedAt": "2026-10-30",
+            "tag": "tourist board"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55032,7 +55054,7 @@
         mapPoints: 'Start at the board’s start; drinking water at km 5.6 and at km 6 (OSM nodes 7850209428, 9006242959).',
         elevation: 'Official 6.1 km, 34 m up and 30 m down, 1:30 h, highest point 1,087 m, lowest 1,054 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55137,8 +55159,7 @@
       desc: 'A short themed loop above San Vigilio through pine forest and meadows, with boards telling the legends of the Kingdom of Fanes. The board lists 2.8 km and 60 m of ascent.'
     },
     'kronplatz-passeggiata-san-vigilio-le-dla-creda': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // San Vigilio Dolomites tourist board’s walk “Passeggiata: San Vigilio - Lé dla Creda”, drawn on 22 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Enneberg (no dog regulation found, national rule).
@@ -55150,8 +55171,49 @@
       hours: '1',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the main square of San Vigilio on the “Tres La Val” path past the Ciamaor beach, up beside the Rü de Rudo stream to the small lake Lé dla Creda at the edge of the Fanes-Sennes-Prags nature park; back partly on the road, partly on the path.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the main square of San Vigilio, the board’s start; the board also lets you start from the Aqua Bad Cortina hotel.",
+        "sequence": "From the main square towards Valiares, the “Tres La Val” path to the Ciamaor beach, then on beside the Rü de Rudo stream to a small bridge and Lé dla Creda.",
+        "switches": "After the Ciamaor beach keep to the “Tres La Val” signs, on the right-hand side of the Rü de Rudo.",
+        "steps": [
+          {
+            "text": "From the main square of San Vigilio, towards Valiares, follow the “Tres La Val” path to the small Ciamaor beach.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "After the Ciamaor beach keep following the “Tres La Val” signs along the right-hand side of the Rü de Rudo stream to the small bridge.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From the bridge it is about 10 minutes on foot to the lake, Lé dla Creda.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The board’s way back to San Vigilio is partly on the tarred road and partly on the path to the right.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Passeggiata: San Vigilio - Lé dla Creda: route description",
+            "url": "https://www.outdooractive.com/it/r/16570262",
+            "authority": "San Vigilio Dolomites tourist board, on Outdooractive",
+            "reviewedAt": "2026-10-30",
+            "tag": "tourist board"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55161,7 +55223,7 @@
         mapPoints: 'Start at the board’s start; drinking water at km 0.4, at km 1.8 and at km 3 (OSM nodes 2452257631, 7321474485, 2460531169).',
         elevation: 'Official 3.5 km, 86 m up and 17 m down, 0:58 h, highest point 1,272 m, lowest 1,202 m (San Vigilio Dolomites tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55200,8 +55262,7 @@
       desc: 'A gentle walk from the centre of San Vigilio up the wooded Rudo valley, past the Ciamaor beach, to the little lake Lé dla Creda. The board lists 3.5 km and 86 m of ascent, one way.'
     },
     'kronplatz-attraverso-il-sentiero-panoramico-a-brunico': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // Olang tourist board (Tourismusverein Olang)’s walk “Attraverso il Sentiero Panoramico a Brunico”, drawn on 38 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried); Rasen-Antholz (its 2010 dog regulation: lead ≤1.5 m, muzzle carried); Bruneck (its 2008 dog regulation, amended 2010: lead ≤1.5 m, muzzle carried).
@@ -55213,8 +55274,22 @@
       hours: '2.3',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the parish church of Niederolang on path 15 past the Riedler farms, through the Riedwald forest to Lamprechtsburg castle, then on path 14 down into Bruneck; back by the free Holidaypass bus or train.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the parish church of Valdaora di Sotto (Niederolang), the board’s start.",
+        "sequence": "Follow path 15 towards the Riedler farms and on through the Riedwald forest to Lamprechtsburg castle. From the castle carry on along path 14 to Brunico (Bruneck). The board suggests public transport for the way back to Valdaora.",
+        "switches": "One change: at Lamprechtsburg castle leave path 15 for path 14 into Brunico.",
+        "sources": [
+          {
+            "label": "Olang tourist board (Tourismusverein Olang), Attraverso il Sentiero Panoramico a Brunico (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055675",
+            "authority": "Olang tourist board (Tourismusverein Olang)",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55224,7 +55299,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 5.4, at km 5.9 and at km 6.9 (OSM nodes 3451774094, 7781001619, 11111274005, 7780549236).',
         elevation: 'Official 8.6 km, 45 m up and 231 m down, 2:20 h, highest point 1,043 m, lowest 835 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The board’s text says “about 200 m” of height difference: that is the drop to Bruneck; its figures are 45 m up and 231 m down. The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55271,8 +55346,7 @@
       desc: 'A gently descending walk from Niederolang along the slope above the Pustertal, through the Riedwald to Lamprechtsburg castle and into Bruneck. The board lists 8.6 km, 45 m up and 231 m down.'
     },
     'kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // San Vigilio Dolomites tourist board’s walk “Escursione da Antermoia attraverso Colac - Val a Rina”, drawn on 16 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Enneberg (no dog regulation found, national rule); San Martin de Tor (no dog regulation found, national rule).
@@ -55284,8 +55358,22 @@
       hours: '1.6',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the sports ground in Antermoia on path 20 up to the Colac farms, down the road to the Val farms, then on path 20A through the forest and over a wooden bridge to Rina; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start beside the sports ground in Antermoia, where path 20 begins.",
+        "sequence": "Path 20 climbs, sunny and with wide views, to the Colac farms. Follow the road down, keeping left, to the Val farms. Then path 20A, the Michael Plattner path, crosses the wood and a wooden bridge; from there go left on the road to Rina.",
+        "switches": "At the Colac farms take the road down, keeping left. At the Val farms take path 20A. After the wooden bridge turn left onto the road to Rina.",
+        "sources": [
+          {
+            "label": "San Vigilio Dolomites tourist board, Escursione da Antermoia attraverso Colac - Val a Rina (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055911",
+            "authority": "San Vigilio Dolomites tourist board",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55295,7 +55383,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 2804317886).',
         elevation: 'Official 5.5 km, 143 m up and 222 m down, 1:37 h, highest point 1,585 m, lowest 1,425 m (San Vigilio Dolomites tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55333,8 +55421,7 @@
       desc: 'A walk from Antermoia over the sunny farm slopes of Colac and Val and through the forest to Rina. The board lists 5.5 km, 143 m up and 222 m down.'
     },
     'kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
       // San Vigilio Dolomites tourist board’s walk “Passeggiata senza barriere: Brach - Pieve di Marebbe”, drawn on 4 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Enneberg (no dog regulation found, national rule).
@@ -55346,8 +55433,31 @@
       hours: '0.5',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the hamlet of Brach along a quiet tarred road into the village of Pieve di Marebbe (La Pli de Mareo); come back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the hamlet of Brach, the board’s start.",
+        "sequence": "From Brach along the quiet tarred road to the village of Pieve di Marebbe.",
+        "switches": "None: the walk stays on the one road.",
+        "steps": [
+          {
+            "text": "From the small hamlet of Brach follow the quiet tarred road to the village of Pieve di Marebbe (La Pli de Mareo).",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Passeggiata senza barriere: Brach - Pieve di Marebbe: route description",
+            "url": "https://www.outdooractive.com/it/r/800341743",
+            "authority": "San Vigilio Dolomites tourist board, on Outdooractive",
+            "reviewedAt": "2026-10-30",
+            "tag": "tourist board"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-29',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55357,7 +55467,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start and km 0.7 (OSM nodes 2971237933, 7321426386).',
         elevation: 'Official 0.9 km, 5 m up and 31 m down, 0:30 h, highest point 1,311 m, lowest 1,280 m (San Vigilio Dolomites tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55388,8 +55498,7 @@
       desc: 'A short, barrier-free walk on a quiet road from the hamlet of Brach into Pieve di Marebbe, with views over San Vigilio. The board lists 0.9 km, 5 m up and 31 m down.'
     },
     'kronplatz-valdaora-di-sopra-goste': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
       // Olang tourist board (Tourismusverein Olang)’s walk “Valdaora di Sopra - Goste”, drawn on 22 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Olang (its 2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried; no dogs in parks or playgrounds, which the line does not enter).
@@ -55401,8 +55510,22 @@
       hours: '0.8',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from Valdaora di Sopra (Oberolang) on path 21B, the Lottersteig, to the old Goste inn (Alte Goste) by the Olang reservoir; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in Valdaora di Sopra (Oberolang), the board’s start.",
+        "sequence": "Follow the Lottersteig, path 21B, from Valdaora di Sopra to the historic old Goste inn (alte Goste).",
+        "switches": "None: stay on path 21B, the Lottersteig, all the way to the old Goste.",
+        "sources": [
+          {
+            "label": "Olang tourist board (Tourismusverein Olang), Valdaora di Sopra - Goste (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/807440421",
+            "authority": "Olang tourist board (Tourismusverein Olang)",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-29',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55412,7 +55535,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 13073881258, 7740656285, 2206612489, 7740656585).',
         elevation: 'Official 2.5 km, 106 m up and 80 m down, 0:45 h, highest point 1,092 m, lowest 1,030 m (Olang tourist board (Tourismusverein Olang), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55443,8 +55566,7 @@
       desc: 'A short walk from Valdaora di Sopra on path 21B, the Lottersteig, across meadows and through forest to the old Goste inn by the Olang reservoir. The board lists 2.5 km, 106 m up and 80 m down.'
     },
     'kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
       // Bruneck Kronplatz Tourismus’s walk “Sentiero della roggia a Gais (Sentieri degli elementi)”, drawn on 27 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Gais (no dog regulation found, national rule).
@@ -55456,8 +55578,49 @@
       hours: '2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the parish church of Gais over the Ahr, up through the village to the forest, along the level irrigation channel path (Waalweg) and back down through meadows and fields.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the parish church of Gais, the board’s start; bus 450 from Brunico stops at Gais, Paese.",
+        "sequence": "From the church over the Ahr and between the houses to the forest, level along the channel path to the Bärentalhof, then right and back down through meadows and fields.",
+        "switches": "Over the Ahr bridge, north-east to the forest. At the end of the channel path, north of the Bärentalhof, turn right.",
+        "steps": [
+          {
+            "text": "From the parish church of Gais head towards Via Talfrieden and cross the bridge over the Ahr.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on between the houses, north-east, to the forest, where the channel path begins: about 20 minutes from the bridge.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The channel path runs level south across the steep wooded slopes and ends north of the Bärentalhof farm, where it meets a broad gravel track.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn right and take the path that drops gently between meadows and fields back to the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Sentiero della roggia a Gais (Sentieri degli elementi): directions to follow",
+            "url": "https://www.outdooractive.com/it/r/27623622",
+            "authority": "Bruneck Kronplatz Tourismus, on Outdooractive",
+            "reviewedAt": "2026-10-30",
+            "tag": "tourist board"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-29',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55467,7 +55630,7 @@
         mapPoints: 'Start at the board’s start; drinking water at km 0.1, km 0.3, km 1.4 and km 4.5 (OSM nodes 11030344676, 4579647896, 6724381693, 2615627002).',
         elevation: 'Official 5.3 km, 140 m up and 140 m down, 2:00 h, highest point 949 m, lowest 841 m (Bruneck Kronplatz Tourismus, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -55498,8 +55661,7 @@
       desc: 'A loop from Gais along an old irrigation channel through the forest and back across meadows and fields, with views of the mountains round the Tauferer valley. The board lists 5.3 km and 140 m of ascent.'
     },
     'kronplatz-san-lorenzo-maria-sares': {
-      // Seal withdrawn 29 October 2026 by the owner's decision: this walk's page shows no directions a walker can follow.
-      // The research below stands; the walk reads Reviewed until directions a walker can follow are written and shown.
+      // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 29 October 2026, verified on arrival (new-trail Kronplatz batch 2).
       // Bruneck Kronplatz Tourismus’s walk “San Lorenzo – Maria Sares”, drawn on 33 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: St. Lorenzen (its 2009 dog regulation: lead ≤1.5 m, muzzle carried).
@@ -55511,8 +55673,22 @@
       hours: '1',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the east car park of San Lorenzo di Sebato on paths 8A and 9, past St. Martin and up the Stations of the Cross to the pilgrimage church of Maria Sares (Maria Saalen); come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the east car park of San Lorenzo di Sebato (St. Lorenzen), the board’s start; buses 401 and 460 from Brunico stop at San Lorenzo, Stazione.",
+        "sequence": "Walk west to the main square and through the Marktl. At the pharmacy turn left onto waymark 8A towards San Martino (St. Martin). Near San Martino, north-east of Michelsburg castle (not open to the public), follow waymark 9 to the Way of the Cross, which leads up to the Maria Sares sanctuary. Come back the same way.",
+        "switches": "Left at the pharmacy onto 8A. Near San Martino onto 9 and the Way of the Cross. Back the way you came.",
+        "sources": [
+          {
+            "label": "Bruneck Kronplatz Tourismus, San Lorenzo – Maria Sares (Outdooractive, directions to follow)",
+            "url": "https://www.outdooractive.com/it/r/35857532",
+            "authority": "Bruneck Kronplatz Tourismus",
+            "reviewedAt": "2026-10-30"
+          }
+        ]
+      },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-29',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -55522,7 +55698,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start, km 0.5 and km 1 (OSM nodes 2038685178, 3109138118, 5295228221, 10066930057, 12082428214, 11078506163).',
         elevation: 'Official 4.9 km, 170 m up and 6 m down, 1:00 h, highest point 980 m, lowest 810 m (Bruneck Kronplatz Tourismus, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: only a one-line summary in the research notes, never printed on the trail page. Write turn-by-turn directions (start, path numbers or named turns, where to turn back) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
