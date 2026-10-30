@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff",
+  "generatedAt": "2026-10-29T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8.3,
+    "ascentM": 476,
+    "highestPointM": 1341,
+    "expectedDuration": "3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 68
+  },
+  "trailhead": {
+    "lat": 46.50283,
+    "lng": 11.51862,
+    "label": "The church of Umes, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.503093,
+      "lng": 11.518366,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.503521,
+      "lng": 11.521547,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5212446,
+      "lng": 11.5222271,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A steep climb on path 3 through the forest and a rocky path down to the Lago di Fiè: watch your dog’s footing.",
+    "Cows on the pastures around Malga Tuff in summer: keep your dog close.",
+    "Busy around the Lago di Fiè in summer; swimming is for people: keep your dog out of the bathing area.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-29"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-29",
+      "licence": "ODbL"
+    }
+  ]
+}

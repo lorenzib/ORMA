@@ -78,6 +78,10 @@
     'primiero-siror': "Siror",
     'primiero-tonadico': "Tonadico",
     'primiero-transacqua': "Transacqua",
+    'seiseralm-alla-volta-della-trappola-d-orso-a-s-michele': "Kastelruth bear-trap loop",
+    'seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del': "Passo Nigra to Tiers by the Jocher farm",
+    'seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff': "Umes, Hofer Alpl and Malga Tuff loop",
+    'seiseralm-escursione-senza-barriere-all-alpe-di-siusi': "Mont Sëuc to the Sporthotel Sonne",
     'tre-cime': "Tre Cime di Lavaredo classic circuit",
   };
   // </offline-package-registry>
