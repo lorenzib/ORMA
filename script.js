@@ -221,6 +221,9 @@ let activeValley = 'all';
 // Held in memory only: a reload returns to the stored typed area anyway, which
 // is the same answer by a different route.
 let liContextBeforeMapArea = null;
+// What "Show all trails" in the list header left: the area and the filters,
+// so its "Back to Alta Pusteria" puts both back. Memory only, like the above.
+let liContextBeforeShowAll = null;
 // When our own reframing (fitBounds) should be finished by. Movement before
 // then is ours, not the reader's, and must not be read as "look here instead".
 // A deadline rather than a one-shot flag: an eased fitBounds, and the resize
@@ -1050,6 +1053,8 @@ function liApplyMapViewport(view){
 function liSetLocationContext(context){
   const next = liValidLocationContext(context);
   if(!next) return;
+  // Choosing any real place by another door makes the way back stale.
+  if(!liIsAllTrailsContext(next)) liContextBeforeShowAll = null;
   liLocationContext = next;
   // A new area supersedes the old map framing and selection; the filters and
   // the date are about the dog and the day, so they stay.
@@ -1096,6 +1101,45 @@ function liResetLocationContext(){
   if(typeof window.CustomEvent === 'function'){
     window.dispatchEvent(new window.CustomEvent('dolopaws-home-location-context-changed', { detail:{ ready:true } }));
   }
+}
+
+// The list header's "Show all trails": out of the area, the map area and the
+// filters into the whole catalogue, still ranked for the dog. The area is
+// not remembered (the all-trails context is transient), so a reload still
+// opens on the reader's own area.
+function liShowAllTrails(){
+  const base = liLocationContext && liLocationContext.kind === 'map' ? liContextBeforeMapArea : liLocationContext;
+  // Already on all trails with only a filter or a pan to clear: keep the
+  // earlier way back rather than overwriting it with "all trails".
+  if(base && !liIsAllTrailsContext(base)){
+    liContextBeforeShowAll = { context:base, filters:{ ...liFilters }, savedOnly:showingSavedOnly };
+  }
+  liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false, duration: 'day', lifts: '' };
+  showingSavedOnly = false;
+  liSetLocationContext({ ...LI_ALL_TRAILS_CONTEXT });
+}
+
+function liBackFromAllTrails(){
+  const saved = liContextBeforeShowAll;
+  if(!saved) return;
+  liContextBeforeShowAll = null;
+  liFilters = { ...saved.filters };
+  showingSavedOnly = saved.savedOnly;
+  liSetLocationContext(saved.context);
+}
+
+// One button, three states: narrowed -> "Show all trails"; on all trails
+// with a place to return to -> "Back to <area>"; otherwise nothing to offer.
+function liSyncShowAllButton(){
+  const button = document.getElementById('liShowAllTrails');
+  if(!button) return;
+  const narrowed = !liIsAllTrailsContext(liLocationContext) || liActiveFilterCount() > 0 || !!liQuery.trim();
+  const back = !narrowed && liContextBeforeShowAll;
+  button.hidden = !narrowed && !back;
+  button.dataset.mode = back ? 'back' : 'all';
+  button.textContent = back
+    ? `Back to ${liDisplayLocationLabel(back.context.label) || 'your area'}`
+    : 'Show all trails';
 }
 
 liApplyLocationGeography();
@@ -3253,6 +3297,12 @@ function initLoggedInShell(){
       liSetLocationContext(liRegionContext(button.dataset.liRegion));
     });
   });
+  const showAllButton = document.getElementById('liShowAllTrails');
+  if(showAllButton) showAllButton.addEventListener('click', () => {
+    liCloseMenus();
+    if(showAllButton.dataset.mode === 'back') liBackFromAllTrails();
+    else liShowAllTrails();
+  });
   const nudgeButton = document.getElementById('liLocationNudgeBtn');
   if(nudgeButton) nudgeButton.addEventListener('click', liRequestCurrentLocation);
   const nudgeDismiss = document.getElementById('liLocationNudgeDismiss');
@@ -3776,6 +3826,16 @@ function liNewForMeaning(profile){
   return `It now scores ${NEW_MATCH_THRESHOLD}% or more for ${liPersonalisationText(liScoredSubject(profile))}, and it did not at your last visit.`;
 }
 
+// "Why it fits Teo" above a card whose verdict says no contradicts it.
+// Such a card asks why not, and lists what was fine as a plain fact.
+function liIsNotRecommended(trail){
+  return Boolean(trail && trail.recommendation && trail.recommendation.category === 'not-recommended');
+}
+
+function liWhyLabel(trail, dogName){
+  return liIsNotRecommended(trail) ? `Why not for ${dogName}` : `Why it fits ${dogName}`;
+}
+
 function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   const recommendation = trail && trail.recommendation;
   const view = liRecommendationView(trail, profile);
@@ -3817,7 +3877,7 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
     bullets.length ? `<ul>${items(bullets)}</ul>` : '',
   ].join('');
   const fit = fitBody
-    ? `<div><b>Why it fits ${liPersonalisationText(dogName)}</b>${fitBody}</div>`
+    ? `<div><b>${liIsNotRecommended(trail) ? 'Not the problem here' : `Why it fits ${liPersonalisationText(dogName)}`}</b>${fitBody}</div>`
     : '';
   // Cautions first (hard stops already lead them), then what is simply not
   // known, which is a different kind of statement and belongs after. Only
@@ -3858,7 +3918,7 @@ function liWhyPanelId(trailId){ return `li-why-${encodeURIComponent(trailId)}`; 
 function liWhyToggleHtml(trail, profile, open){
   const dogName = liScoredSubject(profile);
   return `<button type="button" class="li-bar-act li-why-toggle" data-why-toggle aria-expanded="${open}" aria-controls="${liWhyPanelId(trail.id)}">` +
-    `<span class="li-why-label">${open ? 'Hide the reasons' : `Why it fits ${liPersonalisationText(dogName)}`}</span>` +
+    `<span class="li-why-label">${open ? 'Hide the reasons' : liPersonalisationText(liWhyLabel(trail, dogName))}</span>` +
     `<span class="li-why-caret" aria-hidden="true">▾</span></button>`;
 }
 
@@ -3962,6 +4022,7 @@ async function renderReturningHomepage(profile, options = {}){
   if(titleEl) titleEl.textContent = `${n} ${showingSavedOnly ? 'saved ' : ''}${n === 1 ? 'trail' : 'trails'}`;
   const countEl = document.getElementById('companionListCount');
   if(countEl) countEl.textContent = LI_SORT_ORDER_WORDS[sortKey] || LI_SORT_ORDER_WORDS.match;
+  liSyncShowAllButton();
 
   renderLiConditionsCard(profile, displayList);
 
@@ -4077,8 +4138,10 @@ async function renderReturningHomepage(profile, options = {}){
       if(label){
         const row = toggle.closest('.li-row');
         const trail = trails.find(item => row && item.id === row.dataset.id);
-        const dogName = liScoredSubject(currentProfileForAdjust);
-        label.textContent = open ? 'Hide the reasons' : `Why it fits ${dogName}`;
+        // The scored copy carries the verdict the label has to match.
+        const scored = pageList.find(item => row && item.id === row.dataset.id) || trail;
+        const dogName = liScoredSubject(profile || currentProfileForAdjust);
+        label.textContent = open ? 'Hide the reasons' : liWhyLabel(scored, dogName);
         if(open) warmTrailDetail(trail);
       }
     });

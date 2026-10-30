@@ -115,6 +115,26 @@ describe('comparison presentation model', () => {
       .toBe('The terrain, the 7.5 km distance and the 150 m climb.');
   });
 
+  test('a Not recommended trail never lists what fits', () => {
+    // The verdict says no; a list of what was fine beside it reads as yes.
+    const result = model.build(baseTrail, {
+      normalizeTrail:value => value,
+      dogName:'Eddie',
+      recommendation:{
+        ...recommendation,
+        category:'not-recommended', score:49,
+        hardStops:[], cautions:[], unknowns:[],
+        factors:[
+          { code:'trail.terrain.within-tolerance', message:'The terrain suits Eddie.', impact:0 },
+        ],
+        positiveReasons:[
+          { code:'trail.terrain.within-tolerance', message:'The terrain suits Eddie.' },
+        ],
+      },
+    });
+    expect(result.cells.reasons.text || '').not.toContain('The terrain');
+  });
+
   test('a missing profile field is not counted against the trail', () => {
     // Every column would carry the same "add Eddie's weight", which says
     // nothing about the trails being compared.
