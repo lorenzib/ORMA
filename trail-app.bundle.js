@@ -2371,13 +2371,25 @@
       return prompt;
     }
 
+    // The account's selected dog and how many it has, or null when the
+    // account could not be read.
+    async function accountDogs(){
+      let dogState = null;
+      try { dogState = await win.DoloPawsAuth.getDogProfiles(); } catch(error){}
+      if(!dogState || dogState.loadError || !Array.isArray(dogState.dogs)) return null;
+      const existing = dogState.dogs.find(dog => dog.id === dogState.activeDogId) || dogState.dogs[0] || null;
+      return { existing, count:dogState.dogs.length };
+    }
+
     async function showMigration(user){
       if(!user || !win.DoloPawsAuth) return;
       const record = load(storage);
       if(!(record && record.dogDraft)) return;
-      let existing = null;
-      try { existing = await win.DoloPawsAuth.getDogProfile(); } catch(error){}
-      const state = migrationState(load(storage), existing);
+      // A read that failed is not an account with no dogs. Offering to save
+      // then would let the guest dog land over the account's selected dog.
+      const account = await accountDogs();
+      if(!account) return;
+      const state = migrationState(load(storage), account.existing);
       if(state.kind === 'none') return;
       const prompt = promptElement();
       const title = prompt.querySelector('#guestMigrationTitle');
@@ -2413,8 +2425,14 @@
       if(migrate) migrate.addEventListener('click', async () => {
         migrate.disabled = true;
         status.textContent = 'Checking your account…';
-        const latest = await win.DoloPawsAuth.getDogProfile();
-        if(latest && (latest.name || latest.breed || latest.photo)){
+        const latestAccount = await accountDogs();
+        if(!latestAccount){
+          status.textContent = 'Your account could not be checked. Your device draft is unchanged.';
+          migrate.disabled = false;
+          return;
+        }
+        const latest = latestAccount.existing;
+        if(latestAccount.count || latest && (latest.name || latest.breed || latest.photo)){
           status.textContent = 'An account profile now exists, so the device draft was not copied.';
           migrate.remove();
           return;
@@ -2707,6 +2725,10 @@
     if(!(pending && pending.name && window.DoloPawsAuth)) return true;
     const state = typeof window.DoloPawsAuth.getDogProfiles === 'function'
       ? await window.DoloPawsAuth.getDogProfiles() : null;
+    // Could not read the account: it may well have dogs. Writing now could
+    // land the guest's dog over the selected one, so keep it on the device;
+    // the account page retries the handoff once the read works.
+    if(state && state.loadError) return false;
     const dogs = state && Array.isArray(state.dogs) ? state.dogs : [];
     // A completed write followed by a retried handoff must not duplicate the
     // same dog. Nothing to decide here: it is the same dog, described the same.
@@ -2752,7 +2774,14 @@
     }
     closeModal();
     const target = safeReturnTarget(activeReturnTarget);
-    if(target) window.location.replace(target);
+    if(!target) return;
+    // Wait (briefly) for the account's dogs and saved count to be cached
+    // before leaving. The next page paints its header from that cache, and
+    // navigating first used to cancel the read, so it showed no dogs.
+    if(window.DoloPawsAuth && typeof window.DoloPawsAuth.profileSummaryReady === 'function'){
+      try { await window.DoloPawsAuth.profileSummaryReady(); } catch(err){}
+    }
+    window.location.replace(target);
   }
 
   function openModal(){
@@ -5193,7 +5222,7 @@ function breedInsights(name){
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
-  const VERSION = '1.6.0';
+  const VERSION = '1.7.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -5272,6 +5301,44 @@ function breedInsights(name){
     'route', 'exposure', 'surfaceHazards', 'access',
   ]);
 
+  // A route's sun exposure is a risk only on a warm day. "Little shade" and
+  // "hot tarmac" describe a July afternoon; at 11 °C in October they describe
+  // nothing a dog will feel. The forecast for the walk day decides: when it
+  // stays below the trail page's own "warm" line (22 °C) all day, the route's
+  // heat and shade cost nothing. With no forecast, or one without a day
+  // maximum, nothing is assumed and the route keeps its summer reading.
+  const COOL_DAY_MAX_C = 22;
+  // Cold is a note, never a cost: ORMA knows the temperature and the dog's
+  // weight, but not its coat or whether the day is wet, so it can say what to
+  // carry and cannot size a risk.
+  const COLD_DAY_MAX_C = 5;
+  const SMALL_DOG_KG = 5;
+
+  function dayMaxOf(conditions){
+    return conditions && conditions.status === 'known' && typeof conditions.dayMaxC === 'number'
+      && Number.isFinite(conditions.dayMaxC) ? conditions.dayMaxC : null;
+  }
+
+  function isCoolDay(conditions){
+    const max = dayMaxOf(conditions);
+    return max !== null && max < COOL_DAY_MAX_C
+      && conditions.heatRisk === 'low' && !conditions.hotFromLabel;
+  }
+
+  function isColdDay(conditions){
+    const max = dayMaxOf(conditions);
+    return max !== null && max <= COLD_DAY_MAX_C;
+  }
+
+  // A recorded caution that is only about heat: "Hot tarmac (about 80%
+  // paved)", "Little shade on hot days". One that also names rain, snow or
+  // storms stays, because that half of it is still true on a cool day.
+  // `\bhot\b` does not match "Hotel" or "hottest".
+  function isHeatOnlyHazard(text){
+    text = String(text || '');
+    return /\b(?:hot|heats? up|sunny)\b/i.test(text) && !/weather|rain|snow|storm/i.test(text);
+  }
+
   function item(code, message, vars, messageKey){
     return { code, message, vars:vars || null, messageKey:messageKey || code, impact:0 };
   }
@@ -5336,7 +5403,7 @@ function breedInsights(name){
     const orthopedic = conditions.has('joints') || conditions.has('back')
       || conditions.has('recovering') || traits.backRisk === true;
     const giant = traits.giant === true || (weight !== null && weight >= 45);
-    const toy = weight !== null && weight < 5;
+    const toy = weight !== null && weight < SMALL_DOG_KG;
     const behaviour = deriveBehaviour(dog);
     // A declared low heat tolerance adds sensitivity. A declared robust
     // tolerance deliberately removes nothing: heat injury is fast and
@@ -5393,6 +5460,7 @@ function breedInsights(name){
       chairliftDeclared,
       chairliftSafe,
       impairedVision: conditions.has('vision'),
+      small: toy,
       behaviour,
       // Confidence measures evidence quality, not behavioural detail, so
       // behaviour deliberately does not enter completeness. Adding it would
@@ -5522,7 +5590,12 @@ function breedInsights(name){
       positives.push(item('trail.exposure.none-known', 'No exposed section is recorded.'));
     }
 
-    if(suitability.heatRisk === 'high'){
+    // On a cool walk day the route's heat and shade are not charged and not
+    // praised: today's temperatures already appear as the reason they are fine.
+    const coolDay = isCoolDay(conditions);
+    if(coolDay){
+      // nothing: see isCoolDay
+    }else if(suitability.heatRisk === 'high'){
       penalise(dog.heatSensitive ? 25 : 12, item('trail.heat.high', dog.heatSensitive
         ? 'The route has high heat risk and this dog is heat-sensitive.'
         : 'The route has high baseline heat risk.', null,
@@ -5539,7 +5612,9 @@ function breedInsights(name){
     }
 
     const shade = numberOrNull(suitability.shadePercent);
-    if(shade === null){
+    if(coolDay){
+      // nothing: see isCoolDay
+    }else if(shade === null){
       unknowns.push(item('trail.shade.unknown', 'Shade coverage is unknown.'));
     }else if(shade < 20){
       penalise(10, item('trail.shade.very-low', 'The route has very little shade.'));
@@ -5549,8 +5624,11 @@ function breedInsights(name){
       positives.push(item('trail.shade.good', 'The route has substantial shade.'));
     }
 
-    const hazards = Array.isArray(suitability.surfaceHazards)
+    const recordedHazards = Array.isArray(suitability.surfaceHazards)
       ? suitability.surfaceHazards : null;
+    const hazards = recordedHazards && coolDay
+      ? recordedHazards.filter(hazard => !isHeatOnlyHazard(hazard))
+      : recordedHazards;
     if(hazards === null){
       unknowns.push(item('trail.surface-hazards.unknown', 'Surface hazards are unknown.'));
     }else if(hazards.length){
@@ -5874,6 +5952,11 @@ function breedInsights(name){
       }else{
         unknowns.push(item('conditions.heat.unknown', 'Current heat conditions are unavailable.'));
       }
+      if(isColdDay(conditions) && dog.small){
+        cautions.push(item('conditions.cold.small',
+          `The forecast stays cold (up to ${conditions.dayMaxC} °C). A small dog chills fast at rests, so bring a coat.`,
+          { max:conditions.dayMaxC }));
+      }
     }else{
       unknowns.push(item('conditions.not-included',
         'Current weather and trail conditions are not included in this recommendation.'));
@@ -5984,6 +6067,11 @@ function breedInsights(name){
   return {
     VERSION,
     FITNESS,
+    COOL_DAY_MAX_C,
+    COLD_DAY_MAX_C,
+    isCoolDay,
+    isColdDay,
+    isHeatOnlyHazard,
     CHAIRLIFT_MAX_KG,
     calculateRecommendation,
   };
@@ -6817,8 +6905,47 @@ function effectiveOverrides(profile, adjustOverride){
       : { ok: false, title: 'Water', detail: 'No water source is listed for this route. Carry enough for the dog, roughly 0.5 l per 10 kg on a warm day.' };
   }
 
-  function heatAssessment(trail) {
+  // The walk-day forecast, read by the same rule the score uses, so this
+  // section and the score cannot disagree about whether today is warm. No
+  // forecast (or no engine) means nothing is assumed: the summer reading stays.
+  const engine = () => root.DoloPawsRecommendationV1 || null;
+  const coolDay = conditions => !!(engine() && engine().isCoolDay(conditions));
+  const coldDay = conditions => !!(engine() && engine().isColdDay(conditions));
+  const heatOnly = hazard => !!(engine() && engine().isHeatOnlyHazard(hazard));
+
+  // Recorded cautions arrive as one list. Cars and bikes are not something a
+  // dog walks on, so they are told apart from what is underfoot, and a caution
+  // that is only about heat ("Hot tarmac") belongs with heat.
+  const TRAFFIC_HAZARD = /\b(?:roads?|crossings?|traffic|cars?|vehicles?|cycl\w*|bikes?|streets?|zebra|SS\d+|SP\d+|km\/h)\b/i;
+  function recordedHazards(trail) {
+    const all = (Array.isArray(trail && trail.surfaceHazards) ? trail.surfaceHazards : [])
+      .map(hazard => String(hazard || '').trim().replace(/[.;]+$/, ''))
+      .filter(Boolean);
+    const heat = all.filter(heatOnly);
+    const rest = all.filter(hazard => !heat.includes(hazard));
+    return {
+      heat,
+      traffic: rest.filter(hazard => TRAFFIC_HAZARD.test(hazard)),
+      underfoot: rest.filter(hazard => !TRAFFIC_HAZARD.test(hazard)),
+    };
+  }
+
+  function heatAssessment(trail, conditions) {
     const shade = typeof trail.shadeCoverage === 'number' ? trail.shadeCoverage : null;
+    // A cool day makes the route's sun exposure irrelevant; a cold one turns
+    // the advice the other way.
+    if (coldDay(conditions)) {
+      return { ok: false, title: 'Cold day', guide: null, detail: `The forecast stays cold, up to ${conditions.dayMaxC} °C. Keep rests short, dry your dog after wet stretches, and bring a coat for a small or short-coated dog.` };
+    }
+    if (coolDay(conditions)) {
+      return { ok: true, title: 'Heat & shade', detail: `The forecast stays cool, up to ${conditions.dayMaxC} °C, so sun and shade do not matter for this walk.` };
+    }
+    const hot = recordedHazards(trail).heat;
+    const withHot = result => (result && hot.length && !result.ok ? { ...result, items: hot } : result);
+    return withHot(summerHeat(trail, shade));
+  }
+
+  function summerHeat(trail, shade) {
     if (!categoryVerified(trail, 'heat')) {
       return { ok: false, title: 'Plan for limited shade', detail: 'Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.' };
     }
@@ -6855,12 +6982,23 @@ function effectiveOverrides(profile, adjustOverride){
     return null;
   }
 
+  // What is underfoot, said first, then each recorded caution as its own item.
+  // Pad advice fits the ground: rough ground cuts pads, smooth ground does not.
   function surfaceAssessment(trail) {
-    if (Number(trail.terrainRank) === 0 && !(trail.surfaceHazards || []).length) return null;
-    const hazards = Array.isArray(trail.surfaceHazards) && trail.surfaceHazards.length
-      ? ` Reported hazards: ${trail.surfaceHazards.join('; ')}.`
-      : '';
-    return { ok: false, title: 'Surface & footing', detail: `${trail.terrainType || 'Variable mountain terrain'}.${hazards} Check pads at breaks and consider booties for tender paws.` };
+    const underfoot = recordedHazards(trail).underfoot;
+    if (Number(trail.terrainRank) === 0 && !underfoot.length) return null;
+    const ground = String(trail.terrainType || 'Variable mountain terrain').trim().replace(/[.;]+$/, '').replace(/:\s+/, ', ');
+    const rough = Number(trail.terrainRank) > 0 || /rock|scree|stony|stones|boulder|roots/i.test(ground);
+    const detail = `Underfoot: ${ground.charAt(0).toLowerCase()}${ground.slice(1)}.`
+      + (rough ? ' Check pads at breaks.' : '');
+    return { ok: false, title: 'Surface & footing', detail, items: underfoot };
+  }
+
+  // Roads, crossings and bikes: a lead question, not a paw question.
+  function trafficAssessment(trail) {
+    const traffic = recordedHazards(trail).traffic;
+    if (!traffic.length) return null;
+    return { ok: false, title: 'Roads & traffic', detail: 'Keep your dog on a short lead in these places:', items: traffic };
   }
 
   function assessmentNote(trail) {
@@ -6888,6 +7026,7 @@ function effectiveOverrides(profile, adjustOverride){
     exposureAssessment,
     livestockAssessment,
     surfaceAssessment,
+    trafficAssessment,
     assessmentNote,
   });
 })(window);
@@ -68966,6 +69105,26 @@ function initDetailPois(map, trail){
     return null;
   }
 
+  // The warmest the rest of the day gets, the current reading included. A cool
+  // morning is not a cool day: 11 °C at eight can still be 26 °C by two.
+  function dayMax(input,temp){
+    const times=Array.isArray(input&&input.hourlyTimes)?input.hourlyTimes:[];
+    const temps=Array.isArray(input&&input.hourlyTemps)?input.hourlyTemps:[];
+    const today=dayKey(input&&input.currentTime);
+    const nowMinute=minuteOfDay(input&&input.currentTime);
+    let max=temp;
+    if(!today||nowMinute===null||times.length!==temps.length)return Math.round(max);
+    for(let index=0;index<times.length;index+=1){
+      if(dayKey(times[index])!==today)continue;
+      const minute=minuteOfDay(times[index]);
+      const value=Number(temps[index]);
+      // The current hour counts: a reading at 14:00 still describes 14:20.
+      if(minute===null||!Number.isFinite(value)||minute+60<=nowMinute)continue;
+      if(value>max)max=value;
+    }
+    return Math.round(max);
+  }
+
   // Today's heat, in the vocabulary the recommendation engine reads.
   function currentConditions(input){
     const temp=Number(input&&input.temperatureC);
@@ -68975,6 +69134,10 @@ function initDetailPois(map, trail){
     return {
       status:'known',
       heatRisk,
+      temperatureC:Math.round(temp),
+      // What decides whether a route's sun exposure matters on this day. The
+      // engine reads a route's own heat and shade only when this is warm.
+      dayMaxC:dayMax(input,temp),
       // Only present when the forecast actually crosses the threshold later
       // today. Absent means the engine says nothing about an hour.
       hotFromLabel:onset&&heatRisk!=='high'?onset.label:null,
@@ -73797,19 +73960,31 @@ if(document.querySelector('.td2')){
     }
   })();
 
-  /* ---- Dog safety tab: Good/Caution rows from real trail fields ---- */
+  /* ---- Dog safety tab: Good/Caution rows from real trail fields ----
+     Painted once from the route, then again when the forecast lands: heat
+     and hot ground only matter on a warm day, so the rows follow the weather. */
   (function safetyRows() {
     const box = $('dogSafetyRows');
     if (!box) return;
+    const paint = () => paintSafetyRows(box, window.DoloPawsWeatherWindow
+      ? window.DoloPawsWeatherWindow.scoringConditions(window.DoloPawsCurrentConditions)
+      : null);
+    paint();
+    window.addEventListener('dolopaws-conditions-ready', paint);
+  })();
+
+  function paintSafetyRows(box, conditions) {
     const text = `${t.tips || ''} ${t.desc || ''} ${(t.surfaceHazards || []).join(' ')}`.toLowerCase();
     const hasWater = Array.isArray(t.waterSources) && t.waterSources.length > 0;
     const shade = typeof t.shadeCoverage === 'number' ? t.shadeCoverage : null;
     const maxAlt = Math.max(0, ...(t.elevationProfile || []).map(p => Number(p.elev) || 0));
     const rows = [];
-    const caution = (title, sub, guideId) => rows.push({ title, sub, guideId });
+    const caution = (title, sub, guideId, items) => rows.push({ title, sub, guideId, items: items || [] });
+    // An assessment may name its own guide, or none (`guide: null`) when no
+    // guide fits, such as cold advice on a page whose guide is about heat.
     const addAssessment = (item, guideId) => {
       if (!item || item.ok) return;
-      caution(item.title, item.detail, guideId);
+      caution(item.title, item.detail, item.guide === undefined ? guideId : item.guide, item.items);
     };
 
     addAssessment(trust ? trust.exposureAssessment(t) : (t.exposure
@@ -73819,7 +73994,8 @@ if(document.querySelector('.td2')){
     addAssessment(trust ? trust.surfaceAssessment(t) : (Number(t.terrainRank) !== 0
       ? { ok: false, title: 'Surface hazards', detail: (t.terrainType || 'Gravel and mixed rock') + '. Check pads at breaks; consider booties for tender paws.' }
       : null), 'paws');
-    addAssessment(trust ? trust.heatAssessment(t) : null, 'heat');
+    addAssessment(trust ? trust.trafficAssessment(t) : null, null);
+    addAssessment(trust ? trust.heatAssessment(t, conditions) : null, 'heat');
     addAssessment(trust ? trust.waterAssessment(t) : (hasWater
       ? { ok: true, title: 'Water', detail: 'A water source is mapped on this route. Bring a bowl.' }
       : { ok: false, title: 'Water', detail: 'No water source is mapped. Carry enough for the dog.' }), 'water');
@@ -73832,10 +74008,14 @@ if(document.querySelector('.td2')){
     const rowMarkup = r => `
       <div class="safety-row is-caution"${r.guideId ? ` data-guide-id="${esc(r.guideId)}"` : ''}>
         <span class="pill">Caution</span>
-        <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small></span>
+        <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small>${r.items.length
+          ? `<ul class="safety-row-items">${r.items.map(entry => `<li>${esc(entry)}</li>`).join('')}</ul>`
+          : ''}</span>
       </div>`;
     box.innerHTML = rows.map(rowMarkup).join('');
-  })();
+    // A repaint drops the guide links trail-recommendation.js added; it adds
+    // them again on the same event, and only to rows that lack one.
+  }
 
   /* ---- Getting there + getting around, keep travel to the trailhead
      separate from the numbered waymarks used once the walk begins. ----- */
@@ -74877,8 +75057,8 @@ if(document.querySelector('.td2')){
     paws:Object.freeze({
       id:'paws',
       href:'guides/paw-protection.html',
-      label:'Protecting paw pads on rocky terrain',
-      summary:'Prepare for rough surfaces and recognise pad damage.',
+      label:'Looking after paw pads',
+      summary:'Rough ground, hot tarmac and how to spot pad damage.',
     }),
     exposure:Object.freeze({
       id:'exposure',
