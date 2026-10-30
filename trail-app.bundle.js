@@ -2371,13 +2371,25 @@
       return prompt;
     }
 
+    // The account's selected dog and how many it has, or null when the
+    // account could not be read.
+    async function accountDogs(){
+      let dogState = null;
+      try { dogState = await win.DoloPawsAuth.getDogProfiles(); } catch(error){}
+      if(!dogState || dogState.loadError || !Array.isArray(dogState.dogs)) return null;
+      const existing = dogState.dogs.find(dog => dog.id === dogState.activeDogId) || dogState.dogs[0] || null;
+      return { existing, count:dogState.dogs.length };
+    }
+
     async function showMigration(user){
       if(!user || !win.DoloPawsAuth) return;
       const record = load(storage);
       if(!(record && record.dogDraft)) return;
-      let existing = null;
-      try { existing = await win.DoloPawsAuth.getDogProfile(); } catch(error){}
-      const state = migrationState(load(storage), existing);
+      // A read that failed is not an account with no dogs. Offering to save
+      // then would let the guest dog land over the account's selected dog.
+      const account = await accountDogs();
+      if(!account) return;
+      const state = migrationState(load(storage), account.existing);
       if(state.kind === 'none') return;
       const prompt = promptElement();
       const title = prompt.querySelector('#guestMigrationTitle');
@@ -2413,8 +2425,14 @@
       if(migrate) migrate.addEventListener('click', async () => {
         migrate.disabled = true;
         status.textContent = 'Checking your account…';
-        const latest = await win.DoloPawsAuth.getDogProfile();
-        if(latest && (latest.name || latest.breed || latest.photo)){
+        const latestAccount = await accountDogs();
+        if(!latestAccount){
+          status.textContent = 'Your account could not be checked. Your device draft is unchanged.';
+          migrate.disabled = false;
+          return;
+        }
+        const latest = latestAccount.existing;
+        if(latestAccount.count || latest && (latest.name || latest.breed || latest.photo)){
           status.textContent = 'An account profile now exists, so the device draft was not copied.';
           migrate.remove();
           return;
@@ -2707,6 +2725,10 @@
     if(!(pending && pending.name && window.DoloPawsAuth)) return true;
     const state = typeof window.DoloPawsAuth.getDogProfiles === 'function'
       ? await window.DoloPawsAuth.getDogProfiles() : null;
+    // Could not read the account: it may well have dogs. Writing now could
+    // land the guest's dog over the selected one, so keep it on the device;
+    // the account page retries the handoff once the read works.
+    if(state && state.loadError) return false;
     const dogs = state && Array.isArray(state.dogs) ? state.dogs : [];
     // A completed write followed by a retried handoff must not duplicate the
     // same dog. Nothing to decide here: it is the same dog, described the same.
@@ -2752,7 +2774,14 @@
     }
     closeModal();
     const target = safeReturnTarget(activeReturnTarget);
-    if(target) window.location.replace(target);
+    if(!target) return;
+    // Wait (briefly) for the account's dogs and saved count to be cached
+    // before leaving. The next page paints its header from that cache, and
+    // navigating first used to cancel the read, so it showed no dogs.
+    if(window.DoloPawsAuth && typeof window.DoloPawsAuth.profileSummaryReady === 'function'){
+      try { await window.DoloPawsAuth.profileSummaryReady(); } catch(err){}
+    }
+    window.location.replace(target);
   }
 
   function openModal(){

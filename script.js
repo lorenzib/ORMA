@@ -2807,8 +2807,7 @@ function liFillAvatar(el, profile){
 // instead of flashing the signed-in fallback between completed renders.
 function liResolveActiveProfile(profile){
   if(profile && profile.name) return profile;
-  let summary = null;
-  try { summary = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); } catch(e){}
+  const summary = liCachedSummary();
   if(!(summary && summary.hasProfile !== false)) return profile;
   const dogs = Array.isArray(summary.dogs) ? summary.dogs : [];
   const active = dogs.find(dog => dog && dog.id === summary.activeDogId) || dogs[0];
@@ -2816,9 +2815,18 @@ function liResolveActiveProfile(profile){
   return summary.name ? summary : profile;
 }
 
+// firebase-init.js keeps the summary it last wrote in memory as well. Prefer
+// it: a phone with a full localStorage refuses the write, and the stored copy
+// is then the guest's, with no dogs, even after a refresh.
+function liCachedSummary(){
+  const auth = typeof window !== 'undefined' ? window.DoloPawsAuth : null;
+  const live = auth ? auth.profileSummary : undefined;
+  if(live !== undefined) return live && typeof live === 'object' ? live : null;
+  try { return JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); } catch(e){ return null; }
+}
+
 function renderLiDogLists(profile){
-  let summary = null;
-  try { summary = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); } catch(e){}
+  const summary = liCachedSummary();
   const dogs = summary && Array.isArray(summary.dogs) && summary.dogs.length
     ? summary.dogs : profile ? [profile] : [];
   const activeId = summary && summary.activeDogId || (profile && profile.id);
@@ -4584,12 +4592,17 @@ async function applyHomepageAuthState(e){
         const pendingRaw = localStorage.getItem('dolopaws-pending-dog-profile');
         if(pendingRaw){
           const pending = JSON.parse(pendingRaw);
-          const existing = await window.DoloPawsAuth.getDogProfile();
-          if(pending && pending.name && (!existing || !existing.name)){
-            await window.DoloPawsAuth.setDogProfile(pending);
+          const state = await window.DoloPawsAuth.getDogProfiles();
+          // An unreadable account is not an empty one: writing the guest dog
+          // now would land it over the account's selected dog. Keep the
+          // device copy; the account page retries once the read works.
+          if(state && !state.loadError){
+            if(pending && pending.name && !state.dogs.length){
+              await window.DoloPawsAuth.setDogProfile(pending);
+            }
+            localStorage.removeItem('dolopaws-pending-dog-profile');
+            localStorage.removeItem('dolopaws-dog-draft'); // guest draft now redundant
           }
-          localStorage.removeItem('dolopaws-pending-dog-profile');
-          localStorage.removeItem('dolopaws-dog-draft'); // guest draft now redundant
         }
       } catch(err){ /* never block login on handoff */ }
 
