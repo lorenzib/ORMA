@@ -150,7 +150,10 @@ hazards and dog access, which aren't currently individually broken out.
   not a graduation blocker.
 - **Heat & shade** — does a source describe canopy/exposure (forest vs open
   ridge), not just the season? `shadeCoverage` should reflect what a source
-  says, not a guess from elevation.
+  says, not a guess from elevation. These are summer facts: the score and the
+  "Important for your dog" notes only use them when the walk-day forecast
+  gets warm (22 °C or more). A caution that is only about heat ("Hot tarmac")
+  follows the same rule.
 - **Exposure** — flagged **only when the trail is officially marked dangerous
   for humans**: a high SAC scale (`sac_scale` T3 / `alpine_hiking` or above),
   an official difficulty of "difficile"/"vertigineux," via-ferrata sections,
@@ -173,7 +176,9 @@ hazards and dog access, which aren't currently individually broken out.
   from OSM `surfaces`/`sac_scale` or an official description. Sparse or
   absent surface data is *not* a blocker — a trail with no hazardous surface
   on record passes. Populate `surfaceHazards` only with hazards a source
-  actually names; do not invent footing detail to fill the gap.
+  actually names; do not invent footing detail to fill the gap. Roads,
+  crossings and shared cycle paths may be recorded here too; the trail page
+  shows them as their own "Roads & traffic" note, not as footing.
 - **Dog access / leash rules** — is there an explicit rule (leash required,
   seasonal restriction, banned outright)? A protected-area or no-dogs
   finding is a **removal**, not a downgrade — see the `BANNED`/`REMOVED`

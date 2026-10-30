@@ -239,6 +239,10 @@
     if(!(pending && pending.name && window.DoloPawsAuth)) return true;
     const state = typeof window.DoloPawsAuth.getDogProfiles === 'function'
       ? await window.DoloPawsAuth.getDogProfiles() : null;
+    // Could not read the account: it may well have dogs. Writing now could
+    // land the guest's dog over the selected one, so keep it on the device;
+    // the account page retries the handoff once the read works.
+    if(state && state.loadError) return false;
     const dogs = state && Array.isArray(state.dogs) ? state.dogs : [];
     // A completed write followed by a retried handoff must not duplicate the
     // same dog. Nothing to decide here: it is the same dog, described the same.
@@ -284,7 +288,14 @@
     }
     closeModal();
     const target = safeReturnTarget(activeReturnTarget);
-    if(target) window.location.replace(target);
+    if(!target) return;
+    // Wait (briefly) for the account's dogs and saved count to be cached
+    // before leaving. The next page paints its header from that cache, and
+    // navigating first used to cancel the read, so it showed no dogs.
+    if(window.DoloPawsAuth && typeof window.DoloPawsAuth.profileSummaryReady === 'function'){
+      try { await window.DoloPawsAuth.profileSummaryReady(); } catch(err){}
+    }
+    window.location.replace(target);
   }
 
   function openModal(){
