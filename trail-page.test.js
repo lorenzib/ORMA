@@ -81,7 +81,7 @@ describe('trail page map controls', () => {
   test('renders without waiting for authentication-delayed DOMContentLoaded', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
-    expect(html).toContain("firebase.src = 'firebase-init.js?v=20260917-1'");
+    expect(html).toContain("firebase.src = 'firebase-init.js?v=20261030-1'");
     expect(html).toContain("window.addEventListener('load', scheduleTrailFirebase");
     expect(trail).toContain("if(document.querySelector('.td2')){");
     expect(trail).toContain('if(trailInitStarted) return;');
@@ -217,7 +217,7 @@ describe('trail page map controls', () => {
     expect(document.querySelector('.td-safety-intro')).toBeNull();
 
     expect(blueprint).toContain("['route', 'Route effort'");
-    expect(blueprint).toContain('trust.heatAssessment(t)');
+    expect(blueprint).toContain('trust.heatAssessment(t, conditions)');
     expect(blueprint).toContain('if (!item || item.ok) return;');
     expect(blueprint).toContain("box.innerHTML = rows.map(rowMarkup).join('');");
     expect(blueprint).not.toContain('more consideration');
