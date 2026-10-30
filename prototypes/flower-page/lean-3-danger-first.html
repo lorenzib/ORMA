@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lean 3: Danger first | ORMA mockup</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../alpine-plants-guide.css">
+<link rel="stylesheet" href="../../guides/safety-guide-system.css">
+<link rel="stylesheet" href="mockups.css">
+</head>
+<body class="apg-page safety-guide-article fm-lean">
+<div class="topnav">
+  <a class="brand" href="/"><img src="../../logo.svg" alt="">ORMA</a>
+  <div class="links">
+    <a href="../../browse-trails.html">Trails</a>
+    <a href="../../collections.html">Collections</a>
+    <a href="../../safety-guide.html" class="active">Safety library</a>
+    <a href="../../journal.html">My walk journal</a>
+  </div>
+</div>
+<header class="apg-hero safety-photo-header section-page-head content-canvas" id="mainContent" style="--safety-photo-position:center center;">
+  <img class="safety-photo-header__image" src="../../images/editorial/safety-library/flowers-plants-dogs.jpg" alt="" width="1200" height="800">
+  <a class="safety-back-link" href="index.html">&larr; All flower-page mockups</a>
+  <div class="apg-hero-copy">
+    <span class="fm-mock-tag">Lean 3 · Danger first</span>
+    <div class="safety-topic">Safety library / Plants &amp; trail edges</div>
+    <h1>Which Alpine plants should your dog avoid?</h1>
+    <p class="section-page-subtitle">Start with the 17 that matter most.</p>
+  </div>
+</header>
+<main class="fm-wrap">
+  <details class="ln-help">
+    <summary><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg><b>Dog chewed a plant?</b><span>What to do →</span></summary>
+    <ol><li>Lead your dog away and stop any more chewing.</li><li>Photograph the plant and where it grew. Note the time and how much.</li><li>Call your vet or the nearest emergency clinic, even if your dog seems fine.</li></ol>
+    <p>Do not induce vomiting or give food, milk or medicine unless a vet tells you to.</p>
+  </details>
+  <div class="l3-head"><div><h2>Keep these out of your dog’s mouth</h2><p id="l3Sub">17 dangerous plants. Tap one to see how to spot it.</p></div><button class="fm-chip" type="button" id="l3Now" aria-pressed="false"></button></div>
+  <div class="l3-grid" id="l3Grid"></div>
+  <details class="l3-rest"><summary>The other 16 plants: lower risk <span>Show</span></summary><div id="l3Rest"></div></details>
+</main>
+<script src="../../mobile-nav.js"></script>
+<script src="../../alpine-plants-guide.js"></script>
+<script src="mockups.js"></script>
+<script>
+(function(){
+  const M = window.FlowerMock;
+  const now = new Date().getMonth() + 1;
+  const MONTH = ['January','February','March','April','May','June','July','August','September','October','November','December'][now - 1];
+  let open = '', onlyNow = false, plants = [];
+  function render(){
+    const danger = plants.filter(p => p.safety === 'dangerous');
+    const btn = document.getElementById('l3Now');
+    btn.textContent = `In flower in ${MONTH}`; btn.setAttribute('aria-pressed', String(onlyNow));
+    const tiles = danger.map(p => {
+      const dim = onlyNow && !(p.floweringMonths || []).includes(now);
+      const tile = `<button class="l3-tile${dim ? ' dim' : ''}" type="button" data-id="${p.id}" aria-expanded="${open === p.id}"><img src="${M.img(p)}" alt=""><b>${M.esc(p.commonName)}</b></button>`;
+      return open === p.id ? tile + '%%PANEL%%' : tile;
+    });
+    // Put the opened plant's panel at the end of its row.
+    const cols = window.innerWidth <= 700 ? 3 : window.innerWidth <= 980 ? 4 : 6;
+    let html = tiles.join('');
+    if(open){
+      const p = plants.find(x => x.id === open);
+      const idx = danger.findIndex(x => x.id === open);
+      const rowEnd = Math.min(danger.length, Math.ceil((idx + 1) / cols) * cols);
+      const panel = `<div class="l3-panel"><img src="${M.img(p)}" alt="${M.esc(p.image && p.image.alt)}"><div><h3>${M.esc(p.commonName)}</h3><p><b>Avoid:</b> ${M.avoidText(p)}</p><p><b>Look for:</b> ${M.esc((p.identification || [])[0] || '')}</p><p style="margin-bottom:2px"><b>Flowers:</b></p>${M.monthsBar(p, true)}</div></div>`;
+      const parts = tiles.map(t => t.replace('%%PANEL%%', ''));
+      parts.splice(rowEnd, 0, panel);
+      html = parts.join('');
+    }
+    document.getElementById('l3Grid').innerHTML = html;
+    document.getElementById('l3Sub').textContent = onlyNow
+      ? `${danger.filter(p => (p.floweringMonths || []).includes(now)).length} of the 17 are in flower in ${MONTH}. Leaves, berries and bulbs of the others may still be there.`
+      : '17 dangerous plants. Tap one to see how to spot it.';
+    const rest = plants.filter(p => p.safety !== 'dangerous');
+    document.getElementById('l3Rest').innerHTML = [['caution','In-between · no chewing or contact'],['safe','Low concern · safe to pass, not to eat']].map(([k, h]) =>
+      `<p class="fm-eyebrow" style="display:flex;gap:8px;align-items:center"><span class="fm-dot fm-dot--${k}"></span>${h}</p><ul class="l3-names">${rest.filter(p => p.safety === k).map(p => `<li><img src="${M.img(p)}" alt=""><span>${M.esc(p.commonName)}<small>${M.avoidText(p)}</small></span></li>`).join('')}</ul>`).join('');
+  }
+  document.addEventListener('click', e => {
+    const t = e.target.closest('.l3-tile'); if(t){ open = open === t.dataset.id ? '' : t.dataset.id; render(); return; }
+    if(e.target.closest('#l3Now')){ onlyNow = !onlyNow; render(); }
+  });
+  M.load().then(list => { plants = list; render(); if(location.hash === '#demo'){ open = 'monkshood'; render(); } });
+})();
+
+</script>
+</body>
+</html>

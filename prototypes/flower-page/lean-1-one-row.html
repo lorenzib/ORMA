@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lean 1: One filter row | ORMA mockup</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../alpine-plants-guide.css">
+<link rel="stylesheet" href="../../guides/safety-guide-system.css">
+<link rel="stylesheet" href="mockups.css">
+</head>
+<body class="apg-page safety-guide-article fm-lean">
+<div class="topnav">
+  <a class="brand" href="/"><img src="../../logo.svg" alt="">ORMA</a>
+  <div class="links">
+    <a href="../../browse-trails.html">Trails</a>
+    <a href="../../collections.html">Collections</a>
+    <a href="../../safety-guide.html" class="active">Safety library</a>
+    <a href="../../journal.html">My walk journal</a>
+  </div>
+</div>
+<header class="apg-hero safety-photo-header section-page-head content-canvas" id="mainContent" style="--safety-photo-position:center center;">
+  <img class="safety-photo-header__image" src="../../images/editorial/safety-library/flowers-plants-dogs.jpg" alt="" width="1200" height="800">
+  <a class="safety-back-link" href="index.html">&larr; All flower-page mockups</a>
+  <div class="apg-hero-copy">
+    <span class="fm-mock-tag">Lean 1 · One filter row</span>
+    <div class="safety-topic">Safety library / Plants &amp; trail edges</div>
+    <h1>Which Alpine plants should your dog avoid?</h1>
+    <p class="section-page-subtitle">Tap a plant to see how to recognise it.</p>
+  </div>
+</header>
+<main class="fm-wrap">
+  <details class="ln-help">
+    <summary><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg><b>Dog chewed a plant?</b><span>What to do →</span></summary>
+    <ol><li>Lead your dog away and stop any more chewing.</li><li>Photograph the plant and where it grew. Note the time and how much.</li><li>Call your vet or the nearest emergency clinic, even if your dog seems fine.</li></ol>
+    <p>Do not induce vomiting or give food, milk or medicine unless a vet tells you to.</p>
+  </details>
+  <div class="l1-bar">
+    <div class="l1-seg" role="group" aria-label="Risk" id="l1Risk"></div>
+    <select class="l1-select" id="l1Month" aria-label="Month"></select>
+    <input class="l1-search" id="l1Search" type="search" placeholder="Search a plant or colour…" aria-label="Search plants">
+  </div>
+  <div id="l1Results"></div>
+</main>
+<script src="../../mobile-nav.js"></script>
+<script src="../../alpine-plants-guide.js"></script>
+<script src="mockups.js"></script>
+<script>
+(function(){
+  const M = window.FlowerMock;
+  const HEAD = { dangerous:'Keep out of your dog’s mouth', caution:'No chewing or contact', safe:'Safe to pass, not to eat' };
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const state = { risk:'', month:'', q:'' };
+  M.load().then(plants => {
+    document.getElementById('l1Month').innerHTML = '<option value="">Any month</option>' + MONTHS.map((m, i) => `<option value="${i + 1}">In flower in ${m}</option>`).join('');
+    function render(){
+      document.getElementById('l1Risk').innerHTML = [['','All'],['dangerous','Dangerous'],['caution','In-between'],['safe','Low concern']]
+        .map(([k, l]) => `<button type="button" data-risk="${k}" aria-pressed="${state.risk === k}">${l}</button>`).join('');
+      const q = state.q.toLowerCase();
+      const list = plants.filter(p => (!state.risk || p.safety === state.risk) && (!state.month || (p.floweringMonths || []).includes(Number(state.month))) &&
+        (!q || JSON.stringify([p.commonName, p.aliases, p.identification]).toLowerCase().includes(q)));
+      document.getElementById('l1Results').innerHTML = ['dangerous','caution','safe'].map(r => {
+        const g = list.filter(p => p.safety === r); if(!g.length) return '';
+        return `<section class="l1-group"><h2><span class="fm-dot fm-dot--${r}"></span>${HEAD[r]} <small>${g.length}</small></h2><div class="l1-grid">${g.map(p => `
+          <button class="l1-card" type="button" aria-expanded="false"><img src="${M.img(p)}" alt="${M.esc(p.image && p.image.alt)}"><div>
+            <h3>${M.esc(p.commonName)}</h3><p>${M.avoidText(p)}</p>
+            <div class="l1-more"><b>Look for</b>${M.esc((p.identification || [])[0] || '')}<b>Flowers</b>${M.monthsBar(p, true)}<b>Watch for</b>${M.esc((p.symptoms || []).slice(0, 4).join(', '))}</div>
+          </div></button>`).join('')}</div></section>`;
+      }).join('') || '<p class="fm-muted">No plants match.</p>';
+    }
+    document.addEventListener('click', e => {
+      const r = e.target.closest('[data-risk]'); if(r){ state.risk = r.dataset.risk; render(); return; }
+      const c = e.target.closest('.l1-card'); if(c) c.setAttribute('aria-expanded', String(c.getAttribute('aria-expanded') !== 'true'));
+    });
+    document.getElementById('l1Month').addEventListener('change', e => { state.month = e.target.value; render(); });
+    document.getElementById('l1Search').addEventListener('input', e => { state.q = e.target.value; render(); });
+    render();
+    if(location.hash === '#demo') document.querySelector('.l1-card').click();
+  });
+})();
+
+</script>
+</body>
+</html>
