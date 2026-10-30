@@ -189,6 +189,26 @@
     return null;
   }
 
+  // The warmest the rest of the day gets, the current reading included. A cool
+  // morning is not a cool day: 11 °C at eight can still be 26 °C by two.
+  function dayMax(input,temp){
+    const times=Array.isArray(input&&input.hourlyTimes)?input.hourlyTimes:[];
+    const temps=Array.isArray(input&&input.hourlyTemps)?input.hourlyTemps:[];
+    const today=dayKey(input&&input.currentTime);
+    const nowMinute=minuteOfDay(input&&input.currentTime);
+    let max=temp;
+    if(!today||nowMinute===null||times.length!==temps.length)return Math.round(max);
+    for(let index=0;index<times.length;index+=1){
+      if(dayKey(times[index])!==today)continue;
+      const minute=minuteOfDay(times[index]);
+      const value=Number(temps[index]);
+      // The current hour counts: a reading at 14:00 still describes 14:20.
+      if(minute===null||!Number.isFinite(value)||minute+60<=nowMinute)continue;
+      if(value>max)max=value;
+    }
+    return Math.round(max);
+  }
+
   // Today's heat, in the vocabulary the recommendation engine reads.
   function currentConditions(input){
     const temp=Number(input&&input.temperatureC);
@@ -198,6 +218,10 @@
     return {
       status:'known',
       heatRisk,
+      temperatureC:Math.round(temp),
+      // What decides whether a route's sun exposure matters on this day. The
+      // engine reads a route's own heat and shade only when this is warm.
+      dayMaxC:dayMax(input,temp),
       // Only present when the forecast actually crosses the threshold later
       // today. Absent means the engine says nothing about an hour.
       hotFromLabel:onset&&heatRisk!=='high'?onset.label:null,

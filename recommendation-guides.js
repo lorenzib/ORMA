@@ -21,8 +21,8 @@
     paws:Object.freeze({
       id:'paws',
       href:'guides/paw-protection.html',
-      label:'Protecting paw pads on rocky terrain',
-      summary:'Prepare for rough surfaces and recognise pad damage.',
+      label:'Looking after paw pads',
+      summary:'Rough ground, hot tarmac and how to spot pad damage.',
     }),
     exposure:Object.freeze({
       id:'exposure',
