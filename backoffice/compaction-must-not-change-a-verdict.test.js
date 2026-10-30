@@ -2,8 +2,9 @@
 
 const fs=require('fs');
 const path=require('path');
-const {DECIDING_FIELDS,BOUNDED_FIELDS,MAX_PREVIEW_POINTS,summariseOutput}
+const {DECIDING_FIELDS,BOUNDED_FIELDS,MAX_PREVIEW_POINTS,QUEUE_BUDGET,summariseOutput}
   =require('./workflows/review-queue-compaction');
+const {MAX_ARTIFACT_BYTES}=require('./services/firestore-backoffice-store');
 const {rehydrateItem}=require('./workflows/rehydrate-review-detail');
 const {dossierBlockingReasons,compileVerifiedDossier}=require('./workflows/compile-verified-dossier');
 const {singleRelationGuidance}=require('./workflows/route-guidance-from-map');
@@ -136,20 +137,22 @@ describe('a summarised survey reaches the same verdict as the record',()=>{
   // The ceiling is the reason compaction exists, and keeping the deciding
   // fields costs about a kilobyte an item. This is the headroom that buys:
   // every trail in the catalogue waiting at the gate at once, which has never
-  // happened. Each item costs about 2.6 KB at worst, so the property holds
-  // about 400 of them. The bound was half the property until 26 October 2026,
-  // when the catalogue passed 204 trails and the worst case filled just over
-  // half; the property only overflows at the full limit, so that is the bound.
-  // When this fails again the catalogue is near 400 trails and the queue needs
-  // splitting, not a looser test.
+  // happened. Each item costs about 2.6 KB at worst. Until 30 October 2026 the
+  // queue was one Firestore property and held about 400 of them; the catalogue
+  // passed that at 406 trails, and the queue was split instead of the test
+  // loosened: the store now writes it in pieces across documents, and the
+  // queue's own budget is the bound. When this fails again, raise the budget
+  // only if the store still has room for it; otherwise the queue needs a
+  // different shape, not a looser test.
   test('the whole catalogue could wait at the gate at once',()=>{
-    const FIRESTORE_PROPERTY_LIMIT=1048487;
     const trails=loadProductionTrails(ROOT).filter(record=>Array.isArray(record.path));
     const longest=[...trails].sort((a,b)=>b.path.length-a.path.length)[0];
     const result={...surveys().shapes['its own number'],
       geometry:{type:'LineString',coordinates:longest.path.map(point=>[point[1],point[0]])}};
     const worst=JSON.stringify(summariseOutput({agentId:'cartographer',jobId:'c1',result})).length;
-    expect(worst*trails.length).toBeLessThan(FIRESTORE_PROPERTY_LIMIT);
+    expect(worst*trails.length).toBeLessThan(QUEUE_BUDGET);
+    // And the budget itself fits the store with room to spare.
+    expect(QUEUE_BUDGET).toBeLessThan(MAX_ARTIFACT_BYTES/2);
   });
 
   // The ceiling is the reason compaction exists, so the saving has to survive.

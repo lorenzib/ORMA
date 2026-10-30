@@ -765,7 +765,8 @@ is.
 
 ## Compaction may drop what is bulky, not what decides
 
-`dossier-review-queue` is one Firestore property with a 1,024 KB ceiling, and a
+`dossier-review-queue` was one Firestore property with a 1,024 KB ceiling until
+30 October 2026 (see *The queue is split across documents* below), and a
 waiting review keeps a summary of each specialist output rather than the record.
 That is a size measure. It was also deciding verdicts.
 
@@ -810,6 +811,29 @@ be sitting in an artifact under a name that moved. The output now carries why
 the detail is unreadable and the gate reports that as its own blocker. Not
 finding an answer and not being able to read the answer back are different
 problems, and they looked identical in the one place that decides a trail.
+
+### The queue is split across documents
+
+On 29 October 2026 the catalogue reached 406 trails, and the test holding the
+headroom above failed: at about 2.6 KB a waiting review at its worst, one
+property holds about 400. Its own comment said what that meant: the queue needs
+splitting, not a looser test.
+
+**The store splits it, so nothing that reads it changes.** Any artifact whose
+JSON passes 900 KB is written in pieces in one batch: the first piece on the
+artifact's own document, marked `json-shards-v1` with the count, the rest on
+`<id>~shard-N`, up to eight. Every piece carries one token, and a reader that
+finds two tokens — a write half applied — reads again and refuses rather than
+join two versions. A smaller write deletes the pieces it no longer uses. Under
+900 KB an artifact is one `json-v1` document, exactly as before. The worker's
+store and the desk's browser reader both do this; the twenty places that read
+the queue go on calling `getArtifact`.
+
+**The queue's budget is now 2.7 MB**, three pieces: about 1,050 waiting reviews
+at their worst, and under half of what the store can write, so the pass that
+adds a review is still never the pass that fails. The tiers that degrade the
+queue over budget are unchanged. A queue over 900 KB costs one read per piece,
+which only happens when that many reviews are waiting.
 
 ## One badge rule for the page and the app
 
