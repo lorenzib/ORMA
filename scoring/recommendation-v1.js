@@ -111,12 +111,11 @@
   // "Today's temperatures are comfortable" is only news when heat was a real
   // risk. In the Alps that is summer (June to August) or an unusually hot
   // spring day; in autumn and winter it is always true, and on 30 Oct 2026 it
-  // took a slot from reasons that said something. A spring day counts when
-  // its high comes within HEAT_QUESTION_MARGIN_C of the line where every dog
-  // starts losing heat points (COOL_DAY_MAX_C; a heat-sensitive dog loses
-  // more, not sooner). It costs nothing either way: this only decides whether
-  // it is said.
-  const HEAT_QUESTION_MARGIN_C = 5;
+  // took a slot from reasons that said something. A spring day counts from a
+  // 20 °C high, two degrees under the line where every dog starts losing heat
+  // points (COOL_DAY_MAX_C; a heat-sensitive dog loses more, not sooner). It
+  // costs nothing either way: this only decides whether it is said.
+  const SPRING_HEAT_FROM_C = 20;
 
   function seasonOf(conditions){
     const match = conditions && typeof conditions.date === 'string'
@@ -136,7 +135,7 @@
     const max = dayMaxOf(conditions);
     const peak = max !== null ? max
       : conditions && Number.isFinite(conditions.temperatureC) ? conditions.temperatureC : null;
-    return peak === null || peak >= COOL_DAY_MAX_C - HEAT_QUESTION_MARGIN_C;
+    return peak === null || peak >= SPRING_HEAT_FROM_C;
   }
 
   function isColdDay(conditions){
@@ -884,7 +883,7 @@
     VERSION,
     FITNESS,
     COOL_DAY_MAX_C,
-    HEAT_QUESTION_MARGIN_C,
+    SPRING_HEAT_FROM_C,
     COLD_DAY_MAX_C,
     isCoolDay,
     heatWasAQuestion,

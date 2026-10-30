@@ -182,9 +182,10 @@ describe('"Today is cool enough" only when heat was a question', () => {
     expect(day([8, 9], '2026-10-30T09:00').date).toBe('2026-10-30');
   });
 
-  test('the spring line is the one the score charges from, for every dog', () => {
+  test('spring counts from a 20 °C high, under the line the score charges from', () => {
     expect(engine.COOL_DAY_MAX_C).toBe(weatherWindow.WARM_C);
-    expect(engine.HEAT_QUESTION_MARGIN_C).toBe(5);
+    expect(engine.SPRING_HEAT_FROM_C).toBe(20);
+    expect(engine.SPRING_HEAT_FROM_C).toBeLessThan(engine.COOL_DAY_MAX_C);
   });
 
   test('a cool October day for an ordinary dog lists no heat reason', () => {
@@ -214,10 +215,10 @@ describe('"Today is cool enough" only when heat was a question', () => {
   });
 
   test('an ordinary spring day does not, and the score does not move', () => {
-    // 16 °C and 17 °C sit either side of the margin and are both cool days,
-    // so nothing else in the reading changes between them.
-    const quiet = run(SENSITIVE, day([12, 14, 16, 16], '2026-04-20T09:00'));
-    const warmer = run(SENSITIVE, day([12, 14, 17, 17], '2026-04-20T09:00'));
+    // 19 °C and 20 °C sit either side of the spring line and are both cool
+    // days, so nothing else in the reading changes between them.
+    const quiet = run(SENSITIVE, day([12, 15, 19, 19], '2026-04-20T09:00'));
+    const warmer = run(SENSITIVE, day([12, 15, 20, 20], '2026-04-20T09:00'));
     expect(shown(quiet)).toBe(false);
     expect(shown(warmer)).toBe(true);
     expect(quiet.score).toBe(warmer.score);
@@ -225,8 +226,8 @@ describe('"Today is cool enough" only when heat was a question', () => {
   });
 
   test('a snapshot without a date falls back to the forecast', () => {
-    expect(engine.heatWasAQuestion({ status:'known', heatRisk:'low', temperatureC:10 })).toBe(false);
-    expect(engine.heatWasAQuestion({ status:'known', heatRisk:'low', temperatureC:19 })).toBe(true);
+    expect(engine.heatWasAQuestion({ status:'known', heatRisk:'low', temperatureC:19 })).toBe(false);
+    expect(engine.heatWasAQuestion({ status:'known', heatRisk:'low', temperatureC:20 })).toBe(true);
     // Knowing nothing, it keeps saying what it said before.
     expect(engine.heatWasAQuestion({ status:'known', heatRisk:'low' })).toBe(true);
   });
