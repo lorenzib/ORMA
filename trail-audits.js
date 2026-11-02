@@ -9489,6 +9489,7 @@
       // disturbing wildlife); neither the park decree nor the plans ban dogs.
       area: 'Seiser Alm / Alpe di Siusi, Compatsch to Saltria – Kastelruth',
       elevation: 301,
+      descent: 475,
       hours: '2–2.5',
       curated: true,
       tier: 'route-audited',
@@ -15796,6 +15797,7 @@
       area: 'Val Gardena: Runggaditsch – Ortisei – Santa Cristina – Selva',
       distance: 12.2,
       elevation: 454,
+      descent: 2,
       hours: '3.5',
       curated: true,
       tier: 'route-audited',
@@ -39051,6 +39053,11 @@
     'osm-14987412': {
       // Correction, 24 October 2026: the record had no climb profile; it is measured on the published line, so the page and its
       // ORMA illustration can show it.
+      // Correction, 2 November 2026: no authority publishes a climb for this loop, so it is measured the way the
+      // importer measures every OSM walk: 80 Open-Meteo heights along the line, median-smoothed, rises over 2 m
+      // summed (223 m). The line stops 400 m short of its start, 7 m higher, so the way down is 216 m.
+      elevation: 223,
+      descent: 216,
       "elevationProfile": [
         {
           "km": 0,
