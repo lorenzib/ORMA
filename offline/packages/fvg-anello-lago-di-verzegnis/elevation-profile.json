@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-anello-lago-di-verzegnis",
+  "distanceKm": 2.6,
+  "ascentM": 93,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 484
+    },
+    {
+      "km": 0.2,
+      "elev": 474
+    },
+    {
+      "km": 0.4,
+      "elev": 474
+    },
+    {
+      "km": 0.6,
+      "elev": 474
+    },
+    {
+      "km": 0.8,
+      "elev": 496
+    },
+    {
+      "km": 1,
+      "elev": 488
+    },
+    {
+      "km": 1.2,
+      "elev": 474
+    },
+    {
+      "km": 1.4,
+      "elev": 474
+    },
+    {
+      "km": 1.6,
+      "elev": 474
+    },
+    {
+      "km": 1.8,
+      "elev": 491
+    },
+    {
+      "km": 2,
+      "elev": 492
+    },
+    {
+      "km": 2.2,
+      "elev": 501
+    },
+    {
+      "km": 2.4,
+      "elev": 502
+    },
+    {
+      "km": 2.6,
+      "elev": 484
+    }
+  ]
+}
