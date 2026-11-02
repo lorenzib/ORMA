@@ -57994,6 +57994,211 @@
       ],
       startPoint: { lat: 46.645153, lng: 10.965544, label: 'Staben railway station, the board’s start' },
       desc: 'A walk from Staben across the Adige and up to the Stabnerwaal, along the old irrigation channel on the sunny Sonnenberg past the Himmelreich restaurant to Tschars. The board lists 4.9 km, 160 m up and 160 m down.'
+    },
+    'vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Vinschgau batch 2).
+      // “Sentiero della roggia "Leitenwaal e Berkwaal"”, published by the Mals, Burgeis, Schluderns and Glurns tourist board, drawn on 38 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Schluderns (no dog regulation found, national rule: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Schluderns – Ganglegg – Leitenwaal – Churburg (Upper Vinschgau)',
+      distance: 6.6,
+      elevation: 290,
+      hours: '3',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Vuseum in Schluderns up path 18 to the Ganglegg archaeological site, along the Leitenwaal irrigation channel (path 17) into the gorge, and down the far side on the Berkwaal past the Churburg back into Schluderns.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Vuseum, the Vinschgau museum in Schluderns, the board’s start.",
+        "sequence": "Climb path 18 to the Ganglegg, the Bronze and Iron Age hilltop settlement. Take path 17, the Leitenwaal, along the irrigation channel into the gorge. Cross to the other side and walk down the Berkwaal path to the Churburg castle, then on into Schluderns.",
+        "switches": "Two changes: at the Ganglegg leave path 18 for path 17 (Leitenwaal), and across the gorge follow the Berkwaal path down to the Churburg.",
+        "sources": [
+          {
+            "label": "Mals, Burgeis, Schluderns and Glurns tourist board, Sentiero della roggia \"Leitenwaal e Berkwaal\" (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16571164",
+            "authority": "Mals, Burgeis, Schluderns and Glurns tourist board",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The waal path through the woods above Schluderns, in October (freebiker_bert on Mapillary, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official loop 6.6 km from the Vuseum in Schluderns, as the Mals, Burgeis, Schluderns and Glurns tourist board publishes it; the stored line is drawn on 38 OSM ways along the board’s published line, 6.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 18 and 17, then the Berkwaal: from the Vuseum path 18 up to the Ganglegg, path 17 along the Leitenwaal to the gorge, and down the opposite side on the Berkwaal path to the Churburg and Schluderns.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 6 and km 6.2 (OSM nodes 1873473885, 1935404428, 7501779085, 1737532338).',
+        elevation: 'Official 6.6 km, 290 m up and 290 m down, 3:00 h, highest point 1,213 m, lowest 921 m (Mals, Burgeis, Schluderns and Glurns tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Mals, Burgeis, Schluderns and Glurns tourist board, Sentiero della roggia "Leitenwaal e Berkwaal" (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Schluderns / Comune di Sluderno: no dog regulation found on its website. Neighbouring communes use the same provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 9% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (38 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 74,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Narrow wooden walkways with railings in the gorge: keep your dog close on a short lead', 'Steep climb on path 18 to the Ganglegg', 'Village lanes in Schluderns at both ends: lead on'],
+      terrainType: 'Waal paths, forest paths and village lanes',
+      shadeDescription: 'Mostly shaded: about three quarters runs through mapped woodland along the two waals.',
+      terrainDescription: 'A loop at 920–1,210 m above Schluderns, past the Ganglegg hilltop settlement and along two old irrigation channels, the Leitenwaal and the Berkwaal, through a wooded gorge to the Churburg castle.',
+      waterDescription: 'Drinking water at the start, km 6 and km 6.2; places to eat on the way.',
+      dogNotes: 'Schluderns has no dog regulation on its website, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The walk passes a small park in Schluderns without entering it.',
+      tips: 'Start at the Vuseum in Schluderns: a 6.6 km loop, about 290 m up, three hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle; keep it short on the gorge walkways.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sentiero della roggia "Leitenwaal e Berkwaal" (Mals, Burgeis, Schluderns and Glurns tourist board)', url: 'https://www.outdooractive.com/it/r/16571164' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.663924, lng: 10.585477, label: 'The Vuseum in Schluderns, the board’s start' },
+      desc: 'A loop from Schluderns up to the Ganglegg hilltop settlement, along the Leitenwaal into a wooded gorge and back down the Berkwaal past the Churburg. The board lists 6.6 km, 290 m up and 290 m down.'
+    },
+    'vinschgau-sentiero-della-roggia-schnalswaal': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Vinschgau batch 2).
+      // “Sentiero della roggia Schnalswaal”, published by the Kastelbell-Tschars tourist board, drawn on 27 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Kastelbell-Tschars (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed land) and Naturns at Staben (its 2006 regulation: a lead in the village, a muzzle on public transport; the national 1.5 m lead and carried muzzle apply on top).
+      // About 27% is in the Natura 2000 site IT3110010 Biotop Steppenvegetation Sonnenberg, whose measures set no rule on dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Kastelbell – Schnalswaal – Juval – Staben (Middle Vinschgau)',
+      distance: 6.8,
+      elevation: 300,
+      hours: '3',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the square in Kastelbell past the Köfelgut winery, along the Schnalswaal irrigation channel (path 3) through chestnut and mixed woods to Castel Juval, then down path 1 to Staben.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start on the square in Kastelbell, the board’s start.",
+        "sequence": "Walk to the Köfelgut winery, then follow path 3 along the Schnalswaal, level through chestnut and mixed woods, to Castel Juval, part of the Messner Mountain Museum. From there take path 1 down to Staben.",
+        "switches": "One change: at Castel Juval leave waal path 3 for path 1 down to Staben.",
+        "sources": [
+          {
+            "label": "Kastelbell-Tschars tourist board, Sentiero della roggia Schnalswaal (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/37149933",
+            "authority": "Kastelbell-Tschars tourist board",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A wayside shrine on path 1 above Staben, near the end of the walk, in August (vrws on Mapillary, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official one-way walk 6.8 km from the square in Kastelbell, as the Kastelbell-Tschars tourist board publishes it; the stored line is drawn on 27 OSM ways along the board’s published line, 6.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 3 and 1: from Kastelbell square to the Köfelgut winery, waal path 3 to Castel Juval, then path 1 down to Staben.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 9799471319).',
+        elevation: 'Official 6.8 km, 300 m up, 3:00 h, highest point 907 m, lowest 606 m (Kastelbell-Tschars tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Kastelbell-Tschars tourist board, Sentiero della roggia Schnalswaal (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Kastelbell-Tschars / Comune di Castelbello-Ciardes, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 45/2010, published 16.11.2010), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds, school yards, sports grounds, the public pool or on farmed land (meadows, fields, vegetable plots); no bathing in public fountains',
+          'Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): about 27% of the line is in the Natura 2000 site IT3110010 Biotop Steppenvegetation Sonnenberg and about 2% in landscape protection zones; no park or natural monument. The site’s objectives and conservation measures (Province of Bolzano, natur-raum.provinz.bz.it) set no rule on dogs or on walking the paths',
+          'OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 19,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['The Sonnenberg is dry and south-facing: hot in summer, go early and bring water', 'Lanes in Kastelbell and Staben at both ends: lead on', 'Orchards and vineyards beside the path are farmed and closed to dogs in Kastelbell-Tschars: keep to the path'],
+      terrainType: 'Waal path, mule tracks and village lanes',
+      shadeDescription: 'Mostly open: about a fifth runs through mapped woodland; the Sonnenberg slopes are in full sun.',
+      terrainDescription: 'A walk at 600–910 m from Kastelbell along the Schnalswaal, an old irrigation channel on the Sonnenberg, to Castel Juval at the mouth of the Schnals valley and down to Staben.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Kastelbell-Tschars requires a lead of at most 1.5 m and a muzzle carried and keeps dogs out of cemeteries, playgrounds and off farmed land such as meadows and fields; Naturns keeps dogs on a lead in the village and asks for a lead on the Waalweg. Part of the walk crosses the Sonnenberg steppe Natura 2000 site, which sets no extra dog rule.',
+      tips: 'Start on Kastelbell square: 6.8 km one way to Staben, about 300 m up, three hours; the train links Staben and Kastelbell. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The Sonnenberg is hot: bring water.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sentiero della roggia Schnalswaal (Kastelbell-Tschars tourist board)', url: 'https://www.outdooractive.com/it/r/37149933' },
+        { label: 'Gemeinde Kastelbell-Tschars, dog regulation (2010)', url: 'https://www.gemeinde.kastelbell-tschars.bz.it/system/web/GetDocument.ashx?cts=1709821147&fileId=1199914' },
+        { label: 'Gemeinde Naturns, dog regulation (2006)', url: 'https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.628439, lng: 10.901347, label: 'The square in Kastelbell, the board’s start' },
+      desc: 'A walk from Kastelbell along the Schnalswaal irrigation channel through chestnut woods on the Sonnenberg to Castel Juval, then down to Staben. The board lists 6.8 km and 300 m up.'
+    },
+    'vinschgau-piani-di-annenberg': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Vinschgau batch 2).
+      // “Piani di Annenberg”, published by the Latsch-Martell tourist board, drawn on 41 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Latsch (its 2010 dog regulation: lead ≤1.5 m, muzzle carried; no dogs in cemeteries, parks or on farmed land).
+      // No Natura 2000 site, park or natural monument on the line; about 41% crosses the Annaberger Böden landscape protection area.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Latsch – Annaberger Böden – Tiss (Middle Vinschgau)',
+      distance: 6.6,
+      elevation: 380,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the St. Martin cable-car car park in Latsch over the Adige and the main road, up steep path 7 to the steppe plateau of the Annaberger Böden, back down over the Tiss suspension bridge and along the Latschanderwaal to the start.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park of the St. Martin im Kofel cable car in Latsch, the board’s start.",
+        "sequence": "Cross the Adige bridge, then the main road at the roundabout. Take steep path 7 up to the Annaberger Böden, a plateau of steppe vegetation with a wide view over the valley. Come back to Tiss over the suspension bridge, walk a short stretch of asphalt road towards Latsch, then follow the Latschanderwaal path back.",
+        "switches": "Three changes: at the roundabout take path 7 uphill; return over the Tiss suspension bridge; after the short road stretch towards Latsch, turn onto the Latschanderwaal path.",
+        "sources": [
+          {
+            "label": "Latsch-Martell tourist board, Piani di Annenberg (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/45666706",
+            "authority": "Latsch-Martell tourist board",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The signposts for the Annaberger Böden and the Goldrain panorama path on the walk, in June (kapant on Mapillary, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official loop 6.6 km from the St. Martin cable-car car park in Latsch, as the Latsch-Martell tourist board publishes it; the stored line is drawn on 41 OSM ways along the board’s published line, 6.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 7: from the cable-car car park over the Adige bridge and the main road at the roundabout, steep path 7 up to the Annaberger Böden, back to Tiss over the suspension bridge, a short asphalt stretch towards Latsch, then the Latschanderwaal path.',
+        mapPoints: 'Start at the board’s start; drinking water at km 3.9 (OSM nodes 2497732782).',
+        elevation: 'Official 6.6 km, 380 m up and 380 m down, 2:00 h, highest point 1,000 m, lowest 630 m (Latsch-Martell tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Latsch-Martell tourist board, Piani di Annenberg (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Latsch / Comune di Laces, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 58, 15.10.2010), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds, sports grounds, parks, kindergarten and school yards, public buildings or on farmed land (orchards, fields); no bathing in the historic-centre fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 41% is in the Annaberger Böden landscape protection area and a little in other landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (41 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 43,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Steep path 7 up to the plateau: knees and paws work hard', 'Crosses the main road at the roundabout near the start: lead on and cross with care', 'Suspension bridge over the Tiss gorge: some dogs need coaxing', 'Open steppe on the plateau: hot in summer, go early and bring water'],
+      terrainType: 'Steep paths, steppe plateau and waal path',
+      shadeDescription: 'Partly shaded: a little under half runs through mapped woodland; the steppe plateau is open and sunny.',
+      terrainDescription: 'A loop at 630–1,000 m from Latsch up to the Annaberger Böden, a steppe plateau with a wide view over the Vinschgau, back over the Tiss suspension bridge and along the Latschanderwaal.',
+      waterDescription: 'Drinking water at km 3.9; places to eat on the way.',
+      dogNotes: 'Latsch requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of cemeteries, playgrounds, sports grounds, parks and off farmed land such as orchards and fields. The walk passes a churchyard without entering it.',
+      tips: 'Start at the St. Martin cable-car car park in Latsch: a 6.6 km loop, about 380 m up, two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The plateau is hot and open: go early and bring water.',
+      sourceLinks: [
+        { label: 'Outdooractive, Piani di Annenberg (Latsch-Martell tourist board)', url: 'https://www.outdooractive.com/it/r/45666706' },
+        { label: 'Gemeinde Latsch, dog regulation (2010)', url: 'https://www.gemeinde.latsch.bz.it/system/web/GetDocument.ashx?cts=1674813441&fileId=1018700' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.621157, lng: 10.866679, label: 'The car park of the St. Martin im Kofel cable car in Latsch, the board’s start' },
+      desc: 'A loop from Latsch up steep path 7 to the Annaberger Böden, a steppe plateau with a wide view over the valley, back over the Tiss suspension bridge and along the Latschanderwaal. The board lists 6.6 km, 380 m up and 380 m down.'
     }
   };
 

@@ -1433,6 +1433,21 @@
       "name": "Stabnerwaal, Staben to Tschars",
       "slug": "stabnerwaal-staben-to-tschars",
       "gloss": "along the irrigation channel on the Sonnenberg"
+    },
+    "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal": {
+      "name": "Leitenwaal and Berkwaal, Schluderns",
+      "slug": "leitenwaal-berkwaal-schluderns",
+      "gloss": "past the Ganglegg and the Churburg"
+    },
+    "vinschgau-sentiero-della-roggia-schnalswaal": {
+      "name": "Schnalswaal, Kastelbell to Staben",
+      "slug": "schnalswaal-kastelbell-to-staben",
+      "gloss": "along the irrigation channel to Castel Juval"
+    },
+    "vinschgau-piani-di-annenberg": {
+      "name": "Annaberger Böden from Latsch",
+      "slug": "annaberger-boden-from-latsch",
+      "gloss": "up to the steppe plateau and back along the waal"
     }
   }
 }
