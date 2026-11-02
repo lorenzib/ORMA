@@ -1448,6 +1448,26 @@
       "name": "Annaberger Böden from Latsch",
       "slug": "annaberger-boden-from-latsch",
       "gloss": "up to the steppe plateau and back along the waal"
+    },
+    "brixen-alto-sentiero-di-lazfons": {
+      "name": "Latzfons high trail",
+      "slug": "latzfons-high-trail",
+      "gloss": "from the Klausner Hütte to Lake Radlsee"
+    },
+    "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": {
+      "name": "Mühlbach to Spinges",
+      "slug": "muehlbach-to-spinges",
+      "gloss": "up the sunny slope to the Spinges bunker"
+    },
+    "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": {
+      "name": "Altfasstal to the Wieserhütte",
+      "slug": "altfasstal-to-wieserhuette",
+      "gloss": "a family walk into the valley above Meransen"
+    },
+    "brixen-escursione-al-rifugio-bressanone": {
+      "name": "Fane Alm to the Brixner Hütte",
+      "slug": "fane-alm-to-brixner-huette",
+      "gloss": "up the Valser Tal past the waterfalls"
     }
   }
 }

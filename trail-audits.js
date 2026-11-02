@@ -58199,6 +58199,285 @@
       ],
       startPoint: { lat: 46.621157, lng: 10.866679, label: 'The car park of the St. Martin im Kofel cable car in Latsch, the board’s start' },
       desc: 'A loop from Latsch up steep path 7 to the Annaberger Böden, a steppe plateau with a wide view over the valley, back over the Tiss suspension bridge and along the Latschanderwaal. The board lists 6.6 km, 380 m up and 380 m down.'
+    },
+    'brixen-alto-sentiero-di-lazfons': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Brixen batch 2).
+      // “Alto sentiero di Lazfons”, published by the Klausen, Barbian, Villanders and Feldthurns tourist board, drawn on 28 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Klausen (its police regulation: dogs on a lead on roads and in public places, none in public green areas or on playgrounds) and Feldthurns (no regulation of its own found, national rule).
+      // No Natura 2000 site, park or natural monument on the line; it runs through the Latzfons and Radlsee-Kühberg landscape protection zones, which set no rule on dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Kühhof – Klausner Hütte – Lake Radlsee, above Latzfons (Klausen)',
+      distance: 10.6,
+      elevation: 558,
+      hours: '3.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop above Latzfons: from the Kühhof car park on path 1 to the Klausner Hütte, through stone pine woods to the Schalderer Scharte, along the European long-distance path to the Radlsee hut, and back past the Brugger alp hut on path 14.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Kühhof car park above Latzfons, the board’s start.",
+        "sequence": "Follow path 1 up to the Klausner Hütte (Rifugio Chiusa). Continue through stone pine woods to the Schalderer Scharte, then follow the European long-distance path to the Radlsee hut (Rifugio Lago Rodella). Come back past the Brugger alp hut (not staffed) on path 14 to the car park.",
+        "switches": "Two changes: at the Schalderer Scharte join the European long-distance path, and after the Radlsee hut take path 14 back down.",
+        "sources": [
+          {
+            "label": "Klausen, Barbian, Villanders and Feldthurns tourist board, Alto sentiero di Lazfons (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/811220560",
+            "authority": "Klausen, Barbian, Villanders and Feldthurns tourist board",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Kühberg alp with the Geisler peaks beyond, on the walk, in August (Clemens Stockner on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official loop 10.6 km from the Kühhof car park above Latzfons, as the Klausen, Barbian, Villanders and Feldthurns tourist board publishes it; the stored line is drawn on 28 OSM ways along the board’s published line, 10.5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 1, the European long-distance path and path 14: from the Kühhof car park on path 1 to the Klausner Hütte, on to the Schalderer Scharte and along the European path to the Radlsee hut, then back past the Brugger alp hut on path 14.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1.7, km 3.4 and km 7.7 (OSM nodes 4314740128, 4314740129, 9550187557).',
+        elevation: 'Official 10.6 km, 558 m up and 558 m down, 3:36 h, highest point 2,129 m, lowest 1,571 m (Klausen, Barbian, Villanders and Feldthurns tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Klausen, Barbian, Villanders and Feldthurns tourist board, Alto sentiero di Lazfons (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Klausen / Comune di Chiusa, Gemeindepolizeiordnung (Gemeinderat Nr. 37, 23.06.2004), Art. 29: dogs on a lead on roads and in public places; no dogs in public green areas or on playgrounds',
+          'Gemeinde Feldthurns / Comune di Velturno: no dog regulation of its own found; its 2024 notice to dog owners asks for a lead and for dogs to stay out of meadows and orchards. The national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 100% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (28 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 27,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Cows and horses graze on the Kühberg and Latzfons alps in summer: keep your dog on a lead', 'Rocky, stony stretches around the Schalderer Scharte', 'Open high ground at about 2,100 m: turn back if storms build'],
+      terrainType: 'Mountain paths and alp tracks',
+      shadeDescription: 'Mostly open: about a quarter runs through mapped stone pine and larch wood; the alp pastures and the ridge below the Radlsee are in full sun.',
+      terrainDescription: 'A high loop at 1,570–2,130 m in the Sarntal Alps above Latzfons, past the Klausner Hütte, the Schalderer Scharte and the Radlsee hut, with views to the Dolomites.',
+      waterDescription: 'Drinking water at km 1.7, km 3.4 and km 7.7; places to eat on the way.',
+      dogNotes: 'Klausen keeps dogs on a lead on roads and in public places and out of public green areas and playgrounds; Feldthurns asks for a lead and for dogs to stay out of meadows. The national rule adds a lead of at most 1.5 m and a muzzle carried. Cattle and horses graze the alps in summer.',
+      tips: 'Start at the Kühhof car park above Latzfons: a 10.6 km loop, about 560 m up and down, three and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle: cows and horses graze up here. Drinking water at km 1.7, 3.4 and 7.7; the Klausner Hütte and the Radlsee hut serve food in summer.',
+      sourceLinks: [
+        { label: 'Outdooractive, Alto sentiero di Lazfons (Klausen, Barbian, Villanders and Feldthurns tourist board)', url: 'https://www.outdooractive.com/it/r/811220560' },
+        { label: 'Klausen, Gemeindepolizeiordnung', url: 'https://www.klausen.eu/de/Verwaltung/Dokumente/Gemeindepolizeiordnung' },
+        { label: 'Gemeinde Feldthurns, Aufruf an alle Hundebesitzer (2024)', url: 'https://www.gemeinde.feldthurns.bz.it/de/Neuigkeiten/Bekanntmachungen/Aufruf_an_alle_Hundebesitzer_2' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.68341, lng: 11.5517, label: 'Kühhof car park above Latzfons, the board’s start' },
+      desc: 'A high loop in the Sarntal Alps above Latzfons, from the Kühhof to the Klausner Hütte, over the Schalderer Scharte to the Radlsee hut and back by the Brugger alp, with the Dolomites in view. The board lists 10.6 km and 558 m up.'
+    },
+    'brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Brixen batch 2).
+      // “Da Rio di Pusteria al Bunker di Spinga: Escursione per Famiglie con Panorama”, published by the Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal), drawn on 27 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Mühlbach (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on meadows in the growing season or on playgrounds).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Mühlbach – Spinges (Rio di Pusteria – Spinga)',
+      distance: 3.4,
+      elevation: 596,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and steadily uphill, from Mühlbach on the walking path up the slope to the village of Spinges and the Spinges bunker; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the village of Mühlbach (Rio di Pusteria), the board’s start.",
+        "sequence": "Follow the signed walking path up the slope to the neighbouring village of Spinges, with views over the valley on the way, and on to the Spinges bunker, the end of the walk.",
+        "switches": "None: follow the signs for Spinges all the way up.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal), Da Rio di Pusteria al Bunker di Spinga: Escursione per Famiglie con Panorama (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/60357933",
+            "authority": "Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal)",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The lane up from Mühlbach towards Spinges, in September (voschix on Mapillary, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official one-way walk 3.4 km from Mühlbach, as the Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal) publishes it; the stored line is drawn on 27 OSM ways along the board’s published line, 3.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No path number given: from Mühlbach follow the signed walking path up to the village of Spinges and on to the Spinges bunker.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 3.2 (OSM nodes 289017292, 1190256535, 8715662012, 11101726972, 12185383817).',
+        elevation: 'Official 3.4 km, 596 m up and 16 m down, 2:00 h, highest point 1,355 m, lowest 767 m (Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal), Da Rio di Pusteria al Bunker di Spinga: Escursione per Famiglie con Panorama (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Mühlbach / Comune di Rio di Pusteria, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 4, 01.03.2010), Art. 4 and 8: a lead of at most 1.5 m on all public land, in the village and outside it, and a muzzle carried; no dogs on meadows in the growing season or on playgrounds',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 0% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 6,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Steep lanes, mostly paved, shared with local traffic: keep your dog on a lead', 'Very little shade on the south-facing slope: go early in summer', 'Meadows are farmed: keep your dog on the path'],
+      terrainType: 'Paved lanes and short paths',
+      shadeDescription: 'Almost no shade: only about 6% runs through mapped woodland; the lanes climb an open, sunny slope.',
+      terrainDescription: 'A short, steep climb from Mühlbach at 770 m to Spinges at about 1,350 m, mostly on quiet paved lanes between farms, with views over the Pustertal.',
+      waterDescription: 'Drinking water at the start and km 3.2; places to eat on the way.',
+      dogNotes: 'Mühlbach requires a lead of no more than 1.5 m on all public land, in the village and outside it, and a muzzle carried. Dogs are not allowed on meadows during the growing season or on playgrounds, so keep your dog off the play pieces at the bunker.',
+      tips: 'Start in Mühlbach: 3.4 km one way and about 600 m up to Spinges, two hours; come back the same way. The slope faces the sun, so go early in summer and carry water. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at the start and at km 3.2 in Spinges.',
+      sourceLinks: [
+        { label: 'Outdooractive, Da Rio di Pusteria al Bunker di Spinga: Escursione per Famiglie con Panorama (Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal))', url: 'https://www.outdooractive.com/it/r/60357933' },
+        { label: 'Mühlbach, dog regulation', url: 'https://www.gemeinde.muehlbach.bz.it/de/Verwaltung/Dokumente/Verordnung_-_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.79613, lng: 11.66654, label: 'Mühlbach village centre, the board’s start' },
+      desc: 'A short, steep family walk from Mühlbach up the sunny slope to Spinges and its bunker, with wide views over the Pustertal. The board lists 3.4 km and 596 m up.'
+    },
+    'brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Brixen batch 2).
+      // “La valle d’Altafossa: un’escursione per tutta la famiglia”, published by the Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal), drawn on 11 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Mühlbach (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on meadows in the growing season or on playgrounds).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Altfasstal, above Meransen (Mühlbach)',
+      distance: 5,
+      elevation: 253,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and gently uphill, from the Altfasstal car park on the forest road past the Kneipp pools and the Großberg alp, then on path 15 to the Wieserhütte and Pranter Stadl at the head of the valley; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the paid car park at the entrance to the Altfasstal (Val di Altafossa), the board’s start.",
+        "sequence": "Follow the shaded, almost level forest road to the Kneipp pools and on to the Großberg alp. Out of the woods, take the signed path 15 along the small stream to the head of the valley, where the Wieserhütte and the Pranter Stadl stand at about 1,850 m.",
+        "switches": "One change: after the Großberg alp leave the forest road for path 15.",
+        "sources": [
+          {
+            "label": "Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal), La valle d’Altafossa: un’escursione per tutta la famiglia (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/802415362",
+            "authority": "Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal)",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The forest road into the Altfasstal, in July (mischl7 on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 5 km from the Altfasstal car park, as the Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal) publishes it; the stored line is drawn on 11 OSM ways along the board’s published line, 5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Forest road, then path 15: from the Altfasstal car park on the forest road past the Kneipp pools to the Großberg alp, then path 15 along the stream to the Wieserhütte and Pranter Stadl.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1.7, km 3.2 and km 4.9 (OSM nodes 3659070289, 3659070288, 9762334487).',
+        elevation: 'Official 5 km, 253 m up and 16 m down, 1:40 h, highest point 1,844 m, lowest 1,595 m (Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal), La valle d’Altafossa: un’escursione per tutta la famiglia (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Mühlbach / Comune di Rio di Pusteria, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 4, 01.03.2010), Art. 4 and 8: a lead of at most 1.5 m on all public land, in the village and outside it, and a muzzle carried; no dogs on meadows in the growing season or on playgrounds',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 0% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (11 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 17,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Forest road shared with bikes and occasional service traffic: keep your dog close', 'Cows graze in the upper valley in summer: keep your dog on a lead', 'Kneipp pools along the way: keep your dog out of them'],
+      terrainType: 'Forest road and alp path',
+      shadeDescription: 'Shaded in the first part, where the forest road runs through spruce woods; the upper valley is open pasture.',
+      terrainDescription: 'An easy, gently rising family walk at 1,600–1,850 m into the Altfasstal above Meransen, suitable for pushchairs, ending at two alp huts.',
+      waterDescription: 'Drinking water at km 1.7, km 3.2 and km 4.9; places to eat on the way.',
+      dogNotes: 'Mühlbach requires a lead of no more than 1.5 m on all public land, in the village and outside it, and a muzzle carried. Dogs are not allowed on meadows during the growing season or on playgrounds. Cows graze the upper valley in summer.',
+      tips: 'Park at the paid Altfasstal car park: 5 km one way and about 250 m up to the Wieserhütte, an hour and forty minutes; come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at km 1.7, 3.2 and 4.9; the Großberghütte, the Wieserhütte and the Pranter Stadl serve food in summer.',
+      sourceLinks: [
+        { label: 'Outdooractive, La valle d’Altafossa: un’escursione per tutta la famiglia (Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal))', url: 'https://www.outdooractive.com/it/r/802415362' },
+        { label: 'Mühlbach, dog regulation', url: 'https://www.gemeinde.muehlbach.bz.it/de/Verwaltung/Dokumente/Verordnung_-_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.82471, lng: 11.64792, label: 'Altfasstal car park (paid), the board’s start' },
+      desc: 'An easy family walk into the Altfasstal above Meransen, on a shaded forest road past the Kneipp pools and the Großberg alp, then along the stream to the Wieserhütte and Pranter Stadl. The board lists 5 km and 253 m up.'
+    },
+    'brixen-escursione-al-rifugio-bressanone': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Brixen batch 2).
+      // “Escursione al rifugio Bressanone”, published by the Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal), drawn on 23 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Mühlbach (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on meadows in the growing season or on playgrounds).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Fane Alm – Brixner Hütte, Valser Tal (Mühlbach)',
+      distance: 4.3,
+      elevation: 580,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and uphill, from the Fane Alm hamlet on path 17 along the Valser Bach, past the waterfalls, to the Brixner Hütte at 2,282 m; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at Fane Alm, the alp hamlet at the head of the Valser Tal, the board’s start.",
+        "sequence": "Walk the gravel track through the hamlet past its huts, stables and small church. Then follow path 17 along the Valser Bach to the waterfalls and climb steadily on to the Brixner Hütte (Rifugio Bressanone) at 2,282 m.",
+        "switches": "None: stay on path 17 from Fane Alm to the hut.",
+        "sources": [
+          {
+            "label": "Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal), Escursione al rifugio Bressanone (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/802415364",
+            "authority": "Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal)",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path 17 signpost between Fane Alm and the Brixner Hütte, in August (Peter Maiwald on Wikimedia Commons, CC0), 1 m from the line.',
+        route: 'Official one-way walk 4.3 km from Fane Alm, as the Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal) publishes it; the stored line is drawn on 23 OSM ways along the board’s published line, 4.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 17: from Fane Alm on the gravel track through the hamlet, then path 17 along the Valser Bach past the waterfalls to the Brixner Hütte.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.3 and km 1.3 (OSM nodes 12058805922, 10963532112).',
+        elevation: 'Official 4.3 km, 580 m up and 5 m down, 1:50 h, highest point 2,279 m, lowest 1,712 m (Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal), Escursione al rifugio Bressanone (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Mühlbach / Comune di Rio di Pusteria, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 4, 01.03.2010), Art. 4 and 8: a lead of at most 1.5 m on all public land, in the village and outside it, and a muzzle carried; no dogs on meadows in the growing season or on playgrounds',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 0% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (23 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Cows graze around Fane Alm and in the upper valley in summer: keep your dog on a lead', 'Stony, steeper path by the waterfalls', 'Open high ground up to 2,280 m: turn back if storms build'],
+      terrainType: 'Gravel track and mountain path',
+      shadeDescription: 'No shade: the whole walk runs through open alpine pasture above the tree line.',
+      terrainDescription: 'A steady climb at 1,710–2,280 m from the Fane Alm hamlet up the Valser Tal, past waterfalls, to the Brixner Hütte in the Pfunderer mountains.',
+      waterDescription: 'Drinking water at km 0.3 and km 1.3; places to eat on the way.',
+      dogNotes: 'Mühlbach requires a lead of no more than 1.5 m on all public land, in the village and outside it, and a muzzle carried. Dogs are not allowed on meadows during the growing season or on playgrounds. Cows graze around Fane Alm and in the valley in summer.',
+      tips: 'Start at Fane Alm: 4.3 km one way and about 580 m up to the Brixner Hütte, under two hours; come back the same way. There is no shade, so carry water and sun protection for both of you. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at km 0.3 and 1.3; the Brixner Hütte serves food in summer.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione al rifugio Bressanone (Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal))', url: 'https://www.outdooractive.com/it/r/802415364' },
+        { label: 'Mühlbach, dog regulation', url: 'https://www.gemeinde.muehlbach.bz.it/de/Verwaltung/Dokumente/Verordnung_-_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.88006, lng: 11.62134, label: 'Fane Alm, the board’s start' },
+      desc: 'A climb from the Fane Alm hamlet up the Valser Tal on path 17, past waterfalls, to the Brixner Hütte at 2,282 m in the Pfunderer mountains. The board lists 4.3 km and 580 m up.'
     }
   };
 

@@ -292,6 +292,74 @@
       }
     },
     {
+      "id": "brixen-alto-sentiero-di-lazfons",
+      "approvedReviewId": "commons-brixen-alto-sentiero-di-lazfons-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/brixen-alto-sentiero-di-lazfons-kuehberg-geisler-view.jpg",
+        "heroImage": "images/trails/brixen-alto-sentiero-di-lazfons-kuehberg-geisler-view.jpg",
+        "imageAlt": "Two stone pines on a sunny alpine slope, with the jagged Geisler peaks on the horizon under a clear blue sky",
+        "imageCredit": "The Kühberg alp and the Geisler peaks",
+        "imageCreditText": "The Kühberg alp and the Geisler peaks by Clemens Stockner",
+        "imageCreator": "Clemens Stockner",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kühberg_11.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl",
+      "approvedReviewId": "mapillary-brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl-lane-above-muehlbach.jpg",
+        "heroImage": "images/trails/brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl-lane-above-muehlbach.jpg",
+        "imageAlt": "A narrow lane beside a wooden fence above Mühlbach, with a cyclist ahead and wooded mountains across the valley",
+        "imageCredit": "The lane above Mühlbach",
+        "imageCreditText": "The lane above Mühlbach by voschix",
+        "imageCreator": "voschix",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=827919481408912",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "brixen-escursione-al-rifugio-bressanone",
+      "approvedReviewId": "commons-brixen-escursione-al-rifugio-bressanone-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/brixen-escursione-al-rifugio-bressanone-path-17-signpost.jpg",
+        "heroImage": "images/trails/brixen-escursione-al-rifugio-bressanone-path-17-signpost.jpg",
+        "imageAlt": "A wooden signpost on a green slope pointing along path 17 to the Brixner Hütte and back down to Fane Alm and Vals",
+        "imageCredit": "The path 17 signpost below the Brixner Hütte",
+        "imageCreditText": "The path 17 signpost below the Brixner Hütte by Peter Maiwald",
+        "imageCreator": "Peter Maiwald",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Wegweiser_fingerpost_Fanealm_Labeseben_Brixner_Hütte_Südtirol.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia",
+      "approvedReviewId": "mapillary-brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia-forest-road.jpg",
+        "heroImage": "images/trails/brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia-forest-road.jpg",
+        "imageAlt": "A gravel forest road through spruce woods in the Altfasstal, with a green mountain top beyond",
+        "imageCredit": "The forest road in the Altfasstal",
+        "imageCreditText": "The forest road in the Altfasstal by mischl7",
+        "imageCreator": "mischl7",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=314151183401026",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cadini",
       "approvedReviewId": "commons-cadini",
       "approvedAt": "2026-09-06T12:22:30.979Z",

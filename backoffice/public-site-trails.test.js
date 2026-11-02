@@ -171,9 +171,11 @@ describe('the existing-site verification boundary',()=>{
     // Latschanderwaal, the Kastanienwaal, Lake Bergsee from Burgeis and the Stabnerwaal.
     // Then 413 and 411 with three Villnöss walks: Ranui to Zannes, Ponte Russis to
     // Passo delle Erbe and Dolorama stage 3, Rifugio Genova to Resciesa.
+    // Then 425 and 423 with four Brixen-area walks: the Latzfons high trail,
+    // Mühlbach to Spinges, the Altfasstal and Fane Alm to the Brixner Hütte.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(421);
-    expect(currentSiteTrails(catalogue)).toHaveLength(419);
+    expect(catalogue).toHaveLength(425);
+    expect(currentSiteTrails(catalogue)).toHaveLength(423);
   });
 
   test('requires the artwork the public trail page needs',()=>{
