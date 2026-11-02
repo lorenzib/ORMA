@@ -70,16 +70,24 @@ describe('unknown descent on the card', () => {
     expect(codes(recommend(short, DOGS.senior))).toContain('trail.descent.unknown');
   });
 
-  test('a still-unknown descent never moves the score, for any published walk and dog', () => {
-    const unknown = trails.filter(trail => adapters.descentM(trail) === null);
-    expect(unknown.length).toBeGreaterThan(0);
-    for(const trail of unknown){
+  test('an unknown descent never moves the score, for any published walk and dog', () => {
+    // Every published walk has a figure now, so each is scored with it taken
+    // away: unknown must cost exactly what no descent at all costs.
+    for(const trail of trails){
+      const parts = adapters.normalizeTrail(trail);
       for(const dog of Object.values(DOGS)){
-        const asIs = recommend(trail, dog);
-        const flat = recommend({ ...trail, descent:0 }, dog);
-        expect([trail.id, asIs.score, asIs.category]).toEqual([trail.id, flat.score, flat.category]);
-        expect(asIs.factors.some(entry => /descent/.test(entry.code))).toBe(false);
+        const score = descentM => engine.calculateRecommendation({
+          dog, trail:{ ...parts, metrics:{ ...parts.metrics, descentM } },
+        });
+        const unknown = score(null);
+        const none = score(0);
+        expect([trail.id, unknown.score, unknown.category]).toEqual([trail.id, none.score, none.category]);
+        expect(unknown.factors.some(entry => /descent/.test(entry.code))).toBe(false);
       }
     }
+  });
+
+  test('every published walk has a descent', () => {
+    expect(trails.filter(trail => adapters.descentM(trail) === null).map(trail => trail.id)).toEqual([]);
   });
 });

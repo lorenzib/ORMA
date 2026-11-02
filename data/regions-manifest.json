@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-02T09:18:34.997Z",
+  "generatedAt": "2026-11-02T11:14:16.757Z",
   "regions": {
     "dolomites": {
       "trailCount": 307,
@@ -321,14 +321,14 @@
     },
     "savoy": {
       "trailCount": 51,
-      "trails": "data/regions/savoy-trails.js?v=0001fef7ee9c",
+      "trails": "data/regions/savoy-trails.js?v=6199b8e75deb",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=07be5ff5d5e1",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=6206ef4046f2",
         "osm-9933643": "data/trail-details/osm-9933643.js?v=46e36fc3307c",
         "osm-10116283": "data/trail-details/osm-10116283.js?v=78fe4b05c278",
         "osm-10116380": "data/trail-details/osm-10116380.js?v=94f1614013f9",
-        "osm-20347406": "data/trail-details/osm-20347406.js?v=d91ad911a11c",
+        "osm-20347406": "data/trail-details/osm-20347406.js?v=f216e65eff31",
         "osm-11517208": "data/trail-details/osm-11517208.js?v=7d965ede3792",
         "osm-14987412": "data/trail-details/osm-14987412.js?v=232ab44a9d26",
         "osm-18055492": "data/trail-details/osm-18055492.js?v=b6856f6e21aa",
