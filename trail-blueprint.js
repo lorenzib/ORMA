@@ -751,8 +751,8 @@
     const guidanceLines = guidanceSplit ? guidanceSplit.lines : [];
     const stepsMarkup = guidanceSteps
       ? `<ol class="td2-route-steps">${guidanceSteps.steps.map(step =>
-        `<li>${esc(step.text)} <span class="td2-route-step-from">${esc(step.tags.join(', '))}</span></li>`).join('')}</ol>${
-        guidanceSteps.credits.map(credit => `<p class="td2-route-source">${esc(credit.before)}<a href="${
+        `<li>${esc(step.text)}${step.tags.length ? ` <span class="td2-route-step-from">${esc(step.tags.join(', '))}</span>` : ''}</li>`).join('')}</ol>${
+        guidanceSteps.credits.map(credit => `<p class="td2-route-credit">${esc(credit.before)}<a href="${
           esc(credit.url)}" target="_blank" rel="noopener">${esc(credit.label)}</a>${esc(credit.after)}</p>`).join('')}`
       : '';
     const routeRefMarkup = verifiedRouteGuidance && guidanceSplit

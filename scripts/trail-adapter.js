@@ -4,6 +4,7 @@ const { validateTrailRecord, REVIEW_CATEGORIES } = require('./trail-schema');
 const { normalizeLiftAccess } = require('./lift-access');
 const evidence = require('../trust/evidence-v1.js');
 const { pinnedSlug } = require('./trail-slug-overrides');
+const { descentM } = require('../scoring/recommendation-adapters-v1.js');
 
 const ADAPTER_VERSION = '1.1.0';
 const UNKNOWN_ROOTS = new Set([
@@ -392,7 +393,7 @@ function adaptLegacyTrail(legacy, options = {}){
   const metrics = {
     distanceKm: finite(legacy.distance),
     ascentM: finite(legacy.elevation),
-    descentM: null,
+    descentM: descentM(legacy),
     durationMinutes: parseDurationMinutes(legacy.hours),
     minElevationM: bounds.min,
     maxElevationM: bounds.max,

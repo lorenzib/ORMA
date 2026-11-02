@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-faggi-secolari-pustot-dordolla",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.9,
+    "ascentM": 395,
+    "highestPointM": 938,
+    "expectedDuration": "2.35 hours",
+    "difficulty": "Hard",
+    "shadePercent": 68
+  },
+  "trailhead": {
+    "lat": 46.467451,
+    "lng": 13.192468,
+    "label": "Dordolla village, Val Aupa, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Steep climbs and descents on old mule tracks: slippery after rain.",
+    "Not advised after heavy rain.",
+    "Ticks are common in the region: check your dog after the walk.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

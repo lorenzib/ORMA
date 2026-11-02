@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fiemme-masi-comunicanti",
+  "distanceKm": 7.2,
+  "ascentM": 400,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1013
+    },
+    {
+      "km": 0.5,
+      "elev": 982
+    },
+    {
+      "km": 1.1,
+      "elev": 878
+    },
+    {
+      "km": 1.6,
+      "elev": 802
+    },
+    {
+      "km": 2.2,
+      "elev": 779
+    },
+    {
+      "km": 2.8,
+      "elev": 744
+    },
+    {
+      "km": 3.3,
+      "elev": 748
+    },
+    {
+      "km": 3.8,
+      "elev": 780
+    },
+    {
+      "km": 4.4,
+      "elev": 940
+    },
+    {
+      "km": 4.9,
+      "elev": 963
+    },
+    {
+      "km": 5.5,
+      "elev": 1003
+    },
+    {
+      "km": 6,
+      "elev": 992
+    },
+    {
+      "km": 6.5,
+      "elev": 1019
+    },
+    {
+      "km": 7.1,
+      "elev": 1008
+    },
+    {
+      "km": 7.2,
+      "elev": 1013
+    }
+  ]
+}

@@ -43,6 +43,10 @@ const SPUR_MIN_M = 50;        // retraced further than a snap (build-board-line 
 const OVERLAP_GAP_M = 80;     // a point is "over itself" only against line this far away along it
 const MAX_OVERLAP = 0.10;     // share of a non-out-and-back line allowed over itself
 const TIP_WINDOW = 0.15;      // an out-and-back turns within 15% of its middle
+// Where the line crosses a path it has already walked, or brushes past it at a
+// junction, it lies over itself for a few metres without walking anything
+// twice. Shorter than this, a touch is a crossing, not a stretch walked again.
+const CROSSING_M = 25;
 
 /**
  * Spurs: places the line turns and comes straight back on the same track.
@@ -112,13 +116,14 @@ function readShape(points, along, flags, spurs) {
   if (over <= MAX_OVERLAP) return { kind: 'clean', extraSpurs: [] };
   // A stem: the line runs over itself in one stretch near its start and one
   // near its end -- the same path walked out and back -- and nowhere else.
-  const runs = [];
+  const touches = [];
   flags.forEach((flag, i) => {
     if (!flag) return;
-    const last = runs[runs.length - 1];
+    const last = touches[touches.length - 1];
     if (last && along[i] - along[last.to] <= OVERLAP_GAP_M) last.to = i;
-    else runs.push({ from: i, to: i });
+    else touches.push({ from: i, to: i });
   });
+  const runs = touches.filter(run => along[run.to] - along[run.from] >= CROSSING_M);
   const near = TIP_WINDOW * total;
   if (runs.length === 2 && along[runs[0].from] <= near && total - along[runs[1].to] <= near) {
     return { kind: 'lollipop', extraSpurs: [] };
@@ -284,6 +289,6 @@ function main(argv = process.argv.slice(2)) {
 if (require.main === module) main();
 
 module.exports = {
-  STEP_M, SAME_TRACK_M, SPUR_MIN_M, OVERLAP_GAP_M, MAX_OVERLAP, ACCEPTS,
+  STEP_M, SAME_TRACK_M, SPUR_MIN_M, OVERLAP_GAP_M, MAX_OVERLAP, CROSSING_M, ACCEPTS,
   lineShape, directionsOf, loadTrails, isVerified, audit,
 };

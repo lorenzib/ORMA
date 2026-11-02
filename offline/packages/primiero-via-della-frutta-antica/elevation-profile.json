@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-via-della-frutta-antica",
+  "distanceKm": 7.9,
+  "ascentM": 321,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 728
+    },
+    {
+      "km": 0.6,
+      "elev": 809
+    },
+    {
+      "km": 1.2,
+      "elev": 833
+    },
+    {
+      "km": 1.8,
+      "elev": 861
+    },
+    {
+      "km": 2.4,
+      "elev": 895
+    },
+    {
+      "km": 3,
+      "elev": 892
+    },
+    {
+      "km": 3.6,
+      "elev": 915
+    },
+    {
+      "km": 4.2,
+      "elev": 907
+    },
+    {
+      "km": 4.8,
+      "elev": 900
+    },
+    {
+      "km": 5.4,
+      "elev": 981
+    },
+    {
+      "km": 6,
+      "elev": 965
+    },
+    {
+      "km": 6.6,
+      "elev": 1006
+    },
+    {
+      "km": 7.2,
+      "elev": 1031
+    },
+    {
+      "km": 7.8,
+      "elev": 1014
+    },
+    {
+      "km": 7.9,
+      "elev": 1003
+    }
+  ]
+}
