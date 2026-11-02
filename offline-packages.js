@@ -10,6 +10,7 @@
     'altabadia-da-la-val-ai-prati-di-rit': "La Val – Prati di Rit",
     'altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa': "Pederoa – Picedac – Costa",
     'altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt': "La Villa – Lech da Sompunt",
+    'cembra-castello-segonzano': "Il Castello di Segonzano e il canyon del Prà",
     'cembra-dos-paion': "Passeggiata al belvedere del Dos Paion sul Monte Corona",
     'cembra-erbe-della-salute': "Le erbe della salute",
     'cembra-giro-masi-grumes': "Il Giro dei Masi di Grumes",
@@ -46,6 +47,7 @@
     'fiemme-cavalese-passeggiata-panoramica': "Cavalese - Passeggiata panoramica",
     'fiemme-giro-cavalese-castello': "Giro ad anello Cavalese - Castello di Fiemme",
     'fiemme-masi-comunicanti': "Masi Comunicanti",
+    'fiemme-passeggiata-insolita': "Passeggiata insolita lungo il Rio Gambis",
     'fiemme-passo-oclini': "Passo Oclini, tra il Corno Nero e il Corno Bianco",
     'fiemme-scalata-alle-malghette': "La “scalata” alle Malghette",
     'fiemme-sentiero-botanico': "Sentiero botanico naturalistico",
@@ -54,6 +56,7 @@
     'fvg-laghi-di-fusine': "Laghi di Fusine",
     'giro-del-bulacia': "Giro della Bullaccia",
     'giudicarie-san-martino-bosco-scolpito': "San Martino – Bosco Scolpito",
+    'giudicarie-san-vigilio-senter-dei-cavai': "San Vigilio and the Senter dei Cavai",
     'giudicarie-tione-bolbeno-madonna-del-lares': "Tione – Bolbeno – Madonna del Lares",
     'kronplatz-attraverso-il-sentiero-panoramico-a-brunico': "Panoramic path from Olang to Bruneck",
     'kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina': "Antermoia to Rina",
@@ -182,6 +185,9 @@
     'valgardena-escursione-dalla-cappella-santa-croce-al-brogles': "Santa Croce – Brogles",
     'valgardena-percorso-dei-masi-tradizionali': "Santa Cristina farms path",
     'valley-view': "Val di Funes Panorama Trail",
+    'villnoess-da-russis-fino-al-passo-delle-erbe': "Ponte Russis to Passo delle Erbe",
+    'villnoess-dolorama-3a-tappa': "Dolorama stage 3: Rifugio Genova to Resciesa",
+    'villnoess-ranui-zannes': "Ranui to Zannes",
   };
   // </offline-package-registry>
   const PACKAGES = Object.freeze(Object.fromEntries(Object.keys(PACKAGE_NAMES).map(trailId => [trailId, Object.freeze({
