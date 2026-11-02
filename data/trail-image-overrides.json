@@ -6843,6 +6843,23 @@
       }
     },
     {
+      "id": "vinschgau-piani-di-annenberg",
+      "approvedReviewId": "mapillary-vinschgau-piani-di-annenberg-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-piani-di-annenberg-annenberg-signpost.jpg",
+        "heroImage": "images/trails/vinschgau-piani-di-annenberg-annenberg-signpost.jpg",
+        "imageAlt": "Wooden signposts for the Annaberger Böden and the Goldrain panorama path beside a fenced path, with pines and the valley below",
+        "imageCredit": "Signposts above the Annaberger Böden",
+        "imageCreditText": "Signposts above the Annaberger Böden by kapant",
+        "imageCreator": "kapant",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=3196848953966374",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "vinschgau-sentiero-della-roggia-kastanienwaal",
       "approvedReviewId": "commons-vinschgau-sentiero-della-roggia-kastanienwaal-on-route",
       "approvedAt": "2026-11-02T12:00:00.000Z",
@@ -6873,6 +6890,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:15262_Schloß_Kastelbell_Castello_di_Castelbello_Kastellbell_20220904_0230.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal",
+      "approvedReviewId": "mapillary-vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal-waal-path.jpg",
+        "heroImage": "images/trails/vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal-waal-path.jpg",
+        "imageAlt": "A gravel path beside a small stone irrigation channel through pine and larch woods, with yellow waymarks on a tree trunk",
+        "imageCredit": "The waal path above Schluderns",
+        "imageCreditText": "The waal path above Schluderns by freebiker_bert",
+        "imageCreator": "freebiker_bert",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1103997910123042",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-schnalswaal",
+      "approvedReviewId": "mapillary-vinschgau-sentiero-della-roggia-schnalswaal-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-sentiero-della-roggia-schnalswaal-wayside-shrine.jpg",
+        "heroImage": "images/trails/vinschgau-sentiero-della-roggia-schnalswaal-wayside-shrine.jpg",
+        "imageAlt": "A small whitewashed wayside shrine with a wrought-iron grille and flowers inside, in dappled shade beside the path",
+        "imageCredit": "A wayside shrine above Staben",
+        "imageCreditText": "A wayside shrine above Staben by vrws",
+        "imageCreator": "vrws",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=759832618030645",
         "imageSourceType": "licensed-source"
       }
     },

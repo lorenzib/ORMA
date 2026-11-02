@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lario-eupilio-tra-segrino-e-cornizzolo",
+  "distanceKm": 5.3,
+  "ascentM": 397,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 389
+    },
+    {
+      "km": 0.4,
+      "elev": 394
+    },
+    {
+      "km": 0.8,
+      "elev": 427
+    },
+    {
+      "km": 1.3,
+      "elev": 400
+    },
+    {
+      "km": 1.6,
+      "elev": 469
+    },
+    {
+      "km": 2,
+      "elev": 523
+    },
+    {
+      "km": 2.4,
+      "elev": 546
+    },
+    {
+      "km": 2.8,
+      "elev": 584
+    },
+    {
+      "km": 3.2,
+      "elev": 643
+    },
+    {
+      "km": 3.6,
+      "elev": 621
+    },
+    {
+      "km": 4.1,
+      "elev": 569
+    },
+    {
+      "km": 4.5,
+      "elev": 481
+    },
+    {
+      "km": 4.9,
+      "elev": 418
+    },
+    {
+      "km": 5.3,
+      "elev": 388
+    }
+  ]
+}
