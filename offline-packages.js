@@ -185,6 +185,11 @@
     'villnoess-da-russis-fino-al-passo-delle-erbe': "Ponte Russis to Passo delle Erbe",
     'villnoess-dolorama-3a-tappa': "Dolorama stage 3: Rifugio Genova to Resciesa",
     'villnoess-ranui-zannes': "Ranui to Zannes",
+    'vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles': "Rifugio Sesvenna to Mals",
+    'vinschgau-escursione-al-lago-bergsee-da-burgusio': "Lake Bergsee from Burgeis",
+    'vinschgau-sentiero-della-roggia-kastanienwaal': "Kastanienwaal, Schlanders",
+    'vinschgau-sentiero-della-roggia-latschanderwaal-4954': "Latschanderwaal, Latsch to Kastelbell",
+    'vinschgau-sentiero-della-roggia-stabnerwaal': "Stabnerwaal, Staben to Tschars",
   };
   // </offline-package-registry>
   const PACKAGES = Object.freeze(Object.fromEntries(Object.keys(PACKAGE_NAMES).map(trailId => [trailId, Object.freeze({

@@ -6741,6 +6741,91 @@
       }
     },
     {
+      "id": "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles",
+      "approvedReviewId": "commons-vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles-sesvenna-hut.jpg",
+        "heroImage": "images/trails/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles-sesvenna-hut.jpg",
+        "imageAlt": "The stone Sesvenna hut on a grassy shelf above a small mountain lake, with a dirt path and distant blue peaks",
+        "imageCredit": "The Rifugio Sesvenna at the start",
+        "imageCreditText": "The Rifugio Sesvenna at the start by Agnes Monkelbaan",
+        "imageCreator": "Agnes Monkelbaan",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bergtocht_van_Watles_via_Sesvennahütte_en_de_Uina_Slucht_naar_Sur_En_19-09-2019._(actm.)_22.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-escursione-al-lago-bergsee-da-burgusio",
+      "approvedReviewId": "commons-vinschgau-escursione-al-lago-bergsee-da-burgusio-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-escursione-al-lago-bergsee-da-burgusio-burgeis-marienberg.jpg",
+        "heroImage": "images/trails/vinschgau-escursione-al-lago-bergsee-da-burgusio-burgeis-marienberg.jpg",
+        "imageAlt": "A village lane in Burgeis with flower boxes and a church spire, and the white Marienberg Abbey on the wooded slope above",
+        "imageCredit": "Burgeis and Marienberg Abbey",
+        "imageCreditText": "Burgeis and Marienberg Abbey by Vid Pogacnik",
+        "imageCreator": "Vid Pogacnik",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Burgeis01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-kastanienwaal",
+      "approvedReviewId": "commons-vinschgau-sentiero-della-roggia-kastanienwaal-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-sentiero-della-roggia-kastanienwaal-sonnenpromenade.jpg",
+        "heroImage": "images/trails/vinschgau-sentiero-della-roggia-kastanienwaal-sonnenpromenade.jpg",
+        "imageAlt": "A wooden signpost reading Sonnenpromenade on a metal pole beside a house with a balcony, under a cloudy sky",
+        "imageCredit": "The Sonnenpromenade sign in Schlanders",
+        "imageCreditText": "The Sonnenpromenade sign in Schlanders by Seichter-wm",
+        "imageCreator": "Seichter-wm",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sonnenpromenade_Schlanders1.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-latschanderwaal-4954",
+      "approvedReviewId": "commons-vinschgau-sentiero-della-roggia-latschanderwaal-4954-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-sentiero-della-roggia-latschanderwaal-4954-kastelbell-castle.jpg",
+        "heroImage": "images/trails/vinschgau-sentiero-della-roggia-latschanderwaal-4954-kastelbell-castle.jpg",
+        "imageAlt": "Kastelbell castle with its round tower and battlements on a rocky outcrop above green woods, under a cloudy sky",
+        "imageCredit": "Kastelbell castle on the Latschanderwaal",
+        "imageCreditText": "Kastelbell castle on the Latschanderwaal by Tilman2007",
+        "imageCreator": "Tilman2007",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:15262_Schloß_Kastelbell_Castello_di_Castelbello_Kastellbell_20220904_0230.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-stabnerwaal",
+      "approvedReviewId": "mapillary-vinschgau-sentiero-della-roggia-stabnerwaal-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-sentiero-della-roggia-stabnerwaal-staben-view.jpg",
+        "heroImage": "images/trails/vinschgau-sentiero-della-roggia-stabnerwaal-staben-view.jpg",
+        "imageAlt": "Looking down from the Sonnenberg on the village of Staben, the green Adige river and the railway, with orchards across the valley floor",
+        "imageCredit": "Staben from the Stabnerwaal",
+        "imageCreditText": "Staben from the Stabnerwaal by uwelino",
+        "imageCreator": "uwelino",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=2843964542586862",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "weissensee-nordic-2-urschitz",
       "approvedReviewId": "commons-weissensee-nordic-2-urschitz-on-route",
       "approvedAt": "2026-10-28T09:00:00.000Z",
