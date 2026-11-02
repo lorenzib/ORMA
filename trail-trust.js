@@ -167,19 +167,27 @@
     .replace(/\s*\(OSM-verified access point\)/gi, '')
     .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
 
+  // A reviewed point keeps its own name but loses the importer's tag. "(OSM-
+  // verified location)" printed on 67 live pages, seven of them trails without
+  // the seal, and a reader takes "verified" next to ORMA's name as ORMA's.
+  const withoutOsmTag = label => String(label || '')
+    .replace(/\s*\(OSM-verified[^)]*\)/gi, '')
+    .replace(/OSM-verified/gi, 'mapped in OpenStreetMap')
+    .trim();
+
   function waterPointLabel(trail, label) {
     const base = String(label || 'Water point')
       .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
       .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
     if (!categoryVerified(trail, 'water')) return `${base}, availability can change`;
-    return imported(trail) ? base : label;
+    return imported(trail) ? base : withoutOsmTag(label);
   }
 
   function startPointLabel(trail, label) {
     if (!categoryVerified(trail, 'access') && !imported(trail)) {
       return `Suggested start, ${plainStartLabel(label)}. Check current access before travelling.`;
     }
-    if (!imported(trail)) return label;
+    if (!imported(trail)) return withoutOsmTag(label);
     return `Mapped start suggestion, ${plainStartLabel(label)}. Check current access before travelling.`;
   }
 

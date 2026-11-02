@@ -19,8 +19,8 @@ const ROOT=__dirname;
  * on a trail without the seal the published copy must not claim it.
  *
  * Saying what is not verified is honest and stays ("not yet verified by ORMA",
- * "unconfirmed"), and so does "OSM-verified", which names OpenStreetMap and is
- * reworded to "mapped in OpenStreetMap" where the trust layer prints it.
+ * "unconfirmed"). The importer's "(OSM-verified location)" tag stays in the
+ * data, but no page prints it: the last test reads every generated page.
  */
 function appTrust(){
   const sandbox={window:{},console};
@@ -98,5 +98,16 @@ describe('a trail without the seal never says it is verified',()=>{
       }
     }
     expect(offenders).toEqual([]);
+  });
+
+  // The importer tags every water point "Drinking water (OSM-verified
+  // location)". The pages printed it on reviewed water, sealed or not, until
+  // 2 Nov 2026: 67 trails, seven without the seal.
+  test('no trail page prints the importer\'s "OSM-verified" tag',()=>{
+    const dir=path.join(ROOT,'trails');
+    const pages=fs.readdirSync(dir).filter(file=>file.endsWith('.html'));
+    expect(pages.length).toBeGreaterThan(150);
+    const tagged=pages.filter(file=>/OSM-verified/i.test(fs.readFileSync(path.join(dir,file),'utf8')));
+    expect(tagged).toEqual([]);
   });
 });
