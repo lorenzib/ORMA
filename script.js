@@ -1291,21 +1291,6 @@ function liTrailLngLat(trail){
   return null;
 }
 
-// Short, honest "why this fits" line for a trail card. The canonical
-// recommendation supplies the reasons so every surface explains the same score.
-function matchReason(t, overrides){
-  const isImported = t.curated === false;
-  try{
-    const recommendation = recommendTrail(t, overrides, liConditionsFor(t));
-    const reasons = recommendation.positiveReasons.slice(0, 2);
-    if(reasons.length < 2) reasons.push(...recommendation.cautions.slice(0, 2 - reasons.length));
-    if(reasons.length) return reasons.map(reason => reason.message).join(' ');
-  }catch(error){
-    console.warn('Could not build the canonical match explanation.', error);
-  }
-  return isImported ? 'Estimated from mapped route data' : 'Recommendation details are unavailable';
-}
-
 function createMapOverlayControls(map, containerId, allLiftMarkers){
   const container = document.getElementById(containerId);
   if(!container) return;
@@ -3737,7 +3722,6 @@ function liTrailHref(trailId){
 
 function liMatchColHtml(t, profile, overrides){
   const presentation = liRecommendationPresentation(t, profile);
-  const reason = matchReason(t, overrides);
   // Spoken, not shown: the level is a key, so the words come from its owner.
   // Reading "Strong option for Eddie. high." to a screen reader is what
   // interpolating the raw field would do.
@@ -3745,9 +3729,12 @@ function liMatchColHtml(t, profile, overrides){
   const spokenConfidence = verdict
     ? verdict.confidenceLabel(presentation.confidence, window.t)
     : '';
+  // No tooltip: it used to join the engine's raw sentences ("Terrain is within
+  // this dog's effective tolerance...") over the card's own plain "Why it
+  // fits" list, which every card with a verdict now carries.
   const spoken = [`${presentation.label} for ${presentation.dogName}`, spokenConfidence]
     .filter(Boolean).join('. ');
-  return `<div class="li-match" aria-label="${liPersonalisationText(`${spoken}.`)}" title="${liPersonalisationText(reason)}">
+  return `<div class="li-match" aria-label="${liPersonalisationText(`${spoken}.`)}">
       <b style="color:${presentation.color};">${presentation.label}</b>
       <span class="li-match-lbl">For ${liPersonalisationText(presentation.dogName)}</span>
     </div>`;
@@ -4114,7 +4101,7 @@ async function renderReturningHomepage(profile, options = {}){
       ${thumb}
       <div class="li-row-body">
         <a href="${liTrailHref(t.id)}" class="li-row-name">${t.name}</a>
-        <div class="li-row-meta" title="${matchReason(t, overrides)}">${liRowMeta(t)}</div>
+        <div class="li-row-meta">${liRowMeta(t)}</div>
         ${newBadge ? `<div class="li-row-badges">${newBadge}</div>` : ''}
         ${liProvenanceHtml(t, profile)}
         <div class="li-rating-row"><span class="li-rating-kick">Trail rating</span><span class="safety-badge ${safetyClass(t.safetyLevel)}">${trailSafetyLabel(t)}</span></div>

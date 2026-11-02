@@ -2961,6 +2961,30 @@
       "quote": "Distanza 14 km · Durata 4:12 h · Salita 567 m · Discesa 567 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "villnoess-ranui-zannes": {
+      "url": "https://www.outdooractive.com/it/r/810055210",
+      "publisher": "Villnöss tourist board (Tourismusverein Villnöss) (Outdooractive, suedtirol.info)",
+      "name": "Ranui - Zannes",
+      "quote": "Distanza 3,4 km · Durata 1:11 h · Salita 296 m · Discesa 2 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "villnoess-da-russis-fino-al-passo-delle-erbe": {
+      "url": "https://www.outdooractive.com/it/r/65390947",
+      "publisher": "Villnöss tourist board (Tourismusverein Villnöss) (Outdooractive, suedtirol.info)",
+      "name": "Da Russis fino al Passo delle Erbe",
+      "quote": "Distanza 8 km · Durata 2:41 h · Salita 554 m · Discesa 299 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "villnoess-dolorama-3a-tappa": {
+      "url": "https://www.outdooractive.com/it/r/38332052",
+      "publisher": "Lajen tourist board (Dolorama trail) (Outdooractive, suedtirol.info)",
+      "name": "Dolorama 3a tappa",
+      "quote": "Distanza 15,7 km · Durata 4:45 h · Salita 633 m · Discesa 751 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-10-29T20:00:00.000Z"
     }
   }
 }
