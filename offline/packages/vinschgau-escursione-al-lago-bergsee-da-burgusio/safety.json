@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "trailId": "vinschgau-escursione-al-lago-bergsee-da-burgusio",
+  "generatedAt": "2026-11-02T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.3,
+    "ascentM": 146,
+    "highestPointM": 1362,
+    "expectedDuration": "0.75 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 12
+  },
+  "trailhead": {
+    "lat": 46.711128,
+    "lng": 10.528303,
+    "label": "Burgeis tourist office, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.711157,
+      "lng": 10.528277,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7118846,
+      "lng": 10.5259626,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Village lanes in Burgeis with occasional cars: lead on.",
+    "Little shade on the open slope above the village.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-02"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-02",
+      "licence": "ODbL"
+    }
+  ]
+}

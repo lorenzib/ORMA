@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "trailId": "vinschgau-sentiero-della-roggia-kastanienwaal",
+  "generatedAt": "2026-11-02T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.2,
+    "ascentM": 70,
+    "highestPointM": 826,
+    "expectedDuration": "0.5 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 18
+  },
+  "trailhead": {
+    "lat": 46.628747,
+    "lng": 10.774959,
+    "label": "Schlanders centre, the pedestrian zone, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6287505,
+      "lng": 10.7749894,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6283237,
+      "lng": 10.773688,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6284663,
+      "lng": 10.7767347,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.628346,
+      "lng": 10.773811,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6277158,
+      "lng": 10.7733243,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.630177,
+      "lng": 10.773758,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.627197,
+      "lng": 10.782534,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Most of the loop is on village lanes with occasional cars: lead on.",
+    "A sunny, south-facing slope: hot in summer, go early.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-02"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-02",
+      "licence": "ODbL"
+    }
+  ]
+}

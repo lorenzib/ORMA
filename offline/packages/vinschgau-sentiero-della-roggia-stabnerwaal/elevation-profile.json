@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "vinschgau-sentiero-della-roggia-stabnerwaal",
+  "distanceKm": 4.9,
+  "ascentM": 160,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 561
+    },
+    {
+      "km": 0.4,
+      "elev": 606
+    },
+    {
+      "km": 0.8,
+      "elev": 725
+    },
+    {
+      "km": 1.1,
+      "elev": 752
+    },
+    {
+      "km": 1.5,
+      "elev": 772
+    },
+    {
+      "km": 1.9,
+      "elev": 702
+    },
+    {
+      "km": 2.2,
+      "elev": 668
+    },
+    {
+      "km": 2.6,
+      "elev": 642
+    },
+    {
+      "km": 3,
+      "elev": 653
+    },
+    {
+      "km": 3.4,
+      "elev": 657
+    },
+    {
+      "km": 3.8,
+      "elev": 638
+    },
+    {
+      "km": 4.1,
+      "elev": 630
+    },
+    {
+      "km": 4.5,
+      "elev": 593
+    },
+    {
+      "km": 4.9,
+      "elev": 566
+    }
+  ]
+}

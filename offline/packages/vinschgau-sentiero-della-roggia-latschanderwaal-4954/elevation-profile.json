@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "vinschgau-sentiero-della-roggia-latschanderwaal-4954",
+  "distanceKm": 5.6,
+  "ascentM": 25,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 639
+    },
+    {
+      "km": 0.5,
+      "elev": 645
+    },
+    {
+      "km": 0.9,
+      "elev": 639
+    },
+    {
+      "km": 1.3,
+      "elev": 736
+    },
+    {
+      "km": 1.7,
+      "elev": 683
+    },
+    {
+      "km": 2.2,
+      "elev": 673
+    },
+    {
+      "km": 2.6,
+      "elev": 651
+    },
+    {
+      "km": 3,
+      "elev": 703
+    },
+    {
+      "km": 3.5,
+      "elev": 739
+    },
+    {
+      "km": 3.9,
+      "elev": 679
+    },
+    {
+      "km": 4.3,
+      "elev": 686
+    },
+    {
+      "km": 4.7,
+      "elev": 693
+    },
+    {
+      "km": 5.2,
+      "elev": 677
+    },
+    {
+      "km": 5.6,
+      "elev": 591
+    }
+  ]
+}
