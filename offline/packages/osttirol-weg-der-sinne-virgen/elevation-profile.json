@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osttirol-weg-der-sinne-virgen",
+  "distanceKm": 3.7,
+  "ascentM": 149,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1192
+    },
+    {
+      "km": 0.3,
+      "elev": 1178
+    },
+    {
+      "km": 0.6,
+      "elev": 1170
+    },
+    {
+      "km": 0.9,
+      "elev": 1147
+    },
+    {
+      "km": 1.1,
+      "elev": 1144
+    },
+    {
+      "km": 1.4,
+      "elev": 1092
+    },
+    {
+      "km": 1.7,
+      "elev": 1092
+    },
+    {
+      "km": 2,
+      "elev": 1105
+    },
+    {
+      "km": 2.3,
+      "elev": 1151
+    },
+    {
+      "km": 2.6,
+      "elev": 1091
+    },
+    {
+      "km": 2.9,
+      "elev": 1095
+    },
+    {
+      "km": 3.2,
+      "elev": 1132
+    },
+    {
+      "km": 3.4,
+      "elev": 1170
+    },
+    {
+      "km": 3.7,
+      "elev": 1197
+    }
+  ]
+}

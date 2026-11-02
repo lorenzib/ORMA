@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-borgo-stavoli-moggio",
+  "distanceKm": 6.6,
+  "ascentM": 379,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 376
+    },
+    {
+      "km": 0.5,
+      "elev": 336
+    },
+    {
+      "km": 1,
+      "elev": 371
+    },
+    {
+      "km": 1.5,
+      "elev": 306
+    },
+    {
+      "km": 2,
+      "elev": 438
+    },
+    {
+      "km": 2.5,
+      "elev": 537
+    },
+    {
+      "km": 3,
+      "elev": 570
+    },
+    {
+      "km": 3.5,
+      "elev": 570
+    },
+    {
+      "km": 4,
+      "elev": 556
+    },
+    {
+      "km": 4.5,
+      "elev": 467
+    },
+    {
+      "km": 5,
+      "elev": 317
+    },
+    {
+      "km": 5.5,
+      "elev": 356
+    },
+    {
+      "km": 6,
+      "elev": 316
+    },
+    {
+      "km": 6.5,
+      "elev": 366
+    },
+    {
+      "km": 6.6,
+      "elev": 376
+    }
+  ]
+}

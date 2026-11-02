@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-monte-elmo-versciaco",
+  "distanceKm": 7.6,
+  "ascentM": 61,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 2045
+    },
+    {
+      "km": 0.6,
+      "elev": 1981
+    },
+    {
+      "km": 1.2,
+      "elev": 1885
+    },
+    {
+      "km": 1.8,
+      "elev": 1816
+    },
+    {
+      "km": 2.3,
+      "elev": 1756
+    },
+    {
+      "km": 2.9,
+      "elev": 1684
+    },
+    {
+      "km": 3.5,
+      "elev": 1631
+    },
+    {
+      "km": 4,
+      "elev": 1565
+    },
+    {
+      "km": 4.6,
+      "elev": 1508
+    },
+    {
+      "km": 5.2,
+      "elev": 1447
+    },
+    {
+      "km": 5.8,
+      "elev": 1363
+    },
+    {
+      "km": 6.4,
+      "elev": 1251
+    },
+    {
+      "km": 6.9,
+      "elev": 1174
+    },
+    {
+      "km": 7.5,
+      "elev": 1134
+    },
+    {
+      "km": 7.6,
+      "elev": 1136
+    }
+  ]
+}
